@@ -1,0 +1,414 @@
+{
+  "color": {
+    "vivid-indigo": {
+      "$value": "#494bcb",
+      "$type": "color",
+      "$description": "Vivid Indigo — Primary action background, filled buttons, active nav, brand focal point — the one chromatic color that carries the entire brand"
+    },
+    "midnight-ink": {
+      "$value": "#08093f",
+      "$type": "color",
+      "$description": "Midnight Ink — Footer background, dark section canvases, heading accent on dark surfaces — near-black with violet undertone ties it to the brand"
+    },
+    "soft-violet": {
+      "$value": "#8a8ac6",
+      "$type": "color",
+      "$description": "Soft Violet — Icon strokes, decorative SVG borders, illustration outlines — the muted cousin of the brand color, used where saturated indigo would be too loud"
+    },
+    "pale-lavender": {
+      "$value": "#9f7ad0",
+      "$type": "color",
+      "$description": "Pale Lavender — Badge accent border, decorative illustration strokes — provides warmth without competing with the primary"
+    },
+    "sunlit-yellow": {
+      "$value": "#ffde87",
+      "$type": "color",
+      "$description": "Sunlit Yellow — Decorative badge fill, section eyebrow pills, highlight wash — a single warm note against the cool indigo system"
+    },
+    "pale-lilac": {
+      "$value": "#eaeaf7",
+      "$type": "color",
+      "$description": "Pale Lilac — Subtle button surface, card hover wash, ghost UI background — the lightest tint of the brand violet"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary page canvas, card surface, button text, image backgrounds"
+    },
+    "frost-gray": {
+      "$value": "#f6f6fa",
+      "$type": "color",
+      "$description": "Frost Gray — Alternate section background, subtle surface lift above white, badge surface"
+    },
+    "slate": {
+      "$value": "#686878",
+      "$type": "color",
+      "$description": "Slate — Body text borders, hairline dividers, card outlines — the structural neutral"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite — Primary text on light surfaces, nav text, button text — high-contrast reading color"
+    },
+    "ash": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ash — Secondary text, image borders, link text on white"
+    },
+    "stone": {
+      "$value": "#6d737d",
+      "$type": "color",
+      "$description": "Stone — Muted helper borders, inactive UI outlines"
+    },
+    "fog": {
+      "$value": "#aaaab0",
+      "$type": "color",
+      "$description": "Fog — Nav dividers, inactive nav text, subtle UI separators"
+    }
+  },
+  "font": {
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — Satoshi 700 for display and headings, Satoshi 500 for body, labels, and buttons. The geometric, slightly rounded letterforms feel modern but not trendy; the tight -0.02em tracking at all sizes gives everything a compact, engineered quality. Use Inter as a freely available substitute; Geist is also close."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "61px",
+        "fontWeight": 700,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "7.61927px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.4289px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "15.2385px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "35.8106px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 20px 13px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background, default surface"
+    },
+    "frost-gray": {
+      "$value": "#f6f6fa",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section bands, subtle card lift"
+    },
+    "pale-lilac": {
+      "$value": "#eaeaf7",
+      "$type": "color",
+      "$description": "Surface level 3: Ghost button fill, hover wash"
+    },
+    "sunlit-yellow": {
+      "$value": "#ffde87",
+      "$type": "color",
+      "$description": "Surface level 4: Decorative badge surface, highlight wash"
+    },
+    "midnight-ink": {
+      "$value": "#08093f",
+      "$type": "color",
+      "$description": "Surface level 5: Dark section canvas, footer background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.shortcut.com",
+      "siteName": "Shortcut",
+      "extractedAt": "2026-06-03T18:31:50.639Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1113 @@
+{
+  "source": "https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c",
+  "uuid": "6262b0bb-ea6f-481b-b706-65df29507b6c",
+  "name": "INK",
+  "northStar": "Editorial spread on warm paper. A single humanist voice, monochrome with a whisper of taupe, interrupted only by full-bleed photography and a slim band of warm orange.",
+  "capturedAt": "2026-07-18T07:45:31.982Z",
+  "meta": {
+    "url": "https://weareink.co.uk",
+    "siteName": "INK",
+    "extractedAt": "2026-06-03T19:38:11.951Z",
+    "durationMs": 23614,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 402,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Good Sans weight 400 at every size — never introduce bold or medium weights to create hierarchy",
+      "Set section breaks to 160px of vertical whitespace; this is the system's most recognizable rhythm",
+      "Let project images fill 100% viewport width with zero border-radius and zero frame",
+      "Use Whisper Taupe #afa697 for secondary headlines and Ink Carbon #2e2a2b for primary statements in the same block",
+      "Use 100px border-radius on the nav indicator dot — it must read as a perfect circle",
+      "Keep left-edge text alignment with 64px padding from viewport edge on every section",
+      "Use Bone Cream #e6dcd4 only for footer-level coda sections, never mid-page"
+    ],
+    "donts": [
+      "Don't add drop-shadows to any element — depth comes from fill, not blur",
+      "Don't use Signal Orange #fe5431 or Amber Pulse #ff8000 as button backgrounds or link colors — they are decoration only",
+      "Don't introduce a max-width container on text blocks — the left-edge 64px padding is the only gutter",
+      "Don't use a second typeface, even for captions — Good Sans 400 covers the entire voice",
+      "Don't add borders, dividers, or rules between sections — let whitespace do the work",
+      "Don't crop project images with rounded corners or contain them in cards",
+      "Don't bold or italicize any text for emphasis — use the taupe-to-carbon color shift instead"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#2e2a2b",
+        "name": "Ink Carbon",
+        "role": "Primary text, logo mark, dark surface inversions, footer text on cream — a near-black with a barely-warm undertone that keeps the page from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas and nav surface — the warm-white background that everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afa697",
+        "name": "Whisper Taupe",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6dcd4",
+        "name": "Bone Cream",
+        "role": "Alternate panel background and footer band — a warm cream that signals a quieter section without leaving the monochrome family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Lampblack",
+        "role": "Deep surface for inversions and image overlays — slightly cooler than Ink Carbon, used where absolute darkness is needed without color cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fe5431",
+        "name": "Signal Orange",
+        "role": "Decorative illustration accent — appears inside graphic bands and artwork, never as a UI control fill",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff8000",
+        "name": "Amber Pulse",
+        "role": "Decorative illustration accent — companion to Signal Orange inside warm gradient bands and visual punctuation",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is full-bleed with no max-width container. The hero opens with a left-aligned text block at 64px inset from the viewport edge, followed by a warm gradient band, then a sequence of full-viewport-height project plates stacked vertically. Navigation is reduced to a wordmark top-left and a circular dot top-right — there is no horizontal nav bar, no sidebar. Section rhythm is dictated by 160px gaps between the last text block and the next image, and by the alternation of type-heavy and image-heavy blocks. Content density is low: one idea per screen, one image per idea.",
+    "imagery": "Photography is full-bleed and cinematic: wide-angle product and architectural shots, often at golden hour, with deep horizon lines and minimal foreground clutter. The Joby Aviation frame centers a single subject against a silhouetted skyline, letting the object own the composition. No lifestyle context, no human subjects, no text overlays baked into the image. Imagery is text-dominant-page's counterweight: when the type is generous, the image is enormous, and vice versa. Illustration is reserved for warm gradient bands that act as visual breaths between sections.",
+    "similar": [
+      {
+        "why": "Same single-weight typography, full-bleed editorial imagery, and left-edge text alignment at the viewport gutter — both treat the page as a printed spread",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared playful-but-restrained digital studio voice with monochrome type and warm accent colors reserved for decorative moments",
+        "business": "Resn"
+      },
+      {
+        "why": "Same generous negative space, humanist single-weight sans, and portfolio-first page structure with minimal navigation chrome",
+        "business": "Manual"
+      },
+      {
+        "why": "Full-viewport project plates stacked vertically with caption rows beneath, and near-zero use of UI decoration between frames",
+        "business": "Locomotive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "100px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "160px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 0,
+        "purpose": "Default page background and nav surface"
+      },
+      {
+        "hex": "#e6dcd4",
+        "name": "Bone Panel",
+        "level": 1,
+        "purpose": "Footer band and quiet alternation sections"
+      },
+      {
+        "hex": "#212121",
+        "name": "Lampblack Overlay",
+        "level": 2,
+        "purpose": "Image overlays and inversion surfaces"
+      }
+    ],
+    "northStar": "Editorial spread on warm paper. A single humanist voice, monochrome with a whisper of taupe, interrupted only by full-bleed photography and a slim band of warm orange.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body-lg",
+        "size": 22,
+        "lineHeight": 1.31
+      },
+      {
+        "role": "subheading",
+        "size": 27,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.09
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Nav Indicator",
+        "role": "Primary navigation trigger",
+        "description": "A solid dark dot (Ink Carbon #2e2a2b) positioned in the top-right corner, acting as the menu/menu-state indicator. 100px border-radius makes it a perfect circle. No background fill beyond the dot itself."
+      },
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity mark",
+        "description": "The text 'INK' set in Good Sans 400 at ~22px, Ink Carbon #2e2a2b, top-left of the viewport with 64px left padding. No icon, no enclosure — the typography alone carries the brand."
+      },
+      {
+        "name": "Hero Statement Block",
+        "role": "Opening page headline",
+        "description": "Two stacked lines: a muted taupe lead-in ('Technology made Beautiful.') at 27px in Whisper Taupe #afa697, followed by the main statement at 60px in Ink Carbon #2e2a2b. Left-aligned with 64px left padding, generous line-height (1.09 on the 60px line). No border, no background — just type on paper."
+      },
+      {
+        "name": "Full-Bleed Project Plate",
+        "role": "Portfolio showcase frame",
+        "description": "Edge-to-edge image occupying 100% viewport width, 100% viewport height of its container. No border-radius, no frame, no caption inside the image area. Photography extends past all gutters."
+      },
+      {
+        "name": "Project Caption Row",
+        "role": "Label and pagination beneath an image",
+        "description": "Single row below each project plate, separated from the image by ~64px of white. Left: project name in Good Sans 400 at 18px, Ink Carbon #2e2a2b. Right: '1/7' counter in the same size. No dividers, no icons."
+      },
+      {
+        "name": "Decorative Warm Band",
+        "role": "Section transition graphic",
+        "description": "A full-bleed gradient strip using Signal Orange #fe5431 to Amber Pulse #ff8000, with soft cloud-like diffusion. Appears as a visual exhale between text sections. Lives outside the type system — never carries copy."
+      },
+      {
+        "name": "Cream Footer Panel",
+        "role": "Closing section surface",
+        "description": "Bone Cream #e6dcd4 background spanning full viewport width, with Ink Carbon #2e2a2b type. Functions as a quiet coda — the only departure from pure white inside the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single voice across the entire interface — body, nav, buttons, headings, and display all share weight 400. The absence of bold is the signature: hierarchy comes from size and color, not weight.",
+        "sizes": "18px, 22px, 27px, 60px",
+        "family": "Good Sans",
+        "weight": "400",
+        "lineHeight": "1.0–1.75 (size-dependent)",
+        "substitute": "Inter, Söhne, or GT America — any humanist sans with a relaxed x-height and open apertures will carry the same conversational tone",
+        "letterSpacing": "normal at all sizes"
+      }
+    ],
+    "description": "INK is an editorial gallery for a digital studio: warm-white paper, a single weight of a humanist sans, and photography that fills the viewport edge-to-edge. The palette is almost entirely grayscale with one warm taupe (#afa697) doing duty as a 'whispered' secondary voice, while a pair of vivid oranges surfaces only inside decorative bands and illustrations — never inside UI controls. Components are reduced to their quietest form: pill-shaped nav, hairline-thin labels, and image captions that float beneath full-bleed frames. The visual rhythm alternates between vast editorial type passages and cinematic image plates, separated by 160px of negative space.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INK design system\",\"item\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#style-reference\",\"name\":\"INK design system reference\",\"headline\":\"INK design system | Refero Styles\",\"description\":\"Explore INK's light Agency design system: Ink Carbon #2e2a2b, Paper White #ffffff colors, Good Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INK\",\"url\":\"https://weareink.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"caption\":\"Screenshot of INK\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INK design system\",\"INK website design\",\"INK colors\",\"INK typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Carbon\",\"Paper White\",\"Whisper Taupe\",\"Bone Cream\",\"Good Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INK design system\"},{\"@type\":\"Thing\",\"name\":\"INK website design\"},{\"@type\":\"Thing\",\"name\":\"INK colors\"},{\"@type\":\"Thing\",\"name\":\"INK typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-07T09:18:39.000Z\",\"dateModified\":\"2026-03-07T09:18:39.000Z\"}]}19:T53a,## Quick Color Reference\n- Page background: #ffffff (Paper White)\n- Primary text: #2e2a2b (Ink Carbon)\n- Muted/secondary text: #afa697 (Whisper Taupe)\n- Borders/dividers: none (use whitespace)\n- Decorative accent: #fe5431 (Signal Orange) — illustration bands only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Statement**: Left-aligned text block, 64px from viewport left edge. Lead-in line in Good Sans 400, 27px, #afa697, line-height 1.25. Primary statement in Good Sans 400, 60px, #2e2a2b, line-height 1.09. No background, no border, 160px space below before next section.\n2. **Full-Bleed Project Plate**: Image container at 100vw × 100vh, no border-radius, no shadow, no caption inside. Below: a single row with project name left-aligned and '1/7' right-aligned, both in Good Sans 400, 18px, #2e2a2b, 64px below the image.\n3. **Pill Nav Dot**: 16px circle in #2e2a2b, 100px border-radius, positioned top-right with 32px margin from edges. No label, no tooltip chrome.\n4. **Cream Footer Panel**: Full-width band in #e6dcd4, with body text in Good Sans 400, 18px, #2e2a2b. 64px vertical padding, no dividers above or below.\n5. **Decorative Warm Band**: Full-bleed strip ~200px tall between text sections, using a soft gradient from #fe5431 through #ff8000 with cloud-like diffusion. Carries no text."
+      },
+      {
+        "title": "Weight Strategy",
+        "content": "The single-weight typography is the system's most distinctive decision. Most design systems use 2–4 weights to build hierarchy; INK uses 1 weight and lets size (18 → 22 → 27 → 60) and color (#afa697 → #2e2a2b) carry the entire hierarchy. This creates a conversational, almost spoken quality — the page reads like someone thinking out loud, not shouting from a billboard. When generating new pages, resist the urge to add bold for emphasis; instead, shift the color or scale the size."
+      },
+      {
+        "title": "Negative Space as Material",
+        "content": "160px between major sections is not a margin — it is a structural element. The page breathes in these gaps, and the user's eye resets before the next idea. Compression (16–32px) only appears inside caption rows and nav positioning. Any new page built on this system must respect the 160px cadence or it will read as a different brand entirely."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadows. Depth comes from scale and negative space, not drop-shadow. Where a dark element must rise above a light one, it does so by being filled with Lampblack or Ink Carbon — never by being raised with a blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2e2a2b",
+          "oklch": {
+            "c": 0.0060983347332959825,
+            "h": 0.4541265030544823,
+            "l": 0.2896738133783636
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 1889,
+          "confidence": 1,
+          "prominence": 254245113.27564856,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#afa697",
+          "oklch": {
+            "c": 0.023584396317232217,
+            "h": 80.65482515084734,
+            "l": 0.7285147260902557
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 7716638.41826139,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3638331.978986655,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fe5431",
+          "oklch": {
+            "c": 0.21188689142400166,
+            "h": 33.38278080460897,
+            "l": 0.6753625328648998
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3009218.8109740214,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff8000",
+          "oklch": {
+            "c": 0.1858031965317132,
+            "h": 52.98467392023378,
+            "l": 0.7318948471988332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2592000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#007ae6",
+          "oklch": {
+            "c": 0.18670755699287492,
+            "h": 254.10526544445594,
+            "l": 0.5844841509353407
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00b7ac",
+          "oklch": {
+            "c": 0.12245326176474598,
+            "h": 187.22074879568603,
+            "l": 0.7019181018960153
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#192c76",
+          "oklch": {
+            "c": 0.12884584840045135,
+            "h": 267.56769955578835,
+            "l": 0.3293389359765629
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#44687e",
+          "oklch": {
+            "c": 0.05418875605988764,
+            "h": 236.19143492226902,
+            "l": 0.49907124971090705
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b6d0e2",
+          "oklch": {
+            "c": 0.03764354186571162,
+            "h": 238.16329941041408,
+            "l": 0.844028150551866
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6dcd4",
+          "oklch": {
+            "c": 0.015453313612092203,
+            "h": 61.32676035482833,
+            "l": 0.900229967482143
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ee4120",
+          "oklch": {
+            "c": 0.21413893357529515,
+            "h": 32.702036302461,
+            "l": 0.6289074733602016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#284676",
+          "oklch": {
+            "c": 0.08920736748282847,
+            "h": 259.402184982172,
+            "l": 0.39606311490931984
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#17332d",
+          "oklch": {
+            "c": 0.03603420100649395,
+            "h": 178.08474216709632,
+            "l": 0.2968970381568692
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#008a59",
+          "oklch": {
+            "c": 0.12706163902432932,
+            "h": 159.67589014969298,
+            "l": 0.5587353717794458
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a99470",
+          "oklch": {
+            "c": 0.05582259311619768,
+            "h": 80.90753967859061,
+            "l": 0.6761496484732175
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e17a95",
+          "oklch": {
+            "c": 0.13019774145299767,
+            "h": 4.258377967366569,
+            "l": 0.7013671185064843
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#073f40",
+          "oklch": {
+            "c": 0.05359670222125054,
+            "h": 196.78053573782748,
+            "l": 0.33499548395313317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f161f",
+          "oklch": {
+            "c": 0.021122406016892897,
+            "h": 254.94953672738382,
+            "l": 0.19766080194788185
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2f39",
+          "oklch": {
+            "c": 0.019410036296335385,
+            "h": 264.2301767927122,
+            "l": 0.30455170778664653
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9aef2",
+          "oklch": {
+            "c": 0.12294487683869523,
+            "h": 329.8506257369312,
+            "l": 0.8432503743290365
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#87aace",
+          "oklch": {
+            "c": 0.06515406528487905,
+            "h": 249.45863522921104,
+            "l": 0.7250864718937431
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2cb78",
+          "oklch": {
+            "c": 0.10648713252187743,
+            "h": 94.36188324671318,
+            "l": 0.8436228743848219
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313a2e",
+          "oklch": {
+            "c": 0.02389453046630045,
+            "h": 137.89491160327134,
+            "l": 0.3360667223448101
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#797e8a",
+          "oklch": {
+            "c": 0.019203083732022227,
+            "h": 267.6771226822091,
+            "l": 0.5929248729459374
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 599319.0279563447,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.021857159199453306,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#0d0d0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.18,
+          "background": "#0f161f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.39,
+          "background": "#e6dcd4",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#ffffff",
+          "foreground": "#2e2a2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.57,
+          "background": "#17332d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.47,
+          "background": "#e6dcd4",
+          "foreground": "#0f161f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#2a2f39",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#192c76",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#b6d0e2",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#e2cb78",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.93,
+          "background": "#e6dcd4",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#313a2e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.71,
+          "background": "#073f40",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.44,
+          "background": "#f9aef2",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.35,
+          "background": "#b6d0e2",
+          "foreground": "#0f161f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.3,
+          "background": "#e2cb78",
+          "foreground": "#0f161f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.71,
+          "background": "#f9aef2",
+          "foreground": "#0f161f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.49,
+          "background": "#e6dcd4",
+          "foreground": "#2e2a2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#b6d0e2",
+          "foreground": "#212121"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "columnGap",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Good Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 402,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 293,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "list",
+            "button",
+            "other"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7e13c664-a1b1-4913-93c5-b339e93891c5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INK design system\",\"item\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#style-reference\",\"name\":\"INK design system reference\",\"headline\":\"INK design system | Refero Styles\",\"description\":\"Explore INK's light Agency design system: Ink Carbon #2e2a2b, Paper White #ffffff colors, Good Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INK\",\"url\":\"https://weareink.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6262b0bb-ea6f-481b-b706-65df29507b6c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"caption\":\"Screenshot of INK\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9e7ac390-6a25-4f52-bb1a-a0040fe04c3e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INK design system\",\"INK website design\",\"INK colors\",\"INK typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Carbon\",\"Paper White\",\"Whisper Taupe\",\"Bone Cream\",\"Good Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INK design system\"},{\"@type\":\"Thing\",\"name\":\"INK website design\"},{\"@type\":\"Thing\",\"name\":\"INK colors\"},{\"@type\":\"Thing\",\"name\":\"INK typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-07T09:18:39.000Z\",\"dateModified\":\"2026-03-07T09:18:39.000Z\"}]}19:T53a,## Quick Color Reference\n- Page background: #ffffff (Paper White)\n- Primary text: #2e2a2b (Ink Carbon)\n- Muted/secondary text: #afa697 (Whisper Taupe)\n- Borders/dividers: none (use whitespace)\n- Decorative accent: #fe5431 (Signal Orange) — illustration bands only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Statement**: Left-aligned text block, 64px from viewport left edge. Lead-in line in Good Sans 400, 27px, #afa697, line-height 1.25. Primary statement in Good Sans 400, 60px, #2e2a2b, line-height 1.09. No background, no border, 160px space below before next section.\n2. **Full-Bleed Project Plate**: Image container at 100vw × 100vh, no border-radius, no shadow, no caption inside. Below: a single row with project name left-aligned and '1/7' right-aligned, both in Good Sans 400, 18px, #2e2a2b, 64px below the image.\n3. **Pill Nav Dot**: 16px circle in #2e2a2b, 100px border-radius, positioned top-right with 32px margin from edges. No label, no tooltip chrome.\n4. **Cream Footer Panel**: Full-width band in #e6dcd4, with body text in Good Sans 400, 18px, #2e2a2b. 64px vertical padding, no dividers above or below.\n5. **Decorative Warm Band**: Full-bleed strip ~200px tall between text sections, using a soft gradient from #fe5431 through #ff8000 with cloud-like diffusion. Carries no text."
+}

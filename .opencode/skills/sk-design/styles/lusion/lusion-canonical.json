@@ -1,0 +1,1319 @@
+{
+  "source": "https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264",
+  "uuid": "1b44386e-31a8-40b0-a577-27c088b51264",
+  "name": "Lusion",
+  "northStar": "3D sculpture gallery on a frosted lavender plane. Every interface element should feel like a tactile object resting on a pale, slightly cool gallery floor, with the 3D content doing all the chromatic and dramatic work.",
+  "capturedAt": "2026-07-18T08:10:47.829Z",
+  "meta": {
+    "url": "https://lusion.co",
+    "siteName": "Lusion",
+    "extractedAt": "2026-06-03T18:06:30.524Z",
+    "durationMs": 32911,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1181,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Lavender Mist (#f0f1fa) as the canvas for every full-page background; never use pure white as the page base — the slight lavender cast is the brand",
+      "Set all text to pure black (#000000) with Aeonik at weight 400–500 and tracking -0.02em; never introduce a bold weight or a softer gray for emphasis",
+      "Use the 87.5px pill radius for all action buttons and the 100px radius for all image/hero containers; these two radii are the signature shape language",
+      "Reach for Electric Indigo (#1a2ffb) only as a chromatic punctuation — icon stroke, inline highlight, focus ring on inputs — never as a large filled surface",
+      "Keep shadows at the single 4% black whisper stack (0px 6px 10px + 0px 2px 4px); do not stack multiple elevations or introduce colored shadows",
+      "Space sections at 72px vertical rhythm; let the generous breathing room and 3D content do the work rather than adding dividers or borders",
+      "Use Aeonik at the full size range from 12px caption through 144px display; let the type scale itself create hierarchy rather than color or weight variation"
+    ],
+    "donts": [
+      "Don't introduce a third type weight above 500 — bold or black weights break the restrained typographic system",
+      "Don't use white (#ffffff) as the page background; the Lavender Mist canvas is what makes black text and 3D content feel cut and crisp",
+      "Don't fill large UI surfaces with Electric Indigo; it is an accent, not a brand wash — large indigo blocks destroy the gallery-floor metaphor",
+      "Don't add decorative gradients, glassmorphism, or blur effects; surfaces are flat and physical",
+      "Don't use 8px, 12px, or 20px border-radii on cards, buttons, or containers — stick to the defined 3px, 15px, 18px, 87.5px, and 100px values",
+      "Don't add hover states that change background fill or introduce color; rely on opacity shifts and underline reveals against the static canvas",
+      "Don't use the Acid Lime (#c1ff00) as a CTA or text background; it lacks the contrast hierarchy needed for interactive elements and belongs only inside 3D compositions or highlight washes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f0f1fa",
+        "name": "Lavender Mist",
+        "role": "Page canvas — the dominant background, a cool off-white with a barely-perceptible lavender cast that makes pure black text feel sharper than it would on pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Elevated card and surface backgrounds, button text on dark fills, inverted surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, all headings, body copy, icons, and link text — pure black with no softening",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2e3a",
+        "name": "Graphite",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e6ef",
+        "name": "Haze",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#34393f",
+        "name": "Slate Hollow",
+        "role": "Deep surface layer for dark bands or modal overlays, darker than graphite for clear hierarchy separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a2ffb",
+        "name": "Electric Indigo",
+        "role": "Chromatic brand accent — appears as icon stroke, inline highlight marks, and as the signature color inside the 3D hero render. The single source of energy against the otherwise achromatic UI",
+        "group": "brand"
+      },
+      {
+        "hex": "#c1ff00",
+        "name": "Acid Lime",
+        "role": "Highlight wash for emphasis zones, secondary accent inside 3D compositions — used sparingly as a surprise contrast",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed canvas with a max content width of approximately 1400px centered. The header is a thin transparent bar with the wordmark left, a short descriptive line center, and action/menu controls right — no sticky behavior, no background fill. The hero pattern is a centered short headline (3 lines max) followed by a massive rounded-corner 3D render container that fills the viewport width. Section rhythm is consistent vertical spacing at 72px with no dividers or background alternation — the entire page sits on the same Lavender Mist canvas, so visual separation comes from 3D content and generous whitespace rather than from colored bands. Content arrangement is centered stacks for text and full-bleed for imagery; no asymmetric two-column layouts or z-patterns. The overall density is spacious and gallery-like, with each 3D render given room to breathe as a standalone object.",
+    "imagery": "The site is image-driven through full-bleed 3D renders — metallic, glass, and matte plastic objects (cross shapes, cylinders, spheres) rendered in Electric Indigo, black, and white. These renders occupy the entire viewport inside 100px-radius containers, floating on the Lavender Mist canvas with no padding or frame. No photography, no illustration, no icons in the traditional sense — the 3D content IS the visual system. Iconography is minimal: small plus signs, dashes, and arrows in pure black or Electric Indigo, used as decorative ticks and scroll prompts. The 3D work carries all the chromatic and dramatic weight, leaving the UI chrome achromatic and quiet.",
+    "similar": [
+      {
+        "why": "Both are 3D/webGL agency sites that use full-bleed rendered scenes as the primary visual, with a minimal achromatic UI frame and a single chromatic accent inside the 3D content",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Same spacious-gallery layout philosophy, dark 3D artwork against pale canvas, and restrained UI chrome that defers all drama to the rendered content",
+        "business": "Resn"
+      },
+      {
+        "why": "Shares the pill-shaped button language, generous whitespace, and an almost-typographic navigation approach with nearly no border or shadow on the interface",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Both use vivid single-hue accents (indigo/blue) inside 3D compositions while keeping the surrounding UI strictly achromatic and gallery-like",
+        "business": "Basement Studio"
+      },
+      {
+        "why": "Similar dark 3D renders inside soft-cornered containers, with flat chrome and a focus on letting the artwork dominate while UI stays quiet",
+        "business": "Gunner"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "15px",
+        "inputs": "18px",
+        "buttons": "87.5px",
+        "smallDetails": "3px",
+        "imageContainers": "100px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "72px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f0f1fa",
+        "name": "Lavender Canvas",
+        "level": 0,
+        "purpose": "Default page background, dominant surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Surface",
+        "level": 1,
+        "purpose": "Elevated cards and content blocks"
+      },
+      {
+        "hex": "#e4e6ef",
+        "name": "Haze Edge",
+        "level": 2,
+        "purpose": "Borders, dividers, disabled states"
+      },
+      {
+        "hex": "#2b2e3a",
+        "name": "Graphite Plate",
+        "level": 3,
+        "purpose": "Dark UI elements, button fills"
+      },
+      {
+        "hex": "#34393f",
+        "name": "Slate Hollow",
+        "level": 4,
+        "purpose": "Darkest surface layer for inverted sections or overlays"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.04) 0px 6px 10px 0px, rgba(0, 0, 0, 0.04) 0px 2px 4px 0px",
+        "element": "Pill Action Button"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.04) 0px 6px 10px 0px, rgba(0, 0, 0, 0.04) 0px 2px 4px 0px",
+        "element": "Card Surface"
+      }
+    ],
+    "northStar": "3D sculpture gallery on a frosted lavender plane. Every interface element should feel like a tactile object resting on a pale, slightly cool gallery floor, with the 3D content doing all the chromatic and dramatic work.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.52
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.76
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.1,
+        "letterSpacing": -1
+      },
+      {
+        "role": "display",
+        "size": 144,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Action Button",
+        "role": "Primary call-to-action (e.g. 'LET'S TALK')",
+        "description": "Filled dark pill at #2b2e3a background, white text in Aeonik 14px weight 500, -0.02em tracking, uppercase. Radius 87.5px (full pill). Padding 14px 24px. No border, no shadow. A small 1px white dash or plus icon sits to the left of the label as a decorative tick mark."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Header menu items and inline links",
+        "description": "Pure black text (#000000) in Aeonik 14–16px weight 500, uppercase, -0.02em tracking. No underline, no background. Hover state increases opacity or adds a subtle underline. Sits directly on the Lavender Mist canvas."
+      },
+      {
+        "name": "Menu Toggle Button",
+        "role": "Header right-side menu trigger",
+        "description": "Text label 'MENU' in Aeonik 14px weight 500, black, followed by a small horizontal dash/plus icon. No background or border. Identical visual weight to the pill button label but without the dark fill — it relies on proximity and the canvas for separation."
+      },
+      {
+        "name": "Hero Image Container",
+        "role": "Large 3D artwork display",
+        "description": "Full-width container with 100px border-radius (the signature soft-rectangle shape). No padding inside — the 3D render bleeds to the edges. Sits directly on the Lavender Mist canvas with no shadow; the contrast between the dark 3D scene and the pale canvas is the only visual separation."
+      },
+      {
+        "name": "Card Surface",
+        "role": "Content cards, secondary information blocks",
+        "description": "White (#ffffff) background, 15px border-radius, 24px padding, no shadow. Optional 1px border in #e4e6ef for definition against the canvas. Typography inside uses black on white at Aeonik 16px weight 400."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Bottom-of-viewport prompt",
+        "description": "Centered 'SCROLL TO EXPLORE' label in Aeonik 12–14px weight 500, black, uppercase, with flanking plus signs (+) as decorative ticks. No background, sits in the margin between hero and content sections."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs in contact or newsletter areas",
+        "description": "White or Lavender Mist background, 18px border-radius, 1px border in #e4e6ef, Aeonik 16px weight 400 placeholder text in a muted gray. Focus state replaces border with Electric Indigo (#1a2ffb). Padding 14px 18px."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Site-wide navigation",
+        "description": "Transparent, sits directly on the Lavender Mist canvas with 24–32px vertical padding. Logo (Aeonik wordmark) left-aligned, a short descriptive headline centered, and action + menu controls right-aligned. No background fill, no border, no shadow — the header is typographic, not architectural."
+      },
+      {
+        "name": "Section Divider Tick",
+        "role": "Visual rhythm element between sections",
+        "description": "Small plus-sign (+) marks in black, scattered as decorative punctuation along section edges. Aeonik 16px, no background, used as a signature visual signature rather than functional UI."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Used for every text element on the site — navigation, body, headings, buttons, inputs. The deliberate weight ceiling at 500 (no bold) and uniformly tight -0.02em tracking create a uniform geometric confidence. Display sizes compress line-height to 0.90, letting the largest headlines (108–144px) feel sculpted rather than set. The 400 weight is the workhorse; 500 is reserved for navigation, labels, and button text where a slight emphasis is needed.",
+        "sizes": "12, 13, 14, 16, 18, 20, 22, 26, 36, 38, 43, 49, 50, 108, 115, 144",
+        "family": "Aeonik",
+        "weight": "400, 500",
+        "lineHeight": "0.90, 1.00, 1.10, 1.15, 1.20, 1.40, 1.50",
+        "substitute": "Inter, Satoshi, General Sans, or DM Sans",
+        "letterSpacing": "-0.02em applied uniformly across all sizes"
+      }
+    ],
+    "description": "Lusion treats its website as a digital sculpture gallery rather than a typical agency portfolio. The entire chrome sits on a cold lavender-tinted off-white (#f0f1fa) that makes pure black Aeonik text feel etched into the canvas, while the 3D renders — vivid electric indigo crosses, polished metal, glass cylinders — supply every drop of chromatic energy. Pill-shaped components at 87–100px radius make the UI feel like physical objects placed on a gallery floor, never card stacks. Shadows are reduced to a 4% whisper; depth and drama come from the 3D content itself, not from UI elevation. Whitespace is generous, navigation is reduced to bare essentials, and the few text links are pure black with the same tight -0.02em tracking as body copy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lusion design system\",\"item\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#style-reference\",\"name\":\"Lusion design system reference\",\"headline\":\"Lusion design system | Refero Styles\",\"description\":\"Explore Lusion's light Agency design system: Lavender Mist #f0f1fa, Paper White #ffffff colors, Aeonik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lusion\",\"url\":\"https://lusion.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"caption\":\"Screenshot of Lusion\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lusion design system\",\"Lusion website design\",\"Lusion colors\",\"Lusion typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Lavender Mist\",\"Paper White\",\"Ink\",\"Graphite\",\"Aeonik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lusion design system\"},{\"@type\":\"Thing\",\"name\":\"Lusion website design\"},{\"@type\":\"Thing\",\"name\":\"Lusion colors\"},{\"@type\":\"Thing\",\"name\":\"Lusion typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-28T19:49:45.000Z\",\"dateModified\":\"2026-01-28T19:49:45.000Z\"}]}19:T87d,Quick Color Reference:\n- text: #000000 (pure black, all sizes and weights)\n- background (canvas): #f0f1fa (Lavender Mist)\n- surface (cards): #ffffff (white)\n- border: #e4e6ef (Haze)\n- accent: #1a2ffb (Electric Indigo, for icons and focus rings only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: Lavender Mist (#f0f1fa) canvas. Centered headline in Aeonik 50px weight 500, #000000, letter-spacing -1.0px, line-height 1.10, 3 lines max. Below, a full-width 3D render container at 100px border-radius, bleeding edge-to-edge, no padding, no border, no shadow. Centered below the container, a 'SCROLL TO EXPLORE' label in Aeonik 12px weight 500, #000000, uppercase, flanked by plus signs.\n\n2. Create a header navigation bar: Transparent on Lavender Mist (#f0f1fa), 24px vertical padding. Left: 'LUSION' wordmark in Aeonik 16px weight 500, #000000. Center: short descriptive line in Aeonik 16px weight 400, #000000. Right: a pill button (background #2b2e3a, text #ffffff, Aeonik 14px weight 500, uppercase, padding 14px 24px, radius 87.5px) with a small white dash icon to the left of the label, followed by a 'MENU' text trigger in Aeonik 14px weight 500, #000000, with a dash icon.\n\n3. Create a card grid: White (#ffffff) cards at 15px border-radius, 24px padding, optional 1px border in #e4e6ef. Title in Aeonik 22px weight 500, #000000. Body in Aeonik 16px weight 400, #000000. No drop shadow on the card itself; rely on the white-on-lavender contrast for separation. Space cards with 24–32px gap in a 3-column grid, max-width 1200px centered on the Lavender Mist canvas.\n\n4. Create an input field: Background #ffffff, border 1px solid #e4e6ef, 18px border-radius, padding 14px 18px. Placeholder text in Aeonik 16px weight 400 in a muted gray. Focus state: border switches to Electric Indigo (#1a2ffb), no other change — no glow, no shadow, no background shift.\n\n5. Create a section divider: On the Lavender Mist canvas, place a centered horizontal row of three small plus signs (+) in #000000, Aeonik 16px, spaced 16px apart, serving as a decorative tick separator between content blocks. No lines, no background change."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "heading",
+            "input",
+            "icon"
+          ],
+          "frequency": 5462,
+          "confidence": 1,
+          "prominence": 911290551.2729305,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 289,
+          "confidence": 1,
+          "prominence": 10624720.318838598,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0f1fa",
+          "oklch": {
+            "c": 0.01205759680562172,
+            "h": 281.0824044816767,
+            "l": 0.959972403766133
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 5404222.801869237,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121416",
+          "oklch": {
+            "c": 0.00514745792005496,
+            "h": 248.09921719830655,
+            "l": 0.18991806740333497
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 450866,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b2e3a",
+          "oklch": {
+            "c": 0.02208624546354961,
+            "h": 274.0187197444646,
+            "l": 0.30335433757578334
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6008,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e4e6ef",
+          "oklch": {
+            "c": 0.012330614738984634,
+            "h": 276.0895332925631,
+            "l": 0.9260206973848087
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4587,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1a2ffb",
+          "oklch": {
+            "c": 0.28680758260438255,
+            "h": 266.1178054604517,
+            "l": 0.4798687695013885
+          },
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 1308.9105919880708,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#34393f",
+          "oklch": {
+            "c": 0.0125361250107244,
+            "h": 252.97634871439146,
+            "l": 0.342165352304241
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 584,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c1ff00",
+          "oklch": {
+            "c": 0.23354298913328636,
+            "h": 125.47375485553913,
+            "l": 0.9237132331036103
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 292,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0029050784637795943,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.67,
+          "background": "#f0f1fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.46,
+          "background": "#121416",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.57,
+          "background": "#c1ff00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#e4e6ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#121416",
+          "foreground": "#f0f1fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.45,
+          "background": "#c1ff00",
+          "foreground": "#121416"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.83,
+          "background": "#e4e6ef",
+          "foreground": "#121416"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#2b2e3a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#2b2e3a",
+          "foreground": "#f0f1fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.65,
+          "background": "#34393f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.3,
+          "background": "#c1ff00",
+          "foreground": "#2b2e3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#e4e6ef",
+          "foreground": "#2b2e3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.35,
+          "background": "#34393f",
+          "foreground": "#f0f1fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.75,
+          "background": "#c1ff00",
+          "foreground": "#34393f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.35,
+          "background": "#e4e6ef",
+          "foreground": "#34393f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.39,
+          "background": "#ffffff",
+          "foreground": "#1a2ffb"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#f0f1fa",
+          "foreground": "#1a2ffb"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#c1ff00",
+          "foreground": "#1a2ffb"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#e4e6ef",
+          "foreground": "#1a2ffb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 87.5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 76.5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 6px 10px 0px, rgba(0, 0, 0, 0.04) 0px 2px 4px 0px",
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 168,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 216,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Aeonik",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1148,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "input"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 26,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 691,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 108,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 115,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 64,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2ae3d3b0-32e1-45b7-8bff-edf2d8a91844.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lusion design system\",\"item\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#style-reference\",\"name\":\"Lusion design system reference\",\"headline\":\"Lusion design system | Refero Styles\",\"description\":\"Explore Lusion's light Agency design system: Lavender Mist #f0f1fa, Paper White #ffffff colors, Aeonik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lusion\",\"url\":\"https://lusion.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b44386e-31a8-40b0-a577-27c088b51264#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"caption\":\"Screenshot of Lusion\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9b7499c-0431-427c-b444-3e1a005e8353.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lusion design system\",\"Lusion website design\",\"Lusion colors\",\"Lusion typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Lavender Mist\",\"Paper White\",\"Ink\",\"Graphite\",\"Aeonik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lusion design system\"},{\"@type\":\"Thing\",\"name\":\"Lusion website design\"},{\"@type\":\"Thing\",\"name\":\"Lusion colors\"},{\"@type\":\"Thing\",\"name\":\"Lusion typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-28T19:49:45.000Z\",\"dateModified\":\"2026-01-28T19:49:45.000Z\"}]}19:T87d,Quick Color Reference:\n- text: #000000 (pure black, all sizes and weights)\n- background (canvas): #f0f1fa (Lavender Mist)\n- surface (cards): #ffffff (white)\n- border: #e4e6ef (Haze)\n- accent: #1a2ffb (Electric Indigo, for icons and focus rings only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: Lavender Mist (#f0f1fa) canvas. Centered headline in Aeonik 50px weight 500, #000000, letter-spacing -1.0px, line-height 1.10, 3 lines max. Below, a full-width 3D render container at 100px border-radius, bleeding edge-to-edge, no padding, no border, no shadow. Centered below the container, a 'SCROLL TO EXPLORE' label in Aeonik 12px weight 500, #000000, uppercase, flanked by plus signs.\n\n2. Create a header navigation bar: Transparent on Lavender Mist (#f0f1fa), 24px vertical padding. Left: 'LUSION' wordmark in Aeonik 16px weight 500, #000000. Center: short descriptive line in Aeonik 16px weight 400, #000000. Right: a pill button (background #2b2e3a, text #ffffff, Aeonik 14px weight 500, uppercase, padding 14px 24px, radius 87.5px) with a small white dash icon to the left of the label, followed by a 'MENU' text trigger in Aeonik 14px weight 500, #000000, with a dash icon.\n\n3. Create a card grid: White (#ffffff) cards at 15px border-radius, 24px padding, optional 1px border in #e4e6ef. Title in Aeonik 22px weight 500, #000000. Body in Aeonik 16px weight 400, #000000. No drop shadow on the card itself; rely on the white-on-lavender contrast for separation. Space cards with 24–32px gap in a 3-column grid, max-width 1200px centered on the Lavender Mist canvas.\n\n4. Create an input field: Background #ffffff, border 1px solid #e4e6ef, 18px border-radius, padding 14px 18px. Placeholder text in Aeonik 16px weight 400 in a muted gray. Focus state: border switches to Electric Indigo (#1a2ffb), no other change — no glow, no shadow, no background shift.\n\n5. Create a section divider: On the Lavender Mist canvas, place a centered horizontal row of three small plus signs (+) in #000000, Aeonik 16px, spaced 16px apart, serving as a decorative tick separator between content blocks. No lines, no background change."
+}

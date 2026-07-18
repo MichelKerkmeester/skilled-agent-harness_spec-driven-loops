@@ -1,0 +1,395 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#dbd7d3",
+      "$type": "color",
+      "$description": "Bone — Primary page canvas — warm off-white that carries the entire reading surface; everything else floats on or beside it"
+    },
+    "ash": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Ash — Structural divider lines and hairline borders — the single most-used color in the system at 2300+ occurrences, used exclusively to draw the rules that separate sections"
+    },
+    "inkstone": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Inkstone — Primary text and graphic fill — near-black with no pure-black harshness, used for all type at every size and for icon/illustration fills"
+    },
+    "graphite": {
+      "$value": "#535251",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and muted borders — for sub-labels, metadata, and the dimmer secondary rule lines"
+    },
+    "sand": {
+      "$value": "#e5d5c3",
+      "$type": "color",
+      "$description": "Sand — Warm section surface — slightly more saturated beige used to differentiate bands or sidebar zones from the main bone canvas"
+    },
+    "linen": {
+      "$value": "#cdc0b1",
+      "$type": "color",
+      "$description": "Linen — Deepest warm surface — tan accent band, used sparingly as a third surface level for footer blocks or inverted sections"
+    },
+    "frost": {
+      "$value": "#c9c8c9",
+      "$type": "color",
+      "$description": "Frost — Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks."
+    },
+    "sage-stone": {
+      "$value": "#82887c",
+      "$type": "color",
+      "$description": "Sage Stone — Subtle warm-gray accent — the only chromatically-tinged neutral, reserved for occasional emphasis on a word or number"
+    }
+  },
+  "font": {
+    "plain": {
+      "$value": "Plain",
+      "$type": "fontFamily",
+      "$description": "The sole typeface — a geometric grotesque carrying every role from 10px wordmark to 190px bleeding display. Two weights only: 400 for body and 700 for display/emphasis. The brand's voice is this single family; never pair it with a secondary face."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "27px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 36px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 36px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 36px"
+    },
+    "4xl-7": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-7 at 42px"
+    },
+    "4xl-8": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-8 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "187px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 187px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "190px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 190px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#dbd7d3",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the warm off-white everything reads against"
+    },
+    "sand-section": {
+      "$value": "#e5d5c3",
+      "$type": "color",
+      "$description": "Surface level 2: Warm secondary band for differentiated content sections"
+    },
+    "linen-accent": {
+      "$value": "#cdc0b1",
+      "$type": "color",
+      "$description": "Surface level 3: Deeper warm zone for footer or inverted blocks"
+    },
+    "frost-cool-band": {
+      "$value": "#c9c8c9",
+      "$type": "color",
+      "$description": "Surface level 4: Cool gray break from the warm palette — used as a deliberate cold note"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://odins-crow.com",
+      "siteName": "Odin's Crow",
+      "extractedAt": "2026-06-03T18:07:27.708Z",
+      "variant": "extended"
+    }
+  }
+}

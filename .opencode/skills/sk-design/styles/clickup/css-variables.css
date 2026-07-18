@@ -1,0 +1,132 @@
+:root {
+  /* Colors */
+  --color-signal-white: #ffffff;
+  --color-ink-black: #202020;
+  --color-onyx: #090c1d;
+  --color-carbon: #2a2a2a;
+  --color-slate: #646464;
+  --color-ash: #838383;
+  --color-fog: #b3b3b3;
+  --color-cloud: #d4d4d4;
+  --color-bone: #e8e8e8;
+  --color-mist: #f8f9fa;
+  --color-plaster: #e9ebf0;
+  --color-mercury: #eeeeee;
+  --color-brand-violet: #6647f0;
+  --color-signal-blue: #0091ff;
+  --color-mint: #6ee7b7;
+  --color-emerald: #00c07a;
+  --color-teal-tag: #16c0a4;
+  --color-rainbow-conic: #7d5be7;
+  --gradient-rainbow-conic: conic-gradient(from 90deg, rgb(125, 91, 231) 19%, rgb(188, 63, 218) 28%, rgb(250, 36, 206) 37%, rgb(251, 73, 165) 45%, rgb(252, 109, 123) 52%, rgb(253, 132, 97) 55%, rgb(253, 154, 70) 58%, rgb(246, 135, 198) 65%, rgb(163, 160, 224) 80%, rgb(79, 185, 250) 95%, rgb(0, 145, 255) 100%);
+  --color-primary-gradient: #40ddff;
+  --gradient-primary-gradient: linear-gradient(83deg,rgba(64,221,255) -5%,rgba(118,18,250) 51%,rgba(250,18,227) 125%);
+  --color-dark-fade: #111111;
+  --gradient-dark-fade: linear-gradient(rgb(17, 17, 17) 24%, rgb(0, 0, 0));
+
+  /* Typography — Font Families */
+  --font-plus-jakarta-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sometype-mono: 'Sometype Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sf-pro: 'SF Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.01px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.01px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: -0.02px;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.04px;
+  --text-heading: 48px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.035px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -0.035px;
+  --text-display: 80px;
+  --leading-display: 1.2;
+  --tracking-display: -0.04px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-w590: 590;
+  --font-weight-semibold: 600;
+  --font-weight-w650: 650;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-52: 52px;
+  --spacing-56: 56px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 28px;
+  --element-gap: 12px;
+
+  /* Border Radius */
+  --radius-sm: 1px;
+  --radius-lg: 9px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 27.72px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 40px;
+  --radius-3xl-4: 45px;
+  --radius-full: 48px;
+  --radius-full-2: 54px;
+  --radius-full-3: 60px;
+  --radius-full-4: 90.324px;
+  --radius-full-5: 100px;
+  --radius-full-6: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 100px;
+  --radius-cards: 12px;
+  --radius-badges: 9999px;
+  --radius-images: 16px;
+  --radius-inputs: 9px;
+  --radius-buttons: 9999px;
+  --radius-largecards: 20px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+  --shadow-subtle-2: rgba(18, 43, 165, 0.04) 0px 1px 1px -0.5px, rgba(18, 43, 165, 0.04) 0px 3px 3px -1.5px, rgba(18, 43, 165, 0.04) 0px 6px 6px -3px, rgba(18, 43, 165, 0.04) 0px 12px 12px -6px;
+  --shadow-xl: rgba(0, 0, 0, 0.17) -34px -13px 37px 0px, rgba(0, 0, 0, 0.2) -9px -3px 20px 0px;
+  --shadow-sm: rgba(13, 21, 48, 0.04) 0px 4px 4px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.43) -8px 10px 13px 0px, rgba(0, 0, 0, 0.49) -2px 2px 7px 0px;
+  --shadow-subtle-3: rgba(255, 255, 255, 0.1) 0px 0.5px 0px 0px inset, rgba(255, 255, 255, 0.1) 0px -0.5px 0px 0px inset;
+  --shadow-xl-2: rgba(0, 0, 0, 0.55) 0px -13px 32px 0px;
+  --shadow-xl-3: rgba(0, 0, 0, 0.55) 0px -12px 29px 0px;
+  --shadow-xl-4: rgba(0, 0, 0, 0.55) 0px -11px 26px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-card: #f8f9fa;
+  --surface-section-band: #e9ebf0;
+  --surface-dark-panel: #111111;
+  --surface-ink-surface: #000000;
+}

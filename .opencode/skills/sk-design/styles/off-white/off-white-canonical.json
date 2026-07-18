@@ -1,0 +1,1048 @@
+{
+  "source": "https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517",
+  "uuid": "cf49b88a-fb38-4520-8fbb-ab3efa983517",
+  "name": "OFF WHITE",
+  "northStar": "Glitched editorial monolith on midnight — a wall of pixelated green typography in which portrait photographs of a single human face are pressed into the negative space between monumental letterforms, all on absolute black.",
+  "capturedAt": "2026-07-18T08:56:28.620Z",
+  "meta": {
+    "url": "https://off-white.valeriafrancis.com",
+    "siteName": "OFF WHITE",
+    "extractedAt": "2026-06-03T21:19:15.455Z",
+    "durationMs": 39946,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1106,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Scale the Offwhite display face to 180–500px for hero letterforms and keep it at 1.00 line-height — the monumentality is the whole point",
+      "Use 30px border-radius exclusively on buttons and links; everything else (display type, images, frames, surfaces) stays at 0px sharp edges",
+      "Layer Portrait Photo Tiles behind and between display type, never in clean modular grids — the chaos is compositional",
+      "Keep body copy at Times 16px / 1.20 line-height in #fff500 — the serif/grotesk collision against blocky Offwhite is the signature editorial gesture",
+      "Maintain #000000 as the only canvas color across every section, including transition between sections — no light bands",
+      "Use #00fb34 as the only filled action color, and let its neon glow carry CTA visibility against the black canvas"
+    ],
+    "donts": [
+      "Don't apply box-shadows, drop-shadows, or gradients anywhere — depth must come from z-stacking and color contrast only",
+      "Don't round image corners or display type edges; the blocky 0px geometry is what gives the system its protest-poster identity",
+      "Don't introduce new accent colors beyond the four anchors (#000000, #ffffff, #00fb34, #ff0000, #fff500) — the chromatic vocabulary is intentionally narrow",
+      "Don't constrain the layout to a max-width container; let display type and photos bleed to viewport edges",
+      "Don't set the Offwhite display face below 36px — at small sizes it loses its blocky monumentality and reads as a generic bold sans",
+      "Don't stack body copy in conventional centered columns — float it through the collage, including rotated 90° vertical runs",
+      "Don't use a light background, even for cards or panels, unless intentionally creating a binary 'white extreme' passage with #000000 text"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#00fb34",
+        "name": "Voltage Green",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Alarm Red",
+        "role": "Frame borders, decorative strokes, section dividers — the most-used border color in the system. Borders total 44 instances vs only 12 backgrounds, meaning red reads as a hard rectangular frame or alert outline rather than a surface fill",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff500",
+        "name": "Caution Yellow",
+        "role": "Yellow outline accent for tags, dividers, and focused UI edges",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute Black",
+        "role": "Page canvas, photo tile borders (104 image borders), all text colors. The most frequent single color in the system (3357 occurrences) — everything else floats on it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aba4a4",
+        "name": "Ashen Gray",
+        "role": "Medium-contrast borders, control outlines, and structural separators.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, no max-width container, no modular grid system. The page is built as a single tall vertical composition: Section 1 uses massive green 'OFF' letterforms (180–500px) with portrait photos filling the letter interiors and negative space, running edge-to-edge. Section 2 continues the pattern with 'WHITE' letterforms, same scale, same photo scatter, same black canvas. Body text (Times 16px in #fff500) floats through both sections, including rotated 90° vertical passages. A single yellow hamburger icon sits top-right as the only fixed navigation element. There is no header bar, no footer, no sidebar, no card grid — the composition is closer to a vertical poster or zine spread than a product page. Section gaps are 60–120px of pure black breathing room, but within sections the horizontal composition is dense and chaotic.",
+    "imagery": "The visual language is single-subject cinematic portraiture: tight crops on a Black man's face (eyes, jaw, three-quarter profile, full-face), lit with high-contrast dark-moody key light, desaturated except for skin tones, set against deep out-of-focus dark backgrounds. Treatment is sharp-edged, never rounded or masked; images are rotated slightly and layered with hard rectangular edges rather than feathered. There is no lifestyle context, no product photography, no illustration — the human face IS the hero content. Density is high: 12–20 portrait tiles crowd the viewport at any given scroll position, deliberately overwhelming the eye. Role is narrative atmosphere, not decorative or explanatory — the portraits embody the site's 'gray area between black and white' theme through human presence.",
+    "similar": [
+      {
+        "why": "Shared quotation-mark and industrial-stencil typographic attitude, black-canvas default, and the deliberate conflation of 'off-white' as both a literal color and a conceptual middle ground",
+        "business": "Virgil Abloh / Off-White™"
+      },
+      {
+        "why": "Same radical use of full-bleed typography at extreme scale against photographic subjects, with a custom display face doing the work a layout grid would normally do",
+        "business": "Bloomberg Businessweek covers"
+      },
+      {
+        "why": "Anti-grid collage composition, type set at angles and overlapping imagery, and the rejection of clean product-UI conventions in favor of editorial chaos",
+        "business": "David Carson's Ray Gun era"
+      },
+      {
+        "why": "Monumental single-color typographic forms carved out of black, with imagery pressed into letter-shaped negative space",
+        "business": "Saul Bass title sequences"
+      },
+      {
+        "why": "Same generous vertical rhythm (60–120px section gaps) and the alternation between a serif body voice and a display sans headline voice",
+        "business": "It's Nice That / feature editorial spreads"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "links": "30px",
+        "images": "0px",
+        "buttons": "30px",
+        "surfaces": "0px",
+        "display-type": "0px"
+      },
+      "elementGap": "40px",
+      "sectionGap": "60-120px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Midnight Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background, all sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverse Panel",
+        "level": 1,
+        "purpose": "Rare white-on-black inversion blocks, photo card edges"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Alert Frame",
+        "level": 2,
+        "purpose": "Rectangular border frames, alert outlines"
+      },
+      {
+        "hex": "#00fb34",
+        "name": "Neon Type Field",
+        "level": 3,
+        "purpose": "Display type fills, action backgrounds"
+      },
+      {
+        "hex": "#fff500",
+        "name": "Caution Highlight",
+        "level": 4,
+        "purpose": "Editorial body text, link color, icon color"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Glitched editorial monolith on midnight — a wall of pixelated green typography in which portrait photographs of a single human face are pressed into the negative space between monumental letterforms, all on absolute black.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.31
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display-lg",
+        "size": 96,
+        "lineHeight": 1
+      },
+      {
+        "role": "hero",
+        "size": 180,
+        "lineHeight": 1
+      },
+      {
+        "role": "monumental",
+        "size": 500,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Monumental Display Letterform",
+        "role": "Hero scale typography",
+        "description": "Custom Offwhite face at 180–500px, line-height 1.00, weight 600 or 700, color #00fb34 on #000000. Each letter is a near-window-sized sculptural object with blocky pixel-inspired geometry. Letters interlock and overlap horizontally to form a single compound word, with portrait photos pressed into the gaps between strokes."
+      },
+      {
+        "name": "Portrait Photo Tile",
+        "role": "Scattered editorial imagery",
+        "description": "Sharp-edged (0px radius) rectangular photographs of a single human subject in cinematic dark-moody lighting. Sits at varying scales (roughly 120–280px wide), rotated slightly in some cases, with no internal padding or framing. Always layered against #000000 with no drop shadow — depth comes from z-stacking, not blur."
+      },
+      {
+        "name": "Photo Collage Field",
+        "role": "Hero background composition",
+        "description": "Irregular scatter of 12–20 Portrait Photo Tiles filling the negative space between Monumental Display Letterforms. No fixed grid columns — tiles are positioned to accentuate letter geometry, with eyes and faces deliberately placed at letter intersections."
+      },
+      {
+        "name": "Editorial Body Passage",
+        "role": "Narrative annotation",
+        "description": "Times 16px / 1.20 line-height, color #fff500 (Caution Yellow) on #000000. Body text is always 16px, never larger or smaller, and the serif/grotesk contrast against the Offwhite display face is the entire point. May run horizontally or rotated 90° vertically through the collage."
+      },
+      {
+        "name": "Caution Yellow Hamburger Icon",
+        "role": "Navigation trigger",
+        "description": "Three short horizontal bars in #fff500 (Caution Yellow), 2px stroke weight, positioned top-right. The only navigation UI visible — a minimal intrusion into the editorial composition."
+      },
+      {
+        "name": "Red Frame Border",
+        "role": "Section delimiter / alert frame",
+        "description": "Hard rectangular outline in #ff0000 (Alarm Red), 1–4px stroke, sharp 0px corners. Wraps a section, a single photo, or a body passage to signal 'this is the warning / this is the framed statement.' Background stays #000000 inside the frame."
+      },
+      {
+        "name": "Filled Action Button",
+        "role": "Primary CTA",
+        "description": "Offwhite face, 13px Arial or 18px Offwhite, weight 400, color #000000 on #00fb34 (Voltage Green) fill, 30px border-radius, padding 12px 24px. The 30px radius is the only soft edge in the system — every other element is sharp."
+      },
+      {
+        "name": "Yellow Inline Link",
+        "role": "In-prose navigation",
+        "description": "Offwhite 18px / 1.30, color #fff500, no underline by default, underline on hover. 30px border-radius if it ever becomes a pill-shaped tag. Sits inside Editorial Body Passages as a quiet yellow accent."
+      },
+      {
+        "name": "Inverted White Text Block",
+        "role": "Binary counterpart passage",
+        "description": "Times 16px / 1.20, color #000000 on #ffffff, no padding border. Used for passages that need to read as 'the other extreme' of the black/white binary — a literal white panel breaking the black canvas."
+      },
+      {
+        "name": "Vertical Text Column",
+        "role": "Compositional spine",
+        "description": "Same Times 16px body type, rotated 90° (reading bottom-to-top), threading vertically through the photo collage. Functions as a visual string connecting the top and bottom of the page composition."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole display and heading face, also used for buttons and links. The blocky pixel-inspired geometry of this custom face is the brand's most important asset — at 180–500px each letter becomes a sculptural object that photographs nest into. Weights 600/700 are reserved for display-scale usage; 400 carries inline link and button use.",
+        "sizes": "11, 18, 20, 36, 38, 42, 48, 56, 72, 96, 180, 500",
+        "family": "Offwhite",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.56 (tight 1.00–1.10 for display, 1.25–1.56 for inline use)",
+        "substitute": "Druk Wide Bold, VT323 (for pixel-mood at small sizes), or a custom blocky display sans"
+      },
+      {
+        "role": "Sole body face. The deliberate collision of a conventional serif against the radical blocky display face is a core editorial gesture — Times reads as quiet annotation, the opposite of Offwhite's shout. Body text is always 16px, always Times, always 1.20 leading.",
+        "sizes": "16",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Source Serif Pro, PT Serif, or system 'Times New Roman'"
+      },
+      {
+        "role": "Rare utility use for small button labels and meta text where Times would feel too 'editorial.' Used sparingly (freq=6) — only when functional UI needs a neutral voice.",
+        "sizes": "13",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica, Inter, system-ui"
+      }
+    ],
+    "description": "This is a conceptual editorial experience, not a product UI — the visual system weaponizes binary extremes (pure black canvas, pure white text) and three vivid chromatic accents (electric green, alarm red, hi-vis yellow) to physically manifest the site's theme of the 'gray area between black and white.' Typography is deliberately polarized: a custom blocky display face scaled to 180–500px acts as architecture, while a conventional Times serif at 16px whispers against it as editorial annotation. Layout is collage-driven rather than grid-rigid — portrait photographs overlap display type, bleed past frames, and stack in an irregular scatter, producing a zine/protest-poster feel that rejects conventional product UI patterns. Spacing is generous vertically (60–120px) but horizontally dense and chaotic, with no max-width container constraining the canvas. The custom 'Offwhite' display face is the single most important asset in the system: its blocky pixel-inspired geometry makes every letter a sculptural object.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFF WHITE design system\",\"item\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#style-reference\",\"name\":\"OFF WHITE design system reference\",\"headline\":\"OFF WHITE design system | Refero Styles\",\"description\":\"Explore OFF WHITE's dark Agency design system: Voltage Green #00fb34, Alarm Red #ff0000 colors, Offwhite, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFF WHITE\",\"url\":\"https://off-white.valeriafrancis.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"caption\":\"Screenshot of OFF WHITE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFF WHITE design system\",\"OFF WHITE website design\",\"OFF WHITE colors\",\"OFF WHITE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Voltage Green\",\"Alarm Red\",\"Caution Yellow\",\"Absolute Black\",\"Offwhite\",\"Times\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFF WHITE design system\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE website design\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE colors\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:55:17.631Z\",\"dateModified\":\"2026-04-30T01:55:17.631Z\"}]}19:T6cb,QUICK COLOR REFERENCE\n• text on canvas: #fff500 (Caution Yellow) on #000000, or #ffffff (Pure White) on #000000\n• canvas: #000000 (Absolute Black) — single canvas color, full-bleed\n• border: #ff0000 (Alarm Red) for section frames, #000000 for photo tile edges\n• accent (display type fill): #00fb34 (Voltage Green) on #000000\n• primary action: #00fb34 (filled action)\n\n3–5 EXAMPLE COMPONENT PROMPTS\n1. HERO LETTERFORM BLOCK: Build a full-bleed section on #000000 canvas. Set 2–4 Offwhite display characters at 180–500px, line-height 1.00, weight 700, color #00fb34. Layer 8–14 portrait photo tiles (sharp 0px corners, varied sizes 120–280px) into the negative space between strokes, allowing some to extend behind letterforms. Add one Times 16px line in #fff500 floating between letters, possibly rotated 90°.\n2. EDITORIAL BODY PASSAGE: Render a paragraph in Times 16px, line-height 1.20, color #fff500 on #000000. No max-width, no border, no background panel. Optionally rotate the entire block 90° to thread vertically through a photo composition.\n3. RED ALERT FRAME: Draw a 1–4px #ff0000 rectangular border at 0px radius around a Times 16px passage. Canvas inside the frame stays #000000. Frame sits at the section edge, not centered, with 40px padding around the body text.\n4. NAVIGATION TRIGGER: Place three horizontal 2px bars in #fff500, 24px wide with 6px gaps, positioned fixed at top-right with 30px margin. No background, no border — the yellow bars float on the black canvas.\n5. FILLED ACTION BUTTON: Offwhite face 18px / 1.30, weight 400, #000000 text on #00fb34 background, 30px border-radius, 12px 24px padding, no border. Sits at the end of an Editorial Body Passage, inline rather than centered."
+      },
+      {
+        "title": "Composition Rules",
+        "content": "The system operates on a single compositional rule: monumental display type and intimate portrait photography must coexist in the same viewport, and the negative space of one must be filled by the other. Never put the Offwhite display face on a section without portrait tiles, and never show portrait tiles without display type anchoring them. Body text is the third voice and is always subordinate to both — it reads as annotation, never as headline. The four-anchor color palette (#000000, #ffffff, #00fb34, #ff0000, #fff500) is the entire chromatic vocabulary; introducing any additional hue breaks the binary-to-triadic logic the site is built on."
+      }
+    ],
+    "elevationPhilosophy": "Flat by absolute rule. Depth is generated exclusively through z-index layering, color contrast, and photo overlap — never through box-shadow, blur, or gradient. The blocky geometry of the Offwhite display face and the scattered photo tiles are the only depth signals; any soft shadow would dissolve the protest-poster tension the system is built on."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "image"
+          ],
+          "frequency": 3357,
+          "confidence": 1,
+          "prominence": 874104440.6452669,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "image/color": 26,
+            "other/color": 877,
+            "button/color": 1,
+            "body/borderColor": 32,
+            "image/borderColor": 104,
+            "other/borderColor": 2288,
+            "button/borderColor": 4,
+            "body/backgroundColor": 4,
+            "other/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 57634027.53560094,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 18,
+            "heading/color": 2,
+            "other/borderColor": 44,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 40530794.646012306,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 32,
+            "other/borderColor": 68,
+            "other/backgroundColor": 23
+          }
+        },
+        {
+          "hex": "#00fb34",
+          "oklch": {
+            "c": 0.27964001804261895,
+            "h": 143.81200471230923,
+            "l": 0.8575309070630752
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 362,
+          "confidence": 1,
+          "prominence": 27871288.856281072,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 13,
+            "other/color": 94,
+            "button/color": 9,
+            "other/borderColor": 236,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff500",
+          "oklch": {
+            "c": 0.20274349705599806,
+            "h": 106.68059604599034,
+            "l": 0.9473378276652844
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 3274508.1589726787,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 7,
+            "other/color": 14,
+            "other/borderColor": 44,
+            "body/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#aba4a4",
+          "oklch": {
+            "c": 0.008111929505117531,
+            "h": 17.34358794546282,
+            "l": 0.7245666800530093
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 70515.19205717242,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09310667589889114,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.31,
+          "background": "#fff500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#00fb34",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.58,
+          "background": "#000000",
+          "foreground": "#aba4a4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#ff0000",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#ffffff",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.49,
+          "background": "#fff500",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#00fb34",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#ffffff",
+          "foreground": "#aba4a4"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#fff500",
+          "foreground": "#aba4a4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#00fb34",
+          "foreground": "#aba4a4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.63,
+          "background": "#ff0000",
+          "foreground": "#aba4a4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#00fb34",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#fff500",
+          "foreground": "#00fb34"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#fff500",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 21
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 963,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Offwhite",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 137,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 963,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Offwhite",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Offwhite",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Offwhite",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Offwhite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 180,
+          "family": "Offwhite",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 500,
+          "family": "Offwhite",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/40176ead-1613-44d1-86cb-169a9bf95761.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFF WHITE design system\",\"item\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#style-reference\",\"name\":\"OFF WHITE design system reference\",\"headline\":\"OFF WHITE design system | Refero Styles\",\"description\":\"Explore OFF WHITE's dark Agency design system: Voltage Green #00fb34, Alarm Red #ff0000 colors, Offwhite, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFF WHITE\",\"url\":\"https://off-white.valeriafrancis.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cf49b88a-fb38-4520-8fbb-ab3efa983517#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"caption\":\"Screenshot of OFF WHITE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/62db78b8-bbae-4344-8b10-3109b03f7c4b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFF WHITE design system\",\"OFF WHITE website design\",\"OFF WHITE colors\",\"OFF WHITE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Voltage Green\",\"Alarm Red\",\"Caution Yellow\",\"Absolute Black\",\"Offwhite\",\"Times\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFF WHITE design system\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE website design\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE colors\"},{\"@type\":\"Thing\",\"name\":\"OFF WHITE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:55:17.631Z\",\"dateModified\":\"2026-04-30T01:55:17.631Z\"}]}19:T6cb,QUICK COLOR REFERENCE\n• text on canvas: #fff500 (Caution Yellow) on #000000, or #ffffff (Pure White) on #000000\n• canvas: #000000 (Absolute Black) — single canvas color, full-bleed\n• border: #ff0000 (Alarm Red) for section frames, #000000 for photo tile edges\n• accent (display type fill): #00fb34 (Voltage Green) on #000000\n• primary action: #00fb34 (filled action)\n\n3–5 EXAMPLE COMPONENT PROMPTS\n1. HERO LETTERFORM BLOCK: Build a full-bleed section on #000000 canvas. Set 2–4 Offwhite display characters at 180–500px, line-height 1.00, weight 700, color #00fb34. Layer 8–14 portrait photo tiles (sharp 0px corners, varied sizes 120–280px) into the negative space between strokes, allowing some to extend behind letterforms. Add one Times 16px line in #fff500 floating between letters, possibly rotated 90°.\n2. EDITORIAL BODY PASSAGE: Render a paragraph in Times 16px, line-height 1.20, color #fff500 on #000000. No max-width, no border, no background panel. Optionally rotate the entire block 90° to thread vertically through a photo composition.\n3. RED ALERT FRAME: Draw a 1–4px #ff0000 rectangular border at 0px radius around a Times 16px passage. Canvas inside the frame stays #000000. Frame sits at the section edge, not centered, with 40px padding around the body text.\n4. NAVIGATION TRIGGER: Place three horizontal 2px bars in #fff500, 24px wide with 6px gaps, positioned fixed at top-right with 30px margin. No background, no border — the yellow bars float on the black canvas.\n5. FILLED ACTION BUTTON: Offwhite face 18px / 1.30, weight 400, #000000 text on #00fb34 background, 30px border-radius, 12px 24px padding, no border. Sits at the end of an Editorial Body Passage, inline rather than centered."
+}

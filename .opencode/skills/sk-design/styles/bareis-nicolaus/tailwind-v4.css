@@ -1,0 +1,29 @@
+@theme {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-bone: #ffffff;
+  --color-ash: #a9a9a9;
+
+  /* Typography */
+  --font-lausanne: 'Lausanne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-victor-serif: 'Victor Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-black-tie: 'Black Tie', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 24px;
+  --leading-body: 1.2;
+  --text-display: 72px;
+  --leading-display: 1;
+
+  /* Spacing */
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-20: 20px;
+  --spacing-29: 29px;
+
+  /* Border Radius */
+  --radius-full: 120px;
+}

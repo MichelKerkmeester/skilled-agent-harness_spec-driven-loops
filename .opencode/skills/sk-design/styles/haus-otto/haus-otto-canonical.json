@@ -1,0 +1,499 @@
+{
+  "source": "https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3",
+  "uuid": "0057e55a-8a66-4ffc-9c21-f0b757e580b3",
+  "name": "Haus Otto",
+  "northStar": "Monumental wordmark on white void",
+  "capturedAt": "2026-07-18T07:45:50.672Z",
+  "meta": {
+    "url": "https://hausotto.com",
+    "siteName": "Haus Otto",
+    "extractedAt": "2026-06-03T19:18:01.351Z",
+    "durationMs": 24095,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 503,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set hero type at exactly 216px Monument Medium with letter-spacing -0.033em — this scale is non-negotiable, it IS the brand",
+      "Use zero border-radius on every interactive element: buttons, tags, inputs, cards — sharp corners only",
+      "Keep the color palette to Obsidian (#000000) and Paper (#ffffff) as the default; reserve Terracotta (#af7653) for single-element accent moments only",
+      "Set base spacing to a 4px grid with 30px section gaps — the design is compact in its tokens but vast in its whitespace",
+      "Let the wordmark fill the full viewport width — no max-width container should clip the display type",
+      "Use 13px Monument Regular for all navigation and metadata at line-height 1.77–2.00 for breathing room at small sizes",
+      "Treat the white canvas as an active design element — never fill backgrounds with color or imagery behind text"
+    ],
+    "donts": [
+      "Never introduce a second typeface family — Monument is the sole voice",
+      "Never apply border-radius to buttons, cards, or tags — every corner is sharp",
+      "Never use shadows, gradients, or glow effects — the design is flat and chromatically minimal",
+      "Never add borders, dividers, or rules between sections — whitespace is the only separator",
+      "Never reduce the 216px display below 120px — the wordmark's authority depends on its scale",
+      "Never use more than one accent color per screen — Terracotta appears as punctuation, not decoration",
+      "Never fill the page with imagery, illustrations, or product photography — text on void is the entire visual system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, wordmark fills, link text, all heading color — the only non-white pigment in the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, inverse text on dark moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#af7653",
+        "name": "Terracotta",
+        "role": "Sole chromatic accent — warm earthen tone for hover states, active indicators, or single-element highlights against the monochrome field",
+        "group": "accent"
+      }
+    ],
+    "imagery": "No imagery present. The site is pure typography on white space — no photography, no illustrations, no icons, no product shots, no decorative graphics. The only visual marks are the two navigation dot indicators in the top-right corner. This is a typographic-first identity where the wordmark replaces all visual content.",
+    "similar": [
+      {
+        "why": "Same radical typographic-first identity where the studio name IS the visual content — no imagery, no decoration, just type on white",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shares the ultra-condensed display typeface at extreme scale with near-zero supporting visual elements",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Identical approach: single bold wordmark on infinite white void, no chrome, no navigation beyond text links",
+        "business": "Manuel Bürger (manuelbuerger.com)"
+      },
+      {
+        "why": "Same minimal agency presentation — monochrome palette, display-scale typography, whitespace as the primary design material",
+        "business": "Dia Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "30px",
+      "cardPadding": "12-20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, all content sits on this surface"
+      }
+    ],
+    "northStar": "Monumental wordmark on white void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.23,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1.16,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 216,
+        "lineHeight": 1,
+        "letterSpacing": -7.13
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Wordmark",
+        "role": "Hero brand identifier — the signature element",
+        "description": "Single-line brand name at 216px Monument Medium, weight 400, letter-spacing -0.033em, Obsidian (#000000) on Paper (#ffffff). Fills viewport width edge-to-edge. No surrounding chrome, no tagline, no subtitle — the word IS the content."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-level nav items (e.g. 'Info')",
+        "description": "13px Monument Regular, weight 400, Obsidian color, no underline, no padding. Sits at the absolute top edge of the viewport with 3–4px horizontal margin. Hover state: Terracotta (#af7653)."
+      },
+      {
+        "name": "Top-Left Brand Mark",
+        "role": "Persistent brand identifier in nav",
+        "description": "13px Monument Regular, 'Haus Otto' in Obsidian, top-left corner, no logo mark — text only. Functions as home link."
+      },
+      {
+        "name": "Page Dot Indicators",
+        "role": "Section navigation (right edge, top)",
+        "description": "Two small circular dots (approximately 8px diameter) stacked vertically at the top-right edge. Active dot: Obsidian. Inactive: Terracotta (#af7653). Zero border-radius added — native circle shape."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "Legal/UX footer notice",
+        "description": "Full-width bar at viewport bottom, 30px vertical padding, Paper background. Body text at 13px Monument Regular, Obsidian. 'Yes' button: solid Obsidian fill, Paper text, 4px padding, 0px radius — no rounding. 'No' and 'More': text-only links in Obsidian."
+      },
+      {
+        "name": "Page Section Spacer",
+        "role": "Vertical rhythm device between content blocks",
+        "description": "30px top/bottom padding with no visible divider line, no background change, no rule. Whitespace itself separates sections. This is the primary structural tool."
+      },
+      {
+        "name": "Tertiary Body Text",
+        "role": "Supplementary information, metadata, descriptions",
+        "description": "20–23px Monument Regular, line-height 1.16–1.23, Obsidian. Sits in generous white space beneath the display wordmark. No max-width constraint — text is allowed to breathe at whatever length it needs."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire system. Regular variant at 13–23px for nav links, metadata, body micro-copy. Medium variant at 216px for the hero wordmark — the only element that earns the 216px scale, with -0.033em tracking to tighten the ultra-condensed letterforms into a continuous bar of black",
+        "sizes": "13px, 20px, 23px, 216px",
+        "family": "Monument",
+        "weight": "400 (Regular + Medium variants)",
+        "lineHeight": "1.15–2.00 (contextual: tight at display, generous at body)",
+        "substitute": "Bebas Neue (display), Inter (body micro-copy)",
+        "letterSpacing": "-0.033em at 216px display; normal at 13–23px body sizes"
+      }
+    ],
+    "description": "Haus Otto operates as a typographic monolith: a single ultra-condensed wordmark stretches across a vast white void, treating the brand name as both logo and content. The entire interface is two-tone — near-black on paper-white — with no shadows, no gradients, no borders, and no decorative geometry. Typography is the only material; Monument at 216px dominates with weight 400 and aggressive negative tracking, while smaller sizes at 13–23px handle navigation and metadata at near-whisper volumes. The layout is radically spacious, using emptiness as the primary compositional tool rather than fills, cards, or dividers. Every screen should feel like walking into a gallery where one object occupies the room.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Haus Otto design system\",\"item\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#style-reference\",\"name\":\"Haus Otto design system reference\",\"headline\":\"Haus Otto design system | Refero Styles\",\"description\":\"Explore Haus Otto's light Agency design system: Obsidian #000000, Paper #ffffff colors, Monument typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Haus Otto\",\"url\":\"https://hausotto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"caption\":\"Screenshot of Haus Otto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Haus Otto design system\",\"Haus Otto website design\",\"Haus Otto colors\",\"Haus Otto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Terracotta\",\"Monument\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Haus Otto design system\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto website design\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto colors\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-20T14:50:55.000Z\",\"dateModified\":\"2026-02-20T14:50:55.000Z\"}]}19:T691,**Quick Color Reference**\n- text/wordmark: #000000 (Obsidian)\n- background: #ffffff (Paper)\n- border: none (use whitespace, not lines)\n- accent: #af7653 (Terracotta — single-element highlights only)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Display Wordmark**: Full-viewport Paper (#ffffff) background. Single text element at 216px, Monument Medium weight 400, color Obsidian (#000000), letter-spacing -0.033em, line-height 1.0. Text fills 100% of viewport width edge-to-edge. No subtitle, no tagline.\n\n2. **Navigation Bar**: Top edge of viewport, 4px vertical padding. Left: 'Haus Otto' at 13px Monument Regular Obsidian. Center-left: nav link 'Info' at 13px Monument Regular Obsidian with 20px right margin. Right: two 8px circular dots stacked vertically — top dot Obsidian (active), bottom dot Terracotta #af7653 (inactive). No background, no border.\n\n3. **Body Text Block**: Paper background. 20px Monument Regular Obsidian, line-height 1.23. No max-width constraint. 30px top margin from preceding element. Single paragraph only — no bullet points, no subheadings.\n\n4. **Bottom Consent Bar**: Full-width fixed bar at viewport bottom, Paper background, 30px top/bottom padding. Left: 13px Monument Regular Obsidian consent text. Right group: 'Yes' button (Obsidian fill, Paper text, 4px 8px padding, 0px radius), 'No' text link (Obsidian, no background), 'More' text link (Obsidian, no background), separated by 20px right margins.\n\n5. **Section Divider (Invisible)**: No visible element. Simply 30px of vertical whitespace between the bottom of one content block and the top of the next. The absence of a line IS the divider."
+      },
+      {
+        "title": "Composition Rules",
+        "content": "The layout follows a single principle: the wordmark commands the first viewport, and everything else descends from it at increasingly smaller scales. Sections stack vertically with 30px gaps and no visual separation. Navigation is absolute-positioned at the viewport's top edge with 4px padding — it hovers above the content rather than occupying its own zone. Content blocks never compete with the display type; they exist at 13–23px and defer to the 216px wordmark. There is no card system, no grid of features, no sidebar, no footer beyond the consent bar. The page is a single vertical scroll of typographic moments, each separated by silence."
+      }
+    ],
+    "elevationPhilosophy": "The design eliminates elevation entirely. There are no shadows, no stacked layers, no depth cues. Hierarchy is achieved through scale (216px vs 13px) and whitespace alone, not through z-axis separation. This flatness is deliberate — it treats the white page as a single infinite plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 2512,
+          "confidence": 1,
+          "prominence": 58554290.65128531,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 26800891.207476947,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#af7653",
+          "oklch": {
+            "c": 0.08708500356260501,
+            "h": 52.03037773152717,
+            "l": 0.6168592669723479
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 121,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00009237239972273434,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.54,
+          "background": "#af7653",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.79,
+          "background": "#af7653",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 145,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 79,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Monument-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 502,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Monument-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 23,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Monument-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.77,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Monument-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Monument-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Monument-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 225,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Monument-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 238,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 216,
+          "family": "Monument-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.12,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d31d3fc2-8c8f-41b2-8824-789cb63090f2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Haus Otto design system\",\"item\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#style-reference\",\"name\":\"Haus Otto design system reference\",\"headline\":\"Haus Otto design system | Refero Styles\",\"description\":\"Explore Haus Otto's light Agency design system: Obsidian #000000, Paper #ffffff colors, Monument typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Haus Otto\",\"url\":\"https://hausotto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0057e55a-8a66-4ffc-9c21-f0b757e580b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"caption\":\"Screenshot of Haus Otto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa9a26ec-7424-4bfe-87e3-c91e2c632908.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Haus Otto design system\",\"Haus Otto website design\",\"Haus Otto colors\",\"Haus Otto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Terracotta\",\"Monument\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Haus Otto design system\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto website design\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto colors\"},{\"@type\":\"Thing\",\"name\":\"Haus Otto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-20T14:50:55.000Z\",\"dateModified\":\"2026-02-20T14:50:55.000Z\"}]}19:T691,**Quick Color Reference**\n- text/wordmark: #000000 (Obsidian)\n- background: #ffffff (Paper)\n- border: none (use whitespace, not lines)\n- accent: #af7653 (Terracotta — single-element highlights only)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Display Wordmark**: Full-viewport Paper (#ffffff) background. Single text element at 216px, Monument Medium weight 400, color Obsidian (#000000), letter-spacing -0.033em, line-height 1.0. Text fills 100% of viewport width edge-to-edge. No subtitle, no tagline.\n\n2. **Navigation Bar**: Top edge of viewport, 4px vertical padding. Left: 'Haus Otto' at 13px Monument Regular Obsidian. Center-left: nav link 'Info' at 13px Monument Regular Obsidian with 20px right margin. Right: two 8px circular dots stacked vertically — top dot Obsidian (active), bottom dot Terracotta #af7653 (inactive). No background, no border.\n\n3. **Body Text Block**: Paper background. 20px Monument Regular Obsidian, line-height 1.23. No max-width constraint. 30px top margin from preceding element. Single paragraph only — no bullet points, no subheadings.\n\n4. **Bottom Consent Bar**: Full-width fixed bar at viewport bottom, Paper background, 30px top/bottom padding. Left: 13px Monument Regular Obsidian consent text. Right group: 'Yes' button (Obsidian fill, Paper text, 4px 8px padding, 0px radius), 'No' text link (Obsidian, no background), 'More' text link (Obsidian, no background), separated by 20px right margins.\n\n5. **Section Divider (Invisible)**: No visible element. Simply 30px of vertical whitespace between the bottom of one content block and the top of the next. The absence of a line IS the divider."
+}

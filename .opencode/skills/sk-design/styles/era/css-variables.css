@@ -1,0 +1,77 @@
+:root {
+  /* Colors */
+  --color-ink: #191a17;
+  --color-parchment: #f3f3f1;
+  --color-ash: #e6e6e4;
+  --color-paper: #ffffff;
+  --color-smoke: #868784;
+  --color-charcoal: #3d3d3d;
+  --color-sage-wash: #add2d1;
+  --color-slate-teal: #9dbebe;
+  --color-dusk-gradient: #c9c5e1;
+  --gradient-dusk-gradient: linear-gradient(90deg, rgb(201, 197, 225) 0%, rgb(234, 211, 221) 100%);
+
+  /* Typography — Font Families */
+  --font-saans-vf: 'Saans VF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --tracking-caption: -0.12px;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.4;
+  --tracking-body-lg: -0.16px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.38;
+  --tracking-subheading: -0.2px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.6px;
+  --text-heading: 35px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.7px;
+  --text-display: 56px;
+  --leading-display: 1.15;
+  --tracking-display: -1.12px;
+
+  /* Typography — Weights */
+  --font-weight-w380: 380;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-w670: 670;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-badges: 6px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-parchment-canvas: #f3f3f1;
+  --surface-paper-card: #ffffff;
+  --surface-ash-divider: #e6e6e4;
+  --surface-sage-product-card: #add2d1;
+  --surface-slate-product-card: #9dbebe;
+  --surface-dusk-product-card: #c9c5e1;
+  --surface-ink-product-card: #191a17;
+}

@@ -1,0 +1,217 @@
+{
+  "color": {
+    "signal-red": {
+      "$value": "#e32735",
+      "$type": "color",
+      "$description": "Signal Red — Red action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "carbon": {
+      "$value": "#0b0405",
+      "$type": "color",
+      "$description": "Carbon — Primary section background, full-bleed dark canvases, secondary button fill"
+    },
+    "graphite": {
+      "$value": "#150e0f",
+      "$type": "color",
+      "$description": "Graphite — Alternate near-black surface for cards and elevated panels on dark sections"
+    },
+    "steel": {
+      "$value": "#382e30",
+      "$type": "color",
+      "$description": "Steel — Hairline borders on dark surfaces, card edges, table dividers, UI mockup outlines"
+    },
+    "slate": {
+      "$value": "#858182",
+      "$type": "color",
+      "$description": "Slate — Secondary text, badge borders, badge labels, muted helper copy"
+    },
+    "chalk": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Chalk — Primary text on dark, nav and hero overlay type, inverted button text, light section backgrounds"
+    },
+    "foil": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Foil — SVG icon fills, decorative vector detail"
+    }
+  },
+  "font": {
+    "archivo": {
+      "$value": "Archivo",
+      "$type": "fontFamily",
+      "$description": "All interface type — headlines (40/56px, weight 500), subheads (24px, weight 500), body and UI (14/16px, weight 400), nav links (12/14px). The geometric grotesque with tight -0.02em tracking gives industrial precision; weight 500 (not 700) for display type keeps the system restrained rather than shouty."
+    },
+    "space-mono": {
+      "$value": "Space Mono",
+      "$type": "fontFamily",
+      "$description": "Badge labels, step counters ('01', '02', '03'), industrial tag stamps — the monospace face signals instrumentation and serial-number precision, contrasting Archivo's proportional geometry"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Space Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "canvas-light": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Navigation bar, light interstitial bands"
+    },
+    "canvas-dark": {
+      "$value": "#0b0405",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content section background, full-bleed dark bands"
+    },
+    "card-surface": {
+      "$value": "#150e0f",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated panels and feature cards on dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.andercore.com",
+      "siteName": "Andercore",
+      "extractedAt": "2026-06-03T19:50:37.304Z",
+      "variant": "extended"
+    }
+  }
+}

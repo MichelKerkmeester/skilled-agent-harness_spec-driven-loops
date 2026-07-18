@@ -1,0 +1,125 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surface, text on dark tiles"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, card and image borders, grid hairlines, nav accents"
+    },
+    "carbon-plum": {
+      "$value": "#29242b",
+      "$type": "color",
+      "$description": "Carbon Plum — Heading text — a warm near-black that softens against pure Ink Black for editorial moments"
+    },
+    "ash": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Ash — Subtle divider and muted border tone for low-emphasis separations"
+    }
+  },
+  "font": {
+    "diatype": {
+      "$value": "Diatype",
+      "$type": "fontFamily",
+      "$description": "Body and small UI text at 19px; copyright/caption at 9px. Diatype is a contemporary neo-grotesque with humanist proportions — paired with the bold Variable cut, it creates a tight, modern-editorial feel without a serif in sight. The 9px caption is intentionally tiny, like a museum wall label."
+    },
+    "diatype-variable": {
+      "$value": "Diatype Variable",
+      "$type": "fontFamily",
+      "$description": "Primary navigation and section headings at 26px. The 500 weight is the default nav voice; 700 is reserved for emphasis and the designer's name. The 26px cap-height next to 19px body text creates a deliberate 7px gap that reads as confident hierarchy without loud type."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Occasional fallback or inherited editorial copy; not a primary voice. Appears at 13px as a quiet secondary tier."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Diatype Variable",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Diatype Variable",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    }
+  },
+  "spacing": {
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background beneath the entire grid"
+    },
+    "tile-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Flat project-image tiles with no container styling"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://thomashedger.co.uk",
+      "siteName": "Thomas Hedger",
+      "extractedAt": "2026-06-03T21:40:50.885Z",
+      "variant": "extended"
+    }
+  }
+}

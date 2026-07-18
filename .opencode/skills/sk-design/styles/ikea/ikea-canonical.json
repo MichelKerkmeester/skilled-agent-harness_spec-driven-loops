@@ -1,0 +1,1220 @@
+{
+  "source": "https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc",
+  "uuid": "e7b37c82-239c-48d5-b293-79a2bfa235cc",
+  "name": "IKEA",
+  "northStar": "sunlit Swedish flat-pack showroom",
+  "capturedAt": "2026-07-18T07:31:08.019Z",
+  "meta": {
+    "url": "https://www.ikea.com",
+    "siteName": "IKEA",
+    "extractedAt": "2026-06-03T20:49:37.912Z",
+    "durationMs": 51044,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 667,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffdb00 exclusively for primary CTAs and featured accent cards — never as a background for body text or informational content",
+      "Set all corners to 8px — there is exactly one border radius in the system",
+      "Use weight 700 for every headline and weight 400 for every body element — never introduce medium, semibold, or light weights",
+      "Apply gradient-to-black overlays at 30–60% opacity on all image cards that contain text overlays",
+      "Use the circular black arrow button (Ink Black fill, white arrow, 8px or 50% radius) as the universal 'navigate' affordance",
+      "Keep body text at 16px with 1.57 line-height — IKEA's body line-height is generous, not tight",
+      "Use #0159a3 exclusively for text links, never for buttons or backgrounds"
+    ],
+    "donts": [
+      "Do not introduce shadows, elevation, or any depth effects — the system is entirely flat",
+      "Do not use more than one border radius — 8px everywhere, no exceptions",
+      "Do not add additional font weights (300, 500, 600) — the binary 400/700 system is the constraint",
+      "Do not place body text directly on photography without a gradient overlay",
+      "Do not use the blue #0159a3 as a CTA button fill — it is link-only, not action",
+      "Do not soften the letter-spacing — the negative tracking is structural, not decorative",
+      "Do not add accent gradients or color transitions — the system rejects all gradient fills on surfaces"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffdb00",
+        "name": "IKEA Yellow",
+        "role": "Primary CTA fills, featured card backgrounds, hero accent panels, the singular chromatic workhorse of the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#111111",
+        "name": "Ink Black",
+        "role": "Primary text, body copy, headings, dominant borders (851 occurrences), icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page background, card surfaces, nav background, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffefb",
+        "name": "Warm White",
+        "role": "Slightly off-white surface variant for buttons and cards — barely warmer than pure white, breaks digital coldness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#818181",
+        "name": "Steel Gray",
+        "role": "Secondary text, muted borders, disabled icon states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "SVG icon fills, input borders, true-black accents where maximum contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0159a3",
+        "name": "Link Blue",
+        "role": "Text link color, used extensively across navigation and body links — the only blue in the system",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffa6da",
+        "name": "Soft Pink",
+        "role": "Occasional decorative highlight, used sparingly on select link elements or promotional accents",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed with centered content container capped at ~1440px. Navigation is a simple top bar, not sticky. The page is built from horizontal card sections stacked vertically with ~80px gaps. Hero pattern: split layout — 2/3 media card (image) + 1/3 solid yellow CTA card. Body sections use 2-column card grids alternating between image-led and text-led blocks. Content density is spacious, never compact. Cards are large (roughly 600x400 minimum) with generous internal padding. A timeline/history section breaks the grid with oversized numerals. No sidebar, no mega-menu, no complex navigation architecture.",
+    "imagery": "Product and lifestyle photography is the dominant visual language. Treatment: high-key, naturally lit, warm Scandinavian interiors with lived-in authenticity — not studio-white. People appear in product interaction scenes (holding, assembling, using). Images are always full-bleed within their 8px-rounded cards, never cropped to organic shapes. Gradient-to-black overlays appear at the bottom 30-40% of any image card that carries text. Occasional flat illustration appears (e.g., the Germany map with cultural iconography in teal/green/orange). Photography is editorial-confident: no stock-photo gloss, no overly stylized color grading.",
+    "similar": [
+      {
+        "why": "Same Scandinavian design DNA — flat layout, yellow as accent against white, 2-column card grids, no shadows, and bold sans-serif headlines with tight tracking",
+        "business": "H&M"
+      },
+      {
+        "why": "Similar primary-color-against-white approach with product-led card layouts, though LEGO uses red where IKEA uses yellow; both are large media cards with text overlays",
+        "business": "LEGO"
+      },
+      {
+        "why": "Yellow brand accent on white, bold sans-serif type, 2-column featured content grids with image cards and text overlays — comparable e-commerce editorial pattern",
+        "business": "Best Buy"
+      },
+      {
+        "why": "Minimal interface chrome, blue text links, no decorative elements — though IKEA has far more visual hierarchy and media",
+        "business": "Craigslist"
+      },
+      {
+        "why": "Bold brand color (orange vs yellow), flat card-based homepage, large media blocks, utilitarian sans-serif type — same functional-not-pretty retail aesthetic",
+        "business": " Depot"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "8px",
+        "default": "8px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base page background, top navigation"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Default card background on white pages"
+      },
+      {
+        "hex": "#fffefb",
+        "name": "Warm White Surface",
+        "level": 2,
+        "purpose": "Subtle off-white for specific card or button surfaces"
+      },
+      {
+        "hex": "#ffdb00",
+        "name": "Accent Surface",
+        "level": 3,
+        "purpose": "Yellow solid-fill cards and hero panels — the highest surface level, demands attention"
+      }
+    ],
+    "northStar": "sunlit Swedish flat-pack showroom",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.08,
+        "letterSpacing": -0.97
+      },
+      {
+        "role": "display",
+        "size": 51,
+        "lineHeight": 1,
+        "letterSpacing": -1.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header",
+        "description": "White background, horizontal flex layout. IKEA logo (yellow+blue badge) left-aligned, text links (Stories, Jobs, Newsroom, Our business) in Ink Black at 14px weight 400, evenly spaced. 1px bottom border in white/light gray. No sticky behavior, no search bar visible in this view."
+      },
+      {
+        "name": "Hero Media Card",
+        "role": "Primary featured content card",
+        "description": "Large image card, roughly 2/3 viewport width. Contains full-bleed product photography. Bottom-left text overlay with small kicker label (13–14px, white) and bold headline (36–51px, white, weight 700, letter-spacing -0.027em). Gradient overlay from transparent to black at bottom for text legibility. 8px border radius. Circular play/pause button bottom-right with dark semi-transparent fill."
+      },
+      {
+        "name": "Yellow CTA Card",
+        "role": "Primary action panel",
+        "description": "Solid #ffdb00 background, 1/3 viewport width beside the hero media card. Contains bold black text (36–51px, weight 700) like 'Go shopping'. Circular Ink Black button with white right-arrow icon for the action. 8px border radius. This card is the system's signature: flat yellow plane + minimal content + arrow = unmistakable primary action."
+      },
+      {
+        "name": "Image Story Card",
+        "role": "Editorial content card",
+        "description": "Media card used in 2-column grids. Full-bleed lifestyle or product photography. Gradient-to-black overlay at bottom with small kicker (13px white) and headline (20–36px white, weight 700). 8px border radius. Some variants have solid backgrounds (gray-to-black gradient) without photography."
+      },
+      {
+        "name": "Circular Media Control",
+        "role": "Play/pause button",
+        "description": "Small circular button (~40px diameter) with Ink Black or dark fill and white icon. Positioned bottom-right of media cards. 50% border radius (pill/circle). Used to indicate video or audio content."
+      },
+      {
+        "name": "Arrow Link Button",
+        "role": "Inline navigation action",
+        "description": "Circular Ink Black button (~40px) with white right-arrow icon. Paired with bold text in Yellow CTA cards. The arrow+circle is a recurring interaction pattern — always means 'go to' or 'navigate'."
+      },
+      {
+        "name": "Store Selector Footer",
+        "role": "Utility footer",
+        "description": "Minimal footer beneath CTA cards. Contains store label (e.g. 'Store: IKEA.es') in Ink Black at 14px weight 400, right-aligned, with a small chevron-up icon. 8px padding, 8px radius. Separated from card by subtle spacing."
+      },
+      {
+        "name": "Timeline Section Block",
+        "role": "Historical/year display",
+        "description": "White background section with large numerical display (51px+ weight 700, Ink Black). Accompanied by rows of decorative green circles (not part of the core palette but used in this context). Left-aligned layout with generous 80px+ vertical padding. Headlines sit tight against the numbers."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — custom IKEA-branded Noto variant. Two-weight system (regular 400, bold 700) is deliberate restraint: no italics, no medium weight, no light. The 700 headlines at 36–51px carry the entire brand voice; body at 16px stays neutral. Letter-spacing tightens as size grows, giving display text a compressed, architectural quality.",
+        "sizes": "13px, 14px, 16px, 20px, 36px, 51px",
+        "family": "Noto IKEA",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.62",
+        "substitute": "Inter, DM Sans",
+        "letterSpacing": "-0.029em at 51px display, -0.027em at 20px+ headings",
+        "fontFeatureSettings": "N/A"
+      }
+    ],
+    "description": "IKEA's interface reads as a high-contrast editorial spread: near-black type on warm white, punctuated by flat yellow panels that function as built-in call-to-action zones. The system is deliberately sparse — one custom sans-serif (Noto IKEA) at just two weights (400 and 700), one 8px corner radius across every component, zero shadows, no gradients. The tightness is structural, not minimalism-as-trend: the negative letter-spacing (-0.029em at display, -0.027em at body) makes even 13px captions feel architectural. Cards are large and media-led, arranged in generous two-column blocks with gradient-to-black text overlays for legibility. The yellow #ffdb00 does all the interface work — it never decorates, it only activates.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"IKEA design system\",\"item\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#style-reference\",\"name\":\"IKEA design system reference\",\"headline\":\"IKEA design system | Refero Styles\",\"description\":\"Explore IKEA's light E-commerce design system: IKEA Yellow #ffdb00, Ink Black #111111 colors, Noto IKEA typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"IKEA\",\"url\":\"https://www.ikea.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"caption\":\"Screenshot of IKEA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"IKEA design system\",\"IKEA website design\",\"IKEA colors\",\"IKEA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"IKEA Yellow\",\"Ink Black\",\"Pure White\",\"Warm White\",\"Noto IKEA\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"IKEA design system\"},{\"@type\":\"Thing\",\"name\":\"IKEA website design\"},{\"@type\":\"Thing\",\"name\":\"IKEA colors\"},{\"@type\":\"Thing\",\"name\":\"IKEA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:03:49.756Z\",\"dateModified\":\"2026-04-30T01:03:49.756Z\"}]}19:T67e,## Quick Color Reference\n- Background: #ffffff\n- Surface warm: #fffefb\n- Primary text: #111111\n- Border/divider: #111111\n- Accent/CTA: #ffdb00\n- Text link: #0159a3\n- primary action: #ffdb00 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Media Card**: Full-bleed product image at 2/3 page width, 8px radius. Bottom-left overlay: small kicker 'A sneak peek!' in white at 14px weight 400, headline 'IKEA PS 2026 collection' in white at 51px weight 700, letter-spacing -1.48px. Gradient overlay from transparent to rgba(0,0,0,0.6) at bottom 40%. Circular play button bottom-right: 40px diameter, #111111 fill, white pause icon, 50% radius.\n\n2. **Yellow CTA Card**: Solid #ffdb00 background, 1/3 page width, 8px radius, 40px padding. Headline 'Go shopping' in #111111 at 51px weight 700, letter-spacing -1.48px. Circular arrow button: 40px diameter, #111111 fill, white right-arrow icon, positioned to the right of or below the headline.\n\n3. **Image Story Card**: Full-bleed editorial image, 8px radius. Gradient overlay from transparent to rgba(0,0,0,0.6) at bottom 35%. White kicker 'Market spotlight' at 13px weight 400. White headline 'Let\\'s visit IKEA Germany!' at 36px weight 700, letter-spacing -0.97px. 20px padding from card edges.\n\n4. **Top Navigation**: White background, 1px bottom border #ffffff or #f0f0f0. IKEA logo left. Text links 'Stories', 'Jobs', 'Newsroom', 'Our business' in #111111 at 14px weight 400, 24px gap between items. 16px vertical padding.\n\n5. **Store Footer Strip**: White background, 8px radius, 16px padding. Text 'Store: IKEA.es' in #111111 at 14px weight 400, right-aligned. Small chevron-up icon in #111111, 12px size."
+      },
+      {
+        "title": "Signature Design Choices",
+        "content": "Three constraints define IKEA's visual identity more than any color or font choice: (1) The binary weight system — 400 or 700, nothing else. This eliminates 90% of typographic decision-making and forces hierarchy through size alone. (2) The single 8px radius — applied identically to hero cards, image cards, buttons, inputs, and links. Uniformity in shape reinforces the flat-pack, modular sensibility. (3) Yellow as surface, not decoration — #ffdb00 is never a border, never a text color, never a hover tint. It is a solid plane that entire cards and CTAs are built on. The contrast between a yellow card and its black text is the highest-impact moment in the entire system, and it is reserved for the single most important action on each screen."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately uses zero shadows and zero elevation. All depth and hierarchy is created through: (1) solid yellow surface contrast against white, (2) image overlays with gradient-to-black, (3) size and weight contrast in type, and (4) generous spacing between cards. The absence of shadow is not a missing feature — it is the defining visual stance. Everything sits on the same plane, like printed pages on a table."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "hero",
+            "button",
+            "icon",
+            "body",
+            "card",
+            "link",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 1610,
+          "confidence": 1,
+          "prominence": 161829012.018437,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 30,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 8,
+            "link/color": 6,
+            "list/color": 3,
+            "other/fill": 9,
+            "image/color": 30,
+            "other/color": 213,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 10,
+            "nav/borderColor": 56,
+            "body/borderColor": 120,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 32,
+            "link/borderColor": 24,
+            "list/borderColor": 12,
+            "image/borderColor": 120,
+            "other/borderColor": 851,
+            "button/borderColor": 7,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40,
+            "button/backgroundColor": 2,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "icon",
+            "body",
+            "heading",
+            "input",
+            "nav"
+          ],
+          "frequency": 1383,
+          "confidence": 1,
+          "prominence": 9828042.419507748,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 34,
+            "body/color": 21,
+            "icon/color": 21,
+            "link/color": 130,
+            "other/fill": 27,
+            "other/color": 41,
+            "button/color": 3,
+            "heading/color": 19,
+            "nav/borderColor": 136,
+            "body/borderColor": 84,
+            "icon/borderColor": 84,
+            "link/borderColor": 520,
+            "other/borderColor": 164,
+            "button/borderColor": 12,
+            "heading/borderColor": 76,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "input",
+            "footer",
+            "other"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 7401333.952644853,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 48,
+            "other/fill": 2,
+            "input/color": 1,
+            "button/color": 1,
+            "input/borderColor": 4,
+            "button/borderColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffdb00",
+          "oklch": {
+            "c": 0.18446638581669625,
+            "h": 97.0291225336,
+            "l": 0.8947075563381688
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "hero"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1786563.455977278,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffa6da",
+          "oklch": {
+            "c": 0.12242043486237436,
+            "h": 344.16748561157596,
+            "l": 0.8280132311257952
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1031083,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fffefb",
+          "oklch": {
+            "c": 0.004094235220906241,
+            "h": 91.4451354769503,
+            "l": 0.9969564834674116
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 317639.7633805912,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "button/borderColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff094",
+          "oklch": {
+            "c": 0.11396739150851988,
+            "h": 100.17193809451567,
+            "l": 0.9473950710051349
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 30404,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#818181",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6032473921145677
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 12818.283470161063,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dadada",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8883696500007239
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0159a3",
+          "oklch": {
+            "c": 0.13909970682926537,
+            "h": 252.31515733278042,
+            "l": 0.46241349024627454
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 112,
+          "confidence": 1,
+          "prominence": 293.2676953838531,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 112
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.014025442035702275,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.82,
+          "background": "#fffefb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.72,
+          "background": "#fffefb",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.14,
+          "background": "#fff094",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.31,
+          "background": "#fff094",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.38,
+          "background": "#ffdb00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#dadada",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.83,
+          "background": "#ffdb00",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#dadada",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.72,
+          "background": "#ffa6da",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#ffa6da",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.1,
+          "background": "#0159a3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.04,
+          "background": "#fffefb",
+          "foreground": "#0159a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#fff094",
+          "foreground": "#0159a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.39,
+          "background": "#000000",
+          "foreground": "#818181"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.2,
+          "background": "#ffdb00",
+          "foreground": "#0159a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.08,
+          "background": "#dadada",
+          "foreground": "#0159a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#111111",
+          "foreground": "#818181"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#ffa6da",
+          "foreground": "#0159a3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "hero",
+            "other",
+            "card",
+            "button",
+            "input",
+            "link"
+          ],
+          "frequency": 59
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "input",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginBottom|input",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 73,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|link",
+            "marginBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|list",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "hero",
+            "nav"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|hero",
+            "columnGap|hero",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "link",
+            "footer",
+            "nav"
+          ],
+          "frequency": 104,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Noto IKEA",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 605,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "nav"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "nav",
+            "heading",
+            "hero",
+            "body",
+            "card",
+            "input",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 472,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Noto IKEA",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Noto IKEA",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Noto IKEA",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Noto IKEA",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading",
+            "icon"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "Noto IKEA",
+          "weight": 700,
+          "contexts": [
+            "icon",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.029,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6c0dfb07-df90-46f2-99ac-b6d81a8089a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"IKEA design system\",\"item\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#style-reference\",\"name\":\"IKEA design system reference\",\"headline\":\"IKEA design system | Refero Styles\",\"description\":\"Explore IKEA's light E-commerce design system: IKEA Yellow #ffdb00, Ink Black #111111 colors, Noto IKEA typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"IKEA\",\"url\":\"https://www.ikea.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e7b37c82-239c-48d5-b293-79a2bfa235cc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"caption\":\"Screenshot of IKEA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d75fdbaa-e431-490f-9afb-cc1c0bb84445.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"IKEA design system\",\"IKEA website design\",\"IKEA colors\",\"IKEA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"IKEA Yellow\",\"Ink Black\",\"Pure White\",\"Warm White\",\"Noto IKEA\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"IKEA design system\"},{\"@type\":\"Thing\",\"name\":\"IKEA website design\"},{\"@type\":\"Thing\",\"name\":\"IKEA colors\"},{\"@type\":\"Thing\",\"name\":\"IKEA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:03:49.756Z\",\"dateModified\":\"2026-04-30T01:03:49.756Z\"}]}19:T67e,## Quick Color Reference\n- Background: #ffffff\n- Surface warm: #fffefb\n- Primary text: #111111\n- Border/divider: #111111\n- Accent/CTA: #ffdb00\n- Text link: #0159a3\n- primary action: #ffdb00 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Media Card**: Full-bleed product image at 2/3 page width, 8px radius. Bottom-left overlay: small kicker 'A sneak peek!' in white at 14px weight 400, headline 'IKEA PS 2026 collection' in white at 51px weight 700, letter-spacing -1.48px. Gradient overlay from transparent to rgba(0,0,0,0.6) at bottom 40%. Circular play button bottom-right: 40px diameter, #111111 fill, white pause icon, 50% radius.\n\n2. **Yellow CTA Card**: Solid #ffdb00 background, 1/3 page width, 8px radius, 40px padding. Headline 'Go shopping' in #111111 at 51px weight 700, letter-spacing -1.48px. Circular arrow button: 40px diameter, #111111 fill, white right-arrow icon, positioned to the right of or below the headline.\n\n3. **Image Story Card**: Full-bleed editorial image, 8px radius. Gradient overlay from transparent to rgba(0,0,0,0.6) at bottom 35%. White kicker 'Market spotlight' at 13px weight 400. White headline 'Let\\'s visit IKEA Germany!' at 36px weight 700, letter-spacing -0.97px. 20px padding from card edges.\n\n4. **Top Navigation**: White background, 1px bottom border #ffffff or #f0f0f0. IKEA logo left. Text links 'Stories', 'Jobs', 'Newsroom', 'Our business' in #111111 at 14px weight 400, 24px gap between items. 16px vertical padding.\n\n5. **Store Footer Strip**: White background, 8px radius, 16px padding. Text 'Store: IKEA.es' in #111111 at 14px weight 400, right-aligned. Small chevron-up icon in #111111, 12px size."
+}

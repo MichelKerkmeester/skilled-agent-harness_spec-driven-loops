@@ -1,0 +1,1081 @@
+{
+  "source": "https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890",
+  "uuid": "37f752a0-879e-4451-a4a4-0a82896e3890",
+  "name": "Agronomy Workshop",
+  "northStar": "newsprint zine taped to a workshop wall",
+  "capturedAt": "2026-07-18T09:01:06.741Z",
+  "meta": {
+    "url": "https://agronomywork.shop",
+    "siteName": "Agronomy Workshop",
+    "extractedAt": "2026-06-03T21:02:25.014Z",
+    "durationMs": 28978,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 695,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Workshop Blue (#0076ff) exclusively for action buttons and active link states — never for decorative purposes",
+      "Set body copy in Gerstner Programm at 14px / 1.14 line-height / -0.02em letter-spacing to preserve the stamped editorial feel",
+      "Use the compressed display font (OT Neue Montreal) at 32-54px for product page titles and section headers, with line-height near 0.81 for tight stacking",
+      "Mark all micro-labels (prices, tags, nav) in the tracked mono at 10px / +0.1em letter-spacing, uppercase",
+      "Maintain the warm off-white canvas: page background #ffffff, panels and cards #eeede8",
+      "Use 1px solid black borders extensively for the dense grid of dividers, swatch frames, and thumbnail outlines",
+      "Keep all buttons at 5px radius — the slight rounding keeps the UI modern without losing the utilitarian zine feel"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors beyond Workshop Blue, Hail Yellow, and Pale Sky — the system is intentionally restrained",
+      "Don't use a standard sans-serif for body text — the Gerstner serif with custom features is the signature voice",
+      "Don't add drop shadows to cards or buttons — the design relies on flat surfaces and hairline borders for structure",
+      "Don't set headings in a wide or normal-proportion font — the semi-squeezed/condensed display face is essential to the identity",
+      "Don't use generous line-height on body copy — 1.14 is deliberately tight to create a print-like paragraph block",
+      "Don't round images with large radii — all photography stays sharp-edged (0px)",
+      "Don't use Hail Yellow for anything other than promotional strips — it's a single-purpose accent"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0076ff",
+        "name": "Workshop Blue",
+        "role": "Blue action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#f4eb59",
+        "name": "Hail Yellow",
+        "role": "Promotional banners, first-order discount strip — a single warm yellow used sparingly to draw the eye without competing with photography",
+        "group": "accent"
+      },
+      {
+        "hex": "#c3d7ee",
+        "name": "Pale Sky",
+        "role": "Soft blue surface for secondary panels or callout backgrounds — a desaturated companion to Workshop Blue",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "role": "Page background, base surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeede8",
+        "name": "Bone",
+        "role": "Warm off-white for product detail panels, card surfaces, and secondary backgrounds — slight yellow tint gives the whole site its paper-like cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, icon strokes — used aggressively for borders (1000+ instances) to create the dense grid of dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1e",
+        "name": "Press Black",
+        "role": "Body and heading text, form borders — slightly softer than pure black, the main reading text color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Smudge",
+        "role": "Muted body text, secondary descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Ash",
+        "role": "Helper text, tertiary metadata, muted labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width container. The product detail layout is a horizontal split: a narrow left column (~20-25% width) holds the metadata stack (thumbnails, title, price, description, swatches, Shop button), while the right ~75% is occupied by a large hero image. Below the fold, a masonry-like grid of lookbook images and product cards alternates between full-width editorial shots and 2-column product listings. The overall rhythm is dense and zine-like, with tight 40px section gaps and very little breathing room — elements sit close together, separated by hairline rules rather than whitespace.",
+    "imagery": "Editorial lookbook photography dominates — large, full-bleed, unstyled product shots on plain backgrounds (studio white or warm neutral). Products are modeled in natural light with shallow depth of field, often showing fabric texture and garment construction details (collar labels, stitching). Photography is square or landscape, sharp-edged (no radius), and never overlaid with text or filters. The lookbook grid pairs wide lifestyle/model shots with tight product crops, creating a magazine-spread rhythm. No illustrations, no abstract graphics, no iconography beyond the small stamp-style logo mark.",
+    "similar": [
+      {
+        "why": "Same editorial product detail layout with dense metadata in a narrow column beside large photography, and a restrained near-monochrome palette",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same maker/workshop brand voice with large editorial product photography, a warm off-white canvas, and one saturated accent color for action",
+        "business": "Mast Brothers"
+      },
+      {
+        "why": "Same minimal e-commerce layout with full-bleed lookbook images, clean metadata blocks, and a single blue CTA color",
+        "business": "Wax London"
+      },
+      {
+        "why": "Same zine-like product page with asymmetric metadata+image split, tight grid, and analog/handmade visual voice",
+        "business": "Online Ceramics"
+      },
+      {
+        "why": "Same utilitarian garment-shop layout with large unstyled product photography on plain backgrounds and a monochrome-with-one-accent color system",
+        "business": "Lady White Co."
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "5px",
+        "cards": "0px",
+        "banners": "0px",
+        "buttons": "5px"
+      },
+      "elementGap": "4-12px",
+      "sectionGap": "40px",
+      "cardPadding": "16-20px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base background for the entire site"
+      },
+      {
+        "hex": "#eeede8",
+        "name": "Bone Panel",
+        "level": 1,
+        "purpose": "Product detail sidebars, secondary card surfaces, warm off-white accent surface"
+      },
+      {
+        "hex": "#c3d7ee",
+        "name": "Pale Sky",
+        "level": 2,
+        "purpose": "Soft blue highlight or callout panel"
+      },
+      {
+        "hex": "#f4eb59",
+        "name": "Hail Yellow",
+        "level": 3,
+        "purpose": "Promotional banner strip, urgency messaging"
+      }
+    ],
+    "northStar": "newsprint zine taped to a workshop wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 0.81,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": -1.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Shop CTA Button",
+        "role": "Primary blue action button for product purchase",
+        "description": "Workshop Blue (#0076ff) background, white text, 5px radius, 20px horizontal padding, 6-10px vertical padding. Text is the Gerstner Programm serif at 14px or system sans at 12px, uppercase, tracked. Spans full column width in the product detail sidebar."
+      },
+      {
+        "name": "Price Tag",
+        "role": "Inline price label with bordered chip",
+        "description": "Small rectangular chip with 1px black border, 5px radius, containing a dollar amount (e.g. '$134', '$64'). Text is the compressed display font or mono at 10-12px. Sits inline-right of the product title in the metadata column."
+      },
+      {
+        "name": "Color Swatch Dot",
+        "role": "Product variant selector",
+        "description": "Small 14-16px filled circle, no border, no radius, representing an available product color. Arranged in a horizontal row with 4-6px gaps. Colors mirror the actual product palette (brown, navy, black, bone)."
+      },
+      {
+        "name": "Product Detail Panel",
+        "role": "Left-column metadata block beside product imagery",
+        "description": "Narrow column (roughly 25% of viewport), white or Bone (#eeede8) background, containing thumbnail strip, product title, price tag, description paragraph (Gerstner at 14px), swatches, and a full-width Shop button. Vertically centered or top-aligned next to the hero image."
+      },
+      {
+        "name": "Product Thumbnail",
+        "role": "Small product image in the detail sidebar",
+        "description": "Square or slightly portrait crop, no radius, thin 1px black border, separated by 4-8px vertical gaps. Clicking swaps the main hero image."
+      },
+      {
+        "name": "Promo Banner Strip",
+        "role": "Dismissible bottom-of-screen promotional message",
+        "description": "Hail Yellow (#f4eb59) full-bleed strip, no radius, black text at 12-14px centered, with a dismiss × on the right. Fixed to bottom of viewport on mobile, inline at page bottom on desktop."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site header",
+        "description": "White background, single-line layout: 'Index' and 'Shop' text links on the left, a small square logo mark centered, and 'Bag' link on the right. Text is system sans at 12px, black, no dividers. Hairline 1px black border on the bottom edge."
+      },
+      {
+        "name": "Lookbook Image Block",
+        "role": "Full-bleed editorial product photography",
+        "description": "Large square or landscape image, no radius, no border, no overlay. Occupies roughly 40-50% of the viewport width in the product detail row, and full column width in the secondary lookbook grid below."
+      },
+      {
+        "name": "Lookbook Product Card",
+        "role": "Product grid item in the secondary listings",
+        "description": "Compact card: small square product thumbnail on the left (or top), product title and price tag on the right (or below), short description, color swatches, and a full-width blue Shop button. White or Bone background, no card border, no shadow. 20px internal padding."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand mark in the center of the nav bar",
+        "description": "Small square black graphic (appears to be a hand-drawn 'AW' or workshop stamp), roughly 24-32px square, solid black fill. Functions as the visual anchor of the otherwise text-only nav."
+      },
+      {
+        "name": "Dismissible Banner Close",
+        "role": "Close button for the promo strip",
+        "description": "Simple × glyph, black, 14px, right-aligned in the yellow strip. 8px padding for tap target."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Gerstner Programm FSL Regular — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Gerstner Programm FSL Regular",
+        "weight": "400",
+        "lineHeight": "1.14",
+        "letterSpacing": "-0.02",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "Display headings — the semi-squeezed (condensed) proportions and 0.81 line-height let large headings stack tightly, giving editorial zine-like rhythm. Weight 500 (not 700) keeps headlines assertive but not heavy. Sub: Oswald, Bebas Neue, or Barlow Condensed Medium.",
+        "sizes": "32px, 54px",
+        "family": "OT Neue Montreal Medium Semi Squeezed",
+        "weight": "500",
+        "lineHeight": "0.81, 1.00",
+        "substitute": "Oswald, Barlow Condensed",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Body copy, product descriptions — a typewriter-era serif with quirky ligatures and alternate glyphs (blwf, cv03-11) that gives the text a stamped/maker quality. Tight tracking (-0.02em) and 1.14 line-height produce dense, print-like paragraphs. Sub: IBM Plex Serif, Source Serif Pro, or JetBrains Mono.",
+        "sizes": "14px",
+        "family": "Gerstner Programm FSL",
+        "weight": "400",
+        "lineHeight": "1.14",
+        "substitute": "IBM Plex Serif",
+        "letterSpacing": "-0.02em",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "Tiny uppercase labels, price tags, status badges — tracked wide (+0.1em) at micro size to read as editorial captions or rubber-stamp marks. Sub: Space Mono, IBM Plex Mono.",
+        "sizes": "10px",
+        "family": "ABC Marfa Mono",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Space Mono",
+        "letterSpacing": "0.1em"
+      },
+      {
+        "role": "Fallback UI text, nav labels, utility micro-copy. Sub: -apple-system, Inter, or any system UI font.",
+        "sizes": "12px",
+        "family": "system sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "Agronomy Workshop reads as a print-meets-product catalog: a warm, slightly yellowed white canvas, oversized editorial photography, and copy typeset in a quirky serif that feels stamped rather than set. The layout is asymmetric and dense — product metadata (name, price, description, color swatches) is crammed into a narrow column beside full-bleed lookbook imagery, more like flipping through a zine than browsing a store. A single saturated blue and a mustard-yellow promotional wash are the only chromatic notes; everything else is black, white, and warm gray, which makes the color swatches and blue 'Shop' buttons feel switched on. The compressed display headings, typewriter serif body, and tracked uppercase mono labels give the system a deliberate analog/maker voice — utilitarian, unfussy, slightly rough around the edges.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agronomy Workshop design system\",\"item\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#style-reference\",\"name\":\"Agronomy Workshop design system reference\",\"headline\":\"Agronomy Workshop design system | Refero Styles\",\"description\":\"Explore Agronomy Workshop's light E-commerce design system: Workshop Blue #0076ff, Hail Yellow #f4eb59 colors, Gerstner Programm FSL Regular, OT Neue...\",\"url\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\",\"mainEntityOfPage\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agronomy Workshop\",\"url\":\"https://agronomywork.shop\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"caption\":\"Screenshot of Agronomy Workshop\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agronomy Workshop design system\",\"Agronomy Workshop website design\",\"Agronomy Workshop colors\",\"Agronomy Workshop typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Workshop Blue\",\"Hail Yellow\",\"Pale Sky\",\"Canvas\",\"Gerstner Programm FSL Regular\",\"OT Neue Montreal Medium Semi Squeezed\",\"Gerstner Programm FSL\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop design system\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop website design\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop colors\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T22:03:28.195Z\",\"dateModified\":\"2026-05-10T22:03:28.195Z\"}]}19:T7e1,Quick Color Reference:\n- text: #1e1e1e (body) / #000000 (headings, borders)\n- background: #ffffff (page) / #eeede8 (panels)\n- border: #000000 at 1px (hairline)\n- accent: #0076ff (Workshop Blue — buttons/links)\n- promo: #f4eb59 (Hail Yellow — banners only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Product Detail Row: White background. Left column 25% width contains a vertical stack of 2-3 square product thumbnails (1px black border, 4px gap). Below thumbnails: product title in OT Neue Montreal Medium at 32px, #000000, line-height 0.81. Inline price tag: bordered chip, 1px black border, 5px radius, text in mono at 10px uppercase. Description paragraph in Gerstner Programm at 14px, #1e1e1e, line-height 1.14, letter-spacing -0.02em. Row of color swatch dots (12-14px circles). Full-width Shop button: #0076ff background, white text, 5px radius, 20px vertical padding. Right column 75% width: large square product hero image, no radius, no border.\n\n2. Lookbook Product Card: Bone (#eeede8) background, no border, 20px padding. Small square product thumbnail (80-100px) on the left. Right side: product title in Gerstner Programm at 14px, #1e1e1e. Price chip below title (1px black border, 5px radius, mono at 10px). Short description in Gerstner at 14px, 2-3 lines max. Row of color swatches. Full-width Shop button in #0076ff.\n\n3. Promo Banner: Full-width strip, #f4eb59 background, no radius. Centered text '10% Off First Order' in system sans at 12-14px, #000000. Right-aligned × dismiss button in black, 14px.\n\n4. Top Navigation: White background, 1px solid black bottom border. Left: 'Index' and 'Shop' text links in system sans at 12px, #000000, 20px gap. Center: 24px square black logo mark. Right: 'Bag' text link in same style.\n\n5. Secondary Lookbook Section: Full-width area, 40px top padding. Row of 2 large landscape editorial images (50% width each, 4-8px gap), each paired below with a compact product metadata block (title, price, swatches) in Gerstner and mono."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "The type system is the brand. Three voices, each with a distinct role: (1) Gerstner Programm — a quirky early-20th-century typewriter serif with custom character variants (blwf, cv03, cv04, cv09, cv11) — handles all reading text and gives the site its analog/maker personality. (2) OT Neue Montreal Medium Semi Squeezed — a condensed grotesque at medium weight with very tight tracking and near-zero line-height — handles all display headings and creates the editorial zine rhythm. (3) ABC Marfa Mono at 10px tracked wide (+0.1em) — handles all micro-labels, price tags, and status indicators, reading as rubber-stamp marks. Never substitute a standard system sans for the serif body — the identity collapses without it."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design uses flat surfaces and an aggressive grid of 1px black hairline borders to create structure and separation between elements. Elevation is communicated through color surface shifts (white → bone → yellow) rather than depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 1463,
+          "confidence": 1,
+          "prominence": 123330062.5921655,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 38,
+            "icon/color": 21,
+            "link/color": 2,
+            "other/fill": 30,
+            "image/color": 4,
+            "other/color": 251,
+            "other/stroke": 4,
+            "icon/borderColor": 84,
+            "link/borderColor": 8,
+            "image/borderColor": 16,
+            "other/borderColor": 1004,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 53773283.84155785,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 16,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 196,
+          "confidence": 1,
+          "prominence": 195124.52657808323,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 33,
+            "other/fill": 1,
+            "heading/color": 6,
+            "body/borderColor": 132,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 137607.75671730583,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "body/borderColor": 24
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 131861.43541301205,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20
+          }
+        },
+        {
+          "hex": "#eeede8",
+          "oklch": {
+            "c": 0.006748582529609859,
+            "h": 97.35465486682709,
+            "l": 0.9454846246558881
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 106615.0458650804,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/fill": 1,
+            "body/borderColor": 24,
+            "other/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#0076ff",
+          "oklch": {
+            "c": 0.22233911104642626,
+            "h": 258.2244164078798,
+            "l": 0.5946388261878228
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 22969.77797227532,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#f4eb59",
+          "oklch": {
+            "c": 0.16313624584525072,
+            "h": 105.78823432616359,
+            "l": 0.9210837424722059
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 14080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1d2540",
+          "oklch": {
+            "c": 0.05160932803399876,
+            "h": 270.1938381856533,
+            "l": 0.27130780698619783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 928.7712379549449,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#533f33",
+          "oklch": {
+            "c": 0.034270399272272364,
+            "h": 52.3647726497432,
+            "l": 0.3858902940432862
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 633.9850002884624,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#7a6855",
+          "oklch": {
+            "c": 0.036617789713185606,
+            "h": 68.4219040864694,
+            "l": 0.5292283007651659
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 633.9850002884624,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#715646",
+          "oklch": {
+            "c": 0.04372603492994043,
+            "h": 52.001155732969124,
+            "l": 0.4766838610605268
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c3d7ee",
+          "oklch": {
+            "c": 0.03853514409132515,
+            "h": 251.93644825571727,
+            "l": 0.8714458700498947
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0034181197076254607,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.91,
+          "background": "#eeede8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.87,
+          "background": "#f4eb59",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#ffffff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.1,
+          "background": "#ffffff",
+          "foreground": "#1d2540"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.28,
+          "background": "#c3d7ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#eeede8",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#f4eb59",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.88,
+          "background": "#1d2540",
+          "foreground": "#eeede8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#f4eb59",
+          "foreground": "#1d2540"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.33,
+          "background": "#c3d7ee",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#c3d7ee",
+          "foreground": "#1d2540"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#ffffff",
+          "foreground": "#533f33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.42,
+          "background": "#533f33",
+          "foreground": "#eeede8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.93,
+          "background": "#f4eb59",
+          "foreground": "#533f33"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.73,
+          "background": "#ffffff",
+          "foreground": "#715646"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.71,
+          "background": "#c3d7ee",
+          "foreground": "#533f33"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#715646",
+          "foreground": "#eeede8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 143,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 44,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 108,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 134,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 569,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gerstner Programm FSL Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "ABC Marfa Mono Unlicensed Trial Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "OT Neue Montreal Medium Semi Squeezed",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gerstner Programm FSL",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ABC Marfa Mono Unlicensed Trial Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 569,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gerstner Programm FSL Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gerstner Programm FSL Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gerstner Programm FSL",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "OT Neue Montreal Medium Semi Squeezed",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "OT Neue Montreal Medium Semi Squeezed",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.81,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f3f4c518-87d5-454a-b0a8-c34a1a99c73b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agronomy Workshop design system\",\"item\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#style-reference\",\"name\":\"Agronomy Workshop design system reference\",\"headline\":\"Agronomy Workshop design system | Refero Styles\",\"description\":\"Explore Agronomy Workshop's light E-commerce design system: Workshop Blue #0076ff, Hail Yellow #f4eb59 colors, Gerstner Programm FSL Regular, OT Neue...\",\"url\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\",\"mainEntityOfPage\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agronomy Workshop\",\"url\":\"https://agronomywork.shop\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/37f752a0-879e-4451-a4a4-0a82896e3890#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"caption\":\"Screenshot of Agronomy Workshop\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d1ca77f-ab8e-457f-b922-48ce149545a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agronomy Workshop design system\",\"Agronomy Workshop website design\",\"Agronomy Workshop colors\",\"Agronomy Workshop typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Workshop Blue\",\"Hail Yellow\",\"Pale Sky\",\"Canvas\",\"Gerstner Programm FSL Regular\",\"OT Neue Montreal Medium Semi Squeezed\",\"Gerstner Programm FSL\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop design system\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop website design\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop colors\"},{\"@type\":\"Thing\",\"name\":\"Agronomy Workshop typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T22:03:28.195Z\",\"dateModified\":\"2026-05-10T22:03:28.195Z\"}]}19:T7e1,Quick Color Reference:\n- text: #1e1e1e (body) / #000000 (headings, borders)\n- background: #ffffff (page) / #eeede8 (panels)\n- border: #000000 at 1px (hairline)\n- accent: #0076ff (Workshop Blue — buttons/links)\n- promo: #f4eb59 (Hail Yellow — banners only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Product Detail Row: White background. Left column 25% width contains a vertical stack of 2-3 square product thumbnails (1px black border, 4px gap). Below thumbnails: product title in OT Neue Montreal Medium at 32px, #000000, line-height 0.81. Inline price tag: bordered chip, 1px black border, 5px radius, text in mono at 10px uppercase. Description paragraph in Gerstner Programm at 14px, #1e1e1e, line-height 1.14, letter-spacing -0.02em. Row of color swatch dots (12-14px circles). Full-width Shop button: #0076ff background, white text, 5px radius, 20px vertical padding. Right column 75% width: large square product hero image, no radius, no border.\n\n2. Lookbook Product Card: Bone (#eeede8) background, no border, 20px padding. Small square product thumbnail (80-100px) on the left. Right side: product title in Gerstner Programm at 14px, #1e1e1e. Price chip below title (1px black border, 5px radius, mono at 10px). Short description in Gerstner at 14px, 2-3 lines max. Row of color swatches. Full-width Shop button in #0076ff.\n\n3. Promo Banner: Full-width strip, #f4eb59 background, no radius. Centered text '10% Off First Order' in system sans at 12-14px, #000000. Right-aligned × dismiss button in black, 14px.\n\n4. Top Navigation: White background, 1px solid black bottom border. Left: 'Index' and 'Shop' text links in system sans at 12px, #000000, 20px gap. Center: 24px square black logo mark. Right: 'Bag' text link in same style.\n\n5. Secondary Lookbook Section: Full-width area, 40px top padding. Row of 2 large landscape editorial images (50% width each, 4-8px gap), each paired below with a compact product metadata block (title, price, swatches) in Gerstner and mono."
+}

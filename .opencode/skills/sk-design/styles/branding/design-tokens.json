@@ -1,0 +1,529 @@
+{
+  "color": {
+    "void-canvas": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Void Canvas — Primary page background; the base upon which all display type and floating shapes sit"
+    },
+    "absolute-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Absolute Black — Deepest surface, decorative fills, icon strokes — the floor beneath the void"
+    },
+    "charcoal-plate": {
+      "$value": "#171617",
+      "$type": "color",
+      "$description": "Charcoal Plate — Footer and inverted section backgrounds, slightly elevated off the base void"
+    },
+    "smoke-plate": {
+      "$value": "#262525",
+      "$type": "color",
+      "$description": "Smoke Plate — Secondary surface for content blocks and image treatments layered over the void"
+    },
+    "graphite-lift": {
+      "$value": "#393939",
+      "$type": "color",
+      "$description": "Graphite Lift — Subtle elevation surface and card background; the only visible shadow color"
+    },
+    "bone-white": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Bone White — Primary text, hairline borders, icon outlines — the dominant non-black color in the system"
+    },
+    "linen": {
+      "$value": "#f3efef",
+      "$type": "color",
+      "$description": "Linen — Inverted body sections, off-white text on dark cards, soft warm-white content surfaces"
+    },
+    "ash": {
+      "$value": "#d4d2d2",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text, nav labels, subtle borders — the whispered voice between bone and graphite"
+    },
+    "pebble": {
+      "$value": "#b5b2b2",
+      "$type": "color",
+      "$description": "Pebble — Disabled borders, tertiary helper text, low-priority metadata"
+    },
+    "iron": {
+      "$value": "#525252",
+      "$type": "color",
+      "$description": "Iron — Link underlines, nav dividers, hairline separators on dark surfaces"
+    },
+    "arterial-red": {
+      "$value": "#fe1e34",
+      "$type": "color",
+      "$description": "Arterial Red — Sole brand accent — card borders, cursor, hero dot, gradient terminator; the only saturated color and it is used like a heartbeat, not a coat of paint"
+    },
+    "crimson-pure": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Crimson Pure — Heading underline accent and decorative fill — a purer red for typographic emphasis only"
+    }
+  },
+  "font": {
+    "kmr-waldenburg": {
+      "$value": "Kmr Waldenburg",
+      "$type": "fontFamily",
+      "$description": "Primary display and UI typeface across nav, headings, body, buttons, and the full scale from 10px tracked nav labels to 160px hero display. The custom face is the system's signature — its bold caps at 64–160px carry negative tracking (-0.075em to -0.080em) that compresses the letters into architectural blocks. Substitute: Neue Haas Grotesk Display, or Inter at matching weights and tracking."
+    },
+    "editorialnew": {
+      "$value": "Editorialnew",
+      "$type": "fontFamily",
+      "$description": "Serif italic companion — appears as the 'crafting' / 'for the' connective words between display caps and as refined body/heading accents. The contrast of this soft serif whisper against the 700-weight caps is the system's typographic signature. Substitute: Editorial Old, Canela, or Playfair Display Italic."
+    },
+    "dirtyline-36-daysoftype-2022": {
+      "$value": "Dirtyline 36 Daysoftype 2022",
+      "$type": "fontFamily",
+      "$description": "Ornamental display face used for single-letter or short-word spectacle moments (the stylized 'a' in 'WE ARE'). Aggressive -0.100em tracking at 24px makes it a sculptural object rather than readable type. Substitute: Tobias, Rogue Serif, or any expressive display serif with calligraphic contrast."
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Quiet body fallback and small icon labels — only used where Kmr Waldenburg's geometric personality would overpower micro-copy. Effectively the 'muted' voice in the type system."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Editorialnew",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Editorialnew",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Editorialnew",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Dirtyline 36 Daysoftype 2022",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Editorialnew",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Dirtyline 36 Daysoftype 2022",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Dirtyline 36 Daysoftype 2022",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 64px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 80px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Dirtyline 36 Daysoftype 2022",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 80px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 80px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Dirtyline 36 Daysoftype 2022",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 80px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Kmr Waldenburg",
+        "fontSize": "160px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 160px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "184": {
+      "$value": "184px",
+      "$type": "dimension",
+      "$description": "Spacing 184px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14.4px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 2px 5px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the absolute floor"
+    },
+    "absolute": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Deepest surface, behind decorative shapes and image overlays"
+    },
+    "charcoal": {
+      "$value": "#171617",
+      "$type": "color",
+      "$description": "Surface level 2: Footer and inverted content surfaces"
+    },
+    "smoke": {
+      "$value": "#262525",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated content blocks and image treatments"
+    },
+    "graphite": {
+      "$value": "#393939",
+      "$type": "color",
+      "$description": "Surface level 4: Card surface — the only platform that receives the white inset highlight shadow"
+    },
+    "linen": {
+      "$value": "#f3efef",
+      "$type": "color",
+      "$description": "Surface level 5: Inverted body panel — warm-white surface for content contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.svz.io",
+      "siteName": "Branding",
+      "extractedAt": "2026-06-03T16:45:35.103Z",
+      "variant": "extended"
+    }
+  }
+}

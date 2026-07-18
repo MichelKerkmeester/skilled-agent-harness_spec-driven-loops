@@ -1,0 +1,312 @@
+{
+  "color": {
+    "cobalt-action": {
+      "$value": "#0075ff",
+      "$type": "color",
+      "$description": "Cobalt Action — Primary CTA buttons, the only chromatic accent in the entire interface — one vivid blue against monochrome neutrals, used sparingly so it signals action without competing with content"
+    },
+    "ink-black": {
+      "$value": "#090707",
+      "$type": "color",
+      "$description": "Ink Black — Headline color, image borders, large display text — near-black with the slightest warmth, chosen over pure black to feel printed rather than digital"
+    },
+    "graphite": {
+      "$value": "#212529",
+      "$type": "color",
+      "$description": "Graphite — Body text, nav links, icon strokes, card borders — the working neutral for interface chrome and readable paragraph copy"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, text on dark hero and dark logo backgrounds — establishes the light-mode base and all content surfaces"
+    },
+    "hairline-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Hairline Gray — Subtle dividers and secondary borders — thin separator lines on light surfaces where #212529 would be too heavy"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "shadow-whisper": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Shadow Whisper — Near-invisible ambient shadow tint for button states — a 1px 1px wash so faint it barely registers, used instead of full drop-shadows"
+    }
+  },
+  "font": {
+    "favoritpro-light": {
+      "$value": "FavoritPro-Light",
+      "$type": "fontFamily",
+      "$description": "Single-family type system used for every interface element — nav, body, buttons, headlines, and 80px display. Weight 400 throughout is a signature choice: the system relies on scale jumps (14px body → 50px subhead → 80px display) rather than bold weights to establish hierarchy, giving the entire site an understated, editorial cadence"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.59
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.59
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "FavoritPro-Light",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "143": {
+      "$value": "143px",
+      "$type": "dimension",
+      "$description": "Spacing 143px"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(238, 238, 238) 1px 1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "hero-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Dark hero band with oversized white logo and display headline"
+    },
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Default light surface for all content sections below the hero"
+    },
+    "accent-surface": {
+      "$value": "#0075ff",
+      "$type": "color",
+      "$description": "Surface level 3: Sparingly used filled surface for primary action buttons only"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://techbarcelona.com/en",
+      "siteName": "Tech Barcelona",
+      "extractedAt": "2026-06-03T20:22:07.660Z",
+      "variant": "extended"
+    }
+  }
+}

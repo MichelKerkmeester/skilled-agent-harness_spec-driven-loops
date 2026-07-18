@@ -1,0 +1,162 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f2f1ed",
+      "$type": "color",
+      "$description": "Bone — Page background, large section canvases — the warm off-white that gives the system its paper-like editorial feel"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, light benefit cards — sits one step above Bone to create lift without shadows"
+    },
+    "cocoa": {
+      "$value": "#3b3429",
+      "$type": "color",
+      "$description": "Cocoa — Dark accent cards, inverted text blocks — warm near-black that softens pure ink and keeps dark sections feeling organic rather than digital"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav links, logo wordmark, hairline borders, hero backdrop"
+    },
+    "stone": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Stone — Secondary body copy, muted helper text, subdued descriptions"
+    },
+    "ash": {
+      "$value": "#b4aeac",
+      "$type": "color",
+      "$description": "Ash — Subtle link hover shadows, barely-there elevation hints"
+    }
+  },
+  "font": {
+    "goudy-old-style": {
+      "$value": "Goudy Old Style",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for headlines, section titles, product names, card titles, and editorial body — a classical Venetian serif that signals craft and heritage. The narrow weight range (400 only) and tight line-heights (1.05–1.08) let the type sit in dense, menu-like stacks. Letter-spacing of -0.012em tightens optical gaps in display sizes without losing the serif's elegance."
+    },
+    "system-sans-ui-chrome": {
+      "$value": "System Sans (UI chrome)",
+      "$type": "fontFamily",
+      "$description": "Inferred secondary face for navigation, buttons, captions, and dense utility text where serif would be illegible at small sizes. Kept restrained so the serif remains dominant."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Goudy Old Style",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Goudy Old Style",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Goudy Old Style",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "bone": {
+      "$value": "#f2f1ed",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level canvas, most section backgrounds"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, product panels, light benefit cards"
+    },
+    "cocoa": {
+      "$value": "#3b3429",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted accent cards, dark feature blocks"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Hero backdrop, footer, maximum contrast slabs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aplos.world",
+      "siteName": "Aplós",
+      "extractedAt": "2026-06-03T19:41:10.534Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1342 @@
+{
+  "source": "https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9",
+  "uuid": "7d6a8722-a6f4-40de-a761-16ea479630a9",
+  "name": "Instagram Sans Typeface",
+  "northStar": "Living type museum. Oversized black letterforms on slabs of neon, displayed like sculpture in a white room.",
+  "capturedAt": "2026-07-18T07:42:43.013Z",
+  "meta": {
+    "url": "https://about.instagram.com/brand/type",
+    "siteName": "Instagram Sans Typeface",
+    "extractedAt": "2026-06-03T19:49:08.194Z",
+    "durationMs": 29602,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 483,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Instagram Sans at 400 weight only — the typeface has no weight variants, so do not fake bold or light with CSS",
+      "Apply 51px paddingLeft and paddingRight on all content sections to match the lateral breathing room of the specimen panels",
+      "Tighten letter-spacing as type grows: -0.02em at 16px, -0.03em at 32–46px, -0.035em at 62px and above",
+      "Use the Instagram brand gradient only as a full asset (the camera logo) or as a 72.44deg linear gradient — never rotate, never recolor, never reverse the stop order",
+      "Render specimen letterforms in Pure Black (#000000) with 0px radius — the sharp edges of the glyph geometry are the point",
+      "Place oversized construction-line overlays (pink circles + lines) on glyph specimens to reveal typeface design intent",
+      "Alternate full-bleed color bands (Hot Magenta, Lavender Mist) with white content sections to create editorial rhythm"
+    ],
+    "donts": [
+      "Do not use filled solid-color CTA buttons — the system expresses action through outlined Ghost buttons with Graphite borders",
+      "Do not apply the brand gradient as a background wash, overlay, or card fill — it is reserved for the camera logo and the single signature gradient instance",
+      "Do not use #385898 (Link Indigo) for buttons, fills, or large surface areas — it is a text-link color only",
+      "Do not use font-weight 600+ or italic in Instagram Sans — the family ships weight 400 only",
+      "Do not add drop shadows to specimen letterforms, cards, or panels — the system is flat, shadowless, and relies on scale contrast",
+      "Do not use the Hot Magenta (#f689ff) as a text or small-icon color — it is a full-bleed surface panel color only",
+      "Do not introduce additional typefaces — Helvetica appears only as a system fallback, never as an intentional design choice"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff0169",
+        "name": "Signal Pink",
+        "role": "Gradient origin — Instagram brand gradient start point, the chromatic anchor in the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#d300c5",
+        "name": "Plasma Magenta",
+        "role": "Gradient midpoint — bridges hot pink into ultraviolet, used in the brand gradient only",
+        "group": "brand"
+      },
+      {
+        "hex": "#7638fa",
+        "name": "Ultraviolet",
+        "role": "Gradient terminus — deep violet end of the Instagram brand gradient, the cool counterweight",
+        "group": "brand"
+      },
+      {
+        "hex": "#f689ff",
+        "name": "Hot Magenta",
+        "role": "Full-bleed color panel — left half of the hero split, the loudest single surface in the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#c4a4f7",
+        "name": "Lavender Mist",
+        "role": "Full-bleed accent band — right half of the hero split and secondary color sections, softens the magenta",
+        "group": "brand"
+      },
+      {
+        "hex": "#1c1e21",
+        "name": "Graphite",
+        "role": "Body text, button borders, list dividers, nav borders — the primary near-black for all text and hairline rules",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Specimen letterforms, Instagram camera icon outlines, high-contrast graphic moments — flat black with no warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Content canvas, text on color panels, button text, input backgrounds — the neutral ground that lets color panels pop",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Hairline Gray",
+        "role": "Subtle button borders and disabled-state rules",
+        "group": "neutral"
+      },
+      {
+        "hex": "#385898",
+        "name": "Link Indigo",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections with no max-width container — the viewport edge is the design edge. The page rhythm alternates between two section types: (1) full-bleed color panels (Hot Magenta left / Lavender Mist right in a 50/50 split, or single-color Lavender Mist bands) carrying oversized black glyph specimens with construction-line overlays, and (2) white content sections with 51px lateral padding, Graphite body text at comfortable sizes, and the Instagram gradient logo anchored top-right. There is no persistent nav bar above the hero — navigation is minimal and the hero IS the first screen. Section vertical rhythm is 48px internal padding and ~64px between major section types. The page reads top-to-bottom as: hero split → white text block → lavender band → white text block → lavender band → type specimen gallery.",
+    "imagery": "No photography, no illustration, no product renders. The visual content IS typography — oversized Instagram Sans letterforms rendered as flat black shapes on solid color panels. The only 'imagery' beyond type is the Instagram gradient camera logo (a brand mark, not a photo) and the pink Bézier construction lines overlaid on glyph specimens, which are technical annotations rather than decorative graphics. The aesthetic is a type foundry specimen page: the letterform is the hero, the construction grid reveals its geometry, and white space frames both.",
+    "similar": [
+      {
+        "why": "Specimen-page typographic showcase with oversized glyph displays, construction-line annotations, and white gallery space — same 'type as art object' approach",
+        "business": "Klim Type Foundry"
+      },
+      {
+        "why": "Gradient brand mark as the sole chromatic anchor against stark white documentation pages with generous spacing",
+        "business": "Spotify Brand Guidelines"
+      },
+      {
+        "why": "Full-bleed solid color panel sections alternating with white product detail blocks — the banded color rhythm",
+        "business": "Apple AirPods Pro product pages"
+      },
+      {
+        "why": "Custom typeface presentation with split-screen color panels and oversized letterform specimens as the hero content",
+        "business": "Notion Brand page"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "buttons": "3px",
+        "specimen-panels": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Primary content canvas — body text, inline specimen captions, white-space ground between color panels"
+      },
+      {
+        "hex": "#c4a4f7",
+        "name": "Lavender Mist",
+        "level": 1,
+        "purpose": "Full-bleed accent band — carries black icon specimens, second-most prominent color surface"
+      },
+      {
+        "hex": "#f689ff",
+        "name": "Hot Magenta",
+        "level": 2,
+        "purpose": "Hero color panel — the loudest surface, occupies the left half of the opening split"
+      },
+      {
+        "hex": "#1c1e21",
+        "name": "Graphite",
+        "level": 3,
+        "purpose": "Text and rule surface — appears as text color and border color, not a fill surface"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 4,
+        "purpose": "Specimen and icon surface — large black letterforms and camera icon occupy their own visual plane"
+      }
+    ],
+    "northStar": "Living type museum. Oversized black letterforms on slabs of neon, displayed like sculpture in a white room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.34
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.34,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.17
+      },
+      {
+        "role": "display-lg",
+        "size": 72,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.52
+      },
+      {
+        "role": "display-xl",
+        "size": 121,
+        "lineHeight": 1.05,
+        "letterSpacing": -4.24
+      },
+      {
+        "role": "specimen",
+        "size": 224,
+        "lineHeight": 1,
+        "letterSpacing": -7.84
+      },
+      {
+        "role": "specimen-mega",
+        "size": 389,
+        "lineHeight": 1,
+        "letterSpacing": -13.62
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Split Panel",
+        "role": "Full-bleed 50/50 split, left panel Hot Magenta (#f689ff), right panel Lavender Mist (#c4a4f7), no border, no radius",
+        "description": "The opening section is two full-viewport-height color blocks side by side. Left panel carries a large white specimen headline (62–72px Instagram Sans). Right panel carries a 389px black glyph specimen with pink construction-line overlays. No padding constraints — type sits at the panel edges with 51px L/R breathing room from viewport edges. The split is the hero; there is no nav bar above it."
+      },
+      {
+        "name": "Glyph Specimen with Construction Overlay",
+        "role": "Oversized black letterform on color ground, overlaid with Bézier curve construction lines in Hot Magenta",
+        "description": "A 224–389px black Instagram Sans glyph sits on the Lavender Mist or Hot Magenta panel. Overlaid are pink circles (anchor points) connected by thin pink lines (Bézier handles) — the typeface's design geometry made visible. The glyph is the visual; the construction lines are annotation. No border or radius on the specimen itself."
+      },
+      {
+        "name": "White Content Section",
+        "role": "Body text block on white canvas between color panels",
+        "description": "White (#ffffff) background with Graphite (#1c1e21) body text at 16px/1.34. 51px paddingLeft and paddingRight from viewport edges. 48px paddingTop and paddingBottom creating generous air. The Instagram gradient camera logo anchors the top-right corner. These sections are the quiet connective tissue between loud specimen panels."
+      },
+      {
+        "name": "Lavender Accent Band",
+        "role": "Full-bleed Lavender Mist section carrying a large black icon",
+        "description": "Secondary color panel using Lavender Mist (#c4a4f7) as background, carrying a centered or left-aligned oversized black Instagram camera icon (200px+ range, Pure Black, no fill). Functions as visual punctuation between white content sections — never the dominant surface, always the accent."
+      },
+      {
+        "name": "Instagram Gradient Camera Logo",
+        "role": "Brand mark in top-right of white content sections",
+        "description": "The Instagram camera glyph rendered with the brand gradient (Signal Pink → Plasma Magenta → Ultraviolet) at 72.44deg. Small, functional, never decorative. Appears as a single placement anchor per white content section."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline link within body copy",
+        "description": "Link Indigo (#385898) text, 1px solid Link Indigo border-bottom, 16px Instagram Sans weight 400. The 1px underline is the primary affordance — the color reinforces. No background fill, no pill shape."
+      },
+      {
+        "name": "Download/Action Button (outlined)",
+        "role": "Secondary action — downloading the typeface, viewing glyphs",
+        "description": "Transparent or white background, 1px solid Graphite (#1c1e21) border, 3px border-radius, 16px 24px padding, Graphite text at 16px Instagram Sans. Weight 400, no fill. The system uses outlined buttons as its primary action shape — never a filled solid-color button."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small all-caps or sentence-case label above a section",
+        "description": "12px Instagram Sans weight 400, Graphite or white depending on ground. Used sparingly to mark transitions between color bands and content blocks. May include a small downward arrow (↓) glyph as a scroll affordance."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The brand's custom geometric sans. Used for everything from 12px captions to 389px specimen hero letterforms. Single weight 400 across the entire scale — the typeface achieves personality through geometry and tight negative tracking rather than weight contrast. Letter-spacing tightens as size grows: -0.02em at body, -0.03em at 32–46px, -0.035em at 62px and above.",
+        "sizes": "12px, 16px, 24px, 32px, 40px, 46px, 62px, 72px, 121px, 205px, 224px, 389px",
+        "family": "Instagram Sans",
+        "weight": "400",
+        "lineHeight": "1.00, 1.05, 1.20, 1.34",
+        "substitute": "DM Sans, Inter, or Nunito Sans",
+        "letterSpacing": "-0.02em at 16px → -0.03em at 32–46px → -0.035em at 62px+"
+      },
+      {
+        "role": "Distinct variant for the 468px mega-specimen display — looser tracking (-0.006em) than the base family because at 468px the tight tracking would close letter apertures. Used only for the largest type specimen on the page.",
+        "sizes": "468px",
+        "family": "Instagram Sans Headline",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "DM Sans Display or Inter Display",
+        "letterSpacing": "-0.006em at 468px"
+      },
+      {
+        "role": "System fallback appearing at 12px (likely OS-rendered small text) and 224px (possible secondary specimen). Treat as fallback only — Instagram Sans is the intended primary at all sizes.",
+        "sizes": "12px, 224px",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.20, 1.34",
+        "substitute": "Arial, Helvetica Neue"
+      }
+    ],
+    "description": "Instagram's brand/type page treats the custom Instagram Sans typeface as a physical specimen on display, not as interface chrome. The visual system alternates between two modes: full-bleed solid color panels (hot magenta and lavender) where oversized black letterforms act as both content and hero artwork, and white gallery-style text blocks with warm near-black type at comfortable sizes. The Instagram brand gradient — signal pink through plasma magenta into ultraviolet — appears once or twice as the sole decorative mark, never as a background wash. Everything breathes: 51px lateral gutters, 48–64px vertical section padding, and a 4px base unit enforce generous spacing. The design language is confident, editorial, and monochromatic where it isn't loud — color is deployed as full-bleed band, never as tint or wash.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Instagram Sans Typeface design system\",\"item\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#style-reference\",\"name\":\"Instagram Sans Typeface design system reference\",\"headline\":\"Instagram Sans Typeface design system | Refero Styles\",\"description\":\"Explore Instagram Sans Typeface's mixed Media design system: Signal Pink #ff0169, Plasma Magenta #d300c5 colors, Instagram Sans, Instagram Sans Headline...\",\"url\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Instagram Sans Typeface\",\"url\":\"https://about.instagram.com/brand/type\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"caption\":\"Screenshot of Instagram Sans Typeface\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Instagram Sans Typeface design system\",\"Instagram Sans Typeface website design\",\"Instagram Sans Typeface colors\",\"Instagram Sans Typeface typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Pink\",\"Plasma Magenta\",\"Ultraviolet\",\"Hot Magenta\",\"Instagram Sans\",\"Instagram Sans Headline\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface design system\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface website design\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface colors\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:43:26.461Z\",\"dateModified\":\"2026-04-30T01:43:26.461Z\"}]}19:T60c,**Quick Color Reference**\n- text: #1c1e21\n- background: #ffffff\n- color panel surface: #f689ff (left) / #c4a4f7 (right)\n- border: #1c1e21\n- accent: brand gradient (#ff0169 → #d300c5 → #7638fa at 72.44deg)\n- link: #385898\n- primary action: #385898 (outlined action border)\n\n**Example Component Prompts**\n1. *Create a hero split panel*: Left half background #f689ff, right half background #c4a4f7, full-bleed (no max-width). Left side: white Instagram Sans weight 400 at 62px, letter-spacing -2.17px, line-height 1.05, text 'Hello Instagram Sans'. Right side: a single black Instagram Sans glyph at 389px, letter-spacing -13.62px, line-height 1.00, overlaid with 1px solid #f689ff construction lines connecting pink circle anchor points.\n2. *Create a white content section*: Background #ffffff, padding 48px 51px. Body text in Instagram Sans weight 400 at 16px, line-height 1.34, letter-spacing -0.32px, color #1c1e21. Instagram gradient camera logo (72.44deg, #ff0169 → #d300c5 → #7638fa) anchored top-right at 48px size.\n3. *Create an outlined download button*: Background transparent, border 1px solid #1c1e21, border-radius 3px, padding 16px 24px, text 'Download' in Instagram Sans weight 400 at 16px, color #1c1e21.\n4. *Create a lavender accent band*: Full-bleed background #c4a4f7, padding 48px 51px, centered Pure Black (#000000) Instagram camera icon outline at 200px, no fill, 0px radius.\n5. *Create a text link*: 16px Instagram Sans weight 400, color #385898, border-bottom 1px solid #385898, no background, inline within body text."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. No drop shadows, no elevation, no z-axis depth. Visual hierarchy is created through scale contrast (389px specimens next to 16px body text), color contrast (Hot Magenta next to Paper White), and lateral breathing room (51px gutters). Depth is implied by typographic scale, not by box-shadow stacks."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1c1e21",
+          "oklch": {
+            "c": 0.006504206935566417,
+            "h": 258.3632888254142,
+            "l": 0.23417488640234552
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "image",
+            "body",
+            "list",
+            "button",
+            "nav"
+          ],
+          "frequency": 1856,
+          "confidence": 1,
+          "prominence": 247844193.16708395,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 4,
+            "list/color": 83,
+            "image/color": 25,
+            "other/color": 168,
+            "button/color": 82,
+            "heading/color": 7,
+            "nav/borderColor": 12,
+            "body/borderColor": 16,
+            "list/borderColor": 332,
+            "image/borderColor": 100,
+            "other/borderColor": 668,
+            "button/borderColor": 328,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 206,
+          "confidence": 1,
+          "prominence": 12036391.103625076,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 3,
+            "icon/color": 6,
+            "link/color": 2,
+            "other/fill": 19,
+            "other/color": 7,
+            "button/color": 7,
+            "other/stroke": 2,
+            "nav/borderColor": 48,
+            "body/borderColor": 12,
+            "icon/borderColor": 24,
+            "link/borderColor": 8,
+            "other/borderColor": 28,
+            "button/borderColor": 27,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 218,
+          "confidence": 1,
+          "prominence": 11174538.170236515,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 4,
+            "other/fill": 2,
+            "input/color": 1,
+            "other/color": 14,
+            "button/color": 4,
+            "other/stroke": 10,
+            "heading/color": 3,
+            "body/borderColor": 40,
+            "icon/borderColor": 16,
+            "input/borderColor": 4,
+            "other/borderColor": 60,
+            "button/borderColor": 16,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 21,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f689ff",
+          "oklch": {
+            "c": 0.19515148591046022,
+            "h": 324.3722769315759,
+            "l": 0.7886156518739608
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2977872.781693042,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff0069",
+          "oklch": {
+            "c": 0.2557669655572705,
+            "h": 9.599213810996517,
+            "l": 0.6394284481842778
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 722475,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d300c5",
+          "oklch": {
+            "c": 0.2706977901042969,
+            "h": 332.04959773851,
+            "l": 0.599987212295393
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 648000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#385898",
+          "oklch": {
+            "c": 0.11070924625164932,
+            "h": 262.8138894170231,
+            "l": 0.4685210698936081
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 97638.99800441907,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25341,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 1
+          }
+        },
+        {
+          "hex": "#e4e4e4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.918869996650694
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.017037107748490075,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.71,
+          "background": "#ffffff",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#e4e4e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#e4e4e4",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.4,
+          "background": "#cccccc",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.94,
+          "background": "#f689ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.91,
+          "background": "#f689ff",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.96,
+          "background": "#ffffff",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.47,
+          "background": "#e4e4e4",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#ff0069",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#d300c5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.58,
+          "background": "#d300c5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.34,
+          "background": "#ff0069",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#cccccc",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.85,
+          "background": "#ff0069",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#d300c5",
+          "foreground": "#1c1e21"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#f689ff",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#000000",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.11,
+          "background": "#f689ff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 82
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 36.3636,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|button",
+            "paddingBottom|link",
+            "marginTop|link",
+            "paddingBottom|body",
+            "marginTop|body",
+            "paddingBottom|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 103,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 206,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(72.44deg, rgb(255, 1, 105) 4.69%, rgb(211, 0, 197) 48.96%, rgb(118, 56, 250) 92.19%)",
+        "colors": [
+          "rgb(255, 1, 105)",
+          "rgb(211, 0, 197)",
+          "rgb(118, 56, 250)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 223,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Instagram Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 223,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Instagram Sans Headline",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.69
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav"
+          ],
+          "frequency": 191,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button"
+          ],
+          "frequency": 164,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 205,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.34,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 224,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 224,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 389,
+          "family": "Instagram Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 468,
+          "family": "Instagram Sans Headline",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ae504583-096b-4ef6-af3a-618cd4e1344a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Instagram Sans Typeface design system\",\"item\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#style-reference\",\"name\":\"Instagram Sans Typeface design system reference\",\"headline\":\"Instagram Sans Typeface design system | Refero Styles\",\"description\":\"Explore Instagram Sans Typeface's mixed Media design system: Signal Pink #ff0169, Plasma Magenta #d300c5 colors, Instagram Sans, Instagram Sans Headline...\",\"url\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Instagram Sans Typeface\",\"url\":\"https://about.instagram.com/brand/type\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d6a8722-a6f4-40de-a761-16ea479630a9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"caption\":\"Screenshot of Instagram Sans Typeface\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa0af61d-38ea-4be4-b015-70db320ba9f5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Instagram Sans Typeface design system\",\"Instagram Sans Typeface website design\",\"Instagram Sans Typeface colors\",\"Instagram Sans Typeface typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Pink\",\"Plasma Magenta\",\"Ultraviolet\",\"Hot Magenta\",\"Instagram Sans\",\"Instagram Sans Headline\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface design system\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface website design\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface colors\"},{\"@type\":\"Thing\",\"name\":\"Instagram Sans Typeface typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:43:26.461Z\",\"dateModified\":\"2026-04-30T01:43:26.461Z\"}]}19:T60c,**Quick Color Reference**\n- text: #1c1e21\n- background: #ffffff\n- color panel surface: #f689ff (left) / #c4a4f7 (right)\n- border: #1c1e21\n- accent: brand gradient (#ff0169 → #d300c5 → #7638fa at 72.44deg)\n- link: #385898\n- primary action: #385898 (outlined action border)\n\n**Example Component Prompts**\n1. *Create a hero split panel*: Left half background #f689ff, right half background #c4a4f7, full-bleed (no max-width). Left side: white Instagram Sans weight 400 at 62px, letter-spacing -2.17px, line-height 1.05, text 'Hello Instagram Sans'. Right side: a single black Instagram Sans glyph at 389px, letter-spacing -13.62px, line-height 1.00, overlaid with 1px solid #f689ff construction lines connecting pink circle anchor points.\n2. *Create a white content section*: Background #ffffff, padding 48px 51px. Body text in Instagram Sans weight 400 at 16px, line-height 1.34, letter-spacing -0.32px, color #1c1e21. Instagram gradient camera logo (72.44deg, #ff0169 → #d300c5 → #7638fa) anchored top-right at 48px size.\n3. *Create an outlined download button*: Background transparent, border 1px solid #1c1e21, border-radius 3px, padding 16px 24px, text 'Download' in Instagram Sans weight 400 at 16px, color #1c1e21.\n4. *Create a lavender accent band*: Full-bleed background #c4a4f7, padding 48px 51px, centered Pure Black (#000000) Instagram camera icon outline at 200px, no fill, 0px radius.\n5. *Create a text link*: 16px Instagram Sans weight 400, color #385898, border-bottom 1px solid #385898, no background, inline within body text."
+}

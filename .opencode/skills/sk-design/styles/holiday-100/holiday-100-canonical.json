@@ -1,0 +1,1438 @@
+{
+  "source": "https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f",
+  "uuid": "48fa5bef-d910-40e1-b9b0-c0fcad055c6f",
+  "name": "Holiday 100",
+  "northStar": "midnight gift gallery — the serif headline acts as the spotlight, the dark canvas is the velvet wall, and each product image hangs like a curated frame.",
+  "capturedAt": "2026-07-18T07:17:32.115Z",
+  "meta": {
+    "url": "https://shopping.google.com/m/bestthings",
+    "siteName": "Holiday 100",
+    "extractedAt": "2026-06-03T21:55:00.077Z",
+    "durationMs": 46238,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 551,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Crimson Pro for display and section headlines at 48px+ — never substitute a sans-serif for the editorial moments.",
+      "Keep body and UI text in Google Sans weight 200 or 400, with consistent -0.02em tracking across all sizes.",
+      "Place each category on its own signature saturated color background — use all seven category colors across the system, not just one.",
+      "Maintain 38-40px vertical section gaps to keep the editorial breathing room between collections.",
+      "Use 20px corner radius for all cards, tiles, and image blocks — it is the single structural radius of the system.",
+      "Let the dark canvas (#333438) be the dominant field; lift surfaces only one step to #202124 for cards.",
+      "Use outlined pill buttons (9999px radius, white border) for all secondary actions — there is no filled CTA color in this system."
+    ],
+    "donts": [
+      "Do not add drop shadows or elevation effects — the design uses flat tonal contrast, not shadows.",
+      "Do not fill any button or CTA with a saturated color — all actions are ghost/outlined against the dark canvas.",
+      "Do not use Crimson Pro for body or UI text — it is display-only, and mixing it into small sizes breaks the editorial hierarchy.",
+      "Do not use light-theme surfaces or white card backgrounds — this is a dark-only system.",
+      "Do not pair more than two accent colors in a single component — the category tiles work because each tile commits to one color.",
+      "Do not use gradients — the design is built on flat color blocks and photography, no smooth transitions.",
+      "Do not reduce the display headline below 80px — the editorial weight depends on the extreme scale."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#333438",
+        "name": "Onyx Canvas",
+        "role": "Page background — the primary dark surface that absorbs all surrounding chrome and lets photography and accent color carry visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202124",
+        "name": "Graphite Card",
+        "role": "Card and product tile surfaces — one step lifted from the canvas, used for product listings, trending panels, and secondary groupings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Charcoal Border",
+        "role": "Hairline borders on inputs, icons, and button edges — barely visible, defines boundaries without breaking the dark atmosphere",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9e9e9e",
+        "name": "Muted Iron",
+        "role": "Muted helper text, secondary icon strokes, and low-emphasis metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#45474c",
+        "name": "Fog",
+        "role": "Subtle link borders and tertiary structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e8e8",
+        "name": "Snow",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#99c3ff",
+        "name": "Ice Blue",
+        "role": "Outlined accent borders and decorative strokes on links, images, and card frames — the cool chromatic signature that brands links and featured borders without filling them",
+        "group": "accent"
+      },
+      {
+        "hex": "#980b0b",
+        "name": "Crimson Spotlight",
+        "role": "Red outline accent for tags, dividers, and focused UI edges.",
+        "group": "accent"
+      },
+      {
+        "hex": "#113979",
+        "name": "Royal Blue",
+        "role": "Category tile background for Electronics — a saturated mid-blue that gives gadgets a stage",
+        "group": "accent"
+      },
+      {
+        "hex": "#d2e3fc",
+        "name": "Powder Wash",
+        "role": "Light blue category background for Accessories — a desaturated counterweight to the deeper Royal Blue",
+        "group": "accent"
+      },
+      {
+        "hex": "#073618",
+        "name": "Forest",
+        "role": "Category tile background for Toys & Games and Home & Garden — deep green anchors the more organic categories",
+        "group": "accent"
+      },
+      {
+        "hex": "#a8dab5",
+        "name": "Mint",
+        "role": "Light green category background for Health & Wellness — the fresh, airy counterpart to Forest",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffedb8",
+        "name": "Butter",
+        "role": "Category tile background for Beauty — warm pale yellow that softens the cosmetic category",
+        "group": "accent"
+      },
+      {
+        "hex": "#e8f0fe",
+        "name": "Sky Tint",
+        "role": "Lightest blue wash, used as a text/foreground pairing on dark accent backgrounds to guarantee AAA contrast",
+        "group": "accent"
+      },
+      {
+        "hex": "#c58af9",
+        "name": "Violet Whisper",
+        "role": "Rare accent — appears on a small number of links, probably AI-related or featured annotation links",
+        "group": "accent"
+      }
+    ],
+    "layout": "Centered, max-width ~1200px contained layout with a single column flow. The page reads top-to-bottom as a sequence of distinct sections, each with its own hero-like moment. The hero is a centered serif headline over a wide image. Category section is a horizontal-scroll row of square tiles. Collection sections use a mixed 2-column arrangement: one large product image + one trending stat card on the top row, two smaller product cards below. Section rhythm is consistent at ~38px gaps with generous internal padding. No sidebar, no persistent navigation chrome visible in screenshots — navigation is likely minimal or in a global app header outside the captured viewport.",
+    "imagery": "Photography-dominant throughout. Hero uses a warm, lifestyle-lit scene with a person holding a product in a domestic setting (blue curtains, gift boxes, bicycle). Category tiles use tightly cropped product-on-color-background shots — each product is photographed against its category's signature color, creating a consistent product-spotlight pattern. Product cards in collection sections use clean product-on-neutral-gray shots. No illustrations, no abstract graphics, no 3D renders — photography is the only visual medium beyond typography and solid color blocks.",
+    "similar": [
+      {
+        "why": "Same dark canvas with massive serif display type and full-bleed lifestyle photography for curated seasonal product features.",
+        "business": "Apple Holiday/Seasonal landing pages"
+      },
+      {
+        "why": "Magazine-cover layout with serif italic emphasis on category names, dark backgrounds, and product-spotlight photography.",
+        "business": "Net-a-Porter editorial collections"
+      },
+      {
+        "why": "Editorial gift guide pattern: large serif headlines, dark-mode cards, product photography framed by category color blocks.",
+        "business": "Mr Porter gift guides"
+      },
+      {
+        "why": "Same Google Sans / system-serif type pairing and dark canvas language, applied to a product showcase context.",
+        "business": "Google Store product pages"
+      },
+      {
+        "why": "Restrained serif-on-dark editorial layout with generous spacing and color-blocked product photography.",
+        "business": "Aesop seasonal features"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "pills": "9999px",
+        "buttons": "20px",
+        "linkUnderlines": "2px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "38px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#333438",
+        "name": "Onyx Canvas",
+        "level": 0,
+        "purpose": "Page background — the consistent dark field across all sections."
+      },
+      {
+        "hex": "#202124",
+        "name": "Graphite Card",
+        "level": 1,
+        "purpose": "Product card and panel surfaces, slightly lifted from the canvas."
+      },
+      {
+        "hex": "#980b0b | #113979 | #073618 | #ffedb8 | #a8dab5 | #d2e3fc | #e8f0fe",
+        "name": "Category Tile",
+        "level": 2,
+        "purpose": "Full-bleed colored backgrounds for category cards — each category gets its own color stage for product photography."
+      }
+    ],
+    "elevation": [],
+    "northStar": "midnight gift gallery — the serif headline acts as the spotlight, the dark canvas is the velvet wall, and each product image hangs like a curated frame.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 0.91,
+        "letterSpacing": -3.2
+      },
+      {
+        "role": "display",
+        "size": 220,
+        "lineHeight": 0.91,
+        "letterSpacing": -8.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Display Headline",
+        "role": "Opening title that establishes the editorial tone",
+        "description": "Crimson Pro weight 200 at 220px, white (#e8e8e8), letter-spacing -8.8px, line-height 0.91. Centered above a large product photograph. The extreme size and whisper weight is the signature — authority through scale and restraint rather than boldness."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Context line below the display headline",
+        "description": "Google Sans weight 400 at 16px, white (#e8e8e8), centered, line-height 1.5. Sits with generous breathing room below the display wordmark before the hero image."
+      },
+      {
+        "name": "Hero Image Block",
+        "role": "Full-bleed lifestyle product photograph",
+        "description": "Large rectangular image with 20px corner radius, filling most of the viewport width under the headline. Photography is warm, lifestyle-lit, with gifts and people — not sterile product shots."
+      },
+      {
+        "name": "Category Tile",
+        "role": "Navigable entry to a product category",
+        "description": "Square-ish tile with a saturated solid color background (one of the seven category colors: crimson, royal blue, powder wash, forest, mint, butter, sky tint) containing a tightly cropped product photograph. 20px corner radius, no visible border. Category label sits below the tile in Google Sans 14px, white, centered. Arrow indicator on the rightmost tile suggests horizontal scroll."
+      },
+      {
+        "name": "Category Scroll Strip",
+        "role": "Horizontal category navigation",
+        "description": "Seven tiles in a single row with 8px column gap, section header 'Shop gift ideas by category' in Google Sans 24px above. The strip scrolls horizontally — the layout implies overflow with a right-edge arrow."
+      },
+      {
+        "name": "Trending Stat Card",
+        "role": "Editorial callout panel with a single insight",
+        "description": "Solid crimson (#980b0b) background, 20px radius, generous internal padding (~32-40px). White headline text in Google Sans, with the 'TRENDING' label in tiny caps at the top. The deep red against the dark canvas creates a magazine pull-quote effect."
+      },
+      {
+        "name": "Product Card (Dark)",
+        "role": "Individual product listing on a dark surface",
+        "description": "Dark surface (#202124) or transparent-on-canvas, square product image on a slightly lighter gray (#333438) inset, product name in Google Sans 14px white below. No border, no shadow — the contrast between image and surface defines the card edge."
+      },
+      {
+        "name": "Collection Feature Card",
+        "role": "Hero product for a gift collection section",
+        "description": "Large square product photograph (left), collection name caption below in Google Sans. Pairs alongside a Trending Stat Card and two smaller Product Cards in a mixed-width 2-column arrangement."
+      },
+      {
+        "name": "Section Header with Serif Accent",
+        "role": "Gifts-for-[persona] collection titles",
+        "description": "Crimson Pro weight 400 at 80px, white, with the persona name set in italic ('Beauty Maven'). Subtitle in Google Sans 16px immediately below. A 'Shop the full collection →' pill button sits to the right of the header — outlined, white border, white text."
+      },
+      {
+        "name": "Pill Navigation Button",
+        "role": "Ghost/outlined call-to-action",
+        "description": "9999px border-radius, white text and 1px white border, transparent background, Google Sans 14px with arrow icon. Used for 'Shop the full collection →' and similar tertiary actions."
+      },
+      {
+        "name": "AI Mode Feature Block",
+        "role": "Promotional card for AI shopping mode",
+        "description": "Slightly lighter card surface with internal 2-column layout: heading and link on the left (Google Sans 30px white, with 99c3ff link color), product phone mockup image on the right. 20px radius, contained width within the main column."
+      },
+      {
+        "name": "Category Label",
+        "role": "Text label beneath each category tile",
+        "description": "Google Sans 14px weight 400, white, centered, minimal — no badge styling, no chip background, just direct labeling under each colored square."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display serif for the editorial headline moments. The 220px weight 200 'Holiday 100' wordmark is the single most identifiable element — a high-contrast serif at extreme size that signals 'curated annual feature' rather than a standard product page. Also used at 80px for section headers with italic emphasis on category names ('Beauty Maven' in italic).",
+        "sizes": "48px, 80px, 220px",
+        "family": "Crimson Pro",
+        "weight": "200, 400",
+        "lineHeight": "0.91, 1.00",
+        "substitute": "Playfair Display, DM Serif Display, Cormorant Garamond",
+        "letterSpacing": "-0.0400em, -0.0200em"
+      },
+      {
+        "role": "Primary UI and body typeface. Used for subtitles, category labels, card titles, button text, and product metadata. The weight 200 light variant is a distinctive choice — it keeps body text from feeling heavy against the dark canvas and pairs naturally with the serif display weights. The consistent -0.02em tracking across all sizes tightens the type into a controlled grid.",
+        "sizes": "14px, 16px, 24px, 30px",
+        "family": "Google Sans",
+        "weight": "200, 400, 500",
+        "lineHeight": "1.14, 1.20, 1.25, 1.43, 1.50, 1.71",
+        "substitute": "Inter, Roboto, DM Sans",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "System fallback for ancillary content; sparse usage means it serves as safety net for elements not styled in the custom fonts.",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.43",
+        "substitute": "system-ui, sans-serif"
+      }
+    ],
+    "description": "Google's Holiday 100 is a dark-mode seasonal shopping showcase that reads like a midnight editorial spread rather than a product catalog. The defining move is pairing a dramatic display serif (Crimson Pro, used at up to 220px with -0.04em tracking) against Google Sans for UI, creating a magazine-cover gravity on what could otherwise be a utilitarian product grid. Saturated color blocks — crimson, royal blue, forest green, butter yellow, mint — serve as backgrounds for category tiles, each framing a single product photograph like a gallery spotlight against the near-black canvas (#333438). Surfaces stay flat and dark; the warmth comes from photography and accent color, not from elevation or gradients.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Holiday 100 design system\",\"item\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#style-reference\",\"name\":\"Holiday 100 design system reference\",\"headline\":\"Holiday 100 design system | Refero Styles\",\"description\":\"Explore Holiday 100's dark E-commerce design system: Onyx Canvas #333438, Graphite Card #202124 colors, Crimson Pro, Google Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Holiday 100\",\"url\":\"https://shopping.google.com/m/bestthings\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"caption\":\"Screenshot of Holiday 100\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Holiday 100 design system\",\"Holiday 100 website design\",\"Holiday 100 colors\",\"Holiday 100 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Onyx Canvas\",\"Graphite Card\",\"Charcoal Border\",\"Muted Iron\",\"Crimson Pro\",\"Google Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Holiday 100 design system\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 website design\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 colors\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:56:15.894Z\",\"dateModified\":\"2026-04-30T03:56:15.894Z\"}]}19:T654,## Quick Color Reference\n- Text (primary): #e8e8e8\n- Background (page): #333438\n- Background (card): #202124\n- Border (subtle): #1f1f1f\n- Accent (outlined links/borders): #99c3ff\n- primary action: #99c3ff (outlined action border)\n\n## Example Component Prompts\n\n1. **Hero Display Section**: Dark canvas (#333438) with a centered Crimson Pro weight 200 headline at 220px in #e8e8e8, letter-spacing -8.8px, line-height 0.91. Below it, a Google Sans 16px subtitle in white, centered. Then a full-width product photograph with 20px corner radius.\n\n2. **Category Tile**: Square tile, 20px radius, solid color background (choose from crimson #980b0b, royal blue #113979, forest #073618, butter #ffedb8, mint #a8dab5, powder wash #d2e3fc, or sky tint #e8f0fe). Inside: a tightly cropped product photograph. Below: Google Sans 14px white label, centered.\n\n3. **Trending Stat Card**: Crimson (#980b0b) background, 20px radius, 32-40px padding. Tiny 'TRENDING' label at top in Google Sans 12px. Headline in Google Sans 24-30px white. White text on the red background.\n\n4. **Collection Section Header**: Crimson Pro weight 400 at 80px in white, with the persona noun in italic (e.g. 'Beauty Maven'). Google Sans 16px subtitle below in white. To the right, an outlined pill button: 9999px radius, 1px white border, transparent fill, Google Sans 14px white text with → arrow.\n\n5. **Product Card**: Dark transparent or #202124 surface. Square product image (slightly lighter gray #333438 background behind product). Product name in Google Sans 14px white below the image. No border, no shadow, 20px corner radius on the overall card."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids drop shadows. Depth is created purely through tonal contrast between the onyx canvas (#333438), graphite cards (#202124), and lighter image backgrounds — not through elevation. This keeps the experience feeling flat, editorial, and screen-print-like rather than skeuomorphic or product-UI-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e8e8e8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9309991411193288
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "image",
+            "button",
+            "card",
+            "body",
+            "hero",
+            "link"
+          ],
+          "frequency": 1115,
+          "confidence": 1,
+          "prominence": 187945058.70722985,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 1,
+            "hero/color": 1,
+            "link/color": 3,
+            "image/color": 2,
+            "other/color": 203,
+            "button/color": 1,
+            "heading/color": 10,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 12,
+            "image/borderColor": 8,
+            "other/borderColor": 812,
+            "button/borderColor": 4,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#99c3ff",
+          "oklch": {
+            "c": 0.0966166732024048,
+            "h": 257.2912025515806,
+            "l": 0.8092540742451034
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 1115,
+          "confidence": 1,
+          "prominence": 3612934.427824611,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 40,
+            "link/color": 61,
+            "image/color": 61,
+            "other/color": 61,
+            "card/borderColor": 160,
+            "link/borderColor": 244,
+            "image/borderColor": 244,
+            "other/borderColor": 244
+          }
+        },
+        {
+          "hex": "#980b0b",
+          "oklch": {
+            "c": 0.17039458068560698,
+            "h": 28.410314375049225,
+            "l": 0.4314959765505525
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 897373.9600736141,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "other/color": 6,
+            "card/borderColor": 8,
+            "other/borderColor": 24,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#113979",
+          "oklch": {
+            "c": 0.11818450366989967,
+            "h": 259.72587614121994,
+            "l": 0.35770130201579514
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 897373.9600736141,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "other/color": 6,
+            "card/borderColor": 8,
+            "other/borderColor": 24,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d2e3fc",
+          "oklch": {
+            "c": 0.03883110509297079,
+            "h": 257.91985699415636,
+            "l": 0.9108933603236877
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 897373.9600736141,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "other/color": 6,
+            "card/borderColor": 8,
+            "other/borderColor": 24,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#073618",
+          "oklch": {
+            "c": 0.0725274492475823,
+            "h": 150.71773426622642,
+            "l": 0.293880752711357
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 897373.9600736141,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "other/color": 6,
+            "card/borderColor": 8,
+            "other/borderColor": 24,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a8dab5",
+          "oklch": {
+            "c": 0.0730222012532218,
+            "h": 152.64594139836368,
+            "l": 0.8433149851382833
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 897373.9600736141,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "other/color": 6,
+            "card/borderColor": 8,
+            "other/borderColor": 24,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#333438",
+          "oklch": {
+            "c": 0.007165322611780711,
+            "h": 274.7559972840829,
+            "l": 0.3255793881413554
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 777470.070516248,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffedb8",
+          "oklch": {
+            "c": 0.0706603118352055,
+            "h": 91.52524903277644,
+            "l": 0.9477934179109975
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 737482.9633637617,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "other/color": 3,
+            "card/borderColor": 4,
+            "other/borderColor": 12,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8f0fe",
+          "oklch": {
+            "c": 0.020714474221549862,
+            "h": 261.7717598416526,
+            "l": 0.9532290718444993
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 737482.9633637617,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "other/color": 3,
+            "card/borderColor": 4,
+            "other/borderColor": 12,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#202124",
+          "oklch": {
+            "c": 0.005846014094497756,
+            "h": 271.17641877652403,
+            "l": 0.24793626336059765
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 369956.1137420052,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 40,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6992607330816131
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 115541.05501817314,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 2,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 177,
+          "confidence": 1,
+          "prominence": 74510.63510644209,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 16,
+            "body/color": 15,
+            "icon/color": 8,
+            "other/fill": 10,
+            "button/color": 7,
+            "other/boxShadow": 1,
+            "body/borderColor": 60,
+            "icon/borderColor": 32,
+            "button/borderColor": 28
+          }
+        },
+        {
+          "hex": "#45474c",
+          "oklch": {
+            "c": 0.008719778053667067,
+            "h": 271.1942459852608,
+            "l": 0.39833421754745985
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 26051.09561571329,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 12
+          }
+        },
+        {
+          "hex": "#c58af9",
+          "oklch": {
+            "c": 0.16509804918851656,
+            "h": 307.3148805338779,
+            "l": 0.7346964460242434
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 14080,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.12859017864771213,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#e8f0fe",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#ffedb8",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.05,
+          "background": "#202124",
+          "foreground": "#e8f0fe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#202124",
+          "foreground": "#ffedb8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#e8e8e8",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#202124",
+          "foreground": "#e8e8e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.66,
+          "background": "#d2e3fc",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.37,
+          "background": "#202124",
+          "foreground": "#d2e3fc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#e8f0fe",
+          "foreground": "#073618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.65,
+          "background": "#ffedb8",
+          "foreground": "#073618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#073618",
+          "foreground": "#e8e8e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#333438",
+          "foreground": "#e8f0fe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.69,
+          "background": "#333438",
+          "foreground": "#ffedb8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.49,
+          "background": "#a8dab5",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.41,
+          "background": "#073618",
+          "foreground": "#d2e3fc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.24,
+          "background": "#202124",
+          "foreground": "#a8dab5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#333438",
+          "foreground": "#e8e8e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#e8f0fe",
+          "foreground": "#113979"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.58,
+          "background": "#ffedb8",
+          "foreground": "#113979"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.55,
+          "background": "#333438",
+          "foreground": "#d2e3fc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 83
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 118,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link",
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 95,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "rowGap|button",
+            "columnGap|button",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 37,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 67,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 172,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 375,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Google Sans",
+          "source": "custom",
+          "weights": [
+            200,
+            400,
+            500
+          ],
+          "frequency": 118,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Crimson Pro",
+          "source": "custom",
+          "weights": [
+            200,
+            400
+          ],
+          "frequency": 38,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "button",
+            "card",
+            "body",
+            "hero"
+          ],
+          "frequency": 369,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Google Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 78,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Google Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Google Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Google Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Google Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Google Sans",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Crimson Pro",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Crimson Pro",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 220,
+          "family": "Crimson Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.91,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/50442238-19f5-4918-a5ff-8c9b9447fce5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Holiday 100 design system\",\"item\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#style-reference\",\"name\":\"Holiday 100 design system reference\",\"headline\":\"Holiday 100 design system | Refero Styles\",\"description\":\"Explore Holiday 100's dark E-commerce design system: Onyx Canvas #333438, Graphite Card #202124 colors, Crimson Pro, Google Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Holiday 100\",\"url\":\"https://shopping.google.com/m/bestthings\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/48fa5bef-d910-40e1-b9b0-c0fcad055c6f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"caption\":\"Screenshot of Holiday 100\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28269021-3e13-4bfb-aa95-20dd8c3641cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Holiday 100 design system\",\"Holiday 100 website design\",\"Holiday 100 colors\",\"Holiday 100 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Onyx Canvas\",\"Graphite Card\",\"Charcoal Border\",\"Muted Iron\",\"Crimson Pro\",\"Google Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Holiday 100 design system\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 website design\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 colors\"},{\"@type\":\"Thing\",\"name\":\"Holiday 100 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:56:15.894Z\",\"dateModified\":\"2026-04-30T03:56:15.894Z\"}]}19:T654,## Quick Color Reference\n- Text (primary): #e8e8e8\n- Background (page): #333438\n- Background (card): #202124\n- Border (subtle): #1f1f1f\n- Accent (outlined links/borders): #99c3ff\n- primary action: #99c3ff (outlined action border)\n\n## Example Component Prompts\n\n1. **Hero Display Section**: Dark canvas (#333438) with a centered Crimson Pro weight 200 headline at 220px in #e8e8e8, letter-spacing -8.8px, line-height 0.91. Below it, a Google Sans 16px subtitle in white, centered. Then a full-width product photograph with 20px corner radius.\n\n2. **Category Tile**: Square tile, 20px radius, solid color background (choose from crimson #980b0b, royal blue #113979, forest #073618, butter #ffedb8, mint #a8dab5, powder wash #d2e3fc, or sky tint #e8f0fe). Inside: a tightly cropped product photograph. Below: Google Sans 14px white label, centered.\n\n3. **Trending Stat Card**: Crimson (#980b0b) background, 20px radius, 32-40px padding. Tiny 'TRENDING' label at top in Google Sans 12px. Headline in Google Sans 24-30px white. White text on the red background.\n\n4. **Collection Section Header**: Crimson Pro weight 400 at 80px in white, with the persona noun in italic (e.g. 'Beauty Maven'). Google Sans 16px subtitle below in white. To the right, an outlined pill button: 9999px radius, 1px white border, transparent fill, Google Sans 14px white text with → arrow.\n\n5. **Product Card**: Dark transparent or #202124 surface. Square product image (slightly lighter gray #333438 background behind product). Product name in Google Sans 14px white below the image. No border, no shadow, 20px corner radius on the overall card."
+}

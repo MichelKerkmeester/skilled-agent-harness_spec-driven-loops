@@ -1,0 +1,1219 @@
+{
+  "source": "https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c",
+  "uuid": "3e497155-bd96-4134-a4a5-855bd885a25c",
+  "name": "Roberta's Pizza",
+  "northStar": "Brooklyn pizza punk parlor — a checkered tablecloth lit by neon red signage, where every screen is a poster.",
+  "capturedAt": "2026-07-18T09:34:56.535Z",
+  "meta": {
+    "url": "https://www.robertaspizza.com",
+    "siteName": "Roberta's Pizza",
+    "extractedAt": "2026-06-03T19:01:52.815Z",
+    "durationMs": 33976,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 523,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Roberta Red (#ed2023) exclusively for the single most important action on a surface and for full-bleed brand moments — never decorate with it",
+      "Set headlines at 80–120px in Borensa with -0.02em tracking and 0.88 line-height so they stack into poster blocks",
+      "Keep body, UI labels, and buttons in Offset TM at 14–24px with the constant 0.04em positive tracking — the looseness is the signature",
+      "Use 7.2px radius on all rectangular buttons and 9999px (pill) for tags and the hamburger menu",
+      "Apply the hard retro shadow rgba(0,0,0,0.25) 0px 4px 4px 0px only on hover/active link states — never as resting elevation",
+      "Let sections go full-bleed (100vw) and stack content as centered single columns at 600–1200px max-width inside them",
+      "Separate text sections with the red star band or the checkered border ribbon instead of relying on whitespace alone"
+    ],
+    "donts": [
+      "Do not introduce any new color — the system is two neutrals plus one red; adding a fourth color breaks the poster logic",
+      "Do not use soft blurred shadows (no 12px+ blur, no large spread) — the only shadow in the system is the hard 4px-offset retro drop",
+      "Do not set Borensa below 22px for any visible text — at small sizes its condensed forms become illegible",
+      "Do not center-align body copy longer than four lines — keep long-form text in a left-aligned measure or break it into shorter centered chunks",
+      "Do not use the red CTA on a red background — switch to charcoal or white in that context to maintain contrast",
+      "Do not add gradients, glassmorphism, or any decorative blur — the system is flat, printed, and zine-like",
+      "Do not round all four corners to a pill shape on buttons — 7.2px is the button radius, 9999px is reserved for tags and the menu icon"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ed2023",
+        "name": "Roberta Red",
+        "role": "Primary filled CTAs, full-bleed social section background, logo wordmark, and any place the brand must shout — vivid red against white and charcoal creates urgency and warmth without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#2b2f36",
+        "name": "Charcoal",
+        "role": "Primary text, body copy, dark CTA fill, hairline borders, icon strokes, image borders — the structural neutral that carries 90% of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, text on dark backgrounds, button text, badge backgrounds — the dominant neutral that gives the system its airy, poster-like feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Input field borders and the deepest surface accent — used sparingly for the hardest possible contrast point on form elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfbfbf",
+        "name": "Shadow Gray",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is full-bleed with centered constrained content — the canvas is always 100vw, but every text column lives inside a 600–1200px max-width and is center-aligned. The home page opens with a full-viewport video hero, then alternates: a white centered text-and-CTA block, a red star band, a white photo-and-text section, then a full-bleed red social wall. Sections are separated by decorative bands (checkered ribbon, star strip) rather than whitespace alone, giving the page a poster-spine rhythm. Navigation is a minimal top bar with hamburger on the left and a 2–3 button cluster on the right; on the hero the nav collapses to hamburger + single red CTA. Grids are used sparingly — 2-column text+image on interior pages, a loose 5–7-tile polaroid arrangement for social photos. Density is spacious: 64–80px between sections, 20–30px between elements, no multi-column dashboards or dense data tables.",
+    "imagery": "Imagery is split between full-bleed video, photography, and hand-drawn line illustration. The hero is a muted-tone, slightly desaturated video of pizza being made — the dough and the sauce do the work, no lifestyle context. Social proof lives in a polaroid-style photo collage: candid restaurant and staff shots, customers eating, products held up close, each framed in white and slightly rotated. Decorative illustration is limited to a small vocabulary of white-stroked line icons — skull-and-crossbones, pizza slice, eight-point star — used as section punctuation on red and dark surfaces, never as functional UI. The color treatment across photography is warm and slightly muted; nothing is over-saturated. Checkered tile and starburst patterns function as graphic texture rather than image content.",
+    "similar": [
+      {
+        "why": "Same red/white/black NYC pizzeria palette and bold uppercase button system",
+        "business": "Prince Street Pizza"
+      },
+      {
+        "why": "Similar near-monochromatic palette with a single loud accent color and oversized condensed display headlines",
+        "business": "Emmy Squared"
+      },
+      {
+        "why": "Comparable restraint — white canvas, one signature color, big confident display type with no decorative gradients",
+        "business": "Sweetgreen"
+      },
+      {
+        "why": "Same zine-inspired aesthetic mixing hand-drawn illustration, bold condensed type, and checkered/halftone graphic elements",
+        "business": "Stumptown Coffee"
+      },
+      {
+        "why": "Classic American pizza-parlor color story (red, white, black) with checkered visual cues and a retro signage voice",
+        "business": "Joe's Pizza"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "pills": "9999px (from 16000px raw value)",
+        "buttons": "7.2px",
+        "asymmetric": "80px (for shapes that round two corners and square the other two)"
+      },
+      "elementGap": "20-30px",
+      "sectionGap": "64-80px",
+      "cardPadding": "20-30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas and card surface — the base the system is printed on"
+      },
+      {
+        "hex": "#ed2023",
+        "name": "Roberta Red",
+        "level": 1,
+        "purpose": "Full-bleed accent sections (social wall) and filled primary CTAs"
+      },
+      {
+        "hex": "#2b2f36",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Dark CTA fill and any inverted panel"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 3,
+        "purpose": "Input chrome and the deepest focal accents"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 4px 4px 0px",
+        "element": "Link / interactive tile (hover/active only)"
+      }
+    ],
+    "northStar": "Brooklyn pizza punk parlor — a checkered tablecloth lit by neon red signage, where every screen is a poster.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.56
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "heading-sm",
+        "size": 34,
+        "lineHeight": 1.25,
+        "letterSpacing": 1.36
+      },
+      {
+        "role": "heading",
+        "size": 54,
+        "lineHeight": 1.25,
+        "letterSpacing": 2.16
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 1.1,
+        "letterSpacing": 3.2
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.88,
+        "letterSpacing": -2.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Primary CTA (Red)",
+        "role": "Highest-priority action button — Order Delivery, About Roberta's, and any single dominant call on a page",
+        "description": "Solid Roberta Red (#ed2023) fill, white text, Offset TM 14–16px uppercase, 7.2px corner radius, 18–20px horizontal padding, 25–30px vertical padding, no shadow. Sits on white, charcoal, or red surfaces; when placed on red it becomes a charcoal-on-red or white-on-red variant."
+      },
+      {
+        "name": "Filled Secondary CTA (Charcoal)",
+        "role": "Secondary high-priority actions on light surfaces — Book a Table, Order Catering",
+        "description": "Solid Charcoal (#2b2f36) fill, white text, Offset TM uppercase, 7.2px radius, 18–24px horizontal padding, 20–25px vertical padding. No shadow, flat surface."
+      },
+      {
+        "name": "Outlined/Transparent CTA",
+        "role": "Tertiary action that must stay quiet — Order Frozen, Book a Table, Order Catering in the light nav",
+        "description": "Transparent fill, 1px Charcoal or White border, Charcoal or White text in Offset TM uppercase, 7.2px radius, 18–24px horizontal padding. No shadow."
+      },
+      {
+        "name": "Ghost Link with Hard Retro Shadow",
+        "role": "Text or icon links that need a hover lift — the only component in the system with elevation",
+        "description": "Transparent or white fill, text or icon in Charcoal, on hover or active state receives the signature hard drop-shadow: rgba(0,0,0,0.25) 0px 4px 4px 0px. The shadow is deliberately un-blurred for a zine/screen-print feel."
+      },
+      {
+        "name": "Navigation Bar (Light)",
+        "role": "Top-of-page navigation on interior sections",
+        "description": "White background, 1px hairline Charcoal border, 30px horizontal padding. Houses the hamburger menu (left), centered nav text, and the CTA cluster (right). Optional checkered border band sits above as a decorative ribbon."
+      },
+      {
+        "name": "Hero Video Container",
+        "role": "Full-bleed opening frame on the home page",
+        "description": "100vw × ~70vh, autoplaying muted video background, Charcoal gradient overlay for legibility, hand-painted red 'Roberta's' wordmark centered, single filled red CTA in the top-right, three-button cluster (one filled charcoal, two outlined) anchored to the bottom center. 'PAUSE VIDEO' micro-label sits bottom-right in white."
+      },
+      {
+        "name": "Centered Text Block with CTA",
+        "role": "Introductory copy sections — the menu description, the story",
+        "description": "White background, single column of Offset TM 20–24px body text in Charcoal, max-width ~600px, centered. A single filled red CTA sits 20–30px below the last line. Followed by a decorative red star band."
+      },
+      {
+        "name": "Decorative Star Band",
+        "role": "Section divider between content blocks",
+        "description": "Full-bleed Roberta Red strip, 80–120px tall, repeating white 8-point star/starburst icons evenly spaced. Acts as a visual breath between text blocks."
+      },
+      {
+        "name": "Checkered Border Ribbon",
+        "role": "Decorative top-and-bottom frame for interior sections — the retro Italian-American diner signature",
+        "description": "Full-bleed band, ~30–40px tall, alternating white and Charcoal (or black) square tiles, no gap. Sits flush against the section above and below."
+      },
+      {
+        "name": "Full-Bleed Social Wall",
+        "role": "Instagram/social-proof section — the loudest page moment",
+        "description": "Roberta Red background, oversized Borensa white 'GET SOCIAL!' headline (80–120px) centered, hand-drawn white skull-and-crossbones and pizza-slice icons flanking the headline at the top corners, Instagram and Facebook icon links below the headline, a 5–7 image polaroid collage overlapping and slightly rotated along the bottom half. Each photo has a 4–8px white border and a hard 4px-offset charcoal shadow."
+      },
+      {
+        "name": "Polaroid Photo Tile",
+        "role": "Single social photo in the collage",
+        "description": "Square or 4:5 photo, 6–10px white border, 4–8° random rotation, hard 4px-offset shadow rgba(0,0,0,0.25). Photos overlap by 10–20px to form a zine-style spread."
+      },
+      {
+        "name": "Hand-Drawn Brand Icon",
+        "role": "Decorative line illustrations — skull-and-crossbones, pizza slice, starburst",
+        "description": "White stroke, 3–4px weight, no fill, hand-drawn slight imperfection. Used at 40–80px on red or dark backgrounds as visual punctuation. Not a functional UI icon — purely decorative."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs for reservations and ordering",
+        "description": "White background, 1px Pure Black border, 28px vertical padding, 18px horizontal padding, Offset TM 14–16px text in Charcoal, no radius or 4px radius. Focus state thickens the border to 2px."
+      },
+      {
+        "name": "Hamburger Menu Button",
+        "role": "Primary navigation trigger on mobile and the hero",
+        "description": "30×30px white container with 1px Charcoal border, 7.2px radius, three horizontal Charcoal bars inside. Positioned top-left in the hero, replaces the full nav on small viewports."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse sans for body, UI labels, buttons, navigation, and most headings up to 80px — a quirky custom face with 0.04em positive tracking that gives every line a slightly informal, sign-painter rhythm.",
+        "sizes": "14, 20, 22, 24, 34, 54, 80",
+        "family": "Offset TM",
+        "weight": "400",
+        "lineHeight": "1.0–1.5",
+        "substitute": "Space Grotesk, Outfit, or Familjen Grotesk (closest free analogues for the tracked geometric feel)",
+        "letterSpacing": "0.04em (applied as a constant ~0.8px at 20px and ~3.2px at 80px)"
+      },
+      {
+        "role": "Condensed display face for oversized posters and the most aggressive headlines — sits at 80–120px with -0.02em tight tracking and aggressive line-height (~0.88) that lets the type stack into blocks; also used at 14–26px for micro-labels that need to feel editorial.",
+        "sizes": "14, 22, 26, 80, 120",
+        "family": "Borensa",
+        "weight": "400",
+        "lineHeight": "0.88–2.14",
+        "substitute": "Anton, Bebas Neue, or Oswald (free condensed display alternatives)",
+        "letterSpacing": "-0.02em (applied as -0.28px at 14px down to -2.4px at 120px)"
+      }
+    ],
+    "description": "Roberta's runs on a near-monochromatic system anchored by white canvas and charcoal type, with vivid red deployed as a single loud punctuation color for primary actions, social-proof walls, and signature brand moments. The type system pairs a quirky tracked-out sans (Offset TM) for body, UI labels, and most controls with a condensed display face (Borensa) that takes over at 80–120px for headlines that shout from full-bleed sections. Layouts are unapologetically full-bleed: a video hero, a red 'Get Social' wall, a centered text-and-CTA stack — with content rhythm set by generous vertical breathing room and a decorative vocabulary of checkered borders, star bands, polaroid frames, and hand-drawn skull and pizza-slice iconography borrowed from Italian-American diner signage and zine culture. Buttons sit flat without elevation on the filled state; the only shadow in the system is a hard, 4px-offset drop on secondary links, deliberately retro rather than soft-modern.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Roberta's Pizza design system\",\"item\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#style-reference\",\"name\":\"Roberta's Pizza design system reference\",\"headline\":\"Roberta's Pizza design system | Refero Styles\",\"description\":\"Explore Roberta's Pizza's light E-commerce design system: Roberta Red #ed2023, Charcoal #2b2f36 colors, Offset TM, Borensa typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Roberta's Pizza\",\"url\":\"https://www.robertaspizza.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"caption\":\"Screenshot of Roberta's Pizza\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Roberta's Pizza design system\",\"Roberta's Pizza website design\",\"Roberta's Pizza colors\",\"Roberta's Pizza typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Roberta Red\",\"Charcoal\",\"Pure White\",\"Pure Black\",\"Offset TM\",\"Borensa\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza design system\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza website design\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza colors\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:41:09.695Z\",\"dateModified\":\"2026-04-30T02:41:09.695Z\"}]}19:T5d9,**Quick Color Reference**\n- text: #2b2f36 (charcoal on white)\n- background: #ffffff (canvas), #ed2023 (red sections/CTAs)\n- border: #2b2f36 (charcoal hairlines), #000000 (inputs)\n- accent: #ed2023 (Roberta Red — for full-bleed social walls, logos, decorative punctuation)\n- shadow: #000000 at 25% opacity, hard 4px offset (link hover only)\n- primary action: #ed2023 (filled action)\n\n**3–5 Example Component Prompts**\n\n1. **Filled Red CTA Button** — background #ed2023, text #ffffff, font Offset TM 14px uppercase with 0.04em letter-spacing, border-radius 7.2px, padding 18px 24px, no shadow. Used for the single highest-priority action on a surface.\n\n2. Create a Primary Action Button: #ed2023 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Full-Bleed Social Wall** — background #ed2023 spanning 100vw, Borensa 100–120px headline 'GET SOCIAL!' in #ffffff centered with -0.02em tracking and 0.88 line-height, white hand-drawn skull icon top-left and pizza-slice icon top-right at 60px, Instagram and Facebook icons in white 30px below the headline, then a 5-tile polaroid collage at the bottom: square photos with 8px white borders, each rotated -6° to +6° and overlapping by 20px, each with the hard 4px-offset shadow rgba(0,0,0,0.25) 0px 4px 4px 0px.\n\n4. **Decorative Star Band** — full-bleed #ed2023 strip, 100px tall, repeating 40px white 8-point star icons centered vertically and spaced 80px apart horizontally."
+      },
+      {
+        "title": "Decorative System",
+        "content": "Three repeating graphic devices carry the brand voice and should be treated as part of the system, not one-off illustrations:\n\n1. **Checkered Ribbon** — alternating 20×20px white and #2b2f36 (or #000000) tiles, no gap, full-bleed, 30–40px tall. Sits at the top or bottom of a section as a diner-style frame.\n\n2. **Star Band** — full-bleed #ed2023 strip, 80–120px tall, repeating 8-point white starburst icons. Functions as a section break between white content blocks.\n\n3. **Polaroid Frame** — 6–10px white border around any photo, 4–8° random rotation, hard 4px-offset shadow. Used only in social/photo contexts."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat — buttons, cards, and sections sit on the canvas with no shadow at rest. Elevation is reserved for one purpose: the hard, un-blurred 4px-offset drop on interactive hover and active states, evoking a printed zine or screen-printed poster rather than the modern soft-shadow stack. Resting surfaces rely on color contrast (white → red, white → charcoal) and border weight to create depth, never on shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2b2f36",
+          "oklch": {
+            "c": 0.013835739957666359,
+            "h": 261.7087421546598,
+            "l": 0.30412236800629794
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "button",
+            "body",
+            "image",
+            "heading",
+            "icon",
+            "link",
+            "input"
+          ],
+          "frequency": 508,
+          "confidence": 1,
+          "prominence": 128481240.3529399,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "hero/color": 1,
+            "icon/color": 4,
+            "other/fill": 4,
+            "image/color": 9,
+            "input/color": 1,
+            "other/color": 67,
+            "button/color": 7,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "hero/borderColor": 4,
+            "icon/borderColor": 16,
+            "link/borderColor": 20,
+            "image/borderColor": 36,
+            "other/borderColor": 272,
+            "button/borderColor": 28,
+            "heading/borderColor": 8,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "hero",
+            "image",
+            "body",
+            "icon",
+            "heading",
+            "card",
+            "link",
+            "badge",
+            "footer",
+            "input"
+          ],
+          "frequency": 1979,
+          "confidence": 1,
+          "prominence": 22537743.94340203,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "card/color": 11,
+            "hero/color": 1,
+            "icon/color": 27,
+            "link/color": 28,
+            "other/fill": 30,
+            "badge/color": 39,
+            "image/color": 9,
+            "other/color": 234,
+            "button/color": 19,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 12,
+            "body/borderColor": 40,
+            "card/borderColor": 44,
+            "hero/borderColor": 4,
+            "icon/borderColor": 108,
+            "link/borderColor": 92,
+            "badge/borderColor": 156,
+            "image/borderColor": 36,
+            "other/borderColor": 932,
+            "button/borderColor": 76,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#ed2023",
+          "oklch": {
+            "c": 0.23310744677634418,
+            "h": 27.492968706972107,
+            "l": 0.6046889952137654
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 7527399.640665552,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 1,
+            "other/color": 2,
+            "link/borderColor": 4,
+            "other/borderColor": 8,
+            "other/backgroundColor": 12,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 929726.9031573437,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "link/boxShadow": 18
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016369529290718776,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.44,
+          "background": "#ffffff",
+          "foreground": "#2b2f36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.31,
+          "background": "#bfbfbf",
+          "foreground": "#2b2f36"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#000000",
+          "foreground": "#ed2023"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#ed2023",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#ed2023",
+          "foreground": "#2b2f36"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.56,
+          "background": "#000000",
+          "foreground": "#2b2f36"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 7.2,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 80,
+          "corners": [
+            80,
+            0,
+            0,
+            80
+          ],
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 4px 4px 0px",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 87,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 111,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 196,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 296,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 309,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Offset TM",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 427,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Borensa",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 60,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.14,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "hero",
+            "image",
+            "body",
+            "icon",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 361,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 34,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Offset TM",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "Borensa",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/39334c36-dd83-48e8-8f2c-bb77fce96143.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Roberta's Pizza design system\",\"item\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#style-reference\",\"name\":\"Roberta's Pizza design system reference\",\"headline\":\"Roberta's Pizza design system | Refero Styles\",\"description\":\"Explore Roberta's Pizza's light E-commerce design system: Roberta Red #ed2023, Charcoal #2b2f36 colors, Offset TM, Borensa typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Roberta's Pizza\",\"url\":\"https://www.robertaspizza.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e497155-bd96-4134-a4a5-855bd885a25c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"caption\":\"Screenshot of Roberta's Pizza\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bb0eafa9-bc49-4b16-8517-bb94e318e0a3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Roberta's Pizza design system\",\"Roberta's Pizza website design\",\"Roberta's Pizza colors\",\"Roberta's Pizza typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Roberta Red\",\"Charcoal\",\"Pure White\",\"Pure Black\",\"Offset TM\",\"Borensa\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza design system\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza website design\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza colors\"},{\"@type\":\"Thing\",\"name\":\"Roberta's Pizza typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:41:09.695Z\",\"dateModified\":\"2026-04-30T02:41:09.695Z\"}]}19:T5d9,**Quick Color Reference**\n- text: #2b2f36 (charcoal on white)\n- background: #ffffff (canvas), #ed2023 (red sections/CTAs)\n- border: #2b2f36 (charcoal hairlines), #000000 (inputs)\n- accent: #ed2023 (Roberta Red — for full-bleed social walls, logos, decorative punctuation)\n- shadow: #000000 at 25% opacity, hard 4px offset (link hover only)\n- primary action: #ed2023 (filled action)\n\n**3–5 Example Component Prompts**\n\n1. **Filled Red CTA Button** — background #ed2023, text #ffffff, font Offset TM 14px uppercase with 0.04em letter-spacing, border-radius 7.2px, padding 18px 24px, no shadow. Used for the single highest-priority action on a surface.\n\n2. Create a Primary Action Button: #ed2023 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Full-Bleed Social Wall** — background #ed2023 spanning 100vw, Borensa 100–120px headline 'GET SOCIAL!' in #ffffff centered with -0.02em tracking and 0.88 line-height, white hand-drawn skull icon top-left and pizza-slice icon top-right at 60px, Instagram and Facebook icons in white 30px below the headline, then a 5-tile polaroid collage at the bottom: square photos with 8px white borders, each rotated -6° to +6° and overlapping by 20px, each with the hard 4px-offset shadow rgba(0,0,0,0.25) 0px 4px 4px 0px.\n\n4. **Decorative Star Band** — full-bleed #ed2023 strip, 100px tall, repeating 40px white 8-point star icons centered vertically and spaced 80px apart horizontally."
+}

@@ -1,0 +1,87 @@
+:root {
+  /* Colors */
+  --color-abyssal-ink: #0b2330;
+  --color-bone: #faf9f8;
+  --color-obsidian: #141312;
+  --color-espresso: #272420;
+  --color-carbon: #000000;
+  --color-ash: #f3f3f3;
+  --color-mist: #e8e7e6;
+  --color-vapor: #dddcd9;
+  --color-pebble: #c4c4bc;
+  --color-fog: #9a9a91;
+  --color-smoke: #8f8d8b;
+  --color-graphite: #6e6d6a;
+  --color-slate: #575653;
+  --color-coffee: #322e2a;
+  --color-dusk: #efdcb6;
+  --gradient-dusk: linear-gradient(rgb(239, 220, 182), rgb(235, 163, 126) 0%, rgb(125, 122, 143));
+  --color-ember: #eba370;
+  --color-twilight: #7d7a8f;
+
+  /* Typography — Font Families */
+  --font-tt-commons-pro: 'TT Commons Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abc-diatype: 'ABC Diatype', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.3;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1.3;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-88: 88px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+  --spacing-160: 160px;
+  --spacing-224: 224px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 48px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-3xl: 32px;
+  --radius-full: 100px;
+  --radius-full-2: 1600px;
+
+  /* Named Radii */
+  --radius-nav: 32px;
+  --radius-cards: 100px;
+  --radius-badges: 4px;
+  --radius-buttons: 32px;
+  --radius-special-card: 1600px;
+  --radius-feature-cards: 100px;
+
+  /* Surfaces */
+  --surface-bone-canvas: #faf9f8;
+  --surface-ash-card: #f3f3f3;
+  --surface-mist-divider: #e8e7e6;
+  --surface-espresso-surface: #272420;
+  --surface-coffee-depth: #322e2a;
+}

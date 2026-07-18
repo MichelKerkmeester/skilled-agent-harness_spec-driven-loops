@@ -1,0 +1,86 @@
+:root {
+  /* Colors */
+  --color-void-navy: #03081a;
+  --color-deep-indigo: #020626;
+  --color-inkline-violet: #292f66;
+  --color-quartz-lavender: #aab1f2;
+  --color-mist-lilac: #7a83cc;
+  --color-dusk-iris: #4d5499;
+  --color-glacier-white: #f5f6ff;
+  --color-pure-white: #ffffff;
+  --color-pulse-cobalt: #3d50fc;
+  --color-signal-teal: #05e0e0;
+  --color-cyan-teal: #05cee0;
+  --color-gradient-teal-blue: #05a1c9;
+  --gradient-gradient-teal-blue: linear-gradient(90deg, rgb(5, 161, 201) 0%, rgb(61, 80, 252) 100%);
+
+  /* Typography — Font Families */
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-plain: 'Plain', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-plain-light: 'Plain Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-plain-ultralight: 'Plain Ultralight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-plain-ultrathin: 'Plain Ultrathin', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-eyebrow: 10px;
+  --leading-eyebrow: 1.2;
+  --tracking-eyebrow: 2.5px;
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.3;
+  --text-subheading: 28px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.56px;
+  --text-heading-sm: 42px;
+  --leading-heading-sm: 1.1;
+  --tracking-heading-sm: -0.84px;
+  --text-heading: 56px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.12px;
+  --text-heading-lg: 83px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -1.66px;
+  --text-display: 147px;
+  --leading-display: 0.8;
+  --tracking-display: -2.94px;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-52: 52px;
+  --spacing-64: 64px;
+  --spacing-104: 104px;
+  --spacing-196: 196px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 32px;
+  --element-gap: 9px;
+
+  /* Border Radius */
+  --radius-sm: 0.864px;
+  --radius-2xl: 17.352px;
+  --radius-3xl: 34.704px;
+  --radius-full: 47.7072px;
+  --radius-full-2: 360px;
+
+  /* Named Radii */
+  --radius-tags: 17px;
+  --radius-cards: 35px;
+  --radius-inputs: 35px;
+  --radius-buttons: 48px;
+
+  /* Surfaces */
+  --surface-void-canvas: #03081a;
+  --surface-deep-indigo-card: #020626;
+  --surface-light-content-surface: #ffffff;
+}

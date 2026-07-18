@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-peach-paper: #f6e0db;
+  --color-charcoal-ink: #000000;
+  --color-snow: #ffffff;
+  --color-ember-orange: #ef724f;
+  --color-magenta-pop: #981082;
+  --color-sunbeam-yellow: #e7db4c;
+  --color-mint-wash: #ace2df;
+  --color-powder-blue: #84bfff;
+  --color-lilac-tint: #e69dff;
+  --color-lime-zest: #6ed311;
+  --color-cobalt-spark: #5196ff;
+
+  /* Typography — Font Families */
+  --font-alfa-slab-one: 'Alfa Slab One', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-manrope: 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.6;
+  --text-heading-sm: 25px;
+  --leading-heading-sm: 1.24;
+  --text-subheading: 34px;
+  --leading-subheading: 1.16;
+  --text-heading: 46px;
+  --leading-heading: 1.09;
+  --text-heading-lg: 50px;
+  --leading-heading-lg: 1.12;
+  --text-display: 120px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-17: 17px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-25: 25px;
+  --spacing-27: 27px;
+  --spacing-30: 30px;
+  --spacing-38: 38px;
+  --spacing-40: 40px;
+  --spacing-46: 46px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 46-64px;
+  --card-padding: 24-40px;
+  --element-gap: 8-16px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-3xl: 40px;
+  --radius-3xl-2: 47px;
+
+  /* Named Radii */
+  --radius-nav: 47px;
+  --radius-cards: 40-47px;
+  --radius-small: 10px;
+  --radius-buttons: 47px;
+
+  /* Surfaces */
+  --surface-peach-canvas: #f6e0db;
+  --surface-snow-card: #ffffff;
+  --surface-color-card: #ef724f;
+  --surface-mint-card: #ace2df;
+  --surface-lilac-card: #e69dff;
+}

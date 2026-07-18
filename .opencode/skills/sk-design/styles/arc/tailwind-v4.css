@@ -1,0 +1,59 @@
+@theme {
+  /* Colors */
+  --color-electric-iris: #3139fb;
+  --color-deep-violet: #2702c2;
+  --color-oat: #fffadd;
+  --color-linen: #fffcec;
+  --color-paper-white: #ffffff;
+  --color-obsidian: #000000;
+  --color-granite: #696969;
+  --color-olive-stone: #595853;
+
+  /* Typography */
+  --font-marlin-soft-sq: 'Marlin Soft SQ', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-marlin: 'Marlin', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-intervariable: 'InterVariable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abc-favorit-mono: 'ABC Favorit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-abc-oracle: 'ABC Oracle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-exposure-var: 'Exposure VAR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.4px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.2;
+  --tracking-body-sm: -0.14px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 28px;
+  --leading-heading: 1.1;
+  --tracking-heading: -0.56px;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.07;
+  --tracking-heading-lg: -1.6px;
+  --text-display: 46px;
+  --leading-display: 0.98;
+  --tracking-display: -2.3px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-128: 128px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 22px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 5px 5px 0px;
+  --shadow-sm-2: rgba(0, 0, 0, 0.25) 0px 2px 8px 0px;
+}

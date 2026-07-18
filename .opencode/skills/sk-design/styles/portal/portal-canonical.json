@@ -1,0 +1,1637 @@
+{
+  "source": "https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8",
+  "uuid": "632b65d0-17de-4972-a3d1-63d5ab062ab8",
+  "name": "Portal",
+  "northStar": "violet singularity tearing through obsidian — a heavy, weight-900 headline, #b296f8 glow, and a 10px corner in the dark.",
+  "capturedAt": "2026-07-18T09:17:07.146Z",
+  "meta": {
+    "url": "https://portalgaming.com",
+    "siteName": "Portal",
+    "extractedAt": "2026-06-03T20:12:42.390Z",
+    "durationMs": 34162,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 300,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #b296f8 as the only chromatic fill for action buttons; pair with #ffffff text and 10px radius.",
+      "Set display headings in Suisse Intl 900 at 48–72px with -0.025em letter-spacing and line-height 1.00–1.11; the weight 900 is non-negotiable for the brand voice.",
+      "Give every card the violet-tinted shadow rgba(178,150,248,0.20) 0px 25px 50px -12px — the glow is the elevation system, not a generic gray drop-shadow.",
+      "Use the badge family with transparent fill, 1px saturated border, desaturated pastel text, 12px text, 0.20em letter-spacing, and 10px radius — keep all four color families (green/blue/violet/pink) in active rotation.",
+      "Use the single 10px radius uniformly across cards, buttons, badges, and nav; do not introduce secondary radii.",
+      "Keep the canvas at #000000 and elevated surfaces at #0f0f13; use #292929 and #1d1d1d as the only border tones.",
+      "Track body text at 0.05em and small labels/badges at 0.20em; tighten display type to -0.025em — the three tracking values form a recognizable rhythm."
+    ],
+    "donts": [
+      "Do not introduce a second accent color — the brand is monochromatic dark with one violet signal.",
+      "Do not use weight 400–600 for display headings; the 900 weight at large sizes is the signature.",
+      "Do not apply neutral gray drop-shadows to cards; the violet-tinted shadow is the only elevation pattern.",
+      "Do not use radii other than 10px; the system has one radius and it must remain singular.",
+      "Do not place light text on light badge fills or dark text on dark borders — the badge pattern is always: dark saturated border + desaturated pastel text.",
+      "Do not use #ffffff for body copy; reserve it for display headings and brand marks only. Body uses #e6e6e6.",
+      "Do not soften the section gap below 48px; the compact-but-breathing rhythm is part of the identity."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, hero backgrounds, deepest surface — the obsidian backdrop against which the brand violet glows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f13",
+        "name": "Obsidian Surface",
+        "role": "Elevated card surfaces, button fills for neutral/ghost controls, hero overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292929",
+        "name": "Carbon Border",
+        "role": "Hairline borders across cards, nav, body, links, and lists — the structural grid in a single near-black tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Graphite Card Edge",
+        "role": "Card-specific border tone, one step lighter than Carbon to create layered card edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a36",
+        "name": "Ash Mist",
+        "role": "Subtle violet-tinted dark border for sections and footer dividers — the only near-gray with hue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Platinum Text",
+        "role": "Primary body and UI text, nav links, card text, icon strokes — soft white for long-form reading on black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Foil Highlight",
+        "role": "Display headings, brand mark, button labels on dark — pure white reserved for the loudest type moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9e9e9e",
+        "name": "Steel Muted",
+        "role": "Muted helper text, secondary list items, dimmed icon strokes — quiet copy in the body",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b296f8",
+        "name": "Portal Violet",
+        "role": "Primary action buttons, icon strokes, accent text, shadow tint — the singular brand signal; lavender that reads as dimensional energy",
+        "group": "brand"
+      },
+      {
+        "hex": "#594b7c",
+        "name": "Wisteria",
+        "role": "Muted violet border for accent rules and decorative dividers",
+        "group": "brand"
+      },
+      {
+        "hex": "#4b3f71",
+        "name": "Indigo Plum",
+        "role": "Violet badge border for category tags in the violet family",
+        "group": "accent"
+      },
+      {
+        "hex": "#ede9fe",
+        "name": "Lavender Mist",
+        "role": "Violet badge text fill — desaturated lavender for readable on-dark violet tag content",
+        "group": "accent"
+      },
+      {
+        "hex": "#571c60",
+        "name": "Fuchsia Ink",
+        "role": "Pink/magenta badge border for editorial or community-event categories",
+        "group": "accent"
+      },
+      {
+        "hex": "#0e4f26",
+        "name": "Verdant Edge",
+        "role": "Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#dcfce7",
+        "name": "Mint Whisper",
+        "role": "Success badge text — soft mint for green category labels on dark",
+        "group": "semantic"
+      },
+      {
+        "hex": "#264264",
+        "name": "Cobalt Vein",
+        "role": "Blue outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#06425d",
+        "name": "Deep Tide",
+        "role": "Blue outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#dbeafe",
+        "name": "Ice Blue",
+        "role": "Info badge text — desaturated sky for blue category labels on dark",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with a max-width 1200px content container. The hero is a full-viewport-height illustrated scene with an overlaid text block in the upper-left area containing eyebrow, headline, subtext, and two CTAs (filled violet + ghost). Below the hero, the body lives in 48px-rhythm sections: a 3-column feature card grid with 16px gaps, then likely alternating text-and-image rows. Navigation is a top bar with logo left, links center, and a contact CTA right. An announcement bar sits above the nav. The layout alternates between image-rich (hero) and text-rich (sections) blocks, using generous 48px vertical breathing room between sections to keep the compact density from feeling cramped.",
+    "imagery": "Imagery is hero-driven and full-bleed: a cinematic, anime/comic-style illustration of a dimensional portal — a hexagonal violet-and-white vortex tearing through an urban alleyway, with a silhouetted figure at its base. Illustrations are atmospheric, not product-screenshots; the portal itself is the recurring visual motif. Card imagery inside content sections shows tool interfaces, creator workflow scenes, and team/collaboration moments in the same painterly violet-and-indigo palette. Iconography is line-based, stroked in #b296f8 or #e6e6e6 with consistent thin-to-medium stroke weight. The page is image-heavy in the hero and image-light in the body sections, where 3-column feature cards with illustrations carry the visual weight.",
+    "similar": [
+      {
+        "why": "Same dark canvas + single vivid accent signal + heavy display weight for AI-product marketing pages",
+        "business": "Runway"
+      },
+      {
+        "why": "Same full-bleed cinematic hero illustration and violet-leaning generative-AI palette",
+        "business": "Stability AI"
+      },
+      {
+        "why": "Same theatrical dark-mode design language where the product imagery IS the hero and text stays quiet",
+        "business": "Midjourney"
+      },
+      {
+        "why": "Same gaming/AI crossover vibe with violet dimensional branding and dark technical surfaces",
+        "business": "Inworld AI"
+      },
+      {
+        "why": "Same compact dark UI with a single lavender accent, weight-900 display type, and 10px-radius component family",
+        "business": "Decart"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "10px",
+        "cards": "10px",
+        "badges": "10px",
+        "inputs": "10px",
+        "buttons": "10px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "48px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page canvas and hero backgrounds"
+      },
+      {
+        "hex": "#0f0f13",
+        "name": "Obsidian",
+        "level": 1,
+        "purpose": "Elevated cards, button fills, hero overlays"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Carbon Edge",
+        "level": 2,
+        "purpose": "Card border layer, creating perceptible card edges on the void"
+      },
+      {
+        "hex": "#b296f8",
+        "name": "Portal Glow",
+        "level": 3,
+        "purpose": "Brand accent surface — action buttons and the violet shadow halo around cards"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(178, 150, 248, 0.2) 0px 25px 50px -12px",
+        "element": "Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+        "element": "Button"
+      }
+    ],
+    "northStar": "violet singularity tearing through obsidian — a heavy, weight-900 headline, #b296f8 glow, and a 10px corner in the dark.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.025
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button",
+        "role": "Filled violet CTA — the only chromatic button",
+        "description": "Background #b296f8, text #ffffff, Suisse Intl 500 at 14px, padding 16px 24px, radius 10px, subtle rgba(0,0,0,0.05) 0px 1px 2px 0px shadow. The lavender fill against the obsidian canvas is the brand's single most recognizable moment."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action on dark hero/sections",
+        "description": "Transparent background, 1px border in #292929, text #e6e6e6, Suisse Intl 500 at 14px, padding 16px 24px, radius 10px. Reads as a quieter alternative that respects the violet primary."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top-bar navigation item",
+        "description": "Suisse Intl 400 at 14px, color #e6e6e6, no underline, 10px radius reserved for any pill-style link. Spacing 8px between items."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Logo in header",
+        "description": "White mark on dark header, 10px radius container, paired with 'Portal' wordmark in Foil Highlight #ffffff, weight 600."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Slim banner above header",
+        "description": "Full-width dark band (#0f0f13), body text in #e6e6e6 at 14px, optional close icon, 8px vertical padding."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column 'What We Do' card with image and copy",
+        "description": "Background #0f0f13, 1px border in #1d1d1d, radius 10px, padding 16px, violet-tinted shadow rgba(178,150,248,0.20) 0px 25px 50px -12px. Image fills the top edge with no separate radius (image corners are clipped by card radius). Title in Suisse Intl 600 at 18px #ffffff, body in 400 at 16px #e6e6e6."
+      },
+      {
+        "name": "Card with Glow",
+        "role": "Same as Feature Card — the shadow is the differentiator",
+        "description": "Identical dimensions to Feature Card, defined by the violet-tinted shadow rather than any visual border treatment. The glow makes the card feel like it is emitting portal energy."
+      },
+      {
+        "name": "Hero Overlay Card",
+        "role": "Text box layered over hero image",
+        "description": "Semi-transparent panel containing hero headline and CTAs, 10px radius, no border. Sits on the hero illustration with the dark hero image as background."
+      },
+      {
+        "name": "Success Badge",
+        "role": "Live/active/shipped status tag",
+        "description": "Transparent fill, 1px border #0e4f26, text #dcfce7, Suisse Intl 500 at 12px, letter-spacing 0.20em, padding 2px 10px, radius 10px. Deep-green border + mint text reads as a quiet 'shipped' state."
+      },
+      {
+        "name": "Info Badge",
+        "role": "Data/system/category tag — blue family",
+        "description": "Transparent fill, 1px border #264264, text #dbeafe, Suisse Intl 500 at 12px, letter-spacing 0.20em, padding 2px 10px, radius 10px. Alternate variant uses #06425d border for deeper-blue categories."
+      },
+      {
+        "name": "Violet Badge",
+        "role": "Brand-aligned category tag",
+        "description": "Transparent fill, 1px border #4b3f71, text #ede9fe, Suisse Intl 500 at 12px, letter-spacing 0.20em, padding 2px 10px, radius 10px. Echoes the brand violet at lower saturation for taxonomy without competing with the primary."
+      },
+      {
+        "name": "Pink Badge",
+        "role": "Editorial/community-event tag",
+        "description": "Transparent fill, 1px border #571c60, text #ede9fe, Suisse Intl 500 at 12px, letter-spacing 0.20em, padding 2px 10px, radius 10px. Magenta signals a different category without breaking the system."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "All-caps label above section heading (e.g. 'WHAT WE DO')",
+        "description": "Suisse Intl 500 at 12px, letter-spacing 0.20em, color #9e9e9e. Wide tracking on muted text creates a clear hierarchy entry point."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Hero and section titles",
+        "description": "Suisse Intl 900 at 48–72px, color #ffffff, letter-spacing -0.025em, line-height 1.00–1.11. The 900 weight is the voice — it does not whisper."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Weight 900 at 72px/48px for display and section headings is the signature — the brand does not whisper at scale, it announces. Weight 600 for sub-headings and nav, weight 500 for emphasized body, weight 400 for body and supporting copy. The lineHeight 1.00–1.11 at display sizes is unusually tight and signals confidence; body sits at 1.43–1.56 for compact reading. Letter-spacing tracks the hierarchy: -0.025em pulls display tight, 0.05em relaxes body, 0.20em stretches labels and badges wide.",
+        "sizes": "12px, 14px, 16px, 18px, 36px, 48px, 72px",
+        "family": "Suisse Intl",
+        "weight": "400, 500, 600, 900",
+        "lineHeight": "1.00, 1.11, 1.33, 1.43, 1.50, 1.56",
+        "substitute": "Inter (closest free analog with similar geometric grotesque proportions) or Space Grotesk",
+        "letterSpacing": "-0.025em at 72px/48px display, 0.05em at 16px/18px body, 0.20em at 12px labels and badges"
+      }
+    ],
+    "description": "Portal is a dark-mode gaming/AI brand system built around a single vivid violet accent that reads as a dimensional energy source cutting through obsidian surfaces. The visual logic is theatrical: nearly-black canvas (#000000), near-black surface layers (#0f0f13, #1d1d1d), hairline charcoal borders (#292929), and one vivid lavender (#b296f8) that appears as a portal-glow on icons, strokes, button fills, and shadow tints. Typography is heavily weighted (Suisse Intl 900) for display headlines — the voice is monumental, not quiet — paired with compact body text in the 400/500 range. Components share a single 10px radius and gain dimensionality from violet-tinted shadows (rgba(178,150,248,0.20) 0px 25px 50px -12px) rather than neutral elevation, making even flat cards feel like they emit light. Badge variants encode status through saturated border + desaturated fill pairs (green, blue, violet, pink), giving multi-category taxonomy without diluting the brand violet.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Portal design system\",\"item\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#style-reference\",\"name\":\"Portal design system reference\",\"headline\":\"Portal design system | Refero Styles\",\"description\":\"Explore Portal's dark AI design system: Void Black #000000, Obsidian Surface #0f0f13 colors, Suisse Intl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Portal\",\"url\":\"https://portalgaming.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"caption\":\"Screenshot of Portal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Portal design system\",\"Portal website design\",\"Portal colors\",\"Portal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Void Black\",\"Obsidian Surface\",\"Carbon Border\",\"Graphite Card Edge\",\"Suisse Intl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Portal design system\"},{\"@type\":\"Thing\",\"name\":\"Portal website design\"},{\"@type\":\"Thing\",\"name\":\"Portal colors\"},{\"@type\":\"Thing\",\"name\":\"Portal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T18:21:42.143Z\",\"dateModified\":\"2026-05-07T18:21:42.143Z\"}]}19:T5f6,**Quick Color Reference**\n- canvas: #000000\n- elevated surface: #0f0f13\n- border: #292929 / #1d1d1d\n- text primary: #e6e6e6\n- heading/brand: #ffffff\n- muted text: #9e9e9e\n- accent / primary action: #b296f8 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #b296f8 background, #0f0f13 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature card grid**: Three-column row, 16px gap. Each card: background #0f0f13, 1px border #1d1d1d, radius 10px, shadow rgba(178,150,248,0.20) 0px 25px 50px -12px, padding 16px. Image flush to top edge, clipped by card radius. Title in weight 600 at 18px, #ffffff. Body in 400 at 16px, #e6e6e6.\n\n3. **Status badge row**: Badge component with transparent fill, 1px border #0e4f26, text #dcfce7, 12px weight 500, letter-spacing 0.20em, padding 2px 10px, radius 10px. Pair an info badge (#264264 border / #dbeafe text), a violet badge (#4b3f71 / #ede9fe), and a pink badge (#571c60 / #ede9fe) side by side with 8px gaps.\n\n4. **Section with eyebrow**: 48px top margin. Eyebrow 'WHAT WE DO' in 12px weight 500, letter-spacing 0.20em, #9e9e9e. Heading in 48px weight 900, #ffffff, letter-spacing -0.025em, line-height 1.11. Body paragraph in 16px weight 400, #e6e6e6, max-width 720px.\n\n5. **Outlined action in footer or utility bar**: 1px border #b296f8, text #b296f8, transparent background, 14px weight 500, padding 16px 24px, radius 10px. Use for tertiary violet-tinted actions where a filled button would be too heavy."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is colored, not gray. Cards gain dimensionality from a violet-tinted shadow (rgba(178,150,248,0.20) 0px 25px 50px -12px) that echoes the brand accent — the design does not borrow neutral drop-shadow conventions from generic SaaS. The portal violet literally radiates beneath every card. Buttons are nearly flat with a barely-perceptible 1px shadow, letting the violet fill do the visual work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2809402269547256
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "button",
+            "image",
+            "nav",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 876,
+          "confidence": 1,
+          "prominence": 43074201.37917497,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 40,
+            "body/borderColor": 72,
+            "card/borderColor": 108,
+            "icon/borderColor": 28,
+            "link/borderColor": 68,
+            "list/borderColor": 32,
+            "image/borderColor": 60,
+            "other/borderColor": 368,
+            "button/borderColor": 44,
+            "heading/borderColor": 56
+          }
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "button",
+            "icon",
+            "footer",
+            "heading"
+          ],
+          "frequency": 165,
+          "confidence": 1,
+          "prominence": 32493848.481438905,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "card/color": 40,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 12,
+            "icon/stroke": 4,
+            "other/color": 83,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "footer",
+            "icon"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 16774908.812901884,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "card/backgroundColor": 3,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0f0f13",
+          "oklch": {
+            "c": 0.008697131190603575,
+            "h": 285.4321996966162,
+            "l": 0.16901668491784827
+          },
+          "contexts": [
+            "button",
+            "hero",
+            "other",
+            "card"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 7031477.623779007,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 3,
+            "hero/borderColor": 8,
+            "other/borderColor": 8,
+            "card/backgroundColor": 9,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 1815125.174963323,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 10,
+            "button/color": 1,
+            "heading/color": 8
+          }
+        },
+        {
+          "hex": "#2a2a36",
+          "oklch": {
+            "c": 0.021756524053869748,
+            "h": 284.964334814861,
+            "l": 0.29019739465485844
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1544862.9494529108,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1d1d1d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22946240708090676
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 578718.1743877201,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 36
+          }
+        },
+        {
+          "hex": "#9482c4",
+          "oklch": {
+            "c": 0.09778498896939734,
+            "h": 295.8890472252474,
+            "l": 0.6491878161350212
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 413250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b296f8",
+          "oklch": {
+            "c": 0.14071568702860401,
+            "h": 295.9134729236148,
+            "l": 0.7369044707352753
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 386764.5472428746,
+          "properties": [
+            "color",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "icon/color": 2,
+            "icon/stroke": 4,
+            "other/color": 3,
+            "button/color": 2,
+            "other/stroke": 5,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#241e32",
+          "oklch": {
+            "c": 0.03713810389151684,
+            "h": 296.7695793525168,
+            "l": 0.2509958341987965
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 369032.99206103705,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 9
+          }
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6992607330816131
+          },
+          "contexts": [
+            "body",
+            "list",
+            "link",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 236399.19581462088,
+          "properties": [
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 3,
+            "link/color": 5,
+            "list/color": 8,
+            "other/fill": 1,
+            "icon/stroke": 4,
+            "button/color": 3,
+            "other/stroke": 7
+          }
+        },
+        {
+          "hex": "#594b7c",
+          "oklch": {
+            "c": 0.07987537199459115,
+            "h": 296.17551791731324,
+            "l": 0.44845713006932825
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 198524.85211286947,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37054239459212773
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 127947.52574067321,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0e4f26",
+          "oklch": {
+            "c": 0.09349123257998493,
+            "h": 150.68415007184805,
+            "l": 0.376654135101172
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 7626.639727280783,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 36
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7232.806015574133,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4
+          }
+        },
+        {
+          "hex": "#264264",
+          "oklch": {
+            "c": 0.06778232071452318,
+            "h": 254.44111675325652,
+            "l": 0.37410155391840094
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 6209.668411829709,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 36
+          }
+        },
+        {
+          "hex": "#06425d",
+          "oklch": {
+            "c": 0.07291038692226996,
+            "h": 235.07863597904637,
+            "l": 0.35833738785238417
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 5386.574780060334,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 36
+          }
+        },
+        {
+          "hex": "#dbeafe",
+          "oklch": {
+            "c": 0.03159143522725716,
+            "h": 255.5854941765837,
+            "l": 0.9319179004437183
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 5063.529596024753,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 18
+          }
+        },
+        {
+          "hex": "#4b3f71",
+          "oklch": {
+            "c": 0.08288718213172577,
+            "h": 293.96057885430037,
+            "l": 0.4026371040970389
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 4987.501547818054,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 24
+          }
+        },
+        {
+          "hex": "#dcfce7",
+          "oklch": {
+            "c": 0.04337822282784544,
+            "h": 156.74264870361714,
+            "l": 0.9624129368242799
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 4863.302730915098,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 9
+          }
+        },
+        {
+          "hex": "#ede9fe",
+          "oklch": {
+            "c": 0.02840573642570279,
+            "h": 294.5877943846151,
+            "l": 0.943347639035306
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3567.750773909027,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 9
+          }
+        },
+        {
+          "hex": "#571c60",
+          "oklch": {
+            "c": 0.12536617736190167,
+            "h": 322.22802372020396,
+            "l": 0.3488517312421984
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3304.4926682999953,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.033294625100980364,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.12,
+          "background": "#0f0f13",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.12,
+          "background": "#000000",
+          "foreground": "#dcfce7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.69,
+          "background": "#000000",
+          "foreground": "#ede9fe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.41,
+          "background": "#0f0f13",
+          "foreground": "#dcfce7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.21,
+          "background": "#000000",
+          "foreground": "#dbeafe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#ffffff",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#000000",
+          "foreground": "#e6e6e6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.11,
+          "background": "#0f0f13",
+          "foreground": "#ede9fe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.07,
+          "background": "#ffffff",
+          "foreground": "#241e32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.68,
+          "background": "#0f0f13",
+          "foreground": "#dbeafe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.35,
+          "background": "#dcfce7",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.32,
+          "background": "#0f0f13",
+          "foreground": "#e6e6e6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.63,
+          "background": "#dcfce7",
+          "foreground": "#241e32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#ffffff",
+          "foreground": "#292929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#ede9fe",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.16,
+          "background": "#ffffff",
+          "foreground": "#2a2a36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.82,
+          "background": "#dbeafe",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.54,
+          "background": "#ede9fe",
+          "foreground": "#241e32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#e6e6e6",
+          "foreground": "#1d1d1d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 53
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(178, 150, 248, 0.2) 0px 25px 50px -12px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "badge",
+            "body"
+          ],
+          "frequency": 78,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 42,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "badge"
+          ],
+          "frequency": 98,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|body",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "list"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "card"
+          ],
+          "frequency": 111,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "marginTop|heading",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "hero",
+            "button"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 241,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(35, 31, 47), rgb(23, 21, 27) 50%, rgb(20, 20, 20))",
+        "colors": [
+          "rgb(35, 31, 47)",
+          "rgb(23, 21, 27)",
+          "rgb(20, 20, 20)"
+        ],
+        "frequency": 4
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(120% 90% at 50% 8%, rgba(195, 181, 255, 0.2), rgba(0, 0, 0, 0) 58%)",
+        "colors": [
+          "rgba(195, 181, 255, 0.2)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(216, 207, 255), rgb(195, 181, 255) 45%, rgb(185, 163, 245))",
+        "colors": [
+          "rgb(216, 207, 255)",
+          "rgb(195, 181, 255)",
+          "rgb(185, 163, 245)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse Intl",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            900
+          ],
+          "frequency": 278,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "nav",
+            "body"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "image",
+            "nav",
+            "hero",
+            "card",
+            "footer"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 600,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Suisse Intl",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Suisse Intl",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Suisse Intl",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e2b5e365-5f9c-4fab-9323-4a8e04c1fd42.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Portal design system\",\"item\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#style-reference\",\"name\":\"Portal design system reference\",\"headline\":\"Portal design system | Refero Styles\",\"description\":\"Explore Portal's dark AI design system: Void Black #000000, Obsidian Surface #0f0f13 colors, Suisse Intl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Portal\",\"url\":\"https://portalgaming.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/632b65d0-17de-4972-a3d1-63d5ab062ab8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"caption\":\"Screenshot of Portal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1be4361a-eefb-4441-93f6-bca2eb7deb87.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Portal design system\",\"Portal website design\",\"Portal colors\",\"Portal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Void Black\",\"Obsidian Surface\",\"Carbon Border\",\"Graphite Card Edge\",\"Suisse Intl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Portal design system\"},{\"@type\":\"Thing\",\"name\":\"Portal website design\"},{\"@type\":\"Thing\",\"name\":\"Portal colors\"},{\"@type\":\"Thing\",\"name\":\"Portal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T18:21:42.143Z\",\"dateModified\":\"2026-05-07T18:21:42.143Z\"}]}19:T5f6,**Quick Color Reference**\n- canvas: #000000\n- elevated surface: #0f0f13\n- border: #292929 / #1d1d1d\n- text primary: #e6e6e6\n- heading/brand: #ffffff\n- muted text: #9e9e9e\n- accent / primary action: #b296f8 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #b296f8 background, #0f0f13 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature card grid**: Three-column row, 16px gap. Each card: background #0f0f13, 1px border #1d1d1d, radius 10px, shadow rgba(178,150,248,0.20) 0px 25px 50px -12px, padding 16px. Image flush to top edge, clipped by card radius. Title in weight 600 at 18px, #ffffff. Body in 400 at 16px, #e6e6e6.\n\n3. **Status badge row**: Badge component with transparent fill, 1px border #0e4f26, text #dcfce7, 12px weight 500, letter-spacing 0.20em, padding 2px 10px, radius 10px. Pair an info badge (#264264 border / #dbeafe text), a violet badge (#4b3f71 / #ede9fe), and a pink badge (#571c60 / #ede9fe) side by side with 8px gaps.\n\n4. **Section with eyebrow**: 48px top margin. Eyebrow 'WHAT WE DO' in 12px weight 500, letter-spacing 0.20em, #9e9e9e. Heading in 48px weight 900, #ffffff, letter-spacing -0.025em, line-height 1.11. Body paragraph in 16px weight 400, #e6e6e6, max-width 720px.\n\n5. **Outlined action in footer or utility bar**: 1px border #b296f8, text #b296f8, transparent background, 14px weight 500, padding 16px 24px, radius 10px. Use for tertiary violet-tinted actions where a filled button would be too heavy."
+}

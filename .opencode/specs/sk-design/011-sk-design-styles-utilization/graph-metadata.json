@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/011-sk-design-styles-utilization",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/011-sk-design-styles-utilization/001-research-utilization"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design styles utilization",
+      "use the refero style library",
+      "design token library retrieval"
+    ],
+    "key_topics": [
+      "sk-design",
+      "styles",
+      "utilization",
+      "refero",
+      "style",
+      "library",
+      "design",
+      "token",
+      "retrieval",
+      "packet",
+      "010-sk-design-styles-from-refero",
+      "extracts"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-research-utilization/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md + CSS-variables + Tailwind-v4 + design-tokens + provenance",
+    "created_at": "2026-07-18T09:21:31.581Z",
+    "last_save_at": "2026-07-18T09:22:49.614Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8a900946fbe43c8c819835ab6dc8e603af23ecfbe6d4e239abb46c29f897eb5b",
+    "source_doc_hashes": {
+      "spec.md": "6b8e72f668844c1cceeab1a3c838a4d3045f4231a957e164373d40ebc0b1530b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

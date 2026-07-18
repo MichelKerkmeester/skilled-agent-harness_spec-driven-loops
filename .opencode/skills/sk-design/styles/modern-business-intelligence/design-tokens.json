@@ -1,0 +1,427 @@
+{
+  "color": {
+    "pale-sage": {
+      "$value": "#eef2e3",
+      "$type": "color",
+      "$description": "Pale Sage — Page canvas, light card surfaces, eyebrow backgrounds, hero photo mats"
+    },
+    "paper-white": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Paper White — Elevated card surfaces, nav background, modals, footer"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, hairline borders, ghost button outlines"
+    },
+    "charcoal": {
+      "$value": "#242423",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and icon fills — softer than pure black for muted UI elements"
+    },
+    "deep-forest": {
+      "$value": "#043f2e",
+      "$type": "color",
+      "$description": "Deep Forest — Brand primary — dark section backgrounds, stat cards, nav text, primary text on light surfaces, dominant illustration color"
+    },
+    "chartreuse-lime": {
+      "$value": "#c8f169",
+      "$type": "color",
+      "$description": "Chartreuse Lime — Primary action button fill, accent highlights, tag/badge backgrounds, the singular chromatic punctuation across the UI"
+    },
+    "forest-mid": {
+      "$value": "#2a6f2b",
+      "$type": "color",
+      "$description": "Forest Mid — Hover/active state for forest surfaces, secondary green used in chart highlights and stat card accents"
+    },
+    "vivid-green": {
+      "$value": "#78c51c",
+      "$type": "color",
+      "$description": "Vivid Green — Tertiary accent — decorative chart strokes, data visualization secondary color, support to chartreuse"
+    }
+  },
+  "font": {
+    "times-system-serif-fallback": {
+      "$value": "Times (system serif fallback)",
+      "$type": "fontFamily",
+      "$description": "System fallback only — not a design choice. Appears in icon labels and tertiary link contexts where Graphik failed to load"
+    },
+    "grenette": {
+      "$value": "Grenette",
+      "$type": "fontFamily",
+      "$description": "Display and section headlines — a custom serif used only at large sizes (36px+). The tight letter-spacing (-0.02em to -0.031em) and single weight (400) force hierarchy through size alone, creating an editorial authority that a bold sans-serif headline would destroy"
+    },
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Body, UI, buttons, navigation — the workhorse sans-serif. The 0.06em positive tracking at 12–18px creates uppercase eyebrow labels and small caps; the -0.01em at 36px tightens subheadings slightly. Weight 600 is reserved for nav and button labels, never body"
+    },
+    "fonts-sans": {
+      "$value": "--fonts-sans",
+      "$type": "fontFamily",
+      "$description": "--fonts-sans — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "--fonts-sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "sage-canvas": {
+      "$value": "#eef2e3",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm off-white that defines the entire system"
+    },
+    "paper-white": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, navigation bar, footer, modals — the only true white"
+    },
+    "chartreuse-highlight": {
+      "$value": "#c8f169",
+      "$type": "color",
+      "$description": "Surface level 2: Accent surface for tags, filled CTAs, and stat highlights"
+    },
+    "forest-dark": {
+      "$value": "#043f2",
+      "$type": "color",
+      "$description": "Surface level 3: Dark section backgrounds, hero stat cards, inverted text containers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mode.com",
+      "siteName": "Modern Business Intelligence",
+      "extractedAt": "2026-06-03T20:30:01.403Z",
+      "variant": "extended"
+    }
+  }
+}

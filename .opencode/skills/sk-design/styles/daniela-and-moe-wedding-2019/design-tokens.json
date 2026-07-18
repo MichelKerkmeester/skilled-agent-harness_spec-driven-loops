@@ -1,0 +1,392 @@
+{
+  "color": {
+    "blush-canvas": {
+      "$value": "#fef1ec",
+      "$type": "color",
+      "$description": "Blush Canvas — Primary page background, section backgrounds, hero canvas — the warm paper tone that carries every screen"
+    },
+    "ink-navy": {
+      "$value": "#11223f",
+      "$type": "color",
+      "$description": "Ink Navy — Primary text, headings, nav links, body copy, input borders — the only dark anchor in the system"
+    },
+    "coral-vermillion": {
+      "$value": "#ff5734",
+      "$type": "color",
+      "$description": "Coral Vermillion — Outlined link/action borders, active nav underline, button borders — the single warm accent that gives interactive elements their warmth"
+    },
+    "dusty-peach": {
+      "$value": "#f6bba4",
+      "$type": "color",
+      "$description": "Dusty Peach — Secondary surface tint, card accents, illustration fills — the softer sibling of the canvas"
+    },
+    "forest-ink": {
+      "$value": "#193c35",
+      "$type": "color",
+      "$description": "Forest Ink — Botanical illustration dark foliage — the deepest green in the artwork palette"
+    },
+    "olive-grove": {
+      "$value": "#7e813c",
+      "$type": "color",
+      "$description": "Olive Grove — Botanical illustration mid-tone leaves and stems"
+    },
+    "mustard-bloom": {
+      "$value": "#e5ba2b",
+      "$type": "color",
+      "$description": "Mustard Bloom — Botanical illustration flower accents — warm yellow punctuation in the foliage"
+    },
+    "ember-orange": {
+      "$value": "#ec4f22",
+      "$type": "color",
+      "$description": "Ember Orange — Botanical illustration bright flower highlights — the vividest warm note in the artwork"
+    },
+    "sage-mist": {
+      "$value": "#c6d7d0",
+      "$type": "color",
+      "$description": "Sage Mist — Botanical illustration soft greenery, dot patterns — the coolest note in the foliage"
+    },
+    "deep-indigo": {
+      "$value": "#092a49",
+      "$type": "color",
+      "$description": "Deep Indigo — Botanical illustration line work, fine stroke details"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "canela-web": {
+      "$value": "Canela Web",
+      "$type": "fontFamily",
+      "$description": "Display and headings — ultra-light 100 weight at 120px for the couple's names creates a high-contrast, fashion-editorial feeling. The 0.85 line-height at display size lets descenders and ascenders nearly touch. Mid-weights at 28-48px for section headings, all in serif italics where the brand allows."
+    },
+    "calibre": {
+      "$value": "Calibre",
+      "$type": "fontFamily",
+      "$description": "Body, UI, labels, and secondary headings. The 0.2em letter-spacing transforms body text into small-caps labels and tracked section markers (\"OUR STORY\", \"OCTOBER 18TH 2019\"). Weight 300 for body paragraphs, 500 for emphasis. This font carries all functional text while Canela handles the poetry."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "28px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 120px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 120px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Canela Web",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 120px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#fef1ec",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, hero section, story section — the warm paper tone"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Quiz cards, content cards — clean white blocks floating on the blush canvas"
+    },
+    "dusty-peach": {
+      "$value": "#f6bba4",
+      "$type": "color",
+      "$description": "Surface level 2: Inner card accents, illustration fills, soft surface highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://danielaandmoe.com",
+      "siteName": "Daniela and Moe Wedding 2019",
+      "extractedAt": "2026-06-03T18:52:29.975Z",
+      "variant": "extended"
+    }
+  }
+}

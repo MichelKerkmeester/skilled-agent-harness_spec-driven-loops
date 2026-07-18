@@ -1,0 +1,1521 @@
+{
+  "source": "https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a",
+  "uuid": "9165ecb1-f068-4093-8783-1f3c98898b8a",
+  "name": "Monocle",
+  "northStar": "Quality broadsheet on cream paper. A curated newsroom where every column earns its keep and the only color on the page is the one that matters.",
+  "capturedAt": "2026-07-18T08:34:28.682Z",
+  "meta": {
+    "url": "https://monocle.com",
+    "siteName": "Monocle",
+    "extractedAt": "2026-06-03T16:11:34.936Z",
+    "durationMs": 23723,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1587,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Plantin for all editorial content — headlines, body, eyebrows, bylines. Never substitute a different serif.",
+      "Set headlines at 24–40px in Plantin weight 400 with letter-spacing -0.0200em. The negative tracking is the signature.",
+      "Use uppercase tracked Plantin 13px (0.05–0.075em letter-spacing) for section eyebrows (POLITICS, OPINION, AFFAIRS) — this is how the page signals taxonomy.",
+      "Use #ffc500 exclusively for the Subscribe button, the Monocle Radio card, and editorial illustration fills. No other interface element should carry color.",
+      "Separate cards and columns with 1px #d9d9d9 hairline rules, not spacing alone. The grid is a print grid.",
+      "Keep all borders 0 radius. 8px radius only on photograph containers within the hero feature row.",
+      "Maintain a 3-column editorial grid (lead | secondary | sidebar radio) on desktop, collapsing to single column on mobile."
+    ],
+    "donts": [
+      "Don't use drop shadows on any component. Elevation is tonal, not projected.",
+      "Don't introduce additional accent colors. The system is monochrome plus one yellow.",
+      "Don't set body copy in a sans-serif. Plantin carries the voice; Helvetica Neue is for chrome only.",
+      "Don't use border-radius larger than 8px. The 0-radius aesthetic is non-negotiable for editorial cards and buttons.",
+      "Don't use centered text for article headlines — they should always left-align, broadsheet style.",
+      "Don't place the SUBSCRIBE button anywhere except the top utility bar. Yellow outside the header breaks the signal.",
+      "Don't use icons with fills other than #000000 or #ffc500. The icon language is binary."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffc500",
+        "name": "Signal Yellow",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Folio Black",
+        "role": "Primary text, headlines, nav items, icons, and 1px hairline rules — the ink of the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfcf3",
+        "name": "Newsprint Cream",
+        "role": "Page canvas — the warm off-white that keeps the interface from feeling clinical and signals print provenance",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Broadsheet White",
+        "role": "Card surfaces, feature panels, and inverted text on dark or yellow blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfbe4",
+        "name": "Margin White",
+        "role": "Subtle secondary surface — a slightly warmer yellow-tinted off-white used for featured/elevated blocks like the radio card",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Pull Quote Gray",
+        "role": "Card backgrounds and muted panel fills where content needs to recede from the page cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Rule Gray",
+        "role": "Borders, dividers between columns and sections, input outlines — the structural skeleton of the layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6e6e",
+        "name": "Caption Gray",
+        "role": "Secondary text, metadata, read-time labels, byline captions, and muted UI labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Mute Gray",
+        "role": "Tertiary text, disabled UI states, and low-emphasis nav accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#211d1c",
+        "name": "Charcoal",
+        "role": "Near-black warm border for buttons and decorative outlines where pure black feels too cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#64d5ff",
+        "name": "Desk Blue",
+        "role": "Decorative illustration accent — appears inside editorial artwork, not in interface controls",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container on a warm cream (#fdfcf3) canvas. The page model is broadsheet: a masthead with the MONOCLE wordmark, a primary nav row of categories separated by pipes, then a 3-column editorial grid (large lead article on the left, secondary article stack in the middle, persistent Monocle Radio sidebar on the right). Below the fold, a full-width 4-column hero feature row of large photo tiles, followed by further article grids. Sections are separated by 1px #d9d9d9 rules rather than alternating background colors. The sticky utility bar at the very top contains MAGAZINE / RADIO / SHOP links on the left and SUBSCRIBE + cart on the right. Navigation is minimal and typographic — no drop-downs, no mega-menus, just pipe-separated category links.",
+    "imagery": "Photography is editorial and documentarian — tight portrait crops of political figures, architectural exteriors of cities, and product still-lifes. Images are large, full-bleed within their grid cells, and treated without color grading or overlays. Editorial illustrations are flat, geometric, and limited to the brand palette: black line work with #ffc500 yellow fills and occasional #64d5ff blue accents. Illustrations often feature a single character or scene with minimal background. The overall image density is high — this is a publication, not a product page — and imagery carries equal weight to text in the layout.",
+    "similar": [
+      {
+        "why": "Same broadsheet editorial grid with serif headlines, pipe-separated section nav, and monochrome palette with a single accent color for CTAs.",
+        "business": "The New York Times"
+      },
+      {
+        "why": "Similar editorial restraint — serif body type, tight column grid, section eyebrows as tracked uppercase, and a warm off-white canvas.",
+        "business": "The Economist"
+      },
+      {
+        "why": "Shared information density, sans-serif utility chrome paired with serif editorial content, and custom editorial illustration style in a limited brand palette.",
+        "business": "Bloomberg Businessweek"
+      },
+      {
+        "why": "Same print-publication aesthetic on the web — cream backgrounds, generous serif type, and minimal use of color reserved for brand identity moments.",
+        "business": "Cereal magazine"
+      },
+      {
+        "why": "Editorial media grid with 3-column lead/secondary/sidebar structure and tracked uppercase category labels.",
+        "business": "It's Nice That"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "0px",
+        "tags": "0px",
+        "cards": "8px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#fdfcf3",
+        "name": "Newsprint Cream",
+        "level": 0,
+        "purpose": "Page canvas — the warm off-white that grounds the entire interface and signals print quality."
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Broadsheet White",
+        "level": 1,
+        "purpose": "Utility bar, sponsored modules, and card surfaces that need to pop above the cream canvas."
+      },
+      {
+        "hex": "#fdfbe4",
+        "name": "Margin White",
+        "level": 2,
+        "purpose": "Elevated/featured surface — used on the Monocle Radio card and opinion portrait backgrounds to add warmth without full contrast."
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Pull Quote Gray",
+        "level": 3,
+        "purpose": "Recessed surface for opinion card portrait circles and muted panels."
+      }
+    ],
+    "elevation": [],
+    "northStar": "Quality broadsheet on cream paper. A curated newsroom where every column earns its keep and the only color on the page is the one that matters.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.65
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading-xl",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Header",
+        "role": "Brand identity lockup in the page header",
+        "description": "Center-aligned MONOCLE wordmark in Plantin 700 at ~40px with -0.0200em letter-spacing. Flanked left by a small editorial flag (a thumbnail cover image with two lines of small caption text beneath) and right by a line-drawing mascot illustration with a short tagline. The header sits on #fdfcf3 with no border — it reads as a masthead, not a navigation bar."
+      },
+      {
+        "name": "Primary Section Nav",
+        "role": "Main editorial category navigation",
+        "description": "Horizontal row of categories (AFFAIRS | BUSINESS | CULTURE | DESIGN | FASHION | TRAVEL | CITY GUIDES) in Plantin 13px weight 400, uppercase, letter-spacing 0.0750em. Items separated by a thin vertical pipe character. Color #000000 on #fdfcf3. 0 radius, no underline, no background — pure typographic structure with 1px hairline above and below."
+      },
+      {
+        "name": "Utility Bar",
+        "role": "Top utility links and primary subscription action",
+        "description": "Sticky top bar with hamburger + MAGAZINE / RADIO / SHOP links on the left, search icon + LOG IN + SUBSCRIBE button + cart + language toggle on the right. Background #ffffff with a 1px bottom border in #d9d9d9. Links in Helvetica Neue 13px weight 700."
+      },
+      {
+        "name": "Subscribe Button",
+        "role": "Primary conversion action",
+        "description": "Filled rectangle, #ffc500 background, #000000 text in Helvetica Neue 13px weight 700, uppercase, letter-spacing 0.0100em. 0 border-radius (the only yellow + black combo on the page). 8px vertical padding, 16px horizontal padding. No drop shadow. The sole yellow element in the chrome."
+      },
+      {
+        "name": "Lead Article Card",
+        "role": "Featured story in the left column of the editorial grid",
+        "description": "Eyebrow label in Plantin 13px uppercase tracked (e.g. POLITICS), color #000000. Headline in Plantin 24–28px weight 400, negative letter-spacing -0.56px, color #000000, line-height 1.20. Deck/subhead in Plantin 16px weight 400, color #6e6e6e. Book icon + read-time label in Plantin 13px, color #b3b3b3. Full-bleed photograph below text. No border, no background fill — sits directly on #fdfcf3."
+      },
+      {
+        "name": "Sidebar Article Card",
+        "role": "Secondary story card in the middle column",
+        "description": "Square or landscape photo at top. Small uppercase eyebrow in Plantin 13px tracked. Headline in Plantin 20px weight 400. Book icon + read-time at bottom. 0 border, 0 background, 8px gap between elements. Photographs often carry editorial illustration overlays."
+      },
+      {
+        "name": "Opinion Card",
+        "role": "Columnist / opinion piece card",
+        "description": "Centered circular portrait illustration or photo on #e7e7e7 or #fdfbe4 circle. Author name in Plantin 16px weight 700 below the portrait. Headline in Plantin 20px weight 400. Read-time at bottom in #b3b3b3. Vertical divider (1px #d9d9d9) separates it from adjacent cards."
+      },
+      {
+        "name": "Monocle Radio Card",
+        "role": "Promoted radio/audio module in the right sidebar",
+        "description": "Tall card filling the right rail. Header strip #000000 background with 'MONOCLE RADIO' in white Plantin 13px uppercase tracked. Content area on #fdfbe4 warm off-white. Contains a black 'LISTEN LIVE' button with play icon, and a list of scheduled shows. 0 border-radius. This is the only persistent block that uses the warm secondary surface."
+      },
+      {
+        "name": "Sponsored Module",
+        "role": "Sponsored content card in the sidebar",
+        "description": "White card with 'SPONSORED BY' label in Plantin 13px tracked #6e6e6, followed by sponsor logo. 8px padding, 1px #d9d9d9 border. Visually quieter than editorial cards."
+      },
+      {
+        "name": "Hero Feature Banner",
+        "role": "Full-width photo feature below the lead grid",
+        "description": "4-column grid of large article tiles with full-bleed photography, dark overlay-free. Each tile: photo on top, category eyebrow + headline + read-time below. 0 radius. 16px gap between tiles. Background #fdfcf3."
+      },
+      {
+        "name": "Editorial Illustration Block",
+        "role": "Custom illustration accompanying articles",
+        "description": "Flat geometric illustration in the brand palette (#ffc500 yellow, #000000 line work, #64d5ff blue accents). Often features a character or scene. Sits inside article cards with 0 radius and no frame. Illustrations carry the brand's only multicolor moments — the rest of the page is monochrome."
+      },
+      {
+        "name": "Audio Indicator Icon",
+        "role": "Small play/audio badge on radio tiles",
+        "description": "Circular #ffc500 icon with a black speaker/sound glyph, 24px diameter, overlaid on article photos to mark audio content. One of the few places yellow appears outside the subscribe button and radio card."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule between content sections",
+        "description": "1px solid #d9d9d9 line, full container width, no label. Separates the lead grid from the hero feature row and subsequent sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Brand serif used for the MONOCLE wordmark, all article headlines, body copy, card titles, and bylines. The only typeface that carries editorial voice. Subtle negative tracking at 32–40px pulls headlines tight like a magazine title, while 0.05–0.075em positive tracking on 13–16px sizes creates the tracked uppercase eyebrow labels (POLITICS, OPINION, AFFAIRS).",
+        "sizes": "13, 16, 18, 20, 24, 28, 32, 34, 40",
+        "family": "Plantin",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.13, 1.15, 1.20, 1.25, 1.30, 1.38, 1.44, 1.50",
+        "substitute": "Source Serif Pro, Spectral, or Playfair Display",
+        "letterSpacing": "-0.0200em at display sizes, 0.0100em at body, 0.0500em at small caps, 0.0750em at eyebrow labels"
+      },
+      {
+        "role": "Utility sans for UI chrome: top utility bar (MAGAZINE / RADIO / SHOP), the SUBSCRIBE button label, small icons-adjacent labels, and the primary nav row (AFFAIRS | BUSINESS | CULTURE | DESIGN | FASHION | TRAVEL | CITY GUIDES). Kept narrow and functional — never used for editorial content.",
+        "sizes": "13, 14, 16, 24",
+        "family": "Helvetica Neue",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.13, 1.25, 1.29, 1.38, 1.50",
+        "substitute": "Inter, Helvetica, Arial",
+        "letterSpacing": "0.0100em"
+      },
+      {
+        "role": "Chanel — detected in extracted data but not described by AI",
+        "sizes": "9px",
+        "family": "Chanel",
+        "weight": "700",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Monocle reads like a quality broadsheet translated to the web: a warm cream canvas, generous serif typography in Plantin, and a tightly-edited grid that borrows from print pagination rather than app conventions. The entire interface is monochrome — black text, warm whites, and one unmistakable signal yellow (#ffc500) that functions as the magazine's only accent, reserved for the subscribe action, the radio card, and editorial illustration. Layout leans editorial: section labels run as tracked uppercase sans-serif eyebrows, headlines set in Plantin with negative tracking, and body copy in the same serif at a measured 16–18px. Components feel archival — thin rules, minimal radii, no drop shadows, and a 3-column grid that mixes large feature photography, opinion cards, and a persistent sidebar of audio/promo blocks. Density is high but never cluttered because spacing is compact and structural, not decorative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monocle design system\",\"item\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#style-reference\",\"name\":\"Monocle design system reference\",\"headline\":\"Monocle design system | Refero Styles\",\"description\":\"Explore Monocle's light Media design system: Signal Yellow #ffc500, Folio Black #000000 colors, Plantin, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monocle\",\"url\":\"https://monocle.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"caption\":\"Screenshot of Monocle\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monocle design system\",\"Monocle website design\",\"Monocle colors\",\"Monocle typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Yellow\",\"Folio Black\",\"Newsprint Cream\",\"Broadsheet White\",\"Plantin\",\"Helvetica Neue\",\"Chanel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monocle design system\"},{\"@type\":\"Thing\",\"name\":\"Monocle website design\"},{\"@type\":\"Thing\",\"name\":\"Monocle colors\"},{\"@type\":\"Thing\",\"name\":\"Monocle typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-25T11:35:40.000Z\",\"dateModified\":\"2026-02-25T11:35:40.000Z\"}]}19:T752,**Quick Color Reference**\n- text: #000000\n- background (canvas): #fdfcf3\n- background (card/surface): #ffffff\n- background (elevated/featured): #fdfbe4\n- border/rule: #d9d9d9\n- secondary text: #6e6e6e\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Lead Article Card*: On #fdfcf3 canvas. Eyebrow label 'POLITICS' in Plantin 13px weight 700, uppercase, letter-spacing 0.075em, #000000. Headline in Plantin 28px weight 400, #000000, letter-spacing -0.56px, line-height 1.20. Deck in Plantin 16px weight 400, #6e6e6e. Read-time label in Plantin 13px, #b3b3b3, with a small book icon. Full-bleed photo below. 0 border-radius, no shadow.\n\n2. *Subscribe Button*: Filled rectangle, background #ffc500, text 'SUBSCRIBE' in Helvetica Neue 13px weight 700, uppercase, #000000, letter-spacing 0.01em. Padding 8px 16px. 0 border-radius. No shadow. Sits in the top utility bar.\n\n3. *Monocle Radio Sidebar Card*: Width ~280px. Top strip: #000000 background with 'MONOCLE RADIO' in Plantin 13px uppercase tracked #ffffff. Body: #fdfbe4 background. Contains a 'LISTEN LIVE' button (#000000 background, #ffc500 play icon, #ffffff text in Helvetica Neue 13px weight 700) and a list of scheduled shows. 0 border-radius, 1px #d9d9d9 left border.\n\n4. *Editorial Illustration Block*: Flat geometric illustration, 200×200px, 0 border-radius. Black (#000000) line work with #ffc500 yellow fills for key shapes and occasional #64d5ff blue accents. Character or scene composition, no background fill (transparent over the cream canvas).\n\n5. *Sidebar Article Tile*: On #fdfcf3. Square photo at top (no border-radius). Below: uppercase eyebrow in Plantin 13px tracked, headline in Plantin 20px weight 400 #000000 letter-spacing -0.4px, book icon + read-time in Plantin 13px #b3b3b3. 16px gap between elements. Separated from adjacent tiles by 1px #d9d9d9 vertical rule."
+      },
+      {
+        "title": "Signature Choices",
+        "content": "Four choices make Monocle instantly recognizable and must be preserved by any new design:\n\n1. **One color, one button.** The entire chromatic vocabulary is a single yellow (#ffc500) reserved for the Subscribe action and the Radio card. This scarcity makes it impossible to miss.\n\n2. **Plantin does everything editorial.** The custom serif handles 40px display wordmark down to 13px tracked eyebrows. Negative letter-spacing at display sizes and positive at small caps creates typographic contrast without mixing typefaces.\n\n3. **Cream canvas, not white.** The #fdfcf3 page background is the print provenance signal. Pure #ffffff would make this look like any other SaaS site.\n\n4. **Zero shadows, all hairlines.** Depth comes from surface color shifts and 1px rules. Any shadowed card would feel foreign to the system."
+      }
+    ],
+    "elevationPhilosophy": "Monocle rejects drop shadows entirely. Elevation is communicated through surface color shifts (cream → warm white → light yellow → gray) and 1px hairline borders in #d9d9d9. This is a print convention: depth comes from tonal layering on the page, not from cast shadows. Any design agent building for this system should default to flat surfaces with thin rules, never shadowed cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "image",
+            "heading",
+            "link",
+            "card",
+            "body",
+            "icon",
+            "hero",
+            "input",
+            "footer"
+          ],
+          "frequency": 4674,
+          "confidence": 1,
+          "prominence": 137966857.76669917,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "card",
+            "body",
+            "image",
+            "list",
+            "button",
+            "hero",
+            "icon",
+            "input",
+            "footer",
+            "badge"
+          ],
+          "frequency": 1381,
+          "confidence": 1,
+          "prominence": 118068613.31839815,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "body",
+            "card",
+            "list",
+            "icon",
+            "input",
+            "other"
+          ],
+          "frequency": 421,
+          "confidence": 1,
+          "prominence": 3897965.0511861863,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdfcf3",
+          "oklch": {
+            "c": 0.011875269846952708,
+            "h": 101.47590348575534,
+            "l": 0.989378189146659
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1596125,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#64d5ff",
+          "oklch": {
+            "c": 0.1179405919895808,
+            "h": 225.43774112313665,
+            "l": 0.8233519918471116
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 465148.0627220726,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdfbe4",
+          "oklch": {
+            "c": 0.030118756277224514,
+            "h": 102.88122546582082,
+            "l": 0.9835663518262668
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 423650,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2929",
+          "oklch": {
+            "c": 0.001460436085079477,
+            "h": 17.24354149847564,
+            "l": 0.2819889535539396
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 397296.2102057693,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 148109,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5382366621247504
+          },
+          "contexts": [
+            "card",
+            "list",
+            "icon",
+            "image",
+            "body",
+            "other"
+          ],
+          "frequency": 840,
+          "confidence": 1,
+          "prominence": 147371.71146819,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc500",
+          "oklch": {
+            "c": 0.17418929855731635,
+            "h": 87.03983556187231,
+            "l": 0.8517084430828636
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "icon",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 54883.61664066559,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 37355.422480459885,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#211d1c",
+          "oklch": {
+            "c": 0.0065171766646324744,
+            "h": 34.299540192838265,
+            "l": 0.23492671491487851
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10040.017082292954,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003177589347090824,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.39,
+          "background": "#fdfcf3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.1,
+          "background": "#fdfbe4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e7e7e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.7,
+          "background": "#ffffff",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.22,
+          "background": "#fdfcf3",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.98,
+          "background": "#fdfbe4",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#000000",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.51,
+          "background": "#2a2929",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.09,
+          "background": "#fdfcf3",
+          "foreground": "#2a2929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#fdfbe4",
+          "foreground": "#2a2929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#e7e7e7",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#ffc500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#64d5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#d9d9d9",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.73,
+          "background": "#e7e7e7",
+          "foreground": "#2a2929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#ffc500",
+          "foreground": "#211d1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.28,
+          "background": "#2a2929",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.95,
+          "background": "#64d5ff",
+          "foreground": "#211d1c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 457,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 227,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 188,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 133,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 59,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 65,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 216,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Plantin",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1325,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 131,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Chanel",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Chanel",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "card",
+            "list",
+            "icon"
+          ],
+          "frequency": 174,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "image",
+            "card",
+            "body",
+            "hero",
+            "icon",
+            "footer"
+          ],
+          "frequency": 760,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "card",
+            "list",
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 57,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plantin",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "card",
+            "body",
+            "other"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 165,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "badge"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Plantin",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.075,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/98559cb1-d42e-4d1f-ba20-13f55b68a50c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monocle design system\",\"item\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#style-reference\",\"name\":\"Monocle design system reference\",\"headline\":\"Monocle design system | Refero Styles\",\"description\":\"Explore Monocle's light Media design system: Signal Yellow #ffc500, Folio Black #000000 colors, Plantin, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monocle\",\"url\":\"https://monocle.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9165ecb1-f068-4093-8783-1f3c98898b8a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"caption\":\"Screenshot of Monocle\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2650fad9-5770-43ce-8781-90527402326f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monocle design system\",\"Monocle website design\",\"Monocle colors\",\"Monocle typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Yellow\",\"Folio Black\",\"Newsprint Cream\",\"Broadsheet White\",\"Plantin\",\"Helvetica Neue\",\"Chanel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monocle design system\"},{\"@type\":\"Thing\",\"name\":\"Monocle website design\"},{\"@type\":\"Thing\",\"name\":\"Monocle colors\"},{\"@type\":\"Thing\",\"name\":\"Monocle typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-25T11:35:40.000Z\",\"dateModified\":\"2026-02-25T11:35:40.000Z\"}]}19:T752,**Quick Color Reference**\n- text: #000000\n- background (canvas): #fdfcf3\n- background (card/surface): #ffffff\n- background (elevated/featured): #fdfbe4\n- border/rule: #d9d9d9\n- secondary text: #6e6e6e\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Lead Article Card*: On #fdfcf3 canvas. Eyebrow label 'POLITICS' in Plantin 13px weight 700, uppercase, letter-spacing 0.075em, #000000. Headline in Plantin 28px weight 400, #000000, letter-spacing -0.56px, line-height 1.20. Deck in Plantin 16px weight 400, #6e6e6e. Read-time label in Plantin 13px, #b3b3b3, with a small book icon. Full-bleed photo below. 0 border-radius, no shadow.\n\n2. *Subscribe Button*: Filled rectangle, background #ffc500, text 'SUBSCRIBE' in Helvetica Neue 13px weight 700, uppercase, #000000, letter-spacing 0.01em. Padding 8px 16px. 0 border-radius. No shadow. Sits in the top utility bar.\n\n3. *Monocle Radio Sidebar Card*: Width ~280px. Top strip: #000000 background with 'MONOCLE RADIO' in Plantin 13px uppercase tracked #ffffff. Body: #fdfbe4 background. Contains a 'LISTEN LIVE' button (#000000 background, #ffc500 play icon, #ffffff text in Helvetica Neue 13px weight 700) and a list of scheduled shows. 0 border-radius, 1px #d9d9d9 left border.\n\n4. *Editorial Illustration Block*: Flat geometric illustration, 200×200px, 0 border-radius. Black (#000000) line work with #ffc500 yellow fills for key shapes and occasional #64d5ff blue accents. Character or scene composition, no background fill (transparent over the cream canvas).\n\n5. *Sidebar Article Tile*: On #fdfcf3. Square photo at top (no border-radius). Below: uppercase eyebrow in Plantin 13px tracked, headline in Plantin 20px weight 400 #000000 letter-spacing -0.4px, book icon + read-time in Plantin 13px #b3b3b3. 16px gap between elements. Separated from adjacent tiles by 1px #d9d9d9 vertical rule."
+}

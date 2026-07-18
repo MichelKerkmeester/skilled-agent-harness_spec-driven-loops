@@ -1,0 +1,1479 @@
+{
+  "source": "https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b",
+  "uuid": "1c2d4a33-7ee4-4b61-a77e-dab91631d19b",
+  "name": "12th Berlin Biennale for Contemporary Art",
+  "northStar": "Iris-and-ink broadsheet — violet skies over monumental black type on white paper.",
+  "capturedAt": "2026-07-18T08:50:39.450Z",
+  "meta": {
+    "url": "https://12.berlinbiennale.de",
+    "siteName": "12th Berlin Biennale for Contemporary Art",
+    "extractedAt": "2026-06-03T21:35:51.547Z",
+    "durationMs": 34243,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 327,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Iris Violet (#7373ff) for section backgrounds, outlined action borders, and heading accents — it is the only chromatic color and should appear at scale, not as a tiny dot.",
+      "Pair ABCMonumentGrotesk for all UI, nav, and headlines with BradfordLL for long-form body copy — the grotesque/serif contrast is the system's typographic signature.",
+      "Use 3px border-radius for buttons, tags, and links; 7px for inputs and cards; 44-64px for pill-shaped nav buttons only.",
+      "Build visual hierarchy with type size and color contrast, never with box-shadow — the design is flat and printed, not elevated.",
+      "Set body and nav text in ABCMonumentGrotesk with line-height 2.0-2.4 for generous row spacing in compact lists; collapse line-height to 1.02-1.15 at display sizes.",
+      "Let large Obsidian (#000000) shapes overlap content sections as graphic architecture — flat rectangles, half-circles, and irregular polygons placed behind or beside display text.",
+      "Use 1px Obsidian borders as the default divider and component outline; Iris Violet borders are reserved for the most important interactive elements."
+    ],
+    "donts": [
+      "Do not add box-shadow, blur, or drop-shadow effects to any component — the system is deliberately flat.",
+      "Do not use gradient fills — the palette is entirely solid color.",
+      "Do not introduce additional chromatic colors; the only saturated hue is Iris Violet.",
+      "Do not use Filled violet buttons as primary CTAs — the system uses outlined violet actions and neutral outlined buttons, not filled chromatic buttons.",
+      "Do not set body text in ABCMonumentGrotesk; serif (BradfordLL) is reserved for paragraphs to create the grotesque/serif rhythm.",
+      "Do not use large corner radii (12px+) on standard buttons, tags, or cards — only pill-shaped nav elements get 44px+ radii.",
+      "Do not place content on a colored background without considering the overlap behavior — sections are designed to layer, not sit in isolated containers."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#7373ff",
+        "name": "Iris Violet",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#23234d",
+        "name": "Deep Iris",
+        "role": "Decorative SVG fill for large geometric shapes and map elements — a darker register of the brand violet used for tonal depth inside illustrations, not for UI",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, hairline borders on neutral actions and nav dividers, and the fill for the monumental hero shapes that overlap the headline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text, and input backgrounds. The base layer everything else sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash Gray",
+        "role": "Subtle surface fill for link backgrounds, list rows, and secondary button states — a quiet wash that distinguishes hover/focus from pure white without introducing chroma",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Mist Gray",
+        "role": "Nav panel background and low-emphasis surface tone — sits one step below Ash Gray for the overlapping side panel",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no fixed max-width containment; sections span edge to edge. The hero uses an Iris Violet background with massive overlapping Obsidian shapes carrying the '12' numeral and 'Berlin Biennale for Contemporary Art' display headline. Content sections alternate between white canvas and Iris Violet full-bleed bands. A dark side-nav panel overlaps the left edge from any position on the page. Below the hero, content flows as a compact, information-dense stack: program tags row, about paragraph, event cards in a grid (3 columns), venue cards, and a full-width venue map. Event cards alternate between white and Obsidian variants for rhythm. Spacing between sections is tight (32px) — the page reads as a single broadsheet, not as isolated screens.",
+    "imagery": "Imagery is minimal and graphic — the system itself is the visual. Large flat geometric shapes (rectangles, half-circles, polygons) in Obsidian and Iris Violet serve as the primary visual content, functioning as both layout structure and branding. Event cards and venue markers provide the only representational content. The map is stylized as a violet-tinted line drawing rather than a realistic map. No photography, no illustration, no 3D renders — the aesthetic is constructivist broadsheet, not image-heavy editorial.",
+    "similar": [
+      {
+        "why": "Same editorial broadsheet approach with high-contrast type, single accent color, and overlapping geometric hero blocks over flat color sections.",
+        "business": "ICA (Institute of Contemporary Arts)"
+      },
+      {
+        "why": "Museum site using Monument-Grotesk-family type, flat color blocks, and minimal border-radius on all components.",
+        "business": "MCA Chicago"
+      },
+      {
+        "why": "European biennale platform with constructivist layout — full-bleed violet/color sections, hairline borders, compact card grids, and display-scale numerals.",
+        "business": "Manifesta"
+      },
+      {
+        "why": "Contemporary art institution site that pairs a geometric grotesque for nav with serif for long-form text, and uses a single saturated brand color against black and white.",
+        "business": "Serpentine Galleries"
+      },
+      {
+        "why": "Berlin contemporary-art peer with flat-shape hero compositions, tight 4px-base spacing, and a design-forward rather than utility-first approach.",
+        "business": "KW Institute for Contemporary Art"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "3px",
+        "cards": "3-7px",
+        "inputs": "7px",
+        "buttons": "3px",
+        "navPills": "44px"
+      },
+      "elementGap": "5-12px",
+      "sectionGap": "32px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Base canvas and content card background"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash Gray",
+        "level": 1,
+        "purpose": "Subtle wash for list rows, link hovers, and soft button states"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Mist Gray",
+        "level": 2,
+        "purpose": "Overlapping side-panel surface, one step recessed from content"
+      },
+      {
+        "hex": "#7373ff",
+        "name": "Iris Violet",
+        "level": 3,
+        "purpose": "Section-background canvas for date/title blocks and event overlays"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "level": 4,
+        "purpose": "Hero shape fills and full-bleed dark bands"
+      }
+    ],
+    "northStar": "Iris-and-ink broadsheet — violet skies over monumental black type on white paper.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 14,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 17
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 20
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 23
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 23
+      },
+      {
+        "role": "heading",
+        "size": 25,
+        "lineHeight": 26
+      },
+      {
+        "role": "heading-lg",
+        "size": 29,
+        "lineHeight": 30
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 33,
+        "letterSpacing": -0.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Overlapping Side Nav Panel",
+        "role": "Primary site navigation",
+        "description": "Dark Obsidian (#000000) panel that overlaps the left edge of the page when activated. Contains nav links in ABCMonumentGrotesk 16-17px, white text, with hairline 1px white dividers between groups. Secondary links (Visit, Contact, Press) sit in a white sub-bar at the top with black 1px borders. Language switcher and search field stack at the bottom. The panel is the most visually dominant UI element — it declares the system as editorial, not corporate."
+      },
+      {
+        "name": "Violet Outlined Action Button",
+        "role": "Primary interactive action",
+        "description": "Transparent fill with 1-2px Iris Violet (#7373ff) border, Iris Violet text, ABCMonumentGrotesk 14-16px weight 700. 3px corner radius, 5-7px vertical padding, 11-12px horizontal padding. Used for nav items, tag pills, and program links. The violet border IS the brand signal — there is no filled violet button variant in the system."
+      },
+      {
+        "name": "Neutral Outlined Button",
+        "role": "Secondary action",
+        "description": "White fill with 1px Obsidian border, black text, 3px radius, 3-6px vertical and 5-11px horizontal padding. ABCMonumentGrotesk 14-16px. Used for language switcher (EN/DE), utility links, and less prominent actions."
+      },
+      {
+        "name": "Pill Nav Button",
+        "role": "Top-bar utility actions (Guide, Menu)",
+        "description": "White fill, 1px Obsidian border, 44px corner radius (fully rounded), ABCMonumentGrotesk 14px. The 'Guide' and 'Menu' buttons that anchor the top-left of every screen."
+      },
+      {
+        "name": "Search Input",
+        "role": "Search field",
+        "description": "White fill, 1px Obsidian border, 7px corner radius, ABCMonumentGrotesk 16px placeholder. Magnifying-glass icon button in 16px to the right. 8-10px padding all sides."
+      },
+      {
+        "name": "Program Tag Pill",
+        "role": "Event category filter",
+        "description": "White fill, 1px Obsidian border, 3px radius, ABCMonumentGrotesk 12-14px weight 700 uppercase. Compact 2-3px vertical padding, 11-12px horizontal. Tags like 'Performance', 'Guided Tour' that sit inside event cards."
+      },
+      {
+        "name": "Event Card",
+        "role": "Program listing entry",
+        "description": "White surface, 1px Obsidian border, 3-7px radius, 12px padding. Date row in 12px uppercase, title in ABCMonumentGrotesk 19-25px, venue line in 12px. Some event cards have a dark Obsidian variant with white text and Iris Violet accents. Cards stack vertically and are information-dense rather than spacious."
+      },
+      {
+        "name": "Venue Card",
+        "role": "Venue directory entry",
+        "description": "White surface, 1px Obsidian border, 7px radius, 12-16px padding. Letter label (A, B, C) at top, venue name in ABCMonumentGrotesk 19-25px, action links (Info, Program, Artists, Directions) as small outlined buttons below. Compact, directory-card feel."
+      },
+      {
+        "name": "Hero Date Block",
+        "role": "Exhibition date display",
+        "description": "Iris Violet (#7373ff) full-bleed background section with large ABCMonumentGrotesk 29-32px text in Obsidian or white. Dates stack vertically with tight line-height. This is the brand's most identifiable surface — the violet sky over the event."
+      },
+      {
+        "name": "Overlapping Hero Type Block",
+        "role": "Display headline container",
+        "description": "Massive Obsidian (#000000) filled rectangles and half-circles that overlap the Iris Violet background, with ABCMonumentGrotesk 32px+ display text in Iris Violet sitting on top. The shapes ARE the layout — the '12' numeral and 'Berlin Biennale for Contemporary Art' title sit inside and beside these forms. This is the system's signature visual."
+      },
+      {
+        "name": "Language Switcher",
+        "role": "Locale selector",
+        "description": "Compact group of 3 outlined buttons (EN, DE, Easy Language), 3px radius, 1px Obsidian border, ABCMonumentGrotesk 12px. Sits at the bottom of the side nav panel."
+      },
+      {
+        "name": "Map Overlay",
+        "role": "Venue map",
+        "description": "Iris Violet background with deep iris line work for streets. White diamond-shaped venue markers labeled A–F. No conventional map chrome — the map is treated as a brand-colored graphic, not a utility."
+      },
+      {
+        "name": "Info Card",
+        "role": "About / descriptive text block",
+        "description": "White surface, no border or shadow, ABCMonumentGrotesk 19px for the 'About' label and BradfordLL 20-30px for the paragraph text. The serif body is the strongest typographic contrast in the system and signals 'readable content' vs. navigational chrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary grotesque used for nav, headings, event cards, buttons, and most UI labels. The geometric construction and tight tracking give the site its editorial, catalog-like authority. Weight 400 carries body and nav; 700 is reserved for section headings and emphasis. Line-heights collapse to near-1.0 at display sizes — the type sits as flat architectural mass on the page.",
+        "sizes": "12, 14, 16, 17, 19, 20, 22, 25, 29, 32px",
+        "family": "ABCMonumentGrotesk",
+        "weight": "400, 700",
+        "lineHeight": "1.02–1.20 for headings, 2.00–2.40 for nav and list rows",
+        "substitute": "Inter, Space Grotesk, or Neue Haas Grotesk",
+        "letterSpacing": "-0.01em at display sizes, -0.004em at body, 0.01em for uppercase UI labels"
+      },
+      {
+        "role": "Transitional serif used for long-form body copy, about-section paragraphs, and venue descriptions. Pairs with the grotesque to create a printed-publication rhythm — grotesque for chrome and headlines, serif for reading. The contrast between angular sans and humanist serif is the system's typographic signature.",
+        "sizes": "20, 23, 30px",
+        "family": "BradfordLL",
+        "weight": "400",
+        "lineHeight": "1.03–1.15",
+        "substitute": "Source Serif 4, Tiempos Text, or PT Serif",
+        "letterSpacing": "-0.01em"
+      }
+    ],
+    "description": "The 12th Berlin Biennale reads as an iris-and-ink broadsheet: white paper canvas, monumental black geometric forms, and a single saturated violet (#7373ff) that functions as sky, border, and accent simultaneously. The system is editorial and constructivist — overlapping rectangular shapes at display scale carry the brand, while a geometric grotesque (ABCMonumentGrotesk) pairs with a transitional serif (BradfordLL) to create a high-contrast, catalog-like rhythm. Interactions are tight and rectilinear: 3px corners, 4px base spacing, hairline black or violet borders, and almost no shadow or gradient — visual weight comes from type size and color, not elevation. The page is text- and information-dense rather than spacious, with compact nav, overlapping panels, and event cards stacked close together like a biennale program leaflet.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$29"
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadow elevation. Visual hierarchy is built through type scale, color contrast, overlapping flat shapes, and hairline 1px borders. Components feel printed rather than floating."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "button",
+            "body",
+            "nav",
+            "input",
+            "hero",
+            "card",
+            "list"
+          ],
+          "frequency": 1170,
+          "confidence": 1,
+          "prominence": 51074098.174896516,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 43,
+            "body/color": 20,
+            "card/color": 1,
+            "hero/color": 2,
+            "link/color": 35,
+            "list/color": 18,
+            "other/fill": 4,
+            "input/color": 1,
+            "other/color": 87,
+            "button/color": 13,
+            "heading/color": 13,
+            "nav/borderColor": 172,
+            "body/borderColor": 80,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "link/borderColor": 140,
+            "list/borderColor": 72,
+            "other/borderColor": 347,
+            "button/borderColor": 52,
+            "heading/borderColor": 52,
+            "nav/backgroundColor": 2,
+            "body/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "input",
+            "button",
+            "card"
+          ],
+          "frequency": 101,
+          "confidence": 1,
+          "prominence": 1431395.374061093,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "other/fill": 1,
+            "other/color": 4,
+            "button/color": 1,
+            "nav/borderColor": 44,
+            "other/borderColor": 16,
+            "button/borderColor": 4,
+            "nav/backgroundColor": 5,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#7373ff",
+          "oklch": {
+            "c": 0.20280603865355915,
+            "h": 278.84341703148806,
+            "l": 0.6290938215102947
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "card",
+            "link",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 385,
+          "confidence": 1,
+          "prominence": 620916.7228841032,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 26,
+            "card/color": 8,
+            "link/color": 8,
+            "list/color": 7,
+            "other/color": 14,
+            "button/color": 2,
+            "heading/color": 7,
+            "nav/borderColor": 8,
+            "body/borderColor": 104,
+            "card/borderColor": 32,
+            "link/borderColor": 32,
+            "list/borderColor": 28,
+            "other/borderColor": 56,
+            "button/borderColor": 8,
+            "heading/borderColor": 28,
+            "list/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#23234d",
+          "oklch": {
+            "c": 0.0755156469059395,
+            "h": 280.32900870802143,
+            "l": 0.2790103023148228
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 163272,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 37011.82554492149,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 24,
+            "list/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1184,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.12536023823646839,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e7e7e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.8,
+          "background": "#ffffff",
+          "foreground": "#23234d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.22,
+          "background": "#f2f2f2",
+          "foreground": "#23234d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#e7e7e7",
+          "foreground": "#23234d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.63,
+          "background": "#7373ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.73,
+          "background": "#7373ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.33,
+          "background": "#f2f2f2",
+          "foreground": "#7373ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#e7e7e7",
+          "foreground": "#7373ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e7e7e7",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f2f2f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "button",
+            "list",
+            "link",
+            "nav",
+            "other"
+          ],
+          "frequency": 66
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "input",
+            "card",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 28.6839,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 44.129,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingTop|nav",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 93,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|button",
+            "paddingBottom|list",
+            "paddingBottom|link",
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "list",
+            "link"
+          ],
+          "frequency": 76,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingBottom|button",
+            "paddingTop|list",
+            "marginBottom|list",
+            "paddingTop|link",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 85,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button",
+            "paddingTop|button",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|nav",
+            "marginTop|nav",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|card",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 23,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "paddingTop|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "card",
+            "body"
+          ],
+          "frequency": 84,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|button",
+            "marginBottom|button",
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 233,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 316,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABCMonumentGroteskWeb",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 298,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BradfordLLSub",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.03,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.03,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.03,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "card",
+            "list"
+          ],
+          "frequency": 157,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 2,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "BradfordLLSub",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.03,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "BradfordLLSub",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "BradfordLLSub",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "BradfordLLSub",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "ABCMonumentGroteskWeb",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/19eeb89d-03d6-477c-8ffd-78ba779b3542.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/aa567739-753f-4192-b946-4b0f2080fbf4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"12th Berlin Biennale for Contemporary Art design system\",\"item\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b#style-reference\",\"name\":\"12th Berlin Biennale for Contemporary Art design system reference\",\"headline\":\"12th Berlin Biennale for Conte design system | Refero Styles\",\"description\":\"Explore 12th Berlin Biennale for Contemporary Art's light Agency design system: Iris Violet #7373ff, Deep Iris #23234d colors, ABCMonumentGrotesk,...\",\"url\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"12th Berlin Biennale for Contemporary Art\",\"url\":\"https://12.berlinbiennale.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1c2d4a33-7ee4-4b61-a77e-dab91631d19b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aa567739-753f-4192-b946-4b0f2080fbf4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aa567739-753f-4192-b946-4b0f2080fbf4.jpg\",\"caption\":\"Screenshot of 12th Berlin Biennale for Contemporary Art\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aa567739-753f-4192-b946-4b0f2080fbf4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"12th Berlin Biennale for Contemporary Art design system\",\"12th Berlin Biennale for Contemporary Art website design\",\"12th Berlin Biennale for Contemporary Art colors\",\"12th Berlin Biennale for Contemporary Art typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Iris Violet\",\"Deep Iris\",\"Obsidian\",\"Paper White\",\"ABCMonumentGrotesk\",\"BradfordLL\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"12th Berlin Biennale for Contemporary Art design system\"},{\"@type\":\"Thing\",\"name\":\"12th Berlin Biennale for Contemporary Art website design\"},{\"@type\":\"Thing\",\"name\":\"12th Berlin Biennale for Contemporary Art colors\"},{\"@type\":\"Thing\",\"name\":\"12th Berlin Biennale for Contemporary Art typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:40:05.176Z\",\"dateModified\":\"2026-04-30T02:40:05.176Z\"}]}"
+}

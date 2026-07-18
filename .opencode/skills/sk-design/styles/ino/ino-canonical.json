@@ -1,0 +1,947 @@
+{
+  "source": "https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6",
+  "uuid": "57388b47-f789-441f-8b8d-13f1838a9ac6",
+  "name": "INO",
+  "northStar": "Museum vitrine in silence — every piece floats in white space like a single object behind glass, framed by near-black whisper type.",
+  "capturedAt": "2026-07-18T08:09:41.822Z",
+  "meta": {
+    "url": "https://ino.jewelry",
+    "siteName": "INO",
+    "extractedAt": "2026-06-03T18:13:32.148Z",
+    "durationMs": 27818,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 226,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sequel100Wide at weight 400 only — never bold, never italic. The single weight is the voice.",
+      "Set all UI text in uppercase with 1.5px letter-spacing at 11px, reducing slightly at larger sizes. Case and tracking do the work that weight and size do elsewhere.",
+      "Maintain a strictly achromatic palette. The only colors permitted are #212123, #ffffff, #000000, #999999, and #a6a6a7. Do not introduce hue.",
+      "Anchor primary navigation to the page foot, centered, with filled/outlined 8px circle indicators for state. Never use a top header bar for site navigation.",
+      "Give product photography full-bleed space with zero card padding, no borders, and no drop shadows. Let the image define the card boundary.",
+      "Separate sections with 80-120px of vertical whitespace or a full-bleed editorial photograph. Never use colored bands, gradient dividers, or hairline rules between sections.",
+      "Use 50px border-radius for all pill-shaped controls (filter, tags) and 9999px for the navigation circle indicators. Cards use 8px radius or zero radius."
+    ],
+    "donts": [
+      "Do not introduce a brand color, accent hue, or any chromatic expression. The 1% colorfulness target is the identity.",
+      "Do not use bold or semibold weights. The entire type system exists at weight 400.",
+      "Do not add drop shadows, inner shadows, or any elevation effects to cards, buttons, or navigation elements. Flatness is the surface language.",
+      "Do not use font sizes outside the 11px–18px range for interface text. Large display sizes would break the scale.",
+      "Do not place navigation at the top of the page or use a sticky header. The bottom nav is the site map.",
+      "Do not use underlines, color changes, or weight shifts for link hover states. A 1px Obsidian Ink underline appearing on hover is the only link state change.",
+      "Do not use emoji, colored icons, or multicolor iconography. The concentric ring mark is the only graphical element — icons are absent by design."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#212123",
+        "name": "Obsidian Ink",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, inverse text on dark fills. The dominant surface; almost the entire site lives here",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Icon fills, decorative graphic strokes, active state fills for the navigation dot indicator. Used sparingly for maximum tonal contrast against Bone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Ash",
+        "role": "Medium-contrast borders, control outlines, and structural separators.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a7",
+        "name": "Pebble",
+        "role": "Muted helper text, fine body dividers, secondary metadata. The lightest functional gray — used for price labels and supporting copy that must recede",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed canvas with no maximum content width. The hero spans edge-to-edge with a 50/50 split between photograph and graphic. Product grids appear as 3-column rows with generous 34px horizontal padding from the viewport edge. The bottom navigation is centered and anchored to the page foot, not sticky. Section breaks use either a full-bleed editorial photograph or pure whitespace — never a colored band, divider line, or gradient. The vertical rhythm is loose: 80-120px between major sections, with the page breathing rather than packing content. There is no sidebar, no mega-menu, no top header bar — the wordmark 'INO' sits at the top-left of the hero only.",
+    "imagery": "Two distinct image modes coexist: clinical product photography on a flat light-gray seamless (each ring shot front-and-center, no hands, no styling props, no shadows on the surface — the object is the hero) and narrative editorial imagery (the ring nestled in a grass-lined box, a hand holding a chain) treated as desaturated, full-bleed editorial breaks. Product images carry the product cards; editorial images carry the brand mood. Both are monochromatic or near-monochromatic — the grass in the hero is the only place green appears, and even it is muted to a forest tone. Icons are not used in the interface — the concentric ring mark replaces all iconography.",
+    "similar": [
+      {
+        "why": "Same monochrome discipline, uppercase wide-set sans typography, gallery-style product photography on seamless white, and near-absolute absence of color or decoration.",
+        "business": "The Row (therow.com)"
+      },
+      {
+        "why": "Similar bottom-anchored or footer-positioned navigation, restrained type scale, and achromatic product grids with generous whitespace between cards.",
+        "business": "Me+Em"
+      },
+      {
+        "why": "Fine jewelry site with extreme minimalism, hairline type, near-black on white palette, and editorial B&W lifestyle imagery breaking up product sections.",
+        "business": "Sophie Buhai"
+      },
+      {
+        "why": "Ecommerce with strict monochrome palette, wide-tracked uppercase type, zero card borders or shadows, and products floating on white canvas.",
+        "business": "Toteme"
+      },
+      {
+        "why": "Numeric-only product naming, extreme typographic restraint, and the use of a single repeated graphic mark (Margiela's numbers) functioning like INO's concentric ring as the brand signature.",
+        "business": "Maison Margiela 's main ecommerce"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "inputs": "8px",
+        "buttons": "50px",
+        "navIndicators": "9999px"
+      },
+      "elementGap": "23px",
+      "sectionGap": "80-120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background; the void that frames all content."
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Product Plinth",
+        "level": 1,
+        "purpose": "Product card surfaces — same as canvas, relying on the product image and whitespace to define the card boundary rather than a border or shadow."
+      },
+      {
+        "hex": "#000000",
+        "name": "Active Node",
+        "level": 2,
+        "purpose": "Filled circle indicator for the active navigation item, selected-state icon fills."
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — cards have no shadow",
+        "element": "Product Card"
+      },
+      {
+        "style": "none — full-bleed photography sits flush on the canvas without elevation",
+        "element": "Hero Section"
+      }
+    ],
+    "northStar": "Museum vitrine in silence — every piece floats in white space like a single object behind glass, framed by near-black whisper type.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1,
+        "letterSpacing": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "heading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Split Section",
+        "role": "Full-viewport landing composition combining a single narrative product photograph with brand tagline and collection entry point",
+        "description": "Full-bleed layout, no container width constraint. Left 50% holds a single oversized product photograph (no crop guides, no overlay). Right 50% vertically centers three elements with 23px gaps: a micro-headline in 11px uppercase Ash, the concentric ring brand mark at roughly 280px diameter drawn in 2px white strokes, and a 11px uppercase Pebble call-to-action with a right arrow. No card, no border, no shadow — the photograph and the graphic are the only visual weight."
+      },
+      {
+        "name": "Concentric Ring Brand Mark",
+        "role": "Primary brand identifier, replaces a wordmark or monogram",
+        "description": "Six concentric oval outlines (slightly taller than wide) rendered as 2px solid strokes in white (on dark hero) or Obsidian Ink (on light sections). No fill, no text. The shape directly mirrors the ring products — the logo IS the product abstracted."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid item for individual ring products in the collection",
+        "description": "Zero padding card with no visible border or shadow. The product photograph fills the card edge-to-edge. Below the image: product name in 11px uppercase Obsidian Ink and price in 11px Pebble, separated by 9px gap. Name and price sit on the same baseline row with the price right-aligned. The product image itself provides the card's visual boundary."
+      },
+      {
+        "name": "Bottom Navigation Bar",
+        "role": "Primary site navigation anchored to the page foot, not the top",
+        "description": "Horizontally centered row of four links — SHOP, ABOUT, SUPPORT, JOURNAL — set in 11px uppercase Sequel100Wide with 1.5px letter-spacing. Each link is preceded by a 8px circular indicator: filled Carbon for the active page, 1px Ash outline for inactive pages. Links separated by 23px gaps. The bar sits at the very bottom of the viewport with 34px horizontal page padding."
+      },
+      {
+        "name": "Pill Filter Button",
+        "role": "Sort and filter trigger for the product grid",
+        "description": "50px border-radius capsule containing the word FILTER and a downward chevron in 11px uppercase Obsidian Ink. 14px vertical padding, 23px horizontal padding. 1px Obsidian Ink border. No fill — the pill is a ghost control that sits as a floating element in the grid's top-right."
+      },
+      {
+        "name": "Product Price Tag",
+        "role": "Inline price display for product cards",
+        "description": "11px uppercase Sequel100Wide, line-height 1.0, color Pebble (#a6a6a7). Always paired with the product name on the same row, separated by whitespace. No currency symbol in the display data — prices appear as ranges (e.g. €295,95 - €1.738,95) set in the same weight and color."
+      },
+      {
+        "name": "Section Micro-Heading",
+        "role": "Uppercase intro line for hero copy, taglines, and section openers",
+        "description": "11px Sequel100Wide weight 400, uppercase, letter-spacing 1.5px, line-height 1.0. Color ranges from Ash (#999999) for secondary context to Obsidian Ink for primary. Sets tone without competing with the visual content — deliberately quiet."
+      },
+      {
+        "name": "Lifestyle Editorial Image",
+        "role": "Full-bleed desaturated photograph for storytelling breaks between product grids",
+        "description": "Large-format editorial photograph (B&W or near-monochrome treatment) used as a full-bleed section break. Sits at 70-80% viewport height with no caption, no overlay, no border. Functions as a visual palate cleanser between product collections."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Inline text link in footer or supporting copy",
+        "description": "11px uppercase Sequel100Wide, Obsidian Ink, no underline by default. On hover, gains a 1px Obsidian Ink underline. No color change, no fill — the link is distinguished by underline only."
+      },
+      {
+        "name": "Circular Nav Indicator",
+        "role": "Visual state marker for the current page in the bottom navigation",
+        "description": "8px diameter circle. Active state: solid Carbon (#000000) fill. Inactive state: 1px Ash (#999999) stroke, transparent fill. Positioned to the left of each nav label with 9px gap. The circle is the only color/shape distinction between active and inactive navigation."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole brand typeface, used at weight 400 only across every context — nav, body, headings, hero copy, prices, labels. The wide-set geometric character with generous letter-spacing carries the entire brand voice. The absence of bold weight is deliberate: hierarchy comes from uppercase casing, tracking, and position, not from weight variation.",
+        "sizes": "11px, 14px, 16px, 18px",
+        "family": "Sequel100Wide",
+        "weight": "400",
+        "lineHeight": "1.0–1.6",
+        "substitute": "Jost (400, set with +0.08em letter-spacing) or Space Grotesk for the wide geometric character",
+        "letterSpacing": "All-uppercase context, tracking sits at approximately +0.12em to +0.18em depending on size — tighter at 18px, wider at 11px"
+      },
+      {
+        "role": "System fallback for button rendering in legacy contexts. Not part of the brand voice — appears only when Sequel100Wide fails to load.",
+        "sizes": "11px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "INO operates as a near-monochrome jewelry gallery: bone-white canvas, one warm near-black ink, and almost no chromatic expression at all. The visual system treats every ring like a museum object — clinical product photography floating in generous negative space, with hierarchy built through position, letter-spacing, and white volume rather than through type scale or color. Navigation lives at the foot of the page as four labeled dots (filled or hollow), a deliberate inversion of the ecommerce top-bar convention. The brand mark itself is a set of concentric ring outlines, echoing the product form and acting as a typographic sculpture rather than a logotype.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INO design system\",\"item\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#style-reference\",\"name\":\"INO design system reference\",\"headline\":\"INO design system | Refero Styles\",\"description\":\"Explore INO's light E-commerce design system: Obsidian Ink #212123, Bone #ffffff colors, Sequel100Wide, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INO\",\"url\":\"https://ino.jewelry\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"caption\":\"Screenshot of INO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INO design system\",\"INO website design\",\"INO colors\",\"INO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian Ink\",\"Bone\",\"Carbon\",\"Ash\",\"Sequel100Wide\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INO design system\"},{\"@type\":\"Thing\",\"name\":\"INO website design\"},{\"@type\":\"Thing\",\"name\":\"INO colors\"},{\"@type\":\"Thing\",\"name\":\"INO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:58:27.225Z\",\"dateModified\":\"2026-04-30T01:58:27.225Z\"}]}19:T65f,## Quick Color Reference\n\n- text: #212123 (Obsidian Ink)\n- background: #ffffff (Bone)\n- border: #212123 (Obsidian Ink) for active, #999999 (Ash) for inactive\n- accent: none — the system is strictly achromatic\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Build a product grid card**: Zero padding, no border, no shadow. Full-bleed product image fills the card. Below the image, a single row with product name in 11px uppercase Sequel100Wide #212123 on the left, price in 11px #a6a6a7 on the right. 9px gap between the image and the text row. Cards sit in a 3-column grid with 34px horizontal page padding.\n\n2. **Build the bottom navigation bar**: Horizontally centered at the page foot. Four links — SHOP, ABOUT, SUPPORT, JOURNAL — in 11px uppercase Sequel100Wide #212123 with 1.5px letter-spacing. Each link preceded by an 8px circle: solid #000000 for active, 1px #999999 outline for inactive. 23px gap between links. 34px padding from viewport edges.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. **Build the pill filter button**: 50px border-radius. 14px vertical padding, 23px horizontal padding. 1px #212123 border, no fill. Content: 'FILTER' in 11px uppercase Sequel100Wide #212123, followed by a 4px downward chevron stroke. Floats in the top-right of a product grid section.\n\n5. **Build a section micro-heading**: 11px Sequel100Wide weight 400, uppercase, letter-spacing 1.5px, line-height 1.0, color #999999. Centered or left-aligned depending on section. 38px top margin from previous content."
+      },
+      {
+        "title": "Navigation Inversion",
+        "content": "The bottom navigation is a signature choice — most ecommerce sites anchor navigation to the top header. INO places 'INO' as a quiet top-left mark in the hero, then moves the full site map to a centered row at the page foot. This is not a sticky footer; it sits at the end of the scroll. The circle indicators (filled for active, outlined for inactive) make the current page state readable at a glance without any color or weight change to the label text. When building new pages, always include the bottom nav with the correct circle state — a filled Carbon circle for the current page, Ash outline for all others."
+      },
+      {
+        "title": "Hierarchy Without Scale",
+        "content": "The type scale only ranges from 11px to 18px. There is no display size, no h1-vs-h2 jump. Visual hierarchy is built entirely through: (1) uppercase casing, (2) letter-spacing variation, (3) tonal weight between Obsidian Ink and Ash/Pebble, and (4) spatial position and whitespace. A heading is an 18px uppercase Obsidian Ink line in generous space; a label is an 11px uppercase Ash line. When building new screens, do not introduce larger type sizes — the constraint is the signature."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows and elevation. Depth is implied through whitespace, image scale, and the tonal contrast between white surfaces and near-black type. Adding a drop shadow would break the gallery-wall metaphor — the product should feel pinned to the page, not floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#212123",
+          "oklch": {
+            "c": 0.0037372603113795377,
+            "h": 286.1246728709212,
+            "l": 0.24856798376153955
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "hero",
+            "card",
+            "heading",
+            "image",
+            "footer",
+            "input"
+          ],
+          "frequency": 803,
+          "confidence": 1,
+          "prominence": 74525961.61817838,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 40,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 4,
+            "link/color": 29,
+            "other/fill": 3,
+            "image/color": 17,
+            "input/color": 1,
+            "other/color": 51,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 19,
+            "body/borderColor": 128,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 116,
+            "image/borderColor": 68,
+            "input/borderColor": 4,
+            "other/borderColor": 204,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 76
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "hero",
+            "card"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 28621536.796087567,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 1,
+            "other/fill": 6,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "card"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 637721.9793893367,
+          "properties": [
+            "fill",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "other/fill": 27,
+            "other/stroke": 6,
+            "body/borderColor": 32,
+            "card/borderColor": 4,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 39533.37624207684,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 8,
+            "button/borderColor": 32
+          }
+        },
+        {
+          "hex": "#a6a6a7",
+          "oklch": {
+            "c": 0.0014250507672882533,
+            "h": 286.36404065358124,
+            "l": 0.7254595039836298
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 4387.925105355982,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#1a1818",
+          "oklch": {
+            "c": 0.0031625740514090576,
+            "h": 17.406899033498448,
+            "l": 0.21133039948663518
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 108,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.008476155340940057,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.68,
+          "background": "#ffffff",
+          "foreground": "#1a1818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.07,
+          "background": "#ffffff",
+          "foreground": "#212123"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.63,
+          "background": "#000000",
+          "foreground": "#a6a6a7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.27,
+          "background": "#a6a6a7",
+          "foreground": "#1a1818"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.61,
+          "background": "#a6a6a7",
+          "foreground": "#212123"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.43,
+          "background": "#ffffff",
+          "foreground": "#a6a6a7"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#000000",
+          "foreground": "#212123"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 7.8768,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 50.4,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "hero",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|button",
+            "marginLeft|link",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|hero"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "hero",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 146,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|hero",
+            "marginRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sequel100Wide",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 174,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 11,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "heading",
+            "footer",
+            "other",
+            "input"
+          ],
+          "frequency": 77,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "hero",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Sequel100Wide",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/81d51c50-23fe-4351-b56b-fb5f052f9575.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INO design system\",\"item\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#style-reference\",\"name\":\"INO design system reference\",\"headline\":\"INO design system | Refero Styles\",\"description\":\"Explore INO's light E-commerce design system: Obsidian Ink #212123, Bone #ffffff colors, Sequel100Wide, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INO\",\"url\":\"https://ino.jewelry\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/57388b47-f789-441f-8b8d-13f1838a9ac6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"caption\":\"Screenshot of INO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87bafdb4-e106-4265-a180-2da8deec5609.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INO design system\",\"INO website design\",\"INO colors\",\"INO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian Ink\",\"Bone\",\"Carbon\",\"Ash\",\"Sequel100Wide\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INO design system\"},{\"@type\":\"Thing\",\"name\":\"INO website design\"},{\"@type\":\"Thing\",\"name\":\"INO colors\"},{\"@type\":\"Thing\",\"name\":\"INO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:58:27.225Z\",\"dateModified\":\"2026-04-30T01:58:27.225Z\"}]}19:T65f,## Quick Color Reference\n\n- text: #212123 (Obsidian Ink)\n- background: #ffffff (Bone)\n- border: #212123 (Obsidian Ink) for active, #999999 (Ash) for inactive\n- accent: none — the system is strictly achromatic\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Build a product grid card**: Zero padding, no border, no shadow. Full-bleed product image fills the card. Below the image, a single row with product name in 11px uppercase Sequel100Wide #212123 on the left, price in 11px #a6a6a7 on the right. 9px gap between the image and the text row. Cards sit in a 3-column grid with 34px horizontal page padding.\n\n2. **Build the bottom navigation bar**: Horizontally centered at the page foot. Four links — SHOP, ABOUT, SUPPORT, JOURNAL — in 11px uppercase Sequel100Wide #212123 with 1.5px letter-spacing. Each link preceded by an 8px circle: solid #000000 for active, 1px #999999 outline for inactive. 23px gap between links. 34px padding from viewport edges.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. **Build the pill filter button**: 50px border-radius. 14px vertical padding, 23px horizontal padding. 1px #212123 border, no fill. Content: 'FILTER' in 11px uppercase Sequel100Wide #212123, followed by a 4px downward chevron stroke. Floats in the top-right of a product grid section.\n\n5. **Build a section micro-heading**: 11px Sequel100Wide weight 400, uppercase, letter-spacing 1.5px, line-height 1.0, color #999999. Centered or left-aligned depending on section. 38px top margin from previous content."
+}

@@ -1,0 +1,319 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink — Primary text, icons, card borders, structural lines — the default foreground across all body and heading content"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button text, inverted foregrounds"
+    },
+    "whisper": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Whisper — Hairline borders, dividers, subtle separators, card outlines"
+    },
+    "carbon": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Carbon — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "slate": {
+      "$value": "#3b3b3b",
+      "$type": "color",
+      "$description": "Slate — Secondary dark surfaces, icon strokes, muted dark text on light surfaces"
+    },
+    "graphite": {
+      "$value": "#555555",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, secondary button borders, subdued labels"
+    },
+    "ash": {
+      "$value": "#838383",
+      "$type": "color",
+      "$description": "Ash — Body secondary text, helper copy, placeholder text"
+    },
+    "fog": {
+      "$value": "#bdbdbd",
+      "$type": "color",
+      "$description": "Fog — Disabled controls, very light icon strokes, decorative dot motifs"
+    },
+    "mist": {
+      "$value": "#c7c7c7",
+      "$type": "color",
+      "$description": "Mist — Inverted muted foreground — light text on Carbon-filled buttons and dark cards (replaces Paper when on dark surfaces)"
+    },
+    "indigo-pulse": {
+      "$value": "#4177ff",
+      "$type": "color",
+      "$description": "Indigo Pulse — Saturated category badge fill — the sole chromatic accent on chrome elements, used sparingly to tag template categories"
+    },
+    "sky-pulse": {
+      "$value": "#41a9ff",
+      "$type": "color",
+      "$description": "Sky Pulse — Secondary category badge fill — lighter blue companion to Indigo Pulse for alternating category tags"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "The sole typeface across the entire product — body copy at 14px/1.43, UI labels at 12–13px, subheadings at 16–18px, and a single display step at 38px. Weights 400 for body, 500 for navigation/tabs, 600 for the hero headline and button text. The 0.020em positive tracking is signature: it opens the geometric forms slightly so small sizes (10–12px) stay legible without feeling mechanical."
+    },
+    "proxima-nova": {
+      "$value": "proxima-nova",
+      "$type": "fontFamily",
+      "$description": "proxima-nova — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Ppneuemontreal",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.45) 0px 5px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The entire page background — the gallery wall"
+    },
+    "template-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Same white as canvas; the thumbnail image provides the visual surface"
+    },
+    "filled-dark-surface": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 2: Primary button, active tab, chat widget — the only non-white surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://jp.works",
+      "siteName": "Jp",
+      "extractedAt": "2026-06-03T19:03:13.094Z",
+      "variant": "extended"
+    }
+  }
+}

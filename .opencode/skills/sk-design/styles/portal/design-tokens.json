@@ -1,0 +1,354 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, hero backgrounds, deepest surface — the obsidian backdrop against which the brand violet glows"
+    },
+    "obsidian-surface": {
+      "$value": "#0f0f13",
+      "$type": "color",
+      "$description": "Obsidian Surface — Elevated card surfaces, button fills for neutral/ghost controls, hero overlays"
+    },
+    "carbon-border": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Carbon Border — Hairline borders across cards, nav, body, links, and lists — the structural grid in a single near-black tone"
+    },
+    "graphite-card-edge": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Graphite Card Edge — Card-specific border tone, one step lighter than Carbon to create layered card edges"
+    },
+    "ash-mist": {
+      "$value": "#2a2a36",
+      "$type": "color",
+      "$description": "Ash Mist — Subtle violet-tinted dark border for sections and footer dividers — the only near-gray with hue"
+    },
+    "platinum-text": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Platinum Text — Primary body and UI text, nav links, card text, icon strokes — soft white for long-form reading on black"
+    },
+    "foil-highlight": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Foil Highlight — Display headings, brand mark, button labels on dark — pure white reserved for the loudest type moments"
+    },
+    "steel-muted": {
+      "$value": "#9e9e9e",
+      "$type": "color",
+      "$description": "Steel Muted — Muted helper text, secondary list items, dimmed icon strokes — quiet copy in the body"
+    },
+    "portal-violet": {
+      "$value": "#b296f8",
+      "$type": "color",
+      "$description": "Portal Violet — Primary action buttons, icon strokes, accent text, shadow tint — the singular brand signal; lavender that reads as dimensional energy"
+    },
+    "wisteria": {
+      "$value": "#594b7c",
+      "$type": "color",
+      "$description": "Wisteria — Muted violet border for accent rules and decorative dividers"
+    },
+    "indigo-plum": {
+      "$value": "#4b3f71",
+      "$type": "color",
+      "$description": "Indigo Plum — Violet badge border for category tags in the violet family"
+    },
+    "lavender-mist": {
+      "$value": "#ede9fe",
+      "$type": "color",
+      "$description": "Lavender Mist — Violet badge text fill — desaturated lavender for readable on-dark violet tag content"
+    },
+    "fuchsia-ink": {
+      "$value": "#571c60",
+      "$type": "color",
+      "$description": "Fuchsia Ink — Pink/magenta badge border for editorial or community-event categories"
+    },
+    "verdant-edge": {
+      "$value": "#0e4f26",
+      "$type": "color",
+      "$description": "Verdant Edge — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "mint-whisper": {
+      "$value": "#dcfce7",
+      "$type": "color",
+      "$description": "Mint Whisper — Success badge text — soft mint for green category labels on dark"
+    },
+    "cobalt-vein": {
+      "$value": "#264264",
+      "$type": "color",
+      "$description": "Cobalt Vein — Blue outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "deep-tide": {
+      "$value": "#06425d",
+      "$type": "color",
+      "$description": "Deep Tide — Blue outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "ice-blue": {
+      "$value": "#dbeafe",
+      "$type": "color",
+      "$description": "Ice Blue — Info badge text — desaturated sky for blue category labels on dark"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Weight 900 at 72px/48px for display and section headings is the signature — the brand does not whisper at scale, it announces. Weight 600 for sub-headings and nav, weight 500 for emphasized body, weight 400 for body and supporting copy. The lineHeight 1.00–1.11 at display sizes is unusually tight and signals confidence; body sits at 1.43–1.56 for compact reading. Letter-spacing tracks the hierarchy: -0.025em pulls display tight, 0.05em relaxes body, 0.20em stretches labels and badges wide."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 900,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "36px",
+        "fontWeight": 900,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "72px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(178, 150, 248, 0.2) 0px 25px 50px -12px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and hero backgrounds"
+    },
+    "obsidian": {
+      "$value": "#0f0f13",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, button fills, hero overlays"
+    },
+    "carbon-edge": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Surface level 2: Card border layer, creating perceptible card edges on the void"
+    },
+    "portal-glow": {
+      "$value": "#b296f8",
+      "$type": "color",
+      "$description": "Surface level 3: Brand accent surface — action buttons and the violet shadow halo around cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://portalgaming.com",
+      "siteName": "Portal",
+      "extractedAt": "2026-06-03T20:12:42.390Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "color": {
+    "void-ink": {
+      "$value": "#050311",
+      "$type": "color",
+      "$description": "Void Ink — Page canvas, section backgrounds, dark surface base — the near-black stage on which all content sits, carrying a barely-perceptible cool-violet undertone that keeps it from feeling clinical"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, headline color, hairline borders, icon strokes, button outlines — the only high-contrast voice in the system; when something needs to be seen, it is white"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Monochrome icon fills, brand marks, and high-contrast graphic details. Do not promote it to the primary CTA color"
+    },
+    "ash-gray": {
+      "$value": "#9b9aa0",
+      "$type": "color",
+      "$description": "Ash Gray — Muted body text, secondary headings, subtle borders, disabled states — carries all secondary information without competing with the white voice"
+    },
+    "graphite": {
+      "$value": "#44424d",
+      "$type": "color",
+      "$description": "Graphite — Dividers, low-emphasis borders, hairline separators between sections — quiet structural lines that organize the dark canvas without drawing attention"
+    }
+  },
+  "font": {
+    "fkgroteskneue": {
+      "$value": "FKGroteskNeue",
+      "$type": "fontFamily",
+      "$description": "Universal type family — used for navigation, body, headings, badges, buttons, cards, and the massive hero wordmark. A neo-grotesque sans with tabular numerals as a deliberate feature. The single weight (400) is the system's signature: the hero 'North Kingdom' wordmark achieves its cinematic weight through sheer size, not font weight. Substitute: Space Grotesk or Inter at matching weight."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for button labels, icons, and input fields — used where the custom font license or loading constraints prevent the primary face from rendering"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "FKGroteskNeue-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "FKGroteskNeue-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "FKGroteskNeue-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#050311",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the absolute floor of the design"
+    },
+    "carbon-layer": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Icon containers, button surfaces, card backgrounds where a step deeper than the canvas is needed"
+    },
+    "inverted-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed light sections, badge backgrounds, inverse text blocks — the dramatic opposite of the void"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.northkingdom.com",
+      "siteName": "North Kingdom",
+      "extractedAt": "2026-06-03T21:55:43.378Z",
+      "variant": "extended"
+    }
+  }
+}

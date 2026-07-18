@@ -1,0 +1,387 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all structural borders, logo wordmark, button outlines — the load-bearing color of the entire system"
+    },
+    "gallery-white": {
+      "$value": "#fefefe",
+      "$type": "color",
+      "$description": "Gallery White — Card surfaces, product photography backgrounds, badge fills, hero overlay text color"
+    },
+    "concrete-canvas": {
+      "$value": "#e3e2e2",
+      "$type": "color",
+      "$description": "Concrete Canvas — Dominant page background — the warm-tinted gray that sets the gallery-like stage for every section"
+    },
+    "ash-border": {
+      "$value": "#c3c3c3",
+      "$type": "color",
+      "$description": "Ash Border — Card borders, badge outlines, subtle dividers — secondary structure below the black hairline"
+    },
+    "steel-mute": {
+      "$value": "#aeaaaa",
+      "$type": "color",
+      "$description": "Steel Mute — Secondary text, muted button borders, caption-level borders where black feels too heavy"
+    },
+    "pewter-caption": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Pewter Caption — Badge and tag text — the only readable gray for small uppercase labels"
+    },
+    "terracotta-alert": {
+      "$value": "#9b1b01",
+      "$type": "color",
+      "$description": "Terracotta Alert — Input validation error borders, error state signals — the single chromatic UI color, echoing the product terracotta"
+    }
+  },
+  "font": {
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface. Weight 700 is reserved for the ACME wordmark and bold display headlines; 500 for product names and emphasis; 400 for all body, nav, and caption copy. The 148px wordmark is the system's signature — no other brand does this with a system font at this scale."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "148px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 148px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "124": {
+      "$value": "124px",
+      "$type": "dimension",
+      "$description": "Spacing 124px"
+    },
+    "148": {
+      "$value": "148px",
+      "$type": "dimension",
+      "$description": "Spacing 148px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "concrete-canvas": {
+      "$value": "#e3e2e2",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the dominant warm gray field"
+    },
+    "gallery-white": {
+      "$value": "#fefefe",
+      "$type": "color",
+      "$description": "Surface level 2: Card and product tile surface — the clean stage for product photography"
+    },
+    "soft-mist": {
+      "$value": "#eceeee",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle surface variation for nested containers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://acmecups.nz",
+      "siteName": "Acme Cups New Zealand",
+      "extractedAt": "2026-06-03T19:30:05.260Z",
+      "variant": "extended"
+    }
+  }
+}

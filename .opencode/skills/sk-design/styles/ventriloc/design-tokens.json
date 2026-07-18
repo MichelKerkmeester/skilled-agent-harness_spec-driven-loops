@@ -1,0 +1,352 @@
+{
+  "color": {
+    "graphite": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Graphite — Primary text, headings, nav links, icon strokes — the typographic anchor of every surface"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card elevation, icon fills — the brightest surface in the system"
+    },
+    "ash": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Ash — Primary card and section background, nav pill container — the dominant warm-gray surface"
+    },
+    "fog": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Fog — Subtle background tone for nested surfaces and secondary containers"
+    },
+    "ivory": {
+      "$value": "#ebe6dd",
+      "$type": "color",
+      "$description": "Ivory — Warm accent background wash for featured blocks — the paper-stock feel"
+    },
+    "steel": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Steel — Secondary body text, long-form paragraph copy"
+    },
+    "slate": {
+      "$value": "#828282",
+      "$type": "color",
+      "$description": "Slate — Muted helper text, tertiary nav items, inactive controls"
+    },
+    "mist": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Mist — Hairline dividers, nav background fills"
+    },
+    "ember-orange": {
+      "$value": "#ff682c",
+      "$type": "color",
+      "$description": "Ember Orange — Orange text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "brass": {
+      "$value": "#816729",
+      "$type": "color",
+      "$description": "Brass — Secondary accent for chart strokes, decorative SVG lines, and tag text — a muted warm counterpoint to Ember"
+    }
+  },
+  "font": {
+    "polysans": {
+      "$value": "PolySans",
+      "$type": "fontFamily",
+      "$description": "Headings and display text — custom neo-grotesque used exclusively at weight 400 with -0.02em tracking creates a whisper-weight editorial authority that no bold headline could replicate"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, button text, captions, metadata — the workhorse sans for everything that isn't a headline"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 66px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the brightest base layer"
+    },
+    "ash-surface": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Card and section panels — dominant warm-gray surface"
+    },
+    "fog-surface": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 2: Nested containers and secondary backgrounds"
+    },
+    "ivory-surface": {
+      "$value": "#ebe6dd",
+      "$type": "color",
+      "$description": "Surface level 3: Warm accent wash for featured or editorial blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ventriloc.ca/en",
+      "siteName": "Ventriloc",
+      "extractedAt": "2026-07-03T02:57:52.899Z",
+      "variant": "extended"
+    }
+  }
+}

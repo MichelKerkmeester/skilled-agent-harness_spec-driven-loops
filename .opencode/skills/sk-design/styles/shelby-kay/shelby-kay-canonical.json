@@ -1,0 +1,868 @@
+{
+  "source": "https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad",
+  "uuid": "2ab2f666-6da7-4cd8-bc91-52a28bd560ad",
+  "name": "Shelby Kay",
+  "northStar": "botanical editorial spread on warm linen — two-color ink system on aged paper, with display type that bleeds past the page edge and metadata that whispers from the margins.",
+  "capturedAt": "2026-07-18T07:26:13.723Z",
+  "meta": {
+    "url": "https://shelbykay.dev",
+    "siteName": "Shelby Kay",
+    "extractedAt": "2026-06-03T21:11:25.668Z",
+    "durationMs": 47884,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 479,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Ranade at 83px or larger for any brand or section-defining headline — it is the only type with permission to fill the frame.",
+      "Set body and metadata in Switzer weight 500–600 at 10–16px — the compact grotesque is the workhorse and should handle 90% of the interface.",
+      "Build the palette from exactly two brand colors: Olive Ink (#393c2a) for structure, Sage Type (#737955) for brand voice. Use Sage sparingly — one display element per section maximum.",
+      "Let the canvas shift through warm tonal layers (Linen → Sienna → Driftwood) to define sections instead of hard borders or color blocks.",
+      "Use 0px border-radius everywhere — cards, images, tags. The printed-page metaphor demands sharp corners.",
+      "Use 7–8px padding for tight metadata containers and 20px for card padding — the 8px base unit governs all spacing.",
+      "Use Olive Ink (#393c2a) for all text and borders. The 9.2:1 contrast ratio on Linen makes it readable at 10px and monumental at 265px."
+    ],
+    "donts": [
+      "Don't add drop shadows, glows, or any CSS elevation — the system is deliberately flat and print-like.",
+      "Don't introduce rounded corners (border-radius > 0) on any element — it breaks the editorial metaphor.",
+      "Don't use Sage Type (#737955) for body text — its 3.7:1 contrast on Linen fails readability standards. Reserve it for display headings only.",
+      "Don't create filled button backgrounds in any color — this system has no CTA buttons. Navigation is text-only, contact is a typographic anchor.",
+      "Don't use gradients, brand illustrations, or icon sets — the visual language is photography, type, and tonal layering only.",
+      "Don't use any cool or neutral gray outside the Riverstone (#7b8785) token — all neutrals must stay warm to maintain the botanical atmosphere.",
+      "Don't center body text. Left-align everything except section anchors, which are the only elements that get centered treatment."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#393c2a",
+        "name": "Olive Ink",
+        "role": "Primary text, borders, and structural strokes — all type from body to display headings, all card and image borders, all interactive outlines",
+        "group": "brand"
+      },
+      {
+        "hex": "#737955",
+        "name": "Sage Type",
+        "role": "Display headings and brand voice — used for the monumental SHELBY wordmark, section anchors, and selective heading accents that carry the brand's botanical identity",
+        "group": "accent"
+      },
+      {
+        "hex": "#efe6d9",
+        "name": "Linen",
+        "role": "Primary canvas and card surfaces — page background, card fills, the base warm tone the entire system sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6b292",
+        "name": "Sienna",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afa199",
+        "name": "Driftwood",
+        "role": "Tertiary surface and muted helpers — profile-section backdrop, desaturated metadata, low-emphasis UI text and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7b8785",
+        "name": "Riverstone",
+        "role": "Cool-toned neutral for subtle contrast shifts — secondary surface, hover or muted state for UI elements needing visual separation from the warm base",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — the wordmark stretches edge-to-edge, and section backgrounds span the full viewport. The hero is a single massive headline (SHELBY) overlaid on low-opacity botanical photography, with a hero subtitle in the lower-left and minimal nav along the bottom edge. A rotated 'KAY' label sits on the right margin. The work section uses a 4-column card grid on a warm tan background, with a vertical client list running down the left margin. The profile section shifts to a 3-column layout: portrait left, label/title center, dense metadata right. Section rhythm is defined by tonal surface shifts (cream → tan → taupe) rather than hard dividers. Navigation is a bottom-aligned minimal text bar on the hero; absent on interior pages which use scrolling. The page model is editorial — asymmetric, generous vertical breathing room between sections, no centered max-width constraint.",
+    "imagery": "Photography is botanical and atmospheric, used as a low-opacity texture layer behind the wordmark — large plants, palms, foliage rendered at 10–15% opacity so they read as a greenhouse shadow rather than a subject. One full-bleed portrait appears on the profile page, desaturated to sit within the olive palette and cropped tight. No product photography, no abstract 3D, no illustration. No icon system — the only graphic elements are type itself. Image treatment is always full-bleed with 0px radius and no border or mask. Imagery is atmospheric, never explanatory.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio approach with massive display type bleeding edge-to-edge, warm neutral palette, and botanical/nature photography as atmospheric backdrop",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Two-color ink system (dark + one accent) on warm cream canvas, custom display type at extreme scale, text-only navigation, no buttons or shadows",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Editorial portfolio rhythm — full-bleed sections, type-as-imagery, tonal surface shifts instead of color blocks, zero chrome between sections",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Minimal text-only nav, extreme type contrast between display and metadata, flat surfaces with no shadows, warm neutral palette",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Large stretched wordmark hero, rotated side text element, card-based work grid with date stamps — same magazine-spread structure",
+        "business": "Eli Hava (personal portfolio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "36-56px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#efe6d9",
+        "name": "Linen",
+        "level": 1,
+        "purpose": "Primary page canvas — hero, default section background"
+      },
+      {
+        "hex": "#d6b292",
+        "name": "Sienna",
+        "level": 2,
+        "purpose": "Work/index section — tonal page break"
+      },
+      {
+        "hex": "#afa199",
+        "name": "Driftwood",
+        "level": 3,
+        "purpose": "Profile section background — deeper warm shift"
+      },
+      {
+        "hex": "#7b8785",
+        "name": "Riverstone",
+        "level": 4,
+        "purpose": "Cool-tinted neutral for contrast states or secondary overlays"
+      }
+    ],
+    "northStar": "botanical editorial spread on warm linen — two-color ink system on aged paper, with display type that bleeds past the page edge and metadata that whispers from the margins.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 83,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "display-lg",
+        "size": 158,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "wordmark",
+        "size": 265,
+        "lineHeight": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Display",
+        "role": "Brand-defining type element",
+        "description": "Ranade at 265px, weight 400, line-height 0.90, Sage Type (#737955), no letter-spacing. Stretches full viewport width edge-to-edge, character spacing visually tight. This is the signature element — a single word filling the frame. Always uppercase, always at maximum scale."
+      },
+      {
+        "name": "Section Anchor",
+        "role": "Section transition label",
+        "description": "Ranade at 24px, weight 400, line-height 1.20, Olive Ink (#393c2a). Centered, used as a quiet callout like 'CONTACT' that invites scroll rather than commanding action. No underline, no decoration — the typographic scale does the work."
+      },
+      {
+        "name": "Rotated Side Label",
+        "role": "Vertical decorative element",
+        "description": "Ranade at 83–158px, weight 400, Olive Ink (#393c2a), rotated 90° counter-clockwise, pinned to the right edge of the viewport. Functions as a running header equivalent — stays fixed or appears on hero to mark the page identity without competing with the wordmark."
+      },
+      {
+        "name": "Minimal Nav",
+        "role": "Text-only site navigation",
+        "description": "Switzer 11–14px, weight 500, uppercase, Olive Ink (#393c2a), letter-spacing normal. Aligned to the page edges (left for primary links, right for meta like '2026'). No buttons, no backgrounds, no separators between items — whitespace defines the links. Links carry an Olive Ink underline or border on hover."
+      },
+      {
+        "name": "Project Card",
+        "role": "Work grid item",
+        "description": "Full-bleed image inside a 0px-radius frame on Sienna (#d6b292) background. Date stamp in top-left corner at Switzer 10px, weight 500, Olive Ink. Two-letter abbreviation label centered below the card at Switzer 11px, weight 600, Olive Ink. No card border, no shadow — the image IS the card."
+      },
+      {
+        "name": "Date Stamp",
+        "role": "Editorial metadata",
+        "description": "Switzer 10px, weight 500, Olive Ink (#393c2a), positioned absolutely in the top-left of a project card or section. Oriented vertically (rotated 90°). Functions as an issue number on a magazine cover — establishes the editorial metaphor."
+      },
+      {
+        "name": "Client List Column",
+        "role": "Sidebar content list",
+        "description": "Switzer 11–14px, weight 500, Olive Ink (#393c2a), no bullet points, no indentation — items stack directly. Functions as a type-only index, running vertically along the left margin of the work section."
+      },
+      {
+        "name": "Portrait Image Card",
+        "role": "Profile photo with duotone treatment",
+        "description": "Square or near-square image, 0px radius, desaturated to sit within the olive palette. No border, no caption box. The image breathes directly against Driftwood (#afa199) surface. Functions as the only 'media' moment on the profile page — type does the rest."
+      },
+      {
+        "name": "Recognition / Award List",
+        "role": "Right-aligned metadata column",
+        "description": "Switzer 11–14px, weight 500, Olive Ink, right-aligned text. Multi-line entries with project name on one line, award details indented below. Dense, compact — reads as a colophon or index page from a printed book."
+      },
+      {
+        "name": "Full-Bleed Botanical Background",
+        "role": "Hero atmosphere layer",
+        "description": "Large nature/plant photography at extremely low opacity (roughly 10–15%) overlaid on the Linen (#efe6d9) canvas. Images extend edge-to-edge with no border. Creates a greenhouse/atelier atmosphere without competing with the wordmark. No rounded corners, no mask."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Opening statement below the wordmark",
+        "description": "Switzer 14–16px, weight 500, line-height 1.30, Olive Ink (#393c2a). Two short lines maximum, left-aligned. Sets the editorial voice — reads as an author's bio on a book jacket, not a marketing tagline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines. Used at extreme scale (83–265px) for the wordmark and section anchors, and at 24px for the CONTACT callout. The geometric, slightly condensed forms give the brand its monumental-but-restrained voice — the type fills the frame without shouting. Substitute: Boldonse or Bold Neue for display, Space Grotesk for smaller uses.",
+        "sizes": "24px, 83px, 158px, 265px",
+        "family": "Ranade",
+        "weight": "400, 700",
+        "lineHeight": "0.90, 1.00, 1.20",
+        "substitute": "Boldonse, Space Grotesk"
+      },
+      {
+        "role": "Everything else: body copy, nav, labels, metadata, card titles, list items. The compact grotesque reads as editorial running text. Weight 500–600 is the workhorse range; 700 is reserved for section headers and emphasized nav. Substitute: Inter, Untitled Sans, or Suisse Int'l for full weight coverage.",
+        "sizes": "10px, 11px, 14px, 16px, 20px",
+        "family": "Switzer",
+        "weight": "500, 600, 700",
+        "lineHeight": "1.00, 1.20, 1.25, 1.30",
+        "substitute": "Inter, Untitled Sans"
+      }
+    ],
+    "description": "Shelby Kay is a botanical editorial portfolio: a warm linen canvas, one dark-olive ink color, and a single sage-green accent that does all the brand expression. Typography is extreme — Ranade display type stretches to 265px and bleeds edge-to-edge, while Switzer handles everything else at a compact 10–20px range, creating a magazine-spread tension between monumental headers and whispering metadata. Navigation is text-only with no buttons, no rounded controls, no shadows — the interface reads as a printed art book, not a software product. Sections shift through warm tonal layers (cream → tan → taupe) rather than alternating hard color blocks, and the overall system rewards restraint: hierarchy comes from scale, weight, and whitespace, never from color or chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shelby Kay design system\",\"item\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#style-reference\",\"name\":\"Shelby Kay design system reference\",\"headline\":\"Shelby Kay design system | Refero Styles\",\"description\":\"Explore Shelby Kay's light Agency design system: Olive Ink #393c2a, Sage Type #737955 colors, Ranade, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Shelby Kay\",\"url\":\"https://shelbykay.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"caption\":\"Screenshot of Shelby Kay\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Shelby Kay design system\",\"Shelby Kay website design\",\"Shelby Kay colors\",\"Shelby Kay typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Olive Ink\",\"Sage Type\",\"Linen\",\"Sienna\",\"Ranade\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Shelby Kay design system\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay website design\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay colors\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:53:27.919Z\",\"dateModified\":\"2026-04-30T03:53:27.919Z\"}]}19:T830,**Quick Color Reference**\n- text: #393c2a (Olive Ink)\n- background: #efe6d9 (Linen)\n- border: #393c2a (Olive Ink)\n- accent: #737955 (Sage Type)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Build the wordmark hero**: Full-bleed #efe6d9 canvas with a large botanical photograph at ~12% opacity filling the background. Centered display heading 'SHELBY' in Ranade weight 400, size 265px, line-height 0.90, color #737955, stretching edge-to-edge. A hero subtitle below in Switzer weight 500, 14px, line-height 1.30, color #393c2a, left-aligned, two short lines maximum.\n\n2. **Build a project card for the work grid**: On a #d6b292 section background, render a full-bleed image with 0px border-radius as the card body. Overlay a date stamp in the top-left corner using Switzer weight 500, 10px, color #393c2a, rotated 90°. Below the card, center a two-letter label in Switzer weight 600, 11px, color #393c2a. No border, no shadow, 20px gap between cards.\n\n3. **Build the minimal nav bar**: Fixed or bottom-aligned, 7px vertical padding. Left side: three text links ('WORK', 'PROFILE', 'CONTACT') in Switzer weight 500, 11px, uppercase, color #393c2a, separated by 20px gap. Right side: a year label ('2026') in the same style, right-aligned. No backgrounds, no borders, no dividers — whitespace defines the items.\n\n4. **Build the profile section**: On a #afa199 background, place a square portrait image on the left (0px radius, no border). In the center, a label 'RECOGNITION' in Switzer weight 700, 14px, color #393c2a, followed by a vertical list of names in Switzer weight 500, 11px. On the right, a right-aligned column of award entries in Switzer weight 500, 11px, with project names on one line and details below. 36px gap between sections.\n\n5. **Build the rotated side label**: Pin a 'KAY' text element to the right edge of the viewport, rotated 90° counter-clockwise. Ranade weight 400, 158px, color #393c2a, line-height 0.90. Positioned vertically centered in the hero. Functions as a running header — the type touches the frame edge with no padding."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The system operates on radical type-scale contrast: Ranade at 265px for the wordmark, Switzer at 10px for metadata. This 26× ratio is the primary visual device — hierarchy is created by size alone, never by color or weight variation within a single element type. Ranade is used in weight 400 for display (the weight is light but the size is monumental, creating authority through scale not boldness). Switzer weight 500 is the default body; weight 600 for emphasized labels; weight 700 reserved for section headers. There is no italic, no underline decoration, no drop-cap — the type speaks through scale and the two-color ink system."
+      }
+    ],
+    "elevationPhilosophy": "The system is flat by editorial design principle: no drop shadows, no elevation, no floating surfaces. Depth is created only through tonal layering of warm surfaces, border lines, and full-bleed photography. Cards sit directly on their section surface with a hairline border or none at all — the printed-page metaphor forbids digital lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#393c2a",
+          "oklch": {
+            "c": 0.030062372070505484,
+            "h": 115.67824254692012,
+            "l": 0.34772267722259576
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 2256,
+          "confidence": 1,
+          "prominence": 131353498.412944,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 19,
+            "body/color": 61,
+            "hero/color": 2,
+            "link/color": 70,
+            "list/color": 22,
+            "image/color": 64,
+            "other/color": 149,
+            "heading/color": 64,
+            "nav/borderColor": 76,
+            "body/borderColor": 244,
+            "hero/borderColor": 8,
+            "link/borderColor": 280,
+            "list/borderColor": 88,
+            "image/borderColor": 256,
+            "other/borderColor": 596,
+            "heading/borderColor": 256,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efe6d9",
+          "oklch": {
+            "c": 0.019940488670456603,
+            "h": 77.31227043705385,
+            "l": 0.9284965219205144
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 76,
+          "confidence": 1,
+          "prominence": 8121755.356740592,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 2,
+            "other/color": 4,
+            "heading/color": 6,
+            "body/borderColor": 12,
+            "link/borderColor": 8,
+            "other/borderColor": 16,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#737955",
+          "oklch": {
+            "c": 0.053078736239387664,
+            "h": 115.83409555596162,
+            "l": 0.5612671724856289
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 7833534.778688556,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 13,
+            "heading/borderColor": 52
+          }
+        },
+        {
+          "hex": "#afa199",
+          "oklch": {
+            "c": 0.020047495368041797,
+            "h": 51.86768939022457,
+            "l": 0.7186981736084707
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d6b292",
+          "oklch": {
+            "c": 0.060320738614613574,
+            "h": 63.4106464688664,
+            "l": 0.7873119348977722
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7b8785",
+          "oklch": {
+            "c": 0.014374077459978074,
+            "h": 184.8283445078226,
+            "l": 0.6129467531400941
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08207325303718233,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.17,
+          "background": "#efe6d9",
+          "foreground": "#393c2a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#d6b292",
+          "foreground": "#393c2a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.52,
+          "background": "#afa199",
+          "foreground": "#393c2a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.7,
+          "background": "#efe6d9",
+          "foreground": "#737955"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.05,
+          "background": "#7b8785",
+          "foreground": "#393c2a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.01,
+          "background": "#7b8785",
+          "foreground": "#efe6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#393c2a",
+          "foreground": "#737955"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.32,
+          "background": "#d6b292",
+          "foreground": "#737955"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.03,
+          "background": "#afa199",
+          "foreground": "#efe6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#afa199",
+          "foreground": "#737955"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.6,
+          "background": "#d6b292",
+          "foreground": "#efe6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#7b8785",
+          "foreground": "#737955"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 208,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 12,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "columnGap|hero",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 53,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "hero",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|heading",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Switzer",
+          "source": "custom",
+          "weights": [
+            500,
+            600,
+            700
+          ],
+          "frequency": 457,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Ranade",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.78
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Switzer",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 52,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 264,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Switzer",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Ranade",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 83,
+          "family": "Ranade",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 158,
+          "family": "Ranade",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 265,
+          "family": "Ranade",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/eeb3d7d9-273a-4d93-ab9f-fe5ff5706d29.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shelby Kay design system\",\"item\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#style-reference\",\"name\":\"Shelby Kay design system reference\",\"headline\":\"Shelby Kay design system | Refero Styles\",\"description\":\"Explore Shelby Kay's light Agency design system: Olive Ink #393c2a, Sage Type #737955 colors, Ranade, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Shelby Kay\",\"url\":\"https://shelbykay.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2ab2f666-6da7-4cd8-bc91-52a28bd560ad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"caption\":\"Screenshot of Shelby Kay\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f9f1db6-342a-4576-8410-6e78561cb2cb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Shelby Kay design system\",\"Shelby Kay website design\",\"Shelby Kay colors\",\"Shelby Kay typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Olive Ink\",\"Sage Type\",\"Linen\",\"Sienna\",\"Ranade\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Shelby Kay design system\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay website design\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay colors\"},{\"@type\":\"Thing\",\"name\":\"Shelby Kay typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:53:27.919Z\",\"dateModified\":\"2026-04-30T03:53:27.919Z\"}]}19:T830,**Quick Color Reference**\n- text: #393c2a (Olive Ink)\n- background: #efe6d9 (Linen)\n- border: #393c2a (Olive Ink)\n- accent: #737955 (Sage Type)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Build the wordmark hero**: Full-bleed #efe6d9 canvas with a large botanical photograph at ~12% opacity filling the background. Centered display heading 'SHELBY' in Ranade weight 400, size 265px, line-height 0.90, color #737955, stretching edge-to-edge. A hero subtitle below in Switzer weight 500, 14px, line-height 1.30, color #393c2a, left-aligned, two short lines maximum.\n\n2. **Build a project card for the work grid**: On a #d6b292 section background, render a full-bleed image with 0px border-radius as the card body. Overlay a date stamp in the top-left corner using Switzer weight 500, 10px, color #393c2a, rotated 90°. Below the card, center a two-letter label in Switzer weight 600, 11px, color #393c2a. No border, no shadow, 20px gap between cards.\n\n3. **Build the minimal nav bar**: Fixed or bottom-aligned, 7px vertical padding. Left side: three text links ('WORK', 'PROFILE', 'CONTACT') in Switzer weight 500, 11px, uppercase, color #393c2a, separated by 20px gap. Right side: a year label ('2026') in the same style, right-aligned. No backgrounds, no borders, no dividers — whitespace defines the items.\n\n4. **Build the profile section**: On a #afa199 background, place a square portrait image on the left (0px radius, no border). In the center, a label 'RECOGNITION' in Switzer weight 700, 14px, color #393c2a, followed by a vertical list of names in Switzer weight 500, 11px. On the right, a right-aligned column of award entries in Switzer weight 500, 11px, with project names on one line and details below. 36px gap between sections.\n\n5. **Build the rotated side label**: Pin a 'KAY' text element to the right edge of the viewport, rotated 90° counter-clockwise. Ranade weight 400, 158px, color #393c2a, line-height 0.90. Positioned vertically centered in the hero. Functions as a running header — the type touches the frame edge with no padding."
+}

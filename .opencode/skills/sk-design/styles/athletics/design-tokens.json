@@ -1,0 +1,177 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, deepest section backgrounds, hairline borders on text"
+    },
+    "charcoal": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Charcoal — Elevated section surfaces, card backgrounds, input fields — the middle layer between pure black and white"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary display and body text on dark surfaces, default borders, icon strokes, form controls"
+    },
+    "ash": {
+      "$value": "#d6d5d0",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    }
+  },
+  "font": {
+    "feature-deck": {
+      "$value": "Feature Deck",
+      "$type": "fontFamily",
+      "$description": "Display and heading type — used exclusively for the largest editorial moments: hero headline, section openers, and the service index. The 300 weight (light/thin) with tight negative tracking is the signature move: most display serifs default to 400–700, so the whisper-weight conveys authority through restraint rather than volume. Letter-spacing tightens from -0.009em at 82px to -0.018em at 116px."
+    },
+    "shne": {
+      "$value": "Söhne",
+      "$type": "fontFamily",
+      "$description": "All functional and body type — navigation, links, body copy, list items, input fields, buttons, footer. Weight 300 for secondary labels and 400 for body. A neo-grotesque with humanist warmth that stays invisible so the serif can speak."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Feature Deck",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Feature Deck",
+        "fontSize": "82px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 82px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Feature Deck",
+        "fontSize": "116px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 116px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background, hero sections, footer"
+    },
+    "charcoal-surface": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section bands, content blocks, elevated cards, input fields"
+    },
+    "hairline-layer": {
+      "$value": "#d6d5d0",
+      "$type": "color",
+      "$description": "Surface level 3: Structural borders and dividers separating content zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://athleticsnyc.com",
+      "siteName": "Athletics",
+      "extractedAt": "2026-06-03T19:50:02.475Z",
+      "variant": "extended"
+    }
+  }
+}

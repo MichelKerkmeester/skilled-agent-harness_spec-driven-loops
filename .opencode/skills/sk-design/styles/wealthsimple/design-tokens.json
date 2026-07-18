@@ -1,0 +1,402 @@
+{
+  "color": {
+    "graphite-ink": {
+      "$value": "#32302f",
+      "$type": "color",
+      "$description": "Graphite Ink — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Paper White — Default page canvas, card surfaces, button text on dark fills — the brightest neutral, used for main reading surfaces"
+    },
+    "linen-cream": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Linen Cream — Warm alternate section background, hero warm-tones, subtle washes — gives the page its boutique warmth and distinguishes sections from flat white"
+    },
+    "fog-veil": {
+      "$value": "#f1f0f0",
+      "$type": "color",
+      "$description": "Fog Veil — Quiet elevated surfaces, subtle hover washes, soft surface tints for inset regions"
+    },
+    "stone": {
+      "$value": "#e4e2e1",
+      "$type": "color",
+      "$description": "Stone — Hairline borders, input outlines, section dividers, nav-rule lines — the workhorse neutral for structural separation"
+    },
+    "pebble": {
+      "$value": "#686664",
+      "$type": "color",
+      "$description": "Pebble — Secondary/captive text, link body, helper copy — keeps muted text inside the warm-grey family instead of dipping into cool slate"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Reserved for SVG icon fills and a few crisp borders where true black is needed for contrast on warm-cream surfaces"
+    },
+    "charcoal": {
+      "$value": "#09090a",
+      "$type": "color",
+      "$description": "Charcoal — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "bronze-field": {
+      "$value": "#3a3525",
+      "$type": "color",
+      "$description": "Bronze Field — Hero/feature-block full-bleed background — a warm dark khaki that stages sculptural 3D illustrations without going full-black, maintaining the boutique-warm axis even in dark sections"
+    }
+  },
+  "font": {
+    "tiempos": {
+      "$value": "Tiempos",
+      "$type": "fontFamily",
+      "$description": "Display and editorial heading serif — used at 56–84px for hero and section titles, 36px for sub-section heads, and 14–18px for emphasis lead-ins. Tiempos is the soul of the brand: a contemporary text serif with strong terminals that brings a Kinfolk-magazine / art-book quality to a fintech. The 500 weight is reserved for the largest display sizes where extra weight balances the tight tracking."
+    },
+    "the-future": {
+      "$value": "The Future",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans — a clean geometric workhorse used for paragraph copy, nav links, card titles, input fields, and small UI labels at 14–20px. The 500 weight appears in nav and a few mid-size emphasis lines. The near-zero letter-spacing (0.005em) keeps running text tight and un-fussy. It is the calm counterpart to Tiempos's editorial display."
+    },
+    "wealthsimple-sans": {
+      "$value": "Wealthsimple Sans",
+      "$type": "fontFamily",
+      "$description": "Tracked-out utility face for buttons, nav controls, and selected UI labels — used at 16px with 0.025em letter-spacing so that interactive elements read as distinct, almost stamp-like marks. The wide tracking pushes these elements forward visually without needing weight, reinforcing the pill-button rhythm across the system."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "wealthsimple-sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "the-future",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 58px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "tiempos",
+        "fontSize": "84px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 84px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "73": {
+      "$value": "73px",
+      "$type": "dimension",
+      "$description": "Spacing 73px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Surface level 1: Default body background for all editorial content sections"
+    },
+    "warm-section": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate cream sections, hero right-side wash, and card backgrounds needing warmth"
+    },
+    "soft-surface": {
+      "$value": "#f1f0f0",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle elevated regions, hover states, divider fills"
+    },
+    "hero-bronze": {
+      "$value": "#3a3525",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed dark feature blocks for the taxes, investing, and 3D-led hero panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wealthsimple.com",
+      "siteName": "Wealthsimple",
+      "extractedAt": "2026-06-03T17:30:02.885Z",
+      "variant": "extended"
+    }
+  }
+}

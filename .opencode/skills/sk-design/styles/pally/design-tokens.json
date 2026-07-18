@@ -1,0 +1,377 @@
+{
+  "color": {
+    "deep-navy-void": {
+      "$value": "#161e29",
+      "$type": "color",
+      "$description": "Deep Navy Void — Page canvas, hero background, full-bleed sections — the near-black stage on which every other element sits"
+    },
+    "bone-white": {
+      "$value": "#fefcfb",
+      "$type": "color",
+      "$description": "Bone White — Primary text, pill CTA fill, highlight strokes — the only fully bright object against the dark canvas"
+    },
+    "warm-card-stock": {
+      "$value": "#eae5dd",
+      "$type": "color",
+      "$description": "Warm Card Stock — Isolated card or panel surface when a warm off-white is needed against the dark void"
+    },
+    "ink-black": {
+      "$value": "#1e1d1d",
+      "$type": "color",
+      "$description": "Ink Black — Deep text and border color for headings and body copy, warm-tinted alternative to pure black"
+    },
+    "carbon-border": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Border — Hairline borders, image edges, structural dividers — pure black defines outlines where the navy canvas needs edge"
+    },
+    "ash-gray": {
+      "$value": "#b8b9bc",
+      "$type": "color",
+      "$description": "Ash Gray — Muted body text and subdued borders for secondary information"
+    },
+    "silver-gray": {
+      "$value": "#d0d0d1",
+      "$type": "color",
+      "$description": "Silver Gray — Lighter body text and hairline borders for de-emphasized copy and inactive states"
+    },
+    "pewter": {
+      "$value": "#a1a3a7",
+      "$type": "color",
+      "$description": "Pewter — Sub-label, footer micro-text, disabled-state typography"
+    },
+    "smoke": {
+      "$value": "#8a8d92",
+      "$type": "color",
+      "$description": "Smoke — Tertiary metadata, timestamps, dimmed annotations"
+    },
+    "violet-aura": {
+      "$value": "#5f4dbd",
+      "$type": "color",
+      "$description": "Violet Aura — Deepest stop in the brand gradient — appears as the terminal indigo in the product UI mockup and the base of floating icon halos"
+    },
+    "lilac-wash": {
+      "$value": "#e9b3f2",
+      "$type": "color",
+      "$description": "Lilac Wash — Top stop of the brand gradient — the soft pink-violet that opens the glow behind floating platform icons and tints the product's glass panels"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "untitled-sans": {
+      "$value": "Untitled Sans",
+      "$type": "fontFamily",
+      "$description": "Sole brand typeface used for everything from 14px body to 64px display. Custom Klim Type grotesque; the signature is consistent 400 weight across the entire scale paired with aggressively negative tracking that tightens as size increases (-0.02em at body, -0.06em at display). This single-weight, tight-tracked approach is deliberate: without weight contrast, the hierarchy is carried by size and tracking alone, which gives the page its quiet, editorial monotone. System sans-serif and Inter appear only as functional fallbacks for micro-labels."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Test Untitled Sans Regular",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "117px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "3000px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#161e29",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background for all sections"
+    },
+    "glass-panel": {
+      "$value": "#161e29",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI sidebar, message list, and chat thread surfaces inside the embedded screenshot — defined by the violet gradient backdrop, not by their own fill"
+    },
+    "gradient-highlight": {
+      "$value": "#9868cc",
+      "$type": "color",
+      "$description": "Surface level 2: Mid-stop of the lilac-to-indigo gradient that washes over product panels and floating icon halos"
+    },
+    "active-tile": {
+      "$value": "#5f4dbd",
+      "$type": "color",
+      "$description": "Surface level 3: Active sidebar item tint, outgoing message bubble fill, deepest gradient stop"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.pally.com",
+      "siteName": "Pally",
+      "extractedAt": "2026-06-03T17:13:22.544Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "color": {
+    "canva-violet": {
+      "$value": "#8b3dff",
+      "$type": "color",
+      "$description": "Canva Violet — Primary brand color — filled buttons, active navigation, link text, gradient anchors, brand icons, tag fills"
+    },
+    "deep-violet": {
+      "$value": "#9729ff",
+      "$type": "color",
+      "$description": "Deep Violet — Secondary violet for decorative elements, secondary icon accents, gradient stop"
+    },
+    "lavender-mist": {
+      "$value": "#a370fc",
+      "$type": "color",
+      "$description": "Lavender Mist — Tertiary violet tint — outlined/ghost action borders, muted brand accents, image overlays"
+    },
+    "coral-ember": {
+      "$value": "#ff6105",
+      "$type": "color",
+      "$description": "Coral Ember — Vivid orange — decorative icon accent, category tag, gradient co-stop alongside violet"
+    },
+    "magenta-pop": {
+      "$value": "#ff3d4d",
+      "$type": "color",
+      "$description": "Magenta Pop — Vivid red-pink — decorative icon accent, category tag, energetic gradient endpoint"
+    },
+    "fuchsia-bloom": {
+      "$value": "#e950f7",
+      "$type": "color",
+      "$description": "Fuchsia Bloom — Vivid magenta — decorative icon accent, category tag, playful gradient endpoint"
+    },
+    "midnight-ink": {
+      "$value": "#0f1015",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, heading, navigation, button labels, card surface dark mode accent"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page background, card surface, inverse text on dark/violet fills"
+    },
+    "slate-gray": {
+      "$value": "#575a5f",
+      "$type": "color",
+      "$description": "Slate Gray — Secondary text, muted helper copy, nav dividers, disabled chrome"
+    },
+    "pale-mist": {
+      "$value": "#d7d9de",
+      "$type": "color",
+      "$description": "Pale Mist — Subtle button shadow tint, very light dividers, off-white surface"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Pure black for maximum-contrast text, sharp icons, decorative dots"
+    },
+    "teal-aurora": {
+      "$value": "#00c4cc",
+      "$type": "color",
+      "$description": "Teal Aurora — Signature gradient starting point — teal-to-violet hero washes"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "canva-sans": {
+      "$value": "Canva Sans",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface. Weight 400 for body and UI labels, 500 for emphasized subheadings and button text, 600 for section headings. Headlines 56–84px use weight 600 with tight tracking for poster-like presence. Font features \"ss02\" and \"ss03\" enable brand-specific alternates (likely single-story g/a, geometric g/cuts) that give the type its warm, custom-cut character — never substitute these off in body text."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Canva Sans",
+        "fontSize": "84px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 84px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(64, 79, 109, 0.06) 0px 0px 0px 0.5px, rgba(24, 44, 89, 0.137) 0px 2px 4px 0px, rgba(24, 44, 89, 0.07) 0px 6px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(53, 65, 90, 0.2) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, default working surface"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Floating panels, prompt card, feature cards on light backgrounds"
+    },
+    "gradient-hero-field": {
+      "$value": "#7d2ae8",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed hero background — teal-to-violet gradient, behind headline"
+    },
+    "dark-surface": {
+      "$value": "#0f1015",
+      "$type": "color",
+      "$description": "Surface level 4: Rarely used dark surface for inverse sections or dark-mode cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.canva.com",
+      "siteName": "Canva",
+      "extractedAt": "2026-06-03T21:53:09.561Z",
+      "variant": "extended"
+    }
+  }
+}

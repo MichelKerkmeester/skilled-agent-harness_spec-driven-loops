@@ -1,0 +1,382 @@
+{
+  "color": {
+    "buttercream": {
+      "$value": "#fef9e6",
+      "$type": "color",
+      "$description": "Buttercream — Page canvas, card surfaces, light text on dark — the warm cream ground that unifies the entire site"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairlines, card borders, outlined button borders, link strokes — the only structural non-cream color in the neutral stack"
+    },
+    "carbon": {
+      "$value": "#060606",
+      "$type": "color",
+      "$description": "Carbon — Near-black surface for dark cards, filled button background, nav strip — slightly softer than pure ink for large fills"
+    },
+    "driftwood": {
+      "$value": "#c7c3b4",
+      "$type": "color",
+      "$description": "Driftwood — Muted hairline borders on cards and lists, warm gray that sits between buttercream and ink without breaking the warmth"
+    },
+    "stone": {
+      "$value": "#8d8b80",
+      "$type": "color",
+      "$description": "Stone — Secondary card text and tertiary borders — the warm mid-gray for de-emphasized copy"
+    },
+    "amber-pulse": {
+      "$value": "#fdc331",
+      "$type": "color",
+      "$description": "Amber Pulse — First sunset band (Font Generator) — warm yellow stripe signaling the start of the category stack"
+    },
+    "ember-glow": {
+      "$value": "#fe5722",
+      "$type": "color",
+      "$description": "Ember Glow — Second sunset band (Cool Symbols) — saturated orange that pushes the stack hotter"
+    },
+    "signal-red": {
+      "$value": "#f0353c",
+      "$type": "color",
+      "$description": "Signal Red — Third sunset band (Name Generator) — true red midway through the gradient"
+    },
+    "merlot-depth": {
+      "$value": "#b4213d",
+      "$type": "color",
+      "$description": "Merlot Depth — Fourth sunset band (Emoticons) — deep crimson cooling the stack"
+    },
+    "plum-shadow": {
+      "$value": "#671c3b",
+      "$type": "color",
+      "$description": "Plum Shadow — Fifth sunset band (PFP Maker) — the darkest plum, the bottom of the heat-map"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "neue-machina": {
+      "$value": "Neue Machina",
+      "$type": "fontFamily",
+      "$description": "Display and wordmark only — the 120px hero at line-height 0.75 creates the condensed, monumental block that defines the brand. Tighter than default, almost stack-cut. Used for the GL YPHY logotype and section display headlines."
+    },
+    "system85": {
+      "$value": "System85",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans — handles nav links, button labels, card text, section headers, and list items. The workhorse family covering 90% of text."
+    },
+    "pixel-m-plus-10": {
+      "$value": "Pixel M Plus 10",
+      "$type": "fontFamily",
+      "$description": "Japanese pixel-font eyebrows above English headlines (フォント, シンボル, グリフィー) and occasional decorative bits — a deliberate retro-arcade accent that contrasts the modern grotesque body face"
+    },
+    "system85-mono": {
+      "$value": "System85 Mono",
+      "$type": "fontFamily",
+      "$description": "Card labels and small metadata (Font Generator, Instagram Fonts captions) — monospace signals data/specimen identity"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "__system85Mono_15db00",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Machina",
+        "fontSize": "21px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Machina",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "__system85_8a4f0d",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Machina",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "__pixelMPlus10_ff679b",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Neue Machina",
+        "fontSize": "120px",
+        "fontWeight": 800,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fef9e6",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the warm cream ground"
+    },
+    "category-band": {
+      "$value": "#fdc331",
+      "$type": "color",
+      "$description": "Surface level 2: Full-width colored stripe for category entry"
+    },
+    "dark-card": {
+      "$value": "#060606",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted specimen cards with buttercream text"
+    },
+    "light-card": {
+      "$value": "#fef9e6",
+      "$type": "color",
+      "$description": "Surface level 4: Same as canvas but with driftwood/ink border to define card edge"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://glyphy.io",
+      "siteName": "Glyphy",
+      "extractedAt": "2026-06-03T20:26:35.703Z",
+      "variant": "extended"
+    }
+  }
+}

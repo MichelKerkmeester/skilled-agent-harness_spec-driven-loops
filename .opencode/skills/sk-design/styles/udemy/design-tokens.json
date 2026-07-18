@@ -1,0 +1,384 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#2a2b3f",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading strokes, default icon strokes, body copy"
+    },
+    "obsidian": {
+      "$value": "#202230",
+      "$type": "color",
+      "$description": "Obsidian — Card backgrounds in dark sections, inverted surfaces, footer panel"
+    },
+    "graphite": {
+      "$value": "#33364a",
+      "$type": "color",
+      "$description": "Graphite — Body-level dark surfaces, secondary panel fills"
+    },
+    "slate": {
+      "$value": "#3d4055",
+      "$type": "color",
+      "$description": "Slate — Card borders and muted dark backgrounds"
+    },
+    "steel": {
+      "$value": "#595c73",
+      "$type": "color",
+      "$description": "Steel — Muted text, heading accents, low-emphasis borders"
+    },
+    "fog": {
+      "$value": "#9194ac",
+      "$type": "color",
+      "$description": "Fog — Helper text, hairline borders, disabled strokes"
+    },
+    "mist": {
+      "$value": "#b7b9cd",
+      "$type": "color",
+      "$description": "Mist — Card outlines, subtle dividers on light surfaces"
+    },
+    "chalk": {
+      "$value": "#d1d2e0",
+      "$type": "color",
+      "$description": "Chalk — Light borders, icon strokes on white, card edges"
+    },
+    "porcelain": {
+      "$value": "#e9eaf2",
+      "$type": "color",
+      "$description": "Porcelain — Page background, secondary surface, button ghost fills"
+    },
+    "paper": {
+      "$value": "#f6f7f9",
+      "$type": "color",
+      "$description": "Paper — Off-white panel surface between white and porcelain"
+    },
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas — Card surface, button text on dark, primary surface"
+    },
+    "aubergine": {
+      "$value": "#6d28d2",
+      "$type": "color",
+      "$description": "Aubergine — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "lavender-haze": {
+      "$value": "#c0c4fc",
+      "$type": "color",
+      "$description": "Lavender Haze — Tinted link hover, soft violet highlight wash, light brand surface"
+    },
+    "ember": {
+      "$value": "#c4710d",
+      "$type": "color",
+      "$description": "Ember — Secondary accent — badge borders, callout borders, warm icon accent"
+    }
+  },
+  "font": {
+    "udemy-sans": {
+      "$value": "Udemy Sans",
+      "$type": "fontFamily",
+      "$description": "Single-family system: weight 700 for display headlines, 500 for subheadings and nav labels, 400 for body and UI, 300 sparingly for muted large text. The custom face has open apertures and a humanist x-height — it reads as instructional, not corporate."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Udemy Sans",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "oklch(0.6295 0.0204 306.5 / 0.08) 0px 2px 8px 0px, oklch(0.6295 0.0204 306.5 / 0.12) 0px 4px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#e9eaf2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background"
+    },
+    "paper": {
+      "$value": "#f6f7f9",
+      "$type": "color",
+      "$description": "Surface level 1: Soft banded sections between cards"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, input fills, raised content"
+    },
+    "inverted-panel": {
+      "$value": "#202230",
+      "$type": "color",
+      "$description": "Surface level 3: Dark hero/banner sections, certification blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.udemy.com",
+      "siteName": "Udemy",
+      "extractedAt": "2026-06-03T17:48:42.658Z",
+      "variant": "extended"
+    }
+  }
+}

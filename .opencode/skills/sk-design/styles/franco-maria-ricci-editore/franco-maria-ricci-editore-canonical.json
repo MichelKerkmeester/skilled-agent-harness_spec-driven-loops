@@ -1,0 +1,1012 @@
+{
+  "source": "https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9",
+  "uuid": "6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9",
+  "name": "Franco Maria Ricci Editore",
+  "northStar": "Art Déco gallery catalogue — burnished gold hairlines on bone-white vellum",
+  "capturedAt": "2026-07-18T07:28:47.062Z",
+  "meta": {
+    "url": "https://www.francomariaricci.com/en",
+    "siteName": "Franco Maria Ricci Editore",
+    "extractedAt": "2026-06-03T20:54:46.097Z",
+    "durationMs": 63910,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 315,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Burnished Gold (#bc9c5c) only as 1px strokes: section header underlines, link hover rules, decorative title borders. Never as a fill.",
+      "Set the display headline at 42px Bodoni 400 with line-height 0.95 — the tight leading locks the tall capitals into a single typographic block.",
+      "Apply italic Bodoni for editorial flourishes: the wordmark subtitle, section openers, and quiet asides. Roman Bodoni carries the weight; italic ornaments it.",
+      "Separate three-column book grids with 1px #000000 vertical rules at full column height. Gaps and padding cannot replace the rule — the dividers are the architecture.",
+      "Keep every radius at 0px. Corners are sharp; softness comes from typography and whitespace, not from curves.",
+      "Use #f6f6f6 as the base canvas, not #ffffff. The warm off-white prevents Bodoni from reading as clinical and keeps the system in the print-catalogue register.",
+      "Express every action as text with a hairline bottom border. Bracketed markers like `{ ORDER NOW }` are an acceptable editorial convention for primary actions."
+    ],
+    "donts": [
+      "Do not introduce drop-shadows, blurs, or glow effects. The system is flat; elevation is tonal.",
+      "Do not use Burnished Gold (#bc9c5c) as a background fill on buttons, badges, or surfaces. It is a stroke color only.",
+      "Do not round any corner. Buttons, cards, inputs, images all keep 0px radius.",
+      "Do not use any secondary accent color. The palette is monochrome + one gold; introducing red, blue, or green would destroy the letterpress discipline.",
+      "Do not use Arial for headlines or editorial copy. Arial is reserved for pagination counters, form labels, and utility metadata.",
+      "Do not set line-height above 0.95 on the 42px display headline — the tight leading is signature, not an oversight.",
+      "Do not add hover animations, transitions, or micro-interactions. The page reads as a printed catalogue; movement would break the metaphor."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f6f6",
+        "name": "Vellum White",
+        "role": "Page canvas — the warm off-white that grounds every section, never pure #ffffff so type never feels clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card and section surfaces — book spreads, product panels, inset blocks sitting one shade above the vellum canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Gallery Ink",
+        "role": "Dark sections (FMR Magazine block, footer band) and deepest typographic emphasis — reads as letterpress black, not screen black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Letterpress Black",
+        "role": "Body copy, navigation text, icons, all hairlines and borders, pagination marks — the structural ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Silver Wash",
+        "role": "Muted surface for secondary hero panels and quiet tonal breaks — used sparingly as a gallery-shadow gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bc9c5c",
+        "name": "Burnished Gold",
+        "role": "Section header underlines, link hover rules, decorative title borders — the only chromatic voice in the system, applied as 1px strokes and inline rules, never as fill",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed long-scroll editorial page, horizontally banded into five discrete sections (hero, bestsellers, magazine, selection, releases). Container max-width 1280px, centered, with 40px horizontal padding on the outer container. Navigation is a thin top bar, not sticky. The page alternates between three-column book grids and single-column full-bleed editorial blocks. Vertical rhythm is anchored by 48px section gaps and 40px internal column padding. The hero is split: left-third text, right-two-thirds illustration. All section headers are centered with a full-width gold rule beneath. There is no sidebar, no mega-menu, no footer chrome visible above the fold — pagination is the only persistent navigation aid. The three-column grid uses 1px vertical dividers rather than gutters, making the columns feel like adjacent museum vitrines rather than card grid cells.",
+    "imagery": "Imagery is the centerpiece, not decoration. The system showcases two distinct image modes: (1) fine-art illustration plates — Art Déco portraits, botanical compositions, surrealist line drawings — presented at large scale, often occupying 50-60% of the viewport, with no framing, no border-radius, and no overlay treatment; and (2) book cover photography shown front-on, preserving original proportions, on pure white. Both modes are treated as museum objects: full-bleed or generously inset, never cropped to container shape, never given a drop shadow. Photography is high-key, product-staged, and color-faithful — no filters, no duotone. The illustration style is hand-drawn linework with restrained color (the gold-and-black Erté portrait defines the palette for the entire site). Icons are minimal: 16px outline, 1px stroke, monochrome black, used only for shopping bag and menu functions. The page is image-heavy in the hero and sparse in the structural chrome — the gallery breathes between objects.",
+    "similar": [
+      {
+        "why": "Same luxury-publisher aesthetic — Bodoni-style display serif, monochrome canvas, single-color editorial accent, and book objects treated as art pieces rather than products",
+        "business": "Assouline"
+      },
+      {
+        "why": "Same restraint of a single chromatic accent (Hermès orange) against a warm off-white canvas, hairline rules, and serif-first typography with no shadows or rounded corners",
+        "business": "Hermès"
+      },
+      {
+        "why": "Same Art Déco / gallery-catalog sensibility — large illustrated plates, italic serif section titles with thin underlines, three-column product grids divided by hairline rules",
+        "business": "Aedes East Hampton"
+      },
+      {
+        "why": "Same museum-wall treatment of objects, generous white space, and the discipline of a single dark band breaking an otherwise all-white editorial scroll",
+        "business": "Galleria Continua"
+      },
+      {
+        "why": "Same high-contrast Bodoni display at near-zero line-height, italic flourishes for editorial asides, and the policy that a single gold/black accent carries the entire visual identity",
+        "business": "Vogue Italia (editorial pages)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "48px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f6f6f6",
+        "name": "Vellum",
+        "level": 0,
+        "purpose": "Base page canvas — the warm off-white that all sections sit on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Card and column surfaces, one shade above the canvas to delineate without weight"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Silver Wash",
+        "level": 2,
+        "purpose": "Muted hero panels and quiet tonal breaks, used sparingly"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Gallery Ink",
+        "level": 3,
+        "purpose": "Dark editorial blocks (FMR Magazine) and deepest typographic surfaces"
+      },
+      {
+        "hex": "#000000",
+        "name": "Letterpress Black",
+        "level": 4,
+        "purpose": "Maximum-contrast surfaces reserved for the most dramatic dark sections"
+      }
+    ],
+    "northStar": "Art Déco gallery catalogue — burnished gold hairlines on bone-white vellum",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 0.95
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Bar Navigation",
+        "role": "Primary site navigation",
+        "description": "Single horizontal row, transparent over the vellum canvas. Logo monogram (circular emblem with serif letter) on the far left in #000000. Far right carries the wordmark \"Franco Maria Ricci\" in Bodoni 14px with the italic \"Editore\" subtitle in 12px beneath, followed by a thin-line shopping bag icon and a hamburger menu icon — both 16px, 1px stroke, no fill. No background fill, no border, no shadow. 40px vertical padding, 64px horizontal padding at the container level."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Opening editorial statement",
+        "description": "Left-aligned text block, 40% page width. Headline in Bodoni 42px, line-height 0.95, #000000. Sub-headline paragraph in Bodoni 16px, #000000, max-width ~320px. Followed by a bracketed call-to-action in Bodoni 14px with 1px #000000 bottom border: { ORDER NOW }. The opposite ~60% of the viewport is held for a large illustrative plate (the Art Déco portrait in the primary screenshot)."
+      },
+      {
+        "name": "Section Title with Gold Rule",
+        "role": "Section divider heading",
+        "description": "Centered text in italic Bodoni 22px, #000000, followed by a 1px horizontal rule in #bc9c5c (Burnished Gold) spanning the full column width. Appears above each book-selection band (BEST SELLERS, OUR SELECTION, NEW RELEASES, FMR MAGAZINE). The gold rule is the system's only chromatic gesture and signals a new exhibition room."
+      },
+      {
+        "name": "Three-Column Book Grid",
+        "role": "Product showcase",
+        "description": "Three equal columns separated by 1px vertical rules in #000000. Each column has 40px internal padding and a #ffffff surface. Book covers sit centered with generous top/bottom whitespace; the cover itself carries the only imagery in the column. No card shadow, no border-radius, no hover effect — the book is the object, the grid is the gallery wall."
+      },
+      {
+        "name": "Book Cover Plate",
+        "role": "Individual product object",
+        "description": "Centered book cover image with 24px top margin from the column rule. No caption, no price, no add-to-cart button at the grid level — interaction is implied by the cover itself. Cover proportions are preserved; no cropping, no frames."
+      },
+      {
+        "name": "Ghost Link / Editorial CTA",
+        "role": "Outlined action",
+        "description": "Text link in Bodoni 14px, #000000, with 1px #000000 bottom border, 4px gap between text and rule. Active and hover states swap the border color to #bc9c5c (Burnished Gold) and shift the text to #bc9c5c. The bracketed variant — `{ ORDER NOW }` — wraps the label in literal curly braces as an editorial convention, not a styled border. No background fill at any state."
+      },
+      {
+        "name": "Magazine Brand Block",
+        "role": "Branded section separator",
+        "description": "Full-bleed horizontal band, height ~40% of viewport, with a #0a0a0a (Gallery Ink) surface. Left half holds a richly colored FMR magazine cover plate; right half centers the FMR wordmark in Bodoni 42px, white, with \"MAGAZINE\" set in Arial 12px, letter-spaced, directly beneath. Functions as a dark break in the otherwise all-light editorial scroll."
+      },
+      {
+        "name": "Pagination Indicator",
+        "role": "Scroll progress marker",
+        "description": "Bottom-right corner, Bodoni 14px in italic (or Arial 12px), #000000. Format: `2 / 5` flanked by thin arrow glyphs (← →) at 14px. No background, no border. Optional 1px #000000 divider above the counter, aligned to the page edge with 20px inset."
+      },
+      {
+        "name": "Section Header Tab",
+        "role": "In-grid category label",
+        "description": "Inline three-part label (e.g. I/o · BEST SELLERS · NEW RELEASES) split across the three-column grid: the active category in italic Bodoni 22px #000000, the inactive categories in roman Bodoni 22px at 40% opacity (#000000 at alpha 0.4). No underline on inactive items, 1px #bc9c5c underline only on the active label."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary voice — every editorial moment. 42px with line-height 0.95 for the cinematic display headline (the tight leading lets the tall Bodoni capitals lock together as a single typographic object). 22px for section openers. 18px and 16px for body and book metadata. 14px and 12px for navigation, captions, and the monogrammed fine print. Substitute: Bodoni Moda, Bodoni 72, or Playfair Display when the ITC cut is unavailable.",
+        "sizes": "12px, 14px, 16px, 18px, 22px, 42px",
+        "family": "BodoniSvntytwoITCStd-Book",
+        "weight": "400",
+        "lineHeight": "0.95 (display), 1.25 (running text)",
+        "substitute": "Bodoni Moda, Bodoni 72, Playfair Display",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Editorial italics for the signature flourish — \"Editore\" wordmark, italic section titles like OUR SELECTION, and the quiet poetic asides. The italic is used as ornament, not emphasis: a single italic line beside a roman headline changes the register of the whole spread. Substitute: Bodoni Moda Italic, Playfair Display Italic.",
+        "sizes": "16px, 22px, 42px",
+        "family": "BodoniSvntytwoITCStd-BookIt",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "substitute": "Bodoni Moda Italic, Playfair Display Italic"
+      },
+      {
+        "role": "System utility for pagination counters (2/5), shipping notices, form labels, and the rare inline metadata. Arial sits beside Bodoni as a quiet functional label — the contrast between high-contrast serif and neutral sans is the only typographic tension the system permits. No tracking adjustments; letterspacing inherits from the browser default.",
+        "sizes": "12px, 14px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.25",
+        "substitute": "Helvetica, Inter, system-ui"
+      }
+    ],
+    "description": "Franco Maria Ricci is a quiet luxury of typographic restraint: a vast off-white vellum, a single high-contrast Bodoni voice, and a thread of burnished gold that hairlines every editorial moment. The system behaves like an art-book spread — no shadows, no gradients, no rounded corners, no filled buttons — only the architecture of type, generous white space, and vertical rules dividing book objects. Color appears as gold punctuation (borders on titles, rules beneath section headers, thin lines under links) rather than as fill, and the lone dark surface (#0a0a0a) reads as a gallery wall, not as a UI mode. All interactive elements are text-driven: ghost links, bracketed call-to-action markers like `{ ORDER NOW }`, and pagination arrows at page corners. The page is a long horizontal editorial scroll divided into discrete exhibition rooms, each introduced by a serif italic section title with a gold underline.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$2a"
+      },
+      {
+        "title": "Editorial Conventions",
+        "content": "The system carries three signature editorial devices that should be preserved across every new page: (1) the bracketed action — primary actions may be wrapped in literal `{ }` braces as a typographic convention, e.g. `{ ORDER NOW }`, `{ SUBSCRIBE }`; (2) the inline category trio — section labels split across a three-column grid with the active category in italic and underlined in gold, inactive categories in roman at 40% opacity; (3) the Art Déco gold rule — every section introduction is a centered italic Bodoni title with a 1px #bc9c5c horizontal rule beneath, spanning the full content width. These three devices are the visual equivalent of chapter ornaments in a printed monograph; treat them as load-bearing, not decorative."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadows. Elevation is communicated exclusively through tonal layering of the five neutrals (#f6f6f6 → #ffffff → #b3b3b3 → #0a0a0a → #000000) and through 1px hairline rules in #000000 or #bc9c5c. Every surface is flat; depth comes from typography scale, whitespace, and the occasional dark band. Adding drop-shadow, blur, or any soft-edge effect would break the letterpress-print metaphor that defines the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "nav",
+            "heading",
+            "hero",
+            "link",
+            "body",
+            "icon",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 1476,
+          "confidence": 1,
+          "prominence": 94376673.09609348,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 2,
+            "nav/color": 48,
+            "body/color": 51,
+            "card/color": 9,
+            "hero/color": 2,
+            "icon/color": 3,
+            "link/color": 5,
+            "nav/stroke": 2,
+            "other/fill": 3,
+            "image/color": 1,
+            "input/color": 1,
+            "other/color": 155,
+            "button/color": 7,
+            "footer/color": 1,
+            "heading/color": 10,
+            "nav/borderColor": 192,
+            "body/borderColor": 204,
+            "card/borderColor": 36,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 20,
+            "image/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 620,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 3063972.951331068,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 3,
+            "heading/color": 3,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 12,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2412154.4298475273,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 564656,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bc9c5c",
+          "oklch": {
+            "c": 0.09097396817284208,
+            "h": 83.58255755891469,
+            "l": 0.7077679370562157
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 365063.914126846,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005527068489384424,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#0a0a0a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.43,
+          "background": "#f6f6f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.32,
+          "background": "#f6f6f6",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#b3b3b3",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#000000",
+          "foreground": "#bc9c5c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#0a0a0a",
+          "foreground": "#bc9c5c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.61,
+          "background": "#ffffff",
+          "foreground": "#bc9c5c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.41,
+          "background": "#f6f6f6",
+          "foreground": "#bc9c5c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#b3b3b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#b3b3b3",
+          "foreground": "#bc9c5c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f6f6f6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.06,
+          "background": "#0a0a0a",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 82,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BodoniSvntytwoITCStd-Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 208,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 71,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BodoniSvntytwoITCStd-BookIt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body",
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "input",
+            "body",
+            "icon"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "nav",
+            "heading",
+            "hero",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 117,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BodoniSvntytwoITCStd-BookIt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BodoniSvntytwoITCStd-BookIt",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BodoniSvntytwoITCStd-BookIt",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "BodoniSvntytwoITCStd-Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "BodoniSvntytwoITCStd-BookIt",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/385c788a-2194-49aa-9581-8ab4147b0dbd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/35024c53-5720-4224-a658-cfd0a679fd51.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Franco Maria Ricci Editore design system\",\"item\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9#style-reference\",\"name\":\"Franco Maria Ricci Editore design system reference\",\"headline\":\"Franco Maria Ricci Editore design system | Refero Styles\",\"description\":\"Explore Franco Maria Ricci Editore's light E-commerce design system: Vellum White #f6f6f6, Paper #ffffff colors, BodoniSvntytwoITCStd-Book,...\",\"url\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Franco Maria Ricci Editore\",\"url\":\"https://www.francomariaricci.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6120469b-a1c8-46d3-b7fd-8aa6dc22c0d9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35024c53-5720-4224-a658-cfd0a679fd51.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35024c53-5720-4224-a658-cfd0a679fd51.jpg\",\"caption\":\"Screenshot of Franco Maria Ricci Editore\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35024c53-5720-4224-a658-cfd0a679fd51.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Franco Maria Ricci Editore design system\",\"Franco Maria Ricci Editore website design\",\"Franco Maria Ricci Editore colors\",\"Franco Maria Ricci Editore typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Vellum White\",\"Paper\",\"Gallery Ink\",\"Letterpress Black\",\"BodoniSvntytwoITCStd-Book\",\"BodoniSvntytwoITCStd-BookIt\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Franco Maria Ricci Editore design system\"},{\"@type\":\"Thing\",\"name\":\"Franco Maria Ricci Editore website design\"},{\"@type\":\"Thing\",\"name\":\"Franco Maria Ricci Editore colors\"},{\"@type\":\"Thing\",\"name\":\"Franco Maria Ricci Editore typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:49:19.178Z\",\"dateModified\":\"2026-04-30T02:49:19.178Z\"}]}"
+}

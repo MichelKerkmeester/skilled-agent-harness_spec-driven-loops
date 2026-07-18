@@ -1,0 +1,392 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Bone — Page canvas, primary card surface — the off-white paper tone the entire interface sits on, warm enough to feel linen, not bright enough to feel clinical"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — All body type, primary action border, all interactive strokes — the only dark in the system, pure black rather than warm charcoal to create maximum contrast against the cream canvas"
+    },
+    "stone": {
+      "$value": "#e5e2dc",
+      "$type": "color",
+      "$description": "Stone — Card borders, hairline dividers, subtle section breaks — the warm gray-beige that separates elements without drawing attention"
+    },
+    "linen": {
+      "$value": "#edede7",
+      "$type": "color",
+      "$description": "Linen — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Graphite — Card secondary text, muted metadata, price-adjacent labels — the mid-gray that recedes behind the primary ink-black headlines"
+    },
+    "silt": {
+      "$value": "#d6d1c7",
+      "$type": "color",
+      "$description": "Silt — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "blush": {
+      "$value": "#ead1d0",
+      "$type": "color",
+      "$description": "Blush — Decorative accent surface, soft wash behind editorial text blocks, occasional section tints — the dusty rose that nods to botanical petals without becoming saccharine"
+    },
+    "citron": {
+      "$value": "#f3ffa9",
+      "$type": "color",
+      "$description": "Citron — Promotional highlight surface — used sparingly as a wash behind sale tags, value bundle badges, or limited-edition callouts; pale enough to never compete with product photography"
+    }
+  },
+  "font": {
+    "pp-right-grotesk": {
+      "$value": "PP Right Grotesk",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles — weight 200 is anti-convention for commerce; the ultra-thin strokes create a calligraphic, editorial whisper that treats product names as poetry rather than slogans. Tight tracking (-0.015em) pulls the delicate strokes into a cohesive block."
+    },
+    "shne": {
+      "$value": "Söhne",
+      "$type": "fontFamily",
+      "$description": "Primary body, UI, navigation, product names, buttons — the workhorse neutral grotesque. Weight 400 for body copy keeps a quiet editorial feel; weight 500 for navigation and product names adds enough presence to guide the eye. Slight positive tracking on uppercase labels opens them up to read as proper editorial tags."
+    },
+    "shne-mono": {
+      "$value": "Söhne Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels and scent-family tags — used for 'SMOKY & MEDITATIVE', 'BUTTERY & SOFT', 'VALUE BUNDLE' type annotations. The monospace width and widened tracking (0.05em) give these labels a scientific, museum-catalog quality that contrasts with the organic display type."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Söhne Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Söhne Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Söhne Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Söhne Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Söhne Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Söhne",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Right Grotesk",
+        "fontSize": "34px",
+        "fontWeight": 200,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "PP Right Grotesk",
+        "fontSize": "34px",
+        "fontWeight": 200,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Right Grotesk",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Right Grotesk",
+        "fontSize": "75px",
+        "fontWeight": 500,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 75px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "bone": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the linen-paper foundation every element sits on"
+    },
+    "citron-wash": {
+      "$value": "#f3ffa9",
+      "$type": "color",
+      "$description": "Surface level 2: Promotional surface — used behind value badges and sale highlights"
+    },
+    "blush-wash": {
+      "$value": "#ead1d0",
+      "$type": "color",
+      "$description": "Surface level 3: Editorial accent surface — soft pink wash behind descriptive text blocks"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Inverted surface — primary action buttons, dark product cards, full-bleed footer zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://leifproducts.com",
+      "siteName": "Leif Products",
+      "extractedAt": "2026-06-03T20:08:44.606Z",
+      "variant": "extended"
+    }
+  }
+}

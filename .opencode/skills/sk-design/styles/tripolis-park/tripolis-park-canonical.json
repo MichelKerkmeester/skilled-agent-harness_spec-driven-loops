@@ -1,0 +1,1203 @@
+{
+  "source": "https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad",
+  "uuid": "bce52fd3-ac16-4e67-a45f-78bfc2350aad",
+  "name": "Tripolis-Park™",
+  "northStar": "luminous violet portal — soft lavender light bleeding through frosted glass edges, achromatic content floating above.",
+  "capturedAt": "2026-07-18T07:14:10.912Z",
+  "meta": {
+    "url": "https://www.tripolis-park.com",
+    "siteName": "Tripolis-Park™",
+    "extractedAt": "2026-06-03T22:06:49.735Z",
+    "durationMs": 31062,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 269,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the Aurora Lilac → Deep Iris gradient (135deg) as the full-bleed background for hero sections, section transitions, and atmospheric dividers — never as a small accent or button fill.",
+      "Set all display text at 47px with IvarHeadline Medium (serif) or Matter Medium/SemiBold (sans) with tracking between -0.015em and -0.025em — never set display copy at body sizes with display weight.",
+      "Apply tabular numerals ('tnum') via font-feature-settings on all Matter text — it signals precision and is a non-negotiable brand mark.",
+      "Use 0px border-radius on all components — cards, buttons, tags, frames. The sharp-cornered geometry is core to the system; rounding would undermine the architectural feel.",
+      "Pair white text (#ffffff) on gradient/violet backgrounds, and Midnight Ink (#000000) on white surfaces — never use gray text on white for primary content.",
+      "Use hairline borders (1px) in white on dark surfaces and Midnight Ink or Smoke Line (#cccccc) on light surfaces for structural framing.",
+      "Maintain a 6px base unit for all spacing — derive all padding, margins, and gaps as multiples (12px, 18px, 23px, 36px)."
+    ],
+    "donts": [
+      "Don't introduce additional colors to the palette — the system is achromatic + violet gradient. No green, blue, red, or warm accents outside the gradient.",
+      "Don't use border-radius greater than 0px on any component — no rounded buttons, no pill tags, no curved cards. The sharp geometry is intentional.",
+      "Don't set headings at weights above 600 (SemiBold) — the system relies on the Medium-to-SemiBold tier, not heavy/black weights.",
+      "Don't apply drop shadows or elevation effects — the design uses flat surfaces with hairline borders for separation, never shadows.",
+      "Don't use the gradient on small UI elements (buttons, badges, icons) — it belongs only on large atmospheric surfaces.",
+      "Don't set body text below 14px or above 18px — the 14-18px range is the only readable zone for this system.",
+      "Don't mix serif and sans within the same heading — choose IvarHeadline OR Matter for any single headline, not both."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#b9a3e8",
+        "name": "Aurora Lilac",
+        "role": "Hero gradient start, atmospheric section backgrounds — the soft entry tone of the brand's signature violet wash",
+        "group": "brand",
+        "gradient": "linear-gradient(135deg, #c5b0ec 0%, #a78bdb 45%, #7c4fb8 100%)"
+      },
+      {
+        "hex": "#7c4fb8",
+        "name": "Deep Iris",
+        "role": "Hero gradient deep stop, section transition anchors — the rich violet terminus that gives the gradient its weight",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight Ink",
+        "role": "Primary text, heading strokes, hairline borders, icon fills, link color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Carbon Mist",
+        "role": "Secondary text, subdued headings — softer than pure black for less critical copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Frost White",
+        "role": "Page canvas, card surfaces, text on dark/gradient backgrounds, ghost button fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b5b5",
+        "name": "Ash Veil",
+        "role": "Muted helper text, disabled states, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Smoke Line",
+        "role": "Hairline dividers, subtle structural lines, secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e2",
+        "name": "Pale Mist",
+        "role": "Light borders, input field outlines, card edge definition",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Concrete Gray",
+        "role": "Surface variation, muted backgrounds, placeholder fills",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a max-width 1200px centered container for content, with full-bleed gradient sections that extend beyond the container edges. The hero is a full-viewport gradient field with the brand title floating in a bordered frame and a tagline below. Sections flow into each other via organic curved arcs rather than hard dividers. Navigation is minimal — a top bar with ghost-style links floating transparently over the gradient. Content sections alternate between gradient fields and white surfaces, creating a rhythm of atmosphere-to-clarity. The layout is single-column or asymmetric two-column for content, with generous vertical spacing (88-110px between sections) to let the gradient breathe.",
+    "imagery": "Photography and visual content are used sparingly and treated with minimal styling — no rounded corners, no drop shadows, no colored overlays. Images bleed to container edges or sit within sharp-cornered frames. The dominant visual is the gradient field itself with its organic curved arcs, which functions as both background and decorative element. When photographs appear, they are likely high-key and natural, treated with no filters or duotone effects — the object or scene speaks for itself within the system. The overall density is text-and-atmosphere dominant rather than image-heavy.",
+    "similar": [
+      {
+        "why": "Same flat-surface, no-radius, hairline-border component language with gradient atmospheric hero sections",
+        "business": "Linear"
+      },
+      {
+        "why": "Same monochrome content system with a single signature gradient as the hero atmospheric device",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same editorial typography pairing (custom sans + serif display), tight negative tracking, and restrained achromatic palette",
+        "business": "Arc"
+      },
+      {
+        "why": "Same generous section spacing, sharp-cornered components, and gradient-as-atmosphere approach to hero design",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "frames": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5-23px",
+      "sectionGap": "88-110px",
+      "cardPadding": "23-36px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background, primary content surface"
+      },
+      {
+        "hex": "#a78bdb",
+        "name": "Gradient Field",
+        "level": 1,
+        "purpose": "Hero sections and atmospheric dividers — the brand's signature violet wash"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Surface",
+        "level": 2,
+        "purpose": "Cards and content blocks floating on gradient fields — distinguished by hairline borders, not shadow"
+      }
+    ],
+    "northStar": "luminous violet portal — soft lavender light bleeding through frosted glass edges, achromatic content floating above.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "subheading",
+        "size": 27,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 47,
+        "lineHeight": 1.12,
+        "letterSpacing": -0.7
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Gradient Banner",
+        "role": "Full-bleed section background with brand signature gradient",
+        "description": "Full-width violet-to-lavender gradient (135deg, #c5b0ec → #a78bdb → #7c4fb8). No fixed height — content dictates vertical space. Curved organic shapes (visible as soft arcs in the gradient) overlay the wash to add depth. All content inside this banner uses white (#ffffff) text."
+      },
+      {
+        "name": "Bordered Title Frame",
+        "role": "Compositional device for brand/title display in hero",
+        "description": "Rectangular frame with 1-2px white (#ffffff) border, fully transparent fill, no radius (sharp corners). Contains the brand mark at 27px Matter Regular in white. Padding approximately 14px vertical, 23-36px horizontal. Functions as a 'window' motif — literalizing the 'window to new technology' tagline."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Hero-level statement headline",
+        "description": "IvarHeadline Medium or Matter Medium/SemiBold at 47px, line-height 1.08-1.12, letter-spacing -0.015em to -0.025em. White (#ffffff) on gradient backgrounds, Midnight Ink (#000000) on white surfaces. The tight tracking and serif-or-sans duality is the signature typographic moment."
+      },
+      {
+        "name": "Tagline Subtext",
+        "role": "Supporting text under hero/display headings",
+        "description": "Matter Regular at 18px, line-height 1.25, white (#ffffff) on dark/gradient, Midnight Ink (#000000) on light. Maximum two lines. Weight 400 — the thinness contrasts the display heading's 47px weight, creating visual breath."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Outlined/ghost-style action button in navigation",
+        "description": "Transparent background, 1px white border (on dark) or 1px black border (on light), no radius, padding 5px vertical / 14px horizontal. Text at 14px Matter Regular. No fill on hover — opacity or border-color shift only."
+      },
+      {
+        "name": "Section Divider Arc",
+        "role": "Organic curve separator between sections",
+        "description": "Large curved SVG path overlaying the gradient background. No hard horizontal dividers — sections flow into each other via these soft arcs. Color is a lighter/darker variant of the surrounding gradient, creating layered depth."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent or white background, 36px horizontal padding, 14px Matter Regular links. Links are Midnight Ink (#000000) on light, white on gradient. No background fill — the nav floats on whatever surface it sits on."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph content",
+        "description": "Matter Regular at 14px, line-height 1.20, Midnight Ink (#000000). 23px bottom margin between paragraphs. Tabular numerals enabled. Maximum measure ~65-75 characters."
+      },
+      {
+        "name": "Heading with Underline Accent",
+        "role": "Section heading with decorative element",
+        "description": "Matter or IvarHeadline at 27-47px with 11-13px margin-bottom. Occasionally paired with a short colored rule or accent element below."
+      },
+      {
+        "name": "Image Frame",
+        "role": "Photographic or illustrative content container",
+        "description": "No border, no radius (0px), no shadow. Images bleed to their container edges with no decorative treatment. Full-bleed in hero, contained within max-width in content sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse sans — body copy at 14px and 18px, subheadings at 27px. The humanist proportions and subtle warmth make long-form reading comfortable. Tabular numerals ('tnum') are enabled site-wide, signaling precision and data-readiness across all sizes.",
+        "sizes": "14px, 18px, 27px, 47px",
+        "family": "Matter",
+        "weight": "400",
+        "lineHeight": "1.20-1.25",
+        "substitute": "Inter, Söhne, or DM Sans",
+        "letterSpacing": "-0.0250em, -0.0240em",
+        "fontFeatureSettings": "\"tnum\""
+      },
+      {
+        "role": "Medium-weight emphasis — used for key headings and callouts at 27px and 47px with -0.025em tracking. The medium weight (not bold) keeps the voice measured and confident rather than aggressive.",
+        "sizes": "",
+        "family": "Matter",
+        "weight": "500",
+        "lineHeight": "1.08-1.25",
+        "substitute": "Inter Medium, Söhne Medium",
+        "letterSpacing": "-0.025em at 47px"
+      },
+      {
+        "role": "SemiBold display weight — reserved for the most prominent headings at 47px with -0.024em tracking. The jump from Medium to SemiBold at the same size is rare and intentional: it creates a deliberate weight tier for hero-level statements.",
+        "sizes": "",
+        "family": "Matter",
+        "weight": "600",
+        "lineHeight": "1.12",
+        "substitute": "Inter SemiBold, Söhne SemiBold",
+        "letterSpacing": "-0.024em at 47px"
+      },
+      {
+        "role": "Serif display face for editorial-style headings at 47px. The contrast with Matter's sans body creates a typographic duet — serif headlines anchor emotion and permanence, sans body delivers clarity. Tracking at -0.015em to -0.01em keeps the serif tight and contemporary rather than traditional.",
+        "sizes": "47px",
+        "family": "IvarHeadline",
+        "weight": "400",
+        "lineHeight": "1.08-1.12",
+        "substitute": "Tiempos Headline, Playfair Display, or GT Sectra",
+        "letterSpacing": "-0.015em to -0.01em at 47px"
+      }
+    ],
+    "description": "Tripolis-Park uses a luminous violet-to-lavender gradient as its signature atmosphere — a soft, otherworldly wash that fills hero surfaces and section dividers, making the brand feel like a portal rather than a corporate site. Against this atmospheric purple, the interface stays strictly achromatic: pure white surfaces, black text, and hairline borders do all the structural work. Typography is custom and editorial — a humanist sans (Matter) paired with a refined serif (IvarHeadline) — set with tight negative tracking on display sizes to create confident, tight headlines. Components are minimal and borderless by default, with thin rectangular frames (no radius) used as deliberate compositional devices, not decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tripolis-Park™ design system\",\"item\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#style-reference\",\"name\":\"Tripolis-Park™ design system reference\",\"headline\":\"Tripolis-Park™ design system | Refero Styles\",\"description\":\"Explore Tripolis-Park™'s light Other design system: Aurora Lilac #b9a3e8, Deep Iris #7c4fb8 colors, Matter, Matter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tripolis-Park™\",\"url\":\"https://www.tripolis-park.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"caption\":\"Screenshot of Tripolis-Park™\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tripolis-Park™ design system\",\"Tripolis-Park™ website design\",\"Tripolis-Park™ colors\",\"Tripolis-Park™ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aurora Lilac\",\"Deep Iris\",\"Midnight Ink\",\"Carbon Mist\",\"Matter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ design system\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ website design\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ colors\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:46:01.954Z\",\"dateModified\":\"2026-04-30T02:46:01.954Z\"}]}19:T6a8,**Quick Color Reference**\n- Text: #000000 (Midnight Ink)\n- Background: #ffffff (Frost White)\n- Border: #cccccc (Smoke Line)\n- Accent: #7c4fb8 (Deep Iris)\n- Gradient field: #b9a3e8 (Aurora Lilac) with linear-gradient(135deg, #c5b0ec 0%, #a78bdb 45%, #7c4fb8 100%)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed background with linear-gradient(135deg, #c5b0ec 0%, #a78bdb 45%, #7c4fb8 100%). Centered bordered frame: 1px white border, transparent fill, 0px radius, 14px 23px padding, containing 'Tripolis-Park™' at 27px Matter Regular weight 400 in #ffffff. Below: tagline at 18px Matter Regular in #ffffff, line-height 1.25. Section min-height 100vh, flexbox centered.\n\n2. **Display Heading on White**: 'A window to new technology' at 47px IvarHeadline Medium, line-height 1.08, letter-spacing -0.7px, color #000000. 23px margin-bottom. Followed by body text at 14px Matter Regular, line-height 1.20, color #2d2d2d, max-width 65ch.\n\n3. **Ghost Navigation Button**: Transparent background, 1px solid #000000 border, 0px radius, padding 5px 14px, text at 14px Matter Regular in #000000. On hover: border remains 1px but color shifts to #808080 — no fill change.\n\n4. **Content Card on White**: Background #ffffff, 0px radius, 1px solid #e2e2e2 border, padding 23px. Heading at 27px Matter Medium in #000000 with -0.025em tracking. Body at 14px Matter Regular in #2d2d2d. No shadow.\n\n5. **Gradient Section Divider**: Full-width 200px tall section with the Aurora Lilac → Deep Iris gradient. Overlay a large curved SVG arc in a lighter variant of the gradient. Content: 47px IvarHeadline Medium in #ffffff, line-height 1.08, letter-spacing -0.7px."
+      }
+    ],
+    "elevationPhilosophy": "The design system intentionally avoids drop shadows and elevation effects. All surface separation is achieved through the violet gradient field contrasting with pure white surfaces, and through 1px hairline borders (#cccccc or #e2e2e2 on light, #ffffff on dark). This creates a flat, architectural quality where depth comes from color fields and compositional framing, not from simulated z-axis elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "button",
+            "image",
+            "link",
+            "icon"
+          ],
+          "frequency": 972,
+          "confidence": 1,
+          "prominence": 38593438.82770897,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "nav/color": 3,
+            "body/color": 25,
+            "hero/color": 2,
+            "link/color": 6,
+            "other/fill": 36,
+            "image/color": 14,
+            "other/color": 111,
+            "button/color": 9,
+            "heading/color": 20,
+            "nav/borderColor": 12,
+            "body/borderColor": 100,
+            "hero/borderColor": 8,
+            "link/borderColor": 24,
+            "image/borderColor": 56,
+            "other/borderColor": 444,
+            "button/borderColor": 16,
+            "heading/borderColor": 80
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 234,
+          "confidence": 1,
+          "prominence": 12334625.53832079,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 7,
+            "icon/color": 3,
+            "link/color": 5,
+            "other/fill": 3,
+            "other/color": 9,
+            "button/color": 7,
+            "other/stroke": 1,
+            "heading/color": 5,
+            "nav/borderColor": 20,
+            "body/borderColor": 28,
+            "icon/borderColor": 12,
+            "link/borderColor": 20,
+            "other/borderColor": 36,
+            "button/borderColor": 48,
+            "heading/borderColor": 20,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 131412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e2e2e2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9127904142191143
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 124854,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 108926,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#b5b5b5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7731043505289305
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 93089,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6992607330816131
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 77344,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 61692,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#717171",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5486270931665974
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 46131,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#5b5b5b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4711943129424412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 30662,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15285,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#2d2d2d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2971629660895966
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#e2e2e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#ffffff",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.63,
+          "background": "#e2e2e2",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.24,
+          "background": "#b5b5b5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#ffffff",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.58,
+          "background": "#cccccc",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.52,
+          "background": "#e2e2e2",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.79,
+          "background": "#ffffff",
+          "foreground": "#5b5b5b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.72,
+          "background": "#b5b5b5",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#cccccc",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#e2e2e2",
+          "foreground": "#5b5b5b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.75,
+          "background": "#b5b5b5",
+          "foreground": "#444444"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#cccccc",
+          "foreground": "#5b5b5b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.31,
+          "background": "#b5b5b5",
+          "foreground": "#5b5b5b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "body",
+            "image"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginRight|image"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "marginBottom|other",
+            "paddingTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|button",
+            "marginRight|heading"
+          ]
+        },
+        {
+          "value": 133,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 207,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 270,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Matter-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 196,
+          "fontFeatureSettings": [
+            "\"tnum\""
+          ]
+        },
+        {
+          "family": "Matter-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IvarHeadline-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Matter-SemiBold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Matter-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Matter-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "button",
+            "body",
+            "image",
+            "link",
+            "icon"
+          ],
+          "frequency": 188,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Matter-Medium",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Matter-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Matter-SemiBold",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "IvarHeadline-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Matter-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "IvarHeadline-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3aae7f2d-ff2a-4873-a7d5-8298769de90d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tripolis-Park™ design system\",\"item\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#style-reference\",\"name\":\"Tripolis-Park™ design system reference\",\"headline\":\"Tripolis-Park™ design system | Refero Styles\",\"description\":\"Explore Tripolis-Park™'s light Other design system: Aurora Lilac #b9a3e8, Deep Iris #7c4fb8 colors, Matter, Matter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tripolis-Park™\",\"url\":\"https://www.tripolis-park.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bce52fd3-ac16-4e67-a45f-78bfc2350aad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"caption\":\"Screenshot of Tripolis-Park™\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c515b33c-0b5a-4cec-bb49-7731e66b5829.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tripolis-Park™ design system\",\"Tripolis-Park™ website design\",\"Tripolis-Park™ colors\",\"Tripolis-Park™ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aurora Lilac\",\"Deep Iris\",\"Midnight Ink\",\"Carbon Mist\",\"Matter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ design system\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ website design\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ colors\"},{\"@type\":\"Thing\",\"name\":\"Tripolis-Park™ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:46:01.954Z\",\"dateModified\":\"2026-04-30T02:46:01.954Z\"}]}19:T6a8,**Quick Color Reference**\n- Text: #000000 (Midnight Ink)\n- Background: #ffffff (Frost White)\n- Border: #cccccc (Smoke Line)\n- Accent: #7c4fb8 (Deep Iris)\n- Gradient field: #b9a3e8 (Aurora Lilac) with linear-gradient(135deg, #c5b0ec 0%, #a78bdb 45%, #7c4fb8 100%)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed background with linear-gradient(135deg, #c5b0ec 0%, #a78bdb 45%, #7c4fb8 100%). Centered bordered frame: 1px white border, transparent fill, 0px radius, 14px 23px padding, containing 'Tripolis-Park™' at 27px Matter Regular weight 400 in #ffffff. Below: tagline at 18px Matter Regular in #ffffff, line-height 1.25. Section min-height 100vh, flexbox centered.\n\n2. **Display Heading on White**: 'A window to new technology' at 47px IvarHeadline Medium, line-height 1.08, letter-spacing -0.7px, color #000000. 23px margin-bottom. Followed by body text at 14px Matter Regular, line-height 1.20, color #2d2d2d, max-width 65ch.\n\n3. **Ghost Navigation Button**: Transparent background, 1px solid #000000 border, 0px radius, padding 5px 14px, text at 14px Matter Regular in #000000. On hover: border remains 1px but color shifts to #808080 — no fill change.\n\n4. **Content Card on White**: Background #ffffff, 0px radius, 1px solid #e2e2e2 border, padding 23px. Heading at 27px Matter Medium in #000000 with -0.025em tracking. Body at 14px Matter Regular in #2d2d2d. No shadow.\n\n5. **Gradient Section Divider**: Full-width 200px tall section with the Aurora Lilac → Deep Iris gradient. Overlay a large curved SVG arc in a lighter variant of the gradient. Content: 47px IvarHeadline Medium in #ffffff, line-height 1.08, letter-spacing -0.7px."
+}

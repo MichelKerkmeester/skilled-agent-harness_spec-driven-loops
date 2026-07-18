@@ -1,0 +1,332 @@
+{
+  "color": {
+    "deep-plum": {
+      "$value": "#23002b",
+      "$type": "color",
+      "$description": "Deep Plum — Hero canvas, dark section backgrounds, page-level ground — sets the exclusive nighttime club mood"
+    },
+    "lavender-shock": {
+      "$value": "#e894ff",
+      "$type": "color",
+      "$description": "Lavender Shock — Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "espresso-brown": {
+      "$value": "#291900",
+      "$type": "color",
+      "$description": "Espresso Brown — Warm near-black for card backgrounds, dark UI surfaces, warm-tinted borders — adds subtle warmth to the otherwise cool palette"
+    },
+    "ink-teal": {
+      "$value": "#002629",
+      "$type": "color",
+      "$description": "Ink Teal — Cool near-black for body text, deep card surfaces, cool borders — the teal undertone distinguishes dark text from the plum background"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Primary body text on light sections, icon strokes, dense UI text"
+    },
+    "charcoal": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Charcoal — Headlines on light sections, heavy text blocks, near-black emphasis"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Maximum-contrast text on white sections, solid fills for condensed display type in light zones"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light section canvas, reverse text on dark plum, card surfaces in light zones"
+    },
+    "mint-signal": {
+      "$value": "#93ffe4",
+      "$type": "color",
+      "$description": "Mint Signal — Accent punctuation: highlight washes, badge backgrounds, small functional moments — cool contrast against lavender"
+    },
+    "amber-pulse": {
+      "$value": "#ffac47",
+      "$type": "color",
+      "$description": "Amber Pulse — Accent punctuation: warm highlight moments, secondary badges, energy markers — warm contrast against the cool palette"
+    }
+  },
+  "font": {
+    "druk-condensed-super-desktop": {
+      "$value": "Druk Condensed Super Desktop",
+      "$type": "fontFamily",
+      "$description": "Display and section headings — extreme condensed bold that fills containers edge-to-edge; 151-317px for hero-scale words, 24-44px for subheadings"
+    },
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "UI body, navigation, buttons, supporting copy — geometric sans-serif that stays quiet so Druk can shout; 58px is the bridge size between UI and display"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for body text rendering"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 3.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "151px",
+        "fontWeight": 500,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 151px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "187px",
+        "fontWeight": 500,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 187px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Druk Condensed Super Desktop",
+        "fontSize": "317px",
+        "fontWeight": 400,
+        "lineHeight": 0.51
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 317px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "deep-plum-ground": {
+      "$value": "#23002b",
+      "$type": "color",
+      "$description": "Surface level 0: Hero and dark section canvas — the primary brand surface"
+    },
+    "espresso-card": {
+      "$value": "#291900",
+      "$type": "color",
+      "$description": "Surface level 1: Dark card surfaces, warm-tinted elevated elements on plum ground"
+    },
+    "ink-teal-card": {
+      "$value": "#002629",
+      "$type": "color",
+      "$description": "Surface level 2: Cool-tinted card surfaces and deep text on light sections"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Light section canvas, reverse text, high-contrast break sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.champions4good.club",
+      "siteName": "Champions4good",
+      "extractedAt": "2026-06-03T19:53:34.032Z",
+      "variant": "extended"
+    }
+  }
+}

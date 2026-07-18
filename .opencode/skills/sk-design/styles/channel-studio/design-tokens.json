@@ -1,0 +1,175 @@
+{
+  "color": {
+    "bone-gray": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Bone Gray — Primary text on dark surfaces, hairline borders on images and links, divider strokes — a desaturated near-white that reads softer than pure #fff against black"
+    },
+    "carbon-black": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon Black — Page background, section canvas, project card surface — the entire design lives here"
+    },
+    "iron-gray": {
+      "$value": "#727272",
+      "$type": "color",
+      "$description": "Iron Gray — Muted secondary text, low-emphasis borders, caption-level metadata"
+    },
+    "coral-flare": {
+      "$value": "#ff7777",
+      "$type": "color",
+      "$description": "Coral Flare — Accent for project titles, signature heading borders, and occasional decorative strokes — the only chromatic element in the system, used sparingly for editorial emphasis"
+    }
+  },
+  "font": {
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all roles — navigation, body, subheadings, and display headlines. Weight stays at 400 throughout; visual hierarchy is built entirely through size and tracking, not weight. Display at 75px uses line-height 0.90–0.95, creating a compressed poetry-staircase effect unique to this system."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    }
+  },
+  "spacing": {
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "carbon-canvas": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, all section panels, footer — the single base surface"
+    },
+    "grayscale-photographic-surface": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed hero backgrounds and atmospheric imagery — desaturated photographic textures that read as a lighter surface without being a solid color"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://channel.studio",
+      "siteName": "Channel Studio",
+      "extractedAt": "2026-06-03T19:39:13.498Z",
+      "variant": "extended"
+    }
+  }
+}

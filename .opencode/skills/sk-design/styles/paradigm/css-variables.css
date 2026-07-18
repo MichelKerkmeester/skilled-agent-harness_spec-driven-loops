@@ -1,0 +1,123 @@
+:root {
+  /* Colors */
+  --color-midnight-ink: #080b12;
+  --color-paper: #ffffff;
+  --color-fog: #f6f7f8;
+  --color-pearl: #edeef1;
+  --color-stone: #d9d9d9;
+  --color-lavender-mist: #dbdbee;
+  --color-mist: #b5b9c4;
+  --color-pewter: #9898ae;
+  --color-steel: #848a9c;
+  --color-smoke: #acacae;
+  --color-ash: #9d9ea1;
+  --color-iron: #606167;
+  --color-graphite: #6c6d73;
+  --color-slate: #4f535e;
+  --color-charcoal: #2b2b2c;
+  --color-electric-iris: #0a33ff;
+  --color-periwinkle: #7f90ce;
+  --color-hero-dawn: #010b18;
+  --gradient-hero-dawn: linear-gradient(180deg, #010b18 0%, #010818 16%, #103b91 49%, #4c7de8 78%, #bad0ff 97%);
+  --color-sky-whisper: #e2efff;
+  --color-sapphire-ink: #061353;
+  --color-mint-whisper: #e4f3e2;
+  --color-forest-ink: #03350f;
+  --color-sprout-whisper: #d6ffe0;
+  --color-saffron-whisper: #faeed1;
+  --color-amber-ink: #423301;
+  --color-blossom-whisper: #ffe6f7;
+  --color-mulberry-ink: #600537;
+  --color-plum-ink: #21034d;
+  --color-crimson-ink: #580101;
+  --color-apricot-whisper: #fee8dd;
+  --color-russet-ink: #581c01;
+
+  /* Typography — Font Families */
+  --font-atacama-var: 'Atacama VAR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-neue-montreal: 'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-intl: 'Suisse Intl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.12px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.18px;
+  --text-heading-sm: 21px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: -0.21px;
+  --text-heading-lg: 44px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -2.64px;
+  --text-display: 54px;
+  --leading-display: 1;
+  --tracking-display: -2.7px;
+
+  /* Typography — Weights */
+  --font-weight-w317: 317;
+  --font-weight-w370: 370;
+  --font-weight-regular: 400;
+  --font-weight-w450: 450;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+  --spacing-188: 188px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 100px;
+
+  /* Named Radii */
+  --radius-tabs: 100px;
+  --radius-cards: 4px;
+  --radius-badges: 4px;
+  --radius-buttons: 4px;
+  --radius-feature-cards: 16px;
+
+  /* Shadows */
+  --shadow-lg: rgb(255, 255, 255) 0px 0px 24px 0px inset;
+  --shadow-subtle: rgba(0, 0, 0, 0.06) 0px 1px 3px 0px;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.04) 0px 1px 3px 0px;
+  --shadow-subtle-3: rgba(76, 120, 250, 0.14) 0px 0px 0px 3px;
+  --shadow-xl: rgba(0, 0, 0, 0.09) 0px 4px 40px 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-fog: #f6f7f8;
+  --surface-lavender-mist: #dbdbee;
+  --surface-midnight: #080b12;
+}

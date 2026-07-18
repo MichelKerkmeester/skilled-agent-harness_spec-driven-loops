@@ -1,0 +1,354 @@
+{
+  "color": {
+    "solar-beam": {
+      "$value": "#ffd500",
+      "$type": "color",
+      "$description": "Solar Beam — The system's only chromatic color — hero gradient beam, handwritten underline accent, and the pill-shaped highlight button inside the dark nav capsule. This is the single note of warmth in an otherwise achromatic composition; its presence transforms monochrome blocks into a sunlit moment"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, display headlines, nav capsule background, and dominant typographic mass. Sets the highest-contrast tone for the condensed display name and grounds the floating nav pill"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, portfolio thumbnails, and the base of the white canvas. Provides the surface that the yellow beam and obsidian type play against"
+    },
+    "concrete": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Concrete — Page canvas and the lightest card/section background. Warmer than pure white, creates the gallery-wall feel beneath the hero"
+    },
+    "graphite": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Graphite — Body text, secondary metadata, and muted UI labels. The mid-neutral that bridges the obsidian headlines and the lighter ash tones"
+    },
+    "ash": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, tertiary body copy, and the soft end of the text scale. Sits beneath Graphite for non-essential information"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Subdued heading and label color. Slightly cooler than Ash; used for section labels that need to recede behind the primary type"
+    },
+    "silver": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Silver — Subtle shadow tint and the softest hairline border. Carries the single shadow pattern that gives portfolio cards their barely-there lift"
+    },
+    "soft-shadow": {
+      "$value": "#cfcfcf",
+      "$type": "color",
+      "$description": "Soft Shadow — Drop shadow and elevation wash. The companion to Silver for the card shadow rgba(0,0,0,0.12) — never seen directly, only felt as depth"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "reddit-sans-condensed": {
+      "$value": "Reddit Sans Condensed",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the name 'DANIEL SUN' at 246px and section titles like 'MY LATEST WORK' at 88px. Ultra-condensed, ultra-black; the type is the architecture. Tracking tightens as size grows (-6.9px at 246px) to keep the massive letterforms visually unified. Substitute: Bebas Neue or Anton for the condensed impact, though no free font fully matches the geometry."
+    },
+    "inter-display": {
+      "$value": "Inter Display",
+      "$type": "fontFamily",
+      "$description": "Section headings and larger body text. The medium weight (not bold) is deliberate — Inter Display 500 sits between the whisper of system text and the shout of the display face, creating a quiet middle register. Used for the 26–30px subheadings and the 18–20px lead paragraphs."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation labels, and inline text. The 14px body-sm and 20px subheading sizes are the everyday workhorses; the 128px outlier is a decorative/typographic moment. Consistent 500 weight keeps the text system cohesive without ever feeling bold."
+    },
+    "caveat": {
+      "$value": "Caveat",
+      "$type": "fontFamily",
+      "$description": "Handwritten personal asides — 'From 2020 til today,' date stamps, signature-style annotations. The only script in the system; its presence signals intimacy and breaks the architectural severity of the condensed display type. Use sparingly — one or two instances per section maximum."
+    },
+    "system-sans": {
+      "$value": "System Sans",
+      "$type": "fontFamily",
+      "$description": "Smallest UI text — copyright lines, micro-labels, and inline metadata. Stays quiet and never competes with the display system."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter Display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Caveat",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter Display",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Caveat",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter Display",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Reddit Sans Condensed",
+        "fontSize": "36px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Reddit Sans Condensed",
+        "fontSize": "88px",
+        "fontWeight": 900,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 88px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "128px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 128px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Reddit Sans Condensed",
+        "fontSize": "246px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 246px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.12) -2px 3px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "gallery-canvas": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 0: The base page background — a warm near-white that reads as concrete or gallery wall beneath the hero."
+    },
+    "paper-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, portfolio thumbnails, and elevated content blocks. Pure white creates the strongest contrast against the canvas."
+    },
+    "nav-capsule": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 2: The floating pill navigation — a near-black that anchors the top of every page and frames the yellow highlight button."
+    },
+    "obsidian-mass": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: The display headline color — reads as a solid mass at 246px, not merely text. The typographic surface."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://danielsun.space",
+      "siteName": "Daniel Sun",
+      "extractedAt": "2026-06-03T19:43:36.477Z",
+      "variant": "extended"
+    }
+  }
+}

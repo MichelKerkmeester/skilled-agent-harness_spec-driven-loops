@@ -1,0 +1,68 @@
+@theme {
+  /* Colors */
+  --color-plum: #2c1338;
+  --color-heather: #412a4c;
+  --color-magenta: #e57cd8;
+  --color-lavender-smoke: #564260;
+  --color-dusty-mauve: #6b5a74;
+  --color-stone-violet: #817187;
+  --color-ink: #000000;
+  --color-bone: #fefbfa;
+  --color-silver: #d5d0d7;
+  --color-fog: #c0b8c3;
+  --color-blush: #fdeae2;
+  --color-petal: #fcf1f8;
+  --color-orchid-mist: #fae5f7;
+  --color-bubblegum-wash: #f7d8f3;
+  --color-amber: #ffde91;
+
+  /* Typography */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-haptik: 'GT Haptik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-haptik-rotalic: 'GT Haptik Rotalic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-haptik-medium-rotalic: 'GT Haptik Medium Rotalic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.55;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.35;
+  --text-heading: 32px;
+  --leading-heading: 1.25;
+  --text-heading-lg: 43px;
+  --leading-heading-lg: 1.2;
+  --text-display: 60px;
+  --leading-display: 1.15;
+  --text-display-xl: 69px;
+  --leading-display-xl: 1.1;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-75: 75px;
+  --spacing-90: 90px;
+  --spacing-113: 113px;
+  --spacing-170: 170px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-3xl: 26px;
+  --radius-full: 200px;
+}

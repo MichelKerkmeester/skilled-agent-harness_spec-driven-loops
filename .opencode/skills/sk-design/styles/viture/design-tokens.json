@@ -1,0 +1,624 @@
+{
+  "color": {
+    "viture-ember": {
+      "$value": "#ff5f34",
+      "$type": "color",
+      "$description": "VITURE Ember — Brand accent, filled CTA buttons, active links, emphasis text, input focus — searing orange against matte black creates urgency and ownership of the brand voice"
+    },
+    "crimson-core": {
+      "$value": "#f31010",
+      "$type": "color",
+      "$description": "Crimson Core — Gradient midpoint for orange-red text washes and accent streaks"
+    },
+    "aurora-wash": {
+      "$value": "#fe7a60",
+      "$type": "color",
+      "$description": "Aurora Wash — Gradient transition color in premium orange-to-violet washes (product banners, hero overlays)"
+    },
+    "ultra-violet": {
+      "$value": "#581dff",
+      "$type": "color",
+      "$description": "Ultra Violet — Gradient terminus for the orange-to-violet premium wash — appears only inside multi-stop gradients, not as a standalone token"
+    },
+    "signal-blue": {
+      "$value": "#1271ff",
+      "$type": "color",
+      "$description": "Signal Blue — Gradient start for the cool-tech blue wash (secondary callouts, tech-feature banners)"
+    },
+    "obsidian": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, dark-section canvas, product showcase background, footer, solid black CTA variant — the structural near-black that frames every screen"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Light-section canvas, card surface, input background, inverse text on dark surfaces, modal surface"
+    },
+    "ash": {
+      "$value": "#7e7e7f",
+      "$type": "color",
+      "$description": "Ash — Body secondary text, helper text, placeholder copy, muted borders"
+    },
+    "slate": {
+      "$value": "#5b5c5d",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, disabled labels, subdued metadata"
+    },
+    "pewter": {
+      "$value": "#abacae",
+      "$type": "color",
+      "$description": "Pewter — Hairline dividers, subtle borders, low-emphasis icon strokes"
+    },
+    "fog": {
+      "$value": "#949597",
+      "$type": "color",
+      "$description": "Fog — Disabled button background, muted UI chrome, neutral placeholder fill"
+    },
+    "snow": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Snow — Elevated card surface, subtle panel background, light section variation"
+    },
+    "mist": {
+      "$value": "#eff0f3",
+      "$type": "color",
+      "$description": "Mist — Inset card surface, nested panel background, alternating row tint"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Deepest dark sections, modal overlay scrim, true-black accents"
+    }
+  },
+  "font": {
+    "fontseasonsans": {
+      "$value": "FontSeasonSans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every UI surface — nav, body, headings, display numerals. The 340px size is a brand signature: oversized hero statistics and product superlatives rendered as visual anchors. Weights step from 400 body to 800 display, but display text rarely exceeds 700 because the massive size does the heavy lifting. Positive letter-spacing (0.012–0.050em) widens as type grows — the opposite of the negative-tracking trend, giving display copy an open, holographic, almost broadcast-poster feel appropriate to the XR hardware category."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 3.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "105px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 105px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "FontSeasonSans",
+        "fontSize": "340px",
+        "fontWeight": 800,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 340px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "light-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background for content sections, product detail pages, and the light half of split layouts"
+    },
+    "snow-card": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Surface level 1: First elevation lift — feature cards, spec panels, light promotional blocks"
+    },
+    "mist-inset": {
+      "$value": "#eff0f3",
+      "$type": "color",
+      "$description": "Surface level 2: Nested panel or alternating row tint inside a Snow Card"
+    },
+    "obsidian-stage": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Surface level 3: Dark product showcase sections, footer, hero backdrops, dramatic product photography canvas"
+    },
+    "void-overlay": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Modal scrim, image-bordered dark panels, deepest accent surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.viture.com",
+      "siteName": "VITURE",
+      "extractedAt": "2026-06-03T20:33:14.195Z",
+      "variant": "extended"
+    }
+  }
+}

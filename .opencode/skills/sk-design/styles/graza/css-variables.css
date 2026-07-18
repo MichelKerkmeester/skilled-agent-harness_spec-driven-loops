@@ -1,0 +1,84 @@
+:root {
+  /* Colors */
+  --color-olive-ink: #3c422e;
+  --color-linen-cream: #fff4ec;
+  --color-buttery-peach: #f6e6d9;
+  --color-squeeze-bottle-green: #9eef80;
+  --color-evoo-yellow-green: #d1e030;
+  --color-mustard-sun: #fbd535;
+
+  /* Typography — Font Families */
+  --font-gt-alpina-typewriter: 'GT Alpina Typewriter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-itc-garamond-condensed: 'ITC Garamond Condensed', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apercu: 'Apercu', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.25;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 46px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: -0.97px;
+  --text-heading: 72px;
+  --leading-heading: 0.9;
+  --tracking-heading: -2.16px;
+  --text-heading-lg: 102px;
+  --leading-heading-lg: 0.9;
+  --tracking-heading-lg: -3.06px;
+  --text-display: 120px;
+  --leading-display: 0.9;
+  --tracking-display: -3.72px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-35: 35px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-68: 68px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --section-gap: 64px;
+  --card-padding: 30px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-pills: 9999px;
+  --radius-images: 20px;
+  --radius-inputs: 10px;
+  --radius-buttons: 10px;
+  --radius-nav-capsule: 32px;
+
+  /* Surfaces */
+  --surface-canvas: #fff4ec;
+  --surface-warm-card: #f6e6d9;
+  --surface-mustard-band: #fbd535;
+  --surface-green-band: #9eef80;
+  --surface-cta-surface: #d1e030;
+}

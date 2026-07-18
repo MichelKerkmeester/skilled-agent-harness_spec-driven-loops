@@ -1,0 +1,844 @@
+{
+  "source": "https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99",
+  "uuid": "ca4708f7-7175-4da2-a47f-ce8f5e601f99",
+  "name": "Honk",
+  "northStar": "Cobalt billboard with a yellow highlighter slash",
+  "capturedAt": "2026-07-18T07:45:22.989Z",
+  "meta": {
+    "url": "https://honk.me",
+    "siteName": "Honk",
+    "extractedAt": "2026-06-03T19:48:33.783Z",
+    "durationMs": 22894,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 93,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #008fff as the full-viewport canvas for every top-level section — never place the headline on a white card with a blue background behind it; the blue IS the surface.",
+      "Flip one or two words inside a 52px Honk Header headline to #ffe400 to create emphasis. Never underline, italicize, or bold the highlighted word — color is the only differentiator.",
+      "Set all body copy in Honk Sans at 16-19px with the negative tracking values from the type scale (-0.018em at 16px, -0.006em at 19px) — the tightened grotesque is part of the voice.",
+      "Use the 16px-radius token for any white panel embedded in the blue field (notification banners, content cards, image containers) and the 6px-radius token for small pills or chips.",
+      "Place the phone mockup on the right side of the hero at 45-55% column width, surrounded by 2-3 floating white speech-bubble decorations — never center it, never add a drop shadow.",
+      "Use #3fcc6b green exclusively inside the phone screen for product-internal UI; keep the marketing surface to the blue/yellow/white trio only.",
+      "Keep icon strokes at 2px in Honk Sans weight, white on blue — icons are line-style, never filled, never chromatic."
+    ],
+    "donts": [
+      "Don't use white or light-gray page backgrounds for marketing screens — the design system assumes the blue field is always present, so a white page reads as broken.",
+      "Don't use #ffe400 for body text, button backgrounds, or large fill areas — Signal Yellow is a word-level highlight only, not a surface color.",
+      "Don't introduce a third saturated color to the marketing surface (purple, red, orange) — only the blue field, yellow accents, white text, and the green inside device mockups are permitted.",
+      "Don't use heavy drop shadows on cards, buttons, or the phone mockup — elevation comes from color contrast against the blue, not from shadow stacks.",
+      "Don't split the headline across more than 3 lines or highlight more than 2 words with yellow — the system relies on a single punctuation moment, not scattered emphasis.",
+      "Don't use a different font family for sub-headings, buttons, or links — Honk Sans at varied weights covers the entire UI; Honk Header is display-only.",
+      "Don't use the 6px-radius token on cards or large panels, and don't use the 16px-radius token on buttons — keep small-radius on small elements, large-radius on large surfaces."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#008fff",
+        "name": "Honk Blue",
+        "role": "Full-viewport page canvas, hero background, all top-level sections — the electric blue IS the brand surface, not a secondary accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#00a0ff",
+        "name": "Honk Sky",
+        "role": "Secondary blue for gradient bands, large decorative shapes, and depth layers behind the primary canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffe400",
+        "name": "Signal Yellow",
+        "role": "Accent words inside headlines, heading border underlines, and highlight punctuation — the only chromatic accent on the blue field, used sparingly for emphasis rather than decoration",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Honk White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Primary text on light surfaces, dark borders, near-black detail work — used where text leaves the blue field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "SVG fills, graphic detail, maximum-contrast text where the design needs to drop to absolute black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#363636",
+        "name": "Slate",
+        "role": "Secondary graphic fills, dark illustration detail, softer-than-black accents in SVG work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3fcc6b",
+        "name": "Game Green",
+        "role": "Phone screen content (in-game UI inside device mockups) — a single-hue secondary color reserved for product-internal screens so the blue/yellow/white trio stays clean on the marketing surface",
+        "group": "accent"
+      }
+    ],
+    "layout": "Two-column hero with blue full-bleed background, left column ~45% width holding stacked headline → sub → notification banner → ghost link, right column ~50% width holding the phone mockup with surrounding speech-bubble decorations. Below the hero, sections continue the blue canvas with alternating single-column and two-column patterns. No centered stacks, no card grids, no pricing tables — the system avoids dense information layouts in favor of sparse, billboard-style sections separated by 80px vertical gaps. Navigation is a minimal top bar (logo left, small links right) over the blue, with no sticky variant and no mega-menu.",
+    "imagery": "Product-internal screenshots are the primary visual: a single tilted iPhone mockup carrying a green tic-tac-toe game screen, positioned right-of-center in the hero. No photography, no lifestyle imagery, no human subjects. Decoration is limited to 2-3 floating white speech-bubble shapes (heart icon, settings gear, generic chat nub) that orbit the phone at varied sizes. All visual elements live on the saturated blue field; the green phone screen is the only secondary color in the system. The visual language reads as 'product IS the hero' — there is no attempt to humanize or contextualize the app with photos.",
+    "similar": [
+      {
+        "why": "Same full-bleed saturated brand color as the page canvas with a single phone-mockup-as-hero pattern, and similar chat-product visual restraint",
+        "business": "Marco Polo"
+      },
+      {
+        "why": "Same anti-minimal approach: loud single-hue background (purple for IRL, blue for Honk) with one bright accent color for keyword highlights inside white headlines",
+        "business": "IRL"
+      },
+      {
+        "why": "Same youth-coded saturated canvas and yellow accent strategy, with display headlines that flip individual words to a second bright color for emphasis",
+        "business": "Dispo (David's Disposable)"
+      },
+      {
+        "why": "Same electric-blue marketing surface with floating emoji/GIF-shaped decorations and a single custom display face — visual energy over corporate restraint",
+        "business": "Giphy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "buttons": "6px",
+        "small-pills": "6px",
+        "notification-panels": "16px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#008fff",
+        "name": "Honk Blue Canvas",
+        "level": 0,
+        "purpose": "Full-viewport page background, hero, section bands"
+      },
+      {
+        "hex": "#00a0ff",
+        "name": "Honk Sky",
+        "level": 1,
+        "purpose": "Gradient depth layer, large decorative shapes"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Honk White Panel",
+        "level": 2,
+        "purpose": "Notification banners, embedded UI cards, device screen bezel, icon fills"
+      }
+    ],
+    "northStar": "Cobalt billboard with a yellow highlighter slash",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.55,
+        "letterSpacing": -0.026
+      },
+      {
+        "role": "body-lg",
+        "size": 19,
+        "lineHeight": 1.55,
+        "letterSpacing": -0.006
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1.23,
+        "letterSpacing": -0.012
+      }
+    ],
+    "components": [
+      {
+        "name": "Blue Hero Canvas",
+        "role": "Full-bleed hero section",
+        "description": "100% viewport-width section filled with #008fff. Contains a two-column layout: left = stacked headline + sub + notification strip; right = floating phone mockup with decorative speech-bubble shapes. No top/bottom padding asymmetry — the blue extends edge-to-edge as the brand canvas."
+      },
+      {
+        "name": "Highlighted Headline",
+        "role": "Hero/section H1",
+        "description": "Honk Header 700 at 52px, white, -0.012em tracking, line-height 1.23. Typically split across 2-3 lines with 1-2 inner words wrapped in a <span> set to #ffe400 (Signal Yellow). The yellow word is never underlined or bolded differently — only color shifts."
+      },
+      {
+        "name": "Hero Sub-headline",
+        "role": "Body intro under headline",
+        "description": "Honk Sans 400 at 19px, white, line-height ~1.55, no emphasis styling. Sits 24-32px below the headline with no divider."
+      },
+      {
+        "name": "Notification Banner",
+        "role": "Embedded chat notification UI",
+        "description": "White (#ffffff) panel, 16px radius, 16-20px vertical padding, full-width within the hero column. Contains a tiny yellow location-pin icon at right, a 'Read Announcement →' label in small Honk Sans, and a bold message line. Functions as a live-product proof card, not a CTA — it shows the app in use."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Device illustration for product showcase",
+        "description": "Rendered iPhone-style frame (dark bezel) containing a green game screen. Sits at a slight tilt or float on the right side of the hero. Scaled to roughly 45-55% of the hero width. Never has a drop shadow — sits on the blue with color contrast alone."
+      },
+      {
+        "name": "Speech Bubble Decoration",
+        "role": "Floating emoji-shaped UI nubs",
+        "description": "Soft, rounded shapes (16-20px radius) in white with a single icon (heart, settings gear) centered. Float off the phone mockup as scattered confetti — these are brand decoration, not interactive elements. Two to three per hero at most."
+      },
+      {
+        "name": "In-Phone Game Screen",
+        "role": "Product-internal UI (device screen content)",
+        "description": "Green (#3fcc6b) fill inside the phone frame with white tic-tac-toe grid, avatar bubbles, and small white circular action buttons (volume, mute, mic) along the bottom. This is the ONLY context where green appears."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Lightweight text link / action",
+        "description": "Honk Sans 500 at 14-16px, white, no background, no border. Often paired with a chevron or arrow glyph. Used for 'X Chatter', footer links, and secondary actions. The 6px-radius token applies if a pill-shaped variant is needed."
+      },
+      {
+        "name": "Footer Section",
+        "role": "Closing dark or blue band",
+        "description": "Continues the blue field or shifts to a deeper tone. White text, Honk Sans 400 at 14-16px, link rows with minimal padding. No card-based footer columns — the footer reads as a flat list of links, not a card grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and section display headlines — custom heavy display face at a single 52px size, tightly tracked at -0.012em. This is the signature wordmark voice: chunky, loud, slightly condensed, designed to read at billboard scale on the blue field",
+        "sizes": "52px",
+        "family": "Honk Header",
+        "weight": "700",
+        "lineHeight": "1.23",
+        "substitute": "Archivo Black, Space Grotesk Bold, or Manrope ExtraBold",
+        "letterSpacing": "-0.012em"
+      },
+      {
+        "role": "Body copy, sub-headings, button labels, link text, footer, icons — a neutral grotesk covering the full UI scale from 13px micro-labels to 19px lead paragraphs. Negative tracking across the board (-0.026em at 13px, -0.006em at 19px) tightens the grotesque to feel modern rather than airy",
+        "sizes": "13px, 14px, 16px, 17px, 19px",
+        "family": "Honk Sans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.20, 1.38, 1.47, 1.55",
+        "substitute": "Inter, Manrope, or Plus Jakarta Sans",
+        "letterSpacing": "-0.026em at 13px, -0.024em at 14px, -0.018em at 16px, -0.006em at 17-19px"
+      }
+    ],
+    "description": "Honk operates on a saturated blue-canvas design system built for a messaging product that wants energy, not restraint. The entire viewport is a single electric blue field (#008fff) with white and signal-yellow typography floating on it — no warm grays, no soft cards, no light-mode chrome. Headlines are a custom heavy display face at 52px, tight-tracked, with one or two words flipped to vivid yellow (#ffe400) so key terms punch out of the headline. Surfaces are minimal: everything either sits directly on the blue or uses a hard 16px-radius white panel as a notification/UI element. The phone mockup carries the only secondary color (game-green) and floats with subtle decoration — speech bubbles, emoji-shaped UI nubs. The system reads as playful, confident, and loud on purpose: it is anti-corporate, anti-minimal, and uses color saturation as the primary brand carrier instead of typography or layout sophistication.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Honk design system\",\"item\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#style-reference\",\"name\":\"Honk design system reference\",\"headline\":\"Honk design system | Refero Styles\",\"description\":\"Explore Honk's light Productivity design system: Honk Blue #008fff, Honk Sky #00a0ff colors, Honk Header, Honk Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Honk\",\"url\":\"https://honk.me\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"caption\":\"Screenshot of Honk\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Honk design system\",\"Honk website design\",\"Honk colors\",\"Honk typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Honk Blue\",\"Honk Sky\",\"Signal Yellow\",\"Honk White\",\"Honk Header\",\"Honk Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Honk design system\"},{\"@type\":\"Thing\",\"name\":\"Honk website design\"},{\"@type\":\"Thing\",\"name\":\"Honk colors\"},{\"@type\":\"Thing\",\"name\":\"Honk typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T02:08:25.009Z\",\"dateModified\":\"2026-04-30T02:08:25.009Z\"}]}19:T72a,**Quick Color Reference**\n- background: #008fff (full-viewport canvas)\n- text: #ffffff (on blue), #111111 (on light panels)\n- border: #ffffff (on blue), #111111 (on light)\n- accent: #ffe400 (headline word highlights, small accent borders)\n- primary action: no distinct CTA color\n- device screen green: #3fcc6b (inside phone mockup only)\n\n**3-5 Example Component Prompts**\n1. **Hero Headline Block**: Blue #008fff full-viewport background. Headline 'Really, real-time messaging.' in Honk Header 700 at 52px, white, letter-spacing -0.012em, line-height 1.23, split across 2 lines with 'Really,' flipped to #ffe400. Sub-headline in Honk Sans 400 at 19px white. 80px gap to sub-headline.\n2. **Notification Banner**: White #ffffff panel, 16px border-radius, 20px vertical padding, full-width within the hero column. Top row: small Honk Sans 500 at 13px white-on-blue label 'Read Announcement →' sitting above a bold Honk Sans 600 at 16px #111111 message line. Yellow #ffe400 location-pin icon at the far right, 20px size.\n3. **Phone Mockup with Game Screen**: Dark iPhone bezel, 45% of hero column width, right-aligned. Screen fill #3fcc6b green. Inside: white tic-tac-toe 3×3 grid with 80px cell squares, 2 circular avatar bubbles at the top in #ffffff, and a bottom row of 3 small white circular buttons (volume, mute grid icon, mic). No drop shadow.\n4. **Speech Bubble Decoration**: White #ffffff rounded shape, 16-20px border-radius, 60-80px diameter, centered icon (heart, settings gear) in #111111 at 24px. Float 20-40px away from the phone mockup at varied sizes. Two to three per hero, never overlapping the headline.\n5. **Footer Link Row**: Blue #008fff background, 24px vertical padding, Honk Sans 400 at 14px white. Links separated by 16px horizontal gap, no dividers, no bullet characters. Pure flat list, not a column grid."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "Honk is a three-color system on the marketing surface: blue field (#008fff), white text (#ffffff), yellow emphasis (#ffe400). Green (#3fcc6b) is quarantined inside the phone screen because the product is real-time messaging that includes in-chat games — the green is product content, not brand chrome. Any new page must keep this discipline: do not introduce purple, red, orange, or pink to the marketing surface. If a state color is needed (error/success), use Honk White at varying opacity (0.6 for muted, 1.0 for active) rather than a new hue."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 257,
+          "confidence": 1,
+          "prominence": 10274398.955080323,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "icon/color": 4,
+            "link/color": 1,
+            "other/fill": 1,
+            "other/color": 34,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 6,
+            "body/borderColor": 16,
+            "icon/borderColor": 16,
+            "link/borderColor": 4,
+            "other/borderColor": 136,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 5242171.09390356,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 1,
+            "other/color": 2,
+            "body/borderColor": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 1338029.606585455,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 23
+          }
+        },
+        {
+          "hex": "#008fff",
+          "oklch": {
+            "c": 0.21964978646404917,
+            "h": 247.34762227155676,
+            "l": 0.6394719795948713
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#363636",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3328899840110902
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 190238,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffe400",
+          "oklch": {
+            "c": 0.20079107147938102,
+            "h": 99.46654353824202,
+            "l": 0.9161660303424811
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 122481.17645785351,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#b5e5ff",
+          "oklch": {
+            "c": 0.06110397286325288,
+            "h": 231.9756772792513,
+            "l": 0.8969136286719522
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 44231.5485076253,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#ffe53d",
+          "oklch": {
+            "c": 0.1747615899399592,
+            "h": 99.97509152135152,
+            "l": 0.9164638984483711
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 40689.15731851352,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#00a0ff",
+          "oklch": {
+            "c": 0.19879259609035957,
+            "h": 243.23624341475193,
+            "l": 0.6789627656650362
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 22339,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3f4f6",
+          "oklch": {
+            "c": 0.002874044372517275,
+            "h": 264.542001211944,
+            "l": 0.9669556421102775
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1456,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#018dff",
+          "oklch": {
+            "c": 0.19620969657772638,
+            "h": 252.71526523787838,
+            "l": 0.6428560019125311
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 747.6608465537306,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.031178590729586998,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.08,
+          "background": "#f3f4f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.16,
+          "background": "#f3f4f6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.53,
+          "background": "#ffe53d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.35,
+          "background": "#ffe400",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.62,
+          "background": "#b5e5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.86,
+          "background": "#ffe53d",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.7,
+          "background": "#ffe400",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.04,
+          "background": "#b5e5ff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#ffffff",
+          "foreground": "#363636"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.98,
+          "background": "#f3f4f6",
+          "foreground": "#363636"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#ffe53d",
+          "foreground": "#363636"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.41,
+          "background": "#ffe400",
+          "foreground": "#363636"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.99,
+          "background": "#b5e5ff",
+          "foreground": "#363636"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.72,
+          "background": "#00a0ff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.73,
+          "background": "#008fff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#008fff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.81,
+          "background": "#00a0ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#008fff",
+          "foreground": "#ffe400"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 14,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Honk Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Honk Header",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Honk Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Honk Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Honk Sans",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Honk Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Honk Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Honk Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Honk Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.47,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Honk Header",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.23,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/af90645f-861f-4545-89cb-c6ccd09fc893.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Honk design system\",\"item\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#style-reference\",\"name\":\"Honk design system reference\",\"headline\":\"Honk design system | Refero Styles\",\"description\":\"Explore Honk's light Productivity design system: Honk Blue #008fff, Honk Sky #00a0ff colors, Honk Header, Honk Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Honk\",\"url\":\"https://honk.me\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ca4708f7-7175-4da2-a47f-ce8f5e601f99#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"caption\":\"Screenshot of Honk\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d4a929d-bba5-443e-92cf-1f2123612389.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Honk design system\",\"Honk website design\",\"Honk colors\",\"Honk typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Honk Blue\",\"Honk Sky\",\"Signal Yellow\",\"Honk White\",\"Honk Header\",\"Honk Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Honk design system\"},{\"@type\":\"Thing\",\"name\":\"Honk website design\"},{\"@type\":\"Thing\",\"name\":\"Honk colors\"},{\"@type\":\"Thing\",\"name\":\"Honk typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T02:08:25.009Z\",\"dateModified\":\"2026-04-30T02:08:25.009Z\"}]}19:T72a,**Quick Color Reference**\n- background: #008fff (full-viewport canvas)\n- text: #ffffff (on blue), #111111 (on light panels)\n- border: #ffffff (on blue), #111111 (on light)\n- accent: #ffe400 (headline word highlights, small accent borders)\n- primary action: no distinct CTA color\n- device screen green: #3fcc6b (inside phone mockup only)\n\n**3-5 Example Component Prompts**\n1. **Hero Headline Block**: Blue #008fff full-viewport background. Headline 'Really, real-time messaging.' in Honk Header 700 at 52px, white, letter-spacing -0.012em, line-height 1.23, split across 2 lines with 'Really,' flipped to #ffe400. Sub-headline in Honk Sans 400 at 19px white. 80px gap to sub-headline.\n2. **Notification Banner**: White #ffffff panel, 16px border-radius, 20px vertical padding, full-width within the hero column. Top row: small Honk Sans 500 at 13px white-on-blue label 'Read Announcement →' sitting above a bold Honk Sans 600 at 16px #111111 message line. Yellow #ffe400 location-pin icon at the far right, 20px size.\n3. **Phone Mockup with Game Screen**: Dark iPhone bezel, 45% of hero column width, right-aligned. Screen fill #3fcc6b green. Inside: white tic-tac-toe 3×3 grid with 80px cell squares, 2 circular avatar bubbles at the top in #ffffff, and a bottom row of 3 small white circular buttons (volume, mute grid icon, mic). No drop shadow.\n4. **Speech Bubble Decoration**: White #ffffff rounded shape, 16-20px border-radius, 60-80px diameter, centered icon (heart, settings gear) in #111111 at 24px. Float 20-40px away from the phone mockup at varied sizes. Two to three per hero, never overlapping the headline.\n5. **Footer Link Row**: Blue #008fff background, 24px vertical padding, Honk Sans 400 at 14px white. Links separated by 16px horizontal gap, no dividers, no bullet characters. Pure flat list, not a column grid."
+}

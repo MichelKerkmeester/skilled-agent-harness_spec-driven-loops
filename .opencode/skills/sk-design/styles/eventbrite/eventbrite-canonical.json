@@ -1,0 +1,1981 @@
+{
+  "source": "https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3",
+  "uuid": "1fa0d9da-966f-4d43-9775-e156bec3a3b3",
+  "name": "Eventbrite",
+  "northStar": "pillow-soft discovery wall with a single electric blue pulse",
+  "capturedAt": "2026-07-18T09:43:16.258Z",
+  "meta": {
+    "url": "https://www.eventbrite.com",
+    "siteName": "Eventbrite",
+    "extractedAt": "2026-06-03T18:25:04.245Z",
+    "durationMs": 42275,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 923,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 40px border-radius for all content cards — this is the system's defining softness; flattening to 8px breaks the visual identity.",
+      "Reserve Electric Iris (#3659e3) for interactive elements only — links, outlined buttons, selected states, icon accents. Never use it for decorative fills or large background blocks.",
+      "Use Aubergine Ink (#39364f) for all body text and borders instead of pure black — the slight warmth is what keeps the interface from feeling cold.",
+      "Default to outlined or ghost action styles; the only filled button in product UI is the cookie consent CTA in Ember Orange.",
+      "Set page background to Warm Linen (#f8f7fa) and card surfaces to Pure White (#ffffff) — the two-tone layering is how depth is communicated without shadows.",
+      "Use 14px Neue Plak as the default body size; only go to 16px+ for event titles and primary content.",
+      "Apply 1px Soft Mist (#dbdae3) borders for all card and list separators; avoid box-shadows for elevation."
+    ],
+    "donts": [
+      "Do not use Ember Orange (#f05537) for product actions, CTAs, or interactive elements — it is reserved for the brand mark and the cookie consent button only.",
+      "Do not use pure black (#000000) for body text — always use Aubergine Ink (#39364f) for warmth.",
+      "Do not add drop shadows to cards; the 40px radius + 1px border is the elevation language.",
+      "Do not introduce a second typeface; Neue Plak carries the entire system.",
+      "Do not use Electric Iris as a large surface fill — keep it to 1.5px outlines and icon strokes to preserve its signal value.",
+      "Do not use sharp 0px or 2px radius on cards — the softness is a brand pillar.",
+      "Do not use Plum Depth (#1e0a3c) for body text; reserve it for event titles and large headings where deep emphasis is needed."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#39364f",
+        "name": "Aubergine Ink",
+        "role": "Primary text, borders, dividers, icon strokes — the structural backbone of every surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, badge fills, nav background — the elevated layer above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f7fa",
+        "name": "Warm Linen",
+        "role": "Page canvas and page-level background — slightly warm off-white, never sterile",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdae3",
+        "name": "Soft Mist",
+        "role": "Hairline borders, list dividers, subtle separators between list items and sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bec0c6",
+        "name": "Pale Silver",
+        "role": "Link borders, secondary borders, muted outlines on ghost elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeedf2",
+        "name": "Cloud Veil",
+        "role": "Secondary card backgrounds, subtle surface differentiation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dee5ff",
+        "name": "Periwinkle Tint",
+        "role": "Soft blue-tinted card borders — the gentler cousin of the accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Icon fills, certain link text — used sparingly where maximum contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6f7287",
+        "name": "Smoke",
+        "role": "Muted secondary text, nav borders, low-emphasis icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e0a3c",
+        "name": "Plum Depth",
+        "role": "Headlines, event titles, and deep emphasis text — the voice of large type",
+        "group": "brand"
+      },
+      {
+        "hex": "#585163",
+        "name": "Indigo Slate",
+        "role": "Nav borders, secondary structural lines, quieter sibling of Aubergine Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3659e3",
+        "name": "Electric Iris",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#f05537",
+        "name": "Ember Orange",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered container on a Warm Linen canvas. The header is a sticky white nav bar with the Eventbrite wordmark on the left, a pill-shaped search bar in the center with location pre-set to a city, and text nav links plus a ghost 'Sign in' on the right. The hero is a full-bleed photographic banner (~320px tall) with a white overlay text card left-aligned containing a tagline, headline, and outlined CTA. Below the hero, a horizontal row of 8 circular category icons sits centered. The main content is a vertically stacked series of event grid rows, each containing 4 Event Listing Cards with 16-24px gaps. Rows are separated by ~64-80px of vertical breathing room. Pagination chevrons sit at the right end of each section. A fixed cookie consent panel anchors to the bottom-left, overlaying content. The overall rhythm is: dense event grid → generous white space → dense event grid, creating a scrolling discovery feed.",
+    "imagery": "The hero uses a full-bleed photograph of a live performance — warm, slightly desaturated stage lighting on a singer with microphone, creating an intimate concert atmosphere. The overlay text card is a white rectangle with hard 4px corners floating over the photo, creating a contrast between the soft photo and the crisp UI. Event listing cards rely entirely on user-uploaded event imagery — a wildly diverse mix of promotional posters, venue photos, speaker headshots, and branded event graphics, all displayed at 16:9 in the top portion of each card. Category icons are simple line illustrations (microphone, disco ball, masks, sparkler, game controller, etc.) in a single stroke weight, rendered in Aubergine Ink on white circular backgrounds. No illustrations, 3D renders, or abstract graphics appear in the chrome.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas with generous card rounding and a single accent color for links; both are event-discovery grids with photographic card imagery.",
+        "business": "Meetup"
+      },
+      {
+        "why": "Event-listing grid layout with full-bleed hero photography, though Ticketmaster uses sharper corners and a darker palette.",
+        "business": "Ticketmaster"
+      },
+      {
+        "why": "Dark-on-light event grid with pill-shaped controls and large-radius cards, targeting the same live-event discovery audience.",
+        "business": "Dice"
+      },
+      {
+        "why": "Similar warm-neutral canvas with very generous card border-radius and photographic event cards; both favor rounded-softness as a brand signal.",
+        "business": "Airbnb"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "100px (pill nav containers)",
+        "tags": "20px",
+        "cards": "40px",
+        "badges": "20px",
+        "inputs": "4px",
+        "buttons": "360px (pill)"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64-80px",
+      "cardPadding": "12-16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f8f7fa",
+        "name": "Warm Linen Canvas",
+        "level": 0,
+        "purpose": "Page-level background, behind all content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 1,
+        "purpose": "Event cards, badges, nav, and all elevated surfaces above the canvas"
+      },
+      {
+        "hex": "#eeedf2",
+        "name": "Cloud Veil Wash",
+        "level": 2,
+        "purpose": "Subtle differentiation for secondary cards or grouped sections"
+      }
+    ],
+    "northStar": "pillow-soft discovery wall with a single electric blue pulse",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed promotional banner with photographic background and overlay text",
+        "description": "Full-width image with a dark overlay; headline in 32px Neue Plak 700 Plum Depth (#1e0a3c) on a semi-transparent white card with 4px radius; CTA below is a pill button (360px radius, 12px 24px padding, Aubergine Ink border, Aubergine Ink text). Image is cropped to roughly 320px height on desktop."
+      },
+      {
+        "name": "Event Listing Card",
+        "role": "Primary content unit — a single event in the discovery grid",
+        "description": "White (#ffffff) surface on the Warm Linen canvas. 40px border-radius — the system's signature softness. Card has 1px Soft Mist (#dbdae3) border. Event image sits at top (16:9 ratio, 16px top-radius clipping to 40px card radius). Below image: 12–16px padding, event title in 16px Neue Plak 600 Plum Depth, date/venue in 14px weight 400 Aubergine Ink, price in 14px weight 600. No drop shadow; the border alone defines elevation."
+      },
+      {
+        "name": "Category Circle Icon",
+        "role": "Circular icon button for browsing events by category",
+        "description": "80px circle with 1px Soft Mist border, white fill. Centered line icon in Aubergine Ink at ~24px. Category label in 14px weight 400 below. 24px gap between circles in a horizontal row."
+      },
+      {
+        "name": "Pill Search Bar",
+        "role": "Header search input with location selector",
+        "description": "Single 100px-radius container holding a search input and a location selector. White fill, 1px Soft Mist border. The trailing search button is a 40px circle filled with Eventbrite Ember Orange (#f05537) containing a white magnifier icon — the only circular orange element in the system."
+      },
+      {
+        "name": "Pill Nav Link",
+        "role": "Header navigation items",
+        "description": "14px Neue Plak Text weight 600, Aubergine Ink text, no border or fill. Horizontal row with 16-24px gaps. 'Sign in' sits at the far right as a ghost text link."
+      },
+      {
+        "name": "Outlined Action Link",
+        "role": "Interactive text/button — the primary CTA style",
+        "description": "1.5px Electric Iris (#3659e3) border with Electric Iris text, 4-8px radius (not pill for inline actions). Used for 'Get Into Live Music', category filters, and event detail links. 12px 16px padding. Underline appears on hover."
+      },
+      {
+        "name": "Filled Cookie Accept Button",
+        "role": "The sole filled-button instance — the cookie consent CTA",
+        "description": "Eventbrite Ember Orange (#f05537) fill, white text, 4px radius, 8px 16px padding. This is the only filled-color button in the product UI and exists only in the consent overlay."
+      },
+      {
+        "name": "Event Status Badge",
+        "role": "Small label for event capacity or status",
+        "description": "20px radius, white fill with 1px Soft Mist border, 12px Neue Plak 600 Aubergine Ink text. 4px 8px padding. Examples: 'Almost full', 'Sales end soon'."
+      },
+      {
+        "name": "Pagination Arrow Button",
+        "role": "Circular chevron for paginating event rows",
+        "description": "40px circle, white fill, 1px Soft Mist border, centered chevron icon in Aubergine Ink. Two sit side by side (left/right) at section end."
+      },
+      {
+        "name": "Search Input Field",
+        "role": "Text input within the header search bar",
+        "description": "No visible border — sits inside the Pill Search Bar container. Placeholder text in Smoke (#6f7287), 14px weight 400. The search icon and orange submit button are external to the input itself."
+      },
+      {
+        "name": "Cookie Consent Panel",
+        "role": "Fixed-bottom overlay for GDPR/privacy controls",
+        "description": "White surface with 8px radius, subtle border, anchored bottom-left. Heading 'We use cookies' in 16px weight 600 Plum Depth. Body text in 14px Smoke. Three stacked buttons on the right: Filled Cookie Accept (orange), and two ghost buttons with Aubergine Ink borders labeled 'Reject all' and 'More choices'."
+      },
+      {
+        "name": "Event Grid Row",
+        "role": "Horizontal arrangement of Event Listing Cards",
+        "description": "4 columns on desktop, 16-24px gaps between cards, wrapping to 2 columns on tablet, 1 column on mobile. Each row represents one section of curated or algorithmically-grouped events."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text — body, headings, buttons, badges, nav, event titles. The custom geometric sans carries the entire interface; no second typeface is needed.",
+        "sizes": "12px, 14px, 16px, 18px, 24px, 32px",
+        "family": "Neue Plak",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20–2.00 (context-dependent)",
+        "substitute": "Inter or DM Sans (geometric humanist sans, similar warmth and x-height)",
+        "letterSpacing": "0.0100em to 0.0180em — barely positive, kept consistent across all sizes for a calm, unfussy rhythm",
+        "fontFeatureSettings": "\"ss01\" on (stylistic set for friendlier 'a' and 'g' terminals)"
+      },
+      {
+        "role": "Semi-bold companion for nav and select UI labels where extra weight is needed at small sizes",
+        "sizes": "14px",
+        "family": "Neue Plak Text",
+        "weight": "600",
+        "lineHeight": "1.20–1.43",
+        "substitute": "Inter SemiBold"
+      }
+    ],
+    "description": "Eventbrite's visual system reads as a warm, welcoming event-discovery surface: a soft off-white canvas (#f8f7fa) with generous 40px-radius cards that feel almost pillow-like, pill-shaped controls (360px), and a single vivid blue (#3659e3) doing all the interactive heavy lifting. The dominant text/border color is a deep muted aubergine (#39364f) rather than pure black — this single tonal choice gives the entire interface a slightly warm, editorial feel without going purple on screen. Orange is reserved exclusively for the brand mark and the cookie consent button, never for product UI, which keeps the accent palette disciplined. Typography is Neue Plak at restrained sizes (14–24px range for most content), and layout is built on a 4-column event grid with circular category icons that hint at the playful, community-first nature of the product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eventbrite design system\",\"item\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#style-reference\",\"name\":\"Eventbrite design system reference\",\"headline\":\"Eventbrite design system | Refero Styles\",\"description\":\"Explore Eventbrite's light Other design system: Aubergine Ink #39364f, Pure White #ffffff colors, Neue Plak, Neue Plak Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eventbrite\",\"url\":\"https://www.eventbrite.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"caption\":\"Screenshot of Eventbrite\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eventbrite design system\",\"Eventbrite website design\",\"Eventbrite colors\",\"Eventbrite typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aubergine Ink\",\"Pure White\",\"Warm Linen\",\"Soft Mist\",\"Neue Plak\",\"Neue Plak Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eventbrite design system\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite website design\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite colors\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:44:43.816Z\",\"dateModified\":\"2026-04-30T00:44:43.816Z\"}]}19:T7b5,## Quick Color Reference\n- text: #39364f (Aubergine Ink)\n- background: #f8f7fa (Warm Linen)\n- card surface: #ffffff (Pure White)\n- border: #dbdae3 (Soft Mist)\n- accent: #3659e3 (Electric Iris)\n- primary action: #3659e3 (outlined action border)\n\n## 3-5 Example Component Prompts\n1. **Event Listing Card**: White (#ffffff) surface on Warm Linen (#f8f7fa) canvas. 40px border-radius, 1px Soft Mist (#dbdae3) border, no shadow. Top: 16:9 event image with top corners clipping to 40px. Below: 12px padding. Title in 16px Neue Plak weight 600 Plum Depth (#1e0a3c). Date/venue in 14px weight 400 Aubergine Ink (#39364f). Price in 14px weight 600.\n2. **Hero Banner**: Full-bleed photographic background (concert/live event). Overlay: left-aligned white rectangle with 4px radius containing 'GET INTO IT' in 14px weight 600, then 'FROM POP BALLADS TO EMO ENCORES' in 32px weight 700 Plum Depth. Below: outlined ghost action — Electric Iris (#3659e3) 1.5px border, Electric Iris text, 360px pill radius, 12px 24px padding, 14px weight 600.\n3. **Pill Search Bar**: 100px border-radius container, white fill, 1px Soft Mist border, ~48px tall. Left: search input with placeholder 'Search events' in Smoke (#6f7287) 14px. Center divider. Right: location text with pin icon. Far right: 40px circle filled Ember Orange (#f05537) with white magnifier icon.\n4. **Category Circle Icon Row**: 8 circles in a horizontal row, each 80px diameter, white fill, 1px Soft Mist border, centered line icon in Aubergine Ink at 24px. 24px gap between circles. Labels in 14px weight 400 Aubergine Ink below each circle.\n5. **Cookie Consent Panel**: Fixed bottom-left overlay, white surface, 8px radius, 1px Soft Mist border. Heading 'We use cookies' in 16px weight 600 Plum Depth. Body in 14px Smoke. Three stacked buttons on the right: filled Ember Orange 'Accept all' (4px radius, white text, 8px 16px padding), then two ghost buttons with Aubergine Ink border labeled 'Reject all' and 'More choices'."
+      },
+      {
+        "title": "Rounded Corner Philosophy",
+        "content": "Corner radius is the most opinionated decision in this system. Cards get 40px — extraordinarily soft for content surfaces, making every event feel approachable. Badges and tags get 20px — half of card radius, creating a nested softness. Buttons in the header get 360px (full pill). Nav containers get 100px (near-pill). Inputs and small elements get 4px — the only place sharp edges survive. The hierarchy is: 4px (small/cold) → 20px (tags) → 40px (cards) → 100px (nav) → 360px (buttons). Never break this scale; never go to 8px or 12px on cards."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is communicated entirely through surface color (Warm Linen canvas → Pure White card) and 1px borders, never through drop shadows. This keeps the interface flat, fast, and editorial — the 40px corner radius does the visual work that shadows would otherwise do."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#39364f",
+          "oklch": {
+            "c": 0.04330387564092678,
+            "h": 289.435302747101,
+            "l": 0.3470059368242831
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "hero",
+            "card",
+            "icon",
+            "button",
+            "badge"
+          ],
+          "frequency": 1820,
+          "confidence": 1,
+          "prominence": 59125677.85504778,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 32,
+            "body/color": 52,
+            "card/color": 106,
+            "hero/color": 1,
+            "icon/color": 3,
+            "other/fill": 8,
+            "badge/color": 33,
+            "other/color": 119,
+            "button/color": 2,
+            "heading/color": 17,
+            "nav/borderColor": 124,
+            "body/borderColor": 208,
+            "card/borderColor": 424,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "badge/borderColor": 132,
+            "other/borderColor": 471,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#f8f7fa",
+          "oklch": {
+            "c": 0.004094740202118952,
+            "h": 301.4253673272937,
+            "l": 0.9777457275781063
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "badge"
+          ],
+          "frequency": 79,
+          "confidence": 1,
+          "prominence": 9454683.699171657,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 15,
+            "heading/borderColor": 60,
+            "nav/backgroundColor": 1,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3659e3",
+          "oklch": {
+            "c": 0.2127525109777946,
+            "h": 267.3867121924079,
+            "l": 0.5263761862255129
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "image",
+            "other",
+            "card",
+            "icon",
+            "input",
+            "button"
+          ],
+          "frequency": 1139,
+          "confidence": 1,
+          "prominence": 5132356.775314134,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "card/color": 93,
+            "icon/color": 34,
+            "link/color": 82,
+            "other/fill": 1,
+            "image/color": 2,
+            "input/color": 1,
+            "other/color": 17,
+            "button/color": 1,
+            "nav/borderColor": 16,
+            "card/borderColor": 340,
+            "icon/borderColor": 136,
+            "link/borderColor": 328,
+            "image/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 68,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dbdae3",
+          "oklch": {
+            "c": 0.012242642109207781,
+            "h": 291.2647990349652,
+            "l": 0.8917870461622915
+          },
+          "contexts": [
+            "nav",
+            "footer",
+            "other",
+            "body",
+            "list",
+            "icon",
+            "button"
+          ],
+          "frequency": 457,
+          "confidence": 1,
+          "prominence": 4887195.7744388,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "icon/color": 1,
+            "list/color": 60,
+            "other/color": 19,
+            "footer/color": 1,
+            "nav/borderColor": 4,
+            "body/borderColor": 32,
+            "icon/borderColor": 4,
+            "list/borderColor": 240,
+            "other/borderColor": 76,
+            "button/borderColor": 8,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1e0a3c",
+          "oklch": {
+            "c": 0.08947759588310729,
+            "h": 296.09368152002486,
+            "l": 0.2120711774257705
+          },
+          "contexts": [
+            "heading",
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 2513984.287507788,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 4,
+            "link/color": 1,
+            "other/color": 1,
+            "heading/color": 4,
+            "card/borderColor": 16,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "button",
+            "badge"
+          ],
+          "frequency": 76,
+          "confidence": 1,
+          "prominence": 629097.6336741983,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/backgroundColor": 5,
+            "card/backgroundColor": 41,
+            "badge/backgroundColor": 26,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#bec0c6",
+          "oklch": {
+            "c": 0.008671547400016437,
+            "h": 271.307574918187,
+            "l": 0.8080051354971827
+          },
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 276,
+          "confidence": 1,
+          "prominence": 331835.82710707973,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 55,
+            "link/borderColor": 220,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "card",
+            "link"
+          ],
+          "frequency": 140,
+          "confidence": 1,
+          "prominence": 291993.37121040584,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 7,
+            "icon/fill": 2,
+            "link/color": 26,
+            "link/borderColor": 104,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeedf2",
+          "oklch": {
+            "c": 0.006740447122190315,
+            "h": 295.44767697330593,
+            "l": 0.9482993354424412
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 201833.59964808397,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#585163",
+          "oklch": {
+            "c": 0.03023737190096407,
+            "h": 302.8859204464525,
+            "l": 0.44839988877922293
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 227,
+          "confidence": 1,
+          "prominence": 194443.66171162555,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 30,
+            "card/color": 15,
+            "other/fill": 1,
+            "button/color": 1,
+            "nav/borderColor": 116,
+            "card/borderColor": 60,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dee5ff",
+          "oklch": {
+            "c": 0.036140275176933294,
+            "h": 273.6992398423938,
+            "l": 0.9245318773131251
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 59932.44653209778,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 32
+          }
+        },
+        {
+          "hex": "#d2d4d6",
+          "oklch": {
+            "c": 0.0035206123633827265,
+            "h": 247.86393698278488,
+            "l": 0.86896341545258
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6780c2",
+          "oklch": {
+            "c": 0.10492161074935137,
+            "h": 267.47765596824047,
+            "l": 0.6087059328823752
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6f5f7b",
+          "oklch": {
+            "c": 0.04749920993863442,
+            "h": 310.47759066676906,
+            "l": 0.5112059051606346
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2f2f2f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.305191278401601
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3f5491",
+          "oklch": {
+            "c": 0.1028432599980774,
+            "h": 267.9023979017368,
+            "l": 0.4591865059399375
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0d2d4c",
+          "oklch": {
+            "c": 0.06780443836846356,
+            "h": 250.7656314785578,
+            "l": 0.29160454020769816
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bad1e6",
+          "oklch": {
+            "c": 0.03844358756570684,
+            "h": 245.8194336049534,
+            "l": 0.8501934101112343
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#997f68",
+          "oklch": {
+            "c": 0.04624932038596315,
+            "h": 63.29886445943988,
+            "l": 0.6147000232388848
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c99766",
+          "oklch": {
+            "c": 0.08853282473858136,
+            "h": 65.03041946983704,
+            "l": 0.7129216791053238
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b4b2a5",
+          "oklch": {
+            "c": 0.01829783923981132,
+            "h": 99.6840689006235,
+            "l": 0.7615168473764732
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#171e59",
+          "oklch": {
+            "c": 0.1053466531371278,
+            "h": 272.09965512227507,
+            "l": 0.27124028028145136
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#55d4da",
+          "oklch": {
+            "c": 0.11098181969332568,
+            "h": 199.55570688579147,
+            "l": 0.8022692298081421
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6f7287",
+          "oklch": {
+            "c": 0.032639808785040435,
+            "h": 278.8720678595729,
+            "l": 0.5570116167821815
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 18867.999758039547,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 6,
+            "icon/color": 1,
+            "other/fill": 28,
+            "other/color": 2,
+            "button/color": 3,
+            "nav/borderColor": 24,
+            "icon/borderColor": 4,
+            "other/borderColor": 8,
+            "button/borderColor": 9
+          }
+        },
+        {
+          "hex": "#261b36",
+          "oklch": {
+            "c": 0.05150663369899865,
+            "h": 301.56554946404185,
+            "l": 0.24953370852966092
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 18858.583056255655,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 8,
+            "card/borderColor": 32
+          }
+        },
+        {
+          "hex": "#f05537",
+          "oklch": {
+            "c": 0.19602629505272548,
+            "h": 32.97156293846186,
+            "l": 0.6546233680998459
+          },
+          "contexts": [
+            "card",
+            "nav"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 11617.342719057231,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "card/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#504264",
+          "oklch": {
+            "c": 0.058249213590284704,
+            "h": 302.79709887748265,
+            "l": 0.4079088382345952
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4490,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#feedea",
+          "oklch": {
+            "c": 0.018962958141862135,
+            "h": 29.545725190797214,
+            "l": 0.9587490869462818
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4201.7355894117845,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#716b7a",
+          "oklch": {
+            "c": 0.0241396281668292,
+            "h": 303.7032325660729,
+            "l": 0.5384239670967716
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2148.103838099281,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4b4d63",
+          "oklch": {
+            "c": 0.03644885358451525,
+            "h": 280.6679963500828,
+            "l": 0.42719532066894766
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1913.4305826551206,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 2,
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#cc3f24",
+          "oklch": {
+            "c": 0.18216850934283185,
+            "h": 32.88227971534224,
+            "l": 0.5694819074755436
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.21256786984676432,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.68,
+          "background": "#000000",
+          "foreground": "#f8f7fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.52,
+          "background": "#feedea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#ffffff",
+          "foreground": "#1e0a3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#eeedf2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.91,
+          "background": "#1e0a3c",
+          "foreground": "#f8f7fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.76,
+          "background": "#dee5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.25,
+          "background": "#ffffff",
+          "foreground": "#261b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#feedea",
+          "foreground": "#1e0a3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.49,
+          "background": "#eeedf2",
+          "foreground": "#1e0a3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.37,
+          "background": "#ffffff",
+          "foreground": "#171e59"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.22,
+          "background": "#f8f7fa",
+          "foreground": "#261b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#000000",
+          "foreground": "#dbdae3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.4,
+          "background": "#171e59",
+          "foreground": "#f8f7fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.4,
+          "background": "#dee5ff",
+          "foreground": "#1e0a3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#feedea",
+          "foreground": "#261b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#d2d4d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#ffffff",
+          "foreground": "#0d2d4c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.95,
+          "background": "#eeedf2",
+          "foreground": "#261b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.55,
+          "background": "#feedea",
+          "foreground": "#171e59"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "corners": [
+            40,
+            40,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 30,
+          "asymmetric": true
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 360,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "card",
+            "other"
+          ],
+          "frequency": 76,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|link",
+            "marginTop|body",
+            "marginTop|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingLeft|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input",
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|input",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 123,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "marginRight",
+            "marginBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "marginRight|nav",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingLeft|body",
+            "paddingRight|link",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "input",
+            "button",
+            "card",
+            "link",
+            "body"
+          ],
+          "frequency": 211,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingBottom|button",
+            "paddingLeft|card",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|link",
+            "paddingTop|body",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 124,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|badge",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 77,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Plak",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 828,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Plak Text",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 33,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Plak",
+          "weight": 600,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 132,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak Text",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak Text",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "card",
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Plak",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "card",
+            "icon",
+            "hero",
+            "button",
+            "body",
+            "badge"
+          ],
+          "frequency": 243,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 178,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Plak",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 52,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Plak",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Plak",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Plak",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Plak",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Neue Plak",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/08c41b27-4919-484f-bb6b-393eca33d37b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eventbrite design system\",\"item\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#style-reference\",\"name\":\"Eventbrite design system reference\",\"headline\":\"Eventbrite design system | Refero Styles\",\"description\":\"Explore Eventbrite's light Other design system: Aubergine Ink #39364f, Pure White #ffffff colors, Neue Plak, Neue Plak Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eventbrite\",\"url\":\"https://www.eventbrite.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1fa0d9da-966f-4d43-9775-e156bec3a3b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"caption\":\"Screenshot of Eventbrite\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d3255f5-a1a5-4abd-88de-1495e23e1e86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eventbrite design system\",\"Eventbrite website design\",\"Eventbrite colors\",\"Eventbrite typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aubergine Ink\",\"Pure White\",\"Warm Linen\",\"Soft Mist\",\"Neue Plak\",\"Neue Plak Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eventbrite design system\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite website design\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite colors\"},{\"@type\":\"Thing\",\"name\":\"Eventbrite typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:44:43.816Z\",\"dateModified\":\"2026-04-30T00:44:43.816Z\"}]}19:T7b5,## Quick Color Reference\n- text: #39364f (Aubergine Ink)\n- background: #f8f7fa (Warm Linen)\n- card surface: #ffffff (Pure White)\n- border: #dbdae3 (Soft Mist)\n- accent: #3659e3 (Electric Iris)\n- primary action: #3659e3 (outlined action border)\n\n## 3-5 Example Component Prompts\n1. **Event Listing Card**: White (#ffffff) surface on Warm Linen (#f8f7fa) canvas. 40px border-radius, 1px Soft Mist (#dbdae3) border, no shadow. Top: 16:9 event image with top corners clipping to 40px. Below: 12px padding. Title in 16px Neue Plak weight 600 Plum Depth (#1e0a3c). Date/venue in 14px weight 400 Aubergine Ink (#39364f). Price in 14px weight 600.\n2. **Hero Banner**: Full-bleed photographic background (concert/live event). Overlay: left-aligned white rectangle with 4px radius containing 'GET INTO IT' in 14px weight 600, then 'FROM POP BALLADS TO EMO ENCORES' in 32px weight 700 Plum Depth. Below: outlined ghost action — Electric Iris (#3659e3) 1.5px border, Electric Iris text, 360px pill radius, 12px 24px padding, 14px weight 600.\n3. **Pill Search Bar**: 100px border-radius container, white fill, 1px Soft Mist border, ~48px tall. Left: search input with placeholder 'Search events' in Smoke (#6f7287) 14px. Center divider. Right: location text with pin icon. Far right: 40px circle filled Ember Orange (#f05537) with white magnifier icon.\n4. **Category Circle Icon Row**: 8 circles in a horizontal row, each 80px diameter, white fill, 1px Soft Mist border, centered line icon in Aubergine Ink at 24px. 24px gap between circles. Labels in 14px weight 400 Aubergine Ink below each circle.\n5. **Cookie Consent Panel**: Fixed bottom-left overlay, white surface, 8px radius, 1px Soft Mist border. Heading 'We use cookies' in 16px weight 600 Plum Depth. Body in 14px Smoke. Three stacked buttons on the right: filled Ember Orange 'Accept all' (4px radius, white text, 8px 16px padding), then two ghost buttons with Aubergine Ink border labeled 'Reject all' and 'More choices'."
+}

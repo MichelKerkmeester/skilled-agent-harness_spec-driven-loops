@@ -1,0 +1,265 @@
+{
+  "color": {
+    "white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White Canvas — Page background, product photography backdrop, hero base layer"
+    },
+    "mist": {
+      "$value": "#f2f5f8",
+      "$type": "color",
+      "$description": "Mist — Primary light surface for cards, product tiles, section bands, input fills, hairline borders — the most-used non-white color"
+    },
+    "soft-mist": {
+      "$value": "#e6ebee",
+      "$type": "color",
+      "$description": "Soft Mist — Elevated surface layer one step above Mist for nested cards or secondary content blocks"
+    },
+    "pale-slate": {
+      "$value": "#cfdce7",
+      "$type": "color",
+      "$description": "Pale Slate — Button and navigation borders, subtle dividers, outlined-control stroke"
+    },
+    "steel": {
+      "$value": "#58737e",
+      "$type": "color",
+      "$description": "Steel — Secondary text, muted helper labels, subdued body copy where Deep Slate would feel too heavy"
+    },
+    "deep-slate": {
+      "$value": "#3b505a",
+      "$type": "color",
+      "$description": "Deep Slate — The signature brand color — primary text, all hairline borders (536 nav + 304 misc border uses), nav link color, footer text, and the single dark surface tone that anchors the otherwise pale system"
+    },
+    "deep-ink": {
+      "$value": "#202f3b",
+      "$type": "color",
+      "$description": "Deep Ink — Heaviest heading text where maximum contrast against white is needed"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Icon strokes, strict-contrast text, and occasional fill — used sparingly only when absolute black is required"
+    }
+  },
+  "font": {
+    "libre-caslon-condensed": {
+      "$value": "Libre Caslon Condensed",
+      "$type": "fontFamily",
+      "$description": "Editorial display — the wordmark, section headings, and any text that needs to feel like a magazine title. Used at only three sizes, all dramatic, all in a single weight 400. The condensed proportions and negative tracking make the brand name feel architectural and permanent rather than decorative."
+    },
+    "circular-pro": {
+      "$value": "Circular Pro",
+      "$type": "fontFamily",
+      "$description": "The single workhorse sans for all navigation, body copy, buttons, links, inputs, icons, and utility UI. The geometric neutrality and slightly wide letterforms give the system a calm, clinical tone appropriate to a biology-driven skincare brand. Never goes above 16px, never goes bold — the 400 weight at small sizes is the only voice UI text gets."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Circular Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Libre Caslon Condensed",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Libre Caslon Condensed",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Libre Caslon Condensed",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "47": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Spacing 47px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "95": {
+      "$value": "95px",
+      "$type": "dimension",
+      "$description": "Spacing 95px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed photography base"
+    },
+    "mist": {
+      "$value": "#f2f5f8",
+      "$type": "color",
+      "$description": "Surface level 1: Primary light surface — product cards, section bands, input fields"
+    },
+    "soft-mist": {
+      "$value": "#e6ebee",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated surface for nested or secondary content blocks"
+    },
+    "deep-slate": {
+      "$value": "#3b505a",
+      "$type": "color",
+      "$description": "Surface level 3: Dark accent surface for footer or inverted sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://faceformula.com",
+      "siteName": "Face Formula",
+      "extractedAt": "2026-06-03T18:52:54.465Z",
+      "variant": "extended"
+    }
+  }
+}

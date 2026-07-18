@@ -1,0 +1,533 @@
+{
+  "source": "https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a",
+  "uuid": "97823ba1-ee1e-489d-aefd-8d72a578669a",
+  "name": "Zara",
+  "northStar": "Gallery wall for fashion — pure white space, hairline frames, editorial imagery as the only color.",
+  "capturedAt": "2026-07-18T09:45:29.163Z",
+  "meta": {
+    "url": "https://zara.com",
+    "siteName": "Zara",
+    "extractedAt": "2026-06-03T18:15:42.357Z",
+    "durationMs": 24746,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 65,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 0px border-radius on every component — buttons, inputs, cards, badges, images. The system is intentionally sharp-cornered.",
+      "Keep the palette to three values: #000000 for text and borders, #ffffff for surfaces, #757575 for secondary text. No additional colors.",
+      "Set body text at 11–13px to maintain the editorial-print scale. Larger sizes break the magazine-layout feel.",
+      "Use the ZARA wordmark (custom didone serif) as the only display/decorative type — never apply it to headings or UI labels.",
+      "Let editorial photography occupy 50–60% of any layout. The image is the content; the form is the frame.",
+      "Use 1px hairline borders in #000000 for all interactive elements. The line weight is the visual language.",
+      "Maintain generous whitespace: 48px between sections, 20px between form elements, 112px outer padding."
+    ],
+    "donts": [
+      "Don't introduce any color beyond the three neutrals. No brand accents, no semantic colors, no hover tints.",
+      "Don't use rounded corners on any element. Even 2–4px radius breaks the system.",
+      "Don't apply shadows, gradients, or glow effects. The design is completely flat.",
+      "Don't use bold (700+) weights. The system runs 300–400 only.",
+      "Don't use body text larger than 16px. The compressed scale is a signature choice.",
+      "Don't add icons, badges, tags, or decorative UI elements. The interface is content-only.",
+      "Don't center-align body text or form labels. Everything is left-aligned with uppercase section headers."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "role": "Page backgrounds, form surfaces, image backgrounds — the silent stage on which all content sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, icons, hairline borders, button outlines, checkbox marks, form labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757575",
+        "name": "Stone",
+        "role": "Secondary/helper text, placeholder text, disabled labels — the only mid-tone that breaks the binary",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Asymmetric two-column split for entry screens: a narrow left column (280–320px) holds all form UI, left-aligned with 112px outer padding; the remaining 60% holds a large editorial photograph. The form column is vertically centered. No header bar, no navigation, no footer on entry flows — the ZARA wordmark sits alone at top-left as the only structural element. Content is max-width 1200px on inner pages with generous 48px section gaps. The layout philosophy: the interface is a magazine spread, not a software dashboard.",
+    "imagery": "Editorial fashion photography is the sole visual content. Full-color, unprocessed, natural-lit campaign and model photography occupies the dominant visual space on every screen. Images are sharp-cornered, uncontained (no device frames, no polaroid effects), and presented at near-original aspect ratios. No illustrations, no icons-as-decoration, no abstract graphics. The photography carries all brand personality — mood, season, aesthetic — while the interface remains completely neutral.",
+    "similar": [
+      {
+        "why": "Same monochromatic black-on-white system, same hairline border aesthetic, same editorial photography dominance, same zero-radius flat design",
+        "business": "COS"
+      },
+      {
+        "why": "Sibling-brand approach — serif wordmark, compressed UI type scale, pure white canvas, no decorative UI elements, photography-first layout",
+        "business": "Massimo Dutti"
+      },
+      {
+        "why": "Extreme minimalism with full-width editorial imagery, monochrome palette, small uppercase UI labels, flat components with no shadows",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Same hairline-border form fields, same generous whitespace, same binary black/white palette, same editorial-print typography scale",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px",
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "48px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — pure white, no texture, no variation"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Form Surface",
+        "level": 1,
+        "purpose": "Form fields and interactive areas — visually identical to canvas, separated only by hairline borders"
+      }
+    ],
+    "northStar": "Gallery wall for fashion — pure white space, hairline frames, editorial imagery as the only color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 15,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "ZARA Wordmark",
+        "role": "Brand identity mark",
+        "description": "Custom high-contrast didone-style serif (extreme thin-to-thick stroke variation, flat unbracketed serifs). Functions as the sole decorative typographic element in the system. Always rendered in #000000 on white. No tagline, no lockup variations. Substitutes: 'Didot', 'Bodoni Moda'."
+      },
+      {
+        "name": "Section Header (Uppercase Label)",
+        "role": "Form section title",
+        "description": "Small uppercase text at 13px weight 400, #000000, tracking 0. No underline, no accent color, no icon. Examples: 'SELECT YOUR LOCATION', 'LOCATION', 'LANGUAGE'. The uppercase treatment is the only typographic emphasis — no bold, no color change."
+      },
+      {
+        "name": "Select Dropdown",
+        "role": "Location/language selector",
+        "description": "Full-width field, 0px radius, no background fill, 1px bottom border in #000000. Label above in 11px #757575 uppercase. Value text in 13px #000000. No focus ring, no box-shadow — the bottom border IS the affordance. Custom dropdown arrow implied, not styled."
+      },
+      {
+        "name": "Outlined Button",
+        "role": "Primary form action (CONTINUE)",
+        "description": "Rectangular button, 0px radius, 1px solid #000000 border, transparent background, no shadow. Text in 13px weight 400 uppercase, #000000. Padding approximately 12px horizontal × 20px vertical. No hover fill, no color inversion — the outline is the identity. Inverts contextually: the border weight is the only visual weight it carries."
+      },
+      {
+        "name": "Checkbox",
+        "role": "Remember selection / opt-in toggle",
+        "description": "Minimal square checkbox, 0px radius, 1px solid #000000 border, transparent fill. When checked, filled with #000000. Label to the right in 13px #000000. No focus ring, no animation, no color accent."
+      },
+      {
+        "name": "Helper Text Link",
+        "role": "Inline contextual link",
+        "description": "13px #000000 text with underline. Used for inline references like 'Islas Canarias'. Underline is the only hover state — no color change, no weight change, no animation."
+      },
+      {
+        "name": "Editorial Image Block",
+        "role": "Full-bleed campaign/model photography",
+        "description": "Large photographic block occupying roughly 60% of viewport width. No border, no radius, no shadow, no overlay. Natural color and lighting — the image is unprocessed UI element, not decoration. Aspect ratio varies but tends to be landscape (roughly 3:2 or 16:9)."
+      },
+      {
+        "name": "Form Container",
+        "role": "Left-aligned form column",
+        "description": "Narrow column (roughly 280–320px), left-aligned within page, vertically centered. 112px horizontal padding from page edge. Contains all form elements with 20px vertical gaps between fields. No card background, no border, no shadow — floats on white canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text — form labels, dropdowns, buttons, body copy, helper text, links. The deliberately compressed size range (11–16px) gives every screen an editorial-print feel; body copy at 11–13px is anti-convention for digital, making the interface feel like a magazine layout rather than a software product.",
+        "sizes": "11px, 12px, 13px, 15px, 16px",
+        "family": "Helvetica Now Text",
+        "weight": "300, 400",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Helvetica Neue, Arial",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Zara's design system is editorial minimalism pushed to its logical extreme: a flat, monochromatic canvas where the interface deliberately recedes so editorial photography can carry the entire brand experience. The palette is essentially binary — pure black on pure white with a single mid-gray for secondary text — and the only decorative typographic moment is the ZARA wordmark itself, a high-contrast didone-style serif that functions as a logo, not as a heading font. UI typography is unusually compact (11–16px) and uses a single neutral sans-serif, giving every screen the look of a fashion magazine page. Components are borderless or use hairline strokes, with zero shadows, zero gradients, and zero rounded corners — the design language of a gallery wall, not a software product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zara design system\",\"item\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#style-reference\",\"name\":\"Zara design system reference\",\"headline\":\"Zara design system | Refero Styles\",\"description\":\"Explore Zara's light E-commerce design system: Canvas #ffffff, Ink #000000 colors, Helvetica Now Text typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zara\",\"url\":\"https://zara.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"caption\":\"Screenshot of Zara\"},\"image\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zara design system\",\"Zara website design\",\"Zara colors\",\"Zara typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas\",\"Ink\",\"Stone\",\"Helvetica Now Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zara design system\"},{\"@type\":\"Thing\",\"name\":\"Zara website design\"},{\"@type\":\"Thing\",\"name\":\"Zara colors\"},{\"@type\":\"Thing\",\"name\":\"Zara typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-02T16:12:17.000Z\",\"dateModified\":\"2026-03-02T16:12:17.000Z\"}]}19:T76b,**Quick Color Reference:**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- secondary text: #757575\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a location selector screen: white (#ffffff) background, max-width 1200px, two-column asymmetric layout. Left column 320px wide, 112px outer padding, vertically centered. Right column holds a full-bleed editorial photograph with 0px radius. ZARA wordmark top-left in custom didone serif, #000000. Form label 'SELECT YOUR LOCATION' at 13px uppercase weight 400, #000000. Dropdown fields with 1px bottom border #000000, no background, no radius. Continue button: 1px solid #000000 border, transparent fill, 0px radius, 13px uppercase text #000000, 12px 20px padding.\n\n2. Create a product listing section: white (#ffffff) background, 48px top/bottom padding, 20px gaps between items. Product cards: 0px radius, no border, no shadow. Product names at 13px weight 400 #000000, prices at 13px #757575.\n\n3. Create a navigation bar: white (#ffffff) background, 1px solid #000000 bottom border. Menu items at 13px uppercase weight 400, #000000, left-aligned. ZARA wordmark centered or left-aligned in custom didone serif #000000. No background color, no shadow, 0px radius on all elements.\n\n4. Create a category landing page hero: full-viewport editorial photograph as background, no overlay. ZARA wordmark top-left in #000000 over the image. Category title at display size (custom didone serif or large weight 300 Helvetica) centered or bottom-left, #000000 or #ffffff depending on image luminance. No buttons, no CTAs — the imagery is the entry point.\n\n5. Create a form input field: 0px radius, no background, no border except 1px solid #000000 bottom border only. Label above at 11px uppercase weight 400, #757575. Input value at 13px #000000. No focus ring, no box-shadow on focus — the border remains static."
+      }
+    ],
+    "elevationPhilosophy": "The design system has zero elevation. No shadows, no z-axis differentiation. Hierarchy is created through whitespace, border weight, and typography scale — not through depth. Components exist on a single plane, like printed matter on a page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading",
+            "input",
+            "icon",
+            "button",
+            "image"
+          ],
+          "frequency": 279,
+          "confidence": 1,
+          "prominence": 10535550.789960677,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3009218.8109740214,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3730.043235886221,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#ffffff",
+          "foreground": "#757575"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#757575",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Now Text",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 55,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Now Text",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b2f29d4c-e0a1-4ef6-8db5-9fb328e69fb4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zara design system\",\"item\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#style-reference\",\"name\":\"Zara design system reference\",\"headline\":\"Zara design system | Refero Styles\",\"description\":\"Explore Zara's light E-commerce design system: Canvas #ffffff, Ink #000000 colors, Helvetica Now Text typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zara\",\"url\":\"https://zara.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/97823ba1-ee1e-489d-aefd-8d72a578669a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"caption\":\"Screenshot of Zara\"},\"image\":\"https://images.refero.design/styles/refero.design/image/67b40a1b-a586-4a97-8e21-7e8ac174c50d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zara design system\",\"Zara website design\",\"Zara colors\",\"Zara typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas\",\"Ink\",\"Stone\",\"Helvetica Now Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zara design system\"},{\"@type\":\"Thing\",\"name\":\"Zara website design\"},{\"@type\":\"Thing\",\"name\":\"Zara colors\"},{\"@type\":\"Thing\",\"name\":\"Zara typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-02T16:12:17.000Z\",\"dateModified\":\"2026-03-02T16:12:17.000Z\"}]}19:T76b,**Quick Color Reference:**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- secondary text: #757575\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a location selector screen: white (#ffffff) background, max-width 1200px, two-column asymmetric layout. Left column 320px wide, 112px outer padding, vertically centered. Right column holds a full-bleed editorial photograph with 0px radius. ZARA wordmark top-left in custom didone serif, #000000. Form label 'SELECT YOUR LOCATION' at 13px uppercase weight 400, #000000. Dropdown fields with 1px bottom border #000000, no background, no radius. Continue button: 1px solid #000000 border, transparent fill, 0px radius, 13px uppercase text #000000, 12px 20px padding.\n\n2. Create a product listing section: white (#ffffff) background, 48px top/bottom padding, 20px gaps between items. Product cards: 0px radius, no border, no shadow. Product names at 13px weight 400 #000000, prices at 13px #757575.\n\n3. Create a navigation bar: white (#ffffff) background, 1px solid #000000 bottom border. Menu items at 13px uppercase weight 400, #000000, left-aligned. ZARA wordmark centered or left-aligned in custom didone serif #000000. No background color, no shadow, 0px radius on all elements.\n\n4. Create a category landing page hero: full-viewport editorial photograph as background, no overlay. ZARA wordmark top-left in #000000 over the image. Category title at display size (custom didone serif or large weight 300 Helvetica) centered or bottom-left, #000000 or #ffffff depending on image luminance. No buttons, no CTAs — the imagery is the entry point.\n\n5. Create a form input field: 0px radius, no background, no border except 1px solid #000000 bottom border only. Label above at 11px uppercase weight 400, #757575. Input value at 13px #000000. No focus ring, no box-shadow on focus — the border remains static."
+}

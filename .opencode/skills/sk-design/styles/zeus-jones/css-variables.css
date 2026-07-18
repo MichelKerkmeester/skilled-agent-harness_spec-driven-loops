@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-midnight-ink: #1a1c2c;
+  --color-warm-parchment: #fcfaf3;
+  --color-soft-linen: #ebe9e4;
+  --color-obsidian: #000000;
+  --color-blush-coral: #fd9494;
+
+  /* Typography — Font Families */
+  --font-zjsansdisplay: 'ZJSansDisplay', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-featuredecklight: 'FeatureDeckLight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.6px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.6;
+  --tracking-body-sm: -0.32px;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --tracking-body: -0.36px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.48px;
+  --text-heading-sm: 40px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.8px;
+  --text-heading: 48px;
+  --leading-heading: 1.11;
+  --tracking-heading: -0.96px;
+  --text-display: 60px;
+  --leading-display: 1.07;
+  --tracking-display: -1.2px;
+  --text-display-lg: 90px;
+  --leading-display-lg: 1.07;
+  --tracking-display-lg: -1.8px;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-120: 120px;
+  --spacing-128: 128px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 40px;
+  --card-padding: 16px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+  --radius-full: 1000px;
+  --radius-full-2: 1584px;
+  --radius-full-3: 1782px;
+
+  /* Named Radii */
+  --radius-nav: 9999px;
+  --radius-tags: 9999px;
+  --radius-cards: 20px;
+  --radius-images: 20px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-warm-parchment: #fcfaf3;
+  --surface-soft-linen: #ebe9e4;
+  --surface-midnight-ink: #1a1c2c;
+}

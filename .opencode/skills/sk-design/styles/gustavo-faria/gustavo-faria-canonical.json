@@ -1,0 +1,622 @@
+{
+  "source": "https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d",
+  "uuid": "cd3546fc-b6d0-4ec9-8624-580549af347d",
+  "name": "GUSTAVO Faria ©",
+  "northStar": "Editorial monograph on white paper",
+  "capturedAt": "2026-07-18T09:08:59.137Z",
+  "meta": {
+    "url": "https://gustavo.work",
+    "siteName": "GUSTAVO Faria ©",
+    "extractedAt": "2026-06-03T20:36:14.753Z",
+    "durationMs": 25048,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 356,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the custom display serif at 125-142px for hero statements with letter-spacing -0.047em",
+      "Separate work list rows with 1px solid #dcdcdc bottom borders",
+      "Set all text in #282828 on #ffffff — avoid pure #000000 for body text to reduce eye strain",
+      "Maintain 0px border-radius on all elements — this is a flat, print-inspired system",
+      "Use -apple-system for all UI and body text; the system font should disappear so the display serif owns the page",
+      "Use #efc4b2 as the only chromatic surface, and only behind imagery — never as a UI background",
+      "Anchor pages with a single massive display headline; let everything else stay small and quiet"
+    ],
+    "donts": [
+      "Don't add shadows, gradients, or elevation effects — the design is intentionally flat",
+      "Don't introduce accent colors, hover states with background fills, or decorative gradients",
+      "Don't use border-radius greater than 0px — sharp corners are core to the editorial identity",
+      "Don't mix the display serif into body text or UI labels — it belongs only at hero scale",
+      "Don't use bold or heavy weights for body text — the 400 weight system font should stay calm",
+      "Don't crowd the layout with multiple visual elements per section — let whitespace and scale do the work",
+      "Don't use #000000 for borders or secondary text — reserve it for display text and high-contrast moments only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces — the foundational surface on which all content sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282828",
+        "name": "Charcoal",
+        "role": "Primary text, hairline borders, structural rules — softer than pure black, reduces glare for long reading",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Display text fill, link borders, maximum contrast elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dcdcdc",
+        "name": "Ash Gray",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efc4b2",
+        "name": "Flesh Peach",
+        "role": "Warm surface wash behind portrait and select portfolio imagery — the only chromatic surface, used sparingly as atmospheric punctuation",
+        "group": "accent"
+      }
+    ],
+    "layout": "Two-column asymmetric layout: a narrow left sidebar (roughly 25% width) holds the bio, portrait, and identity mark; the right column (roughly 75%) holds the massive display headline and the work selection list. The hero '2019 — 2025' headline spans the full width of the right column at ~140px. Below it, the work selection is a full-width three-column table (project | category | year) with hairline dividers. The page flows vertically as a single long scroll with no section breaks beyond the work list rows. Navigation sits inline at the top-left. The overall rhythm is: compact sidebar → massive typographic statement → dense list of work entries. Max-width is effectively full-bleed, with padding from viewport edges only.",
+    "imagery": "Photography dominates: a single square portrait with a warm peach background anchors the left sidebar, and portfolio thumbnails appear as rectangular or square crops with their own contextual backgrounds (peach tones, green gradients). Images are sharp-edged with 0px radius, no overlays, no masks. The portrait is the only photographic element with a visible label ('(+) Hover Here'). Portfolio thumbnails may include typography or graphic elements as part of the artwork itself. No illustrations, no icons, no 3D renders — imagery is documentary and personal, treated as printed plates.",
+    "similar": [
+      {
+        "why": "Same editorial-monograph approach: massive display type anchoring sparse layouts, monochrome palette, work presented as a structured list with hairline dividers",
+        "business": "Pentagram partner portfolios"
+      },
+      {
+        "why": "Identical 'designer contact sheet' aesthetic — custom display serif, white canvas, no decorative elements, content organized as typographic list with project/category/year columns",
+        "business": "Mark Owens (markowens.id)"
+      },
+      {
+        "why": "Shared restraint: custom display serif hero, monochrome interface, work entries as text rows with minimal chrome, 0px radius throughout",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Editorial portfolio structure with oversized display type, flat surfaces, and work presented as a typographic index rather than a visual gallery",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48-64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 1,
+        "purpose": "Primary page background"
+      },
+      {
+        "hex": "#efc4b2",
+        "name": "Flesh Surface",
+        "level": 2,
+        "purpose": "Warm atmospheric wash behind portrait imagery"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial monograph on white paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "display-lg",
+        "size": 125,
+        "lineHeight": 1.02
+      },
+      {
+        "role": "display",
+        "size": 142,
+        "lineHeight": 0.81,
+        "letterSpacing": -6.67
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero-level typographic statement",
+        "description": "Massive custom serif at 125-142px, weight 400, letter-spacing -0.047em, color #000000. Line-height 0.81-1.02 creates tight vertical rhythm. No background, no border — pure typographic presence. Used for date ranges and title statements that anchor a page."
+      },
+      {
+        "name": "Work List Row",
+        "role": "Project entry in work selection",
+        "description": "Three-column row: project name (left, bold weight 700, #282828), category (center, weight 400, #282828 or #dcdcdc), year (right, weight 400, #dcdcdc). Separated by 1px solid bottom border in #dcdcdc. Padding 12-16px vertical. No hover state, no background change."
+      },
+      {
+        "name": "Bio Block",
+        "role": "Personal introduction",
+        "description": "Small body text block in -apple-system 16px, color #282828. Includes name as bold/link, age, location, and current work. Left-aligned in sidebar column. No background or border — sits directly on canvas."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator between sections",
+        "description": "1px solid line, #dcdcdc or #282828. Full-width or column-width. The only structural element separating work list rows and page sections."
+      },
+      {
+        "name": "Portrait Card",
+        "role": "Personal image with hover label",
+        "description": "Square image container, 0px radius, on #efc4b2 background. Small '(+)' or '(Hover Here)' label overlaid at center in -apple-system 12px, #282828. No shadow, no border."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-level navigation item",
+        "description": "Plain text link in -apple-system 16px, weight 400, color #282828. 1px solid #282828 bottom border on active/hover. No padding, no background. Sits inline with other nav items with horizontal gap."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small heading for content groups",
+        "description": "Uppercase or sentence-case label in -apple-system 12px, weight 400, color #dcdcdc. Marks sections like 'Work Selection' — intentionally muted to recede against project names."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Identity lockup in header",
+        "description": "'GUSTAVO Faria ©' in -apple-system 16px, weight 700, color #282828. Mixed case with capital first letter and lowercase. Sits at top-left as the page's identity anchor."
+      },
+      {
+        "name": "Portfolio Thumbnail",
+        "role": "Preview image of work piece",
+        "description": "Full-width or half-width image, 0px radius, no border, no shadow. May have a colored background (peach, green gradient) visible as part of the artwork itself. No caption or overlay chrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, navigation, bio description, and work list content — system font chosen for zero-loading neutrality, letting the custom display serif own the page's identity. The system choice is deliberate: it disappears so the display type can speak.",
+        "sizes": "16px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "SF Pro Text or system-ui",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "Display serif used for the signature '2019 — 2025' hero statement at 125-142px with weight 400 and tight negative tracking; the 12px instance serves as small-caps section labels. The extreme size jump from 12px to 125px creates the page's defining scale contrast. Substitute: GT Sectra, Editorial New, or Tobias for similar editorial character.",
+        "sizes": "12px, 125px, 142px",
+        "family": "custom_21879 / custom_49610",
+        "weight": "400, 700",
+        "lineHeight": "0.81, 1.00, 1.02, 1.17, 1.67",
+        "substitute": "GT Sectra or Editorial New",
+        "letterSpacing": "-0.047em (-6.7px at 142px)",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "custom_49610 — detected in extracted data but not described by AI",
+        "sizes": "125px",
+        "family": "custom_49610",
+        "weight": "400",
+        "lineHeight": "1.02",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      }
+    ],
+    "description": "Gustavo Faria's portfolio operates as a printed monograph on white paper: an editorial spread where one massive serif date range dominates the right column while a compact bio and portrait anchor the left. The system is almost aggressively monochrome — four grays/black on white, no decorative color, no shadows, no rounded corners. Typography does all the heavy lifting: a custom display serif at 125-142px creates scale contrast against 16px system body text, and negative letter-spacing tightens the display letters into a single confident statement. Content is organized as a work selection table — project name, category, year — separated by hairline rules. The atmosphere is that of an art director's contact sheet: restrained, intentional, every element earning its space.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"GUSTAVO Faria © design system\",\"item\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#style-reference\",\"name\":\"GUSTAVO Faria © design system reference\",\"headline\":\"GUSTAVO Faria © design system | Refero Styles\",\"description\":\"Explore GUSTAVO Faria ©'s light Design design system: Paper White #ffffff, Charcoal #282828 colors, -apple-system, custom_21879 / custom_49610 typography,...\",\"url\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"GUSTAVO Faria ©\",\"url\":\"https://gustavo.work\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"caption\":\"Screenshot of GUSTAVO Faria ©\"},\"image\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"GUSTAVO Faria © design system\",\"GUSTAVO Faria © website design\",\"GUSTAVO Faria © colors\",\"GUSTAVO Faria © typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Charcoal\",\"Ink Black\",\"Ash Gray\",\"-apple-system\",\"custom_21879 / custom_49610\",\"custom_49610\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © design system\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © website design\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © colors\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:08:02.415Z\",\"dateModified\":\"2026-04-30T03:08:02.415Z\"}]}19:T522,**Quick Color Reference**\n- text: #282828\n- background: #ffffff\n- border: #dcdcdc\n- accent surface: #efc4b2\n- ink black: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: white #ffffff background. Display headline '2019 — 2025' at 142px in custom display serif, weight 400, #000000, letter-spacing -0.047em, line-height 0.81. No other elements — let the type fill the space.\n\n2. Create a work list row: three-column layout (60% / 25% / 15%). Project name in -apple-system 16px weight 700 #282828, category in 16px weight 400 #dcdcdc, year in 16px weight 400 #dcdcdc right-aligned. 1px solid #dcdcdc bottom border, 0px radius, 12px vertical padding.\n\n3. Create a portrait card: square image container with #efc4b2 background, 0px radius, no border, no shadow. Centered overlay label '(+)' in -apple-system 12px #282828.\n\n4. Create a bio block: left-aligned text in -apple-system 16px weight 400 #282828. Name 'Gustavo Faria' in weight 700. Short paragraph below. No background, no border, sits directly on white canvas.\n\n5. Create a navigation bar: inline horizontal links 'Info' and 'Instagram' in -apple-system 16px weight 400 #282828, 8px horizontal gap between items. 1px solid #282828 bottom border on hover. No background, no padding above or below."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no depth. The design is completely flat — separation between elements is achieved through whitespace, hairline borders, and scale contrast rather than elevation. This is a print-design sensibility applied to the web: elements sit on the same plane, divided by rules."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "body",
+            "heading"
+          ],
+          "frequency": 1274,
+          "confidence": 1,
+          "prominence": 19104102.791748922,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 48,
+            "card/color": 1,
+            "image/color": 3,
+            "other/color": 204,
+            "heading/color": 2,
+            "body/borderColor": 192,
+            "card/borderColor": 4,
+            "image/borderColor": 12,
+            "other/borderColor": 800,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 5297351.84226044,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 274,
+          "confidence": 1,
+          "prominence": 1885416.2842466503,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 24,
+            "link/color": 20,
+            "other/fill": 26,
+            "other/stroke": 13,
+            "heading/color": 2,
+            "body/borderColor": 96,
+            "link/borderColor": 80,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efc4b2",
+          "oklch": {
+            "c": 0.05518192229387717,
+            "h": 43.92072110160387,
+            "l": 0.8530949830048543
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 209698,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dcdcdc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8944904147418206
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 130,
+          "confidence": 1,
+          "prominence": 42967.18111639228,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 26,
+            "body/borderColor": 104
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00008798839558937602,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.31,
+          "background": "#000000",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#efc4b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.75,
+          "background": "#dcdcdc",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.27,
+          "background": "#efc4b2",
+          "foreground": "#282828"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#000000",
+          "foreground": "#282828"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#ffffff",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#efc4b2",
+          "foreground": "#dcdcdc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 208,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "custom_21879",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 120,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "custom_49610",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "custom_21879",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "custom_21879",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "custom_21879",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "custom_21879",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "custom_21879",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 179,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 125,
+          "family": "custom_49610",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.02,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 142,
+          "family": "custom_21879",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.81,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 142,
+          "family": "custom_21879",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.81,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/838f0e2e-f766-4acf-9246-6410774973dc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"GUSTAVO Faria © design system\",\"item\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#style-reference\",\"name\":\"GUSTAVO Faria © design system reference\",\"headline\":\"GUSTAVO Faria © design system | Refero Styles\",\"description\":\"Explore GUSTAVO Faria ©'s light Design design system: Paper White #ffffff, Charcoal #282828 colors, -apple-system, custom_21879 / custom_49610 typography,...\",\"url\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"GUSTAVO Faria ©\",\"url\":\"https://gustavo.work\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cd3546fc-b6d0-4ec9-8624-580549af347d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"caption\":\"Screenshot of GUSTAVO Faria ©\"},\"image\":\"https://images.refero.design/styles/refero.design/image/65f373af-73fd-48d9-8759-2896d49af679.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"GUSTAVO Faria © design system\",\"GUSTAVO Faria © website design\",\"GUSTAVO Faria © colors\",\"GUSTAVO Faria © typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Charcoal\",\"Ink Black\",\"Ash Gray\",\"-apple-system\",\"custom_21879 / custom_49610\",\"custom_49610\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © design system\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © website design\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © colors\"},{\"@type\":\"Thing\",\"name\":\"GUSTAVO Faria © typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:08:02.415Z\",\"dateModified\":\"2026-04-30T03:08:02.415Z\"}]}19:T522,**Quick Color Reference**\n- text: #282828\n- background: #ffffff\n- border: #dcdcdc\n- accent surface: #efc4b2\n- ink black: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: white #ffffff background. Display headline '2019 — 2025' at 142px in custom display serif, weight 400, #000000, letter-spacing -0.047em, line-height 0.81. No other elements — let the type fill the space.\n\n2. Create a work list row: three-column layout (60% / 25% / 15%). Project name in -apple-system 16px weight 700 #282828, category in 16px weight 400 #dcdcdc, year in 16px weight 400 #dcdcdc right-aligned. 1px solid #dcdcdc bottom border, 0px radius, 12px vertical padding.\n\n3. Create a portrait card: square image container with #efc4b2 background, 0px radius, no border, no shadow. Centered overlay label '(+)' in -apple-system 12px #282828.\n\n4. Create a bio block: left-aligned text in -apple-system 16px weight 400 #282828. Name 'Gustavo Faria' in weight 700. Short paragraph below. No background, no border, sits directly on white canvas.\n\n5. Create a navigation bar: inline horizontal links 'Info' and 'Instagram' in -apple-system 16px weight 400 #282828, 8px horizontal gap between items. 1px solid #282828 bottom border on hover. No background, no padding above or below."
+}

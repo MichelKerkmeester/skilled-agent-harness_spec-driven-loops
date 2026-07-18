@@ -1,0 +1,609 @@
+{
+  "source": "https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983",
+  "uuid": "dd646da4-36f5-42b1-83dd-6a1c90cf8983",
+  "name": "Specht Studio",
+  "northStar": "Gallery wall of restrained curiosity. The studio's own chrome is a white plane and black type; the visual fireworks live entirely inside the project tiles.",
+  "capturedAt": "2026-07-18T07:26:04.068Z",
+  "meta": {
+    "url": "https://stephaniespecht.com",
+    "siteName": "Specht Studio",
+    "extractedAt": "2026-06-03T21:12:14.171Z",
+    "durationMs": 27572,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 221,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Helvetica Neue at weight 400 — no bold, no light, no italic beyond the brand subtitle. Typographic uniformity is the system.",
+      "Set body text at 15-16px and headings at 25px max. Anything larger than 25px breaks the gallery-wall scale where the imagery dominates.",
+      "Build with the white canvas as the default surface. Gallery Black (#000000) is the only structural ink; Graphite (#666666) handles secondary text and link borders.",
+      "Let project tiles butt directly against each other with 2-10px gaps. The tight masonry grid is the primary organizational device — wide gutters would dissolve the visual density.",
+      "Treat every page as a catalog. Text should annotate and index the work; it should never compete with the imagery for attention.",
+      "Keep all borders hairline (1-2px) in Gallery Black. Borders replace shadows, fills, and rounding as the structural language.",
+      "When a page needs section labels, use 25px black type directly on the white plane — never a colored chip, pill, or badge."
+    ],
+    "donts": [
+      "Do not introduce a brand color. Any chromatic accent would shift the system from 'gallery wall' to 'product page' and destroy the curatorial neutrality.",
+      "Do not add rounded corners to tiles, buttons, or containers. The system is orthogonal — sharp 0px radii everywhere.",
+      "Do not use shadows, blurs, or elevation. Depth must come from image content and grid density, not from CSS box-shadow.",
+      "Do not use multiple typefaces or weights. A second weight or family immediately introduces hierarchy that the system deliberately suppresses.",
+      "Do not add a CTA button. There is no primary action in this system — if a page needs a link, use a Graphite-underlined text link.",
+      "Do not center the content on the page. The grid is left-aligned, slightly off-center, which creates the editorial-publication feel.",
+      "Do not use gradients, fills, or tinted backgrounds. Every surface is pure white or pure black, never a shade between."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, project tile background where artwork doesn't fill the frame",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0b0b0",
+        "name": "Fog Gray",
+        "role": "Secondary surface, subtle dividers, muted metadata text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Link borders, secondary text, caption metadata, inactive nav",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Gallery Black",
+        "role": "Primary text, active nav, all structural borders, the single ink that holds the system together",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The site is a single dense masonry grid of project tiles, full-width with a ~1400px content envelope, left-aligned rather than centered. Navigation is a minimal text bar at the very top — logo top-left, nav links inline — separated from the grid by a single hairline border. The hero IS the grid; there is no separate hero section, no introductory text, no banner image. Scrolling reveals more tiles in continuous flow with no section breaks or alternating bands. The grid packs 3-4 columns at desktop and reduces on smaller viewports. Project metadata and section titles appear sparingly, overlaid on the grid rather than in dedicated zones.",
+    "imagery": "The imagery is the design system. Project tiles range across photography, editorial print, poster art, 3D renders, motion stills, and hand-drawn illustration — maximum visual diversity contained within a strict monochrome frame. Each tile is its own self-contained visual world; the grid treats them all with equal weight, no tile is visually privileged by size, position, or treatment. Tiles have no captions, no overlays, no rounded edges — they are raw crops. The overall feel is a curated mood board or museum wall: chaotic in content, rigorous in framing.",
+    "similar": [
+      {
+        "why": "Portfolio-as-website approach with no decorative chrome — diverse project tiles presented in a dense grid with minimal type treatment, letting the work carry the visual weight",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Studio site that functions as a curatorial catalog — black text on white, tight grid packing, zero brand-color noise, the work speaks for itself",
+        "business": "Bruce Mau Design"
+      },
+      {
+        "why": "Editorial-portfolio feel with strict typographic restraint and a grid of visually diverse campaign artifacts presented in a neutral frame",
+        "business": "Wieden+ Kennedy"
+      },
+      {
+        "why": "Design studio site that treats itself as an art object — monochrome chrome, typographic precision, and project tiles that are individually expressive within a rigid container",
+        "business": "M/M (Paris)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px",
+        "nav": "0px",
+        "tiles": "0px"
+      },
+      "elementGap": "2-10px",
+      "sectionGap": "67-122px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "level": 1,
+        "purpose": "Primary page canvas — the white wall"
+      },
+      {
+        "hex": "#b0b0b0",
+        "name": "Fog Gray",
+        "level": 2,
+        "purpose": "Recessed surface for metadata and quieter elements"
+      }
+    ],
+    "northStar": "Gallery wall of restrained curiosity. The studio's own chrome is a white plane and black type; the visual fireworks live entirely inside the project tiles.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 25,
+        "lineHeight": 1.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Site-wide top navigation",
+        "description": "Bare text-only horizontal list. Links at 15-16px Helvetica Neue 400 in Gallery Black, no underlines, no backgrounds, no active-state fills. Separated from the content by a hairline 1-2px black border bottom. Spacing between nav items is 30px margin-right. The word 'Work' carries a 2px black underline to mark the current section."
+      },
+      {
+        "name": "Project Tile",
+        "role": "Portfolio thumbnail in the grid",
+        "description": "Edge-to-edge image or artwork with zero padding and zero border-radius. Tiles butt directly against neighbors with a 2-10px gap (the system lets the artwork define its own edges). No title, no metadata, no overlay — the tile is the pure artifact. Grid cells vary in proportion (1:1, portrait, landscape) creating a masonry rhythm."
+      },
+      {
+        "name": "Grid Container",
+        "role": "Holds the portfolio tiles in masonry arrangement",
+        "description": "Multi-column grid (3-4 columns at desktop) at ~1400px max-width, left-aligned rather than centered. Tiles are tightly packed with minimal gutters. The grid is the dominant visual device — it is more present than any individual project."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline and standalone links in body copy",
+        "description": "15-16px Helvetica Neue 400 in Graphite (#666666), underlined with a 1px Graphite border. No hover color shift detected — links are static. The 1px underline is the only interactive affordance in the entire system."
+      },
+      {
+        "name": "Section Header",
+        "role": "Optional heading text for sections like 'Artwork', 'Young Innovators'",
+        "description": "25px Helvetica Neue 400 in Gallery Black, line-height 1.2, 13-24px margin-bottom. Overlaid directly on or near project tiles — no banner background, no colored chip, no box. Text sits on the white plane with no visual treatment distinguishing it from body type beyond size."
+      },
+      {
+        "name": "Brand Lockup",
+        "role": "Studio identity in the top-left corner",
+        "description": "'Specht Studio' at 15-16px Helvetica Neue 400 in Gallery Black, with the italicized subtitle 'structure, intuition, experiment' directly beneath at the same size in Graphite. No logo mark, no symbol — the wordmark alone. The subtitle in gray creates the only typographic color contrast in the lockup."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with secondary links and metadata",
+        "description": "Bare text at 15px Helvetica Neue 400, 11-24px padding. Same black-on-white treatment as the rest of the system. No social icons, no newsletter form, no decorative elements."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across every context — nav, body, headings, links, footer. The deliberate choice of a single weight at 400 across all roles removes typographic hierarchy and forces the grid and the imagery to do the ranking. No display cuts, no bold emphasis, no italics — restraint as a point of view.",
+        "sizes": "15px, 16px, 25px",
+        "family": "Helvetica Neue",
+        "weight": "400",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter or Neue Haas Grotesk Text",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Specht Studio is a curatorial frame, not a design showcase — the website removes every trace of itself so the portfolio work can hang on a neutral gallery wall. The chrome is aggressively monochrome: a single typeface, a single weight, black and gray ink on a near-white plane. There is no brand color, no CTA, no marketing surface — navigation is bare text and the grid of project tiles does all the work. The system achieves its identity through what it withholds: no shadows, no rounded corners, no gradient washes, no chromatic accent. Any page built in this system should read as a museum catalog, not a product page — the structure is the design, and the work is the content.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Specht Studio design system\",\"item\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#style-reference\",\"name\":\"Specht Studio design system reference\",\"headline\":\"Specht Studio design system | Refero Styles\",\"description\":\"Explore Specht Studio's light Design design system: Gallery White #ffffff, Fog Gray #b0b0b0 colors, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Specht Studio\",\"url\":\"https://stephaniespecht.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"caption\":\"Screenshot of Specht Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Specht Studio design system\",\"Specht Studio website design\",\"Specht Studio colors\",\"Specht Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Gallery White\",\"Fog Gray\",\"Graphite\",\"Gallery Black\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Specht Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:13:27.224Z\",\"dateModified\":\"2026-04-30T03:13:27.224Z\"}]}19:T4e4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: #666666\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a portfolio grid: white #ffffff background, 3-column masonry layout at 1400px max-width, tiles are edge-to-edge images with 0px border-radius and 8px gap between cells. No shadows, no borders on tiles.\n2. Build a top nav bar: white background, 1px solid #000000 bottom border, 24px padding. Left: 'Specht Studio' in 16px Helvetica Neue weight 400 #000000 with 'structure, intuition, experiment' in #666666 directly below. Right: nav links 'Work', 'Art / Research', 'Archive', 'About', 'Shop' at 15px weight 400 #000000, 30px margin-right between items, active item gets a 2px solid #000000 underline.\n3. Build a text link: 15px Helvetica Neue weight 400, color #666666, 1px solid #666666 underline. No hover state change.\n4. Build a section header: 'Artwork' in 25px Helvetica Neue weight 400 #000000, line-height 1.2, 24px margin-bottom. Sits directly on the white canvas with no background or border.\n5. Build a project tile: a single image filling the entire tile area, 0px padding, 0px border-radius, no overlay text, no border, no shadow. The tile is raw content."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design flattens every element onto a single white plane; depth is implied by the project tile grid and the dense packing of imagery, not by elevation. Any attempt to add a drop shadow would introduce product-UI vocabulary that breaks the gallery-wall metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "footer",
+            "icon"
+          ],
+          "frequency": 438,
+          "confidence": 1,
+          "prominence": 36525578.93599662,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 22,
+            "body/color": 1,
+            "hero/color": 1,
+            "link/color": 1,
+            "other/fill": 2,
+            "other/color": 61,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 80,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 244,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 388,
+          "confidence": 1,
+          "prominence": 1723074.0589894198,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "link/color": 26,
+            "image/color": 24,
+            "other/color": 26,
+            "icon/borderColor": 8,
+            "link/borderColor": 102,
+            "image/borderColor": 96,
+            "other/borderColor": 104
+          }
+        },
+        {
+          "hex": "#b0b0b0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7572067572371308
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 7917.740139708901,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.68,
+          "background": "#b0b0b0",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "link"
+          ],
+          "frequency": 44,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "paddingBottom|nav",
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginBottom|heading",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "footer"
+          ],
+          "frequency": 97,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|nav",
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 215,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 111,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "body",
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5d1d72f2-104c-4d70-85ca-132cc8659831.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Specht Studio design system\",\"item\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#style-reference\",\"name\":\"Specht Studio design system reference\",\"headline\":\"Specht Studio design system | Refero Styles\",\"description\":\"Explore Specht Studio's light Design design system: Gallery White #ffffff, Fog Gray #b0b0b0 colors, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Specht Studio\",\"url\":\"https://stephaniespecht.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dd646da4-36f5-42b1-83dd-6a1c90cf8983#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"caption\":\"Screenshot of Specht Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b795dc6f-7d56-4d86-882d-28e77678e506.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Specht Studio design system\",\"Specht Studio website design\",\"Specht Studio colors\",\"Specht Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Gallery White\",\"Fog Gray\",\"Graphite\",\"Gallery Black\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Specht Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Specht Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:13:27.224Z\",\"dateModified\":\"2026-04-30T03:13:27.224Z\"}]}19:T4e4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: #666666\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a portfolio grid: white #ffffff background, 3-column masonry layout at 1400px max-width, tiles are edge-to-edge images with 0px border-radius and 8px gap between cells. No shadows, no borders on tiles.\n2. Build a top nav bar: white background, 1px solid #000000 bottom border, 24px padding. Left: 'Specht Studio' in 16px Helvetica Neue weight 400 #000000 with 'structure, intuition, experiment' in #666666 directly below. Right: nav links 'Work', 'Art / Research', 'Archive', 'About', 'Shop' at 15px weight 400 #000000, 30px margin-right between items, active item gets a 2px solid #000000 underline.\n3. Build a text link: 15px Helvetica Neue weight 400, color #666666, 1px solid #666666 underline. No hover state change.\n4. Build a section header: 'Artwork' in 25px Helvetica Neue weight 400 #000000, line-height 1.2, 24px margin-bottom. Sits directly on the white canvas with no background or border.\n5. Build a project tile: a single image filling the entire tile area, 0px padding, 0px border-radius, no overlay text, no border, no shadow. The tile is raw content."
+}

@@ -1,0 +1,367 @@
+{
+  "color": {
+    "espresso-bark": {
+      "$value": "#3c261c",
+      "$type": "color",
+      "$description": "Espresso Bark — Primary text, navigation background, structural borders — a warm near-black that anchors every screen without the harshness of pure #000000"
+    },
+    "terracotta-ember": {
+      "$value": "#e97451",
+      "$type": "color",
+      "$description": "Terracotta Ember — Primary action borders, active nav state, decorative accents — rationed to moments of intent, never used as a large surface fill"
+    },
+    "iris-ink": {
+      "$value": "#4a43dd",
+      "$type": "color",
+      "$description": "Iris Ink — Decorative display headings, logo monogram stroke — a vivid violet that breaks the warm palette for brand-voice headlines only"
+    },
+    "honey-parchment": {
+      "$value": "#f7efc5",
+      "$type": "color",
+      "$description": "Honey Parchment — Subtle highlight washes, eyebrow label backgrounds, warm text tint — a muted yellow that warms the cream canvas without competing with terracotta"
+    },
+    "warm-linen": {
+      "$value": "#f9f8f0",
+      "$type": "color",
+      "$description": "Warm Linen — Page canvas, content section backgrounds — the dominant surface, never pure white, always slightly cream"
+    },
+    "ash-mist": {
+      "$value": "#dddedf",
+      "$type": "color",
+      "$description": "Ash Mist — Hairline borders, dividers, card edges — the most-used color on the site (1,300+ occurrences), creates the cool rule-lines that structure every layout"
+    },
+    "blush-cream": {
+      "$value": "#fcede8",
+      "$type": "color",
+      "$description": "Blush Cream — Warm tinted surface for hover states and soft callout blocks — a peach wash that warms the cream canvas"
+    },
+    "lilac-mist": {
+      "$value": "#e4e3f2",
+      "$type": "color",
+      "$description": "Lilac Mist — Cool surface accent for secondary panels — a lavender-tinted gray that introduces gentle contrast against the warm cream"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — True black used sparingly for image fills and footer text — Espresso Bark handles all structural dark needs"
+    }
+  },
+  "font": {
+    "monasans": {
+      "$value": "MonaSans",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, buttons, section headings, UI labels — the workhorse sans-serif. Uppercase instances at 0.07-0.1em tracking are signature; the wide tracking on 12-14px labels reads like a museum placard, not a UI label."
+    },
+    "paradigm-pro": {
+      "$value": "paradigm-pro",
+      "$type": "fontFamily",
+      "$description": "Display headings and hero text only — a whisper-thin custom serif at weight 300. The ultra-light weight is anti-convention: most editorial sites use 400-500 serifs for headlines, but this 300 creates authority through restraint. Tight line-height (0.95) lets the letters interlock like a logotype."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.84
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "MonaSans",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "paradigm-pro",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "paradigm-pro",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "paradigm-pro",
+        "fontSize": "47px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 47px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "warm-linen-canvas": {
+      "$value": "#f9f8f0",
+      "$type": "color",
+      "$description": "Surface level 1: Page background and content section base"
+    },
+    "blush-cream": {
+      "$value": "#fcede8",
+      "$type": "color",
+      "$description": "Surface level 2: Soft tinted surface for hover states and callout blocks"
+    },
+    "lilac-mist": {
+      "$value": "#e4e3f2",
+      "$type": "color",
+      "$description": "Surface level 3: Cool secondary panel surface for contrast blocks"
+    },
+    "espresso-bark": {
+      "$value": "#3c261c",
+      "$type": "color",
+      "$description": "Surface level 4: Navigation bar and footer dark surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://apolloworkspace.com",
+      "siteName": "Apollo",
+      "extractedAt": "2026-06-03T17:48:32.670Z",
+      "variant": "extended"
+    }
+  }
+}

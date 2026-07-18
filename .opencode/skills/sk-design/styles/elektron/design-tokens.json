@@ -1,0 +1,282 @@
+{
+  "color": {
+    "page-canvas": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Page Canvas — Page background, full-bleed canvas behind all product imagery and content bands"
+    },
+    "deep-surface": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Deep Surface — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Deepest layer — button cores, icon fills, the negative space inside navigation controls"
+    },
+    "platinum": {
+      "$value": "#eeeef2",
+      "$type": "color",
+      "$description": "Platinum — Primary text, icons, link body, badges, footer text — the only light-on-dark workhorse"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Selected link states, rare icon contrast points on dark surfaces"
+    },
+    "iron": {
+      "$value": "#333337",
+      "$type": "color",
+      "$description": "Iron — Input field surface — one subtle step above canvas for form wells"
+    },
+    "ash": {
+      "$value": "#b4b4b8",
+      "$type": "color",
+      "$description": "Ash — Input placeholder and helper text — low-contrast gray on the dark input field"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-text-pro": {
+      "$value": "Neue Haas Grotesk Text Pro",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, labels, product names, mid-size headings — the workhorse text face used in 95% of the UI"
+    },
+    "neue-haas-grotesk-display-pro": {
+      "$value": "Neue Haas Grotesk Display Pro",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles — 64px for hero statements, 31px for section headings, 24px for emphasized links/labels; the 450 weight is the headline sweet spot between Helvetica Regular and Medium"
+    },
+    "digi-one-v2": {
+      "$value": "digi one v2",
+      "$type": "fontFamily",
+      "$description": "Decorative dot-matrix accent — echoes the LCD readouts on Elektron hardware, used for tag labels and technical micro-copy; do not over-deploy, it's a signature flourish, not a workhorse"
+    },
+    "nhaasgroteskdspro": {
+      "$value": "NHaasGroteskDSPro",
+      "$type": "fontFamily",
+      "$description": "Button and input labels — same family as the display face, used for control text only"
+    },
+    "analog-one-v2": {
+      "$value": "Analog One V2.",
+      "$type": "fontFamily",
+      "$description": "Analog One V2. — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Analog One V2.",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "digi one v2",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NHaasGroteskDSPro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NHaasGroteskDSPro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "24px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text Pro",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Deepest recessed layer for icon and button cores"
+    },
+    "surface": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 2: Standard elevated card and component surface"
+    },
+    "input": {
+      "$value": "#333337",
+      "$type": "color",
+      "$description": "Surface level 3: Form field surface, barely lifted off canvas"
+    },
+    "text": {
+      "$value": "#eeeef2",
+      "$type": "color",
+      "$description": "Surface level 4: Foreground text and iconography"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://elektron.se",
+      "siteName": "Elektron",
+      "extractedAt": "2026-06-03T18:02:54.118Z",
+      "variant": "extended"
+    }
+  }
+}

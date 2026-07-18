@@ -1,0 +1,347 @@
+{
+  "color": {
+    "mountain-slate": {
+      "$value": "#193741",
+      "$type": "color",
+      "$description": "Mountain Slate — Dominant structural color — hero backgrounds, dark section surfaces, primary text, navigation links, and the most-used border color in the system. The near-gray teal reads as atmospheric depth rather than saturated color"
+    },
+    "deep-teal": {
+      "$value": "#1d414d",
+      "$type": "color",
+      "$description": "Deep Teal — Slightly lifted variant of Mountain Slate for outlined action borders, hover states, and secondary dark surfaces. Provides subtle differentiation from the primary teal without introducing a new hue family"
+    },
+    "honey-gold": {
+      "$value": "#eac486",
+      "$type": "color",
+      "$description": "Honey Gold — Yellow decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color"
+    },
+    "snow-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow White — Primary page canvas, navigation bar, light content section backgrounds, and ghost button text on dark surfaces"
+    },
+    "warm-parchment": {
+      "$value": "#ebe7e1",
+      "$type": "color",
+      "$description": "Warm Parchment — Cream surface for content bands — sits between pure white and the dark teal sections to create a soft warm middle tone. Reads as aged paper or natural linen"
+    },
+    "stone-gray": {
+      "$value": "#8c9ba0",
+      "$type": "color",
+      "$description": "Stone Gray — Muted text, secondary borders, and subdued UI elements. A cool desaturated gray that sits comfortably between the warm cream and deep teal"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Rare dark accent for button text and select borders where pure black feels too harsh against the teal-and-cream system"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Input field borders, fine icon fills. Used sparingly as a true-black anchor"
+    }
+  },
+  "font": {
+    "avenir-lt-pro-roman": {
+      "$value": "Avenir LT Pro Roman",
+      "$type": "fontFamily",
+      "$description": "All UI, navigation, body copy, buttons, form labels, and small headlines up to 28px. The humanist geometry gives the system a calm, European-civic clarity. Uppercase usage carries generous tracking (0.125em–0.167em) for editorial feel."
+    },
+    "itc-giovanni-std-bold": {
+      "$value": "ITC Giovanni Std Bold",
+      "$type": "fontFamily",
+      "$description": "Exclusively for editorial display headlines, section titles, and large pull quotes. The transitional serif with a bold weight creates contrast against the sans body — a serif headline signals \"this is a moment\" in the page rhythm. Never used below 16px."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Avenir LT Pro Roman",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ITC Giovanni Std Bold",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "snow-white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, navigation bar, light content sections"
+    },
+    "warm-parchment": {
+      "$value": "#ebe7e1",
+      "$type": "color",
+      "$description": "Surface level 1: Cream content bands between dark sections, soft alternating rhythm"
+    },
+    "mountain-slate": {
+      "$value": "#193741",
+      "$type": "color",
+      "$description": "Surface level 2: Dark hero, full-bleed section backgrounds (cuisine, philosophy)"
+    },
+    "deep-teal": {
+      "$value": "#1d414d",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle elevation variant for cards or panels on dark teal sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.belarosa-chalet.ch",
+      "siteName": "BelArosa Chalet",
+      "extractedAt": "2026-06-03T17:50:24.459Z",
+      "variant": "extended"
+    }
+  }
+}

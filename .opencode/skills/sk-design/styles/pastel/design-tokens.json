@@ -1,0 +1,437 @@
+{
+  "color": {
+    "paper-stone": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Paper Stone — Light supporting surface for subtle backgrounds and section separation."
+    },
+    "chalk": {
+      "$value": "#e6e3e2",
+      "$type": "color",
+      "$description": "Chalk — Secondary card surface, subtle section bands one step above canvas"
+    },
+    "ink-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink Black — Primary headings, body text, icon strokes — the dominant text and graphic color across all contexts"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite — Secondary headings, card titles, slightly softer than Ink Black for hierarchical depth"
+    },
+    "fog-gray": {
+      "$value": "#78716b",
+      "$type": "color",
+      "$description": "Fog Gray — Muted helper text, icon hints, tertiary metadata — warm gray that sits naturally on Paper Stone"
+    },
+    "smoke": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Smoke — Secondary icon color, disabled-adjacent UI elements"
+    },
+    "ice-line": {
+      "$value": "#d1dee8",
+      "$type": "color",
+      "$description": "Ice Line — Hairline borders, card outlines, structural dividers — cool blue-tinted gray that distinguishes borders from text"
+    },
+    "ash": {
+      "$value": "#d7d3d1",
+      "$type": "color",
+      "$description": "Ash — Subtle link underlines, very light decorative borders"
+    },
+    "charcoal-block": {
+      "$value": "#45403c",
+      "$type": "color",
+      "$description": "Charcoal Block — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Button text on dark or accent surfaces, inverse text on dark blocks"
+    },
+    "cobalt-stamp": {
+      "$value": "#165dfb",
+      "$type": "color",
+      "$description": "Cobalt Stamp — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "figtree": {
+      "$value": "Figtree",
+      "$type": "fontFamily",
+      "$description": "Sole display and text family. 58px/45px/35px carry weight 500–600 for headlines with -0.016em tracking that pulls characters tight; 18–21px at weight 400–500 is the body and subheading range; 14–16px at weight 400–500 is caption and small UI. Negative letter-spacing scales with size — tighter at display, near-zero at body. The geometric humanist shapes of Figtree (rounded but not soft) match the 8.8px corner radius system."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary micro-copy context only (appears in 6 instances at 14px) — treat as fallback/utility, not a display voice. Figtree handles all visible brand communication."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Figtree",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "57": {
+      "$value": "57px",
+      "$type": "dimension",
+      "$description": "Spacing 57px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8.8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-stone": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — warm off-white, the default surface for all sections and the hero"
+    },
+    "chalk": {
+      "$value": "#e6e3e2",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary section bands and image placeholder fills — one step darker than canvas for subtle alternation"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces sitting on the canvas — use cases, product screenshots, contained content blocks"
+    },
+    "charcoal-block": {
+      "$value": "#45403c",
+      "$type": "color",
+      "$description": "Surface level 3: Dark interactive surface for secondary buttons — the only dark elevation in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://usepastel.com",
+      "siteName": "Pastel",
+      "extractedAt": "2026-06-03T19:30:06.600Z",
+      "variant": "extended"
+    }
+  }
+}

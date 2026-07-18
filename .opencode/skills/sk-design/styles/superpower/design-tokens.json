@@ -1,0 +1,489 @@
+{
+  "color": {
+    "sunrise-coral": {
+      "$value": "#fc5f2b",
+      "$type": "color",
+      "$description": "Sunrise Coral — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "coral-glow": {
+      "$value": "#ff8b64",
+      "$type": "color",
+      "$description": "Coral Glow — Gradient endpoint paired with Sunrise Coral for decorative membership card wash"
+    },
+    "carbon-black": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, floating navigation bar fill, headings, icon strokes"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Logo wordmark, deep contrast borders"
+    },
+    "zinc-gray": {
+      "$value": "#71717a",
+      "$type": "color",
+      "$description": "Zinc Gray — Body text, secondary descriptions, muted metadata, helper copy"
+    },
+    "ash-gray": {
+      "$value": "#a1a1aa",
+      "$type": "color",
+      "$description": "Ash Gray — Tertiary text, inactive borders, disabled states"
+    },
+    "mist-gray": {
+      "$value": "#e4e4e7",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline borders, card outlines, divider lines, button borders"
+    },
+    "fog-gray": {
+      "$value": "#f4f4f5",
+      "$type": "color",
+      "$description": "Fog Gray — Subtle surface elevation, muted backgrounds, image overlay scrim base"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, text on dark images, button text"
+    }
+  },
+  "font": {
+    "nb-international-pro": {
+      "$value": "NB International Pro",
+      "$type": "fontFamily",
+      "$description": "Everything — display, headings, body, UI, nav. The signature choice is the aggressively tight negative tracking that scales with size (-0.025em at 66px down to -0.005em at small body) combined with line-heights that compress as sizes grow, giving headlines a monolithic, poster-like density that distinguishes Superpower from airy health-tech competitors"
+    },
+    "nb-international-mono-pro": {
+      "$value": "NB International Mono Pro",
+      "$type": "fontFamily",
+      "$description": "Tabular metadata, micro-copy annotations, technical labels — used sparingly for moments requiring a clinical/instrumented feel"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Nb International mono pro",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Nb International mono pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "37px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Nb international pro webfont",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 66px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "7.4958px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.2437px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "xl-2": {
+      "$value": "14.9916px",
+      "$type": "dimension",
+      "$description": "Border radius xl-2"
+    },
+    "2xl": {
+      "$value": "22.4874px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "29.9832px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "74.958px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "149.916px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 2px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Main content background for all sections below the hero"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Membership card and content cards sit on canvas with hairline borders"
+    },
+    "muted-surface": {
+      "$value": "#f4f4f5",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle alt-row or footer surface"
+    },
+    "floating-nav": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 3: Dark pill navigation bar that floats over hero imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superpower.com",
+      "siteName": "Superpower",
+      "extractedAt": "2026-06-03T16:19:25.513Z",
+      "variant": "extended"
+    }
+  }
+}

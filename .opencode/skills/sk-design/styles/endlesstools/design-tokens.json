@@ -1,0 +1,314 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Page background, deepest surface"
+    },
+    "onyx-card": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Onyx Card — Card fills, elevated surfaces above the canvas"
+    },
+    "graphite-layer": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Graphite Layer — Input backgrounds, subtle surface lift from Obsidian"
+    },
+    "slate-border": {
+      "$value": "#373737",
+      "$type": "color",
+      "$description": "Slate Border — Primary 1px hairline borders on cards, inputs, containers"
+    },
+    "iron-border": {
+      "$value": "#505050",
+      "$type": "color",
+      "$description": "Iron Border — Stronger border weight for emphasis on key containers"
+    },
+    "ash-mute": {
+      "$value": "#959595",
+      "$type": "color",
+      "$description": "Ash Mute — Muted body text, secondary labels, placeholder text, weak borders"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text, primary CTA outline stroke, high-contrast borders on dark canvas"
+    },
+    "signal-blue": {
+      "$value": "#1d9bf0",
+      "$type": "color",
+      "$description": "Signal Blue — Outlined link/mention border and text — the only chromatic functional accent in the system"
+    },
+    "prism-gradient": {
+      "$value": "#ff00b8",
+      "$type": "color",
+      "$description": "Prism Gradient — Brand gradient — lime through amber to magenta, applied to logo, wordmark, and hero brand moments"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Single-family system. Weight 400 for body, labels, and buttons; weight 500 reserved for headings, emphasized labels, and nav. Negative tracking tightened with size: -0.033em at 8–12px caption scale, -0.030em at 14–18px body, -0.025em at 24–42px display. This monotone weight palette (only 400 and 500 exist) is a signature choice — the interface whispers hierarchy through size and tracking, not through bold/regular contrast."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "42px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(55, 55, 55) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(55, 55, 55) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(80, 80, 80) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgb(149, 149, 149) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, base layer for all sections"
+    },
+    "onyx-card": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 1: Card fills that need to sit visibly above the canvas"
+    },
+    "graphite-layer": {
+      "$value": "#1e1e1",
+      "$type": "color",
+      "$description": "Surface level 2: Input fields, subtle surface lift for interactive elements"
+    },
+    "slate-edge": {
+      "$value": "#373737",
+      "$type": "color",
+      "$description": "Surface level 3: Border-only elevation — drawn container edges that define hierarchy without fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://endlesstools.io",
+      "siteName": "Endlesstools",
+      "extractedAt": "2026-06-03T20:50:34.817Z",
+      "variant": "extended"
+    }
+  }
+}

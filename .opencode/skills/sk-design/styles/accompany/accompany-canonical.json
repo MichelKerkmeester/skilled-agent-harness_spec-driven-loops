@@ -1,0 +1,596 @@
+{
+  "source": "https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab",
+  "uuid": "5af60925-9c29-48fe-a19b-0f8cf12505ab",
+  "name": "ACCOMPANY",
+  "northStar": "Editorial broadside on bone canvas. A monochrome typographic system where a 80px light serif headline does all the emotional work and everything else stays out of its way.",
+  "capturedAt": "2026-07-18T08:56:19.438Z",
+  "meta": {
+    "url": "https://accompany.group",
+    "siteName": "ACCOMPANY",
+    "extractedAt": "2026-06-03T21:19:44.705Z",
+    "durationMs": 37171,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 156,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 on #ffffff exclusively — no accent colors, no grays, no tints for UI elements",
+      "Set display headlines at 80px Items-Light with line-height 0.90 and letter-spacing -1.6px",
+      "Separate sections with 1px solid #000000 hairline rules, never with background color changes or shadows",
+      "Use uppercase Arial 13px for all project metadata, category tags, and footer micro-labels",
+      "Apply 0px border-radius to every image, card, and button — the system is architecturally sharp-edged",
+      "Give images generous breathing room: 71px section gap, 10-14px between image and its caption",
+      "Let the grotesque (SyndicatGroteskMedium) handle everything below display scale — body, nav, subheads all use the same family"
+    ],
+    "donts": [
+      "Never introduce color, gradients, or background tints — color lives only in photography",
+      "Never use shadows, glows, or any simulated elevation on cards, buttons, or images",
+      "Never use rounded corners on any element — cards, buttons, and image frames are all 0px radius",
+      "Never set body copy in the display serif — Items-Light is reserved for 80px headlines only",
+      "Never use color-coded semantic states (no green for success, no red for error) — use the hairline border and typography to convey state",
+      "Never fill buttons with backgrounds — navigation and actions are typographic, not pill-shaped UI controls",
+      "Never crowd the layout — sections need 71px vertical breathing room, images need full edge-to-edge presence"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, all surface backgrounds, image negative space",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Ink",
+        "role": "All text, headings, nav links, button labels, hairline borders, icon strokes, body borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon Edge",
+        "role": "Near-black border variant for subtle structural dividers, indistinguishable from ink at reading distance",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container, fully edge-to-edge in the viewport. The page model is a single-column vertical scroll: display headline → hero image carousel → editorial statement paragraph → 3-column project grid → closing CTA headline → footer. The hero is left-aligned text over a large centered image frame (text doesn't overlay the image — they stack). Navigation is a single top bar with brand left, links right, no sticky behavior evident. Content blocks are separated by 1px hairline rules and 71px vertical gaps. The grid below the hero uses 3 equal columns with hairline vertical dividers between them. The layout breathes — generous margins on all sides, no full-bleed background sections, everything sits on the bone-white canvas.",
+    "imagery": "Photography is the sole carrier of color in this system. Imagery is atmospheric, cinematic, and editorial — dreamy landscapes with gradient skies (pink-to-gold sunsets, violet horizons), rendered with a soft painterly quality. Images are treated full-bleed within their frames with 0px radius — no masks, no rounded crops, no decorative frames. They function as large editorial plates, not thumbnails. Product or work samples appear as clean, flat digital artifacts (screenshots, documents) without lifestyle staging. The image-to-text ratio is heavy: each major project or work sample gets a large hero image, not a small thumbnail.",
+    "similar": [
+      {
+        "why": "Same editorial broadside aesthetic — large light serif headlines, monochrome palette, hairline rules, generous whitespace, photography as the only color",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Agency portfolio language with stark typographic hierarchy, minimal chrome, and large-format atmospheric imagery",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Brand studio site with custom serif display type, absolute minimal UI, and content-forward monochrome layout",
+        "business": "Collins (formerly Brand New)"
+      },
+      {
+        "why": "Editorial portfolio with sharp 0px-radius image frames, hairline dividers, and a single accent-free typographic system",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Monochrome agency site with oversized light-weight serif headlines and zero decorative UI elements",
+        "business": "Manual (manualcreative.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "71px",
+      "cardPadding": "14px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Page background — the only surface in the system"
+      }
+    ],
+    "northStar": "Editorial broadside on bone canvas. A monochrome typographic system where a 80px light serif headline does all the emotional work and everything else stays out of its way.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.32
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero and section-opening headlines",
+        "description": "Items-Light, 80px, line-height 0.90, letter-spacing -1.6px, color #000000. Sets in 2-3 lines on a wide left-aligned column. No max-width on the type itself — the surrounding layout determines wrapping. This is the only element with real expressive weight."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Minimal two-anchor layout: brand wordmark 'ACCOMPANY' top-left, nav items WORK / ABOUT / SERVICES / CONTACT top-right. SyndicatGroteskMedium 16px, uppercase, letter-spacing -0.48px, #000000. No background, no border, no shadow. Nav items separated by 35px gap. Sits directly on the white canvas."
+      },
+      {
+        "name": "Hero Image Frame",
+        "role": "Full-bleed project imagery in carousel",
+        "description": "Large landscape image frame with 0px radius, no border, no shadow. Image fills the frame edge-to-edge. Flanked by small arrow controls (← →) positioned at vertical center on the left and right edges. Counter text '1/6' in 13px Arial below-left of frame. Images are atmospheric, cinematic, and carry all the color in the system."
+      },
+      {
+        "name": "Project Card",
+        "role": "Work samples in grid layouts",
+        "description": "Square or landscape image with 0px radius, no border. Below image: uppercase project title in Arial 13px, followed by short descriptive paragraph in SyndicatGroteskMedium 16px. No card background, no padding box — the image and text sit directly on the white page. A hairline #000000 border separates columns at 1px."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation",
+        "description": "1px solid #000000 horizontal rule spanning the full content width. Used between major page sections (after hero, before footer). No margin or padding — the line is the only visual element."
+      },
+      {
+        "name": "Uppercase Section Label",
+        "role": "Project category tags and micro-headings",
+        "description": "Arial 13px, weight 400, #000000, uppercase. No letter-spacing adjustment. Sets tight against the content it labels. Used for 'THE BRAND IDENTITY: SUMM', 'GOOD DESIGN AWARDS', 'AGDA AWARDS' style project metadata."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Running paragraph copy and editorial statements",
+        "description": "SyndicatGroteskMedium 16px, line-height 1.20, letter-spacing -0.48px, #000000. Measures constrained to ~50-60ch for readability. Left-aligned. Weight 400 medium grotesque carries enough presence to stand alone without serif support."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Site footer with address, social links, and back-to-top",
+        "description": "Divided into three columns: address (left, uppercase Arial 13px: SUITE 507 / 46 KIPPAX STREET / SURRY HILLS NSW 2010), social links (center, uppercase Arial 13px: EMAIL / INSTAGRAM / LINKEDIN / BEHANCE), and BACK TO TOP (right, uppercase Arial 13px). All #000000 on #ffffff, no borders, no decorative elements."
+      },
+      {
+        "name": "CTA Headline Block",
+        "role": "Contact/conversion closing sections",
+        "description": "Items-Light 80px, #000000, left-aligned, setting in 2 lines. Pattern: 'We'd love to talk about how we can accompany you. Get in touch.' Functions as a typographic CTA without a button — the headline IS the call to action."
+      },
+      {
+        "name": "Arrow Navigation Control",
+        "role": "Carousel prev/next controls",
+        "description": "Small ← and → glyphs in #000000, positioned absolutely at vertical center on left/right edges of the hero image frame. No button background, no border, no padding. The arrow is the only affordance — minimal and unadorned."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature display headline. The custom light serif with extremely tight 0.90 line-height and slight negative tracking — its high stroke contrast and light weight create editorial gravitas without shouting. No other element competes at this scale.",
+        "sizes": "80px",
+        "family": "Items-Light",
+        "weight": "400",
+        "lineHeight": "0.90",
+        "substitute": "Cormorant Garamond Light, Playfair Display Light, or Libre Caslon Text Light",
+        "letterSpacing": "-0.0200em (-1.6px at 80px)"
+      },
+      {
+        "role": "Primary workhorse for nav, body, subheadings, and link text. The medium-weight grotesque with consistent -0.03em tracking acts as the typographic foil to the light serif — denser, more utilitarian, more present. At 44px it serves as secondary headlines; at 16-18px it carries running text and UI labels.",
+        "sizes": "16px, 18px, 44px",
+        "family": "SyndicatGroteskMedium",
+        "weight": "400",
+        "lineHeight": "1.00, 1.10, 1.20",
+        "substitute": "Inter Medium, General Sans Medium, or Söhne Medium",
+        "letterSpacing": "-0.0300em (-0.48px at 16px, -0.54px at 18px, -1.32px at 44px)"
+      },
+      {
+        "role": "System serif fallback appearing in link contexts. Subordinate to Items-Light — used when the custom font fails to load, maintaining a serif continuity.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Times New Roman, system serif"
+      },
+      {
+        "role": "Micro-label workhorse. Used for uppercase project category tags, footer micro-labels, and small UI annotations. The system-sans fallback ensures universal availability for these tiny utility labels.",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Arial, Helvetica, system sans-serif"
+      }
+    ],
+    "description": "ACCOMPANY runs on a monochrome editorial system: pure black on bone white, with no shadows, no gradients, no accent color. A custom light serif (Items-Light) carries the entire brand voice at 80px display scale with aggressive 0.90 line-height, while a medium grotesque (SyndicatGroteskMedium) handles everything from 44px subheads down to 16px body copy. Hierarchy is built entirely through type size, weight contrast (light serif vs medium grotesque), and whitespace — the system behaves like a museum monograph or fashion broadside, assuming the work itself provides the color. Components are architectural skeletons: hairline rules, uppercase micro-labels, generous gutters, and flat image frames. Color enters only through photography.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ACCOMPANY design system\",\"item\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#style-reference\",\"name\":\"ACCOMPANY design system reference\",\"headline\":\"ACCOMPANY design system | Refero Styles\",\"description\":\"Explore ACCOMPANY's light Agency design system: Bone White #ffffff, Obsidian Ink #000000 colors, Items-Light, SyndicatGroteskMedium typography, and...\",\"url\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ACCOMPANY\",\"url\":\"https://accompany.group\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"caption\":\"Screenshot of ACCOMPANY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ACCOMPANY design system\",\"ACCOMPANY website design\",\"ACCOMPANY colors\",\"ACCOMPANY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian Ink\",\"Carbon Edge\",\"Items-Light\",\"SyndicatGroteskMedium\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ACCOMPANY design system\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY website design\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY colors\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-08T18:59:52.360Z\",\"dateModified\":\"2026-05-08T18:59:52.360Z\"}]}19:T668,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: none — monochrome system\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Editorial Display Headline**: 'Your ambition defines the destination.' Set in Items-Light (or Cormorant Garamond Light substitute), 80px, line-height 0.90, letter-spacing -1.6px, color #000000, left-aligned on #ffffff canvas. Two to three lines, no max-width constraint on the type itself.\n\n2. **Project Card with Image**: Landscape image at 0px radius, no border, no shadow, full-bleed within its column. Below image: uppercase Arial 13px label 'THE BRAND IDENTITY: SUMM' in #000000, then a 2-3 line description in SyndicatGroteskMedium (or Inter Medium substitute) 16px, line-height 1.20, letter-spacing -0.48px. Cards separated by 1px #000000 hairline rules, no card backgrounds.\n\n3. **Top Navigation Bar**: Brand wordmark 'ACCOMPANY' left-aligned, nav items 'WORK / ABOUT / SERVICES / CONTACT' right-aligned, all in SyndicatGroteskMedium 16px uppercase, #000000, 35px gap between nav items, no background, no border, sitting directly on #ffffff canvas with 10px top/bottom padding.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. **Footer Block**: Three columns — left: uppercase Arial 13px address 'SUITE 507 / 46 KIPPAX STREET / SURRY HILLS NSW 2010'; center: uppercase Arial 13px social links 'EMAIL / INSTAGRAM / LINKEDIN / BEHANCE'; right: uppercase Arial 13px 'BACK TO TOP'. All #000000 on #ffffff, no borders, 10px row gap."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero elevation. No shadows, no drop shadows, no box-shadows, no border-shadows. Hierarchy is achieved through type scale, whitespace, and hairline 1px borders — never through simulated depth. This is a deliberate flat-design conviction: the work sits on the page as a printed broadsheet, not a skeuomorphic product."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "nav",
+            "heading",
+            "button",
+            "icon",
+            "image"
+          ],
+          "frequency": 734,
+          "confidence": 1,
+          "prominence": 41388664.18019901,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 16,
+            "icon/color": 2,
+            "link/color": 6,
+            "image/color": 2,
+            "other/color": 99,
+            "button/color": 2,
+            "heading/color": 6,
+            "nav/borderColor": 56,
+            "body/borderColor": 64,
+            "icon/borderColor": 8,
+            "link/borderColor": 24,
+            "image/borderColor": 8,
+            "other/borderColor": 392,
+            "button/borderColor": 8,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2469414,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 142921.6400246018,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 110,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SyndicatGroteskMedium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 38,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Items-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SyndicatGroteskMedium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SyndicatGroteskMedium",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SyndicatGroteskMedium",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SyndicatGroteskMedium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "SyndicatGroteskMedium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Items-Light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e3589f23-cdcc-4935-acb4-959942bbe1b0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ACCOMPANY design system\",\"item\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#style-reference\",\"name\":\"ACCOMPANY design system reference\",\"headline\":\"ACCOMPANY design system | Refero Styles\",\"description\":\"Explore ACCOMPANY's light Agency design system: Bone White #ffffff, Obsidian Ink #000000 colors, Items-Light, SyndicatGroteskMedium typography, and...\",\"url\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ACCOMPANY\",\"url\":\"https://accompany.group\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5af60925-9c29-48fe-a19b-0f8cf12505ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"caption\":\"Screenshot of ACCOMPANY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8c312679-c6f7-441c-a1c2-160c54031f4f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ACCOMPANY design system\",\"ACCOMPANY website design\",\"ACCOMPANY colors\",\"ACCOMPANY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian Ink\",\"Carbon Edge\",\"Items-Light\",\"SyndicatGroteskMedium\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ACCOMPANY design system\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY website design\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY colors\"},{\"@type\":\"Thing\",\"name\":\"ACCOMPANY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-08T18:59:52.360Z\",\"dateModified\":\"2026-05-08T18:59:52.360Z\"}]}19:T668,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: none — monochrome system\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Editorial Display Headline**: 'Your ambition defines the destination.' Set in Items-Light (or Cormorant Garamond Light substitute), 80px, line-height 0.90, letter-spacing -1.6px, color #000000, left-aligned on #ffffff canvas. Two to three lines, no max-width constraint on the type itself.\n\n2. **Project Card with Image**: Landscape image at 0px radius, no border, no shadow, full-bleed within its column. Below image: uppercase Arial 13px label 'THE BRAND IDENTITY: SUMM' in #000000, then a 2-3 line description in SyndicatGroteskMedium (or Inter Medium substitute) 16px, line-height 1.20, letter-spacing -0.48px. Cards separated by 1px #000000 hairline rules, no card backgrounds.\n\n3. **Top Navigation Bar**: Brand wordmark 'ACCOMPANY' left-aligned, nav items 'WORK / ABOUT / SERVICES / CONTACT' right-aligned, all in SyndicatGroteskMedium 16px uppercase, #000000, 35px gap between nav items, no background, no border, sitting directly on #ffffff canvas with 10px top/bottom padding.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. **Footer Block**: Three columns — left: uppercase Arial 13px address 'SUITE 507 / 46 KIPPAX STREET / SURRY HILLS NSW 2010'; center: uppercase Arial 13px social links 'EMAIL / INSTAGRAM / LINKEDIN / BEHANCE'; right: uppercase Arial 13px 'BACK TO TOP'. All #000000 on #ffffff, no borders, 10px row gap."
+}

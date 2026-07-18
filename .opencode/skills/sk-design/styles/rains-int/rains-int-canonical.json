@@ -1,0 +1,1522 @@
+{
+  "source": "https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2",
+  "uuid": "38c8a8c9-4d2e-462a-bff0-80c9d9619ef2",
+  "name": "Rains INT",
+  "northStar": "Nordic rain catalog on fog-gray paper.\n\nA Scandinavian weather report where massive editorial type sits over raincoat photography on a warm gray field — almost no color, all atmosphere, type as the only dramatic gesture.",
+  "capturedAt": "2026-07-18T07:22:54.628Z",
+  "meta": {
+    "url": "https://www.rains.com",
+    "siteName": "Rains INT",
+    "extractedAt": "2026-06-03T21:27:56.272Z",
+    "durationMs": 42804,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 366,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use EuropaGroNr2SH for all display and heading text — never substitute a different display face; the 232–245px scale with 0.90 line-height is the signature",
+      "Set border-radius to 9999px on every button, tag, and pill-shaped control — sharp corners are not in this system",
+      "Keep the palette to fog, ink, paper, and charcoal for all UI chrome — let photography provide the only visual richness",
+      "Use #fffb85 exclusively for oversized hero display text over photography — never for buttons, links, or small UI text",
+      "Let product images fill their containers edge-to-edge with no card borders, no padding, and no shadows",
+      "Space sections at 48–56px and let the gray canvas carry the rhythm between content blocks",
+      "Use weight 400 for display headlines at maximum scale — the whisper-weight at 245px creates authority through restraint, not volume"
+    ],
+    "donts": [
+      "Do not introduce saturated accent colors (reds, blues, greens) into the UI — the 1% colorfulness is deliberate",
+      "Do not apply box-shadows, drop-shadows, or gradient fills to any component — the system is completely flat",
+      "Do not use sharp or moderately rounded corners on buttons or interactive elements — only 9999px or 0px exist",
+      "Do not use pure #000000 for text — use #10100f; the near-black warmth is a design choice, not a compromise",
+      "Do not place body text directly over product photography without sufficient contrast or a dark scrim",
+      "Do not break the two-font split: EuropaGroNr2SB for 12–14px system text, EuropaGroNr2SH for 16px and above — mixing sizes across fonts fragments the voice",
+      "Do not add decorative borders, dividers, or background tints to card components — the photograph and gray canvas define all visual structure"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#efefef",
+        "name": "Fog",
+        "role": "Page canvas, card surfaces, divider hairlines — the warm light gray that IS the page background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#10100f",
+        "name": "Ink",
+        "role": "Primary text, nav links, body copy, icon strokes — near-black with a barely-warm bias (never pure #000)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces over the gray canvas, text on dark buttons, product image backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#26292a",
+        "name": "Charcoal",
+        "role": "Filled button background, active states, inverted UI surfaces — warm-tinted dark, never pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#40403f",
+        "name": "Graphite",
+        "role": "Secondary button fill, subtle dark UI accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b2",
+        "name": "Ash",
+        "role": "Muted helper text, tertiary metadata, inactive nav items",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "role": "Pure black for SVG icon fills and the occasional hard edge — functional, not brand",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffb85",
+        "name": "Butter Cream",
+        "role": "Hero display text accent — the single chromatic voice on the page, used only on oversized seasonal headlines over photography",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width constraint on imagery — product photos span the full viewport width. The navigation is a single minimal top bar with all elements left-aligned and search/cart right-aligned, no background fill, no border below. The hero is a full-viewport-height editorial image with massive display type (245px) overlaid and two pill CTAs anchored bottom-left. Below the hero, a 50/50 split-card section divides Women and Men categories as edge-to-edge image pairs. Product showcases use a 3-column equal grid with no gaps between image and label, the gray canvas providing column separation. Section spacing is generous (48–56px) and rhythm is maintained through consistent vertical cadence rather than alternating background colors. The footer continues the same #efefef canvas with generous top padding.",
+    "imagery": "Full-bleed editorial fashion photography is the dominant visual element. Product shots fill their containers edge-to-edge with no borders, padding, or decorative framing. Models are shown in studio environments against neutral or urban backdrops, wearing the garments as the sole focus. No lifestyle context beyond the clothing itself. Photography is high-key, evenly lit, with natural color rendering — no duotone, no desaturation filters. The images are the only source of color saturation on the page. Category cards and hero sections use the same photography treatment at larger scale, with type overlaid directly on the image.",
+    "similar": [
+      {
+        "why": "Same Scandinavian minimalism with oversized editorial type, nearly monochromatic palette, and pill-shaped CTA buttons over full-bleed fashion photography",
+        "business": "COS"
+      },
+      {
+        "why": "Fellow Nordic rainwear brand sharing the gray canvas, massive display headlines, and zero-color UI approach",
+        "business": "Stutterheim"
+      },
+      {
+        "why": "Similar restrained grayscale palette, small functional type for nav, and editorial fashion photography as the sole color source",
+        "business": "Our Legacy"
+      },
+      {
+        "why": "Product-first minimalism with technical outerwear photography, no decorative shadows, and a near-monochrome interface",
+        "business": "Arc'teryx Veilance"
+      },
+      {
+        "why": "Same typographic confidence at extreme scale, warm off-white canvas, and pill-button navigation with zero color accents",
+        "business": "Toteme"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "48-56px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#efefef",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background — the warm off-white that defines the entire visual field"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Product card surfaces and inverted text on dark buttons"
+      },
+      {
+        "hex": "#26292a",
+        "name": "Inverted",
+        "level": 3,
+        "purpose": "Filled button background, interactive dark surfaces"
+      }
+    ],
+    "northStar": "Nordic rain catalog on fog-gray paper.\n\nA Scandinavian weather report where massive editorial type sits over raincoat photography on a warm gray field — almost no color, all atmosphere, type as the only dramatic gesture.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.02
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.02
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 245,
+        "lineHeight": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Filled Dark)",
+        "role": "Primary action button on light backgrounds",
+        "description": "Charcoal #26292a fill, white #ffffff text, 9999px border-radius, 12px vertical and 32px horizontal padding, EuropaGroNr2SB 14px weight 400. No shadow, no border, no hover lift. The dark-on-pill is the only filled button in the system."
+      },
+      {
+        "name": "Pill Button (Outlined)",
+        "role": "Secondary action on light backgrounds",
+        "description": "Transparent fill, #10100f 1px border, #10100f text, 9999px border-radius, same 12×32 padding as filled. Shares identical geometry — only fill distinguishes primary from secondary."
+      },
+      {
+        "name": "Pill Button (On Image)",
+        "role": "Hero or category card CTA",
+        "description": "Charcoal #26292a fill, white text, pill radius, sits over product photography. The dark fill provides contrast against light-toned product shots without requiring opacity tricks."
+      },
+      {
+        "name": "Category Split Card",
+        "role": "Men/Women category entry on homepage",
+        "description": "Full-bleed product photograph filling 50% viewport width, no padding or card chrome, white EuropaGroNr2SH text overlay (weight 600, ~40px) positioned bottom-left. No border, no radius, no shadow — the image IS the card."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product listing in grid",
+        "description": "Full-bleed product image on #efefef canvas, no card border or background, no padding around image. Product name and price appear below image in EuropaGroNr2SB 14px. Zero chrome — the photograph provides all visual weight."
+      },
+      {
+        "name": "Product Grid",
+        "role": "3-column product showcase",
+        "description": "Three equal columns at desktop, each card fills its column edge-to-edge with no gap between image and label. White space between columns comes from the gray canvas showing through, not from padding."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Seasonal campaign entry with oversized editorial type",
+        "description": "Full-bleed product photography as background, Butter Cream #fffb85 display text at 232–245px (EuropaGroNr2SH weight 400, line-height 0.90) positioned over the image, white subtext below, two pill CTAs at bottom-left. The text color is the only chromatic moment in the entire design system."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Transparent or #efefef background, all links left-aligned (brand mark + categories: NEWIN, WOMEN, MEN, BAGS, ACCESSORIES, HOME AWAY, RAINS WORLD), search and cart right-aligned. EuropaGroNr2SB 14px uppercase, #10100f, 32px horizontal padding on nav items. No background bar, no border, no shadow."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with link columns",
+        "description": "Sits on #efefef canvas, 80px top padding, EuropaGroNr2SB 12–14px text in #10100f, organized in multi-column link groups. Generous spacing, no background color change, no dividers between columns."
+      },
+      {
+        "name": "Search Trigger",
+        "role": "Search button in nav",
+        "description": "Pill-shaped (9999px) with magnifying glass icon and 'SEARCH' label, EuropaGroNr2SB 14px, #10100f, transparent background. Sits in top-right nav."
+      },
+      {
+        "name": "Cart Trigger",
+        "role": "Cart button in nav",
+        "description": "Pill-shaped (9999px) with bag icon, 'CART' label and item count '(0)', EuropaGroNr2SB 14px, #10100f, transparent background. Sits in top-right nav beside search."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Headings, display statements, nav items, body emphasis — the hero font. Used at 232–245px with weight 400 and line-height 0.90 for the signature oversized editorial type. The ultra-tight leading locks massive letters into a single visual band. Subheads drop to 32–48px at weight 600–700.",
+        "sizes": "14, 16, 20, 32, 40, 48, 232, 245",
+        "family": "EuropaGroNr2SH",
+        "weight": "400, 600, 700",
+        "lineHeight": "0.90–1.20",
+        "substitute": "Neue Haas Grotesk Display, Space Grotesk, Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Small UI text, nav labels, button copy, captions, footer micro-copy. The functional sans — quiet, compact, only at 12–14px. The deliberate size gap between this and EuropaGroNr2SH creates a clear voice split: small = system, large = editorial.",
+        "sizes": "12, 14",
+        "family": "EuropaGroNr2SB",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter, DM Sans, Söhne",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Rains operates in a near-monochromatic Scandinavian editorial register: a warm off-white canvas (not clinical white), a single charcoal accent for interactive surfaces, and photography that does all the emotional work. The defining signature is typographic scale — headlines reach 200+ pixels and sit directly over full-bleed product photography, with line-heights compressed to ~0.9 so massive type locks into tight visual bands. UI chrome is deliberately spare: pill buttons, hairline borders, no shadows, no gradients, no color. The single chromatic moment is a pale butter-cream hero text (#fffb85) that breaks the grayscale without breaking the quiet. Every screen should feel like a printed fashion catalog: generous breathing room, product-first imagery, and type that whispers and shouts in the same family.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Rains INT design system\",\"item\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#style-reference\",\"name\":\"Rains INT design system reference\",\"headline\":\"Rains INT design system | Refero Styles\",\"description\":\"Explore Rains INT's light E-commerce design system: Fog #efefef, Ink #10100f colors, EuropaGroNr2SH, EuropaGroNr2SB typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Rains INT\",\"url\":\"https://www.rains.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"caption\":\"Screenshot of Rains INT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Rains INT design system\",\"Rains INT website design\",\"Rains INT colors\",\"Rains INT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fog\",\"Ink\",\"Paper\",\"Charcoal\",\"EuropaGroNr2SH\",\"EuropaGroNr2SB\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Rains INT design system\"},{\"@type\":\"Thing\",\"name\":\"Rains INT website design\"},{\"@type\":\"Thing\",\"name\":\"Rains INT colors\"},{\"@type\":\"Thing\",\"name\":\"Rains INT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:29:15.946Z\",\"dateModified\":\"2026-04-30T00:29:15.946Z\"}]}19:T752,**Quick Color Reference**\n- text: #10100f\n- background: #efefef\n- surface/card: #ffffff\n- border: #efefef\n- primary action: #26292a (filled action)\n- hero accent: #fffb85\n\n**3-5 Example Component Prompts**\n\n1. *Hero Section*: Full-viewport-height product photograph as background. Display headline at 245px EuropaGroNr2SH weight 400, color #fffb85, line-height 0.90, positioned center-left. Subtext at 20px weight 400, #ffffff, below headline. Two pill CTAs at bottom-left: first filled #26292a with white text 14px, second outlined 1px #ffffff border with white text 14px. Both buttons at 9999px radius, 12px vertical / 32px horizontal padding.\n\n2. *Category Split Card (50/50)*: Full-bleed product photograph filling left or right half of viewport, edge-to-edge, no border or padding. Overlay text 'Shop Women' or 'Shop Men' at bottom-left in EuropaGroNr2SH 40px weight 600, color #ffffff, with 20px left and bottom margin from image edge.\n\n3. *Product Card in 3-Column Grid*: Product image filling full column width, edge-to-edge, no padding, no border, no shadow. Below image: product name at 14px EuropaGroNr2SB weight 400, #10100f, and price on the same line right-aligned at 14px. No card background color — the #efefef canvas shows through.\n\n4. *Pill Button (Filled)*: Background #26292a, text at 14px EuropaGroNr2SB weight 400, color #ffffff, padding 12px vertical / 32px horizontal, border-radius 9999px, no border, no shadow, no hover transition beyond color shift to #40403f.\n\n5. *Top Navigation*: Single row, #efefef or transparent background, no bottom border. Brand mark 'RAINS' at far left in EuropaGroNr2SB 14px. Nav links NEWIN, WOMEN, MEN, BAGS, ACCESSORIES, HOME AWAY, RAINS WORLD left-aligned with 32px left padding each, 14px uppercase #10100f. Search and Cart pill buttons at far right, 9999px radius, transparent fill, #10100f icon and label, 14px."
+      }
+    ],
+    "elevationPhilosophy": "This system is completely flat. No box-shadows, no drop-shadows, no gradient lifts, no z-axis elevation. Visual hierarchy is created through typography scale, generous spacing, and the contrast between the gray canvas and full-bleed photography — not through depth. Components sit on the same plane as the page itself."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 1113,
+          "confidence": 1,
+          "prominence": 139510066.14245468,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/borderColor": 68,
+            "body/borderColor": 92,
+            "icon/borderColor": 60,
+            "link/borderColor": 128,
+            "list/borderColor": 96,
+            "image/borderColor": 48,
+            "other/borderColor": 483,
+            "button/borderColor": 56,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 6,
+            "heading/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#10100f",
+          "oklch": {
+            "c": 0.0020321604388687103,
+            "h": 106.61059230250936,
+            "l": 0.17262030046897378
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "nav",
+            "link",
+            "image",
+            "footer",
+            "list",
+            "heading"
+          ],
+          "frequency": 232,
+          "confidence": 1,
+          "prominence": 108395938.94716698,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 20,
+            "icon/color": 15,
+            "link/color": 23,
+            "list/color": 18,
+            "other/fill": 4,
+            "image/color": 6,
+            "other/color": 113,
+            "button/color": 7,
+            "footer/color": 1,
+            "other/stroke": 3,
+            "heading/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 7146641.274633487,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/fill": 16,
+            "image/color": 6,
+            "other/color": 9,
+            "button/color": 7,
+            "other/stroke": 3,
+            "heading/color": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 3485841.510849691,
+          "properties": [
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 24,
+            "body/color": 3,
+            "other/fill": 23
+          }
+        },
+        {
+          "hex": "#fffb85",
+          "oklch": {
+            "c": 0.1403593134314968,
+            "h": 107.01628419061194,
+            "l": 0.9674852669864107
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 329358,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#26292a",
+          "oklch": {
+            "c": 0.004703339016308046,
+            "h": 219.64175682251263,
+            "l": 0.2782971417988934
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 28567.36411299812,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#b3b3b2",
+          "oklch": {
+            "c": 0.0014041289520586957,
+            "h": 106.43268647528517,
+            "l": 0.7664590737052657
+          },
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 24076.608154843285,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 5,
+            "list/color": 6
+          }
+        },
+        {
+          "hex": "#40403f",
+          "oklch": {
+            "c": 0.0013465213886137324,
+            "h": 106.46514955688846,
+            "l": 0.3704497624492813
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4491,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#006fcf",
+          "oklch": {
+            "c": 0.17039186771823575,
+            "h": 253.49710662392374,
+            "l": 0.5440331002992141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2047.2903005711555,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#fff48d",
+          "oklch": {
+            "c": 0.1252004784051848,
+            "h": 103.11337298863897,
+            "l": 0.9543947209212326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 792,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#005b9a",
+          "oklch": {
+            "c": 0.12526813293287806,
+            "h": 248.40387071678353,
+            "l": 0.46083434150784336
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 727,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#0e73b9",
+          "oklch": {
+            "c": 0.13704139734209692,
+            "h": 246.9486902778753,
+            "l": 0.5399605063176147
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 520,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#393a41",
+          "oklch": {
+            "c": 0.012168239411105725,
+            "h": 279.2835299929734,
+            "l": 0.3501830505134012
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 495,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#e9292d",
+          "oklch": {
+            "c": 0.22419451670125085,
+            "h": 26.508075617815866,
+            "l": 0.6030426509050055
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 389,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#059da4",
+          "oklch": {
+            "c": 0.10695099043357031,
+            "h": 200.44312216380203,
+            "l": 0.6331255916995415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 371,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#eb001b",
+          "oklch": {
+            "c": 0.24092118323984527,
+            "h": 26.895939121129537,
+            "l": 0.5913400776286699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 310.6526501413466,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#142688",
+          "oklch": {
+            "c": 0.16242128594415978,
+            "h": 267.37449748569094,
+            "l": 0.3340041612506964
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 210,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f79e1b",
+          "oklch": {
+            "c": 0.16305037209073486,
+            "h": 68.44570771704122,
+            "l": 0.7713824833196328
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#00a2e5",
+          "oklch": {
+            "c": 0.14720125026045502,
+            "h": 236.94250661110095,
+            "l": 0.6747518314572777
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#5f6368",
+          "oklch": {
+            "c": 0.009388640685799315,
+            "h": 253.91440396968414,
+            "l": 0.49787747998321896
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 159,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1d1c1c",
+          "oklch": {
+            "c": 0.0015428021023055297,
+            "h": 17.270039872497257,
+            "l": 0.22755957564058207
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 157.89111045234063,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#1e3764",
+          "oklch": {
+            "c": 0.0850166845326298,
+            "h": 261.1915226564557,
+            "l": 0.3420823286201777
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 79,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ff5f00",
+          "oklch": {
+            "c": 0.20969416782610914,
+            "h": 41.41897947318606,
+            "l": 0.6872155937778596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#7375cf",
+          "oklch": {
+            "c": 0.134992355670336,
+            "h": 280.57087077949416,
+            "l": 0.6018458798959821
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#cc0066",
+          "oklch": {
+            "c": 0.22030215095267489,
+            "h": 2.1145919375423774,
+            "l": 0.5457416410595
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fbbc04",
+          "oklch": {
+            "c": 0.1699294319223394,
+            "h": 84.01425825712796,
+            "l": 0.8304239092121405
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.008283671484914573,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.39,
+          "background": "#fffb85",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.04,
+          "background": "#ffffff",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#fff48d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#fffb85",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#ffffff",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#fff48d",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.56,
+          "background": "#efefef",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#fffb85",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#fff48d",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.79,
+          "background": "#efefef",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.65,
+          "background": "#26292a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.53,
+          "background": "#26292a",
+          "foreground": "#fffb85"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.96,
+          "background": "#fff48d",
+          "foreground": "#26292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#efefef",
+          "foreground": "#26292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#142688"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#fbbc04",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#ffffff",
+          "foreground": "#1e3764"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.66,
+          "background": "#fffb85",
+          "foreground": "#142688"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 51,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|body",
+            "marginLeft|button",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "footer",
+            "body",
+            "list"
+          ],
+          "frequency": 81,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|footer",
+            "marginBottom|body",
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|body",
+            "paddingBottom|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "EuropaGroNr2SB",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 170,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "EuropaGroNr2SH",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 105,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.78
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "EuropaGroNr2SB",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SB",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "nav",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 157,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SH",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SH",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SH",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "EuropaGroNr2SH",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 33,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "EuropaGroNr2SH",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.02,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 232,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.02,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 245,
+          "family": "EuropaGroNr2SH",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/409d194d-fa13-4591-85a0-59ff596b3010.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Rains INT design system\",\"item\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#style-reference\",\"name\":\"Rains INT design system reference\",\"headline\":\"Rains INT design system | Refero Styles\",\"description\":\"Explore Rains INT's light E-commerce design system: Fog #efefef, Ink #10100f colors, EuropaGroNr2SH, EuropaGroNr2SB typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Rains INT\",\"url\":\"https://www.rains.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/38c8a8c9-4d2e-462a-bff0-80c9d9619ef2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"caption\":\"Screenshot of Rains INT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c3b6c898-beae-4845-a81d-848851e380cb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Rains INT design system\",\"Rains INT website design\",\"Rains INT colors\",\"Rains INT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fog\",\"Ink\",\"Paper\",\"Charcoal\",\"EuropaGroNr2SH\",\"EuropaGroNr2SB\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Rains INT design system\"},{\"@type\":\"Thing\",\"name\":\"Rains INT website design\"},{\"@type\":\"Thing\",\"name\":\"Rains INT colors\"},{\"@type\":\"Thing\",\"name\":\"Rains INT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:29:15.946Z\",\"dateModified\":\"2026-04-30T00:29:15.946Z\"}]}19:T752,**Quick Color Reference**\n- text: #10100f\n- background: #efefef\n- surface/card: #ffffff\n- border: #efefef\n- primary action: #26292a (filled action)\n- hero accent: #fffb85\n\n**3-5 Example Component Prompts**\n\n1. *Hero Section*: Full-viewport-height product photograph as background. Display headline at 245px EuropaGroNr2SH weight 400, color #fffb85, line-height 0.90, positioned center-left. Subtext at 20px weight 400, #ffffff, below headline. Two pill CTAs at bottom-left: first filled #26292a with white text 14px, second outlined 1px #ffffff border with white text 14px. Both buttons at 9999px radius, 12px vertical / 32px horizontal padding.\n\n2. *Category Split Card (50/50)*: Full-bleed product photograph filling left or right half of viewport, edge-to-edge, no border or padding. Overlay text 'Shop Women' or 'Shop Men' at bottom-left in EuropaGroNr2SH 40px weight 600, color #ffffff, with 20px left and bottom margin from image edge.\n\n3. *Product Card in 3-Column Grid*: Product image filling full column width, edge-to-edge, no padding, no border, no shadow. Below image: product name at 14px EuropaGroNr2SB weight 400, #10100f, and price on the same line right-aligned at 14px. No card background color — the #efefef canvas shows through.\n\n4. *Pill Button (Filled)*: Background #26292a, text at 14px EuropaGroNr2SB weight 400, color #ffffff, padding 12px vertical / 32px horizontal, border-radius 9999px, no border, no shadow, no hover transition beyond color shift to #40403f.\n\n5. *Top Navigation*: Single row, #efefef or transparent background, no bottom border. Brand mark 'RAINS' at far left in EuropaGroNr2SB 14px. Nav links NEWIN, WOMEN, MEN, BAGS, ACCESSORIES, HOME AWAY, RAINS WORLD left-aligned with 32px left padding each, 14px uppercase #10100f. Search and Cart pill buttons at far right, 9999px radius, transparent fill, #10100f icon and label, 14px."
+}

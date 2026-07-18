@@ -1,0 +1,387 @@
+{
+  "color": {
+    "inkstone": {
+      "$value": "#0a0b0c",
+      "$type": "color",
+      "$description": "Inkstone — Primary text, body copy, headings, hairline borders, dark UI surfaces — the near-black backbone of the entire interface, used at massive scale for borders and typography"
+    },
+    "bone": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Bone — Page canvas, section backgrounds, subtle surface tier beneath cards — a warm off-white that softens the contrast of the interface"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, chat widget container, inputs — the brightest tier of the surface stack"
+    },
+    "ash": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Ash — Decorative SVG fills, disabled input borders, neutral dividers"
+    },
+    "plum-ash": {
+      "$value": "#392c38",
+      "$type": "color",
+      "$description": "Plum Ash — Muted card borders and dark surface tints — a desaturated plum that appears on secondary containers"
+    },
+    "forest-depth": {
+      "$value": "#00543d",
+      "$type": "color",
+      "$description": "Forest Depth — Primary brand identity, filled dark buttons, dark accent bar on stat cards, announcement bar background — deep green that signals authority and trust without corporate blandness"
+    },
+    "periwinkle": {
+      "$value": "#abcbf9",
+      "$type": "color",
+      "$description": "Periwinkle — Blue action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "candy-pink": {
+      "$value": "#ffbbfc",
+      "$type": "color",
+      "$description": "Candy Pink — Accent bar on stat cards, decorative soft surface washes — the most playful of the four accents, used sparingly to add warmth"
+    },
+    "butter": {
+      "$value": "#fce88b",
+      "$type": "color",
+      "$description": "Butter — Accent bar on stat cards, warmth punctuation — the warmest accent, appearing only on the 4th stat card as a visual rhythm closer"
+    }
+  },
+  "font": {
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface — body, headings, buttons, nav, footer, cards, inputs. Weight stays at 400 throughout; hierarchy is built purely through size, not bold/light contrast. The geometric humanist proportions give headlines a literary quality while the single weight forces restraint."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Roobert-ba738358087e4b5a",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, section bands, the base layer everything sits on"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces, chat widget, feature panels — floats above the canvas"
+    },
+    "dark-surface": {
+      "$value": "#0a0b0c",
+      "$type": "color",
+      "$description": "Surface level 3: Announcement bar, pill buttons, circular arrow CTAs, image overlay gradient end — the only dark surface in the system"
+    },
+    "accent-wash": {
+      "$value": "#abcbf9",
+      "$type": "color",
+      "$description": "Surface level 4: Soft tinted backgrounds for highlighted regions, nav chips, soft callouts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.ada.cx",
+      "siteName": "Ada",
+      "extractedAt": "2026-06-03T18:20:26.162Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1087 @@
+{
+  "source": "https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1",
+  "uuid": "e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1",
+  "name": "Josh Warner",
+  "northStar": "black void gallery wall",
+  "capturedAt": "2026-07-18T07:28:37.489Z",
+  "meta": {
+    "url": "https://www.joshwarner.design",
+    "siteName": "Josh Warner",
+    "extractedAt": "2026-06-03T20:58:25.017Z",
+    "durationMs": 23805,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 201,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Bone (#f0f0f0) for all text on the dark void — never use pure white, which clashes with the warm off-white palette",
+      "Apply 100px border-radius to every interactive button, badge, nav item, and avatar — the pill shape is the system's signature geometry",
+      "Keep all type at Inter Display weight 400 — never introduce bold or semibold weights; build hierarchy through size and spacing only",
+      "Use 0.04em letter-spacing on all text — this consistent positive tracking is what makes the whisper-weight type legible and gives the system its measured, deliberate feel",
+      "Reserve Live Wire (#08ff00) exclusively for the availability status dot — it is the only chromatic color and must appear nowhere else",
+      "Set page backgrounds to Void (#0f0f0f), not pure black — the near-black prevents OLED smearing and creates a subtle canvas depth",
+      "Use 4px border-radius for image containers and 100px for all interactive elements — maintain the sharp/round duality"
+    ],
+    "donts": [
+      "Don't introduce any new accent colors beyond Live Wire green — the system is deliberately monochromatic and any additional hue will break the gallery void",
+      "Don't use drop shadows for card or surface elevation — depth must come from the artwork itself or surface tone shifts, not from shadow stacks",
+      "Don't bold headlines or use weight 500+ — the entire type system breathes at weight 400; adding weight disrupts the flat, even texture",
+      "Don't use sharp corners (<12px) on buttons, nav items, or badges — the pill geometry is the system's visual identity",
+      "Don't use pure black (#000000) as a fill background for cards or surfaces — reserve it for hairline borders and edges; use Void (#0f0f0f) for surfaces",
+      "Don't place body text below 14px or above 40px — the type scale is deliberately compressed; deviation breaks the editorial restraint",
+      "Don't add gradients, glows, or color washes to UI elements — the system's visual energy comes from the 3D/photographic content, not from UI decoration"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0f0f0f",
+        "name": "Void",
+        "role": "Page canvas and primary surface — the base layer beneath all artwork, slightly lifted from pure black to prevent OLED banding in the dark void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute",
+        "role": "Hairline borders, image containers, icon strokes, footer dividers — pure black acts as the structural ink that defines edges in the absence of visible card surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Charcoal",
+        "role": "Elevated footer surface and deeper UI panels — a single step up from canvas for zone separation without breaking the dark void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080808",
+        "name": "Faint",
+        "role": "Shadow base for subtle elevation effects — nearly invisible against canvas, used in box-shadow compositions for soft ambient lift",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "role": "Primary text color, nav item fills, filled button background — warm off-white replaces pure white to soften contrast against the black void and reduce eye strain",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Ash",
+        "role": "Secondary body text, subdued helper labels, muted metadata — sits one step below Bone for non-emphasized copy without losing legibility on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#696969",
+        "name": "Graphite",
+        "role": "Tertiary text and border accents on headings — used sparingly for fine print and inactive labels that should recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#08ff00",
+        "name": "Live Wire",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no visible page max-width constraint — the hero artwork extends edge-to-edge, and text overlays float in negative space (lower-left for the tagline, center for nav). Navigation is a single horizontal bar with brand avatar+name on far left, three nav items (Projects, Art, Info) clustered in center, and a Contact button on far right. Below the hero, the page flows into full-viewport project showcase panels, each featuring a device mockup or artwork composition centered or slightly off-center, with minimal text overlay. Footer is a single horizontal band with status indicator left-aligned, bio center-left, and CTA right-aligned. Vertical rhythm is defined by 60-64px section gaps, and the overall density is compact with generous breathing room around text overlays. The layout is editorial and gallery-like — content sections are separated by the artwork itself rather than by dividers or background color changes.",
+    "imagery": "The site is image-dominant: full-bleed 3D renders and high-end photography occupy the entire viewport. The hero features a sculptural composition of metallic golden ampersand letterforms intertwined with organic driftwood, a small flower, and ornate keys — studio-lit, high-contrast, against a pure black backdrop. Secondary sections show device mockups (iPhone displaying app UI) floating over continuation of the driftwood scene, creating a unified visual world across scroll. All imagery is photographic or 3D-rendered, never illustrated or flat. Color treatment in photography is moody and warm — golden metallics, warm wood tones, against deep black. No icons are used; navigation and status are text-only. Images have tight 4px corners, contrasting with the pill-shaped UI chrome.",
+    "similar": [
+      {
+        "why": "Same achromatic dark gallery approach with whisper-weight sans-serif and zero decorative color — content as the visual subject against a near-black void",
+        "business": "Are.na"
+      },
+      {
+        "why": "Full-bleed 3D-rendered hero compositions against deep black canvas, with pill-shaped minimal nav and editorial-scale typography",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Portfolio-as-art-gallery language: large sculptural imagery dominates, UI is reduced to text labels and pill controls, single-color palette",
+        "business": "Werkstatt (by Studio Apeloig)"
+      },
+      {
+        "why": "Dark-mode developer portfolio with weight-400-only type, generous letter-spacing, and near-monochromatic palette where color is reserved for a single functional signal",
+        "business": "Rauno Freiberg"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "badges": "100px",
+        "images": "4px",
+        "avatars": "100px",
+        "buttons": "100px",
+        "navPills": "100px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60-64px",
+      "cardPadding": "14px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#0f0f0f",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page canvas — the base layer beneath all content"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Charcoal",
+        "level": 1,
+        "purpose": "Footer surface — one step above canvas for zone separation"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Filled button background — inverted surface for interactive emphasis"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.16) 0px 0px 10px 0px",
+        "element": "Buttons and interactive elements"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.5) 0px 1px 10px -2px",
+        "element": "Project images and artwork overlays"
+      }
+    ],
+    "northStar": "black void gallery wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.56
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": 1.28
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Top-center nav items (Projects, Art, Info) and ghost nav controls",
+        "description": "Ghost-style button: transparent background, Bone (#f0f0f0) text at 14-16px Inter Display 400 with 0.04em letter-spacing, 100px border-radius, 4px vertical / 14px horizontal padding, no visible border. Active state (Art in screenshots) indicated by a subtle underline or text emphasis rather than a fill change."
+      },
+      {
+        "name": "Filled CTA Button",
+        "role": "Primary action — Contact, Hire me",
+        "description": "Bone (#f0f0f0) fill, Void (#0f0f0f) text at 14-16px Inter Display 400, 100px border-radius, 6px vertical / 14px horizontal padding. No border, no shadow. The only filled button in the system — reserved for actions the user must see."
+      },
+      {
+        "name": "Status Indicator",
+        "role": "Availability signal in footer/hero",
+        "description": "6-8px circular dot in Live Wire (#08ff00) with optional text label ('Available for hire') in Bone at 14px. The green dot is the sole chromatic element in the entire UI — a heartbeat against the void."
+      },
+      {
+        "name": "Avatar Badge",
+        "role": "Brand identity mark in top-left nav",
+        "description": "Circular thumbnail (100px radius) of the designer's portrait, 32-40px diameter, no border. Paired with 'Josh Warner' wordmark in Bone at 14-16px Inter Display 400."
+      },
+      {
+        "name": "Coming Soon Pill",
+        "role": "Project status badge on case study previews",
+        "description": "Ghost pill: transparent background, Bone text 'Coming Soon' at 12px, 100px radius, 4px vertical / 10px horizontal padding. Communicates temporal state through the nav pill language rather than introducing a new component family."
+      },
+      {
+        "name": "Hero Art Container",
+        "role": "Full-bleed 3D render or photographic artwork",
+        "description": "No container chrome — artwork extends to viewport edges against Void (#0f0f0f) canvas. The hero is a single large composition (golden ampersands + driftwood in screenshots) that occupies the full viewport height with overlaid nav and tagline."
+      },
+      {
+        "name": "Project Showcase Panel",
+        "role": "Individual case study preview (phone mockup in second screenshot)",
+        "description": "Device mockup centered or positioned within the viewport, floating over continuation of the hero artwork. No card surface, no border — the device image itself is the visual unit. Caption text overlays in Bone at 16-20px."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Site footer with bio and CTA",
+        "description": "Charcoal (#1a1a1a) background, one step above canvas. Contains status indicator on left, bio text in Bone/Ash at 14-16px, and Hire me button on right. 12px padding, hairline top border in Absolute (#000000)."
+      },
+      {
+        "name": "Tagline Headline",
+        "role": "Hero left-aligned copy block",
+        "description": "Two-line statement ('Product by day. / Art by night.') at 32-40px Inter Display 400, Bone (#f0f0f0), 0.04em letter-spacing, positioned in lower-left of hero with generous left margin. No bold, no gradient — the weight of the line comes from its placement against the dark void."
+      },
+      {
+        "name": "Subtitle/Body Text",
+        "role": "Supporting paragraph text",
+        "description": "14-16px Inter Display 400, Ash (#b8b8b8) or Bone (#f0f0f0), 0.04em letter-spacing, 1.5-1.56 line-height. Restrained, readable, never decorative."
+      },
+      {
+        "name": "Image Thumbnail",
+        "role": "Small image containers and inline media",
+        "description": "4px border-radius, Absolute (#000000) 1px border. The tight radius keeps images grounded and sharp against the void, contrasting with the 100px pill language of interactive elements."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI, body, navigation, and headings — used exclusively at weight 400 with no weight variation, creating a flat, even visual texture where size and spacing alone carry hierarchy. Substitute with Inter (free, near-identical metrics).",
+        "sizes": "14px, 16px, 20px, 32px, 40px",
+        "family": "Inter Display",
+        "weight": "400",
+        "lineHeight": "1.00-1.56",
+        "substitute": "Inter",
+        "letterSpacing": "0.04em"
+      },
+      {
+        "role": "Micro-UI labels (12px) — system stack for the smallest utility text where font loading overhead isn't justified",
+        "sizes": "12px",
+        "family": "System sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Josh Warner's portfolio operates as a near-pure black gallery wall: the interface recedes so that 3D renders, product mockups, and photographic compositions can dominate every viewport. Typography is whisper-thin and uniformly weighted at 400 across the scale, using a single sans-serif family that refuses to shout — hierarchy is built through size and generous letter-spacing (0.04em) rather than weight contrast. The entire palette is achromatic except for a single electric green status dot (#08ff00), which functions as the site's only living signal against the void. Surfaces are flat or near-flat; depth is borrowed entirely from the artwork, not from drop shadows or gradients. Components are sparse, pill-shaped, and almost weightless — ghost buttons, hairline borders on #000, circular avatars, and pill nav items. The system is a frame, not a subject.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Josh Warner design system\",\"item\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#style-reference\",\"name\":\"Josh Warner design system reference\",\"headline\":\"Josh Warner design system | Refero Styles\",\"description\":\"Explore Josh Warner's dark Design design system: Void #0f0f0f, Absolute #000000 colors, Inter Display, System sans-serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Josh Warner\",\"url\":\"https://www.joshwarner.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"caption\":\"Screenshot of Josh Warner\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Josh Warner design system\",\"Josh Warner website design\",\"Josh Warner colors\",\"Josh Warner typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Void\",\"Absolute\",\"Charcoal\",\"Faint\",\"Inter Display\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Josh Warner design system\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner website design\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner colors\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:01:39.912Z\",\"dateModified\":\"2026-04-30T02:01:39.912Z\"}]}19:T4c5,## Quick Color Reference\n- background (canvas): #0f0f0f\n- text (primary): #f0f0f0\n- text (secondary): #b8b8b8\n- border (hairline): #000000\n- accent (status dot only): #08ff00\n- primary action: #f0f0f0 (filled action)\n\n## 3-5 Example Component Prompts\n\n1. **Pill Navigation Button (ghost):** Transparent background, 14px Inter Display weight 400, color #f0f0f0, letter-spacing 0.04em, border-radius 100px, padding 4px 14px. No border, no shadow.\n\n2. **Filled Contact Button:** Background #f0f0f0, text 14px Inter Display weight 400, color #0f0f0f, letter-spacing 0.04em, border-radius 100px, padding 6px 14px. No border.\n\n3. **Status Indicator Row:** 8px circular dot in #08ff00, followed by label text 'Available for hire' at 14px Inter Display 400, color #f0f0f0, letter-spacing 0.04em. Inline-flex with 8px gap.\n\n4. **Hero Tagline Block:** Two-line headline at 32-40px Inter Display weight 400, color #f0f0f0, letter-spacing 0.04em, positioned in lower-left viewport. Subtitle below at 16px, color #b8b8b8, same letter-spacing.\n\n5. **Footer Bar:** Background #1a1a1a, full-width, 12px padding. Status indicator on left, bio text in #f0f0f0 at 14px, 'Hire me' filled button (Bone fill, Void text, 100px radius) on right."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 700,
+          "confidence": 1,
+          "prominence": 64229301.99572178,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "image/color": 6,
+            "other/color": 131,
+            "button/color": 1,
+            "footer/color": 1,
+            "icon/borderColor": 4,
+            "image/borderColor": 24,
+            "other/borderColor": 524,
+            "button/borderColor": 4,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0f0f0f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16841612499987832
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 32663092.282428183,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/boxShadow": 1,
+            "other/boxShadow": 1,
+            "body/borderColor": 8,
+            "button/boxShadow": 1,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13154858766559716
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2342175.30787478,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 4
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 705375,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "button",
+            "link"
+          ],
+          "frequency": 212,
+          "confidence": 1,
+          "prominence": 430978.0200389837,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 33,
+            "link/color": 4,
+            "heading/color": 5,
+            "body/borderColor": 132,
+            "link/borderColor": 16,
+            "heading/borderColor": 20,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#696969",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5208065529984138
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 144034.11054018282,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7818132068088401
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 109807.93556946902,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#08ff00",
+          "oklch": {
+            "c": 0.29443402544541264,
+            "h": 142.42381300077048,
+            "l": 0.8667211082558952
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 191.78046258725988,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0016390682519854852,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.57,
+          "background": "#f0f0f0",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.82,
+          "background": "#f0f0f0",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.31,
+          "background": "#08ff00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.27,
+          "background": "#1a1a1a",
+          "foreground": "#f0f0f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.61,
+          "background": "#08ff00",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#08ff00",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.69,
+          "background": "#08ff00",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#b8b8b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.1,
+          "background": "#b8b8b8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.66,
+          "background": "#0f0f0f",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.77,
+          "background": "#1a1a1a",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.82,
+          "background": "#f0f0f0",
+          "foreground": "#696969"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#08ff00",
+          "foreground": "#696969"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.49,
+          "background": "#0f0f0f",
+          "foreground": "#696969"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.17,
+          "background": "#1a1a1a",
+          "foreground": "#696969"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.74,
+          "background": "#f0f0f0",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#08ff00",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#1a1a1a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#08ff00",
+          "foreground": "#f0f0f0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 12,
+          "corners": [
+            0,
+            0,
+            12,
+            12
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.5) 0px 1px 10px -2px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.16) 0px 0px 10px 0px",
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 78,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 152,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Display Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 152,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter Display Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/60ca5060-cf70-4163-9d81-5eec2f81cdda.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Josh Warner design system\",\"item\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#style-reference\",\"name\":\"Josh Warner design system reference\",\"headline\":\"Josh Warner design system | Refero Styles\",\"description\":\"Explore Josh Warner's dark Design design system: Void #0f0f0f, Absolute #000000 colors, Inter Display, System sans-serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Josh Warner\",\"url\":\"https://www.joshwarner.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e2e9b80c-b548-4f86-a4d7-7a6b07d1c2e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"caption\":\"Screenshot of Josh Warner\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ddf498e-4421-4583-947f-33c7c00194d3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Josh Warner design system\",\"Josh Warner website design\",\"Josh Warner colors\",\"Josh Warner typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Void\",\"Absolute\",\"Charcoal\",\"Faint\",\"Inter Display\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Josh Warner design system\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner website design\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner colors\"},{\"@type\":\"Thing\",\"name\":\"Josh Warner typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:01:39.912Z\",\"dateModified\":\"2026-04-30T02:01:39.912Z\"}]}19:T4c5,## Quick Color Reference\n- background (canvas): #0f0f0f\n- text (primary): #f0f0f0\n- text (secondary): #b8b8b8\n- border (hairline): #000000\n- accent (status dot only): #08ff00\n- primary action: #f0f0f0 (filled action)\n\n## 3-5 Example Component Prompts\n\n1. **Pill Navigation Button (ghost):** Transparent background, 14px Inter Display weight 400, color #f0f0f0, letter-spacing 0.04em, border-radius 100px, padding 4px 14px. No border, no shadow.\n\n2. **Filled Contact Button:** Background #f0f0f0, text 14px Inter Display weight 400, color #0f0f0f, letter-spacing 0.04em, border-radius 100px, padding 6px 14px. No border.\n\n3. **Status Indicator Row:** 8px circular dot in #08ff00, followed by label text 'Available for hire' at 14px Inter Display 400, color #f0f0f0, letter-spacing 0.04em. Inline-flex with 8px gap.\n\n4. **Hero Tagline Block:** Two-line headline at 32-40px Inter Display weight 400, color #f0f0f0, letter-spacing 0.04em, positioned in lower-left viewport. Subtitle below at 16px, color #b8b8b8, same letter-spacing.\n\n5. **Footer Bar:** Background #1a1a1a, full-width, 12px padding. Status indicator on left, bio text in #f0f0f0 at 14px, 'Hire me' filled button (Bone fill, Void text, 100px radius) on right."
+}

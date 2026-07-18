@@ -1,0 +1,364 @@
+{
+  "color": {
+    "hims-violet": {
+      "$value": "#5d48db",
+      "$type": "color",
+      "$description": "Hims Violet — Headline text, display borders, brand accent — the single chromatic voice in an otherwise monochrome system"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, hairline borders, icon fills, nav dividers — the structural ink of the interface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, nav background, image backgrounds — the base surface at every elevation level"
+    },
+    "vellum-gray": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Vellum Gray — List dividers, subtle row separators, muted list text — the quietest structural neutral"
+    },
+    "graphite": {
+      "$value": "#2e2e2e",
+      "$type": "color",
+      "$description": "Graphite — Secondary heading text, heading borders — slightly softer than pure black for non-display headings"
+    },
+    "linen": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Linen — Hairline borders, list separators, thin structural strokes"
+    },
+    "stone": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Stone — Muted body copy, subdued links, secondary metadata text"
+    },
+    "soft-mint": {
+      "$value": "#3fd194",
+      "$type": "color",
+      "$description": "Soft Mint — Decorative product accent — appears inside app screenshot tiles (e.g. Acne Program card), not a UI token"
+    },
+    "iris": {
+      "$value": "#9685ff",
+      "$type": "color",
+      "$description": "Iris — Decorative product accent — appears in product gradient washes inside phone mockup content"
+    }
+  },
+  "font": {
+    "sofia": {
+      "$value": "sofia",
+      "$type": "fontFamily",
+      "$description": "Sofia is the sole typeface. Its geometric, low-contrast letterforms carry everything from 14px nav labels to 280px display heroes. Weight 400 is the default at all sizes; weight 500 is reserved for emphasis. The extreme size range (14→280px) with consistent tight tracking (-0.012em to -0.057em) creates a system that scales smoothly from caption to billboard. Signature choice: the ultra-tight tracking even at body sizes (-0.012em at 14px) gives body text a compressed, editorial density unusual for a consumer health app."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 2.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "35px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "37px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "39px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 39px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "81px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 81px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "84px",
+        "fontWeight": 500,
+        "lineHeight": 2.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 84px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "85px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 85px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "141px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 141px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "220px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 220px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "sofia",
+        "fontSize": "280px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 280px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "156": {
+      "$value": "156px",
+      "$type": "dimension",
+      "$description": "Spacing 156px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.12) 0px 27px 104px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.11) 0px 8px 127px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "xl-3": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 9px 46px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-3"
+    },
+    "xl-4": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 8px 30px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-4"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for all sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, app icon tiles, program cards — same color as canvas, distinguished by shadow and radius only"
+    },
+    "nav-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Top navigation bar, pill-shaped container at 52px radius with soft shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://app.forhims.com",
+      "siteName": "Hims App",
+      "extractedAt": "2026-06-03T16:27:04.689Z",
+      "variant": "extended"
+    }
+  }
+}

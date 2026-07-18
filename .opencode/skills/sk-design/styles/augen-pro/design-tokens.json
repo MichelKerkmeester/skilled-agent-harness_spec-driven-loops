@@ -1,0 +1,252 @@
+{
+  "color": {
+    "off-black": {
+      "$value": "#0f1012",
+      "$type": "color",
+      "$description": "Off-Black — Primary text, hero and footer backgrounds, icon fills — near-pure black with a barely-perceptible cool cast that keeps it from feeling dead"
+    },
+    "pure-black": {
+      "$value": "#020201",
+      "$type": "color",
+      "$description": "Pure Black — Secondary text, icon strokes, emphasis fills where maximum contrast against white surfaces is needed"
+    },
+    "off-white": {
+      "$value": "#f2f2f4",
+      "$type": "color",
+      "$description": "Off-White — Page canvas, card surfaces, large background fills — the signature light that carries the entire light theme"
+    },
+    "pure-white": {
+      "$value": "#fdfdfd",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, input backgrounds, secondary panels — brighter than the canvas for subtle layering without shadows"
+    },
+    "steel-gray": {
+      "$value": "#5e5e5e",
+      "$type": "color",
+      "$description": "Steel Gray — Muted body text, captions, inactive labels — meets AA at 6.4:1 for readable but clearly secondary content"
+    },
+    "ash-gray": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Ash Gray — Disabled button text, tertiary helper text, very low-emphasis labels"
+    },
+    "signal-blue": {
+      "$value": "#0071e3",
+      "$type": "color",
+      "$description": "Signal Blue — Blue outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Weight 350 (Book) carries everything from body to display headings — the entire site whispers at near-regular weight, avoiding bold/bolder entirely. Weight 400 appears only for tiny button/icon labels. The flat 350 across 27px headlines and 16px body creates a uniform typographic texture where size alone builds hierarchy, not weight. Substitute: Inter (350/400) or Söhne (350/400)."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "10px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "69": {
+      "$value": "69px",
+      "$type": "dimension",
+      "$description": "Spacing 69px"
+    },
+    "94": {
+      "$value": "94px",
+      "$type": "dimension",
+      "$description": "Spacing 94px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    },
+    "130": {
+      "$value": "130px",
+      "$type": "dimension",
+      "$description": "Spacing 130px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.8px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f2f2f4",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background — slightly cool off-white that recedes behind all content"
+    },
+    "elevated-panel": {
+      "$value": "#fdfdfd",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, nav bar, tag chips — pure white lifted from canvas by tone difference, no shadow needed"
+    },
+    "dark-surface": {
+      "$value": "#0f1012",
+      "$type": "color",
+      "$description": "Surface level 2: Hero image backdrop, footer band — deep charcoal for full-bleed contrast moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://augen.pro",
+      "siteName": "Augen Pro",
+      "extractedAt": "2026-07-03T03:18:40.191Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "color": {
+    "sst-ink": {
+      "$value": "#303055",
+      "$type": "color",
+      "$description": "SST Ink — Headings, body text, links, primary text color — dark indigo-violet replaces the conventional near-black, giving every word a faint cool cast that signals developer-tool seriousness without feeling heavy"
+    },
+    "code-plum": {
+      "$value": "#8844ae",
+      "$type": "color",
+      "$description": "Code Plum — Code syntax highlighting for strings, property names, and keywords — the most vivid color in the system, reserved exclusively for inside code blocks"
+    },
+    "code-cobalt": {
+      "$value": "#3b61b0",
+      "$type": "color",
+      "$description": "Code Cobalt — Code syntax for method names, object keys, and function calls — paired with Code Plum to create the two-color syntax core"
+    },
+    "code-teal": {
+      "$value": "#096e72",
+      "$type": "color",
+      "$description": "Code Teal — Code syntax for type annotations, decorators, and select tokens — deeper teal that reads as technical rather than decorative"
+    },
+    "code-rust": {
+      "$value": "#984e4d",
+      "$type": "color",
+      "$description": "Code Rust — Red supporting accent for decorative details and low-frequency emphasis"
+    },
+    "slate": {
+      "$value": "#403f53",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, descriptions, paragraph copy — sits one step lighter than SST Ink for prose that shouldn't compete with headings"
+    },
+    "fog": {
+      "$value": "#767682",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, icon fills, secondary button text, navigation metadata — the mid-gray that makes UI chrome recede"
+    },
+    "mist": {
+      "$value": "#a8a8b0",
+      "$type": "color",
+      "$description": "Mist — Lightest text, disabled states, subtle icon outlines, and hairlines — the floor of the gray scale"
+    },
+    "obsidian": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Obsidian — Occasional maximum-contrast text and borders where absolute black is required"
+    },
+    "lavender-mist": {
+      "$value": "#e8e8f2",
+      "$type": "color",
+      "$description": "Lavender Mist — Subtle surface tint for code-block backgrounds, tag pills, and soft card fills — a whisper of violet that ties back to SST Ink"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "The code and technical voice — used for all code blocks, terminal output, inline code, API identifiers, and the 48px hero command line. Weight 600 highlights the shell prompt, file names, and key tokens inside code. The negative tracking tightens monospaced characters into dense, readable blocks."
+    },
+    "rubik-variable": {
+      "$value": "Rubik Variable",
+      "$type": "fontFamily",
+      "$description": "The product and prose voice — all navigation, headings, body copy, button labels, footer text, and UI metadata. Weight 400 is the default body, 500 for nav and button emphasis, 600 for headings. Positive tracking (0.016–0.056em) appears on uppercase eyebrows and small labels, giving them a controlled, technical stamp rather than decorative flair."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Rubik Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and primary card surfaces"
+    },
+    "lavender-mist": {
+      "$value": "#e8e8f2",
+      "$type": "color",
+      "$description": "Surface level 1: Code-block backgrounds, subtle tag fills, soft surface elevation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sst.dev",
+      "siteName": "SST",
+      "extractedAt": "2026-06-03T18:26:05.623Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "color": {
+    "warm-paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Warm Paper — Page background — the only surface; everything floats on this warm off-white"
+    },
+    "graphite": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Graphite — Body text, nav labels, footer copy — medium-dark gray keeps long-form reading comfortable without high-contrast harshness"
+    },
+    "ink": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Ink — Secondary body text, navigation labels, and subdued headings."
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Body and navigation. At 21px / 600 / line-height 1.55 with -0.01em tracking, the system stack carries the entire page — the signature is the size and rhythm, not a custom face. 13px / 400 nav labels use the same -0.002em micro-tracking. A 16px / 400 utility size appears for small captions."
+    },
+    "wealthsimple-sans-display": {
+      "$value": "Wealthsimple Sans Display",
+      "$type": "fontFamily",
+      "$description": "Reserved for the \"Wealthsimple\" link — a single display-grade cut at 21px / 700 / -0.01em. It signals partnership without changing the page's monochrome restraint."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Wealthsimple Sans Display",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "warm-paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: The only surface — page background and text container share this single warm off-white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://feyapp.com",
+      "siteName": "Fey",
+      "extractedAt": "2026-07-03T03:32:17.142Z",
+      "variant": "extended"
+    }
+  }
+}

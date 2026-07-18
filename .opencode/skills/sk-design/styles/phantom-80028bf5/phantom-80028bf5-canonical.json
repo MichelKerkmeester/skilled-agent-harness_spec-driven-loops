@@ -1,0 +1,1129 @@
+{
+  "source": "https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd",
+  "uuid": "80028bf5-0c05-43a4-8c9e-b98750d610bd",
+  "name": "Phantom",
+  "northStar": "Lavender dreamscape with a violet ghost. A pastel world that flips to midnight violet in key moments, with a friendly mascot ghost wandering between sections.",
+  "capturedAt": "2026-07-18T08:13:56.690Z",
+  "meta": {
+    "url": "https://phantom.app",
+    "siteName": "Phantom",
+    "extractedAt": "2026-06-03T17:51:59.669Z",
+    "durationMs": 25094,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 398,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Phantom font at weight 350 for all display/headline text; never go above weight 400 anywhere in the system",
+      "Apply -0.025em letter-spacing uniformly; never set type with default or positive tracking",
+      "Use 100px border-radius for all buttons, tags, and nav containers — pills are mandatory, not optional",
+      "Alternate section backgrounds between #fdfcfe/#f4f2f4 (light) and #3c315b (dark) to create the signature lavender-to-midnight rhythm",
+      "Use brand-tinted shadow #e2dffe at 0px 0px 4px for button elevation — never use gray or black drop shadows",
+      "Center all primary content at max-width 1200px with 64px+ vertical section gaps",
+      "Integrate the ghost mascot character inline within display headlines as a word substitution"
+    ],
+    "donts": [
+      "Never use weight 600+ in Phantom — the system is whisper-light, and bold breaks the tone",
+      "Never use gray (#000000) shadows — all elevation must be brand-tinted #e2dffe",
+      "Never use sharp corners below 16px radius on interactive elements — the system is aggressively rounded",
+      "Never use #2ec08b (green) outside success/transactional badge contexts — it is semantic, not decorative",
+      "Never stack more than one ghost mascot per section — the character is punctuation, not wallpaper",
+      "Never use neutral gray (#86848d) for body text — only for icons and de-emphasized metadata",
+      "Never create multi-column hero layouts — primary content must be a centered vertical stack"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#3c315b",
+        "name": "Midnight Violet",
+        "role": "Dark section backgrounds, primary text on light surfaces, nav text — the deep brand violet anchors identity and gives the dark hero/sections their weight",
+        "group": "brand"
+      },
+      {
+        "hex": "#e2dffe",
+        "name": "Lavender Whisper",
+        "role": "Brand-tinted shadow, soft accent washes, subtle elevation glow — replaces neutral gray shadows so elevation stays on-brand",
+        "group": "brand"
+      },
+      {
+        "hex": "#ab9ff2",
+        "name": "Ghost Lilac",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#4a87f2",
+        "name": "Cornflower Pop",
+        "role": "Rare accent for highlighted CTAs or featured buttons — a brighter blue-violet used sparingly for emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffc4",
+        "name": "Cream Glow",
+        "role": "Decorative pastel surface — soft yellow wash for feature cards or playful callouts against the violet system",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffdadc",
+        "name": "Blush Mist",
+        "role": "Decorative pastel surface — pale pink wash for feature cards or playful callouts within the light sections",
+        "group": "accent"
+      },
+      {
+        "hex": "#2ec08b",
+        "name": "Emerald Mint",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#fdfcfe",
+        "name": "Cloud Canvas",
+        "role": "Page canvas, light card surfaces, button text on dark — the near-white base that everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Charcoal Ink",
+        "role": "Primary text on light surfaces, text on cream/blush accents — the dark reading color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f2f4",
+        "name": "Frost White",
+        "role": "Secondary light surface, subtle panel backgrounds, light section fills — a warm-tinted off-white for elevation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e8ea",
+        "name": "Ash Veil",
+        "role": "Tertiary surface, hairline borders, disabled states — barely-there gray for structural separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#86848d",
+        "name": "Slate Mute",
+        "role": "Muted helper text, secondary icons, inactive nav items — mid-gray for de-emphasized content",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered, max-width 1200px content with full-bleed alternating background bands. The page rhythm is: light lavender section → deep violet dark section → light lavender, repeating down the page. Each section follows the pattern: optional eyebrow text → display headline (80–96px, centered, often 2 lines) → optional ghost mascot inline → single pill CTA. No multi-column grids in hero sections — everything is a centered vertical stack. The navigation is a single horizontal pill floating at the top, not a full-width bar. Generous vertical breathing room: 64px+ between sections, 48px+ between major elements. The layout is symmetrical and centered throughout — no asymmetric or split compositions in primary content.",
+    "imagery": "Illustration-first with a custom ghost mascot character as the sole recurring visual. No photography, no product screenshots in primary surfaces. The ghost appears inline within headlines, as a standalone decorative element, and as a section anchor. Supporting visuals are flat vector illustrations in the pastel accent palette (#ffffc4, #ffdadc, #ab9ff2). Icons are thin-stroke outlined style, 1.5px weight, in #86848d or #ab9ff2. The visual density is low — the ghost and large type do the work, with generous white space around them.",
+    "similar": [
+      {
+        "why": "Same light/dark section alternation with centered display headlines, though Coinbase uses a blue system vs Phantom's violet",
+        "business": "Coinbase"
+      },
+      {
+        "why": "Same playful pastel palette and rounded pill-button language for a crypto consumer product, with similar mascot-driven personality",
+        "business": "Rainbow Wallet"
+      },
+      {
+        "why": "Same whisper-thin custom typeface approach with tight letter-spacing and large calm display sizes",
+        "business": "Linear"
+      },
+      {
+        "why": "Same centered max-width layout with alternating surface bands and single accent color for CTAs",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same generous vertical breathing room, centered stacks, and pastel-on-dark section transitions",
+        "business": "Framer"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "body": "4px",
+        "pill": "100px",
+        "cards": "24px",
+        "buttons": "100px",
+        "largeButtons": "32px",
+        "smallElements": "16px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#fdfcfe",
+        "name": "Cloud Canvas",
+        "level": 0,
+        "purpose": "Base page background, light hero sections"
+      },
+      {
+        "hex": "#f4f2f4",
+        "name": "Frost White",
+        "level": 1,
+        "purpose": "Light section fills, subtle card elevation"
+      },
+      {
+        "hex": "#ffffc4",
+        "name": "Cream Glow",
+        "level": 2,
+        "purpose": "Decorative pastel feature card surface"
+      },
+      {
+        "hex": "#ffdadc",
+        "name": "Blush Mist",
+        "level": 3,
+        "purpose": "Decorative pastel feature card surface"
+      },
+      {
+        "hex": "#3c315b",
+        "name": "Midnight Violet",
+        "level": 4,
+        "purpose": "Dark section background, full-bleed dark hero panels"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 4px 0px #e2dffe — brand-tinted violet glow replacing neutral gray shadow",
+        "element": "Primary CTA button (filled)"
+      },
+      {
+        "style": "none — relies on 1px border and brand-tinted fill contrast",
+        "element": "Ghost/outline button"
+      },
+      {
+        "style": "none — flat surfaces, no drop shadow",
+        "element": "Section panels"
+      }
+    ],
+    "northStar": "Lavender dreamscape with a violet ghost. A pastel world that flips to midnight violet in key moments, with a friendly mascot ghost wandering between sections.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.325
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.375
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.21,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -2
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Container",
+        "role": "Top-level navigation bar",
+        "description": "Floating pill container with 100px border-radius, background #fdfcfe on light sections or transparent on dark sections. Contains logo, nav links (Phantom font 15px/350 weight, #1c1c1c text), search icon, and Download CTA. Padding 8px vertical, 16px horizontal. No visible border on light sections; gains subtle 1px #e9e8ea border on dark sections."
+      },
+      {
+        "name": "Primary Filled CTA (Download Phantom)",
+        "role": "Main conversion button",
+        "description": "Pill shape at 100px radius, background #ab9ff2 (Ghost Lilac), text #fdfcfe at 15px Phantom weight 400. Padding 12px 24px. Brand-tinted shadow #e2dffe at 0px 0px 4px. No border. Sits in top-right of nav and in hero center."
+      },
+      {
+        "name": "Ghost Pill Button (See more)",
+        "role": "Secondary navigation or learn-more action",
+        "description": "Pill shape at 100px radius, background #fdfcfe on light sections or transparent on dark sections. Text in #ab9ff2 (light sections) or #fdfcfe (dark sections) at 15px Phantom weight 400. Optional arrow icon (↗) in #ab9ff2. Padding 10px 20px. No shadow."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section H1",
+        "description": "Centered text at 80–96px Phantom weight 350, line-height 1.0–1.1, letter-spacing -2.0 to -2.4px. Color #1c1c1c on light sections, #fdfcfe on dark sections. Word wrap over 2–3 lines with natural line breaks. The ghost mascot character substitutes for a word or sits inline within the headline."
+      },
+      {
+        "name": "Subheadline (Eyebrow Text)",
+        "role": "Section pre-title",
+        "description": "14–16px Phantom weight 400, #ab9ff2 or #1c1c1c opacity 0.6. Sits centered above display headlines as a soft intro line."
+      },
+      {
+        "name": "Ghost Mascot Character",
+        "role": "Brand character integrated into copy",
+        "description": "The Phantom ghost character rendered in #ab9ff2 (Ghost Lilac), sized inline with headline text (~60–80px). Drops into headlines replacing a word (e.g. 'Trading tools for [ghost] everyone'). Functions as visual punctuation and brand anchor."
+      },
+      {
+        "name": "Section Panel (Light)",
+        "role": "Light content section background",
+        "description": "Full-width background #f4f2f4 or #fdfcfe, with centered content at max-width 1200px. Section gap 64px vertical. Contains display headline + optional ghost mascot + optional pill CTA."
+      },
+      {
+        "name": "Section Panel (Dark)",
+        "role": "Dark content section background",
+        "description": "Full-width background #3c315b (Midnight Violet), with centered content at max-width 1200px. Display text inverts to #fdfcfe. Ghost mascot in #ab9ff2 remains the only chromatic element. Used for security/identity sections."
+      },
+      {
+        "name": "Nav Dropdown Item",
+        "role": "Navigation dropdown link",
+        "description": "Text link in Phantom 15px/350, color #1c1c1c on light, #fdfcfe on dark. No underline. Chevron down icon in #86848d. Hover: color shifts to #ab9ff2. No background change."
+      },
+      {
+        "name": "Pastel Feature Card",
+        "role": "Decorative content card",
+        "description": "Rounded rectangle at 24px radius, background in #ffffc4 (Cream Glow) or #ffdadc (Blush Mist). Padding 32px. Content in #1c1c1c. No shadow or border. Used sparingly for playful section accents."
+      },
+      {
+        "name": "Success Badge",
+        "role": "Status indicator",
+        "description": "Small pill at 100px radius, background #2ec08b (Emerald Mint), text #fdfcfe at 13px Phantom weight 400. Padding 4px 12px. Used for transaction confirmations and success states."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — custom Phantom with two whisper-light weights. Weight 350 for display/headlines, 400 for body and UI text. The single-weight light approach is anti-convention for crypto (which defaults to bold 700 headlines); the thin strokes make Phantom feel editorial and calm, not aggressive or financial. The custom letterforms — visible in the rounded 'a' and open 'e' — give the brand a distinctive typographic fingerprint that no system font replicates.",
+        "sizes": "13px, 15px, 16px, 20px, 24px, 30px, 64px, 80px, 96px",
+        "family": "Phantom",
+        "weight": "350, 400",
+        "lineHeight": "1.0–1.4",
+        "substitute": "Inter (weight 350/400) or Satoshi for closest geometry; avoid system-ui which lacks the custom curves",
+        "letterSpacing": "-0.025em (universal; -0.325px at 13px through -2.4px at 96px)"
+      }
+    ],
+    "description": "Phantom uses a whisper-thin custom typeface (Phantom, weight 350/400) and a dual-violet color world to make a crypto wallet feel like a friendly product, not a trading terminal. The page alternates between pale lavender surfaces and deep midnight-violet sections, with the brand ghost mascot acting as the only character in the system. Every interactive element is aggressively rounded — pills at 100px, large buttons at 32px, hero panels at 24px — giving the entire interface a soft, inflated quality. The signature shadow is not gray but brand-tinted violet (#e2dffe at 0px 0px 4px), making even small elevations feel on-brand. Type is set tight (-0.025em) and large, with display lines at 80–96px that read as quiet rather than loud because of the low weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Phantom design system\",\"item\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#style-reference\",\"name\":\"Phantom design system reference\",\"headline\":\"Phantom design system | Refero Styles\",\"description\":\"Explore Phantom's mixed Crypto design system: Midnight Violet #3c315b, Lavender Whisper #e2dffe colors, Phantom typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Phantom\",\"url\":\"https://phantom.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"caption\":\"Screenshot of Phantom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Phantom design system\",\"Phantom website design\",\"Phantom colors\",\"Phantom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Midnight Violet\",\"Lavender Whisper\",\"Ghost Lilac\",\"Cornflower Pop\",\"Phantom\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Phantom design system\"},{\"@type\":\"Thing\",\"name\":\"Phantom website design\"},{\"@type\":\"Thing\",\"name\":\"Phantom colors\"},{\"@type\":\"Thing\",\"name\":\"Phantom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-01-22T17:51:20.000Z\",\"dateModified\":\"2026-01-22T17:51:20.000Z\"}]}19:T442,**Quick Color Reference**\n- text (on light): #1c1c1c\n- text (on dark): #fdfcfe\n- background (canvas): #fdfcfe\n- background (dark section): #3c315b\n- border / hairline: #e9e8ea\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n\n2. **Dark Security Section**: Full-width background #3c315b. Display headline at 64px Phantom weight 350, #fdfcfe, line-height 1.1, letter-spacing -1.6px, centered. Ghost mascot in #ab9ff2 inline. Ghost pill button: 100px radius, #fdfcfe background, #3c315b text, 10px 20px padding, arrow icon in #ab9ff2.\n\n\n4. **Pastel Feature Card**: 24px radius, #ffffc4 background, 32px padding. Heading at 24px Phantom weight 350, #1c1c1c. Body at 16px Phantom weight 400, #1c1c1c. No shadow or border.\n\n5. **Ghost Pill Secondary Button**: 100px radius, transparent background on dark sections or #fdfcfe on light, 1px border #ab9ff2, text #ab9ff2 at 15px Phantom weight 400, 10px 20px padding, arrow icon (↗) trailing."
+      }
+    ],
+    "elevationPhilosophy": "Shadow is brand-tinted, not gray. The single elevation token is #e2dffe at 0px 0px 4px — a soft violet halo that makes even a 1px lift feel on-brand. Most surfaces are flat; depth comes from color layer shifts (Cloud Canvas → Frost White → Ash Veil) rather than drop shadows. This keeps the interface feeling light and weightless, not boxed-in."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3c315b",
+          "oklch": {
+            "c": 0.0723952656886372,
+            "h": 294.3563297790358,
+            "l": 0.34576121460453507
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "list",
+            "footer",
+            "input",
+            "badge"
+          ],
+          "frequency": 1451,
+          "confidence": 1,
+          "prominence": 113673526.04594398,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdfcfe",
+          "oklch": {
+            "c": 0.0028273614491624134,
+            "h": 308.4287412332805,
+            "l": 0.992388090801302
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 222,
+          "confidence": 1,
+          "prominence": 7178286.676207965,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 1743919.7679686658,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2dffe",
+          "oklch": {
+            "c": 0.0420591983573263,
+            "h": 289.98331120423074,
+            "l": 0.9155170921414747
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 1028653.4620079515,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ab9ff2",
+          "oklch": {
+            "c": 0.11845906493924856,
+            "h": 289.832589072777,
+            "l": 0.7446192054585091
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 668172.9302890863,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e9e8ea",
+          "oklch": {
+            "c": 0.0028718642280405574,
+            "h": 308.42616634047954,
+            "l": 0.9323393749577972
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 377233.75487164094,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f2f4",
+          "oklch": {
+            "c": 0.003387232352994814,
+            "h": 325.60265690445465,
+            "l": 0.963248771810959
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268760.5062847857,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4a87f2",
+          "oklch": {
+            "c": 0.1726879159035393,
+            "h": 260.7497262289585,
+            "l": 0.6363177189050436
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 238008,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffc4",
+          "oklch": {
+            "c": 0.07522308825473542,
+            "h": 107.70358280170811,
+            "l": 0.9858592990625287
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 238008,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffdadc",
+          "oklch": {
+            "c": 0.041304979304821944,
+            "h": 14.235610075100457,
+            "l": 0.9198532716643011
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 238008,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#86848d",
+          "oklch": {
+            "c": 0.013566465141164852,
+            "h": 296.181331130434,
+            "l": 0.6179929183842069
+          },
+          "contexts": [
+            "icon",
+            "nav"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 6998.29127799051,
+          "properties": [
+            "stroke",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2ec08b",
+          "oklch": {
+            "c": 0.14307589042666918,
+            "h": 163.29475093594752,
+            "l": 0.7202232744127284
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 36,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15494752356761227,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#1c1c1c",
+          "foreground": "#fdfcfe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#ffffc4",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#f4f2f4",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.95,
+          "background": "#e9e8ea",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#ffdadc",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#e2dffe",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#fdfcfe",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#ffffc4",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#f4f2f4",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.65,
+          "background": "#e9e8ea",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#ffdadc",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.1,
+          "background": "#e2dffe",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#2ec08b",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.28,
+          "background": "#ab9ff2",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.07,
+          "background": "#2ec08b",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.03,
+          "background": "#ab9ff2",
+          "foreground": "#3c315b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#4a87f2",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#1c1c1c",
+          "foreground": "#86848d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.6,
+          "background": "#fdfcfe",
+          "foreground": "#86848d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#ffffc4",
+          "foreground": "#86848d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(226, 223, 254) 0px 0px 4px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 70,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Phantom",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 359,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "badge",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 265,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Phantom",
+          "weight": 350,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Phantom",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1d3974ca-488b-44c4-a33c-83e7c08d7274.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Phantom design system\",\"item\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#style-reference\",\"name\":\"Phantom design system reference\",\"headline\":\"Phantom design system | Refero Styles\",\"description\":\"Explore Phantom's mixed Crypto design system: Midnight Violet #3c315b, Lavender Whisper #e2dffe colors, Phantom typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Phantom\",\"url\":\"https://phantom.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80028bf5-0c05-43a4-8c9e-b98750d610bd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"caption\":\"Screenshot of Phantom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f460fcdb-7a9b-413f-98a0-c3b6e111e53a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Phantom design system\",\"Phantom website design\",\"Phantom colors\",\"Phantom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Midnight Violet\",\"Lavender Whisper\",\"Ghost Lilac\",\"Cornflower Pop\",\"Phantom\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Phantom design system\"},{\"@type\":\"Thing\",\"name\":\"Phantom website design\"},{\"@type\":\"Thing\",\"name\":\"Phantom colors\"},{\"@type\":\"Thing\",\"name\":\"Phantom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-01-22T17:51:20.000Z\",\"dateModified\":\"2026-01-22T17:51:20.000Z\"}]}19:T442,**Quick Color Reference**\n- text (on light): #1c1c1c\n- text (on dark): #fdfcfe\n- background (canvas): #fdfcfe\n- background (dark section): #3c315b\n- border / hairline: #e9e8ea\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n\n2. **Dark Security Section**: Full-width background #3c315b. Display headline at 64px Phantom weight 350, #fdfcfe, line-height 1.1, letter-spacing -1.6px, centered. Ghost mascot in #ab9ff2 inline. Ghost pill button: 100px radius, #fdfcfe background, #3c315b text, 10px 20px padding, arrow icon in #ab9ff2.\n\n\n4. **Pastel Feature Card**: 24px radius, #ffffc4 background, 32px padding. Heading at 24px Phantom weight 350, #1c1c1c. Body at 16px Phantom weight 400, #1c1c1c. No shadow or border.\n\n5. **Ghost Pill Secondary Button**: 100px radius, transparent background on dark sections or #fdfcfe on light, 1px border #ab9ff2, text #ab9ff2 at 15px Phantom weight 400, 10px 20px padding, arrow icon (↗) trailing."
+}

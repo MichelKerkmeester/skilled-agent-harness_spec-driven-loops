@@ -1,0 +1,964 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#131316",
+      "$type": "color",
+      "$description": "Void Black — Primary text, headings, and high-contrast body copy across light surfaces"
+    },
+    "fog-white": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Fog White — Page canvas and light section backgrounds"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, modal backgrounds, form inputs on light sections"
+    },
+    "graphite": {
+      "$value": "#5e5f6e",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, muted labels, icon fills on light surfaces"
+    },
+    "ash": {
+      "$value": "#747686",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, nav punctuation, disabled state text"
+    },
+    "hairline": {
+      "$value": "#d9d9de",
+      "$type": "color",
+      "$description": "Hairline — Borders, dividers, input outlines, table rules"
+    },
+    "mist": {
+      "$value": "#eeeef0",
+      "$type": "color",
+      "$description": "Mist — Subtle section dividers, link icon backgrounds, hover wash backgrounds"
+    },
+    "stone": {
+      "$value": "#9394a1",
+      "$type": "color",
+      "$description": "Stone — Placeholder text, code comments, muted helper copy"
+    },
+    "obsidian-card": {
+      "$value": "#212126",
+      "$type": "color",
+      "$description": "Obsidian Card — Dark product demo card backgrounds in mixed-mode sections"
+    },
+    "dark-surface": {
+      "$value": "#2f3037",
+      "$type": "color",
+      "$description": "Dark Surface — Elevated dark panel backgrounds, code block surfaces"
+    },
+    "slate-mid": {
+      "$value": "#696a78",
+      "$type": "color",
+      "$description": "Slate Mid — Mid-tone icon fills and body copy inside dark card contexts"
+    },
+    "electric-violet": {
+      "$value": "#6c47ff",
+      "$type": "color",
+      "$description": "Electric Violet — Primary CTA button fill, active heading accents — the single chromatic action color; its mid-spectrum violet reads developer-brand without borrowing blue from infrastructure tools; Atmospheric hero background gradient blending violet and yellow; Brand gradient for decorative text highlights and horizontal accent rules"
+    },
+    "violet-soft": {
+      "$value": "#615cf6",
+      "$type": "color",
+      "$description": "Violet Soft — Decorative list and tag backgrounds, subtle brand surface tints"
+    },
+    "cyan-spark": {
+      "$value": "#5de3ff",
+      "$type": "color",
+      "$description": "Cyan Spark — Heading accent text inside dark sections, code string highlights, decorative icon glow"
+    }
+  },
+  "font": {
+    "soehnemono": {
+      "$value": "soehneMono",
+      "$type": "fontFamily",
+      "$description": "soehneMono — detected in extracted data but not described by AI"
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all marketing copy, UI labels, headings, and CTAs. The custom numeric tables (geistNumbers variant) keep digit spacing consistent inside product demos. Negative tracking at -0.035em at large sizes and -0.015em at mid sizes compresses display headlines into a dense technical block — a deliberate contrast to softer marketing type."
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "System fallback font used in browser-rendered components, OS UI widgets, and the Clerk-embedded auth modal. Its presence signals authentic native-UI feel in interactive demos."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "UI micro-labels, product card annotations, and icon captions within embedded component previews."
+    },
+    "shne-mono": {
+      "$value": "Söhne Mono",
+      "$type": "fontFamily",
+      "$description": "Code snippets, JSX component labels (<SignUp />, <UserButton />), and terminal output. The +0.10em positive tracking at mono sizes makes angle-bracket syntax air out instead of colliding — a purposeful readability choice at 10-12px."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 10px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 10px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 10px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 10px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 10px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 10px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 11px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 11px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 11px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 11px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 11px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.64
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 11px"
+    },
+    "xs-20": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.64
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-20 at 11px"
+    },
+    "xs-21": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-21 at 11px"
+    },
+    "xs-22": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-22 at 11px"
+    },
+    "xs-23": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-23 at 11px"
+    },
+    "xs-24": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "11px",
+        "fontWeight": 450,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-24 at 11px"
+    },
+    "xs-25": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-25 at 11px"
+    },
+    "xs-26": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.64
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-26 at 11px"
+    },
+    "xs-27": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-27 at 11px"
+    },
+    "xs-28": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-28 at 12px"
+    },
+    "xs-29": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-29 at 12px"
+    },
+    "xs-30": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-30 at 12px"
+    },
+    "xs-31": {
+      "$value": {
+        "fontFamily": "soehneMono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-31 at 12px"
+    },
+    "xs-32": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-32 at 12px"
+    },
+    "xs-33": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-33 at 12px"
+    },
+    "xs-34": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-34 at 12px"
+    },
+    "xs-35": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-35 at 12px"
+    },
+    "xs-36": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-36 at 12px"
+    },
+    "xs-37": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-37 at 12px"
+    },
+    "xs-38": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-38 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 450,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "20px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "geistNumbers",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(19, 19, 22, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.08) 0px 5px 15px 0px, rgba(25, 28, 33, 0.2) 0px 15px 35px -5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgba(100, 229, 255, 0.08) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "subtle-5": {
+      "$value": "rgba(255, 255, 255, 0.024) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.024) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-5"
+    },
+    "subtle-6": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.02) 0px 1px 0px 0px, rgba(0, 0, 0, 0.08) 0px 2px 3px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-6"
+    },
+    "subtle-7": {
+      "$value": "rgba(0, 0, 0, 0.24) 0px 1px 1px 0px, rgba(0, 0, 0, 0.2) 0px 2px 3px 0px, rgba(255, 255, 255, 0.07) 0px 1px 1px 0px inset, rgb(47, 48, 55) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-7"
+    },
+    "subtle-8": {
+      "$value": "rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-8"
+    },
+    "subtle-9": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(0, 0, 0, 0.08) 0px 5px 15px 0px, rgba(47, 48, 55, 0.2) 0px 15px 35px -5px, rgba(34, 42, 53, 0.04) 0px 4px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-9"
+    },
+    "subtle-10": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px, rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-10"
+    },
+    "subtle-11": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-11"
+    },
+    "subtle-12": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-12"
+    },
+    "subtle-13": {
+      "$value": "rgb(217, 217, 222) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px, rgba(0, 0, 0, 0.08) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-13"
+    },
+    "subtle-14": {
+      "$value": "rgba(0, 0, 0, 0.11) 0px 0px 0px 1px, rgba(0, 0, 0, 0.07) 0px 0px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-14"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.16) 0px 10px 19px 4px, rgba(255, 255, 255, 0.04) 0px -10px 16px -4px, rgba(255, 255, 255, 0.01) 0px 0px 0px 1px, rgba(255, 255, 255, 0.02) 0px 1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background for light marketing sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default card and form surface on light backgrounds"
+    },
+    "recessed-surface": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Surface level 2: Input backgrounds, table row fills, and secondary card insets"
+    },
+    "dark-canvas": {
+      "$value": "#212126",
+      "$type": "color",
+      "$description": "Surface level 3: Product demo sections and dark-mode showcase panels"
+    },
+    "elevated-dark": {
+      "$value": "#2f3037",
+      "$type": "color",
+      "$description": "Surface level 4: Elevated panels and code blocks within dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://clerk.com",
+      "siteName": "Clerk",
+      "extractedAt": "2026-05-07T17:08:20.967Z",
+      "variant": "extended"
+    }
+  }
+}

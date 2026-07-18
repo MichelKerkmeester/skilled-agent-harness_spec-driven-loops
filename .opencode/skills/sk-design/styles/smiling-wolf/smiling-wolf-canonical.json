@@ -1,0 +1,912 @@
+{
+  "source": "https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927",
+  "uuid": "75be52f8-4dbe-45da-9a0e-a11bc92f6927",
+  "name": "Smiling Wolf",
+  "northStar": "Print magazine in monochrome.\n\nTwo-tone cream and near-black panels alternate like editorial spreads; monospace metadata stamps float over large display type with tight tracking.",
+  "capturedAt": "2026-07-18T08:52:15.148Z",
+  "meta": {
+    "url": "https://www.smilingwolf.co.uk",
+    "siteName": "Smiling Wolf",
+    "extractedAt": "2026-06-03T21:32:41.879Z",
+    "durationMs": 35919,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 798,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the five neutrals — Bone #f7f3f0, Obsidian #131713, Carbon #000000, Ash #bebcb9, Graphite #858582. No chromatic color, ever.",
+      "Set display headlines in Bagoss Standard weight 520 at 59-63px with -0.02em tracking and line-height 0.98-1.0.",
+      "Stamp all metadata, labels, and nav in General Grotesque Mono 9-10px uppercase with 0.10em tracking.",
+      "Alternate sections between Bone and Obsidian full-bleed — never blend them with gradients or shadows.",
+      "Use 4px border-radius on every rectangular element (cards, images, tags). No exceptions.",
+      "Separate content with 1px #000000 hairlines, not spacing alone.",
+      "Keep element gaps at 10px and section gaps at 60-80px; the rhythm depends on tight clustering punctuated by large breaks."
+    ],
+    "donts": [
+      "Don't introduce any color outside the five neutrals — no blues, no reds, no accents.",
+      "Don't use shadows, glows, or blurs for elevation. Use surface flips and hairlines.",
+      "Don't round corners beyond 4px. The design is structurally sharp.",
+      "Don't set body copy above 20px or below 14px — the type scale is intentionally narrow.",
+      "Don't use sans-serif for headings. Bagoss Standard carries the brand; system sans is only for sub-12px utility text.",
+      "Don't set monospace text at sizes above 10px — the small stamp size is what makes it function as a label, not a heading.",
+      "Don't use centered body text. The layout is left-aligned with tight tracking."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#f7f3f0",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, dark-section text — warm off-white that keeps the page from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#131713",
+        "name": "Obsidian",
+        "role": "Primary text on light canvas, dark-section backgrounds, inverse-surface text — near-black with a barely-perceptible green undertone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Hairline borders, dividers, link strokes — the structural outline color; appears 1340× as border, defining every panel edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bebcb9",
+        "name": "Ash",
+        "role": "Secondary borders, inactive dividers — a step lighter than Carbon for de-emphasized edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858582",
+        "name": "Graphite",
+        "role": "Muted helper text, secondary metadata, label text — sits at AA on dark and fails on light, so it belongs in the dark sections and monospace stamps",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with alternating surface bands. The dark CTA panel uses a two-column split: left half holds a 59-63px display headline, right half stacks three monospace CTA rows separated by 1px hairlines. The light sections use a max-width ~1200px centered container. The work grid is a two-column card layout with equal gutters. Navigation is a single fixed-height top bar with logo-left, descriptor-center, nav-right. The footer is a three-column monospace block beneath a 1px Carbon rule. Sections breathe with 60-80px vertical gaps; internal element gaps stay at 10px.",
+    "imagery": "Imagery is minimal and editorial: project thumbnails appear as rectangular crops with 4px corners and 1px Carbon borders, presented in a two-column grid. No lifestyle photography, no decorative illustration, no abstract graphics. When present, photographs are tightly cropped, natural-color, and treated as document scans rather than brand assets. The dominant visual is typography itself — the 59-63px display headlines and the wide-tracked monospace stamps are the imagery.",
+    "similar": [
+      {
+        "why": "Same editorial two-tone surface alternation and oversized display type against restrained monochrome palette",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared wide-tracked monospace metadata stamps and 1px hairline-divided content rows",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same Swiss-minimalist restraint: warm off-white canvas, near-black inverse panels, custom display serif, zero shadows",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Agency sites that use compact monospace labels and tight negative-tracking display headlines in a strict two-color system",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "4px",
+        "images": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60-80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f7f3f0",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Default page background — warm off-white dominates the work and editorial sections"
+      },
+      {
+        "hex": "#131713",
+        "name": "Obsidian Panel",
+        "level": 2,
+        "purpose": "Full-bleed dark sections — hero CTA panels, footer, and alternating bands that flip the type to Bone"
+      }
+    ],
+    "northStar": "Print magazine in monochrome.\n\nTwo-tone cream and near-black panels alternate like editorial spreads; monospace metadata stamps float over large display type with tight tracking.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "display",
+        "size": 59,
+        "lineHeight": 0.98,
+        "letterSpacing": -1.18
+      },
+      {
+        "role": "display-lg",
+        "size": 63,
+        "lineHeight": 1,
+        "letterSpacing": -1.26
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero and section titles",
+        "description": "Bagoss Standard weight 520 at 59-63px, line-height 0.98-1.0, letter-spacing -0.02em, color #131713 on Bone or #f7f3f0 on Obsidian. The near-unity line-height makes multi-line headlines lock into a tight block."
+      },
+      {
+        "name": "Monospace Metadata Label",
+        "role": "Category tags, nav items, footer labels, timestamps",
+        "description": "General Grotesque Mono weight 400, 9-10px, line-height 1.6, letter-spacing 0.10em, uppercase. Color: #131713 on Bone, #f7f3f0 on Obsidian, or #858582 for de-emphasized."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section and row separators",
+        "description": "1px solid #000000 border, full-width or proportional. Appears 1340× in the data — the most-used visual element. No rounded corners."
+      },
+      {
+        "name": "Image Card",
+        "role": "Project thumbnails, journal hero images",
+        "description": "4px border-radius, 1px #000000 border, full-bleed image with no overlay text. The border is structural, not decorative."
+      },
+      {
+        "name": "Outlined Action Border",
+        "role": "Featured/metadata badge borders",
+        "description": "1px solid #000000, 4px radius, padding 6px 10px. Contains uppercase monospace text at 9-10px. No fill — ghost style."
+      },
+      {
+        "name": "Dark CTA Panel",
+        "role": "Contact/hero conversion sections",
+        "description": "Full-bleed #131713 background. Left: 59-63px display headline in #f7f3f0. Right: stacked list of three monospace CTA links (e.g., 'Start a Project →', 'Say Hello →', 'Call Us →') separated by 1px #f7f3f0 hairline dividers, each row 60px tall, with a right-aligned arrow in #f7f3f0."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Site footer with contact details and nav",
+        "description": "Bone background, 1px Carbon top border. Three monospace columns: left = contact email, center = social links, right = physical address. 9-10px uppercase, 0.10em tracking. Logo mark bottom-left in #131713."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Bone background, no border. Left: logo + 'SMILING WOLF' monospace stamp. Center: 'BRAND & DIGITAL AGENCY' monospace descriptor. Right: 'WORK ABOUT JOURNAL CONTACT' monospace nav, 9-10px, 0.10em tracking. Fixed-height, generous horizontal padding."
+      },
+      {
+        "name": "CTA Link Row",
+        "role": "Action items in the dark panel",
+        "description": "Full-width row, 60px height, 1px bottom border in #f7f3f0 (on Obsidian) or #000000 (on Bone). Left-aligned monospace label, right-aligned arrow character (→). Hover: no fill change, arrow translates 4px right."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Featured work thumbnails in the journal/work grid",
+        "description": "Two-column grid on the work index. Each card: 4px radius, 1px #000000 border, image fills card edge-to-edge, monospace category label overlaid or positioned below in 9-10px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary typeface for headings, subheadings, and body — weights 385 and 520 are near-custom; the 520 medium at 59-63px with -0.02em tracking is the display voice, the 400 at 14-20px is body",
+        "sizes": "14, 20, 59, 63",
+        "family": "Bagoss Standard",
+        "weight": "385, 400, 520",
+        "lineHeight": "0.98–1.40",
+        "substitute": "Söhne, Inter, or General Sans at matching weights",
+        "letterSpacing": "-0.0200em at display (59-63px), -0.0100em at subheading, 0.0100em at body",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "All-caps metadata, category labels, footer blocks — the 0.10em positive tracking at 9-10px is the signature stamp: every nav item, tagline, and micro-label uses it",
+        "sizes": "9, 10",
+        "family": "General Grotesque Mono",
+        "weight": "400",
+        "lineHeight": "1.60",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Berkeley Mono",
+        "letterSpacing": "0.1000em",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      }
+    ],
+    "description": "Smiling Wolf uses an editorial Swiss-minimalist language: a warm off-white canvas (#f7f3f0) and near-black surfaces (#131713) alternate to create a strict two-tone rhythm, with no chromatic accent, no gradients, and no shadows anywhere. Typography carries the entire brand voice — a custom display serif/sans hybrid (Bagoss Standard) speaks at large sizes with tight negative tracking and near-unity line-heights, while a wide-tracked monospace (General Grotesque Mono) stamps every label, tag, and metadata line in uppercase 9-10px. All corners are 4px sharp. The result reads like a print magazine spread — high-contrast blocks, generous negative space, hairline dividers, and a refusal of decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Smiling Wolf design system\",\"item\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#style-reference\",\"name\":\"Smiling Wolf design system reference\",\"headline\":\"Smiling Wolf design system | Refero Styles\",\"description\":\"Explore Smiling Wolf's mixed Agency design system: Bone #f7f3f0, Obsidian #131713 colors, sans-serif, Bagoss Standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\",\"mainEntityOfPage\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Smiling Wolf\",\"url\":\"https://www.smilingwolf.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"caption\":\"Screenshot of Smiling Wolf\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Smiling Wolf design system\",\"Smiling Wolf website design\",\"Smiling Wolf colors\",\"Smiling Wolf typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Obsidian\",\"Carbon\",\"Ash\",\"sans-serif\",\"Bagoss Standard\",\"General Grotesque Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Smiling Wolf design system\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf website design\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf colors\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:55:25.607Z\",\"dateModified\":\"2026-04-30T02:55:25.607Z\"}]}19:T4b9,**Quick Color Reference**\n- text: #131713\n- background: #f7f3f0\n- dark surface: #131713\n- border: #000000\n- muted text: #858582\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Monospace Nav Bar**: Bone #f7f3f0 background, no border. Left: logo + 'SMILING WOLF' in General Grotesque Mono 9px uppercase 0.10em tracking #131713. Center: 'BRAND & DIGITAL AGENCY' same style. Right: 'WORK  ABOUT  JOURNAL  CONTACT' spaced apart, same monospace treatment.\n\n3. **Project Grid Card**: 4px border-radius, 1px solid #000000 border, image fills edge-to-edge, no padding. Below image: monospace 9px uppercase category label in #131713, 10px gap.\n\n4. **Footer Block**: Bone #f7f3f0 background, 1px #000000 top border, 60px padding-top. Three monospace columns at 9-10px, 0.10em tracking, uppercase, color #131713. Left: email. Center: social links. Right: address. Logo mark bottom-left.\n\n5. **Display Headline Block**: Bagoss Standard weight 520, 59px, line-height 0.98, letter-spacing -1.18px, color #131713 on Bone canvas. Two-line max. No decoration below."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows. All separation is achieved through: (1) alternating Bone/Obsidian surface flips, (2) 1px hairline borders in Carbon, and (3) generous negative space. The design treats shadow as an admission of weak layout — every panel edge is either a color change or a 1px line."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "image",
+            "heading"
+          ],
+          "frequency": 1955,
+          "confidence": 1,
+          "prominence": 113829734.97869268,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 10,
+            "list/color": 28,
+            "other/fill": 60,
+            "image/color": 5,
+            "other/color": 335,
+            "heading/color": 1,
+            "link/borderColor": 40,
+            "list/borderColor": 112,
+            "image/borderColor": 20,
+            "other/borderColor": 1340,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f7f3f0",
+          "oklch": {
+            "c": 0.005883518413347726,
+            "h": 59.651444229178864,
+            "l": 0.9664012504567583
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 67916255.54530525,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "other/fill": 1,
+            "heading/color": 4,
+            "body/borderColor": 52,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#131713",
+          "oklch": {
+            "c": 0.009998562165211309,
+            "h": 145.18681031207856,
+            "l": 0.19875881818828392
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 983,
+          "confidence": 1,
+          "prominence": 12538753.60554595,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 27,
+            "other/fill": 26,
+            "heading/color": 164,
+            "body/borderColor": 108,
+            "heading/borderColor": 656,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#bebcb9",
+          "oklch": {
+            "c": 0.0050671226298700895,
+            "h": 80.15227732015673,
+            "l": 0.7958921611785261
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 292490.7959689307,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 6,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#858582",
+          "oklch": {
+            "c": 0.0051811513180797545,
+            "h": 106.55081918129234,
+            "l": 0.6156253660113774
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 140665.13994570993,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "heading/color": 5,
+            "body/borderColor": 32,
+            "heading/borderColor": 20
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.009389188582368972,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#f7f3f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#131713",
+          "foreground": "#f7f3f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.08,
+          "background": "#bebcb9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.56,
+          "background": "#131713",
+          "foreground": "#bebcb9"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.89,
+          "background": "#131713",
+          "foreground": "#858582"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.35,
+          "background": "#f7f3f0",
+          "foreground": "#858582"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#f7f3f0",
+          "foreground": "#bebcb9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#131713",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 57
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 178,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 500,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Bagoss Standard Medium",
+          "source": "custom",
+          "weights": [
+            400,
+            520
+          ],
+          "frequency": 177,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "General Grotesque Mono Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 39,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "Bagoss Standard Regular",
+          "source": "custom",
+          "weights": [
+            385
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "General Grotesque Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "General Grotesque Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 500,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Bagoss Standard Regular",
+          "weight": 385,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Bagoss Standard Medium",
+          "weight": 520,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Bagoss Standard Medium",
+          "weight": 520,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Bagoss Standard Regular",
+          "weight": 385,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "Bagoss Standard Medium",
+          "weight": 520,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 161,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 63,
+          "family": "Bagoss Standard Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.98,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a0168fd6-d22a-4102-89ff-117d4fc08e46.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Smiling Wolf design system\",\"item\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#style-reference\",\"name\":\"Smiling Wolf design system reference\",\"headline\":\"Smiling Wolf design system | Refero Styles\",\"description\":\"Explore Smiling Wolf's mixed Agency design system: Bone #f7f3f0, Obsidian #131713 colors, sans-serif, Bagoss Standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\",\"mainEntityOfPage\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Smiling Wolf\",\"url\":\"https://www.smilingwolf.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/75be52f8-4dbe-45da-9a0e-a11bc92f6927#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"caption\":\"Screenshot of Smiling Wolf\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17b78de7-5a00-4bc4-b427-158b3b389a7b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Smiling Wolf design system\",\"Smiling Wolf website design\",\"Smiling Wolf colors\",\"Smiling Wolf typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Obsidian\",\"Carbon\",\"Ash\",\"sans-serif\",\"Bagoss Standard\",\"General Grotesque Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Smiling Wolf design system\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf website design\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf colors\"},{\"@type\":\"Thing\",\"name\":\"Smiling Wolf typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:55:25.607Z\",\"dateModified\":\"2026-04-30T02:55:25.607Z\"}]}19:T4b9,**Quick Color Reference**\n- text: #131713\n- background: #f7f3f0\n- dark surface: #131713\n- border: #000000\n- muted text: #858582\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Monospace Nav Bar**: Bone #f7f3f0 background, no border. Left: logo + 'SMILING WOLF' in General Grotesque Mono 9px uppercase 0.10em tracking #131713. Center: 'BRAND & DIGITAL AGENCY' same style. Right: 'WORK  ABOUT  JOURNAL  CONTACT' spaced apart, same monospace treatment.\n\n3. **Project Grid Card**: 4px border-radius, 1px solid #000000 border, image fills edge-to-edge, no padding. Below image: monospace 9px uppercase category label in #131713, 10px gap.\n\n4. **Footer Block**: Bone #f7f3f0 background, 1px #000000 top border, 60px padding-top. Three monospace columns at 9-10px, 0.10em tracking, uppercase, color #131713. Left: email. Center: social links. Right: address. Logo mark bottom-left.\n\n5. **Display Headline Block**: Bagoss Standard weight 520, 59px, line-height 0.98, letter-spacing -1.18px, color #131713 on Bone canvas. Two-line max. No decoration below."
+}

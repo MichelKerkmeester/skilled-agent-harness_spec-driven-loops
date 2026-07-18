@@ -1,0 +1,130 @@
+{
+  "color": {
+    "warm-linen": {
+      "$value": "#eee2d4",
+      "$type": "color",
+      "$description": "Warm Linen — Page canvas, section backgrounds — the cream that everything is taped onto"
+    },
+    "press-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Press Black — Display headlines, body text, card borders, image frames — the dominant ink across all surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Inset card surfaces, nav sticker fills, reverse type on dark or red panels"
+    },
+    "tape-gray": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Tape Gray — Subtle surface lift on rare neutral buttons — almost invisible"
+    },
+    "tomo-red": {
+      "$value": "#ff6347",
+      "$type": "color",
+      "$description": "Tomo Red — Marquee banner background, rubber-stamp text fill, promotional callouts — the single chromatic accent, tomato-toned for a restaurant called TOMO"
+    }
+  },
+  "font": {
+    "recife": {
+      "$value": "Recife",
+      "$type": "fontFamily",
+      "$description": "Display and headline serif — used at extreme sizes (80px+) for the TOMO wordmark and large section titles; weight 300 keeps the high-contrast strokes elegant rather than heavy. Signature voice: if the headline were a voice it would be a whisper in a cathedral"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Small functional text, timestamps, fine print — the only body-weight serif in the system, used sparingly for texture rather than readability at scale"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Recife",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Recife",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Recife",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "75": {
+      "$value": "75px",
+      "$type": "dimension",
+      "$description": "Spacing 75px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "warm-linen-canvas": {
+      "$value": "#eee2d4",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the cream that absorbs everything"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Sticker labels, inset cards, reverse type panels"
+    },
+    "tomo-red-marquee": {
+      "$value": "#ff6347",
+      "$type": "color",
+      "$description": "Surface level 2: Promotional ribbon — a surface, not a button"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://tomoseattle.com",
+      "siteName": "TOMO",
+      "extractedAt": "2026-06-03T20:28:28.899Z",
+      "variant": "extended"
+    }
+  }
+}

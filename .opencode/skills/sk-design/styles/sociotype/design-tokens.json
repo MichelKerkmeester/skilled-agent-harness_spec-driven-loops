@@ -1,0 +1,280 @@
+{
+  "color": {
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Primary text, all borders and dividers, nav and link strokes — the structural black of every UI line"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page and card surfaces, reverse text on dark overlays"
+    },
+    "charcoal": {
+      "$value": "#1a1818",
+      "$type": "color",
+      "$description": "Charcoal — Body text on light surfaces where true black reads too clinical — used for paragraph copy and descriptions"
+    },
+    "graphite": {
+      "$value": "#818181",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, caption labels, size selector, muted metadata"
+    },
+    "ash": {
+      "$value": "#9d9d9d",
+      "$type": "color",
+      "$description": "Ash — Hairline list dividers and subtle separators within type family navigation"
+    },
+    "bone": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Bone — Light section dividers, subtle structural borders"
+    }
+  },
+  "font": {
+    "main-onsite": {
+      "$value": "Main Onsite",
+      "$type": "fontFamily",
+      "$description": "Main Onsite — detected in extracted data but not described by AI"
+    },
+    "onsite": {
+      "$value": "Onsite",
+      "$type": "fontFamily",
+      "$description": "Primary UI typeface for body, nav, buttons, links, captions, and headings — used at every interface scale from 11px micro-labels to 40px section titles. The wide letter-spacing range (0.015em–0.080em) gives small text a museum-label quality; the custom 400 weight keeps the entire interface at one calm voice."
+    },
+    "avec-sharp-ceno-meso-gestura-rework": {
+      "$value": "Avec Sharp / Ceno / Meso / Gestura / Rework",
+      "$type": "fontFamily",
+      "$description": "Display specimens — each font is showcased at a single massive 251px size as the product being sold. These are page heroes, not UI text. The tight 0.001em letter-spacing lets the display type breathe at its own proportions while the UI chrome (Onsite) keeps wide tracking for contrast."
+    },
+    "ceno": {
+      "$value": "Ceno",
+      "$type": "fontFamily",
+      "$description": "Ceno — detected in extracted data but not described by AI"
+    },
+    "meso": {
+      "$value": "Meso",
+      "$type": "fontFamily",
+      "$description": "Meso — detected in extracted data but not described by AI"
+    },
+    "gestura": {
+      "$value": "Gestura",
+      "$type": "fontFamily",
+      "$description": "Gestura — detected in extracted data but not described by AI"
+    },
+    "rework": {
+      "$value": "Rework",
+      "$type": "fontFamily",
+      "$description": "Rework — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Main Onsite",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Avec Sharp",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 251px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Ceno",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 251px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Meso",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 251px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Onsite",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 251px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Gestura",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 251px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Rework",
+        "fontSize": "251px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 251px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Universal page and card background — the same white holds the hero photo, the type specimens, and all detail pages"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://socio-type.com",
+      "siteName": "Sociotype",
+      "extractedAt": "2026-06-03T14:59:19.335Z",
+      "variant": "extended"
+    }
+  }
+}

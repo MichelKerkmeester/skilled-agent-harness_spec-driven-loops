@@ -1,0 +1,319 @@
+{
+  "color": {
+    "walnut": {
+      "$value": "#321e1e",
+      "$type": "color",
+      "$description": "Walnut — Primary text color, filled action buttons, dark hero sections, footer wordmark. Deep warm brown that reads as near-black while carrying the brand's earthy warmth — used as both foreground and background surface"
+    },
+    "linen": {
+      "$value": "#f4f1e0",
+      "$type": "color",
+      "$description": "Linen — Page canvas, card surfaces, light text on dark backgrounds. Warm aged-cream that gives the entire system its paper-like, vintage quality"
+    },
+    "graphite": {
+      "$value": "#464545",
+      "$type": "color",
+      "$description": "Graphite — Secondary borders, muted helper text, subtle dividers. Neutral medium gray providing quiet separation without competing with the Walnut/Linen pair"
+    },
+    "espresso": {
+      "$value": "#463938",
+      "$type": "color",
+      "$description": "Espresso — Button text on light surfaces, alternate dark fill. Slightly lighter brown variant for typographic contrast within the dark family"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Icon strokes, true-black accents on borders. Used sparingly where absolute contrast is needed"
+    },
+    "soft-sand": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Soft Sand — Alternate light surface, hover-state wash. Neutral off-white for slight tonal shifts away from the cream canvas"
+    }
+  },
+  "font": {
+    "houseplant": {
+      "$value": "Houseplant",
+      "$type": "fontFamily",
+      "$description": "Custom display and body typeface used for all UI text — headlines at 30-70px with tight negative tracking, body at 16-20px, captions at 14px. The custom font carries geometric warmth that off-the-shelf alternatives cannot replicate"
+    },
+    "roboto": {
+      "$value": "Roboto",
+      "$type": "fontFamily",
+      "$description": "Fallback body text — minimal usage, system-safe default"
+    },
+    "neuehelvetica55roman": {
+      "$value": "NeueHelvetica55Roman",
+      "$type": "fontFamily",
+      "$description": "NeueHelvetica55Roman — detected in extracted data but not described by AI"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NeueHelvetica55Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "NeueHelvetica55Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 2.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Houseplant",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f4f1e0",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — aged cream paper feel"
+    },
+    "card": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 2: Product card surface, slight tonal lift from canvas"
+    },
+    "dark-feature": {
+      "$value": "#321e1",
+      "$type": "color",
+      "$description": "Surface level 3: Promotional sections, filled button backgrounds"
+    },
+    "footer-mark": {
+      "$value": "#321e1",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed footer wordmark surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.houseplant.com",
+      "siteName": "HOUSEPLANT",
+      "extractedAt": "2026-06-03T19:46:52.215Z",
+      "variant": "extended"
+    }
+  }
+}

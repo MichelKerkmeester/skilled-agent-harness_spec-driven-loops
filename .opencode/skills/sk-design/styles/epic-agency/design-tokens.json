@@ -1,0 +1,387 @@
+{
+  "color": {
+    "aubergine-canvas": {
+      "$value": "#271a47",
+      "$type": "color",
+      "$description": "Aubergine Canvas — Page background, hero canvas, filled button surface, deep surface elevation — the foundational night-sky tone that everything floats on"
+    },
+    "moonlight-lavender": {
+      "$value": "#dbc9ff",
+      "$type": "color",
+      "$description": "Moonlight Lavender — Violet supporting accent for decorative details and low-frequency emphasis."
+    },
+    "gilded-brass": {
+      "$value": "#bc994e",
+      "$type": "color",
+      "$description": "Gilded Brass — Secondary link color, decorative icon accent, highlight strokes — a warm metallic counterpoint to the cool violet, used sparingly as jewelry on the page"
+    },
+    "obsidian-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Black — Video/showreel container background, inverse button surface, maximum-contrast surface for media blocks"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body, nav, buttons, labels, journal entries, metadata — the utilitarian workhorse that handles every reading surface. Compact sizes (9–14px) with tight line-heights (1.00–1.65) create the dense, information-rich layout. Uppercase labels use 0.5em tracking for the editorial tagline rhythm."
+    },
+    "sang-bleu-custom": {
+      "$value": "Sang Bleu (custom)",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines — the serif voice that carries brand authority. Used at 80–120px for hero titles, 42px for section-level headings. The high contrast strokes and Garamond-class proportions give every page a magazine-cover gravitas. Substitute with Cormorant Garamond or Playfair Display Black for free alternatives."
+    },
+    "object-fit-cover": {
+      "$value": "object-fit: cover",
+      "$type": "fontFamily",
+      "$description": "object-fit: cover — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "object-fit: cover",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "sang-bleu",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "sang-bleu",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sang-bleu",
+        "fontSize": "80px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sang-bleu",
+        "fontSize": "80px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sang-bleu",
+        "fontSize": "120px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "117": {
+      "$value": "117px",
+      "$type": "dimension",
+      "$description": "Spacing 117px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "aubergine-void": {
+      "$value": "#271a47",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — the night-sky background that defines the entire interface"
+    },
+    "obsidian-block": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Media containers (video/showreel), contrast inversions that punch through the violet"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://epic.net",
+      "siteName": "EPIC agency",
+      "extractedAt": "2026-06-03T19:38:10.872Z",
+      "variant": "extended"
+    }
+  }
+}

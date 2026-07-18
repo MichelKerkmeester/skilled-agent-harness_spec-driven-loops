@@ -1,0 +1,224 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, card surfaces, nav backgrounds — warm off-white that replaces pure white as the base layer everywhere"
+    },
+    "soft-paper": {
+      "$value": "#fdfbfa",
+      "$type": "color",
+      "$description": "Soft Paper — Slightly elevated card surface (one step above the canvas) — used on suggestion cards"
+    },
+    "warm-mist": {
+      "$value": "#d1d1cd",
+      "$type": "color",
+      "$description": "Warm Mist — Hairline card and input borders — warm gray that reads as a pencil line on parchment"
+    },
+    "ash": {
+      "$value": "#92918b",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, secondary labels — warmer than #72706b"
+    },
+    "graphite": {
+      "$value": "#72706b",
+      "$type": "color",
+      "$description": "Graphite — Nav icons, secondary button text, inactive labels — the dominant neutral text color"
+    },
+    "ink": {
+      "$value": "#27251e",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon fills, button backgrounds — deep warm-black (not pure #000) carries the brand's brownish undertone"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — High-contrast text and icon accents — used sparingly where maximum weight is needed"
+    },
+    "deep-teal": {
+      "$value": "#016a71",
+      "$type": "color",
+      "$description": "Deep Teal — Active nav item background, selected state fill, brand-signaling accent — single chromatic color carrying all navigational emphasis"
+    }
+  },
+  "font": {
+    "pplxsans": {
+      "$value": "pplxSans",
+      "$type": "fontFamily",
+      "$description": "Custom geometric sans used everywhere — body text at 16px/1.5 weight 400, UI labels at 14px/1.43, micro text at 11–12px weight 500. The narrow weight range (400–500) keeps the interface visually quiet; there is no bold display weight. Letter-spacing stays at 0 (normal) across all sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Surface level 0: Full-viewport warm off-white background for the entire app"
+    },
+    "card-surface": {
+      "$value": "#fdfbfa",
+      "$type": "color",
+      "$description": "Surface level 1: Suggestion cards and elevated content blocks — one shade lighter than the canvas"
+    },
+    "active-nav": {
+      "$value": "#016a71",
+      "$type": "color",
+      "$description": "Surface level 2: Selected navigation item background — the only chromatic surface"
+    },
+    "button-fill": {
+      "$value": "#27251",
+      "$type": "color",
+      "$description": "Surface level 3: Solid button background — dark warm ink against parchment for high contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://perplexity.ai",
+      "siteName": "Perplexity AI",
+      "extractedAt": "2026-07-03T03:24:13.114Z",
+      "variant": "extended"
+    }
+  }
+}

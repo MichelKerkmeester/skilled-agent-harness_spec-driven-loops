@@ -1,0 +1,374 @@
+{
+  "color": {
+    "rausch": {
+      "$value": "#ff385c",
+      "$type": "color",
+      "$description": "Rausch — Red decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color"
+    },
+    "rausch-600": {
+      "$value": "#e00b41",
+      "$type": "color",
+      "$description": "Rausch 600 — Pressed and dark-state variant of Rausch for hover/active surfaces of the brand accent"
+    },
+    "hof": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Hof — Primary text, body copy, headings, icon strokes, and inverse backgrounds — a near-black neutral that anchors the entire achromatic system"
+    },
+    "foggy": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Foggy — Secondary text, muted labels, helper copy, disabled icon fills, and subdued metadata beneath card titles"
+    },
+    "grey-500": {
+      "$value": "#c1c1c1",
+      "$type": "color",
+      "$description": "Grey 500 — Disabled text, placeholder text in inputs, and muted icon strokes where state de-emphasis is required"
+    },
+    "bebe": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Bebe — Hairline borders, input underlines, dividers between list rows, and subtle separator lines"
+    },
+    "deco": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Deco — Card surface backgrounds for muted containers, skeleton placeholders, and disabled card states"
+    },
+    "faint": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Faint — Page canvas background, footer surface, and hover state for interactive surfaces — the soft off-white that sets the page apart from pure white cards"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Elevated card surfaces, input fields, modals, and the primary surface against the off-white canvas"
+    }
+  },
+  "font": {
+    "airbnb-cereal-vf": {
+      "$value": "Airbnb Cereal VF",
+      "$type": "fontFamily",
+      "$description": "Custom geometric sans designed for Airbnb. Body at 14px/400 carries most content; UI labels at 16px/500; section headings step up through 20px/600, 22px/500 with tight -0.02em tracking, and 28px/700 for page-level titles. Negative tracking tightens as size increases, a hallmark of geometric sans at display sizes. Activates the 'salt' alternate glyph feature."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.1) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — soft off-white that recedes behind all content"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Property listing cards, search inputs, navigation pills — the primary interactive surface"
+    },
+    "muted-surface": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Surface level 2: Skeleton/placeholder card backgrounds and disabled card states"
+    },
+    "inverse": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 3: Dark mode surfaces, inverse buttons, high-contrast overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.airbnb.com",
+      "siteName": "Airbnb",
+      "extractedAt": "2026-07-03T03:15:59.260Z",
+      "variant": "extended"
+    }
+  }
+}

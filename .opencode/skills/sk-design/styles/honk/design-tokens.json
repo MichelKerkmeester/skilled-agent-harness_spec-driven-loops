@@ -1,0 +1,197 @@
+{
+  "color": {
+    "honk-blue": {
+      "$value": "#008fff",
+      "$type": "color",
+      "$description": "Honk Blue — Full-viewport page canvas, hero background, all top-level sections — the electric blue IS the brand surface, not a secondary accent"
+    },
+    "honk-sky": {
+      "$value": "#00a0ff",
+      "$type": "color",
+      "$description": "Honk Sky — Secondary blue for gradient bands, large decorative shapes, and depth layers behind the primary canvas"
+    },
+    "signal-yellow": {
+      "$value": "#ffe400",
+      "$type": "color",
+      "$description": "Signal Yellow — Accent words inside headlines, heading border underlines, and highlight punctuation — the only chromatic accent on the blue field, used sparingly for emphasis rather than decoration"
+    },
+    "honk-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Honk White — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon — Primary text on light surfaces, dark borders, near-black detail work — used where text leaves the blue field"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — SVG fills, graphic detail, maximum-contrast text where the design needs to drop to absolute black"
+    },
+    "slate": {
+      "$value": "#363636",
+      "$type": "color",
+      "$description": "Slate — Secondary graphic fills, dark illustration detail, softer-than-black accents in SVG work"
+    },
+    "game-green": {
+      "$value": "#3fcc6b",
+      "$type": "color",
+      "$description": "Game Green — Phone screen content (in-game UI inside device mockups) — a single-hue secondary color reserved for product-internal screens so the blue/yellow/white trio stays clean on the marketing surface"
+    }
+  },
+  "font": {
+    "honk-header": {
+      "$value": "Honk Header",
+      "$type": "fontFamily",
+      "$description": "Hero and section display headlines — custom heavy display face at a single 52px size, tightly tracked at -0.012em. This is the signature wordmark voice: chunky, loud, slightly condensed, designed to read at billboard scale on the blue field"
+    },
+    "honk-sans": {
+      "$value": "Honk Sans",
+      "$type": "fontFamily",
+      "$description": "Body copy, sub-headings, button labels, link text, footer, icons — a neutral grotesk covering the full UI scale from 13px micro-labels to 19px lead paragraphs. Negative tracking across the board (-0.026em at 13px, -0.006em at 19px) tightens the grotesque to feel modern rather than airy"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Honk Sans",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Honk Header",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "honk-blue-canvas": {
+      "$value": "#008fff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-viewport page background, hero, section bands"
+    },
+    "honk-sky": {
+      "$value": "#00a0ff",
+      "$type": "color",
+      "$description": "Surface level 1: Gradient depth layer, large decorative shapes"
+    },
+    "honk-white-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Notification banners, embedded UI cards, device screen bezel, icon fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://honk.me",
+      "siteName": "Honk",
+      "extractedAt": "2026-06-03T19:48:33.783Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "color": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Page canvas, dominant background — absorbs everything so content and the warm gradient banner can command attention"
+    },
+    "surface-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface Black — Card backgrounds, elevated panels, filled neutral button surface — one step off the canvas creates depth without gray noise"
+    },
+    "lifted-charcoal": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Lifted Charcoal — Mid-elevation surfaces, hover states, and subtle card depth — bridges the page black and border tones"
+    },
+    "border-gray": {
+      "$value": "#343434",
+      "$type": "color",
+      "$description": "Border Gray — Hairline dividers, card outlines, table rules — defines structural edges in a flat world"
+    },
+    "edge-gray": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Edge Gray — Heavier borders on outlined buttons and grouped control frames"
+    },
+    "muted-text": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Muted Text — Secondary body text, metadata, timestamps, supporting copy"
+    },
+    "helper-gray": {
+      "$value": "#a0a0a0",
+      "$type": "color",
+      "$description": "Helper Gray — Body text borders and subtle helper text where full white feels too loud"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headings, nav text, button text, logo fill — the only color allowed to compete with the gradient banner"
+    },
+    "amber-glow": {
+      "$value": "#ffc840",
+      "$type": "color",
+      "$description": "Amber Glow — Promotional banner start — the cool-yellow origin of the warm spotlight gradient (also gradient)"
+    },
+    "ember-orange": {
+      "$value": "#ff8a00",
+      "$type": "color",
+      "$description": "Ember Orange — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "crimson-heat": {
+      "$value": "#fa3a19",
+      "$type": "color",
+      "$description": "Crimson Heat — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Inter 700/800 for the wordmark and section headlines (confident, instructor-led); 600 for video titles and nav labels; 400 for body copy and metadata. No display-size font in the system — the brand keeps type compact (capped at 24px) and lets the gradient banner and video thumbnails carry visual weight instead."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page-wide background; absorbs visual noise so video thumbnails and the gradient banner read first"
+    },
+    "card": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 1: Video lesson cards and grouped content blocks; one step off canvas to define edges without gray noise"
+    },
+    "elevated": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevation for hover states, tooltips, or higher-tier promotional panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://designfulltime.com",
+      "siteName": "Design Full-Time",
+      "extractedAt": "2026-06-03T21:30:15.398Z",
+      "variant": "extended"
+    }
+  }
+}

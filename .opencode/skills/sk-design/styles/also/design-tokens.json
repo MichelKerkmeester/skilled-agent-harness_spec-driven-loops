@@ -1,0 +1,404 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fcf7fa",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, soft section background — warm off-white with a barely-there pink cast, never pure white"
+    },
+    "pure-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Card — Card surfaces, elevated panels, button text on violet fills"
+    },
+    "ash-mist": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Ash Mist — Tertiary surface, muted dividers, subtle background washes"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, default borders, icon strokes — the structural ink of the system"
+    },
+    "graphite-input": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Graphite Input — Input field borders, secondary dark surfaces"
+    },
+    "obsidian-pill": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Obsidian Pill — Dark CTA fill — the secondary action button (e.g. Reserve), pairs with white text and violet shadow"
+    },
+    "electric-violet": {
+      "$value": "#ac74fc",
+      "$type": "color",
+      "$description": "Electric Violet — Primary accent — link borders, active states, icon highlights, section accent borders. The brand's signal color"
+    },
+    "lilac-pill": {
+      "$value": "#c181ff",
+      "$type": "color",
+      "$description": "Lilac Pill — Primary CTA button fill — the dominant call-to-action, sits on violet hard shadow with black text"
+    },
+    "deep-plum": {
+      "$value": "#381b5e",
+      "$type": "color",
+      "$description": "Deep Plum — Dark violet text variant, deep accent borders, section-level emphasis when Electric Violet feels too bright"
+    },
+    "shadow-plum": {
+      "$value": "#48316a",
+      "$type": "color",
+      "$description": "Shadow Plum — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "acid-lime": {
+      "$value": "#b1ff8f",
+      "$type": "color",
+      "$description": "Acid Lime — Sparingly used highlight wash or accent surface for urgency moments (limited drops, reservation states)"
+    },
+    "signal-blue": {
+      "$value": "#1276a9",
+      "$type": "color",
+      "$description": "Signal Blue — Outlined action border — secondary ghost button or informational outline accent"
+    }
+  },
+  "font": {
+    "abccameraplainvariable": {
+      "$value": "ABCCameraPlainVariable",
+      "$type": "fontFamily",
+      "$description": "Primary UI and display typeface — handles body, headings, navigation, and product copy"
+    },
+    "serialc-heavy": {
+      "$value": "SerialC-Heavy",
+      "$type": "fontFamily",
+      "$description": "Uppercase eyebrows, button text, section labels, mono-influenced captions"
+    },
+    "serialc": {
+      "$value": "SerialC",
+      "$type": "fontFamily",
+      "$description": "SerialC — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SerialC",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "SerialC",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "20px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SerialC-Heavy",
+        "fontSize": "20px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "SerialC",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "SerialC",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCCameraPlainVariable",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(72, 49, 106) 0px 2px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#fcf7fa",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas — every section starts here unless deliberately flipped to violet"
+    },
+    "pure-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product cards, story cards, elevated content blocks sitting on the cream canvas"
+    },
+    "ash-mist": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 3: Tertiary wash for muted sections, subtle background variation within cream zones"
+    },
+    "electric-violet": {
+      "$value": "#ac74fc",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed accent canvas for Stories / editorial sections — inverted mode without changing component logic"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ridealso.com",
+      "siteName": "ALSO",
+      "extractedAt": "2026-06-03T21:02:20.553Z",
+      "variant": "extended"
+    }
+  }
+}

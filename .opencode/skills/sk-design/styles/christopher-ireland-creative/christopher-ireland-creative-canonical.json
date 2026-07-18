@@ -1,0 +1,484 @@
+{
+  "source": "https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231",
+  "uuid": "295beab5-cd8a-473b-ab7d-3df6cda30231",
+  "name": "CHRISTOPHER IRELAND CREATIVE",
+  "northStar": "bone-white gallery wall, editorial monograph in morning light",
+  "capturedAt": "2026-07-18T09:31:27.274Z",
+  "meta": {
+    "url": "https://christopherireland.net",
+    "siteName": "CHRISTOPHER IRELAND CREATIVE",
+    "extractedAt": "2026-06-03T19:19:13.698Z",
+    "durationMs": 18959,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 75,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Playfair Display 400 at 63px or 94px for every display heading — never bold it",
+      "Set the canvas to #f2f1ec and let photographs meet it edge-to-edge with no card, border, or shadow",
+      "Maintain a three-step text scale: #333332 for headings, #000000 for primary labels and rules, #5d5b5b for body",
+      "Use 1px #000000 hairlines as the only divider — never use shadows, fills, or gradient fades to separate sections",
+      "Keep all interactive elements as text or a single \"+\" character in Rubik 400 — no buttons, no backgrounds, no rounded shapes",
+      "Set image and card radius to 0px; the bone canvas and the photograph should share a hard edge",
+      "Apply 48px of vertical padding above and below section rules to create the printed-page breathing rhythm"
+    ],
+    "donts": [
+      "Do not introduce any color — the palette is intentionally achromatic and adding a hue breaks the monograph feel",
+      "Do not bold the Playfair Display headings; the weight-400 display IS the signature",
+      "Do not wrap photographs in cards, frames, or shadows — let them sit on the bone canvas directly",
+      "Do not add border-radius to any element; every corner in the system is sharp",
+      "Do not use icons beyond the \"+\" character; the system communicates through type and image only",
+      "Do not use gradients, blurs, or glassmorphism — these contradict the printed-page metaphor",
+      "Do not set body copy larger than 16px; the contrast between 16px body and 63–94px display is what creates editorial hierarchy"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f1ec",
+        "name": "Bone",
+        "role": "Page canvas, card surface — warm off-white reads as paper, not screen; gives the page a tactile, printed quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, borders, dividers, plus-marks, section rules — pure black against bone creates the highest-possible contrast for a posterized editorial feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333332",
+        "name": "Graphite",
+        "role": "Headline text — nearly black but with a quarter-step of warmth; lets the serif headings feel set rather than stamped",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5d5b5b",
+        "name": "Ash",
+        "role": "Secondary body text, captions, sub-labels — the only muted step in an otherwise binary palette",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered max-width container (~1200px) on a bone canvas, but the interior composition is asymmetric. The top region is a centered masthead (name centered, profession right-aligned beneath). Below a 1px hairline rule, a two-column sub-nav row with service list on the left and an \"About\" link on the right. The main content area splits into a two-column grid: large serif category labels (Commercial, Creative, Community) stacked vertically on the left at ~50% width, with a large featured photograph occupying the right column. Each category row is separated by ~11–14px of vertical space. The layout is editorial — it reads like a magazine table of contents, not a grid of cards. Navigation is minimal: no sidebar, no sticky header, no mega-menu, just the top masthead and the two text links in the sub-nav.",
+    "imagery": "Photography is the entire visual language. All imagery is high-quality, naturalistic photography — warm, softly lit, often interior scenes with natural window light (visible in the screenshot: a person sitting on a bed in golden-hour light). Images are full-bleed within their column, never cropped to rounded shapes, never overlaid with text or UI. There are no illustrations, no icons beyond the \"+\" character, no decorative graphics, no product mockups. The image-to-text ratio favors images heavily once the category sections begin, but the header and nav areas are pure typography. The warmth of the bone canvas complements the warm color temperature of the photography, creating a cohesive editorial palette.",
+    "similar": [
+      {
+        "why": "Same bone-canvas + oversized serif + single-photograph layout; both are photographer portfolios that read as printed monographs rather than websites",
+        "business": "Pelle Cass"
+      },
+      {
+        "why": "Identical editorial discipline — weight-400 serif at display size, zero color, photography as the only visual element beyond type",
+        "business": "Peter Lindbergh"
+      },
+      {
+        "why": "Same warm off-white canvas with generous whitespace and serif display headings; both use typography as gallery-label scaffolding around large photographs",
+        "business": "Coco Capitan"
+      },
+      {
+        "why": "Same printed-publication metaphor — serif display on warm neutral, hairline rules, no UI chrome, images that float without card containers",
+        "business": "Cereal magazine"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "11-14px",
+      "sectionGap": "48px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f2f1ec",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Page background — the single surface layer; everything sits on it directly"
+      },
+      {
+        "hex": "#000000",
+        "name": "Photograph Surface",
+        "level": 2,
+        "purpose": "The darkest surface — full-bleed photography provides the only departure from bone; no card, border, or elevation separates it from the canvas"
+      }
+    ],
+    "northStar": "bone-white gallery wall, editorial monograph in morning light",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 63,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.63
+      },
+      {
+        "role": "display",
+        "size": 94,
+        "lineHeight": 1,
+        "letterSpacing": 0.94
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Display Heading",
+        "role": "Hero name and section titles",
+        "description": "Playfair Display 400 at 94px (display) or 63px (section), line-height 1.0–1.2, letter-spacing 0.01em, color #333332. Sits flush-left in its column with no decoration. The oversized lowercase-as-uppercase treatment (\"CHRISTOPHER IRELAND\" in caps at 94px) creates the masthead moment."
+      },
+      {
+        "name": "Category List Item",
+        "role": "Expandable portfolio category (Commercial, Creative, Community)",
+        "description": "Two-column row: serif label on the left (Playfair Display 400, 63px, #333332) and a \"+\" glyph on the right (Rubik 400, 16px, #000000). Vertical rhythm of ~11–14px between items. No background, no border — the type itself is the component."
+      },
+      {
+        "name": "Plus-Mark Expand Indicator",
+        "role": "Indicates a tappable/expandable category",
+        "description": "Rubik 400 at 16px, #000000, single character \"+\". Left-aligned in its own column, vertically centered against the serif label. Functions as the only interactive affordance on the page."
+      },
+      {
+        "name": "Featured Image Panel",
+        "role": "Photography showcase beside category text",
+        "description": "Full-bleed photograph, no border, no radius, no shadow, no caption. Occupies the right column in the category section. Sits on the bone canvas with no card surface or framing — the image meets the canvas edge directly."
+      },
+      {
+        "name": "Top Bar",
+        "role": "Site identity and profession label",
+        "description": "Centered masthead at top of page. Name in Playfair Display 400 caps at 94px, #333332. Profession label \"Photographer | Director\" in Rubik 400 at 16px, #5d5b5b, right-aligned beneath the name."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Separates header from content",
+        "description": "Single 1px hairline rule in #000000 spanning the full page width. No gradient, no shadow, no extra weight — a printed-page rule."
+      },
+      {
+        "name": "Sub-Nav Row",
+        "role": "Service categories and secondary link",
+        "description": "Rubik 400 at 16px, #000000. Left side: comma-separated service list (\"Commercial campaigns · Documentary films · Long-form photography\"). Right side: \"About\" text link, underlined on hover. 30px vertical padding above and below."
+      },
+      {
+        "name": "Body Caption",
+        "role": "Any supporting paragraph or metadata",
+        "description": "Rubik 400 at 16px, #5d5b5b, line-height 1.5. Used for photographer credits, project descriptions, and any text that is not a display heading or a label."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section headings — at 94px with weight 400 and positive 0.01em tracking, the serif behaves like a magazine masthead rather than a UI heading. The regular weight is anti-convention; most display serifs go bold for authority, but Playfair 400 at this size carries authority through proportion and negative space alone. Use for hero name, section titles (Commercial, Creative, Community), and any single-word moment that should feel like a printed title page.",
+        "sizes": "63px, 94px",
+        "family": "Playfair Display",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Cormorant Garamond, Lora, DM Serif Display",
+        "letterSpacing": "0.01em at 63–94px"
+      },
+      {
+        "role": "All utility text — body copy, sub-labels, navigation, metadata. Rubik at 400 / 16px / 1.5 line-height is deliberately quiet; it never competes with the serif display. The geometric humanist forms provide enough structure for small UI elements (the \"+\" expand marks, the \"About\" link) without introducing a second visual voice.",
+        "sizes": "16px, 94px",
+        "family": "Rubik",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Inter, IBM Plex Sans, Work Sans"
+      }
+    ],
+    "description": "A photographer's portfolio rendered as a quiet editorial spread: a warm bone canvas, a single typeface pairing (a contemporary serif for display, a geometric sans for utility), and no chromatic accent whatsoever. The visual system defers entirely to the photography — text is a thin scaffolding of category labels and a few oversized serif headlines that behave like magazine pull-quotes. The feeling is closer to a printed monograph than a website: large blocks of breathing room, asymmetric split layouts (text-left, image-right), and weight 400 everywhere — the serif never thickens, the sans never condenses, so hierarchy comes from size and tracking rather than emphasis.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$29"
+      }
+    ],
+    "elevationPhilosophy": "No elevation is used anywhere in the system. There are no shadows, no card lifts, no overlays. The page is flat as a printed page — the 1px hairline rule and the shift from bone to photograph are the only depth cues. This is a deliberate choice: the portfolio is about photography, and any shadow or floating element would compete with the images for visual weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "heading",
+            "link",
+            "body",
+            "list",
+            "button",
+            "image"
+          ],
+          "frequency": 369,
+          "confidence": 1,
+          "prominence": 11534734.864350634,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f1ec",
+          "oklch": {
+            "c": 0.006727532259532862,
+            "h": 97.3531843959268,
+            "l": 0.9575278534024678
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2142926.359625029,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333332",
+          "oklch": {
+            "c": 0.0018598284996680292,
+            "h": 97.33731332938221,
+            "l": 0.31937888172090984
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 265517.00822407426,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5d5b5b",
+          "oklch": {
+            "c": 0.0025670308073863207,
+            "h": 17.24763523020738,
+            "l": 0.47303814792324395
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 25542.014469625745,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00025246053099480366,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.57,
+          "background": "#f2f1ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.18,
+          "background": "#f2f1ec",
+          "foreground": "#333332"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.97,
+          "background": "#f2f1ec",
+          "foreground": "#5d5b5b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.11,
+          "background": "#000000",
+          "foreground": "#5d5b5b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#000000",
+          "foreground": "#333332"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Rubik",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 53,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Playfair Display",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Rubik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "link",
+            "body",
+            "list",
+            "image"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 63,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 63,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 94,
+          "family": "Rubik",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 94,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e8353f1a-669b-42bd-93ad-6a424a646cad.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cd7a1e4e-f706-43dd-baa4-682944bf1b0a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CHRISTOPHER IRELAND CREATIVE design system\",\"item\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231#style-reference\",\"name\":\"CHRISTOPHER IRELAND CREATIVE design system reference\",\"headline\":\"CHRISTOPHER IRELAND CREATIVE design system | Refero Styles\",\"description\":\"Explore CHRISTOPHER IRELAND CREATIVE's light Agency design system: Bone #f2f1ec, Ink #000000 colors, Playfair Display, Rubik typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231\",\"mainEntityOfPage\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CHRISTOPHER IRELAND CREATIVE\",\"url\":\"https://christopherireland.net\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/295beab5-cd8a-473b-ab7d-3df6cda30231#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cd7a1e4e-f706-43dd-baa4-682944bf1b0a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cd7a1e4e-f706-43dd-baa4-682944bf1b0a.jpg\",\"caption\":\"Screenshot of CHRISTOPHER IRELAND CREATIVE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cd7a1e4e-f706-43dd-baa4-682944bf1b0a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CHRISTOPHER IRELAND CREATIVE design system\",\"CHRISTOPHER IRELAND CREATIVE website design\",\"CHRISTOPHER IRELAND CREATIVE colors\",\"CHRISTOPHER IRELAND CREATIVE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Ink\",\"Graphite\",\"Ash\",\"Playfair Display\",\"Rubik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CHRISTOPHER IRELAND CREATIVE design system\"},{\"@type\":\"Thing\",\"name\":\"CHRISTOPHER IRELAND CREATIVE website design\"},{\"@type\":\"Thing\",\"name\":\"CHRISTOPHER IRELAND CREATIVE colors\"},{\"@type\":\"Thing\",\"name\":\"CHRISTOPHER IRELAND CREATIVE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-17T19:29:32.000Z\",\"dateModified\":\"2026-02-17T19:29:32.000Z\"}]}"
+}

@@ -1,0 +1,464 @@
+{
+  "color": {
+    "amber-curtain": {
+      "$value": "#ec580a",
+      "$type": "color",
+      "$description": "Amber Curtain — Hero and statistics block backgrounds, brand atmospheric layer — the entire warm light system of the page, applied as full-bleed gradient with vertical streak texture. Never used for buttons, links, or inline accents"
+    },
+    "ember-wash": {
+      "$value": "#ff683d",
+      "$type": "color",
+      "$description": "Ember Wash — Lighter highlight within the amber gradient — the illuminated folds of the curtain texture, appearing in hero highlights and statistic card upper regions"
+    },
+    "midnight-ink": {
+      "$value": "#00104e",
+      "$type": "color",
+      "$description": "Midnight Ink — Deep navy used sparingly for outlined link borders and select link text — the only chromatic accent in the otherwise achromatic interface, and only where link affordance must be unmistakable"
+    },
+    "canvas-cream": {
+      "$value": "#f7f6f5",
+      "$type": "color",
+      "$description": "Canvas Cream — Page background, the warm off-white that gives the whole system its paper-like editorial base — sits behind cards, inputs, and quiet content areas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, button fills for ghost and light action variants — the bright top layer of the surface stack"
+    },
+    "charcoal-depth": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Charcoal Depth — Dark section backgrounds, footer, inverse card surfaces — the counterweight to the amber hero, used when content must read against a near-black ground"
+    },
+    "graphite": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Graphite — Filled button backgrounds, input fields, dense neutral surfaces — the primary action surface when a button must be heavy and deliberate rather than ghost"
+    },
+    "stone": {
+      "$value": "#484848",
+      "$type": "color",
+      "$description": "Stone — Secondary card backgrounds and darker card variants on light sections"
+    },
+    "mist": {
+      "$value": "#989897",
+      "$type": "color",
+      "$description": "Mist — Muted helper text, secondary metadata, and low-emphasis borders on light backgrounds"
+    },
+    "foil": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Foil — Quiet border strokes and disabled text — present but unobtrusive"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Primary text, hairline borders, icon strokes, the dominant border color across the entire interface"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "martina-plantijn": {
+      "$value": "Martina Plantijn",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines — the only serif in the system, used at whisper-light weight 300 for hero statements and section titles. The choice of a 300-weight serif is anti-convention: most enterprise tools shout in 600–700 sans-serif; V7 lets the serif breathe and creates authority through typographic restraint. Letterspacing tightens as size grows (-0.02em at 40px, -0.01em at 30px) so large displays optically close into a single word-mass."
+    },
+    "stk-bureau": {
+      "$value": "STK Bureau",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, UI controls, and subheadings — the workhorse face. The 430 weight is unusual (a micro-step between regular and medium) and gives buttons and labels a slightly denser feel than standard 400. Letterspacing follows a consistent contraction pattern, tighter at larger sizes and approaching zero at 12px and below. Acts as the 'ink' of the system while Martina Plantijn acts as the 'voice'."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Small inline metadata and tertiary body text — appears in badge-like annotations and compact helper labels where STK Bureau's tighter tracking would feel too dense at minimum sizes."
+    },
+    "inter-variable": {
+      "$value": "Inter Variable",
+      "$type": "fontFamily",
+      "$description": "Inter Variable — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "9px",
+        "fontWeight": 430,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "10px",
+        "fontWeight": 430,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "14px",
+        "fontWeight": 430,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "14px",
+        "fontWeight": 430,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "14px",
+        "fontWeight": 430,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "18px",
+        "fontWeight": 430,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "STK Bureau STK Bureau",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f7f6f5",
+      "$type": "color",
+      "$description": "Surface level 1: The page ground — warm cream that reads like uncoated paper"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Lifted content surfaces — product cards, testimonial blocks, and white pill buttons sit here"
+    },
+    "dark-panel": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 3: Inverse sections — workflow showcases and feature grids on near-black"
+    },
+    "graphite-field": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Surface level 4: Dense surface for inputs, filled buttons, and the darker card tier"
+    },
+    "amber-stage": {
+      "$value": "#ec580a",
+      "$type": "color",
+      "$description": "Surface level 5: Hero atmospheric layer and statistics blocks — the only chromatic surface tier"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.v7labs.com",
+      "siteName": "V7labs",
+      "extractedAt": "2026-06-03T21:10:49.013Z",
+      "variant": "extended"
+    }
+  }
+}

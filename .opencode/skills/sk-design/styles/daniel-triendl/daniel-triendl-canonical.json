@@ -1,0 +1,864 @@
+{
+  "source": "https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d",
+  "uuid": "14f10100-a102-427a-88d1-7cc80cbb332d",
+  "name": "Daniel Triendl",
+  "northStar": "White gallery wall for loud art",
+  "capturedAt": "2026-07-18T07:58:33.658Z",
+  "meta": {
+    "url": "https://www.danieltriendl.com",
+    "siteName": "Daniel Triendl",
+    "extractedAt": "2026-06-03T18:51:06.348Z",
+    "durationMs": 32602,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2530,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the canvas pure white (#ffffff) — the illustrations provide all color, the UI must not compete",
+      "Use Times 14px for body, captions, and labels; switch to UniversalSans 425 only for headings or emphasized runs",
+      "Frame every image with a 1px #000000 hairline — the black border IS the visual device, not shadows",
+      "Round interactive elements (buttons, pills) to 48px for full pill shape; round image cards to 10px",
+      "Use #f2f2f2 exclusively for the floating pill nav and soft tag chips — never for page sections",
+      "Set body and caption text at exactly 14px / 1.2 line-height / -0.14px letter-spacing — the compactness is deliberate",
+      "Let the Rza wordmark appear exactly once, in the header — it is the only display moment in the system"
+    ],
+    "donts": [
+      "Do not introduce any chromatic UI color — green, red, blue, or accent hues — the palette is black/white/gray by design",
+      "Do not add box-shadows to illustration cards; the single shadow allowed is the floating pill nav (rgba(0,0,0,0.1) 0px 4px 4px)",
+      "Do not use Times for headings at large sizes; it is a 14px label face, not a display face",
+      "Do not mix Rza into body copy or labels — it lives only in the brand wordmark",
+      "Do not use #9b9b9b for body text on white — it fails contrast (2.8:1); reserve it for meta/tags on black or as a hairline border",
+      "Do not add padding or chrome around illustration images — the image fills its grid cell edge-to-edge",
+      "Do not create filled buttons; every interactive element is ghost/outlined (#000000 border, no fill)"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, hairline borders, avatar stroke, ghost button outlines — the only ink on the page; borders are the structural device, not shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surface, nav fill — the gallery wall itself",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Plaster Gray",
+        "role": "Pill navigation background, subtle surface for tag chips, soft section washes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9b9b9b",
+        "name": "Ash Gray",
+        "role": "Muted secondary text, caption labels under illustrations, hairline borders on less prominent elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page on a white canvas, content constrained to a max-width around 1440px and centered. The header is a single thin row: avatar + Rza wordmark on the left, two ghost pill buttons (Explore, Index) on the right. The body is a dense masonry/grid of illustration cards — mixed tall and wide cells packed tightly with small 20px gutters. Each card stacks image-on-top, title-and-tags below. A floating pill nav (Work / About / Contact) sits fixed at the bottom-center of the viewport over the grid. Some grid cells are repurposed as text blocks (About, Live stories) so the grid is a mix of artwork and editorial copy. Vertical rhythm is tight — sections do not alternate light/dark, the whole page stays on white.",
+    "imagery": "The site is an illustration portfolio, so imagery IS the product. The visual system shows large-format illustration thumbnails in a masonry/grid — each piece is a full-color editorial or cover-style artwork (characters, landscapes, abstract 3D shapes, line art). Treatments vary wildly by piece (flat color, gradient, line work, 3D render) because the portfolio showcases range. In the UI layer, the only recurring image is a small circular personal avatar. Images are displayed edge-to-edge in their grid cells with a 1px black hairline frame, no rounded masking beyond the 10px thumbnail radius, no overlap. Photography is absent — everything is authored illustration.",
+    "similar": [
+      {
+        "why": "Same edge-to-edge image grid with tight gutters and minimal chrome — the work fills the cell and the UI gets out of the way",
+        "business": "Dribbble portfolio pages"
+      },
+      {
+        "why": "Editorial portfolio aesthetic with serif body labels, black hairline borders on imagery, and zero chromatic UI color",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "White-canvas gallery wall approach where the portfolio is the only color source and the header is reduced to a name and two buttons",
+        "business": "Mike Mills / independent illustrator sites"
+      },
+      {
+        "why": "Dense masonry of large-format artwork on white with tiny gray metadata labels and almost no UI ornamentation",
+        "business": "Cargo Collective portfolios"
+      },
+      {
+        "why": "Editorial use of Times serif for UI labels, image-first hierarchy, hairline-black image frames, and a strictly achromatic interface",
+        "business": "New York Times 'T Magazine' feature pages"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "10px",
+        "buttons": "48px",
+        "thumbnails": "10px"
+      },
+      "elementGap": "6-8px",
+      "sectionGap": "48-64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, card base, floating pill fill"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Plaster",
+        "level": 1,
+        "purpose": "Tag chips, pill nav resting state, soft highlight wash"
+      }
+    ],
+    "northStar": "White gallery wall for loud art",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.14
+      }
+    ],
+    "components": [
+      {
+        "name": "Illustration Thumbnail Card",
+        "role": "Primary content unit — each piece of portfolio work",
+        "description": "Tall or wide illustration image with 10px corner radius, no shadow, no padding around the image. Below the image: a title in Times 14px black (one or two words like 'Hildegard Knef', 'Kneecap'), then a row of hashtag-style tags in 14px Times #9b9b9b separated by 6px gaps (e.g. '#cover #portrait'). No border around the card itself — the image edge is the boundary."
+      },
+      {
+        "name": "Ghost Header Button",
+        "role": "Top-right navigation (Explore, Index)",
+        "description": "Outlined button: 1px black border (#000000), 48px border-radius (full pill), 10px vertical / 20px horizontal padding. Icon left of label, label in UniversalSans 625 at 10px / 14px, letter-spacing -0.14px, color #000000. No fill, no shadow."
+      },
+      {
+        "name": "Floating Pill Navigation",
+        "role": "Sticky bottom-center nav (Work, About, Contact)",
+        "description": "Three items in a single pill container: 48px border-radius, #f2f2f2 fill, 8px vertical padding. Each label in UniversalSans 625 at 14px, color #000000, separated by ~16px. The pill appears to float over page content with a single subtle shadow (rgba(0,0,0,0.1) 0px 4px 4px)."
+      },
+      {
+        "name": "Avatar + Brand Mark",
+        "role": "Top-left site identity",
+        "description": "Small circular avatar image (~24px) followed by 'Daniel Triendl' set in Rza 24px / 1.17 line-height, letter-spacing -0.144px, color #000000. The custom display face makes the wordmark the only typographic event in the header."
+      },
+      {
+        "name": "Hash Tag Label",
+        "role": "Metadata under each illustration (medium, style)",
+        "description": "Inline text in Times 14px color #9b9b9b, letter-spacing -0.14px. Tags run together separated by a single space, each prefixed with '#'. No background, no border."
+      },
+      {
+        "name": "About Block",
+        "role": "Self-description in a featured grid cell",
+        "description": "White card with no border, no shadow. Small 'About' label at top in Times 14px #000000. Body copy in Times 14px #000000, ~3 lines ('Daniel Triendl is an illustrator living in Austria & loves coffee.'). 'Find out more' link below in UniversalSans 425 #9b9b9b."
+      },
+      {
+        "name": "Newsletter / Stay-up-to-date Block",
+        "role": "Audience engagement cell in the grid",
+        "description": "Small 'Live stories' label above. Circular avatar (matching header) beside headline in Times 14px black ('Stay up to date with Daniel'). Below: 'Follow me on Facebook Instagram' with the two platform names in a link color."
+      },
+      {
+        "name": "Image Border / Frame",
+        "role": "Hairline border around images in lists and cards",
+        "description": "1px solid #000000 border, 0px radius (or matching thumbnail radius). This black hairline is the most-used border in the system — it defines every image edge and list separator on the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, captions, labels, links, footer — a deliberate serif choice for UI body copy, the kind of editorial-museum-label voice most portfolios replace with sans-serif",
+        "sizes": "14px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, Lora, EB Garamond",
+        "letterSpacing": "-0.14px"
+      },
+      {
+        "role": "Headings, emphasized body, link text — a neutral grotesque that steps in when the Times serif is too quiet",
+        "sizes": "14px",
+        "family": "UniversalSans 425",
+        "weight": "400",
+        "lineHeight": "1.21",
+        "substitute": "Inter, Untitled Sans, Söhne",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Button text, nav labels, small caps — the only medium weight in the system, used exclusively for clickable elements to give them a slightly firmer voice",
+        "sizes": "10px, 14px",
+        "family": "UniversalSans 625",
+        "weight": "500",
+        "lineHeight": "1.00",
+        "substitute": "Inter Medium, Untitled Sans Medium",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Brand wordmark / logo only — a custom display face that gives the header a distinct editorial signature, never used elsewhere",
+        "sizes": "24px",
+        "family": "Rza",
+        "weight": "400",
+        "lineHeight": "1.17",
+        "substitute": "Tiempos Headline, GT Super",
+        "letterSpacing": "-0.0060em"
+      }
+    ],
+    "description": "Daniel Triendl is a digital gallery wall disguised as a portfolio site. The chrome is deliberately austere — pure white canvas, black hairline borders, serif body text, a tiny avatar — so that the kaleidoscopic illustration work can carry every screen without competition. The UI behaves like a museum label: small, quiet, always secondary to the artwork it describes. Navigation is stripped to two ghost buttons and three floating pills, and the only surfaces that deviate from white are a single soft-gray tint used for those pills and the occasional tag background.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Daniel Triendl design system\",\"item\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#style-reference\",\"name\":\"Daniel Triendl design system reference\",\"headline\":\"Daniel Triendl design system | Refero Styles\",\"description\":\"Explore Daniel Triendl's light Agency design system: Obsidian #000000, Canvas White #ffffff colors, Times, UniversalSans 425 typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Daniel Triendl\",\"url\":\"https://www.danieltriendl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"caption\":\"Screenshot of Daniel Triendl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Daniel Triendl design system\",\"Daniel Triendl website design\",\"Daniel Triendl colors\",\"Daniel Triendl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Canvas White\",\"Plaster Gray\",\"Ash Gray\",\"Times\",\"UniversalSans 425\",\"UniversalSans 625\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Daniel Triendl design system\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl website design\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl colors\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:23:12.280Z\",\"dateModified\":\"2026-04-30T01:23:12.280Z\"}]}19:T5b6,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- surface (pills/tags): #f2f2f2\n- muted text / hairline border: #9b9b9b\n- border (primary structural): #000000\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Illustration Thumbnail Card: edge-to-edge image with 1px #000000 border and 10px radius. Title below in Times 14px #000000, line-height 1.2, letter-spacing -0.14px. Tag row beneath in Times 14px #9b9b9b, tags separated by single spaces, each prefixed '#'. No card padding, no shadow, no background fill.\n2. Ghost Header Button: 1px #000000 border, 48px full-pill radius, 10px vertical / 20px horizontal padding. Label in UniversalSans 625 at 14px #000000, letter-spacing -0.14px. Optional small icon to the left. No fill, no shadow.\n3. Floating Pill Navigation: single pill container with 48px radius, #f2f2f2 fill, 8px vertical padding, containing three labels (Work / About / Contact) in UniversalSans 625 at 14px #000000 separated by 16px. Subtle drop shadow rgba(0,0,0,0.1) 0px 4px 4px. Fixed to bottom-center of viewport.\n4. Avatar + Wordmark Header: 24px circular avatar followed by 'Daniel Triendl' in Rza 24px / line-height 1.17 / letter-spacing -0.144px, color #000000. Left-aligned, single line.\n5. About Text Block: white card, no border, no shadow. 'About' label in Times 14px #000000 on top. Body copy in Times 14px #000000, 1.2 line-height. 'Find out more' link in UniversalSans 425 at 14px #9b9b9b below."
+      },
+      {
+        "title": "Color Role Evidence Notes",
+        "content": "No chromatic colors serve functional UI roles. #000000 has ACTION_BORDER=304 (outlined ghost buttons, not filled CTAs) and heavy borderColor usage across image/list/body contexts — it is a structural border, not an action fill. #ffffff and #f2f2f2 are surface backgrounds. #9b9b9b is muted secondary text and hairline border. The colorful screenshots are illustration content, not UI tokens."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. There are no shadows on cards, no elevation on thumbnails, no z-axis depth on the grid. The single permitted shadow is the subtle drop on the floating bottom pill nav, which exists only to lift that one element off the artwork beneath it. All other structure is communicated through 1px black hairlines and whitespace."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "card",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 12270,
+          "confidence": 1,
+          "prominence": 151187571.2088667,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 15,
+            "body/color": 499,
+            "card/color": 79,
+            "icon/color": 48,
+            "link/color": 72,
+            "list/color": 295,
+            "other/fill": 14,
+            "image/color": 283,
+            "other/color": 1062,
+            "button/color": 4,
+            "footer/color": 70,
+            "other/stroke": 54,
+            "heading/color": 13,
+            "nav/borderColor": 60,
+            "body/borderColor": 1996,
+            "card/borderColor": 316,
+            "icon/borderColor": 192,
+            "link/borderColor": 288,
+            "list/borderColor": 1180,
+            "image/borderColor": 1132,
+            "other/borderColor": 4244,
+            "button/borderColor": 16,
+            "footer/borderColor": 280,
+            "heading/borderColor": 52,
+            "body/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 31247755.247073524,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 86233.44596941154,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 45,
+            "heading/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#9b9b9b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6894878914251888
+          },
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 33383.51511984992,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "link/color": 11,
+            "body/borderColor": 52,
+            "link/borderColor": 44
+          }
+        },
+        {
+          "hex": "#fe4e4e",
+          "oklch": {
+            "c": 0.21259248250503462,
+            "h": 24.936981769089297,
+            "l": 0.6724506684947044
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 12649.86426094635,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0001845132553117001,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.56,
+          "background": "#000000",
+          "foreground": "#9b9b9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#ffffff",
+          "foreground": "#9b9b9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#f2f2f2",
+          "foreground": "#9b9b9b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 239
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 43
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 4px 4px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 226,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "icon",
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 68,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "paddingRight|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginLeft|body",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 86,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 75,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginRight|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "footer"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingLeft|other",
+            "marginTop|link",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 76,
+          "properties": [
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1930,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "UniversalSans-425",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 402,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "UniversalSans-625",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 118,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Rza",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "UniversalSans-625",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 43,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "icon",
+            "card",
+            "image",
+            "footer",
+            "list",
+            "button"
+          ],
+          "frequency": 1644,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "UniversalSans-425",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 252,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list",
+            "body"
+          ],
+          "frequency": 231,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "UniversalSans-625",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 75,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "UniversalSans-425",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 150,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Rza",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6c53c053-cd3e-4c61-b629-a5d072e0cde1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Daniel Triendl design system\",\"item\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#style-reference\",\"name\":\"Daniel Triendl design system reference\",\"headline\":\"Daniel Triendl design system | Refero Styles\",\"description\":\"Explore Daniel Triendl's light Agency design system: Obsidian #000000, Canvas White #ffffff colors, Times, UniversalSans 425 typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Daniel Triendl\",\"url\":\"https://www.danieltriendl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14f10100-a102-427a-88d1-7cc80cbb332d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"caption\":\"Screenshot of Daniel Triendl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4a73fd2b-c958-4601-8231-a1f34eae9d73.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Daniel Triendl design system\",\"Daniel Triendl website design\",\"Daniel Triendl colors\",\"Daniel Triendl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Canvas White\",\"Plaster Gray\",\"Ash Gray\",\"Times\",\"UniversalSans 425\",\"UniversalSans 625\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Daniel Triendl design system\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl website design\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl colors\"},{\"@type\":\"Thing\",\"name\":\"Daniel Triendl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:23:12.280Z\",\"dateModified\":\"2026-04-30T01:23:12.280Z\"}]}19:T5b6,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- surface (pills/tags): #f2f2f2\n- muted text / hairline border: #9b9b9b\n- border (primary structural): #000000\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Illustration Thumbnail Card: edge-to-edge image with 1px #000000 border and 10px radius. Title below in Times 14px #000000, line-height 1.2, letter-spacing -0.14px. Tag row beneath in Times 14px #9b9b9b, tags separated by single spaces, each prefixed '#'. No card padding, no shadow, no background fill.\n2. Ghost Header Button: 1px #000000 border, 48px full-pill radius, 10px vertical / 20px horizontal padding. Label in UniversalSans 625 at 14px #000000, letter-spacing -0.14px. Optional small icon to the left. No fill, no shadow.\n3. Floating Pill Navigation: single pill container with 48px radius, #f2f2f2 fill, 8px vertical padding, containing three labels (Work / About / Contact) in UniversalSans 625 at 14px #000000 separated by 16px. Subtle drop shadow rgba(0,0,0,0.1) 0px 4px 4px. Fixed to bottom-center of viewport.\n4. Avatar + Wordmark Header: 24px circular avatar followed by 'Daniel Triendl' in Rza 24px / line-height 1.17 / letter-spacing -0.144px, color #000000. Left-aligned, single line.\n5. About Text Block: white card, no border, no shadow. 'About' label in Times 14px #000000 on top. Body copy in Times 14px #000000, 1.2 line-height. 'Find out more' link in UniversalSans 425 at 14px #9b9b9b below."
+}

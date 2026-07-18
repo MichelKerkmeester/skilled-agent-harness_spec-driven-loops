@@ -1,0 +1,392 @@
+{
+  "color": {
+    "static-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Static Black — Text, borders, icon strokes, button outlines — the structural ink that outlines every sticker-like surface and carries all body and heading type"
+    },
+    "paper-cream": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Paper Cream — Page canvas, body backgrounds, and soft section fills"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Card White — Elevated card surfaces and inverse text on dark panels"
+    },
+    "surface-graphite": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Surface Graphite — Dark card and panel fills for inverted sections"
+    },
+    "hardware-ink": {
+      "$value": "#000100",
+      "$type": "color",
+      "$description": "Hardware Ink — Near-black phone-frame and hardware fills (visually indistinguishable from #000000, used on device mockups)"
+    },
+    "hairline-smoke": {
+      "$value": "#6e6e6e",
+      "$type": "color",
+      "$description": "Hairline Smoke — Muted body text and secondary borders"
+    },
+    "placeholder-ash": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Placeholder Ash — Helper text, disabled-state type, and low-priority metadata"
+    },
+    "sticker-khaki": {
+      "$value": "#e7e3bf",
+      "$type": "color",
+      "$description": "Sticker Khaki — Card and panel fills — dusty olive-cream that reads as vintage paper against the white canvas"
+    },
+    "riot-pink": {
+      "$value": "#fa00ff",
+      "$type": "color",
+      "$description": "Riot Pink — Saturated card fills, sticker backgrounds, hero callouts — the loudest voice in the accent set"
+    },
+    "voltage-cyan": {
+      "$value": "#02bbff",
+      "$type": "color",
+      "$description": "Voltage Cyan — Saturated card fills and feature panel backgrounds — secondary brand voice, often paired with phone mockup screenshots"
+    },
+    "toxic-lime": {
+      "$value": "#adff02",
+      "$type": "color",
+      "$description": "Toxic Lime — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    }
+  },
+  "font": {
+    "helvetica-now-display-cn-bold": {
+      "$value": "Helvetica Now Display Cn Bold",
+      "$type": "fontFamily",
+      "$description": "Display and headline voice — compressed, ultra-bold, negative tracking (-0.033em at 85–164px). Carries the page's identity: shouty statements like 164px section openers. Substitute with 'Helvetica Neue Condensed Bold' or 'Roboto Condensed 900'."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body, UI, navigation, and small headings. Weight 400 for body, 500 for emphasis, 700 for subheadings. Letter-spacing -0.02em tightens the UI text. Free Google Font."
+    },
+    "miss-fajardose": {
+      "$value": "Miss Fajardose",
+      "$type": "fontFamily",
+      "$description": "Hand-lettered display accent — used sparingly (one observation) for a personal signature on a card. Substitute with 'Caveat Brush' or 'Permanent Marker' for the same marker-on-paper feel."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback body fallback; appears in 357 instances as the default rendering surface for generic UI chrome and inline text nodes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Miss Fajardose",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "64px",
+        "fontWeight": 900,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "85px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 85px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "85px",
+        "fontWeight": 900,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 85px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Cn Bold",
+        "fontSize": "164px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 164px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8.2px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas-cream": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background and outer gutter"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default product/feature card surface"
+    },
+    "sticker-khaki": {
+      "$value": "#e7e3bf",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted feature panel and section background"
+    },
+    "surface-graphite": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted dark sections and phone-frame fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ugly.cash",
+      "siteName": "UGLYCASH",
+      "extractedAt": "2026-06-03T17:41:13.919Z",
+      "variant": "extended"
+    }
+  }
+}

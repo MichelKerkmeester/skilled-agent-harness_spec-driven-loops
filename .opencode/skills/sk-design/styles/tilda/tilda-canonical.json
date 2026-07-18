@@ -1,0 +1,2055 @@
+{
+  "source": "https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f",
+  "uuid": "6d8dc9bb-78b7-4eaa-9b08-66b431760e9f",
+  "name": "Tilda",
+  "northStar": "Paper sketchbook with coral crayon",
+  "capturedAt": "2026-07-18T09:05:49.890Z",
+  "meta": {
+    "url": "https://tilda.cc",
+    "siteName": "Tilda",
+    "extractedAt": "2026-06-03T20:47:44.810Z",
+    "durationMs": 29564,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1158,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 100px border-radius on all buttons, tags, badges, and language selectors — pill shape is the signature component geometry",
+      "Use TildaSans weight 300 for all headlines 48px and above; let the large size and light weight carry the editorial calm",
+      "Use #fa8669 sparingly — reserve for primary CTAs, illustration accents, and key icons; never for body text or borders",
+      "Default to #ffffff canvas; use #efefef only for distinct card surfaces or section breaks",
+      "Use 1px solid #efefef or #000000 borders for component separation instead of box-shadows",
+      "Keep illustrations flat with 1.5-2px black line work and selective coral fills — no gradients, no dimension",
+      "Maintain 96-120px section gaps to preserve the breathing, magazine-like vertical rhythm"
+    ],
+    "donts": [
+      "Don't add box-shadows to any component — flat surfaces and hairline borders are the elevation language",
+      "Don't use #fa8669 for non-CTA elements: no coral borders, no coral body text, no coral card backgrounds",
+      "Don't set border-radius below 100px on buttons or tags — sharp or moderately rounded buttons break the pill system",
+      "Don't use weight 600+ for headlines — the whisper-weight contrast at 300-400 is the typographic signature",
+      "Don't introduce additional accent colors; the monochrome + coral binary is the entire palette",
+      "Don't apply heavy backgrounds to body sections — keep the dominant experience white/achromatic",
+      "Don't use gradient fills on illustrations or backgrounds — flat color is mandatory"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fa8669",
+        "name": "Coral Signal",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, button strokes, dark mode contrast pairs, icon outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Graphite Deep",
+        "role": "Dark surface blocks, footer regions, inverted section backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a2a",
+        "name": "Plum Ink",
+        "role": "Secondary dark surface, hover states on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7f7f7f",
+        "name": "Smoke",
+        "role": "Muted helper text, placeholder text, disabled icon outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "role": "Button hover backgrounds, disabled controls, subtle surface tints",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card elevation, button text on dark fills, content surface",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with 24-32px horizontal padding. Hero follows a split pattern: 50/50 illustration-left + text-right, with the coral CTA and ghost button stacked horizontally. Subsequent sections alternate between centered editorial stacks (eyebrow → headline → paragraph) and split feature blocks (illustration-left, text-right). Sections are separated by 96-120px vertical gaps on a continuous white canvas. No alternating dark/light bands — the page stays achromatic throughout, with #efefef reserved for card surfaces and #171717 only in the footer. Navigation is a minimal top bar: brand left, links right, no mega-menu.",
+    "imagery": "Hand-drawn flat illustrations dominate the visual language: black line art at 1.5-2px stroke weight with selective coral (#fa8669) fills on focal elements (hearts, character clothing, key objects). The illustration style is editorial and slightly whimsical — characters with simplified proportions, floating UI elements, dotted halftone textures. Illustrations are always contained, never full-bleed, and sit on the left side of hero/feature splits. No photography. No 3D renders. No gradients. The visual hierarchy relies on the contrast between the minimal coral-and-white UI and the busier illustrated moments.",
+    "similar": [
+      {
+        "why": "Same no-code builder category, similar split-hero layout with illustration left + text right, pill-shaped CTAs, and light-weight display headlines",
+        "business": "Webflow"
+      },
+      {
+        "why": "Editorial typography-first approach with extra-large light-weight headlines on white canvas, single accent color rationed for CTAs",
+        "business": "Squarespace"
+      },
+      {
+        "why": "Near-monochrome interface with one bold accent color, large display type, and illustration-driven hero sections",
+        "business": "Framer"
+      },
+      {
+        "why": "Flat surfaces, no shadows, hairline dividers as the primary separation mechanism, generous whitespace",
+        "business": "Notion"
+      },
+      {
+        "why": "Pill-shaped buttons with high border-radius, flat card surfaces, editorial weight contrast between display and body text",
+        "business": "Figma"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "100px",
+        "buttons": "100px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "96-120px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas, content backdrop"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Card surface, secondary section backgrounds, ghost button fill"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "level": 2,
+        "purpose": "Hover state, disabled surface"
+      },
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "level": -1,
+        "purpose": "Inverted section, dark surface block"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Paper sketchbook with coral crayon",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.071
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.35,
+        "letterSpacing": 0.038
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.23
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.063
+      }
+    ],
+    "components": [
+      {
+        "name": "Coral Primary Button",
+        "role": "The single most important interactive element — the only chromatic button in the system",
+        "description": "Filled pill button, #fa8669 background, #ffffff text, 100px border-radius, 14-16px vertical padding, 28-32px horizontal padding, TildaSans weight 500-600 at 14-16px. Used for 'Create a website for free' and all primary conversion actions."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action paired with the coral CTA",
+        "description": "Transparent or #ffffff background, 1px #000000 border, #000000 text, 100px radius, 14px 28px padding, TildaSans weight 500 at 14-16px. Pairs alongside the coral CTA as the lower-commitment option ('Overview')."
+      },
+      {
+        "name": "Inverted Dark Button",
+        "role": "Account/auth actions in navigation",
+        "description": "Solid #000000 or #222222 background, #ffffff text, 100px radius, 10px 20px padding, TildaSans weight 500 at 14px. Used for 'Sign Up' and 'Log In' in the top nav to contrast against ghost/primary buttons."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "White background, #ffffff, 1px #efefef or transparent bottom border, horizontally aligned with brand wordmark left and nav links right. Nav links in TildaSans 14px weight 500, #000000. Height ~60px, max-width 1200px centered with 24-32px horizontal padding."
+      },
+      {
+        "name": "Hero Split Section",
+        "role": "Above-the-fold introduction",
+        "description": "Two-column layout at 1200px max-width: left column holds flat illustration (black line art with coral fills), right column holds TildaSans 48-60px weight 300 headline, 16-18px weight 400 subtext in #222222, and CTA pair. Section gap 96-120px from nav and from next section."
+      },
+      {
+        "name": "Centered Editorial Section",
+        "role": "Narrative content between features",
+        "description": "Centered stack within 1200px max-width: eyebrow label in TildaSans 13px weight 500 with 0.071em tracking, 48-60px weight 300 headline, 18-20px body paragraph in #222222 at max-width ~600px. No background change — pure white."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product feature presentation",
+        "description": "Flat #ffffff or #efefef surface, no border, no shadow, 32-48px padding. Contains illustration left and copy right. Corner radius is 0 — cards are sharp-edged to contrast with pill buttons. Often uses a thin black rule beneath."
+      },
+      {
+        "name": "Brand Illustration Block",
+        "role": "Atmospheric visual identity",
+        "description": "Full-height illustration on white or #efefef background. Black line art at 1.5-2px stroke weight, with selective coral (#fa8669) fills on key objects (hearts, characters' clothing, icons). No gradients, no shadows — pure flat graphic style."
+      },
+      {
+        "name": "Pill Badge / Tag",
+        "role": "Category labels, section eyebrows, metadata",
+        "description": "100px radius, 4px 12px padding, TildaSans 13px weight 500 with 0.071em tracking. Background #efefef with #000000 text, or #000000 with #ffffff text. All-caps or sentence case."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation without visual weight",
+        "description": "1px #efefef or #cccccc horizontal line spanning the content width. Used instead of background color changes to separate sections while maintaining the all-white feel."
+      },
+      {
+        "name": "Footer Region",
+        "role": "Site footer with links and legal",
+        "description": "#ffffff or #171717 background, TildaSans 14-16px weight 400 text. Links at weight 500, #000000 or #ffffff depending on background. 96px top padding, generous link spacing via 20-24px row gap."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Locale picker, bottom-right floating",
+        "description": "Fixed-position pill in bottom-right, 100px radius, white background with 1px #efefef border, TildaSans 13px weight 500. Globe icon + language code."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary brand typeface for all interface text — display headlines at 60-78px use weight 300 (whisper-weight creates editorial calm), section headings at 34-48px use weight 400, body sits at 16-20px weight 400, micro-labels and nav use weight 500-600. The wide weight range (100-700) and tracking ladder allow the same family to serve everything from super-light hero whispers to crisp button labels.",
+        "sizes": "13, 14, 15, 16, 18, 19, 20, 22, 24, 26, 28, 34, 36, 42, 44, 46, 48, 60, 72, 78",
+        "family": "TildaSans",
+        "weight": "100, 300, 400, 500, 600, 700",
+        "lineHeight": "1.13-2.00",
+        "substitute": "Inter, Manrope, or DM Sans",
+        "letterSpacing": "0.0380em, 0.0630em, 0.0710em, 0.1790em"
+      },
+      {
+        "role": "System fallback for small UI metadata, icon labels, and micro-text where TildaSans might not load",
+        "sizes": "11, 13, 14",
+        "family": "Arial",
+        "weight": "100, 300, 400, 500",
+        "lineHeight": "1.20, 2.00",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "Tilda operates on a near-monochrome canvas with a single vivid coral accent doing all the emotional work. The aesthetic is editorial-illustration-meets-builder-tool: flat, hand-drawn line art fills the left side of heroes, generous whitespace breathes around light-weight headlines, and one orange-coral button is the only spot of color in an otherwise achromatic interface. Typography carries the personality — TildaSans at weight 300 whispers across 60-78px hero headlines, while the coral accent is rationed for primary actions, illustration fills, and icon highlights. Components are confident and pill-shaped: 100px radius buttons, flat surfaces with no shadows, thin black borders instead of elevation. The system should feel like a design magazine that accidentally became a product page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tilda design system\",\"item\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#style-reference\",\"name\":\"Tilda design system reference\",\"headline\":\"Tilda design system | Refero Styles\",\"description\":\"Explore Tilda's light SaaS design system: Coral Signal #fa8669, Ink Black #000000 colors, Times, TildaSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tilda\",\"url\":\"https://tilda.cc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"caption\":\"Screenshot of Tilda\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tilda design system\",\"Tilda website design\",\"Tilda colors\",\"Tilda typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Coral Signal\",\"Ink Black\",\"Carbon\",\"Graphite Deep\",\"Times\",\"TildaSans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tilda design system\"},{\"@type\":\"Thing\",\"name\":\"Tilda website design\"},{\"@type\":\"Thing\",\"name\":\"Tilda colors\"},{\"@type\":\"Thing\",\"name\":\"Tilda typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-01T20:20:10.000Z\",\"dateModified\":\"2026-04-01T20:20:10.000Z\"}]}19:T51b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- card surface: #efefef\n- border: #efefef / #000000\n- accent: #fa8669\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a feature card: #efefef background, 0px border-radius, 40px padding. TildaSans 24px weight 400 heading in #000000, body at 16px weight 400 in #222222. No shadow, no border. Flat coral (#fa8669) icon accent at 32px.\n\n3. Create a pill badge/tag: #efefef background, 100px radius, 6px 14px padding, TildaSans 13px weight 500 with 0.071em letter-spacing, #000000 text, all-caps.\n\n4. Create a navigation bar: #ffffff background, 1200px max-width, 60px height. Brand wordmark left in TildaSans 16px weight 600. Nav links right in TildaSans 14px weight 500, #000000, 24px gap. Inverted dark button ('Sign Up') at far right: #000000 fill, #ffffff text, 100px radius, 10px 20px padding.\n\n5. Create a centered editorial section: #ffffff background, max-width 600px for text block. Eyebrow at 13px TildaSans weight 500 with 0.071em tracking, #000000, all-caps. Headline at 48px TildaSans weight 300, #000000. Body at 18px TildaSans weight 400, #222222, 1.5 line-height."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design system uses flat surfaces distinguished only by background color (white vs #efefef vs #cccccc) and 1px hairline borders. Elevation is communicated through spatial separation and surface tone, not shadow. This is a deliberate editorial choice — shadows would feel too 'SaaS dashboard' and undermine the magazine-like, hand-drawn aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "body",
+            "image",
+            "heading",
+            "button",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 4504,
+          "confidence": 1,
+          "prominence": 370287292.7608648,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2a2a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.285017403997646
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6652530.243730932,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "badge"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 6025358.529502964,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 728,
+          "confidence": 1,
+          "prominence": 5674977.253382108,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1858200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1472588.659420026,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffa282",
+          "oklch": {
+            "c": 0.11967553521433222,
+            "h": 39.72616289121238,
+            "l": 0.7985614866244961
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 553332.5984767657,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c5b8ca",
+          "oklch": {
+            "c": 0.029424618813394518,
+            "h": 317.2629094165767,
+            "l": 0.7990759315274333
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 501760,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7f7f7f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.596489460818441
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 229749.91699219355,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fa8669",
+          "oklch": {
+            "c": 0.1479187455672502,
+            "h": 35.07078283113243,
+            "l": 0.7425366089677654
+          },
+          "contexts": [
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 201,
+          "confidence": 1,
+          "prominence": 172049.37917150182,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 152409.0222530002,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 117496.97728620897,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#656565",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5067569125296858
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 12757.055499246202,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e3e3e3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9146153490581763
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7952.603724989215,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.014414627530695183,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#171717",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.42,
+          "background": "#111111",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#e3e3e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#171717",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#e3e3e3",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#2a2a2a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#e3e3e3",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#222222",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.48,
+          "background": "#2a2a2a",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.4,
+          "background": "#e3e3e3",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#cccccc",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.18,
+          "background": "#e3e3e3",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.16,
+          "background": "#cccccc",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.08,
+          "background": "#c5b8ca",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 78,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 143,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 27,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 59,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 41,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 44,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 59,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 66,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 75,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 90,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 105,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 111,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 62,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 135,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 152,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 165,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 170,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 238,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 239,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 674,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TildaSans",
+          "source": "custom",
+          "weights": [
+            100,
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 371,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            100,
+            300,
+            400,
+            500
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.95
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Arial",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 34,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TildaSans",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "TildaSans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TildaSans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.179,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.55,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.55,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 57,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 100,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TildaSans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "image",
+            "icon",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 572,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TildaSans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TildaSans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.56,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TildaSans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TildaSans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TildaSans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TildaSans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "link",
+            "button"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "TildaSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "TildaSans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "TildaSans",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4b7575b2-89eb-4798-9921-5f6efcd7eb64.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tilda design system\",\"item\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#style-reference\",\"name\":\"Tilda design system reference\",\"headline\":\"Tilda design system | Refero Styles\",\"description\":\"Explore Tilda's light SaaS design system: Coral Signal #fa8669, Ink Black #000000 colors, Times, TildaSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tilda\",\"url\":\"https://tilda.cc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d8dc9bb-78b7-4eaa-9b08-66b431760e9f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"caption\":\"Screenshot of Tilda\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d368db2c-ac52-4247-a617-af15142f5b54.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tilda design system\",\"Tilda website design\",\"Tilda colors\",\"Tilda typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Coral Signal\",\"Ink Black\",\"Carbon\",\"Graphite Deep\",\"Times\",\"TildaSans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tilda design system\"},{\"@type\":\"Thing\",\"name\":\"Tilda website design\"},{\"@type\":\"Thing\",\"name\":\"Tilda colors\"},{\"@type\":\"Thing\",\"name\":\"Tilda typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-01T20:20:10.000Z\",\"dateModified\":\"2026-04-01T20:20:10.000Z\"}]}19:T51b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- card surface: #efefef\n- border: #efefef / #000000\n- accent: #fa8669\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a feature card: #efefef background, 0px border-radius, 40px padding. TildaSans 24px weight 400 heading in #000000, body at 16px weight 400 in #222222. No shadow, no border. Flat coral (#fa8669) icon accent at 32px.\n\n3. Create a pill badge/tag: #efefef background, 100px radius, 6px 14px padding, TildaSans 13px weight 500 with 0.071em letter-spacing, #000000 text, all-caps.\n\n4. Create a navigation bar: #ffffff background, 1200px max-width, 60px height. Brand wordmark left in TildaSans 16px weight 600. Nav links right in TildaSans 14px weight 500, #000000, 24px gap. Inverted dark button ('Sign Up') at far right: #000000 fill, #ffffff text, 100px radius, 10px 20px padding.\n\n5. Create a centered editorial section: #ffffff background, max-width 600px for text block. Eyebrow at 13px TildaSans weight 500 with 0.071em tracking, #000000, all-caps. Headline at 48px TildaSans weight 300, #000000. Body at 18px TildaSans weight 400, #222222, 1.5 line-height."
+}

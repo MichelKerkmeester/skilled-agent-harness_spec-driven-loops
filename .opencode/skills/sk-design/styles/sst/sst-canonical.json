@@ -1,0 +1,1152 @@
+{
+  "source": "https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d",
+  "uuid": "19f92be1-65ac-4432-a82b-0aa1e685d97d",
+  "name": "SST",
+  "northStar": "Code terminal in a gallery. The config file is the artwork; everything else is a clean white frame.",
+  "capturedAt": "2026-07-18T08:05:55.784Z",
+  "meta": {
+    "url": "https://sst.dev",
+    "siteName": "SST",
+    "extractedAt": "2026-06-03T18:26:05.623Z",
+    "durationMs": 28867,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 287,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use IBM Plex Mono for every code surface, terminal command, file name, and technical identifier — never substitute a proportional font in code contexts.",
+      "Use Rubik Variable at 14px weight 400 for all prose body text on a #ffffff canvas with 1.8 line height.",
+      "Apply the dark indigo SST Ink (#303055) as the single heading and link color — do not introduce additional heading colors.",
+      "Reserve the four code syntax hues (Plum, Cobalt, Teal, Rust) exclusively for inside code blocks and inline `code` spans — never use them for UI accents, badges, or buttons.",
+      "Use Lavender Mist (#e8e8f2) as the only surface tint above white — for code-block backgrounds, tag fills, and search input fields.",
+      "Set all border-radius to 4px (buttons, tags, inputs) or 8px (cards, code blocks) — do not introduce intermediate or larger radii.",
+      "Keep navigation and CTAs as text or ghost buttons with no filled backgrounds — the system communicates action through type weight and the '>' chevron, not through colored fills."
+    ],
+    "donts": [
+      "Do not use a distinct filled CTA button background — there is no CTA color in this system; primary actions are text links with chevrons.",
+      "Do not apply code syntax colors (#8844ae, #3b61b0, #096e72, #984e4d) to UI elements, icons, badges, or marketing surfaces outside code contexts.",
+      "Do not add drop shadows to cards, buttons, or navigation — elevation is reserved for the code block only.",
+      "Do not mix the two font families within a single content role — Plex Mono is for code, Rubik is for prose; never let them overlap in the same element type.",
+      "Do not use #000000 or near-black for body text — use SST Ink #303055 or Slate #403f53 to preserve the cool violet cast.",
+      "Do not introduce gradients, textures, or decorative backgrounds — surfaces are strictly flat #ffffff or #e8e8f2.",
+      "Do not use large border-radius (pill shapes, 16px+) on structural elements like cards or panels — keep them at 8px max."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#303055",
+        "name": "SST Ink",
+        "role": "Headings, body text, links, primary text color — dark indigo-violet replaces the conventional near-black, giving every word a faint cool cast that signals developer-tool seriousness without feeling heavy",
+        "group": "brand"
+      },
+      {
+        "hex": "#8844ae",
+        "name": "Code Plum",
+        "role": "Code syntax highlighting for strings, property names, and keywords — the most vivid color in the system, reserved exclusively for inside code blocks",
+        "group": "accent"
+      },
+      {
+        "hex": "#3b61b0",
+        "name": "Code Cobalt",
+        "role": "Code syntax for method names, object keys, and function calls — paired with Code Plum to create the two-color syntax core",
+        "group": "accent"
+      },
+      {
+        "hex": "#096e72",
+        "name": "Code Teal",
+        "role": "Code syntax for type annotations, decorators, and select tokens — deeper teal that reads as technical rather than decorative",
+        "group": "accent"
+      },
+      {
+        "hex": "#984e4d",
+        "name": "Code Rust",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#403f53",
+        "name": "Slate",
+        "role": "Secondary body text, descriptions, paragraph copy — sits one step lighter than SST Ink for prose that shouldn't compete with headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767682",
+        "name": "Fog",
+        "role": "Muted helper text, icon fills, secondary button text, navigation metadata — the mid-gray that makes UI chrome recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a8a8b0",
+        "name": "Mist",
+        "role": "Lightest text, disabled states, subtle icon outlines, and hairlines — the floor of the gray scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Obsidian",
+        "role": "Occasional maximum-contrast text and borders where absolute black is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e8f2",
+        "name": "Lavender Mist",
+        "role": "Subtle surface tint for code-block backgrounds, tag pills, and soft card fills — a whisper of violet that ties back to SST Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-column hero with the code block on the left and headline + subtext on the right, both vertically centered. Header is a single-row sticky bar: brand mark left, nav links center, utility controls (search, console) right. Below the hero, content flows in centered max-width ~1200px bands. The social-proof logo strip sits as a quiet horizontal band. Footer is a single row with copyright left and link cluster + social icons right, separated by generous whitespace. Vertical rhythm uses 64px section gaps with 10-16px element gaps. The page reads as a single document, not a scrolling app.",
+    "imagery": "The site is essentially imageless. The hero visual is a syntax-highlighted code block, not a photograph, illustration, or 3D render. The only graphical elements are the cloud logo mark, monochrome company logos in the social-proof strip, and small social icons in the footer. No lifestyle photography, no product screenshots, no abstract graphics. The visual identity IS the code.",
+    "similar": [
+      {
+        "why": "Same developer-first aesthetic: white canvas, monochrome palette dominated by near-black text, monospaced code as hero visual, minimal ghost-style navigation.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Shares the two-font system (sans for UI, mono for terminal/commands), flat surfaces, and text-link CTAs with chevrons rather than filled buttons.",
+        "business": "Railway"
+      },
+      {
+        "why": "Similar doc-as-marketing layout: code blocks carry the brand, navigation is text-only, and the color palette is nearly monochromatic with a single subtle surface tint.",
+        "business": "Astro"
+      },
+      {
+        "why": "Comparable restraint in palette (achromatic with one near-black) and 4-8px border-radius system, though Linear uses more elevation where SST stays flat.",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "inputs": "4px",
+        "buttons": "4px",
+        "code-blocks": "8px"
+      },
+      "elementGap": "10-16px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas and primary card surfaces"
+      },
+      {
+        "hex": "#e8e8f2",
+        "name": "Lavender Mist",
+        "level": 1,
+        "purpose": "Code-block backgrounds, subtle tag fills, soft surface elevation"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 0 1px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04)",
+        "element": "Code Block"
+      }
+    ],
+    "northStar": "Code terminal in a gallery. The config file is the artwork; everything else is a clean white frame.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.8
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Code Block",
+        "role": "Hero centerpiece and content illustration",
+        "description": "8px radius, #e8e8f2 or white background, 1px hairline border at #e8e8f2. Content in IBM Plex Mono: shell prompt '> ' in SST Ink, command (e.g. 'npm i sst') in weight 600 SST Ink, file references in weight 600, string values in Code Plum #8844ae, object keys/values in Code Cobalt #3b61b0, type annotations in Code Teal #096e72. Padding 16px. Subtle 1px border and faint shadow give it physical presence without heaviness."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Primary navigation links",
+        "description": "Transparent background, no border. Rubik Variable 14px weight 500, SST Ink #303055. 4px radius available on hover/active states. Inactive nav items use Fog #767682."
+      },
+      {
+        "name": "Text Link / Inline Action",
+        "role": "In-content navigation and call-to-action",
+        "description": "Rubik Variable 14-16px weight 500, SST Ink #303055, no underline by default, underline or color shift on hover. Followed by a '>' chevron in the same color. No filled background — this is a text-first system."
+      },
+      {
+        "name": "New Badge Pill",
+        "role": "Feature announcement marker",
+        "description": "Outlined pill: 1px border in #e8e8f2, transparent fill, 4px vertical / 8px horizontal padding. Label 'NEW' in Rubik Variable 9-12px weight 600, uppercase, 0.056em tracking, SST Ink."
+      },
+      {
+        "name": "Search Bar",
+        "role": "Global search trigger in header",
+        "description": "Pill-shaped (9999px or large radius) with #e8e8f2 background, no visible border. Rubik Variable 12-14px weight 400 placeholder in Fog #767682. Contains a small '⌘K' shortcut hint in mono font on the right."
+      },
+      {
+        "name": "Console Button",
+        "role": "Header utility action",
+        "description": "Pill-shaped, transparent background, 1px border in #e8e8f2. Rubik Variable 12-14px weight 500, SST Ink text. 4px effective border-radius visually, or fully rounded."
+      },
+      {
+        "name": "Brand Logo Mark",
+        "role": "Top-left identity anchor",
+        "description": "Cloud icon followed by 'SST' wordmark in Rubik Variable 14-16px weight 600, SST Ink. Compact, no background, sits flush-left in the header."
+      },
+      {
+        "name": "Social Proof Logo Strip",
+        "role": "Trust signal under hero CTA",
+        "description": "Horizontal row of 5-6 grayscale company logos at ~60-80% opacity or Fog #767682 fill, even spacing (~24-32px gap), no borders. The 'LOVED BY THOUSANDS OF TEAMS' eyebrow above uses Rubik Variable 9-12px uppercase, 0.056em tracking, Mist #a8a8b0."
+      },
+      {
+        "name": "Hero Text Block",
+        "role": "Primary value proposition",
+        "description": "Right column of hero. Headline in Rubik Variable 48px weight 500, SST Ink, -0.021em tracking. Subtext in Rubik Variable 16-18px weight 400, Slate #403f53, 1.65-1.8 line height. No background or border."
+      },
+      {
+        "name": "Terminal Command Line",
+        "role": "Inline shell prompt visual",
+        "description": "Precedes the CTA cluster. Rubik Mono / IBM Plex Mono 14px weight 400, Mist #a8a8b0 for the prompt arrow, SST Ink weight 600 for the command. Reads like pasted terminal output."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Secondary navigation in footer",
+        "description": "Left: copyright '© 2026 Anomaly Innovations' in Rubik Variable 12-13px weight 400, Mist #a8a8b0. Right: 'Guide / About / Contact' text links and 4 social icons in Fog #767682, 16-24px gap, no separators."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The code and technical voice — used for all code blocks, terminal output, inline code, API identifiers, and the 48px hero command line. Weight 600 highlights the shell prompt, file names, and key tokens inside code. The negative tracking tightens monospaced characters into dense, readable blocks.",
+        "sizes": "14, 16, 18, 48",
+        "family": "IBM Plex Mono",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.80",
+        "substitute": "JetBrains Mono, Fira Code, Space Mono",
+        "letterSpacing": "-0.021em"
+      },
+      {
+        "role": "The product and prose voice — all navigation, headings, body copy, button labels, footer text, and UI metadata. Weight 400 is the default body, 500 for nav and button emphasis, 600 for headings. Positive tracking (0.016–0.056em) appears on uppercase eyebrows and small labels, giving them a controlled, technical stamp rather than decorative flair.",
+        "sizes": "9, 12, 13, 14, 16, 18, 20",
+        "family": "Rubik Variable",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.80",
+        "substitute": "Inter, IBM Plex Sans, Geist",
+        "letterSpacing": "0.016em–0.056em (uppercase tracking)"
+      }
+    ],
+    "description": "SST's design language reads like a developer's terminal wrapped in a polished product page. A monospaced code block anchors the hero — the syntax-highlighted config is the visual hero, not a decorative illustration. Typography is strictly two-family: IBM Plex Mono carries every code surface, technical label, and inline command, while Rubik Variable handles all prose, navigation, and UI chrome. The palette is austere and off-black: a signature dark indigo-violet (#303055) drives headings, body, and links, sitting on a pure white canvas with a barely-tinted lavender-gray (#e8e8f2) as the only soft surface accent. Code syntax uses four muted-but-distinct hues (purple, blue, teal, red-brown) that never bleed into the surrounding UI. Components are minimal and flat: 4px-rounded ghost buttons, pill-shaped nav controls, hairline borders, zero decorative shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SST design system\",\"item\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#style-reference\",\"name\":\"SST design system reference\",\"headline\":\"SST design system | Refero Styles\",\"description\":\"Explore SST's light Dev Tools design system: SST Ink #303055, Code Plum #8844ae colors, IBM Plex Mono, Rubik Variable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SST\",\"url\":\"https://sst.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"caption\":\"Screenshot of SST\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SST design system\",\"SST website design\",\"SST colors\",\"SST typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"SST Ink\",\"Code Plum\",\"Code Cobalt\",\"Code Teal\",\"IBM Plex Mono\",\"Rubik Variable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SST design system\"},{\"@type\":\"Thing\",\"name\":\"SST website design\"},{\"@type\":\"Thing\",\"name\":\"SST colors\"},{\"@type\":\"Thing\",\"name\":\"SST typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-05T14:17:59.000Z\",\"dateModified\":\"2026-02-05T14:17:59.000Z\"}]}19:T53e,**Quick Color Reference**\n- Text / heading: #303055\n- Body text: #403f53\n- Muted / helper text: #767682\n- Surface tint (code bg, tags): #e8e8f2\n- Canvas: #ffffff\n- Code syntax accents: #8844ae (strings), #3b61b0 (keys), #096e72 (types), #984e4d (templates)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Code Block*: Create an 8px-radius code block with #e8e8f2 background, 1px #e8e8f2 border, and 16px padding. Shell prompt '> npm i' in IBM Plex Mono 14px weight 400 #a8a8b0, command 'sst' in weight 600 #303055. String '\"example.com\"' in #8844ae, object keys like 'memory', 'image' in #3b61b0, values in #303055.\n\n2. *Hero Text Block*: Headline at 48px Rubik weight 500, #303055, -1.01px letter-spacing. Subtext at 18px Rubik weight 400, #403f53, 1.65 line-height. No background or border.\n\n3. *New Badge Pill*: Transparent fill, 1px #e8e8f2 border, 4px radius, 4px/8px padding. Label 'NEW' in Rubik 9px weight 600, uppercase, 0.056em tracking, #303055.\n\n4. *Search Bar*: Pill shape, #e8e8f2 background, no border. Placeholder in Rubik 14px weight 400, #767682. Right-side shortcut hint '⌘K' in IBM Plex Mono 12px, #a8a8b0.\n\n5. *Social Proof Strip*: 'LOVED BY THOUSANDS OF TEAMS' eyebrow in Rubik 9px weight 600, uppercase, 0.056em tracking, #a8a8b0. Below: 5 grayscale logos in #767682, 32px gap, no borders."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used sparingly and only on the code block. All other surfaces rely on flat fills and hairline borders to maintain the document-like clarity. No drop shadows on cards, buttons, or navigation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#303055",
+          "oklch": {
+            "c": 0.06472929752848812,
+            "h": 282.23517446086333,
+            "l": 0.3280247723583196
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "body",
+            "footer"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 10126660.42381728,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#403f53",
+          "oklch": {
+            "c": 0.033949374625159165,
+            "h": 286.9386638256219,
+            "l": 0.3769217014705147
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 287,
+          "confidence": 1,
+          "prominence": 1560177.8978254325,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e8e8f2",
+          "oklch": {
+            "c": 0.013419732252748293,
+            "h": 286.13697685532094,
+            "l": 0.9339020459833656
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 886818.64113652,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 531171.0194606867,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#767682",
+          "oklch": {
+            "c": 0.018296194110235843,
+            "h": 285.803436331903,
+            "l": 0.5685345578284582
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 144000,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a8a8b0",
+          "oklch": {
+            "c": 0.010833426403663759,
+            "h": 286.1297248050348,
+            "l": 0.7338755638538389
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 161,
+          "confidence": 1,
+          "prominence": 52553.32602065391,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#984e4d",
+          "oklch": {
+            "c": 0.09926485449053879,
+            "h": 21.924414451890776,
+            "l": 0.5139007530098946
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 13737.09858471379,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 10558.522256308064,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8844ae",
+          "oklch": {
+            "c": 0.16923940867877568,
+            "h": 311.50041472755186,
+            "l": 0.5192287117675546
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 240,
+          "confidence": 1,
+          "prominence": 9835.721444933843,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5196b3",
+          "oklch": {
+            "c": 0.08210923377951575,
+            "h": 227.51164972139304,
+            "l": 0.6393539148042102
+          },
+          "contexts": [
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 8635.296053183043,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3b61b0",
+          "oklch": {
+            "c": 0.13288050549351885,
+            "h": 263.14009276759646,
+            "l": 0.5057451141268136
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 6865.787511378867,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#096e72",
+          "oklch": {
+            "c": 0.08121696636484003,
+            "h": 199.3575299387069,
+            "l": 0.4899115735725335
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 2046.8199190149026,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.17770112084574297,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#e8e8f2",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#ffffff",
+          "foreground": "#303055"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#e8e8f2",
+          "foreground": "#303055"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.22,
+          "background": "#ffffff",
+          "foreground": "#403f53"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.4,
+          "background": "#e8e8f2",
+          "foreground": "#403f53"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8,
+          "background": "#a8a8b0",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.03,
+          "background": "#ffffff",
+          "foreground": "#8844ae"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.03,
+          "background": "#ffffff",
+          "foreground": "#096e72"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.96,
+          "background": "#ffffff",
+          "foreground": "#3b61b0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.95,
+          "background": "#ffffff",
+          "foreground": "#984e4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#a8a8b0",
+          "foreground": "#303055"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#e8e8f2",
+          "foreground": "#096e72"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.48,
+          "background": "#ffffff",
+          "foreground": "#767682"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#a8a8b0",
+          "foreground": "#403f53"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#ffffff",
+          "foreground": "#5196b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#a8a8b0",
+          "foreground": "#096e72"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.36,
+          "background": "#ffffff",
+          "foreground": "#a8a8b0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 31,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "IBM Plex Mono",
+          "source": "google",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 159,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Rubik Variable",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 84,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Rubik Variable",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": 0.056,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Rubik Variable",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.65,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 153,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Rubik Variable",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Rubik Variable",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ed660a99-4d72-4779-b3bd-37392d61b5d9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SST design system\",\"item\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#style-reference\",\"name\":\"SST design system reference\",\"headline\":\"SST design system | Refero Styles\",\"description\":\"Explore SST's light Dev Tools design system: SST Ink #303055, Code Plum #8844ae colors, IBM Plex Mono, Rubik Variable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SST\",\"url\":\"https://sst.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/19f92be1-65ac-4432-a82b-0aa1e685d97d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"caption\":\"Screenshot of SST\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6ae23ace-eb37-44ac-9df4-89585001db98.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SST design system\",\"SST website design\",\"SST colors\",\"SST typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"SST Ink\",\"Code Plum\",\"Code Cobalt\",\"Code Teal\",\"IBM Plex Mono\",\"Rubik Variable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SST design system\"},{\"@type\":\"Thing\",\"name\":\"SST website design\"},{\"@type\":\"Thing\",\"name\":\"SST colors\"},{\"@type\":\"Thing\",\"name\":\"SST typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-05T14:17:59.000Z\",\"dateModified\":\"2026-02-05T14:17:59.000Z\"}]}19:T53e,**Quick Color Reference**\n- Text / heading: #303055\n- Body text: #403f53\n- Muted / helper text: #767682\n- Surface tint (code bg, tags): #e8e8f2\n- Canvas: #ffffff\n- Code syntax accents: #8844ae (strings), #3b61b0 (keys), #096e72 (types), #984e4d (templates)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Code Block*: Create an 8px-radius code block with #e8e8f2 background, 1px #e8e8f2 border, and 16px padding. Shell prompt '> npm i' in IBM Plex Mono 14px weight 400 #a8a8b0, command 'sst' in weight 600 #303055. String '\"example.com\"' in #8844ae, object keys like 'memory', 'image' in #3b61b0, values in #303055.\n\n2. *Hero Text Block*: Headline at 48px Rubik weight 500, #303055, -1.01px letter-spacing. Subtext at 18px Rubik weight 400, #403f53, 1.65 line-height. No background or border.\n\n3. *New Badge Pill*: Transparent fill, 1px #e8e8f2 border, 4px radius, 4px/8px padding. Label 'NEW' in Rubik 9px weight 600, uppercase, 0.056em tracking, #303055.\n\n4. *Search Bar*: Pill shape, #e8e8f2 background, no border. Placeholder in Rubik 14px weight 400, #767682. Right-side shortcut hint '⌘K' in IBM Plex Mono 12px, #a8a8b0.\n\n5. *Social Proof Strip*: 'LOVED BY THOUSANDS OF TEAMS' eyebrow in Rubik 9px weight 600, uppercase, 0.056em tracking, #a8a8b0. Below: 5 grayscale logos in #767682, 32px gap, no borders."
+}

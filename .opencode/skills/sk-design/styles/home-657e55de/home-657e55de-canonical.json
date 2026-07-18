@@ -1,0 +1,782 @@
+{
+  "source": "https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55",
+  "uuid": "657e55de-8cff-4d24-9a4e-17d3b7593a55",
+  "name": "Home",
+  "northStar": "Swiss broadsheet behind a highlighter pen",
+  "capturedAt": "2026-07-18T09:46:06.440Z",
+  "meta": {
+    "url": "https://traffic.productions",
+    "siteName": "Home",
+    "extractedAt": "2026-06-03T18:12:30.569Z",
+    "durationMs": 25912,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 585,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Suisse for every text element — no secondary typeface, no system fonts, no serif accents.",
+      "Set display headlines at 108px with line-height 0.96 and letter-spacing -0.04em; never increase line-height to 'improve readability' — the tightness is the identity.",
+      "Use #fff824 exclusively as a highlighter: label bars, text highlights, and button fills. Never as a background fill for large surfaces.",
+      "Frame content blocks with 1px Ink (#151515) borders at 0px radius — the system is built on ruled rectangles, not cards with shadows.",
+      "Use weight 700 only for labels, nav items, and footer links — body copy and headlines stay at 400.",
+      "Keep spacing compact: 20px element gaps, 2-4px padding inside label bars, 40-48px between framed sections.",
+      "Use 0px radius on every surface except the pill button (9999px) — the system is angular by default."
+    ],
+    "donts": [
+      "Do not introduce a second accent color — the system is monochrome plus one yellow. Adding any other hue breaks the highlighter logic.",
+      "Do not use box-shadow, drop-shadow, or any form of elevation — the system is flat, printed, ruled.",
+      "Do not use bold (700) for headlines or body emphasis — use size, tracking, or yellow highlight instead.",
+      "Do not round corners on images, cards, or frames — the only curve in the system is the 9999px pill button.",
+      "Do not use full-color photography — images should be monochrome or desaturated so the yellow remains the only chromatic mark on the page.",
+      "Do not add gradients, blurs, or glassmorphism — the canvas is matte paper, not a screen.",
+      "Do not increase line-height on display sizes — 0.96 at 108px is correct; loosening it destroys the typographic mass."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fff824",
+        "name": "Highlighter Yellow",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#151515",
+        "name": "Ink",
+        "role": "Primary text, all borders and dividers, icons, nav links, button text — the near-black slightly softer than pure #000 used for most typographic and structural marks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Canvas",
+        "role": "Page background, the off-white ground that prevents the design from reading as stark white — a subtle warmth that lets the black feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Icon fills, select structural marks, absolute contrast — used sparingly where maximum black is needed (SVG icon strokes, the heaviest emphasis)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Paper",
+        "role": "Secondary surface tone, subtle differentiation beneath images or within contained blocks",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with a ruled-grid editorial layout. The hero is a single full-viewport frame with a massive left-aligned headline (108px) and a double-chevron mark bottom-right. Sections alternate between framed blocks (thin 1px black borders) and full-bleed bands. The contact/footer section uses a two-column 'GET IN TOUCH' display where one word sits left and one sits right, creating typographic asymmetry. Navigation is a single transparent bar — no sticky behavior visible. Content is always left-aligned, with two-column body text blocks for longer descriptions. Image blocks span full width beneath their caption labels. The overall rhythm is: massive type → framed block → type → full-bleed image → framed block → massive type → dark footer. Sections are separated by ~40-48px gaps, creating a poster-like cadence rather than a card-grid flow.",
+    "imagery": "Photography is present but treated as raw editorial material: full-width, monochrome or desaturated, sharp edges, zero radius, no overlay text. The single image in the data (House of Schwarzkopf) is a B&W environmental portrait. No illustrations, no 3D, no abstract graphics. The only non-photographic visual elements are the geometric typographic marks (double chevron, arrows) drawn in the same Ink as text. Imagery occupies generous space when present but is sparse — most of the page is type and rules.",
+    "similar": [
+      {
+        "why": "Same Swiss editorial typography pushed to display scale, same single-accent highlighter approach, same hairline-border framed layout, same refusal of shadows and rounded surfaces",
+        "business": "Bureau Mirko Borsche"
+      },
+      {
+        "why": "Sole-typeface discipline with extreme size jumps from 8px caption to 100px+ display, tight negative tracking, monochrome palette with one chromatic mark",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Ruled-rectangle layout grammar, compact spacing, all-black typography, geometric decoration marks instead of photographic content",
+        "business": "Heydays (Oslo)"
+      },
+      {
+        "why": "Editorial broadsheet treatment of an agency portfolio: massive set headlines, monochrome photography, typography as the primary visual, minimal chrome",
+        "business": "Pentagram partner sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "frames": "0px",
+        "images": "0px",
+        "labels": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "40-48px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f3f3f3",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background, the printed-paper ground"
+      },
+      {
+        "hex": "#fff824",
+        "name": "Highlight",
+        "level": 1,
+        "purpose": "Yellow label bars, action button fill, inline text highlights — functions as a physical marker on the page"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Subtle secondary surface for differentiated content blocks"
+      },
+      {
+        "hex": "#151515",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Dark surface for inverted blocks (footer, cookie bar) — black ground with light text"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Swiss broadsheet behind a highlighter pen",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 0.89,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 54,
+        "lineHeight": 0.93,
+        "letterSpacing": -1.62
+      },
+      {
+        "role": "heading",
+        "size": 84,
+        "lineHeight": 0.96,
+        "letterSpacing": -3.36
+      },
+      {
+        "role": "display",
+        "size": 108,
+        "lineHeight": 0.96,
+        "letterSpacing": -4.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-bleed horizontal bar, transparent over the canvas. Left: brand mark 'TRAFFIC PRODUCTIONS®' in 12px Suisse 700, Ink, uppercase, letter-spacing -0.12px. Right: nav items (WORK, SERVICES, ABOUT, CONTACT, TP®, WORK) in 12px Suisse 700, Ink, separated by 20px gaps. No background, no border, no logo lockup — text-only identity."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening typography",
+        "description": "108px Suisse 400, line-height 0.96, letter-spacing -4.32px, color Ink. Left-aligned, fills the full content width. At this size the negative tracking pulls characters together until the word reads as a single typographic mass. Weight stays 400 even at 108px — the system never uses bold for emphasis, only for labels."
+      },
+      {
+        "name": "Large Section Headline",
+        "role": "Secondary section headers",
+        "description": "84px or 54px Suisse 400, Ink, same tight leading (0.96 / 0.93) and proportional negative tracking. Used for mid-page headers like 'A non-agency offer for Brands…'. Always left-aligned, no underlines, no color."
+      },
+      {
+        "name": "Yellow Label Bar",
+        "role": "Section/category markers",
+        "description": "Rectangular bar filled #fff824, padding 2-4px vertical, containing uppercase 12px Suisse 700 Ink text (e.g. 'TRAFFIC', 'PRODUCTIONS', 'COOKIES'). No border, no radius — a literal highlighter swipe. Functions as the only way to mark or categorize content on the page."
+      },
+      {
+        "name": "Bordered Frame Container",
+        "role": "Content grouping",
+        "description": "Thin 1px border in Ink (#151515), radius 0, padding 20px. Used to group hero content, case study blocks, and contact information. The frame is the layout device — everything is either full-bleed or boxed in these black-ruled rectangles, evoking a printed page layout grid."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Action trigger (only used for cookies and a few controls)",
+        "description": "9999px border-radius, 2-4px vertical padding, 8px horizontal padding. 12px Suisse 700 Ink text. Default: transparent background with Ink border. Active/filled: #fff824 background, Ink text, no border. The pill is the only rounded element in the entire system."
+      },
+      {
+        "name": "Two-Column Body Text",
+        "role": "Editorial description blocks",
+        "description": "18px Suisse 400, Ink, line-height 1.17, letter-spacing -0.18px. Arranged in two equal columns with ~40px gap. Short paragraphs (2-3 lines each), no drop caps, no pull quotes. Reads as a printed magazine column."
+      },
+      {
+        "name": "Image Card with Caption",
+        "role": "Case study / project preview",
+        "description": "Full-width B&W photograph, 0px radius, no border, no shadow. Caption above in 12px Suisse 700 Ink uppercase with yellow underline accent (e.g. 'A) HOUSE OF SCHWARZKOPF'). Photography is desaturated or monochrome — the system avoids color imagery so the yellow accent remains the only chromatic mark."
+      },
+      {
+        "name": "Arrow Icon (↳)",
+        "role": "Link/list indicator",
+        "description": "Thin stroke arrow glyph preceding nav items and footer links. Drawn in Ink at 12px, monoline. Functions as a typographic bullet — the angle and weight match Suisse's geometric character."
+      },
+      {
+        "name": "Double Chevron Decoration (⇊)",
+        "role": "Hero accent / scroll indicator",
+        "description": "Two stacked downward-pointing chevrons in Ink, 54px, placed in the bottom-right of the hero frame. A purely decorative typographic mark — no interactivity, no label. The geometric shape echoes the grid system."
+      },
+      {
+        "name": "Footer / Contact List",
+        "role": "Site footer with location links and legal",
+        "description": "Ink (#151515) full-bleed bar, light text. Left: 'ALL RIGHTS RESERVED 2026' in 12px. Right: 'LEGAL NOTICE', 'PRIVACY POLICY' links in 12px Suisse 700 with arrow prefixes. Above: two columns of city names (BERLIN, COLOGNE, HAMBURG, MUNICH) with arrow prefixes, same 12px size."
+      },
+      {
+        "name": "Cookie Bar",
+        "role": "Compliance prompt",
+        "description": "Black (#151515) full-width bar, 20px vertical padding. Left: 'COOKIES' label in 12px Suisse 700 on a #fff824 background bar. Right: Ink '✕' close button. This is the only place yellow + black interact as a button pair."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for everything from 8px micro-labels to 108px display headlines. The extreme negative letter-spacing (-0.04em at display, -0.01em at body) and ultra-tight line-heights (0.96 at 108px) are the signature: type set like printed Swiss editorial, not web type. Weight 400 carries body and most UI; weight 700 appears in nav, labels, and occasional emphasis. The tight leading on massive sizes makes headlines stack into a single visual mass — the word 'TOUCH' reads as a black slab, not four letters.",
+        "sizes": "8px, 12px, 18px, 30px, 54px, 84px, 108px",
+        "family": "Suisse",
+        "weight": "400, 700",
+        "lineHeight": "0.89–1.17 (display sizes 0.93–0.96, body 1.17)",
+        "substitute": "Inter, Neue Haas Grotesk, Söhne",
+        "letterSpacing": "-0.01em at body, scaling to -0.044em at 108px display"
+      }
+    ],
+    "description": "Traffic Productions operates as a typographic poster dragged onto the web: a pale gray canvas framed by hairline black rules, a single fluorescent yellow that behaves like a marker pen, and a single typeface (Suisse) pushed to display sizes of 108px with aggressively negative tracking. The system rejects softness — no shadows, no rounded surfaces (except pill buttons), no gradients, no decorative imagery except monochrome photography treated as raw material. Layout is ruled-grid editorial: content lives inside thin black rectangles like entries in a printed specimen book, and the yellow accent is never decorative — it always labels, highlights, or marks an action. Density is compact, the type scale is extreme, and the overall feel is a Swiss production-house broadsheet that happens to scroll.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Agency design system: Highlighter Yellow #fff824, Ink #151515 colors, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://traffic.productions\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Highlighter Yellow\",\"Ink\",\"Canvas\",\"Pure Black\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-17T17:35:33.000Z\",\"dateModified\":\"2026-02-17T17:35:33.000Z\"}]}19:T53f,**Quick Color Reference**\n- Canvas/background: #f3f3f3\n- Primary text & borders: #151515\n- Accent / highlighter / action button: #fff824\n- Dark surface (footer/cookie bar): #151515\n- Image tone: monochrome only\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Display headline block*: Full-bleed #f3f3f3 canvas, 1px #151515 border frame, 20px padding. 108px Suisse 400 text, #151515, line-height 0.96, letter-spacing -4.32px, left-aligned. Place a 54px double-chevron mark in #151515 at the bottom-right of the frame.\n\n2. *Section label bar*: A #fff824 rectangular bar, 0px radius, padding 2px top / 4px bottom / 8px left, containing 12px Suisse 700 uppercase #151515 text (e.g. 'TRAFFIC'). Functions as a category marker.\n\n3. *Pill button (filled)*: 9999px border-radius, #fff824 background, 4px vertical / 8px horizontal padding, 12px Suisse 700 #151515 text. No border. This is the system's only rounded element.\n\n4. *Two-column editorial body*: 18px Suisse 400 #151515, line-height 1.17, letter-spacing -0.18px. Split into two equal columns with 40px gap. Short paragraphs only (2-3 lines).\n\n5. *Full-bleed image card*: B&W photograph, 0px radius, no border, no shadow, full container width. Caption above in 12px Suisse 700 #151515 uppercase with a #fff824 underline highlight (2px height bar beneath the text)."
+      },
+      {
+        "title": "Grid & Rule System",
+        "content": "The entire layout is built on two devices: 1px #151515 borders and the page's own padding. There is no card-grid, no masonry, no floating panels. Every distinct content area is either full-bleed or contained in a rectangular frame with hairline borders on all sides. The border is the card. The 9999px pill is the only deviation from the angular grid. Vertical rhythm follows a 4px base unit: label bars use 2-4px padding, framed blocks use 20px padding, section gaps run 40-48px. This compact rhythm, combined with the extreme type scale (8px to 108px), creates the poster-like density that defines the system."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. All separation is achieved through 1px Ink borders and the contrast between the #f3f3f3 canvas and the #151515 structural marks. This makes the design read as printed editorial — flat, ruled, and architectural — rather than as a software interface. Elevation is expressed through the grid of frames, not through z-axis depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "list",
+            "body",
+            "button",
+            "image",
+            "footer",
+            "icon"
+          ],
+          "frequency": 2461,
+          "confidence": 1,
+          "prominence": 76451043.53128918,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 32267755.45891929,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff824",
+          "oklch": {
+            "c": 0.19935973102817553,
+            "h": 107.49784180438343,
+            "l": 0.9541062433805594
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2170712.5277078226,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 41539.26265710845,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 678.0485972529103,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0008337486790869383,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#f3f3f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.7,
+          "background": "#fff824",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#f3f3f3",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.27,
+          "background": "#fff824",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.5,
+          "background": "#151515",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f3f3f3",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#fff824",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.01,
+          "background": "#fff824",
+          "foreground": "#f3f3f3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 47,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 38,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 48,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 65,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 495,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Suisse",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.044,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "footer",
+            "nav",
+            "icon"
+          ],
+          "frequency": 59,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "body",
+            "image",
+            "list",
+            "icon"
+          ],
+          "frequency": 210,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 36,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 56,
+          "lineHeight": 0.89,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c7c3c395-df00-4185-a664-b777e6ea85b1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Agency design system: Highlighter Yellow #fff824, Ink #151515 colors, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://traffic.productions\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/657e55de-8cff-4d24-9a4e-17d3b7593a55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ccd7f56-1a87-4583-b1fd-6a9839a575a0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Highlighter Yellow\",\"Ink\",\"Canvas\",\"Pure Black\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-17T17:35:33.000Z\",\"dateModified\":\"2026-02-17T17:35:33.000Z\"}]}19:T53f,**Quick Color Reference**\n- Canvas/background: #f3f3f3\n- Primary text & borders: #151515\n- Accent / highlighter / action button: #fff824\n- Dark surface (footer/cookie bar): #151515\n- Image tone: monochrome only\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Display headline block*: Full-bleed #f3f3f3 canvas, 1px #151515 border frame, 20px padding. 108px Suisse 400 text, #151515, line-height 0.96, letter-spacing -4.32px, left-aligned. Place a 54px double-chevron mark in #151515 at the bottom-right of the frame.\n\n2. *Section label bar*: A #fff824 rectangular bar, 0px radius, padding 2px top / 4px bottom / 8px left, containing 12px Suisse 700 uppercase #151515 text (e.g. 'TRAFFIC'). Functions as a category marker.\n\n3. *Pill button (filled)*: 9999px border-radius, #fff824 background, 4px vertical / 8px horizontal padding, 12px Suisse 700 #151515 text. No border. This is the system's only rounded element.\n\n4. *Two-column editorial body*: 18px Suisse 400 #151515, line-height 1.17, letter-spacing -0.18px. Split into two equal columns with 40px gap. Short paragraphs only (2-3 lines).\n\n5. *Full-bleed image card*: B&W photograph, 0px radius, no border, no shadow, full container width. Caption above in 12px Suisse 700 #151515 uppercase with a #fff824 underline highlight (2px height bar beneath the text)."
+}

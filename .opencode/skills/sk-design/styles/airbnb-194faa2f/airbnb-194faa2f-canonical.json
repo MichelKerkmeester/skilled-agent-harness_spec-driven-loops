@@ -1,0 +1,1156 @@
+{
+  "source": "https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2",
+  "uuid": "194faa2f-2f69-4bbf-9e29-290f28fa8ca2",
+  "name": "Airbnb",
+  "northStar": "Editorial masthead on white paper — the page speaks through scale and silence, not color or ornament.",
+  "capturedAt": "2026-07-18T08:15:41.566Z",
+  "meta": {
+    "url": "https://airbnb.org",
+    "siteName": "Airbnb",
+    "extractedAt": "2026-06-03T17:47:17.707Z",
+    "durationMs": 36588,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 390,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #222222 as the only button fill color; the system's power comes from the contrast of one dark rectangle against pure white",
+      "Set headlines at 48–72px with negative letter-spacing (-0.02em to -0.03em) to match the compressed editorial feel",
+      "Center all hero and section text within a max-width of 1200px; keep body copy at ~640px max-width for readability",
+      "Alternate sections between #ffffff and #f7f7f7 to create editorial banding — no drop shadows needed",
+      "Use 12px radius on all images, video embeds, and media blocks; use 8px radius on buttons and nav links",
+      "Set body text at 18px with line-height 1.56 — the generous leading makes long-form copy feel unhurried",
+      "Let photography and video carry all emotional content; never decorate with gradients, illustrations, or color washes"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color into the UI — the airbnb pink-magenta logo is the only color moment in the system",
+      "Never apply drop shadows, glows, or blur effects to cards or buttons; depth comes from surface contrast, not elevation",
+      "Never use border-radius larger than 12px; the system is angular and editorial, not soft or playful",
+      "Never use display weights (800–900) — Airbnb Cereal tops out at 700, and most headlines sit at 500",
+      "Never break the centered text alignment for hero and section headers; left-aligned text breaks the masthead metaphor",
+      "Never place text directly over photography without a scrim or contained card — the page is too restrained to tolerate busy backgrounds",
+      "Never use more than one body size (18px) for explanatory copy; variation breaks the editorial rhythm"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Carbon Ink",
+        "role": "Primary text, filled CTA buttons, nav bar, footer background, hairline borders, icon strokes — the only chromatic-acting color in the system; its near-black weight gives the page its editorial authority",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text, icon fills on dark backgrounds — the dominant surface and the foil against which all type sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Newsprint Gray",
+        "role": "Alternate section backgrounds, footer surface, subtle banding to separate editorial blocks without visual noise",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Pebble",
+        "role": "Section divider washes, faint background blocks that fade further into the page than Newsprint Gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a6a6a",
+        "name": "Fog",
+        "role": "Muted helper text, secondary heading weight reduction, low-priority borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a6",
+        "name": "Ash",
+        "role": "Disabled or low-emphasis button fills, de-emphasized UI elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-column centered layout within a 1200px max-width container. The page reads top-to-bottom as an editorial sequence: white hero with centered headline → subtext → filled dark CTA → embedded media block (video or photo) → centered section headline → subtext → alternate gray band → next media block → centered text → gray band → map visualization → footer. No multi-column grids, no sidebar, no card grids. Navigation is a minimal top bar (logo left, 2–3 text links right, dark CTA far right) with no sticky behavior beyond standard scroll. The rhythm is: text, image, text, image — alternating as in a magazine spread. Section gaps are generous (64px) with no visual dividers between bands; the #f7f7f7 gray sections serve as the only breaks. No hero with background image — the hero is text-only on white, with media appearing below the fold.",
+    "imagery": "Photography and video are the sole emotional carriers of the page — no illustrations, no abstract graphics, no icons beyond simple utility UI. Treatment is full-bleed within the 1200px container, clipped to 12px radius corners with an optional 1px #222222 hairline frame on video. Photography style is documentary and intimate: dimly lit interiors, natural light from windows, people in their own spaces, slightly underexposed to feel candid rather than staged. No lifestyle gloss, no product shots. The world map is flat, monochrome line work with no color fills — data as restraint. Image density is moderate: one large media block per editorial section, never more, allowing type to dominate.",
+    "similar": [
+      {
+        "why": "Same oversized centered headlines on white, full-width photography as emotional anchor, monochromatic UI with color reserved for logo only",
+        "business": "charity: water"
+      },
+      {
+        "why": "Identical editorial restraint — pure achromatic surfaces, tight typographic hierarchy, no decorative elements, information-first layout",
+        "business": "Wikipedia / Wikimedia Foundation"
+      },
+      {
+        "why": "Same masthead metaphor — large confident serif/sans headlines, centered text blocks, gray band separators between articles, photography as the only color",
+        "business": "The New York Times homepage"
+      },
+      {
+        "why": "Same documentary photography style (underexposed, candid interiors), full-bleed media at 12px radius, monochromatic type-first layout, no decorative gradients",
+        "business": "Patagonia (responsibility pages)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "links": "4px",
+        "images": "12px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 1,
+        "purpose": "Default page background; hero, primary text blocks"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Band Gray",
+        "level": 2,
+        "purpose": "Alternate section background; footer; visual separation between editorial blocks"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Wash Gray",
+        "level": 3,
+        "purpose": "Tertiary surface; faint dividers or background containers"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial masthead on white paper — the page speaks through scale and silence, not color or ornament.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.03
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Dark CTA",
+        "role": "Primary action button — the only colored interactive element",
+        "description": "8px radius, 14px vertical / 24px horizontal padding, background #222222, text #ffffff in Airbnb Cereal VF weight 500 at 16px. No border, no shadow, no hover lift. Used for 'Donate now' and 'Donate' in nav."
+      },
+      {
+        "name": "Nav Text Link",
+        "role": "Secondary navigation actions",
+        "description": "No background, no border. Airbnb Cereal VF weight 500 at 14–16px, color #222222. 8px horizontal spacing between items. Sits on white nav bar."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Brand identity in top-left of every screen",
+        "description": "'airbnb.org' in Airbnb Cereal VF weight 700. The 'airbnb' portion renders in brand pink-magenta (#b30057 from contrast data), '.org' in #222222. The chromatic logo against an otherwise fully achromatic page is the single moment of color in the system."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Opening editorial statement",
+        "description": "Centered, 72px, weight 500, line-height 1.13, letter-spacing -0.03em, color #222222. Max-width container ~800px. No gradient, no background imagery behind it — pure type on white."
+      },
+      {
+        "name": "Body Subtext",
+        "role": "Supporting paragraph under hero headline",
+        "description": "Centered, 18px, weight 400, line-height 1.56, color #222222. Max-width ~640px. Restrained line length for readability."
+      },
+      {
+        "name": "Media Block (Video/Image)",
+        "role": "Full-width embedded visual storytelling",
+        "description": "Contained within page max-width, 12px radius corners. Videos include a 1px #222222 hairline border (visible as frame). Plays full-bleed within the radius mask. Represents the system's only departure from text — photography is the emotional register."
+      },
+      {
+        "name": "Section Headline",
+        "role": "Mid-page editorial title",
+        "description": "Centered, 48px, weight 500, line-height 1.18, letter-spacing -0.02em, color #222222. Same centering and weight logic as hero, but at smaller scale."
+      },
+      {
+        "name": "Section Subtext",
+        "role": "Explanatory copy under section headlines",
+        "description": "Centered, 18px, weight 400, color #222222, max-width ~640px. Identical to hero subtext — the system reuses one body style for all long-form copy."
+      },
+      {
+        "name": "Map Visualization Container",
+        "role": "World reach data display",
+        "description": "Light gray (#ebebeb or #f7f7f7) rounded panel, 12px radius, contained within page width. Countries labeled in small (12–14px) Airbnb Cereal VF weight 500, #222222, in a flat geographic style with no color fill on landmasses."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header",
+        "description": "White background, no border or shadow, full-width. Logo left, 2–3 text links right ('Get help', 'Get involved'), filled dark CTA ('Donate') far right. 64px vertical padding. Hairline 1px #222222 bottom border optional."
+      },
+      {
+        "name": "Footer Band",
+        "role": "Page closure",
+        "description": "Background #f7f7f7 or #222222, full-width. Text #ffffff on dark or #222222 on light. 64px vertical padding. Minimal content — links, legal, small logo."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system for everything from 14px body to 72px hero headlines. Weight 500 dominates body and UI, weight 700 anchors headlines, weight 400 appears in long-form copy. Negative tracking tightens at scale (-0.03em at 72px, -0.02em at 48–52px, -0.01em at 22–26px) — the letters huddle closer as they grow, giving display text a compressed, authoritative feel typical of editorial design.",
+        "sizes": "14, 16, 18, 22, 26, 48, 52, 72",
+        "family": "Airbnb Cereal VF",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.13–1.56 (tight at display, breathing at body)",
+        "substitute": "Inter, or Söhne if available; the rounded geometric proportions and tight tracking are signature",
+        "letterSpacing": "-0.03em at 72px, -0.02em at 48–52px, -0.01em at 22–26px, normal at 16px and below",
+        "fontFeatureSettings": "Use default features; Cereal VF handles weight axis interpolation natively"
+      }
+    ],
+    "description": "Airbnb.org is a stripped-down editorial system: pure achromatic canvas, oversized type, and dark-on-white CTAs that feel more like a nonprofit annual report than a tech brand site. Every color decision is denied except a single near-black action button — the page trusts typography and photography to carry emotion, never decoration. Surfaces alternate between stark white and a quiet warm gray (#f7f7f7), creating soft newspaper-like bands rather than dramatic light/dark shifts. Components are flat: no shadows, no gradients, no rounded pill buttons — just 8px-radius rectangles and 12px-radius media frames. The result reads as earnest, restrained, and institutional without feeling corporate.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Airbnb design system\",\"item\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#style-reference\",\"name\":\"Airbnb design system reference\",\"headline\":\"Airbnb design system | Refero Styles\",\"description\":\"Explore Airbnb's light Other design system: Carbon Ink #222222, Paper White #ffffff colors, Airbnb Cereal VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Airbnb\",\"url\":\"https://airbnb.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"caption\":\"Screenshot of Airbnb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Airbnb design system\",\"Airbnb website design\",\"Airbnb colors\",\"Airbnb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Carbon Ink\",\"Paper White\",\"Newsprint Gray\",\"Pebble\",\"Airbnb Cereal VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Airbnb design system\"},{\"@type\":\"Thing\",\"name\":\"Airbnb website design\"},{\"@type\":\"Thing\",\"name\":\"Airbnb colors\"},{\"@type\":\"Thing\",\"name\":\"Airbnb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:57:03.648Z\",\"dateModified\":\"2026-04-30T03:57:03.648Z\"}]}19:T453,**Quick Color Reference**\n- text: #222222\n- background: #ffffff (canvas) / #f7f7f7 (alternate band)\n- border: #222222 (1px hairline) / #6a6a6a (muted)\n- accent: #b30057 (logo only — never use in UI)\n- primary action: #222222 (filled action)\n- disabled: #a6a6a6\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #222222 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Section Band*: Alternate #f7f7f7 background, 64px vertical padding. Centered section headline at 48px weight 500, letter-spacing -0.02em, color #222222. Subtext at 18px weight 400, max-width 640px. No buttons in this section.\n\n3. *Media Block*: 1200px max-width, 12px radius corners, 1px #222222 border on video embeds. Sits on white background with 48px vertical margin above and below. No caption or overlay text inside the media block.\n\n\n5. *Map Container*: 1200px max-width, #f7f7f7 background, 12px radius, 48px padding. Flat monochrome world map with country labels in 12px weight 500 #222222. No color fills on landmasses, no interactive markers."
+      },
+      {
+        "title": "Editorial Rhythm",
+        "content": "The page follows a strict pattern: **text → media → text → media**, alternating between white and #f7f7f7 surfaces. Every section is centered. Never place two text blocks back-to-back without a media block between them — the photography is the pacing device that gives the reader a breath. Section vertical padding is always 64px; element spacing within a section is 24px between headline and subtext, 8px between subtext and CTA."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system relies entirely on surface color contrast (white → #f7f7f7 → #ebebeb) and 1px hairline borders at #222222 to create separation. Components sit flat on the canvas; depth comes from photography and type scale, never from drop shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "heading",
+            "button",
+            "image",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 1560,
+          "confidence": 1,
+          "prominence": 90432656.64412725,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 8,
+            "body/color": 12,
+            "card/color": 4,
+            "icon/color": 2,
+            "link/color": 17,
+            "other/fill": 1,
+            "icon/stroke": 2,
+            "image/color": 16,
+            "other/color": 239,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 8,
+            "nav/borderColor": 32,
+            "body/borderColor": 48,
+            "card/borderColor": 16,
+            "icon/borderColor": 8,
+            "link/borderColor": 68,
+            "image/borderColor": 64,
+            "other/borderColor": 955,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 4,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 256,
+          "confidence": 1,
+          "prominence": 6755466.219591763,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 1,
+            "body/color": 13,
+            "icon/color": 8,
+            "link/color": 4,
+            "other/fill": 2,
+            "icon/stroke": 12,
+            "other/color": 12,
+            "button/color": 6,
+            "other/stroke": 6,
+            "nav/borderColor": 4,
+            "body/borderColor": 52,
+            "icon/borderColor": 32,
+            "link/borderColor": 16,
+            "other/borderColor": 48,
+            "button/borderColor": 24,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3231372.0486102523,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 9,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6a6a6a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5243041069985445
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 497736.7756597131,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 8,
+            "heading/color": 3,
+            "other/borderColor": 32,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 411831,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b30057",
+          "oklch": {
+            "c": 0.1993777216412024,
+            "h": 2.852899071734819,
+            "l": 0.4945572803963205
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5009.657326397601,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#a6a6a6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7245126007258532
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1623.0016007384638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1440,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0014255521352867326,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#f7f7f7",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.35,
+          "background": "#ebebeb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.71,
+          "background": "#dddddd",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.88,
+          "background": "#ffffff",
+          "foreground": "#b30057"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.54,
+          "background": "#a6a6a6",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.42,
+          "background": "#f7f7f7",
+          "foreground": "#b30057"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.77,
+          "background": "#ebebeb",
+          "foreground": "#b30057"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#ffffff",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#dddddd",
+          "foreground": "#b30057"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#f7f7f7",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#ebebeb",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.94,
+          "background": "#222222",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#a6a6a6",
+          "foreground": "#b30057"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.43,
+          "background": "#a6a6a6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.22,
+          "background": "#a6a6a6",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#ebebeb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f7f7f7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image",
+            "card",
+            "link"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginLeft|body",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 58,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "paddingBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Airbnb Cereal VF",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 364,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 273,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/52440a68-a5ea-4756-8415-98175d32bebd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Airbnb design system\",\"item\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#style-reference\",\"name\":\"Airbnb design system reference\",\"headline\":\"Airbnb design system | Refero Styles\",\"description\":\"Explore Airbnb's light Other design system: Carbon Ink #222222, Paper White #ffffff colors, Airbnb Cereal VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Airbnb\",\"url\":\"https://airbnb.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/194faa2f-2f69-4bbf-9e29-290f28fa8ca2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"caption\":\"Screenshot of Airbnb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/50f2011f-9d0c-401e-ae7e-8152970165ff.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Airbnb design system\",\"Airbnb website design\",\"Airbnb colors\",\"Airbnb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Carbon Ink\",\"Paper White\",\"Newsprint Gray\",\"Pebble\",\"Airbnb Cereal VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Airbnb design system\"},{\"@type\":\"Thing\",\"name\":\"Airbnb website design\"},{\"@type\":\"Thing\",\"name\":\"Airbnb colors\"},{\"@type\":\"Thing\",\"name\":\"Airbnb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:57:03.648Z\",\"dateModified\":\"2026-04-30T03:57:03.648Z\"}]}19:T453,**Quick Color Reference**\n- text: #222222\n- background: #ffffff (canvas) / #f7f7f7 (alternate band)\n- border: #222222 (1px hairline) / #6a6a6a (muted)\n- accent: #b30057 (logo only — never use in UI)\n- primary action: #222222 (filled action)\n- disabled: #a6a6a6\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #222222 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Section Band*: Alternate #f7f7f7 background, 64px vertical padding. Centered section headline at 48px weight 500, letter-spacing -0.02em, color #222222. Subtext at 18px weight 400, max-width 640px. No buttons in this section.\n\n3. *Media Block*: 1200px max-width, 12px radius corners, 1px #222222 border on video embeds. Sits on white background with 48px vertical margin above and below. No caption or overlay text inside the media block.\n\n\n5. *Map Container*: 1200px max-width, #f7f7f7 background, 12px radius, 48px padding. Flat monochrome world map with country labels in 12px weight 500 #222222. No color fills on landmasses, no interactive markers."
+}

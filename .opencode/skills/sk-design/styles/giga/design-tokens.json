@@ -1,0 +1,479 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Deepest background, hero image overlay, footer canvas, shadow base — pure black creates cinematic depth behind atmospheric photography"
+    },
+    "onyx": {
+      "$value": "#0f0d0d",
+      "$type": "color",
+      "$description": "Onyx — Primary page canvas (--bg), card surface, default button fill — the warm-tinted near-black that grounds the entire interface"
+    },
+    "charcoal": {
+      "$value": "#171615",
+      "$type": "color",
+      "$description": "Charcoal — Raised surface, dark button background (--button-dark-bg), elevated cards — one step lighter than the canvas to signal depth without drawing attention"
+    },
+    "graphite": {
+      "$value": "#262828",
+      "$type": "color",
+      "$description": "Graphite — Stepped feature panels, image containers, secondary surface layer — visible in side-by-side comparison modules"
+    },
+    "void": {
+      "$value": "#050404",
+      "$type": "color",
+      "$description": "Void — Near-black used in box-shadow tints and image depth effects — effectively black but with a barely-warm undertone matching Onyx"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text, icons, light button text, filled button surface (--primary) — pure white on near-black achieves 19:1 contrast, the highest readable tier"
+    },
+    "ash": {
+      "$value": "#878686",
+      "$type": "color",
+      "$description": "Ash — Secondary body text, descriptive copy, helper labels — sits at ~50% luminance, legible without competing with headlines"
+    },
+    "smoke": {
+      "$value": "#6f6e6e",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, decorative fills, disabled states, muted metadata — low-contrast informational layer"
+    },
+    "fog": {
+      "$value": "#939292",
+      "$type": "color",
+      "$description": "Fog — Mid-tone body text, inline labels, muted paragraph text — the readable middle gray for longer descriptions"
+    },
+    "ember-red": {
+      "$value": "#fe2c02",
+      "$type": "color",
+      "$description": "Ember Red — Saturated accent for highlight cards and feature panels — the single chromatic punctuation in an otherwise monochrome system, evokes urgency and warmth without aggression"
+    }
+  },
+  "font": {
+    "gigasanstext": {
+      "$value": "gigaSansText",
+      "$type": "fontFamily",
+      "$description": "Body text, buttons, navigation, links — the workhorse. Weight 400 for paragraphs, 500 for button labels and emphasis. 16px at 1.5 line-height is the readable default; 14px at 1.43 handles dense UI chrome."
+    },
+    "emiliodisplay": {
+      "$value": "emilioDisplay",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the signature voice. Ultra-light weight at 48-66px with tight -0.02em to -0.03em tracking creates a film-title-card feel. Most enterprise brands shout with 700-weight headlines; Giga whispers with 300, which is the entire personality in one choice."
+    },
+    "gigasansdisplay": {
+      "$value": "gigaSansDisplay",
+      "$type": "fontFamily",
+      "$description": "Section subheadings, feature card titles, prominent UI labels — bridges the gap between whisper-thin display and body text. Weight 500 at 22px carries mid-importance statements."
+    },
+    "intertext": {
+      "$value": "interText",
+      "$type": "fontFamily",
+      "$description": "Large numerical and functional headings — 44px with -0.03em tracking for stat callouts and mid-level headings. Acts as a contrast voice to the emilioDisplay serif displays."
+    },
+    "geistmono": {
+      "$value": "geistMono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, badges, tags, version markers, uppercase metadata — always uppercase with +0.007em to +0.009em tracking. The 11-12px range with 2.0+ line-height creates spacious technical annotations."
+    },
+    "interdisplay": {
+      "$value": "interDisplay",
+      "$type": "fontFamily",
+      "$description": "interDisplay — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "geistMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "geistMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "geistMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "geistMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "gigaSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "interDisplay",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "gigaSansDisplay",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "gigaSansDisplay",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "gigaSansDisplay",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "interText",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "emilioDisplay",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "emilioDisplay",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "emilioDisplay",
+        "fontSize": "66px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 66px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.7) 0px 12px 32px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest background — full-bleed photography backdrops, footer base, shadow sink"
+    },
+    "onyx": {
+      "$value": "#0f0d0d",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — the warm-tinted near-black that everything sits on"
+    },
+    "charcoal": {
+      "$value": "#171615",
+      "$type": "color",
+      "$description": "Surface level 2: Raised cards, dark button fills, elevated content blocks"
+    },
+    "graphite": {
+      "$value": "#262828",
+      "$type": "color",
+      "$description": "Surface level 3: Stepped panels, comparison modules, image containers"
+    },
+    "glass-overlay": {
+      "$value": "#00000033",
+      "$type": "color",
+      "$description": "Surface level 4: Translucent card surfaces over photography — the frosted-glass effect for badges and floating UI"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://giga.ai",
+      "siteName": "Giga",
+      "extractedAt": "2026-07-03T03:23:13.251Z",
+      "variant": "extended"
+    }
+  }
+}

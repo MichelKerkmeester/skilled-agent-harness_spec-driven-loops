@@ -1,0 +1,1192 @@
+{
+  "source": "https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b",
+  "uuid": "81507860-e43d-4c50-b371-7267af9a914b",
+  "name": "PLATFORM",
+  "northStar": "white cube gallery under spotlights",
+  "capturedAt": "2026-07-18T07:49:52.915Z",
+  "meta": {
+    "url": "https://www.platformart.com",
+    "siteName": "PLATFORM",
+    "extractedAt": "2026-06-03T19:28:05.314Z",
+    "durationMs": 34880,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 723,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 for all text, borders, and interactive elements — never introduce chromatic colors for UI purposes",
+      "Set all border-radius to 0px on buttons, cards, inputs, badges, and tags — sharp corners are the signature",
+      "Set MediumLLWeb 400 as the default weight for all body and heading text; reserve 500 exclusively for labels, artist names, and prices",
+      "Use 1px #000000 borders for card outlines, nav separation, and section dividers — never thicker",
+      "Keep the type scale to five sizes: 12, 15, 20, 48, 72px — resist adding intermediate steps",
+      "Use tabular numerals (tnum) for all prices and numeric metadata to ensure column alignment in card grids",
+      "Maintain a max-width of ~1280px with generous side margins so the catalog breathes like a gallery wall"
+    ],
+    "donts": [
+      "Do not add rounded corners to any element — the sharp-edge aesthetic is load-bearing for the gallery identity",
+      "Do not introduce shadows, glows, or blur effects — depth comes from borders and band color shifts only",
+      "Do not use color for hierarchy — rely solely on weight (400 vs 500) and size (12–72px)",
+      "Do not use gradient backgrounds, even subtle ones — the system is strictly binary black/white",
+      "Do not use 13–17px body sizes — the compact 15px at 1.20 line-height is the intentional rhythm",
+      "Do not center body copy inside cards beyond metadata — long-form text should be left-aligned with a ~640px measure",
+      "Do not add colored badges, tags, or status pills — labels are plain uppercase 12px 500 text only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page background, card surfaces, negative space",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Lamp Black",
+        "role": "Primary text, card and nav borders, link color — the only structural color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Ash Gray",
+        "role": "Hairline dividers, subtle surface separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Concrete Gray",
+        "role": "Secondary borders, input outlines, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Smoke Gray",
+        "role": "Muted helper text, metadata captions, placeholder labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Graphite",
+        "role": "Secondary captions, timestamps, de-emphasized metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Iron Gray",
+        "role": "Tertiary captions, breadcrumb separators, fine print",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero section with centered overlay type, followed by a gray zone-band header introducing each content section, then a 4-column card grid of artworks. The page is contained within a ~1280px max-width for the card grid and text blocks, but the hero and section bands stretch edge-to-edge. Section rhythm is consistent: every zone opens with a hairline-bordered header band (gray bg, left-aligned label, centered description, right-aligned link), followed by the card grid. Navigation is a minimal top bar with no sticky behavior. No sidebars, no breadcrumbs within the main flow — the layout is strictly vertical: nav → hero → zone band → grid → zone band → grid → footer.",
+    "imagery": "Imagery is exclusively fine-art photography: paintings, sculptures, and mixed-media works presented as straight product crops on white. No lifestyle context, no staged room shots, no human models interacting with the art. Each artwork fills its card frame edge-to-edge, treated as a precious object isolated for inspection. The hero image is a full-bleed atmospheric photograph — dark, slightly blurred, with dramatic light — that functions as an editorial mood-setter rather than a product shot. No illustrations, no icons beyond minimal functional glyphs, no decorative graphics.",
+    "similar": [
+      {
+        "why": "Same monochrome gallery-catalogue approach with white canvas, black type, and artwork presented as unframed product crops in a dense grid",
+        "business": "David Zwirner"
+      },
+      {
+        "why": "Editorial art-world aesthetic with hairline borders, zero shadows, sharp corners, and a single neo-grotesque typeface carrying all hierarchy",
+        "business": "Hauser & Wirth"
+      },
+      {
+        "why": "Minimalist art-retail layout with centered metadata stacks under each artwork, 1px black card borders, and no decorative chrome",
+        "business": "The MoMA Store"
+      },
+      {
+        "why": "Full-bleed dark hero photography, restrained black-and-white system, and compact body type that lets the catalog artwork dominate",
+        "business": "Pace Gallery"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "72px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "level": 1,
+        "purpose": "Base page canvas and card backgrounds"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Ash Gray",
+        "level": 2,
+        "purpose": "Subtle surface tint for zone bands and dividers"
+      }
+    ],
+    "northStar": "white cube gallery under spotlights",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.02
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": 0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site header",
+        "description": "Horizontal bar with flat 0px radius. Left: 'PLATFORM:' label in 12px MediumLLWeb 500 uppercase, followed by Shop / Objects / Artists links at 15px weight 400. Right: region selector (US), account icon, saved items, search. 1px solid #000000 bottom border separates nav from content. Padding: 6px vertical, 20–40px horizontal."
+      },
+      {
+        "name": "Hero Spotlight Banner",
+        "role": "Full-width editorial feature",
+        "description": "Full-bleed dark photographic image filling the viewport. Centered overlay text: 'SPOTLIGHT:' at 48px weight 400 followed by artist name at 72px weight 400, both #ffffff on the darkened photo. Subtext at 15px centered below, plus an '› Explore now' link. No buttons, no card chrome — pure type on image."
+      },
+      {
+        "name": "Section Header Band",
+        "role": "Zone introduction block",
+        "description": "Horizontal band with #dddddd background or hairline border. Left column: section title in 12px 500 uppercase tracking 0.02em. Center: descriptive paragraph at 15px weight 400. Right: '› Browse artworks' text link. 1px #000000 bottom border divides band from content grid."
+      },
+      {
+        "name": "Artwork Card",
+        "role": "Individual artwork listing",
+        "description": "Vertical card with 0px radius and no shadow. 1px #000000 border. Artwork image fills the card width with a 1:1 or 3:4 aspect ratio. Below image: artist name at 12px 500 uppercase centered, work title and year at 15px 400, medium description at 15px 400, and price at 12px 500 — all centered. A small star/save icon sits at the bottom. Card padding: ~20px below image."
+      },
+      {
+        "name": "Artwork Grid",
+        "role": "Catalog collection layout",
+        "description": "4-column grid on desktop, 2-column on tablet, 1-column on mobile. Equal-width columns with 20–30px gutters. Each card occupies one grid cell with consistent image-to-text ratio across the row."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation and call-to-action",
+        "description": "Plain underlined #000000 text at 15px weight 400. Leading chevron '›' character for directional links like 'Explore now', 'Browse artworks', 'View all'. No button background, no color change on hover — underline thickens or weight shifts to 500."
+      },
+      {
+        "name": "Ghost Icon Button",
+        "role": "Utility actions in nav and cards",
+        "description": "Icon-only button with 0px radius, no background, no border. Uses #000000 stroke/fill for account, saved items, search, and save-to-collection icons. 4–6px padding around icon."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Editorial paragraphs and descriptions",
+        "description": "15px MediumLLWeb weight 400 at 1.20 line-height. #000000 color on #ffffff background. Max-width ~640px for readable measure. Used for feature descriptions, artist bios, and zone intros."
+      },
+      {
+        "name": "Metadata Caption",
+        "role": "Artist, title, year, medium, price",
+        "description": "Centered stack under each artwork: artist name in 12px 500 uppercase, title and year in 15px 400, price in 12px 500. Tabular numerals enabled for price alignment. All #000000."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with links and info",
+        "description": "Top 1px #000000 border, #ffffff background. Multi-column link list at 15px weight 400, grouped by category. Bottom row: copyright and legal links in 12px. Flat, no decoration."
+      },
+      {
+        "name": "Search Input",
+        "role": "Nav search field",
+        "description": "Transparent background, 1px #000000 bottom border only (no full box). Placeholder text at 15px in #b3b3b3. No border-radius. Search icon inline at right."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text across the site — UI, body, and display. A single neo-grotesque custom face from Production Type carrying every typographic role. Weight 400 is the default for body and navigation; weight 500 is reserved for artist names, prices, and emphasis in card metadata. Display sizes (48–72px) use the same 400 weight with tight line-height (1.00–1.15) to create the measured, catalog-page cadence.",
+        "sizes": "12px, 15px, 20px, 48px, 72px",
+        "family": "MediumLLWeb",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.15, 1.20",
+        "substitute": "Söhne, Inter, Neue Haas Grotesk",
+        "letterSpacing": "0.01em at 20px and below, 0.02em at 48px and above",
+        "fontFeatureSettings": "\"tnum\" on for price alignment in card metadata"
+      }
+    ],
+    "description": "PLATFORM is a monochromatic gallery vitrine: pure white canvas, pure black type, and a single typographic voice that lets the artworks carry all the color. The interface is editorial rather than commercial — generous negative space, hairline borders, and a compact 15px body size that keeps the catalog dense without feeling utilitarian. Every element is reduced to its essential geometric form: no shadows, no rounded corners, no decorative gradients. Visual weight comes from typography alone, with the display size of 72px and a restrained 1.00 line-height creating the slow, deliberate cadence of a printed exhibition catalog.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PLATFORM design system\",\"item\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#style-reference\",\"name\":\"PLATFORM design system reference\",\"headline\":\"PLATFORM design system | Refero Styles\",\"description\":\"Explore PLATFORM's light E-commerce design system: Bone White #ffffff, Lamp Black #000000 colors, MediumLLWeb typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PLATFORM\",\"url\":\"https://www.platformart.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"caption\":\"Screenshot of PLATFORM\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PLATFORM design system\",\"PLATFORM website design\",\"PLATFORM colors\",\"PLATFORM typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone White\",\"Lamp Black\",\"Ash Gray\",\"Concrete Gray\",\"MediumLLWeb\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PLATFORM design system\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM website design\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM colors\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:14:12.555Z\",\"dateModified\":\"2026-04-30T03:14:12.555Z\"}]}19:T61c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #b3b3b3\n- divider: #dddddd\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Artwork Card*: 0px radius, 1px solid #000000 border, no shadow. Artwork image fills card width edge-to-edge. Below: artist name centered at 12px MediumLLWeb weight 500 uppercase, title and year at 15px weight 400, medium at 15px weight 400, price at 12px weight 500. All text #000000 on #ffffff. 20px padding below image.\n\n2. *Hero Spotlight Banner*: Full-bleed dark photographic image, 100vh. Centered overlay: 'SPOTLIGHT:' at 48px MediumLLWeb 400 #ffffff, artist name at 72px weight 400 #ffffff, line-height 1.00, letter-spacing 0.02em. Below: 15px descriptive subtext #ffffff, then '› Explore now' text link.\n\n3. *Section Header Band*: #dddddd background, 1px solid #000000 bottom border. Left: section label at 12px weight 500 uppercase. Center: description at 15px weight 400. Right: '› Browse all' underlined text link at 15px weight 400. 20px vertical padding.\n\n4. *Artwork Grid*: 4 equal columns, 24px gap, max-width 1280px centered. Each cell is an Artwork Card. Grid sits directly below the Section Header Band with no additional spacing.\n\n5. *Top Navigation*: 0px radius, #ffffff background, 1px solid #000000 bottom border. Left: 'PLATFORM:' at 12px weight 500 uppercase. Nav links (Shop, Objects, Artists) at 15px weight 400 #000000. Right: region selector and icon buttons (account, saved, search) as 0px ghost buttons. 6px vertical padding."
+      }
+    ],
+    "elevationPhilosophy": "The design system deliberately avoids shadows. All depth and separation is achieved through 1px hairline borders in #000000 or #dddddd, plus background color shifts between white and light gray bands. There is no floating, no blurring, no z-axis — the interface reads as a flat printed page pinned to the wall."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "icon",
+            "footer",
+            "input",
+            "list"
+          ],
+          "frequency": 3182,
+          "confidence": 1,
+          "prominence": 71276076.55071081,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 13,
+            "icon/fill": 2,
+            "nav/color": 66,
+            "body/color": 15,
+            "card/color": 250,
+            "icon/color": 29,
+            "link/color": 43,
+            "list/color": 16,
+            "nav/stroke": 17,
+            "other/fill": 29,
+            "image/color": 32,
+            "input/color": 1,
+            "other/color": 112,
+            "button/color": 46,
+            "footer/color": 1,
+            "other/stroke": 56,
+            "heading/color": 2,
+            "nav/borderColor": 264,
+            "body/borderColor": 60,
+            "card/borderColor": 1000,
+            "icon/borderColor": 116,
+            "link/borderColor": 172,
+            "list/borderColor": 64,
+            "image/borderColor": 128,
+            "input/borderColor": 4,
+            "other/borderColor": 447,
+            "button/borderColor": 184,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 85,
+          "confidence": 1,
+          "prominence": 30109550.19276891,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 2,
+            "other/color": 6,
+            "heading/color": 5,
+            "body/borderColor": 12,
+            "link/borderColor": 8,
+            "other/borderColor": 24,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 110808,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19440,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 5952.727503770732,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 23,
+            "other/borderColor": 92
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2168.2287009865413,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#dddddd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#000000",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.32,
+          "background": "#ffffff",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#b3b3b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.7,
+          "background": "#808080",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#b3b3b3",
+          "foreground": "#aaaaaa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "marginBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "paddingRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "paddingRight|nav",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "input"
+          ],
+          "frequency": 118,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|body",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingRight|link",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginRight|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 262,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "MediumLLWeb",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 652,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link",
+            "card",
+            "image",
+            "other"
+          ],
+          "frequency": 274,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "MediumLLWeb",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image",
+            "footer",
+            "input",
+            "list",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "image",
+            "list",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 164,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "MediumLLWeb",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/554ddc43-32d1-4f92-935e-83be37f371da.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PLATFORM design system\",\"item\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#style-reference\",\"name\":\"PLATFORM design system reference\",\"headline\":\"PLATFORM design system | Refero Styles\",\"description\":\"Explore PLATFORM's light E-commerce design system: Bone White #ffffff, Lamp Black #000000 colors, MediumLLWeb typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PLATFORM\",\"url\":\"https://www.platformart.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/81507860-e43d-4c50-b371-7267af9a914b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"caption\":\"Screenshot of PLATFORM\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d9e0abc0-8373-4b06-9219-94b77d036efc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PLATFORM design system\",\"PLATFORM website design\",\"PLATFORM colors\",\"PLATFORM typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone White\",\"Lamp Black\",\"Ash Gray\",\"Concrete Gray\",\"MediumLLWeb\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PLATFORM design system\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM website design\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM colors\"},{\"@type\":\"Thing\",\"name\":\"PLATFORM typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:14:12.555Z\",\"dateModified\":\"2026-04-30T03:14:12.555Z\"}]}19:T61c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #b3b3b3\n- divider: #dddddd\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Artwork Card*: 0px radius, 1px solid #000000 border, no shadow. Artwork image fills card width edge-to-edge. Below: artist name centered at 12px MediumLLWeb weight 500 uppercase, title and year at 15px weight 400, medium at 15px weight 400, price at 12px weight 500. All text #000000 on #ffffff. 20px padding below image.\n\n2. *Hero Spotlight Banner*: Full-bleed dark photographic image, 100vh. Centered overlay: 'SPOTLIGHT:' at 48px MediumLLWeb 400 #ffffff, artist name at 72px weight 400 #ffffff, line-height 1.00, letter-spacing 0.02em. Below: 15px descriptive subtext #ffffff, then '› Explore now' text link.\n\n3. *Section Header Band*: #dddddd background, 1px solid #000000 bottom border. Left: section label at 12px weight 500 uppercase. Center: description at 15px weight 400. Right: '› Browse all' underlined text link at 15px weight 400. 20px vertical padding.\n\n4. *Artwork Grid*: 4 equal columns, 24px gap, max-width 1280px centered. Each cell is an Artwork Card. Grid sits directly below the Section Header Band with no additional spacing.\n\n5. *Top Navigation*: 0px radius, #ffffff background, 1px solid #000000 bottom border. Left: 'PLATFORM:' at 12px weight 500 uppercase. Nav links (Shop, Objects, Artists) at 15px weight 400 #000000. Right: region selector and icon buttons (account, saved, search) as 0px ghost buttons. 6px vertical padding."
+}

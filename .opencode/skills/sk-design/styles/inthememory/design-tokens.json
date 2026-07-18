@@ -1,0 +1,367 @@
+{
+  "color": {
+    "ink-teal": {
+      "$value": "#102126",
+      "$type": "color",
+      "$description": "Ink Teal — Primary text, borders, filled buttons, iconography — the structural backbone of the system. Its near-black teal reads as authoritative without the harshness of pure black"
+    },
+    "slate-veil": {
+      "$value": "#3d5761",
+      "$type": "color",
+      "$description": "Slate Veil — Secondary text, subtle borders — bridges body copy and muted UI chrome without competing with the primary ink"
+    },
+    "fog-gray": {
+      "$value": "#677b82",
+      "$type": "color",
+      "$description": "Fog Gray — Tertiary text, disabled states, low-emphasis labels — the quietest neutral that still maintains readability against white"
+    },
+    "chalk-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Chalk White — Page canvas, card surfaces, button text on dark fills — the dominant surface that lets the dark ink and accent colors carry the visual weight"
+    },
+    "pale-mist": {
+      "$value": "#f1f7f9",
+      "$type": "color",
+      "$description": "Pale Mist — Card backgrounds, section washes, subtle surface elevation — a barely-tinted cool gray that lifts cards off the white canvas without warmth"
+    },
+    "hairline-gray": {
+      "$value": "#e9eef0",
+      "$type": "color",
+      "$description": "Hairline Gray — Dividers, borders, input outlines — the thinnest structural line color, used where a 1px edge needs to exist without drawing attention"
+    },
+    "ember-orange": {
+      "$value": "#fa4e1d",
+      "$type": "color",
+      "$description": "Ember Orange — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "sunset-coral": {
+      "$value": "#fb6338",
+      "$type": "color",
+      "$description": "Sunset Coral — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "signal-blue": {
+      "$value": "#0c67ff",
+      "$type": "color",
+      "$description": "Signal Blue — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "info-indigo": {
+      "$value": "#0519d5",
+      "$type": "color",
+      "$description": "Info Indigo — Violet state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color"
+    },
+    "soft-sky": {
+      "$value": "#e4eeff",
+      "$type": "color",
+      "$description": "Soft Sky — Info badge backgrounds, subtle blue washes — the pastel counterpoint to Info Indigo, used when a blue element needs a tinted surface rather than a solid fill"
+    }
+  },
+  "font": {
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Single-family system. Weight 500 carries all emphasis (headings, nav, button labels, card titles) while weight 400 handles body, descriptions, and supporting text. The two-weight discipline creates a binary voice: 500 announces, 400 explains. The tight line-height ratio on display sizes (1.10 at 56px) gives headlines a compact, editorial density rather than airy marketing sprawl."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the dominant surface across all pages"
+    },
+    "card-surface": {
+      "$value": "#f1f7f9",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, section washes, subtle surface differentiation from the white canvas"
+    },
+    "info-wash": {
+      "$value": "#e4eeff",
+      "$type": "color",
+      "$description": "Surface level 2: Info badge backgrounds, very light blue tinted surfaces for semantic content"
+    },
+    "warm-accent": {
+      "$value": "#fb6338",
+      "$type": "color",
+      "$description": "Surface level 3: Featured card surfaces that need to break the cool palette and draw the eye"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://inthememory.com",
+      "siteName": "Inthememory",
+      "extractedAt": "2026-06-03T21:08:25.664Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, wordmark fills, link text, all heading color — the only non-white pigment in the interface"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, inverse text on dark moments"
+    },
+    "terracotta": {
+      "$value": "#af7653",
+      "$type": "color",
+      "$description": "Terracotta — Sole chromatic accent — warm earthen tone for hover states, active indicators, or single-element highlights against the monochrome field"
+    }
+  },
+  "font": {
+    "monument": {
+      "$value": "Monument",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. Regular variant at 13–23px for nav links, metadata, body micro-copy. Medium variant at 216px for the hero wordmark — the only element that earns the 216px scale, with -0.033em tracking to tighten the ultra-condensed letterforms into a continuous bar of black"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Monument-Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.77
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Monument-Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Monument-Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Monument-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Monument-Regular",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Monument-Medium",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 0.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 216px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, all content sits on this surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://hausotto.com",
+      "siteName": "Haus Otto",
+      "extractedAt": "2026-06-03T19:18:01.351Z",
+      "variant": "extended"
+    }
+  }
+}

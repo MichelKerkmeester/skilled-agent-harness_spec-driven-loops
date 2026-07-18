@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --color-ink: #202020;
+  --color-bone: #dfdcdc;
+  --color-ash: #cdcecf;
+
+  /* Typography — Font Families */
+  --font-nb-akademie-pro: 'NB Akademie Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 21px;
+  --leading-body: 1.33;
+  --tracking-body: -0.32px;
+  --text-heading: 43px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.16px;
+  --text-display: 58px;
+  --leading-display: 0.93;
+  --tracking-display: -2.9px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-31: 31px;
+  --spacing-42: 42px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 80px;
+  --card-padding: 0px;
+  --element-gap: 18px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-bone: #dfdcdc;
+}

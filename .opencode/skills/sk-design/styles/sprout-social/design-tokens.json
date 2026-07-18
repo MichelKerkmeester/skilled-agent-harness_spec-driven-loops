@@ -1,0 +1,304 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#040404",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, nav borders, heading strokes, footer dividers — the dominant non-white color across the entire system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, nav surface, input fills, button text on dark fills"
+    },
+    "ash-gray": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Ash Gray — Nav dividers, link borders, subtle separators, muted UI chrome"
+    },
+    "smoke-gray": {
+      "$value": "#cbcece",
+      "$type": "color",
+      "$description": "Smoke Gray — Image borders, input borders, secondary button surface, faint dividers"
+    },
+    "slate": {
+      "$value": "#162020",
+      "$type": "color",
+      "$description": "Slate — Secondary text, nav border accent, card border emphasis"
+    },
+    "pewter": {
+      "$value": "#6e797a",
+      "$type": "color",
+      "$description": "Pewter — Body muted text, helper copy, meta information"
+    },
+    "sprout-green": {
+      "$value": "#98e58e",
+      "$type": "color",
+      "$description": "Sprout Green — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    }
+  },
+  "font": {
+    "proxima-nova": {
+      "$value": "Proxima Nova",
+      "$type": "fontFamily",
+      "$description": "Single-family system. Display and headings lock to 700–800 — near-black weight gives headlines a poster-like authority. Body and nav use 400. The weight gap between body (400) and headline (800) is the hierarchy engine; no medium or semibold exists in between. Substitute: Montserrat, Gotham, or Nunito Sans."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.64
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "32px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "43px",
+        "fontWeight": 800,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "57px",
+        "fontWeight": 800,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 57px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "76px",
+        "fontWeight": 800,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 76px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(39, 51, 51, 0.24) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background, hero reverse panels"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Integration tiles, feature cards — same white as canvas, defined by border and radius rather than tonal lift"
+    },
+    "input-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Form fields, email capture — sits on canvas with a 1px border for definition"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sproutsocial.com",
+      "siteName": "Sprout Social",
+      "extractedAt": "2026-06-03T17:41:38.571Z",
+      "variant": "extended"
+    }
+  }
+}

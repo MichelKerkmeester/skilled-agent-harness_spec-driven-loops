@@ -1,0 +1,200 @@
+{
+  "color": {
+    "ember-ink": {
+      "$value": "#d9462b",
+      "$type": "color",
+      "$description": "Ember Ink — Hero wordmark color, accent strokes, and the only chromatic text — a warm orange-red that reads as hand-pressed ink against the pink field. Used on display headlines and select illustration details"
+    },
+    "dusty-rose": {
+      "$value": "#e296bb",
+      "$type": "color",
+      "$description": "Dusty Rose — Primary section background — a warm desaturated pink that carries the hero band and full-width content panels. Sets the editorial tone of the site"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, wordmark fill on light sections, illustration linework, and borders. The workhorse neutral"
+    },
+    "charcoal": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Charcoal — Dark section surface — used for full-bleed panels that invert the page to white-on-black editorial spreads"
+    },
+    "bone-white": {
+      "$value": "#f5f6f5",
+      "$type": "color",
+      "$description": "Bone White — Default page canvas and light section background — slightly warm off-white that pairs with the pink rather than competing against it"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Pure white reserved for maximum contrast moments and the lightest content panels"
+    }
+  },
+  "font": {
+    "trjn-davinci": {
+      "$value": "TRJN DaVinci",
+      "$type": "fontFamily",
+      "$description": "Display wordmark and editorial display type. This humanist serif at 300px is the signature — it carries the brand name and section titles. Its tall x-height, ball-terminal details, and slight contrast make it feel like wood-type rather than web type. Used at massive scale for the 'Concrete Club' wordmark and at 14–16px for editorial pull-quotes and chapter labels. Substitute: Playfair Display or DM Serif Display for a similar humanist editorial serif character."
+    },
+    "helveticaneue-light": {
+      "$value": "HelveticaNeue-Light",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation labels, and large all-caps section statements. The 300-weight thinness of this sans is deliberate — it sits quietly beneath the DaVinci wordmark rather than competing. At 48px and 112px it becomes statement type in its own right, used for large chapter intros and hero secondary text. Tight line-height (0.78) makes multi-line headers stack densely. Substitute: Helvetica Neue Light or Inter Light."
+    },
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Micro-labels and small print — copyright lines, location markers, fine meta text. The cleanest, most neutral voice in the system. Substitute: Neue Haas Grotesk or Inter."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TRJN DaVinci",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TRJN DaVinci",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TRJN DaVinci",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeue-Light",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeue-Light",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.42
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeue-Light",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 112px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeue-Light",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 112px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "TRJN DaVinci",
+        "fontSize": "300px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 300px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "230": {
+      "$value": "230px",
+      "$type": "dimension",
+      "$description": "Spacing 230px"
+    }
+  },
+  "surface": {
+    "bone-white-canvas": {
+      "$value": "#f5f6f5",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background and light editorial panels"
+    },
+    "dusty-rose-field": {
+      "$value": "#e296bb",
+      "$type": "color",
+      "$description": "Surface level 1: Hero band and warm content sections — the brand's signature surface"
+    },
+    "charcoal-spread": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark editorial section — inverts the page to white type"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Maximum-contrast content surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://concreteclub.studio",
+      "siteName": "Concrete Club Studio",
+      "extractedAt": "2026-06-03T18:56:04.130Z",
+      "variant": "extended"
+    }
+  }
+}

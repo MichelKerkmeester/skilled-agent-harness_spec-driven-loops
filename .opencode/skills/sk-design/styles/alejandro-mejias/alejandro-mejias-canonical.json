@@ -1,0 +1,1153 @@
+{
+  "source": "https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d",
+  "uuid": "5f802b93-5f46-470f-baaf-173737189c9d",
+  "name": "Alejandro Mejias",
+  "northStar": "Acid-lit brutalist atelier, acid yellow against obsidian and bone white",
+  "capturedAt": "2026-07-18T09:48:42.505Z",
+  "meta": {
+    "url": "https://www.alejandromejias.com.au",
+    "siteName": "Alejandro Mejias",
+    "extractedAt": "2026-06-03T18:04:02.626Z",
+    "durationMs": 29782,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 876,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use IBM Plex Mono 500–600 at 10–11px with 0.086–0.109em positive tracking for every label, tag, and metadata string — uppercase by default",
+      "Reserve FK Raster Grotesk Compact Trial Sharp at 32–48px / line-height 1.0 for section titles only — never use it for body or subheadings",
+      "Use Acid Lime (#ebff00) exclusively on time badges, the 'Book a Call' CTA, and avatar pills — never as a background fill for large sections",
+      "Apply 4px border-radius to all buttons, tags, and outlined actions; 24px radius to all images; 72–84px radius only to pill-shaped elements",
+      "Maintain a three-zone top bar layout (left brand / center nav / right status pill) on every page",
+      "Pair Obsidian text on Bone White for light sections and Bone White text on Obsidian for dark sections — never mix",
+      "Use 48px vertical padding as the standard section separator rhythm"
+    ],
+    "donts": [
+      "Do not introduce additional chromatic colors — the lime is the ONLY accent in the system and adding others breaks the discipline",
+      "Do not use soft shadows, blurs, or gradient backgrounds on any UI element — the system is intentionally flat except for the 3D sculpture",
+      "Do not use 16px+ border-radius on buttons or tags — they must read as sharp/precise (4px)",
+      "Do not set body type above 18px — the design uses size contrast between 11px labels and 48px displays, not intermediate steps",
+      "Do not place body copy centered — all body and labels are left-aligned, with only display headings occasionally centered",
+      "Do not use border-radius below 4px or use perfectly square corners — 4px is the minimum precision radius",
+      "Do not stack more than two text weights in a single component — the system relies on monospace + display grotesque only"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ebff00",
+        "name": "Acid Lime",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#080707",
+        "name": "Obsidian",
+        "role": "Body and heading text, dominant border color, dark section canvas — near-pure black for maximum contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "High-frequency borders, icons, decorative strokes, image outlines — the structural black that outlines every other element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Light section canvas, card surfaces, inverted text on dark sections and lime buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Fog",
+        "role": "Placeholder surfaces, muted image backgrounds, subtle borders, disabled state fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#383838",
+        "name": "Slate",
+        "role": "Secondary dark surfaces, dark mode card backgrounds, subdued text on dark canvases",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout with no centered max-width container. Top bar spans 100% width with three flex zones: brand label top-left, nav center, status pill top-right. The hero is a wide left-right split: descriptive text block on the left, metadata credits top-right, and the 3D 'A' sculpture dominating the center. Below the fold, project galleries use a 2-column image grid with full-bleed edges. Contact section flips to a dark Obsidian canvas maintaining the same edge-to-edge treatment. Navigation is a single sticky top bar — no sidebar, no mega-menu, no breadcrumbs. Section transitions are immediate (no gradients, no fades) — the only section break mechanism is the canvas flip from white to black. Spacing is compact: 48px between major sections, 10px between text rows, 4–16px component padding. Floating corner elements (Book a Call pill bottom-right, Honors tab right edge) layer over the layout as fixed UI chrome.",
+    "imagery": "The visual language is 99% flat monochrome UI punctuated by one signature 3D rendered element: a glossy black abstract 'A' letterform sculpture that appears as a hero anchor and section mascot. Project imagery is presented as large rectangular product mockup screenshots on neutral Fog (#c8c8c8) backgrounds within 24px-radius frames — no lifestyle photography, no environmental context. A small embedded video thumbnail card uses a candid portrait photo. Imagery is always contained (never full-bleed decorative), always sharp-edged or softly rounded at 24px, and always monochrome or desaturated. Icons are mono-stroke monochrome in 1.5–2px weight, paired with monospace labels. The role of imagery is showcase and identification, not decoration — the design IS the decoration.",
+    "similar": [
+      {
+        "why": "Same editorial monochrome portfolio language with a single accent color, tight grid, and large display grotesque headings",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same monospace metadata + large compressed display type combo, monochrome canvas with single vivid accent, edge-to-edge layout",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Same brutalist editorial aesthetic with sharp 4px buttons, bracketed metadata, and a persistent top bar treatment",
+        "business": "Pentagram partners (pentagram.com)"
+      },
+      {
+        "why": "Same monospace-label + display-grotesque contrast, acid accent against monochrome, 3D sculptural logo mark as section anchor",
+        "business": "Werkstätte-Haberzeth"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "24px",
+        "pills": "72-84px",
+        "images": "24px",
+        "buttons": "4px",
+        "special": "30-40px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "48px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Default light section background, hero, project galleries"
+      },
+      {
+        "hex": "#ebff00",
+        "name": "Acid Highlight",
+        "level": 1,
+        "purpose": "Time badge, contact CTA, occasional section accent"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Fog Plate",
+        "level": 2,
+        "purpose": "Image placeholders, product mockup backgrounds, neutral cards"
+      },
+      {
+        "hex": "#383838",
+        "name": "Slate Card",
+        "level": 3,
+        "purpose": "Elevated dark surface inside dark sections"
+      },
+      {
+        "hex": "#080707",
+        "name": "Obsidian Ground",
+        "level": 4,
+        "purpose": "Dark contact/footer section, near-black canvas"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 4px 12px rgba(0,0,0,0.15)",
+        "element": "Floating CTA (Book a Call)"
+      },
+      {
+        "style": "0 2px 8px rgba(0,0,0,0.08)",
+        "element": "Video Watch Card"
+      }
+    ],
+    "northStar": "Acid-lit brutalist atelier, acid yellow against obsidian and bone white",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": 0.86
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 1.344
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": 2.016
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Bar",
+        "role": "Persistent three-zone navigation header",
+        "description": "Full-width strip with three flex-aligned zones: left brand label '[ALEJANDRO MEJIAS]' in 10px IBM Plex Mono 600 uppercase with 0.109em tracking, center nav links ('WORK ⊙', 'ABOUT', 'REACH OUT') at 11px IBM Plex Mono 500, right status pill (see Time Badge). Fixed/sticky behavior. No background fill — transparent over white or black canvas. 48px vertical padding."
+      },
+      {
+        "name": "Time Status Badge",
+        "role": "Live local-time indicator pill",
+        "description": "Acid Lime (#ebff00) filled pill containing live time like 'MEL(AU) 4:33 PM' at 11px IBM Plex Mono 600 uppercase. Pill radius 72–84px. 4px vertical / 8px horizontal padding. Sits in the top-right zone. Functions as a self-aware status indicator — the only place lime appears in the header."
+      },
+      {
+        "name": "Book a Call Floating CTA",
+        "role": "Persistent contact action",
+        "description": "Acid Lime (#ebff00) filled pill with circular avatar image (24px) on the left, 'BOOK A CALL' label in 11px IBM Plex Mono 600 uppercase, and an arrow '↗' icon. 4px vertical / 16px horizontal padding. Border-radius 84px. Fixed to the bottom-right corner. Inverts to dark-mode compatible when over black sections."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Page-level section title",
+        "description": "FK Raster Grotesk Compact Trial Sharp, 48px (or 32px for sub-sections), weight 400, line-height 1.00, letter-spacing 0.042em. Always uppercase. All-caps presentation in a wide-compact grotesque is the signature. No color override needed — uses Obsidian (#080707) on light and Bone White (#ffffff) on dark."
+      },
+      {
+        "name": "Metadata Tag (Bracketed)",
+        "role": "Categorical / contextual label",
+        "description": "10–11px IBM Plex Mono 600 uppercase, letter-spacing 0.086–0.109em, wrapped in square brackets like '[GOOD DESIGN AWARD WINNER 2023/24]' or '[FRONTROW] [2025]'. Obsidian text on light, Bone White on dark. The square-bracket punctuation is part of the system — they read like archival catalog codes."
+      },
+      {
+        "name": "Project Card (Image)",
+        "role": "Portfolio work entry",
+        "description": "Large rectangular image (full column width), 24px border-radius, Obsidian (#000000) 1px border or no border. Above the image: project name in 14px IBM Plex Mono 500 left-aligned + year in same style right-aligned (e.g. 'FINGERTIP.COM' / '2024'). Below: optional metadata. No card background — image sits directly on canvas."
+      },
+      {
+        "name": "Video Watch Card",
+        "role": "Embedded video preview thumbnail",
+        "description": "Small card (~180px wide) with 4px border-radius, 1px Obsidian border, containing a square photo thumbnail and a bottom strip with 'FRONTROW [2025]' label and '[WATCH] ↗' action in 10–11px IBM Plex Mono 500. Lives in the hero zone as a self-contained unit."
+      },
+      {
+        "name": "Contact Row",
+        "role": "Structured contact entry (video call / email / connect)",
+        "description": "Two-column row on dark canvas. Left: label in 11px IBM Plex Mono 600 uppercase ('VIDEO CALL', 'EMAIL', 'CONNECT') in Bone White. Right: corresponding value — acid-lime CTA pill for call, outlined 4px-radius input-style button containing the email for email, horizontal row of social links for connect. 48px row gap between rows. 1px hairline divider between rows."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Secondary contact / display action",
+        "description": "Transparent background, 1px Obsidian (#080707) or Bone White border (on dark), 4px border-radius, contains a value string in 11px IBM Plex Mono 600 uppercase plus a small copy icon. 4px vertical / 16px horizontal padding. Used for email display, secondary actions."
+      },
+      {
+        "name": "Social Link",
+        "role": "External platform entry",
+        "description": "Icon (16–20px) + platform name in 11px IBM Plex Mono 600 uppercase with 0.086em tracking. Bone White on dark, Obsidian on light. Inline horizontal row. No underlines, no hover effects beyond opacity."
+      },
+      {
+        "name": "3D Sculpture Element",
+        "role": "Brand-defining decorative anchor",
+        "description": "A glossy 3D-rendered abstract 'A' letterform in Pure Black with subtle highlight gradients (reads as obsidian glass). Centered in major sections at ~280–340px width. Functions as the site mascot/logo in 3D form. No background — floats on the section canvas. Renders as the only non-flat element in the system."
+      },
+      {
+        "name": "Corner Tab (W. Honors)",
+        "role": "Edge-attached utility label",
+        "description": "Vertical text strip attached to the right edge of the viewport. 11px IBM Plex Mono 600, 0.086em tracking, rotated 90°. Functions as a secondary nav hint (e.g. 'W. Honors'). 1px Obsidian left border."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Hero exit affordance",
+        "description": "Centered at the bottom of the hero: 'SCROLL ↓' in 10–11px IBM Plex Mono 600 uppercase with 0.109em tracking. Obsidian text, no background. Tells the user the page is vertical and scrollable."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines for section titles (e.g. 'FEATURED WORK'). The wide, compact, near-square grotesque proportions at 32–48px with 1.0 line-height and +0.042em tracking are the site's signature — every section is announced with this single cut, no fallback weights exist",
+        "sizes": "32px, 48px",
+        "family": "FK Raster Grotesk Compact Trial Sharp",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Druk Wide, Antonio, Tungsten Bold (all require commercial license); free alternative: Archivo Black at 90% width transform",
+        "letterSpacing": "0.042em"
+      },
+      {
+        "role": "All uppercase labels, metadata tags, navigation items, technical strings, section indices like '014 — TODAY' and '[GOOD DESIGN AWARD WINNER 2023/24]'. The 0.086em–0.109em positive tracking on the 10–11px sizes is the monospace's defining behavior — tiny, widely-spaced, all-caps annotations that read like typeset engineering labels",
+        "sizes": "10px, 11px, 14px, 18px",
+        "family": "IBM Plex Mono",
+        "weight": "500, 600",
+        "lineHeight": "1.00–1.40",
+        "substitute": "JetBrains Mono, Space Mono, IBM Plex Mono (Google)",
+        "letterSpacing": "-0.05em, 0.086em, 0.109em"
+      },
+      {
+        "role": "Long-form body copy and link text. Stays at 16px only — the design avoids type-size variation in body text, relying on monospace labels for hierarchy instead",
+        "sizes": "16px",
+        "family": "Be Vietnam Pro",
+        "weight": "400",
+        "lineHeight": "1.40",
+        "substitute": "Inter, system-ui, sans-serif"
+      },
+      {
+        "role": "Button text — the one place a humanist sans is used at 500 weight with slight negative tracking for legibility in small pill CTAs",
+        "sizes": "16px",
+        "family": "Inter Medium",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Inter, system-ui",
+        "letterSpacing": "-0.012em"
+      },
+      {
+        "role": "Icon-adjacent micro-text and fallback rendering for system UI",
+        "sizes": "12px",
+        "family": "system sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Signature System Rules",
+        "content": "1. The site runs on exactly ONE chromatic color (Acid Lime #ebff00). Introducing a second chromatic voice breaks the visual contract.\n\n2. Typography is a two-family system: a custom wide-compact grotesque (FK Raster Grotesk) for displays and IBM Plex Mono for everything else. A humanist sans (Be Vietnam Pro) only appears in long-form body.\n\n3. Every label and tag uses square-bracket notation ('[FRONTROW] [2025]') to read as archival catalog codes rather than UI labels.\n\n4. Radii follow a strict 3-tier hierarchy: 4px (precise UI), 24px (images), 72–84px (pills). No intermediate values like 8px or 12px are used.\n\n5. The 3D 'A' sculpture functions as a recurring brand mark — it should appear centered in at least one major section per page to maintain brand presence."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is almost entirely avoided. The system relies on canvas flips (white ↔ black) and 1px hairline borders for spatial separation rather than shadows. The only sanctioned shadows are on the floating 'Book a Call' CTA and the embedded video card — both are fixed/overlay elements that must lift off the page to signal interactivity. The 3D sculpture uses its own internal gradient highlights, not CSS shadows, to achieve dimensionality. This restraint is intentional: the design is flat by conviction, and introducing shadows elsewhere would compromise the editorial brutalist tone."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "hero",
+            "list",
+            "image"
+          ],
+          "frequency": 3186,
+          "confidence": 1,
+          "prominence": 143094055.60470253,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "hero/color": 1,
+            "icon/color": 1,
+            "list/color": 38,
+            "other/fill": 119,
+            "image/color": 51,
+            "other/color": 519,
+            "heading/color": 3,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "list/borderColor": 152,
+            "image/borderColor": 204,
+            "other/borderColor": 2076,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "hero",
+            "button",
+            "icon"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 80401795.57749726,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "icon/color": 4,
+            "other/fill": 6,
+            "button/color": 1,
+            "heading/color": 9,
+            "icon/borderColor": 16,
+            "button/borderColor": 4,
+            "heading/borderColor": 36,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ebff00",
+          "oklch": {
+            "c": 0.21656087784101627,
+            "h": 115.40342841047737,
+            "l": 0.9524507276459548
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 12955964.302461537,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 12,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#080707",
+          "oklch": {
+            "c": 0.0021172427970315914,
+            "h": 17.429006207760306,
+            "l": 0.13009589372529556
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 494,
+          "confidence": 1,
+          "prominence": 11480022.646945141,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 30,
+            "icon/color": 6,
+            "link/color": 5,
+            "other/fill": 20,
+            "other/color": 1,
+            "heading/color": 45,
+            "body/borderColor": 120,
+            "icon/borderColor": 24,
+            "link/borderColor": 20,
+            "other/borderColor": 4,
+            "heading/borderColor": 180,
+            "other/backgroundColor": 25,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c8c8c8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.832793817744683
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 3189559.806912169,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "heading/color": 3,
+            "icon/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#505e45",
+          "oklch": {
+            "c": 0.04285579198552454,
+            "h": 131.71732991485123,
+            "l": 0.4625442622899978
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 422600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#383838",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3406970568972224
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3683.5715635276474,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002763626878125198,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#080707",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.84,
+          "background": "#ebff00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.05,
+          "background": "#ebff00",
+          "foreground": "#080707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#c8c8c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#c8c8c8",
+          "foreground": "#080707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.73,
+          "background": "#383838",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.52,
+          "background": "#ebff00",
+          "foreground": "#383838"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.01,
+          "background": "#383838",
+          "foreground": "#c8c8c8"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.94,
+          "background": "#505e45",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.22,
+          "background": "#ebff00",
+          "foreground": "#505e45"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#505e45",
+          "foreground": "#c8c8c8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#505e45",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.9,
+          "background": "#505e45",
+          "foreground": "#080707"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.79,
+          "background": "#383838",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#383838",
+          "foreground": "#080707"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.67,
+          "background": "#c8c8c8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.5,
+          "background": "#ebff00",
+          "foreground": "#c8c8c8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#ebff00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#080707",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 60
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "link"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 94,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 55,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 136,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "rowGap|hero",
+            "columnGap|hero",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 658,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Mono",
+          "source": "google",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 61,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Be Vietnam Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FK Raster Grotesk Compact Trial Sharp",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.109,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "hero",
+            "list",
+            "image"
+          ],
+          "frequency": 658,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.086,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Be Vietnam Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Medium",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "FK Raster Grotesk Compact Trial Sharp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "FK Raster Grotesk Compact Trial Sharp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.042,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9aab4d0b-976c-4d28-b7bf-2c740bb165cc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1328bb3b-0eab-464a-b4a9-e3f3d3d3a621.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alejandro Mejias design system\",\"item\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d#style-reference\",\"name\":\"Alejandro Mejias design system reference\",\"headline\":\"Alejandro Mejias design system | Refero Styles\",\"description\":\"Explore Alejandro Mejias's mixed Agency design system: Acid Lime #ebff00, Obsidian #080707 colors, FK Raster Grotesk Compact Trial Sharp, IBM Plex Mono...\",\"url\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alejandro Mejias\",\"url\":\"https://www.alejandromejias.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5f802b93-5f46-470f-baaf-173737189c9d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1328bb3b-0eab-464a-b4a9-e3f3d3d3a621.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1328bb3b-0eab-464a-b4a9-e3f3d3d3a621.jpg\",\"caption\":\"Screenshot of Alejandro Mejias\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1328bb3b-0eab-464a-b4a9-e3f3d3d3a621.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alejandro Mejias design system\",\"Alejandro Mejias website design\",\"Alejandro Mejias colors\",\"Alejandro Mejias typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Acid Lime\",\"Obsidian\",\"Pure Black\",\"Bone White\",\"FK Raster Grotesk Compact Trial Sharp\",\"IBM Plex Mono\",\"Be Vietnam Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alejandro Mejias design system\"},{\"@type\":\"Thing\",\"name\":\"Alejandro Mejias website design\"},{\"@type\":\"Thing\",\"name\":\"Alejandro Mejias colors\"},{\"@type\":\"Thing\",\"name\":\"Alejandro Mejias typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:33:20.168Z\",\"dateModified\":\"2026-05-10T22:33:20.168Z\"}]}19:T42d,Alejandro Mejias operates as a brutalist editorial portfolio: near-total monochrome canvases (white and deep black sections alternate) are interrupted by a single electric lime accent (#ebff00) that only appears on contact actions, time stamps, and avatar CTAs. Typography is the identity — a custom wide-compact grotesque (FK Raster Grotesk) at 32–48px carries every section heading, while IBM Plex Mono at 10–18px with aggressive positive tracking handles every label, tag, and metadata string. The signature element is a glossy 3D-rendered abstract 'A' sculpture that anchors major sections like a sculptural logo-mascot. Layout is edge-to-edge with very tight gutters, a fixed three-zone top bar (left brand, center nav, right status pill), and floating corner CTAs. Components feel architectural: sharp 4px button corners, soft 24px image corners, and occasional oversized pill radii up to 84px create deliberate contrast. The overall atmosphere is a high-design atelier's workshop log — restrained, opinionated, and unapologetically loud where it matters.1a:T714,## Quick Color Reference\n- text: #080707 (light bg) / #ffffff (dark bg)\n- background: #ffffff (light) / #080707 (dark)\n- border: #000000 (primary) / #c8c8c8 (subtle)\n- accent: #ebff00 (Acid Lime — CTAs, status badges only)\n- muted surface: #c8c8c8 (Fog — placeholders, image bg)\n- primary action: #ebff00 (filled action)\n\n## Example Component Prompts\n\n1. **Section Display Heading**: 48px FK Raster Grotesk Compact Trial Sharp (or Druk Wide / Antonio fallback), weight 400, line-height 1.00, letter-spacing 0.042em, uppercase, color #080707. Example output: 'FEATURED WORK'.\n\n2. **Time Status Badge**: Acid Lime (#ebff00) filled pill, border-radius 84px, 4px vertical / 8px horizontal padding, containing 'MEL(AU) 4:33 PM' in 11px IBM Plex Mono weight 600 uppercase with 0.086em letter-spacing, color #080707.\n\n3. **Book a Call Floating CTA**: Acid Lime (#ebff00) filled pill, border-radius 84px, 4px vertical / 16px horizontal padding, with a 24px circular avatar on the left, 'BOOK A CALL ↗' in 11px IBM Plex Mono 600 uppercase 0.086em tracking, color #080707. Fixed bottom-right.\n\n4. **Metadata Bracket Tag**: 10–11px IBM Plex Mono weight 600 uppercase, letter-spacing 0.109em, color #080707, wrapped in literal square brackets. Example: '[GOOD DESIGN AWARD WINNER 2023/24]'. No background, no border.\n\n5. **Project Image Card**: Full-column-width image with 24px border-radius, 1px #000000 border, no card background. Above image: project name left-aligned + year right-aligned, both 14px IBM Plex Mono 500. Sits on Bone White (#ffffff) canvas.\n\n6. **Outlined Action Button**: Transparent fill, 1px #080707 border (or #ffffff on dark), border-radius 4px, 4px vertical / 16px horizontal padding, label in 11px IBM Plex Mono 600 uppercase 0.086em tracking. Used for secondary actions and email display."
+}

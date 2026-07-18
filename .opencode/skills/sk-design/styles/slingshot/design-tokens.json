@@ -1,0 +1,312 @@
+{
+  "color": {
+    "cobalt-command": {
+      "$value": "#1a5fff",
+      "$type": "color",
+      "$description": "Cobalt Command — Primary CTAs, announcement bar, active states, feature panel backgrounds — the single saturated voice of the brand against an otherwise monochrome canvas"
+    },
+    "cobalt-mist": {
+      "$value": "#ecf2ff",
+      "$type": "color",
+      "$description": "Cobalt Mist — Tinted card surfaces, soft section washes, subtle button hovers — a diluted echo of the primary used to create surface depth without breaking the light theme"
+    },
+    "apricot-whisper": {
+      "$value": "#fff4ec",
+      "$type": "color",
+      "$description": "Apricot Whisper — Warm alternating section background, feature callout panels — breaks the cool palette rhythm on select bands to draw the eye"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, icon strokes, logo mark"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button text on cobalt fill, image backgrounds"
+    },
+    "cool-tint": {
+      "$value": "#edf9f5",
+      "$type": "color",
+      "$description": "Cool Tint — Faint greenish surface wash on alternating sections — the third surface layer, used sparingly for editorial band variation"
+    },
+    "silver": {
+      "$value": "#c8c7cd",
+      "$type": "color",
+      "$description": "Silver — Muted borders, dividers, secondary icon strokes — lifts above pure white for subtle separation without darkening the page"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "gopher-medium": {
+      "$value": "Gopher Medium",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface. The signature choice — a geometric sans with editorial weight, set tight at line-height 1.0 so headlines stack into dense blocks. The 56px size is reserved for hero statements; 32px for section headings; 24px for sub-section headings. Substitute: 'Manrope' or 'Plus Jakarta Sans' (Google) for open-source parity, or 'GT America' for closer brand match."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Small uppercase/tracked labels (eyebrows, badge text) at 12px with 0.083em letter-spacing — the only letter-spaced tier in the system, reserved for categorical tags above headings."
+    },
+    "inter-bold": {
+      "$value": "Inter-Bold",
+      "$type": "fontFamily",
+      "$description": "Inter-Bold — detected in extracted data but not described by AI"
+    },
+    "inter-semibold": {
+      "$value": "Inter-SemiBold",
+      "$type": "fontFamily",
+      "$description": "Inter-SemiBold — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter-SemiBold",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter-Bold",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter-Bold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gopher Medium",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Gopher Medium",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gopher Medium",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "184": {
+      "$value": "184px",
+      "$type": "dimension",
+      "$description": "Spacing 184px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas"
+    },
+    "cool-tint": {
+      "$value": "#edf9f5",
+      "$type": "color",
+      "$description": "Surface level 1: Faint alternating section wash"
+    },
+    "apricot-whisper": {
+      "$value": "#fff4ec",
+      "$type": "color",
+      "$description": "Surface level 2: Warm feature callout band"
+    },
+    "cobalt-mist": {
+      "$value": "#ecf2ff",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted card surface and soft hover"
+    },
+    "cobalt-command": {
+      "$value": "#1a5fff",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed feature section, announcement bar"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.useslingshot.com",
+      "siteName": "Slingshot",
+      "extractedAt": "2026-06-03T21:25:53.415Z",
+      "variant": "extended"
+    }
+  }
+}

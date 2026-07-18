@@ -1,0 +1,307 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#090b2b",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary brand color for headings, logo, emphasized text, nav labels, and icon strokes — a near-black with a faint violet cast that reads as ink rather than pure black against the cream canvas"
+    },
+    "obsidian": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Obsidian — Dark elevated surface for cards, headers, and contained panels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#1b1b1e",
+      "$type": "color",
+      "$description": "Graphite — Primary body and heading text, dark card fills, and icon fills — the workhorse near-black with the faintest cool cast"
+    },
+    "charcoal": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Charcoal — Secondary dark surfaces and muted borders for inverted panels"
+    },
+    "steel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel — Mid-gray for supporting UI marks, icon fills, and medium borders"
+    },
+    "silver": {
+      "$value": "#aaaaaa",
+      "$type": "color",
+      "$description": "Silver — Lighter mid-gray for tertiary text, placeholder copy, and decorative fills"
+    },
+    "fog": {
+      "$value": "#d7d7d7",
+      "$type": "color",
+      "$description": "Fog — Subtle border tone for ghost controls and quiet dividers"
+    },
+    "mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Mist — The system's structural hairline — dominant border, divider, and table-rule color across every layout context"
+    },
+    "parchment": {
+      "$value": "#e5ebd3",
+      "$type": "color",
+      "$description": "Parchment — Warm sage-cream wash used as the hero background and as the secondary button fill — gives the page its printed-paper atmosphere"
+    },
+    "linen": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Linen — Card and elevated surface background — one step off the page to create depth without shadows"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Pure white reserved for inverted buttons, tag chips, and high-contrast list items where Mist would be too muted"
+    },
+    "slate-link": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Slate Link — Default link and breadcrumb text color, distinct from body text gray"
+    }
+  },
+  "font": {
+    "flatfilediatypevariable": {
+      "$value": "FlatfileDiatypeVariable",
+      "$type": "fontFamily",
+      "$description": "FlatfileDiatypeVariable — detected in extracted data but not described by AI"
+    },
+    "flatfile-diatype-variable": {
+      "$value": "Flatfile Diatype (Variable)",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans — nav links, buttons, body copy, small labels, and card content. The variable axis lets the system shift between neutral body weight and slightly heavier button weight without changing family."
+    },
+    "flatfile-diatype-static": {
+      "$value": "Flatfile Diatype (Static)",
+      "$type": "fontFamily",
+      "$description": "Display and section heading sizes. Uses tighter tracking as size grows — the 60px display sits at -0.0320em, pulling letters into a compact editorial block."
+    },
+    "source-serif-4": {
+      "$value": "Source Serif 4",
+      "$type": "fontFamily",
+      "$description": "Reserved exclusively for customer-quote hero text in testimonial cards. The serif italic-leaning humanist voice creates a print-publication contrast against the otherwise sans-only system."
+    },
+    "sharp-grotesk": {
+      "$value": "Sharp Grotesk",
+      "$type": "fontFamily",
+      "$description": "Secondary display face for product-feature subheadings where a more condensed, technical voice is needed — used sparingly to break up the Diatype rhythm."
+    },
+    "booton": {
+      "$value": "Booton",
+      "$type": "fontFamily",
+      "$description": "Booton — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FlatfileDiatypeVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 469,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FlatfileDiatypeVariable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "SourceSerif4",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FlatfileDiatype",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#e5ebd3",
+      "$type": "color",
+      "$description": "Surface level 0: Hero section wash — the warm sage-cream that gives the page its editorial paper feel."
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: True-white body sections, inverted button faces, tag chips."
+    },
+    "linen": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 2: Card and panel surfaces that sit one layer above the page."
+    },
+    "obsidian": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 3: Footer band and filled CTA pill — the deepest surface in the system."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flatfile.com",
+      "siteName": "Flatfile",
+      "extractedAt": "2026-06-03T20:34:11.445Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,591 @@
+{
+  "source": "https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6",
+  "uuid": "8b6970fa-3478-4c1b-aadf-41ffe1ef68e6",
+  "name": "Twocreate",
+  "northStar": "gallery wall on cream paper",
+  "capturedAt": "2026-07-18T08:11:15.740Z",
+  "meta": {
+    "url": "https://twocreate.com",
+    "siteName": "Twocreate",
+    "extractedAt": "2026-06-03T18:04:20.123Z",
+    "durationMs": 25783,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 478,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Neue Montreal at weight 400 only — never introduce a bold or light weight to create hierarchy",
+      "Build hierarchy through scale jumps (10 → 22 → 33 → 44 → 67 → 111), not through color or weight variation",
+      "Maintain the warm Paper (#f9f7f4) canvas across all pages; never switch to pure white or introduce a true background color",
+      "Keep all spacing in the established rhythm: 10px between elements, 20px page padding for type blocks, 50px between sections, 67–139px right-side whitespace for asymmetrical layouts",
+      "Set line-height to 1.00–1.10 for all display sizes to preserve the compressed, editorial feel",
+      "Let product photography sit raw on the canvas — no frames, no radii, no overlays, no captions",
+      "Write copy that is short enough to live at 44–67px without wrapping into a dense paragraph"
+    ],
+    "donts": [
+      "Do not introduce any accent, brand, or semantic color — the system is deliberately achromatic",
+      "Do not add shadows, borders, or rounded corners to any element; separation comes from whitespace and type alone",
+      "Do not use multiple typefaces; PP Neue Montreal (or its substitute) is the only voice",
+      "Do not create a button component — interactions are text links with optional underline on hover, never filled or outlined controls",
+      "Do not add icons, badges, tags, or any small UI ornament that would break the typographic-only vocabulary",
+      "Do not center-align body copy or list items; everything sits flush left against the page padding",
+      "Do not apply card patterns, grid backgrounds, or any container treatment around text or image blocks"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0c0c0c",
+        "name": "Ink",
+        "role": "All text, links, nav items, body copy, client names, list items, and icon strokes. The near-black rather than pure black keeps type from feeling harsh against the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f7f4",
+        "name": "Paper",
+        "role": "Page background and primary canvas. A warm off-white with a faint yellow-pink cast — replaces the coldness of #fff with the tactility of uncoated stock",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e1dd",
+        "name": "Stone",
+        "role": "Secondary surface tone, subtle dividers, and any banded section that needs a half-step away from the canvas without introducing a true contrast color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Reserved for the highest-weight text moments where pure black is needed — typically the display headline and nav lockups. Slightly heavier than Ink for typographic emphasis rather than color contrast",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is full-bleed, edge-to-edge, with no max-width container and no centered column. Content anchors to the left edge with consistent horizontal padding (20–67px) and lets the right side breathe into whitespace — an asymmetric, left-weighted composition. Navigation is a sticky two-anchor text bar at the top, with the left/right anchors updating as the user scrolls past sections. The hero is a massive flush-left display headline occupying the first two-thirds of the viewport, followed by a section header bar, then content blocks that alternate between text-only zones and single editorial images. There are no card grids, no multi-column feature rows, no pricing tables, no testimonials blocks. Vertical rhythm is generous: 50px between sections, with 67–139px of right-side whitespace creating the gallery-wall asymmetry.",
+    "imagery": "The visual language is essentially typographic — there is no recurring photography, illustration, or graphic system. The single product image visible (a cosmetics flat-lay on a mauve/pink surface) is editorial in nature: staged, high-key, tight crop, no human subjects, no lifestyle context. It functions as a printed plate rather than a digital asset. Iconography is absent; navigation and interaction are text-only. No SVG illustrations, no abstract graphics, no animated elements. The site's 'imagery' is its own type at extreme scale.",
+    "similar": [
+      {
+        "why": "Same typographic-only navigation and massive-scale display headlines on a warm off-white canvas; both treat the studio site as an art object rather than a product page.",
+        "business": "Resn"
+      },
+      {
+        "why": "Shared editorial confidence — single serif/sans typeface, no accent color, generous whitespace, and the belief that the work itself is the visual system.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same cream-paper canvas, flush-left type-as-hero pattern, and zero-decoration philosophy where whitespace and scale do all the work.",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Both push type to extreme sizes on a warm neutral background, relying on scale jumps rather than color or weight to create hierarchy, and use a single boutique sans-serif throughout.",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "controls": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "50px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f9f7f4",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Base canvas for the entire site. The warm white carries all content."
+      },
+      {
+        "hex": "#e3e1dd",
+        "name": "Stone",
+        "level": 2,
+        "purpose": "Inset bands or subtle section shifts that need a tonal step without breaking the monochrome discipline."
+      }
+    ],
+    "northStar": "gallery wall on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "subheading",
+        "size": 33,
+        "lineHeight": 1.02,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.02,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading-lg",
+        "size": 67,
+        "lineHeight": 1.02,
+        "letterSpacing": -0.67
+      },
+      {
+        "role": "display",
+        "size": 111,
+        "lineHeight": 1,
+        "letterSpacing": -1.11
+      }
+    ],
+    "components": [
+      {
+        "name": "Sticky Text Nav",
+        "role": "Primary site navigation",
+        "description": "Two text anchors at 22px, weight 400, in Ink (#0c0c0c), left-aligned to the page edge with 20px horizontal padding from the viewport. No background, no border, no shadow — sits directly on Paper. The right anchor mirrors the left at the opposite page edge. No logo, no hamburger, no container. When state changes (e.g. 'TWO CREATE / STUDIO' at the top becomes 'WORK / ABOUT' on scroll), only the text content changes; the layout is identical."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening typography",
+        "description": "PP Neue Montreal at 111px, weight 400, line-height 1.0, letter-spacing -1.11px, in Ink (#0c0c0c). Left-aligned, flush to the left page padding. Occupies 3–4 lines, each line running the natural text width without truncation. This block is the visual centerpiece of the page — no gradient, no background treatment, no supporting imagery competes with it."
+      },
+      {
+        "name": "Section Header Bar",
+        "role": "Subsection labels and navigation",
+        "description": "A horizontal band at 22px weight 400, Ink on Paper, with 20px vertical padding and 10px horizontal padding. Left side holds a static section label ('Selected work', 'Clients'); right side holds a text link or anchor ('+ MORE WORK'). A 1px hairline in Stone (#e3e1dd) may separate this band from the content below."
+      },
+      {
+        "name": "Client List",
+        "role": "Credibility display in the work section",
+        "description": "A vertical stack of brand names at 33–44px, weight 400, Ink, flush left with no bullet markers, no separators, and 10px vertical gap between entries. Each name sits on its own line. This list functions as both content and graphic — the sheer size of the type turns a name-dump into a typographic wall."
+      },
+      {
+        "name": "Editorial Product Image",
+        "role": "Sole imagery treatment on the site",
+        "description": "A single product photograph placed in the flow, natural aspect ratio, no border, no radius, no caption, no overlay. Sits on the Paper canvas with 50px+ vertical breathing room above and below. No lightbox, no hover treatment, no gallery frame — the image is treated as a printed plate in a catalogue."
+      },
+      {
+        "name": "Footer Lockup",
+        "role": "Site closure and secondary nav",
+        "description": "Minimal text block at 10px weight 400, Ink on Paper, with 50px padding-top from the last content block. Likely contains contact information and small-print links at the smallest type size in the system, reinforcing the editorial scale hierarchy."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface carrying all text — nav, body, list items, section headers, and the 111px display headline. The fact that only weight 400 is used is the signature: no bold cuts exist, so hierarchy is built entirely through scale jumps (10→22→33→44→67→111) and the single tight line-height range. This produces a typeface system that reads as confident restraint rather than typographic volume. PP Neue Montreal's geometric-but-warm character pairs with the warm Paper canvas to feel editorial rather than corporate.",
+        "sizes": "10px, 22px, 33px, 44px, 67px, 111px",
+        "family": "PP Neue Montreal",
+        "weight": "400",
+        "lineHeight": "1.00–1.10",
+        "substitute": "Inter, Söhne, or General Sans as close open-source alternatives",
+        "letterSpacing": "-0.0100em across all sizes — a near-imperceptible tightening that becomes visible only at the 67px and 111px display sizes, where it prevents the letterforms from drifting apart optically.",
+        "fontFeatureSettings": "Default OpenType features; no stylistic alternates or tabular numerals are activated."
+      }
+    ],
+    "description": "Twocreate operates on a gallery-floor logic: a warm cream canvas, a single near-black ink, one typeface, and absolutely nothing else. Every interface decision is subordinated to typography — there is no color system, no shadow system, no border system, no icon system, no button system. The page reads like a printed exhibition catalogue set in PP Neue Montreal at extreme scale jumps, from 10px footer labels to 111px display headlines that fill half the viewport. Components are not really components; they are typographic blocks separated by whitespace. The product photography that does appear is a single editorial image — no cards, no grids, no treatments — placed in the flow with the same restraint as the text. This is a studio site that trusts the work and the typeface to carry all visual weight, and treats every other design discipline as decoration to be omitted.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Twocreate design system\",\"item\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#style-reference\",\"name\":\"Twocreate design system reference\",\"headline\":\"Twocreate design system | Refero Styles\",\"description\":\"Explore Twocreate's light Agency design system: Ink #0c0c0c, Paper #f9f7f4 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Twocreate\",\"url\":\"https://twocreate.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"caption\":\"Screenshot of Twocreate\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Twocreate design system\",\"Twocreate website design\",\"Twocreate colors\",\"Twocreate typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Stone\",\"Carbon\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Twocreate design system\"},{\"@type\":\"Thing\",\"name\":\"Twocreate website design\"},{\"@type\":\"Thing\",\"name\":\"Twocreate colors\"},{\"@type\":\"Thing\",\"name\":\"Twocreate typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-25T14:40:21.000Z\",\"dateModified\":\"2026-01-25T14:40:21.000Z\"}]}19:T693,Quick Color Reference:\n  - text: #0c0c0c\n  - background: #f9f7f4\n  - secondary surface: #e3e1dd\n  - border: #e3e1dd\n  - accent: no distinct accent color\n  - primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create the hero block: Paper background (#f9f7f4), no max-width. Display headline in PP Neue Montreal weight 400, 111px, line-height 1.0, letter-spacing -1.11px, color #0c0c0c, left-aligned with 20px page padding. Headline reads across 3–4 lines, each line at natural text width. No button, no subtext, no supporting image.\n\n2. Create a sticky top nav: Paper background, 20px vertical padding, 10px horizontal padding. Left anchor in 22px PP Neue Montreal weight 400, #0c0c0c. Right anchor in the same style flush to the right edge. No background, no border, no shadow. Text content updates on scroll but layout stays identical.\n\n3. Create the client list block: 50px margin-top from previous section. Header bar at 22px weight 400 with 'Clients' left and '+ MORE WORK' right. Below it, a vertical stack of brand names at 33px PP Neue Montreal weight 400, #0c0c0c, 10px vertical gap between entries, no bullets, no separators, flush left.\n\n4. Create an editorial image plate: 50px margin-top, Paper background, single product photograph at natural aspect ratio, no border, no radius, no caption, no overlay. Sits in the flow alongside or below text with generous whitespace on both sides.\n\n5. Create a section header bar: 20px vertical padding, 10px horizontal padding. Left label in 22px PP Neue Montreal weight 400, #0c0c0c (e.g. 'Selected work'). Right anchor in the same style. Optional 1px hairline in #e3e1dd below the bar to separate from content."
+      }
+    ],
+    "elevationPhilosophy": "No elevation system exists. The design deliberately rejects shadows, borders, and depth — every element sits flush on the Paper canvas. Separation is achieved through whitespace, type size, and the occasional tonal shift to Stone, never through z-axis depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0c0c0c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1543399938085494
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "list",
+            "footer"
+          ],
+          "frequency": 2296,
+          "confidence": 1,
+          "prominence": 256664489.8916989,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9f7f4",
+          "oklch": {
+            "c": 0.0045231708402245965,
+            "h": 78.29812055199349,
+            "l": 0.9768369040051815
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 45505346.40253264,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 1208384.3196749156,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e3e1dd",
+          "oklch": {
+            "c": 0.005819044493635887,
+            "h": 84.56731539202615,
+            "l": 0.91018013762152
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 102600,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000032577820073506725,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.64,
+          "background": "#f9f7f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.29,
+          "background": "#f9f7f4",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.08,
+          "background": "#e3e1dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.98,
+          "background": "#e3e1dd",
+          "foreground": "#0c0c0c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 82,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 139,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 180,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 469,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Perfect Fifth",
+        "ratio": 1.5,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "list",
+            "footer",
+            "body"
+          ],
+          "frequency": 329,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 67,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 111,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/be319d70-e744-4f47-a21c-6f6c6b14935d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Twocreate design system\",\"item\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#style-reference\",\"name\":\"Twocreate design system reference\",\"headline\":\"Twocreate design system | Refero Styles\",\"description\":\"Explore Twocreate's light Agency design system: Ink #0c0c0c, Paper #f9f7f4 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Twocreate\",\"url\":\"https://twocreate.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8b6970fa-3478-4c1b-aadf-41ffe1ef68e6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"caption\":\"Screenshot of Twocreate\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35fd372a-0a19-4014-a260-93ab7021b1ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Twocreate design system\",\"Twocreate website design\",\"Twocreate colors\",\"Twocreate typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Stone\",\"Carbon\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Twocreate design system\"},{\"@type\":\"Thing\",\"name\":\"Twocreate website design\"},{\"@type\":\"Thing\",\"name\":\"Twocreate colors\"},{\"@type\":\"Thing\",\"name\":\"Twocreate typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-25T14:40:21.000Z\",\"dateModified\":\"2026-01-25T14:40:21.000Z\"}]}19:T693,Quick Color Reference:\n  - text: #0c0c0c\n  - background: #f9f7f4\n  - secondary surface: #e3e1dd\n  - border: #e3e1dd\n  - accent: no distinct accent color\n  - primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create the hero block: Paper background (#f9f7f4), no max-width. Display headline in PP Neue Montreal weight 400, 111px, line-height 1.0, letter-spacing -1.11px, color #0c0c0c, left-aligned with 20px page padding. Headline reads across 3–4 lines, each line at natural text width. No button, no subtext, no supporting image.\n\n2. Create a sticky top nav: Paper background, 20px vertical padding, 10px horizontal padding. Left anchor in 22px PP Neue Montreal weight 400, #0c0c0c. Right anchor in the same style flush to the right edge. No background, no border, no shadow. Text content updates on scroll but layout stays identical.\n\n3. Create the client list block: 50px margin-top from previous section. Header bar at 22px weight 400 with 'Clients' left and '+ MORE WORK' right. Below it, a vertical stack of brand names at 33px PP Neue Montreal weight 400, #0c0c0c, 10px vertical gap between entries, no bullets, no separators, flush left.\n\n4. Create an editorial image plate: 50px margin-top, Paper background, single product photograph at natural aspect ratio, no border, no radius, no caption, no overlay. Sits in the flow alongside or below text with generous whitespace on both sides.\n\n5. Create a section header bar: 20px vertical padding, 10px horizontal padding. Left label in 22px PP Neue Montreal weight 400, #0c0c0c (e.g. 'Selected work'). Right anchor in the same style. Optional 1px hairline in #e3e1dd below the bar to separate from content."
+}

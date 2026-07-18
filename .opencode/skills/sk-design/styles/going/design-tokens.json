@@ -1,0 +1,289 @@
+{
+  "color": {
+    "deep-lagoon": {
+      "$value": "#004449",
+      "$type": "color",
+      "$description": "Deep Lagoon — Primary text, body copy, icon strokes, navigation — deep teal replaces black for all running text and primary iconography, lending a warm printed feel rather than digital harshness"
+    },
+    "electric-iris": {
+      "$value": "#483cff",
+      "$type": "color",
+      "$description": "Electric Iris — Violet action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "parchment": {
+      "$value": "#fffef0",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, card surfaces on mint sections, inverted text on dark elements — warm off-white background replaces clinical #ffffff, reducing glare and adding editorial softness"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Hairline borders, card outlines, structural dividers, footer strokes — used as 1px boundary lines rather than as primary type, creating crispness against the cream base"
+    },
+    "mint-wash": {
+      "$value": "#d7ffc2",
+      "$type": "color",
+      "$description": "Mint Wash — Section backgrounds, testimonial card surfaces, soft highlight bands — pale green wash separates content zones without the heaviness of gray or color blocks"
+    },
+    "lime-pulse": {
+      "$value": "#0bff80",
+      "$type": "color",
+      "$description": "Lime Pulse — Display headline emphasis, accent strokes on key words, decorative highlight — neon green appears in sparing two-to-five-word bursts to amplify specific display phrases"
+    }
+  },
+  "font": {
+    "pp-mori": {
+      "$value": "PP Mori",
+      "$type": "fontFamily",
+      "$description": "All text across the system. The signature 475 weight (a semi-normal sitting between Regular and SemiBold) is used for body and UI labels, giving paragraphs a subtly heavier gravity than 400 without the formality of 600. Display sizes (40-80px) use 600/700 with expanded tracking for editorial poster-style headlines. Smaller UI (14-18px) stays at 475 for friendly readable labels."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "16px",
+        "fontWeight": 475,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "48px",
+        "fontWeight": 475,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "80px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fffef0",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white replacing clinical white"
+    },
+    "mint-wash-band": {
+      "$value": "#d7ffc2",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed content section background, testimonial zone, feature highlight band"
+    },
+    "parchment-card": {
+      "$value": "#fffef0",
+      "$type": "color",
+      "$description": "Surface level 2: Card surface on mint sections — parchment returns as a lifted layer"
+    },
+    "ink-card": {
+      "$value": "#004449",
+      "$type": "color",
+      "$description": "Surface level 3: Dark teal inverted surface for navigation, footer, or accent blocks — teal carries surface weight, not just text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.going.com",
+      "siteName": "Going™",
+      "extractedAt": "2026-06-03T17:21:50.238Z",
+      "variant": "extended"
+    }
+  }
+}

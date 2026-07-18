@@ -1,0 +1,1629 @@
+{
+  "source": "https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c",
+  "uuid": "51b5d80e-d898-4d70-bd16-9e50406e014c",
+  "name": "Cards Against Humanity",
+  "northStar": "Scattered playing cards on a velvet game table — the design language is the game itself, not a wrapper around it.",
+  "capturedAt": "2026-07-18T07:36:47.405Z",
+  "meta": {
+    "url": "https://www.cardsagainsthumanity.com",
+    "siteName": "Cards Against Humanity",
+    "extractedAt": "2026-06-03T20:21:29.002Z",
+    "durationMs": 33451,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1153,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 800 for all headings and display text — the heavy Helvetica is the brand's voice",
+      "Apply the 2px inset shadow as border treatment on all interactive elements instead of stroke or drop-shadow",
+      "Use pill shapes (38–64px radius) for all buttons and badges",
+      "Compose backgrounds with scattered white cards at varied rotations to reinforce the game-table atmosphere",
+      "Restrict chromatic color to the three brand accents (Signal Red, Royal Violet, Antique Gold) used as borders only, not fills",
+      "Set display text line-height to 0.98–1.07 at 55px+ sizes for tight, impactful stacking",
+      "Invert color polarity (black on white / white on black) at section boundaries rather than introducing new colors"
+    ],
+    "donts": [
+      "Don't use weight 400 for anything above 16px — the site's voice is uniformly heavy",
+      "Don't apply drop shadows for elevation — the 2px inset border system is the only depth treatment",
+      "Don't fill large areas with chromatic color — accent colors are outlines, not backgrounds",
+      "Don't use border-radius below 13px on cards or below 32px on buttons — the geometry must read as physical cards",
+      "Don't add gradient fills — the palette is strictly flat, the only complexity comes from scattered card composition",
+      "Don't use letter-spacing tricks — the raw Helvetica geometry at weight 800 is the entire typographic system",
+      "Don't introduce blues, greens, or pinks as UI chrome — those colors exist only as card face fills in decorative scatter"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Game Night Black",
+        "role": "Page background, card shadows, button borders, heading text on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "role": "Card surfaces, body text on dark, button borders, input fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fe2f2f",
+        "name": "Signal Red",
+        "role": "Primary accent border on cards and badges — the brand's loudest punctuation, used as outline not fill",
+        "group": "brand"
+      },
+      {
+        "hex": "#7333f1",
+        "name": "Royal Violet",
+        "role": "Primary accent border on cards and badges — deep saturated purple carrying the brand's irreverent energy",
+        "group": "brand"
+      },
+      {
+        "hex": "#d7b73b",
+        "name": "Antique Gold",
+        "role": "Primary accent border on cards and badges — warm yellow-gold that rounds out the three-color system",
+        "group": "brand"
+      },
+      {
+        "hex": "#fffe5b",
+        "name": "Lemon Card",
+        "role": "Card face fill for highlighted playing cards in the scattered background",
+        "group": "accent"
+      },
+      {
+        "hex": "#ede5ff",
+        "name": "Lavender Card",
+        "role": "Card face fill for pastel playing cards, soft purple surface",
+        "group": "accent"
+      },
+      {
+        "hex": "#1b5bff",
+        "name": "Cobalt Card",
+        "role": "Card face fill for blue playing cards, saturated blue accent surface",
+        "group": "accent"
+      },
+      {
+        "hex": "#a0e9ff",
+        "name": "Sky Card",
+        "role": "Card face fill for light blue playing cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffa0f0",
+        "name": "Bubblegum Card",
+        "role": "Card face fill for pink playing cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#b4ff91",
+        "name": "Mint Card",
+        "role": "Card face fill for green playing cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff9559",
+        "name": "Tangerine Card",
+        "role": "Card face fill for orange playing cards",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections that alternate between black (#000000) and white (#ffffff) backgrounds, creating stark contrast boundaries. Hero section opens on black with massive display text (55–80px) and scattered card background elements. Content sections switch to white backgrounds with black text for readability, then return to black for CTA sections like \"Buy the game.\" Content is max-width contained (~1200px) and centered within each section. Navigation is a minimal top bar with brand left, links right. The scattered card pattern fills negative space in hero and transition areas, creating visual texture without competing with foreground copy. Section gaps are generous (~50px) but the large display type sizes keep vertical density high.",
+    "imagery": "The site is dominated by playing card imagery — white rectangular cards with black sans-serif text, some bordered in the three brand accent colors (red, violet, gold), others filled in pastel card colors (lemon, lavender, mint, sky, etc.). Cards are arranged in scattered, overlapping compositions at various rotation angles against the black canvas, creating a sense of a game mid-play. Card content includes both product cards (the actual game) and quote/headline cards that function as typographic display elements. The card IS the imagery — there are no photographs, no illustrations, no abstract graphics. Everything visual is either a card, a card border, or negative space between cards. Iconography is minimal or absent from the visible chrome.",
+    "similar": [
+      {
+        "why": "Same scattered card/tile composition at varied angles on near-black canvas, same heavy display sans-serif, same stark black-to-white section inversions",
+        "business": "Walmart's 'Black Friday Deals' landing pages"
+      },
+      {
+        "why": "Same product-as-decorative-imagery approach with card-shaped elements scattered across a dark background, same irreverent tone reflected in bold typographic voice",
+        "business": "Exploding Kittens"
+      },
+      {
+        "why": "Same party-game brand energy expressed through scattered card-like content blocks, same high-contrast black/white palette with accent color pops",
+        "business": "What Do You Meme?"
+      },
+      {
+        "why": "Same card-product-first visual language where the game's visual identity (colorful card faces, scattered arrangement) IS the website's design system",
+        "business": "UNO brand site"
+      },
+      {
+        "why": "Same anti-soft aesthetic: heavy Helvetica-weight typography, no drop shadows, thick outlined buttons, stark section polarity inversions",
+        "business": "NYC brand sites (e.g. BBC's brutalist moments)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "13px",
+        "badges": "38px",
+        "inputs": "38px",
+        "buttons": "38px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "50px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Table Felt",
+        "level": 0,
+        "purpose": "Primary page background, the dark surface cards are dealt onto"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Face",
+        "level": 1,
+        "purpose": "Playing card surfaces and content blocks that read as physical cards"
+      },
+      {
+        "hex": "#ede5ff",
+        "name": "Pastel Card",
+        "level": 2,
+        "purpose": "Soft accent card surfaces for featured or decorative playing cards"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(0, 0, 0) 0px 0px 0px 2px inset",
+        "element": "Outlined Pill Button"
+      },
+      {
+        "style": "rgb(255, 255, 255) 0px 0px 0px 2px inset",
+        "element": "Outlined Pill Button (on light surface)"
+      }
+    ],
+    "northStar": "Scattered playing cards on a velvet game table — the design language is the game itself, not a wrapper around it.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 2.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 2.38
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.07
+      },
+      {
+        "role": "display-sm",
+        "size": 55,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 65,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 80,
+        "lineHeight": 0.98
+      }
+    ],
+    "components": [
+      {
+        "name": "Playing Card (Core Content Unit)",
+        "role": "The fundamental content container — white rectangle with black text, used for both product cards and content blocks",
+        "description": "White (#ffffff) background, 13–20px border-radius, 2px black (#000000) inset border, 20px padding. Black text at weight 800. Functions as both literal product imagery and as the site's content card metaphor. When used as decorative background elements, cards are rotated at various angles and offset to create a scattered-table composition."
+      },
+      {
+        "name": "Outlined Pill Button (Primary)",
+        "role": "Main action button on dark backgrounds",
+        "description": "Transparent fill on #000000 surface. White (#ffffff) 2px border, 38–64px border-radius (pill shape). Text: Helvetica Neue LT weight 800, 14–16px, #ffffff. Padding: 12px vertical, 32px horizontal. The 2px inset shadow creates the border — no stroke property used. Sits as a physical object, not a flat UI element."
+      },
+      {
+        "name": "Outlined Pill Button (On Light)",
+        "role": "Action button on white card surfaces",
+        "description": "Transparent fill on #ffffff surface. Black (#000000) 2px inset border, 38–64px radius. Text: #000000, weight 800, 14–16px. Same padding and geometry as the dark variant — only the color polarity inverts."
+      },
+      {
+        "name": "Bordered Accent Card",
+        "role": "Featured card with chromatic border for emphasis",
+        "description": "White or transparent fill with 2px border in one of the three brand accent colors (Signal Red #fe2f2f, Royal Violet #7333f1, or Antique Gold #d7b73b). 13–20px radius. Used to draw the eye to specific cards in the scattered background or to highlight featured content."
+      },
+      {
+        "name": "Pastel Card",
+        "role": "Colored playing card surface used in the scattered background composition",
+        "description": "Filled card with one of the seven accent surface colors (Lemon, Lavender, Cobalt, Sky, Bubblegum, Mint, Tangerine). 13–20px radius, black text at weight 800. Functions purely as decorative atmosphere in the card-scatter background pattern."
+      },
+      {
+        "name": "Cookie/Modal Dialog",
+        "role": "Overlay consent interface",
+        "description": "Centered on the page with a darkened scrim behind. Black (#000000) background, white text, 13–20px radius. Contains a bold heading (\"Cookie Settings\"), descriptive body copy, checkbox controls, and a row of outlined pill buttons (Accept All / Reject All / Confirm My Choices). The dialog itself follows the card aesthetic — it looks like a card dealt face-up on the table."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header with brand and nav links",
+        "description": "Transparent or dark (#000000) background, white text. Brand name \"Cards Against Humanity\" at left in weight 800, ~24px. Nav items (Shop, About) at right with small dropdown carets. Minimal — no background fill, no border-bottom. Sits cleanly on the dark canvas."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Hero-level typography for section openers like \"Buy the game.\"",
+        "description": "Helvetica Neue LT weight 800, 55–80px, line-height 0.98–1.05. Color inverts by section: white on dark sections, black on light sections. Extremely tight leading at this scale — words stack into an impactful block. No letter-spacing manipulation."
+      },
+      {
+        "name": "Checkbox Control",
+        "role": "Form input within the cookie settings dialog",
+        "description": "Small square checkbox (~16–18px), 2px white border on the dark dialog surface. Unchecked state is transparent fill; checked state shows white fill with black checkmark. Sits inline with label text at 14px weight 400."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Small accent labels, potentially for product variants or tags",
+        "description": "One of the three brand accent colors as 2px border (Signal Red, Royal Violet, Antique Gold), transparent or matching-tinted fill. 38px border-radius (pill). Text in matching color, weight 800, 12–14px. Padding: ~10–20px horizontal."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The site's sole typeface. Weight 800 dominates everything from body up through 80px display — this anti-hierarchy choice makes the brand feel like it's shouting a punchline rather than presenting information. Tight leading at display sizes (0.98–1.07) creates an impactful block, generous leading on body (2.0–2.86) lets the heavy weight breathe. No letter-spacing tricks; the geometry of Helvetica at 800 weight does all the work.",
+        "sizes": "12, 14, 16, 20, 24, 28, 40, 55, 65, 80",
+        "family": "Helvetica Neue LT",
+        "weight": "400, 800",
+        "lineHeight": "0.98–2.86",
+        "substitute": "Helvetica, Arial, Inter (weight 800), Neue Haas Grotesk Display Pro"
+      },
+      {
+        "role": "Helvetica Neue — detected in extracted data but not described by AI",
+        "sizes": "21px",
+        "family": "Helvetica Neue",
+        "weight": "700",
+        "lineHeight": "1.38"
+      }
+    ],
+    "description": "Cards Against Humanity uses a game-night table aesthetic: near-black canvas, white card surfaces scattered at chaotic angles, and a tight three-color accent system (signal red, royal violet, antique gold) applied as thick borders rather than fills. Typography is uniformly heavy — Helvetica Neue LT at weight 800 even for mid-size copy — treating the screen like a punchline card rather than a SaaS dashboard. Buttons are chunky pills with 2px inset borders that read as physical objects sitting on the felt, not flat UI controls. The card metaphor saturates everything: content blocks, decorative backgrounds, badges, even borders adopt card-like geometry. Density is spacious but the large display sizes (55-80px) keep the vertical rhythm from feeling airy — each line lands like a card being dealt.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cards Against Humanity design system\",\"item\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#style-reference\",\"name\":\"Cards Against Humanity design system reference\",\"headline\":\"Cards Against Humanity design system | Refero Styles\",\"description\":\"Explore Cards Against Humanity's dark Media design system: Game Night Black #000000, Card White #ffffff colors, Helvetica Neue LT, Helvetica Neue...\",\"url\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cards Against Humanity\",\"url\":\"https://www.cardsagainsthumanity.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"caption\":\"Screenshot of Cards Against Humanity\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cards Against Humanity design system\",\"Cards Against Humanity website design\",\"Cards Against Humanity colors\",\"Cards Against Humanity typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Game Night Black\",\"Card White\",\"Signal Red\",\"Royal Violet\",\"Helvetica Neue LT\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity design system\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity website design\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity colors\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:34:26.528Z\",\"dateModified\":\"2026-04-30T03:34:26.528Z\"}]}19:T687,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (on light): #000000\n- background (dark sections): #000000\n- background (light sections): #ffffff\n- border / accent outline: use Signal Red (#fe2f2f), Royal Violet (#7333f1), or Antique Gold (#d7b73b) — pick one per element\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. Hero section on black (#000000). Scattered white card rectangles in the background, rotated -15° to +20° at various sizes, some with 2px borders in Signal Red, Royal Violet, or Antique Gold. Headline: \"Cards Against Humanity\" at 80px, Helvetica Neue LT weight 800, #ffffff, line-height 0.98. Subtext at 20px weight 800, #ffffff.\n\n2. Outlined pill button: transparent fill, 2px white (#ffffff) inset border, 38px border-radius, 12px vertical / 32px horizontal padding. Text: 16px Helvetica Neue LT weight 800, #ffffff, centered.\n\n3. Content card: white (#ffffff) background, 2px black (#000000) inset shadow as border, 13px border-radius, 20px padding. Heading inside: 28px weight 800, #000000, line-height 1.3. Body text: 16px weight 400, #000000, line-height 2.38.\n\n4. Cookie/modal dialog: centered overlay on darkened scrim. Background #000000, 13px border-radius, 30px padding. Heading \"Cookie Settings\" at 24px weight 800, #ffffff. Body text at 14px weight 400, #ffffff. Three outlined pill buttons (Accept All / Reject All / Confirm My Choices) at the bottom, white 2px borders on transparent fill, 38px radius.\n\n5. Section divider/transition: full-bleed band switching from #000000 to #ffffff. Display heading at 65px weight 800, color inverts with the background. 50px vertical padding above and below."
+      }
+    ],
+    "elevationPhilosophy": "No drop shadows. All depth is communicated through 2px inset borders that make UI elements read as physical card edges sitting on the table surface. This keeps everything flat but tactile — you can see the border, you can feel the weight, but nothing floats."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "icon",
+            "body",
+            "card",
+            "heading",
+            "badge",
+            "footer"
+          ],
+          "frequency": 2207,
+          "confidence": 1,
+          "prominence": 129041829.98790543,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "card/color": 39,
+            "icon/color": 26,
+            "link/color": 21,
+            "other/fill": 91,
+            "badge/color": 1,
+            "image/color": 20,
+            "other/color": 212,
+            "button/color": 35,
+            "heading/color": 69,
+            "body/borderColor": 24,
+            "button/boxShadow": 1,
+            "card/borderColor": 108,
+            "icon/borderColor": 104,
+            "link/borderColor": 84,
+            "badge/borderColor": 4,
+            "image/borderColor": 80,
+            "other/borderColor": 848,
+            "button/borderColor": 140,
+            "heading/borderColor": 276,
+            "card/backgroundColor": 12,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "image",
+            "icon",
+            "heading",
+            "link",
+            "body",
+            "badge",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 2047,
+          "confidence": 1,
+          "prominence": 117992039,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "borderColor",
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 6,
+            "card/color": 6,
+            "icon/color": 5,
+            "link/color": 23,
+            "list/color": 21,
+            "other/fill": 192,
+            "badge/color": 1,
+            "image/color": 10,
+            "input/color": 4,
+            "other/color": 79,
+            "button/color": 181,
+            "footer/color": 1,
+            "heading/color": 18,
+            "other/boxShadow": 1,
+            "body/borderColor": 24,
+            "button/boxShadow": 7,
+            "card/borderColor": 72,
+            "icon/borderColor": 20,
+            "link/borderColor": 92,
+            "list/borderColor": 84,
+            "badge/borderColor": 4,
+            "image/borderColor": 40,
+            "input/borderColor": 16,
+            "other/borderColor": 316,
+            "button/borderColor": 724,
+            "footer/borderColor": 4,
+            "heading/borderColor": 72,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#fe2f2f",
+          "oklch": {
+            "c": 0.2388682839653285,
+            "h": 27.22934752887082,
+            "l": 0.6442342437408836
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "heading",
+            "icon",
+            "badge",
+            "link"
+          ],
+          "frequency": 136,
+          "confidence": 1,
+          "prominence": 4026983.3258826593,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 2,
+            "image/color": 4,
+            "other/color": 10,
+            "other/stroke": 2,
+            "heading/color": 6,
+            "card/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "image/borderColor": 16,
+            "other/borderColor": 40,
+            "heading/borderColor": 24,
+            "badge/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#7333f1",
+          "oklch": {
+            "c": 0.25682757246268884,
+            "h": 289.7977233757198,
+            "l": 0.5289871879337875
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "heading",
+            "icon",
+            "badge",
+            "link"
+          ],
+          "frequency": 136,
+          "confidence": 1,
+          "prominence": 4026983.3258826593,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 2,
+            "image/color": 4,
+            "other/color": 10,
+            "other/stroke": 2,
+            "heading/color": 6,
+            "card/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "image/borderColor": 16,
+            "other/borderColor": 40,
+            "heading/borderColor": 24,
+            "badge/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d7b73b",
+          "oklch": {
+            "c": 0.1415624500187098,
+            "h": 94.09167320726287,
+            "l": 0.7860140196645974
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "heading",
+            "icon",
+            "badge",
+            "link"
+          ],
+          "frequency": 136,
+          "confidence": 1,
+          "prominence": 4026983.3258826593,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 2,
+            "image/color": 4,
+            "other/color": 10,
+            "other/stroke": 2,
+            "heading/color": 6,
+            "card/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "image/borderColor": 16,
+            "other/borderColor": 40,
+            "heading/borderColor": 24,
+            "badge/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fffe5b",
+          "oklch": {
+            "c": 0.17828650646546892,
+            "h": 108.96978222839816,
+            "l": 0.9693437029029474
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 2269352,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "badge/color": 2,
+            "badge/borderColor": 8,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ede5ff",
+          "oklch": {
+            "c": 0.035805816625671325,
+            "h": 299.73662783059325,
+            "l": 0.9359581186300409
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 2216527.496731346,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "badge/color": 2,
+            "badge/borderColor": 8,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1b5bff",
+          "oklch": {
+            "c": 0.25052774213122725,
+            "h": 263.688327756185,
+            "l": 0.5467865883454195
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 2216527.496731346,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "badge/color": 2,
+            "badge/borderColor": 8,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a0e9ff",
+          "oklch": {
+            "c": 0.07819416838067898,
+            "h": 218.67894606288968,
+            "l": 0.8935336092786258
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 497989,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffa0f0",
+          "oklch": {
+            "c": 0.14956354183893417,
+            "h": 332.72876500999615,
+            "l": 0.8263751474650013
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 497989,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b4ff91",
+          "oklch": {
+            "c": 0.15998475083619793,
+            "h": 136.35213336311153,
+            "l": 0.9261651434083332
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 497989,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff9559",
+          "oklch": {
+            "c": 0.14809115494500802,
+            "h": 48.816871111525906,
+            "l": 0.7705601034632306
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 497989,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.05388527472541615,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.58,
+          "background": "#fffe5b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.65,
+          "background": "#b4ff91",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.25,
+          "background": "#ede5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#a0e9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#ffa0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.73,
+          "background": "#d7b73b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.7,
+          "background": "#ff9559",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.05,
+          "background": "#7333f1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#fe2f2f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.64,
+          "background": "#fffe5b",
+          "foreground": "#7333f1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.27,
+          "background": "#1b5bff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.08,
+          "background": "#b4ff91",
+          "foreground": "#7333f1"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.97,
+          "background": "#ede5ff",
+          "foreground": "#7333f1"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.91,
+          "background": "#1b5bff",
+          "foreground": "#fffe5b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.49,
+          "background": "#a0e9ff",
+          "foreground": "#7333f1"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#b4ff91",
+          "foreground": "#1b5bff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#1b5bff",
+          "foreground": "#ede5ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#1b5bff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.91,
+          "background": "#a0e9ff",
+          "foreground": "#1b5bff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 13,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(0, 0, 0) 0px 0px 0px 2px inset",
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgb(255, 255, 255) 0px 0px 0px 2px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "heading",
+            "body"
+          ],
+          "frequency": 37,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|other",
+            "marginLeft|icon",
+            "marginBottom|list",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "marginTop|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 191,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "badge",
+            "button",
+            "heading"
+          ],
+          "frequency": 90,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "marginBottom|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|heading",
+            "marginRight|other",
+            "marginBottom|heading",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 106,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 175,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 36,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 254,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue LT",
+          "source": "custom",
+          "weights": [
+            400,
+            800
+          ],
+          "frequency": 861,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 177,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "lineHeight": 2.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "card",
+            "heading",
+            "badge",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 483,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.98,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8ca89cf1-bf81-4812-b410-131d23e91790.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cards Against Humanity design system\",\"item\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#style-reference\",\"name\":\"Cards Against Humanity design system reference\",\"headline\":\"Cards Against Humanity design system | Refero Styles\",\"description\":\"Explore Cards Against Humanity's dark Media design system: Game Night Black #000000, Card White #ffffff colors, Helvetica Neue LT, Helvetica Neue...\",\"url\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cards Against Humanity\",\"url\":\"https://www.cardsagainsthumanity.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/51b5d80e-d898-4d70-bd16-9e50406e014c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"caption\":\"Screenshot of Cards Against Humanity\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf0e00c3-ac29-4de3-b38c-41594efb619e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cards Against Humanity design system\",\"Cards Against Humanity website design\",\"Cards Against Humanity colors\",\"Cards Against Humanity typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Game Night Black\",\"Card White\",\"Signal Red\",\"Royal Violet\",\"Helvetica Neue LT\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity design system\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity website design\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity colors\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:34:26.528Z\",\"dateModified\":\"2026-04-30T03:34:26.528Z\"}]}19:T687,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (on light): #000000\n- background (dark sections): #000000\n- background (light sections): #ffffff\n- border / accent outline: use Signal Red (#fe2f2f), Royal Violet (#7333f1), or Antique Gold (#d7b73b) — pick one per element\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. Hero section on black (#000000). Scattered white card rectangles in the background, rotated -15° to +20° at various sizes, some with 2px borders in Signal Red, Royal Violet, or Antique Gold. Headline: \"Cards Against Humanity\" at 80px, Helvetica Neue LT weight 800, #ffffff, line-height 0.98. Subtext at 20px weight 800, #ffffff.\n\n2. Outlined pill button: transparent fill, 2px white (#ffffff) inset border, 38px border-radius, 12px vertical / 32px horizontal padding. Text: 16px Helvetica Neue LT weight 800, #ffffff, centered.\n\n3. Content card: white (#ffffff) background, 2px black (#000000) inset shadow as border, 13px border-radius, 20px padding. Heading inside: 28px weight 800, #000000, line-height 1.3. Body text: 16px weight 400, #000000, line-height 2.38.\n\n4. Cookie/modal dialog: centered overlay on darkened scrim. Background #000000, 13px border-radius, 30px padding. Heading \"Cookie Settings\" at 24px weight 800, #ffffff. Body text at 14px weight 400, #ffffff. Three outlined pill buttons (Accept All / Reject All / Confirm My Choices) at the bottom, white 2px borders on transparent fill, 38px radius.\n\n5. Section divider/transition: full-bleed band switching from #000000 to #ffffff. Display heading at 65px weight 800, color inverts with the background. 50px vertical padding above and below."
+}

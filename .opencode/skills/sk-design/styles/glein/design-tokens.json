@@ -1,0 +1,250 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, nav hairline borders, footer dividers, section rules, button text. Dominant structural color — defines the graphic skeleton against the warm canvas"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, overlay text on dark imagery, cookie dialog background. The breathing space"
+    },
+    "warm-sand": {
+      "$value": "#ebe6dc",
+      "$type": "color",
+      "$description": "Warm Sand — Secondary surface and section bands — the warm beige that gives the atelier its linen-like tactility. Section dividers, footer wash, category card backgrounds"
+    },
+    "concrete-gray": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Concrete Gray — Muted secondary text, tertiary borders, subdued image overlays. The recede color — present but never competing"
+    },
+    "ash-gray": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Ash Gray — Subtle dividers, inactive nav borders, low-emphasis rules. The quietest member of the scale"
+    }
+  },
+  "font": {
+    "f-grotesk": {
+      "$value": "F-Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary grotesque — used for everything from body to display. The entire type system runs at weight 400 only; hierarchy is pure scale."
+    },
+    "maison-neue-mono": {
+      "$value": "Maison-Neue-Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace companion — navigation, category labels, button text, footer meta, promotional strip. The 'labelling' voice that contrasts the editorial grotesque."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Maison-Neue-Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Maison-Neue-Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Maison-Neue-Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Maison-Neue-Mono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Maison-Neue-Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "F-Grotesk",
+        "fontSize": "111px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 111px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "156": {
+      "$value": "156px",
+      "$type": "dimension",
+      "$description": "Spacing 156px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, cookie dialog surface, overlay text reverse"
+    },
+    "warm-band": {
+      "$value": "#ebe6dc",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary section background, warm neutral contrast band"
+    },
+    "muted-field": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Surface level 2: Tertiary field, subdued image tint zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://glein.wien",
+      "siteName": "Glein",
+      "extractedAt": "2026-06-03T19:47:42.676Z",
+      "variant": "extended"
+    }
+  }
+}

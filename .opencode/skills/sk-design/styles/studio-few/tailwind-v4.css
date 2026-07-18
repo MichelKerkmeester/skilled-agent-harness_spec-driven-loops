@@ -1,0 +1,51 @@
+@theme {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-paper-white: #ffffff;
+  --color-foam-gray: #ebedee;
+  --color-concrete-gray: #b7b7b7;
+  --color-graphite: #333333;
+  --color-mid-ink: #18181d;
+  --color-ash: #858585;
+
+  /* Typography */
+  --font-sterlingvf: 'SterlingVF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sterling: 'Sterling', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-formative: 'Formative', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-voyager: 'Voyager', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-blokvf: 'BlokVF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arbeitprocontrastvf: 'ArbeitProContrastVF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-anthrovf: 'AnthroVF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apexvf: 'ApexVF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arbeittechnikvf: 'Arbeittechnikvf', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-work-sans: 'Work Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.204px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: 0.196px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-display: 115px;
+  --leading-display: 1.2;
+  --text-display-lg: 158px;
+  --leading-display-lg: 1;
+  --tracking-display-lg: -3.16px;
+
+  /* Spacing */
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-112: 112px;
+  --spacing-136: 136px;
+  --spacing-160: 160px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+}

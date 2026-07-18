@@ -1,0 +1,509 @@
+{
+  "color": {
+    "iris-gleam": {
+      "$value": "#847dff",
+      "$type": "color",
+      "$description": "Iris Gleam — Primary chromatic accent for feature category cards — the signature violet that appears most often across module tiles"
+    },
+    "cyan-signal": {
+      "$value": "#00b3dd",
+      "$type": "color",
+      "$description": "Cyan Signal — Data accent — chart lines, sparkline strokes, and forecasting indicators on dark surfaces"
+    },
+    "pale-iris": {
+      "$value": "#d1c9ff",
+      "$type": "color",
+      "$description": "Pale Iris — Light variant of the brand violet for softer category panels and background washes"
+    },
+    "deep-iris": {
+      "$value": "#4b49aa",
+      "$type": "color",
+      "$description": "Deep Iris — Dark variant of the brand violet for shaded category panels and hover states"
+    },
+    "orchid-bloom": {
+      "$value": "#dd90d8",
+      "$type": "color",
+      "$description": "Orchid Bloom — Pink category card for lifestyle/spending modules — warm contrast against the cool palette"
+    },
+    "periwinkle": {
+      "$value": "#90b8f0",
+      "$type": "color",
+      "$description": "Periwinkle — Soft blue category card for advisory or couples modules"
+    },
+    "obsidian": {
+      "$value": "#0f1011",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas — the dominant dark surface that everything floats on"
+    },
+    "abyss": {
+      "$value": "#090a0b",
+      "$type": "color",
+      "$description": "Abyss — Slightly deeper than Obsidian for subtle stacked sections and shadow tone"
+    },
+    "graphite": {
+      "$value": "#2e2e2e",
+      "$type": "color",
+      "$description": "Graphite — Mid-dark card surface for elevated modules and data panels"
+    },
+    "steel": {
+      "$value": "#3f4041",
+      "$type": "color",
+      "$description": "Steel — Hover/pressed surface for interactive elements and secondary raised panels"
+    },
+    "silver": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Silver — Light card surface for inverted panels, stat blocks, and testimonial cards"
+    },
+    "fog": {
+      "$value": "#6a6b6b",
+      "$type": "color",
+      "$description": "Fog — Muted text and disabled-link color"
+    },
+    "ash": {
+      "$value": "#9f9fa0",
+      "$type": "color",
+      "$description": "Ash — Body text, descriptions, and secondary links — never full white"
+    },
+    "cloud": {
+      "$value": "#f5f5f7",
+      "$type": "color",
+      "$description": "Cloud — Heading text variant for softer white display where #ffffff feels too sterile"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure — Primary text, primary action fill, and nav icon strokes — the brightest element in the system"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Icon fills, button text on white fills, and input backgrounds"
+    }
+  },
+  "font": {
+    "suisseintltrial": {
+      "$value": "Suisseintltrial",
+      "$type": "fontFamily",
+      "$description": "Suisseintltrial — detected in extracted data but not described by AI"
+    },
+    "lyon-display": {
+      "$value": "Lyon Display",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles — the signature voice. Used only at weight 300 (light) to create whisper-soft authority; the extreme size range (38-96px) with tight 0.9 line-height is a defining tension"
+    },
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Body copy, card descriptions, link text, and input fields. Weight 300 appears in 18px card subheads for a subtle echo of the display voice; weight 400 is the workhorse UI text"
+    },
+    "suisse-intl-trial": {
+      "$value": "Suisse Int'l Trial",
+      "$type": "fontFamily",
+      "$description": "Extended UI text at 16px (buttons, nav, links) and uppercase tracked labels at 11px. Shares lineage with Suisse Int'l"
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced labels, data readouts, badge text, and uppercase micro-copy (≤12px). Always set in uppercase. Weight 500 for 12px button labels; weight 400 for 10-11px annotations"
+    },
+    "suisseintl": {
+      "$value": "Suisseintl",
+      "$type": "fontFamily",
+      "$description": "Suisseintl — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisseintltrial",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisseintltrial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisseintltrial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Suisseintltrial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Lyondisplay App",
+        "fontSize": "38px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lyondisplay App",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lyondisplay App",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lyondisplay App",
+        "fontSize": "96px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "14385.6px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 18px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#0f1011",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base everything sits on"
+    },
+    "abyss": {
+      "$value": "#090a0b",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed dark sections alternating with canvas for subtle banding"
+    },
+    "graphite-card": {
+      "$value": "#2e2e2",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated product cards and data modules"
+    },
+    "steel-hover": {
+      "$value": "#3f4041",
+      "$type": "color",
+      "$description": "Surface level 3: Interactive hover/pressed states on dark surfaces"
+    },
+    "silver-inverted": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Surface level 4: Light inverted cards for stat blocks and testimonials"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.useorigin.com",
+      "siteName": "Origin Financial",
+      "extractedAt": "2026-07-03T03:32:26.906Z",
+      "variant": "extended"
+    }
+  }
+}

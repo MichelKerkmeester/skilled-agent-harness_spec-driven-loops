@@ -1,0 +1,387 @@
+{
+  "color": {
+    "blush-cream": {
+      "$value": "#f3eae5",
+      "$type": "color",
+      "$description": "Blush Cream — Primary page canvas — warm off-white with a rosy undertone that gives every section a paper-stock feel rather than a digital white"
+    },
+    "deep-indigo": {
+      "$value": "#000647",
+      "$type": "color",
+      "$description": "Deep Indigo — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces on the dark hero, button text fills, and inverse typography on dark bands"
+    },
+    "graphite": {
+      "$value": "#3e3c43",
+      "$type": "color",
+      "$description": "Graphite — Primary body text and high-emphasis headings on light surfaces — a near-black with a hint of warmth rather than a cold #000"
+    },
+    "mid-stone": {
+      "$value": "#7a7780",
+      "$type": "color",
+      "$description": "Mid Stone — Muted secondary text, badge labels, and input helper copy"
+    },
+    "coral-pop": {
+      "$value": "#ff7e85",
+      "$type": "color",
+      "$description": "Coral Pop — Primary filled CTA background on light sections — the single warm action color that punctuates the cream canvas"
+    },
+    "electric-violet": {
+      "$value": "#0e1889",
+      "$type": "color",
+      "$description": "Electric Violet — Headline gradient anchor and brand-defining deep accent — used at the start of gradient text fills (violet → magenta → coral)"
+    },
+    "magenta": {
+      "$value": "#dd59cf",
+      "$type": "color",
+      "$description": "Magenta — Mid-stop in headline gradient fills — the vivid pink bridge between violet and coral that gives gradient headlines their signature tri-color arc"
+    },
+    "sunset-coral": {
+      "$value": "#ff7399",
+      "$type": "color",
+      "$description": "Sunset Coral — Gradient headline end-stop and accent strokes in illustrations — a hotter pink than Coral Pop, reserved for type treatments"
+    },
+    "deep-teal": {
+      "$value": "#206871",
+      "$type": "color",
+      "$description": "Deep Teal — Secondary brand anchor — used for headings and icon strokes, providing the cool counterpoint to all the warm pinks and corals"
+    },
+    "bright-teal": {
+      "$value": "#118391",
+      "$type": "color",
+      "$description": "Bright Teal — Lighter teal companion for heading treatments and badge icons"
+    },
+    "persimmon": {
+      "$value": "#ffa541",
+      "$type": "color",
+      "$description": "Persimmon — Illustration accent — a warm orange that appears in brush-stroke artwork and icon details"
+    },
+    "muted-lilac": {
+      "$value": "#7c80ad",
+      "$type": "color",
+      "$description": "Muted Lilac — Outlined/ghost link and button border color — the soft violet used for secondary text-link treatments throughout the page"
+    },
+    "fern-green": {
+      "$value": "#40ac76",
+      "$type": "color",
+      "$description": "Fern Green — Green state accent for badges, validation surfaces, and short status labels."
+    },
+    "bubblegum-wash": {
+      "$value": "#fdd7f5",
+      "$type": "color",
+      "$description": "Bubblegum Wash — Decorative pastel surface — soft pink fill for feature-card backgrounds and illustration halos"
+    },
+    "mint-wash": {
+      "$value": "#bdedd5",
+      "$type": "color",
+      "$description": "Mint Wash — Decorative pastel surface — mint green fill used in feature illustration backgrounds"
+    },
+    "peach-wash": {
+      "$value": "#fdd5c3",
+      "$type": "color",
+      "$description": "Peach Wash — Decorative pastel surface — peach fill for illustration backgrounds and soft card zones"
+    }
+  },
+  "font": {
+    "mabry-pro": {
+      "$value": "Mabry Pro",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — the brand-defining font. Used at 43–83px for section headlines (with tight 0.93–1.06 line-heights creating a poster-like density) and at 16–20px with positive 0.2em tracking for nav items, buttons, and labels. The 0.2em tracking on UI text is signature: it makes even small text feel intentional and editorial rather than utilitarian."
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — paragraph copy at 16–18px/1.40–1.56, card descriptions at 14–15px, and supporting subheadings at 20–26px. The system fallback pairing keeps body text neutral so the Mabry Pro headlines can carry the brand voice."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "69px",
+        "fontWeight": 500,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 69px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Mabry Pro",
+        "fontSize": "83px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 83px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#f3eae5",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm cream that all light sections sit on"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface on the dark hero band and isolated feature blocks"
+    },
+    "indigo-stage": {
+      "$value": "#000647",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed hero background — the dramatic dark opening section"
+    },
+    "pastel-decorative": {
+      "$value": "#fdd7f5",
+      "$type": "color",
+      "$description": "Surface level 3: Soft pink illustration backgrounds and feature-card accent zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://moderne.st",
+      "siteName": "Home",
+      "extractedAt": "2026-06-03T18:19:41.701Z",
+      "variant": "extended"
+    }
+  }
+}

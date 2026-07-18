@@ -1,0 +1,639 @@
+{
+  "color": {
+    "hyperspace-violet": {
+      "$value": "#6100ff",
+      "$type": "color",
+      "$description": "Hyperspace Violet — Primary CTA fill, filled action backgrounds, and dominant accent border — a saturated electric violet that reads as powered-on against pure black"
+    },
+    "reactor-yellow": {
+      "$value": "#fcff76",
+      "$type": "color",
+      "$description": "Reactor Yellow — Green outline accent for tags, dividers, and focused UI edges."
+    },
+    "plasma-green": {
+      "$value": "#00ff85",
+      "$type": "color",
+      "$description": "Plasma Green — Secondary accent for headings, link text, and body emphasis — a neon mint that signals live/active states and reads as data flowing through the HUD"
+    },
+    "crimson-alert": {
+      "$value": "#ff003d",
+      "$type": "color",
+      "$description": "Crimson Alert — Red outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "deep-indigo": {
+      "$value": "#29006c",
+      "$type": "color",
+      "$description": "Deep Indigo — Mid-tier surface fill for button backgrounds and elevated dark panels — sits between pure black and Hyperspace Violet"
+    },
+    "plum-void": {
+      "$value": "#1a0014",
+      "$type": "color",
+      "$description": "Plum Void — Pink state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color"
+    },
+    "ember-violet": {
+      "$value": "#7000ff",
+      "$type": "color",
+      "$description": "Ember Violet — Decorative surface wash and large-area violet background — lighter and more luminous than Hyperspace Violet, used where broad violet fields appear"
+    },
+    "amber-signal": {
+      "$value": "#ff8a00",
+      "$type": "color",
+      "$description": "Amber Signal — Tertiary accent for table data, secondary highlights, and rare warm punctuation — used sparingly so it reads as a specific instrument indicator"
+    },
+    "photon-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Photon White — Primary text, hairline borders, and 1px box-shadow wireframes — functions as the structural linework of the entire interface, not just foreground text"
+    },
+    "null-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Null Black — Page canvas and button borders — the flat dark void from which all colored elements emerge"
+    },
+    "graphite": {
+      "$value": "#949494",
+      "$type": "color",
+      "$description": "Graphite — Muted text, nav borders, and secondary structural lines — the de-energized neutral for inactive labels and supporting metadata"
+    },
+    "carbon": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Carbon — Lowest-priority dividers and button outlines — the dimmest neutral, used where structure is needed but emphasis is not"
+    }
+  },
+  "font": {
+    "gt-planar": {
+      "$value": "GT Planar",
+      "$type": "fontFamily",
+      "$description": "The custom GT Planar face carries the entire brand — geometric, monospaced-influenced letterforms with multiple stylistic sets. Used at every level from 11px captions to 274px display. Weight 300 for light technical labels, 400 for body, 700 for emphasis and display. OpenType features include stylistic sets ss01–ss04 and tabular numerals (tnum) for data contexts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 17px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "25px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "37px",
+        "fontWeight": 300,
+        "lineHeight": 3.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "58px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "86px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 86px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "86px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 86px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "86px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 86px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "115px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 115px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 146px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 146px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 146px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 146px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 146px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 146px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 146px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 146px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 146px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "146px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 146px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "187px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 187px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "230px",
+        "fontWeight": 300,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 230px"
+    },
+    "5xl-18": {
+      "$value": {
+        "fontFamily": "GT Planar",
+        "fontSize": "274px",
+        "fontWeight": 300,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-18 at 274px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(255, 255, 255) 1px 0px 0px 0px, rgb(255, 255, 255) 0px 1px 0px 0px, rgb(255, 255, 255) 1px 1px 0px 0px, rgb(255, 255, 255) 1px 0px 0px 0px inset, rgb(255, 255, 255) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "null-black-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the flat void from which all interface elements emerge"
+    },
+    "plum-void-recess": {
+      "$value": "#1a0014",
+      "$type": "color",
+      "$description": "Surface level 1: Input fields and recessed wells — distinguished from canvas by a subtle cool undertone"
+    },
+    "deep-indigo-plate": {
+      "$value": "#29006c",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated surface for buttons and dark panels that need to sit above the canvas"
+    },
+    "ember-violet-field": {
+      "$value": "#7000ff",
+      "$type": "color",
+      "$description": "Surface level 3: Broad decorative surface wash for violet-dominant sections"
+    },
+    "hyperspace-violet": {
+      "$value": "#6100ff",
+      "$type": "color",
+      "$description": "Surface level 4: Highest surface layer — the dominant chromatic plane when present"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gt-planar.com",
+      "siteName": "Gt-planar",
+      "extractedAt": "2026-06-03T17:48:34.152Z",
+      "variant": "extended"
+    }
+  }
+}

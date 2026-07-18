@@ -1,0 +1,1486 @@
+{
+  "source": "https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542",
+  "uuid": "9ff62d34-e48d-4fcb-9fd9-c018e2747542",
+  "name": "Lovable",
+  "northStar": "Warm parchment canvas behind a single prismatic horizon",
+  "capturedAt": "2026-07-18T07:17:41.896Z",
+  "meta": {
+    "url": "https://lovable.dev",
+    "siteName": "Lovable",
+    "extractedAt": "2026-06-05T12:23:55.484Z",
+    "durationMs": 148967,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 599,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px border-radius for all buttons, badges, and pill-shaped controls — the full-pill shape is the signature interactive affordance",
+      "Keep the palette almost entirely achromatic; reserve chromatic color exclusively for the hero gradient and semantic states — never for buttons, links, or UI accents",
+      "Apply -0.025em letter-spacing globally across all text sizes; this tight tracking is a defining characteristic of the type system",
+      "Use #f7f4ed (Warm Sand) for card surfaces and #fcfbf8 (Parchment) for the page canvas — the two warm whites create the surface hierarchy",
+      "Use weight 480 for headings and weight 400 for body text — this subtle weight contrast (not bold vs regular) defines the typographic hierarchy",
+      "Set 'liga' 0 in font-feature-settings on all text to disable ligatures, matching the original type rendering",
+      "Use 1px solid #eceae4 for all borders — dividers, card outlines, input strokes, nav separators — one warm beige border color everywhere"
+    ],
+    "donts": [
+      "Never use cool grays (#e5e7eb, #6b7280) — all neutrals skew warm with a yellow undertone; cool grays would break the parchment atmosphere",
+      "Never apply colored backgrounds to buttons; the primary action is near-black (rgba(0,0,0,0.88)) and secondary is transparent — there is no colored CTA",
+      "Never use drop shadows for elevation except on the chat input card; most cards and surfaces are flat with no shadow at all",
+      "Never use more than one font family — Camera Plain Variable (or its substitute) handles everything from 14px captions to 60px display headlines",
+      "Never use sharp corners (0px radius) on interactive elements; even image thumbnails get 12px radius",
+      "Never use the hero gradient colors on individual UI components like buttons, badges, or icons — the gradient exists only as a full-bleed atmospheric background",
+      "Never add visual weight to feature sections with icons, colored badges, or decorative elements — this system communicates through type weight and scale alone"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcfbf8",
+        "name": "Parchment",
+        "role": "Page canvas, primary background, card surfaces when on darker parents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f4ed",
+        "name": "Warm Sand",
+        "role": "Card backgrounds, elevated surface panels, secondary containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eceae4",
+        "name": "Linen Border",
+        "role": "All borders — nav dividers, card outlines, input strokes, section separators. Warm beige rather than cool gray gives the entire UI its distinctive non-tech softness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d3d0",
+        "name": "Stone",
+        "role": "Subtle box-shadow tints, disabled borders, secondary dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5f5f5d",
+        "name": "Dim Gray",
+        "role": "Secondary text, placeholder text, muted nav labels, subheadings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Charcoal",
+        "role": "Primary text, nav labels, icon fills, inverse button background. Near-black rather than pure black keeps the warm tone consistent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#030303",
+        "name": "Ink",
+        "role": "Highest-emphasis text (hero headline, button labels in chat input), icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2483ff",
+        "name": "Hero Gradient",
+        "role": "Full-width hero background gradient — decorative brand moment, never used on individual UI elements",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, rgb(28, 28, 28) 0%, rgb(28, 28, 28) 33.33%, rgb(130, 188, 255) 40%, rgb(36, 131, 255) 45%, rgb(255, 102, 244) 50%, rgb(255, 48, 41) 55%, rgb(254, 123, 2) 60%, rgba(0, 0, 0, 0) 66.67%, rgba(0, 0, 0, 0) 100%)"
+      },
+      {
+        "hex": "#3451b2",
+        "name": "Indigo Accent",
+        "role": "Reserved accent from CSS tokens (--bg-accent). Inline text links, focus rings, accent highlights when needed",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1280px centered container. The hero is full-bleed with the gradient background extending edge-to-edge, centered headline at 60px, subtitle at 18px, and a floating chat input card below. After the hero, the page settles into cream (#fcfbf8) sections with generous vertical spacing (64-80px between major sections). The logo bar is a single horizontal row of 5-6 monochrome logos. Feature explanations use a 2-column layout: left side has a UI mockup in a warm card, right side stacks 3 text-only feature descriptions vertically. Template gallery uses a 4-column grid of screenshot cards with minimal gaps. Navigation is a sticky top bar with backdrop blur, logo left, text links center, two pill buttons right. Footer is multi-column with warm beige (#eceae4) top border. Section rhythm: gradient hero → white with logos → cream feature sections → white template grid → stats → footer.",
+    "imagery": "The hero uses a full-bleed horizontal gradient as an ambient backdrop — not an image but a color field transitioning from dark charcoal through blues, magentas, reds, and oranges, creating a sunrise/prism effect. Below the hero, the site is almost entirely text-dominant. Template gallery cards show small rectangular screenshots with 12px rounded corners, displayed in a 4-column grid. These screenshots are the only photographic content and serve as thumbnails, not atmosphere. Company logos in the social proof bar are monochrome SVGs in #1c1c1c. Feature sections use small UI mockups (chat input recreations) rather than illustrations or photography. The overall visual density is very low — most sections are pure typography on warm cream backgrounds with no decorative imagery at all. Icon style is minimal: thin outlined icons at approximately 1.5px stroke weight, monochrome in #1c1c1c or #5f5f5d.",
+    "similar": [
+      {
+        "why": "Near-black on white/cream canvas, single custom sans-serif for all text, pill-shaped buttons, minimal color in UI with gradient used only as decorative hero moment",
+        "business": "Vercel"
+      },
+      {
+        "why": "One typeface system with tight letter-spacing, achromatic UI controls, color reserved for a single ambient gradient rather than distributed across components",
+        "business": "Linear"
+      },
+      {
+        "why": "Warm off-white canvas (#fcfbf8 range) instead of pure white, monochrome UI, text-dominant layouts with minimal imagery, company logo bar in monochrome",
+        "business": "Notion"
+      },
+      {
+        "why": "AI coding tool with chat input as the hero interaction, warm neutral palette, pill buttons, custom sans-serif with negative tracking",
+        "business": "Cursor"
+      },
+      {
+        "why": "Command-bar-style hero input, single font family across all scales, warm cream surface tones rather than cool grays",
+        "business": "Raycast"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16-24px",
+        "badges": "9999px",
+        "images": "12px",
+        "inputs": "8px",
+        "buttons": "9999px",
+        "containers": "16px"
+      },
+      "elementGap": "6-8px",
+      "sectionGap": "64-80px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#fcfbf8",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, default surface for all content"
+      },
+      {
+        "hex": "#f7f4ed",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated cards, chat input panels, feature containers — slightly warmer than canvas"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Inverse",
+        "level": 2,
+        "purpose": "Dark pill buttons, inverse overlays, high-contrast moments"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+        "element": "Chat Input Card"
+      },
+      {
+        "style": "oklch(0 0 0 / 0.25) 0px 0px 0px 0.5px inset",
+        "element": "Input Field (inset)"
+      }
+    ],
+    "northStar": "Warm parchment canvas behind a single prismatic horizon",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Nav Button",
+        "role": "Top navigation items",
+        "description": "Transparent background, #1c1c1c text at 15px weight 400, no border, 0px border-radius, padding 4px 0px 4px 6px. On hover, text color shifts subtly. No background change. These are nearly invisible as buttons — they read as plain text links."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary actions like 'Log in'",
+        "description": "Transparent background, #1c1c1c text, 1px solid #eceae4 border, border-radius 9999px (full pill), padding 6px 10px. The warm beige border makes it feel softer than a typical outlined button."
+      },
+      {
+        "name": "Dark Pill Button",
+        "role": "Primary action ('Get started')",
+        "description": "Background rgba(0,0,0,0.88) (#1c1c1c at 88% opacity), text #fcfbf8, border-radius 9999px. Padding 6px 10px minimum, scales with content. The slight transparency prevents the button from feeling like a harsh black block against the warm canvas."
+      },
+      {
+        "name": "Frosted Pill Button",
+        "role": "Overlay actions on the hero gradient",
+        "description": "Background rgba(255,255,255,0.8), text #1c1c1c, border-radius 9999px, no visible border. The translucency lets the hero gradient bleed through, tying the button to its context."
+      },
+      {
+        "name": "Chat Input Card",
+        "role": "Hero prompt area where users type their app idea",
+        "description": "Background #f7f4ed, border-radius 24px, padding 24px 20px. Contains placeholder text at 16px weight 400 in #5f5f5d, a '+' icon, and a 'Build' dropdown with a circular send button. The send button is a small circle (approx 28px) with a gradient fill matching the hero. Inner shadow: oklch(0 0 0 / 0.25) 0px 0px 0px 0.5px inset. Elevated shadow: oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0,0,0,0.1) 0px 20px 25px -5px, rgba(0,0,0,0.1) 0px 8px 10px -6px."
+      },
+      {
+        "name": "Template Preview Card",
+        "role": "Template gallery items in the 'Discover templates' grid",
+        "description": "Transparent background (sits on page canvas), no border, no shadow, 0px padding on outer wrapper. Contains a screenshot image with 12px border-radius, followed by a title at 16px weight 480 in #1c1c1c and a description at 14px weight 400 in #5f5f5d. Spacing between image and text is 8px."
+      },
+      {
+        "name": "Warm Surface Card",
+        "role": "Feature explanation panels, content containers",
+        "description": "Background #f7f4ed, border-radius 24px, padding 24px 20px, no shadow, no border. Used for the chat prompt mockup and feature illustrations. Content inside maintains 6-8px element gaps."
+      },
+      {
+        "name": "Logo Bar",
+        "role": "Social proof strip showing company logos",
+        "description": "Full-width strip on #fcfbf8 background. Logos rendered in monochrome #1c1c1c, evenly spaced in a horizontal row. Preceded by a muted label at 14px weight 400 in #5f5f5d."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Major content section titles like 'Meet Lovable', 'Discover templates'",
+        "description": "Text at 48px weight 480, color #1c1c1c, line-height 1.1, letter-spacing -1.2px. Left-aligned, no decoration. Followed by a subtitle or description at 16-18px weight 400 in #5f5f5d with 8px gap."
+      },
+      {
+        "name": "Feature Step",
+        "role": "Numbered feature explanations ('Start with an idea', 'Watch it come to life')",
+        "description": "Stacked text-only layout. Heading at 36px weight 480 #1c1c1c, body at 16px weight 400 #5f5f5d. Steps are stacked vertically with ~32px gap between them. No icons, no numbers, no decorative elements — relies entirely on typography weight contrast."
+      },
+      {
+        "name": "View All Link",
+        "role": "Secondary navigation to full listings",
+        "description": "Text link at 15px weight 400, color #030303, with an outlined pill border: 1px solid #eceae4, border-radius 9999px, padding 6px 10px. Functions as a soft secondary action."
+      },
+      {
+        "name": "Sticky Navigation Bar",
+        "role": "Top-of-page persistent navigation",
+        "description": "Full-width, height ~48px, background transparent or rgba(255,255,255,0.8) with backdrop-filter blur(4px) when scrolled. Contains logo on left, nav links center, 'Log in' (outlined pill) and 'Get started' (dark pill) on right. Bottom border: 1px solid #eceae4."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface on the entire site. A custom variable-weight sans-serif that carries both body text and display headlines. The 480 weight is unusual — heavier than normal but not semi-bold, giving headlines a confident but non-aggressive stance. Ligatures are explicitly disabled (\"liga\" 0), keeping the letterforms mechanical and preventing decorative swashes.",
+        "sizes": "14px, 15px, 16px, 18px, 20px, 36px, 48px, 60px",
+        "family": "Camera Plain Variable",
+        "weight": "400, 480, 600",
+        "lineHeight": "1.00–1.60 (tighter at large sizes, looser at body)",
+        "substitute": "Inter Variable or DM Sans",
+        "letterSpacing": "-0.025em at all sizes, producing noticeably tight tracking even at body scale — approximately -0.4px at 16px and -1.5px at 60px",
+        "fontFeatureSettings": "\"liga\" 0"
+      }
+    ],
+    "description": "Lovable wraps an AI builder tool in a warm parchment world where the only spectacle is a single gradient horizon in the hero — everywhere else, the interface retreats into cream surfaces, near-black text, and one custom variable-weight sans-serif. The palette is almost entirely achromatic: warm off-whites and charcoal, with color appearing only as the hero's ambient rainbow gradient and never in UI controls. Components are pill-shaped or softly rounded, borders are warm beige rather than cool gray, and shadows are barely-there inset strokes rather than drop shadows. The overall rhythm is compact vertically but generously padded horizontally, creating a feeling of quiet space inside small containers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lovable design system\",\"item\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#style-reference\",\"name\":\"Lovable design system reference\",\"headline\":\"Lovable design system | Refero Styles\",\"description\":\"Explore Lovable's light AI design system: Parchment #fcfbf8, Warm Sand #f7f4ed colors, Camera Plain Variable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lovable\",\"url\":\"https://lovable.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"caption\":\"Screenshot of Lovable\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lovable design system\",\"Lovable website design\",\"Lovable colors\",\"Lovable typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Warm Sand\",\"Linen Border\",\"Stone\",\"Camera Plain Variable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lovable design system\"},{\"@type\":\"Thing\",\"name\":\"Lovable website design\"},{\"@type\":\"Thing\",\"name\":\"Lovable colors\"},{\"@type\":\"Thing\",\"name\":\"Lovable typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T00:44:25.243Z\",\"dateModified\":\"2026-04-30T00:44:25.243Z\"}]}19:T859,**Quick Color Reference**\n- text (primary): #1c1c1c\n- text (high emphasis): #030303\n- text (secondary): #5f5f5d\n- background (canvas): #fcfbf8\n- background (card): #f7f4ed\n- border: #eceae4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed gradient background using linear-gradient(90deg, #1c1c1c 0%, #1c1c1c 33%, #82bcff 40%, #2483ff 45%, #ff66f4 50%, #ff3029 55%, #fe7b02 60%, transparent 67%). Center a headline at 60px weight 480, #1c1c1c, letter-spacing -1.5px, line-height 1.0. Below it, subtitle at 18px weight 400, #5f5f5d. Below that, a floating chat input card: #f7f4ed background, 24px radius, 24px padding, shadow oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0,0,0,0.1) 0px 20px 25px -5px, rgba(0,0,0,0.1) 0px 8px 10px -6px.\n\n2. **Navigation Bar**: Sticky, backdrop-filter blur(4px), rgba(255,255,255,0.8) background. Logo left. Center: text links at 15px weight 400 #1c1c1c, no underline, 6px horizontal gaps. Right: 'Log in' as outlined pill (transparent bg, 1px solid #eceae4, 9999px radius, 6px 10px padding, #1c1c1c text) and 'Get started' as dark pill (rgba(0,0,0,0.88) bg, #fcfbf8 text, 9999px radius, 6px 10px padding).\n\n3. **Template Card Grid**: 4-column grid on #fcfbf8 canvas. Each card: no background, no border, no shadow. Screenshot image with 12px radius at top. Title at 16px weight 480 #1c1c1c below image (8px gap). Description at 14px weight 400 #5f5f5d (4px gap below title). All text letter-spacing -0.025em, font-feature-settings \"liga\" 0.\n\n4. **Feature Section (2-column)**: Left column: warm surface card (#f7f4ed, 24px radius, 24px 20px padding) containing a UI mockup. Right column: stack of 3 feature blocks, each with heading at 36px weight 480 #1c1c1c (line-height 1.1, letter-spacing -0.9px) and body at 16px weight 400 #5f5f5d. 32px gap between blocks.\n\n5. **Section Header**: Left-aligned heading at 48px weight 480 #1c1c1c, letter-spacing -1.2px, line-height 1.1. Subtitle at 16px weight 400 #5f5f5d, 8px below. Optional 'View all' pill link aligned right: 15px weight 400 #030303, 1px solid #eceae4 border, 9999px radius, 6px 10px padding."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Lovable uses exactly one gradient in its design system: a horizontal prismatic gradient that serves as the hero background atmosphere. The gradient moves from solid charcoal (#1c1c1c) through sky blue (#82bcff), vivid blue (#2483ff), hot pink (#ff66f4), red (#ff3029), orange (#fe7b02), and fades to transparent. This gradient ONLY appears as a full-bleed background — never on buttons, badges, text, or individual components. The sole exception is the small circular send button inside the chat input, which uses a version of this gradient. Everywhere else, the UI is strictly achromatic. This constraint makes the gradient moment feel like looking through a window at a colorful sky, while the interface itself stays neutral and recessive."
+      },
+      {
+        "title": "Motion & Transitions",
+        "content": "Transitions default to 0.15s ease for micro-interactions (hover states on nav links, buttons, icon color changes). Properties transitioned include color, background-color, border-color, outline-color, and fill — all in one declaration for consistency. Longer durations (0.5s, 1.2s) appear on the hero background gradient animation. The cubic-bezier(0.4, 0, 0.2, 1) curve is used for more deliberate UI movements. Named animations include 'background-enter' (hero gradient reveal) and 'enter' (element appearance). The motion personality is expressive for hero/ambient animations but restrained for UI controls."
+      }
+    ],
+    "elevationPhilosophy": "Lovable almost entirely avoids shadows. Surface hierarchy comes from warm-white color shifts (#fcfbf8 → #f7f4ed) rather than elevation. The one exception is the chat input card, which uses a compound shadow (1px ring + deep drop shadow) to make it feel like a floating search bar. All other cards and containers are flat. Where subtle depth is needed, a 0.5px inset ring in oklch(0 0 0 / 0.16-0.25) provides barely-perceptible containment."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#eceae4",
+          "oklch": {
+            "c": 0.008302339265025998,
+            "h": 91.48573813193875,
+            "l": 0.9369291555796724
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 1800,
+          "confidence": 1,
+          "prominence": 112125591.00651628,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 540,
+            "body/borderColor": 244,
+            "card/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 76,
+            "image/borderColor": 40,
+            "other/borderColor": 648,
+            "button/borderColor": 64,
+            "footer/borderColor": 4,
+            "heading/borderColor": 100
+          }
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 467,
+          "confidence": 1,
+          "prominence": 91967941.41264074,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 20,
+            "nav/color": 129,
+            "body/color": 19,
+            "card/color": 12,
+            "hero/color": 1,
+            "link/color": 17,
+            "other/fill": 73,
+            "image/color": 10,
+            "other/color": 164,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 15,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcfbf8",
+          "oklch": {
+            "c": 0.0041033964504472095,
+            "h": 91.44554043868351,
+            "l": 0.9880186352153816
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 38156270.751978114,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 13,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/fill": 44,
+            "button/color": 3,
+            "body/boxShadow": 1,
+            "card/backgroundColor": 4,
+            "link/backgroundColor": 8,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5f5f5d",
+          "oklch": {
+            "c": 0.0031446479631227157,
+            "h": 106.51630960605026,
+            "l": 0.4848388096365332
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 299435.2349251178,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 9,
+            "nav/color": 6,
+            "body/color": 10,
+            "button/color": 1,
+            "heading/color": 6
+          }
+        },
+        {
+          "hex": "#030303",
+          "oklch": {
+            "c": 1.7021808593054364e-9,
+            "h": 129.62590536788193,
+            "l": 0.09999998982367533
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link",
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 13585.45869402173,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 18,
+            "icon/color": 6,
+            "link/color": 1,
+            "other/fill": 6,
+            "button/color": 7
+          }
+        },
+        {
+          "hex": "#6a6a69",
+          "oklch": {
+            "c": 0.0016852997315419487,
+            "h": 91.24978632958515,
+            "l": 0.5245626940627087
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9830,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1
+          }
+        },
+        {
+          "hex": "#d4d3d0",
+          "oklch": {
+            "c": 0.0035620663531414024,
+            "h": 91.4451793959182,
+            "l": 0.866310177636854
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 5982,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#ff66f4",
+          "oklch": {
+            "c": 0.24257297582805734,
+            "h": 330.6054677815632,
+            "l": 0.751209413736719
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3588.3551016326974,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#bdbcba",
+          "oklch": {
+            "c": 0.00324851228498773,
+            "h": 91.44491321681454,
+            "l": 0.7959575186124337
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3575.6754016269283,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#4b73ff",
+          "oklch": {
+            "c": 0.2126858455986348,
+            "h": 267.5281222968226,
+            "l": 0.6060511559726226
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2802.213701275004,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ff0105",
+          "oklch": {
+            "c": 0.2573329133538916,
+            "h": 28.98812580507054,
+            "l": 0.6282536857812699
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2461.446763619955,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fe7b02",
+          "oklch": {
+            "c": 0.18792761664867091,
+            "h": 51.04762658299487,
+            "l": 0.723099731310532
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1012.7910379608187,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019007755801403577,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.93,
+          "background": "#fcfbf8",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.14,
+          "background": "#eceae4",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.47,
+          "background": "#fcfbf8",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#eceae4",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.78,
+          "background": "#d4d3d0",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.38,
+          "background": "#d4d3d0",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#bdbcba",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.98,
+          "background": "#bdbcba",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.31,
+          "background": "#ff66f4",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.9,
+          "background": "#fe7b02",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.86,
+          "background": "#ff66f4",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.53,
+          "background": "#fe7b02",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#fcfbf8",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#eceae4",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#fcfbf8",
+          "foreground": "#6a6a69"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.27,
+          "background": "#d4d3d0",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#bdbcba",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#1c1c1c",
+          "foreground": "#6a6a69"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.66,
+          "background": "#1c1c1c",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#ff66f4",
+          "foreground": "#5f5f5d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "oklch(0 0 0 / 0.25) 0px 0px 0px 0.5px inset",
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "oklch(0 0 0 / 0.16) 0px 0px 0px 0.5px inset",
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|button",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 124,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "hero",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginBottom|other",
+            "marginBottom|body",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "button",
+            "other",
+            "heading",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|button",
+            "paddingTop|other",
+            "marginBottom|heading",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(28, 28, 28) 0px, rgb(28, 28, 28) 33.33%, rgb(130, 188, 255) 40%, rgb(36, 131, 255) 45%, rgb(255, 102, 244) 50%, rgb(255, 48, 41) 55%, rgb(254, 123, 2) 60%, rgba(0, 0, 0, 0) 66.67%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(28, 28, 28)",
+          "rgb(28, 28, 28)",
+          "rgb(130, 188, 255)",
+          "rgb(36, 131, 255)",
+          "rgb(255, 102, 244)",
+          "rgb(255, 48, 41)",
+          "rgb(254, 123, 2)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 4
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Camera Plain Variable",
+          "source": "custom",
+          "weights": [
+            400,
+            480,
+            600
+          ],
+          "frequency": 452,
+          "fontFeatureSettings": [
+            "\"liga\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Camera Plain Variable",
+          "weight": 480,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link",
+            "heading",
+            "nav"
+          ],
+          "frequency": 115,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "body",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 291,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Camera Plain Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Camera Plain Variable",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Camera Plain Variable",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Camera Plain Variable",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Camera Plain Variable",
+          "weight": 480,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Camera Plain Variable",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0e4435ab-b647-46a5-8134-e78324793b82.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lovable design system\",\"item\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#style-reference\",\"name\":\"Lovable design system reference\",\"headline\":\"Lovable design system | Refero Styles\",\"description\":\"Explore Lovable's light AI design system: Parchment #fcfbf8, Warm Sand #f7f4ed colors, Camera Plain Variable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lovable\",\"url\":\"https://lovable.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9ff62d34-e48d-4fcb-9fd9-c018e2747542#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"caption\":\"Screenshot of Lovable\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a2a2f39-8de8-44b7-b203-d81ea9c50891.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lovable design system\",\"Lovable website design\",\"Lovable colors\",\"Lovable typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Warm Sand\",\"Linen Border\",\"Stone\",\"Camera Plain Variable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lovable design system\"},{\"@type\":\"Thing\",\"name\":\"Lovable website design\"},{\"@type\":\"Thing\",\"name\":\"Lovable colors\"},{\"@type\":\"Thing\",\"name\":\"Lovable typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T00:44:25.243Z\",\"dateModified\":\"2026-04-30T00:44:25.243Z\"}]}19:T859,**Quick Color Reference**\n- text (primary): #1c1c1c\n- text (high emphasis): #030303\n- text (secondary): #5f5f5d\n- background (canvas): #fcfbf8\n- background (card): #f7f4ed\n- border: #eceae4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed gradient background using linear-gradient(90deg, #1c1c1c 0%, #1c1c1c 33%, #82bcff 40%, #2483ff 45%, #ff66f4 50%, #ff3029 55%, #fe7b02 60%, transparent 67%). Center a headline at 60px weight 480, #1c1c1c, letter-spacing -1.5px, line-height 1.0. Below it, subtitle at 18px weight 400, #5f5f5d. Below that, a floating chat input card: #f7f4ed background, 24px radius, 24px padding, shadow oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0,0,0,0.1) 0px 20px 25px -5px, rgba(0,0,0,0.1) 0px 8px 10px -6px.\n\n2. **Navigation Bar**: Sticky, backdrop-filter blur(4px), rgba(255,255,255,0.8) background. Logo left. Center: text links at 15px weight 400 #1c1c1c, no underline, 6px horizontal gaps. Right: 'Log in' as outlined pill (transparent bg, 1px solid #eceae4, 9999px radius, 6px 10px padding, #1c1c1c text) and 'Get started' as dark pill (rgba(0,0,0,0.88) bg, #fcfbf8 text, 9999px radius, 6px 10px padding).\n\n3. **Template Card Grid**: 4-column grid on #fcfbf8 canvas. Each card: no background, no border, no shadow. Screenshot image with 12px radius at top. Title at 16px weight 480 #1c1c1c below image (8px gap). Description at 14px weight 400 #5f5f5d (4px gap below title). All text letter-spacing -0.025em, font-feature-settings \"liga\" 0.\n\n4. **Feature Section (2-column)**: Left column: warm surface card (#f7f4ed, 24px radius, 24px 20px padding) containing a UI mockup. Right column: stack of 3 feature blocks, each with heading at 36px weight 480 #1c1c1c (line-height 1.1, letter-spacing -0.9px) and body at 16px weight 400 #5f5f5d. 32px gap between blocks.\n\n5. **Section Header**: Left-aligned heading at 48px weight 480 #1c1c1c, letter-spacing -1.2px, line-height 1.1. Subtitle at 16px weight 400 #5f5f5d, 8px below. Optional 'View all' pill link aligned right: 15px weight 400 #030303, 1px solid #eceae4 border, 9999px radius, 6px 10px padding."
+}

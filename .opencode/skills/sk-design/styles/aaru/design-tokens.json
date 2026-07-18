@@ -1,0 +1,372 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, primary background — the dominant surface across all dark sections"
+    },
+    "carbon": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon — Elevated surface for nav borders, button outlines, and secondary structural elements against the black canvas"
+    },
+    "graphite": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Graphite — Subtle raised surface for cards or containers sitting on the black canvas — the lightest neutral step before chromatic sections"
+    },
+    "frost": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Frost — Primary text, hairline borders on dark sections, and inverted backgrounds — the most-used color after black"
+    },
+    "ash": {
+      "$value": "#bababa",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, icon strokes, and secondary surface fills"
+    },
+    "smoke": {
+      "$value": "#9d9d9d",
+      "$type": "color",
+      "$description": "Smoke — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    },
+    "slate": {
+      "$value": "#858484",
+      "$type": "color",
+      "$description": "Slate — Body text borders and the quietest readable gray — used where content recedes into the background"
+    },
+    "reactor-lime": {
+      "$value": "#ebfb10",
+      "$type": "color",
+      "$description": "Reactor Lime — Primary action fill (CTA buttons), announcement bar background, and the sole warm accent — acid yellow-green against black creates instant focal hierarchy"
+    },
+    "plasma-blue": {
+      "$value": "#1019ec",
+      "$type": "color",
+      "$description": "Plasma Blue — Section background and chromatic border accent — vivid electric violet-blue that shifts the entire page into instrument-mode for feature blocks"
+    }
+  },
+  "font": {
+    "abcoracle": {
+      "$value": "abcOracle",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — used for navigation, body copy, labels, buttons, and medium-scale headings. Weight 330 ultra-light is the default; 400 is reserved for body paragraphs and readable text blocks. Positive letter-spacing on sizes ≤16px creates a data-label cadence."
+    },
+    "gtpantheon": {
+      "$value": "gtPantheon",
+      "$type": "fontFamily",
+      "$description": "Display and subheading typeface — weight 330 only, paired with tight negative tracking. Used for section openers and mid-scale titles. The contrast between its lighter cut and abcOracle's 330 creates two distinct text registers without using bold."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "12px",
+        "fontWeight": 330,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "13px",
+        "fontWeight": 330,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "13px",
+        "fontWeight": 330,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "14px",
+        "fontWeight": 330,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "14px",
+        "fontWeight": 330,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "15px",
+        "fontWeight": 330,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "16px",
+        "fontWeight": 330,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "gtPantheon",
+        "fontSize": "20px",
+        "fontWeight": 330,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "gtPantheon",
+        "fontSize": "30px",
+        "fontWeight": 330,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "34px",
+        "fontWeight": 330,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "gtPantheon",
+        "fontSize": "40px",
+        "fontWeight": 330,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "abcOracle",
+        "fontSize": "50px",
+        "fontWeight": 330,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the dominant surface"
+    },
+    "carbon": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevation for borders and outlines on the dark canvas"
+    },
+    "graphite": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 2: Container surface for cards or callouts sitting on black"
+    },
+    "plasma-blue": {
+      "$value": "#1019ec",
+      "$type": "color",
+      "$description": "Surface level 3: Chromatic section break — full-bleed feature background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aaru.com",
+      "siteName": "Aaru",
+      "extractedAt": "2026-06-03T18:10:01.777Z",
+      "variant": "extended"
+    }
+  }
+}

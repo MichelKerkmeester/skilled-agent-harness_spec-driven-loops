@@ -1,0 +1,399 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff6600",
+      "$type": "color",
+      "$description": "Ember Orange — Primary action fill on CTA buttons, contact links, and key navigation entry points — warm saturated orange against cream and black grounds commands without feeling aggressive"
+    },
+    "architect-violet": {
+      "$value": "#5c2999",
+      "$type": "color",
+      "$description": "Architect Violet — Decorative stroke and border accent for feature panels, concentric arc illustrations, and iconography — deep saturated violet that frames content without competing with orange CTAs"
+    },
+    "lichen-green": {
+      "$value": "#00cc88",
+      "$type": "color",
+      "$description": "Lichen Green — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "sandstone": {
+      "$value": "#aa8855",
+      "$type": "color",
+      "$description": "Sandstone — Muted warm stroke and illustration tone used in decorative arc patterns, card imagery borders, and secondary outline accents"
+    },
+    "bark-brown": {
+      "$value": "#665233",
+      "$type": "color",
+      "$description": "Bark Brown — Darker warm tone for card-surface strokes, secondary illustration fills, and text-adjacent decorative borders"
+    },
+    "honey-bronze": {
+      "$value": "#eec07a",
+      "$type": "color",
+      "$description": "Honey Bronze — Lighter warm fill for icon strokes and card accent borders — sits between the muted sandstone and the cream surfaces"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hero canvas, deep card-image borders, ghost-button outlines — the structural anchor color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, primary text on dark grounds, button text on orange fills"
+    },
+    "warm-cream": {
+      "$value": "#f6f3ee",
+      "$type": "color",
+      "$description": "Warm Cream — Primary warm card and panel surface — the default elevated neutral for feature blocks and content containers"
+    },
+    "lavender-mist": {
+      "$value": "#f6f1fe",
+      "$type": "color",
+      "$description": "Lavender Mist — Cool-tinted feature panel surface used to break rhythm on alternating sections — pairs with the violet accent"
+    },
+    "mint-whisper": {
+      "$value": "#ebfef6",
+      "$type": "color",
+      "$description": "Mint Whisper — Primary page canvas and white card surfaces"
+    },
+    "ash-gray": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary body text, muted link borders, and disabled-state iconography"
+    },
+    "smoke": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Smoke — Hairline border on light neutral buttons and tertiary dividers"
+    }
+  },
+  "font": {
+    "abc-monument-grotesk": {
+      "$value": "ABC Monument Grotesk",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every surface — a single custom grotesque that carries hierarchy through size, weight, and consistent -0.02em tracking. Weight 400 handles body, nav, and secondary text; weight 500 lifts buttons, active nav items, and key labels. The extremely tight 64px display at line-height 1.0 and the same -0.02em tracking at 14px body is signature — tracking never loosens regardless of size, which is unusual and unifies the scale."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "21.6px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 16px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 16px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "obsidian-vault": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Hero canvas and dramatic section backgrounds"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page base canvas and default card surface"
+    },
+    "warm-cream": {
+      "$value": "#f6f3ee",
+      "$type": "color",
+      "$description": "Surface level 2: Primary warm elevated card and feature panel surface"
+    },
+    "lavender-mist": {
+      "$value": "#f6f1fe",
+      "$type": "color",
+      "$description": "Surface level 3: Cool-tinted feature panel for rhythm variation, pairs with violet"
+    },
+    "mint-whisper": {
+      "$value": "#ebfef6",
+      "$type": "color",
+      "$description": "Surface level 4: Metric and status highlight surface, pairs with green"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.lithic.com",
+      "siteName": "Lithic",
+      "extractedAt": "2026-06-03T20:25:22.912Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "color": {
+    "linen-canvas": {
+      "$value": "#edede8",
+      "$type": "color",
+      "$description": "Linen Canvas — Page background, section surfaces — warm off-white that pushes the whole system toward paper rather than screen"
+    },
+    "frosted-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Frosted White — Card surfaces, elevated panels, glass overlays — clean white floats above the linen canvas for primary content"
+    },
+    "warm-stone": {
+      "$value": "#dbdbd2",
+      "$type": "color",
+      "$description": "Warm Stone — Secondary card fills, secondary button backgrounds, accent surface — sage-tinted beige gives neutral elements warmth without becoming chromatic"
+    },
+    "pebble": {
+      "$value": "#c0c0c0",
+      "$type": "color",
+      "$description": "Pebble — Circular accent tiles, muted card backgrounds — cool gray that sits one step back from stone for de-emphasized surfaces"
+    },
+    "graphite-ink": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary action button background, dark text on light surfaces — near-black with a hair of warmth, anchors every CTA"
+    },
+    "charcoal-body": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Charcoal Body — Primary body and heading text — readable but softer than pure black, keeps long-form copy from feeling harsh"
+    },
+    "slate-caption": {
+      "$value": "#6f6f6e",
+      "$type": "color",
+      "$description": "Slate Caption — Secondary body, helper text, descriptive copy — carries the most volume of any text color"
+    },
+    "ash-subheading": {
+      "$value": "#8f8f8e",
+      "$type": "color",
+      "$description": "Ash Subheading — Subtle labels, muted headings, decorative type — sits between caption and hairline"
+    },
+    "iron-nav": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Iron Nav — Secondary body text, navigation labels, and subdued headings. Do not promote it to the primary CTA color"
+    },
+    "onyx-border": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx Border — Hairline borders, strong dividers, selected-state outlines — used at 1-2px to outline cards, buttons, and focus rings"
+    },
+    "quartz": {
+      "$value": "#d0d0c8",
+      "$type": "color",
+      "$description": "Quartz — Quietest surface tint, reserved for low-contrast dividers and hover-state hints"
+    },
+    "lime-pulse": {
+      "$value": "#4cc02b",
+      "$type": "color",
+      "$description": "Lime Pulse — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI, body, headings, and buttons. Weight 400 dominates even at display sizes — headlines whisper rather than shout, which gives the brand authority through restraint. The Minor Third scale (1.2) is unusually compressed for a SaaS site, so sizes cluster more tightly than a Major Third or Perfect Fourth system would produce."
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Icon-internal text and OS-native labels — minimal usage, mostly decorative"
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.77
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "80px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "138": {
+      "$value": "138px",
+      "$type": "dimension",
+      "$description": "Spacing 138px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.75px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.3) 0px 32px 68px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(16, 24, 40, 0.12) 0px 18px 55px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "linen-canvas": {
+      "$value": "#edede8",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white that warms the entire system"
+    },
+    "frosted-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card surface, feature panels, elevated content blocks"
+    },
+    "warm-stone": {
+      "$value": "#dbdbd2",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface for pricing cards, de-emphasized panels, button backgrounds"
+    },
+    "glass-overlay": {
+      "$value": "#ffffffb3",
+      "$type": "color",
+      "$description": "Surface level 3: Floating panels, chat widgets, sticky elements — paired with backdrop blur(12px)"
+    },
+    "graphite": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 4: Inverted surface — dark CTAs, emphasis blocks, cookie consent panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gleap.io",
+      "siteName": "Gleap",
+      "extractedAt": "2026-07-03T03:13:43.210Z",
+      "variant": "extended"
+    }
+  }
+}

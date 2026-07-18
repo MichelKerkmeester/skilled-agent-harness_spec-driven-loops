@@ -1,0 +1,207 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, text on dark tiles, inverse surfaces — the canvas everything sits on"
+    },
+    "fog": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Fog — Light card tile backgrounds, secondary surface for showcased work, subtle UI dividers"
+    },
+    "ash": {
+      "$value": "#8e8e93",
+      "$type": "color",
+      "$description": "Ash — Pill-shaped navigation markers, muted icon strokes, secondary UI chrome"
+    },
+    "slate": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Slate — Dark card tile background variant (near-black) — deeper than Ink, used when a tile needs a subtly softer dark than pure black"
+    }
+  },
+  "font": {
+    "graphik-custom": {
+      "$value": "Graphik (custom)",
+      "$type": "fontFamily",
+      "$description": "Display and heading family. 24px/600 for section openers like 'iconwerk,' 21–22px/400 for larger body passages, 16px/400 for standard body. The 1.18–1.21 line-height range is tight — heading text feels compact and confident rather than airy."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback / dense utility text at 14px. Used at small sizes throughout — link labels, helper copy. Its system-font nature keeps it invisible; it never carries brand weight, only function."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "__Graphik_5",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "61": {
+      "$value": "61px",
+      "$type": "dimension",
+      "$description": "Spacing 61px"
+    },
+    "62": {
+      "$value": "62px",
+      "$type": "dimension",
+      "$description": "Spacing 62px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base background — the gallery wall"
+    },
+    "light-tile": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Surface level 2: Light card variant — neutral stage for dark icons"
+    },
+    "dark-tile": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 3: Dark card variant — inverted stage for light icons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.iconwerk.com",
+      "siteName": "iconwerk",
+      "extractedAt": "2026-06-03T21:16:52.980Z",
+      "variant": "extended"
+    }
+  }
+}

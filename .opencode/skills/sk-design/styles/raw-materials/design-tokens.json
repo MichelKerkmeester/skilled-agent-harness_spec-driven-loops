@@ -1,0 +1,917 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff3d00",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis"
+    },
+    "pulse-violet": {
+      "$value": "#5900cc",
+      "$type": "color",
+      "$description": "Pulse Violet — Violet supporting accent for decorative details and low-frequency emphasis."
+    },
+    "cobalt-blue": {
+      "$value": "#2835f8",
+      "$type": "color",
+      "$description": "Cobalt Blue — Violet supporting accent for decorative details and low-frequency emphasis."
+    },
+    "crimson": {
+      "$value": "#ff003d",
+      "$type": "color",
+      "$description": "Crimson — Red supporting accent for decorative details and low-frequency emphasis"
+    },
+    "caution-yellow": {
+      "$value": "#ffff00",
+      "$type": "color",
+      "$description": "Caution Yellow — Yellow supporting accent for decorative details and low-frequency emphasis."
+    },
+    "voltage-green": {
+      "$value": "#05ff00",
+      "$type": "color",
+      "$description": "Voltage Green — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "electric-blue": {
+      "$value": "#1b73e6",
+      "$type": "color",
+      "$description": "Electric Blue — Headings and body text on cream, mid-saturation blue used in content"
+    },
+    "sky-cyan": {
+      "$value": "#00c2ff",
+      "$type": "color",
+      "$description": "Sky Cyan — Headings and accent text, cool counterpoint to warm cream"
+    },
+    "forest": {
+      "$value": "#008163",
+      "$type": "color",
+      "$description": "Forest — Card fills, moderate green for body-level content blocks"
+    },
+    "lime-pulse": {
+      "$value": "#3eea5a",
+      "$type": "color",
+      "$description": "Lime Pulse — Headings and body, brighter green counterpart to Voltage; Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "tangerine": {
+      "$value": "#ff5c00",
+      "$type": "color",
+      "$description": "Tangerine — Card fills, warm orange variant for content blocks"
+    },
+    "signal-red": {
+      "$value": "#ee2526",
+      "$type": "color",
+      "$description": "Signal Red — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "ink": {
+      "$value": "#0e0e0e",
+      "$type": "color",
+      "$description": "Ink — Dark supporting neutral for text, icons, and strong contrast."
+    },
+    "bone-cream": {
+      "$value": "#f4e9e1",
+      "$type": "color",
+      "$description": "Bone Cream — Primary page canvas, nav text on color blocks, card surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Active nav card, elevated card surface, input fields"
+    },
+    "charcoal": {
+      "$value": "#242320",
+      "$type": "color",
+      "$description": "Charcoal — Dark surface fill, image overlays, secondary text on light"
+    },
+    "sage": {
+      "$value": "#cee4cd",
+      "$type": "color",
+      "$description": "Sage — Tinted section background, warm green wash"
+    },
+    "blush": {
+      "$value": "#e4d0cd",
+      "$type": "color",
+      "$description": "Blush — Tinted section background, warm pink wash"
+    },
+    "sand": {
+      "$value": "#e7e4d0",
+      "$type": "color",
+      "$description": "Sand — Tinted section background, warm yellow wash, card fill"
+    },
+    "sky-tint": {
+      "$value": "#cddae4",
+      "$type": "color",
+      "$description": "Sky Tint — Tinted section background, cool blue wash, image-related surfaces"
+    },
+    "celadon": {
+      "$value": "#ddded3",
+      "$type": "color",
+      "$description": "Celadon — Tinted section background, muted green wash"
+    },
+    "olive-slate": {
+      "$value": "#444639",
+      "$type": "color",
+      "$description": "Olive Slate — Dark olive section background, secondary text"
+    },
+    "forest-slate": {
+      "$value": "#374936",
+      "$type": "color",
+      "$description": "Forest Slate — Dark green section background, heading text on light"
+    },
+    "cocoa-slate": {
+      "$value": "#4a3937",
+      "$type": "color",
+      "$description": "Cocoa Slate — Dark warm section background, heading text on light"
+    },
+    "plum-slate": {
+      "$value": "#493648",
+      "$type": "color",
+      "$description": "Plum Slate — Dark purple section background, heading text on light"
+    }
+  },
+  "font": {
+    "stabilgrotesk": {
+      "$value": "StabilGrotesk",
+      "$type": "fontFamily",
+      "$description": "Workhorse — every nav label, body text, button, badge, card label, and sub-heading up to 46px. The only font that touches interactive UI"
+    },
+    "optimistic-text": {
+      "$value": "Optimistic Text",
+      "$type": "fontFamily",
+      "$description": "Large display headlines at 80-193px, sometimes body pull-quote at 23px"
+    },
+    "klarheitkurrent": {
+      "$value": "KlarheitKurrent",
+      "$type": "fontFamily",
+      "$description": "The largest display voice — 200-259px hero type, also mid-size editorial headings at 79-107px"
+    },
+    "htq-waldenburg-fettschmal": {
+      "$value": "HTQ-Waldenburg-FettSchmal",
+      "$type": "fontFamily",
+      "$description": "Narrow bold display for compressed-impact headlines, the only font using \"case\" feature"
+    },
+    "rightgrotesk": {
+      "$value": "RightGrotesk",
+      "$type": "fontFamily",
+      "$description": "Bold geometric display for 199px poster-scale headlines"
+    },
+    "moderat": {
+      "$value": "Moderat",
+      "$type": "fontFamily",
+      "$description": "Wide-tracked display — the +0.084em tracking is a signature, used for all-caps subhead labels"
+    },
+    "courier-new": {
+      "$value": "Courier New",
+      "$type": "fontFamily",
+      "$description": "Monospaced system fallback for data tables, tiny index numbers"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "courier new",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 14.69
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 14.69
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 6.66
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Optimistic Text",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.69
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 2.08
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 23px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 23px"
+    },
+    "xl-9": {
+      "$value": {
+        "fontFamily": "Optimistic Text",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-9 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 28px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 29px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 29px"
+    },
+    "2xl-9": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-9 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "79px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 79px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Optimistic Text",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 95px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Optimistic Text",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 95px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "HTQ-Waldenburg-FettSchmal",
+        "fontSize": "95px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 95px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "RightGrotesk",
+        "fontSize": "98px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 98px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "99px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 99px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 100px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 100px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "101px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 101px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "107px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 107px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 120px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "140px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 140px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "Optimistic Text",
+        "fontSize": "193px",
+        "fontWeight": 100,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 193px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "HTQ-Waldenburg-FettSchmal",
+        "fontSize": "193px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 193px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "199px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 199px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "199px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 199px"
+    },
+    "5xl-18": {
+      "$value": {
+        "fontFamily": "RightGrotesk",
+        "fontSize": "199px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-18 at 199px"
+    },
+    "5xl-19": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "200px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-19 at 200px"
+    },
+    "5xl-20": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "200px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-20 at 200px"
+    },
+    "5xl-21": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "200px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-21 at 200px"
+    },
+    "5xl-22": {
+      "$value": {
+        "fontFamily": "KlarheitKurrent",
+        "fontSize": "259px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-22 at 259px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "232": {
+      "$value": "232px",
+      "$type": "dimension",
+      "$description": "Spacing 232px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20.88px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40.32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99.36px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "187.2px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "bone-cream-canvas": {
+      "$value": "#f4e9e1",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, the warm paper that everything sits on"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces, active nav state, input fields"
+    },
+    "tinted-washes": {
+      "$value": "#cee4cd",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating colored section backgrounds — Sage, Blush, Sand, Sky Tint, Celadon — one tint per content block"
+    },
+    "saturated-color-blocks": {
+      "$value": "#ff3d00",
+      "$type": "color",
+      "$description": "Surface level 3: Full-saturation nav cards and content blocks using the seven section colors"
+    },
+    "dark-slates": {
+      "$value": "#444639",
+      "$type": "color",
+      "$description": "Surface level 4: Dark sections with hue-tinted darks — Olive, Forest, Cocoa, Plum"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://therawmaterials.com",
+      "siteName": "Raw Materials",
+      "extractedAt": "2026-06-03T19:01:21.444Z",
+      "variant": "extended"
+    }
+  }
+}

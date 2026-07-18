@@ -1,0 +1,641 @@
+{
+  "source": "https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592",
+  "uuid": "2d43b251-ad01-4e59-9068-502457aa0592",
+  "name": "Yung Studio",
+  "northStar": "white chalk drawing on a black gallery wall",
+  "capturedAt": "2026-07-18T08:21:14.108Z",
+  "meta": {
+    "url": "https://yung.studio",
+    "siteName": "Yung Studio",
+    "extractedAt": "2026-06-03T17:29:09.334Z",
+    "durationMs": 30192,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 196,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use pure #000000 as the page background for every screen — no gray, no off-black, no subtle tint",
+      "Set all interactive text in PolySans-Bulky at 28px so links and buttons are typographically distinct from Slim body copy without needing color",
+      "Use 9999px border-radius for all buttons, tags, and pill-shaped elements",
+      "Separate sections with 110-124px vertical gaps to maintain the spacious editorial rhythm",
+      "Let the 160px display type breathe with no padding or container — surround it with at least 60px of black negative space on all sides",
+      "Pair PolySans-Slim body text with PolySans-Neutral headings within the same section to create optical-size contrast within a single family",
+      "Use #c692ff violet only as a hover-state or active-state accent — never as a default fill, never as background, never at large scale"
+    ],
+    "donts": [
+      "Do not introduce gray mid-tones (#333, #666, #999) — the system is binary: pure white on pure black",
+      "Do not use card backgrounds with surface tints — content sits directly on the black canvas or inside 10px-radius cards with hairline borders only",
+      "Do not apply drop shadows, glows, or blur effects to any element — hierarchy comes from size and spacing",
+      "Do not use #c692ff violet as a CTA background or large fill area — it is a hover/active whisper, not a brand field",
+      "Do not use PolySans-Slim for display headlines above 40px — the optical design compresses at large sizes and loses presence",
+      "Do not break the 9999px pill convention with rectangular buttons — the pill shape is the system's only geometric signature",
+      "Do not crowd the layout — if a section needs to be dense, split it into two sections with 100+ px of black space between them"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, full-bleed backgrounds, surface for all primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c692ff",
+        "name": "Ultraviolet",
+        "role": "Accent for hover states, active link underline, and occasional highlight punctuation — appears at near-zero frequency, so it functions as surprise, not decoration",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed black canvas with no max-width constraint on the outer page. Navigation is a thin top bar with 36-50px horizontal padding. Hero sections feature oversized 160px display type with no container, centered or left-aligned, often paired with large hand-drawn illustration. Content sections follow a single-column or two-column rhythm with 110-124px vertical gaps. Text blocks use natural line length (roughly 400-600px implied max-width) without visible containers. The page reads top-to-bottom as discrete full-bleed black plates separated by generous whitespace — closer to a scrollable art-book than a traditional webpage grid.",
+    "imagery": "Hand-drawn white line-art illustrations on pure black. Strokes are 4-6px, organic and slightly irregular, featuring motifs like candles, sparklers, and abstract shapes. Illustrations sit flat on the canvas with no container, no fill, and no shadow — they read like white chalk on a blackboard. No photography, no product renders, no 3D. The visual language is graphic, editorial, and illustrative, with illustration scale reaching the full page width to create hero moments.",
+    "similar": [
+      {
+        "why": "Same high-contrast monochrome presentation with oversized custom display type on full-bleed dark canvas, and white pill buttons",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Editorial dark-mode agency site with generous vertical spacing, no card containers, and typography-as-hero",
+        "business": "Resn"
+      },
+      {
+        "why": "Full-bleed black backgrounds, typographic-forward layouts, and single-accent-color discipline for hover states",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Ultra-minimal dark agency aesthetic relying on type scale and white illustration on black, with no decorative UI chrome",
+        "business": "Manual (manual.work)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "10px",
+        "buttons": "9999px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "110-124px",
+      "cardPadding": "32-36px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — the only surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "white chalk drawing on a black gallery wall",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 160,
+        "lineHeight": 0.9,
+        "letterSpacing": -3.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Filled)",
+        "role": "Primary interactive element",
+        "description": "Full-pill (9999px radius) button with white fill (#ffffff), black text, 14px vertical padding, 50px horizontal padding. Text in PolySans-Bulky at 28px weight 400, tracking -0.28px. No border, no shadow — the geometry and contrast do the work."
+      },
+      {
+        "name": "Pill Button (Ghost)",
+        "role": "Secondary interactive element",
+        "description": "Same 9999px radius and 28px Bulky type as the filled button, but with transparent background, 1px white border, and white text. Used for lower-emphasis actions on the dark canvas."
+      },
+      {
+        "name": "Hero Display Word",
+        "role": "Brand-level typographic moment",
+        "description": "PolySans-Neutral at 160px, line-height 0.90, tracking -3.2px, white on black. Functions as the visual centerpiece of any landing screen. No padding around it — the negative space around the word IS the design."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page typographic anchor",
+        "description": "PolySans-Neutral at 60px, line-height 1.10, tracking -1.2px, white. Sits at the top of content sections with 110-124px margin-bottom to create the spacious section rhythm."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Running copy",
+        "description": "PolySans-Slim at 16-20px, line-height 1.35 (body) to 1.20 (larger), tracking -0.16 to -0.20px, white. Generous max-width implied by natural line length; no container card."
+      },
+      {
+        "name": "Link (Inline)",
+        "role": "Navigable text",
+        "description": "PolySans-Bulky at 28px, white, with violet (#c692ff) underline or hover state. The Bulky optical is the only weight contrast against the Slim body text, so links are typographically distinct without needing color emphasis."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-level navigation",
+        "description": "Full-width black bar with 36-50px horizontal padding. Left: wordmark in PolySans-Slim white at 16-20px. Right: menu trigger (three-line or stacked icon) in white. No background fill, no border — it sits directly on the black canvas."
+      },
+      {
+        "name": "Illustrative Graphic",
+        "role": "Hand-drawn visual accent",
+        "description": "White (#ffffff) line-art illustrations at large scale, stroke weight 4-6px, no fill, no shadow. Appears alongside or behind display type. Sits flat on the black canvas with no containing frame — the artwork bleeds to the page edge."
+      },
+      {
+        "name": "Content Card (Rounded)",
+        "role": "Contained content block",
+        "description": "10px border-radius, black or near-black fill, white text, 32-36px padding. Used sparingly — the system prefers uncontained text on canvas over card-heavy layouts. Optional 1px white hairline border for definition."
+      },
+      {
+        "name": "Tag / Pill Label",
+        "role": "Category or status label",
+        "description": "9999px radius, 14px vertical padding, ~20px horizontal padding, PolySans-Slim at 16px white. Either white-fill/black-text or transparent-fill/white-border/white-text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy at 16px, subheadings at 20–30px, and section headings at 40px. The Slim optical is the voice of the site: narrow, space-efficient, never decorative. Its tight -0.01em tracking makes 16px body text feel composed rather than casual.",
+        "sizes": "16px, 20px, 30px, 40px",
+        "family": "PolySans-Slim",
+        "weight": "400",
+        "lineHeight": "1.00–1.35",
+        "substitute": "Inter, Manrope, or General Sans",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Display and hero typography. 60px for section openers, 160px for the brand-level wordmark/display moments. At 160px with 0.90 line-height, the letters nearly touch vertically — an intentional compression that makes the type feel architectural rather than airy.",
+        "sizes": "60px, 160px",
+        "family": "PolySans-Neutral",
+        "weight": "400",
+        "lineHeight": "0.90–1.10",
+        "substitute": "Inter Display, Migra, or any weight-400 neo-grotesque at large size",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Link and CTA text at 28px. The Bulky optical adds weight and warmth to interactive elements without requiring a bold weight shift — buttons and links feel substantial at body-relative sizes.",
+        "sizes": "28px",
+        "family": "PolySans-Bulky",
+        "weight": "400",
+        "lineHeight": "1.01",
+        "substitute": "Inter, or the same family at weight 600",
+        "letterSpacing": "-0.0100em"
+      }
+    ],
+    "description": "Yung Studio operates in absolute monochrome: a pure black void against which white type and white illustration do all the work. The visual language is gallery-like — sparse, confident, and editorial — with a single violet (#c692ff) reserved as a whisper-quiet accent that only surfaces in hover or selection states. Typography carries the entire brand voice through the PolySans optical-size family: Slim whispers in body text, Neutral fills mid-scale sections, and Bulky anchors the hero as oversized display. Layout breathes aggressively; sections are separated by 100+ pixel gaps and framed by generous horizontal padding, giving every element room to perform. The aesthetic is closer to a zine or art-book cover than a SaaS dashboard — flat, bold, typographically expressive, and unafraid of negative space.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yung Studio design system\",\"item\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#style-reference\",\"name\":\"Yung Studio design system reference\",\"headline\":\"Yung Studio design system | Refero Styles\",\"description\":\"Explore Yung Studio's dark Agency design system: Obsidian #000000, Paper White #ffffff colors, PolySans-Slim, PolySans-Neutral typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yung Studio\",\"url\":\"https://yung.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"caption\":\"Screenshot of Yung Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yung Studio design system\",\"Yung Studio website design\",\"Yung Studio colors\",\"Yung Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper White\",\"Ultraviolet\",\"PolySans-Slim\",\"PolySans-Neutral\",\"PolySans-Bulky\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yung Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-04T20:23:32.000Z\",\"dateModified\":\"2026-02-04T20:23:32.000Z\"}]}19:T5a5,**Quick Color Reference**\n- Background: #000000\n- Text: #ffffff\n- Border: #ffffff (hairline)\n- Accent (hover/active only): #c692ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero display moment**: Black (#000000) full-bleed background. Display type: PolySans-Neutral weight 400, 160px, line-height 0.90, letter-spacing -3.2px, color #ffffff. No padding around the type — let it sit in the center of the canvas with at least 80px of black space on all sides.\n\n2. **Pill navigation button**: Transparent background, 1px solid #ffffff border, 9999px border-radius, 14px vertical padding, 50px horizontal padding. Text: PolySans-Bulky weight 400, 28px, color #ffffff, letter-spacing -0.28px.\n\n3. **Section heading + body**: Section heading in PolySans-Neutral weight 400, 60px, line-height 1.10, letter-spacing -1.2px, color #ffffff, with 124px margin-bottom. Body text below in PolySans-Slim weight 400, 20px, line-height 1.20, letter-spacing -0.20px, color #ffffff, max natural line length (~500px).\n\n4. **Hand-drawn illustration accent**: White (#ffffff) SVG line art, stroke-width 5px, no fill, positioned to the right of or behind display type. No container, no border, no shadow — it bleeds directly onto the black canvas.\n\n5. **Content card**: #000000 background, 10px border-radius, 1px solid #ffffff border at 20% opacity (hairline effect), 32px padding. Body text inside in PolySans-Slim 16px #ffffff."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The PolySans family provides three optical sizes — Slim, Neutral, Bulky — all at weight 400. The system exploits this by using WEIGHT and OPTICAL SIZE as its only typographic variables, never mixing typefaces. This creates a calm, almost typographic-monoculture feel where the voice shifts register (whisper, speak, shout) without changing character. The tight tracking (-0.01em body, -0.02em display) pulls all sizes toward a dense, composed, editorial feel — nothing is airy or loose."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design system uses absolute color contrast (white on black) and generous negative space to create visual hierarchy. Elevation is implied by typographic scale and spacing, never by drop shadow or blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "link",
+            "body",
+            "heading",
+            "image",
+            "card"
+          ],
+          "frequency": 912,
+          "confidence": 1,
+          "prominence": 155535395.19647592,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 1070418.663559615,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c692ff",
+          "oklch": {
+            "c": 0.15975998723359705,
+            "h": 304.855938678998,
+            "l": 0.7517688432251909
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 762.563937712741,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.002141784470634881,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.96,
+          "background": "#c692ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#c692ff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 68,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 110,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 124,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 222,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PolySans-Slim",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 152,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PolySans-Neutral",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PolySans-Bulky",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "PolySans-Slim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "image",
+            "card",
+            "link"
+          ],
+          "frequency": 115,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PolySans-Slim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "PolySans-Bulky",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.01,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PolySans-Slim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PolySans-Slim",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 40,
+          "family": "PolySans-Slim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "PolySans-Neutral",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 160,
+          "family": "PolySans-Neutral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cdf662a9-7d06-4aab-a2c7-67fbce6879bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yung Studio design system\",\"item\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#style-reference\",\"name\":\"Yung Studio design system reference\",\"headline\":\"Yung Studio design system | Refero Styles\",\"description\":\"Explore Yung Studio's dark Agency design system: Obsidian #000000, Paper White #ffffff colors, PolySans-Slim, PolySans-Neutral typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yung Studio\",\"url\":\"https://yung.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2d43b251-ad01-4e59-9068-502457aa0592#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"caption\":\"Screenshot of Yung Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a56f221-7036-446d-bc30-433734bca1db.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yung Studio design system\",\"Yung Studio website design\",\"Yung Studio colors\",\"Yung Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper White\",\"Ultraviolet\",\"PolySans-Slim\",\"PolySans-Neutral\",\"PolySans-Bulky\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yung Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Yung Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-04T20:23:32.000Z\",\"dateModified\":\"2026-02-04T20:23:32.000Z\"}]}19:T5a5,**Quick Color Reference**\n- Background: #000000\n- Text: #ffffff\n- Border: #ffffff (hairline)\n- Accent (hover/active only): #c692ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero display moment**: Black (#000000) full-bleed background. Display type: PolySans-Neutral weight 400, 160px, line-height 0.90, letter-spacing -3.2px, color #ffffff. No padding around the type — let it sit in the center of the canvas with at least 80px of black space on all sides.\n\n2. **Pill navigation button**: Transparent background, 1px solid #ffffff border, 9999px border-radius, 14px vertical padding, 50px horizontal padding. Text: PolySans-Bulky weight 400, 28px, color #ffffff, letter-spacing -0.28px.\n\n3. **Section heading + body**: Section heading in PolySans-Neutral weight 400, 60px, line-height 1.10, letter-spacing -1.2px, color #ffffff, with 124px margin-bottom. Body text below in PolySans-Slim weight 400, 20px, line-height 1.20, letter-spacing -0.20px, color #ffffff, max natural line length (~500px).\n\n4. **Hand-drawn illustration accent**: White (#ffffff) SVG line art, stroke-width 5px, no fill, positioned to the right of or behind display type. No container, no border, no shadow — it bleeds directly onto the black canvas.\n\n5. **Content card**: #000000 background, 10px border-radius, 1px solid #ffffff border at 20% opacity (hairline effect), 32px padding. Body text inside in PolySans-Slim 16px #ffffff."
+}

@@ -1,0 +1,109 @@
+:root {
+  /* Colors */
+  --color-forest-ink: #0a1d08;
+  --color-olive-press: #2b390a;
+  --color-sage-leaf: #4a6d47;
+  --color-deep-teal: #2b6b5e;
+  --color-crimson-specimen: #991e4b;
+  --color-amber-pin: #80581c;
+  --color-linen: #f8f9f5;
+  --color-bone: #eff2e8;
+  --color-mist: #e1e6df;
+  --color-slate-hollow: #2a332a;
+  --color-sage-gray: #6b7860;
+  --color-sage-mist: #a5ac9f;
+  --color-eucalyptus: #c9d5c5;
+  --color-lichen: #c5ccb6;
+  --color-blush: #e3c9d0;
+  --color-sand: #ad9d80;
+  --color-sage-foam: #729d92;
+  --color-rose-clay: #c27c93;
+  --color-surface-glow: #fdfefb;
+
+  /* Typography — Font Families */
+  --font-akkurat: 'akkurat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-newsreader: 'Newsreader', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fragment-mono: 'Fragment Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-ui-monospace: 'ui-monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-gt-america-mono: 'GT America Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-fragmentmono: 'fragmentMono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-tag: 11px;
+  --leading-tag: 1.33;
+  --tracking-tag: 0.22px;
+  --text-caption: 14px;
+  --leading-caption: 1.29;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.24px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.44;
+  --text-heading-sm: 26px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: -0.52px;
+  --text-heading: 30px;
+  --leading-heading: 1.16;
+  --tracking-heading: -0.6px;
+  --text-heading-lg: 53px;
+  --leading-heading-lg: 1.21;
+  --tracking-heading-lg: -2.12px;
+  --text-display: 108px;
+  --leading-display: 0.98;
+  --tracking-display: -3.46px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-34: 34px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-58: 58px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 96px;
+  --card-padding: 20px;
+  --element-gap: 6px;
+
+  /* Border Radius */
+  --radius-sm: 1.5px;
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 10px;
+  --radius-small: 1.5px;
+  --radius-inputs: 4px;
+  --radius-buttons: 20px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(153, 30, 75) 0px 0px 0px 1px;
+  --shadow-subtle-2: rgba(99, 143, 61, 0.1) 0px 0px 0px 1px;
+
+  /* Surfaces */
+  --surface-linen: #f8f9f5;
+  --surface-bone: #eff2e8;
+  --surface-eucalyptus: #c9d5c5;
+  --surface-sage-leaf: #4a6d47;
+  --surface-slate-hollow: #2a332a;
+}

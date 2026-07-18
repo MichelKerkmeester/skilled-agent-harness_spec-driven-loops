@@ -1,0 +1,227 @@
+{
+  "color": {
+    "butter-cream": {
+      "$value": "#f9e5b1",
+      "$type": "color",
+      "$description": "Butter Cream — Hero and section canvas — the warm cream that defines the entire brand atmosphere"
+    },
+    "ink-black": {
+      "$value": "#1d1e21",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, filled buttons, and the dark surface that anchors contrast — softer than pure black, warm against the cream"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Illustration strokes, icon fills, and SVG detail work — only the darkest graphic elements"
+    },
+    "warm-bone": {
+      "$value": "#fef9f3",
+      "$type": "color",
+      "$description": "Warm Bone — Card surfaces, secondary text on dark, and the lighter off-white that sits above the cream canvas"
+    },
+    "ash-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Ash Gray — Hairline borders, image outlines, subtle dividers, and neutral tag fills — the structural neutral that separates every section"
+    }
+  },
+  "font": {
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "Single typeface for everything. Weight 400 carries body and nav; weight 600 is the workhorse for subheadings and button labels; weight 700 dominates display headlines at 48–72px. Letter-spacing tightens at display sizes (negative tracking) and opens slightly on small body text — a classic editorial rhythm. Its grotesque geometry with humanist warmth is what gives the site its literary feel; a neutral like Inter or Söhne could approximate it."
+    }
+  },
+  "typography": {
+    "xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "91px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "butter-cream-canvas": {
+      "$value": "#f9e5b1",
+      "$type": "color",
+      "$description": "Surface level 0: Hero and feature section backgrounds — the brand's signature warm surface"
+    },
+    "warm-bone": {
+      "$value": "#fef9f3",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, pill tag fills, and lighter secondary sections"
+    },
+    "ash-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, subtle dividers, and neutral structural elements"
+    },
+    "ink-black": {
+      "$value": "#1d1e21",
+      "$type": "color",
+      "$description": "Surface level 3: Darkest surface — filled buttons, footer accents, and high-contrast panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dovetail.no",
+      "siteName": "Dovetail",
+      "extractedAt": "2026-06-03T18:20:22.789Z",
+      "variant": "extended"
+    }
+  }
+}

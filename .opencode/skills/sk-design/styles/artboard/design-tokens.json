@@ -1,0 +1,257 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#0d1400",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, ghost/outline action borders, filled dark buttons — near-black with a faint green undertone carries both editorial type and CTA strokes"
+    },
+    "lime-voltage": {
+      "$value": "#aaff00",
+      "$type": "color",
+      "$description": "Lime Voltage — Brand accent, active states, highlight tags, energetic punctuation — the single chromatic accent that gives the white canvas its electric charge"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button fills — the foundation everything sits on"
+    },
+    "olive-stone": {
+      "$value": "#838976",
+      "$type": "color",
+      "$description": "Olive Stone — Muted helper text, secondary icons, neutral badge borders, low-emphasis UI chrome"
+    },
+    "soft-mist": {
+      "$value": "#e6e7e4",
+      "$type": "color",
+      "$description": "Soft Mist — Hairline dividers, subtle surface edges, low-contrast separators"
+    },
+    "peach-wash": {
+      "$value": "#ffe4c3",
+      "$type": "color",
+      "$description": "Peach Wash — Category card accent — warm pastel surface for color-coded product groupings"
+    },
+    "sky-wash": {
+      "$value": "#cbedff",
+      "$type": "color",
+      "$description": "Sky Wash — Category card accent — cool pastel surface for color-coded product groupings"
+    },
+    "mint-wash": {
+      "$value": "#caf3aa",
+      "$type": "color",
+      "$description": "Mint Wash — Category card accent — fresh pastel surface for color-coded product groupings"
+    }
+  },
+  "font": {
+    "vend-sans": {
+      "$value": "Vend Sans",
+      "$type": "fontFamily",
+      "$description": "Custom display + label typeface. Headlines run at 43–61px weight 600/700 with tight negative tracking (-0.033em to -0.023em) for a compressed, editorial feel. The same family doubles as small all-caps labels at 11–13px with wide positive tracking (+0.039em to +0.045em) — a deliberate dual register: whisper-quiet labels, assertive display."
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Body and supporting text. Stays at 16px with 0.031em tracking — deliberately understated so Vend Sans can lead. No custom body face: the system font is the quiet workhorse, and custom type is reserved for moments of emphasis."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "43px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "61px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Vend Sans",
+        "fontSize": "61px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 61px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas — everything sits on this"
+    },
+    "soft-mist": {
+      "$value": "#e6e7e4",
+      "$type": "color",
+      "$description": "Surface level 1: Hairline dividers and low-contrast separators"
+    },
+    "category-pastel": {
+      "$value": "#ffe4c3",
+      "$type": "color",
+      "$description": "Surface level 2: Color-coded category card surfaces (warm variant)"
+    },
+    "category-pastel-cool": {
+      "$value": "#cbedff",
+      "$type": "color",
+      "$description": "Surface level 3: Color-coded category card surfaces (cool variant)"
+    },
+    "category-pastel-fresh": {
+      "$value": "#caf3aa",
+      "$type": "color",
+      "$description": "Surface level 4: Color-coded category card surfaces (fresh variant)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://artboard.studio",
+      "siteName": "Artboard",
+      "extractedAt": "2026-06-03T20:23:43.803Z",
+      "variant": "extended"
+    }
+  }
+}

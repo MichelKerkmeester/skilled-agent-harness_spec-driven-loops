@@ -1,0 +1,259 @@
+{
+  "color": {
+    "cosmic-void": {
+      "$value": "#06051d",
+      "$type": "color",
+      "$description": "Cosmic Void — Primary page background and hero fill — the violet undertone separates it from neutral black, making darkness feel galactic rather than empty"
+    },
+    "abyssal-blue": {
+      "$value": "#0f1c36",
+      "$type": "color",
+      "$description": "Abyssal Blue — Secondary surface backgrounds, button background variant — a step lighter than Cosmic Void for subtle depth layering"
+    },
+    "steel-navy": {
+      "$value": "#1d293d",
+      "$type": "color",
+      "$description": "Steel Navy — Card surfaces, nav background, interactive container backgrounds"
+    },
+    "deep-slate": {
+      "$value": "#314062",
+      "$type": "color",
+      "$description": "Deep Slate — Elevated card or hover state backgrounds"
+    },
+    "mist": {
+      "$value": "#cad5e2",
+      "$type": "color",
+      "$description": "Mist — Primary body text, general UI text — slightly blue-gray rather than pure white, reducing harshness against the dark void backgrounds"
+    },
+    "fog": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog — Borders, dividers, icon strokes throughout the UI"
+    },
+    "ash": {
+      "$value": "#2e3038",
+      "$type": "color",
+      "$description": "Ash — Secondary text, subdued labels"
+    },
+    "ghost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Ghost White — Heading text at maximum contrast"
+    },
+    "ice-blue": {
+      "$value": "#ebf8ff",
+      "$type": "color",
+      "$description": "Ice Blue — High-brightness text on dark surfaces, link contrast text"
+    },
+    "portal-blue": {
+      "$value": "#63b3ed",
+      "$type": "color",
+      "$description": "Portal Blue — Hyperlinks, inline text links — the single fully saturated accent visible in body content, connecting to Midjourney's Discord/community ecosystem"
+    },
+    "bioluminescent-green": {
+      "$value": "#004f3b",
+      "$type": "color",
+      "$description": "Bioluminescent Green — Sign Up pill button background (20% opacity tint) — deep green specimen glow against void"
+    },
+    "terminal-amber": {
+      "$value": "#733e0a",
+      "$type": "color",
+      "$description": "Terminal Amber — Explore pill button background (20% opacity tint) — amber specimen variant"
+    },
+    "crimson-depth": {
+      "$value": "#8b0836",
+      "$type": "color",
+      "$description": "Crimson Depth — Log In pill button background (20% opacity tint) — deep red specimen variant"
+    },
+    "specimen-green": {
+      "$value": "#00bc7d",
+      "$type": "color",
+      "$description": "Specimen Green — Icon strokes and decorative SVG fills — vivid but used sparingly in iconography only"
+    },
+    "warning-amber": {
+      "$value": "#f0b100",
+      "$type": "color",
+      "$description": "Warning Amber — Icon and UI accent strokes — section heading icons (Projects ⚙, About ℹ)"
+    },
+    "fault-red": {
+      "$value": "#ff2056",
+      "$type": "color",
+      "$description": "Fault Red — Icon strokes, error-adjacent SVG fills"
+    }
+  },
+  "font": {
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Every typographic role on this site — navigation labels, body copy, headings, buttons, links. Using a monospace font as the universal typeface (not just for code) makes the entire interface read as an active terminal output. 30px at lineHeight 1.25 serves section headings; 16px at 1.50 serves body and UI labels; 14px at 1.63 serves captions and metadata."
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary UI copy and body text in prose sections — appears at 16px only. Weight 500 for emphasis within body blocks. Provides a subtle humanist contrast against the monospace primary, used sparingly so the terminal character of JetBrains Mono dominates."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "cosmic-void": {
+      "$value": "#06051d",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the deepest layer, the void all other surfaces float within"
+    },
+    "deep-navy-gradient": {
+      "$value": "#061434",
+      "$type": "color",
+      "$description": "Surface level 1: Upper-hero gradient terminus, slightly lighter for atmospheric depth illusion"
+    },
+    "abyssal-blue": {
+      "$value": "#0f1c36",
+      "$type": "color",
+      "$description": "Surface level 2: Button container backgrounds, secondary surface areas"
+    },
+    "steel-navy": {
+      "$value": "#1d293d",
+      "$type": "color",
+      "$description": "Surface level 3: Navigation bar background, card container backgrounds"
+    },
+    "deep-slate": {
+      "$value": "#314062",
+      "$type": "color",
+      "$description": "Surface level 4: Elevated or hover-state surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://midjourney.com",
+      "siteName": "Midjourney",
+      "extractedAt": "2026-04-11T18:05:53.023Z",
+      "variant": "extended"
+    }
+  }
+}

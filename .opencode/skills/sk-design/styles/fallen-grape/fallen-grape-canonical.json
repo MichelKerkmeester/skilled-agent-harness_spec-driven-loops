@@ -1,0 +1,1345 @@
+{
+  "source": "https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5",
+  "uuid": "17ce9ad2-f22d-4e48-92de-e28fb8551cc5",
+  "name": "Fallen Grape",
+  "northStar": "Sun-drenched vineyard at golden hour. Warm cream paper, walnut ink, terracotta warmth — a wine label breathed into a full interface.",
+  "capturedAt": "2026-07-18T08:23:44.667Z",
+  "meta": {
+    "url": "https://www.fallengrape.com",
+    "siteName": "Fallen Grape",
+    "extractedAt": "2026-06-03T15:57:06.846Z",
+    "durationMs": 36638,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 397,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Romie (serif) for all display headlines, brand wordmark, and editorial body text at 20px and above",
+      "Use Arial Narrow (condensed sans) for all functional UI: navigation, buttons, product titles, utility text — always uppercase with 0.0430em-0.0630em tracking",
+      "Set all borders to 1px solid Saddle Brown (#7c664d) — this is the primary structural separator, never use shadows for elevation",
+      "Maintain 0px border-radius on all components — the sharp edges reinforce the wine label and hand-pressed paper aesthetic",
+      "Use Peach Sand (#e1c6ab) or Terracotta Glow (#e3a36e) for button backgrounds with Walnut Ink text and 1px Walnut Ink border",
+      "Keep the canvas at Vintage Cream (#ece0d2) for most full-bleed sections; reserve Bone White (#f3f3f3) for cards and navigation to create subtle layering",
+      "Use Vine Sage (#d8deb7) sparingly — only for decorative heading accents or botanical illustration tints, never for interactive elements"
+    ],
+    "donts": [
+      "Do not add box-shadows or drop-shadows to any component — this design is intentionally flat and paper-like",
+      "Do not use rounded corners (border-radius > 0px) on cards, buttons, or images — the sharp 0px edges are signature",
+      "Do not use cool grays, blues, or pure white (#ffffff) for backgrounds — the entire palette is warm earth tones",
+      "Do not use Arial Narrow for display headlines or large editorial text — reserve it for functional/utility text under 24px",
+      "Do not use the condensed sans for body paragraphs longer than 2 lines — switch to Romie for readability",
+      "Do not apply Vine Sage (#d8deb7) to buttons, links, or interactive states — it is decorative only",
+      "Do not introduce bright primary colors (saturated blues, greens, purples) — all accents must stay in the warm peach/terracotta family"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ece0d2",
+        "name": "Vintage Cream",
+        "role": "Page canvas, section backgrounds, footer surface — the warm paper tone that grounds all content and sets the sun-faded, natural mood",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Bone White",
+        "role": "Card surfaces, navigation background — a cooler off-white that lifts cards above the cream canvas without harsh contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#573d21",
+        "name": "Walnut Ink",
+        "role": "Primary text, headings, body copy, link color — deep brown that reads as ink on aged paper rather than digital black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7c664d",
+        "name": "Saddle Brown",
+        "role": "Hairline borders (cards, nav, body dividers), secondary text, muted UI lines — the structural outline color that replaces shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1c6ab",
+        "name": "Peach Sand",
+        "role": "Outlined action border, button fill for shop actions — warm neutral peach for CTA buttons and soft fills",
+        "group": "accent"
+      },
+      {
+        "hex": "#e3a36e",
+        "name": "Terracotta Glow",
+        "role": "Filled action buttons, link highlights, secondary call-to-action fill — saturated peach-orange that signals action and energy",
+        "group": "accent"
+      },
+      {
+        "hex": "#efa164",
+        "name": "Apricot Whisper",
+        "role": "Top announcement bar, promotional highlights, hover state for terracotta buttons — the warmest orange, used sparingly for urgency and promos",
+        "group": "accent"
+      },
+      {
+        "hex": "#d8deb7",
+        "name": "Vine Sage",
+        "role": "Decorative heading accent, botanical illustration tint — the only green in the system, evoking grape leaves and organic origin",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-width sections with centered max-width 1200px content containers. The hero is full-bleed illustrated landscape with centered headline and button overlay. Below the hero, content alternates between centered editorial text blocks and 3-column product card grids. The 3-pack section uses a 3-column image grid followed by a product carousel with arrow navigation. The about section uses a 2-column asymmetric layout (image left, text right). Vertical rhythm is generous with 80px section gaps. Navigation is a top bar with left/center/right content zones. The overall page flows top-to-bottom in a single column with no sidebar. Dense information is avoided — the design breathes with whitespace and large type.",
+    "imagery": "Product photography is warm-toned, sunlit, and tightly cropped on the object — wine bottles in earthy settings, hats on natural surfaces, clothing against botanical backdrops. The hero features a custom illustrated landscape with watercolor-style grape vines, butterflies, rolling hills, and a centered bottle silhouette in peach and sage tones. Photography style is organic and lifestyle-adjacent but not staged — products appear in their natural context (wood, leaves, fabric). All images use 0px border-radius for sharp edges. The visual density is moderate: one large hero illustration, then product photography in grid format, then editorial text sections. Iconography is minimal — the illustrations carry the visual storytelling rather than UI icons.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas, brown/terracotta accent palette, and humanist serif + condensed sans typography pairing for an artisan food/bev brand",
+        "business": "Brightland"
+      },
+      {
+        "why": "Similar earth-tone palette, vintage label typography with condensed sans uppercase, and 0px-radius sharp product photography grids",
+        "business": "B Corp Wine Brands (e.g., Folk Machine)"
+      },
+      {
+        "why": "Same warm neutral background, brown text on cream, minimal flat design with hairline borders instead of shadows, serif/sans typographic contrast",
+        "business": "Cote&Ciel"
+      },
+      {
+        "why": "Identical flat aesthetic with warm paper-tone backgrounds, brown text, and borderless/shadowless component design that feels printed rather than digital",
+        "business": "Toast (tabeo)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ece0d2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background, footer, full-bleed sections"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Product cards, navigation bar, elevated content blocks"
+      },
+      {
+        "hex": "#e1c6ab",
+        "name": "Action Surface",
+        "level": 2,
+        "purpose": "Button fills, interactive highlights"
+      }
+    ],
+    "northStar": "Sun-drenched vineyard at golden hour. Warm cream paper, walnut ink, terracotta warmth — a wine label breathed into a full interface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.7,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.7,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.44
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top promotional banner",
+        "description": "Full-width strip at page top with Apricot Whisper (#efa164) or Terracotta Glow (#e3a36e) background, centered text in Walnut Ink (#573d21), Arial Narrow 12-13px uppercase with 0.0430em tracking. Padding 5px top/bottom. No border, no radius."
+      },
+      {
+        "name": "Header Navigation",
+        "role": "Primary site navigation",
+        "description": "Bone White (#f3f3f3) background with 1px Saddle Brown (#7c664d) bottom border. Left-aligned nav links (SHOP ALL with dropdown caret, SHOP MERCH, ABOUT US) and right-aligned (LOGIN, CART) in Arial Narrow 13-14px uppercase, 0.0430em tracking, Walnut Ink color. Centered Romie brand wordmark sits between groups, 20px size."
+      },
+      {
+        "name": "Hero Illustration Banner",
+        "role": "Full-bleed hero with illustrated scene",
+        "description": "Full-width illustrated landscape scene with peach sky gradient, grape vine clusters, butterfly motifs, and centered wine bottle silhouette. Headline 'It's natural' in Romie 48-64px weight 400, Walnut Ink, centered. CTA button overlaid on illustration. No border or card treatment — the illustration IS the hero."
+      },
+      {
+        "name": "Shop All CTA Button",
+        "role": "Primary call-to-action",
+        "description": "Rectangular button (0px radius) with Peach Sand (#e1c6ab) or Terracotta Glow (#e3a36e) background, 1px Walnut Ink (#573d21) border, padding 10px 24px. Text in Arial Narrow 13-14px uppercase, 0.0430em tracking, Walnut Ink. No shadow, no hover lift — warmth comes from color."
+      },
+      {
+        "name": "Section Headline",
+        "role": "Editorial section titles",
+        "description": "Romie weight 400 at 48px, Walnut Ink (#573d21), centered, with generous line-height 1.20. No underline or decorative element — the serif itself carries authority. Used for 'The 3-Pack', product section titles."
+      },
+      {
+        "name": "Product Card",
+        "role": "Merchandise and wine product display",
+        "description": "Bone White (#f3f3f3) background, 1px Saddle Brown (#7c664d) border, 0px radius. Image fills top portion edge-to-edge. Product title in Arial Narrow 14-16px uppercase bold below image. Price in Arial Narrow 13-14px, Walnut Ink, directly below title. Padding 17px sides. No shadow, no hover elevation."
+      },
+      {
+        "name": "Product Grid Carousel",
+        "role": "3-column product showcase with pagination",
+        "description": "3-column grid of Product Cards with 24px gap. Left/right arrow navigation controls in Saddle Brown. Pagination dots below grid: active dot in Terracotta Glow (#e3a36e), inactive in Saddle Brown outline. Carousel arrow buttons are 36x36px, borderless, centered vertically."
+      },
+      {
+        "name": "Editorial Text Block",
+        "role": "Long-form brand storytelling content",
+        "description": "Romie 20px weight 400, Walnut Ink, centered text with 1.70 line-height for readability. Used for 'Natural wine made with organically farmed grapes...' statements. No background, no border — text floats on cream canvas with generous vertical breathing room."
+      },
+      {
+        "name": "Two-Column About Section",
+        "role": "Brand story with image and text",
+        "description": "Two-column layout: left column contains a rectangular image (edge-to-edge, 0px radius), right column contains 'ABOUT US' heading in Arial Narrow 20px bold uppercase with Saddle Brown border-bottom, followed by body text in Romie 15-16px, Walnut Ink. Columns separated by 48px gap."
+      },
+      {
+        "name": "Navigation Dropdown",
+        "role": "SHOP ALL category menu",
+        "description": "Dropdown panel appears below SHOP ALL nav item. Bone White background, 1px Saddle Brown border, 0px radius. Menu items in Arial Narrow 14px, Walnut Ink, with 8-10px vertical padding. No shadow — the border defines the edge."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with links and info",
+        "description": "Vintage Cream (#ece0d2) background extending full-width. Contains centered text blocks in Romie 12-15px, Walnut Ink. Minimal — likely newsletter signup, social links, legal text. No heavy visual treatment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Brand wordmark, hero display headlines, section headings, editorial body — a humanist serif that brings warmth and craft authority. The weight 400 at 48-64px sizes is the signature display voice; 700 is used for emphasis in smaller text. Free substitute: Fraunces, Lora, or DM Serif Display",
+        "sizes": "12px, 15px, 20px, 48px, 64px",
+        "family": "Romie",
+        "weight": "400, 700",
+        "lineHeight": "1.20-1.70",
+        "substitute": "Fraunces",
+        "letterSpacing": "0.0300em"
+      },
+      {
+        "role": "Body copy, navigation items, button labels, product titles, utility text — a condensed utilitarian sans that creates deliberate tension with the Romie serif. Uppercase with widened tracking (0.0630em) for nav and button labels gives a vintage label feel. Free substitute: Barlow Condensed, Oswald, or Roboto Condensed",
+        "sizes": "13px, 14px, 16px, 18px, 20px, 24px, 48px",
+        "family": "Arial Narrow",
+        "weight": "400, 700",
+        "lineHeight": "1.20-1.80",
+        "substitute": "Barlow Condensed",
+        "letterSpacing": "0.0300em-0.0630em"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "20px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.03"
+      }
+    ],
+    "description": "Fallen Grape uses a sun-drenched, vineyard-at-golden-hour language: warm cream canvases, deep walnut typography, and peach-terracotta accents that feel pressed from ripe grapes rather than screen-painted. The interface stays nearly monochromatic in warm neutrals, letting product photography and a single sage-green accent carry visual variety. Hairline brown borders separate regions instead of shadows or elevation — surfaces are flat and paper-like, evoking a hand-pressed wine label. Typography is a deliberate two-voice system: a humanist serif (Romie) for brand and editorial moments, paired with a condensed utilitarian sans (Arial Narrow) for functional text, creating a tension between craft and clarity that defines the brand.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fallen Grape design system\",\"item\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#style-reference\",\"name\":\"Fallen Grape design system reference\",\"headline\":\"Fallen Grape design system | Refero Styles\",\"description\":\"Explore Fallen Grape's light E-commerce design system: Vintage Cream #ece0d2, Bone White #f3f3f3 colors, Romie, Arial Narrow typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fallen Grape\",\"url\":\"https://www.fallengrape.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"caption\":\"Screenshot of Fallen Grape\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fallen Grape design system\",\"Fallen Grape website design\",\"Fallen Grape colors\",\"Fallen Grape typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Vintage Cream\",\"Bone White\",\"Walnut Ink\",\"Saddle Brown\",\"Romie\",\"Arial Narrow\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fallen Grape design system\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape website design\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape colors\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:52:17.955Z\",\"dateModified\":\"2026-04-30T01:52:17.955Z\"}]}19:T65e,## Quick Color Reference\n- Primary text: #573d21 (Walnut Ink)\n- Background (canvas): #ece0d2 (Vintage Cream)\n- Card surface: #f3f3f3 (Bone White)\n- Border: #7c664d (Saddle Brown)\n- Accent (decorative/botanical): #d8deb7 (Vine Sage)\n- primary action: #e1c6ab (filled action)\n\n## Example Component Prompts\n\n1. **Create a product card**: Bone White (#f3f3f3) background, 1px solid #7c664d border, 0px radius. Product image fills top edge-to-edge. Product title below in Arial Narrow 16px bold uppercase, #573d21. Price in Arial Narrow 14px, #573d21. 17px horizontal padding on text area. No shadow.\n\n2. **Create a hero headline**: Romie weight 400, 64px, #573d21, letter-spacing 1.92px, centered. Line-height 1.20. No background, no border. Sits directly on Vintage Cream (#ece0d2) canvas.\n\n3. **Create a Shop All button**: 0px radius, background #e1c6ab, 1px solid #573d21 border, padding 10px 24px. Text: 'SHOP ALL' in Arial Narrow 13px bold uppercase, #573d21, letter-spacing 0.559px. No shadow, no hover transform.\n\n4. **Create a navigation bar**: #f3f3f3 background, 1px solid #7c664d bottom border. Nav items left-aligned: 'SHOP ALL', 'SHOP MERCH', 'ABOUT US' in Arial Narrow 13px uppercase, #573d21, letter-spacing 0.559px. Brand wordmark centered in Romie 20px. Right-aligned: 'LOGIN', 'CART' in same style. Padding 17px vertical.\n\n5. **Create an about section**: Two columns with 48px gap. Left column: full-bleed image (0px radius, no border). Right column: 'ABOUT US' heading in Arial Narrow 20px bold uppercase, #573d21, with 1px solid #7c664d border-bottom. Body text in Romie 16px weight 400, #573d21, line-height 1.70."
+      }
+    ],
+    "elevationPhilosophy": "This design deliberately avoids shadows. Separation between surfaces is achieved through hairline Saddle Brown (#7c664d) borders, warm tonal contrast between cream and bone-white, and generous whitespace. The flat, paper-like quality reinforces the natural, hand-crafted wine label metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#7c664d",
+          "oklch": {
+            "c": 0.04637163704632615,
+            "h": 68.93212880252288,
+            "l": 0.5248771855883239
+          },
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "button",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 1291,
+          "confidence": 1,
+          "prominence": 71719619.80483165,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 49,
+            "body/color": 5,
+            "card/color": 87,
+            "hero/color": 1,
+            "link/color": 9,
+            "list/color": 11,
+            "image/color": 17,
+            "other/color": 92,
+            "button/color": 5,
+            "footer/color": 1,
+            "nav/borderColor": 180,
+            "body/borderColor": 20,
+            "card/borderColor": 300,
+            "hero/borderColor": 4,
+            "link/borderColor": 36,
+            "list/borderColor": 44,
+            "image/borderColor": 68,
+            "other/borderColor": 358,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#573d21",
+          "oklch": {
+            "c": 0.05558219938236673,
+            "h": 66.88491248060399,
+            "l": 0.38259482793174326
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "button",
+            "nav",
+            "heading",
+            "image"
+          ],
+          "frequency": 549,
+          "confidence": 1,
+          "prominence": 4500301.360966567,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 10,
+            "body/color": 22,
+            "link/color": 13,
+            "other/fill": 5,
+            "image/color": 1,
+            "other/color": 30,
+            "button/color": 4,
+            "heading/color": 26,
+            "nav/borderColor": 40,
+            "body/borderColor": 88,
+            "link/borderColor": 52,
+            "image/borderColor": 4,
+            "other/borderColor": 121,
+            "button/borderColor": 28,
+            "heading/borderColor": 104
+          }
+        },
+        {
+          "hex": "#ece0d2",
+          "oklch": {
+            "c": 0.022936951428475637,
+            "h": 71.77326635897897,
+            "l": 0.9124642879350784
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 3474273,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 744429.169962718,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 4,
+            "card/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#d8deb7",
+          "oklch": {
+            "c": 0.05218769305301254,
+            "h": 114.5765358875734,
+            "l": 0.8859252245975736
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 459422.897249889,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#e1c6ab",
+          "oklch": {
+            "c": 0.04756397448787738,
+            "h": 67.10475551005626,
+            "l": 0.8423741274993404
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 269619.34371271875,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e7b58a",
+          "oklch": {
+            "c": 0.08142681960585045,
+            "h": 61.97608738090565,
+            "l": 0.8081923864804086
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54005,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3a36e",
+          "oklch": {
+            "c": 0.10267614657194361,
+            "h": 60.03417301835501,
+            "l": 0.7651914109683781
+          },
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 23260,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#007aff",
+          "oklch": {
+            "c": 0.21771224104574957,
+            "h": 257.4238698955573,
+            "l": 0.6027647392623869
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 15759.634912930193,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 4,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#efa164",
+          "oklch": {
+            "c": 0.12083052831727763,
+            "h": 57.75136704653437,
+            "l": 0.7734570637255107
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 885.6144943711481,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.13747126500354048,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.03,
+          "background": "#f3f3f3",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.71,
+          "background": "#ece0d2",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.19,
+          "background": "#d8deb7",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.14,
+          "background": "#e1c6ab",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.43,
+          "background": "#e7b58a",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#f3f3f3",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.75,
+          "background": "#efa164",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.65,
+          "background": "#e3a36e",
+          "foreground": "#573d21"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.18,
+          "background": "#ece0d2",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#f3f3f3",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.33,
+          "background": "#e1c6ab",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#ece0d2",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.94,
+          "background": "#e7b58a",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#efa164",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.52,
+          "background": "#e3a36e",
+          "foreground": "#7c664d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.46,
+          "background": "#e1c6ab",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.18,
+          "background": "#e7b58a",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.9,
+          "background": "#efa164",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.86,
+          "background": "#e3a36e",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.55,
+          "background": "#e3a36e",
+          "foreground": "#d8deb7"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "nav",
+            "heading",
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginTop|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "paddingRight",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "rowGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|body",
+            "marginTop|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 184,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Romie",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 280,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial Narrow",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 109,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Romie",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "heading",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Romie",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Romie",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 229,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Romie",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Romie",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Romie",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cc0e7025-6a44-4cdb-8b6a-6d9059bc5082.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fallen Grape design system\",\"item\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#style-reference\",\"name\":\"Fallen Grape design system reference\",\"headline\":\"Fallen Grape design system | Refero Styles\",\"description\":\"Explore Fallen Grape's light E-commerce design system: Vintage Cream #ece0d2, Bone White #f3f3f3 colors, Romie, Arial Narrow typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fallen Grape\",\"url\":\"https://www.fallengrape.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17ce9ad2-f22d-4e48-92de-e28fb8551cc5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"caption\":\"Screenshot of Fallen Grape\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a441dc7-9d90-4732-9492-2d4e37ad644d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fallen Grape design system\",\"Fallen Grape website design\",\"Fallen Grape colors\",\"Fallen Grape typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Vintage Cream\",\"Bone White\",\"Walnut Ink\",\"Saddle Brown\",\"Romie\",\"Arial Narrow\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fallen Grape design system\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape website design\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape colors\"},{\"@type\":\"Thing\",\"name\":\"Fallen Grape typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:52:17.955Z\",\"dateModified\":\"2026-04-30T01:52:17.955Z\"}]}19:T65e,## Quick Color Reference\n- Primary text: #573d21 (Walnut Ink)\n- Background (canvas): #ece0d2 (Vintage Cream)\n- Card surface: #f3f3f3 (Bone White)\n- Border: #7c664d (Saddle Brown)\n- Accent (decorative/botanical): #d8deb7 (Vine Sage)\n- primary action: #e1c6ab (filled action)\n\n## Example Component Prompts\n\n1. **Create a product card**: Bone White (#f3f3f3) background, 1px solid #7c664d border, 0px radius. Product image fills top edge-to-edge. Product title below in Arial Narrow 16px bold uppercase, #573d21. Price in Arial Narrow 14px, #573d21. 17px horizontal padding on text area. No shadow.\n\n2. **Create a hero headline**: Romie weight 400, 64px, #573d21, letter-spacing 1.92px, centered. Line-height 1.20. No background, no border. Sits directly on Vintage Cream (#ece0d2) canvas.\n\n3. **Create a Shop All button**: 0px radius, background #e1c6ab, 1px solid #573d21 border, padding 10px 24px. Text: 'SHOP ALL' in Arial Narrow 13px bold uppercase, #573d21, letter-spacing 0.559px. No shadow, no hover transform.\n\n4. **Create a navigation bar**: #f3f3f3 background, 1px solid #7c664d bottom border. Nav items left-aligned: 'SHOP ALL', 'SHOP MERCH', 'ABOUT US' in Arial Narrow 13px uppercase, #573d21, letter-spacing 0.559px. Brand wordmark centered in Romie 20px. Right-aligned: 'LOGIN', 'CART' in same style. Padding 17px vertical.\n\n5. **Create an about section**: Two columns with 48px gap. Left column: full-bleed image (0px radius, no border). Right column: 'ABOUT US' heading in Arial Narrow 20px bold uppercase, #573d21, with 1px solid #7c664d border-bottom. Body text in Romie 16px weight 400, #573d21, line-height 1.70."
+}

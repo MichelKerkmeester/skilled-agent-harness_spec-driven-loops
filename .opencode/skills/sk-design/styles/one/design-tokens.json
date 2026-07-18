@@ -1,0 +1,137 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, video frame outlines, pill button stroke — the only chromatic event in the UI"
+    },
+    "paper": {
+      "$value": "#fbfbfa",
+      "$type": "color",
+      "$description": "Paper — Soft icon strokes, subtle dividers, and low-emphasis decorative details. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#bec0c5",
+      "$type": "color",
+      "$description": "Ash — Muted text in the cycling manifesto, list dividers, inactive link tone — desaturated gray stays quiet next to ink"
+    }
+  },
+  "font": {
+    "magicuipro": {
+      "$value": "MagicUiPro",
+      "$type": "fontFamily",
+      "$description": "Single-family system: body text and micro-headlines both sit in the 18–24px range at medium weight, with weight 600 reserved for the active manifesto item and button labels. The tight -0.01em tracking and modest size range mean type never breaks 24px — the page treats every word as a label, not a headline."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "MagicUiPro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "MagicUiPro",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "MagicUiPro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "MagicUiPro",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#fbfbfa",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — warm off-white reads as physical paper"
+    },
+    "video-frame": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Interior of the cinematic video plate — true black holds the dark footage"
+    },
+    "play-overlay": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Semi-transparent dark circle that hosts the play glyph over video"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://one-is.com",
+      "siteName": "ONE",
+      "extractedAt": "2026-06-03T20:19:46.835Z",
+      "variant": "extended"
+    }
+  }
+}

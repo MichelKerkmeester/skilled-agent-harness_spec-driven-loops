@@ -1,0 +1,513 @@
+{
+  "source": "https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146",
+  "uuid": "190d4a0b-0353-4fc8-be09-affa6e977146",
+  "name": "OFFFICE :",
+  "northStar": "noir gallery swallowed by monolithic type",
+  "capturedAt": "2026-07-18T07:41:15.934Z",
+  "meta": {
+    "url": "https://offficestud.io",
+    "siteName": "OFFFICE :",
+    "extractedAt": "2026-06-03T19:58:32.706Z",
+    "durationMs": 31572,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 157,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ak weight 400 for all body and display text; reserve ak weight 700 only for the 'GET IN TOUCH' nav CTA and emphasis that must break through at small sizes",
+      "Let display headlines overflow viewport edges — 216px ak at 0.80 line-height is meant to be cropped by the frame",
+      "Use Onyx (#0e0e0e) as a single continuous background across all pages; never introduce a lighter surface or card fill",
+      "Use gs serif 72px exclusively for archive project titles — this is the only place the serif appears",
+      "Space archive list entries at exactly 32px vertical gap to create rhythmic stacking",
+      "Position 3D product renders centered in the viewport with no shadow, platform, or environmental context",
+      "Set all small metadata (nav, labels, captions) in ak 12px with 1.50+ line-height for gallery-wall-label tone"
+    ],
+    "donts": [
+      "Do not introduce any accent color, brand color, or chromatic hue — the system is 100% achromatic by design",
+      "Do not add borders, dividers, or background fills to separate sections — use space and type scale instead",
+      "Do not use border-radius on any element — all corners are sharp (0px)",
+      "Do not use shadows, glows, or blur effects for elevation — the design is flat by philosophy",
+      "Do not use the serif (gs) for body copy, navigation, or anything outside the archive project titles",
+      "Do not add gradients, textures, or background patterns to the Onyx canvas",
+      "Do not constrain display headlines with max-width or text-overflow:hidden styling — overflow is the point"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0e0e00",
+        "name": "Onyx",
+        "role": "Full-bleed page background, navigation surface, product staging void — the entire canvas is one continuous dark field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fefefe",
+        "name": "Paper White",
+        "role": "Display headlines, body text, navigation labels, archive list entries, locale switcher — the sole ink color across all UI layers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a2a",
+        "name": "Faint White",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width constraint. Every element can touch the viewport edges. The hero pattern is: minimal top nav → massive type that overflows horizontally → centered 3D product overlapping the type → small editorial caption to the right of the product. Content scrolls into an archive list section where project titles in serif (gs 72px) stack vertically at 32px intervals, with 3D product renders floating over the list on scroll to create implicit layering. Navigation is a single thin top bar (no sticky behavior indicated, no hamburger). The grid is effectively a single column with generous vertical rhythm — 96–128px between major sections. There is no sidebar, no footer structure, no multi-column layout. The entire site reads as a vertical sequence of typographic and sculptural moments.",
+    "imagery": "No photography, no illustration, no icons. The sole visual content is 3D product renders of furniture (chairs, armchairs) presented as dark sculptural forms on the Onyx void. Renders are high-fidelity with realistic material surfaces (fabric texture, wood grain on legs) but no environmental context — no room, no floor, no lighting setup. They are objects-in-space, not products-in-context. The imagery philosophy is museum-object-on-black-pedestal, where the pedestal is the page itself.",
+    "similar": [
+      {
+        "why": "Same furniture-design editorial language — monumental type, product-as-sculpture, near-black presentation, zero decorative chrome",
+        "business": "Vitra"
+      },
+      {
+        "why": "Same full-bleed black canvas with massive sans-serif type that bleeds past viewport edges and a single product image floating in negative space",
+        "business": "Camille Mormal"
+      },
+      {
+        "why": "Same dark-mode luxury product showcase where the object is the only non-text element and typography provides all structural hierarchy",
+        "business": "Flos"
+      },
+      {
+        "why": "Same achromatic palette, oversized sans-serif display, and flat-borderless component language — design studio presenting work through typographic intensity",
+        "business": "Studio Brasch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96-128px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#0e0e0",
+        "name": "Onyx Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — the only surface level; no card, panel, or elevated tier exists"
+      }
+    ],
+    "elevation": [],
+    "northStar": "noir gallery swallowed by monolithic type",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "display",
+        "size": 216,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal two-anchor header — brand mark left, contact CTA right",
+        "description": "Full-bleed, no background fill, sits directly on Onyx canvas. Left: 'offfice studio' in ak 12px weight 400, Paper White. Right: 'GET IN TOUCH' in ak 12px weight 700, Paper White. No border, no shadow, no hamburger menu. Padding: 16px from viewport edges."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero-scale typographic wall that defines the first viewport",
+        "description": "ak weight 400 at 216px, line-height 0.80, Paper White. Text deliberately overflows viewport edges — 'OFFICE FOR' bleeds off the right, 'FUTURE' bleeds off the left. No max-width constraint. The tight leading stacks glyphs into a slab that reads as a graphic shape, not a sentence. This is the signature element."
+      },
+      {
+        "name": "Product Sculpture (3D Hero Object)",
+        "role": "Centered product showcase — the only non-text element on the canvas",
+        "description": "A single dark-toned 3D render of furniture, positioned in the viewport center. Renders in the same tonal range as the Onyx background (near-black) with subtle specular highlights from form, not from a light effect. No background, no platform, no shadow — it floats in the void. In scroll sequences, it overlaps archive list text to create a z-axis depth effect."
+      },
+      {
+        "name": "Description Caption",
+        "role": "Small editorial body text adjacent to the product showcase",
+        "description": "ak 12px weight 400, line-height 1.56, Paper White, all-caps tracking. Text reads: 'FUTURE LIVING DESIGN RESEARCH STUDIO. INSTALLATIONS, COMMERCIAL AND PRIVATE SPACES.' No paragraph break, no emphasis — flat, informational, gallery-wall-label tone."
+      },
+      {
+        "name": "Locale Switcher",
+        "role": "Three-letter language selector",
+        "description": "ak 12px weight 400, Paper White, positioned at the far right below the nav. Format: 'IT / ES / CH' separated by spaces and forward slashes. No active-state styling difference — all three are the same weight and color, implying availability not state."
+      },
+      {
+        "name": "Archive Project Entry",
+        "role": "Single row in the project archive list",
+        "description": "Four-column horizontal layout: project title in gs 72px serif weight 400 (Paper White) on the left, year in ak 12px weight 400, category labels ('PROJECT DETAILS', 'Armchair', 'Interior') in ak 12px weight 400 spaced across the row. Entries are separated by 32px vertical gap. The serif title and sans metadata create a deliberate type-mixing effect within a single row."
+      },
+      {
+        "name": "Archive List (Full)",
+        "role": "Vertically stacked project archive — the index page in list form",
+        "description": "Six to eight Archive Project Entries stacked vertically with 32px gaps. No section header, no dividers, no cards. The list occupies the full viewport width. Product 3D renders float over the list on scroll, creating parallax overlap without explicit z-index manipulation beyond natural stacking."
+      },
+      {
+        "name": "Section Label (Inline)",
+        "role": "Minimal in-content metadata markers",
+        "description": "ak 12px weight 400, Paper White, used for 'US / WW' region codes, 'Archive' contextual labels, and other micro-annotations. No background, no badge shape, no padding — text only, relying on position and size for hierarchy."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — nav, body, display headlines, archive list, labels, links. The extreme range from 12px to 216px in a single family, with weights 400 for quiet copy and 700 only for emphasis, defines the system's voice. Tight 0.80 line-height at 216px creates stacked text-blocks that read as architectural walls rather than sentences.",
+        "sizes": "12px, 14px, 18px, 20px, 58px, 216px",
+        "family": "ak",
+        "weight": "400, 700",
+        "lineHeight": "0.80 (display), 0.90, 1.00, 1.10, 1.33, 1.40, 1.50, 1.56 (body)",
+        "substitute": "Neue Haas Grotesk or Inter for development; no system font captures the geometric precision at extreme scale"
+      },
+      {
+        "role": "Editorial serif accent — used exclusively in the project archive list for project titles. At 72px it provides a high-contrast counterpoint to ak's geometric sans; at 12px it renders archive metadata with classical warmth. The two-font system is deliberately minimal: one sans does everything, one serif appears only where editorial gravitas is needed.",
+        "sizes": "12px, 72px",
+        "family": "gs",
+        "weight": "400",
+        "lineHeight": "0.90, 1.33",
+        "substitute": "GT Sectra or Playfair Display for development; needs high contrast and elegant terminals"
+      }
+    ],
+    "description": "OFFFICE operates as a black-walled gallery where typography is architecture: a single custom sans-serif (ak) scales from 12px micro-labels to 216px display blocks that bleed off the viewport edges, with line-heights collapsing to 0.80 to stack text into wall-like slabs. The entire palette is near-black canvas against near-white ink — no accent color, no semantic hues, no gradients. A second custom serif (gs) appears only inside the project archive, bringing a subtle editorial counterpoint to the otherwise austere sans system. Product is presented as a single sculptural 3D object centered in the void, overlapping text in the scroll sequence to create depth without any shadow or elevation system. Everything is flat, full-bleed, and typographically loud.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFFFICE : design system\",\"item\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#style-reference\",\"name\":\"OFFFICE : design system reference\",\"headline\":\"OFFFICE : design system | Refero Styles\",\"description\":\"Explore OFFFICE :'s dark Design design system: Onyx #0e0e00, Paper White #fefefe colors, ak, gs typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\",\"mainEntityOfPage\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFFFICE :\",\"url\":\"https://offficestud.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"caption\":\"Screenshot of OFFFICE :\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFFFICE : design system\",\"OFFFICE : website design\",\"OFFFICE : colors\",\"OFFFICE : typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Onyx\",\"Paper White\",\"Faint White\",\"ak\",\"gs\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFFFICE : design system\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : website design\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : colors\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-22T17:15:07.000Z\",\"dateModified\":\"2026-02-22T17:15:07.000Z\"}]}19:T6a2,## Quick Color Reference\n- background: #0e0e0e\n- text: #fefefe\n- border: none (use 0px borders, rely on space for separation)\n- accent: none\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Display Headline Block**: Full-bleed, no max-width. Text in ak (or Neue Haas Grotesk substitute) weight 400, 216px, line-height 0.80, color #fefefe, on #0e0e00 background. Let text overflow viewport edges horizontally — do not constrain width. This is the signature hero element.\n\n2. **Top Navigation Bar**: Full-bleed, no background fill. Left: 'offfice studio' in ak 12px weight 400, #fefefe. Right: 'GET IN TOUCH' in ak 12px weight 700, #fefefe. 16px padding from viewport edges. No border, no shadow.\n\n3. **Archive Project Entry Row**: Full-width single row. Project title in gs serif (or GT Sectra substitute) 72px weight 400, #fefefe. Year in ak 12px weight 400, #fefefe, positioned to the right of title. Category labels ('Armchair', 'Interior', 'PROJECT DETAILS') in ak 12px weight 400, #fefefe, spaced across the row. 32px vertical gap between entries.\n\n4. **Product Hero Object**: A single centered 3D furniture render (chair/armchair) on #0e0e00 background. No floor plane, no platform, no shadow, no environment. Object fills roughly 40-50% of viewport height. Tonal range matches the dark background — near-black with subtle material highlights. Renders may overlap text elements on scroll to create depth.\n\n5. **Description Caption Block**: ak 12px weight 400, line-height 1.56, #fefefe, all-caps. Positioned to the right of or below the product hero. No emphasis, no bold words, no color differentiation. Reads as a gallery wall label — informational and flat."
+      },
+      {
+        "title": "Two-Font System",
+        "content": "The entire system runs on two custom faces: ak (geometric sans, 400/700, used at every size from 12px to 216px) and gs (high-contrast serif, 400 only, used exclusively for archive project titles at 72px). No third font enters the system. No system fonts. No icon font. The sans does all structural and informational work; the serif is a single-purpose editorial accent that signals 'this is a project title, not navigation.'"
+      },
+      {
+        "title": "Type Scale Extremes",
+        "content": "The scale jumps from 20px (subheading) to 58px (heading) to 216px (display) — there is no 30px, 40px, or 80px middle ground. This binary of 'normal' and 'monumental' forces every design decision into either functional copy or architectural statement. There is no 'medium' option. This is deliberate: the system communicates in whispers and shouts, never in conversation."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows, zero borders, zero surface elevation. The design is deliberately flat — hierarchy comes from type scale, negative space, and the dark/light contrast of Paper White text on Onyx canvas. No card ever lifts off the background. The product 3D render provides the only sense of depth, and even that is form-based, not shadow-based."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fefefe",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9970251916618014
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 781,
+          "confidence": 1,
+          "prominence": 38450067.63562854,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": []
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ak",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 154,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "gs",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "gs",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ak",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "list"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ak",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 38,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "gs",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 216,
+          "family": "ak",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 36,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/84818dc9-27d5-4829-a53a-59264775076f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFFFICE : design system\",\"item\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#style-reference\",\"name\":\"OFFFICE : design system reference\",\"headline\":\"OFFFICE : design system | Refero Styles\",\"description\":\"Explore OFFFICE :'s dark Design design system: Onyx #0e0e00, Paper White #fefefe colors, ak, gs typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\",\"mainEntityOfPage\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFFFICE :\",\"url\":\"https://offficestud.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/190d4a0b-0353-4fc8-be09-affa6e977146#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"caption\":\"Screenshot of OFFFICE :\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1fa2a64-acbc-4afd-8ddb-6ec604f7705e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFFFICE : design system\",\"OFFFICE : website design\",\"OFFFICE : colors\",\"OFFFICE : typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Onyx\",\"Paper White\",\"Faint White\",\"ak\",\"gs\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFFFICE : design system\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : website design\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : colors\"},{\"@type\":\"Thing\",\"name\":\"OFFFICE : typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-22T17:15:07.000Z\",\"dateModified\":\"2026-02-22T17:15:07.000Z\"}]}19:T6a2,## Quick Color Reference\n- background: #0e0e0e\n- text: #fefefe\n- border: none (use 0px borders, rely on space for separation)\n- accent: none\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Display Headline Block**: Full-bleed, no max-width. Text in ak (or Neue Haas Grotesk substitute) weight 400, 216px, line-height 0.80, color #fefefe, on #0e0e00 background. Let text overflow viewport edges horizontally — do not constrain width. This is the signature hero element.\n\n2. **Top Navigation Bar**: Full-bleed, no background fill. Left: 'offfice studio' in ak 12px weight 400, #fefefe. Right: 'GET IN TOUCH' in ak 12px weight 700, #fefefe. 16px padding from viewport edges. No border, no shadow.\n\n3. **Archive Project Entry Row**: Full-width single row. Project title in gs serif (or GT Sectra substitute) 72px weight 400, #fefefe. Year in ak 12px weight 400, #fefefe, positioned to the right of title. Category labels ('Armchair', 'Interior', 'PROJECT DETAILS') in ak 12px weight 400, #fefefe, spaced across the row. 32px vertical gap between entries.\n\n4. **Product Hero Object**: A single centered 3D furniture render (chair/armchair) on #0e0e00 background. No floor plane, no platform, no shadow, no environment. Object fills roughly 40-50% of viewport height. Tonal range matches the dark background — near-black with subtle material highlights. Renders may overlap text elements on scroll to create depth.\n\n5. **Description Caption Block**: ak 12px weight 400, line-height 1.56, #fefefe, all-caps. Positioned to the right of or below the product hero. No emphasis, no bold words, no color differentiation. Reads as a gallery wall label — informational and flat."
+}

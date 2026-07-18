@@ -1,0 +1,357 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#fefefc",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, card surfaces, light-section backgrounds — a warm ivory that reads as paper, not screen"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Graphite — Body text, heading strokes, dark surface accents — near-black used wherever ink is too harsh"
+    },
+    "smoke": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Smoke — Secondary body copy, subdued borders, caption-level metadata"
+    },
+    "iron": {
+      "$value": "#444444",
+      "$type": "color",
+      "$description": "Iron — Tertiary text and dividers between smoke and graphite"
+    },
+    "verdigris-wash": {
+      "$value": "#ebf5ed",
+      "$type": "color",
+      "$description": "Verdigris Wash — Light neutral action fill for buttons on dark surfaces."
+    },
+    "slate-mist": {
+      "$value": "#bdd4f0",
+      "$type": "color",
+      "$description": "Slate Mist — Soft card surface tint for product preview panels and link highlights — a desaturated cool blue that lives in the background, never the foreground"
+    },
+    "pewter-haze": {
+      "$value": "#98a7aa",
+      "$type": "color",
+      "$description": "Pewter Haze — Muted placeholder tint on empty illustration frames and disabled control fills"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "rhymes-display": {
+      "$value": "Rhymes Display",
+      "$type": "fontFamily",
+      "$description": "Display headlines and hero serif. The whisper-weight 300 cut at 88px is the signature move — most legal-tech sites shout in bold sans, Legora murmurs in light serif. The tight -0.02em tracking pulls letters together so the display reads as one continuous voice, not as individual glyphs."
+    },
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI text. The 450-book weight at 16px with -0.01em tracking is the workhorse — a humanist sans tuned for long-form legal copy. The 500-medium cut at 13px is reserved for input values and small emphasis labels. The negative leading (0.80) on small sizes tightens tight UI like eyebrow labels and tags."
+    },
+    "aktiv-grotesk-vf": {
+      "$value": "Aktiv Grotesk VF",
+      "$type": "fontFamily",
+      "$description": "Section subheads and longer body paragraphs where a slightly more neutral grotesk reads cleaner than Suisse Int'l's warmth"
+    },
+    "suisse-intl-book": {
+      "$value": "Suisse Intl Book",
+      "$type": "fontFamily",
+      "$description": "Suisse Intl Book — detected in extracted data but not described by AI"
+    },
+    "playfair-display": {
+      "$value": "Playfair Display",
+      "$type": "fontFamily",
+      "$description": "Playfair Display — detected in extracted data but not described by AI"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    },
+    "suisse-intl-medium": {
+      "$value": "Suisse Intl Medium",
+      "$type": "fontFamily",
+      "$description": "Suisse Intl Medium — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl Book",
+        "fontSize": "11px",
+        "fontWeight": 450,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl Book",
+        "fontSize": "13px",
+        "fontWeight": 450,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl Book",
+        "fontSize": "13px",
+        "fontWeight": 450,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl Medium",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl Book",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aktiv Grotesk VF Variable Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl Book",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aktiv Grotesk VF Variable Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Rhymes Display Light",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Rhymes Display Light",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Playfair Display",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Rhymes Display Light",
+        "fontSize": "88px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 88px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fefefc",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background; the default wherever no container intervenes"
+    },
+    "sage-highlight": {
+      "$value": "#ebf5ed",
+      "$type": "color",
+      "$description": "Surface level 1: Faint highlight wash for selected or active card states"
+    },
+    "slate-mist-panel": {
+      "$value": "#bdd4f0",
+      "$type": "color",
+      "$description": "Surface level 2: Cool product-preview panel, hero card on lighter sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://legora.com",
+      "siteName": "Legora",
+      "extractedAt": "2026-06-03T15:41:10.801Z",
+      "variant": "extended"
+    }
+  }
+}

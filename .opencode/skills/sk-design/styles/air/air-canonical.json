@@ -1,0 +1,1202 @@
+{
+  "source": "https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104",
+  "uuid": "d3289fe7-a85e-42d8-96b7-eb7faa62a104",
+  "name": "Air",
+  "northStar": "midnight sky through glass sculpture",
+  "capturedAt": "2026-07-18T07:06:31.992Z",
+  "meta": {
+    "url": "https://air.inc",
+    "siteName": "Air",
+    "extractedAt": "2026-07-03T03:08:34.002Z",
+    "durationMs": 65265,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 789,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Control at weight 500 for all body, nav, button, and link text — consistency of weight creates visual calm",
+      "Set all buttons and interactive elements to 8px border-radius",
+      "Apply 4px radius to form inputs only",
+      "Use #f5f5f5 (Haze) for card surfaces and inputs on dark backgrounds",
+      "Use #ffffff (Whiteout) for borders and text on dark surfaces",
+      "Use #1b1b1b (Ink) for text and borders on light surfaces",
+      "Break headlines with one italic word in Control Cursive against upright Control TNT or Control"
+    ],
+    "donts": [
+      "Don't use solid filled colored buttons — buttons are ghost (transparent + border) or haze (light fill) only",
+      "Don't apply shadows or elevation to cards — surfaces are flat with borders or background contrast only",
+      "Don't use more than one saturated accent color per page — Signal Blue is for links only, not for buttons or backgrounds",
+      "Don't set body text below 16px or above 500 weight — the type system is deliberately restrained",
+      "Don't use rounded pill shapes for anything except toggle/filter controls",
+      "Don't introduce new radii — stick to 4px (inputs), 8px (buttons), 11–14px (cards/images)",
+      "Don't use gradients — the design relies on photography and flat color contrast for depth"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Whiteout",
+        "role": "Primary text on dark surfaces, nav button borders, hairline strokes, card surfaces over photographic backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Haze",
+        "role": "Card surfaces, input fields, subtle button fills on dark backgrounds — the off-white layer that sits above the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1b1b",
+        "name": "Ink",
+        "role": "Body and heading text on light surfaces, button borders on light cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black Void",
+        "role": "Navigation borders, link underlines, deepest contrast layer on white surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#426188",
+        "name": "Twilight Blue",
+        "role": "Heading text on dark backgrounds — the only chromatic text color, a desaturated steel blue that reads as cool and atmospheric rather than vivid",
+        "group": "accent"
+      },
+      {
+        "hex": "#2b7fff",
+        "name": "Signal Blue",
+        "role": "Blue text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark sections with photographic backgrounds alternate with centered content blocks. The page max-width is 1150px for text and card grids, but hero and atmospheric sections break to full viewport. Navigation is a minimal top bar (72px height) with left-aligned links and right-aligned actions. Feature sections follow a consistent pattern: centered headline + subtitle, then content arranged in 2-column or 3-column grids with 24px gutters. Display headlines (Control Compressed at 259px) bleed to viewport edges. Logo grids use a single horizontal row with generous spacing. Footer sits on the dark canvas with light text.",
+    "imagery": "Full-bleed photographic sections are the primary visual language — moody sky/cloud photography with sculptural translucent glass forms rendered in 3D. The imagery is atmospheric and slightly surreal, occupying the entire viewport with no container constraint. Product UI is shown via contained screenshots in light cards (Haze) that sit as islands on the dark photographic background. Logo bars are monochrome white on the dark canvas. The visual density is image-heavy at section-level but text-dominant in feature breakdowns.",
+    "similar": [
+      {
+        "why": "Same dark-canvas aesthetic with minimal chrome, transparent ghost buttons, and type-driven hierarchy — both let typography carry the brand rather than color or illustration",
+        "business": "Linear"
+      },
+      {
+        "why": "Full-bleed dark sections with centered headlines, monochrome interface, and restrained accent color usage — both rely on photographic or gradient atmospheric backgrounds",
+        "business": "Vercel"
+      },
+      {
+        "why": "Bold display typography (compressed/condensed faces) over dark backgrounds with sparse UI chrome — both use poster-scale type as the hero moment",
+        "business": "Framer"
+      },
+      {
+        "why": "Dark-first product interface with ghost buttons, thin borders, flat card surfaces, and no shadows — components are distinguished by background contrast rather than elevation",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "pills": "9999px",
+        "images": "11px",
+        "inputs": "4px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1150px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Dark Canvas",
+        "level": 0,
+        "purpose": "Base background behind photographic sections, footer, and dark UI moments"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Haze Card",
+        "level": 1,
+        "purpose": "Light card surface sitting on top of dark photography — off-white card on dark sky"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Whiteout",
+        "level": 2,
+        "purpose": "Pure white for inputs and elevated form surfaces"
+      }
+    ],
+    "northStar": "midnight sky through glass sculpture",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 259,
+        "lineHeight": 0.85
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Primary nav CTA — transparent fill on dark canvas",
+        "description": "Transparent background, 1px white border, white text, 8px radius, 10px 16px padding. Used for \"Start for free\" and \"Book a demo\" in the nav bar."
+      },
+      {
+        "name": "Solid Light Button",
+        "role": "Secondary action on light cards",
+        "description": "#f5f5f5 background, #1b1b1b text, 1px #1b1b1b border, 8px radius, 8px 16px padding. Used on the photo upload card area."
+      },
+      {
+        "name": "Pill Toggle Button",
+        "role": "Segmented control or filter chip",
+        "description": "Fully rounded (16777220px ≈ pill), semi-transparent dark background (oklab 10% black), black text. Used for feature toggles and category filters."
+      },
+      {
+        "name": "Underline Link",
+        "role": "Inline text link",
+        "description": "Transparent background, 2px bottom underline, text in Signal Blue (#2b7fff) or Ink (#1b1b1b), 8px horizontal padding. Underline is the primary affordance — no color fill."
+      },
+      {
+        "name": "Haze Card",
+        "role": "Content card on dark background",
+        "description": "#f5f5f5 background, 12px radius, 20px padding, no shadow, no border. Sits as a light island on the dark photographic canvas."
+      },
+      {
+        "name": "Image Card with Radius",
+        "role": "Media container for photo grids",
+        "description": "Transparent background, 11px or 14px radius, no padding, no shadow. Holds product imagery and screenshot grids."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field",
+        "description": "#f5f5f5 background, #1b1b1b text, 1px border at rgba(0,0,0,0.1), 4px radius, 10px padding all sides. Minimal chrome — relies on background contrast rather than border weight."
+      },
+      {
+        "name": "Logo Bar Row",
+        "role": "Client/partner logo grid",
+        "description": "Single-row or two-row grid of monochrome logos on the dark canvas, 32px column gap, 48px row gap. Logos rendered in white or semi-transparent white."
+      },
+      {
+        "name": "Full-Bleed Photographic Section",
+        "role": "Hero and atmospheric sections",
+        "description": "Full-viewport-height sections with photographic background (clouds, glass sculpture), centered headline overlay in Whiteout or Twilight Blue, no border, no container constraint. Carries the brand's emotional weight."
+      },
+      {
+        "name": "Compressed Display Headline",
+        "role": "Poster-scale statement",
+        "description": "Control Compressed 900 weight at 259px, line-height 0.85, uppercase, Whiteout text. Bleeds to viewport edges. Used sparingly for maximum-impact statements."
+      },
+      {
+        "name": "Dual-Style Headline",
+        "role": "Headline mixing upright and cursive",
+        "description": "Combines Control Cursive italic (56px) for emphasized words with Control TNT upright for the rest. Creates typographic tension — the italic word carries personality while the upright stays grounded."
+      },
+      {
+        "name": "Feature Section Header",
+        "role": "Section title block",
+        "description": "Control 500 at 20px for subheading, Control Cursive or TNT at 32–56px for the main title. Center-aligned on dark background, generous 48px gap above and below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface typeface — carries everything from navigation labels to body text to button text at a consistent medium weight, creating visual quietness",
+        "sizes": "12px, 13px, 14px, 16px, 20px",
+        "family": "Control",
+        "weight": "500 (body, nav, buttons, links) + 400 (long-form body)",
+        "lineHeight": "1.10 (display-adjacent) / 1.40 / 1.50 (body)",
+        "substitute": "Inter, system-ui"
+      },
+      {
+        "role": "Ultra-large display headlines (e.g. \"MAKE IT ONCE.\") — extreme weight and tight leading create poster-scale impact, always uppercase, always dominant",
+        "sizes": "259px",
+        "family": "Control Compressed",
+        "weight": "900",
+        "lineHeight": "0.85",
+        "substitute": "Anton, Druk Wide"
+      },
+      {
+        "role": "Italic accent for emphasis within headlines — used for words like \"AI\" or \"real\" to add personality against the geometric sans body",
+        "sizes": "20px, 32px, 56px",
+        "family": "Control Cursive",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.10, 1.50",
+        "substitute": "Caveat, Reenie Beanie"
+      },
+      {
+        "role": "Alternative display variant for headlines — same scale as cursive but upright, used for taglines and feature headlines",
+        "sizes": "20px, 32px, 56px",
+        "family": "Control TNT",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.10, 1.50",
+        "substitute": "Inter, sans-serif"
+      }
+    ],
+    "description": "Air uses a dark, atmospheric canvas with full-bleed cloud photography and sculptural glass-like 3D forms as its primary visual mode. The type system is the brand: a single sans-serif at moderate weights carries everything from nav to body, while compressed and cursive display cuts break in for emphasis — one italic word (\"AI\") in cursive sets a confident, slightly playful tone against the otherwise restrained UI. Components are lightweight — minimal elevation, thin borders, small radii, and near-transparent surfaces — letting the imagery carry emotion while the interface stays functional and fast.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Air design system\",\"item\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#style-reference\",\"name\":\"Air design system reference\",\"headline\":\"Air design system | Refero Styles\",\"description\":\"Explore Air's dark SaaS design system: Whiteout #ffffff, Haze #f5f5f5 colors, Control, Control Compressed typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Air\",\"url\":\"https://air.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"caption\":\"Screenshot of Air\"},\"image\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Air design system\",\"Air website design\",\"Air colors\",\"Air typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Whiteout\",\"Haze\",\"Ink\",\"Black Void\",\"Control\",\"Control Compressed\",\"Control Cursive\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Air design system\"},{\"@type\":\"Thing\",\"name\":\"Air website design\"},{\"@type\":\"Thing\",\"name\":\"Air colors\"},{\"@type\":\"Thing\",\"name\":\"Air typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:37:27.919Z\",\"dateModified\":\"2026-04-30T00:37:27.919Z\"}]}19:T4c7,Quick Color Reference:\n- text on dark: #ffffff (Whiteout)\n- text on light: #1b1b1b (Ink)\n- background canvas: #000000 (Black Void)\n- card surface: #f5f5f5 (Haze)\n- input surface: #f5f5f5 (Haze)\n- link text: #2b7fff (Signal Blue)\n- heading accent on dark: #426188 (Twilight Blue)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a ghost nav button: transparent background, 1px solid #ffffff border, #ffffff text, 8px radius, 10px vertical and 16px horizontal padding, Control font weight 500 at 14px.\n\n2. Create a Haze card: #f5f5f5 background, 12px radius, 20px padding all sides, no shadow, no border. Place centered on a #000000 dark canvas.\n\n3. Create a text input: #f5f5f5 background, 1px solid rgba(0,0,0,0.1) border, 4px radius, 10px padding all sides, #1b1b1b text, Control font weight 500 at 16px.\n\n4. Create a compressed display headline: Control Compressed at 259px, weight 900, line-height 0.85, uppercase, #ffffff color, bleeding to viewport edges.\n\n5. Create a dual-style headline: first line in Control TNT weight 500 at 56px, line-height 1.0, #ffffff. Second line with one word in Control Cursive weight 400 italic at 56px, remaining words upright. Both centered on dark canvas."
+      }
+    ],
+    "elevationPhilosophy": "No elevation. Surfaces distinguish themselves through background color and 1px borders, not shadows. Cards float on the dark canvas by virtue of being lighter, not by casting shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "link",
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 132,
+          "confidence": 1,
+          "prominence": 2902105.7664541886,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "body/color": 21,
+            "nav/stroke": 4,
+            "other/fill": 1,
+            "icon/stroke": 4,
+            "other/color": 5,
+            "button/color": 11,
+            "other/stroke": 38,
+            "heading/color": 17,
+            "link/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other",
+            "card",
+            "input",
+            "button"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 827872.8312846652,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 7,
+            "other/backgroundColor": 17,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#426188",
+          "oklch": {
+            "c": 0.0730181896330738,
+            "h": 255.18920406990497,
+            "l": 0.4848921188612162
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 676710.0966070634,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 6
+          }
+        },
+        {
+          "hex": "#1b1b1b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2221287433751307
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "button",
+            "nav",
+            "input",
+            "other"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 184320.59571432916,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 2,
+            "body/color": 22,
+            "nav/stroke": 1,
+            "input/color": 7,
+            "button/color": 2,
+            "other/stroke": 6,
+            "heading/color": 15,
+            "nav/borderColor": 8,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 69972.9244818376,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "body/color": 3,
+            "other/fill": 2,
+            "other/color": 1,
+            "button/color": 1,
+            "other/stroke": 1,
+            "nav/borderColor": 12,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0a1d35",
+          "oklch": {
+            "c": 0.053899888396483624,
+            "h": 255.82513909205932,
+            "l": 0.22776024287586202
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 14400,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1
+          }
+        },
+        {
+          "hex": "#2b7fff",
+          "oklch": {
+            "c": 0.214,
+            "h": 259.815,
+            "l": 0.623
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2244.306901021157,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.009312774837482806,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#ffffff",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.93,
+          "background": "#ffffff",
+          "foreground": "#0a1d35"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.8,
+          "background": "#f5f5f5",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.53,
+          "background": "#f5f5f5",
+          "foreground": "#0a1d35"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#ffffff",
+          "foreground": "#426188"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.84,
+          "background": "#f5f5f5",
+          "foreground": "#426188"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.76,
+          "background": "#ffffff",
+          "foreground": "#2b7fff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.45,
+          "background": "#f5f5f5",
+          "foreground": "#2b7fff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "nav",
+            "button"
+          ],
+          "frequency": 55
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 11,
+          "corners": [
+            0,
+            0,
+            11,
+            11
+          ],
+          "contexts": [
+            "image",
+            "card",
+            "other"
+          ],
+          "frequency": 6,
+          "asymmetric": true
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 98,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingLeft|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 67,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginRight|card",
+            "marginLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "image",
+            "nav"
+          ],
+          "frequency": 42,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|image",
+            "paddingLeft|image",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 138,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Control",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 697,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Control Compressed",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Control Cursive",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Control TNT",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "image",
+            "card",
+            "nav",
+            "button",
+            "hero",
+            "input",
+            "footer"
+          ],
+          "frequency": 617,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Control TNT",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Control Cursive",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Control",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Control Cursive",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Control TNT",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Control TNT",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Control Cursive",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 259,
+          "family": "Control Compressed",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aa9cc7c1-81ca-4e88-b754-f15ac48986c9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Air design system\",\"item\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#style-reference\",\"name\":\"Air design system reference\",\"headline\":\"Air design system | Refero Styles\",\"description\":\"Explore Air's dark SaaS design system: Whiteout #ffffff, Haze #f5f5f5 colors, Control, Control Compressed typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Air\",\"url\":\"https://air.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d3289fe7-a85e-42d8-96b7-eb7faa62a104#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"caption\":\"Screenshot of Air\"},\"image\":\"https://images.refero.design/styles/refero.design/image/62d7e7f3-31b6-45a3-887d-dd8f9bc1d6f0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Air design system\",\"Air website design\",\"Air colors\",\"Air typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Whiteout\",\"Haze\",\"Ink\",\"Black Void\",\"Control\",\"Control Compressed\",\"Control Cursive\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Air design system\"},{\"@type\":\"Thing\",\"name\":\"Air website design\"},{\"@type\":\"Thing\",\"name\":\"Air colors\"},{\"@type\":\"Thing\",\"name\":\"Air typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:37:27.919Z\",\"dateModified\":\"2026-04-30T00:37:27.919Z\"}]}19:T4c7,Quick Color Reference:\n- text on dark: #ffffff (Whiteout)\n- text on light: #1b1b1b (Ink)\n- background canvas: #000000 (Black Void)\n- card surface: #f5f5f5 (Haze)\n- input surface: #f5f5f5 (Haze)\n- link text: #2b7fff (Signal Blue)\n- heading accent on dark: #426188 (Twilight Blue)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a ghost nav button: transparent background, 1px solid #ffffff border, #ffffff text, 8px radius, 10px vertical and 16px horizontal padding, Control font weight 500 at 14px.\n\n2. Create a Haze card: #f5f5f5 background, 12px radius, 20px padding all sides, no shadow, no border. Place centered on a #000000 dark canvas.\n\n3. Create a text input: #f5f5f5 background, 1px solid rgba(0,0,0,0.1) border, 4px radius, 10px padding all sides, #1b1b1b text, Control font weight 500 at 16px.\n\n4. Create a compressed display headline: Control Compressed at 259px, weight 900, line-height 0.85, uppercase, #ffffff color, bleeding to viewport edges.\n\n5. Create a dual-style headline: first line in Control TNT weight 500 at 56px, line-height 1.0, #ffffff. Second line with one word in Control Cursive weight 400 italic at 56px, remaining words upright. Both centered on dark canvas."
+}

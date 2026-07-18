@@ -1,0 +1,514 @@
+{
+  "color": {
+    "uniswap-pink": {
+      "$value": "#ff37c7",
+      "$type": "color",
+      "$description": "Uniswap Pink — Primary brand mark, filled CTA buttons, active nav indicator, and the only chromatic color an interface should use — saturated hot-pink against a white canvas creates instant focal hierarchy without darkening the page"
+    },
+    "midnight-ink": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Midnight Ink — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, input fields, and text on pink buttons — the structural base everything sits on"
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Secondary structural border and text variant used in nav and button outlines where slightly softer than Midnight Ink is desired"
+    },
+    "slate": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Slate — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "ash": {
+      "$value": "#acacac",
+      "$type": "color",
+      "$description": "Ash — Disabled states, placeholder text, hairline icon borders, and the lightest visible UI elements"
+    },
+    "frost": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Frost — Disabled button borders and the faintest possible surface separation"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "blush-mist": {
+      "$value": "#fef4ff",
+      "$type": "color",
+      "$description": "Blush Mist — Primary page canvas and white card surfaces. Do not promote it to the primary CTA color"
+    },
+    "ember": {
+      "$value": "#ff4d00",
+      "$type": "color",
+      "$description": "Ember — Orange decorative accent for icons, marks, and small graphic details"
+    },
+    "iris": {
+      "$value": "#8251fb",
+      "$type": "color",
+      "$description": "Iris — Token/asset category color for violet-branded assets and decorative purple orbs"
+    },
+    "magenta": {
+      "$value": "#f50db4",
+      "$type": "color",
+      "$description": "Magenta — Token/asset category color for pink-branded assets and decorative orbs (a slightly different pink from the brand)"
+    },
+    "sky": {
+      "$value": "#2abdff",
+      "$type": "color",
+      "$description": "Sky — Token/asset category color for blue-branded assets and decorative orbs"
+    },
+    "mint": {
+      "$value": "#00c3a0",
+      "$type": "color",
+      "$description": "Mint — Token/asset category color for teal-branded assets and decorative orbs"
+    },
+    "crimson": {
+      "$value": "#e01a2b",
+      "$type": "color",
+      "$description": "Crimson — Red decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    },
+    "forest": {
+      "$value": "#0c8911",
+      "$type": "color",
+      "$description": "Forest — Green decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "basel": {
+      "$value": "Basel",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every UI surface. The unusual mid-weights (485, 535) are the signature: Basel avoids the standard 400/500/600 ladder and instead calibrates precise intermediate weights, which is why body text and headings feel more like a continuous gradient than discrete steps. The geometric construction with tight -0.02em tracking across all sizes produces a slightly compressed, clinical-financial tone — readable but never decorative. For open-source replacement use Inter at 400/500/550, or DM Sans at 400/500/550."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "11px",
+        "fontWeight": 535,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "12px",
+        "fontWeight": 535,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "12px",
+        "fontWeight": 485,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 535,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 535,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 485,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 535,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 535,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 485,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 485,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "64px",
+        "fontWeight": 485,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.8px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "color(srgb 0.0745098 0.0745098 0.0745098 / 0.00313726) 0px 0px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the structural base for all screens"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card, panel, and input surfaces sit on the same white as the canvas, separated only by 1px borders"
+    },
+    "tinted-surface": {
+      "$value": "#fef4ff",
+      "$type": "color",
+      "$description": "Surface level 2: Soft pink-tinted background used for secondary action buttons and occasional section tints — the only non-white surface"
+    },
+    "search-field": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 3: Inset search bar fill in the nav, creating a subtle depth cue without using shadows"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://app.uniswap.org",
+      "siteName": "Uniswap",
+      "extractedAt": "2026-06-03T21:04:44.163Z",
+      "variant": "extended"
+    }
+  }
+}

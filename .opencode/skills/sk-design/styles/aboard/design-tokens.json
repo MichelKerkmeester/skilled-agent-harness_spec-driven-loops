@@ -1,0 +1,302 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#de4c00",
+      "$type": "color",
+      "$description": "Ember Orange — Primary CTAs, active nav items, icon fills, link accents — the only chromatic color in the UI, it acts as a power-switch indicator against the muted neutrals"
+    },
+    "soft-ember": {
+      "$value": "#efa680",
+      "$type": "color",
+      "$description": "Soft Ember — Hover-state borders, subdued accent outlines, tag strokes — a desaturated echo of Ember Orange for quieter accents"
+    },
+    "bone-white": {
+      "$value": "#fffefb",
+      "$type": "color",
+      "$description": "Bone White — Page canvas on light sections, text color on dark/image sections"
+    },
+    "linen": {
+      "$value": "#f3f2ee",
+      "$type": "color",
+      "$description": "Linen — Warm secondary surface, elevated card backgrounds, subtle shadow tint"
+    },
+    "hairline-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Gray — Hairline borders across cards, images, dividers, and form fields"
+    },
+    "stone-border": {
+      "$value": "#c1bdba",
+      "$type": "color",
+      "$description": "Stone Border — Medium-strength borders where hairline is too faint"
+    },
+    "warm-taupe": {
+      "$value": "#a49784",
+      "$type": "color",
+      "$description": "Warm Taupe — Translucent nav background tint, muted UI surfaces"
+    },
+    "graphite": {
+      "$value": "#333833",
+      "$type": "color",
+      "$description": "Graphite — Strong dark borders, deep separators"
+    },
+    "warm-graphite": {
+      "$value": "#271503",
+      "$type": "color",
+      "$description": "Warm Graphite — Primary body and heading text on light surfaces — a warm near-black with brown undertone instead of pure black"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Pure black for maximum-contrast text and image overlay scrims"
+    },
+    "deep-forest": {
+      "$value": "#040c06",
+      "$type": "color",
+      "$description": "Deep Forest — Dark section canvases — nearly black with a green-warm undertone that complements the orange"
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "tobias": {
+      "$value": "Tobias",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif. Weight 300 across all sizes — the whisper-weight is anti-convention for 72px display, creating authority through restraint rather than volume. Used for hero headlines, section titles, and editorial pull-quotes."
+    },
+    "atkinson-hyperlegible-mono": {
+      "$value": "Atkinson Hyperlegible Mono",
+      "$type": "fontFamily",
+      "$description": "Body copy, labels, and micro-text. The mono body choice is the system's signature: it treats the page as a technical manual or terminal readout, not a marketing brochure. The wider tracking at 0.05em on small sizes (10–14px) creates generous rhythm for sidebar labels and captions."
+    },
+    "work-sans": {
+      "$value": "Work Sans",
+      "$type": "fontFamily",
+      "$description": "Navigation links, button text, and small UI controls where a humanist sans is preferable to mono. Acts as the utility face between the editorial headlines and the technical body."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Atkinson Hyperlegible Mono",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Atkinson Hyperlegible Mono",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Atkinson Hyperlegible Mono",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Atkinson Hyperlegible Mono",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Atkinson Hyperlegible Mono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "152": {
+      "$value": "152px",
+      "$type": "dimension",
+      "$description": "Spacing 152px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#fffefb",
+      "$type": "color",
+      "$description": "Surface level 1: Light reading sections, default page background"
+    },
+    "linen-card": {
+      "$value": "#f3f2ee",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated content blocks, secondary panels"
+    },
+    "taupe-nav": {
+      "$value": "#a49784",
+      "$type": "color",
+      "$description": "Surface level 3: Translucent floating navigation surface"
+    },
+    "deep-forest": {
+      "$value": "#040c06",
+      "$type": "color",
+      "$description": "Surface level 4: Dark documentary sections, image band canvases"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aboard.com",
+      "siteName": "Aboard",
+      "extractedAt": "2026-06-03T17:10:01.369Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+:root {
+  /* Colors */
+  --color-ink-black: #0d0e13;
+  --color-pure-white: #ffffff;
+  --color-canvas-beige: #e4e0db;
+  --color-steel-gray: #6e6e71;
+  --color-footer-ink: #070707;
+  --color-sand-border: #e0ccbb;
+  --color-warm-linen: #e6d7ca;
+
+  /* Typography — Font Families */
+  --font-lausanne-400: 'Lausanne-400', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-lausanne: 'Lausanne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.88;
+  --tracking-body-sm: 0.098px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.096px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.33;
+  --tracking-subheading: -0.84px;
+  --text-heading-lg: 144px;
+  --leading-heading-lg: 0.76;
+  --tracking-heading-lg: -5.04px;
+  --text-display: 250px;
+  --leading-display: 0.76;
+  --tracking-display: -11.5px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-22: 22px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-67: 67px;
+  --spacing-120: 120px;
+  --spacing-200: 200px;
+  --spacing-206: 206px;
+
+  /* Layout */
+  --section-gap: 200px;
+  --card-padding: 50-60px;
+  --element-gap: 13-15px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-canvas: #e4e0db;
+  --surface-surface-white: #ffffff;
+  --surface-sand-tint: #e0ccbb;
+  --surface-footer-ink: #070707;
+}

@@ -1,0 +1,262 @@
+{
+  "color": {
+    "warm-cream": {
+      "$value": "#faf6ef",
+      "$type": "color",
+      "$description": "Warm Cream — Primary page canvas, card surfaces — warm off-white replaces stark white to soften the photography-first layout and avoid the cold SaaS feel"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Image borders, elevated card surfaces, contrast panel behind embedded media"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, icon strokes, navigation typography — the structural anchor of the entire system"
+    },
+    "pebble": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Pebble — Muted body text, secondary borders, disabled states — the one step above placeholder gray"
+    },
+    "driftwood": {
+      "$value": "#a1a1a1",
+      "$type": "color",
+      "$description": "Driftwood — Helper text, low-emphasis captions, subtle dividers"
+    },
+    "mist": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Mist — Light hairline dividers, nav separators, input borders in resting state"
+    },
+    "ember-orange": {
+      "$value": "#fa5c40",
+      "$type": "color",
+      "$description": "Ember Orange — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "f37bolton": {
+      "$value": "F37Bolton",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. Custom geometric sans with tight aperture and industrial DNA. Weight 400 for body, 700 only for display headlines and the wordmark. Tracking runs -0.05em at display sizes down to -0.03em at body, giving headlines a compressed editorial feel and body text a quiet, compact rhythm"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "F37Bolton",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 75px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#faf6ef",
+      "$type": "color",
+      "$description": "Surface level 1: Full-page warm cream background"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated white surface for content cards, image frames, embedded panels"
+    },
+    "accent-wash": {
+      "$value": "#fa5c40",
+      "$type": "color",
+      "$description": "Surface level 3: Rare ember-orange highlight strip or focused-state surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lightshiprv.com",
+      "siteName": "Lightship",
+      "extractedAt": "2026-06-03T17:26:28.085Z",
+      "variant": "extended"
+    }
+  }
+}

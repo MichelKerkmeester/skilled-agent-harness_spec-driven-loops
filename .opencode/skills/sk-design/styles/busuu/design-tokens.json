@@ -1,0 +1,369 @@
+{
+  "color": {
+    "deep-indigo": {
+      "$value": "#3b1e90",
+      "$type": "color",
+      "$description": "Deep Indigo — Left edge of hero gradient — anchors the purple sky of the landing banner"
+    },
+    "signal-blue": {
+      "$value": "#116eee",
+      "$type": "color",
+      "$description": "Signal Blue — Brand links, nav accents, heading highlights, logo wordmark — the only blue that carries brand meaning"
+    },
+    "spring-mint": {
+      "$value": "#11ee92",
+      "$type": "color",
+      "$description": "Spring Mint — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "hero-sky-blue": {
+      "$value": "#3a6ef0",
+      "$type": "color",
+      "$description": "Hero Sky Blue — Right edge of hero gradient — transitions from deep indigo to a cleaner blue, softening the landing page mood"
+    },
+    "charcoal": {
+      "$value": "#252b2f",
+      "$type": "color",
+      "$description": "Charcoal — Primary body text and heading color — softer than pure black, keeps long-form copy comfortable"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon strokes, decorative illustration linework, highest-contrast text — used where maximum weight is needed"
+    },
+    "canvas-mist": {
+      "$value": "#f2f7fd",
+      "$type": "color",
+      "$description": "Canvas Mist — Page background — barely-blue tinted near-white, the calm base layer below the hero"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, nav background, content panels — sits one level above the mist canvas"
+    },
+    "steel-border": {
+      "$value": "#d6dee6",
+      "$type": "color",
+      "$description": "Steel Border — Input borders, dividers, subtle structural lines — cool-toned to harmonize with the mist canvas"
+    },
+    "slate-caption": {
+      "$value": "#666e7e",
+      "$type": "color",
+      "$description": "Slate Caption — Muted helper text, secondary body copy, metadata — readable but recedes against charcoal"
+    },
+    "shadow-gray": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Shadow Gray — Soft elevation wash and button shadow base — used in the subtle 1px shadow stack"
+    },
+    "trustpilot-star": {
+      "$value": "#ffcf00",
+      "$type": "color",
+      "$description": "Trustpilot Star — Review star fill on the Trustpilot social-proof line — the only yellow in the system, used exclusively for ratings"
+    }
+  },
+  "font": {
+    "nista": {
+      "$value": "Nista",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for the entire system — Nista's geometric warmth and bold-friendly weight stack carries everything from 10px metadata to 40px display headlines. The 800 weight on hero text gives authority without feeling heavy or corporate; the 400 body keeps long lesson descriptions breathable. Substitute: 'Poppins' or 'Nunito' for the friendly geometric quality, or 'DM Sans' for a cleaner alternative."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "12px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "36px",
+        "fontWeight": 800,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "36px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Nista",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "45.04px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas-mist": {
+      "$value": "#f2f7fd",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the calm base layer for all content below the hero"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, language tile backgrounds, nav bar"
+    },
+    "hero-gradient": {
+      "$value": "#3b1e9",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed landing banner — deep indigo to sky blue gradient with illustrated character art"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://busuu.com",
+      "siteName": "Busuu",
+      "extractedAt": "2026-06-03T18:00:17.345Z",
+      "variant": "extended"
+    }
+  }
+}

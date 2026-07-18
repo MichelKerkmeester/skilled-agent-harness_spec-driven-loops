@@ -1,0 +1,537 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#f7f5f3",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, section backgrounds, and the inside of cards — a warm off-white that reads as paper, not screen. Every other color in the system is applied as ink on top of this surface"
+    },
+    "india-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "India Ink — Primary text, heading color, nav text, button fills, and hairline borders — the heaviest presence in the system at 1,849 hits. High-contrast against Parchment (#f7f5f3) at 19.3:1"
+    },
+    "charcoal-warm": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal Warm — Secondary text and structural borders, softer than pure black for elements that need hierarchy without dropping out of the warm palette"
+    },
+    "graphite-warm": {
+      "$value": "#6a6559",
+      "$type": "color",
+      "$description": "Graphite Warm — Muted text, secondary nav labels, and border accents — a brown-tinted dark gray that keeps the system's warmth even in its quietest elements"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Card surfaces that need to pop above Parchment, badge fills, and the base for inverse-on-color elements"
+    },
+    "smoke": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Smoke — Subtle background lift and pill backgrounds on light elements where Parchment is too close to the canvas"
+    },
+    "linen": {
+      "$value": "#dcd8cf",
+      "$type": "color",
+      "$description": "Linen — The faintest warm neutral — used for stroke accents and very low-contrast section backgrounds"
+    },
+    "highlight-green": {
+      "$value": "#3e6b15",
+      "$type": "color",
+      "$description": "Highlight Green — Green accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "marker-yellow": {
+      "$value": "#ffdd33",
+      "$type": "color",
+      "$description": "Marker Yellow — Yellow state accent for badges, validation surfaces, and short status labels."
+    },
+    "edit-orange": {
+      "$value": "#ff6137",
+      "$type": "color",
+      "$description": "Edit Orange — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis"
+    },
+    "markup-purple": {
+      "$value": "#b26dc2",
+      "$type": "color",
+      "$description": "Markup Purple — Pink accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "comment-blue": {
+      "$value": "#0097e6",
+      "$type": "color",
+      "$description": "Comment Blue — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "sticky-pink": {
+      "$value": "#f5c4cc",
+      "$type": "color",
+      "$description": "Sticky Pink — Soft pink annotation accent — used as a desaturated highlight wash where a more aggressive color would overpower the text underneath"
+    },
+    "olive-gold": {
+      "$value": "#aa7e2e",
+      "$type": "color",
+      "$description": "Olive Gold — Workflow stage active marker (the filled square in the Draft/Design/Review sidebar) and muted annotation accent — a brass tone that ages the system slightly"
+    },
+    "mustard": {
+      "$value": "#bbb809",
+      "$type": "color",
+      "$description": "Mustard — Vivid yellow-olive accent for highlighted text borders and decorative annotation ink — sits between Marker Yellow and Olive Gold in the annotation palette"
+    }
+  },
+  "font": {
+    "abc-social": {
+      "$value": "ABC Social",
+      "$type": "fontFamily",
+      "$description": "Primary brand and UI typeface. The 108px and 72px sizes at weight 700 form the editorial poster headlines (e.g. \"Write clearly. Collaborate effortlessly.\") with aggressive negative tracking; the 18–25px range at weight 400–700 carries body and subheadings; 13px at weight 300–400 with positive tracking handles small caps and utility text. The custom font's geometric, slightly humanist letterforms are the system's signature — they carry the marker-stroke feel that the color palette is built to match."
+    },
+    "abc-social-extended": {
+      "$value": "ABC Social Extended",
+      "$type": "fontFamily",
+      "$description": "Used for emphasis-level headlines and section openers (the 43–86px range) and for a slightly wider proportion on body sizes where extra room helps readability — e.g. feature descriptions and product UI labels. Pairs with ABC Social to add scale variation without leaving the family."
+    },
+    "abc-social-condensed": {
+      "$value": "ABC Social Condensed",
+      "$type": "fontFamily",
+      "$description": "Reserved for short, high-impact labels and badges — the heavy condensed weight compresses copy into a tight pill block, often sitting inside a colored capsule (e.g. the \"CONVERT\" sticker). Treated as a display utility, not a running face."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 2.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "35px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "35px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "ABC Social Condensed",
+        "fontSize": "35px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 35px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "35px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 35px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "ABC Social Condensed",
+        "fontSize": "35px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social Extended",
+        "fontSize": "86px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 86px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "108px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 108px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f7f5f3",
+      "$type": "color",
+      "$description": "Surface level 1: The page and most section backgrounds — the warm paper the system is printed on."
+    },
+    "card-lift": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: White surfaces for cards, dropdowns, and product screenshot frames that need to float above the Parchment."
+    },
+    "subtle-lift": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Surface level 3: Near-white surfaces for secondary pills, ghost states, and the lightest table-row alternation."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.dittowords.com",
+      "siteName": "Ditto",
+      "extractedAt": "2026-06-03T19:01:41.956Z",
+      "variant": "extended"
+    }
+  }
+}

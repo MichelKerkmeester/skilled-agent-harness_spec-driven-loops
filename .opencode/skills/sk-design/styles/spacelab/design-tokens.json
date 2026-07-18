@@ -1,0 +1,212 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, body text inversion, button labels. The dominant background; everything else sits on top of it"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, hairline borders, the logo wordmark. Used for most dividers and structural lines (border frequency 1,156)"
+    },
+    "charcoal": {
+      "$value": "#2c2222",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and the heaviest border color in the system (freq 3,104). A warm-toned near-black that softens harsh contrast on long reads"
+    },
+    "fossil": {
+      "$value": "#b2b4b1",
+      "$type": "color",
+      "$description": "Fossil — Muted link color, inactive nav items, tertiary text. Desaturated green-gray that recedes against both paper white and ink black"
+    },
+    "slate-iris": {
+      "$value": "#495472",
+      "$type": "color",
+      "$description": "Slate Iris — Filled button background and select card surfaces — the only chromatic voice in the system. A muted violet-slate that reads as architectural blue-grey rather than brand color, so it never shouts over the photography"
+    }
+  },
+  "font": {
+    "helveticaneue": {
+      "$value": "HelveticaNeue",
+      "$type": "fontFamily",
+      "$description": "The sole typeface. Used for everything from the lowercase 'spacelab_' logo to 62px display headlines, 19–21px section headings, 17px body, and 15px captions."
+    },
+    "helveticaneue-light": {
+      "$value": "HelveticaNeue-Light",
+      "$type": "fontFamily",
+      "$description": "Body copy and supporting paragraphs where a quieter voice is needed. The light cut creates typographic variety without changing families — a single-typeface system that breathes through weight, not variety."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "HelveticaNeue-Light",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeue",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "147": {
+      "$value": "147px",
+      "$type": "dimension",
+      "$description": "Spacing 147px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas — the entire page background"
+    },
+    "slate-iris-surface": {
+      "$value": "#495472",
+      "$type": "color",
+      "$description": "Surface level 2: Accent card and filled button surface — used sparingly as functional punctuation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://spacelab.co.uk",
+      "siteName": "Spacelab",
+      "extractedAt": "2026-06-03T18:18:47.985Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, filled pill buttons, hairline borders on light surfaces, active icons"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, text on dark buttons, image overlays"
+    },
+    "mist": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Mist — Elevated surface wash, subtle card backgrounds, section dividers"
+    },
+    "fog": {
+      "$value": "#ebecec",
+      "$type": "color",
+      "$description": "Fog — Hairline dividers between feed cards, faint table borders"
+    },
+    "ash": {
+      "$value": "#d8d8da",
+      "$type": "color",
+      "$description": "Ash — Subtle structural borders, disabled state outlines"
+    },
+    "graphite": {
+      "$value": "#595b60",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, supporting metadata, icon strokes"
+    },
+    "steel": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Steel — Muted helper text, timestamps, tertiary captions"
+    }
+  },
+  "font": {
+    "lyon": {
+      "$value": "Lyon",
+      "$type": "fontFamily",
+      "$description": "Whisper-weight display serif for editorial headlines, pull quotes, and section titles — the anti-convention weight 100 creates authority through restraint rather than volume, making the brand feel printed rather than web-native"
+    },
+    "suisse": {
+      "$value": "Suisse",
+      "$type": "fontFamily",
+      "$description": "Neo-grotesque sans for body copy, navigation, button labels, tags, and utility UI — 400 reads body, 500 carries button labels and nav, 600 anchors subheadings; the wide weight range lets this one family run the entire interface without switching faces"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Lyon",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Suisse",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, the dominant surface — sets the gallery-floor tone"
+    },
+    "wash": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevation layer for cards, inputs, secondary panels"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for filled buttons, dark hero moments, image overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://moffittmoffitt.com",
+      "siteName": "Moffitt.Moffitt. -",
+      "extractedAt": "2026-06-03T18:28:34.014Z",
+      "variant": "extended"
+    }
+  }
+}

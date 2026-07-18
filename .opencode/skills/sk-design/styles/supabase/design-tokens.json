@@ -1,0 +1,329 @@
+{
+  "color": {
+    "phosphor-green": {
+      "$value": "#3ecf8e",
+      "$type": "color",
+      "$description": "Phosphor Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "mint-pulse": {
+      "$value": "#00c573",
+      "$type": "color",
+      "$description": "Mint Pulse — Link text and inline accent — a slightly cooler green variant for textual references that shouldn't compete with primary CTAs"
+    },
+    "forest-depth": {
+      "$value": "#1f4b37",
+      "$type": "color",
+      "$description": "Forest Depth — Hover and pressed borders on green CTAs — keeps the button identifiable when the fill darkens on interaction"
+    },
+    "midnight-emerald": {
+      "$value": "#006239",
+      "$type": "color",
+      "$description": "Midnight Emerald — Deepest green surface — for low-key brand-tinted backgrounds, subtle section washes, and disabled-brand states"
+    },
+    "snow": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Snow — Primary text, icon strokes, button labels — the dominant foreground across the entire interface"
+    },
+    "silver-mist": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Silver Mist — Secondary headings, nav items, body emphasis — readable but never competing with Snow"
+    },
+    "smoke": {
+      "$value": "#898989",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, captions, helper text, muted icon fills — the voice of metadata and annotations"
+    },
+    "graphite": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Graphite — Icon outlines, low-emphasis borders, divider lines, and stroke color for illustrative line work"
+    },
+    "slate": {
+      "$value": "#393939",
+      "$type": "color",
+      "$description": "Slate — Input borders, subtle dividers, hairline separators between nav and content"
+    },
+    "charcoal": {
+      "$value": "#2e2e2e",
+      "$type": "color",
+      "$description": "Charcoal — Card and component borders — the most-used border color, giving surfaces their defined edge without a visible shadow"
+    },
+    "ash": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Ash — Elevated surface tier for nested cards, hover states, and popover backgrounds"
+    },
+    "obsidian": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas — the deep near-black foundation behind every section and card"
+    }
+  },
+  "font": {
+    "circular": {
+      "$value": "Circular",
+      "$type": "fontFamily",
+      "$description": "All UI typography — nav, body, buttons, headings, display. Circular is a geometric humanist sans with rounded terminals; its regular 400 weight carries headlines (a deliberate anti-bold choice) and the 500 weight is reserved for emphasis and button labels."
+    },
+    "source-code-pro": {
+      "$value": "Source Code Pro",
+      "$type": "fontFamily",
+      "$description": "Inline code and terminal snippets — only for code-style UI fragments, never body copy"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Circular",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base layer every surface sits on"
+    },
+    "ash-card": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Surface level 1: Nested or elevated card surfaces one tier above the canvas"
+    },
+    "charcoal-border": {
+      "$value": "#2e2e2",
+      "$type": "color",
+      "$description": "Surface level 2: Card and component outline — defines edges without shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://supabase.com",
+      "siteName": "Supabase",
+      "extractedAt": "2026-06-03T15:08:05.355Z",
+      "variant": "extended"
+    }
+  }
+}

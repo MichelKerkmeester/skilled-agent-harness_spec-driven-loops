@@ -1,0 +1,69 @@
+@theme {
+  /* Colors */
+  --color-void-black: #14181c;
+  --color-carbon: #202830;
+  --color-slate: #2c3440;
+  --color-graphite: #445566;
+  --color-steel: #586370;
+  --color-fog: #667788;
+  --color-silver-mist: #778899;
+  --color-ash: #8899aa;
+  --color-pewter: #99aabb;
+  --color-ice: #aabbcc;
+  --color-glacier: #ddeeff;
+  --color-bone: #d8e0e8;
+  --color-chalk: #c8d4e0;
+  --color-absolute-white: #ffffff;
+  --color-true-black: #000000;
+  --color-acid-green: #00e054;
+  --color-pro-green: #00c030;
+
+  /* Typography */
+  --font-object-fit-cover: 'object-fit: cover;', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-graphik: 'Graphik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tiempos-text: 'Tiempos Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tiempos-headline: 'Tiempos Headline', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-masonry: 'masonry', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.83px;
+  --text-body: 14px;
+  --leading-body: 1.5;
+  --text-body-md: 16px;
+  --leading-body-md: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.38;
+  --tracking-subheading: 1.49px;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.25;
+  --text-heading: 26px;
+  --leading-heading: 1.23;
+  --text-display: 36px;
+  --leading-display: 1.33;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-xl: 12px;
+  --radius-xl-2: 15px;
+  --radius-2xl: 20px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(221, 238, 255, 0.25) 0px 0px 0px 1px inset;
+  --shadow-sm: rgba(0, 0, 0, 0.25) 0px 1px 5px 0px, rgba(0, 0, 0, 0.35) 0px 1px 10px 0px;
+  --shadow-subtle-2: rgba(20, 24, 28, 0.125) 0px 0px 1px 1px inset;
+  --shadow-sm-2: rgb(0, 0, 0) 2px 0px 7px 0px;
+  --shadow-subtle-3: rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
+}

@@ -1,0 +1,812 @@
+{
+  "source": "https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f",
+  "uuid": "94c15607-2f19-4dc4-9aec-2b40f28b754f",
+  "name": "Minimal Collective",
+  "northStar": "midnight gallery wall",
+  "capturedAt": "2026-07-18T08:22:11.396Z",
+  "meta": {
+    "url": "https://minimalcollective.digital",
+    "siteName": "Minimal Collective",
+    "extractedAt": "2026-06-03T17:27:27.922Z",
+    "durationMs": 32843,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 681,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Obsidian #000000 as the sole page background; never introduce a surface tint, gradient, or panel color that differs from the canvas.",
+      "Set every text element to PolySans 400 — never bold, never medium. Create hierarchy only through size, letter-spacing, and line-height.",
+      "Apply negative letter-spacing proportional to size: -4.31px at 77px, -2.2px at 50px, -1.18px at 32px, scaling down to 0 at body sizes.",
+      "Use 4.5px border-radius exclusively for category badges and small interactive pills; keep all image cards and content blocks at 0px radius.",
+      "Layer photographs directly on the Obsidian canvas with 0px radius and no drop shadow — let overlap (10–30px) create spatial relationships, not elevation.",
+      "Build category labels as ghost pills: 1px Ghost White border, transparent fill, 5px/6px padding, 14px uppercase text.",
+      "Maintain section gaps of 144–173px between major editorial blocks; let whitespace do the work that dividers would in a busier system."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no accent blue, red, or green. The palette is strictly black, ash, and white.",
+      "Do not use bold or semibold weights; PolySans 400 is the only weight permitted across the entire type scale.",
+      "Do not add box-shadows, glows, or any elevation effects — surfaces differentiate through overlap and position, never through shadow.",
+      "Do not round image cards or photographs — 0px radius keeps the editorial-magazine tension. 4.5px is reserved for badges only.",
+      "Do not center body text or use justified text blocks — left-align all editorial copy to preserve the gallery-wall reading rhythm.",
+      "Do not fill buttons or badges with white — they remain ghost/outlined. Filled controls would break the ",
+      "everything is content\" principle.\"",
+      "Do not add icon decoration to category badges, navigation, or scroll indicators — words alone, at the right size, carry the interface."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, primary surface, image card backgrounds, footer/header fields",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a5a5a",
+        "name": "Ash",
+        "role": "Secondary structural elements, input borders, mid-tone dividers, muted UI chrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Ghost White",
+        "role": "Primary text, heading fills, hairline borders, badge outlines, link strokes",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width container; content breaks to the viewport edges. The hero occupies the full first viewport with a centered display headline overlapping a single photographic subject and faint concentric arc linework as background texture. Below the hero, a mosaic of overlapping image cards (10–30px overlap) creates an editorial collage — cards are not constrained to a grid but arranged in an asymmetric, layered composition. The lower section transitions to a structured 2-column editorial spread: large photograph paired with category badges, date, display-weight title (27–32px), and excerpt body. Navigation is radically minimal — a top bar with only logo + hamburger, plus ",
+    "imagery": "Photography is the dominant visual content — event documentation, art installations, architectural interiors, music studio environments, and street/venue photography. All imagery is full-color, presented unfiltered and uncropped at 0px radius against the black canvas. The treatment is editorial-magazine: overlapping card mosaics rather than uniform grids, with images sometimes extending edge-to-edge and other times sharing space with overlaid display text. No illustrations, no abstract graphics, no 3D renders, no icon systems beyond the single hamburger glyph. The photographs carry all visual weight; the typographic and structural system is deliberately quiet so imagery can speak at full volume.",
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "4.5px",
+        "images": "0px",
+        "buttons": "4.5px"
+      },
+      "elementGap": "14px",
+      "sectionGap": "144-173px",
+      "cardPadding": "18px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Field",
+        "level": 1,
+        "purpose": "Full-bleed page canvas extending edge to edge"
+      },
+      {
+        "hex": "#5a5a5a",
+        "name": "Ash Inset",
+        "level": 2,
+        "purpose": "Subtle surface variation for secondary controls and muted elements"
+      }
+    ],
+    "elevation": [],
+    "northStar": "midnight gallery wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.67
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.86
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -1.18
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 1,
+        "letterSpacing": -2.2
+      },
+      {
+        "role": "display-xl",
+        "size": 77,
+        "lineHeight": 0.9,
+        "letterSpacing": -4.31
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header",
+        "description": "Full-width black bar, 14px vertical padding. Logo ",
+        "no nav links": "no background differentiation from the page canvas.\"",
+        "Minimal Collective\" left-aligned in 16px PolySans 400": "Ghost White. Hamburger icon right-aligned in Ghost White. No center elements"
+      },
+      {
+        "name": "Hero Headline (Overlapping Image)",
+        "role": "First-screen editorial statement",
+        "description": "Full-viewport black canvas with a single photographic image (e.g. vehicle) positioned behind large display text. Headline at 77px PolySans 400, Ghost White, line-height 0.9, letter-spacing -4.31px. Text overlaps the image rather than stacking above or beside it. Faint concentric arc linework (Ash #5a5a5a, 1px stroke) radiates across the background as the only decoration."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Vertical scroll prompt",
+        "description": "Centered ",
+        "PolySans 400": "Ghost White at reduced opacity. Positioned ~80% down the hero",
+        "no arrow icon": "no animation — just the textual invitation.\"",
+        "Scroll down\" caption": "14px"
+      },
+      {
+        "name": "Category Badge (Ghost Pill)",
+        "role": "Editorial taxonomy label",
+        "CULTURE": "INTERVIEW",
+        "EDITORIAL\"": "PREMIERE",
+        "description": "Bordered-only pill: 1px Ghost White border, 4.5px radius, transparent background, 5px vertical / 6px horizontal padding. Label text 14px PolySans 400 Ghost White uppercase (e.g. "
+      },
+      {
+        "name": "Image Mosaic Card",
+        "role": "Featured visual fragment in editorial collage",
+        "description": "Full-bleed photograph with 0px radius, no border, no shadow. Overlaps neighboring cards by 10–30px to create a layered editorial spread. Optional title overlay in top-left at 23–32px PolySans 400 Ghost White, and a category badge (e.g. "
+      },
+      {
+        "name": "Article Card (Editorial Spread)",
+        "role": "Long-form content entry",
+        "description": "Two-part layout: large photograph (0px radius, full-width of its column) stacked with metadata row (category badges + date at 14px) and title at 27–32px PolySans 400, letter-spacing -0.86 to -1.18px. Excerpt in 16px PolySans 400. No card container, no border, no background — content sits directly on the Obsidian canvas."
+      },
+      {
+        "name": "Page Corner Footer Nav",
+        "role": "Minimal page-level navigation",
+        "description": "Two text links anchored to bottom-left (",
+        "About\") and bottom-right (\"Contact\")": "16px",
+        "PolySans 400 Ghost White. No footer container": "no divider line — the nav floats on the canvas edge.\""
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation",
+        "description": "1px Ghost White line, full container width, 0px radius. Used sparingly to separate editorial sections; the primary section separator is whitespace (144–173px gaps)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Weight stays at 400 across every size from caption to display — hierarchy is created purely by scale and negative tracking, never by weight contrast. Display sizes (50–77px) use line-height 0.90–1.00 and letter-spacing compressed to -0.044em/-0.056em, pulling characters into tight sculptural forms. Body sits at 14–16px with 1.43 line-height for legibility. The single-weight discipline is the signature: no bold, no italic, no fallback hierarchy — scale is everything.",
+        "sizes": "14px, 16px, 18px, 23px, 27px, 32px, 50px, 77px",
+        "family": "PolySans",
+        "weight": "400",
+        "lineHeight": "0.90–1.43",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.056em at 77px down to -0.020em at 18px; near-zero below"
+      }
+    ],
+    "description": "Minimal Collective operates as a pitch-black editorial canvas where every element earns its presence through restraint rather than decoration. A single geometric sans-serif at weight 400 — never heavier — carries all hierarchy; even 77px display headlines whisper instead of shout, with letter-spacing compressed to -0.056em that pulls letters into sculptural, almost overlapping forms. The interface is colorlessly austere: true black #000000 as the void, hairline white borders as the only structural language, and bordered category pills (EDITORIAL, PREMIERE, CULTURE) that function as ghost labels rather than UI affordances. Content arrives as an overlapping photographic mosaic — event documentation, art installations, studio interiors — layered against the black field without shadows, gradients, or card elevation to separate them from the canvas. The aesthetic is closer to a contemporary art publication at midnight than a typical product UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "primary action: no distinct CTA color"
+      }
+    ],
+    "[object Object]": "similar",
+    "elevationPhilosophy": "Elevation is entirely absent by design. Spatial relationships emerge from photographic overlap, positional offset, and generous whitespace (144–173px section gaps) — never from shadow, glow, or surface tint. The Obsidian canvas is treated as a single infinite plane; cards, images, and text all sit on it directly. This preserves the gallery-wall metaphor: works are pinned to a black plane, not stacked in a z-axis.",
+    "About\" and \"Contact\" text links anchored to the bottom-left and bottom-right page corners. Section rhythm relies on 144–173px vertical gaps rather than dividers or background bands; the entire page reads as one continuous black field punctuated by photographic fragments and sparse typographic moments.\"": "customSections"
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "heading",
+            "hero",
+            "badge",
+            "body",
+            "input",
+            "footer"
+          ],
+          "frequency": 2512,
+          "confidence": 1,
+          "prominence": 141579395.27058697,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "body/color": 8,
+            "hero/color": 1,
+            "link/color": 42,
+            "other/fill": 8,
+            "badge/color": 24,
+            "image/color": 15,
+            "other/color": 395,
+            "footer/color": 1,
+            "heading/color": 11,
+            "body/borderColor": 32,
+            "hero/borderColor": 4,
+            "link/borderColor": 168,
+            "badge/borderColor": 96,
+            "image/borderColor": 60,
+            "input/borderColor": 9,
+            "other/borderColor": 1580,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#5a5a5a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4676016850511952
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "input"
+          ],
+          "frequency": 109,
+          "confidence": 1,
+          "prominence": 85000817.70198058,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "nav/color": 20,
+            "input/color": 3,
+            "nav/borderColor": 80,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "badge",
+            "link",
+            "heading",
+            "input"
+          ],
+          "frequency": 718,
+          "confidence": 1,
+          "prominence": 2767239.665264099,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 10,
+            "badge/color": 14,
+            "other/color": 114,
+            "heading/color": 5,
+            "link/borderColor": 40,
+            "badge/borderColor": 56,
+            "input/borderColor": 3,
+            "other/borderColor": 456,
+            "heading/borderColor": 20
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.9,
+          "background": "#5a5a5a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.04,
+          "background": "#5a5a5a",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4.5,
+          "contexts": [
+            "link",
+            "badge",
+            "other"
+          ],
+          "frequency": 29
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "other",
+            "badge",
+            "input"
+          ],
+          "frequency": 141,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingBottom|other",
+            "paddingBottom|input",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "badge"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 219,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|other",
+            "paddingTop|input",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PolySans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 665,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "badge"
+          ],
+          "frequency": 100,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "badge",
+            "hero",
+            "body",
+            "footer"
+          ],
+          "frequency": 486,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.044,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.032,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 77,
+          "family": "PolySans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.029,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5984e3d3-ed47-4e79-9eb6-85edc75c7cb6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5f80d58c-742d-4450-9b50-46bd15e2c7fa.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Minimal Collective design system\",\"item\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f#style-reference\",\"name\":\"Minimal Collective design system reference\",\"headline\":\"Minimal Collective design system | Refero Styles\",\"description\":\"Explore Minimal Collective's dark Media design system: Obsidian #000000, Ash #5a5a5a colors, PolySans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Minimal Collective\",\"url\":\"https://minimalcollective.digital\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/94c15607-2f19-4dc4-9aec-2b40f28b754f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f80d58c-742d-4450-9b50-46bd15e2c7fa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f80d58c-742d-4450-9b50-46bd15e2c7fa.jpg\",\"caption\":\"Screenshot of Minimal Collective\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f80d58c-742d-4450-9b50-46bd15e2c7fa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Minimal Collective design system\",\"Minimal Collective website design\",\"Minimal Collective colors\",\"Minimal Collective typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Obsidian\",\"Ash\",\"Ghost White\",\"PolySans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Minimal Collective design system\"},{\"@type\":\"Thing\",\"name\":\"Minimal Collective website design\"},{\"@type\":\"Thing\",\"name\":\"Minimal Collective colors\"},{\"@type\":\"Thing\",\"name\":\"Minimal Collective typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:57:41.884Z\",\"dateModified\":\"2026-04-30T02:57:41.884Z\"}]}"
+}

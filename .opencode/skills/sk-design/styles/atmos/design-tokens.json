@@ -1,0 +1,175 @@
+{
+  "color": {
+    "deep-violet": {
+      "$value": "#0825c6",
+      "$type": "color",
+      "$description": "Deep Violet — Hero gradient anchor, decorative atmosphere — the singular chromatic note; fills the sky of the opening viewport"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text, headings, button text, border outlines — the only contrast color"
+    }
+  },
+  "font": {
+    "newyork": {
+      "$value": "_NewYork",
+      "$type": "fontFamily",
+      "$description": "Display wordmark and large headings — custom serif at 200px weight 400 creates monumentality through restraint; the thin strokes and high contrast of editorial serifs read as gallery signage, not web UI. Use at 200px for the brand mark, 50px for section anchors. No bold weight — the form itself carries presence."
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "UI labels, link text, body copy, and button text — the only working sans-serif. Weight 400 for labels and links, 700 for emphasized micro-copy. Generous line-height (1.5) for longer passages, tight (1.15) for button and nav text."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Orbital micro-labels — the curved text ring around the wordmark uses 10px Times at normal spacing. This deliberately anti-modern choice (serif at 10px) creates a vintage editorial annotation feel. Use sparingly for fine print and caption-level metadata only."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "_NewYork",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "_NewYork",
+        "fontSize": "200px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 200px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "134": {
+      "$value": "134px",
+      "$type": "dimension",
+      "$description": "Spacing 134px"
+    }
+  },
+  "surface": {
+    "sky-gradient": {
+      "$value": "#0825c6",
+      "$type": "color",
+      "$description": "Surface level 1: Hero atmosphere — deep violet to lavender vertical fade occupying the opening viewport"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: All content below the hero — pure white canvas, no differentiation between page and card"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atmos.leeroy.ca",
+      "siteName": "ATMOS",
+      "extractedAt": "2026-06-03T17:25:33.599Z",
+      "variant": "extended"
+    }
+  }
+}

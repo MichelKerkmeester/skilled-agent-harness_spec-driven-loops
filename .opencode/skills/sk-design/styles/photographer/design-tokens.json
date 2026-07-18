@@ -1,0 +1,120 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, negative space between tiles, surface for the wordmark to read against"
+    },
+    "wordmark-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Wordmark Black — The Julia wordmark, all body and nav text, hairline grid borders, and structural lines — the only structural color in the system"
+    },
+    "vermillion-frame": {
+      "$value": "#e21715",
+      "$type": "color",
+      "$description": "Vermillion Frame — Chromatic hairline borders on photographic tiles whose dominant hue reads red — the most frequent accent border in the grid"
+    },
+    "cobalt-frame": {
+      "$value": "#086392",
+      "$type": "color",
+      "$description": "Cobalt Frame — Chromatic hairline borders on tiles with blue-dominant photography — paired with Vermillion as the secondary axis of the colored-frame system"
+    },
+    "marigold-frame": {
+      "$value": "#f2572c",
+      "$type": "color",
+      "$description": "Marigold Frame — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "fern-frame": {
+      "$value": "#5bc52c",
+      "$type": "color",
+      "$description": "Fern Frame — Chromatic border for green-dominant photography tiles — completes the four-corner color rotation across the masonry"
+    },
+    "brass-frame": {
+      "$value": "#b3813c",
+      "$type": "color",
+      "$description": "Brass Frame — Chromatic border for yellow/golden-toned photography tiles, expanding the color frame vocabulary to five hues"
+    },
+    "signal-red": {
+      "$value": "#f11216",
+      "$type": "color",
+      "$description": "Signal Red — Outlined action border and link accent in navigation and interactive edges — the highest-saturation red in the system"
+    },
+    "cyan-blue": {
+      "$value": "#2e99c9",
+      "$type": "color",
+      "$description": "Cyan Blue — Outlined action border and link accent in navigation, paired with Signal Red for interactive link edges"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Primary display + UI typeface. Weight 700 is non-negotiable — used at 700 across nav, links, and the colossal Julia wordmark. The tight -0.02em tracking pulls the massive letterforms into a single sculptural mass rather than a line of text. The wordmark sits in the hundreds of pixels while nav/labels sit at 10-18px, creating extreme typographic contrast between identity and chrome."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the gallery wall"
+    },
+    "tile-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Photographic tile content — the image fills the frame edge-to-edge"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://juliajohnson.com",
+      "siteName": "Photographer",
+      "extractedAt": "2026-06-03T18:40:12.211Z",
+      "variant": "extended"
+    }
+  }
+}

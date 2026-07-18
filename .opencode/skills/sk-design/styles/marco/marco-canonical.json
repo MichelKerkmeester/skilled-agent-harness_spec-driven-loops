@@ -1,0 +1,2705 @@
+{
+  "source": "https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9",
+  "uuid": "88e9d606-7e8f-479c-9508-1b081e254ed9",
+  "name": "Marco",
+  "northStar": "Moleskine notebook in cool morning light — a personal workspace where widgets float like sticky notes on warm paper.",
+  "capturedAt": "2026-07-18T09:09:36.977Z",
+  "meta": {
+    "url": "https://www.marco.fyi",
+    "siteName": "Marco",
+    "extractedAt": "2026-06-03T20:34:57.889Z",
+    "durationMs": 36727,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 910,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 18–32px border-radius on all card surfaces — sharp corners break the soft-furniture feel",
+      "Use 100px+ radius for all interactive elements (links, tags, buttons) to maintain the pill vocabulary",
+      "Apply the inverse tracking curve: Neue Montreal at 8–12px needs 0.05–0.2em letter-spacing, Graphik at 31px needs -0.013em",
+      "Keep chromatic colors to single-pixel punctuation — one dot, one border, one gradient card per region",
+      "Use the Coral-to-Amber gradient on at most one card per page; the rest of the system stays cool",
+      "Place widgets and embeds in the right column with 24px padding and 18px radius — never let them touch the page edge",
+      "Pair a 4px colored dot with Neue Montreal tracked labels to build tagged-list patterns"
+    ],
+    "donts": [
+      "Don't fill buttons with chromatic colors — the system uses outlined and pill links, not filled CTAs",
+      "Don't use shadows deeper than 3px blur — elevation should whisper, not announce",
+      "Don't apply the cream (#fff9ed) or gradient surface to more than one element per view",
+      "Don't use sharp 0–4px radii on card surfaces — reserve those for icons and small UI only",
+      "Don't break the two-column rhythm: manifesto left, widgets right, never full-width text blocks",
+      "Don't use system fonts for body copy — the custom geometric sans-serifs are the voice",
+      "Don't use black (#000000) for body text — reserve it for headings and strong borders, use Graphite (#333333) for running text"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#6366f1",
+        "name": "Iris Glow",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#1685c7",
+        "name": "Signal Blue",
+        "role": "Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#e92f48",
+        "name": "Ember Red",
+        "role": "Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff4141",
+        "name": "Coral Pulse",
+        "role": "Gradient start and secondary accent — used sparingly on warm cards and the pink-orange wash",
+        "group": "accent",
+        "gradient": "linear-gradient(16deg, rgb(255, 77, 121), rgb(255, 128, 64) 85%)"
+      },
+      {
+        "hex": "#ff8040",
+        "name": "Sunset Amber",
+        "role": "Gradient end — the warm terminal of the coral-to-orange wash used on featured cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Headings, strong borders, icon fills — the heaviest text weight and the sharpest structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Primary body text and the workhorse border color — appears more than any other color, forming the connective tissue of the layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Slate",
+        "role": "Secondary headings and muted borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b7280",
+        "name": "Cool Gray",
+        "role": "Body and helper text where lower contrast is acceptable",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7e8389",
+        "name": "Steel",
+        "role": "Subtle text and quiet borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Fog",
+        "role": "Tertiary text and disabled-leaning borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedee0",
+        "name": "Pearl",
+        "role": "Hairline borders, icon containers, and link outlines that need to recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccf",
+        "name": "Mist",
+        "role": "Soft surface tints and the lightest structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces and elevated content — sits one step above the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f9",
+        "name": "Linen",
+        "role": "Page canvas and the base of the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash",
+        "role": "Secondary surface for nested elements and subtle backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff9ed",
+        "name": "Cream",
+        "role": "Warm accent card surface — the only place the system breaks from cool neutrals",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eff0ff",
+        "name": "Lavender Mist",
+        "role": "Active and hover wash — the soft halo behind selected links and cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8c1c8",
+        "name": "Rose Glow",
+        "role": "Tinted shadow color for warm cards — a blush offset shadow that ties to the coral accent",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a two-column grid at max-width 1200px, centered on the Linen (#f7f7f9) canvas. The left column (~40%) holds long-form manifesto text in a single vertical stack of declarative statements, with no card surface — text floats directly on the canvas. The right column (~60%) holds a masonry-like stack of widget cards of varying heights: Notion workspace previews, app icon rows, phone mockups, avatar cards, and one warm gradient card. Navigation is a single pill-shaped capsule centered at the top of the page with 230px radius. A 'Look around...' prompt sits in the top-right corner. The rhythm is consistent: 24px gap between widgets in the right column, breathing room around the left column text, and a max of 24px section padding. The overall density is compact but never cramped — cards have generous internal padding (24px) while the gaps between them stay tight.",
+    "imagery": "The visual language is embed-driven rather than illustrated: product screenshots from native apps (Notion, iPhone, Figma, Word), colorful third-party app icons, real photography (a coastal landscape photo appears in the widget grid), and the Twitter blue checkmark badge. All images sit inside white cards with 12px radius and soft 1–2px shadows. No custom illustration system, no abstract graphics, no 3D renders. The philosophy is: show the real tools, not representations of them. Full-bleed photography is rare; most visuals are contained within card boundaries at 4–12px radius. The color treatment of native app icons is left untouched — the violet Notion, red Figma, and blue Word marks provide the only multicolor moments in an otherwise neutral system.",
+    "similar": [
+      {
+        "why": "Same personal-workspace aesthetic: two-column layout with manifesto-style left text, widget/embed right column, generous rounded corners on cards, and near-monochrome palette with a single warm accent card",
+        "business": "Read.cv"
+      },
+      {
+        "why": "Similar compact grid of link cards with pill-shaped interactive elements, soft shadows, and the 'embed your real tools' philosophy of showing native app icons rather than custom illustrations",
+        "business": "Bento.me"
+      },
+      {
+        "why": "Same restrained typography, generous whitespace, and the discipline of using color only as functional punctuation rather than decorative fills",
+        "business": "Are.na"
+      },
+      {
+        "why": "Shares the custom geometric sans-serif typography approach and the use of subtle 1–3px shadows on elevated surfaces rather than dramatic elevation",
+        "business": "Linear"
+      },
+      {
+        "why": "The widget-embed card pattern directly mirrors Notion's embed blocks — white surface, 18px radius, soft dual-layer shadow, small tracked label header",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "18px",
+        "icons": "4px",
+        "images": "12px",
+        "inputs": "12px",
+        "buttons": "100px",
+        "navPill": "230px",
+        "widgets": "32px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "24px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f7f7f9",
+        "name": "Linen Canvas",
+        "level": 0,
+        "purpose": "Page background — the cool paper the whole layout sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "Primary card surface for widget and embed containers"
+      },
+      {
+        "hex": "#fff9ed",
+        "name": "Cream Card",
+        "level": 2,
+        "purpose": "Warm accent surface for one featured card per page"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash Surface",
+        "level": 3,
+        "purpose": "Nested element backgrounds inside cards"
+      },
+      {
+        "hex": "#eff0ff",
+        "name": "Lavender Wash",
+        "level": 4,
+        "purpose": "Active state and hover halo"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+        "element": "Embedded images and screenshots"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.06) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px",
+        "element": "Widget cards"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 1px 3px 0px",
+        "element": "Link chips with border"
+      },
+      {
+        "style": "Box shadow tinted with #f8c1c8 for a blush offset",
+        "element": "Tinted warm card"
+      }
+    ],
+    "northStar": "Moleskine notebook in cool morning light — a personal workspace where widgets float like sticky notes on warm paper.",
+    "typeScale": [
+      {
+        "role": "label-sm",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.75
+      },
+      {
+        "role": "label",
+        "size": 12,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 31,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.67,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "White capsule with 230px border-radius floating at the top center. Contains 4 nav links in a single horizontal row. Background #ffffff, no visible border, subtle shadow rgba(0,0,0,0.06) 0px 1px 2px. Height ~48px, padding 6px vertical."
+      },
+      {
+        "name": "Nav Link with Status Dot",
+        "role": "Active navigation item indicator",
+        "description": "Graphik 14px weight 500, color #333333. When active, a 6px Ember Red (#e92f48) dot sits to the left of the label with 6px margin. The active 'Work' item in the screenshot shows this pattern — the dot is the only color in the nav."
+      },
+      {
+        "name": "Manifesto Card",
+        "role": "Long-form statement block on the left column",
+        "description": "No visible card surface — text sits directly on the Linen canvas. Maison Neue 14px line-height 1.67, color #333333. The pattern is short declarative statements, each on its own line, creating vertical rhythm. Asterisk-prefixed footnotes in 12px at the bottom."
+      },
+      {
+        "name": "Widget Embed Card",
+        "role": "Container for third-party app embeds (Notion, Twitter, etc.)",
+        "description": "White #ffffff surface, 18px border-radius, 24px padding. Contains a small label header in Neue Montreal 12px with 0.05em tracking, followed by the embed content. Soft dual-layer shadow rgba(0,0,0,0.06) 0px 1px 2px, rgba(0,0,0,0.1) 0px 1px 3px."
+      },
+      {
+        "name": "Avatar Profile Card",
+        "role": "Social identity display (Twitter handle, etc.)",
+        "description": "White surface, 18px radius, 24px padding. Contains 40px circular avatar on the left, display name in Graphik 16px weight 600, handle in Graphik 14px weight 400 color #707070. A small action link (Twitter icon or 'Read mid tweets') sits at the bottom with an arrow."
+      },
+      {
+        "name": "Gradient Feature Card",
+        "role": "Single warm-accent card that breaks the monochrome system",
+        "description": "Coral Pulse to Sunset Amber gradient (16deg, #ff4d79 → #ff8040), 18px radius, 24px padding. White text. Graphik 20px weight 600 for the title, 16px weight 400 for body. One per page maximum — the warm hit that earns the rest being cool."
+      },
+      {
+        "name": "App Icon Row",
+        "role": "Horizontal scroll of app/product icons",
+        "description": "Series of 40–48px square icons (4px radius) in a horizontal row with 8px gaps. Each icon is the native brand mark — colorful, not custom-styled. Sits inside a Widget Embed Card."
+      },
+      {
+        "name": "Phone Mockup Card",
+        "role": "iPhone screenshot embed",
+        "description": "White surface, 12px radius, contains a phone-shaped image with its own internal radius. The phone image has rgba(0,0,0,0.25) 0px 1px 2px shadow. Sits inside a Widget Embed Card with 24px padding."
+      },
+      {
+        "name": "Pill Link Chip",
+        "role": "Inline link with chromatic border",
+        "description": "100px border-radius, Signal Blue (#1685c7) or Iris Glow (#6366f1) border 1px, transparent background, Graphik 14px weight 500 in the matching color. 8px 14px padding. Shadow rgba(0,0,0,0.25) 0px 1px 3px for subtle depth."
+      },
+      {
+        "name": "Schedule Bar",
+        "role": "Availability sharing widget",
+        "description": "White card, 18px radius, contains stacked time-zone rows in Graphik 14px. The primary 'Create new reply with availability' action is a full-width pill in the Coral Pulse gradient with white text, 100px radius, 14px 20px padding."
+      },
+      {
+        "name": "Color Swatch Row",
+        "role": "Multi-color tag/label row",
+        "description": "Horizontal row of 8px-radius pill chips, each with a different pastel background (pink, yellow, green, blue, purple). Neue Montreal 12px label text, 100px radius, 6px 12px padding. Functions as category filters or status tags."
+      },
+      {
+        "name": "Tracked Label",
+        "role": "Small section header or metadata tag",
+        "description": "Neue Montreal 12px weight 500, letter-spacing 0.05em, color #707070. Often paired with a 4px colored dot prefix (violet, green, orange, red) to create a tagged-list pattern."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary body and UI text. Weight 400 for running copy, 600 for emphasis. The 40px size anchors the manifesto headlines. Substitutes: Inter, Söhne, General Sans",
+        "sizes": "12px, 14px, 40px",
+        "family": "Maison Neue",
+        "weight": "400, 600",
+        "lineHeight": "1.00, 1.43, 1.67",
+        "substitute": "Inter",
+        "letterSpacing": "0.007em consistently",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      },
+      {
+        "role": "Links, buttons, card titles, and section headings. The workhorse for anything interactive or navigational. Substitutes: Inter, Untitled Sans, Söhne",
+        "sizes": "14px, 16px, 20px, 31px",
+        "family": "Graphik",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.25, 1.38, 1.43, 1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.013em at 31px, positive 0.005–0.014em at smaller sizes — headlines tighten, body loosens"
+      },
+      {
+        "role": "Micro-labels, tags, metadata, and tracked-out captions. The wide tracking at small sizes is the signature move — it makes 8–12px text feel like printed stationery, not UI chrome. Substitutes: Neue Haas Grotesk, Inter Tight, Monument Grotesk",
+        "sizes": "8px, 10px, 12px, 14px, 16px, 18px, 20px, 22px, 24px, 26px",
+        "family": "Neue Montreal",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.11, 1.13, 1.20, 1.25, 1.45, 1.67",
+        "substitute": "Inter Tight",
+        "letterSpacing": "0.2em at 8px → 0.05em at 26px — inverse tracking curve where the smallest labels are widest"
+      },
+      {
+        "role": "System font fallback for native-feeling status bar text and a few embedded contexts. Rarely the primary face.",
+        "sizes": "8px, 11px, 16px",
+        "family": "SF Pro Display",
+        "weight": "400, 600",
+        "lineHeight": "0.75, 1.40, 1.63, 1.82",
+        "substitute": "SF Pro Display",
+        "letterSpacing": "-0.0040em, 0.0130em, 0.0180em"
+      },
+      {
+        "role": "Twitter embed text — appears only inside embedded tweet widgets, never used for first-party content",
+        "sizes": "16px, 17px, 24px",
+        "family": "Chirp",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.35, 1.40",
+        "substitute": "Chirp"
+      },
+      {
+        "role": "Display/decorative accent — used at most three times on the page for a single moment of personality. The 38px size is the signature flourish.",
+        "sizes": "15px, 16px, 38px",
+        "family": "Bluu suuperstar",
+        "weight": "700",
+        "lineHeight": "1.00, 1.33",
+        "substitute": "Recoleta"
+      }
+    ],
+    "description": "Marco's site reads like a personal workspace laid out on cool paper: a near-white canvas, furniture-soft cards, and dense but breathable type that feels like a Moleskine spread in morning light. The layout is a disciplined two-column grid — a long-form manifesto on the left, a stack of embedded widgets, app screenshots, and avatar cards on the right — held together by generous rounded corners and whisper-light shadows. Color is rationed: 99% of the page is neutral, with violet and coral-pink appearing only as tiny functional punctuation for active links, the 'Work' status dot, and one warm gradient card. Typography is the main voice — three custom geometric sans-serifs (Maison Neue, Graphik, Neue Montreal) layered with careful tracking shifts, wide on micro-labels and tightening on larger display sizes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Marco design system\",\"item\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#style-reference\",\"name\":\"Marco design system reference\",\"headline\":\"Marco design system | Refero Styles\",\"description\":\"Explore Marco's light Design design system: Iris Glow #6366f1, Signal Blue #1685c7 colors, Maison Neue, Graphik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Marco\",\"url\":\"https://www.marco.fyi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"caption\":\"Screenshot of Marco\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Marco design system\",\"Marco website design\",\"Marco colors\",\"Marco typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Iris Glow\",\"Signal Blue\",\"Ember Red\",\"Coral Pulse\",\"Maison Neue\",\"Graphik\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Marco design system\"},{\"@type\":\"Thing\",\"name\":\"Marco website design\"},{\"@type\":\"Thing\",\"name\":\"Marco colors\"},{\"@type\":\"Thing\",\"name\":\"Marco typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:27:45.151Z\",\"dateModified\":\"2026-04-30T01:27:45.151Z\"}]}19:T69d,## Quick Color Reference\n- text: #333333 (Graphite for body), #000000 (Ink for headings)\n- background: #f7f7f9 (Linen canvas), #ffffff (Paper cards)\n- border: #333333 (structural), #dedee0 (Pearl, hairline), #1685c7 (Signal Blue, link)\n- accent: #6366f1 (Iris Glow, active states)\n- status dot: #e92f48 (Ember Red)\n- primary action: #1685c7 (outlined action border)\n\n## Example Component Prompts\n\n1. **Manifesto Statement Block**: Linen canvas (#f7f7f9), no card. Maison Neue 14px weight 400, line-height 1.67, color #333333. Stack of short declarative statements, each on its own line, 8px vertical gap between lines. Optional 12px footnote in #707070 with asterisk prefix.\n\n2. **Widget Embed Card**: White surface (#ffffff), 18px border-radius, 24px padding, shadow rgba(0,0,0,0.06) 0px 1px 2px + rgba(0,0,0,0.1) 0px 1px 3px. Neue Montreal 12px label header with 0.05em tracking and a 4px Iris Glow dot prefix. Embed content sits below the label with 14px gap.\n\n3. **Pill Link Chip**: Transparent background, 100px border-radius, Signal Blue (#1685c7) or Iris Glow (#6366f1) 1px border, Graphik 14px weight 500 text in the matching color, 8px 14px padding, shadow rgba(0,0,0,0.25) 0px 1px 3px.\n\n4. **Gradient Feature Card**: Coral-to-Amber gradient (linear-gradient(16deg, #ff4d79, #ff8040 85%)), 18px border-radius, 24px padding. Graphik 20px weight 600 white title, Graphik 16px weight 400 white body. One per page maximum.\n\n5. **Tracked Label with Status Dot**: 4px circular dot in a chromatic color (Iris Glow, emerald, orange, Ember Red) followed by 6px gap, then Neue Montreal 12px weight 500 text in #707070 with 0.05em letter-spacing. Used as a inline metadata tag or section header."
+      },
+      {
+        "title": "Tracking Philosophy",
+        "content": "The type system inverts the usual tracking relationship: micro-labels (8–12px) are set with extreme positive tracking (0.05–0.2em) to feel like printed stationery, while display sizes (31px+) tighten with negative tracking (-0.013em) for optical density. This is the opposite of most modern SaaS interfaces, where large text gets looser tracking. The result is that small text feels deliberate and crafted, while large text feels controlled and architectural. Never apply the same letter-spacing value across the type scale — each role has its own tracking curve."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "card",
+            "image"
+          ],
+          "frequency": 3141,
+          "confidence": 1,
+          "prominence": 44830645.20182377,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 35,
+            "icon/color": 70,
+            "link/color": 46,
+            "image/color": 49,
+            "other/color": 448,
+            "button/color": 5,
+            "card/borderColor": 132,
+            "icon/borderColor": 280,
+            "link/borderColor": 152,
+            "image/borderColor": 196,
+            "other/borderColor": 1712,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 164,
+          "confidence": 1,
+          "prominence": 2418510.909381186,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 17,
+            "button/color": 1,
+            "card/borderColor": 4,
+            "other/borderColor": 76,
+            "button/borderColor": 4,
+            "card/backgroundColor": 7,
+            "icon/backgroundColor": 3,
+            "link/backgroundColor": 24,
+            "other/backgroundColor": 28
+          }
+        },
+        {
+          "hex": "#f7f7f9",
+          "oklch": {
+            "c": 0.0026464265024200655,
+            "h": 286.3505195097975,
+            "l": 0.9767009070253525
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 2054927.5369019315,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 20,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 170,
+          "confidence": 1,
+          "prominence": 270603.2597430376,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 26,
+            "heading/color": 7,
+            "body/borderColor": 4,
+            "other/borderColor": 104,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 515,
+          "confidence": 1,
+          "prominence": 230173.77778527618,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "icon/color": 18,
+            "link/color": 15,
+            "other/fill": 38,
+            "other/color": 57,
+            "other/stroke": 3,
+            "heading/color": 2,
+            "body/borderColor": 56,
+            "icon/borderColor": 72,
+            "link/borderColor": 4,
+            "other/borderColor": 228,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#cccccf",
+          "oklch": {
+            "c": 0.004117010889236691,
+            "h": 286.3113100820929,
+            "l": 0.8460996838832131
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 225395.41138581018,
+          "properties": [
+            "borderColor",
+            "boxShadow",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/boxShadow": 3,
+            "other/borderColor": 4,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#6366f1",
+          "oklch": {
+            "c": 0.20405527824372596,
+            "h": 277.11729232808455,
+            "l": 0.5854043125544901
+          },
+          "contexts": [
+            "link",
+            "other",
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 171544.18336822742,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 121803.43303398088,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 6,
+            "heading/color": 1,
+            "other/borderColor": 24,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "link",
+            "image",
+            "other"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 86580,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "link/boxShadow": 8,
+            "image/boxShadow": 9,
+            "other/boxShadow": 9,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#eff0ff",
+          "oklch": {
+            "c": 0.02007924887738437,
+            "h": 282.961617564414,
+            "l": 0.9587577596154342
+          },
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 71412.07043249242,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e92f48",
+          "oklch": {
+            "c": 0.2182840007521509,
+            "h": 20.25722120480562,
+            "l": 0.6102489087017748
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 61208.0818528496,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffb3b3",
+          "oklch": {
+            "c": 0.08970084333272024,
+            "h": 19.12527935886805,
+            "l": 0.8375071265121119
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 47472.796821600066,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#f8c1c8",
+          "oklch": {
+            "c": 0.06464483769941243,
+            "h": 9.502814062855608,
+            "l": 0.8615144085103342
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 38618,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#fff9ed",
+          "oklch": {
+            "c": 0.017057724233416446,
+            "h": 84.58656505927769,
+            "l": 0.9835030630905708
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 34144,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#6b7280",
+          "oklch": {
+            "c": 0.02336091733217706,
+            "h": 264.36374727266286,
+            "l": 0.5510191075146065
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 75,
+          "confidence": 1,
+          "prominence": 32614.181620175514,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 15,
+            "other/borderColor": 60
+          }
+        },
+        {
+          "hex": "#e4e6ec",
+          "oklch": {
+            "c": 0.008415065169918528,
+            "h": 273.20333478460043,
+            "l": 0.9259475137478087
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 26893.949857502907,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7e8389",
+          "oklch": {
+            "c": 0.010847872525018752,
+            "h": 252.86284092148242,
+            "l": 0.6077364441741101
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 23875.238264358024,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 10,
+            "other/borderColor": 40
+          }
+        },
+        {
+          "hex": "#1685c7",
+          "oklch": {
+            "c": 0.1355095071083223,
+            "h": 242.56489070278997,
+            "l": 0.5918663002560471
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 13462.452900816901,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "link/borderColor": 16
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 11442.461651604921,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ff4141",
+          "oklch": {
+            "c": 0.22581450455469293,
+            "h": 25.953882578176177,
+            "l": 0.6606827132219294
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 11014.876042359216,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#5c5c5c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4747801057583673
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 10955.071078056259,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dedee0",
+          "oklch": {
+            "c": 0.002700418871773809,
+            "h": 286.3453081918145,
+            "l": 0.9011745683856217
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 67,
+          "confidence": 1,
+          "prominence": 7889.351842260439,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/boxShadow": 3,
+            "link/borderColor": 56,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#dbddff",
+          "oklch": {
+            "c": 0.046387767493324426,
+            "h": 282.76369488232217,
+            "l": 0.9066270977800699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7063,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#424242",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37909358396702786
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5495.6302765331775,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4a99e9",
+          "oklch": {
+            "c": 0.1423442868304592,
+            "h": 251.02911524479487,
+            "l": 0.6696949865554005
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#afb0b3",
+          "oklch": {
+            "c": 0.00440000362351062,
+            "h": 271.35494418217434,
+            "l": 0.7573021210719452
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 3029.4862246520665,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 20,
+            "other/borderColor": 80
+          }
+        },
+        {
+          "hex": "#7dc7ff",
+          "oklch": {
+            "c": 0.10880679943670346,
+            "h": 242.47480195075394,
+            "l": 0.8026639924657308
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2890.971601315389,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fed17a",
+          "oklch": {
+            "c": 0.11711724850187381,
+            "h": 82.68469435850326,
+            "l": 0.881813536898986
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2890.971601315389,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#96f399",
+          "oklch": {
+            "c": 0.15097080267464058,
+            "h": 144.87040606843692,
+            "l": 0.8841766702064588
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2889.3866388146675,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#10b981",
+          "oklch": {
+            "c": 0.14907409550888495,
+            "h": 162.47961246618206,
+            "l": 0.6958730755134862
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f97316",
+          "oklch": {
+            "c": 0.18672106768094693,
+            "h": 47.60441481059277,
+            "l": 0.7048712574475993
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.008789700158772827,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.03,
+          "background": "#fff9ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.63,
+          "background": "#f7f7f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#eff0ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e4e6ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.8,
+          "background": "#dbddff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.63,
+          "background": "#dedee0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.58,
+          "background": "#96f399",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#fed17a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#f8c1c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.11,
+          "background": "#cccccf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.35,
+          "background": "#ffb3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#fff9ed",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.81,
+          "background": "#f7f7f9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#7dc7ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.29,
+          "background": "#f2f2f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.18,
+          "background": "#eff0ff",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "image",
+            "other",
+            "card"
+          ],
+          "frequency": 42
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "image",
+            "other",
+            "card"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 360,
+          "contexts": [
+            "icon",
+            "other",
+            "image"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 40,
+          "corners": [
+            40,
+            40,
+            0,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 1px 3px 0px",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 1px 1px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px",
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(89, 100, 138, 0.16) 0px 2px 4px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 1px 2px 0px, rgba(0, 0, 0, 0.06) 0px 3px 3px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.18) 0px 1px 2px 0px",
+          "contexts": [
+            "image"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 1px 2px 0px",
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.16) 0px 1px 2px 0px",
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 4px 6px 0px, rgba(0, 0, 0, 0.1) 0px 10px 16px -3px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 15px 10px -3px, rgba(0, 0, 0, 0.05) 0px 6px 4px -2px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 0px 10px -3px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(233, 47, 72, 0.3) 0px 4px 24px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginLeft|icon",
+            "marginRight|other",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|link",
+            "marginTop|icon",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 67,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "card"
+          ],
+          "frequency": 110,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginTop|body",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginRight|icon",
+            "paddingBottom|other",
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "card"
+          ],
+          "frequency": 53,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|link",
+            "marginTop|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|other",
+            "paddingTop|card",
+            "paddingRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|link",
+            "marginBottom|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 35,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginLeft|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "link",
+            "image"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|card",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "marginLeft|other",
+            "marginBottom|other",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginRight|link",
+            "marginRight|image",
+            "marginTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 75,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "heading",
+            "image",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|image",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(16deg, rgb(255, 77, 121), rgb(255, 128, 64) 85%)",
+        "colors": [
+          "rgb(255, 77, 121)",
+          "rgb(255, 128, 64)"
+        ],
+        "frequency": 10
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(16deg, rgb(255, 92, 133), rgb(255, 128, 64) 90%)",
+        "colors": [
+          "rgb(255, 92, 133)",
+          "rgb(255, 128, 64)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Maison Neue",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 435,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Graphik",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 250,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 158,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SF Pro Display",
+          "source": "system",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Chirp",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Bluu suuperstar",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 6,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 8,
+          "family": "SF Pro Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.075,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 8,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SF Pro Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.82,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SF Pro Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "image"
+          ],
+          "frequency": 419,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 214,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.014,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Bluu suuperstar",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Bluu suuperstar",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SF Pro Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chirp",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Chirp",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.044,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": 0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Chirp",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Bluu suuperstar",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/92082812-50b7-47a5-862f-6b3b1a1e95fa.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Marco design system\",\"item\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#style-reference\",\"name\":\"Marco design system reference\",\"headline\":\"Marco design system | Refero Styles\",\"description\":\"Explore Marco's light Design design system: Iris Glow #6366f1, Signal Blue #1685c7 colors, Maison Neue, Graphik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Marco\",\"url\":\"https://www.marco.fyi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/88e9d606-7e8f-479c-9508-1b081e254ed9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"caption\":\"Screenshot of Marco\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a37e0e0c-69db-4b45-89a6-d8791449f7e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Marco design system\",\"Marco website design\",\"Marco colors\",\"Marco typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Iris Glow\",\"Signal Blue\",\"Ember Red\",\"Coral Pulse\",\"Maison Neue\",\"Graphik\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Marco design system\"},{\"@type\":\"Thing\",\"name\":\"Marco website design\"},{\"@type\":\"Thing\",\"name\":\"Marco colors\"},{\"@type\":\"Thing\",\"name\":\"Marco typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:27:45.151Z\",\"dateModified\":\"2026-04-30T01:27:45.151Z\"}]}19:T69d,## Quick Color Reference\n- text: #333333 (Graphite for body), #000000 (Ink for headings)\n- background: #f7f7f9 (Linen canvas), #ffffff (Paper cards)\n- border: #333333 (structural), #dedee0 (Pearl, hairline), #1685c7 (Signal Blue, link)\n- accent: #6366f1 (Iris Glow, active states)\n- status dot: #e92f48 (Ember Red)\n- primary action: #1685c7 (outlined action border)\n\n## Example Component Prompts\n\n1. **Manifesto Statement Block**: Linen canvas (#f7f7f9), no card. Maison Neue 14px weight 400, line-height 1.67, color #333333. Stack of short declarative statements, each on its own line, 8px vertical gap between lines. Optional 12px footnote in #707070 with asterisk prefix.\n\n2. **Widget Embed Card**: White surface (#ffffff), 18px border-radius, 24px padding, shadow rgba(0,0,0,0.06) 0px 1px 2px + rgba(0,0,0,0.1) 0px 1px 3px. Neue Montreal 12px label header with 0.05em tracking and a 4px Iris Glow dot prefix. Embed content sits below the label with 14px gap.\n\n3. **Pill Link Chip**: Transparent background, 100px border-radius, Signal Blue (#1685c7) or Iris Glow (#6366f1) 1px border, Graphik 14px weight 500 text in the matching color, 8px 14px padding, shadow rgba(0,0,0,0.25) 0px 1px 3px.\n\n4. **Gradient Feature Card**: Coral-to-Amber gradient (linear-gradient(16deg, #ff4d79, #ff8040 85%)), 18px border-radius, 24px padding. Graphik 20px weight 600 white title, Graphik 16px weight 400 white body. One per page maximum.\n\n5. **Tracked Label with Status Dot**: 4px circular dot in a chromatic color (Iris Glow, emerald, orange, Ember Red) followed by 6px gap, then Neue Montreal 12px weight 500 text in #707070 with 0.05em letter-spacing. Used as a inline metadata tag or section header."
+}

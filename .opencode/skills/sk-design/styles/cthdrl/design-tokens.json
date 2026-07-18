@@ -1,0 +1,205 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#e7ded1",
+      "$type": "color",
+      "$description": "Bone — Primary text, hairline borders, navigation labels, link color, icon strokes — the sole chromatic element in the UI layer, a warm off-white that avoids clinical sterility"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, section backgrounds, every surface — pure black, not a near-black"
+    },
+    "maroon-gradient": {
+      "$value": "#4c0b02",
+      "$type": "color",
+      "$description": "Maroon Gradient — Full-bleed atmospheric section background — deep oxidized red creating a candlelit warmth against the surrounding void"
+    },
+    "violet-gradient": {
+      "$value": "#1e1594",
+      "$type": "color",
+      "$description": "Violet Gradient — Full-bleed atmospheric section background — deep indigo wash, a cold counterpoint to the maroon sections"
+    },
+    "crimson-gradient": {
+      "$value": "#6e1815",
+      "$type": "color",
+      "$description": "Crimson Gradient — Full-bleed atmospheric section background — burnt blood red, the most aggressive gradient stop"
+    },
+    "plum-gradient": {
+      "$value": "#6d0251",
+      "$type": "color",
+      "$description": "Plum Gradient — Full-bleed atmospheric section background — dark mulberry, a muted violet-red transition"
+    },
+    "olive-gradient": {
+      "$value": "#a8b428",
+      "$type": "color",
+      "$description": "Olive Gradient — Full-bleed atmospheric section background — sickly yellow-green, the only non-red gradient, used sparingly for contrast"
+    }
+  },
+  "font": {
+    "nb-akademie": {
+      "$value": "NB Akademie",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface. Custom serif used exclusively for monumental headlines at 121px with extremely tight leading (0.85) that makes characters nearly touch. The 400 weight at display size is deliberate restraint — the scale and tight tracking do the work that bold weight would do in other systems. Letter-spacing tightens further at larger sizes."
+    },
+    "nb-akademie-mono": {
+      "$value": "NB Akademie Mono",
+      "$type": "fontFamily",
+      "$description": "UI and monospace workhorse — navigation, body text, metadata, links, icons, and the 32px mid-scale heading tier. At 11px the negative tracking (-0.045em) compresses characters into a dense data-stream aesthetic. The monospaced face contrasts with the display serif to create a document/blueprint duality: editorial headlines above, technical metadata below."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NB Akademie Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NB Akademie Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "NB Akademie Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "NB Akademie Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "NB Akademie",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "NB Akademie",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "NB Akademie Mono",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "NB Akademie",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "NB Akademie",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NB Akademie",
+        "fontSize": "121px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 121px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "75": {
+      "$value": "75px",
+      "$type": "dimension",
+      "$description": "Spacing 75px"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Primary canvas — every page, every section defaults to this"
+    },
+    "gradient-fields": {
+      "$value": "#4c0b02",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed chromatic section backgrounds acting as chapter dividers — never cards, never elevated surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cthdrl.co",
+      "siteName": "cthdrl",
+      "extractedAt": "2026-06-03T16:25:20.533Z",
+      "variant": "extended"
+    }
+  }
+}

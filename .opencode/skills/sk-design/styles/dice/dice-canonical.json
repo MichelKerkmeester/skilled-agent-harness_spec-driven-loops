@@ -1,0 +1,1448 @@
+{
+  "source": "https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d",
+  "uuid": "f4af4c42-2cba-4aa6-8d06-2f728bce702d",
+  "name": "DICE",
+  "northStar": "Monochrome gig flyer — black ink on white paper, headlines screaming, everything else dead quiet.",
+  "capturedAt": "2026-07-18T08:17:07.478Z",
+  "meta": {
+    "url": "https://dice.fm",
+    "siteName": "DICE",
+    "extractedAt": "2026-06-03T17:44:42.754Z",
+    "durationMs": 47988,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1450,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 40px border-radius on every button — the pill shape is the system, not a suggestion",
+      "Set 0.06em letter-spacing on all Favorit text and always enable ss02/ss03/ss05/ss06/ss08",
+      "Stack hero headlines in Foggy 106px/0.83 line-height to fill the vertical space — never let the display face sit on a single line",
+      "Alternate full-bleed black sections with white sections to create a zine-like vertical rhythm; minimum 80px vertical padding inside each",
+      "Lock the palette to black, white, and three grays (#eeeeee, #d9d9d9, #333333) — no chromatic accents in UI chrome",
+      "Round event poster images and card media at 8px — softer than buttons, distinct from the pill system",
+      "Use 24px as the base section padding and 8px for inline element gaps"
+    ],
+    "donts": [
+      "Don't introduce any color into the UI chrome — if you need a status color, confine it to a confirmation screen or illustration artwork, never to a button, border, or text token",
+      "Don't set buttons to sharp or lightly-rounded corners — 40px is mandatory",
+      "Don't use Foggy for body copy or anything under 80px — it only works at display scale",
+      "Don't use weight 500 or 600 with Favorit — the system only uses 350, 400, and 700",
+      "Don't add drop shadows to cards or buttons — the design uses flat surfaces and solid color contrast, not elevation",
+      "Don't use letter-spacing other than 0.06em on Favorit — the open tracking is a brand signal, not an accident",
+      "Don't use decorative gradients — the system is strictly flat; the only color treatment is solid fills and the single green confirmation screen"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pitch Black",
+        "role": "Primary text, filled pill buttons, full-bleed dark section backgrounds, icon strokes, hairline borders — the structural backbone of every page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, text on dark sections, button text on filled black buttons, search field fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Ash Gray",
+        "role": "Soft image backgrounds, secondary surface tint, subtle card/poster fill behind event artwork",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Concrete",
+        "role": "Hairline dividers, muted borders, input field outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Secondary button fills, elevated dark surfaces, muted-on-dark text in nested components",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595959",
+        "name": "Slate",
+        "role": "Muted body text, secondary navigation labels, supporting metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Stone",
+        "role": "Tertiary body text, disabled states, low-priority metadata",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Event poster artwork is the primary visual content — each event card features a unique designed poster (concert flyers, album covers, festival graphics) in a wide variety of colors and treatments. Outside of posters, the only consistent illustration is the DICE mascot: a hand-drawn cartoon character in white single-stroke line art, appearing on dark sections holding props (drinks, sparklers, phones). Product imagery uses phone mockup frames (black rectangles with rounded corners) to preview the app. No photography, no abstract 3D, no decorative gradients.",
+    "similar": [
+      {
+        "why": "Same concert-discovery focus with poster-driven event cards, though Bandsintown adds more color to its UI chrome",
+        "business": "Bandsintown"
+      },
+      {
+        "why": "Editorial-leaning event platform with bold display type and high-contrast layouts, though RA uses red accents and a different type system",
+        "business": "Resident Advisor (RA)"
+      },
+      {
+        "why": "Live music ticketing with similar card grids and ticket preview patterns, though Songkick leans warmer with purple/blue accents",
+        "business": "Songkick"
+      },
+      {
+        "why": "Ticketing scale and event card patterns, but Eventbrite's design is far more generic SaaS compared to DICE's zine-like typographic confidence",
+        "business": "Eventbrite"
+      },
+      {
+        "why": "Same punk-zine aesthetic with massive condensed display type, full-bleed black bands, and strict monochrome palettes",
+        "business": "Pioneer Works / cultural institution sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "8px",
+        "small": "4px",
+        "images": "8px",
+        "buttons": "40px",
+        "navElements": "20px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Base page canvas — all white sections, card surfaces, navigation background"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Ash Gray",
+        "level": 1,
+        "purpose": "Soft fill behind poster images and subtle surface tinting"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Secondary button fills and elevated dark surfaces"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pitch Black",
+        "level": 3,
+        "purpose": "Full-bleed dark section bands and primary filled buttons"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat, no shadow, separation achieved through white space on white background",
+        "element": "Event Card"
+      },
+      {
+        "style": "none — flat black fill against white",
+        "element": "Filled Pill Button"
+      },
+      {
+        "style": "none — black frame on white, no cast shadow",
+        "element": "Phone Mockup"
+      }
+    ],
+    "northStar": "Monochrome gig flyer — black ink on white paper, headlines screaming, everything else dead quiet.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.21,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.84
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.08
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 1.44
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.22,
+        "letterSpacing": 1.68
+      },
+      {
+        "role": "display",
+        "size": 106,
+        "lineHeight": 0.83,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action — 'GET THE APP', 'VIEW TICKET'",
+        "description": "40px border-radius, Pitch Black (#000000) fill, Paper White (#ffffff) text, Favorit weight 700, 12px font-size, 22px horizontal padding / 12px vertical padding, all-caps, 0.06em tracking. The full pill shape is non-negotiable — no square or lightly-rounded variants exist."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary navigation action — 'BROWSE EVENTS'",
+        "description": "40px border-radius, transparent fill, 1px Pitch Black (#000000) border, Pitch Black text, Favorit weight 700, 12px, 22px/12px padding. Appears on white backgrounds only. Inverts to white border + white text on black sections."
+      },
+      {
+        "name": "Search Field",
+        "role": "Global event/venue/city search in nav",
+        "description": "Rounded rectangle (radius ~20px), Paper White fill, 1px border matching surrounding surface, search icon on left in Pitch Black. Placeholder 'Search by event, venue or city' in Stone (#808080), Favorit 14px. Sits inline with the primary nav."
+      },
+      {
+        "name": "Event Card",
+        "role": "Trending/recommended event tile",
+        "description": "Vertical card, 8px radius on poster image, no border, no shadow. Poster image fills the card; below sits event title (Favorit 16px weight 700), date (Favorit 14px Slate #595959), venue (Favorit 14px weight 700), and price (Favorit 14px). No padding inside the card — type sits flush against the poster edge with ~8px margin."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold brand statement",
+        "description": "Two-column: left holds Foggy 106px/0.83 hero headline (3–4 stacked lines), sub-paragraph at Favorit 18px in Charcoal, and a filled pill CTA. Right holds a phone mockup with a confirmation screen (neon-green fill — the only color moment). White background, max-width 1200px centered, ~80px vertical padding."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Product/app preview container",
+        "description": "Pitch Black (#000000) rounded rectangle (40px radius) acting as a stylized phone frame. Screen content sits inside with a small notch. Used to showcase app UI within hero/feature sections."
+      },
+      {
+        "name": "Dark Feature Band",
+        "role": "Full-bleed alternating section",
+        "description": "Pitch Black (#000000) full-width background, 80px+ vertical padding. White line-art mascot illustrations (chunky, cartoon, single-stroke) float above three centered white text columns (Favorit 16px, max-width ~280px each). Centered white section title at Favorit 28px weight 700 above."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Section openers like \"Trending in Barcelona\"",
+        "description": "Favorit 16px weight 700 in Pitch Black for the title, followed by a 1–2 line description in Favorit 16px weight 400 in Charcoal (#333333). Sits left-aligned in a max-width container, with a BROWSE EVENTS outlined pill anchored right."
+      },
+      {
+        "name": "Horizontal Event Carousel Row",
+        "role": "Trending/featured event scrolling list",
+        "description": "Row of Event Cards on a white background, 8–16px gap between cards, horizontal overflow scroll. Cards bleed to the page edge with internal max-width padding to keep the row visually continuous."
+      },
+      {
+        "name": "What Else List",
+        "role": "Secondary feature list with icons",
+        "description": "Left-aligned list of 3 items; each item is a small outlined icon (~24px) followed by Favorit 18px weight 400 text. One item is active (Pitch Black text + icon), the other two are dimmed (Stone #808080) to indicate future/secondary features."
+      },
+      {
+        "name": "Ticket Detail Card",
+        "role": "In-app ticket preview within phone mockup",
+        "description": "Phone screen with neon-green (#7ffeb1-ish) background, small illustrated event icon, Favorit 18px weight 700 event info, artist/title block, and a centered filled black 'VIEW TICKET' pill. This green is the only color in the entire system and is confined to confirmation/success states."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Top row: DICE mascot logo (left), Search Field (center-left), nav links (Browse events, Get help, Work with us, Log in / Sign up) in Favorit 14px, then filled black 'GET THE APP' pill on the far right. 1px bottom border in Concrete (#d9d9d9). Padding 24px vertical."
+      },
+      {
+        "name": "Mascot Illustrations",
+        "role": "Brand character artwork on dark sections",
+        "description": "Custom hand-drawn DICE mascot in white single-stroke line art, variations show the character holding different objects (drinks, sparklers, etc.). ~200px square, no fill, consistent stroke weight, floats above each feature column."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text — navigation, body copy, buttons, labels, card metadata. Weight 400 is the default; 700 is used for section headings like 'Trending in Barcelona'; 350 is reserved for quiet helper text. The 0.06em tracking gives every line a slightly looser, editorial feel — body copy never feels cramped. Stylistic sets ss02/ss03/ss05/ss06/ss08 are always on and define the character of the typeface.",
+        "sizes": "12, 14, 16, 18, 24, 28px",
+        "family": "Favorit",
+        "weight": "350, 400, 700",
+        "lineHeight": "1.15–1.50 (size-dependent)",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "0.06em (universal across all sizes — ~0.72px at 12px, ~1.68px at 28px)",
+        "fontFeatureSettings": "\"ss02\" on, \"ss03\" on, \"ss05\" on, \"ss06\" on, \"ss08\" on"
+      },
+      {
+        "role": "Hero display headlines only. The extreme condensed proportions, ultra-tight 0.83 line-height, and 106px size let 3–4 stacked words fill a half-screen. This is the signature element — it transforms standard product copy ('WELCOME TO THE ALTERNATIVE') into a gig poster.",
+        "sizes": "106px",
+        "family": "Foggy",
+        "weight": "400",
+        "lineHeight": "0.83",
+        "substitute": "Druk Condensed, Tungsten Bold Condensed, or Antonio Bold",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"ss02\" on, \"ss03\" on, \"ss05\" on, \"ss06\" on, \"ss08\" on"
+      }
+    ],
+    "description": "DICE runs on a strictly monochromatic, high-contrast visual system that reads like a concert poster forced into an app store. Pure black and white carry the entire interface; color exists only inside the artwork of event posters and one neon-green confirmation screen. A custom condensed display face (Foggy) shouts at 100px+ in the hero, while Favorit handles every UI surface with a slightly loosened 0.06em tracking that makes even body copy feel editorial. Buttons are 40px-radius pills, images sit in soft 8px-rounded frames, and sections alternate between white canvas and full-bleed black bands to create a zine-like rhythm. The overall attitude is punk, confident, and typographically loud — restraint everywhere except the headlines.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DICE design system\",\"item\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#style-reference\",\"name\":\"DICE design system reference\",\"headline\":\"DICE design system | Refero Styles\",\"description\":\"Explore DICE's light Media design system: Pitch Black #000000, Paper White #ffffff colors, Favorit, Foggy typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DICE\",\"url\":\"https://dice.fm\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"caption\":\"Screenshot of DICE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DICE design system\",\"DICE website design\",\"DICE colors\",\"DICE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pitch Black\",\"Paper White\",\"Ash Gray\",\"Concrete\",\"Favorit\",\"Foggy\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DICE design system\"},{\"@type\":\"Thing\",\"name\":\"DICE website design\"},{\"@type\":\"Thing\",\"name\":\"DICE colors\"},{\"@type\":\"Thing\",\"name\":\"DICE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:41:11.460Z\",\"dateModified\":\"2026-04-30T00:41:11.460Z\"}]}19:T540,**Quick Color Reference**\n- Text: #000000\n- Background: #ffffff\n- Border: #d9d9d9\n- Muted text: #595959\n- Dark band background: #000000\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. Build a filled black pill button: 40px radius, #000000 fill, #ffffff text, Favorit 12px weight 700, 0.06em tracking, 12px/22px padding, all-caps label like 'GET THE APP'.\n\n2. Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. Build a dark feature band: #000000 full-bleed background, 80px vertical padding, centered Favorit 28px weight 700 white heading 'Weirdly easy ticketing', then a 3-column grid below with a white line-art mascot icon (~200px), a Favorit 16px white caption under each, equally spaced.\n\n4. Build an event card row: horizontal flex with 16px gap, each card has an 8px-radius poster image (aspect 1:1), followed by a Favorit 16px weight 700 event title in #000000, then a Favorit 14px weight 400 date line in #595959, then venue (700) and price in #000000.\n\n5. Build a section header: left-aligned Favorit 16px weight 700 title 'Trending in Barcelona' in #000000, a 1–2 line Favorit 16px weight 400 description in #333333 below it, and a 40px-radius outlined pill button 'BROWSE EVENTS' anchored to the right."
+      },
+      {
+        "title": "Typography Signature",
+        "content": "The system runs on two custom faces with overlapping stylistic sets (ss02, ss03, ss05, ss06, ss08). Favorit handles everything below the hero with an unusually open 0.06em tracking — this slight looseness is what makes the UI feel editorial rather than generic SaaS. Foggy appears ONLY in the hero at 106px with 0.83 line-height; it's the loudest design choice in the system and must not be used elsewhere."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids drop shadows entirely. All depth and hierarchy are achieved through color contrast (black on white), surface alternation (white sections vs full-bleed black bands), and typographic scale. Adding shadows would break the flat poster/zine aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "link",
+            "image",
+            "hero",
+            "icon",
+            "footer"
+          ],
+          "frequency": 5062,
+          "confidence": 1,
+          "prominence": 88632443.3185103,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 2,
+            "nav/color": 40,
+            "body/color": 11,
+            "card/color": 80,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 88,
+            "other/fill": 5,
+            "image/color": 82,
+            "other/color": 648,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 20,
+            "nav/borderColor": 160,
+            "body/borderColor": 44,
+            "card/borderColor": 320,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 352,
+            "image/borderColor": 328,
+            "other/borderColor": 2591,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 80,
+            "nav/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "button/backgroundColor": 140
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "other",
+            "heading",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 1358,
+          "confidence": 1,
+          "prominence": 11726451.027467914,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 2,
+            "body/color": 12,
+            "hero/color": 1,
+            "icon/color": 138,
+            "link/color": 3,
+            "other/fill": 3,
+            "image/color": 3,
+            "other/color": 10,
+            "button/color": 142,
+            "other/stroke": 136,
+            "heading/color": 1,
+            "nav/borderColor": 4,
+            "body/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 552,
+            "link/borderColor": 12,
+            "image/borderColor": 12,
+            "other/borderColor": 40,
+            "button/borderColor": 224,
+            "heading/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 563183.6594149297,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 81,
+          "confidence": 1,
+          "prominence": 416648.52817465074,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 80,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 66175.0400184616,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#595959",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.464002143159062
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 63668.93401280773,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 1,
+            "button/color": 1,
+            "nav/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 17819.53226760072,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.89,
+          "background": "#eeeeee",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.95,
+          "background": "#d9d9d9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7,
+          "background": "#ffffff",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.04,
+          "background": "#eeeeee",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.96,
+          "background": "#d9d9d9",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.4,
+          "background": "#eeeeee",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.2,
+          "background": "#333333",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3,
+          "background": "#000000",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.8,
+          "background": "#d9d9d9",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#333333",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#333333",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#d9d9d9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#eeeeee",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 80
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 80
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 544,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|link",
+            "marginBottom|other",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|button",
+            "marginBottom|heading",
+            "marginLeft|other",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 87,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 124,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 213,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 296,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Favorit",
+          "source": "custom",
+          "weights": [
+            350,
+            400,
+            700
+          ],
+          "frequency": 1288,
+          "fontFeatureSettings": [
+            "\"ss02\", \"ss03\", \"ss05\", \"ss06\", \"ss08\""
+          ]
+        },
+        {
+          "family": "Foggy",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": [
+            "\"ss02\", \"ss03\", \"ss05\", \"ss06\", \"ss08\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Favorit",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 173,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Favorit",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 240,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "link",
+            "image",
+            "hero",
+            "footer",
+            "icon",
+            "body"
+          ],
+          "frequency": 521,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 116,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 350,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Favorit",
+          "weight": 350,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Favorit",
+          "weight": 350,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Favorit",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Favorit",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Favorit",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 106,
+          "family": "Foggy",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/31765856-e706-43ab-91cf-f08f0c8b9705.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DICE design system\",\"item\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#style-reference\",\"name\":\"DICE design system reference\",\"headline\":\"DICE design system | Refero Styles\",\"description\":\"Explore DICE's light Media design system: Pitch Black #000000, Paper White #ffffff colors, Favorit, Foggy typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DICE\",\"url\":\"https://dice.fm\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f4af4c42-2cba-4aa6-8d06-2f728bce702d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"caption\":\"Screenshot of DICE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4975e336-ee35-4a93-82c6-7ca218406a4c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DICE design system\",\"DICE website design\",\"DICE colors\",\"DICE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pitch Black\",\"Paper White\",\"Ash Gray\",\"Concrete\",\"Favorit\",\"Foggy\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DICE design system\"},{\"@type\":\"Thing\",\"name\":\"DICE website design\"},{\"@type\":\"Thing\",\"name\":\"DICE colors\"},{\"@type\":\"Thing\",\"name\":\"DICE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:41:11.460Z\",\"dateModified\":\"2026-04-30T00:41:11.460Z\"}]}19:T540,**Quick Color Reference**\n- Text: #000000\n- Background: #ffffff\n- Border: #d9d9d9\n- Muted text: #595959\n- Dark band background: #000000\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. Build a filled black pill button: 40px radius, #000000 fill, #ffffff text, Favorit 12px weight 700, 0.06em tracking, 12px/22px padding, all-caps label like 'GET THE APP'.\n\n2. Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. Build a dark feature band: #000000 full-bleed background, 80px vertical padding, centered Favorit 28px weight 700 white heading 'Weirdly easy ticketing', then a 3-column grid below with a white line-art mascot icon (~200px), a Favorit 16px white caption under each, equally spaced.\n\n4. Build an event card row: horizontal flex with 16px gap, each card has an 8px-radius poster image (aspect 1:1), followed by a Favorit 16px weight 700 event title in #000000, then a Favorit 14px weight 400 date line in #595959, then venue (700) and price in #000000.\n\n5. Build a section header: left-aligned Favorit 16px weight 700 title 'Trending in Barcelona' in #000000, a 1–2 line Favorit 16px weight 400 description in #333333 below it, and a 40px-radius outlined pill button 'BROWSE EVENTS' anchored to the right."
+}

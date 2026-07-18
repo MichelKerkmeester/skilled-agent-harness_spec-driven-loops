@@ -1,0 +1,47 @@
+:root {
+  /* Colors */
+  --color-bone: #f2f1ec;
+  --color-ink: #000000;
+  --color-graphite: #333332;
+  --color-ash: #5d5b5b;
+
+  /* Typography — Font Families */
+  --font-playfair-display: 'Playfair Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-rubik: 'Rubik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-heading: 63px;
+  --leading-heading: 1.2;
+  --tracking-heading: 0.63px;
+  --text-display: 94px;
+  --leading-display: 1;
+  --tracking-display: 0.94px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-11: 11px;
+  --spacing-14: 14px;
+  --spacing-30: 30px;
+  --spacing-48: 48px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 48px;
+  --card-padding: 0px;
+  --element-gap: 11-14px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-bone-canvas: #f2f1ec;
+  --surface-photograph-surface: #000000;
+}

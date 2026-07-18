@@ -1,0 +1,307 @@
+{
+  "color": {
+    "lipstick-magenta": {
+      "$value": "#db3c8a",
+      "$type": "color",
+      "$description": "Lipstick Magenta — Display headlines, primary brand color, icon buttons, heading accents — vivid pink carries 100% of brand recognition"
+    },
+    "forest-ink": {
+      "$value": "#00522d",
+      "$type": "color",
+      "$description": "Forest Ink — Body text, links, iconography, footer — deep saturated green against cream creates editorial gravitas no neutral could"
+    },
+    "blush-cream": {
+      "$value": "#fce5df",
+      "$type": "color",
+      "$description": "Blush Cream — Soft surface tint, badge backgrounds, gentle wash blocks, hover states — warm off-pink that sits between page and accent"
+    },
+    "warm-chalk": {
+      "$value": "#fff8f6",
+      "$type": "color",
+      "$description": "Warm Chalk — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "charcoal-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal Black — High-contrast text, dark icons, line art, SVG fills — used sparingly for maximum punch"
+    },
+    "lilac-mist": {
+      "$value": "#d1cfe4",
+      "$type": "color",
+      "$description": "Lilac Mist — Decorative type tint, subtle dividers, soft outline strokes — cool gray-lilac for the quietest visual moments"
+    },
+    "bubblegum": {
+      "$value": "#f29ebd",
+      "$type": "color",
+      "$description": "Bubblegum — Secondary accent, lighter pink washes, faded display type, ghost button borders — pink dialed back from brand magenta"
+    },
+    "cotton-pink": {
+      "$value": "#e878b2",
+      "$type": "color",
+      "$description": "Cotton Pink — Mid-tone pink surface for elevated cards, tonal accent between magenta and bubblegum"
+    }
+  },
+  "font": {
+    "beni": {
+      "$value": "Beni",
+      "$type": "fontFamily",
+      "$description": "Display headlines only — ultra-black weight with 0.70 line-height packs lines tightly, creating dense typographic blocks that dominate the viewport. Letter-spacing normal lets the heavy weight do the work; no tracking adjustment needed at this scale"
+    },
+    "clash-grotesk": {
+      "$value": "Clash Grotesk",
+      "$type": "fontFamily",
+      "$description": "Body text, labels, navigation, buttons, badges, links, all UI chrome — geometric grotesk carries the functional load while Beni performs. Weights create clear hierarchy: 400 for body, 500 for emphasized, 700 for buttons and active states"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Clash Grotesk",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Beni",
+        "fontSize": "46px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Beni",
+        "fontSize": "80px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Beni",
+        "fontSize": "94px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 94px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Beni",
+        "fontSize": "130px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 130px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Beni",
+        "fontSize": "230px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 230px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "warm-chalk": {
+      "$value": "#fff8f6",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the base everything sits on"
+    },
+    "blush-cream": {
+      "$value": "#fce5df",
+      "$type": "color",
+      "$description": "Surface level 2: Soft tinted surface for badges, tags, and gentle color blocks"
+    },
+    "cotton-pink": {
+      "$value": "#e878b2",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated accent surface, used rarely for standout card moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.agencefoudre.com",
+      "siteName": "Agence Foudre",
+      "extractedAt": "2026-06-03T15:10:07.512Z",
+      "variant": "extended"
+    }
+  }
+}

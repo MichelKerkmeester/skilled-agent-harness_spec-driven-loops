@@ -1,0 +1,599 @@
+{
+  "source": "https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab",
+  "uuid": "2b9e90ad-51d9-4f29-8f7e-a343dc741eab",
+  "name": "Laura Monin",
+  "northStar": "editorial gallery wall, white marble, ink stamp",
+  "capturedAt": "2026-07-18T07:43:30.400Z",
+  "meta": {
+    "url": "https://lauramonin.com",
+    "siteName": "Laura Monin",
+    "extractedAt": "2026-06-03T19:48:13.816Z",
+    "durationMs": 58073,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 221,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #ffffff and #000000 for all surfaces, text, and borders — never introduce a third color",
+      "Set the hero display title at 58–158px in the custom serif with letter-spacing -0.018em; this scale is non-negotiable for the editorial feel",
+      "Use neue-haas-grotesk-display at weight 400 only — never bold, never light — for all UI text at 12/14/18/22px",
+      "Maintain 200–300px vertical spacing between major page sections to preserve the gallery-wall breathing room",
+      "Keep all border-radius at 0px — every container, image, and button is perfectly rectangular",
+      "Place image tiles in an asymmetric scatter, not a uniform grid — irregular positioning is the layout signature",
+      "Use generous negative space (60%+ of the viewport) rather than packing content into the available area"
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, or any box-shadow to any element — the design is intentionally flat",
+      "Do not use rounded corners (border-radius > 0) on any image, card, or button",
+      "Do not introduce accent colors, gradients, or background fills — the system is strictly black on white",
+      "Do not use bold or semibold weights for UI text — weight 400 at all sizes is the rule",
+      "Do not align images to a uniform grid with equal gutters — the asymmetric scatter is the layout identity",
+      "Do not add hover animations, transitions, or micro-interactions to navigation or links",
+      "Do not use sans-serif or grotesque fonts for headlines or display text — the serif carries all brand weight"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, image borders, nav backgrounds — the only surface tone in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, all border outlines on images and nav, list markers — the sole chromatic anchor",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width constraint — the canvas extends to the viewport edges. Layout is a deliberately asymmetric scatter: a top bar with brand mark left, nav center, secondary nav right; then photographs placed in irregular positions across the viewport (top-left, top-center, top-right, mid-left, center, mid-right, bottom-left, bottom-right). The massive 'La Croisette' display title sits in the center of the composition, acting as the gravitational anchor between the scattered image tiles. Vertical rhythm uses extreme section gaps (200–300px padding-bottom) to create gallery-like intervals. No traditional grid columns, no card rows — every element is hand-positioned. Navigation is a minimal top bar with small text links. No sidebar, no mega-menu, no sticky header.",
+    "imagery": "Photography-only visual language: full-color fashion editorial photographs (seaside, backstage, portrait) presented as rectangular tiles with no cropping effects, no duotone, no filters. Images are placed raw on the white canvas with thin hairline borders. No illustration, no icons, no abstract graphics. The photographs are the only color in the entire system — everything else is monochrome, making the images feel like vivid objects mounted on a white gallery wall. Photo tiles are isolated (no overlapping, no masking), full-bleed to their container edges.",
+    "similar": [
+      {
+        "why": "Same editorial fashion-portfolio language — pure white canvas, sparse asymmetric image placement, custom serif display headlines, and zero color beyond monochrome",
+        "business": "Acne Studios (acnestudios.com)"
+      },
+      {
+        "why": "Identical restraint: white space as material, scattered image grids on pure white, serif display type for hero titles, geometric grotesque for micro-copy",
+        "business": "Lemaire (lemaire.fr)"
+      },
+      {
+        "why": "Shared fashion-portfolio DNA — massive custom serif display headlines, full-bleed white canvas, photographs as the sole source of color, and anti-grid asymmetric layout",
+        "business": "Celine (celine.com)"
+      },
+      {
+        "why": "Same luxury-through-omission approach: no color, no shadows, no rounded corners, oversized serif titles floating on white with editorial image placement",
+        "business": "The Row (therow.com)"
+      },
+      {
+        "why": "Near-identical typographic system — custom serif display titles, grotesque secondary type at weight 400, pure white canvas, and editorial photo scatter with no UI chrome",
+        "business": "Phoebe Philo's brand site"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "7-12px",
+      "sectionGap": "",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Full-page background — the single surface tone for canvas, cards, and image wrappers alike"
+      }
+    ],
+    "elevation": [],
+    "northStar": "editorial gallery wall, white marble, ink stamp",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.15,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.04
+      },
+      {
+        "role": "display",
+        "size": 158,
+        "lineHeight": 1.2,
+        "letterSpacing": -2.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Image Tile",
+        "role": "Scattered photography containers — the primary content unit",
+        "description": "Rectangular photograph on white. Thin 1px border in #000000 or a barely-visible white border. Zero border-radius (0px). No padding. No shadow. Image fills the tile edge-to-edge. Tiles vary in size from ~200px to ~400px and are placed in an asymmetric scatter pattern, not a grid."
+      },
+      {
+        "name": "Image Overlay Caption",
+        "role": "Label text positioned over or adjacent to image tiles",
+        "description": "Neue Haas Grotesk 12–14px, weight 400, color #000000. Positioned in the top-left corner of the image tile, 9px from left/right edge. Functions as a gallery placard — extremely minimal, no background, no border."
+      },
+      {
+        "name": "Display Title",
+        "role": "Hero brand title — the dominant visual element of the page",
+        "description": "Custom serif 'title' font, weight 400, sizes 58px or 158px, line-height 1.20, letter-spacing -0.018em. Color #000000. Centered horizontally on the page. No background, no border. The 158px size is the signature scale — it must dominate the viewport."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-bar navigation items (INDEX, INFOS, ARCHIVES)",
+        "description": "Neue Haas Grotesk 14px, weight 400, uppercase. Color #000000. 16px margin-right between items. No underline, no background, no border. Hover state: no visual change — the minimalism is absolute."
+      },
+      {
+        "name": "Wordmark/Brand Mark",
+        "role": "Site identity in the top-left",
+        "description": "Neue Haas Grotesk 14px, weight 400, uppercase 'LAURA MONIN'. Color #000000. Left-aligned, 16px from edge. No logo graphic — the type IS the brand mark."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small text used for project names and collection titles overlaid on images",
+        "description": "Neue Haas Grotesk 12px, weight 400, uppercase, #000000. Appears at the top of certain image tiles. No decorative elements."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display serif used exclusively for the brand title and hero headlines. The custom serif — with its high contrast strokes and slightly condensed forms — carries all brand identity. Letter-spacing of -0.018em tightens the large caps just enough to feel deliberate without becoming stiff. A close substitute would be a transitional or didone-style serif like 'GT Sectra Display' or free options 'Playfair Display' / 'DM Serif Display'",
+        "sizes": "58px, 158px",
+        "family": "title",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Playfair Display or DM Serif Display",
+        "letterSpacing": "-0.018em"
+      },
+      {
+        "role": "All UI, navigation, captions, metadata, and body-adjacent text. Geometric grotesque at a single weight (400) — the system deliberately avoids bold/light contrast, using size and placement to create hierarchy instead. Use 'Inter' or 'Neue Haas Grotesk' itself (free via Adobe) as substitutes",
+        "sizes": "12px, 14px, 18px, 22px",
+        "family": "neue-haas-grotesk-display",
+        "weight": "400",
+        "lineHeight": "1.15–1.20",
+        "substitute": "Inter or Neue Haas Grotesk"
+      }
+    ],
+    "description": "Laura Monin is an editorial fashion portfolio built on absolute chromatic restraint: pure white canvas, black ink, and a single custom display serif that carries the entire brand voice. The layout behaves like a curated mood board — photographs scatter asymmetrically across generous negative space rather than aligning to a conventional grid, with overlay captions functioning as whispered labels rather than navigation. Typography carries all hierarchy: the massive display serif at 58–158px commands the center, while Neue Haas Grotesk at 12–22px serves as quiet scaffolding for navigation, metadata, and supporting text. There are no shadows, no rounded corners, no gradients, no color — the system achieves its luxury through what it removes, not what it adds. Every element should feel like it was placed by hand on a gallery wall: precise, unhurried, and never filling more of the frame than necessary.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Laura Monin design system\",\"item\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#style-reference\",\"name\":\"Laura Monin design system reference\",\"headline\":\"Laura Monin design system | Refero Styles\",\"description\":\"Explore Laura Monin's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, title, neue-haas-grotesk-display typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Laura Monin\",\"url\":\"https://lauramonin.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"caption\":\"Screenshot of Laura Monin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Laura Monin design system\",\"Laura Monin website design\",\"Laura Monin colors\",\"Laura Monin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"title\",\"neue-haas-grotesk-display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Laura Monin design system\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin website design\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin colors\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:56:30.973Z\",\"dateModified\":\"2026-04-30T01:56:30.973Z\"}]}19:T828,**Quick Color Reference**\n- background: #ffffff\n- text: #000000\n- border: #000000\n- image border: #000000 (1px hairline)\n- primary action: no distinct CTA color\n- accent: none — system is strictly monochrome\n\n**Example Component Prompts**\n\n1. **Hero Display Title**: Center the text 'La Croisette' on a #ffffff canvas. Font: custom serif (substitute Playfair Display), weight 400, size 158px, line-height 1.20, letter-spacing -0.018em, color #000000. No background, no border, no decoration. The title alone should occupy ~50% of the viewport width.\n\n2. **Image Tile with Overlay Caption**: Place a rectangular photograph (4:5 or 3:4 aspect ratio) on the #ffffff canvas. Wrap with a 1px #000000 border, 0px border-radius. Overlay the caption text (e.g. 'FLEXHIBITION SS24') in neue-haas-grotesk-display weight 400, 12px, uppercase, #000000, positioned at 9px from the top-left corner of the image.\n\n3. **Minimal Navigation Bar**: Top bar spanning full viewport width on #ffffff. Left: brand mark 'LAURA MONIN' in neue-haas-grotesk-display 14px weight 400 uppercase #000000, 16px from left edge. Center: secondary nav links ('FLEXHIBITION SS24', 'LA CROISETTE', 'PISCINE MOLITOR', 'INSTAGRAM') at 12–14px weight 400 #000000 with 16px gaps. Right: nav links ('INDEX', 'INFOS', 'ARCHIVES') at 14px weight 400 #000000. No underlines, no hover effects, no borders.\n\n4. **Asymmetric Photo Scatter Section**: Place 5–6 rectangular photograph tiles in irregular positions across a #ffffff canvas — for example, one in the top-left quadrant (~250px wide), one centered-top (~200px), one top-right (~300px), and a larger one centered below the display title (~400px). Each tile: 0px border-radius, 1px #000000 hairline border, full-bleed image, 0px padding. Maintain 80–120px of irregular negative space between tiles. No grid alignment.\n\n5. **Empty Section Gap**: Insert a vertical breathing zone of 250–300px (padding-bottom) with zero content, zero decoration, pure #ffffff. This is a design element, not wasted space — it creates the gallery-walk cadence between content clusters."
+      },
+      {
+        "title": "Negative Space Philosophy",
+        "content": "The system treats white space as a primary design material, not a byproduct. Roughly 60–70% of any given viewport should be empty #ffffff canvas. This is not a constraint to work around — it IS the design. When in doubt, remove an element. When in doubt about spacing, double it. The photographs and the single display title are jewels on a white field; surrounding them with space makes them luminous."
+      }
+    ],
+    "elevationPhilosophy": "The design has zero shadow vocabulary. Depth is created entirely through generous negative space and asymmetric placement — elements feel like they float on a gallery wall, not stacked on a UI. No drop shadows, no glow, no border elevation under any circumstance. This absence is signature: adding any shadow would break the editorial flatness that defines the system."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body",
+            "nav",
+            "list",
+            "image"
+          ],
+          "frequency": 1063,
+          "confidence": 1,
+          "prominence": 16611618.186638594,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 8,
+            "link/color": 19,
+            "list/color": 12,
+            "image/color": 28,
+            "other/color": 120,
+            "heading/color": 17,
+            "nav/borderColor": 32,
+            "body/borderColor": 32,
+            "link/borderColor": 76,
+            "list/borderColor": 48,
+            "image/borderColor": 112,
+            "other/borderColor": 480,
+            "heading/borderColor": 68,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "list"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 7158536.295049889,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "list/color": 2,
+            "other/color": 6,
+            "hero/borderColor": 4,
+            "list/borderColor": 8,
+            "other/borderColor": 24
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 182,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 236,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 255,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 273,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 309,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neue-haas-grotesk-display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 148,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "title",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 73,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "hero",
+            "image"
+          ],
+          "frequency": 117,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 58,
+          "family": "title",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "title",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ccea37f7-840d-41f6-aa51-92a0b8847914.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Laura Monin design system\",\"item\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#style-reference\",\"name\":\"Laura Monin design system reference\",\"headline\":\"Laura Monin design system | Refero Styles\",\"description\":\"Explore Laura Monin's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, title, neue-haas-grotesk-display typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Laura Monin\",\"url\":\"https://lauramonin.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b9e90ad-51d9-4f29-8f7e-a343dc741eab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"caption\":\"Screenshot of Laura Monin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd7da062-c247-4fe8-a867-166ca359dd2d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Laura Monin design system\",\"Laura Monin website design\",\"Laura Monin colors\",\"Laura Monin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"title\",\"neue-haas-grotesk-display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Laura Monin design system\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin website design\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin colors\"},{\"@type\":\"Thing\",\"name\":\"Laura Monin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:56:30.973Z\",\"dateModified\":\"2026-04-30T01:56:30.973Z\"}]}19:T828,**Quick Color Reference**\n- background: #ffffff\n- text: #000000\n- border: #000000\n- image border: #000000 (1px hairline)\n- primary action: no distinct CTA color\n- accent: none — system is strictly monochrome\n\n**Example Component Prompts**\n\n1. **Hero Display Title**: Center the text 'La Croisette' on a #ffffff canvas. Font: custom serif (substitute Playfair Display), weight 400, size 158px, line-height 1.20, letter-spacing -0.018em, color #000000. No background, no border, no decoration. The title alone should occupy ~50% of the viewport width.\n\n2. **Image Tile with Overlay Caption**: Place a rectangular photograph (4:5 or 3:4 aspect ratio) on the #ffffff canvas. Wrap with a 1px #000000 border, 0px border-radius. Overlay the caption text (e.g. 'FLEXHIBITION SS24') in neue-haas-grotesk-display weight 400, 12px, uppercase, #000000, positioned at 9px from the top-left corner of the image.\n\n3. **Minimal Navigation Bar**: Top bar spanning full viewport width on #ffffff. Left: brand mark 'LAURA MONIN' in neue-haas-grotesk-display 14px weight 400 uppercase #000000, 16px from left edge. Center: secondary nav links ('FLEXHIBITION SS24', 'LA CROISETTE', 'PISCINE MOLITOR', 'INSTAGRAM') at 12–14px weight 400 #000000 with 16px gaps. Right: nav links ('INDEX', 'INFOS', 'ARCHIVES') at 14px weight 400 #000000. No underlines, no hover effects, no borders.\n\n4. **Asymmetric Photo Scatter Section**: Place 5–6 rectangular photograph tiles in irregular positions across a #ffffff canvas — for example, one in the top-left quadrant (~250px wide), one centered-top (~200px), one top-right (~300px), and a larger one centered below the display title (~400px). Each tile: 0px border-radius, 1px #000000 hairline border, full-bleed image, 0px padding. Maintain 80–120px of irregular negative space between tiles. No grid alignment.\n\n5. **Empty Section Gap**: Insert a vertical breathing zone of 250–300px (padding-bottom) with zero content, zero decoration, pure #ffffff. This is a design element, not wasted space — it creates the gallery-walk cadence between content clusters."
+}

@@ -1,0 +1,1579 @@
+{
+  "source": "https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97",
+  "uuid": "4afe77ff-e7fa-41d8-96d6-ce8cdc159f97",
+  "name": "Bear Markdown Notes",
+  "northStar": "Quiet notebook on white linen",
+  "capturedAt": "2026-07-18T09:43:44.629Z",
+  "meta": {
+    "url": "https://bear.app",
+    "siteName": "Bear Markdown Notes",
+    "extractedAt": "2026-06-03T18:23:11.861Z",
+    "durationMs": 30724,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 738,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use bearsansheadline at weight 400 only for all display and section headings — never set it bold.",
+      "Use Bear Red #dd4c4f only for the logo, links, the Pro badge, and decorative underlines — nothing else gets red.",
+      "Default all body text to Graphite #444444 at 16px bearsans 400 with the 0.031em tracking; reserve Ash Gray #888888 for muted/secondary text only.",
+      "Use the single shadow pattern (0 13px 34px rgba(0,0,0,0.12)) for the product screenshot frame; keep all other elements flat with hairline borders.",
+      "Set the hero CTA to the black Mac App Store badge — never invent a custom filled red button.",
+      "Alternate section bands between Linen White #ffffff and Mist #f3f5f7 with 64px vertical padding to create rhythm.",
+      "Render decorative elements (laurels, bear mascot, stars) as 1.5–2px Fog #e6e7eb line art only — no fills, no color."
+    ],
+    "donts": [
+      "Do not bold the display headlines — weight 400 is the signature; bolding them breaks the handwritten mood.",
+      "Do not introduce additional accent colors outside the three note-tag hues (Tag Indigo #456aa3, Tag Forest #2b6451, Tag Plum #884aa8) and the single Bear Red.",
+      "Do not use filled buttons with Bear Red backgrounds anywhere on the marketing site — the only filled red element is the Pro badge pill.",
+      "Do not add drop shadows to anything other than the product screenshot frame; the rest of the page must stay flat.",
+      "Do not use photography or lifestyle imagery — the product screenshot is the only image content allowed.",
+      "Do not use bold marketing adjectives in headlines; the voice is quiet and declarative (e.g. 'Write naturally', not 'Unlock your creative potential').",
+      "Do not set tight letter-spacing on body text — the +0.031em tracking on bearsans is the established rhythm."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#dd4c4f",
+        "name": "Bear Red",
+        "role": "Logo mark, link color, Pro badge fill, decorative underline on hero copy — the single chromatic voice in an otherwise achromatic system",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Icon fills, graphic strokes, max-contrast emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#444444",
+        "name": "Graphite",
+        "role": "Primary body and heading text, nav links — the dominant typographic color across the entire page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Ash Gray",
+        "role": "Muted body text, secondary labels, icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d6d9",
+        "name": "Stone Border",
+        "role": "Hairline borders on inputs, dividers, card edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e7eb",
+        "name": "Fog",
+        "role": "Subtle fills, decorative stroke elements, pricing card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f5f7",
+        "name": "Mist",
+        "role": "Page sections, soft surface lifts, alternating band backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Linen White",
+        "role": "Page canvas, card surfaces, input backgrounds, nav background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3ffa4",
+        "name": "Marker Lime",
+        "role": "Highlight wash behind emphasized words (like a real highlighter stroke on text)",
+        "group": "accent"
+      },
+      {
+        "hex": "#456aa3",
+        "name": "Tag Indigo",
+        "role": "Note tag color in product preview, heading accent variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#2b6451",
+        "name": "Tag Forest",
+        "role": "Note tag color in product preview, heading accent variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#884aa8",
+        "name": "Tag Plum",
+        "role": "Note tag color in product preview, heading accent variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#fcb827",
+        "name": "Warning Amber",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#44a2e5",
+        "name": "Info Sky",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Centered, max-width ~1100px content column with generous side padding. The hero is a vertical stack: nav → headline → platform tabs → download button → product screenshot, all center-aligned. Below the fold, sections alternate between Linen White and Mist #f3f5f7 bands with 64px vertical padding. The award laurels and pricing are centered, symmetrical arrangements. The pricing is a strict two-column compare (Free | Pro) with equal width and no asymmetric emphasis beyond the Pro card's white-vs-gray surface lift. No sidebar, no mega-menu, no sticky elements. Decorative illustrations sit loosely to the right of section content rather than in a grid, creating an editorial, magazine-like rhythm.",
+    "imagery": "Photography is absent — the site relies entirely on the product itself (actual Mac app window screenshots) as imagery, plus hand-drawn line-art decorations (laurel wreaths, sketched bear mascot, small star/sparkle marks). The product screenshots are the heaviest visual element on every screen. All decorative illustrations use a single Fog #e6e7eb stroke at 1.5–2px, no fills, giving the entire decorative layer a unified pencil-sketch quality. Icons are uniformly outline-style at 1.5px stroke in Graphite or Ash Gray. No lifestyle photography, no abstract gradient art, no 3D renders.",
+    "similar": [
+      {
+        "why": "Same minimalist single-product marketing approach, light theme, single warm accent color, and the actual app screenshot as the dominant hero visual",
+        "business": "Ulysses (writing app)"
+      },
+      {
+        "why": "Identical aesthetic — generous whitespace, achromatic body with one accent hue, no filled CTAs, hand-drawn decorative touches alongside product photography",
+        "business": "Things 3 (Cultured Code)"
+      },
+      {
+        "why": "Same paper-white canvas with a single accent color for emphasis and clean geometric typography in display weights",
+        "business": "Notion"
+      },
+      {
+        "why": "Light-themed notes-app marketing with the product UI as hero art, minimal decoration, and near-monochrome palette",
+        "business": "Obsidian"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "pills": "40px",
+        "badges": "4px",
+        "buttons": "8px"
+      },
+      "elementGap": "13px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1100px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Linen White",
+        "level": 0,
+        "purpose": "Page canvas, default section background"
+      },
+      {
+        "hex": "#f3f5f7",
+        "name": "Mist",
+        "level": 1,
+        "purpose": "Alternating section band, subtle surface lift"
+      },
+      {
+        "hex": "#e6e7eb",
+        "name": "Fog",
+        "level": 2,
+        "purpose": "Pricing card surface, decorative wash"
+      },
+      {
+        "hex": "#d3ffa4",
+        "name": "Marker Lime",
+        "level": 3,
+        "purpose": "Inline text highlight wash"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 13px 34px rgba(0, 0, 0, 0.12)",
+        "element": "Product screenshot frame"
+      }
+    ],
+    "northStar": "Quiet notebook on white linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.7,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.42,
+        "letterSpacing": 0.7
+      },
+      {
+        "role": "heading",
+        "size": 29,
+        "lineHeight": 1.36,
+        "letterSpacing": 0.9
+      },
+      {
+        "role": "display",
+        "size": 51,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Linen White background, 64px height. Left-aligned bear logo + wordmark in Graphite. Right-aligned nav links (Features, Pricing, Blog, Community, Support) at 14px bearsans 400 in Graphite, no background or border on hover. No drop shadow, no sticky behavior visible."
+      },
+      {
+        "name": "Platform Tab Selector",
+        "role": "Switch between Mac/iPhone/iPad product views",
+        "description": "Inline group of three text labels with small device icons (16px outline icons in Graphite). Active tab has a Bear Red underline (2px) beneath the label. Tabs sit centered under the hero headline with 16px gap between icon and text, 32px between tabs."
+      },
+      {
+        "name": "App Store Download Button",
+        "role": "Primary download trigger on hero",
+        "description": "Black pill-shaped badge with Apple logo and 'Download on the Mac App Store' text. Standard App Store smart-banner dimensions. Centered below platform tabs with 24px gap. No custom button styling — the badge is the call to action."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Above-the-fold primary message",
+        "description": "51px bearsansheadline weight 400, Graphite color, centered. Underline accent (2px Bear Red) under a single keyword (e.g. 'love'). No subheadline. Sits 80px from the nav bar."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Hero visual showing the actual app",
+        "description": "Full app window screenshot (Mac window with traffic-light buttons) rendered at ~900px wide, 16px border-radius, single soft drop shadow (0 13px 34px rgba(0,0,0,0.12)). The screenshot IS the hero image — no marketing render, no device mockup."
+      },
+      {
+        "name": "Award Laurel",
+        "role": "Social proof / press recognition",
+        "description": "Light gray line-art laurel wreath (Fog #e6e7eb stroke), with two-line centered text inside: award name in bearsans 700 at 16px Graphite, year in bearsans 400 at 14px Ash Gray. Three laurels arranged in a horizontal row with 48px gap between them."
+      },
+      {
+        "name": "Pricing Card — Free",
+        "role": "Free plan feature list",
+        "description": "Fog #e6e7eb background, 16px radius, 32px padding. Plan title 'Free' at 29px bearsansheadline 400 in Graphite. Feature list as vertical stack of 13px-gapped rows, each with a Bear Red outlined checkmark (1.5px stroke, 16px square) and 16px bearsans 400 Graphite label. Crossed-out features (strikethrough, Ash Gray) indicate paid-only items."
+      },
+      {
+        "name": "Pricing Card — Pro",
+        "role": "Paid plan feature list with emphasis",
+        "description": "Same structure as Free card but with Linen White surface and a subtle Stone Border #d5d6d9 (1px) to create visual lift. Title 'Bear' at 29px followed by an inline Bear Red pill badge reading 'PRO' in 11px bearsans 700 white text, 4px radius, 8px horizontal / 3px vertical padding. All checkmarks are Bear Red filled (not outlined) to signal inclusion. Price line at bottom: $2.99/month struck through (Ash Gray) next to $29.99/year in Graphite, 22px bearsans 700."
+      },
+      {
+        "name": "Pro Badge",
+        "role": "Paid-plan indicator chip",
+        "description": "Bear Red #dd4c4f fill, 4px radius, white text in bearsans 700 at 11px. Inline next to plan title. The only filled color element on the pricing area."
+      },
+      {
+        "name": "Feature Checkmark List Row",
+        "role": "Pricing bullet item",
+        "description": "Horizontal row: 16px square checkmark + 12px gap + label text. Free card uses Bear Red outlined checkmark (#dd4c4f stroke, transparent fill); Pro card uses Bear Red filled checkmark. Label at 16px bearsans 400 Graphite. Row height ~32px with 8px vertical gap between rows."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Interstitial section titles (e.g. 'Write naturally')",
+        "description": "42px bearsansheadline weight 400, Graphite, centered. No subtitle, no eyebrow — just the heading alone. 80px top padding from previous section."
+      },
+      {
+        "name": "Decorative Bear Illustration",
+        "role": "Ambient brand character in feature sections",
+        "description": "Line-art bear mascot in Fog #e6e7eb stroke, no fill, roughly 200px tall. Sits off to the side of section content as quiet decoration, not a focal point. Sparse, sketchy style — feels hand-drawn."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input (e.g. search, email capture)",
+        "description": "Linen White background, 1px Stone Border #d5d6d9, 8px radius, 12px vertical / 16px horizontal padding. Placeholder text in Ash Gray #888, bearsans 400 at 14px. No visible focus ring in extracted data."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with secondary links",
+        "description": "Linen White background, 48px vertical padding. Multi-column text links in bearsans 400 at 13px Ash Gray. No social icons, no newsletter form visible in screenshots."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, navigation, buttons, pricing lists, inputs, footnotes. Weight 700 is reserved for emphasis (feature names, Pro plan title); weight 400 carries everything else. Carries a uniform +0.031em tracking that gives the body a slightly airy, typeset feel.",
+        "sizes": "13px, 14px, 16px, 18px, 19px, 20px, 22px, 24px, 29px, 40px",
+        "family": "bearsans",
+        "weight": "400, 700",
+        "lineHeight": "1.13–1.89 depending on size",
+        "substitute": "Inter or Source Sans Pro",
+        "letterSpacing": "0.031em across all sizes"
+      },
+      {
+        "role": "Display headlines only — the singular 400 weight is the signature: no bold marketing-shout headlines, just quiet, confident regular weight at 42–51px. Creates the 'handwritten note on good paper' mood.",
+        "sizes": "16px, 30px, 42px, 51px",
+        "family": "bearsansheadline",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Inter Tight or Manrope at weight 400"
+      }
+    ],
+    "description": "Bear's marketing site is a hushed, paper-white canvas where a single warm red acts as the only voice that matters. Almost everything is achromatic — graphite text on cool off-white, with hairline borders, no filled buttons, and decoration appearing as faint pencil sketches (laurels, stars, a sketched bear mascot) rather than as polished illustrations. Headlines use a custom display face at weight 400 only, which strips the usual marketing-shout cadence and makes the wordmark feel handwritten rather than sold. The product itself — Bear's actual app window — is the dominant visual asset, rendered at near-1:1 scale so visitors study the real interface, not a marketing render. Pricing is a flat two-column compare with a small red PRO pill as the only chromatic punctuation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bear Markdown Notes design system\",\"item\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#style-reference\",\"name\":\"Bear Markdown Notes design system reference\",\"headline\":\"Bear Markdown Notes design system | Refero Styles\",\"description\":\"Explore Bear Markdown Notes's light Productivity design system: Bear Red #dd4c4f, Ink Black #000000 colors, bearsans, bearsansheadline typography, and...\",\"url\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bear Markdown Notes\",\"url\":\"https://bear.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"caption\":\"Screenshot of Bear Markdown Notes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bear Markdown Notes design system\",\"Bear Markdown Notes website design\",\"Bear Markdown Notes colors\",\"Bear Markdown Notes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Bear Red\",\"Ink Black\",\"Graphite\",\"Ash Gray\",\"bearsans\",\"bearsansheadline\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes design system\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes website design\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes colors\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-02-03T16:11:02.000Z\",\"dateModified\":\"2026-02-03T16:11:02.000Z\"}]}19:T763,**Quick Color Reference**\n- text: #444444 (Graphite)\n- background: #ffffff (Linen White)\n- border: #d5d6d9 (Stone Border)\n- accent: #dd4c4f (Bear Red) — for logo, links, Pro badge, underlines\n- highlight: #d3ffa4 (Marker Lime) — text highlight wash only\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: Linen White canvas. Headline 'Markdown notes you'll love' at 51px bearsansheadline weight 400 in #444444, centered, with a 2px #dd4c4f underline beneath the word 'love'. Below it, three platform labels (Mac / iPhone / iPad) at 16px bearsans 400 with small device icons; the active label has a #dd4c4f 2px underline. Gap between headline and tabs: 32px. No subheadline.\n2. Pricing card (Pro variant): 16px radius, #ffffff background, 1px #d5d6d9 border, 32px padding. Title 'Bear' at 29px bearsansheadline 400 #444444, followed by an inline #dd4c4f pill badge reading 'PRO' in 11px bearsans 700 white, 4px radius. Below: a vertical list of features, each row a filled #dd4c4f 16px checkmark + 12px gap + label at 16px bearsans 400 #444444, rows 8px apart. Price at bottom: struck-through '$2.99/month' in #888888 next to '$29.99/year' in 22px bearsans 700 #444444.\n3. Product screenshot frame: Mac app window screenshot at ~900px wide, 16px border-radius, single drop shadow 0 13px 34px rgba(0,0,0,0.12). Centered on Linen White with 48px top padding. No device frame, no caption.\n4. Award laurel group: three centered columns, each a 2px #e6e7eb stroke laurel wreath containing two lines — award name in 16px bearsans 700 #444444 and year in 14px bearsans 400 #888888. 48px horizontal gap between laurels.\n5. Section heading: 'Write naturally' at 42px bearsansheadline weight 400 #444444, centered on a Mist #f3f5f7 band with 80px top padding. A 200px line-art bear illustration in 2px #e6e7eb stroke sits to the right of the heading, no fill."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "icon",
+            "image",
+            "list",
+            "badge",
+            "input",
+            "footer",
+            "link"
+          ],
+          "frequency": 1623,
+          "confidence": 1,
+          "prominence": 146649712.69362175,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 8837258.032118352,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "badge",
+            "input"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 3422266.606271077,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f3f5f7",
+          "oklch": {
+            "c": 0.0034257943764018266,
+            "h": 247.85848267378333,
+            "l": 0.9691955335053826
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 964468.0327524001,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d5d6d9",
+          "oklch": {
+            "c": 0.004241199520383258,
+            "h": 271.36407710496474,
+            "l": 0.8761862264427442
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 175,
+          "confidence": 1,
+          "prominence": 869389.2957205584,
+          "properties": [
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 131,
+          "confidence": 1,
+          "prominence": 392612.26184832404,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e7eb",
+          "oklch": {
+            "c": 0.005488798143599097,
+            "h": 274.96205849346603,
+            "l": 0.928347310309697
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 93,
+          "confidence": 1,
+          "prominence": 160836.50124246586,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#979797",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6764032429050417
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 156183.92933147182,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dd4c4f",
+          "oklch": {
+            "c": 0.18095428006884698,
+            "h": 22.99849414794719,
+            "l": 0.6172537962759052
+          },
+          "contexts": [
+            "link",
+            "image",
+            "badge",
+            "other",
+            "body"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 98036.39819565031,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#456aa3",
+          "oklch": {
+            "c": 0.1000478651434114,
+            "h": 258.7643421721787,
+            "l": 0.523068311425483
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 47237.60473817841,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b6451",
+          "oklch": {
+            "c": 0.06813003301407367,
+            "h": 168.80193321738324,
+            "l": 0.4590335443213253
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 47237.60473817841,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#884aa8",
+          "oklch": {
+            "c": 0.15330600739953956,
+            "h": 312.7459394890065,
+            "l": 0.5240783693562983
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 43603.14746216446,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3ffa4",
+          "oklch": {
+            "c": 0.12515160123044647,
+            "h": 129.51114751793205,
+            "l": 0.948213974124008
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 25616.163936655325,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b4bdc5",
+          "oklch": {
+            "c": 0.015118905602235898,
+            "h": 244.7652185114757,
+            "l": 0.7937703065623468
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4697.2605359571335,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9fd7e4",
+          "oklch": {
+            "c": 0.060109883835234086,
+            "h": 213.61213395847884,
+            "l": 0.8449960658854404
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4414,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fcb827",
+          "oklch": {
+            "c": 0.16216870171729453,
+            "h": 80.05626966558012,
+            "l": 0.8248224242285913
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 996,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#44a2e5",
+          "oklch": {
+            "c": 0.13239591721264893,
+            "h": 243.20183112188732,
+            "l": 0.685703717661241
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 996,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02109741942052866,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.21,
+          "background": "#f3f5f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.61,
+          "background": "#d3ffa4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.99,
+          "background": "#e6e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d5d6d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#9fd7e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.02,
+          "background": "#fcb827",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#b4bdc5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#ffffff",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.91,
+          "background": "#f3f5f7",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.63,
+          "background": "#d3ffa4",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.88,
+          "background": "#e6e7eb",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.9,
+          "background": "#ffffff",
+          "foreground": "#2b6451"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#d5d6d9",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.31,
+          "background": "#f3f5f7",
+          "foreground": "#2b6451"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#9fd7e4",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.11,
+          "background": "#d3ffa4",
+          "foreground": "#2b6451"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.85,
+          "background": "#ffffff",
+          "foreground": "#884aa8"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#fcb827",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#e6e7eb",
+          "foreground": "#2b6451"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 3.84,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "input"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 13px 34px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 31,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 41,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 42,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 84,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 153,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 157,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 169,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 189,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 201,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 233,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "bearsans",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 348,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "bearsansheadline",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "link",
+            "image",
+            "body",
+            "list",
+            "icon",
+            "badge",
+            "footer"
+          ],
+          "frequency": 240,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsansheadline",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsansheadline",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "bearsans",
+          "weight": 700,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "bearsansheadline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "bearsans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.68,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "bearsansheadline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "bearsansheadline",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c6d36d4e-9f2c-4301-bbca-00ade18c41f6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bear Markdown Notes design system\",\"item\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#style-reference\",\"name\":\"Bear Markdown Notes design system reference\",\"headline\":\"Bear Markdown Notes design system | Refero Styles\",\"description\":\"Explore Bear Markdown Notes's light Productivity design system: Bear Red #dd4c4f, Ink Black #000000 colors, bearsans, bearsansheadline typography, and...\",\"url\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bear Markdown Notes\",\"url\":\"https://bear.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4afe77ff-e7fa-41d8-96d6-ce8cdc159f97#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"caption\":\"Screenshot of Bear Markdown Notes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5613126-1607-4fff-b766-2c052ac11e02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bear Markdown Notes design system\",\"Bear Markdown Notes website design\",\"Bear Markdown Notes colors\",\"Bear Markdown Notes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Bear Red\",\"Ink Black\",\"Graphite\",\"Ash Gray\",\"bearsans\",\"bearsansheadline\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes design system\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes website design\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes colors\"},{\"@type\":\"Thing\",\"name\":\"Bear Markdown Notes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-02-03T16:11:02.000Z\",\"dateModified\":\"2026-02-03T16:11:02.000Z\"}]}19:T763,**Quick Color Reference**\n- text: #444444 (Graphite)\n- background: #ffffff (Linen White)\n- border: #d5d6d9 (Stone Border)\n- accent: #dd4c4f (Bear Red) — for logo, links, Pro badge, underlines\n- highlight: #d3ffa4 (Marker Lime) — text highlight wash only\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: Linen White canvas. Headline 'Markdown notes you'll love' at 51px bearsansheadline weight 400 in #444444, centered, with a 2px #dd4c4f underline beneath the word 'love'. Below it, three platform labels (Mac / iPhone / iPad) at 16px bearsans 400 with small device icons; the active label has a #dd4c4f 2px underline. Gap between headline and tabs: 32px. No subheadline.\n2. Pricing card (Pro variant): 16px radius, #ffffff background, 1px #d5d6d9 border, 32px padding. Title 'Bear' at 29px bearsansheadline 400 #444444, followed by an inline #dd4c4f pill badge reading 'PRO' in 11px bearsans 700 white, 4px radius. Below: a vertical list of features, each row a filled #dd4c4f 16px checkmark + 12px gap + label at 16px bearsans 400 #444444, rows 8px apart. Price at bottom: struck-through '$2.99/month' in #888888 next to '$29.99/year' in 22px bearsans 700 #444444.\n3. Product screenshot frame: Mac app window screenshot at ~900px wide, 16px border-radius, single drop shadow 0 13px 34px rgba(0,0,0,0.12). Centered on Linen White with 48px top padding. No device frame, no caption.\n4. Award laurel group: three centered columns, each a 2px #e6e7eb stroke laurel wreath containing two lines — award name in 16px bearsans 700 #444444 and year in 14px bearsans 400 #888888. 48px horizontal gap between laurels.\n5. Section heading: 'Write naturally' at 42px bearsansheadline weight 400 #444444, centered on a Mist #f3f5f7 band with 80px top padding. A 200px line-art bear illustration in 2px #e6e7eb stroke sits to the right of the heading, no fill."
+}

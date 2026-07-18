@@ -1,0 +1,202 @@
+{
+  "color": {
+    "ink-carbon": {
+      "$value": "#2e2a2b",
+      "$type": "color",
+      "$description": "Ink Carbon — Primary text, logo mark, dark surface inversions, footer text on cream — a near-black with a barely-warm undertone that keeps the page from feeling clinical"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas and nav surface — the warm-white background that everything floats on"
+    },
+    "whisper-taupe": {
+      "$value": "#afa697",
+      "$type": "color",
+      "$description": "Whisper Taupe — Supporting neutral for secondary UI, dividers, and muted labels."
+    },
+    "bone-cream": {
+      "$value": "#e6dcd4",
+      "$type": "color",
+      "$description": "Bone Cream — Alternate panel background and footer band — a warm cream that signals a quieter section without leaving the monochrome family"
+    },
+    "lampblack": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Lampblack — Deep surface for inversions and image overlays — slightly cooler than Ink Carbon, used where absolute darkness is needed without color cast"
+    },
+    "signal-orange": {
+      "$value": "#fe5431",
+      "$type": "color",
+      "$description": "Signal Orange — Decorative illustration accent — appears inside graphic bands and artwork, never as a UI control fill"
+    },
+    "amber-pulse": {
+      "$value": "#ff8000",
+      "$type": "color",
+      "$description": "Amber Pulse — Decorative illustration accent — companion to Signal Orange inside warm gradient bands and visual punctuation"
+    }
+  },
+  "font": {
+    "good-sans": {
+      "$value": "Good Sans",
+      "$type": "fontFamily",
+      "$description": "Single voice across the entire interface — body, nav, buttons, headings, and display all share weight 400. The absence of bold is the signature: hierarchy comes from size and color, not weight."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background and nav surface"
+    },
+    "bone-panel": {
+      "$value": "#e6dcd4",
+      "$type": "color",
+      "$description": "Surface level 1: Footer band and quiet alternation sections"
+    },
+    "lampblack-overlay": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 2: Image overlays and inversion surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://weareink.co.uk",
+      "siteName": "INK",
+      "extractedAt": "2026-06-03T19:38:11.951Z",
+      "variant": "extended"
+    }
+  }
+}

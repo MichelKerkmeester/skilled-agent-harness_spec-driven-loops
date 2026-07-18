@@ -1,0 +1,634 @@
+{
+  "source": "https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671",
+  "uuid": "6d360718-91b8-4c74-a6f0-91f4731a6671",
+  "name": "Adopt",
+  "northStar": "Editorial broadsheet on warm paper. A cream canvas with one near-black ink, a tall narrow serif for headlines, and a compact grotesque whispering the labels — the page feels typeset, not designed.",
+  "capturedAt": "2026-07-18T08:53:40.496Z",
+  "meta": {
+    "url": "https://weareadopt.com",
+    "siteName": "Adopt",
+    "extractedAt": "2026-06-03T21:28:47.155Z",
+    "durationMs": 29245,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 149,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ITC Garamond Light Narrow (or Cormorant Garamond Light condensed) at 80–130px with line-height 0.90 and letter-spacing -0.02em for any display or statement headline",
+      "Use PPNeueMontreal (or Inter/Neue Haas Grotesk) at 18px weight 500 for body, 600 for column labels, always with 0.01em tracking and 1.33 line-height",
+      "Set all borders, text, and rules to #1e1e1 — never introduce a second ink color",
+      "Use #8c8c8c only for timestamps, metadata, and copyright — never for body copy or headings",
+      "Let section gaps breathe at 80–140px; the vertical air is the layout",
+      "Set border-radius to 0 on every component — buttons, tags, inputs, cards stay square",
+      "Separate content into exactly three columns within the 50px horizontal padding; never use cards, backgrounds, or shadows to group content"
+    ],
+    "donts": [
+      "Do not introduce any accent color, brand color, or chromatic hue — the system is monochromatic by design",
+      "Do not use gradients, box-shadows, or any form of elevation — the canvas is flat",
+      "Do not use a sans-serif or system font for headlines — the Garamond serif IS the brand",
+      "Do not use border-radius above 0 on any UI element",
+      "Do not place more than 2 lines of body text per column without increasing vertical gap — the 3-column grid is for scannable blocks, not paragraphs",
+      "Do not use bold (600+) for body text — weight 500 is the body maximum; 600 is reserved for short column labels",
+      "Do not add icons, illustrations, or imagery unless replacing a partner name with a logo — the system is type-only by default"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4f1ec",
+        "name": "Bone",
+        "role": "Page canvas — warm off-white that makes the black ink read like printed type rather than screen pixels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1e",
+        "name": "Carbon",
+        "role": "Primary text, body copy, headlines, section rules — the single ink that carries the whole page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Ash",
+        "role": "Muted helper text, timestamps, secondary metadata — desaturated enough to recede behind Carbon",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Lampblack",
+        "role": "Hard borders on outlined controls, maximum-emphasis rules — used sparingly where Carbon is not black enough",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single full-page manifesto layout with no separate pages. Full-bleed Bone canvas, 50px horizontal padding on all sides, content max-width ~1200px. The page flows through four numbered sections (01–04) stacked vertically, each opening with a small label + hairline rule, followed by a large serif display headline (left-aligned), then either a three-column content grid or a centered serif word stack. Section gaps of 80–140px create editorial pacing. Navigation is a single top bar with brand mark and live timestamp; footer is a single row with three short text cells. No sidebar, no sticky elements, no scroll-triggered reveals.",
+    "imagery": "No imagery. The system is type-only — no photography, no illustration, no icons, no product shots. Partner names appear as large serif type rather than logos. The only visual elements beyond type are 1px hairline rules in Carbon. This is a deliberate editorial choice: the brand presents itself as a writing and ideas practice, and any visual asset would compete with the typography.",
+    "similar": [
+      {
+        "why": "Same editorial broadsheet sensibility — monochrome canvas, oversized serif display type, no decorative imagery, type as the entire visual system",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same restraint-first approach with a warm off-white canvas and near-black ink, letting typography and grid do all the work",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Same two-voice type system pairing a narrow display serif with a compact grotesque, with hairline rules and generous air as the only structural devices",
+        "business": "Mucca"
+      },
+      {
+        "why": "Same manifesto-page format — a single scrollable statement piece with numbered sections, a live timestamp, and zero product surface",
+        "business": "Wieden+Kennedy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "",
+      "sectionGap": "",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f4f1ec",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "The only surface — the entire page is one flat warm-white field with no elevated tiers"
+      }
+    ],
+    "northStar": "Editorial broadsheet on warm paper. A cream canvas with one near-black ink, a tall narrow serif for headlines, and a compact grotesque whispering the labels — the page feels typeset, not designed.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.92,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display-lg",
+        "size": 130,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Section Header",
+        "role": "Numbered section label with hairline rule",
+        "description": "Two-digit number (01–04) in PPNeueMontreal 14px weight 500, color Carbon, letter-spacing 0.01em. Beneath it, a section title (e.g. 'Who We Are', 'Our Partners', 'How We Work', 'Information') in the same font/size/weight. A 1px Carbon rule extends full-width below the label, reaching the right edge of the content column. The number sits at the top-left, the rule immediately below — no gap between rule and title."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Statement serif headline at the top of each section",
+        "description": "ITC Garamond Light Narrow, weight 300, sizes 80–130px, line-height 0.90–0.92, letter-spacing -0.02em, color Carbon. Left-aligned, typically spanning 2–3 lines. The tight line-height makes multi-line headlines stack into a near-solid block of type — an editorial pull-quote feel rather than airy web display type."
+      },
+      {
+        "name": "Content Column",
+        "role": "Three-column body content block",
+        "description": "Each column contains a bold PPNeueMontreal 18px weight 600 heading in Carbon, followed by 1–2 lines of body text at 18px weight 500 in Carbon, line-height 1.33. Columns are separated by ~40px gutters; the block sits within the page's 50px horizontal padding. No card backgrounds, no borders between columns — type rhythm alone separates them."
+      },
+      {
+        "name": "Partner List",
+        "role": "Stacked serif word list for partner/credit sections",
+        "description": "Centered stack of brand names or proper nouns in ITC Garamond Light Narrow, weight 300–400, sizes 80–130px, line-height 0.90, color Carbon, letter-spacing -0.02em. Each name sits on its own line, centered, creating a typographic sculpture — no logos, no images, only type. This is the most visually dramatic pattern in the system."
+      },
+      {
+        "name": "Outlined Button",
+        "role": "Ghost/outlined action button",
+        "description": "Transparent background, 1px solid Carbon border, PPNeueMontreal 18px weight 500 text in Carbon, letter-spacing 0.01em, padding 12px 24px, border-radius 0px. No fill state, no shadow. The outlined chrome and square corners keep it feeling printed rather than interactive."
+      },
+      {
+        "name": "Top Nav Bar",
+        "role": "Minimal site identifier and timestamp",
+        "description": "Full-width row, 50px horizontal padding, Bone background, no border. Left: 'ADOPT' in PPNeueMontreal 14px weight 500, letter-spacing 0.01em, Carbon. Right: live date/time string (e.g. 'Sunday • 3:01 PDT') in the same font/size/weight, color Carbon. No links, no nav items — this is an intro/manifesto page, not a product surface."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Minimal footer with brand, link, and copyright",
+        "description": "Full-width row with Bone background, 50px horizontal padding, no border. Three-cell layout: left 'ADOPT' in PPNeueMontreal 14px weight 500 Carbon, center 'Founders' (or a single short label), right '©ADOPT 2026' in Ash (#8c8c8c). All 14px, weight 500, letter-spacing 0.01em. No dividers, no rules."
+      },
+      {
+        "name": "Hairline Rule",
+        "role": "Full-width section divider",
+        "description": "1px solid Carbon (#1e1e1e), spanning the full content width within the 50px page padding. Used only directly under section number/title labels. Never decorative, never mid-section — the rule is a structural marker that says 'new section begins'."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All statement and display headlines. The Light Narrow cut is the signature — its condensed proportions let massive sizes (up to 130px) fit on a line while the 0.90 line-height stacks lines into a dense editorial block. Substituting Cormorant Garamond Light or EB Garamond with a tight tracking and line-height override will read close enough.",
+        "sizes": "80px, 130px",
+        "family": "ITCGaramondStdLightNarrow",
+        "weight": "300, 400",
+        "lineHeight": "0.90–0.92",
+        "substitute": "Cormorant Garamond Light (condensed), or EB Garamond with letter-spacing -0.02em and line-height 0.9",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Everything non-headline: body text, section labels, timestamps, nav, column headings, footer. Weight 500 for body, 600 for small bold labels (section titles, column headings). The 0.01em tracking opens the grotesque just enough to feel print-set rather than digital. Substituting Inter or Neue Haas Grotesk at the same weight/track will read close enough.",
+        "sizes": "18px",
+        "family": "PPNeueMontreal",
+        "weight": "500, 600",
+        "lineHeight": "1.33",
+        "substitute": "Inter, Neue Haas Grotesk, or General Sans",
+        "letterSpacing": "0.01em"
+      }
+    ],
+    "description": "Adopt reads as an editorial broadsheet rendered on warm paper: a single near-black ink against a soft cream canvas, with no gradients, no shadows, and no accent color to soften the starkness. The signature is a narrow Garamond serif at near-display sizes carrying every statement headline, paired with a compact grotesque for labels, body, and UI chrome — a two-voice system that splits content into 'editorial title' and 'production note' registers. Layout uses a rigid three-column grid for content blocks and dramatic left-aligned section numbers with hairline rules, letting generous vertical air (80–140px between sections) do the pacing. Components are deliberately invisible — no cards, no buttons with fills, no elevation — only type, rules, and whitespace organize the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adopt design system\",\"item\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#style-reference\",\"name\":\"Adopt design system reference\",\"headline\":\"Adopt design system | Refero Styles\",\"description\":\"Explore Adopt's light Agency design system: Bone #f4f1ec, Carbon #1e1e1e colors, ITCGaramondStdLightNarrow, PPNeueMontreal typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adopt\",\"url\":\"https://weareadopt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"caption\":\"Screenshot of Adopt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adopt design system\",\"Adopt website design\",\"Adopt colors\",\"Adopt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Carbon\",\"Ash\",\"Lampblack\",\"ITCGaramondStdLightNarrow\",\"PPNeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adopt design system\"},{\"@type\":\"Thing\",\"name\":\"Adopt website design\"},{\"@type\":\"Thing\",\"name\":\"Adopt colors\"},{\"@type\":\"Thing\",\"name\":\"Adopt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:02:12.754Z\",\"dateModified\":\"2026-05-10T22:02:12.754Z\"}]}19:T6d8,**Quick Color Reference**\n- text: #1e1e1e (Carbon)\n- background: #f4f1ec (Bone)\n- border: #1e1e1e (Carbon, 1px)\n- muted text: #8c8c8c (Ash)\n- primary action: no distinct CTA color\n- display headline color: #1e1e1e (Carbon)\n\n**Example Component Prompts**\n\n1. **Section Header**: Place a two-digit number (e.g. '01') at 14px PPNeueMontreal weight 500, color #1e1e1e, letter-spacing 0.01em. Directly below it, a section title ('Who We Are') in the same font/size/weight. Under both, a 1px solid #1e1e1e hairline rule extending the full content width within 50px horizontal padding.\n\n2. **Display Headline**: Render a statement sentence at 130px ITC Garamond Light Narrow weight 300, color #1e1e1e, line-height 0.90, letter-spacing -0.02em, left-aligned. Multi-line headlines stack into a dense editorial block — do not add space between lines.\n\n3. **Outlined Ghost Button**: Transparent background, 1px solid #1e1e1e border, padding 12px 24px, border-radius 0px. Label in PPNeueMontreal 18px weight 500, color #1e1e1e, letter-spacing 0.01em. No fill state, no shadow, no hover color change beyond the border darkening to #000000.\n\n4. **Three-Column Content Block**: Within the 50px page padding, lay out three equal columns with ~40px gutters. Each column starts with a bold label in PPNeueMontreal 18px weight 600, #1e1e1e, letter-spacing 0.01em, followed by 1–2 lines of body text in the same font at weight 500, line-height 1.33. No card backgrounds, no column borders.\n\n5. **Partner Word Stack**: Center a vertical stack of 3–6 brand names or proper nouns. Each name in ITC Garamond Light Narrow weight 300, size 80–130px, color #1e1e1e, line-height 0.90, letter-spacing -0.02em. One name per line, centered. No logos, no images — type only."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 685,
+          "confidence": 1,
+          "prominence": 78327555.92447166,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 37,
+            "hero/color": 2,
+            "link/color": 4,
+            "list/color": 43,
+            "other/color": 48,
+            "footer/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 148,
+            "hero/borderColor": 8,
+            "link/borderColor": 16,
+            "list/borderColor": 172,
+            "other/borderColor": 192,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2218360.525451167,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 450169.3475641998,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/color": 4,
+            "body/borderColor": 24,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#0d0d0d",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#0d0d0d",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#0d0d0d",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body",
+            "list",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "footer"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|list",
+            "columnGap|list",
+            "marginTop|list",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PPNeueMontreal",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 119,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITCGaramondStdLightNarrow",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 30,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "list",
+            "button",
+            "footer",
+            "link"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "ITCGaramondStdLightNarrow",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "ITCGaramondStdLightNarrow",
+          "weight": 300,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 26,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d116d757-048e-4beb-b438-5abf5af0a5e0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adopt design system\",\"item\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#style-reference\",\"name\":\"Adopt design system reference\",\"headline\":\"Adopt design system | Refero Styles\",\"description\":\"Explore Adopt's light Agency design system: Bone #f4f1ec, Carbon #1e1e1e colors, ITCGaramondStdLightNarrow, PPNeueMontreal typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adopt\",\"url\":\"https://weareadopt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d360718-91b8-4c74-a6f0-91f4731a6671#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"caption\":\"Screenshot of Adopt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b003b49f-d95e-4972-b7cd-c664714daa20.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adopt design system\",\"Adopt website design\",\"Adopt colors\",\"Adopt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Carbon\",\"Ash\",\"Lampblack\",\"ITCGaramondStdLightNarrow\",\"PPNeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adopt design system\"},{\"@type\":\"Thing\",\"name\":\"Adopt website design\"},{\"@type\":\"Thing\",\"name\":\"Adopt colors\"},{\"@type\":\"Thing\",\"name\":\"Adopt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:02:12.754Z\",\"dateModified\":\"2026-05-10T22:02:12.754Z\"}]}19:T6d8,**Quick Color Reference**\n- text: #1e1e1e (Carbon)\n- background: #f4f1ec (Bone)\n- border: #1e1e1e (Carbon, 1px)\n- muted text: #8c8c8c (Ash)\n- primary action: no distinct CTA color\n- display headline color: #1e1e1e (Carbon)\n\n**Example Component Prompts**\n\n1. **Section Header**: Place a two-digit number (e.g. '01') at 14px PPNeueMontreal weight 500, color #1e1e1e, letter-spacing 0.01em. Directly below it, a section title ('Who We Are') in the same font/size/weight. Under both, a 1px solid #1e1e1e hairline rule extending the full content width within 50px horizontal padding.\n\n2. **Display Headline**: Render a statement sentence at 130px ITC Garamond Light Narrow weight 300, color #1e1e1e, line-height 0.90, letter-spacing -0.02em, left-aligned. Multi-line headlines stack into a dense editorial block — do not add space between lines.\n\n3. **Outlined Ghost Button**: Transparent background, 1px solid #1e1e1e border, padding 12px 24px, border-radius 0px. Label in PPNeueMontreal 18px weight 500, color #1e1e1e, letter-spacing 0.01em. No fill state, no shadow, no hover color change beyond the border darkening to #000000.\n\n4. **Three-Column Content Block**: Within the 50px page padding, lay out three equal columns with ~40px gutters. Each column starts with a bold label in PPNeueMontreal 18px weight 600, #1e1e1e, letter-spacing 0.01em, followed by 1–2 lines of body text in the same font at weight 500, line-height 1.33. No card backgrounds, no column borders.\n\n5. **Partner Word Stack**: Center a vertical stack of 3–6 brand names or proper nouns. Each name in ITC Garamond Light Narrow weight 300, size 80–130px, color #1e1e1e, line-height 0.90, letter-spacing -0.02em. One name per line, centered. No logos, no images — type only."
+}

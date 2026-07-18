@@ -1,0 +1,773 @@
+{
+  "source": "https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb",
+  "uuid": "ac14ea36-ea3e-4a25-bd16-11fb50d806fb",
+  "name": "reboot",
+  "northStar": "quiet atelier on cream paper — a design studio's homepage that reads like a printed monograph, where the only color is the one blue mark in the margin",
+  "capturedAt": "2026-07-18T07:46:36.853Z",
+  "meta": {
+    "url": "https://reboot.studio",
+    "siteName": "reboot",
+    "extractedAt": "2026-06-03T19:33:34.511Z",
+    "durationMs": 21264,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 222,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Inter at weights 400 and 500 for all body and heading text; reserve 600 for the wordmark only",
+      "Use the three-step grayscale scale (#000000 → #232323 → #a7a7a7) to create text hierarchy within a single block instead of jumping to a larger size",
+      "Use the black pill button (fill #000000, radius 9999px, text #ffffff, Inter 14px/500) for the single primary action per page",
+      "Use the Sapphire Beam gradient (#00c8fb → #1a2ff7) only on 20–24px inline marker icons, never as a background or button fill",
+      "Left-align all content in a single narrow column (max ~480px) inside an 720px page container",
+      "Set section gap to 80px and use 32px internal padding for any surface that needs containment",
+      "Set cards and non-button containers to 16px border-radius; set all buttons and badges to 9999px"
+    ],
+    "donts": [
+      "Don't introduce chromatic colors beyond the two existing gradients — the palette is achromatic plus two accent gradients",
+      "Don't use more than three type sizes; the scale is intentionally 14 / 16 / 40",
+      "Don't use color to signal emphasis — use weight shifts (400 → 500) and grayscale steps instead",
+      "Don't add backgrounds, borders, or cards to text blocks — text should sit directly on the page canvas",
+      "Don't apply drop shadows to text, buttons, or content blocks; the design is flat by principle",
+      "Don't center text or use multi-column layouts; everything is a single left-aligned column",
+      "Don't scale the blue gradient to fill large areas or use it on the primary button — it is decorative punctuation, not a brand fill"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Paper Gray",
+        "role": "Page canvas and hairline borders — the warm off-white ground that all type sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Editorial Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232323",
+        "name": "Charcoal Ink",
+        "role": "Headings and emphasized prose — a near-black that softens headlines against the pure black of running text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a7a7a7",
+        "name": "Soft Graphite",
+        "role": "Muted body text and secondary metadata — the gray that carries secondary sentences without competing with the lead",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Faded Pencil",
+        "role": "Tertiary annotations and the most restrained helper text — the lightest voice in the grayscale scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Surface highlights and inverse text on the black pill button",
+        "group": "neutral"
+      },
+      {
+        "hex": "#00c8fb",
+        "name": "Sapphire Beam",
+        "role": "Decorative inline gradient — cyan-to-indigo mark used as a full-stop between sentences, never as a fill or background",
+        "group": "accent",
+        "gradient": "linear-gradient(#00c8fb, #1a2ff7)"
+      },
+      {
+        "hex": "#ef3313",
+        "name": "Ember Sunset",
+        "role": "Secondary decorative gradient — warm triple-stop used sparingly for moments that need a chromatic counterpoint to the blue",
+        "group": "accent",
+        "gradient": "linear-gradient(to right bottom, #a4341, #ef3313, #f4a41b)"
+      }
+    ],
+    "layout": "Single-column, left-aligned, max-width ~720px page container with text blocks capped around 480px. No grid, no multi-column rows, no card stacks, no sidebar. The header is a thin transparent bar with the wordmark left and two pieces of metadata right. The body flows as a continuous vertical essay: each section is a left-aligned prose block, separated by ~80px of whitespace. The first screen leads with a large 40px headline sentence, followed by a softer secondary sentence with an inline gradient marker between them, establishing the pattern that repeats down the page. The single primary action (black pill button) sits at the natural end of the scroll, accompanied by a quiet text link.",
+    "imagery": "The site is almost entirely typographic. The only visual elements beyond type are two small inline icons: a 24px blue-gradient rounded square used as a sentence-period, and a minimal stroke-only phone outline used at a similar size. No photography, no product screenshots, no large illustrations, no abstract graphics. The visual density is the lowest possible: text and whitespace share the page roughly 40/60, and the two gradient marks are the entire chromatic vocabulary.",
+    "similar": [
+      {
+        "why": "Same text-first, near-zero-chrome approach — the page is a narrow left-aligned column of well-set type on a single off-white ground",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Same monochrome palette with pill-shaped controls and a single accent color used sparingly rather than decoratively",
+        "business": "Linear"
+      },
+      {
+        "why": "Same confidence in grayscale hierarchy and generous whitespace, though Stripe allows itself more type sizes and chromatic moments",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same editorial restraint — one typeface, one accent, generous vertical breathing room between text blocks",
+        "business": "Apple product pages"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "720px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "The warm off-white ground; all type and elements float on this single surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Surface",
+        "level": 1,
+        "purpose": "Reserved for inverse text on the black button and any minimal card moments"
+      }
+    ],
+    "northStar": "quiet atelier on cream paper — a design studio's homepage that reads like a printed monograph, where the only color is the one blue mark in the margin",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body-relaxed",
+        "size": 16,
+        "lineHeight": 1.8
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "The single action surface — used for 'See work' and any definitive call to action",
+        "description": "Fill #000000, text #ffffff, Inter 14px weight 500, horizontal padding 16px, vertical padding 10px, border-radius 9999px. No border, no shadow. Sits flush against the paper background. The only fully-dark element in the system."
+      },
+      {
+        "name": "Status Badge",
+        "role": "Inline metadata pill — used for 'Hiring' indicators in the header",
+        "description": "Pill-shaped (#9999px radius) with light surface fill, Inter 14px weight 500, padding 4px 10px. Sits inline with adjacent text. No border."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand identity in the header",
+        "description": "Small geometric icon mark (rounded square, ~20px) adjacent to the wordmark 'reboot' in Inter weight 600. Left-aligned in the header bar."
+      },
+      {
+        "name": "Inline Gradient Marker",
+        "role": "Chromatic punctuation between sentences — the only color in the body content",
+        "description": "24×24px rounded square (8px radius) filled with the Sapphire Beam gradient (#00c8fb → #1a2ff7). Inserted inline between sentences as a visual period. Never used as a background or button fill."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation — 'Book a call' and similar",
+        "description": "Inter 16px weight 400 in Soft Graphite (#a7a7a7), no underline by default. On hover, shifts to Editorial Black (#000000). Behaves like a quiet footnote, not a button."
+      },
+      {
+        "name": "Prose Section Block",
+        "role": "The fundamental content unit — a paragraph with mixed-emphasis sentences",
+        "description": "Left-aligned text block, max-width ~480px. Opens with a weight-500 sentence in Charcoal Ink (#232323), continues with weight-400 sentences in Editorial Black (#000000), and trails with weight-400 sentences in Soft Graphite (#a7a7a7). No background, no border, no padding — the text sits directly on the paper canvas."
+      },
+      {
+        "name": "Muted Manifesto Block",
+        "role": "Secondary statements that should recede — lists of disciplines, timeframes, closing lines",
+        "description": "Inter 16px weight 400 in Soft Graphite (#a7a7a7), line-height 1.80. Appears after a primary prose block to add context without competing for attention."
+      },
+      {
+        "name": "Device Mockup Illustration",
+        "role": "Sole illustrative element — a phone frame used as inline punctuation",
+        "description": "Minimal phone outline illustration, ~32px tall, stroke-only in Soft Graphite (#a7a7a7). Appears inline between sentences, mirroring the role of the gradient marker but for a different beat in the copy."
+      },
+      {
+        "name": "Minimal Header Bar",
+        "role": "Top-of-page navigation and brand placement",
+        "description": "Full-width, ~64px tall, transparent over the page canvas. Wordmark left, nav metadata right (Status Badge + text link). No background fill, no border-bottom, no shadow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typographic voice — used for everything from nav metadata to display headlines. Weight 400 carries running prose, weight 500 lifts section lead-ins and the primary action, weight 600 is reserved for the wordmark. The narrow three-size scale (14/16/40) is deliberate: hierarchy comes from luminance and weight, not from a cascading type ramp.",
+        "sizes": "14px, 16px, 40px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.43 (14px), 1.50–1.80 (16px), 1.50 (40px)",
+        "substitute": "system-ui, -apple-system, 'Segoe UI', sans-serif"
+      }
+    ],
+    "description": "Reboot reads like a carefully typeset editorial page: a vast warm-white canvas, a single typographic voice (Inter at 14/16/40), and almost no visual furniture. Text hierarchy comes from grayscale gradation and weight shifts between 400 and 500 rather than dramatic size jumps — the page communicates through luminance contrast, not typography volume. The only chromatic punctuation is a small blue gradient diamond used inline as a period between sentences. One black pill button anchors the interface; everything else is whitespace and well-set prose. The aesthetic is a design studio's own homepage: confident enough to let words do the work, restrained enough to make the one accent color feel like a shout.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"reboot design system\",\"item\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#style-reference\",\"name\":\"reboot design system reference\",\"headline\":\"reboot design system | Refero Styles\",\"description\":\"Explore reboot's light Agency design system: Paper Gray #e5e7eb, Editorial Black #000000 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"reboot\",\"url\":\"https://reboot.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"caption\":\"Screenshot of reboot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"reboot design system\",\"reboot website design\",\"reboot colors\",\"reboot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper Gray\",\"Editorial Black\",\"Charcoal Ink\",\"Soft Graphite\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"reboot design system\"},{\"@type\":\"Thing\",\"name\":\"reboot website design\"},{\"@type\":\"Thing\",\"name\":\"reboot colors\"},{\"@type\":\"Thing\",\"name\":\"reboot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-27T11:56:56.000Z\",\"dateModified\":\"2026-02-27T11:56:56.000Z\"}]}19:T590,## Quick Color Reference\n- text (primary): #000000\n- text (secondary): #232323\n- text (muted): #a7a7a7\n- background: #e5e7eb\n- surface: #ffffff\n- border (hairline): #e5e7eb\n- accent: linear-gradient(#00c8fb, #1a2ff7) — decorative inline icons only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Prose section block**: Inter 16px weight 400, color #000000, line-height 1.60, max-width 480px, left-aligned. Open with one sentence in #232323 weight 500, close with one sentence in #a7a7a7 weight 400. No background, no border, no padding.\n\n3. **Headline**: Inter 40px weight 500, color #000000, line-height 1.50, left-aligned, max-width 560px. One sentence per headline.\n\n4. **Inline gradient marker**: 24×24px rounded square (8px radius) filled with linear-gradient(#00c8fb, #1a2ff7). Sits inline between two text sentences, aligned to the x-height, used once per section as chromatic punctuation.\n\n5. **Status badge** (e.g. 'Hiring'): Pill shape (9999px radius), light surface fill, Inter 14px weight 500, padding 4px 10px. Placed in the header next to a text label.\n\n6. **Minimal header**: Full-width 64px-tall transparent bar. Wordmark (icon + 'reboot' in Inter 600) on the left; one status badge + one text link on the right. No background, no border-bottom."
+      }
+    ],
+    "elevationPhilosophy": "The design is almost entirely flat. The single shadow token in the system (a five-layer 6%-opacity black stack) is so faint it reads as paper grain rather than elevation. Buttons sit flush. Text blocks have no containers. Depth is communicated through grayscale tone shifts, not z-axis separation — the page behaves like a printed page, not a screen of stacked surfaces."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "icon",
+            "heading",
+            "button"
+          ],
+          "frequency": 820,
+          "confidence": 1,
+          "prominence": 31895808.071443155,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 13466555.076783367,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 9237189.855764518,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a7a7a7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7283778541209173
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 414920.26534279564,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 24948.362961383362,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8c8c8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.832793817744683
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8475,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0080ff",
+          "oklch": {
+            "c": 0.21081893200648957,
+            "h": 256.09895972083694,
+            "l": 0.6151653614766294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 760,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e63948",
+          "oklch": {
+            "c": 0.20802343969149273,
+            "h": 21.611345683785757,
+            "l": 0.6125278111515337
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 335,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fec61a",
+          "oklch": {
+            "c": 0.17034819795034462,
+            "h": 87.30927500349055,
+            "l": 0.8530407759588159
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 60,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#006aff",
+          "oklch": {
+            "c": 0.23622161770625483,
+            "h": 260.2559049221577,
+            "l": 0.5710342879389019
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 44,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.014519606751451676,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#fec61a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.69,
+          "background": "#e5e7eb",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#000000",
+          "foreground": "#c8c8c8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.96,
+          "background": "#fec61a",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.39,
+          "background": "#c8c8c8",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.73,
+          "background": "#000000",
+          "foreground": "#a7a7a7"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.53,
+          "background": "#a7a7a7",
+          "foreground": "#232323"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.34,
+          "background": "#000000",
+          "foreground": "#232323"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px, rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.06) 0px 6px 6px -3px, rgba(0, 0, 0, 0.06) 0px 12px 12px -6px, rgba(0, 0, 0, 0.06) 0px 24px 24px -12px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 200, 251), rgb(26, 47, 247))",
+        "colors": [
+          "rgb(0, 200, 251)",
+          "rgb(26, 47, 247)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgb(164, 52, 30), rgb(239, 51, 19), rgb(244, 164, 27))",
+        "colors": [
+          "rgb(164, 52, 30)",
+          "rgb(239, 51, 19)",
+          "rgb(244, 164, 27)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 206,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 40,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 159,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d8ec5892-ed67-4b62-9cd8-b4882aa65f19.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"reboot design system\",\"item\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#style-reference\",\"name\":\"reboot design system reference\",\"headline\":\"reboot design system | Refero Styles\",\"description\":\"Explore reboot's light Agency design system: Paper Gray #e5e7eb, Editorial Black #000000 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"reboot\",\"url\":\"https://reboot.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac14ea36-ea3e-4a25-bd16-11fb50d806fb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"caption\":\"Screenshot of reboot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ca8353ff-27ac-4d0b-a4a9-da51a60ef515.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"reboot design system\",\"reboot website design\",\"reboot colors\",\"reboot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper Gray\",\"Editorial Black\",\"Charcoal Ink\",\"Soft Graphite\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"reboot design system\"},{\"@type\":\"Thing\",\"name\":\"reboot website design\"},{\"@type\":\"Thing\",\"name\":\"reboot colors\"},{\"@type\":\"Thing\",\"name\":\"reboot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-27T11:56:56.000Z\",\"dateModified\":\"2026-02-27T11:56:56.000Z\"}]}19:T590,## Quick Color Reference\n- text (primary): #000000\n- text (secondary): #232323\n- text (muted): #a7a7a7\n- background: #e5e7eb\n- surface: #ffffff\n- border (hairline): #e5e7eb\n- accent: linear-gradient(#00c8fb, #1a2ff7) — decorative inline icons only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Prose section block**: Inter 16px weight 400, color #000000, line-height 1.60, max-width 480px, left-aligned. Open with one sentence in #232323 weight 500, close with one sentence in #a7a7a7 weight 400. No background, no border, no padding.\n\n3. **Headline**: Inter 40px weight 500, color #000000, line-height 1.50, left-aligned, max-width 560px. One sentence per headline.\n\n4. **Inline gradient marker**: 24×24px rounded square (8px radius) filled with linear-gradient(#00c8fb, #1a2ff7). Sits inline between two text sentences, aligned to the x-height, used once per section as chromatic punctuation.\n\n5. **Status badge** (e.g. 'Hiring'): Pill shape (9999px radius), light surface fill, Inter 14px weight 500, padding 4px 10px. Placed in the header next to a text label.\n\n6. **Minimal header**: Full-width 64px-tall transparent bar. Wordmark (icon + 'reboot' in Inter 600) on the left; one status badge + one text link on the right. No background, no border-bottom."
+}

@@ -1,0 +1,187 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary type, body text, hairline rules, link borders, and the structural color of the entire page — used at high frequency for borders and text alike, creating a printed-ink quality against the white canvas"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Page canvas, card and image backgrounds, the negative space that lets type and photography breathe"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, muted borders, image strokes — a slightly softened black for elements that should not compete with primary ink"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Section divider rules, link borders, faint hairlines where a true black stroke would be too assertive"
+    }
+  },
+  "font": {
+    "neuehaasdisplay": {
+      "$value": "Neuehaasdisplay",
+      "$type": "fontFamily",
+      "$description": "Hero display — used only for the massive opening headline and section-statement lines that fill the viewport. The 0.85 line-height is a deliberate choice: lines nearly touch, producing the compressed broadsheet effect. Substitute: Neue Haas Grotesk Display Pro 35 Thin, or Inter at extreme sizes."
+    },
+    "inferi": {
+      "$value": "Inferi",
+      "$type": "fontFamily",
+      "$description": "Multi-purpose face — medium-weight paragraphs (21px), oversized secondary statements (34px, 120px), and small UI labels (14px). The negative tracking (-0.0270em) tightens the rhythm at every size. Substitute: Söhne, Inter, or Untitled Sans."
+    },
+    "suisseintl": {
+      "$value": "Suisseintl",
+      "$type": "fontFamily",
+      "$description": "Body and supporting copy — quiet, legible, never decorative. Same negative tracking as Inferi keeps the family consistent. Substitute: Suisse Int'l Light, or Inter Light."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inferi",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inferi",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inferi",
+        "fontSize": "34px",
+        "fontWeight": 200,
+        "lineHeight": 0.69
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inferi",
+        "fontSize": "34px",
+        "fontWeight": 200,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neuehaasdisplay",
+        "fontSize": "105px",
+        "fontWeight": 300,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 105px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Neuehaasdisplay",
+        "fontSize": "105px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 105px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inferi",
+        "fontSize": "120px",
+        "fontWeight": 200,
+        "lineHeight": 0.69
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Full-page background, the only surface layer"
+    },
+    "image-plate": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Behind photographs in the feed grid — invisible, just the white showing between images"
+    },
+    "rule-line": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline horizontal dividers that separate sections and groupings"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.alt-border.com",
+      "siteName": "Alt–Border",
+      "extractedAt": "2026-06-03T20:28:05.870Z",
+      "variant": "extended"
+    }
+  }
+}

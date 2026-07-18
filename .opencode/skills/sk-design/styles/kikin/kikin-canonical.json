@@ -1,0 +1,1721 @@
+{
+  "source": "https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b",
+  "uuid": "87574d45-e35d-4ffd-8560-99fee4008d2b",
+  "name": "Kikin",
+  "northStar": "Vintage park-poster on cream paper — a financial product wearing a patch jacket.",
+  "capturedAt": "2026-07-18T08:55:41.957Z",
+  "meta": {
+    "url": "https://www.kikin.io",
+    "siteName": "Kikin",
+    "extractedAt": "2026-06-03T21:22:45.752Z",
+    "durationMs": 39743,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1012,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Deacon 900 between 58px and 259px for any display moment — its compressed geometry is the system, not a decoration",
+      "Reserve Meadow (#55dd4a) for exactly two roles: primary action fill and the second line of a two-color hero headline",
+      "Set line-height at 0.80–0.90 on every Deacon block — letting it breathe at 1.2 destroys the condensed silhouette",
+      "Default body canvas to Paper Cream (#f3ede4); pure white is a violation of the warm, paper-poster mood",
+      "Use the Patch Badge motif whenever illustrating an abstract concept (sustainability, impact, values) — it is the system's native decoration",
+      "Rotate sticker badges 4–8° and let them overlap images by 20%+ to keep the handmade feel",
+      "Keep illustration palette to Deep Navy + Meadow + River Blue + Sun Yellow + Paper Cream — adding a sixth hue breaks the poster cohesion"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic accent — Meadow is the only green, River Blue is illustration-only, Sun Yellow is decorative-only",
+      "Don't set Deacon at line-height above 0.95 or weight below 700 for headings — the quietness comes from the compressed line, not the weight",
+      "Don't use pure black (#000000) for text on cream — use Charcoal (#333333) or Forest Ink (#122315) to keep the warm tone",
+      "Don't apply shadows to patch badges or sticker badges — they should feel printed on the page, not floating",
+      "Don't use gradients — the system is flat poster-ink, not glass-morphism",
+      "Don't round cards at more than 20px or buttons at more than 10px — both radii are extracted from the source",
+      "Don't place a filled Meadow button on a Meadow or Lichen background — there is no chromatic action contrast in that pairing, use Ghost or a dark surface"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#122315",
+        "name": "Forest Ink",
+        "role": "Hero canvas, primary heading text, nav bar surface, footer — the dominant dark that anchors every green-on-green moment",
+        "group": "brand"
+      },
+      {
+        "hex": "#55dd4a",
+        "name": "Meadow",
+        "role": "Primary action fill (GET FUNDING), accent headline words, tag fills — one switch-on green against both dark and cream surfaces",
+        "group": "brand"
+      },
+      {
+        "hex": "#566053",
+        "name": "Sage Border",
+        "role": "Muted green-gray for secondary borders, dividers on cream, subhead accents — lets Meadow read as the only chromatic action",
+        "group": "neutral"
+      },
+      {
+        "hex": "#77e46e",
+        "name": "Lichen",
+        "role": "Outlined/ghost action border, hover-state ring — a softer Meadow for non-filled interactive states",
+        "group": "accent"
+      },
+      {
+        "hex": "#f3ede4",
+        "name": "Paper Cream",
+        "role": "Main content canvas after the hero, card surface on dark hero, ghost-button fill — warm off-white that replaces typical SaaS white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Body text on cream, hairline borders, image overlays — the workhorse neutral that keeps #122315 reserved for display moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Slate",
+        "role": "Icon strokes, near-black text, very dark UI fills when Forest Ink would be too green",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Frost",
+        "role": "Subtle dividers on cream, secondary card edges — quieter than Sage Border",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999c91",
+        "name": "Moss Gray",
+        "role": "Helper text, metadata, low-emphasis captions on cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#626d66",
+        "name": "Driftwood",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#73d3eb",
+        "name": "River Blue",
+        "role": "Illustration accent for water and sky in the hero artwork and badge illustrations, small data-viz highlight",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffed52",
+        "name": "Sun Yellow",
+        "role": "Illustration accent for suns and warm callouts in the patch artwork, limited to decorative moments",
+        "group": "accent"
+      },
+      {
+        "hex": "#0a071b",
+        "name": "Deep Navy",
+        "role": "Illustration dark fills, badge backgrounds where Forest Ink would blend with the canvas",
+        "group": "brand"
+      }
+    ],
+    "layout": "Hero is full-bleed dark Forest Ink with the Kikin wordmark top-left, centered nav, and centered action cluster top-right. Headline sits centered above the hero, then a full-width illustrated landscape anchors the bottom 40%. The rest of the page alternates between Paper Cream content bands and occasional Forest Ink feature bands. Content is max-width 1200px centered, with two-column splits (text-left/image-right or vice versa) and 96px vertical breathing between sections. Numbered feature blocks stack single-column on cream. The Calculate Funding chip floats fixed bottom-right across the entire page, riding over every section.",
+    "imagery": "Illustrations dominate over photography. The hero and all section accents use hand-drawn limited-palette line-and-fill scenes (mountains, forests, sunsets, rivers, backpackers, a hiker raising a fist on a summit) built from Deep Navy, Meadow, River Blue, Sun Yellow, and Paper Cream linework — no gradients, no perspective vanishing points, slightly naïve in proportion. Photography appears only in the testimonial section as tight, high-contrast product crops (a blue water bottle mid-splash) that pop against the cream canvas. Decorative circular 'patch' badges — enamel-pin style illustrations of trees, logs, suns, and globes — float around hero-adjacent sections at slight rotations. The system never uses lifestyle photography, never uses stock imagery, and never uses duotone treatments.",
+    "similar": [
+      {
+        "why": "Same earth-tone palette and environmental brand storytelling with cream-and-forest coloring, but Kikin keeps the condensed-display poster energy",
+        "business": "Allbirds"
+      },
+      {
+        "why": "Shared nature-illustration visual language and warm cream content surfaces paired with a single bold accent",
+        "business": "Patagonia"
+      },
+      {
+        "why": "Climate-fintech crossover with the same dark-to-cream section rhythm and single bright green for primary action",
+        "business": "Watershed"
+      },
+      {
+        "why": "Uses an ultra-condensed display sans at massive scale over warm cream content — the same 'shout headlines, calm body' typographic duet",
+        "business": "Cuvva"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "badges": "20px",
+        "buttons": "10px",
+        "stickerBadges": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#122315",
+        "name": "Hero Canvas",
+        "level": 0,
+        "purpose": "Dark forest ink for the hero, nav, and any full-bleed dark band"
+      },
+      {
+        "hex": "#f3ede4",
+        "name": "Content Paper",
+        "level": 1,
+        "purpose": "Warm cream for all body content, replacing typical SaaS white"
+      },
+      {
+        "hex": "#0a071b",
+        "name": "Ink Card",
+        "level": 2,
+        "purpose": "Dark surface for testimonial quote cards and badge sticker backgrounds"
+      },
+      {
+        "hex": "#566053",
+        "name": "Sage Tint",
+        "level": 3,
+        "purpose": "Muted surface for secondary cards sitting on cream where a pure white would feel cold"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 8px 24px rgba(10, 7, 27, 0.18)",
+        "element": "Floating action chip (Calculate Your Funding)"
+      },
+      {
+        "style": "0 12px 40px rgba(10, 7, 27, 0.12)",
+        "element": "Dashboard preview card"
+      },
+      {
+        "style": "none — relies on cream canvas contrast, not shadow",
+        "element": "Testimonial card"
+      }
+    ],
+    "northStar": "Vintage park-poster on cream paper — a financial product wearing a patch jacket.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.22
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.83
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.51
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 0.85,
+        "letterSpacing": -1.87
+      },
+      {
+        "role": "display",
+        "size": 137,
+        "lineHeight": 0.8,
+        "letterSpacing": -2.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Primary Button",
+        "role": "The single GET FUNDING action across hero, mid-page, and final conversion moments",
+        "description": "Meadow (#55dd4a) fill, Forest Ink (#122315) text, Graphik 500 at 14px, uppercase tracked +0.18em, 10px radius, 14px 28px padding. No border. Hovers deepen to #45c43a."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Secondary nav action (LOG IN) sitting next to the primary CTA",
+        "description": "Transparent fill on dark hero, 1px solid #f3ede4 (Paper Cream) border, Paper Cream text, Graphik 500 14px uppercase +0.18em, 10px radius, 10px 20px padding. Inverts to Forest Ink border on Paper Cream sections."
+      },
+      {
+        "name": "Circular Carousel Arrow",
+        "role": "Testimonial and content carousel controls",
+        "description": "64px circle, 1px Lichen (#77e46e) border on Paper Cream, centered chevron in Lichen. No fill, no shadow — a quiet navigational pin."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Section openers and hero title — the loudest voice in the system",
+        "description": "Deacon 900 at 137px (hero) or 72px (section opener), line-height 0.80–0.85, tracking -2px or -1.87px, Forest Ink on cream or Paper Cream on dark. The second line of a hero can swap to Meadow to create a two-color sentence."
+      },
+      {
+        "name": "Eyebrow Step Label",
+        "role": "Small numeral or kicker above section openers (01, 02, 03)",
+        "description": "Graphik 400 14px, tracking +0.22em, uppercase, Meadow text. Sits 24px above the display headline with a 1px Sage Border underline."
+      },
+      {
+        "name": "Illustrated Patch Badge",
+        "role": "Circular floating badges around the mission section — the system's signature decorative motif",
+        "description": "120–160px circle, limited-palette illustration (Deep Navy fill, Meadow/River Blue/Sun Yellow accents, Paper Cream linework), 2px Paper Cream outer ring, caption in Deacon 400 curving around the edge or Graphik 400 10px underneath. Float with 8–12px rotation for handmade feel."
+      },
+      {
+        "name": "Sticker Badge",
+        "role": "Overlapping rectangular or circular callouts on testimonial photos (PRIORITY PLANET, WORK TOGETHER)",
+        "description": "Rectangular: Meadow fill, Forest Ink text, Graphik 500 12px uppercase, 0px radius (sharp corners), 4°–8° rotation. Circular variant: Deep Navy fill with Paper Cream type, 9999px radius. Must overlap the parent image by at least 20%."
+      },
+      {
+        "name": "Dashboard Preview Card",
+        "role": "Product screenshot card in feature sections",
+        "description": "20px radius, Paper Cream surface, 1px Sage Border, 32px internal padding, subtle 0 12px 40px rgba(10,7,27,0.12) shadow. Contains Graphik data labels and a soft River Blue chart area."
+      },
+      {
+        "name": "Testimonial Quote Card",
+        "role": "Customer story layout with photo, quote, and attribution",
+        "description": "Two-column on cream: 5:7 split, product photo left (full-bleed within column, no radius), quote right. Quote in Graphik 400 18px Charcoal, attribution in Deacon 400 14px Forest Ink with 1.2em letter-spacing. No card chrome — cream canvas is the surface."
+      },
+      {
+        "name": "Floating Calculate Funding Chip",
+        "role": "Persistent bottom-right conversion pin",
+        "description": "White fill, Forest Ink text, 20px radius, 12px 20px padding, Graphik 500 13px, with a small thumbs-up icon in Meadow. Lifts with 0 8px 24px rgba(10,7,27,0.18). Stays fixed across scroll."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header across all screens",
+        "description": "Forest Ink fill on hero, Paper Cream on content sections. Kikin wordmark left in Graphik 500 18px, center nav links in Graphik 400 12px uppercase +0.18em, right cluster holds Ghost + Filled Primary buttons. 64px tall, no bottom border."
+      },
+      {
+        "name": "Numbered Feature Section",
+        "role": "Mid-page explainer blocks (GROW WITH… 01, 02, 03)",
+        "description": "Single column on cream: 01 eyebrow in Meadow, Deacon 900 72px section title, Graphik 400 16px body, optional dashboard card below. 96px vertical breathing between blocks."
+      },
+      {
+        "name": "Hero Landscape Illustration",
+        "role": "Full-bleed decorative scene anchoring the hero",
+        "description": "Mountains, pine forest, sunset, water, and a backpacker — built from limited palette (Deep Navy, Meadow, River Blue, Sun Yellow, Paper Cream linework) with no gradients and no photographic realism. Hand-drawn line quality, no perspective vanishing. Anchors the bottom 40% of the hero canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and headline family. The signature choice: an ultra-condensed sans scaled from 58px subheads up to 259px hero lines, with line-height compressed to 0.8 so two-line headlines read as a single block. Weight 900 for hero and section openers, 700 for mid-page headings, 400 for badge labels and small caps callouts. This is the only voice allowed to be loud.",
+        "sizes": "14, 24, 32, 58, 72, 101, 137, 259",
+        "family": "Deacon",
+        "weight": "400, 700, 900",
+        "lineHeight": "0.80–0.90",
+        "substitute": "Oswald (700, 900), Antonio (700, 900), or Bebas Neue — any tall condensed sans with tight tracking",
+        "letterSpacing": "-2.85px at 259px, -2.06px at 137px, -2.12px at 101px, -1.87px at 72px, -0.83px at 32px, -0.55px at 24px",
+        "fontFeatureSettings": "\"ss01\" on if available"
+      },
+      {
+        "role": "Body, UI, and small-text family. Weight 400 for paragraphs, captions, and nav; weight 500 for button labels, tag text, and emphasized subheads. The geometric humanist sans provides the quiet counterweight to Deacon's shouting display — every sentence is calm, every headline is compressed. Use at -0.4px tracking at 24px and above.",
+        "sizes": "12, 14, 15, 16, 24, 32",
+        "family": "Graphik",
+        "weight": "400, 500",
+        "lineHeight": "1.20–1.43",
+        "substitute": "Inter (400, 500), Manrope (400, 500), or DM Sans (400, 500)",
+        "letterSpacing": "-0.96px at 24px, -0.16px at 16px, 0.22px at 12px (positive tracking reserved for uppercase tags and eyebrow labels)"
+      },
+      {
+        "role": "System fallback and chart/dashboard data labels where a neutral numeric voice is needed; 40px reserved for stat readouts in the dashboard preview",
+        "sizes": "14, 16, 40",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.25–1.43",
+        "substitute": "Helvetica, system-ui"
+      }
+    ],
+    "description": "Kikin operates in the visual register of a vintage national-park poster that grew up and learned to do invoice financing. The system alternates between a deep forest-green hero and a warm cream content canvas, with one vivid grass-green (#55dd4a) acting as the single switch-on accent for every primary action. Headlines are set in Deacon, an ultra-condensed display sans pushed to absurd scale (up to 259px) with line-height compressed to 0.8 — type is treated as a landscape feature, not a label. Everything else is grounded: Graphik handles body, illustrations are limited-palette line-and-fill patches of mountains, trees and water, and circular illustrated badges float around content like enamel pins on a hiking jacket. The result is warm, environmental, slightly handmade, but with a serious financial product underneath — the green is a meadow, not a neon.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kikin design system\",\"item\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#style-reference\",\"name\":\"Kikin design system reference\",\"headline\":\"Kikin design system | Refero Styles\",\"description\":\"Explore Kikin's mixed Fintech design system: Forest Ink #122315, Meadow #55dd4a colors, Deacon, Graphik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kikin\",\"url\":\"https://www.kikin.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"caption\":\"Screenshot of Kikin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kikin design system\",\"Kikin website design\",\"Kikin colors\",\"Kikin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Forest Ink\",\"Meadow\",\"Sage Border\",\"Lichen\",\"Deacon\",\"Graphik\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kikin design system\"},{\"@type\":\"Thing\",\"name\":\"Kikin website design\"},{\"@type\":\"Thing\",\"name\":\"Kikin colors\"},{\"@type\":\"Thing\",\"name\":\"Kikin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T02:07:29.119Z\",\"dateModified\":\"2026-05-07T02:07:29.119Z\"}]}19:T6b5,QUICK COLOR REFERENCE\n- text: #122315 (Forest Ink) on cream, #f3ede4 (Paper Cream) on dark\n- background: #f3ede4 (Paper Cream) for content, #122315 (Forest Ink) for hero\n- border: #566053 (Sage Border) on cream, #f3ede4 on dark\n- accent: #55dd4a (Meadow) — display words and eyebrow labels only\n- primary action: #55dd4a (filled action)\n- illustration accents: #73d3eb River Blue, #ffed52 Sun Yellow, #0a071b Deep Navy\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Create a Primary Action Button: #55dd4a background, #141414 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. Numbered feature block on cream. Eyebrow '01' in Graphik 400 14px #55dd4a with +0.22em tracking. Section title in Deacon 900 72px #122315, line-height 0.85. Body in Graphik 400 16px #333333, max-width 640px. Dashboard preview card to the right: 20px radius, #f3ede4 surface, 1px #566053 border, 32px padding, soft 0 12px 40px rgba(10,7,27,0.12) shadow.\n\n4. Testimonial block on cream. Two-column 5:7 split. Left column: product photo of a blue bottle on a water splash, full-bleed within the column, no radius. Right column: section title in Deacon 900 58px #122315, quote in Graphik 400 18px #333333, attribution in Deacon 400 14px #122315 with 1.2em tracking. Sticker Badge overlapping the bottom-left of the photo: 4° rotated rectangle, #55dd4a fill, #122315 text, 0px radius. Circular carousel arrows (64px, 1px #77e46e border, transparent fill) below the attribution.\n\n5. Floating Calculate Funding chip. Fixed bottom-right, 24px from edges. White fill, #122315 text, Graphik 500 13px, 20px radius, 12px 20px padding, thumbs-up icon in #55dd4a to the left of the text. Shadow: 0 8px 24px rgba(10,7,27,0.18)."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "icon"
+          ],
+          "frequency": 884,
+          "confidence": 1,
+          "prominence": 27635559.79374198,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "icon/color": 10,
+            "link/color": 2,
+            "image/color": 46,
+            "other/color": 126,
+            "nav/borderColor": 8,
+            "icon/borderColor": 40,
+            "link/borderColor": 8,
+            "image/borderColor": 184,
+            "other/borderColor": 458
+          }
+        },
+        {
+          "hex": "#f3ede4",
+          "oklch": {
+            "c": 0.013635799972859297,
+            "h": 78.26202633143264,
+            "l": 0.9483057382826474
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 544,
+          "confidence": 1,
+          "prominence": 25661114.657339696,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 6,
+            "link/color": 1,
+            "other/fill": 359,
+            "button/color": 4,
+            "other/stroke": 15,
+            "heading/color": 5,
+            "nav/borderColor": 64,
+            "body/borderColor": 24,
+            "link/borderColor": 4,
+            "button/borderColor": 8,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#122315",
+          "oklch": {
+            "c": 0.035203923439185596,
+            "h": 148.78934629816425,
+            "l": 0.23626068092318275
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 342,
+          "confidence": 1,
+          "prominence": 11665494.550338391,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 9,
+            "icon/color": 5,
+            "link/color": 1,
+            "other/fill": 57,
+            "other/color": 12,
+            "button/color": 10,
+            "other/stroke": 5,
+            "heading/color": 13,
+            "nav/borderColor": 16,
+            "body/borderColor": 36,
+            "icon/borderColor": 20,
+            "link/borderColor": 4,
+            "other/borderColor": 71,
+            "button/borderColor": 11,
+            "heading/borderColor": 52,
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 293,
+          "confidence": 1,
+          "prominence": 7156780.618313661,
+          "properties": [
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/fill": 282,
+            "other/borderColor": 11
+          }
+        },
+        {
+          "hex": "#73d3eb",
+          "oklch": {
+            "c": 0.09665456637331472,
+            "h": 215.9998240261362,
+            "l": 0.8167490596432659
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2511339.379227799,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#55dd4a",
+          "oklch": {
+            "c": 0.22087595334745322,
+            "h": 142.06339343425464,
+            "l": 0.7938013530727294
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 684973.1174475022,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#566053",
+          "oklch": {
+            "c": 0.02396599082579411,
+            "h": 138.4675651122822,
+            "l": 0.4762672431287678
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 421021.80859687674,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 5,
+            "button/borderColor": 8,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a071b",
+          "oklch": {
+            "c": 0.04228137623054761,
+            "h": 287.53319311560045,
+            "l": 0.14714584029774008
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 345775.4191573274,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 16,
+            "other/borderColor": 64
+          }
+        },
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 326697.02095580444,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffed52",
+          "oklch": {
+            "c": 0.16893625444140115,
+            "h": 102.60772553011469,
+            "l": 0.9339578467647102
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 322601.57615840546,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#999c91",
+          "oklch": {
+            "c": 0.01619498705381659,
+            "h": 120.04003146771383,
+            "l": 0.6875324765910753
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 94982.15452130564,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        },
+        {
+          "hex": "#626d66",
+          "oklch": {
+            "c": 0.017634162514592572,
+            "h": 157.95933852419168,
+            "l": 0.5245626808855397
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 69929.90832547387,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 9
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 33583.83280936926,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 7,
+            "link/borderColor": 28
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 18528.509772009525,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/color": 2,
+            "button/color": 2,
+            "icon/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#77e46e",
+          "oklch": {
+            "c": 0.18654746019968266,
+            "h": 142.22625162196613,
+            "l": 0.827569734565441
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 12984.01280590771,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.036797508737463874,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.83,
+          "background": "#ffffff",
+          "foreground": "#0a071b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#f3ede4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.49,
+          "background": "#ffed52",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#f3ede4",
+          "foreground": "#0a071b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.51,
+          "background": "#ffed52",
+          "foreground": "#0a071b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.45,
+          "background": "#122315",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#e5e7eb",
+          "foreground": "#0a071b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.83,
+          "background": "#f3ede4",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.34,
+          "background": "#ffed52",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#e5e7eb",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#122315",
+          "foreground": "#f3ede4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#122315",
+          "foreground": "#ffed52"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#e5e7eb",
+          "foreground": "#122315"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.11,
+          "background": "#77e46e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.38,
+          "background": "#77e46e",
+          "foreground": "#0a071b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.25,
+          "background": "#73d3eb",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 164,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 197,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Graphik",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 65,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Deacon",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 48,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "icon",
+            "button"
+          ],
+          "frequency": 181,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 7.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Deacon",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Deacon",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Deacon",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Deacon",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Deacon",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Deacon",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.026,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Deacon",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.021,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 101,
+          "family": "Deacon",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 137,
+          "family": "Deacon",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.011,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 259,
+          "family": "Deacon",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b5a1a4d6-e393-44b5-84d1-6f4c2843ff7e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kikin design system\",\"item\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#style-reference\",\"name\":\"Kikin design system reference\",\"headline\":\"Kikin design system | Refero Styles\",\"description\":\"Explore Kikin's mixed Fintech design system: Forest Ink #122315, Meadow #55dd4a colors, Deacon, Graphik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kikin\",\"url\":\"https://www.kikin.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/87574d45-e35d-4ffd-8560-99fee4008d2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"caption\":\"Screenshot of Kikin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cf6f3dab-1f4a-447f-ae33-07be7a135d1a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kikin design system\",\"Kikin website design\",\"Kikin colors\",\"Kikin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Forest Ink\",\"Meadow\",\"Sage Border\",\"Lichen\",\"Deacon\",\"Graphik\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kikin design system\"},{\"@type\":\"Thing\",\"name\":\"Kikin website design\"},{\"@type\":\"Thing\",\"name\":\"Kikin colors\"},{\"@type\":\"Thing\",\"name\":\"Kikin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T02:07:29.119Z\",\"dateModified\":\"2026-05-07T02:07:29.119Z\"}]}19:T6b5,QUICK COLOR REFERENCE\n- text: #122315 (Forest Ink) on cream, #f3ede4 (Paper Cream) on dark\n- background: #f3ede4 (Paper Cream) for content, #122315 (Forest Ink) for hero\n- border: #566053 (Sage Border) on cream, #f3ede4 on dark\n- accent: #55dd4a (Meadow) — display words and eyebrow labels only\n- primary action: #55dd4a (filled action)\n- illustration accents: #73d3eb River Blue, #ffed52 Sun Yellow, #0a071b Deep Navy\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Create a Primary Action Button: #55dd4a background, #141414 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. Numbered feature block on cream. Eyebrow '01' in Graphik 400 14px #55dd4a with +0.22em tracking. Section title in Deacon 900 72px #122315, line-height 0.85. Body in Graphik 400 16px #333333, max-width 640px. Dashboard preview card to the right: 20px radius, #f3ede4 surface, 1px #566053 border, 32px padding, soft 0 12px 40px rgba(10,7,27,0.12) shadow.\n\n4. Testimonial block on cream. Two-column 5:7 split. Left column: product photo of a blue bottle on a water splash, full-bleed within the column, no radius. Right column: section title in Deacon 900 58px #122315, quote in Graphik 400 18px #333333, attribution in Deacon 400 14px #122315 with 1.2em tracking. Sticker Badge overlapping the bottom-left of the photo: 4° rotated rectangle, #55dd4a fill, #122315 text, 0px radius. Circular carousel arrows (64px, 1px #77e46e border, transparent fill) below the attribution.\n\n5. Floating Calculate Funding chip. Fixed bottom-right, 24px from edges. White fill, #122315 text, Graphik 500 13px, 20px radius, 12px 20px padding, thumbs-up icon in #55dd4a to the left of the text. Shadow: 0 8px 24px rgba(10,7,27,0.18)."
+}

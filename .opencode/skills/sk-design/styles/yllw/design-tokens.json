@@ -1,0 +1,449 @@
+{
+  "color": {
+    "putty-stone": {
+      "$value": "#cac7b4",
+      "$type": "color",
+      "$description": "Putty Stone — Light neutral action fill for buttons on dark surfaces."
+    },
+    "signal-yellow": {
+      "$value": "#ffdd00",
+      "$type": "color",
+      "$description": "Signal Yellow — Top announcement bar background, occasional highlight — the only fully saturated color in the system, reserved for time-sensitive messaging and high-visibility callouts"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon strokes, primary borders — the maximum-contrast foreground that does 90% of the typographic and structural work"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Inverse surface, card backgrounds on darker sections, button text on filled putty buttons, hairline border against putty canvas"
+    },
+    "carbon": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Carbon — Secondary dark surface for feature sections and inverted blocks — softer than pure ink, used where a dark band needs to feel like printed stock rather than a screen"
+    },
+    "smoke": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Smoke — Disabled and divider strokes on light surfaces — a third neutral tier between ink and putty for de-emphasized rules"
+    }
+  },
+  "font": {
+    "gd-grio-vf": {
+      "$value": "Gd Grio Vf",
+      "$type": "fontFamily",
+      "$description": "Single variable font covering everything from 13px captions to 216px hero display. Used universally for headings, body, nav, buttons, badges, cards, and footers. The signature choice is weight 500–600 at 116–216px with line-height compressed to 0.88–0.96 — type that crowds itself like a printed headline slab, not like UI text."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 90px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "97px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 97px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "116px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 116px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "166px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 166px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Gd Grio Vf",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 216px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(255, 255, 255) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(255, 255, 255) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "putty-canvas": {
+      "$value": "#cac7b4",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background and dominant neutral plane — sets the warm, paper-like tone across the site"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Lifted card surface that sits on top of the putty canvas for contrast"
+    },
+    "signal-banner": {
+      "$value": "#ffdd00",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed top announcement bar — the only chromatic band in the system"
+    },
+    "carbon-block": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted section background for feature/footer dark blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.yllw.com/en",
+      "siteName": "Yllw",
+      "extractedAt": "2026-06-03T18:37:10.589Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "color": {
+    "carbon-ink": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, hero CTA button fill, logo mark — the dominant non-white color carrying 1000+ borders and all body copy"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite — Secondary surface fill, dark card backgrounds, button borders — one step lighter than Carbon for layered elements"
+    },
+    "iron": {
+      "$value": "#4c4c4c",
+      "$type": "color",
+      "$description": "Iron — Body text, input borders, button borders, card borders — the working neutral for readable secondary copy"
+    },
+    "steel": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Steel — Muted headings, subhead text, supporting borders"
+    },
+    "slate": {
+      "$value": "#898989",
+      "$type": "color",
+      "$description": "Slate — Subtle heading text, dividers, light borders"
+    },
+    "fog": {
+      "$value": "#9d9d9d",
+      "$type": "color",
+      "$description": "Fog — Image borders, icon borders, tertiary text"
+    },
+    "silver": {
+      "$value": "#b2b2b2",
+      "$type": "color",
+      "$description": "Silver — Link borders, decorative dividers, lightest structural lines"
+    },
+    "pewter": {
+      "$value": "#c6c6c6",
+      "$type": "color",
+      "$description": "Pewter — Hairline borders, disabled states"
+    },
+    "ash": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Ash — Subtle borders, card outlines"
+    },
+    "mist": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Mist — Soft surface fills, secondary button backgrounds, subtle wash backgrounds"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surface, button text on dark fills"
+    },
+    "ice-blue": {
+      "$value": "#e6f1ff",
+      "$type": "color",
+      "$description": "Ice Blue — Feature card surfaces, soft highlight panels — the only tinted neutral, used to frame product previews and walkthrough banners"
+    },
+    "cobalt-spark": {
+      "$value": "#0c76fe",
+      "$type": "color",
+      "$description": "Cobalt Spark — Wayfinding dots beside section eyebrows, icon accents, link color — the navigation accent, never used as a fill"
+    },
+    "lime-glow": {
+      "$value": "#dcf58f",
+      "$type": "color",
+      "$description": "Lime Glow — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    }
+  },
+  "font": {
+    "apk-galeria": {
+      "$value": "Apk Galeria",
+      "$type": "fontFamily",
+      "$description": "Primary display and body typeface. Carries headlines, body copy, buttons, and quotes with a serif-influenced rhythm. Custom font with no direct open substitute; the signature is its slightly elongated proportions and progressively tighter negative tracking as size scales up (-0.030em at 64px down to -0.009em at 18px). The two-tone headline pattern (one phrase in #0f0f0f, the next phrase in #898989 or #4c4c4c) creates a call-and-response rhythm that defines the brand voice."
+    },
+    "apkpraktikal": {
+      "$value": "Apkpraktikal",
+      "$type": "fontFamily",
+      "$description": "Categorical label typeface. Used exclusively for section eyebrows (OUR PLATFORM, FEATURED SOLUTIONS), navigation items, tab labels, and badge text. The wide tracking (0.12–0.14em at 14–16px) transforms short labels into uppercase spatial signatures that read more like architectural annotations than headlines. Weight 700 for emphasized CTAs in small caps form."
+    },
+    "karla": {
+      "$value": "Karla",
+      "$type": "fontFamily",
+      "$description": "Karla — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Karla",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Apkpraktikal",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 22px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Apk Galeria",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero canvas with dot grid overlay"
+    },
+    "soft-card": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary buttons, subtle surface lifts"
+    },
+    "tinted-card": {
+      "$value": "#e6f1ff",
+      "$type": "color",
+      "$description": "Surface level 2: Feature panels, product preview cards, walkthrough banners"
+    },
+    "dark-surface": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 3: Dark mode sections or inverted cards"
+    },
+    "accent-fill": {
+      "$value": "#dcf58f",
+      "$type": "color",
+      "$description": "Surface level 4: Primary CTA pill button only"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://invisibletech.ai",
+      "siteName": "Invisibletech",
+      "extractedAt": "2026-06-03T19:08:50.418Z",
+      "variant": "extended"
+    }
+  }
+}

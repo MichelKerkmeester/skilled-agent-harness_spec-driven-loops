@@ -1,0 +1,1243 @@
+{
+  "source": "https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596",
+  "uuid": "30a8b128-a5bb-4d86-85eb-743b78091596",
+  "name": "Pravah",
+  "northStar": "engineering dossier on warm parchment",
+  "capturedAt": "2026-07-18T09:45:10.544Z",
+  "meta": {
+    "url": "https://pravah.com",
+    "siteName": "Pravah",
+    "extractedAt": "2026-06-03T18:17:28.007Z",
+    "durationMs": 39462,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 418,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ABCfavorit Book at weight 400 for all body and most display text — the 700 weight is reserved for emphasis lines, nav, and specific heading accents, never decorative",
+      "Set letter-spacing to -0.02em on all text 28px and above, and 0.10em on all uppercase labels and badges 12px or smaller",
+      "Enable font features 'ss04' and 'ss11' globally on all ABCfavorit instances to preserve the custom glyph character",
+      "Use the Parchment (#f3f1ed) canvas for all default page backgrounds and reserve Aubergine Black (#302023) for full-bleed section inversions only",
+      "Apply 4px radius to all cards, badges, and buttons except primary CTAs, which use 100px (pill shape)",
+      "Use the uppercase tracked label pattern (12px, 0.10em, 2px 8px padding, 4px radius) for all section classifications and status tags",
+      "Separate list items in the dark sections with 1px Ink Black dividers at 30% opacity, not extra vertical padding"
+    ],
+    "donts": [
+      "Do not introduce chromatic accent colors — the entire palette is warm-neutral, and any blue, green, or red will break the editorial-engineering tone",
+      "Do not use shadows for card or button elevation — depth comes from surface tone shifts and 1px borders only",
+      "Do not mix multiple font families — ABCfavorit Book is the sole typeface, and hierarchy must be achieved through weight and size alone",
+      "Do not use the 700 weight for body text or long-form copy — it is reserved for short emphatic lines and navigation",
+      "Do not use the Aubergine Black background for inline elements or small components — it belongs only in full-bleed section inversions",
+      "Do not use gradients on text, buttons, or backgrounds — the system is flat and printed in feel",
+      "Do not use rounded corners above 8px on cards or containers — only the pill CTA gets the 100px radius"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f3f1ed",
+        "name": "Parchment",
+        "role": "Primary page canvas — the warm off-white that gives the entire system its editorial, non-digital feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, badge fills, and inset panels — sits one step above the parchment canvas to create gentle elevation without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181011",
+        "name": "Ink Black",
+        "role": "Primary text, default borders, nav strokes, and structural outlines — the dominant typographic and border color across all contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Secondary headings and heavier-weight text where slightly softer than Ink Black is desired",
+        "group": "neutral"
+      },
+      {
+        "hex": "#302023",
+        "name": "Aubergine Black",
+        "role": "Dramatic dark-section backgrounds (Problem, full-bleed inverse bands) — the only near-saturated tone, used to invert the page temperature",
+        "group": "brand"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Muted text, inactive states, and lighter border treatments where Ink Black would be too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Dim",
+        "role": "Captions, timestamps, and tertiary metadata where hierarchy needs to recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d4d4",
+        "name": "Bone",
+        "role": "Hairline borders, illustration fills, and low-emphasis dividers — the lightest structural line color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is structured as a full-bleed max-width (1200px) container with a two-column hero that splits left (text, 45%) and right (image, 55%). Below the hero, sections alternate between Parchment and full-bleed Aubergine Black bands, each 64-80px vertical padding. Content within sections is arranged in two equal columns for problem/vision lists, or as left-illustration/right-text pairs for technology sections. Navigation is a minimal top bar with no sticky behavior or shadow. The overall rhythm is unhurried — generous vertical breathing room between sections, no dense data tables, and a clear left-to-right reading flow. The dark Problem section creates a dramatic midpoint before returning to Parchment for the technology/solution content below.",
+    "imagery": "The visual language is built from three distinct image types: (1) Pointillist pixel-mapped photography — real photographs of power infrastructure (transmission towers, grid hardware) rendered as dot-matrix patterns, giving them a data-scanned quality; (2) Thin-line wireframe illustrations — isometric grids, utility poles, and flow diagrams drawn in 1px black strokes on Parchment or white, functioning as technical schematics; (3) Overlaid glass notification cards — semi-transparent widgets with real-time data, creating a monitoring-dashboard feel. Photography is dark and moody (deep purples and blacks), always full-bleed and contained within the right half of the hero. Illustrations sit in large square panels on the left, balanced with text on the right. No lifestyle photography, no human subjects, no decorative stock — every image serves a technical or data-narrative purpose.",
+    "similar": [
+      {
+        "why": "Same near-monochromatic warm-neutral palette with dark inversion sections, single-family grotesque typography, and uppercase tracked labels for section tags",
+        "business": "Common Sense Machines"
+      },
+      {
+        "why": "Similar editorial scientific tone with cream canvas, restrained palette, weight-only typographic hierarchy, and dark dramatic section inversions",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Engineering-dossier aesthetic with wireframe-style illustrations, pointillist or pixel-mapped photography, and uppercase technical labels",
+        "business": "Hugging Face"
+      },
+      {
+        "why": "Infrastructure/energy domain with same parchment-and-aubergine warm-neutral palette, ABC-like grotesque type, and dramatic full-bleed dark section breaks",
+        "business": "Form Energy"
+      },
+      {
+        "why": "Restrained near-monochromatic interface, two-weight type system, pill-shaped ghost CTAs, and technical schematic illustrations replacing decorative imagery",
+        "business": "Mistral AI"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "4px",
+        "badges": "4px",
+        "inputs": "4px",
+        "buttons": "100px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f3f1ed",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Base page background across most sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 1,
+        "purpose": "Inset panels, alert cards, and badge fills one level above canvas"
+      },
+      {
+        "hex": "#302023",
+        "name": "Aubergine Inversion",
+        "level": 2,
+        "purpose": "Full-bleed dark sections that flip tonal register for dramatic contrast"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 4px 20px rgba(0,0,0,0.15), backdrop-filter: blur(8px)",
+        "element": "Glass Notification Card"
+      },
+      {
+        "style": "none — relies on 1px Bone border for definition",
+        "element": "Inset Alert Card"
+      }
+    ],
+    "northStar": "engineering dossier on warm parchment",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary call-to-action (Get In Touch, nav CTA)",
+        "description": "Fully rounded (100px radius) ghost button. Ink Black (#181011) 1px border on transparent fill, ABCfavorit 400 at 15px, Ink Black text. Padding 8px 20px. No fill state — always outlined. The extreme radius makes the button read as soft and approachable against the technical surroundings."
+      },
+      {
+        "name": "Square Outlined Button",
+        "role": "Secondary action in dense areas",
+        "description": "4px radius, Ink Black 1px border, 4px 16px padding. ABCfavorit 400 at 14-15px. Used where a pill shape would feel too soft for a technical context."
+      },
+      {
+        "name": "Uppercase Section Label",
+        "role": "Section tags (PROBLEM, VISION, CRITICAL)",
+        "description": "White (#ffffff) fill, 4px radius, 2px 8px padding. ABCfavorit 400 at 12px in Ink Black with 0.10em letter-spacing. Uppercase tracked text reads like a field classification tag. In dark sections, the fill becomes the dark surface with white text or stays white-on-dark."
+      },
+      {
+        "name": "Glass Notification Card",
+        "role": "Overlay alert/widget on hero imagery",
+        "description": "Semi-transparent white fill over the hero image, 4-8px radius, soft blur backdrop. ABCfavorit 400 at 14px for body, 700 for the alert title (CRITICAL). Padding 12-16px. These cards feel like real-time monitoring widgets floating on the grid image."
+      },
+      {
+        "name": "Diamond Grid Icon",
+        "role": "Visual marker for problem/vision list items",
+        "description": "3×3 or 4×4 grid of small diamond/rhombus shapes (8-10px each). Filled or outlined in Ash (#aaaaaa) or white depending on section. The dot-pattern acts as a miniature legend or status grid — consistent with the pointillist aesthetic."
+      },
+      {
+        "name": "Problem/Vision Item",
+        "role": "Row entry in the dark section lists",
+        "description": "Two-column row: diamond grid icon on left (40-48px wide), heading + body text on right. Heading at 20px weight 700 white, body at 14-15px weight 400 Ash. Separated from next item by 1px Ink Black divider with 0.3 opacity. Padding 24px vertical."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide nav",
+        "description": "Horizontal bar on Parchment canvas. Logo lockup (small diamond + 'Pravah' at 15px weight 400) on left, nav links (Problem, Technology, Team) at 14-15px in middle, pill CTA on right. Items separated by 12-16px gap. No background fill — sits directly on canvas with only a bottom hairline border in Bone (#d8d4d4) to separate from hero."
+      },
+      {
+        "name": "Hero Text Block",
+        "role": "Hero left-column content",
+        "description": "Two-line mixed-weight treatment: an introductory line at 28-32px weight 400 in Charcoal or Ash, followed by the main statement at 40-48px weight 400 in Ink Black. The weight stays at 400 throughout — hierarchy comes from size and the subtle tonal shift from Ash to Ink Black. The lead-in line ('The grid is at its limits.') sets a quieter register than the bold proclamation below it."
+      },
+      {
+        "name": "Wireframe Illustration Panel",
+        "role": "Technical diagram in feature sections",
+        "description": "Large square or rectangular panel containing thin black line art — isometric grids, utility poles, flow diagrams. 1px strokes in Ink Black on Parchment or white fill. No fills, no gradients. Functions as a technical schematic rather than decorative imagery. Often paired with a small alert card overlay (Overload risk detected)."
+      },
+      {
+        "name": "Inset Alert Card",
+        "role": "Contextual callout within illustrations",
+        "description": "Small white card overlaid on a wireframe diagram. 4px radius, subtle 1px Bone border. ABCfavorit 700 at 14px for alert title, 400 at 12-14px Ash for explanation. Reads as a machine-generated status message within a technical schematic."
+      },
+      {
+        "name": "Full-Bleed Dark Section",
+        "role": "Tonal inversion band (Problem section)",
+        "description": "Entire section flips to Aubergine Black (#302023) background. All text becomes white or Ash. Diamond grid icons and list items are restyled in white. This inversion is used sparingly — at most one per page — to create a dramatic mid-page contrast and signal a shift from introduction to problem statement."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system carrying all UI text. The two-weight binary (regular/bold) replaces color or size variation for hierarchy. Weight 400 reads as body and supporting text; weight 700 is reserved for emphasis lines, key headings, and navigation. The two stylistic alternates ss04 and ss11 are enabled globally — these likely alter specific glyphs (likely the 'a' and 'g' or similar) that give ABCfavorit its distinctive contemporary grotesque character.",
+        "sizes": "12, 14, 15, 17, 20, 28, 32, 40, 48",
+        "family": "ABCfavorit Book",
+        "weight": "400, 700",
+        "lineHeight": "1.10 (display), 1.30 (headings), 1.40 (subheadings), 1.50 (body)",
+        "substitute": "Inter, or Söhne (paid) — any neutral geometric grotesque with similar x-height and open apertures",
+        "letterSpacing": "-0.02em on display/headlines, 0.10em on uppercase labels and badges",
+        "fontFeatureSettings": "\"ss04\" on, \"ss11\" on"
+      }
+    ],
+    "description": "Pravah's design system operates on a near-monochromatic warm-neutral palette anchored by a parchment-cream canvas and punctuated by deep aubergine-black sections. The visual language is closer to an engineering dossier than a SaaS landing page: wireframe grid illustrations, pointillist pixel-mapped photography, and uppercase tracked labels that read like field notes. Typography is single-family (ABCfavorit Book) and does all the expressive work through two weights, tight display tracking, and open uppercase badges. Contrast is achieved through tonal inversion — full sections flip from cream to near-black — rather than chromatic accents. The result feels measured, scientific, and quietly confident, like infrastructure software that doesn't need to perform.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pravah design system\",\"item\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#style-reference\",\"name\":\"Pravah design system reference\",\"headline\":\"Pravah design system | Refero Styles\",\"description\":\"Explore Pravah's light AI design system: Parchment #f3f1ed, Pure White #ffffff colors, ABCfavorit Book typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\",\"mainEntityOfPage\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pravah\",\"url\":\"https://pravah.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"caption\":\"Screenshot of Pravah\"},\"image\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pravah design system\",\"Pravah website design\",\"Pravah colors\",\"Pravah typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Pure White\",\"Ink Black\",\"Charcoal\",\"ABCfavorit Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pravah design system\"},{\"@type\":\"Thing\",\"name\":\"Pravah website design\"},{\"@type\":\"Thing\",\"name\":\"Pravah colors\"},{\"@type\":\"Thing\",\"name\":\"Pravah typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-10T22:04:52.717Z\",\"dateModified\":\"2026-05-10T22:04:52.717Z\"}]}19:Taf9,QUICK COLOR REFERENCE:\n- text: #181011 (Ink Black)\n- background: #f3f1ed (Parchment canvas)\n- card surface: #ffffff (Pure White)\n- dark section: #302023 (Aubergine Black)\n- border: #d8d4d4 (Bone) or #181011 (Ink Black)\n- muted text: #aaaaaa (Ash)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create a hero section split layout. Left column: Parchment (#f3f1ed) background, intro line 'Building the next layer of infrastructure.' at 28px ABCfavorit weight 400 in Ash (#aaaaaa), main headline at 48px weight 400 in Ink Black with -0.02em letter-spacing. Below, an outlined pill button: 100px radius, 1px Ink Black border, transparent fill, 8px 20px padding, 'Get In Touch' at 15px weight 400. Right column: full-bleed dark image of a power transmission tower rendered as a white dot-matrix pattern on Aubergine Black (#302023) background, with two glass notification cards overlaid (semi-transparent white, 4px radius, backdrop blur, 12px padding, ABCfavorit 700 14px for alert titles).\n\n2. Create a dark problem section. Full-bleed Aubergine Black (#302023) background, 80px vertical padding. Section label 'PROBLEM' in a white badge: 4px radius, 2px 8px padding, ABCfavorit 400 12px in Ink Black with 0.10em letter-spacing. Section heading at 40px weight 400 in Pure White. Below, a 2-column grid of problem items, each with a 3×3 diamond grid icon (8px diamonds in Ash) on the left and a 20px weight 700 white heading + 15px weight 400 Ash body text on the right, separated by 1px Ink Black dividers at 30% opacity.\n\n3. Create a technology feature section. Parchment (#f3f1ed) background, 64px section padding. Left side: a square wireframe illustration panel showing an isometric grid with utility poles in 1px Ink Black strokes on white fill, 4px radius, with a small white alert card overlaid reading 'Overload risk detected' (700 14px heading, 400 12px body in Ash). Right side: heading 'Deep Learning-based Forecasting' at 32px weight 400 in Ink Black, body text at 15px weight 400 in Charcoal (#222222), 1.5 line height.\n\n4. Create a top navigation bar. Parchment background, no fill, 1px Bone (#d8d4d4) bottom border. Left: small diamond icon (8px) + 'Pravah' at 15px weight 400 in Ink Black. Center: nav links 'Problem', 'Technology', 'Team' at 14px weight 400 in Ink Black, 12px gap between items. Right: outlined pill button (100px radius, 1px Ink Black border, 8px 20px padding, 'Get In Touch' at 15px). Total height: 64px.\n\n5. Create an alert/status card component. White (#ffffff) fill, 4px radius, 1px Bone border, 16px padding. Top: small uppercase label badge (2px 8px padding, ABCfavorit 400 12px in Ink Black, 0.10em letter-spacing, 4px radius). Middle: alert title at 14px weight 700 in Ink Black. Bottom: explanation at 12px weight 400 in Ash. Max-width 280px."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids shadow-based elevation almost entirely. Depth is communicated through surface tone (Parchment → White → Aubergine inversion) and hairline 1px borders, not drop shadows. The only shadows present are the soft ones behind glass notification cards floating over the hero image — and those are atmospheric, not structural. This restraint keeps the interface feeling flat, technical, and printed rather than skeuomorphic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#181011",
+          "oklch": {
+            "c": 0.01361332086223697,
+            "h": 10.10522446448013,
+            "l": 0.18392911400967032
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "link",
+            "card",
+            "badge",
+            "heading",
+            "hero",
+            "body",
+            "image"
+          ],
+          "frequency": 947,
+          "confidence": 1,
+          "prominence": 112785181.02715993,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 5,
+            "card/color": 7,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 4,
+            "other/fill": 13,
+            "badge/color": 5,
+            "image/color": 3,
+            "other/color": 144,
+            "button/color": 1,
+            "heading/color": 10,
+            "nav/borderColor": 16,
+            "body/borderColor": 20,
+            "card/borderColor": 28,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 16,
+            "badge/borderColor": 20,
+            "image/borderColor": 12,
+            "other/borderColor": 561,
+            "button/borderColor": 4,
+            "heading/borderColor": 39
+          }
+        },
+        {
+          "hex": "#f3f1ed",
+          "oklch": {
+            "c": 0.0057449091162388955,
+            "h": 84.56639354949026,
+            "l": 0.9585732719448957
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 11393369.21567858,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "other",
+            "icon",
+            "hero",
+            "heading",
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 564,
+          "confidence": 1,
+          "prominence": 9262554.31778251,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "card/color": 4,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 4,
+            "other/fill": 12,
+            "badge/color": 2,
+            "other/color": 82,
+            "other/stroke": 8,
+            "heading/color": 8,
+            "body/borderColor": 20,
+            "card/borderColor": 16,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 16,
+            "badge/borderColor": 12,
+            "other/borderColor": 322,
+            "button/borderColor": 4,
+            "heading/borderColor": 32,
+            "badge/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#302023",
+          "oklch": {
+            "c": 0.02527173670013873,
+            "h": 6.521199717255962,
+            "l": 0.26442249759601355
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1514125.7716764254,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 170,
+          "confidence": 1,
+          "prominence": 902337.2513207803,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 17,
+            "heading/color": 17,
+            "other/borderColor": 68,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 161222.12434564802,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 6,
+            "heading/color": 7,
+            "other/borderColor": 24,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 78611.29460943108,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d8d4d4",
+          "oklch": {
+            "c": 0.004403393882098427,
+            "h": 17.241299357258292,
+            "l": 0.8731051412852807
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 36482.81419610299,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 22,
+            "other/color": 4,
+            "other/stroke": 9,
+            "other/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019712409844143856,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#181011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#f3f1ed",
+          "foreground": "#181011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#302023",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#f3f1ed",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.72,
+          "background": "#f3f1ed",
+          "foreground": "#302023"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#d8d4d4",
+          "foreground": "#181011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#d8d4d4",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#302023",
+          "foreground": "#d8d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#aaaaaa",
+          "foreground": "#181011"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.85,
+          "background": "#aaaaaa",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#302023",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.09,
+          "background": "#f3f1ed",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.7,
+          "background": "#302023",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.32,
+          "background": "#ffffff",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.06,
+          "background": "#f3f1ed",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.47,
+          "background": "#ffffff",
+          "foreground": "#d8d4d4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#f3f1ed",
+          "foreground": "#d8d4d4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#302023",
+          "foreground": "#181011"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "badge",
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "link",
+            "button",
+            "badge",
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|other",
+            "rowGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "paddingLeft|card",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABCfavorit Book",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 353,
+          "fontFeatureSettings": [
+            "\"ss04\", \"ss11\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ABCfavorit Book",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "link",
+            "card",
+            "hero",
+            "badge",
+            "body",
+            "image"
+          ],
+          "frequency": 208,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ABCfavorit Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/39f3c163-cbd8-4c38-b73f-8d4b1b23b85e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pravah design system\",\"item\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#style-reference\",\"name\":\"Pravah design system reference\",\"headline\":\"Pravah design system | Refero Styles\",\"description\":\"Explore Pravah's light AI design system: Parchment #f3f1ed, Pure White #ffffff colors, ABCfavorit Book typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\",\"mainEntityOfPage\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pravah\",\"url\":\"https://pravah.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/30a8b128-a5bb-4d86-85eb-743b78091596#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"caption\":\"Screenshot of Pravah\"},\"image\":\"https://images.refero.design/styles/refero.design/image/31364305-ef91-4e82-b8c8-540bc4905cf7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pravah design system\",\"Pravah website design\",\"Pravah colors\",\"Pravah typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Pure White\",\"Ink Black\",\"Charcoal\",\"ABCfavorit Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pravah design system\"},{\"@type\":\"Thing\",\"name\":\"Pravah website design\"},{\"@type\":\"Thing\",\"name\":\"Pravah colors\"},{\"@type\":\"Thing\",\"name\":\"Pravah typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-10T22:04:52.717Z\",\"dateModified\":\"2026-05-10T22:04:52.717Z\"}]}19:Taf9,QUICK COLOR REFERENCE:\n- text: #181011 (Ink Black)\n- background: #f3f1ed (Parchment canvas)\n- card surface: #ffffff (Pure White)\n- dark section: #302023 (Aubergine Black)\n- border: #d8d4d4 (Bone) or #181011 (Ink Black)\n- muted text: #aaaaaa (Ash)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create a hero section split layout. Left column: Parchment (#f3f1ed) background, intro line 'Building the next layer of infrastructure.' at 28px ABCfavorit weight 400 in Ash (#aaaaaa), main headline at 48px weight 400 in Ink Black with -0.02em letter-spacing. Below, an outlined pill button: 100px radius, 1px Ink Black border, transparent fill, 8px 20px padding, 'Get In Touch' at 15px weight 400. Right column: full-bleed dark image of a power transmission tower rendered as a white dot-matrix pattern on Aubergine Black (#302023) background, with two glass notification cards overlaid (semi-transparent white, 4px radius, backdrop blur, 12px padding, ABCfavorit 700 14px for alert titles).\n\n2. Create a dark problem section. Full-bleed Aubergine Black (#302023) background, 80px vertical padding. Section label 'PROBLEM' in a white badge: 4px radius, 2px 8px padding, ABCfavorit 400 12px in Ink Black with 0.10em letter-spacing. Section heading at 40px weight 400 in Pure White. Below, a 2-column grid of problem items, each with a 3×3 diamond grid icon (8px diamonds in Ash) on the left and a 20px weight 700 white heading + 15px weight 400 Ash body text on the right, separated by 1px Ink Black dividers at 30% opacity.\n\n3. Create a technology feature section. Parchment (#f3f1ed) background, 64px section padding. Left side: a square wireframe illustration panel showing an isometric grid with utility poles in 1px Ink Black strokes on white fill, 4px radius, with a small white alert card overlaid reading 'Overload risk detected' (700 14px heading, 400 12px body in Ash). Right side: heading 'Deep Learning-based Forecasting' at 32px weight 400 in Ink Black, body text at 15px weight 400 in Charcoal (#222222), 1.5 line height.\n\n4. Create a top navigation bar. Parchment background, no fill, 1px Bone (#d8d4d4) bottom border. Left: small diamond icon (8px) + 'Pravah' at 15px weight 400 in Ink Black. Center: nav links 'Problem', 'Technology', 'Team' at 14px weight 400 in Ink Black, 12px gap between items. Right: outlined pill button (100px radius, 1px Ink Black border, 8px 20px padding, 'Get In Touch' at 15px). Total height: 64px.\n\n5. Create an alert/status card component. White (#ffffff) fill, 4px radius, 1px Bone border, 16px padding. Top: small uppercase label badge (2px 8px padding, ABCfavorit 400 12px in Ink Black, 0.10em letter-spacing, 4px radius). Middle: alert title at 14px weight 700 in Ink Black. Bottom: explanation at 12px weight 400 in Ash. Max-width 280px."
+}

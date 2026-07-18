@@ -1,0 +1,372 @@
+{
+  "color": {
+    "abyss-teal": {
+      "$value": "#002025",
+      "$type": "color",
+      "$description": "Abyss Teal — Page canvas and dominant surface — the deep-ocean background that carries every section; large bordered card fills also read as this token because the surface stack collapses into a single dark plane"
+    },
+    "slate-reef": {
+      "$value": "#244348",
+      "$type": "color",
+      "$description": "Slate Reef — Mid-tier surface and dividers — floating card fills slightly lighter than the canvas, section dividers, hairline borders around hero card and feature blocks"
+    },
+    "tidewater": {
+      "$value": "#455c60",
+      "$type": "color",
+      "$description": "Tidewater — Elevated surface and heavier borders — used for raised card surfaces and stroke weights where more separation from the canvas is needed"
+    },
+    "lichen": {
+      "$value": "#54696c",
+      "$type": "color",
+      "$description": "Lichen — Muted surface accent and softer card borders — for secondary container backgrounds and quieter stroke treatments"
+    },
+    "deep-kelp": {
+      "$value": "#05333a",
+      "$type": "color",
+      "$description": "Deep Kelp — Lowest-elevation surface behind content inside dark cards — used for card padding interior fills where the outer card is lighter"
+    },
+    "storm-glass": {
+      "$value": "#7d8f92",
+      "$type": "color",
+      "$description": "Storm Glass — Muted body text and secondary borders — helper text, captions, inactive icon strokes, and quiet UI labels"
+    },
+    "sea-mist": {
+      "$value": "#9eaeb0",
+      "$type": "color",
+      "$description": "Sea Mist — Tertiary text and border — for less-emphasized copy and fine dividers that should recede further than Storm Glass"
+    },
+    "pale-foam": {
+      "$value": "#b7c6c9",
+      "$type": "color",
+      "$description": "Pale Foam — Lightest neutral — icon outlines on dark surfaces and thin card borders where higher contrast is needed without using full white"
+    },
+    "bone": {
+      "$value": "#fffffa",
+      "$type": "color",
+      "$description": "Bone — Primary text and high-contrast iconography — headlines, body copy, button text, and reverse-mode icon fills; a warm off-white that softens against the teal canvas"
+    },
+    "lime-voltage": {
+      "$value": "#79fa4b",
+      "$type": "color",
+      "$description": "Lime Voltage — Primary brand accent — underline flourishes under display keywords, eyebrow labels in uppercase, decorative SVG fills, product-category icon glows, and the terminal stop of the signature gradient"
+    },
+    "pale-lime": {
+      "$value": "#a4ed8a",
+      "$type": "color",
+      "$description": "Pale Lime — Lighter lime used for subdued accent text and outlined-link borders where a softer hit of brand color is needed"
+    },
+    "voltage-dark": {
+      "$value": "#0b3222",
+      "$type": "color",
+      "$description": "Voltage Dark — Dark green surface — for solid-fill lime-tinted backgrounds and badge containers where the lime accent needs a darker anchor"
+    },
+    "cyan-pulse": {
+      "$value": "#30d7f1",
+      "$type": "color",
+      "$description": "Cyan Pulse — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "solar-yellow": {
+      "$value": "#fce344",
+      "$type": "color",
+      "$description": "Solar Yellow — Secondary gradient stop — the warm tail of the tri-stop accent gradient used sparingly on decorative flows and a few product-card highlights"
+    }
+  },
+  "font": {
+    "gellix": {
+      "$value": "Gellix",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface — used for all display, heading, body, and UI copy. Weight 300 at 90–120px is the signature headline treatment: anti-convention for an enterprise platform, the whisper-weight display is what makes the dark canvas feel premium rather than heavy. The 0.35em tracking on 12-13px is reserved for uppercase eyebrow labels like 'OUR PRODUCTS'."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Rare legacy or fallback appearance — appears sparsely in the data, likely a system fallback for a single decorative or legal string; not a brand typeface and should not be propagated into new pages"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "90px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Gellix",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.9952px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4.9968px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "15.9984px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "26.496px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "29.9952px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "33.9984px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "abyss": {
+      "$value": "#002025",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the base plane every section sits on"
+    },
+    "deep-kelp": {
+      "$value": "#05333a",
+      "$type": "color",
+      "$description": "Surface level 1: Card interior fill — slightly lifted from the canvas, used for the background inside larger card containers"
+    },
+    "slate-reef": {
+      "$value": "#244348",
+      "$type": "color",
+      "$description": "Surface level 2: Floating cards and feature containers — clearly lifted from the canvas, the most common card surface"
+    },
+    "tidewater": {
+      "$value": "#455c60",
+      "$type": "color",
+      "$description": "Surface level 3: Highest elevation surface — reserved for raised elements that need to break the floating-card pattern"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://boostinsurance.com",
+      "siteName": "Boostinsurance",
+      "extractedAt": "2026-06-03T21:33:18.271Z",
+      "variant": "extended"
+    }
+  }
+}

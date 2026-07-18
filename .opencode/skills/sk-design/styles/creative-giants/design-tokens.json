@@ -1,0 +1,379 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#fffef7",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, text on dark accents — a warm off-white that replaces pure #ffffff and gives the whole system a paper-like, printed feel"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, captions, metadata, helper copy — recedes so display type can dominate"
+    },
+    "ash": {
+      "$value": "#aaaaaa",
+      "$type": "color",
+      "$description": "Ash — Input borders, inactive link color, tertiary dividers — soft structural gray that disappears when not needed"
+    },
+    "charcoal-scale": {
+      "$value": "#4d4c4a",
+      "$type": "color",
+      "$description": "Charcoal Scale — Mid-neutral for list borders, subtle elevation on the dark gradient track — warm gray, not blue-gray"
+    },
+    "magenta-bloom": {
+      "$value": "#8a0467",
+      "$type": "color",
+      "$description": "Magenta Bloom — Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "forest-teal": {
+      "$value": "#03624c",
+      "$type": "color",
+      "$description": "Forest Teal — Saturated brand accent for card frames and decorative strokes; pairs with Magenta Bloom for duotone treatments"
+    },
+    "powder-blue": {
+      "$value": "#a5c8eb",
+      "$type": "color",
+      "$description": "Powder Blue — Soft chromatic accent — card backgrounds, wash backgrounds, muted illustration fill; cools the warm canvas without competing"
+    },
+    "candy-pink": {
+      "$value": "#ffacea",
+      "$type": "color",
+      "$description": "Candy Pink — Pastel card surface — high-key, used as one-of-many tints in news/article cards; a softer sibling of Magenta Bloom"
+    },
+    "mint-wash": {
+      "$value": "#a5ebd6",
+      "$type": "color",
+      "$description": "Mint Wash — Pastel card surface — replaces the structural canvas on selected cards; reads as calm, cool, breathable"
+    },
+    "navy-ink": {
+      "$value": "#101731",
+      "$type": "color",
+      "$description": "Navy Ink — Deep accent card surface and inverted text ground; the only dark field the system uses, applied sparingly as a featured block"
+    },
+    "signal-yellow": {
+      "$value": "#ffd001",
+      "$type": "color",
+      "$description": "Signal Yellow — Sporadic high-chroma highlight (badges, tag pills, hover state on cards) — used in trace amounts, never as a primary fill"
+    }
+  },
+  "font": {
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "34px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "84px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 84px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fffef7",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white paper tone"
+    },
+    "card-tint": {
+      "$value": "#a5ebd6",
+      "$type": "color",
+      "$description": "Surface level 1: Pastel card variant — replaces canvas on accent cards"
+    },
+    "card-tint-pink": {
+      "$value": "#ffacea",
+      "$type": "color",
+      "$description": "Surface level 1: Pastel card variant — high-key highlight"
+    },
+    "card-tint-blue": {
+      "$value": "#a5c8eb",
+      "$type": "color",
+      "$description": "Surface level 1: Pastel card variant — cool wash"
+    },
+    "signal-pop": {
+      "$value": "#ffd001",
+      "$type": "color",
+      "$description": "Surface level 2: Sporadic yellow accent — badges, hover, single-card highlight"
+    },
+    "inverted-field": {
+      "$value": "#101731",
+      "$type": "color",
+      "$description": "Surface level 3: Dark accent surface for featured blocks; text inverts to Bone White"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.creativegiants.art",
+      "siteName": "Creative Giants",
+      "extractedAt": "2026-06-03T22:36:59.017Z",
+      "variant": "extended"
+    }
+  }
+}

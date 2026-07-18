@@ -1,0 +1,170 @@
+{
+  "color": {
+    "canvas-mist": {
+      "$value": "#f6f8f7",
+      "$type": "color",
+      "$description": "Canvas Mist — Page background, product photography backdrop, the dominant surface — everything else sits on this almost-white field"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary body text, dominant hairline borders, footer rules — the most-used color in the system at ~1017 occurrences, functioning as the typographic anchor"
+    },
+    "carbon": {
+      "$value": "#0f0e12",
+      "$type": "color",
+      "$description": "Carbon — Near-black with a barely-perceptible violet cast — used for dark hero bands, inverted text, and footer/divider blocks where pure black would feel too clinical"
+    },
+    "steel-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Steel Gray — Light border hairlines, nav icon fills, list dividers — the structural gray that organizes the page into ruled sections without ever calling attention to itself"
+    },
+    "graphite": {
+      "$value": "#b2b2b2",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary borders and subdued helper text — the quietest neutral, used only when a rule needs to be present but not assertive"
+    }
+  },
+  "font": {
+    "te-20": {
+      "$value": "te-20",
+      "$type": "fontFamily",
+      "$description": "The signature voice — a custom industrial sans used for nearly everything. Weight 100 (ultra-thin) at 13px is the body default and it is an anti-convention: most sites use 400-500 for body copy, this one uses a hairline that lets the photography do the talking. Weight 300 takes over at 19px and up for nav items, labels, and mid-size UI. Substitute: Inter at weight 100, or Suisse Int'l Thin — both preserve the wire-like quality that makes teenage engineering's type feel engineered rather than designed"
+    },
+    "te-40": {
+      "$value": "te-40",
+      "$type": "fontFamily",
+      "$description": "Reserved for primary page headings at exactly 40px in light weight 300 — the lightest possible headline voice paired with tight 1.11 leading keeps the type block compact and poster-like against the generous canvas"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "13px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "19px",
+        "fontWeight": 100,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "te-20",
+        "fontSize": "26px",
+        "fontWeight": 100,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "te-40",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "66": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Spacing 66px"
+    }
+  },
+  "surface": {
+    "canvas-mist": {
+      "$value": "#f6f8f7",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, default product photography backdrop — the base plane that almost everything sits on"
+    },
+    "pure-white-implicit": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product image cards appear on white within the canvas — the photographic bleed creates an even brighter island inside the near-white field"
+    },
+    "carbon": {
+      "$value": "#0f0e12",
+      "$type": "color",
+      "$description": "Surface level 3: Dark hero bands and footer — the only elevation device in the system, used to frame products like display cases"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://teenage.engineering",
+      "siteName": "teenage engineering",
+      "extractedAt": "2026-06-03T15:14:09.088Z",
+      "variant": "extended"
+    }
+  }
+}

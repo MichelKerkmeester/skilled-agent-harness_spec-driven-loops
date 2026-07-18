@@ -1,0 +1,1309 @@
+{
+  "source": "https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673",
+  "uuid": "5fbdad0a-d102-41c2-8253-f201ad6a6673",
+  "name": "Apollo",
+  "northStar": "Warm brick atelier at golden hour",
+  "capturedAt": "2026-07-18T09:52:23.025Z",
+  "meta": {
+    "url": "https://apolloworkspace.com",
+    "siteName": "Apollo",
+    "extractedAt": "2026-06-03T17:48:32.670Z",
+    "durationMs": 35124,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 388,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 3px border-radius on every interactive element, card, and image — this is non-negotiable and defines the print-publication feel",
+      "Use Ash Mist (#dddedf) for all hairline borders, dividers, and card edges — it is the most-used color on the site and structures every layout",
+      "Use Espresso Bark (#3c261c) for all body text and structural dark needs; reserve #000000 for image fills only",
+      "Use Terracotta Ember (#e97451) only for primary action borders, active nav states, and the logo monogram — never as a large surface fill",
+      "Use paradigm-pro at weight 300 for all display and hero headlines — the whisper-thin serif is the site's most distinctive typographic signature",
+      "Apply uppercase with 0.07-0.1em letter-spacing to all section headings, nav links, and eyebrow labels — this tracking is what makes the design read as editorial rather than web",
+      "Maintain 68px vertical section gaps and 45px card/section padding for the spacious, breathing-room rhythm"
+    ],
+    "donts": [
+      "Do not use border-radius larger than 3px — no pill buttons, no rounded cards, no soft corners anywhere",
+      "Do not use #ffffff as a background — always use Warm Linen (#f9f8f0) to maintain the cream canvas warmth",
+      "Do not use drop shadows or box-shadow elevation — separation comes from hairline borders and tonal surface shifts only",
+      "Do not use Terracotta Ember as a large fill color — it is an accent, rationed to borders, active states, and the logo only",
+      "Do not use Iris Ink (#4a43dd) for body text or navigation — it is reserved for decorative display headings and the logo monogram stroke",
+      "Do not use font-weight above 300 for the paradigm-pro display serif — the whisper-thin weight is the entire point",
+      "Do not mix multiple accent colors in a single view — terracotta speaks alone; adding iris or honey to the same component creates noise"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#3c261c",
+        "name": "Espresso Bark",
+        "role": "Primary text, navigation background, structural borders — a warm near-black that anchors every screen without the harshness of pure #000000",
+        "group": "brand"
+      },
+      {
+        "hex": "#e97451",
+        "name": "Terracotta Ember",
+        "role": "Primary action borders, active nav state, decorative accents — rationed to moments of intent, never used as a large surface fill",
+        "group": "brand"
+      },
+      {
+        "hex": "#4a43dd",
+        "name": "Iris Ink",
+        "role": "Decorative display headings, logo monogram stroke — a vivid violet that breaks the warm palette for brand-voice headlines only",
+        "group": "brand"
+      },
+      {
+        "hex": "#f7efc5",
+        "name": "Honey Parchment",
+        "role": "Subtle highlight washes, eyebrow label backgrounds, warm text tint — a muted yellow that warms the cream canvas without competing with terracotta",
+        "group": "accent"
+      },
+      {
+        "hex": "#f9f8f0",
+        "name": "Warm Linen",
+        "role": "Page canvas, content section backgrounds — the dominant surface, never pure white, always slightly cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddedf",
+        "name": "Ash Mist",
+        "role": "Hairline borders, dividers, card edges — the most-used color on the site (1,300+ occurrences), creates the cool rule-lines that structure every layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcede8",
+        "name": "Blush Cream",
+        "role": "Warm tinted surface for hover states and soft callout blocks — a peach wash that warms the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e3f2",
+        "name": "Lilac Mist",
+        "role": "Cool surface accent for secondary panels — a lavender-tinted gray that introduces gentle contrast against the warm cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "True black used sparingly for image fills and footer text — Espresso Bark handles all structural dark needs",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The layout is max-width 1200px centered with a spacious vertical rhythm. The hero is full-bleed: a full-viewport photograph with the Espresso Bark navigation bar overlaid, and the display headline + CTA centered over the image. Content sections alternate between two patterns: (1) text-left/image-right and text-right/image-left in a two-column grid with 68px vertical gaps, and (2) centered text stacks with feature lists. Sections sit on a continuous Warm Linen canvas with no section background changes — the only tonal shift is the dark navigation bar at the top. The grid is simple two-column for content blocks, with images sized to roughly 45% width and text to 40% width, leaving generous gutters. Navigation is a single sticky top bar — no sidebar, no mega-menu. The overall density is spacious and editorial, with each section breathing into the next rather than competing for attention.",
+    "imagery": "Photography dominates the visual language: full-bleed lifestyle imagery in the hero showing people in the workspace, and candid portrait photography in content sections. All photography uses warm, golden-hour lighting with natural tones — no cool or studio-lit images. The treatment is editorial and candid, never staged product photography. A single detailed architectural illustration (a painted/rendered building facade) appears in one content section, adding a hand-crafted, almost watercolor quality that contrasts with the photography. The illustration uses warm browns and greens that sit within the site's palette. Icons are minimal — the only icon is the custom W monogram in the nav, which functions as a logotype rather than a UI icon. Images use 3px corners consistently, no overlays or duotone treatments.",
+    "similar": [
+      {
+        "why": "Same boutique-workspace editorial language — warm earth tones, spacious layout, photographic imagery of curated interiors, and a membership-brochure feel rather than a tech-product feel",
+        "business": "NeueHouse"
+      },
+      {
+        "why": "Same warm cream canvas, thin serif display type, generous whitespace, and the quality of a printed editorial spread translated to web",
+        "business": "Kinfolk Magazine"
+      },
+      {
+        "why": "Same warm brick-and-cream palette, lifestyle photography in golden-hour light, and a design language that prioritizes tactile, hand-crafted feel over digital slickness",
+        "business": "Ace Hotel"
+      },
+      {
+        "why": "Same restrained warm palette, thin display serif headlines, and the editorial-print aesthetic applied to a lifestyle brand",
+        "business": "Cereal Magazine"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "3px",
+        "cards": "3px",
+        "images": "3px",
+        "inputs": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "68px",
+      "cardPadding": "45px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f9f8f0",
+        "name": "Warm Linen Canvas",
+        "level": 1,
+        "purpose": "Page background and content section base"
+      },
+      {
+        "hex": "#fcede8",
+        "name": "Blush Cream",
+        "level": 2,
+        "purpose": "Soft tinted surface for hover states and callout blocks"
+      },
+      {
+        "hex": "#e4e3f2",
+        "name": "Lilac Mist",
+        "level": 3,
+        "purpose": "Cool secondary panel surface for contrast blocks"
+      },
+      {
+        "hex": "#3c261c",
+        "name": "Espresso Bark",
+        "level": 4,
+        "purpose": "Navigation bar and footer dark surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — sits flush against canvas, defined only by its dark Espresso Bark background",
+        "element": "Navigation Bar"
+      },
+      {
+        "style": "none — no drop shadows",
+        "element": "Content Cards"
+      }
+    ],
+    "northStar": "Warm brick atelier at golden hour",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.84,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.55,
+        "letterSpacing": 0.54
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.49,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.27,
+        "letterSpacing": 2.24
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.17,
+        "letterSpacing": 2.52
+      },
+      {
+        "role": "display",
+        "size": 47,
+        "lineHeight": 0.95,
+        "letterSpacing": 3.76
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action — reserve space, book a tour",
+        "description": "Transparent fill, 1px Terracotta Ember (#e97451) border, 3px radius, padding 23px 45px. Text: MonaSans weight 500, 12px, uppercase, letter-spacing 0.07em, color Warm Linen (#f9f8f0) when on Espresso Bark nav, or Espresso Bark (#3c261c) when on Warm Linen canvas. No drop shadow."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary actions on dark navigation",
+        "description": "Transparent fill, 1px Warm Linen (#f9f8f0) border, 3px radius, padding 17px 34px. Text: MonaSans weight 500, 12px, uppercase, letter-spacing 0.07em, color Warm Linen. Sits on the Espresso Bark navigation bar."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation, sticky",
+        "description": "Full-width, Espresso Bark (#3c261c) background, height ~60px. Left: nav links in MonaSans weight 500, 12px, uppercase, letter-spacing 0.1em, color Warm Linen (#f9f8f0). Center: W monogram logo. Right: primary CTA. Active link state uses Terracotta Ember border-bottom. Padding 17px 34px on link items."
+      },
+      {
+        "name": "W Logo Monogram",
+        "role": "Brand identity mark, center of navigation",
+        "description": "Custom stylized W glyph, approximately 24px tall. Rendered in Terracotta Ember (#e97451) on the Espresso Bark nav. Functions as the visual anchor of the header — the single most colorful element above the fold."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Full-bleed hero text overlay",
+        "description": "Typeface: paradigm-pro weight 300. Size: 47px. Line-height: 0.95. Letter-spacing: 0.08em (3.76px). Color: Warm Linen (#f9f8f0) over a darkened full-bleed photograph. The ultra-thin serif at this size is the site's most distinctive choice — it reads as engraved rather than typeset."
+      },
+      {
+        "name": "Hero Eyebrow Label",
+        "role": "Pre-headline context above the hero display",
+        "description": "MonaSans weight 500, 14px, uppercase, letter-spacing 0.07em, color Warm Linen (#f9f8f0). Sits centered above the display headline with 20px gap."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Small uppercase label introducing each content section",
+        "description": "MonaSans weight 600, 12px, uppercase, letter-spacing 0.1em (1.2px), color Espresso Bark (#3c261c). Left-aligned, sits 30px above the section heading. Functions as a magazine-style kicker."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Primary heading for content sections",
+        "description": "MonaSans weight 500, 32px, line-height 1.27, uppercase, letter-spacing 0.07em (2.24px), color Espresso Bark (#3c261c). Reads as a printed section title rather than a web heading."
+      },
+      {
+        "name": "Display Heading (Serif)",
+        "role": "Hero or large editorial display text on content sections",
+        "description": "paradigm-pro weight 300, 36px, line-height 0.97, letter-spacing 0.03em, color Iris Ink (#4a43dd) for brand-voice headings or Espresso Bark for standard section openings."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Primary paragraph content",
+        "description": "MonaSans weight 400, 18px, line-height 1.55, color Espresso Bark (#3c261c). Maximum measure ~600px for readability. Paragraph spacing 20px."
+      },
+      {
+        "name": "Feature List",
+        "role": "Bulleted feature list in content sections",
+        "description": "Items use MonaSans weight 400, 18px, line-height 1.84, color Espresso Bark. Custom bullet: small Terracotta Ember (#e97451) dot, 6px diameter, left-aligned with 14px indent. Vertical gap between items: 14px."
+      },
+      {
+        "name": "Content Section",
+        "role": "Alternating text+image content blocks",
+        "description": "Warm Linen (#f9f8f0) background, 68px vertical padding top and bottom, max-width 1200px centered. Two-column grid: text column (left or right) + image column. Image uses 3px radius. No card background or border — the section itself is the container."
+      },
+      {
+        "name": "Image Container",
+        "role": "All photographic and illustrative imagery",
+        "description": "3px border-radius on all images. No overlay, no border. Images bleed to their column edges within the 1200px max-width container. Architectural illustrations use a painterly, detailed treatment rather than flat vector."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, navigation, buttons, section headings, UI labels — the workhorse sans-serif. Uppercase instances at 0.07-0.1em tracking are signature; the wide tracking on 12-14px labels reads like a museum placard, not a UI label.",
+        "sizes": "12, 14, 18, 20, 32, 36",
+        "family": "MonaSans",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "1.17, 1.27, 1.49, 1.50, 1.55, 1.84",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "0.03em at body, 0.07em at uppercase headings, 0.1em at uppercase nav and eyebrow labels"
+      },
+      {
+        "role": "Display headings and hero text only — a whisper-thin custom serif at weight 300. The ultra-light weight is anti-convention: most editorial sites use 400-500 serifs for headlines, but this 300 creates authority through restraint. Tight line-height (0.95) lets the letters interlock like a logotype.",
+        "sizes": "36, 47",
+        "family": "paradigm-pro",
+        "weight": "300",
+        "lineHeight": "0.95, 0.97",
+        "substitute": "Cormorant or Libre Caslon Text at weight 300",
+        "letterSpacing": "0.08em at display, 0.03em at heading-lg"
+      }
+    ],
+    "description": "Apollo reads like a printed membership brochure for a curated physical workspace: warm cream canvas, hairline ash-gray rules, and a whisper-thin display serif that gives every page an editorial weight. A single terracotta accent is rationed across actions and one or two decorative headings, while deep espresso brown replaces black as the structural dark — the palette feels sunlit rather than backlit. The 3px corner radius rejects SaaS pill-button softness in favor of print-publication crispness, and uppercase labels with wide tracking read like section dividers in a magazine. Color rarely speaks, and when it does, it speaks in one confident orange.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Apollo design system\",\"item\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#style-reference\",\"name\":\"Apollo design system reference\",\"headline\":\"Apollo design system | Refero Styles\",\"description\":\"Explore Apollo's light Other design system: Espresso Bark #3c261c, Terracotta Ember #e97451 colors, MonaSans, paradigm-pro typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Apollo\",\"url\":\"https://apolloworkspace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"caption\":\"Screenshot of Apollo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Apollo design system\",\"Apollo website design\",\"Apollo colors\",\"Apollo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Espresso Bark\",\"Terracotta Ember\",\"Iris Ink\",\"Honey Parchment\",\"MonaSans\",\"paradigm-pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Apollo design system\"},{\"@type\":\"Thing\",\"name\":\"Apollo website design\"},{\"@type\":\"Thing\",\"name\":\"Apollo colors\"},{\"@type\":\"Thing\",\"name\":\"Apollo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:17:25.659Z\",\"dateModified\":\"2026-05-10T23:17:25.659Z\"}]}19:T851,primary action: #e97451 (filled action)\nCreate a Primary Action Button: #e97451 background, #3c261c text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n**Quick Color Reference**\n- Page background: #f9f8f0 (Warm Linen)\n- Primary text / structural dark: #3c261c (Espresso Bark)\n- Hairline borders: #dddedf (Ash Mist)\n- Primary action accent: #e97451 (Terracotta Ember)\n- Decorative display heading: #4a43dd (Iris Ink)\n- Highlight wash: #f7efc5 (Honey Parchment)\n- All interactive elements: 3px border-radius\n\n**Example Component Prompts**\n\n\n2. *Content Section with Feature List*: Warm Linen (#f9f8f0) background, 68px vertical padding, max-width 1200px centered. Two-column grid: left column is text, right column is a photograph (3px radius). Section eyebrow label in MonaSans weight 600, 12px, uppercase, letter-spacing 1.2px, color #3c261c. Section heading in MonaSans weight 500, 32px, uppercase, letter-spacing 2.24px, color #3c261c. Body text in MonaSans weight 400, 18px, line-height 1.55, color #3c261c. Feature list below: each item is MonaSans weight 400, 18px, line-height 1.84, with a 6px Terracotta Ember (#e97451) dot bullet, 14px vertical gap between items.\n\n3. *Navigation Bar*: Full-width, background #3c261c, height ~60px, padding 17px 34px on link items. Three zones: left-aligned nav links in MonaSans weight 500, 12px, uppercase, letter-spacing 1.2px, color #f9f8f0; center-aligned W monogram in #e97451; right-aligned ghost button (1px #f9f8f0 border, 3px radius, padding 17px 34px, text MonaSans weight 500, 12px, uppercase, letter-spacing 0.84px, color #f9f8f0). Active nav link gets a 1px #e97451 border-bottom.\n\n4. *Editorial Display Heading*: paradigm-pro weight 300, 36px, line-height 0.97, letter-spacing 1.08px, color #4a43dd. Use for brand-voice section openers or pull-quote text. Never use for body content or navigation.\n\n5. *Image Card / Workspace Photo*: Full-column-width image, 3px border-radius, no border, no shadow. Sits directly on Warm Linen (#f9f8f0) canvas. Pair with a text column on the opposite side at 68px vertical gap from the previous section."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately shadowless. Structural separation comes from the Ash Mist hairline border (#dddedf) and tonal surface shifts, never from elevation. This reinforces the print-publication aesthetic — pages feel like printed spreads, not floating app cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#dddedf",
+          "oklch": {
+            "c": 0.0017447941077064107,
+            "h": 247.84157039775516,
+            "l": 0.9001118411544127
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav",
+            "hero",
+            "heading",
+            "list",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 1316,
+          "confidence": 1,
+          "prominence": 85323216.30038807,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 68,
+            "body/borderColor": 80,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "list/borderColor": 60,
+            "image/borderColor": 8,
+            "other/borderColor": 1020,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 45477783.38599111,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "hero/color": 1,
+            "list/color": 1,
+            "other/fill": 2,
+            "image/color": 2,
+            "other/color": 18,
+            "footer/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#3c261c",
+          "oklch": {
+            "c": 0.03784913978298547,
+            "h": 45.25097563994299,
+            "l": 0.2930423937278692
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "body",
+            "heading",
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 141,
+          "confidence": 1,
+          "prominence": 11571779.915952895,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 12,
+            "link/color": 1,
+            "list/color": 14,
+            "nav/stroke": 1,
+            "other/fill": 21,
+            "other/color": 50,
+            "button/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 20,
+            "link/borderColor": 4,
+            "button/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e97451",
+          "oklch": {
+            "c": 0.15350933577649686,
+            "h": 37.40942488223334,
+            "l": 0.6885480442364628
+          },
+          "contexts": [
+            "button",
+            "link",
+            "icon",
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 7809671.510705329,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "icon/color": 1,
+            "link/color": 3,
+            "other/color": 17,
+            "heading/color": 2,
+            "nav/borderColor": 16,
+            "link/borderColor": 12,
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f9f8f0",
+          "oklch": {
+            "c": 0.010603857874036041,
+            "h": 100.8199330506261,
+            "l": 0.9777020652986893
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 6756567.872450686,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 6,
+            "other/color": 92,
+            "heading/color": 3,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4a43dd",
+          "oklch": {
+            "c": 0.22464477112376566,
+            "h": 276.37103516961037,
+            "l": 0.4954370810819828
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 5434269.088008149,
+          "properties": [
+            "color",
+            "fill",
+            "stroke",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "link/color": 1,
+            "other/fill": 15,
+            "other/color": 53,
+            "other/stroke": 15,
+            "heading/color": 6,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f7efc5",
+          "oklch": {
+            "c": 0.05520195529418956,
+            "h": 98.38616770088709,
+            "l": 0.9478984987855351
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 5392398.948923107,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 1,
+            "other/color": 26,
+            "heading/color": 2,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#918037",
+          "oklch": {
+            "c": 0.09525040394905278,
+            "h": 96.27242123919154,
+            "l": 0.600318406282984
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1035118,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4e3f2",
+          "oklch": {
+            "c": 0.020235574179700053,
+            "h": 289.0629411675389,
+            "l": 0.921030095474991
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1003590,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcede8",
+          "oklch": {
+            "c": 0.017671431594699277,
+            "h": 39.399689263042426,
+            "l": 0.9565809896337334
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 24815.75787379114,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06430541896131567,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.71,
+          "background": "#f9f8f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#fcede8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.11,
+          "background": "#f7efc5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#e4e3f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#dddedf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.26,
+          "background": "#3c261c",
+          "foreground": "#f9f8f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.39,
+          "background": "#3c261c",
+          "foreground": "#fcede8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#3c261c",
+          "foreground": "#f7efc5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.15,
+          "background": "#e4e3f2",
+          "foreground": "#3c261c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.49,
+          "background": "#dddedf",
+          "foreground": "#3c261c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.08,
+          "background": "#e97451",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#f9f8f0",
+          "foreground": "#4a43dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.87,
+          "background": "#fcede8",
+          "foreground": "#4a43dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.77,
+          "background": "#f7efc5",
+          "foreground": "#4a43dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#918037",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#e4e3f2",
+          "foreground": "#4a43dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.97,
+          "background": "#dddedf",
+          "foreground": "#4a43dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.77,
+          "background": "#e97451",
+          "foreground": "#3c261c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#918037",
+          "foreground": "#f9f8f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.6,
+          "background": "#918037",
+          "foreground": "#3c261c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "link",
+            "image"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "list",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|list",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|hero",
+            "columnGap|hero",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "MonaSans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 312,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "paradigm-pro",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.84,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 98,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.49,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "MonaSans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "body",
+            "image",
+            "footer",
+            "link"
+          ],
+          "frequency": 97,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.27,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.27,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "MonaSans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "MonaSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "MonaSans",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.16,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "paradigm-pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.97,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "paradigm-pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.97,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 47,
+          "family": "paradigm-pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.95,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6e0cee11-274d-41dd-8fce-563a212728d0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Apollo design system\",\"item\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#style-reference\",\"name\":\"Apollo design system reference\",\"headline\":\"Apollo design system | Refero Styles\",\"description\":\"Explore Apollo's light Other design system: Espresso Bark #3c261c, Terracotta Ember #e97451 colors, MonaSans, paradigm-pro typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Apollo\",\"url\":\"https://apolloworkspace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5fbdad0a-d102-41c2-8253-f201ad6a6673#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"caption\":\"Screenshot of Apollo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6fcd38ab-f91c-4a21-ab9f-38056eb8e1ea.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Apollo design system\",\"Apollo website design\",\"Apollo colors\",\"Apollo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Espresso Bark\",\"Terracotta Ember\",\"Iris Ink\",\"Honey Parchment\",\"MonaSans\",\"paradigm-pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Apollo design system\"},{\"@type\":\"Thing\",\"name\":\"Apollo website design\"},{\"@type\":\"Thing\",\"name\":\"Apollo colors\"},{\"@type\":\"Thing\",\"name\":\"Apollo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:17:25.659Z\",\"dateModified\":\"2026-05-10T23:17:25.659Z\"}]}19:T851,primary action: #e97451 (filled action)\nCreate a Primary Action Button: #e97451 background, #3c261c text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n**Quick Color Reference**\n- Page background: #f9f8f0 (Warm Linen)\n- Primary text / structural dark: #3c261c (Espresso Bark)\n- Hairline borders: #dddedf (Ash Mist)\n- Primary action accent: #e97451 (Terracotta Ember)\n- Decorative display heading: #4a43dd (Iris Ink)\n- Highlight wash: #f7efc5 (Honey Parchment)\n- All interactive elements: 3px border-radius\n\n**Example Component Prompts**\n\n\n2. *Content Section with Feature List*: Warm Linen (#f9f8f0) background, 68px vertical padding, max-width 1200px centered. Two-column grid: left column is text, right column is a photograph (3px radius). Section eyebrow label in MonaSans weight 600, 12px, uppercase, letter-spacing 1.2px, color #3c261c. Section heading in MonaSans weight 500, 32px, uppercase, letter-spacing 2.24px, color #3c261c. Body text in MonaSans weight 400, 18px, line-height 1.55, color #3c261c. Feature list below: each item is MonaSans weight 400, 18px, line-height 1.84, with a 6px Terracotta Ember (#e97451) dot bullet, 14px vertical gap between items.\n\n3. *Navigation Bar*: Full-width, background #3c261c, height ~60px, padding 17px 34px on link items. Three zones: left-aligned nav links in MonaSans weight 500, 12px, uppercase, letter-spacing 1.2px, color #f9f8f0; center-aligned W monogram in #e97451; right-aligned ghost button (1px #f9f8f0 border, 3px radius, padding 17px 34px, text MonaSans weight 500, 12px, uppercase, letter-spacing 0.84px, color #f9f8f0). Active nav link gets a 1px #e97451 border-bottom.\n\n4. *Editorial Display Heading*: paradigm-pro weight 300, 36px, line-height 0.97, letter-spacing 1.08px, color #4a43dd. Use for brand-voice section openers or pull-quote text. Never use for body content or navigation.\n\n5. *Image Card / Workspace Photo*: Full-column-width image, 3px border-radius, no border, no shadow. Sits directly on Warm Linen (#f9f8f0) canvas. Pair with a text column on the opposite side at 68px vertical gap from the previous section."
+}

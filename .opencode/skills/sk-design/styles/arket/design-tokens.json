@@ -1,0 +1,344 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, navigation, icons, hairline borders, filled emphasis buttons, and the membership overlay surface"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, and inverse text on dark surfaces"
+    },
+    "linen": {
+      "$value": "#eaeae8",
+      "$type": "color",
+      "$description": "Linen — Outlined button borders, tag and chip backgrounds"
+    },
+    "mist": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Mist — Hairline dividers, input borders, subtle section separators"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Button labels and secondary headings on light surfaces"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Input placeholder text and form helper copy"
+    },
+    "pewter": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Pewter — Muted metadata, tag fill, and secondary link underlines"
+    },
+    "obsidian": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Obsidian — Deep text and link stroke alternative — visually indistinguishable from Carbon but slightly softer on screen"
+    },
+    "indigo-whisper": {
+      "$value": "#3860be",
+      "$type": "color",
+      "$description": "Indigo Whisper — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "arket-sans": {
+      "$value": "Arket Sans",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface. Renders navigation, buttons, links, form labels, and product copy. Humanist proportions with generous x-height keep body text legible at 13–16px while the 18–24px steps carry section headings without visual weight."
+    },
+    "arketsansmono": {
+      "$value": "arketSansMono",
+      "$type": "fontFamily",
+      "$description": "The signature editorial label font. Used for navigation, product cards, tags, button text, and headings throughout the site. The monospace geometry contrasts the humanist sans and reinforces the museum-catalogue voice."
+    },
+    "arketscsansmono": {
+      "$value": "arketSCSansMono",
+      "$type": "fontFamily",
+      "$description": "Small-caps variant of the mono for editorial metadata like 'GUÍA DE CUIDADO', 'FEBRERO 2026', 'ENTREVISTAS'. Tighter letter-spacing (-0.05em) and uppercase transforms make category labels feel like archival wall text."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "arketSCSansMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "arketSCSansMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "arketSCSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "arketSCSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Arket Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "arketSansMono",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 2px 10px 2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background and card surfaces — the dominant uninterrupted light field"
+    },
+    "hairline": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Surface level 2: Dividers, input borders, and tag outlines that separate content bands without weight"
+    },
+    "inverse-panel": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Membership card and filled emphasis buttons — solid black panels that invert type to white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://arket.com",
+      "siteName": "ARKET",
+      "extractedAt": "2026-06-03T18:04:39.057Z",
+      "variant": "extended"
+    }
+  }
+}

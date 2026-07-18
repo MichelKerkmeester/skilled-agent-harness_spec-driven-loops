@@ -1,0 +1,971 @@
+{
+  "source": "https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a",
+  "uuid": "efdd6d8f-4488-4312-86a7-4ee8e016c83a",
+  "name": "Strava",
+  "northStar": "athlete's logbook on warm paper — a single orange highlighter mark against black-and-white print",
+  "capturedAt": "2026-07-18T08:20:46.556Z",
+  "meta": {
+    "url": "https://strava.com",
+    "siteName": "Strava",
+    "extractedAt": "2026-06-03T17:33:21.537Z",
+    "durationMs": 24420,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 146,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Strava Orange #fc5200 as a fill only on the single most important action per screen — never as decoration, icon tint, or secondary button",
+      "Set every button and tag to a 4px corner radius; the system has no pills, no circles, no large radii",
+      "Use Boathouse 400 for 90% of text and reserve Boathouse 600 for the wordmark, headings, and button labels — the weight contrast is binary",
+      "Separate layers with Warm Linen #f9f8f5 beneath Paper White #ffffff rather than shadows; the only border color in active use is Bone #e0e0de for hairlines",
+      "Let full-bleed outdoor athlete photography carry emotional weight — the UI itself should stay text-and-button quiet",
+      "Use warm gray tones (#43423f, #64635, #f9f8f5) for all neutrals; never introduce cool grays or blue-tinted shadows",
+      "Keep link blue #0060d0 strictly for inline text links and legal references; never use it for buttons, icons, or backgrounds"
+    ],
+    "donts": [
+      "Don't add box-shadows, drop-shadows, or glow effects — the system is flat by design and elevation is communicated by surface color only",
+      "Don't introduce a second chromatic color for accents, illustrations, or chart palettes — orange is the only signal",
+      "Don't round buttons or cards beyond 4px — larger radii would break the utilitarian, print-publication feel",
+      "Don't use gradients on backgrounds, buttons, or illustrations — Strava has zero gradients in its system",
+      "Don't swap to a different typeface for headings or display; Boathouse is the only family and the weight handles hierarchy",
+      "Don't use Link Blue #0060d0 as a CTA fill or button border — it is reserved for inline text links only",
+      "Don't add decorative icons, badges, or chrome to the UI; if something isn't a link, button, input, or piece of body text, it probably shouldn't exist"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fc5200",
+        "name": "Strava Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#0060d0",
+        "name": "Link Blue",
+        "role": "Inline text links and policy references; the only secondary chromatic color and reserved strictly for navigational links",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f8f5",
+        "name": "Warm Linen",
+        "role": "Footer background, secondary surface elevation, subtle banding beneath white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary body and heading text, icon strokes, hairline borders, button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#21211f",
+        "name": "Graphite",
+        "role": "Button text, filled icon strokes, high-contrast warm near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#43423f",
+        "name": "Charcoal",
+        "role": "Secondary body text, nav links, metadata — warm dark gray for sub-headings and long-form copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#64635e",
+        "name": "Pewter",
+        "role": "Muted helper text, tertiary copy, placeholder labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0de",
+        "name": "Bone",
+        "role": "Hairline borders, input outlines, dividers between secondary sections",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a three-column hero composition: full-bleed photographic panel on the left, centered signup card in the middle, full-bleed photographic panel on the right. The middle column is constrained to roughly 400-500px while the photographic panels share the remaining viewport width, creating an asymmetric balance where the signup card feels framed by imagery rather than placed on a generic background. Below the hero, the layout transitions to a flat footer band on Warm Linen #f9f8f5 containing a 4-column sitemap with the Strava wordmark and app store badges anchoring the far left. The overall page is max-width contained at approximately 1200px, centered, with generous vertical breathing room. Navigation is a single horizontal text bar at the top with the wordmark left-aligned, nav items in a center-left cluster, and a login button right-aligned. No sticky behavior, no sidebar, no mega-menu — the header is a thin, quiet text row.",
+    "imagery": "Full-bleed outdoor action photography is the sole visual content layer — no illustrations, no abstract graphics, no product screenshots, no 3D renders. The imagery shows athletes mid-motion (cyclists on mountain switchbacks, trail runners, hikers) in natural light, shot from dynamic angles that emphasize effort and landscape. Color treatment is editorial-natural: warm earth tones, green vegetation, blue sky, no duotone or color grading. Images are edge-to-edge with no overlay, no rounded corners, no caption — the photograph occupies the full panel and bleeds to the viewport edge. Iconography is minimal: small monochrome outlined or filled glyphs in Boathouse-weight strokes, used sparingly for social platforms (Twitter, YouTube, Instagram, LinkedIn, Facebook) in the footer. The visual density is text-and-photo dominant with virtually no decorative illustration.",
+    "similar": [
+      {
+        "why": "Same full-bleed athlete photography flanking a centered conversion surface, and the same minimal text-only header navigation",
+        "business": "Nike Run Club"
+      },
+      {
+        "why": "Same utilitarian data-tool aesthetic with a single brand color, warm neutrals, and flat surfaces with no shadows",
+        "business": "Garmin Connect"
+      },
+      {
+        "why": "Same outdoor-adventure brand language: white canvas, warm off-white footer, edge-to-edge landscape photography, and a single accent color",
+        "business": "AllTrails"
+      },
+      {
+        "why": "Same fitness-platform restraint: monochrome UI with one vivid accent (orange for Strava, red-orange for Wahoo), custom humanist sans, and 4px button radii",
+        "business": "Wahoo SYSTM"
+      },
+      {
+        "why": "Same athlete-logbook visual register: stark black text on white, warm footer band, minimal chrome, and photography doing the emotional heavy lifting",
+        "business": "WHOOP"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "0px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "64px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background for hero, signup card, and most sections"
+      },
+      {
+        "hex": "#f9f8f5",
+        "name": "Linen Band",
+        "level": 1,
+        "purpose": "Footer and any secondary surface band beneath the main canvas"
+      }
+    ],
+    "northStar": "athlete's logbook on warm paper — a single orange highlighter mark against black-and-white print",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "The only filled chromatic button in the system — reserved for the single most important action on any screen",
+        "description": "Fill: Strava Orange #fc5200. Text: #ffffff, Boathouse 600, 16px. Border: none. Radius: 4px. Padding: 14px 20px (vert/horiz). Full-width on the signup card, auto-width in context. White text must always sit on the orange fill — never reverse the polarity."
+      },
+      {
+        "name": "Outlined Secondary Button",
+        "role": "Secondary actions sitting beneath a primary CTA",
+        "description": "Fill: #ffffff. Border: 1px solid #000000. Text: #000000, Boathouse 600, 16px. Radius: 4px. Padding: 14px 20px. Used for 'Sign Up With Google' and 'Sign Up With Apple' with the brand icon to the left of the label."
+      },
+      {
+        "name": "Social Sign-In Button",
+        "role": "Third-party authentication entry points",
+        "description": "Same shell as Outlined Secondary Button (white fill, 1px #000000 border, 4px radius). Includes a 20px brand icon (Google 'G' or Apple logo) left-aligned with 12px gap before the label."
+      },
+      {
+        "name": "Navigation Text Link",
+        "role": "Top-level nav items and footer column links",
+        "description": "No background, no border, no underline. Text: #000000 header / #43423f footer, Boathouse 400, 15px. Hover state darkens to pure black. Caret chevron after 'Activities' indicates a dropdown."
+      },
+      {
+        "name": "Header Login Button",
+        "role": "Outlined account entry in the top-right of the header",
+        "description": "Fill: #ffffff. Border: 1px solid #000000. Text: #000000, Boathouse 600, 14-15px. Radius: 4px. Padding: 8px 20px. Visually quieter than the primary orange CTA but uses the same outlined-button shell."
+      },
+      {
+        "name": "Signup Card",
+        "role": "Centered conversion surface floating between two photographic panels",
+        "description": "Fill: #ffffff. No border, no shadow, no radius. Vertical padding: 26px top, 50px bottom. Internal element gap: 8-12px. Headline: Boathouse 600 32px, #000000, line-height 1.20. Subtext: 15px #000000. The card relies on the surrounding photography flanking it for visual interest, not on its own styling."
+      },
+      {
+        "name": "Hero Photographic Panel",
+        "role": "Full-bleed athlete imagery flanking the signup card",
+        "description": "Edge-to-edge, no radius, no overlay. Images are warm-toned outdoor action photography (cyclists on mountain roads, runners, hikers) — the visual content IS the design. No caption, no gradient, no treatment beyond the raw photograph."
+      },
+      {
+        "name": "Footer Column List",
+        "role": "Sitemap links grouped under column headers",
+        "description": "Background: Warm Linen #f9f8f5. Padding: 50px horizontal. Column headers: Boathouse 400 15px #000000 (or bold). Links: Boathouse 400 15px #43423f, hover to #000000. No bullets, no dividers between items — the vertical gap of 8-12px creates rhythm."
+      },
+      {
+        "name": "Footer App Store Badge",
+        "role": "Download CTAs in the footer left column",
+        "description": "Black rounded-rect badges (App Store and Google Play). Sit below the Strava wordmark with 12px gap. No text-only alternative — the badge itself is the label."
+      },
+      {
+        "name": "Strava Wordmark",
+        "role": "Brand identity in header and footer",
+        "description": "The 'STRAVA' logotype in Strava Orange #fc5200, Boathouse 600. The distinctive flag-tail on the final 'A' is part of the typeface. No icon, no wordmark variant — the logotype is the only brand mark used."
+      },
+      {
+        "name": "Legal Inline Link",
+        "role": "Terms and Privacy references within body copy",
+        "description": "Inline text styled in Link Blue #0060d0, no underline by default, underline on hover. Sits within #000000 body copy at 15px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all UI, headings, body, nav, and footer. The weight contrast is deliberately binary — 400 for almost everything, 600 reserved for the wordmark, headings, and CTA labels. Tight line-heights (1.0 on display) give headings a compressed, assertive posture rather than the airy SaaS default.",
+        "sizes": "12px, 14px, 15px, 16px, 32px",
+        "family": "Boathouse",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.50 (tight, display-leading at 1.0; body at 1.29–1.50)",
+        "substitute": "Inter or Source Sans 3 (both offer a similar humanist warmth and the 400/600 binary; for closer Boathouse character try Pontano Sans)",
+        "letterSpacing": "normal at all sizes; no tracking adjustment detected"
+      }
+    ],
+    "description": "Strava's design reads like an athlete's logbook printed on warm paper: a stark white canvas warmed by off-white surfaces and a disciplined near-black text palette, with one bolt of vivid orange that signals every primary action. The interface is deliberately flat — no gradients, no shadows, no decorative chrome — letting full-bleed photography of cyclists, runners, and hikers in motion carry all the emotional weight. The custom Boathouse typeface and tight, slightly humanist letterforms give the system a print-publication quality rather than a typical SaaS feel. Sharp 4px corners on every interactive element, warm-toned grays instead of cool ones, and an almost monastic restraint with color (one orange, one link blue) create a visual hierarchy where the orange CTA always wins attention without ever needing elevation or glow.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "## Quick Color Reference\n- text: #000000 (primary), #43423f (secondary), #64635e (muted)\n- background: #ffffff (canvas), #f9f8f5 (linen band)\n- border: #e0e0de (hairline), #000000 (button outline)\n- primary action: no distinct CTA color\n- link: #0060d0 inline text only\n\n## Example Component Prompts\n1. **Outlined Sign-In Button**: White fill, 1px solid #000000 border, 4px radius, padding 14px 20px. Label in Boathouse 600, 16px, #000000. Optionally include a 20px brand icon (Google/Apple) left-aligned with 12px gap before label.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. **Navigation Text Link**: No background, no border, no underline. Boathouse 400, 15px, #000000. Optional chevron caret after label indicates dropdown. Hover darkens to pure black.\n4. **Footer Column Link**: On Warm Linen #f9f8f5 background. Boathouse 400, 15px, #43423f, hover to #000000. 8-12px vertical gap between items. No bullets, no dividers."
+      }
+    ],
+    "elevationPhilosophy": "No shadows detected in the data. The system relies entirely on flat surfaces, hairline borders in Bone (#e0e0de), and contrast between Paper White and Warm Linen to create layer separation. Elevation is communicated by surface color, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "image",
+            "heading",
+            "body",
+            "footer",
+            "badge",
+            "list"
+          ],
+          "frequency": 411,
+          "confidence": 1,
+          "prominence": 11979648.428544175,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1893355.7836532108,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9f8f5",
+          "oklch": {
+            "c": 0.0041126820248931495,
+            "h": 91.44595448880399,
+            "l": 0.9790605294760115
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 541500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#43423f",
+          "oklch": {
+            "c": 0.005195497667039854,
+            "h": 91.5252549770822,
+            "l": 0.3790311981003696
+          },
+          "contexts": [
+            "body",
+            "link",
+            "image",
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 205,
+          "confidence": 1,
+          "prominence": 86949.69396349657,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#21211f",
+          "oklch": {
+            "c": 0.003712181695387067,
+            "h": 106.66831244291245,
+            "l": 0.24699171488969401
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 74653.07812125757,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fc5200",
+          "oklch": {
+            "c": 0.21698813582325158,
+            "h": 38.34513822834208,
+            "l": 0.6678334710560258
+          },
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 73282.2619753472,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#64635e",
+          "oklch": {
+            "c": 0.007891794661434403,
+            "h": 97.46652598705121,
+            "l": 0.4989979324942862
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 66910.45540024033,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0de",
+          "oklch": {
+            "c": 0.002692281218089629,
+            "h": 106.45320970595745,
+            "l": 0.9061338828482483
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 8170.864965908628,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0060d0",
+          "oklch": {
+            "c": 0.18939710615935065,
+            "h": 257.9730862493486,
+            "l": 0.5122032970004213
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4863.96085580404,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 107,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 106,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 75,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fbbc05",
+          "oklch": {
+            "c": 0.16981012207062468,
+            "h": 83.99272171392238,
+            "l": 0.8304375423751036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 33,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.029651542139036695,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#f9f8f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.13,
+          "background": "#ffffff",
+          "foreground": "#21211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.89,
+          "background": "#e0e0de",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.19,
+          "background": "#f9f8f5",
+          "foreground": "#21211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#fbbc05",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.2,
+          "background": "#e0e0de",
+          "foreground": "#21211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#ffffff",
+          "foreground": "#43423f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.46,
+          "background": "#f9f8f5",
+          "foreground": "#43423f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#fbbc05",
+          "foreground": "#21211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#e0e0de",
+          "foreground": "#43423f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.35,
+          "background": "#fc5200",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#ffffff",
+          "foreground": "#64635e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.88,
+          "background": "#fbbc05",
+          "foreground": "#43423f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#ffffff",
+          "foreground": "#0060d0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.67,
+          "background": "#f9f8f5",
+          "foreground": "#64635e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.52,
+          "background": "#f9f8f5",
+          "foreground": "#0060d0"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#fc5200",
+          "foreground": "#21211f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#e0e0de",
+          "foreground": "#64635e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#fbbc05",
+          "foreground": "#64635e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Boathouse",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 133,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "footer",
+            "badge",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Boathouse",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Boathouse",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Boathouse",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Boathouse",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Boathouse",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/32785cd7-ba62-4ec0-a64e-325056fd465e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/47deeb67-a97f-4448-9304-1eb3a2b4fa1c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Strava design system\",\"item\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a#style-reference\",\"name\":\"Strava design system reference\",\"headline\":\"Strava design system | Refero Styles\",\"description\":\"Explore Strava's light Other design system: Strava Orange #fc5200, Link Blue #0060d0 colors, Boathouse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Strava\",\"url\":\"https://strava.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/efdd6d8f-4488-4312-86a7-4ee8e016c83a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/47deeb67-a97f-4448-9304-1eb3a2b4fa1c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/47deeb67-a97f-4448-9304-1eb3a2b4fa1c.jpg\",\"caption\":\"Screenshot of Strava\"},\"image\":\"https://images.refero.design/styles/refero.design/image/47deeb67-a97f-4448-9304-1eb3a2b4fa1c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Strava design system\",\"Strava website design\",\"Strava colors\",\"Strava typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Strava Orange\",\"Link Blue\",\"Paper White\",\"Warm Linen\",\"Boathouse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Strava design system\"},{\"@type\":\"Thing\",\"name\":\"Strava website design\"},{\"@type\":\"Thing\",\"name\":\"Strava colors\"},{\"@type\":\"Thing\",\"name\":\"Strava typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-01-17T12:25:05.000Z\",\"dateModified\":\"2026-01-17T12:25:05.000Z\"}]}"
+}

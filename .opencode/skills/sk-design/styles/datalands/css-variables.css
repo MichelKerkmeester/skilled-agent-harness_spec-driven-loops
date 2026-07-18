@@ -1,0 +1,101 @@
+:root {
+  /* Colors */
+  --color-void: #000000;
+  --color-bone: #ffffff;
+  --color-charcoal: #1d1a1a;
+  --color-ink: #111212;
+  --color-graphite: #3d3d3d;
+  --color-mist: #d9d9d9;
+  --color-parchment: #f3f3ef;
+  --color-neon-magenta: #fc74dd;
+  --color-ember-dot: #ff4c33;
+  --color-deep-violet: #122d8b;
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ozik-black: 'OZIK Black', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-basis-grotesque-pro: 'Basis Grotesque Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-martian-mono: 'Martian Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-martian-mono-std-xlt-extra-light: 'Martian Mono Std xLt Extra-light', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-martian-mono-std-xlt: 'Martian Mono Std xLt', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-martian-mono-nr-xlt: 'Martian Mono Nr xLt', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-martian-mono-extra-light: 'Martian Mono Extra-light', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-martian-mono-extralight: 'Martian Mono ExtraLight', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.05px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.25;
+  --tracking-body-sm: -0.002px;
+  --text-body: 18px;
+  --leading-body: 1.45;
+  --tracking-body: -0.008px;
+  --text-subheading: 22px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.01px;
+  --text-heading-sm: 35px;
+  --leading-heading-sm: 1.1;
+  --tracking-heading-sm: -0.02px;
+  --text-heading: 42px;
+  --leading-heading: 1.1;
+  --tracking-heading: -0.025px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.03px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -0.04px;
+
+  /* Typography — Weights */
+  --font-weight-extralight: 200;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-36: 36px;
+  --spacing-38: 38px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80px;
+  --card-padding: 48px;
+  --element-gap: 10-20px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 18px;
+  --radius-3xl: 30px;
+  --radius-3xl-2: 34px;
+  --radius-full: 49px;
+  --radius-full-2: 60px;
+  --radius-full-3: 96px;
+  --radius-full-4: 300px;
+
+  /* Named Radii */
+  --radius-tags: 30px;
+  --radius-cards: 18-30px;
+  --radius-inputs: 96px;
+  --radius-buttons: 96px;
+  --radius-special: 300px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-charcoal: #1d1a1a;
+  --surface-bone: #ffffff;
+}

@@ -1,0 +1,1082 @@
+{
+  "source": "https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa",
+  "uuid": "4244637b-e27b-4962-b586-cb3ac605e5aa",
+  "name": "Moffitt.Moffitt. -",
+  "northStar": "curated gallery on bone-white linen",
+  "capturedAt": "2026-07-18T08:04:58.202Z",
+  "meta": {
+    "url": "https://moffittmoffitt.com",
+    "siteName": "Moffitt.Moffitt. -",
+    "extractedAt": "2026-06-03T18:28:34.014Z",
+    "durationMs": 42679,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 786,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 50px border-radius for all buttons, tags, and filter pills — the pill shape is the signature control geometry",
+      "Set the page canvas to pure #ffffff and let images bleed to the edge with no margin or framing",
+      "Reserve Lyon weight 100 exclusively for headlines and pull quotes — never use it for body or UI labels",
+      "Separate surfaces using 1px #ebecec hairlines and value contrast, never box-shadow",
+      "Keep the palette fully achromatic in all interface chrome — any color must live inside editorial artwork",
+      "Set body copy at Suisse 400, 16px, with generous line-height (1.25-1.39) to match the editorial register",
+      "Use 20px element gaps and 40px section gaps to maintain the magazine-spread rhythm"
+    ],
+    "donts": [
+      "Do not introduce a chromatic brand color, gradient, or decorative fill anywhere in the UI chrome",
+      "Do not apply box-shadow to cards, buttons, or images — the design is deliberately flat",
+      "Do not use Lyon weight 100 for functional labels, buttons, or navigation — it is a display face only",
+      "Do not round card corners beyond 5px — the contrast between 50px pill controls and 5px cards is structural",
+      "Do not add borders, backgrounds, or containers to the editorial pull-quote block — let it float on canvas",
+      "Do not use bold weights (600+) for body copy — Suisse 500 is the heaviest functional weight",
+      "Do not add drop-shadows or glows to the circular icon buttons or the slide counter"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, filled pill buttons, hairline borders on light surfaces, active icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, text on dark buttons, image overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Mist",
+        "role": "Elevated surface wash, subtle card backgrounds, section dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebecec",
+        "name": "Fog",
+        "role": "Hairline dividers between feed cards, faint table borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8da",
+        "name": "Ash",
+        "role": "Subtle structural borders, disabled state outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595b60",
+        "name": "Graphite",
+        "role": "Secondary text, supporting metadata, icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Steel",
+        "role": "Muted helper text, timestamps, tertiary captions",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container — content reaches the viewport edge. The hero is a 50/50 split-screen with two photographs meeting at the center seam. Below the hero, the manifesto quote flows as a single column with generous right margin (the left ~60% holds text, right ~40% is white space). The feed section is a horizontal card grid (4 cards visible per row, scrollable) with tight 1px dividers between them. Navigation is a single-line top bar: logo far left, hamburger far right, no center cluster. Section transitions are seamless — no colored bands, no alternating backgrounds, just white space and the occasional 1px hairline. The rhythm is spacious and unhurried, reading more like a gallery walkthrough than a product page.",
+    "imagery": "Photography is the dominant visual content and occupies the majority of screen real estate. Treatment is full-bleed, edge-to-edge, with sharp corners and no masks or rounded overlays. Images are editorial in register — architectural exteriors, human subjects in dramatic monochrome environments, cultural/civic moments — never product shots or stock photography. The color lives inside the photographs (a red gown, a cyan poster) rather than in the UI frame around them. There is no illustration, no 3D, no abstract graphics. Icons are minimal monochrome line work, approximately 1-1.5px stroke weight, matching the typography's restraint. The overall image-to-text ratio is roughly 70/30, leaning heavily on visual storytelling.",
+    "similar": [
+      {
+        "why": "Same editorial-gallery aesthetic, full-bleed photography, achromatic interface, whisper-weight serif headlines on white",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same pill-button geometry, monochrome palette, large-scale photography, serif display type",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same hairline-border minimalism, full-bleed imagery, black-and-white interface with color confined to editorial artwork",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same anti-decoration flatness, generous spacing, serif-led typographic identity, museum-label restraint",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same split-hero composition, 50/50 image layout, white-canvas navigation, typographic confidence",
+        "business": "Wieden+Kennedy portfolio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "5px",
+        "buttons": "50px",
+        "iconButtons": "50%"
+      },
+      "elementGap": "20px",
+      "sectionGap": "40px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, the dominant surface — sets the gallery-floor tone"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Wash",
+        "level": 2,
+        "purpose": "Subtle elevation layer for cards, inputs, secondary panels"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Inverted surface for filled buttons, dark hero moments, image overlays"
+      }
+    ],
+    "northStar": "curated gallery on bone-white linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.13
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action control",
+        "description": "Black fill (#000000), white text (#ffffff), 50px border-radius (full pill), 11px vertical × 20px horizontal padding, Suisse 500 at 13-16px. Used for 'Our Services', 'Our Profile', 'Our Projects' and CTAs."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary or filter action",
+        "description": "Transparent fill, 1px Obsidian border (#000000), Obsidian text, 50px border-radius, 11px × 20px padding, Suisse 500 at 13px. Used for 'See more' and category filters like 'Music'."
+      },
+      {
+        "name": "Circular Icon Button",
+        "role": "Navigation and progress control",
+        "description": "50% radius (true circle), Obsidian 1px border, Obsidian icon stroke inside. Examples: the arrow button (→) and the 01/05 counter with progress ring. ~44px diameter."
+      },
+      {
+        "name": "Split Hero Frame",
+        "role": "Full-bleed editorial opener",
+        "description": "50/50 two-column layout, each half contains one full-bleed photograph edge-to-edge with no padding or radius. Headline (Lyon 100, ~40px, white) overlaid bottom-left on dark imagery, absent on light imagery."
+      },
+      {
+        "name": "Editorial Pull Quote",
+        "role": "Long-form manifesto text",
+        "description": "Pure white background, Lyon 100 at ~13-16px, Obsidian text, ~20-30px right margin from edge, free-flowing paragraph without a visible card container. 40px column gap to the right of follow-up content."
+      },
+      {
+        "name": "Feed Card",
+        "role": "Portfolio grid item",
+        "description": "5px border-radius, no shadow, full-bleed image fills the card. Tag pill (50px radius, 5-7px padding, Suisse 500 at 12px) overlaid top-left — tag variants: 'New Work' on white, 'Coming soon' on white, 'Team News' on Obsidian with white text. Hairline 1px Fog (#ebecec) divider between cards in the grid."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Content classification",
+        "description": "50px pill radius, small (~5-7px padding), Suisse 500 at 12px. White fill with Obsidian text for active filters, transparent with 1px Obsidian border for unselected."
+      },
+      {
+        "name": "Top Nav Bar",
+        "role": "Global site navigation",
+        "description": "Transparent overlay on hero, no background fill. Left: circular 'm' wordmark in 1px Obsidian border. Right: hamburger menu icon (three horizontal lines) in Obsidian. Sits at the very top with ~20px padding."
+      },
+      {
+        "name": "Slide Counter",
+        "role": "Carousel position indicator",
+        "description": "Bottom-right of hero, displays '01/05' in Suisse 400 with a small circular progress indicator next to it. Functions as a stepper — no progress bar fill, just a ring or dot."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Whisper-weight display serif for editorial headlines, pull quotes, and section titles — the anti-convention weight 100 creates authority through restraint rather than volume, making the brand feel printed rather than web-native",
+        "sizes": "13px",
+        "family": "Lyon",
+        "weight": "100",
+        "lineHeight": "1.00",
+        "substitute": "Lyon Display, Editorial New, Canela Thin, Playfair Display Hairline"
+      },
+      {
+        "role": "Neo-grotesque sans for body copy, navigation, button labels, tags, and utility UI — 400 reads body, 500 carries button labels and nav, 600 anchors subheadings; the wide weight range lets this one family run the entire interface without switching faces",
+        "sizes": "12px, 16px, 22px, 24px, 40px",
+        "family": "Suisse",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00, 1.13, 1.17, 1.20, 1.25, 1.33, 1.39, 2.00",
+        "substitute": "Suisse Int'l, Inter, Söhne, Neue Haas Grotesk"
+      }
+    ],
+    "description": "Moffitt.Moffitt. operates as a curated gallery on bone-white linen: every screen begins on a pure white canvas, then disappears into full-bleed photography and monoline serif type. The palette is deliberately chromatic-free — black, white, and three grays carry all interface weight, while color lives exclusively inside editorial artwork (the red gown, the cyan poster). Components are minimal to the point of invisibility: pill-shaped controls, hairline borders, no shadows, no gradients, no decoration. Typography is the brand — a whisper-weight display serif sets tone at headlines, a neo-grotesque sans does utility work. The effect reads as a printed annual report or museum wall text: confident, restrained, and confident in letting imagery do the heavy lifting.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Moffitt.Moffitt. - design system\",\"item\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#style-reference\",\"name\":\"Moffitt.Moffitt. - design system reference\",\"headline\":\"Moffitt.Moffitt. - design system | Refero Styles\",\"description\":\"Explore Moffitt.Moffitt. -'s light Agency design system: Obsidian #000000, Bone #ffffff colors, Lyon, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Moffitt.Moffitt. -\",\"url\":\"https://moffittmoffitt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"caption\":\"Screenshot of Moffitt.Moffitt. -\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Moffitt.Moffitt. - design system\",\"Moffitt.Moffitt. - website design\",\"Moffitt.Moffitt. - colors\",\"Moffitt.Moffitt. - typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone\",\"Mist\",\"Fog\",\"Lyon\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - design system\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - website design\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - colors\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:04:05.247Z\",\"dateModified\":\"2026-04-30T02:04:05.247Z\"}]}19:T736,**Quick Color Reference**\n- text: #000000 (Obsidian)\n- background: #ffffff (Bone)\n- border: #ebecec (Fog) for hairlines, #000000 for strong rules\n- accent: no distinct accent color — the palette is fully achromatic\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero split-screen:* Two full-bleed photographs side by side, 50/50 width, edge-to-edge with no gutter. Left image: a bus-stop poster at night. Right image: a woman in a red dress holding a violin against a concrete wall. Bottom-left overlay on the left panel: Lyon weight 100 at 40px, white text reading 'ACO 2026. / Beyond the stage.' A Ghost Pill Button labeled 'Music' and a 'See more' text link sit above the headline at 12-13px Suisse 500.\n\n2. *Create an editorial pull-quote section:* Pure white canvas, no card. Left column ~55% width, Lyon weight 100 at 16px, Obsidian text, line-height 1.39, ~120-160 characters per line. Right column ~45% width, empty white space. No background, no border, no shadow.\n\n3. *Create a filled pill button:* 50px border-radius, 11px vertical × 20px horizontal padding, Obsidian (#000000) background, Bone (#ffffff) text, Suisse weight 500 at 13-14px, no border, no shadow. Example labels: 'Our Services', 'Our Profile', 'Our Projects'.\n\n4. *Create a feed card grid:* Four cards in a single horizontal row, each card 5px border-radius, no shadow, image fills card edge-to-edge. A Category Tag pill (50px radius, 5-7px padding, white fill, Obsidian text, 12px Suisse 500) overlaid top-left of each card. 1px Fog (#ebecec) hairline separator between cards. Card images: editorial photography, mixed light/dark.\n\n5. *Create a circular icon button:* 44px diameter, 50% border-radius, 1px Obsidian border, transparent fill, Obsidian icon (arrow →, hamburger ☰, or progress ring) centered inside at ~16px."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids shadows — surfaces separate through value contrast (white vs. #f5f5f5 vs. black) and 1px hairline borders, never elevation. This flatness keeps the interface reading as printed editorial rather than app UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "image",
+            "icon",
+            "heading",
+            "card"
+          ],
+          "frequency": 2868,
+          "confidence": 1,
+          "prominence": 357009989.3256594,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 65,
+            "card/color": 7,
+            "icon/color": 4,
+            "link/color": 85,
+            "other/fill": 5,
+            "image/color": 47,
+            "other/color": 351,
+            "button/color": 24,
+            "other/stroke": 4,
+            "heading/color": 2,
+            "body/borderColor": 244,
+            "card/borderColor": 28,
+            "icon/borderColor": 16,
+            "link/borderColor": 340,
+            "image/borderColor": 188,
+            "other/borderColor": 1397,
+            "button/borderColor": 24,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "input",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 428,
+          "confidence": 1,
+          "prominence": 260585440.87404156,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "link/color": 17,
+            "list/color": 4,
+            "other/fill": 6,
+            "input/color": 1,
+            "other/color": 24,
+            "button/color": 3,
+            "heading/color": 6,
+            "body/borderColor": 44,
+            "link/borderColor": 68,
+            "list/borderColor": 16,
+            "input/borderColor": 4,
+            "other/borderColor": 92,
+            "button/borderColor": 84,
+            "heading/borderColor": 24,
+            "body/backgroundColor": 4,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 21
+          }
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 7200865.375077754,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 47,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8d8da",
+          "oklch": {
+            "c": 0.0027144066848196024,
+            "h": 286.34388853382893,
+            "l": 0.882815208797694
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 706314,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 7
+          }
+        },
+        {
+          "hex": "#595b60",
+          "oklch": {
+            "c": 0.008411447520681407,
+            "h": 268.4679970162671,
+            "l": 0.47112422604393484
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 459648.4882577865,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 32,
+            "other/borderColor": 128
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 354,
+          "confidence": 1,
+          "prominence": 433495.62072044093,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 40,
+            "icon/color": 2,
+            "link/color": 7,
+            "other/color": 19,
+            "button/color": 2,
+            "other/stroke": 4,
+            "body/borderColor": 160,
+            "icon/borderColor": 8,
+            "link/borderColor": 28,
+            "other/borderColor": 76,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 204824.6151133228,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ebecec",
+          "oklch": {
+            "c": 0.0010746634712043433,
+            "h": 197.13976203836933,
+            "l": 0.9423222008612088
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 21359.45140332787,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "body/borderColor": 44
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000980255635347855,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.74,
+          "background": "#000000",
+          "foreground": "#ebecec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#d8d8da",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#ffffff",
+          "foreground": "#595b60"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.23,
+          "background": "#f5f5f5",
+          "foreground": "#595b60"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ebecec",
+          "foreground": "#595b60"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.77,
+          "background": "#d8d8da",
+          "foreground": "#595b60"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#ffffff",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.25,
+          "background": "#f5f5f5",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#000000",
+          "foreground": "#595b60"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#ffffff",
+          "foreground": "#ebecec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ebecec"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 77
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "image",
+            "button"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "icon",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list",
+            "marginBottom|other",
+            "marginRight|body",
+            "marginBottom|button",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 154,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "link",
+            "body"
+          ],
+          "frequency": 184,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "marginRight|card",
+            "marginTop|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "input",
+            "heading"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginRight|input",
+            "marginTop|other",
+            "paddingLeft|heading",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 655,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Lyon",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 105,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Lyon",
+          "weight": 100,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 105,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "image",
+            "body",
+            "button",
+            "icon",
+            "card"
+          ],
+          "frequency": 466,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.39,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.39,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Suisse",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Suisse",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "input",
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Suisse",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d96b952f-bdbe-4adb-b4db-b1e2cd2d99a0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Moffitt.Moffitt. - design system\",\"item\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#style-reference\",\"name\":\"Moffitt.Moffitt. - design system reference\",\"headline\":\"Moffitt.Moffitt. - design system | Refero Styles\",\"description\":\"Explore Moffitt.Moffitt. -'s light Agency design system: Obsidian #000000, Bone #ffffff colors, Lyon, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Moffitt.Moffitt. -\",\"url\":\"https://moffittmoffitt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4244637b-e27b-4962-b586-cb3ac605e5aa#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"caption\":\"Screenshot of Moffitt.Moffitt. -\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3bdddfb-bb48-4435-918b-b829d7c05bbb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Moffitt.Moffitt. - design system\",\"Moffitt.Moffitt. - website design\",\"Moffitt.Moffitt. - colors\",\"Moffitt.Moffitt. - typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone\",\"Mist\",\"Fog\",\"Lyon\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - design system\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - website design\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - colors\"},{\"@type\":\"Thing\",\"name\":\"Moffitt.Moffitt. - typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:04:05.247Z\",\"dateModified\":\"2026-04-30T02:04:05.247Z\"}]}19:T736,**Quick Color Reference**\n- text: #000000 (Obsidian)\n- background: #ffffff (Bone)\n- border: #ebecec (Fog) for hairlines, #000000 for strong rules\n- accent: no distinct accent color — the palette is fully achromatic\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero split-screen:* Two full-bleed photographs side by side, 50/50 width, edge-to-edge with no gutter. Left image: a bus-stop poster at night. Right image: a woman in a red dress holding a violin against a concrete wall. Bottom-left overlay on the left panel: Lyon weight 100 at 40px, white text reading 'ACO 2026. / Beyond the stage.' A Ghost Pill Button labeled 'Music' and a 'See more' text link sit above the headline at 12-13px Suisse 500.\n\n2. *Create an editorial pull-quote section:* Pure white canvas, no card. Left column ~55% width, Lyon weight 100 at 16px, Obsidian text, line-height 1.39, ~120-160 characters per line. Right column ~45% width, empty white space. No background, no border, no shadow.\n\n3. *Create a filled pill button:* 50px border-radius, 11px vertical × 20px horizontal padding, Obsidian (#000000) background, Bone (#ffffff) text, Suisse weight 500 at 13-14px, no border, no shadow. Example labels: 'Our Services', 'Our Profile', 'Our Projects'.\n\n4. *Create a feed card grid:* Four cards in a single horizontal row, each card 5px border-radius, no shadow, image fills card edge-to-edge. A Category Tag pill (50px radius, 5-7px padding, white fill, Obsidian text, 12px Suisse 500) overlaid top-left of each card. 1px Fog (#ebecec) hairline separator between cards. Card images: editorial photography, mixed light/dark.\n\n5. *Create a circular icon button:* 44px diameter, 50% border-radius, 1px Obsidian border, transparent fill, Obsidian icon (arrow →, hamburger ☰, or progress ring) centered inside at ~16px."
+}

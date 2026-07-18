@@ -1,0 +1,900 @@
+{
+  "source": "https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761",
+  "uuid": "f8c92b6b-a3a7-4141-ae61-3d865a106761",
+  "name": "Ingmar Coenen",
+  "northStar": "Oversized masthead on white paper — a 295px geometric letterform pressed against a vast white wall, with tiny serif footnotes and pill-shaped navigation floating below.",
+  "capturedAt": "2026-07-18T08:55:51.505Z",
+  "meta": {
+    "url": "https://ingmarcoenen.com",
+    "siteName": "Ingmar Coenen",
+    "extractedAt": "2026-06-03T21:21:27.871Z",
+    "durationMs": 39435,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 528,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Megazoid at 295px with line-height 0.9 for any site-level display heading — it is the only element that earns full-bleed real estate",
+      "Set all UI text in Neue Haas Unica Pro 12-13px with letter-spacing -0.02em and line-height 1.1",
+      "Use 100px border-radius on every interactive element (buttons, nav pills, toggles) to soften the monochrome severity",
+      "Reach for ITC Garamond Light Condensed 36px for any reflective or editorial paragraph longer than two lines",
+      "Maintain 80-120px vertical breathing room between major layout sections",
+      "Keep the entire palette to black, white, charcoal, and pale stone — let project imagery supply any color",
+      "Use 12px radius for all cards and image containers, 4px for inline elements and hairline details"
+    ],
+    "donts": [
+      "Never introduce a chromatic color — the 0% colorfulness is structural to the brand",
+      "Never set body copy below 12px or above 36px (the type system is intentionally a two-scale system: tiny UI and monumental display)",
+      "Never use box-shadows for elevation — rely on the stark black/white contrast and 12px corner radius for surface separation",
+      "Never center-align the Garamond about paragraph — it lives right-anchored as a deliberate editorial decision",
+      "Never use a system font for body or nav — Neue Haas Unica Pro's tight tracking is the signature, not a fallback",
+      "Never add decorative gradients, textures, or background patterns to cards or surfaces",
+      "Never use line-height above 1.2 on Neue Haas Unica Pro — the tight 1.1 is part of the Swiss-catalog character"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Primary text, logo wordmark, filled pill buttons, hairline borders — the structural ink that holds every element together",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surfaces, button text on dark fills — the paper everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a4042",
+        "name": "Charcoal Slate",
+        "role": "Secondary text, link color, body copy, subtle borders — slightly softened black for hierarchy below the primary text level",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Pale Stone",
+        "role": "Ghost button and segmented toggle background — the only non-white surface, used for inactive controls like the Grid/List switcher",
+        "group": "neutral"
+      },
+      {
+        "hex": "#919191",
+        "name": "Mid Gray",
+        "role": "Muted helper text, low-emphasis borders, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "role": "Lightest border tone, placeholder outlines, decorative strokes",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page opens with a full-bleed monumental wordmark (INGMAR at 295px) that bleeds past both viewport edges, establishing a magazine-cover hierarchy. Below the masthead, a floating sticky nav bar sits as a horizontal island. The about paragraph is right-anchored to the right margin, creating a deliberate asymmetry against the left-aligned logo. The work section uses a 2-column grid of project cards with varying aspect ratios — image cards on one side, typographic cards on the other — creating a checkerboard rhythm. Cards use 12px radius and no visible borders; separation is achieved through white space alone. At the page bottom, a compact Grid/List toggle anchors the layout. Section gaps are 80-120px, generous enough to let the massive type breathe while keeping the UI itself compact. Navigation is a single sticky top bar with no sidebar, no mega-menu, no footer beyond the view toggle.",
+    "imagery": "Photography is product-focused and tightly cropped — objects fill the frame with no lifestyle context or environmental staging. The wood furniture piece in the work grid is shot against a neutral studio ground with dramatic shadow, treating the object as sculpture. There is no people photography, no color-grading beyond natural tones, and no decorative illustration. Type-only project cards (like the 'Haven-1' circular composition) replace imagery when the project IS the typography. The visual density is overwhelmingly text-and-object — no atmospheric or environmental photography appears anywhere.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio approach: massive type as identity, monochromatic severity, work presented as generous full-bleed case study cards",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same Swiss-grid minimalism with oversized display type dominating a white canvas and tiny UI labels in a tight sans-serif",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Same dark-text-on-white discipline with a large custom wordmark, pill-shaped navigation, and project-grid card layouts",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same monolithic typographic identity — a single oversized display letterform at the top of the page against a vast white field",
+        "business": "Manuel Bortoletti"
+      },
+      {
+        "why": "Same pill-button navigation over a minimal white portfolio layout with tight Swiss sans-serif UI labels",
+        "business": "Haus"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "images": "12px",
+        "buttons": "100px",
+        "smallElements": "4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "14px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Default page background, the dominant visual field"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Stone Fill",
+        "level": 2,
+        "purpose": "Ghost controls and inactive toggle segments"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Surface",
+        "level": 3,
+        "purpose": "Filled pill buttons and the inverted logo zone"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 2px 12px rgba(0,0,0,0.06)",
+        "element": "Floating Navigation Bar"
+      }
+    ],
+    "northStar": "Oversized masthead on white paper — a 295px geometric letterform pressed against a vast white wall, with tiny serif footnotes and pill-shaped navigation floating below.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 0.94
+      },
+      {
+        "role": "display",
+        "size": 295,
+        "lineHeight": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Sticky Navigation Bar",
+        "role": "Persistent top header with rounded pill nav items and a CTA",
+        "description": "Full-width white bar with no visible border, floated 8px from the top edge. Left cluster: three pill-shaped nav links ('Work', 'About', 'Capabilities') with 100px radius, 9px top padding, 14px horizontal padding, 12px Neue Haas Unica Pro Medium text in #000000. Right cluster: a filled black 'Start a project' pill button with white text. The bar sits as a floating island on scroll with subtle shadow or just edge proximity."
+      },
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action — the only chromatic-strength CTA in the system",
+        "description": "100px border-radius, #000000 background, #ffffff text. Horizontal padding 14px, vertical padding 9px. Neue Haas Unica Pro 12px medium, letter-spacing -0.02em. No border. The fully rounded shape softens what would otherwise be an aggressive black block — a signature decision that makes the CTA feel friendly despite the monochrome severity."
+      },
+      {
+        "name": "Ghost Nav Pill",
+        "role": "Inactive or default nav link",
+        "description": "Same 100px radius and 12px Neue Haas Unica Pro text as the filled button, but transparent background and #000000 text. On hover or active state, background fills to #000000 with text inverting to #ffffff — a single-color toggle rather than introducing any new hue."
+      },
+      {
+        "name": "Segmented View Toggle",
+        "role": "Grid/List layout switcher at page bottom",
+        "description": "Two adjacent pill segments ('Grid' and 'List') in a shared capsule. Active segment: #000000 background with #ffffff text. Inactive segment: #f2f2f2 background with #000000 text. 100px radius on outer container, shared internal gap of 4px. 12px Neue Haas Unica Pro labels."
+      },
+      {
+        "name": "Work Card — Image",
+        "role": "Project tile with a product/photograph area",
+        "description": "Full-bleed image inside a 12px-radius container, no visible card border. Metadata (project name, client, number) overlaid in white Neue Haas Unica Pro 12px at lower-left of the image, set with -0.02em tracking. Aspect ratio varies per project but always cropped tight — the object is the hero, no decorative framing."
+      },
+      {
+        "name": "Work Card — Typographic",
+        "role": "Project tile expressed as type-only artwork",
+        "description": "Cream/warm-white background surface within a 12px-radius card. Central content is a circular arrangement of repeated text (e.g. 'Haven-1' rotating around a circle) with a small caps center label ('MICROGRAVITY RESEARCH LAB') set in Neue Haas Unica Pro 12px. No photographic element — the typography itself is the project artifact."
+      },
+      {
+        "name": "About Paragraph Block",
+        "role": "Long-form bio copy",
+        "description": "Right-aligned or right-anchored text block set in ITC Garamond Std Light Condensed 36px, line-height 0.94, #000000. No max-width constraint — text sits as a narrow column aligned to the right margin. The extremely tight line-height at display size gives the paragraph a compressed, almost headline-like weight despite being body copy."
+      },
+      {
+        "name": "Masthead Wordmark",
+        "role": "The site identity — a full-bleed display heading",
+        "description": "Megazoid Regular at 295px, line-height 0.9, #000000, set flush-left and bleeding past viewport edges. Single line. No margin above or below — it IS the page. The Megazoid Fill variant may be used for knock-out or reversed treatments on dark surfaces."
+      },
+      {
+        "name": "Link with Underline",
+        "role": "Inline link in body or nav context",
+        "description": "Neue Haas Unica Pro 12px, #3a4042 text, 1px solid #3a4042 underline offset ~4px from baseline. No hover state color change — only weight or underline thickness shifts. Underline acts as a hairline divider rather than decorative emphasis."
+      },
+      {
+        "name": "Card Metadata Label",
+        "role": "Small caps project metadata overlaid on images",
+        "description": "Neue Haas Unica Pro 12px, letter-spacing -0.02em, uppercase, #ffffff on dark images or #3a4042 on light surfaces. Set in a tight two-line stack (name on line 1, detail on line 2) with ~4px row gap."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Monumental display wordmark for the site title and any project-level hero headings. Ultra-heavy geometric letterforms at near-zero line-height, used sparingly as a single full-bleed statement that bleeds past container edges. The Fill variant is used for filled/knockout versions of the same glyphs.",
+        "sizes": "295px",
+        "family": "Megazoid",
+        "weight": "400",
+        "lineHeight": "0.90",
+        "substitute": "Druk Wide, Antonio Bold, or a heavy geometric display like Objektiv Blk"
+      },
+      {
+        "role": "Editorial serif for reflective about/bio paragraphs and any long-form copy that needs a literary voice. The Light Condensed cut is deliberately anti-corporate — it reads as a thoughtful side note against the massive Megazoid masthead, not as marketing prose.",
+        "sizes": "36px",
+        "family": "ITC Garamond Std Light Condensed",
+        "weight": "400",
+        "lineHeight": "0.94",
+        "substitute": "Cormorant Garamond Light, EB Garamond Light, or Playfair Display"
+      },
+      {
+        "role": "Primary UI and body typeface — the workhorse for navigation labels, project metadata, links, and inline annotations. Set extremely tight at -0.02em letter-spacing and 1.1 line-height, giving labels a compact, Swiss-catalog density.",
+        "sizes": "12px, 13px",
+        "family": "Neue Haas Unica Pro",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Inter, Neue Haas Grotesk, or Helvetica Neue Medium",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Megazoid Regular — detected in extracted data but not described by AI",
+        "sizes": "295px",
+        "family": "Megazoid Regular",
+        "weight": "400",
+        "lineHeight": "0.9"
+      }
+    ],
+    "description": "Ingmar Coenen's portfolio operates as an editorial gallery wall: a single colossal Megazoid wordmark dominates the top of the page like a magazine masthead, then the system retreats into ruthless white-space and tiny Swiss-type UI. The entire color palette is binary — pure black on pure white with one warm stone-gray for ghost controls — because the work itself is supposed to carry the color. Typography is the brand: a 295px geometric display face (Megazoid) for monumental headings, ITC Garamond Light Condensed for reflective serif body copy, and Neue Haas Unica Pro at 12-13px with negative tracking for all interface chrome. Components are minimal and rounded — 100px pill buttons, 12px cards — creating a tension between the heavy display voice and the soft, almost cartoonish corner radii. Density is compact at the UI level (4-14px gaps) but generous in layout (80-120px section breathing room).",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ingmar Coenen design system\",\"item\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#style-reference\",\"name\":\"Ingmar Coenen design system reference\",\"headline\":\"Ingmar Coenen design system | Refero Styles\",\"description\":\"Explore Ingmar Coenen's light Design design system: Pure Black #000000, Canvas White #ffffff colors, sans-serif, Megazoid typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ingmar Coenen\",\"url\":\"https://ingmarcoenen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"caption\":\"Screenshot of Ingmar Coenen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ingmar Coenen design system\",\"Ingmar Coenen website design\",\"Ingmar Coenen colors\",\"Ingmar Coenen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pure Black\",\"Canvas White\",\"Charcoal Slate\",\"Pale Stone\",\"sans-serif\",\"Megazoid\",\"ITC Garamond Std Light Condensed\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen design system\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen website design\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen colors\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:19:20.349Z\",\"dateModified\":\"2026-04-30T02:19:20.349Z\"}]}19:T602,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #3a4042\n- accent: #000000 (used for filled pill buttons — the only 'accent' in this binary system)\n- muted text: #919191\n- ghost surface: #f2f2f2\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. Create a sticky navigation bar: white #ffffff background, 100px-radius pill nav links on the left in Neue Haas Unica Pro 12px #000000 with 14px horizontal and 9px vertical padding. On the right, a filled black pill button (#000000 bg, #ffffff text, 100px radius, same padding) reading 'Start a project'. The bar floats 8px from the top with a subtle 0 2px 12px rgba(0,0,0,0.06) shadow.\n\n2. Create a monumental masthead: Megazoid Regular 295px, line-height 0.9, #000000, set flush-left bleeding past viewport edges, occupying the full top of the page with no margin.\n\n3. Create a work grid card: 12px border-radius container, full-bleed product photograph inside, with overlaid metadata in Neue Haas Unica Pro 12px #ffffff, letter-spacing -0.02em, uppercase, positioned at lower-left with 14px padding.\n\n4. Create an about paragraph: ITC Garamond Std Light Condensed 36px, line-height 0.94, #000000, right-anchored to the right margin, no max-width constraint, reading as a narrow editorial column.\n\n5. Create a Grid/List toggle: two adjacent pill segments in a shared 100px-radius capsule, 4px gap between them. Active segment #000000 bg with #ffffff text, inactive segment #f2f2f2 bg with #000000 text. Labels in Neue Haas Unica Pro 12px."
+      },
+      {
+        "title": "Typographic Philosophy",
+        "content": "The system runs on a three-voice type hierarchy that creates deliberate tension: Megazoid shouts at 295px as a once-per-page masthead, Garamond Light Condensed whispers at 36px in editorial paragraphs, and Neue Haas Unica Pro at 12px with -0.02em tracking handles all functional UI. No font bridges these three scales — there is no 40px or 60px intermediate. This means any new page either commits to the monumental register (Megazoid) or the micro-catalog register (Unica), and Garamond only appears for human-voiced, reflective copy. The negative letter-spacing on the UI font and the extreme tightness of the display line-heights (0.9-0.94) are the signature: the type feels compressed and confident rather than airy and friendly."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "button",
+            "image",
+            "list"
+          ],
+          "frequency": 1919,
+          "confidence": 1,
+          "prominence": 86139786.13256122,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "link/color": 1,
+            "list/color": 45,
+            "other/fill": 124,
+            "image/color": 8,
+            "other/color": 293,
+            "button/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 32,
+            "link/borderColor": 4,
+            "list/borderColor": 180,
+            "image/borderColor": 32,
+            "other/borderColor": 1172,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 50348403.91852586,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "body/borderColor": 28,
+            "other/backgroundColor": 46,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3a4042",
+          "oklch": {
+            "c": 0.008733918874814981,
+            "h": 219.70793347211566,
+            "l": 0.3666388597243406
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 622855.7095769822,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "link/color": 11,
+            "other/fill": 10,
+            "heading/color": 1,
+            "body/borderColor": 24,
+            "link/borderColor": 44,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10202.55204893507,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#919191",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6566564452705039
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3853.806823161949,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2895.158000807695,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0011134521767994622,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#000000",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#ffffff",
+          "foreground": "#3a4042"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.42,
+          "background": "#f2f2f2",
+          "foreground": "#3a4042"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#000000",
+          "foreground": "#919191"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#cccccc",
+          "foreground": "#3a4042"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#ffffff",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#f2f2f2",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#000000",
+          "foreground": "#3a4042"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#ffffff",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.43,
+          "background": "#f2f2f2",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f2f2f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 41
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 1,
+          "corners": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 39,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 64,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 320,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 397,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Haas Unica Pro Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Megazoid Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Megazoid Fill",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITC Garamond Std Light Condensed",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "link",
+            "list"
+          ],
+          "frequency": 397,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Unica Pro Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Neue Haas Unica Pro Medium",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "ITC Garamond Std Light Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 295,
+          "family": "Megazoid Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 295,
+          "family": "Megazoid Fill",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ad5d8b25-0ef2-4ca4-9b41-a23d1d80ded3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ingmar Coenen design system\",\"item\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#style-reference\",\"name\":\"Ingmar Coenen design system reference\",\"headline\":\"Ingmar Coenen design system | Refero Styles\",\"description\":\"Explore Ingmar Coenen's light Design design system: Pure Black #000000, Canvas White #ffffff colors, sans-serif, Megazoid typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ingmar Coenen\",\"url\":\"https://ingmarcoenen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f8c92b6b-a3a7-4141-ae61-3d865a106761#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"caption\":\"Screenshot of Ingmar Coenen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2f899879-f713-441c-b9f2-6d9689048762.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ingmar Coenen design system\",\"Ingmar Coenen website design\",\"Ingmar Coenen colors\",\"Ingmar Coenen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pure Black\",\"Canvas White\",\"Charcoal Slate\",\"Pale Stone\",\"sans-serif\",\"Megazoid\",\"ITC Garamond Std Light Condensed\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen design system\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen website design\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen colors\"},{\"@type\":\"Thing\",\"name\":\"Ingmar Coenen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:19:20.349Z\",\"dateModified\":\"2026-04-30T02:19:20.349Z\"}]}19:T602,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #3a4042\n- accent: #000000 (used for filled pill buttons — the only 'accent' in this binary system)\n- muted text: #919191\n- ghost surface: #f2f2f2\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. Create a sticky navigation bar: white #ffffff background, 100px-radius pill nav links on the left in Neue Haas Unica Pro 12px #000000 with 14px horizontal and 9px vertical padding. On the right, a filled black pill button (#000000 bg, #ffffff text, 100px radius, same padding) reading 'Start a project'. The bar floats 8px from the top with a subtle 0 2px 12px rgba(0,0,0,0.06) shadow.\n\n2. Create a monumental masthead: Megazoid Regular 295px, line-height 0.9, #000000, set flush-left bleeding past viewport edges, occupying the full top of the page with no margin.\n\n3. Create a work grid card: 12px border-radius container, full-bleed product photograph inside, with overlaid metadata in Neue Haas Unica Pro 12px #ffffff, letter-spacing -0.02em, uppercase, positioned at lower-left with 14px padding.\n\n4. Create an about paragraph: ITC Garamond Std Light Condensed 36px, line-height 0.94, #000000, right-anchored to the right margin, no max-width constraint, reading as a narrow editorial column.\n\n5. Create a Grid/List toggle: two adjacent pill segments in a shared 100px-radius capsule, 4px gap between them. Active segment #000000 bg with #ffffff text, inactive segment #f2f2f2 bg with #000000 text. Labels in Neue Haas Unica Pro 12px."
+}

@@ -1,0 +1,1001 @@
+{
+  "source": "https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9",
+  "uuid": "1f9089e1-4170-482f-b988-afe1124a70a9",
+  "name": "Incommonwith",
+  "northStar": "Editorial atelier in oxblood ink — warm cream pages, sunlit interior photography, and a single deep burgundy ink that carries every word, border, and link like fine letterpress.",
+  "capturedAt": "2026-07-18T09:33:49.889Z",
+  "meta": {
+    "url": "https://www.incommonwith.com",
+    "siteName": "Incommonwith",
+    "extractedAt": "2026-06-03T19:06:51.699Z",
+    "durationMs": 39560,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 467,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #4a0a05 oxblood for all text, borders, and links — it is the only chromatic color and must carry every word, rule, and interactive element",
+      "Pair Caslon Ionic serif at 24px for category names, journal headlines, and the wordmark with Mier A sans at 13-18px for all body, nav, and UI text",
+      "Let photography fill its container edge-to-edge with 0px border-radius and 0px padding — images are full-bleed, never framed or rounded",
+      "Use 12px gaps in navigation rows and between related elements; 64px between major sections to let photography breathe",
+      "Set page backgrounds to #fafaf9 warm cream — never pure #ffffff; the warm off-white is essential to the paper-stock feel",
+      "Use horizontal scroll carousels with small arrow controls for product categories rather than paginated grids or filters",
+      "Date-stamp journal cards with small sidebar labels in a separate column, not badges or pills overlaid on images"
+    ],
+    "donts": [
+      "Don't use filled colored buttons — the system is entirely text-link driven; an outlined/underlined text link in #4a0a05 is the only action style",
+      "Don't apply border-radius to images, cards, or panels — only pill tags at 9999px may be rounded; everything else is sharp",
+      "Don't use drop shadows for elevation — depth comes from photography and warm color temperature, never from box-shadow",
+      "Don't use pure white (#ffffff) backgrounds — always use #fafaf9 or #f8f7f1; the warmth is the brand",
+      "Don't introduce accent colors beyond oxblood — the palette is intentionally narrow; adding blue, green, or other hues breaks the editorial coherence",
+      "Don't use system fonts or substitute the Caslon/Mier pairing — the serif-sans tension is the brand's typographic identity",
+      "Don't center-align body text or use large display headlines — the system is left-aligned and restrained; headlines are 24px, not 48px+"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#4a0a05",
+        "name": "Oxblood Ink",
+        "role": "All body text, headings, links, borders, outlined actions, and footer type — the singular chromatic voice; warmth and gravity without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#fafaf9",
+        "name": "Cream Paper",
+        "role": "Primary page background; the warm off-white that gives the site its paper-stock feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f7f1",
+        "name": "Aged Linen",
+        "role": "Secondary surface, subtle card backgrounds, and pill-tag fills — slightly greener/warmer than the page, used for soft differentiation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bcb6a6",
+        "name": "Warm Stone",
+        "role": "Muted background wash and tertiary surface — the only mid-tone neutral, used sparingly for section backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a2827f",
+        "name": "Dusty Clay",
+        "role": "Muted captions, helper text, and de-emphasized UI labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero with overlaid serif headline positioned lower-left. Below the fold: centered max-width content (~1200px) with a persistent narrow left sidebar column for section labels ('Our Catalog', 'Lathely', 'Featured'). Horizontal scroll product carousel with small arrow controls at the right edge. Two-column side-by-side journal cards with date stamps. Footer with multi-column text links. The layout rhythm alternates between full-bleed photographic moments and quiet, text-driven editorial pages — photography is the punctuation, text is the prose. Navigation is a single thin top bar of text links, no background fill, no border.",
+    "imagery": "Full-bleed interior photography dominates the visual field. All images are atmospheric, warm-toned scenes of rooms and objects in context — golden-hour light, candlelit interiors, textured walls, no people, no isolated product shots on white. Images have no border-radius, no padding around them, no visible frames; they sit flush against the cream page. Color treatment is consistently warm: amber, terracotta, deep shadow, muted greens from plants. Photography serves as both content and atmosphere — it IS the page chrome. No illustrations, no icons, no decorative graphics; the wordmark and category names do the work of branding.",
+    "similar": [
+      {
+        "why": "Same warm minimal furniture aesthetic with photography-driven product presentation and text-link commerce",
+        "business": "Hem"
+      },
+      {
+        "why": "Same lighting category with warm interior photography, restrained typography, and minimal UI chrome",
+        "business": "Menu Space"
+      },
+      {
+        "why": "Same editorial layout language with serif headlines over sans body, full-bleed product photography, and oxblood/dark text on warm white",
+        "business": "Allied Maker"
+      },
+      {
+        "why": "Same warm interior photography, narrow sans-serif UI, and serif accent on category and journal titles",
+        "business": "Workstead"
+      },
+      {
+        "why": "Same lighting brand aesthetic with moody warm photography, text-link navigation, and a single dark accent color on cream backgrounds",
+        "business": "Apparatus Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "pills": "9999px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fafaf9",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Page background; the default canvas for all editorial content"
+      },
+      {
+        "hex": "#f8f7f1",
+        "name": "Aged Linen",
+        "level": 1,
+        "purpose": "Subtle surface lift for tags, secondary panels, and quiet differentiation"
+      },
+      {
+        "hex": "#bcb6a6",
+        "name": "Warm Stone",
+        "level": 2,
+        "purpose": "Mid-tone wash for section backgrounds or accent surfaces"
+      }
+    ],
+    "northStar": "Editorial atelier in oxblood ink — warm cream pages, sunlit interior photography, and a single deep burgundy ink that carries every word, border, and link like fine letterpress.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Transparent background, no border. Left: 'Shop' at 14px Mier A, #4a0a05. Center: 'Collections', 'Showroom' at 14px Mier A, #4a0a05. Right: 'Info', 'Trade', 'Search', 'Sign In', 'Cart (0)' at 14px Mier A, #4a0a05. 12px gap between items. No fill, no shadow, no logo container — the wordmark appears separately in content."
+      },
+      {
+        "name": "Full-Bleed Hero with Overlaid Headline",
+        "role": "Landing page hero",
+        "description": "Full-viewport-width interior photograph as background. Headline 'In Common With' in white, 24px Caslon Ionic, positioned lower-left at ~30% from top. Subtitle 'A dialogue between light, material, and form' in white, 13px Mier A, directly below. 'Explore Outdoor' as a white text link at 14px Mier A below the subtitle. No button — just a text-link entry point."
+      },
+      {
+        "name": "Product Category Card",
+        "role": "Catalog category tile",
+        "description": "Full-bleed interior photograph filling the card edge-to-edge (0px radius, 0px padding). Below image: category name at 24px Caslon Ionic, #4a0a05, with a small superscript count number (e.g. 'Floor Lamps⁵'). 'Shop' text link at 14px Mier A, #4a0a05, with a 1px #4a0a05 underline, positioned 8px below the name. White (#fafaf9) background. No border, no shadow."
+      },
+      {
+        "name": "Journal Editorial Card",
+        "role": "Editorial/press content card",
+        "description": "Full-bleed editorial photograph (0px radius, 0px padding). Date stamp at 13px Mier A, #4a0a05, positioned 12px above the image. Headline at 24px Caslon Ionic, #4a0a05, positioned 12px below the image. 'Read More' text link at 14px Mier A, #4a0a05, underlined, 12px below headline. White (#fafaf9) background. No border, no shadow."
+      },
+      {
+        "name": "Text Link / Outlined Action",
+        "role": "Primary interactive element",
+        "description": "No fill, no large button shape. 14px Mier A, #4a0a05, with a 1px #4a0a05 bottom border acting as underline. Padding: 0px vertical, 0px horizontal — the text is the control. On hover: border-color darkens or thickens to 1.5px. This is the site's only action style; there are no filled buttons."
+      },
+      {
+        "name": "Sidebar Section Label",
+        "role": "Section identifier",
+        "description": "Small text at 14px Mier A, #4a0a05, left-aligned in a narrow ~120px column at the far left of the page width. Labels include 'Our Catalog', 'Lathely', 'Featured', product names like 'Verso Surface Mount'. No border, no background — just text in a separate column from main content, connected by a thin horizontal rule (#4a0a05, 1px)."
+      },
+      {
+        "name": "Horizontal Scroll Carousel",
+        "role": "Product category browser",
+        "description": "Row of Product Category Cards with 12px column gap. Arrow controls (← →) at the right edge, rendered as 14px Mier A, #4a0a05, no background. Cards scroll horizontally; no pagination dots. A thin 1px #4a0a05 line above the carousel acts as a section rule."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Vertical rhythm separator",
+        "description": "Thin 1px horizontal line, #4a0a05 or #bcb6a6, spanning the full content width. Used to separate catalog sections, journal sections, and footer. No vertical dividers, no decorative elements — just a hairline."
+      },
+      {
+        "name": "Pill Tag",
+        "role": "Category or filter label",
+        "description": "9999px border-radius. Background: #f8f7f1. Text: 13px Mier A, #4a0a05. Padding: 4px 12px. No border. Used sparingly for product tags or filters."
+      },
+      {
+        "name": "Multi-Column Footer",
+        "role": "Site footer with contact and navigation",
+        "description": "White (#fafaf9) background, 1px #4a0a05 top border. Multi-column text links at 13px Mier A, #4a0a05. Columns: brand info, showroom addresses, contact email. No social icons (text links only), no newsletter form. Generous vertical padding (40-64px)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body sans — used for navigation, body copy, captions, dates, links, and all functional text. Weight 400 only; the system trusts size and color contrast to carry hierarchy, never weight. Substitute: Inter or Untitled Sans (free: Inter).",
+        "sizes": "13px, 14px, 18px, 26px",
+        "family": "Mier A",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Sole serif — reserved exclusively for category names, journal headlines, and brand wordmark at 24px. The single appearance of a classical letterform creates a literary counterpoint to the neo-grotesque UI. Substitute: Cormorant Garamond or Libre Caslon Text.",
+        "sizes": "24px",
+        "family": "Caslon Ionic",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Cormorant Garamond",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "In Common With operates as a printed design quarterly, not a storefront: warm cream-white paper (#fafaf9) is the canvas, full-bleed golden-hour interior photography carries visual weight, and a single deep oxblood ink (#4a0a05) serves as every text element, border, and link. The type system pairs a classical Caslon Ionic serif at 24px for headlines with a neo-grotesque Mier A sans for body, navigation, and UI — a literary tension that recurs across hero overlays, category names, and journal titles. Layout is unhurried: full-bleed hero, sidebar date stamps, horizontal product carousels, and generous negative space let the photography lead. Surfaces are flat, corners are sharp, shadows are absent — depth comes from photography and warm color temperature, never from elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Incommonwith design system\",\"item\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#style-reference\",\"name\":\"Incommonwith design system reference\",\"headline\":\"Incommonwith design system | Refero Styles\",\"description\":\"Explore Incommonwith's light E-commerce design system: Oxblood Ink #4a0a05, Cream Paper #fafaf9 colors, Mier A, Caslon Ionic typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Incommonwith\",\"url\":\"https://www.incommonwith.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"caption\":\"Screenshot of Incommonwith\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Incommonwith design system\",\"Incommonwith website design\",\"Incommonwith colors\",\"Incommonwith typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Oxblood Ink\",\"Cream Paper\",\"Aged Linen\",\"Warm Stone\",\"Mier A\",\"Caslon Ionic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Incommonwith design system\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith website design\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith colors\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:26:33.269Z\",\"dateModified\":\"2026-04-30T00:26:33.269Z\"}]}19:T742,## Quick Color Reference\n- Text: #4a0a05\n- Background: #fafaf9\n- Surface/secondary: #f8f7f1\n- Border: #4a0a05\n- Accent: #4a0a05\n- primary action: #4a0a05 (outlined action border)\n\n## Example Component Prompts\n\n1. **Full-bleed hero with overlaid headline**: Full-viewport-width warm interior photograph. White serif headline 'In Common With' at 24px Caslon Ionic, left-aligned, positioned at ~30% from top. White sans subtitle 'A dialogue between light, material, and form' at 13px Mier A directly below. White text link 'Explore Outdoor' at 14px Mier A with 1px white underline, 8px below subtitle. No button shapes.\n\n2. **Product category card**: Full-bleed interior photograph (0px border-radius, 0px padding). Category name 'Floor Lamps' at 24px Caslon Ionic, #4a0a05, with superscript count '5'. 'Shop' text link at 14px Mier A, #4a0a05, with 1px #4a0a05 underline, 8px below the name. White #fafaf9 card background, no border, no shadow.\n\n3. **Journal editorial card**: Full-bleed editorial photograph. Date stamp 'May 13, 2024' at 13px Mier A, #4a0a05, 12px above image. Headline 'Welcome to Quarters' at 24px Caslon Ionic, #4a0a05, 12px below image. 'Read More' text link at 14px Mier A, #4a0a05, underlined, 12px below headline. White #fafaf9 background.\n\n4. **Top navigation bar**: Transparent background, no border. Left: 'Shop' at 14px Mier A, #4a0a05. Center: 'Collections', 'Showroom' at 14px Mier A, #4a0a05. Right: 'Info', 'Trade', 'Search', 'Sign In', 'Cart (0)' at 14px Mier A, #4a0a05. 12px gap between items. No logo in nav — the wordmark appears in content.\n\n5. **Sidebar section label with content**: Narrow ~120px left column with 'Our Catalog' at 14px Mier A, #4a0a05, left-aligned. Thin 1px #4a0a05 horizontal rule extending right from the label across the full content width. Main content begins to the right of the sidebar column."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth and hierarchy are created through warm color temperature, full-bleed photography, and generous negative space. Elements sit on the same flat plane; the eye moves between them through contrast in color temperature and scale, not elevation. This is a deliberate editorial choice — the design reads as printed paper, not a screen UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#4a0a05",
+          "oklch": {
+            "c": 0.09518957341617285,
+            "h": 29.942185382979694,
+            "l": 0.2675508502177825
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "button",
+            "link",
+            "nav",
+            "list",
+            "input",
+            "footer"
+          ],
+          "frequency": 1716,
+          "confidence": 1,
+          "prominence": 125025233.0366081,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 45,
+            "hero/color": 2,
+            "link/color": 32,
+            "list/color": 29,
+            "other/fill": 12,
+            "image/color": 19,
+            "input/color": 2,
+            "other/color": 182,
+            "button/color": 4,
+            "footer/color": 1,
+            "heading/color": 19,
+            "nav/borderColor": 16,
+            "body/borderColor": 180,
+            "hero/borderColor": 8,
+            "link/borderColor": 128,
+            "list/borderColor": 116,
+            "image/borderColor": 76,
+            "input/borderColor": 8,
+            "other/borderColor": 728,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 76,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f8f7f1",
+          "oklch": {
+            "c": 0.007999229145922172,
+            "h": 98.8778558432849,
+            "l": 0.9752502812590644
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "button",
+            "image",
+            "body",
+            "link"
+          ],
+          "frequency": 400,
+          "confidence": 1,
+          "prominence": 11090365.431928435,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "nav/color": 21,
+            "body/color": 2,
+            "link/color": 1,
+            "other/fill": 12,
+            "image/color": 7,
+            "other/color": 31,
+            "button/color": 5,
+            "heading/color": 7,
+            "nav/borderColor": 84,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 28,
+            "other/borderColor": 124,
+            "button/borderColor": 20,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#fafaf9",
+          "oklch": {
+            "c": 0.00131901478923202,
+            "h": 106.4238006899913,
+            "l": 0.9848252504730842
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 5928155.542248936,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 5,
+            "other/color": 5,
+            "heading/color": 2,
+            "body/borderColor": 16,
+            "link/borderColor": 20,
+            "other/borderColor": 20,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#bcb6a6",
+          "oklch": {
+            "c": 0.023216079941836373,
+            "h": 89.82709825098999,
+            "l": 0.7767408756776367
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 656213.5983211208,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#a2827f",
+          "oklch": {
+            "c": 0.03986771157798693,
+            "h": 24.489305485038177,
+            "l": 0.6359409646791402
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6238.41240283847,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.20444511376350186,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#fafaf9",
+          "foreground": "#4a0a05"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.64,
+          "background": "#f8f7f1",
+          "foreground": "#4a0a05"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#bcb6a6",
+          "foreground": "#4a0a05"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.52,
+          "background": "#4a0a05",
+          "foreground": "#a2827f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.33,
+          "background": "#fafaf9",
+          "foreground": "#a2827f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.24,
+          "background": "#f8f7f1",
+          "foreground": "#a2827f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.94,
+          "background": "#bcb6a6",
+          "foreground": "#fafaf9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#bcb6a6",
+          "foreground": "#f8f7f1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#bcb6a6",
+          "foreground": "#a2827f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.03,
+          "background": "#fafaf9",
+          "foreground": "#f8f7f1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|heading",
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 76,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "paddingTop|list",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|other",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 87,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Mier A",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 425,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Caslon Ionic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Mier A",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Mier A",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "body",
+            "link",
+            "list",
+            "input",
+            "footer"
+          ],
+          "frequency": 384,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Mier A",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Caslon Ionic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Mier A",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d6d39093-fd34-4299-b22d-b3893042836f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Incommonwith design system\",\"item\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#style-reference\",\"name\":\"Incommonwith design system reference\",\"headline\":\"Incommonwith design system | Refero Styles\",\"description\":\"Explore Incommonwith's light E-commerce design system: Oxblood Ink #4a0a05, Cream Paper #fafaf9 colors, Mier A, Caslon Ionic typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Incommonwith\",\"url\":\"https://www.incommonwith.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1f9089e1-4170-482f-b988-afe1124a70a9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"caption\":\"Screenshot of Incommonwith\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9550af84-1f4b-4241-b55e-f567454d694e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Incommonwith design system\",\"Incommonwith website design\",\"Incommonwith colors\",\"Incommonwith typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Oxblood Ink\",\"Cream Paper\",\"Aged Linen\",\"Warm Stone\",\"Mier A\",\"Caslon Ionic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Incommonwith design system\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith website design\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith colors\"},{\"@type\":\"Thing\",\"name\":\"Incommonwith typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:26:33.269Z\",\"dateModified\":\"2026-04-30T00:26:33.269Z\"}]}19:T742,## Quick Color Reference\n- Text: #4a0a05\n- Background: #fafaf9\n- Surface/secondary: #f8f7f1\n- Border: #4a0a05\n- Accent: #4a0a05\n- primary action: #4a0a05 (outlined action border)\n\n## Example Component Prompts\n\n1. **Full-bleed hero with overlaid headline**: Full-viewport-width warm interior photograph. White serif headline 'In Common With' at 24px Caslon Ionic, left-aligned, positioned at ~30% from top. White sans subtitle 'A dialogue between light, material, and form' at 13px Mier A directly below. White text link 'Explore Outdoor' at 14px Mier A with 1px white underline, 8px below subtitle. No button shapes.\n\n2. **Product category card**: Full-bleed interior photograph (0px border-radius, 0px padding). Category name 'Floor Lamps' at 24px Caslon Ionic, #4a0a05, with superscript count '5'. 'Shop' text link at 14px Mier A, #4a0a05, with 1px #4a0a05 underline, 8px below the name. White #fafaf9 card background, no border, no shadow.\n\n3. **Journal editorial card**: Full-bleed editorial photograph. Date stamp 'May 13, 2024' at 13px Mier A, #4a0a05, 12px above image. Headline 'Welcome to Quarters' at 24px Caslon Ionic, #4a0a05, 12px below image. 'Read More' text link at 14px Mier A, #4a0a05, underlined, 12px below headline. White #fafaf9 background.\n\n4. **Top navigation bar**: Transparent background, no border. Left: 'Shop' at 14px Mier A, #4a0a05. Center: 'Collections', 'Showroom' at 14px Mier A, #4a0a05. Right: 'Info', 'Trade', 'Search', 'Sign In', 'Cart (0)' at 14px Mier A, #4a0a05. 12px gap between items. No logo in nav — the wordmark appears in content.\n\n5. **Sidebar section label with content**: Narrow ~120px left column with 'Our Catalog' at 14px Mier A, #4a0a05, left-aligned. Thin 1px #4a0a05 horizontal rule extending right from the label across the full content width. Main content begins to the right of the sidebar column."
+}

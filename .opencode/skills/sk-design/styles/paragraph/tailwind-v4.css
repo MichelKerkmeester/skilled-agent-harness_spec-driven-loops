@@ -1,0 +1,55 @@
+@theme {
+  /* Colors */
+  --color-page-parchment: #dbd5d2;
+  --color-ink-black: #271f1b;
+  --color-sheet-white: #ffffff;
+  --color-felt-gray: #ededed;
+  --color-margin-gray: #888786;
+  --color-periwinkle-action: #4a83f5;
+  --color-cornflower-wash: #b1cafb;
+  --color-dusk-periwinkle: #cedaf3;
+
+  /* Typography */
+  --font-ivyora: 'IvyOra', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-google-sans-flex: 'Google Sans Flex', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.56;
+  --text-heading: 24px;
+  --leading-heading: 1.33;
+  --tracking-heading: -0.528px;
+  --text-display: 64px;
+  --leading-display: 1;
+  --tracking-display: -1.92px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 28px;
+  --radius-full: 100px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px, rgba(0, 0, 0, 0.02) 0px 0px 4px 0px;
+  --shadow-subtle-2: rgba(61, 122, 245, 0.4) 0px 0px 0px 1px inset, rgba(207, 222, 252, 0.3) 0px 1px 0px 0px inset, rgba(10, 71, 194, 0.2) 0px -1px 0px 0px inset, rgba(13, 89, 242, 0.15) 0px 0px 16px 0px;
+  --shadow-subtle-3: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-4: rgba(219, 213, 210, 0.5) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.8) 1px 1px 0px 0px inset;
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+}

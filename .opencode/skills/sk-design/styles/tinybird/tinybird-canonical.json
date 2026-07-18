@@ -1,0 +1,1260 @@
+{
+  "source": "https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05",
+  "uuid": "e5d7b80d-f473-439f-87a5-84716c448a05",
+  "name": "Tinybird",
+  "northStar": "developer terminal at midnight — black void, one electric green cursor, monospace whispers",
+  "capturedAt": "2026-07-18T09:31:08.217Z",
+  "meta": {
+    "url": "https://tinybird.co",
+    "siteName": "Tinybird",
+    "extractedAt": "2026-06-03T19:20:51.731Z",
+    "durationMs": 30252,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 705,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #27f795 fill only for the single most important action per screen — one filled CTA, everything else ghost or text.",
+      "Wrap workflow steps and inline labels in square brackets rendered in Roboto Mono to maintain the terminal-log aesthetic.",
+      "Use Roboto Mono for all numerics, stats, and tag labels; use Roboto only for prose, descriptions, and headlines.",
+      "Set headline tracking to -0.020em at 64px and stat-figure tracking to -0.084em at 56px to compress type into dense, confident blocks.",
+      "Build surface hierarchy through four levels of charcoal (0a0a0a → 151515 → 262626 → 353535) rather than drop shadows.",
+      "Keep all borders at exactly 1px in #353535 — the system is defined by hairline edges, not weight.",
+      "Use 4px radius for buttons and 8px radius for cards — no larger radii anywhere."
+    ],
+    "donts": [
+      "Do not introduce any color outside the palette — the system is achromatic plus one green, and adding a second chromatic voice breaks the terminal metaphor.",
+      "Do not use filled buttons with neutral or white backgrounds — the only fill color is #27f795, and only for primary actions.",
+      "Do not use Roboto for tags, labels, or code — these must stay in Roboto Mono to preserve the developer-tool identity.",
+      "Do not use shadows or glows to create elevation — the design achieves layering through surface darkness, never drop shadows.",
+      "Do not use radii larger than 8px — anything rounder would feel consumer-friendly and break the engineered feel.",
+      "Do not use the red #800000 as an error state — it is a quiet inline accent, not a semantic signal.",
+      "Do not left-align hero content — the centered headline with tight tracking is the signature opener."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#27f795",
+        "name": "Cursor Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#008060",
+        "name": "Hover Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#800000",
+        "name": "Terminal Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text and headlines. Maximum contrast against the near-black canvas for immediate legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Deepest surface layer for hero backgrounds and video poster frames, one step darker than the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Console Black",
+        "role": "Primary page canvas — the dominant background of every screen. A hair above true black to soften OLED contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Panel Charcoal",
+        "role": "First elevated surface — used for embedded media frames and video containers that need to sit above the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Card Graphite",
+        "role": "Testimonial and content card backgrounds. Two steps above the canvas, enough lift to separate without casting shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#353535",
+        "name": "Border Smoke",
+        "role": "Hairline borders, input fields, and dividers. Defines component edges without competing with content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8d8d",
+        "name": "Muted Ash",
+        "role": "Secondary body text, descriptions, and sub-labels — the voice for anything supporting but not starring in the hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Tertiary Fog",
+        "role": "Tertiary text and disabled-state labels. The faintest human voice before falling into silence",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Highlight Mist",
+        "role": "Bright border accent used on emphasized outlined elements like the active workflow step",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered content on a full-bleed #0a0a0a canvas. The page follows a vertical rhythm of full-width sections separated by 80px gaps, with no alternating light/dark bands — every section shares the same dark canvas. Each section is centered text-first, with the hero using a centered stack (headline → subtext → CTA pair → tag row) and subsequent sections alternating between centered text blocks and 3-column card grids. Navigation is a minimal transparent top bar with no sticky shadow. Content density is comfortable rather than dense — large vertical breathing room and centered compositions create a stage for the single green accent.",
+    "imagery": "Visuals are minimal and functional. The only photographic content is small circular avatar portraits in testimonial cards (40px, tightly cropped to face). The primary visual artifact is a full-bleed video demo frame rendered as a flat charcoal panel with a centered play button — no thumbnail, no preview. Partner logos in the logo bar are desaturated to #8d8d8d monochrome, presenting social proof as evidence rather than endorsement. No illustrations, no 3D renders, no decorative graphics. The green accent does the visual work that ornament would do elsewhere.",
+    "similar": [
+      {
+        "why": "Same black-canvas developer-tool aesthetic with a single chromatic accent and geometric sans-serif headlines, though Vercel uses white accents where Tinybird uses green",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark-mode infrastructure product page with monospace labels and flat surface layering, though Railway leans more purple than green",
+        "business": "Railway"
+      },
+      {
+        "why": "Terminal-grade dark interface with monospace stat figures and flat card hierarchy, though PlanetScale uses a broader gradient palette",
+        "business": "PlanetScale"
+      },
+      {
+        "why": "Dark developer-tool product page with a single vivid accent color (green for Supabase) and monospace tag badges",
+        "business": "Supabase"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "buttons": "4px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Deepest surface for hero bands and full-bleed media frames"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Console",
+        "level": 1,
+        "purpose": "Primary page canvas across all sections"
+      },
+      {
+        "hex": "#151515",
+        "name": "Panel",
+        "level": 2,
+        "purpose": "Embedded media containers, video posters"
+      },
+      {
+        "hex": "#262626",
+        "name": "Card",
+        "level": 3,
+        "purpose": "Testimonial and content card backgrounds"
+      },
+      {
+        "hex": "#353535",
+        "name": "Edge",
+        "level": 4,
+        "purpose": "Borders, input fields, subtle dividers"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — achieved through #262626 surface against #0a0a0a canvas",
+        "element": "Card on Canvas"
+      },
+      {
+        "style": "none — 1px #353535 border on #262626 surface",
+        "element": "Testimonial Card"
+      },
+      {
+        "style": "none — 1px #353535 border on #151515 surface",
+        "element": "Video Frame"
+      }
+    ],
+    "northStar": "developer terminal at midnight — black void, one electric green cursor, monospace whispers",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.57,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.31
+      },
+      {
+        "role": "stat-figure",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -4.7
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled button for the single most important action on a screen",
+        "description": "Background #27f795 (Cursor Green), text #000000 or #0a0a0a, Roboto weight 600 at 16px, 4px radius, 12px vertical and 24px horizontal padding. This is the only filled button in the system — every other interactive element is ghost or text. The green fill is the visual equivalent of a blinking cursor."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary action that sits beside the primary CTA",
+        "description": "No background, text #27f795, Roboto weight 400 at 16px, no border, no radius. Reads as a text link with cursor affordance — a quieter companion to the filled CTA."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Persistent top bar with product links and auth actions",
+        "description": "Transparent background over the #0a0a0a canvas. Logo (bird mark + 'tinybird' wordmark) on the left in white at 14px weight 700. Center nav items in white at 14px weight 400. Right side: ghost 'Sign in' text link in #27f795, followed by a filled 'Sign up' button using the Primary CTA style at compact 10px vertical and 16px horizontal padding."
+      },
+      {
+        "name": "Bracket Workflow Tag",
+        "role": "Step indicator in workflow sequences",
+        "description": "No background, Roboto Mono weight 400 at 12px, color #27f795 for active step and #8d8d8d for inactive steps. Wrapped in literal square brackets: [Get Started] [Develop] [Ingest] [Query] [Monitor] [Iterate]. Pipe characters separate steps. This is the signature micro-component — it makes the interface feel like a log output."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Topical classification badge",
+        "description": "1px border in #353535 (Border Smoke), transparent background, Roboto Mono weight 400 at 12px, text #d9d9d9, 4px radius, 4px vertical and 12px horizontal padding. Used in the hero to categorize use cases like 'SaaS / Dashboards', 'Observability', 'AI Analytics'."
+      },
+      {
+        "name": "Stat Card",
+        "role": "Hero metric display",
+        "description": "Large Roboto Mono figure at 56px weight 400 in #27f795, tracked at -0.084em to compress digits into a dense block. Adjacent label in Roboto Mono at 12px in #8d8d8d, uppercase. No card chrome — sits directly on the canvas."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Social proof block in 3-column grid",
+        "description": "Background #262626 (Card Graphite), 8px radius, 24px padding all sides. 40px circular avatar at top-left, name in Roboto weight 600 at 14px in #ffffff, title and company in #8d8d8d at 12px. Quote body in Roboto weight 400 at 14px in #d9d9d9. 1px border in #353535 for definition against the slightly lighter card surface."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold headline and CTA",
+        "description": "Centered layout on #0a0a0a. Headline at 64px Roboto weight 700 in #ffffff, tracked at -0.020em, line-height 1.13. Subtext at 18px Roboto weight 400 in #8d8d8d. Primary CTA and ghost link side by side with 16px gap. Category tags below with 8px gap."
+      },
+      {
+        "name": "Logo Bar",
+        "role": "Partner or customer logo strip",
+        "description": "Single row of 7–8 grayscale logos centered, separated by 40px gap, inside a card with #262626 background and 1px #353535 border. Logos rendered in #8d8d8d to recede — they are evidence, not heroes."
+      },
+      {
+        "name": "Video Embed Frame",
+        "role": "Full-width media container for demos",
+        "description": "Background #151515 (Panel Charcoal), 1px border in #353535, no radius. Circular play button centered at 64px diameter, #353535 fill with white triangle icon. Frame extends edge-to-edge within its container with no internal padding — the video is the content."
+      },
+      {
+        "name": "Data Hero Band",
+        "role": "Promotional strip combining social proof and live metrics",
+        "description": "Inline composition on the canvas: partner attribution (small avatar + name) in #8d8d8d, followed by a description sentence with the phrase '30M requests/day' highlighted in #27f795. Below, a two-column split: left column has stacked stat figures in Cursor Green, right column has a white-quote testimonial block."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Prose and headlines. Weight 400 for body and descriptions, weight 600 for primary CTA button text, weight 700 reserved for the 64px display headline. The tight negative tracking at 64px tightens the headline into a single confident block.",
+        "sizes": "12, 14, 16, 18, 24, 64",
+        "family": "Roboto",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.13, 1.33, 1.50, 1.57, 1.67, 1.78",
+        "substitute": "Inter, system-ui, sans-serif",
+        "letterSpacing": "-0.0200em at 64px (display), -0.0130em at 24px (heading)"
+      },
+      {
+        "role": "Tags, badges, code labels, workflow step indicators, and monospaced stat figures. The extreme -0.084em tracking at 56px is anti-convention — monospace usually stays loose, but this tightens the digits into a dense data block that feels engineered, not displayed.",
+        "sizes": "12, 14, 16, 56",
+        "family": "Roboto Mono",
+        "weight": "400",
+        "lineHeight": "1.00, 1.50, 1.57, 1.67",
+        "substitute": "JetBrains Mono, IBM Plex Mono, monospace",
+        "letterSpacing": "-0.0840em"
+      }
+    ],
+    "description": "Tinybird is a dark-mode developer console aesthetic: near-black canvas, one electric green accent that acts as the only chromatic voice on screen, and a strict division between humanist Roboto for prose and monospaced Roboto Mono for tags, labels, and code. The interface reads as terminal-grade — monospace badges sit inside square brackets like log entries, and the green accent behaves like a blinking cursor rather than a brand color, used sparingly for CTAs, links, and the occasional inline highlight. Surfaces are flat, borders are hairline, and elevation is achieved through subtle dark-to-darker layering rather than shadows. The result is a product page that feels engineered rather than marketed, confident in its restraint.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tinybird design system\",\"item\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#style-reference\",\"name\":\"Tinybird design system reference\",\"headline\":\"Tinybird design system | Refero Styles\",\"description\":\"Explore Tinybird's dark Dev Tools design system: Cursor Green #27f795, Hover Green #008060 colors, Roboto, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tinybird\",\"url\":\"https://tinybird.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"caption\":\"Screenshot of Tinybird\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tinybird design system\",\"Tinybird website design\",\"Tinybird colors\",\"Tinybird typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cursor Green\",\"Hover Green\",\"Terminal Red\",\"Pure White\",\"Roboto\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tinybird design system\"},{\"@type\":\"Thing\",\"name\":\"Tinybird website design\"},{\"@type\":\"Thing\",\"name\":\"Tinybird colors\"},{\"@type\":\"Thing\",\"name\":\"Tinybird typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-16T17:04:57.000Z\",\"dateModified\":\"2026-02-16T17:04:57.000Z\"}]}19:T462,## Quick Color Reference\n\n- text: #ffffff (primary), #8d8d8d (secondary), #999999 (tertiary)\n- background: #0a0a0a (page canvas), #262626 (cards), #151515 (panels)\n- border: #353535 (hairline), #d9d9d9 (emphasis)\n- accent: #27f795 (Cursor Green — links, tags, highlights)\n- primary action: no distinct CTA color\n\n## 3 Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Create a testimonial grid**: 3-column grid on #0a0a0a canvas, 24px column gap, 40px row gap. Each card: #262626 background, 8px radius, 1px #353535 border, 24px padding. 40px circular avatar top-left. Name in Roboto weight 600 14px #ffffff, title in 12px #8d8d8d, quote in 14px #d9d9d9. Section gap above: 80px.\n\n3. **Create a stat display**: Two-column layout on #0a0a0a. Left column: stacked stat figures in Roboto Mono 56px weight 400, #27f795, letter-spacing -4.7px, line-height 1.00. Adjacent labels in Roboto Mono 12px uppercase, #8d8d8d. Right column: quote block with 1px left border in #27f795, body text in Roboto 16px #d9d9d9."
+      }
+    ],
+    "elevationPhilosophy": "The system explicitly avoids drop shadows. Elevation is built through a four-step surface darkness scale (#0a0a0a → #151515 → #262626 → #353535) combined with 1px hairline borders. This keeps every element feeling embedded in the canvas rather than floating above it — consistent with the terminal-screen metaphor where nothing casts a shadow because there is no light source, only luminance values."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "hero",
+            "card"
+          ],
+          "frequency": 1976,
+          "confidence": 1,
+          "prominence": 141660010.2520709,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 77334370.42335778,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8d8d8d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6434092199216612
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 804,
+          "confidence": 1,
+          "prominence": 7868033.937493914,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#353535",
+          "oklch": {
+            "c": 0.000016373685222823236,
+            "h": 23.71889374447966,
+            "l": 0.328967
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 4155504.6412829314,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 3571945.0890860255,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 3077312.206421522,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 418077.0850530389,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#27f795",
+          "oklch": {
+            "c": 0.20374945225813532,
+            "h": 155.47483418190606,
+            "l": 0.8607374630046651
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 169,
+          "confidence": 1,
+          "prominence": 239175.139418525,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 49579.58076383177,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#008060",
+          "oklch": {
+            "c": 0.10821211100542304,
+            "h": 167.71949080624998,
+            "l": 0.532624
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 43380.95915858675,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#800000",
+          "oklch": {
+            "c": 0.15457691933649087,
+            "h": 29.233872100031256,
+            "l": 0.376692
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 39198.768647590754,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 11817.567454087513,
+          "properties": [
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ec6d62",
+          "oklch": {
+            "c": 0.15935668713703882,
+            "h": 27.045501986712196,
+            "l": 0.6852710124166091
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5c451",
+          "oklch": {
+            "c": 0.14122428704364579,
+            "h": 85.52478966508464,
+            "l": 0.8431871569001483
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#61c454",
+          "oklch": {
+            "c": 0.17711988046828767,
+            "h": 141.41698274303144,
+            "l": 0.7356994389502655
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.033313573669522346,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#0a0a0a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#151515",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#262626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#000000",
+          "foreground": "#27f795"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d9d9d9",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#27f795",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.94,
+          "background": "#d9d9d9",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#f5c451",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.89,
+          "background": "#151515",
+          "foreground": "#27f795"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.27,
+          "background": "#353535",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.16,
+          "background": "#f5c451",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#f5c451",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.95,
+          "background": "#800000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.72,
+          "background": "#d9d9d9",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#262626",
+          "foreground": "#27f795"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.53,
+          "background": "#61c454",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.29,
+          "background": "#f5c451",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.99,
+          "background": "#61c454",
+          "foreground": "#0a0a0a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 101,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 129,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginRight",
+            "paddingLeft",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 94,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 46,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 152,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 158,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 174,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 198,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 223,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 427,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 226,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 144,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 97,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Roboto",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "image",
+            "button",
+            "icon",
+            "card"
+          ],
+          "frequency": 218,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "image"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.084,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/61a11f86-bd5d-42f8-b2c4-1e1f616e3f52.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tinybird design system\",\"item\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#style-reference\",\"name\":\"Tinybird design system reference\",\"headline\":\"Tinybird design system | Refero Styles\",\"description\":\"Explore Tinybird's dark Dev Tools design system: Cursor Green #27f795, Hover Green #008060 colors, Roboto, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tinybird\",\"url\":\"https://tinybird.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e5d7b80d-f473-439f-87a5-84716c448a05#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"caption\":\"Screenshot of Tinybird\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cf4a73cd-638a-48f5-ae58-8213caea573a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tinybird design system\",\"Tinybird website design\",\"Tinybird colors\",\"Tinybird typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cursor Green\",\"Hover Green\",\"Terminal Red\",\"Pure White\",\"Roboto\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tinybird design system\"},{\"@type\":\"Thing\",\"name\":\"Tinybird website design\"},{\"@type\":\"Thing\",\"name\":\"Tinybird colors\"},{\"@type\":\"Thing\",\"name\":\"Tinybird typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-16T17:04:57.000Z\",\"dateModified\":\"2026-02-16T17:04:57.000Z\"}]}19:T462,## Quick Color Reference\n\n- text: #ffffff (primary), #8d8d8d (secondary), #999999 (tertiary)\n- background: #0a0a0a (page canvas), #262626 (cards), #151515 (panels)\n- border: #353535 (hairline), #d9d9d9 (emphasis)\n- accent: #27f795 (Cursor Green — links, tags, highlights)\n- primary action: no distinct CTA color\n\n## 3 Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Create a testimonial grid**: 3-column grid on #0a0a0a canvas, 24px column gap, 40px row gap. Each card: #262626 background, 8px radius, 1px #353535 border, 24px padding. 40px circular avatar top-left. Name in Roboto weight 600 14px #ffffff, title in 12px #8d8d8d, quote in 14px #d9d9d9. Section gap above: 80px.\n\n3. **Create a stat display**: Two-column layout on #0a0a0a. Left column: stacked stat figures in Roboto Mono 56px weight 400, #27f795, letter-spacing -4.7px, line-height 1.00. Adjacent labels in Roboto Mono 12px uppercase, #8d8d8d. Right column: quote block with 1px left border in #27f795, body text in Roboto 16px #d9d9d9."
+}

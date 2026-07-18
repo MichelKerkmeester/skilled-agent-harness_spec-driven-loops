@@ -1,0 +1,160 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, section backgrounds — the only non-black color in the system"
+    },
+    "pressed-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pressed Ink — All text, all borders, all icons, all link states, nav strokes, heading rules — the entire interface communicates in pure black against Bone"
+    }
+  },
+  "font": {
+    "munken-sans-web": {
+      "$value": "Munken Sans Web",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for everything. Munken Sans is a Swedish editorial grotesque designed for print — the custom web version preserves the paper-origin feel. Weight 900 at 230px creates the signature display headlines (e.g. 'HOPE'). Weight 700 at 30–40px for section headings. Weight 400 at 16–20px for body. The single-family, three-weight system is the typographic identity — do not introduce a secondary face."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "20px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Munken Sans Web",
+        "fontSize": "230px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 230px"
+    }
+  },
+  "spacing": {
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 1: Page-wide background; the only surface color in the system"
+    },
+    "pressed-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Type and graphic elements read as the second visual layer against the Bone canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://surface.arcticvolume.com",
+      "siteName": "Surface",
+      "extractedAt": "2026-06-03T20:02:30.249Z",
+      "variant": "extended"
+    }
+  }
+}

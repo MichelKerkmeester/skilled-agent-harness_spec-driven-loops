@@ -1,0 +1,1739 @@
+{
+  "source": "https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514",
+  "uuid": "a77a7289-3438-46ba-8194-214739e47514",
+  "name": "Awwwards",
+  "northStar": "Swiss editorial gallery wall — oversized type, full-bleed photography, and a single black floating rail to navigate.",
+  "capturedAt": "2026-07-18T09:15:51.900Z",
+  "meta": {
+    "url": "https://awwwards.com",
+    "siteName": "Awwwards",
+    "extractedAt": "2026-06-03T20:17:37.638Z",
+    "durationMs": 24050,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 887,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Inter Tight weight 300 at 100–127px for any display/project title — the light weight is the signature, not bold",
+      "Set 8px border-radius on all buttons, cards, badges, and images; use 14px only on featured/large cards, 4px on small inline badges",
+      "Keep the palette 95% achromatic — Ink (#222222), Paper (#ffffff), Canvas (#e9e9e9), Fog (#dedede) — and reserve Ember (#fa5d29) for single-element punctuation",
+      "Use 0.93–1.0 line-height on display sizes (42px and above) to let oversized type feel architectural rather than airy",
+      "Place text directly on hero photography as editorial overlay — don't wrap images in card containers",
+      "Match filled and outlined button pairs at identical padding (8px 16px) and radius (8px) so they read as one system",
+      "Use 8px as the base gap between elements; jump to 24px or 48px for section separation, skip the in-between"
+    ],
+    "donts": [
+      "Don't introduce color beyond Ember — no blues, greens, or multi-color accent systems. The achromatic discipline IS the brand",
+      "Don't use weight 700+ for titles. The system is anti-bold; weight 300 at extreme sizes is the voice",
+      "Don't add box-shadows to cards or buttons. Elevation comes from color contrast against the warm gray canvas, not drop shadows",
+      "Don't use border-radius values other than 4px, 8px, or 14px — the system has exactly three radii and they map to specific element types",
+      "Don't constrain the hero to a max-width. Project displays and hero images are full-bleed; the page is a gallery wall, not a centered document",
+      "Don't use gradients on any UI element. The palette is flat — gradients dilute the editorial clarity",
+      "Don't set body text below 11px or above 16px. The type system has a tight body range; everything else is display or metadata"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Ink",
+        "role": "Primary text, filled buttons (Be Pro), dark floating nav rail, icons, input borders, table borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, button labels, badge text, image backgrounds, content panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Canvas",
+        "role": "Page background, card borders, section fills — the warm gray that makes the whole surface feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedede",
+        "name": "Fog",
+        "role": "Secondary borders, icon strokes, list dividers, subtle structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke",
+        "role": "Table borders, hairline dividers, muted structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "role": "Secondary surfaces, link backgrounds in compact contexts, darker fills for nested elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Ash",
+        "role": "Badge borders, low-emphasis outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fa5d29",
+        "name": "Ember",
+        "role": "Sporadic accent — appears as a single-color punctuation mark on rare UI elements and score indicators; the only chromatic color in the system, used sparingly to draw the eye",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no max-width constraint on the canvas. The page is a vertical sequence of full-viewport editorial moments: (1) top nav bar sitting directly on the warm gray canvas, (2) centered metadata + massive display title + author credits, (3) full-bleed hero photograph with floating dark tab bar overlay and editorial text burned into the image, (4) 'Latest' section with large typographic section header. Navigation is a single top bar with inline search. The floating dark tab bar (Nominees, Courses, etc.) persists over hero content and provides section switching without traditional nav. Section rhythm is generous — 48px+ between editorial moments — with the typographic scale providing separation rather than visual dividers or colored bands. Content is centered within the full-bleed canvas; there is no asymmetric grid in the editorial hero zone.",
+    "imagery": "The site is image-forward in an editorial, not marketing, way. Full-bleed photography dominates: large editorial shots of designers, studio scenes, and lifestyle imagery that contextualize each featured website's creators. Photography treatment is naturalistic — warm, slightly muted color grading, no heavy filters or duotones. The images serve as canvases for overlaid display type rather than as decorative accents. No illustrations, no abstract graphics, no 3D renders. Icon style is minimal: small monoline icons in #222222 with ~1.5px stroke weight, used sparingly for nav and UI controls. The overall density is image-dominant in the hero region, text-dominant in navigation and metadata areas.",
+    "similar": [
+      {
+        "why": "Same editorial gallery approach with oversized light-weight display type, full-bleed creative photography, and near-zero chromatic color",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Curatorial web design showcase with similar monochrome restraint, single-typeface system, and typography-driven hierarchy",
+        "business": "SiteInspire"
+      },
+      {
+        "why": "Portfolio/showcase aesthetic with full-bleed imagery, minimal UI chrome, and warm gray canvas backgrounds",
+        "business": "Minimal Gallery (Cargo)"
+      },
+      {
+        "why": "Dark floating nav elements paired with light content surfaces, and a typographic-forward layout that lets content breathe",
+        "business": "The Browser Company"
+      },
+      {
+        "why": "Dense editorial single-column layout with minimal color, where typography size (not color or weight) creates the visual rhythm",
+        "business": "Kottke.org"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "4px",
+        "images": "8px",
+        "buttons": "8px",
+        "featured-cards": "14px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "48px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#e9e9e9",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the warm gray foundation"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Card surfaces, content blocks, raised panels"
+      },
+      {
+        "hex": "#222222",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Dark floating nav rail, filled buttons, inverse surfaces"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "level": 3,
+        "purpose": "Nested dark elements, secondary inverse fills"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — relies on color contrast against the hero image, not shadow",
+        "element": "Floating Tab Bar"
+      },
+      {
+        "style": "none — flat against the warm gray canvas",
+        "element": "Cards"
+      },
+      {
+        "style": "none — flat surfaces, contrast carries hierarchy",
+        "element": "Buttons"
+      }
+    ],
+    "northStar": "Swiss editorial gallery wall — oversized type, full-bleed photography, and a single black floating rail to navigate.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.36
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "display",
+        "size": 127,
+        "lineHeight": 0.93
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Project Title",
+        "role": "Featured site name in the hero",
+        "description": "Inter Tight 127px weight 300, color #222222, line-height 0.93, centered. Spans nearly the full viewport width. This is the page's typographic anchor — it should be the only element competing with the hero image for attention."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent/canvas background. Logo 'W.' left, nav links (Explore, Directory, Academy, Jobs, Market) in Inter Tight 13–14px weight 500 #222222, search bar centered (rounded, #e9e9e9 background, #222222 text), auth actions right. Flat, no border, no shadow. Sits directly on the warm gray canvas."
+      },
+      {
+        "name": "Filled CTA Button (Be Pro)",
+        "role": "Primary conversion action",
+        "description": "Background #222222, text #ffffff, Inter Tight 13–14px weight 500, 8px radius, padding 8px 16px. No border, no shadow. Dark-on-dark text contrast within the component, high contrast against the canvas."
+      },
+      {
+        "name": "Outlined Button (Submit Website)",
+        "role": "Secondary action",
+        "description": "Transparent background, 1px border #222222, text #222222, 8px radius, padding 8px 16px. Same dimensions as filled variant — they are a matched pair."
+      },
+      {
+        "name": "Floating Tab Bar",
+        "role": "Section navigation overlaid on hero content",
+        "description": "Dark pill-shaped bar with background #222222, 14px radius, horizontally centered over the hero. Contains text tabs (Nominees, Courses, Collections, Directory, Market) in #ffffff at 12–13px, plus a white 'Visit Site' button (#ffffff background, #222222 text, 8px radius) as the terminal action. Floats above content with no shadow — relies on contrast, not elevation."
+      },
+      {
+        "name": "Search Input",
+        "role": "Site search",
+        "description": "Background #e9e9e9 or #ffffff, border 1px #dedede, 8px radius, Inter Tight 13px placeholder text. Compact, sits inline with nav. No focus ring detected — keep minimal."
+      },
+      {
+        "name": "Score Badge (New)",
+        "role": "Label for new or featured content",
+        "description": "Background #222222, text #ffffff, Inter Tight 10–11px weight 600, 4px radius, padding 2px 6px. Small, rectangular, sits inline next to the label it qualifies (e.g. 'Academy [New]')."
+      },
+      {
+        "name": "Project Hero Image",
+        "role": "Full-bleed featured site screenshot",
+        "description": "Large photograph or screenshot, 8px radius, full viewport width minus page margins. Contains overlay text elements (e.g. '01', '05', 'Scroll', 'SHOP NOW EXPLORE OUR FIRST COLLECTION') rendered directly on the image in Inter Tight — the image IS the editorial surface."
+      },
+      {
+        "name": "Author Attribution",
+        "role": "Credit featured site creators",
+        "description": "Inter Tight 13–14px weight 400 #222222, centered below the display title. Avatar circle (small, ~24px) with name, optional 'PRO' label. Compact, single-line, low visual weight."
+      },
+      {
+        "name": "Metadata Row",
+        "role": "Contextual info above the display title",
+        "description": "Three items inline: label ('Site of the Day'), date ('Apr 11, 2026'), score ('Score 7.55 of 10'). Inter Tight 11–12px weight 400, separated by spacing. Ember (#fa5d29) may appear here for the score value."
+      },
+      {
+        "name": "Editorial Overlay Text",
+        "role": "Large text placed on hero imagery",
+        "description": "Inter Tight weight 300–400, 32–42px, #ffffff or #222222 depending on image contrast. Examples: 'SHOP NOW EXPLORE OUR FIRST COLLECTION'. Treated as part of the image composition, not UI chrome."
+      },
+      {
+        "name": "Section Heading (NOMINEES)",
+        "role": "Section divider title",
+        "description": "Inter Tight 42–64px weight 300–400, #222222, centered. Acts as a typographic full-stop between editorial sections — the 'Latest' label sits above in 11–12px as a kicker."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface. Weight 300 at 127px with 0.75 line-height for the project display title — the condensed, light weight lets 'ODD RITUAL' occupy the full viewport width as a single typographic gesture. Weight 400 covers body, nav, badges. Weight 500–600 for buttons, labels, and emphasis. The extreme size range (9px metadata to 127px display) within one family creates a deliberate mono-typographic system where hierarchy is scale, not style.",
+        "sizes": "9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 21, 22, 24, 32, 42, 127",
+        "family": "Inter Tight",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "0.75, 0.93, 1.00, 1.10, 1.17, 1.20, 1.27, 1.29, 1.36, 1.44, 1.45, 1.50, 1.70, 1.75, 1.87, 2.00, 2.15, 2.40, 3.00",
+        "substitute": "Inter Tight (Google Fonts) or Inter as fallback",
+        "letterSpacing": "normal at all sizes"
+      }
+    ],
+    "description": "Awwwards operates as a curatorial editorial surface: near-monochrome gallery where one massive typographic statement introduces each featured site, anchored by full-bleed hero photography and minimal navigational chrome. The palette is ruthlessly achromatic — ink-black text on a warm pale-gray canvas — letting featured website imagery and a single sparse orange accent carry all visual energy. Components are flat, weighty, and rectangular: 8px radii across most surfaces, a floating dark tab bar, pill buttons that read as labels rather than actions. Type drives hierarchy almost entirely; the 127px display weight at 300 whispers authority rather than shouting, and the same Inter Tight family renders everything from 9px metadata to gallery-scale titles with quiet consistency.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Awwwards design system\",\"item\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#style-reference\",\"name\":\"Awwwards design system reference\",\"headline\":\"Awwwards design system | Refero Styles\",\"description\":\"Explore Awwwards's light Design design system: Ink #222222, Paper #ffffff colors, Inter Tight typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Awwwards\",\"url\":\"https://awwwards.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"caption\":\"Screenshot of Awwwards\"},\"image\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Awwwards design system\",\"Awwwards website design\",\"Awwwards colors\",\"Awwwards typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Paper\",\"Canvas\",\"Fog\",\"Inter Tight\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Awwwards design system\"},{\"@type\":\"Thing\",\"name\":\"Awwwards website design\"},{\"@type\":\"Thing\",\"name\":\"Awwwards colors\"},{\"@type\":\"Thing\",\"name\":\"Awwwards typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-08T16:20:48.000Z\",\"dateModified\":\"2026-02-08T16:20:48.000Z\"}]}19:T5e4,**Quick Color Reference**\n- text: #222222 (Ink)\n- background (page): #e9e9e9 (Canvas)\n- surface (card): #ffffff (Paper)\n- border: #dedede (Fog)\n- accent: #fa5d29 (Ember) — use sparingly\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a project hero title: Inter Tight 127px, weight 300, #222222, line-height 0.93, centered. Below it, an author row with two 24px circular avatars, names in 13px weight 400, and a small 'PRO' badge (#222222 bg, #ffffff text, 4px radius, 2px 6px padding).\n\n2. Create a floating section nav bar: centered, ~600px wide, background #222222, 14px radius, padding 8px. Contains five text tabs in #ffffff 13px weight 500 (8px gap) and a terminal white button (#ffffff bg, #222222 text, 8px radius, 8px 16px padding) reading 'Visit Site'.\n\n3. Create a full-bleed hero image section: viewport-width image with 8px radius, containing overlaid white text 'SHOP NOW EXPLORE OUR FIRST COLLECTION' in Inter Tight 42px weight 300, positioned bottom-left, and a small 'Scroll' indicator top-right in 11px italic.\n\n4. Create a metadata row: three inline items in Inter Tight 11px weight 400 #222222 — 'Site of the Day' | 'Apr 11, 2026' | 'Score 7.55 of 10' — separated by 12px gaps, centered above the display title.\n\n5. Create a featured card: #ffffff background, 8px radius, 24px padding, containing a 16:9 image (8px radius), a title in Inter Tight 18px weight 600 #222222, and a one-line description in 14px weight 400 #222222. No shadow, no border."
+      }
+    ],
+    "elevationPhilosophy": "This system deliberately avoids box-shadows entirely. The warm gray canvas (#e9e9e9) sits beneath white paper surfaces (#ffffff) and ink-dark elements (#222222), creating a three-tone separation that reads as elevation without a single shadow token. The floating tab bar is the only element that breaks plane from content, and it does so through darkness, not blur. This keeps the page feeling like printed editorial — flat ink on warm paper — rather than a digital UI with floating layers."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "input",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "badge",
+            "list",
+            "image",
+            "card",
+            "table",
+            "footer"
+          ],
+          "frequency": 3796,
+          "confidence": 1,
+          "prominence": 215724016.2873197,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 8250420.088096244,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "table"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 3139721.6989828497,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other",
+            "link",
+            "image",
+            "body",
+            "heading",
+            "badge",
+            "icon"
+          ],
+          "frequency": 394,
+          "confidence": 1,
+          "prominence": 3066249.7281148704,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4194983076949078
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 191238.26553364185,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedede",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9006007265506661
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 145305.1545421254,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3e3e3e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.36385724846289946
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25249,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7819713245575122
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4699.582464052021,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff083",
+          "oklch": {
+            "c": 0.13129942299509928,
+            "h": 101.54520848154277,
+            "l": 0.9450003808210731
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fa5d29",
+          "oklch": {
+            "c": 0.2018353926525382,
+            "h": 37.49040256575255,
+            "l": 0.6785465312758744
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0008771906597945552,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.67,
+          "background": "#fff083",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.1,
+          "background": "#e9e9e9",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#222222",
+          "foreground": "#dedede"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.7,
+          "background": "#3e3e3e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.19,
+          "background": "#fff083",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.81,
+          "background": "#e9e9e9",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#4d4d4d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#b8b8b8",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.95,
+          "background": "#3e3e3e",
+          "foreground": "#dedede"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.26,
+          "background": "#fff083",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.96,
+          "background": "#e9e9e9",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.31,
+          "background": "#a3a3a3",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#4d4d4d",
+          "foreground": "#dedede"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.39,
+          "background": "#b8b8b8",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#222222",
+          "foreground": "#fa5d29"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.26,
+          "background": "#b8b8b8",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#a3a3a3",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#3e3e3e",
+          "foreground": "#fa5d29"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.35,
+          "background": "#a3a3a3",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "card",
+            "badge"
+          ],
+          "frequency": 40
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "badge",
+            "other"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 89,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 99,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 43,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 52,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 86,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 201,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter Tight",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 851,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "list"
+          ],
+          "frequency": 22,
+          "lineHeight": 2.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 4.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "list",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 238,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 75,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "table"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "list",
+            "card",
+            "other",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 127,
+          "lineHeight": 1.87,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "body",
+            "badge",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "table",
+            "card",
+            "other",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 60,
+          "lineHeight": 0.93,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter Tight",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 127,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6910f352-7a86-4de9-a581-93f9aa796757.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Awwwards design system\",\"item\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#style-reference\",\"name\":\"Awwwards design system reference\",\"headline\":\"Awwwards design system | Refero Styles\",\"description\":\"Explore Awwwards's light Design design system: Ink #222222, Paper #ffffff colors, Inter Tight typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Awwwards\",\"url\":\"https://awwwards.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a77a7289-3438-46ba-8194-214739e47514#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"caption\":\"Screenshot of Awwwards\"},\"image\":\"https://images.refero.design/styles/refero.design/image/66d86807-3ea6-4a6d-95d1-f6c0299b016a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Awwwards design system\",\"Awwwards website design\",\"Awwwards colors\",\"Awwwards typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Paper\",\"Canvas\",\"Fog\",\"Inter Tight\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Awwwards design system\"},{\"@type\":\"Thing\",\"name\":\"Awwwards website design\"},{\"@type\":\"Thing\",\"name\":\"Awwwards colors\"},{\"@type\":\"Thing\",\"name\":\"Awwwards typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-08T16:20:48.000Z\",\"dateModified\":\"2026-02-08T16:20:48.000Z\"}]}19:T5e4,**Quick Color Reference**\n- text: #222222 (Ink)\n- background (page): #e9e9e9 (Canvas)\n- surface (card): #ffffff (Paper)\n- border: #dedede (Fog)\n- accent: #fa5d29 (Ember) — use sparingly\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a project hero title: Inter Tight 127px, weight 300, #222222, line-height 0.93, centered. Below it, an author row with two 24px circular avatars, names in 13px weight 400, and a small 'PRO' badge (#222222 bg, #ffffff text, 4px radius, 2px 6px padding).\n\n2. Create a floating section nav bar: centered, ~600px wide, background #222222, 14px radius, padding 8px. Contains five text tabs in #ffffff 13px weight 500 (8px gap) and a terminal white button (#ffffff bg, #222222 text, 8px radius, 8px 16px padding) reading 'Visit Site'.\n\n3. Create a full-bleed hero image section: viewport-width image with 8px radius, containing overlaid white text 'SHOP NOW EXPLORE OUR FIRST COLLECTION' in Inter Tight 42px weight 300, positioned bottom-left, and a small 'Scroll' indicator top-right in 11px italic.\n\n4. Create a metadata row: three inline items in Inter Tight 11px weight 400 #222222 — 'Site of the Day' | 'Apr 11, 2026' | 'Score 7.55 of 10' — separated by 12px gaps, centered above the display title.\n\n5. Create a featured card: #ffffff background, 8px radius, 24px padding, containing a 16:9 image (8px radius), a title in Inter Tight 18px weight 600 #222222, and a one-line description in 14px weight 400 #222222. No shadow, no border."
+}

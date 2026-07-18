@@ -1,0 +1,888 @@
+{
+  "source": "https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c",
+  "uuid": "fabb51a0-0f83-4177-b83e-4969705a389c",
+  "name": "Uniswap Cup",
+  "northStar": "Esports broadcast on a wireframe court — a pink highlighter tracing through a grid of white boxes and hairline rules.",
+  "capturedAt": "2026-07-18T07:32:59.044Z",
+  "meta": {
+    "url": "https://unicup.uniswap.org",
+    "siteName": "Uniswap Cup",
+    "extractedAt": "2026-06-03T20:45:14.175Z",
+    "durationMs": 45130,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 361,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f50db4 exclusively for highlighted/winning states, stage tags, and the final-match callout — never as a decorative background fill on large areas",
+      "Keep all component corners at 0px radius — the design is deliberately square and diagrammatic",
+      "Use monospace (ui-monospace) for all numbers, scores, stage labels, and the wordmark; use system sans-serif for body and team names",
+      "Draw bracket connectors as 1px orthogonal lines in #f2f2f2 with right-angle turns, never curves or diagonals",
+      "Apply -0.02em letter-spacing to all monospace text at 32px and above to tighten the broadcast-graphic feel",
+      "Use #fef4ff as a soft accent surface behind highlighted match cards — it is a diluted pink, not a full brand fill",
+      "Keep the layout full-bleed and symmetrical; the bracket is the page, not a component within the page"
+    ],
+    "donts": [
+      "Do not add shadows, gradients, or any elevation effects — the system is intentionally flat and diagrammatic",
+      "Do not introduce border-radius above 0px on any bracket node, tag, or structural element",
+      "Do not use #f50db4 for body text or large background fills — it is a highlighter, not a paint roller",
+      "Do not use a second accent color — the entire chromatic system is one pink; any second hue breaks the broadcast language",
+      "Do not use serif, display, or decorative typefaces — system sans and monospace only",
+      "Do not add card padding beyond 8px or section gaps beyond 24px — the design is compact and diagrammatic, not spacious",
+      "Do not wrap the bracket in a max-width container or centered column — it must span the full viewport to maintain symmetry"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f50db4",
+        "name": "Bracket Pink",
+        "role": "Pink outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Graphite Black",
+        "role": "Primary text, icon fills, team-name boxes, score text — the typographic and structural anchor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Page White",
+        "role": "Page canvas, inverted text on dark or pink nodes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Off-Black",
+        "role": "Secondary headings and subdued text — softer than pure black for non-critical labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Wire Gray",
+        "role": "Hairline borders, divider rules, bracket connector lines, card outlines — the structural skeleton of the entire diagram",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fef4ff",
+        "name": "Blush Wash",
+        "role": "Soft pink-tinted surface for highlighted match cards and accent panel backgrounds — pink diluted almost to white",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed single-page layout: the tournament bracket spans the entire viewport width with no max-width container, organized as a symmetric double-elimination tree radiating from a central final match. The left half shows one side of the bracket, the right half mirrors it, and the center column holds the final with the 'VS' separator and date. The page reads as a single horizontal diagram rather than a scrolled stack of sections. Navigation is a thin top bar with two text tags (GROUP STAGE, LIVESTREAM) flanking the centered UNISWAP CUP wordmark. Below the fold, rounds stack vertically with consistent 8px gaps and 1px connectors. The entire layout is a grid: no cards, no padding buffers, no breathing room beyond what the bracket geometry requires.",
+    "imagery": "No photography, no illustration, no decorative imagery. The visual language is pure typographic and diagrammatic — team logos appear as small monochrome glyphs inside black squares, scored digits are typeset in monospace, and the bracket itself is drawn with 1px rules. The only graphic element is a faint concentric circle behind the final match (the 'pitch'), drawn in a hairline gray. Iconography is reduced to single-letter or two-letter abbreviations inside filled squares. Density is text-and-structure-dominant; visual space is occupied by the bracket geometry, not by images.",
+    "similar": [
+      {
+        "why": "Same diagrammatic tournament bracket approach — flat layout, monochromatic structure, single accent color on winner nodes, hairline connector lines",
+        "business": "Challonge"
+      },
+      {
+        "why": "Esports tournament bracket aesthetic — monospace scores, black/white identity boxes, bracket-as-page composition with minimal chrome",
+        "business": "Smash.gg (Start.gg)"
+      },
+      {
+        "why": "Classic sports bracket visualization with hairline rules, node-based team boxes, and stage labels — though Uniswap Cup adds a neon-pink system",
+        "business": "Bracketology sites (ESPN March Madness)"
+      },
+      {
+        "why": "Same minimalist monochromatic-plus-one-accent approach with monospace data, flat surfaces, and zero decorative effects",
+        "business": "Linear changelogs"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "nodes": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "4-8px",
+      "sectionGap": "24px",
+      "cardPadding": "8px",
+      "pageMaxWidth": null
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — the white field on which the bracket is drawn"
+      },
+      {
+        "hex": "#fef4ff",
+        "name": "Blush Panel",
+        "level": 2,
+        "purpose": "Soft pink-tinted surface used behind highlighted match cards or accent zones — a whisper of the brand pink"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Wire",
+        "level": 3,
+        "purpose": "Not a surface per se but the dominant structural color — used for hairline borders, connectors, and grid scaffolding at 660+ instances"
+      }
+    ],
+    "northStar": "Esports broadcast on a wireframe court — a pink highlighter tracing through a grid of white boxes and hairline rules.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -0.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Bracket Connector Line",
+        "role": "Structural diagram edge",
+        "description": "1px hairline in #f2f2f2 connecting match nodes across the bracket. Turns to Bracket Pink (#f50db4) on the winning path. No curves — orthogonal right-angle joins only, like a circuit diagram."
+      },
+      {
+        "name": "Winner Node (Pink Filled Box)",
+        "role": "Highlighted match result box",
+        "description": "Filled #f50db4 square, 0px radius, white monospace text at 12px weight 500–700. Contains score number, team icon, or single-letter marker. Typically 24×24px or 32×32px. The pink fill = this is the advancing team."
+      },
+      {
+        "name": "Team Identity Box (Black Filled)",
+        "role": "Team name or avatar container",
+        "description": "Filled #000000 square, 0px radius, white text or white icon glyph. Adjacent to a white box with the score in black. The black/white pairing creates the scoreboard unit."
+      },
+      {
+        "name": "Stage Label Tag (R16 / QF / SF)",
+        "role": "Round-of-tournament marker",
+        "description": "Filled Bracket Pink (#f50db4) rectangle, 0px radius, white monospace text at 12px weight 500. Labels: R16, QF, SF, F. Positioned at the top of each bracket column."
+      },
+      {
+        "name": "Status Pill (WINNER / Final / Road to final)",
+        "role": "Match-state annotation",
+        "description": "Small uppercase text label. 'WINNER' sits as a Bracket Pink filled tag above the champion's node. 'Final' uses larger monospace at 32px weight 700 in Bracket Pink. 'Road to final' is centered body text in #000000."
+      },
+      {
+        "name": "Central VS Separator",
+        "role": "Final-match divider",
+        "description": "Large monospace 'VS' at ~40–56px weight 700 in Bracket Pink (#f50db4), centered between the two finalist teams. The typographic climax of the bracket."
+      },
+      {
+        "name": "Header Nav Tags (GROUP STAGE / LIVESTREAM)",
+        "role": "Top navigation chips",
+        "description": "Inverted style: black text on light gray (#f2f2f2) pill/rectangle tags with hairline borders, monospace 12px. Uniswap unicorn logo in Bracket Pink at the far left."
+      },
+      {
+        "name": "Uniswap Cup Wordmark",
+        "role": "Page title lockup",
+        "description": "'UNISWAP' in monospace 12px weight 500, dot separator, 'CUP' below in monospace with letter-spacing. Black on white, centered. No logo mark — type IS the mark."
+      },
+      {
+        "name": "Tournament Bracket Frame",
+        "role": "Full-page layout container",
+        "description": "Full-bleed white (#ffffff) canvas with bracket diagram spanning the full viewport width. A faint circle (the 'pitch') sits behind the final match at center. No card containers — nodes are directly placed on the canvas with hairline connectors."
+      },
+      {
+        "name": "Match Date/Time Label",
+        "role": "Scheduling annotation",
+        "description": "Monospace 12px text showing date and time (e.g., 'November 10' with '1pm' underlined). Black text on white, minimal, positioned beneath the central final match."
+      }
+    ],
+    "typography": [
+      {
+        "role": "System sans-serif for body text, team names, labels, and UI chrome. Small scale (12–16px) and tight line-heights keep the bracket compact; weight 500–600 for labels, 400 for secondary text. Substitute: Inter, -apple-system, or any geometric sans.",
+        "sizes": "12px, 16px",
+        "family": "ui-sans-serif",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.33, 1.50",
+        "substitute": "Inter, system-ui"
+      },
+      {
+        "role": "Monospace for all numerical scores, stage labels (R16, QF, SF), the UNISWAP CUP wordmark, and the central VS separator. Weight 700 at 32px for hero match scores with -0.02em tracking; weight 500 at 12px for stage markers. This monospace handling is signature — numbers and stages read like broadcast graphics, not body text. Substitute: JetBrains Mono, IBM Plex Mono, SF Mono.",
+        "sizes": "12px, 32px",
+        "family": "ui-monospace",
+        "weight": "500, 700",
+        "lineHeight": "1.00, 1.33",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Custom brand face used sparingly for select body text passages — a single weight (500) suggests Basel Grotesk or a geometric grotesque chosen for its even, technical character. Substitute: Inter or Söhne at weight 500.",
+        "sizes": "16px",
+        "family": "Basel",
+        "weight": "500",
+        "lineHeight": "1.50",
+        "substitute": "Inter, Söhne"
+      }
+    ],
+    "description": "Uniswap Cup is a flat, near-monochrome tournament visualization treated as a broadcast overlay — white canvas, hairline gray rules, and a single neon pink that behaves like a highlighter running through a sports bracket. The pink never decorates; it punctuates: filling winner nodes, bordering connectors, stamping group-stage labels, and tagging the final match. Everything else dissolves into a grid of black text on white, monospace numbers, and 1px lines — the interface IS the bracket, nothing competes with the data structure. Type is utilitarian and system-native, with monospace doing the heavy lifting for scores and stages. Components feel diagrammatic rather than designed — thin-bordered boxes, square corners, no shadows, no gradients, no rounding beyond a couple of pixels.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Uniswap Cup design system\",\"item\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#style-reference\",\"name\":\"Uniswap Cup design system reference\",\"headline\":\"Uniswap Cup design system | Refero Styles\",\"description\":\"Explore Uniswap Cup's light Crypto design system: Bracket Pink #f50db4, Graphite Black #000000 colors, ui-sans-serif, ui-monospace typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Uniswap Cup\",\"url\":\"https://unicup.uniswap.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"caption\":\"Screenshot of Uniswap Cup\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Uniswap Cup design system\",\"Uniswap Cup website design\",\"Uniswap Cup colors\",\"Uniswap Cup typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Bracket Pink\",\"Graphite Black\",\"Page White\",\"Off-Black\",\"ui-sans-serif\",\"ui-monospace\",\"Basel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Uniswap Cup design system\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup website design\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup colors\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:30:35.576Z\",\"dateModified\":\"2026-04-30T00:30:35.576Z\"}]}19:T48c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #f2f2f2\n- accent: #f50db4 (Bracket Pink)\n- highlight surface: #fef4ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a tournament bracket node: 0px radius square, 24×24px, filled #f50db4 with white monospace text at 12px weight 700 (e.g. the score '6'). No shadow, no border.\n\n2. Create a stage label tag: filled #f50db4 rectangle, 0px radius, 8px padding, white monospace text at 12px weight 500 (e.g. 'QF'). No border, no shadow.\n\n3. Create a team identity box: 0px radius square, 32×32px, filled #000000, white icon glyph or monospace letter centered inside. No border, no shadow. Place adjacent to a white box with the score in black 16px weight 600.\n\n4. Create the central VS separator: monospace text 'VS' at 40px weight 700, color #f50db4, centered between two finalist groups. Below it, 'Final' in the same color and font at 32px.\n\n5. Create a bracket connector: a 1px line in #f2f2f2 with orthogonal right-angle turns, no curves, connecting two nodes vertically and horizontally. Change the last segment to #f50db4 to indicate the winning path."
+      }
+    ],
+    "elevationPhilosophy": "The design system is entirely flat — no shadows, no gradients, no blur. Depth is created exclusively through color contrast: filled black and pink nodes sit on the white canvas and read as elevated by their chromatic value alone. This diagrammatic flatness is a signature choice: the interface presents itself as a printed tournament chart, not a software application."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 1.4746653731467774e-8,
+            "h": 359.9999995686405,
+            "l": 0.9611513583430098
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "button",
+            "icon",
+            "link",
+            "image"
+          ],
+          "frequency": 1082,
+          "confidence": 1,
+          "prominence": 19436068.213667043,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "other/color": 20,
+            "heading/color": 3,
+            "body/borderColor": 48,
+            "icon/borderColor": 120,
+            "link/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 660,
+            "button/borderColor": 72,
+            "heading/borderColor": 136,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 291,
+          "confidence": 1,
+          "prominence": 15790186.495134646,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 31,
+            "other/color": 185,
+            "button/color": 16,
+            "heading/color": 15,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 40
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4272702.949591264,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 101508.33927175886,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "heading/color": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f50db4",
+          "oklch": {
+            "c": 0.27243323400926467,
+            "h": 344.8729524008978,
+            "l": 0.6491637323326483
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 143,
+          "confidence": 1,
+          "prominence": 77549.90881560005,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 2,
+            "other/fill": 12,
+            "button/color": 2,
+            "other/stroke": 14,
+            "heading/color": 14,
+            "other/borderColor": 60,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 34,
+            "heading/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fef4ff",
+          "oklch": {
+            "c": 0.017920202712093422,
+            "h": 322.98374314672026,
+            "l": 0.9780458797736966
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 129,
+          "confidence": 1,
+          "prominence": 46986.66303697339,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 112,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 14,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#182f1f",
+          "oklch": {
+            "c": 0.04162250643246918,
+            "h": 152.71393242709095,
+            "l": 0.28069391988723624
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1699,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06742279846503575,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#fef4ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#000000",
+          "foreground": "#f2f2f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#fef4ff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#182f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.21,
+          "background": "#222222",
+          "foreground": "#f2f2f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.38,
+          "background": "#fef4ff",
+          "foreground": "#182f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.8,
+          "background": "#182f1f",
+          "foreground": "#f2f2f2"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#f50db4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#f50db4",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.82,
+          "background": "#182f1f",
+          "foreground": "#f50db4"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.75,
+          "background": "#f50db4",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.5,
+          "background": "#fef4ff",
+          "foreground": "#f50db4"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.35,
+          "background": "#f50db4",
+          "foreground": "#f2f2f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.47,
+          "background": "#182f1f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#222222",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#ffffff",
+          "foreground": "#f2f2f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#182f1f",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#fef4ff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 127,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|body",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 288,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 247,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-monospace",
+          "source": "system",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Basel",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ui-monospace",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 154,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "image"
+          ],
+          "frequency": 85,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "ui-monospace",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c6e870bc-aaac-4983-8b8a-6fa42635fa35.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Uniswap Cup design system\",\"item\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#style-reference\",\"name\":\"Uniswap Cup design system reference\",\"headline\":\"Uniswap Cup design system | Refero Styles\",\"description\":\"Explore Uniswap Cup's light Crypto design system: Bracket Pink #f50db4, Graphite Black #000000 colors, ui-sans-serif, ui-monospace typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Uniswap Cup\",\"url\":\"https://unicup.uniswap.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fabb51a0-0f83-4177-b83e-4969705a389c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"caption\":\"Screenshot of Uniswap Cup\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a95b44b-ff0c-4e39-8af2-bface27cb1a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Uniswap Cup design system\",\"Uniswap Cup website design\",\"Uniswap Cup colors\",\"Uniswap Cup typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Bracket Pink\",\"Graphite Black\",\"Page White\",\"Off-Black\",\"ui-sans-serif\",\"ui-monospace\",\"Basel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Uniswap Cup design system\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup website design\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup colors\"},{\"@type\":\"Thing\",\"name\":\"Uniswap Cup typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:30:35.576Z\",\"dateModified\":\"2026-04-30T00:30:35.576Z\"}]}19:T48c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #f2f2f2\n- accent: #f50db4 (Bracket Pink)\n- highlight surface: #fef4ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a tournament bracket node: 0px radius square, 24×24px, filled #f50db4 with white monospace text at 12px weight 700 (e.g. the score '6'). No shadow, no border.\n\n2. Create a stage label tag: filled #f50db4 rectangle, 0px radius, 8px padding, white monospace text at 12px weight 500 (e.g. 'QF'). No border, no shadow.\n\n3. Create a team identity box: 0px radius square, 32×32px, filled #000000, white icon glyph or monospace letter centered inside. No border, no shadow. Place adjacent to a white box with the score in black 16px weight 600.\n\n4. Create the central VS separator: monospace text 'VS' at 40px weight 700, color #f50db4, centered between two finalist groups. Below it, 'Final' in the same color and font at 32px.\n\n5. Create a bracket connector: a 1px line in #f2f2f2 with orthogonal right-angle turns, no curves, connecting two nodes vertically and horizontally. Change the last segment to #f50db4 to indicate the winning path."
+}

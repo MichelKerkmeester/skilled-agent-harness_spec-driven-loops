@@ -1,0 +1,662 @@
+{
+  "source": "https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625",
+  "uuid": "bd62b51f-e1be-4e4f-b3d9-e9b91f817625",
+  "name": "Little Troop",
+  "northStar": "Monochrome gallery with chromatic artworks. A black pearl floating in white void.",
+  "capturedAt": "2026-07-18T07:27:39.665Z",
+  "meta": {
+    "url": "https://littletroop.com",
+    "siteName": "Little Troop",
+    "extractedAt": "2026-06-03T21:12:53.990Z",
+    "durationMs": 31802,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 363,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 50px border-radius on every rectangular element — cards, tags, buttons, frames. This is the system's only shape.",
+      "Restrict the palette to #000000 and #ffffff for all chrome, text, and borders. Color is the exclusive property of project imagery.",
+      "Set Arial Narrow at 14-16px for every functional element — nav, labels, body, metadata. Reserve Times Now weight 250 for at most one display moment per page.",
+      "Apply 100px+ section gaps between major content blocks. The system needs white void to breathe.",
+      "Let full-bleed imagery fill cards edge-to-edge inside the 50px radius — no padding, no captions inside the frame.",
+      "Use 20px padding for card metadata blocks beneath cards. Keep that rhythm consistent.",
+      "Anchor the nav and footer to viewport edges with extreme lateral margins (100-230px) so items read as floating labels."
+    ],
+    "donts": [
+      "Do not introduce a third color, a shadow, a gradient, or any surface tint. The two-color discipline is the brand.",
+      "Do not use a bold display weight for headlines. Times Now weight 250 is the only display voice; if you need more presence, increase size, never weight.",
+      "Do not use rectangular corners anywhere. Even small chips, tags, and buttons get 50px radius.",
+      "Do not add borders, outlines, or focus rings that aren't pure 1px black. No colored states, no tinted hovers.",
+      "Do not break the white canvas with a panel, sidebar, or container surface. The page is the only surface.",
+      "Do not center-align body or metadata text. The footer credit and project captions are left- or right-aligned to specific edges.",
+      "Do not use a sans-serif system font for display. The serif at ultra-light weight is what separates this system from every other minimalist agency portfolio."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "All text, all borders, the nav mark, section dividers, filter indicators. The structural ink of the entire system — every line, frame, and glyph is black on white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas and inverse text. The only surface; cards do not introduce a separate fill — they borrow the page and let imagery do the work",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Edge-to-edge full-bleed layout with no visible max-width container; the page reads as a series of full-viewport bands. The hero is a single centered object (the orb) with text floating to its left and footer credits pinned to the bottom-left and bottom-right corners. Below the hero, a filter band runs the full width with 15+ category labels in two horizontal rows. The project index is a 5-column grid of 50px-radius image cards with titles beneath; the grid fills the viewport width with no gutters beyond the implicit spacing of the grid. The project spotlight section breaks the grid with two oversized 50px-radius cards that overlap each other and extend off-frame — a deliberately casual, gallery-wall arrangement. Navigation is a single thin band at the very top with five labels and a centered brand mark. Sections are separated by 100px+ of pure white space. No sidebars, no containers, no centered content column — the work itself is the layout.",
+    "imagery": "$19",
+    "similar": [
+      {
+        "why": "Same two-color discipline with bold 50px-radius project cards and Arial Narrow / narrow-grotesque functional type",
+        "business": "Studio Output"
+      },
+      {
+        "why": "Editorial white-canvas agency portfolio where project work provides all color and the chrome is almost invisible",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Full-bleed project grids with generous whitespace, monochrome chrome, and a single ultra-light display moment",
+        "business": "Instrument"
+      },
+      {
+        "why": "A narrow-grotesque interface type, absence of shadows, and oversize rounded cards as the sole repeating component",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Treats the portfolio as a gallery wall — no decorative chrome, no branded colors, the work is the visual system",
+        "business": "Wieden+Kennedy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "50px",
+        "buttons": "50px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "100px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "level": 1,
+        "purpose": "Single flat canvas. No card surface, no panel surface — the page is the surface."
+      }
+    ],
+    "northStar": "Monochrome gallery with chromatic artworks. A black pearl floating in white void.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "display",
+        "size": 76,
+        "lineHeight": 0.79,
+        "letterSpacing": -5.016
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Five items spread edge-to-edge across the top of the page: Work, News, brand mark, Info, Contact. All text in Arial Narrow 14px black, no background, no border, no padding container. The brand mark (penguin illustration) sits centered. Generous space between items (100-230px) reads as floating labels rather than a menu bar."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Project thumbnail in the work index",
+        "description": "A 50px-radius rounded rectangle filled edge-to-edge with a project image or illustration. No border, no padding, no shadow. The colorful artwork IS the card. Project title sits below the card in Arial Narrow 14px black, with a one-line description underneath. Cards are arranged in a 5-column grid."
+      },
+      {
+        "name": "Project Spotlight Card",
+        "role": "Featured project presentation",
+        "description": "A larger 50px-radius card (roughly 2.5x the grid card area) showing a single project's hero artwork. Cards overlap each other with a small z-offset and translate rotation for a deliberately casual, pinned-to-the-wall arrangement. No border, no shadow — only the 50px radius gives them physical presence."
+      },
+      {
+        "name": "Project Index Filter",
+        "role": "Category filter for the work grid",
+        "description": "A row of categories (AI, 3D Design, Animation, Naming, Brand Identity, etc.) each preceded by a small circular radio indicator (12px black-bordered circle, unfilled). Text in Arial Narrow 14px black. Wraps across the top of the project grid. No pills, no chips, no backgrounds — just dots and labels."
+      },
+      {
+        "name": "Hero Orb with Curved Text",
+        "role": "Splash/hero moment",
+        "description": "A single large 3D-rendered black sphere (roughly 600-700px diameter) centered in a white void. A pink/magenta specular highlight runs down its left side. Times Now 76px weight 250 text curves along the sphere's left edge, following the contour. Massive bottom padding (~89px) between the orb and the footer credit line."
+      },
+      {
+        "name": "Footer Credit Block",
+        "role": "Studio identity and current work status",
+        "description": "Two text blocks pinned to the bottom corners of the viewport. Bottom-left: Arial Narrow 14px — 'Little Troop is a design studio driven by craft, culture and imagination.' Bottom-right: 'Currently creating: A book for our favorite designers.' No border, no background — just black text floating in the white margin."
+      },
+      {
+        "name": "Section Header",
+        "role": "Section label for project groupings",
+        "description": "A short label like 'Project Index' or 'Project Spotlights' in Arial Narrow 14-16px black, top-left aligned, with a small penguin mark or icon adjacent. The label introduces a content block; the block itself sits ~100px below."
+      },
+      {
+        "name": "Penguin Brand Mark",
+        "role": "Studio logo / nav anchor",
+        "description": "A small illustrated penguin in black with a red beak and white belly. Appears centered in the nav and adjacent to section headers. Functions as the only chromatic mark in the chrome (the red beak is a tiny accent of red)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The functional voice of the entire interface — navigation, body, metadata, project captions, filter labels, footer copy. Narrow letterforms in a generous white field create a typesetter's galley feel; everything reads as a running label rather than as UI chrome.",
+        "sizes": "14px, 16px",
+        "family": "Arial Narrow",
+        "weight": "400, 700",
+        "lineHeight": "0.86, 1.0, 1.14",
+        "substitute": "Barlow Condensed (Google Fonts)"
+      },
+      {
+        "role": "The single display voice, reserved for the hero headline curved around the orb. Weight 250 is anti-convention — most studios reach for 600-800 bold serifs. This whisper-weight, paired with a sculptural -0.066em tracking and 0.79 line-height, makes the text feel like a ribbon on the surface rather than a title above it. When the system needs authority, it gets it through restraint, not volume.",
+        "sizes": "76px",
+        "family": "Times Now",
+        "weight": "250",
+        "lineHeight": "0.79",
+        "substitute": "Spectral (Google Fonts) at weight 200 with tight tracking, or Cormorant Garamond at 300",
+        "letterSpacing": "-0.066em"
+      }
+    ],
+    "description": "Little Troop is a design studio portfolio that behaves like a monochrome gallery: white walls, black frames, and the work itself provides all the color. The system is ruthlessly reduced to two colors and one signature radius (50px), letting project imagery carry the chromatic and visual weight. Type stays in two registers — Arial Narrow as the functional voice for navigation, labels, body, and metadata, and Times Now at weight 250 as a single display moment that whispers rather than announces. No shadows, no gradients, no decorative surface treatments — just border, whitespace, and the rounded rectangle as the sole repeating shape.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The design is entirely flat. No shadows, no glows, no inner highlights. Depth and separation are achieved exclusively through the 50px border-radius and the contrast of full-bleed colorful imagery against the white void. This is a deliberate editorial choice — the work itself sits in the same physical plane as the chrome around it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "body",
+            "list",
+            "heading",
+            "footer",
+            "link",
+            "image"
+          ],
+          "frequency": 925,
+          "confidence": 1,
+          "prominence": 227243350.92038748,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "card/color": 13,
+            "hero/color": 2,
+            "link/color": 3,
+            "list/color": 18,
+            "image/color": 2,
+            "other/color": 104,
+            "footer/color": 1,
+            "heading/color": 33,
+            "body/borderColor": 36,
+            "card/borderColor": 52,
+            "hero/borderColor": 8,
+            "link/borderColor": 12,
+            "list/borderColor": 72,
+            "image/borderColor": 8,
+            "other/borderColor": 416,
+            "footer/borderColor": 4,
+            "heading/borderColor": 132
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "button",
+            "hero",
+            "other",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 64,
+          "confidence": 1,
+          "prominence": 117014389.8019016,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 4,
+            "other/color": 4,
+            "button/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "image",
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "paddingTop|other",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "list"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "columnGap|card",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 231,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 250,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 289,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 316,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginRight|button",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial Narrow",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 362,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times Now",
+          "source": "custom",
+          "weights": [
+            250
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial Narrow",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "hero",
+            "card",
+            "list",
+            "heading",
+            "footer"
+          ],
+          "frequency": 261,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "Times Now",
+          "weight": 250,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.79,
+          "letterSpacing": -0.066,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/31a40556-b808-4f3c-91de-698f5f491765.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/885b1a11-f1d7-4787-9a57-f4ea37727b78.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Little Troop design system\",\"item\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625#style-reference\",\"name\":\"Little Troop design system reference\",\"headline\":\"Little Troop design system | Refero Styles\",\"description\":\"Explore Little Troop's light Agency design system: Pure Black #000000, Pure White #ffffff colors, Arial Narrow, Times Now typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Little Troop\",\"url\":\"https://littletroop.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bd62b51f-e1be-4e4f-b3d9-e9b91f817625#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/885b1a11-f1d7-4787-9a57-f4ea37727b78.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/885b1a11-f1d7-4787-9a57-f4ea37727b78.jpg\",\"caption\":\"Screenshot of Little Troop\"},\"image\":\"https://images.refero.design/styles/refero.design/image/885b1a11-f1d7-4787-9a57-f4ea37727b78.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Little Troop design system\",\"Little Troop website design\",\"Little Troop colors\",\"Little Troop typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure Black\",\"Pure White\",\"Arial Narrow\",\"Times Now\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Little Troop design system\"},{\"@type\":\"Thing\",\"name\":\"Little Troop website design\"},{\"@type\":\"Thing\",\"name\":\"Little Troop colors\"},{\"@type\":\"Thing\",\"name\":\"Little Troop typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:51:24.395Z\",\"dateModified\":\"2026-04-30T02:51:24.395Z\"}]}19:T427,Imagery is the chromatic content of the system and is treated as a found object, not a designed asset. The work grid contains full-bleed editorial photography (campaign shoots, portraits, product stills), flat illustration (the MoMA Family Festival poster uses bold, high-contrast cartoon forms in green, pink, and purple), 3D-rendered objects (the hero orb is a glossy black sphere with a pink specular highlight — a literal glossy-painted ceramic or chrome ball photographed under studio light), and typography-as-art (the MoMA wordmark, the 'ROCCO' logo, the 'TEATIME pictures' title card). All imagery is contained inside the 50px-radius card frame. No drop shadows, no torn edges, no rotation artifacts — only the radius. The hero sphere is the only instance where an object appears without a frame; it is the page. Photography ranges from high-key to high-contrast editorial, with no consistent color treatment because each project is its own world. The system never adds duotones, overlays, or color grading — what the work looks like, it looks like.1a:T612,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- inverse text: #ffffff\n- accent: none (the system is two-color; the penguin's red beak is the only chromatic mark and should not be replicated as a token)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Project Grid Card* — Full-bleed image inside a 50px border-radius frame, no border, no shadow, no padding. Image fills the frame edge-to-edge. Below the frame, Arial Narrow 14px #000000 title left-aligned, then a one-line Arial Narrow 14px #000000 description.\n2. *Section Header* — Arial Narrow 16px #000000 label top-left of the band (e.g., 'Project Index'). A small penguin mark sits adjacent in black with a red beak. 100px of pure white space below before the next band begins.\n3. *Project Index Filter* — A horizontal row of categories in Arial Narrow 14px #000000, each preceded by a 12px circle with a 1px #000000 border and white fill. Items wrap to a second row if needed. No backgrounds, no pills, no chips.\n4. *Top Navigation* — Five items spread edge-to-edge: 'Work' far-left, 'News' left-of-center, penguin mark centered, 'Info' right-of-center, 'Contact' far-right. Arial Narrow 14px #000000. No background, no border, no container.\n5. *Project Spotlight Card* — A single oversized 50px-radius frame (roughly 2.5x grid card area) filled with project hero artwork. A second 50px-radius card overlaps it with a small z-offset and 2-3° rotation. No borders, no shadows — only the radius gives them physical presence."
+}

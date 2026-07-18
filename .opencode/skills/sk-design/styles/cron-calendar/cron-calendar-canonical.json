@@ -1,0 +1,668 @@
+{
+  "source": "https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c",
+  "uuid": "476184db-a4e6-440b-aa53-27294668361c",
+  "name": "Cron Calendar",
+  "northStar": "Ember in an obsidian void — one warm orange spark burning against a near-black canvas.",
+  "capturedAt": "2026-07-18T08:25:39.308Z",
+  "meta": {
+    "url": "https://cron.com",
+    "siteName": "Cron Calendar",
+    "extractedAt": "2026-06-03T15:46:38.134Z",
+    "durationMs": 22966,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 32,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ff4700 exclusively for the primary CTA and brand mark — no other UI element should carry a chromatic fill",
+      "Set the display headline at exactly 140px weight 700 with -0.021em letter-spacing and 0.90 line-height to preserve the signature logotype-like scale",
+      "Use 4px radius for all standard buttons and 9999px for nav pills, tags, and announcement chips — these two radii define the component geometry",
+      "Let the primary CTA glow with the dual-layer warm shadow (inner #451e0 ring, outer #8b2e09 blur) — this is the only place in the system where elevation exists",
+      "Place product screenshots directly on the #0f0d0a canvas without frames, borders, or device mockups",
+      "Keep the chromatic palette to a single orange — resist adding secondary brand colors, status hues, or illustration palettes",
+      "Use #cccccc for all body copy, meta text, borders, and icons; reserve #ffffff for headings, nav, and content that must read first"
+    ],
+    "donts": [
+      "Do not add drop-shadow elevation to cards, nav, or secondary elements — separation comes from tonal contrast on the dark canvas only",
+      "Do not use the display 140px scale for anything other than the hero headline — at body level it destroys the rhythm",
+      "Do not introduce gradients, decorative illustrations, or background patterns — the Obsidian void must stay uninterrupted",
+      "Do not use a chromatic color for non-action elements like tags, badges, or status indicators — the single orange is reserved for conversion",
+      "Do not round cards with 8–16px radii — cards and product screenshots should be sharp-edged on the canvas",
+      "Do not use light theme tokens or switch surfaces to white backgrounds — the design is dark-mode native and the product screenshots depend on it",
+      "Do not add a second typeface — Helvetica Neue at four weights carries the entire voice; a second family would dilute the monolithic feel"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ff4700",
+        "name": "Ember",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#8b2e09",
+        "name": "Ember Glow",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#451e0e",
+        "name": "Ember Smoke",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#0f0d0a",
+        "name": "Obsidian",
+        "role": "Page canvas and footer background — the base near-black with a faint warm bias that keeps the UI from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161412",
+        "name": "Graphite",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash",
+        "role": "Body copy, secondary text, hairline borders, icon strokes, footer dividers — the warm neutral that carries the majority of UI content at 95 occurrences",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Display headlines, primary headings, nav text, button text on dark fills, and image elements — the highest-contrast white reserved for moments that must shout",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with centered content constrained to a ~1200px max-width. The hero is a vertically stacked centered composition: announcement pill, then a massive 140px display headline, then a single quiet subheadline, then overlapping desktop and mobile product screenshots that bleed into the lower viewport. Navigation is a single transparent top bar. Sections flow seamlessly from the hero into product previews with generous 80px vertical gaps. Content below the hero uses centered stacks rather than multi-column grids — the entire visible page is single-column with the product screenshots as the only lateral elements.",
+    "imagery": "The site uses product screenshots as its primary visual content — desktop and mobile views of the Cron calendar app rendered in dark mode. These screenshots are placed directly on the Obsidian canvas without frames, borders, or device mockups, making the product UI appear to float on the page. There is no photography, no illustration, and no decorative graphics. Icons are minimal and use Ash (#cccccc) strokes. The visual density is text-and-screenshot dominant, with the display headline occupying the majority of above-the-fold visual weight.",
+    "similar": [
+      {
+        "why": "Shares the near-black canvas, single warm-accent CTA, and massive ultra-tight display headlines; Cron is explicitly the Notion Calendar product",
+        "business": "Notion"
+      },
+      {
+        "why": "Same dark-mode product UI language with chromatic accent used sparingly and product screenshots that blend into the dark canvas without framing",
+        "business": "Linear"
+      },
+      {
+        "why": "Minimalist dark surfaces with a single vivid brand color, oversized tight-tracked headlines, and product imagery presented as raw floating screenshots",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark-mode-first interface with bold typographic hero treatments and a single warm accent color punctuating an otherwise monochrome palette",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "buttons": "4px",
+        "navPills": "9999px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#0f0d0a",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Base page background and footer"
+      },
+      {
+        "hex": "#161412",
+        "name": "Graphite Surface",
+        "level": 1,
+        "purpose": "Outlined announcement chips, subtle elevated surfaces"
+      },
+      {
+        "hex": "#ff4700",
+        "name": "Ember Fill",
+        "level": 2,
+        "purpose": "Primary CTA button — the only chromatic surface in the stack"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 0 1px #451e0, 0 0 24px 4px #8b2e09",
+        "element": "Primary CTA button"
+      }
+    ],
+    "northStar": "Ember in an obsidian void — one warm orange spark burning against a near-black canvas.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.7,
+        "letterSpacing": 0.13
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 140,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.94
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Glowing)",
+        "role": "The sole filled action in the system — used for Sign up and any high-intent conversion moment",
+        "description": "Filled with #ff4700, white text at 15px weight 500, 4px border-radius, horizontal padding ~16px, vertical padding ~12px. Surrounded by a dual-layer warm box-shadow: an inner 1px #451e0 ring and an outer 24px/4px #8b2e09 blur. The glow makes the button appear to emit light against the Obsidian void."
+      },
+      {
+        "name": "Ghost Nav Pill",
+        "role": "Navigation items and announcement banner triggers",
+        "description": "Transparent fill, no border, Ash (#cccccc) or Bone (#ffffff) text at 15px weight 400, fully rounded at 9999px radius. The announcement chip ('Cron is now Notion Calendar →') uses a 1px Ash border with the same pill geometry and Graphite (#161412) background."
+      },
+      {
+        "name": "Outlined Announcement Banner",
+        "role": "Contextual news or product update prompts above the hero",
+        "description": "Graphite (#161412) background, 1px Ash (#cccccc) border, 9999px pill radius, centered text at 13–15px with an inline arrow glyph. Sits as a quiet dark chip with no fill color competing with the CTA."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero title — the visual anchor of every page",
+        "description": "Single line of 140px Helvetica Neue weight 700, line-height 0.90, letter-spacing -2.94px (-0.021em). Bone (#ffffff) on Obsidian. No underline, no accent color — the scale and weight alone command the page."
+      },
+      {
+        "name": "Subheadline",
+        "role": "Supporting sentence beneath the display headline",
+        "description": "15px weight 400, line-height 1.50, Ash (#cccccc) color, centered. Intentionally small and quiet — the display headline does the work."
+      },
+      {
+        "name": "Product Screenshot Card",
+        "role": "Desktop and mobile app previews in the hero and feature sections",
+        "description": "Raw screenshots placed directly on the Obsidian canvas with no border, no card background, no shadow. The product UI (which is itself a dark-mode calendar) blends seamlessly with the page surface — a deliberate choice that makes the product feel native to the brand environment."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header with logo, links, and CTA",
+        "description": "Transparent background, no border or shadow. Cron logomark (orange circle + 'cron' wordmark in white) on the left. Nav links (Blog, Changelog, Docs, Login) as ghost pills in white at 15px. Sign up CTA pinned to the far right as the glowing filled button. Generous horizontal padding (~140px each side) with a max-width container."
+      },
+      {
+        "name": "Footer",
+        "role": "Closing block with secondary links and legal",
+        "description": "Obsidian (#0f0d0a) background, Ash (#cccccc) text and links at 13px, no dividers or cards. Stays as flat text on the canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single system sans family carries the entire voice. The 140px weight-700 display with -0.0210em tracking and 0.90 line-height is the signature — a massive, tightly-set headline that functions almost as a logotype. Body copy sits at 15px/1.50, small meta and nav at 13px, and 22px serves as the subheading bridge between body and display.",
+        "sizes": "13px, 15px, 22px, 140px",
+        "family": "Helvetica Neue",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.90 (display), 1.00, 1.50 (body), 1.70, 2.88",
+        "substitute": "Inter, Neue Haas Grotesk, or system-ui as freely available alternatives",
+        "letterSpacing": "-0.0210em on display (140px), 0.0100em on small text (13px)"
+      }
+    ],
+    "description": "Cron uses a near-monochrome dark canvas with a single ember-orange accent — the visual logic of a luminous clock face in an unlit room. Almost every surface, border, and text element lives in a narrow band of near-black, warm-gray, and white, reserving #ff4700 exclusively for primary actions and brand moments. Type does the heavy lifting: a single 140px display headline at weight 700 with aggressive negative tracking commands the hero, while the rest of the system stays at 13–22px Helvetica Neue. Components are stripped to essentials — a pill-shaped nav chip, a glowing filled CTA, hairline borders, and product screenshots that float on the dark canvas. There are no gradients, no decorative illustrations, and no secondary hues: the design earns its identity through contrast, scale, and restraint.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- background: #0f0d0a\n- text: #ffffff\n- secondary text: #cccccc\n- border: #cccccc\n- accent: #ff4700\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. **Hero display headline**: 140px Helvetica Neue weight 700, color #ffffff, line-height 0.90, letter-spacing -2.94px (-0.021em), centered, on a #0f0d0a canvas.\n3. **Ghost nav pill**: Transparent background, 9999px radius, #cccccc text at 15px weight 400, no border, horizontal padding 16px.\n4. **Outlined announcement chip**: Background #161412, 1px #cccccc border, 9999px radius, #cccccc text at 13px, centered with an inline arrow.\n5. **Subheadline**: 15px Helvetica Neue weight 400, line-height 1.50, color #cccccc, centered beneath the display headline."
+      }
+    ],
+    "elevationPhilosophy": "The design avoids traditional drop-shadow elevation entirely. The primary CTA uses a warm chromatic glow (concentric ember-orange halos) instead of neutral drop-shadow elevation, making the button feel lit from within rather than floating above the surface. All other elements sit flat on the Obsidian canvas with no shadows — separation is achieved through tonal contrast, not z-axis displacement."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 10369505.073948123,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "image",
+            "nav",
+            "button",
+            "heading"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 761593.6590391651,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f0d0a",
+          "oklch": {
+            "c": 0.007013618530211247,
+            "h": 78.06909603960064,
+            "l": 0.16035461819436203
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 256500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#451e0e",
+          "oklch": {
+            "c": 0.06458874654465852,
+            "h": 42.06904298808127,
+            "l": 0.2875500336724881
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 19198.650771235363,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#161412",
+          "oklch": {
+            "c": 0.005119347651028147,
+            "h": 67.5171986545375,
+            "l": 0.1928125220899917
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12113,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8b2e09",
+          "oklch": {
+            "c": 0.1337378184248998,
+            "h": 38.47225865023839,
+            "l": 0.4339230173736659
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12113,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff4700",
+          "oklch": {
+            "c": 0.22793433805589786,
+            "h": 35.77742648132593,
+            "l": 0.661991829715392
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5769,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00818923177713048,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.4,
+          "background": "#0f0d0a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.37,
+          "background": "#161412",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#ffffff",
+          "foreground": "#451e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#0f0d0a",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.44,
+          "background": "#161412",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.05,
+          "background": "#cccccc",
+          "foreground": "#451e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.43,
+          "background": "#ffffff",
+          "foreground": "#8b2e09"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#cccccc",
+          "foreground": "#8b2e09"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.41,
+          "background": "#ff4700",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#ff4700",
+          "foreground": "#cccccc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 22,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "image"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "image",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3bb28b23-4d7b-49a0-87c6-b5fa02eaa4f7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/228414c5-8594-4a65-bec7-81234cd014d1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cron Calendar design system\",\"item\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c#style-reference\",\"name\":\"Cron Calendar design system reference\",\"headline\":\"Cron Calendar design system | Refero Styles\",\"description\":\"Explore Cron Calendar's dark Productivity design system: Ember #ff4700, Ember Glow #8b2e09 colors, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cron Calendar\",\"url\":\"https://cron.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/476184db-a4e6-440b-aa53-27294668361c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/228414c5-8594-4a65-bec7-81234cd014d1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/228414c5-8594-4a65-bec7-81234cd014d1.jpg\",\"caption\":\"Screenshot of Cron Calendar\"},\"image\":\"https://images.refero.design/styles/refero.design/image/228414c5-8594-4a65-bec7-81234cd014d1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cron Calendar design system\",\"Cron Calendar website design\",\"Cron Calendar colors\",\"Cron Calendar typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ember\",\"Ember Glow\",\"Ember Smoke\",\"Obsidian\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cron Calendar design system\"},{\"@type\":\"Thing\",\"name\":\"Cron Calendar website design\"},{\"@type\":\"Thing\",\"name\":\"Cron Calendar colors\"},{\"@type\":\"Thing\",\"name\":\"Cron Calendar typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-01-28T09:31:31.000Z\",\"dateModified\":\"2026-01-28T09:31:31.000Z\"}]}"
+}

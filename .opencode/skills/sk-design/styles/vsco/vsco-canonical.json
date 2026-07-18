@@ -1,0 +1,1299 @@
+{
+  "source": "https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0",
+  "uuid": "759c0588-ea22-44c1-a1cf-42cb81eb6cb0",
+  "name": "VSCO®",
+  "northStar": "Monochrome gallery wall — a black-and-white photo exhibition where a single warm spotlight makes the next action glow.",
+  "capturedAt": "2026-07-18T09:23:14.244Z",
+  "meta": {
+    "url": "https://vsco.co",
+    "siteName": "VSCO®",
+    "extractedAt": "2026-06-03T19:54:01.012Z",
+    "durationMs": 28049,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 737,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 999px border-radius for all buttons, tags, and pill-shaped interactive elements",
+      "Set display headlines at 89-98px with -0.05em letter-spacing and line-height 0.93-0.95",
+      "Track nav items and uppercase labels at 0.08-0.10em letter-spacing",
+      "Use #000000 as the default filled button background and #f1a900 only for accent actions — never more than one amber button per viewport",
+      "Set font-feature-settings to 'clig' 0, 'liga' 0 on VSCO Gothic to preserve the distinctive un-ligated letterforms",
+      "Alternate white (#ffffff) and black (#000000) section backgrounds to create rhythm — never use intermediate grays for full sections",
+      "Let photography bleed to viewport edges with no border-radius or overlay frames"
+    ],
+    "donts": [
+      "Never add drop shadows, glows, or blur to cards, buttons, or any UI element — the system is flat by design",
+      "Never use gradients — the palette is strictly solid colors",
+      "Never introduce chromatic colors beyond the amber accent — no blues, greens, purples, or secondary hues",
+      "Never use border-radius values other than 4px (for cards/badges/nav) or 999px (for buttons/tags)",
+      "Never set display type below 54px for section headings or below 89px for hero headlines — the scale IS the identity",
+      "Never use centered text alignment for headlines — always left-align",
+      "Never use more than one amber button on the same screen — the accent is a one-per-viewport moment"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Photo Black",
+        "role": "Body text, filled buttons, dark section backgrounds, nav text, borders, icon strokes — the dominant structural color across all surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, hero background, footer background, text on dark surfaces, nav fill — the primary light surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog Gray",
+        "role": "Subtle alternate section backgrounds, hairline washes — barely-there surface differentiation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Graphite",
+        "role": "Secondary text, footer link text, muted labels — the first step down from body black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Ash",
+        "role": "Tertiary text, lighter secondary labels, disabled-adjacent text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Silver",
+        "role": "Borders on ghost/outline buttons, subtle dividers, placeholder text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Steel",
+        "role": "Mid-gray auxiliary text and borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1a900",
+        "name": "Amber",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffbc3c",
+        "name": "Goldenrod",
+        "role": "Lighter amber variant for hover states, secondary accent surfaces — same hue family, one step lighter",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1280px centered for content blocks, with full-bleed photography bands breaking out to viewport edges. Hero is a white canvas with a massive left-aligned headline (89-98px) occupying the upper third, followed by body text and two pill buttons, then a full-bleed photograph. The page rhythm alternates: white hero → full-bleed photo → black section with 5-column product card grid → white mega footer. Navigation is a top bar (not sticky). The black product section is the visual anchor — it's the only large dark surface and it contains the entire product catalog as a 5-column grid. Section gaps are compact (40-48px) despite the large type, creating a tight editorial density rather than a spacious SaaS feel.",
+    "imagery": "Photography is the primary visual content, not decoration. Images are full-bleed, edge-to-edge, with no rounded corners or frames. The style is warm-toned, documentary/editorial — natural light, golden-hour palettes, candid human subjects, and unposed moments. Product screenshots appear as card thumbnails within a dark product grid. No illustrations, no abstract graphics, no 3D renders. The photography is always the hero; UI chrome stays out of its way. Color treatment is natural — no duotones, no filters applied to the imagery itself. Icon style is minimal: the VSCO circular logo mark, small arrow indicators (↗) on cards, and no icon system elsewhere.",
+    "similar": [
+      {
+        "why": "Same monochrome-first palette, oversized display headlines, pill-shaped buttons, and full-bleed photography as the primary content type",
+        "business": "Squarespace"
+      },
+      {
+        "why": "Dark product showcase sections with image-driven card grids, photography-first content, and the same editorial creative-tool energy",
+        "business": "Behance"
+      },
+      {
+        "why": "Photographer-focused platform with a similar black-and-white gallery aesthetic, large type, and minimal decorative chrome",
+        "business": "Format"
+      },
+      {
+        "why": "Photography brand with the same warm-amber accent against monochrome surfaces and a curatorial, gallery-style presentation",
+        "business": "Polaroid Originals"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "tags": "999px",
+        "cards": "4px",
+        "badges": "4px",
+        "buttons": "999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background — hero, footer, and light sections"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Alternate Light",
+        "level": 1,
+        "purpose": "Subtle band differentiation within light areas — used sparingly"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inverted Surface",
+        "level": 2,
+        "purpose": "Dark sections, product card backgrounds, button fills — contrast surface for product showcases"
+      }
+    ],
+    "northStar": "Monochrome gallery wall — a black-and-white photo exhibition where a single warm spotlight makes the next action glow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.29,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 29,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.45
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 54,
+        "lineHeight": 1.08,
+        "letterSpacing": -2.7
+      },
+      {
+        "role": "display",
+        "size": 89,
+        "lineHeight": 0.95,
+        "letterSpacing": -4.45
+      },
+      {
+        "role": "display-xl",
+        "size": 98,
+        "lineHeight": 0.93,
+        "letterSpacing": -4.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Black Button",
+        "role": "Default action — login, sign-up, primary navigation",
+        "description": "999px pill radius, #000000 background, #ffffff text, VSCO Gothic 13px weight 500, 1.08em letter-spacing, 6px 20px padding. The universal action button. No shadow, no border, no hover gradient — just inverted contrast."
+      },
+      {
+        "name": "Filled Amber Button",
+        "role": "Accent action — explore, learn more, secondary CTA",
+        "description": "999px pill radius, #f1a900 background, #000000 text, VSCO Gothic 13px weight 500, 1.08em letter-spacing, 6px 20px padding. The single warm element on the page — used sparingly, one per viewport maximum."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action on dark surfaces — play video, explore stories",
+        "description": "999px pill radius, transparent background, 1px #d9d9d9 border, #ffffff text, VSCO Gothic 13px weight 500, 1.08em letter-spacing, 6px 20px padding. Designed for overlay on photography or dark sections."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "#ffffff background, 60-72px height, VSCO circular logo (black) on left, nav items in VSCO Gothic 13px weight 500 uppercase, 0.10em letter-spacing, #000000 color. Nav items separated by 24-28px gap. Right side: 'LOG IN' text link (13px, #000) and 'TRY FOR FREE' filled black pill button. No drop shadow, no border-bottom."
+      },
+      {
+        "name": "Product Card",
+        "role": "Product feature showcase — photo filters, editor, capture, canvas",
+        "description": "Dark card with #000000 background, 4px border radius, product image filling top ~75% of card height, label bar at bottom with 16px padding. Label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, #ffffff color, uppercase, with a small arrow indicator (↗). Cards sit directly on a #000000 section background — the card edge is defined by the image boundary, not a visible card border."
+      },
+      {
+        "name": "Tab Bar",
+        "role": "Section-level content switcher — What's New, Create, Connect, Work",
+        "description": "Horizontal text tabs on a #000000 background. Each tab: VSCO Gothic 13px weight 500, 0.10em letter-spacing, uppercase. Active tab: #ffffff with a hairline underline. Inactive tabs: #737373 (Graphite). No background fill on tabs, no pill containers — just text with an underline indicator."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Above-the-fold primary message",
+        "description": "VSCO Gothic weight 600, 89-98px, #000000 on white sections / #ffffff on dark sections. Letter-spacing -0.05em. Line-height 0.93-0.95 (tight, almost touching). Always left-aligned, never centered. Occupies 2-3 lines at maximum."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section titles",
+        "description": "VSCO Gothic weight 600, 36-54px, uppercase, #ffffff on dark sections or #000000 on white. Letter-spacing -0.05em. Single line, left-aligned. Sits with generous space above (40-48px) and tight space below (16-20px)."
+      },
+      {
+        "name": "Full-Bleed Photography Band",
+        "role": "Atmospheric photography — product lifestyle, community imagery",
+        "description": "Edge-to-edge image spanning 100% viewport width, variable height (40-100vh). No border radius, no overlay frame. Text overlays use VSCO Gothic weight 500-600 in white with a 0-2px text-shadow for legibility. Photography is warm-toned, documentary/editorial style, often golden-hour or natural light."
+      },
+      {
+        "name": "Badge / New Tag",
+        "role": "Product feature indicator — 'NEW' on AI Lab, Galleries",
+        "description": "4px border radius, #f1a900 background, #000000 text, VSCO Gothic 10-11px weight 500, 0.08em letter-spacing, uppercase. 2px vertical padding, 4-6px horizontal padding. Small, understated, sits adjacent to product names."
+      },
+      {
+        "name": "Mega Footer",
+        "role": "Site-wide link directory",
+        "description": "#ffffff background, 4-column grid (Products, Solutions, Resources, Company) on white. Column headers in VSCO Gothic 13px weight 600, 0.10em letter-spacing, uppercase, #000000. Links in 15px weight 400, #737373. 28-30px gap between columns. 20-24px gap between links. Logo + two CTAs ('TRY FOR FREE' outlined, 'DOWNLOAD NOW' filled black) above the link grid. Thin bottom bar with language selector and legal links in #737373."
+      },
+      {
+        "name": "Ghost Footer Button",
+        "role": "Secondary footer action — 'TRY FOR FREE' in footer",
+        "description": "999px pill radius, transparent background, 1px #000000 border, #000000 text, VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, 6px 20px padding. Pairs with the filled black button as a text/link-equivalent alternative."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single custom family used at every size — nav items at 13px tracked to 0.08-0.10em, body at 15-16px, product card titles at 24px, section headings at 36-54px, and hero display at 89-98px with -0.05em tracking. The narrow geometric letterforms with ligatures disabled give every text element a distinctive editorial-gallery feel, even at body sizes.",
+        "sizes": "10, 11, 13, 15, 16, 24, 29, 36, 54, 89, 98",
+        "family": "VSCO Gothic",
+        "weight": "400, 500, 600",
+        "lineHeight": "0.88-1.50",
+        "substitute": "Oswald (closest free match for the narrow geometric forms) or Bebas Neue for display-only; pair with Inter for body if splitting families",
+        "letterSpacing": "Tight -0.05em on display sizes (54px+), 0 on body, wide 0.08-0.10em on nav/eyebrow text",
+        "fontFeatureSettings": "\"clig\" 0, \"liga\" 0"
+      }
+    ],
+    "description": "VSCO's visual system reads as a monochrome photography gallery: a near-pure black-and-white canvas where a single warm amber accent punctuates action. Display type is narrow, geometric, and enormous — hero headlines push 89-98px, commanding attention through scale and tight tracking rather than through color or ornament. The palette stays disciplined: white sections frame black product bands, and full-bleed photography carries emotional weight that decoration never tries to. Buttons are pill-shaped and unflinching — black fills for default actions, amber for the single moment of warmth. The design is deliberately flat: no shadows, no gradients, no skeuomorphic depth. Elevation comes from surface contrast (white → black bands) and image bleed, not from layered depth effects.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VSCO® design system\",\"item\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#style-reference\",\"name\":\"VSCO® design system reference\",\"headline\":\"VSCO® design system | Refero Styles\",\"description\":\"Explore VSCO®'s mixed Design design system: Photo Black #000000, Paper White #ffffff colors, VSCO Gothic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VSCO®\",\"url\":\"https://vsco.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"caption\":\"Screenshot of VSCO®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VSCO® design system\",\"VSCO® website design\",\"VSCO® colors\",\"VSCO® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Photo Black\",\"Paper White\",\"Fog Gray\",\"Graphite\",\"VSCO Gothic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VSCO® design system\"},{\"@type\":\"Thing\",\"name\":\"VSCO® website design\"},{\"@type\":\"Thing\",\"name\":\"VSCO® colors\"},{\"@type\":\"Thing\",\"name\":\"VSCO® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-07T18:48:50.000Z\",\"dateModified\":\"2026-04-07T18:48:50.000Z\"}]}19:T649,## Quick Color Reference\n- Text: #000000 (primary), #737373 (secondary), #b8b8b8 (tertiary)\n- Background: #ffffff (light surfaces), #000000 (dark surfaces)\n- Border: #d9d9d9 (ghost buttons), #000000 (dividers on light)\n- Accent: #f1a900 (amber — badge fills, accent actions)\n- Filled button: #000000 background, #ffffff text\n- Accent button: #f1a900 background, #000000 text\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Filled black button:** Create a pill button with 999px border-radius, #000000 background, 6px 20px padding. Label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #ffffff color. No shadow, no border.\n\n2. **Filled accent button:** Create a pill button with 999px border-radius, #f1a900 background, 6px 20px padding. Label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #000000 color. Use sparingly — one per viewport.\n\n3. **Product card:** Create a card with 4px border-radius, #000000 background. Product image fills the top 75% of the card edge-to-edge. Bottom 25% has 16px padding with label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #ffffff, followed by a small ↗ arrow.\n\n4. **Hero headline:** Set headline in VSCO Gothic weight 600, 89px, #000000, letter-spacing -4.45px, line-height 0.95. Left-aligned, max-width 900px, two lines. Below: body text at 16px, #000000.\n\n5. **Tab bar:** Create horizontal text tabs on #000000 background. Each tab: VSCO Gothic 13px weight 500, 0.10em letter-spacing, uppercase. Active tab: #ffffff with 1px underline. Inactive: #737373. 24px gap between tabs."
+      }
+    ],
+    "elevationPhilosophy": "Flat by conviction. No drop shadows on cards, buttons, or floating elements anywhere in the system. Elevation is achieved entirely through surface inversion (white → black) and full-bleed image bleed, never through shadow depth or blur. The absence of shadows is deliberate: it keeps the photography sharp and unmediated."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "link",
+            "icon",
+            "image",
+            "heading",
+            "card",
+            "body",
+            "footer",
+            "nav"
+          ],
+          "frequency": 1013,
+          "confidence": 1,
+          "prominence": 111641093.73349726,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "icon",
+            "body",
+            "card",
+            "badge",
+            "image",
+            "footer"
+          ],
+          "frequency": 2444,
+          "confidence": 1,
+          "prominence": 25572585.709735565,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2876452,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7bbce0",
+          "oklch": {
+            "c": 0.08405557149065863,
+            "h": 233.67006994599632,
+            "l": 0.764783871244351
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1011750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff6a2f",
+          "oklch": {
+            "c": 0.19478850083823257,
+            "h": 40.05028844087539,
+            "l": 0.7027560989567287
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1011750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffa72a",
+          "oklch": {
+            "c": 0.16247506356138275,
+            "h": 69.20088932597535,
+            "l": 0.7973637918870257
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1011750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 877865,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 29611.35085682329,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 10381.934842856122,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 9833.643629146642,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 8281.584089199765,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffbc3c",
+          "oklch": {
+            "c": 0.15536763767972392,
+            "h": 79.11147564018111,
+            "l": 0.8366413412144201
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6458,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1a900",
+          "oklch": {
+            "c": 0.1633896449112859,
+            "h": 77.97267977158918,
+            "l": 0.7837605395111559
+          },
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4352,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.000828383491336912,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#000000",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.51,
+          "background": "#ffbc3c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.81,
+          "background": "#ffa72a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#f1a900",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.11,
+          "background": "#7bbce0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.35,
+          "background": "#ff6a2f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#ffffff",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#000000",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#f2f2f2",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.86,
+          "background": "#ff6a2f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#ffbc3c",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.54,
+          "background": "#f2f2f2",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#ffa72a",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#f1a900",
+          "foreground": "#737373"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "badge",
+            "image"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 47,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 116,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 220,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 49,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 90,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 150,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "VSCO Gothic",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 696,
+          "fontFeatureSettings": [
+            "\"clig\" 0, \"liga\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "VSCO Gothic",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "icon",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 411,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "VSCO Gothic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.93,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 89,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 98,
+          "family": "VSCO Gothic",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.88,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0a3f4af5-dea6-41c4-ba93-ecd15f9a6c40.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VSCO® design system\",\"item\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#style-reference\",\"name\":\"VSCO® design system reference\",\"headline\":\"VSCO® design system | Refero Styles\",\"description\":\"Explore VSCO®'s mixed Design design system: Photo Black #000000, Paper White #ffffff colors, VSCO Gothic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VSCO®\",\"url\":\"https://vsco.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/759c0588-ea22-44c1-a1cf-42cb81eb6cb0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"caption\":\"Screenshot of VSCO®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e0f995a1-9d6f-41ad-bd5c-fa02258bb8aa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VSCO® design system\",\"VSCO® website design\",\"VSCO® colors\",\"VSCO® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Photo Black\",\"Paper White\",\"Fog Gray\",\"Graphite\",\"VSCO Gothic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VSCO® design system\"},{\"@type\":\"Thing\",\"name\":\"VSCO® website design\"},{\"@type\":\"Thing\",\"name\":\"VSCO® colors\"},{\"@type\":\"Thing\",\"name\":\"VSCO® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-07T18:48:50.000Z\",\"dateModified\":\"2026-04-07T18:48:50.000Z\"}]}19:T649,## Quick Color Reference\n- Text: #000000 (primary), #737373 (secondary), #b8b8b8 (tertiary)\n- Background: #ffffff (light surfaces), #000000 (dark surfaces)\n- Border: #d9d9d9 (ghost buttons), #000000 (dividers on light)\n- Accent: #f1a900 (amber — badge fills, accent actions)\n- Filled button: #000000 background, #ffffff text\n- Accent button: #f1a900 background, #000000 text\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Filled black button:** Create a pill button with 999px border-radius, #000000 background, 6px 20px padding. Label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #ffffff color. No shadow, no border.\n\n2. **Filled accent button:** Create a pill button with 999px border-radius, #f1a900 background, 6px 20px padding. Label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #000000 color. Use sparingly — one per viewport.\n\n3. **Product card:** Create a card with 4px border-radius, #000000 background. Product image fills the top 75% of the card edge-to-edge. Bottom 25% has 16px padding with label in VSCO Gothic 13px weight 500, 0.08em letter-spacing, uppercase, #ffffff, followed by a small ↗ arrow.\n\n4. **Hero headline:** Set headline in VSCO Gothic weight 600, 89px, #000000, letter-spacing -4.45px, line-height 0.95. Left-aligned, max-width 900px, two lines. Below: body text at 16px, #000000.\n\n5. **Tab bar:** Create horizontal text tabs on #000000 background. Each tab: VSCO Gothic 13px weight 500, 0.10em letter-spacing, uppercase. Active tab: #ffffff with 1px underline. Inactive: #737373. 24px gap between tabs."
+}

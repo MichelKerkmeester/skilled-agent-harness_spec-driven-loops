@@ -1,0 +1,467 @@
+{
+  "color": {
+    "eclipse-green": {
+      "$value": "#a1fea0",
+      "$type": "color",
+      "$description": "Eclipse Green — Primary action fill, active nav state, decorative border accents, cloud and glow illustration fills, investor-card spotlight — the only chromatic token in the system, applied sparingly to make each occurrence feel like a marker pen stroke"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body and heading text, hairline borders across cards/badges/buttons, footer rules, outlined button stroke — the dominant neutral that carries all structural lines"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text on dark fills, nav backgrounds, image backdrop — the base layer everything sits on"
+    }
+  },
+  "font": {
+    "barlow-condensed": {
+      "$value": "Barlow Condensed",
+      "$type": "fontFamily",
+      "$description": "UI chrome, nav links, buttons, badges, secondary headlines, marquee strips. Condensed proportions keep horizontal copy tight inside pill buttons and ticker bars. 700 for emphasis, 500 for nav, 400 for body UI. Letter-spacing opens up on small caps labels (0.1–0.2em) and tightens on large display uses (-0.02 to -0.03em)."
+    },
+    "gt-alpina-condensed": {
+      "$value": "GT Alpina Condensed",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines — the signature voice. Hairline weights 100–200 push the serif into a near-glyph wireframe, making words feel stamped rather than typeset. Letter-spacing tightens as size grows: -0.01em at 24px climbing to -0.06em at the 562px masthead. Substitutes: Cormorant Garamond Condensed Light, EB Garamond 200."
+    },
+    "atlas-typewriter": {
+      "$value": "Atlas Typewriter",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels, section tags, small body annotations — the 'label maker' voice. Always set in uppercase with 0.2em tracking, functioning as a timestamp or chapter mark. Substitutes: IBM Plex Mono, Space Mono, JetBrains Mono."
+    },
+    "math": {
+      "$value": "math",
+      "$type": "fontFamily",
+      "$description": "math — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Atlas Typewriter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "math",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "math",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Atlas Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Atlas Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Atlas Typewriter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "33px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "44px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "44px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "GT Alpina Condensed",
+        "fontSize": "46px",
+        "fontWeight": 100,
+        "lineHeight": 0.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "61px",
+        "fontWeight": 100,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 61px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "64px",
+        "fontWeight": 100,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 80px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "88px",
+        "fontWeight": 100,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 88px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 96px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "120px",
+        "fontWeight": 100,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 120px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "120px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 120px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "120px",
+        "fontWeight": 100,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 120px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "Barlow Condensed",
+        "fontSize": "182px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 182px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "Gt Alpina Condensed",
+        "fontSize": "562px",
+        "fontWeight": 200,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 562px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page and card canvas"
+    },
+    "eclipse-green": {
+      "$value": "#a1fea0",
+      "$type": "color",
+      "$description": "Surface level 2: Accent wash — investor spotlight, decorative blob, active highlight"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Hero and footer inversion band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.eclipse.builders",
+      "siteName": "Eclipse",
+      "extractedAt": "2026-06-03T19:07:57.859Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Page background, card surfaces, inverted text on pink fills"
+    },
+    "parchment": {
+      "$value": "#efe6d8",
+      "$type": "color",
+      "$description": "Parchment — Primary body and heading text — warm near-white with sepia undertone, replaces the typical cool white of dark UIs"
+    },
+    "bone": {
+      "$value": "#aca69c",
+      "$type": "color",
+      "$description": "Bone — Secondary text, button borders, metadata — mid-tone warm gray"
+    },
+    "ash": {
+      "$value": "#736e68",
+      "$type": "color",
+      "$description": "Ash — Muted body text, subtle link borders, inactive labels"
+    },
+    "charcoal": {
+      "$value": "#605c56",
+      "$type": "color",
+      "$description": "Charcoal — Hairline dividers, low-emphasis borders, heading underlines on dark"
+    },
+    "neon-petal": {
+      "$value": "#ffa1f7",
+      "$type": "color",
+      "$description": "Neon Petal — Primary action buttons, active nav states, selected markers, occasional heading accents — the single chromatic punctuation in the system"
+    },
+    "acid-lime": {
+      "$value": "#4dff00",
+      "$type": "color",
+      "$description": "Acid Lime — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — medium and semibold weights, tight negative tracking at -0.013em to -0.031em. Used for body copy, links, navigation, and small headings."
+    },
+    "geist-pixel-triangle": {
+      "$value": "Geist Pixel Triangle",
+      "$type": "fontFamily",
+      "$description": "Display and section-label typeface — pixel/decorative variant used for all-caps section headers like 'SELECTED WORK' and the year range '2015 — 2026'. The pixel treatment gives editorial weight without serifs."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Metadata typeface — timestamps, email, technical labels, year stamps. The monospace signals system/data language against the proportional body."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Geist Pixel Triangle",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — true black for maximum contrast against warm text"
+    },
+    "project-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Project image and content frames sit directly on canvas without card elevation"
+    },
+    "accent-surface": {
+      "$value": "#ffa1f7",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted pill buttons and selected markers — the only chromatic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://akashtyagi.com",
+      "siteName": "Akash Tyagi",
+      "extractedAt": "2026-06-03T22:04:07.519Z",
+      "variant": "extended"
+    }
+  }
+}

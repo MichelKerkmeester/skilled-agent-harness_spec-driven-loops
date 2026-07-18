@@ -1,0 +1,387 @@
+{
+  "color": {
+    "honeycomb-yellow": {
+      "$value": "#ffd931",
+      "$type": "color",
+      "$description": "Honeycomb Yellow — Primary brand color, header band, primary action buttons, nav active state, link underline color, accent fills — the one chromatic note everything else orbits around"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, heavy borders, button outlines, icon strokes, nav text — the structural ink of the entire system"
+    },
+    "ink-black": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Ink Black — Secondary text, body copy, button borders, input borders — a slightly warmer near-black for softer reading"
+    },
+    "pearl-gray": {
+      "$value": "#c8cbcd",
+      "$type": "color",
+      "$description": "Pearl Gray — Page canvas, product card backgrounds, the cool stage on which yellow and black perform"
+    },
+    "fog-gray": {
+      "$value": "#a6a8aa",
+      "$type": "color",
+      "$description": "Fog Gray — Muted badge surfaces, secondary chip backgrounds, low-emphasis UI fills"
+    },
+    "smoke-line": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Smoke Line — Hairline dividers, subtle table/card separators"
+    }
+  },
+  "font": {
+    "times-now": {
+      "$value": "Times Now",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — used for hero headlines, product names, and section titles. The ultralight 100 weight at 47px creates a tall, almost compressed editorial feel; the condensed letterforms (lineHeight 0.87–0.90) let large headlines sit close to their supporting copy, mimicking a printed poster."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Body copy serif — an unexpected choice for e-commerce that gives the whole site a literary, catalog-like voice. The tight 1.15 line-height keeps paragraph blocks compact and readable."
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Small UI labels, button text, micro-copy — set in 11px with generous letter-spacing (0.0730em) to create an all-caps editorial feel even at body temperature"
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Navigation, links, utility text, large numbers — the utility sans that handles everything Times can't. Letter-spacing of 0.0630–0.0910em on small sizes gives all-caps nav items a wide, confident gait."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 2.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "23px",
+        "fontWeight": 100,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "23px",
+        "fontWeight": 100,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "47px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 47px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "47px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 47px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#c8cbcd",
+      "$type": "color",
+      "$description": "Surface level 0: Cool pearl background that lets the yellow pop"
+    },
+    "product-card": {
+      "$value": "#ffd931",
+      "$type": "color",
+      "$description": "Surface level 1: Yellow surfaces for featured/highlighted areas"
+    },
+    "elevated-section": {
+      "$value": "#a6a8aa",
+      "$type": "color",
+      "$description": "Surface level 2: Fog gray for badge/chip clusters and secondary groupings"
+    },
+    "ink-surface": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Surface level 3: Near-black for inverted text or strong contrast zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lepuzz.com",
+      "siteName": "Le Puzz",
+      "extractedAt": "2026-06-03T19:09:34.873Z",
+      "variant": "extended"
+    }
+  }
+}

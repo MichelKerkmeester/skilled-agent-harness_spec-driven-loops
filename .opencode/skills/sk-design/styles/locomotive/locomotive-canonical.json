@@ -1,0 +1,514 @@
+{
+  "source": "https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c",
+  "uuid": "131d07b0-f71b-4bd2-8046-f61485ed545c",
+  "name": "Locomotive",
+  "northStar": "Monochrome zine between blood-red slides. Black ink and white paper form the structural grammar; only photography is allowed to scream.",
+  "capturedAt": "2026-07-18T07:52:44.501Z",
+  "meta": {
+    "url": "https://locomotive.ca",
+    "siteName": "Locomotive",
+    "extractedAt": "2026-06-03T19:14:07.711Z",
+    "durationMs": 26756,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 257,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Stay at weight 400 for all type — no bold, no light variants exist in this system; let size and space build hierarchy instead",
+      "Use LocomotiveNew at 70–110px for display moments and HelveticaNowDisplay at 15–26px for everything else; never cross the 26px/70px gap without editorial intent",
+      "Anchor content to a 4px grid with 150px+ section padding and 20px row padding; the system breathes because it is mostly white space",
+      "Keep all corners square — 0px radius on cards, buttons, tags, and images; sharpness reinforces the editorial catalog tone",
+      "Use full-bleed photography to supply all color and mood; the interface itself should never introduce a chromatic accent",
+      "Separate list rows with 1px Ink hairlines and generous 20px vertical padding rather than backgrounds or chips",
+      "Invert by swapping Ink and Paper only — do not introduce a gray, a tint, or a third tone"
+    ],
+    "donts": [
+      "Do not introduce a brand color or accent — the 0% colorfulness is a deliberate, ownable constraint, not an oversight",
+      "Do not add bold, semibold, or light weights to either font family; the single-weight 400 stance is the signature",
+      "Do not round corners on images, cards, buttons, or any container; keep all geometry orthogonal",
+      "Do not use shadows, blurs, or elevation layers to imply depth — rely on the Ink/Paper inversion for contrast",
+      "Do not apply letter-spacing or text-transform; the display type sits at default tracking and sentence/upper case as written",
+      "Do not place UI chrome (badges, chips, tags with fills) inside the white canvas — these break the gallery-wall metaphor",
+      "Do not use gradients under any circumstances; if a section needs energy, swap to a full-bleed photograph"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Body text, headings, footer text, inverted section backgrounds, cards, borders, nav — the universal structural color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces on dark sections, text on inverted black backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model — content breaks the viewport edge rather than sitting inside a max-width container. The hero is a single 100vh image with absolutely-positioned nav and a bottom-left display headline. Below the hero, sections alternate between white Paper and black Ink inverted blocks, separated by hairline rules. The signature composition is a centered image (≈40% width) with short text labels floating in the surrounding white space at the corners — a curatorial, not commercial, arrangement. Navigation is a minimal top bar (logo left, center links, CTA right) that floats over the hero and becomes opaque as you scroll. Article and culture lists run full-width as single-line rows with hairline dividers — no cards, no grid cards. Vertical rhythm is built from 150px section padding and 20px row padding, giving the page the cadence of a print zine rather than a SaaS dashboard.",
+    "imagery": "Photography is the sole source of color and atmosphere. Treatment is full-bleed, sharp-cornered, uncropped by UI elements. The hero uses a dramatic high-contrast portrait (red-lit face, near-black surroundings) at 100vw × 100vh. Secondary images (rings, product shots) sit centered on white at roughly 40% page width with floating editorial labels — museum-catalogue framing rather than e-commerce framing. No lifestyle or stock photography; imagery is always a focused subject on a controlled background.",
+    "similar": [
+      {
+        "why": "Same agency-portfolio restraint — monochrome palette, large editorial display type, full-bleed photography, zero decorative UI chrome",
+        "business": "Ueno"
+      },
+      {
+        "why": "Experimental creative agency sites that lean on custom display typefaces and full-bleed dramatic imagery rather than component-heavy interfaces",
+        "business": "Resn"
+      },
+      {
+        "why": "Editorial-agency layouts with hairline dividers, centered compositions, and the same refusal to introduce a brand color",
+        "business": "Manual"
+      },
+      {
+        "why": "Gallery-wall presentation: work presented as exhibits, type as architecture, white space as the dominant material",
+        "business": "Pentagram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "150px",
+      "cardPadding": "20-40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Primary page canvas — body, article lists, centered image compositions"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Inverted section panels, footer, full-bleed hero overlays, project feature blocks"
+      }
+    ],
+    "northStar": "Monochrome zine between blood-red slides. Black ink and white paper form the structural grammar; only photography is allowed to scream.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 70,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "First-viewport dramatic photography with overlaid display headline",
+        "description": "100vw × 100vh image with no rounding, no border. Display headline (LocomotiveNew 110px, weight 400, white or black depending on image) overlaid bottom-left. Nav floats absolute over the image."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero and section title type",
+        "description": "LocomotiveNew at 70–110px, weight 400, line-height 1.0–1.1, normal tracking. No bold, no italic. Sits in the lower-left quadrant over full-bleed imagery, or breaks the left margin of a white section."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top-bar nav items and 'Let's talk' CTA",
+        "description": "HelveticaNowDisplay 15px, weight 400. No background, no border, no underline. Color: Ink on Paper canvas, Paper on Ink canvas. The 'Locomotive®' wordmark carries a registered trademark glyph as a typographic signature."
+      },
+      {
+        "name": "Article List Row",
+        "role": "Editorial index of articles, culture entries, or store links",
+        "description": "Full-width single-line row, HelveticaNowDisplay 15px, separated from neighbors by a 1px Ink hairline. Category label left-aligned, title fills the center-right, optional arrow icon right-aligned. 20px vertical padding per row."
+      },
+      {
+        "name": "Centered Image with Floating Labels",
+        "role": "Portfolio feature block",
+        "description": "A single product/portrait image centered on the canvas, approximately 40% page width, with no rounding. Short text labels (HelveticaNowDisplay 15–26px) float in the surrounding white space — top-left, top-right, bottom-left, bottom-right — connected to the image by proximity rather than lines. The composition is curatorial: the object is the exhibit, labels are wall text."
+      },
+      {
+        "name": "Inverted Section Panel",
+        "role": "Full-bleed black block interrupting the white canvas",
+        "description": "Background #000000, text #ffffff. Used for footer, closing CTAs, or featured project blocks. Maintains the same typography scale but inverts the color pair. No elevation, no rounded corners."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Vertical or horizontal separator",
+        "description": "1px solid Ink rule, full-width. The only structural element besides typography. No gradients, no shadows."
+      },
+      {
+        "name": "Workhorse Text Link",
+        "role": "Inline or standalone link within editorial copy",
+        "description": "HelveticaNowDisplay 15px weight 400, Ink color. May be underlined or sit inline without decoration. Hover state: no color change — the only feedback is the registered ® mark on the wordmark."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse for everything non-display: body copy at 15px, section sub-headings and card titles at 26px. The choice to stay at a single weight 400 — no bold, no light — forces hierarchy through size and space rather than stroke contrast. Substitute: Neue Haas Grotesk Display Pro or Inter at 400.",
+        "sizes": "15px, 26px",
+        "family": "HelveticaNowDisplay",
+        "weight": "400",
+        "lineHeight": "1.0–1.3",
+        "substitute": "Neue Haas Grotesk Display Pro",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Signature display face for hero headlines and feature titles. At 110px it commands the viewport; the tight 1.0–1.1 line-height and zero tracking make the letterforms feel architectural and monolithic. Custom and ownable — no direct substitute, but Migra or Söhne Breit at 400 come close in feel. Do not substitute with a bold weight; the whisper-thin strokes at scale are the point.",
+        "sizes": "70px, 110px",
+        "family": "LocomotiveNew",
+        "weight": "400",
+        "lineHeight": "1.0–1.1",
+        "substitute": "Söhne Breit at 400 or Migra Display at 400"
+      }
+    ],
+    "description": "Locomotive operates a strict two-color monochrome system — black ink on white paper, nothing else. The visual language is editorial and gallery-like: massive display type at 110px sets a museum-catalogue tone, while a single weight 400 across all text avoids the visual noise of bold or light variants, letting scale alone carry hierarchy. Full-bleed dramatic photography supplies all color and atmosphere; the interface itself never does. Generous vertical breathing room (150px section padding) and hairline horizontal dividers create a Swiss-style zine rhythm. The result feels like flipping through a high-end art monograph where typography is the architecture and images are the exhibits.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locomotive design system\",\"item\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#style-reference\",\"name\":\"Locomotive design system reference\",\"headline\":\"Locomotive design system | Refero Styles\",\"description\":\"Explore Locomotive's light Agency design system: Ink #000000, Paper #ffffff colors, HelveticaNowDisplay, LocomotiveNew typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Locomotive\",\"url\":\"https://locomotive.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"caption\":\"Screenshot of Locomotive\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Locomotive design system\",\"Locomotive website design\",\"Locomotive colors\",\"Locomotive typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"HelveticaNowDisplay\",\"LocomotiveNew\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Locomotive design system\"},{\"@type\":\"Thing\",\"name\":\"Locomotive website design\"},{\"@type\":\"Thing\",\"name\":\"Locomotive colors\"},{\"@type\":\"Thing\",\"name\":\"Locomotive typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-11T11:03:20.000Z\",\"dateModified\":\"2026-02-11T11:03:20.000Z\"}]}19:T67f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: no distinct accent color (monochrome only)\n- primary action: no distinct CTA color\n- inverted text: #ffffff on #000000 panels\n\n**Example Component Prompts**\n1. **Full-bleed editorial hero**: 100vw × 100vh background image with a bottom-left headline at 110px LocomotiveNew weight 400, line-height 1.0, in white over the image. Navigation bar (transparent background) floats at the top with logo left, four center links, and a 'Let's talk' ghost link right — all HelveticaNowDisplay 15px weight 400.\n2. **Centered image with floating labels**: A single product/portrait image at approximately 40% of the viewport width, centered, with 0px corner radius. Four short labels in HelveticaNowDisplay 15–26px weight 400 placed in the surrounding white space — top-left, top-right, bottom-left, bottom-right — using 20px element gap between label and image edge. No connecting lines, no borders around the image.\n3. **Article index list**: Full-width column with 1px solid #000000 hairlines between rows. Each row: 20px padding top and bottom, category label in HelveticaNowDisplay 15px weight 400 on the left, article title right-aligned in the same face, optional right-arrow at the far right. No card backgrounds, no hover fills.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n5. **Section break**: A single 1px solid #000000 hairline running full viewport width, with 150px of white space above and below. Used between major editorial sections in place of background-color changes."
+      }
+    ],
+    "elevationPhilosophy": "This system has zero elevation. Depth is communicated exclusively through the full-bleed / inverted contrast between Paper (#ffffff) and Ink (#000000). There are no shadows, no blurs, no z-axis layering — the visual hierarchy is flat and editorial, like a printed page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading",
+            "hero",
+            "list",
+            "image",
+            "card",
+            "footer",
+            "nav",
+            "button"
+          ],
+          "frequency": 1166,
+          "confidence": 1,
+          "prominence": 96027735.15127945,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 8918756.768071167,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 150,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNowDisplay",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 198,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "LocomotiveNew",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 59,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 26,
+        "name": "Golden Ratio",
+        "ratio": 1.618,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "heading",
+            "card",
+            "body"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading",
+            "footer",
+            "button"
+          ],
+          "frequency": 114,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "LocomotiveNew",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "LocomotiveNew",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 32,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/84f912c7-b35b-41cd-883f-2e9133116dff.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locomotive design system\",\"item\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#style-reference\",\"name\":\"Locomotive design system reference\",\"headline\":\"Locomotive design system | Refero Styles\",\"description\":\"Explore Locomotive's light Agency design system: Ink #000000, Paper #ffffff colors, HelveticaNowDisplay, LocomotiveNew typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Locomotive\",\"url\":\"https://locomotive.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/131d07b0-f71b-4bd2-8046-f61485ed545c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"caption\":\"Screenshot of Locomotive\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1d97b40a-c07c-41be-a436-15555d76ff86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Locomotive design system\",\"Locomotive website design\",\"Locomotive colors\",\"Locomotive typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"HelveticaNowDisplay\",\"LocomotiveNew\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Locomotive design system\"},{\"@type\":\"Thing\",\"name\":\"Locomotive website design\"},{\"@type\":\"Thing\",\"name\":\"Locomotive colors\"},{\"@type\":\"Thing\",\"name\":\"Locomotive typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-11T11:03:20.000Z\",\"dateModified\":\"2026-02-11T11:03:20.000Z\"}]}19:T67f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: no distinct accent color (monochrome only)\n- primary action: no distinct CTA color\n- inverted text: #ffffff on #000000 panels\n\n**Example Component Prompts**\n1. **Full-bleed editorial hero**: 100vw × 100vh background image with a bottom-left headline at 110px LocomotiveNew weight 400, line-height 1.0, in white over the image. Navigation bar (transparent background) floats at the top with logo left, four center links, and a 'Let's talk' ghost link right — all HelveticaNowDisplay 15px weight 400.\n2. **Centered image with floating labels**: A single product/portrait image at approximately 40% of the viewport width, centered, with 0px corner radius. Four short labels in HelveticaNowDisplay 15–26px weight 400 placed in the surrounding white space — top-left, top-right, bottom-left, bottom-right — using 20px element gap between label and image edge. No connecting lines, no borders around the image.\n3. **Article index list**: Full-width column with 1px solid #000000 hairlines between rows. Each row: 20px padding top and bottom, category label in HelveticaNowDisplay 15px weight 400 on the left, article title right-aligned in the same face, optional right-arrow at the far right. No card backgrounds, no hover fills.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n5. **Section break**: A single 1px solid #000000 hairline running full viewport width, with 150px of white space above and below. Used between major editorial sections in place of background-color changes."
+}

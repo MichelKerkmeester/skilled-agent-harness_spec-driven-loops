@@ -1,0 +1,1152 @@
+{
+  "source": "https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28",
+  "uuid": "5e9409c4-d130-42f3-b224-5bd66cdfbe28",
+  "name": "Anuc Home",
+  "northStar": "editorial gallery in warm white — a quiet, magazine-like space where oversized serif headlines and monumental rounded geometric letterforms frame intimate interior photography",
+  "capturedAt": "2026-07-18T09:10:47.983Z",
+  "meta": {
+    "url": "https://www.anuchome.com",
+    "siteName": "Anuc Home",
+    "extractedAt": "2026-06-03T20:31:22.390Z",
+    "durationMs": 29248,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 450,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Instrument Serif 400 at 52–74px for all display headlines — the high-contrast serif at oversized scale is the brand's signature typographic moment",
+      "Set all radii to 0px for buttons, cards, and tags — the system is architectural, not soft; sharpness communicates precision",
+      "Maintain the warm off-white Canvas (#f3f3f2) as the dominant background; never use pure clinical white for full-page backgrounds",
+      "Use Ink (#1a1a1e) for all text and borders; let color do no work — the system is deliberately achromatic",
+      "Separate image grid cells with 1–2px hairline borders in Ink to create the gallery-grid structure",
+      "Precede every display headline with a small uppercase Instrument Sans 500 label (15px) to create the editorial section-opening rhythm",
+      "Apply 96px minimum vertical spacing between major sections to maintain the gallery-walk pacing"
+    ],
+    "donts": [
+      "Do not introduce shadows, glows, or blur effects — the system communicates elevation through background color steps (Canvas → Paper → Linen), never through box-shadow",
+      "Do not use border-radius greater than 0px on any UI element — rounded buttons or cards would break the architectural language; the only rounded forms are the monumental logo shapes",
+      "Do not add chromatic fills to buttons, backgrounds, or large UI surfaces — Bronze and Slate are reserved for dot punctuation only",
+      "Do not use Instrument Sans for display headlines — the serif/sans contrast is the system's signature; flattening both to sans destroys the editorial voice",
+      "Do not place body copy at sizes below 15px — the system is generous with reading size, not compact",
+      "Do not stack dense information without the 96px section gap — the gallery-walk rhythm requires breathing room between content blocks",
+      "Do not use decorative gradients, textures, or background imagery behind text — every text surface must sit on a flat, untextured neutral"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1a1a1e",
+        "name": "Ink",
+        "role": "Primary text, all borders, logo forms, icon strokes — the structural near-black that defines every contour across the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f2",
+        "name": "Canvas",
+        "role": "Page background — warm off-white that gives the entire system its gallery-wall warmth rather than clinical white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, article blocks, elevated panels — pure white sits on top of Canvas to create subtle layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d1d2",
+        "name": "Ash",
+        "role": "Hairline borders, divider lines, subtle structural rules — the thinnest visible grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1c2bd",
+        "name": "Stone",
+        "role": "Secondary borders, muted fills, icon strokes at lower emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e6e4",
+        "name": "Linen",
+        "role": "Muted surface for category tags, soft chips, low-emphasis backgrounds — warm-tinted neutral that steps between Paper and Canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4942",
+        "name": "Graphite",
+        "role": "Muted body text, secondary copy — warm dark gray for hierarchy below Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8d8f",
+        "name": "Mist",
+        "role": "Tertiary text, timestamps, metadata — the lightest readable gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a682c",
+        "name": "Bronze",
+        "role": "Sparingly used warm accent — appears as small punctuation dots or category indicators, never as fills; adds a whisper of warmth to the achromatic system",
+        "group": "accent"
+      },
+      {
+        "hex": "#4a626f",
+        "name": "Slate",
+        "role": "Secondary accent — cool counterpoint to Bronze, used in equally restrained dot/tag contexts to create subtle color rhythm",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero with multi-column image grid (4–5 columns) that spans the entire viewport, with the monumental ANUC wordmark as oversized negative-space shapes overlaying the grid. Below the hero, the layout shifts to a generous max-width (~1200–1440px) centered container for editorial sections. Section pattern is consistently two-column: a wide left column for the small label + oversized serif headline, and a right column for compact lists or article cards. Vertical rhythm is gallery-like: 96px+ between major sections, with flat transitions rather than alternating color bands. Navigation is a single minimal top bar. Content arrangement is left-aligned and asymmetric, with whitespace carrying the compositional weight rather than borders or rules.",
+    "imagery": "Photography is the visual centerpiece: large, warm-toned interior design photographs styled with natural light, organic materials (linen, wood, ceramics), and lived-in warmth. Images are treated as full-bleed grid tiles with no overlays, no rounded corners, and no color grading beyond natural warmth. The objects and spaces ARE the heroes — no lifestyle models, no abstract graphics, no illustration. The brand identity itself is geometric shapes rather than photography or illustration, creating a deliberate contrast between organic interiors and architectural wordmark.",
+    "similar": [
+      {
+        "why": "Same editorial gallery approach — oversized serif display type, near-monochrome warm-white canvas, architectural grid layouts, and photography that speaks without UI decoration",
+        "business": "Studio KO"
+      },
+      {
+        "why": "Magazine-like restraint with Instrument Serif-style display typography, generous whitespace, and a hierarchy driven by typographic scale rather than color",
+        "business": "Casa Brutus (magazine)"
+      },
+      {
+        "why": "Identical near-monochrome palette, monumental geometric identity marks, and the same editorial-gallery density where whitespace and type carry the composition",
+        "business": "Bureau Borsche"
+      },
+      {
+        "why": "Architecture-portfolio layout language — full-bleed image grids, hairline cell borders, oversized serif section openers, and the same warm-off-white canvas treatment",
+        "business": "Gensler"
+      },
+      {
+        "why": "Scandinavian interior-design restraint with 2% colorfulness, warm off-white backgrounds, serif/sans typographic duality, and architectural rather than app-like component design",
+        "business": "Norm Architects"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px",
+        "logoShapes": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f3f3f2",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Base page background — the warm off-white gallery wall"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Card surfaces and article blocks that float above Canvas"
+      },
+      {
+        "hex": "#e7e6e4",
+        "name": "Linen",
+        "level": 3,
+        "purpose": "Soft chip and tag backgrounds — the most recessed surface"
+      }
+    ],
+    "northStar": "editorial gallery in warm white — a quiet, magazine-like space where oversized serif headlines and monumental rounded geometric letterforms frame intimate interior photography",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "ANUC Wordmark",
+        "role": "Primary brand identity — monumental geometric letterforms",
+        "description": "The ANUC logo constructed from four oversized shapes: two full-radius arches (left and right) and two full circles (inner letters), all filled with Ink (#1a1a1e) on the Canvas background. Each shape is roughly 250–300px tall and fills nearly the full viewport width in the hero. The shapes have 9999px border-radius making them pure geometric forms — no padding, no border, no shadow. This is not a typographic logo; it IS the page."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Minimal site navigation",
+        "description": "Horizontal bar at viewport top with brand mark 'ANUC HOME' left (Instrument Sans 500, 15–16px, Ink) and nav items (NOSOTROS, SERVICIOS, CONTACTO) right-aligned in Instrument Sans 400, 15–16px, uppercase or small-caps tracking. No background fill — sits directly on Canvas. Items separated by bullet dots (·). No border, no shadow, no sticky behavior visible."
+      },
+      {
+        "name": "Hero Image Grid",
+        "role": "Full-viewport visual statement for the landing",
+        "description": "Multi-column grid of interior photography tiles filling the viewport, separated by 1–2px hairline borders in Ink. Each tile is a different interior space (living rooms, reading nooks, styled corners). The 'ANUC' wordmark overlays as massive negative-space shapes. No captions, no overlays on the photos themselves."
+      },
+      {
+        "name": "Editorial Section Heading",
+        "role": "Large display text for section openers",
+        "description": "Instrument Serif 400, 52–74px, Ink, line-height 1.0–1.05, left-aligned with generous left margin. Preceded by a small uppercase label (e.g., 'SERVICIOS', 'ARTÍCULOS') in Instrument Sans 500, 15px, uppercase, letter-spacing wide, positioned above-left of the headline. The serif's high contrast at 74px is the brand's loudest typographic moment — it commands the page without color or weight tricks."
+      },
+      {
+        "name": "Article Card",
+        "role": "Content preview block in articles section",
+        "description": "Rectangular card on Paper (#ffffff) background, 24px padding, no border, no shadow, 0px radius. Contains: a date in Instrument Sans 400, 15px, Mist (#8d8d8f); a title in Instrument Serif 400, 32px, Ink; and a category tag below. Cards stack vertically with 8–16px gaps between them."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Small label chip for content categorization",
+        "description": "Inline tag with a small leading dot (·) in Bronze (#9a682c) or Slate (#4a626f), followed by uppercase text in Instrument Sans 500, 15px, Ink. Background: transparent or Linen (#e7e6e4) when given more weight. No border, 0px radius, 4px 8px padding. The colored dot is the system's only chromatic punctuation."
+      },
+      {
+        "name": "CTA Button — Outlined Ghost",
+        "role": "Primary action button (e.g., 'AGENDAR CONSULTA')",
+        "description": "Rectangle, 0px radius, 1px solid Ink (#1a1a1e) border, transparent background. Label in Instrument Sans 500, 15px, uppercase, Ink, letter-spacing slightly tracked. Followed by a small arrow icon (→). Padding approximately 12px 24px. No fill state on hover — the border may thicken or the background fills with Ink inverting text to white. This is the system's only interactive element and it stays architecturally restrained."
+      },
+      {
+        "name": "Two-Column Editorial Section",
+        "role": "Content layout pattern for text+image or label+content",
+        "description": "Wide left column (label + headline) paired with a narrower right column (list of items or cards). Columns separated by generous whitespace rather than dividers. Left column uses the small uppercase label + oversized serif headline; right column uses compact sans-serif lists or cards."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separation between sections and grid cells",
+        "description": "1px solid line in Ash (#d1d1d2) or Ink (#1a1a1e). Used to define image grid cells, separate content sections, and outline cards. No decorative styling — the divider is pure architecture."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small uppercase section identifier (e.g., 'SERVICIOS', 'ARTÍCULOS')",
+        "description": "Instrument Sans 500, 15px, Ink, uppercase, positioned at the top-left of each editorial section. Optional letter-spacing of 0.5–1px. Functions as the typographic equivalent of a museum placard."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI, navigation, body copy, button labels, and small headlines. Weight 500 carries nav and button emphasis; weight 400 is the default reading voice. Free substitute: Inter, DM Sans.",
+        "sizes": "15, 16, 18px",
+        "family": "Instrument Sans",
+        "weight": "400, 500",
+        "lineHeight": "1.20",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "All display and editorial headlines — the 52px and 74px sizes carry the brand's magazine-portfolio voice. The contrast between this high-contrast serif and the neutral sans is the system's signature typographic gesture. Free substitute: Playfair Display, Cormorant Garamond.",
+        "sizes": "15, 16, 32, 52, 74px",
+        "family": "Instrument Serif",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Cormorant Garamond",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Anuc Home is an editorial interior-design gallery: a near-monochrome warm-white canvas where oversized Instrument Serif headlines converse with quiet Instrument Sans UI, creating a magazine-meets-architectural-portfolio atmosphere. The signature move is the massive ANUC wordmark built from pure geometric shapes — full-radius arches and circles — that doubles as the brand's visual identity and its spatial language. The palette is deliberately restrained to 2% chromatic, letting photography of styled interiors carry all the warmth; the UI never competes, just frames. Components feel architectural rather than app-like: sharp corners, hairline borders, generous negative space, and no shadows. Density is compact in data sections but breathing in editorial sections, with 96px+ section gaps creating a gallery-walk rhythm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anuc Home design system\",\"item\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#style-reference\",\"name\":\"Anuc Home design system reference\",\"headline\":\"Anuc Home design system | Refero Styles\",\"description\":\"Explore Anuc Home's light Agency design system: Ink #1a1a1e, Canvas #f3f3f2 colors, Instrument Sans, Instrument Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anuc Home\",\"url\":\"https://www.anuchome.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"caption\":\"Screenshot of Anuc Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anuc Home design system\",\"Anuc Home website design\",\"Anuc Home colors\",\"Anuc Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Canvas\",\"Paper\",\"Ash\",\"Instrument Sans\",\"Instrument Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anuc Home design system\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home website design\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home colors\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:16:46.617Z\",\"dateModified\":\"2026-05-10T23:16:46.617Z\"}]}19:T5d4,QUICK COLOR REFERENCE:\n- text: #1a1a1e\n- background: #f3f3f2\n- surface/card: #ffffff\n- border: #d1d1d2\n- accent dot: #9a682c\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create an editorial section opener: Canvas (#f3f3f2) background, full-width with max-width 1200px centered. Small uppercase label 'SERVICIOS' in Instrument Sans 500, 15px, #1a1a1e, positioned top-left. Display headline below in Instrument Serif 400, 52px, #1a1a1e, line-height 1.05, left-aligned.\n\n2. Create an article card: #ffffff background, 0px radius, 24px padding, no border, no shadow. Date '16.07.2025' in Instrument Sans 400, 15px, #8d8d8f at top. Title in Instrument Serif 400, 32px, #1a1a1e below. Category tag at bottom: small dot (·) in #9a682c followed by uppercase Instrument Sans 500, 15px, #1a1a1e text 'DISEÑO OFICINAS'.\n\n3. Create a ghost action button: transparent background, 1px solid #1a1a1e border, 0px radius, 12px 24px padding. Label 'AGENDAR CONSULTA' in Instrument Sans 500, 15px, uppercase, #1a1a1e, letter-spacing 0.5px, followed by a small right-arrow icon (→) in #1a1a1e.\n\n4. Create a hero image grid: 4–5 equal columns, full viewport width, each cell containing an interior photograph. Cells separated by 1px solid #1a1a1e borders. No captions, no overlays, images fill cells edge-to-edge with 0px radius.\n\n5. Create a section divider: a single 1px solid #d1d1d2 horizontal line spanning the full content width, with 96px vertical space above and below it."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows entirely. Elevation is communicated exclusively through flat background color stepping: Canvas (#f3f3f2) → Paper (#ffffff) → Linen (#e7e6e4). This creates a paper-architecture feel where every surface feels physically placed, like prints mounted on a gallery wall, rather than digitally floating."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1e",
+          "oklch": {
+            "c": 0.007740858381254959,
+            "h": 285.7448095662956,
+            "l": 0.21951689414795938
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "body",
+            "button",
+            "icon",
+            "hero",
+            "heading",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 1785,
+          "confidence": 1,
+          "prominence": 117044886.72801568,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "nav/color": 32,
+            "body/color": 31,
+            "hero/color": 2,
+            "icon/color": 7,
+            "link/color": 15,
+            "list/color": 6,
+            "other/fill": 17,
+            "image/color": 13,
+            "other/color": 246,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 21,
+            "nav/borderColor": 128,
+            "body/borderColor": 124,
+            "hero/borderColor": 8,
+            "icon/borderColor": 28,
+            "link/borderColor": 52,
+            "list/borderColor": 24,
+            "image/borderColor": 52,
+            "other/borderColor": 876,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84
+          }
+        },
+        {
+          "hex": "#f3f3f2",
+          "oklch": {
+            "c": 0.0013408714847156244,
+            "h": 115.60397080694017,
+            "l": 0.9631204961837667
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 119,
+          "confidence": 1,
+          "prominence": 15901775.659613065,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 4,
+            "other/borderColor": 92,
+            "button/borderColor": 16,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 8713838.348594012,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "other/color": 2,
+            "other/stroke": 1,
+            "heading/color": 5,
+            "nav/borderColor": 36,
+            "link/borderColor": 4,
+            "other/borderColor": 24,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 3,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#d1d1d2",
+          "oklch": {
+            "c": 0.0010918743045516264,
+            "h": 286.3766732093419,
+            "l": 0.8615427151081972
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 2856265.7650737725,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 1,
+            "body/borderColor": 32,
+            "icon/borderColor": 4,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c1c2bd",
+          "oklch": {
+            "c": 0.0069869546383143554,
+            "h": 115.73634929281201,
+            "l": 0.8118244944238213
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 2326023.1628174973,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "other/color": 5,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#e7e6e4",
+          "oklch": {
+            "c": 0.0029006715541255532,
+            "h": 84.55938511897124,
+            "l": 0.925149769138104
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 376324.2685882019,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "body/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4d4942",
+          "oklch": {
+            "c": 0.012617118506886247,
+            "h": 81.75886159301464,
+            "l": 0.4070003008323861
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 50309.603760507925,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#707455",
+          "oklch": {
+            "c": 0.046045401929051794,
+            "h": 113.91261610788737,
+            "l": 0.5469431352978376
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 47003.39461625774,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "nav/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#976751",
+          "oklch": {
+            "c": 0.07037258684680275,
+            "h": 45.461352066635975,
+            "l": 0.5588152057950999
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 24390.538648690457,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#9a682c",
+          "oklch": {
+            "c": 0.09895624533358677,
+            "h": 67.98527258555006,
+            "l": 0.5587088010653072
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17865.69730812887,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#4a626f",
+          "oklch": {
+            "c": 0.03554610179560642,
+            "h": 232.1032648328598,
+            "l": 0.48180699392854187
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17865.69730812887,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#8d8d8f",
+          "oklch": {
+            "c": 0.002940129512581802,
+            "h": 286.3165707055878,
+            "l": 0.6423748658659176
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 915.0767252552893,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.021138624654740555,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.35,
+          "background": "#ffffff",
+          "foreground": "#1a1a1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.63,
+          "background": "#f3f3f2",
+          "foreground": "#1a1a1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.91,
+          "background": "#e7e6e4",
+          "foreground": "#1a1a1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.37,
+          "background": "#d1d1d2",
+          "foreground": "#1a1a1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.68,
+          "background": "#c1c2bd",
+          "foreground": "#1a1a1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.95,
+          "background": "#ffffff",
+          "foreground": "#4d4942"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#f3f3f2",
+          "foreground": "#4d4942"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#e7e6e4",
+          "foreground": "#4d4942"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.43,
+          "background": "#4a626f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#d1d1d2",
+          "foreground": "#4d4942"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.79,
+          "background": "#f3f3f2",
+          "foreground": "#4a626f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.15,
+          "background": "#e7e6e4",
+          "foreground": "#4a626f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.99,
+          "background": "#c1c2bd",
+          "foreground": "#4d4942"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.86,
+          "background": "#707455",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.8,
+          "background": "#ffffff",
+          "foreground": "#976751"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.78,
+          "background": "#9a682c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.38,
+          "background": "#f3f3f2",
+          "foreground": "#707455"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#f3f3f2",
+          "foreground": "#976751"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.21,
+          "background": "#4a626f",
+          "foreground": "#d1d1d2"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.9,
+          "background": "#e7e6e4",
+          "foreground": "#707455"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 64,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 131,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|body",
+            "columnGap|body",
+            "marginBottom|footer",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginTop|other",
+            "rowGap|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 129,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Instrument Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 367,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Instrument Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 56,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Instrument Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Instrument Serif",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Instrument Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Instrument Serif",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "body",
+            "hero",
+            "link",
+            "button",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 304,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Instrument Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Instrument Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "Instrument Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ccdb9a97-1db2-4d18-943d-8521c374135e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anuc Home design system\",\"item\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#style-reference\",\"name\":\"Anuc Home design system reference\",\"headline\":\"Anuc Home design system | Refero Styles\",\"description\":\"Explore Anuc Home's light Agency design system: Ink #1a1a1e, Canvas #f3f3f2 colors, Instrument Sans, Instrument Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anuc Home\",\"url\":\"https://www.anuchome.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5e9409c4-d130-42f3-b224-5bd66cdfbe28#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"caption\":\"Screenshot of Anuc Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a6276d91-24ba-460f-842e-37e883bdc216.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anuc Home design system\",\"Anuc Home website design\",\"Anuc Home colors\",\"Anuc Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Canvas\",\"Paper\",\"Ash\",\"Instrument Sans\",\"Instrument Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anuc Home design system\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home website design\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home colors\"},{\"@type\":\"Thing\",\"name\":\"Anuc Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:16:46.617Z\",\"dateModified\":\"2026-05-10T23:16:46.617Z\"}]}19:T5d4,QUICK COLOR REFERENCE:\n- text: #1a1a1e\n- background: #f3f3f2\n- surface/card: #ffffff\n- border: #d1d1d2\n- accent dot: #9a682c\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create an editorial section opener: Canvas (#f3f3f2) background, full-width with max-width 1200px centered. Small uppercase label 'SERVICIOS' in Instrument Sans 500, 15px, #1a1a1e, positioned top-left. Display headline below in Instrument Serif 400, 52px, #1a1a1e, line-height 1.05, left-aligned.\n\n2. Create an article card: #ffffff background, 0px radius, 24px padding, no border, no shadow. Date '16.07.2025' in Instrument Sans 400, 15px, #8d8d8f at top. Title in Instrument Serif 400, 32px, #1a1a1e below. Category tag at bottom: small dot (·) in #9a682c followed by uppercase Instrument Sans 500, 15px, #1a1a1e text 'DISEÑO OFICINAS'.\n\n3. Create a ghost action button: transparent background, 1px solid #1a1a1e border, 0px radius, 12px 24px padding. Label 'AGENDAR CONSULTA' in Instrument Sans 500, 15px, uppercase, #1a1a1e, letter-spacing 0.5px, followed by a small right-arrow icon (→) in #1a1a1e.\n\n4. Create a hero image grid: 4–5 equal columns, full viewport width, each cell containing an interior photograph. Cells separated by 1px solid #1a1a1e borders. No captions, no overlays, images fill cells edge-to-edge with 0px radius.\n\n5. Create a section divider: a single 1px solid #d1d1d2 horizontal line spanning the full content width, with 96px vertical space above and below it."
+}

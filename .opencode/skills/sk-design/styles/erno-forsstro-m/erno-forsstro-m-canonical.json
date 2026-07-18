@@ -1,0 +1,499 @@
+{
+  "source": "https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419",
+  "uuid": "cffa5959-4283-41d2-ad11-bada2d731419",
+  "name": "Erno Forsström",
+  "northStar": "editorial gallery on warm paper",
+  "capturedAt": "2026-07-18T07:19:45.012Z",
+  "meta": {
+    "url": "https://erno.works",
+    "siteName": "Erno Forsström",
+    "extractedAt": "2026-06-03T21:50:34.144Z",
+    "durationMs": 22141,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 81,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use NB Akademie Pro (or Inter as substitute) at weight 400 for every text element — never introduce a second weight or a second family",
+      "Set the hero headline at 58px with line-height 0.93 and letter-spacing -2.9px so lines physically overlap",
+      "Keep the canvas at #dfdcdc and ink at #202020 — the warm off-white is a brand choice, not a fallback",
+      "Let project images sit edge-to-edge with the content column: zero radius, zero border, zero shadow",
+      "Separate sections with a 1px hairline in #cdcecf rather than background-color changes or extra whitespace bands",
+      "Use the 21px body size for nav, labels, titles, and metadata — hierarchy is built from size jumps (21 → 43 → 58), not from weight or color",
+      "Activate tabular numerals (\"tnum\") site-wide so year labels and dates align on the decimal"
+    ],
+    "donts": [
+      "Don't add a CTA button, a colored accent, or a filled background — this system has no primary action surface",
+      "Don't round image corners, add drop shadows, or apply any elevation to project cards",
+      "Don't introduce a second typeface, a serif companion, or a different weight of NB Akademie Pro",
+      "Don't use white (#ffffff) as the canvas — #dfdcdc is the signature warm paper tone",
+      "Don't break the three-size type scale (21 / 43 / 58) with intermediate steps; the gap between sizes is the hierarchy",
+      "Don't underline links by default — use the bottom border in #202020 only on hover/active to signal interaction",
+      "Don't add gradients, colored badges, tags, or status pills — the system is strictly two-color"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#202020",
+        "name": "Ink",
+        "role": "Body text, headings, project titles, hairline borders, and the bottom edge of links — a soft near-black that reads as flat black at body sizes but never goes dead 000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfdcdc",
+        "name": "Bone",
+        "role": "Page canvas and the implicit surface for every project card — a warm off-white with just enough gray to feel like paper, not a screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdcecf",
+        "name": "Ash",
+        "role": "Hairline divider tone that sits one step darker than the canvas to register as a visible rule without becoming a hard line",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width contained at roughly 1280px, with the header and section labels justified to the same left edge as the hero paragraph. The header is a single row of three groups (name | discipline | Works / About) with no background. Below the hero, a hairline rule introduces the 'Featured' band, which is a single full-width project image followed by title and label, then a two-column grid of additional project images with an 18px column gap. Subsequent chronological bands (e.g. '2018–2020') repeat the same structure: large period label, hairline rule, project images. Content density is low and the page breathes — roughly 80px between major sections, with the dark imagery providing visual punctuation against the warm, quiet canvas. No sidebar, no sticky nav, no footer chrome visible above the fold.",
+    "imagery": "Full-bleed editorial photography — fashion editorials, brand campaigns, and digital product shots, almost all set against dark or near-black backgrounds. The photography is the only source of color and texture in the system; the surrounding page is a monochrome frame around it. Images are always rectangular with sharp corners, cropped tight to the subject, and sized large enough to dominate their band. No illustrations, no icons, no decorative graphics, no video. The visual language is 'printed monograph meets fashion lookbook' — high production value, no lifestyle context, the artifact is the hero.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — single typeface, generous margins, dark photography on warm off-white, zero decorative chrome",
+        "business": "Pentagram partner sites"
+      },
+      {
+        "why": "Personal portfolio language with the same single-weight grotesque and monochrome canvas, with color appearing only inside project imagery",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Display-type-led hierarchy with tight tracking and paper-like backgrounds, no UI buttons or accent colors",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Same instinct for a quiet, monochrome frame around content-rich imagery — the page disappears so the work can speak",
+        "business": "are.na"
+      },
+      {
+        "why": "Editorially spaced grid layouts with full-bleed project images and minimal text chrome, typographic hierarchy from size alone",
+        "business": "Cargo portfolio sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "18px",
+      "sectionGap": "80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#dfdcdc",
+        "name": "Bone",
+        "level": 0,
+        "purpose": "Page canvas — every project card, image, and text block sits directly on this warm off-white surface; there is no card surface above it"
+      }
+    ],
+    "northStar": "editorial gallery on warm paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 21,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 43,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.16
+      },
+      {
+        "role": "display",
+        "size": 58,
+        "lineHeight": 0.93,
+        "letterSpacing": -2.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Tri-Column Header",
+        "role": "Persistent site navigation",
+        "description": "Three inline groups on a single row: name at left, discipline label centered, two text links (Works, About) at right. Set in 21px NB Akademie Pro at 1.33 line-height with -0.32px tracking — the same size as body copy, never a different 'nav' style. No background, no border, no logo mark. The three groups are justified across the full content width."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Opening statement on the home page",
+        "description": "Left-aligned paragraph set at 58px / 0.93 line-height / -2.9px letter-spacing in Ink (#202020). Occupies roughly 70% of the content width. The tight line-height causes descenders to brush the cap-height of the line below — an editorial, typeset-on-paper quality, not a UI choice. No drop cap, no accent color, no accompanying image or button."
+      },
+      {
+        "name": "Section Heading Label",
+        "role": "Introduces a content band (e.g. 'Featured', '2018–2020')",
+        "description": "21px NB Akademie Pro in Ink, left-aligned, sitting flush with the left edge of the content column. Same size as body — the label is distinguished only by position and by being the only text in its row, never by weight or color. A hairline horizontal rule in Ash (#cdcecf) typically follows beneath."
+      },
+      {
+        "name": "Project Card (Featured)",
+        "role": "Hero project entry in the featured band",
+        "description": "Full-width image block (no border, no radius, no shadow) followed by a 18px gap, then the project title in 21px Ink, then a 8px gap, then a one-line descriptor in 21px Ink. Image edge meets content edge — no card surface, no padding, no background fill. The dark photography itself is the visual container."
+      },
+      {
+        "name": "Project Card (Grid)",
+        "role": "Standard two-up project entry",
+        "description": "Rectangular image filling half the content width with 18px column gap between siblings. Zero radius, zero border, zero shadow. Title and one-line label stack below the image in 21px Ink with the same 8px / 18px internal rhythm as the featured card. The grid sits inside the same content column as the hero text — the label 'Featured' on the left aligns with the first image's left edge."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Marks the end of a content section",
+        "description": "A 1px horizontal line in #cdcecf (Ash), full content width, with roughly 42px of space above and 31px below. No ornament, no icon, no 'see more' link. The rule is the only structural signal between sections."
+      },
+      {
+        "name": "Period Label",
+        "role": "Date range heading for a chronological grouping (e.g. '2018–2020')",
+        "description": "Set in the display size 58px / 0.93 / -2.9px in Ink, but acting as a section label rather than a paragraph. Left-aligned to the content edge. The en-dash uses a real em/en dash character, not a hyphen."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Navigation between pages (Works, About, project titles)",
+        "description": "Plain text in Ink with no underline by default. On hover or when active, a bottom border in #202020 appears — the only interactive affordance in the system. No color change, no weight change, no background fill. The border is the button."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only font in the system, used at a single weight across every role. 58px at 0.93 line-height carries the hero — lines overlap slightly, creating editorial density. 43px at 1.10 serves medium section heads. 21px at 1.33 is the body, nav, labels, and project metadata — a single typographic voice at conversational size. The 'tnum' feature is active sitewide, forcing tabular figures in any year label or date.",
+        "sizes": "21px, 43px, 58px",
+        "family": "NB Akademie Pro",
+        "weight": "400",
+        "lineHeight": "0.93 / 1.10 / 1.33",
+        "substitute": "Inter (free) or Söhne (paid) — both share the geometric grotesque character; Inter is the closest free option",
+        "letterSpacing": "-0.0500em at 58px (-2.9px), -0.0270em at 43px (-1.16px), -0.0150em at 21px (-0.32px) — tracking tightens as size grows, the inverse of browser defaults",
+        "fontFeatureSettings": "\"tnum\""
+      }
+    ],
+    "description": "A personal design director's portfolio built on radical editorial restraint: a warm off-white canvas, a single weight of a single grotesque typeface, and near-black ink for everything typographic. The page behaves like a printed monograph — generous margins, tight tracking, lines of body text that sit close together while the display headline compresses to a 0.93 line-height so ascenders and descenders nearly touch. The chrome is essentially invisible: a three-word header, hairline section dividers, project labels in the same size as the body. Color and shadow are absent by design; the only chromatic information comes from the photographic work itself, which sits as full-bleed dark imagery against the warm paper. Hierarchy is built exclusively through scale, tracking, and the dramatic jump from 21px to 58px.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Erno Forsström design system\",\"item\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#style-reference\",\"name\":\"Erno Forsström design system reference\",\"headline\":\"Erno Forsström design system | Refero Styles\",\"description\":\"Explore Erno Forsström's light Agency design system: Ink #202020, Bone #dfdcdc colors, NB Akademie Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Erno Forsström\",\"url\":\"https://erno.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"caption\":\"Screenshot of Erno Forsström\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Erno Forsström design system\",\"Erno Forsström website design\",\"Erno Forsström colors\",\"Erno Forsström typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Bone\",\"Ash\",\"NB Akademie Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Erno Forsström design system\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström website design\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström colors\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:35:48.728Z\",\"dateModified\":\"2026-04-30T03:35:48.728Z\"}]}19:T5bb,**Quick Color Reference**\n- text: #202020\n- background: #dfdcdc\n- border: #cdcecf (hairline), #202020 (link active state)\n- accent: none\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero headline paragraph*: Bone (#dfdcdc) canvas. Text at 58px NB Akademie Pro weight 400, color #202020, line-height 0.93, letter-spacing -2.9px. Left-aligned, occupying roughly 70% of the 1280px content width. No accompanying image, no button, no border.\n\n2. *Project card (two-up grid)*: Image filling half the content width, zero border-radius, zero shadow, sitting directly on the #dfdcdc canvas with 18px column gap to the next card. Below the image: title in 21px NB Akademie Pro #202020, then 8px gap, then one-line label in 21px #202020.\n\n3. *Tri-column header*: Single row with three inline groups at 21px NB Akademie Pro weight 400, color #202020, line-height 1.33, letter-spacing -0.32px. Left group: name. Center group: discipline label. Right group: two text links (Works, About). No background, no border, no logo.\n\n4. *Section divider*: 1px horizontal line in #cdcecf spanning the full content width, with 42px space above and 31px space below. No label, no icon, no ornament.\n\n5. *Period label*: Set in 58px NB Akademie Pro #202020, line-height 0.93, letter-spacing -2.9px — the same display treatment as the hero, but acting as a section heading (e.g. '2018–2020'). Left-aligned to the content edge. Use a real en-dash, not a hyphen."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero shadows and zero stacked surfaces. Elevation is implied only by hairline borders and by full-bleed dark photography breaking through the warm canvas. Project images are the only 'elevated' elements, and they achieve their separation through tonal contrast (near-black photo on warm paper), never through box-shadow or background fill."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "image",
+            "body"
+          ],
+          "frequency": 402,
+          "confidence": 1,
+          "prominence": 36428990.11564758,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 16,
+            "image/color": 1,
+            "other/color": 59,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "link/borderColor": 63,
+            "image/borderColor": 4,
+            "other/borderColor": 234,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#dfdcdc",
+          "oklch": {
+            "c": 0.003276864338893085,
+            "h": 17.21837205660487,
+            "l": 0.8968397989841151
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 788367,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cdcecf",
+          "oklch": {
+            "c": 0.0014152755666058284,
+            "h": 247.83862941176196,
+            "l": 0.8516415397137471
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7418,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000031389750505077024,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.95,
+          "background": "#dfdcdc",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#cdcecf",
+          "foreground": "#202020"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Nb akademie pro book webfont",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 81,
+          "fontFeatureSettings": [
+            "\"tnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 21,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 21,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Nb akademie pro book webfont",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/28548083-c661-4b55-a9ec-d0fd33e6fcbe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Erno Forsström design system\",\"item\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#style-reference\",\"name\":\"Erno Forsström design system reference\",\"headline\":\"Erno Forsström design system | Refero Styles\",\"description\":\"Explore Erno Forsström's light Agency design system: Ink #202020, Bone #dfdcdc colors, NB Akademie Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Erno Forsström\",\"url\":\"https://erno.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cffa5959-4283-41d2-ad11-bada2d731419#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"caption\":\"Screenshot of Erno Forsström\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e8a55855-c5bc-4f49-8673-b759817f58b0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Erno Forsström design system\",\"Erno Forsström website design\",\"Erno Forsström colors\",\"Erno Forsström typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Bone\",\"Ash\",\"NB Akademie Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Erno Forsström design system\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström website design\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström colors\"},{\"@type\":\"Thing\",\"name\":\"Erno Forsström typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:35:48.728Z\",\"dateModified\":\"2026-04-30T03:35:48.728Z\"}]}19:T5bb,**Quick Color Reference**\n- text: #202020\n- background: #dfdcdc\n- border: #cdcecf (hairline), #202020 (link active state)\n- accent: none\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero headline paragraph*: Bone (#dfdcdc) canvas. Text at 58px NB Akademie Pro weight 400, color #202020, line-height 0.93, letter-spacing -2.9px. Left-aligned, occupying roughly 70% of the 1280px content width. No accompanying image, no button, no border.\n\n2. *Project card (two-up grid)*: Image filling half the content width, zero border-radius, zero shadow, sitting directly on the #dfdcdc canvas with 18px column gap to the next card. Below the image: title in 21px NB Akademie Pro #202020, then 8px gap, then one-line label in 21px #202020.\n\n3. *Tri-column header*: Single row with three inline groups at 21px NB Akademie Pro weight 400, color #202020, line-height 1.33, letter-spacing -0.32px. Left group: name. Center group: discipline label. Right group: two text links (Works, About). No background, no border, no logo.\n\n4. *Section divider*: 1px horizontal line in #cdcecf spanning the full content width, with 42px space above and 31px space below. No label, no icon, no ornament.\n\n5. *Period label*: Set in 58px NB Akademie Pro #202020, line-height 0.93, letter-spacing -2.9px — the same display treatment as the hero, but acting as a section heading (e.g. '2018–2020'). Left-aligned to the content edge. Use a real en-dash, not a hyphen."
+}

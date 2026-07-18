@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-cream-paper: #fbf8f6;
+  --color-pure-white: #ffffff;
+  --color-ink-black: #000000;
+  --color-charcoal: #333333;
+  --color-smoke: #6c6a6a;
+  --color-ash: #dadada;
+  --color-butter-highlight: #f1f29f;
+
+  /* Typography — Font Families */
+  --font-graphik: 'Graphik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nantes: 'Nantes', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-graphik-fix-variant: 'Graphik (fix variant)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-graphikfix: 'Graphik_fix', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.154px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.144px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.44;
+  --tracking-subheading: 0.09px;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.45;
+  --tracking-heading-sm: 0.11px;
+  --text-heading: 28px;
+  --leading-heading: 1.43;
+  --tracking-heading: 0.14px;
+  --text-heading-lg: 30px;
+  --leading-heading-lg: 1.27;
+  --tracking-heading-lg: 0.24px;
+  --text-display: 52px;
+  --leading-display: 1.23;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 48-64px;
+  --card-padding: 16px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-sm: 1px;
+  --radius-md: 4px;
+  --radius-3xl: 40px;
+  --radius-full: 999px;
+
+  /* Named Radii */
+  --radius-cards: 4px;
+  --radius-badges: 40px;
+  --radius-images: 4px;
+  --radius-inputs: 4px;
+  --radius-buttons: 4px;
+  --radius-navpills: 40px;
+  --radius-categorychips: 40px;
+
+  /* Surfaces */
+  --surface-page-canvas: #fbf8f6;
+  --surface-card-surface: #ffffff;
+  --surface-elevated-overlay: #ffffff;
+}

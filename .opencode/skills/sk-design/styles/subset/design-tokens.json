@@ -1,0 +1,565 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#241f20",
+      "$type": "color",
+      "$description": "Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "raw-linen": {
+      "$value": "#f5f4ee",
+      "$type": "color",
+      "$description": "Raw Linen — Page canvas and card backgrounds — warm off-white, the signature surface that distinguishes this system from generic white SaaS"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Elevated card surfaces, badge fills, inverse text on dark buttons"
+    },
+    "fog": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, secondary dividers, disabled labels"
+    },
+    "blush": {
+      "$value": "#edcdc2",
+      "$type": "color",
+      "$description": "Blush — Accent surface wash — hero image tint, product photo backdrop, soft highlight zones"
+    },
+    "charcoal": {
+      "$value": "#26262a",
+      "$type": "color",
+      "$description": "Charcoal — Darkest UI surface — footer dark bands, chat widget shell, overlaid panels"
+    },
+    "sage-leaf": {
+      "$value": "#8bbd78",
+      "$type": "color",
+      "$description": "Sage Leaf — Signature accent — top announcement bar, hairline decorative borders, icon strokes, functional green; the brand's quiet living color"
+    },
+    "heritage-blue": {
+      "$value": "#6487ba",
+      "$type": "color",
+      "$description": "Heritage Blue — Primary action — filled buttons, link underlines, selected states; dusty mid-blue carries trust without corporate coldness"
+    },
+    "midnight-forest": {
+      "$value": "#233735",
+      "$type": "color",
+      "$description": "Midnight Forest — Dark filled buttons (hero CTA), deep green-black for high-emphasis actions; warmer than charcoal, more sophisticated than black"
+    },
+    "ember": {
+      "$value": "#ff965b",
+      "$type": "color",
+      "$description": "Ember — NEW badges, notification dots, star ratings, cart count bubble — vivid warm orange used sparingly as functional punctuation"
+    }
+  },
+  "font": {
+    "foundersgrotesk": {
+      "$value": "FoundersGrotesk",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for navigation, product cards, badges, body text, buttons, inputs, icons. The 0.1–0.15em letter-spacing on 13–15px sizes is the signature tracking pattern for uppercase labels (NEW, ORGANIC COTTON, Shop Underwear)."
+    },
+    "ttramillaslight": {
+      "$value": "TTRamillas_Light",
+      "$type": "fontFamily",
+      "$description": "Editorial serif for hero headline, subhead, and body excerpts. Tight -0.01em tracking and low contrast strokes create a quiet, literary feel that contrasts the geometric sans."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "Specialty text at 17px with 0.025em tracking — used for minimal secondary copy, not a primary face"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 42px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "TTRamillas_Light",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 42px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "raw-linen": {
+      "$value": "#f5f4ee",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas — all section backgrounds sit on this warm cream"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product cards, hero overlay card, badge fills — the only true-white surface"
+    },
+    "blush": {
+      "$value": "#edcdc2",
+      "$type": "color",
+      "$description": "Surface level 3: Accent wash — soft highlight zones in hero and editorial imagery"
+    },
+    "midnight-forest": {
+      "$value": "#233735",
+      "$type": "color",
+      "$description": "Surface level 4: Dark CTA surface — filled primary buttons, inverted panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://knickey.com",
+      "siteName": "Subset",
+      "extractedAt": "2026-06-03T19:05:10.461Z",
+      "variant": "extended"
+    }
+  }
+}

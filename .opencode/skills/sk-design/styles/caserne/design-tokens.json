@@ -1,0 +1,145 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, full-bleed section backgrounds, hero containers"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text, project labels, navigation links, icon strokes on dark surfaces"
+    },
+    "frost": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Frost — Hairline borders, image outlines, grid dividers, nav separators — the structural linework of the entire interface"
+    },
+    "smoke": {
+      "$value": "#858484",
+      "$type": "color",
+      "$description": "Smoke — Muted secondary text, project descriptions, metadata captions"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Muted icon strokes, separators, and secondary graphic details. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "abc-oracle": {
+      "$value": "ABC Oracle",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire site. Weight 100 (ultra-thin) carries the editorial gravitas in display contexts; weight 400 handles navigation and body labels at 13–14px. The custom Dinamo typeface gives Caserne a curatorial, typographic authority that a system sans cannot replicate — the thin cuts and optical adjustments signal a studio that takes type seriously."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "225": {
+      "$value": "225px",
+      "$type": "dimension",
+      "$description": "Spacing 225px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Dominant page background — every section, card, and hero sits on true black"
+    },
+    "frosted-surface": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline outline layer — 1px borders delineating images, cards, and grid cells against the black canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://caserne.com",
+      "siteName": "Caserne",
+      "extractedAt": "2026-06-03T21:49:24.383Z",
+      "variant": "extended"
+    }
+  }
+}

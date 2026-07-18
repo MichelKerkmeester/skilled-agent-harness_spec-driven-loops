@@ -1,0 +1,532 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f3f4ee",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces — the warm off-white that makes every ink color feel like print"
+    },
+    "bone-white": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Bone White — Alternate surface wash, subtle section differentiation from the cream canvas"
+    },
+    "press-black": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Press Black — Primary text, borders, dividers, icon strokes — the near-black ink that anchors every screen"
+    },
+    "charcoal-headline": {
+      "$value": "#383435",
+      "$type": "color",
+      "$description": "Charcoal Headline — Display heading text — slightly lifted from press black for softer masthead weight"
+    },
+    "mid-gray": {
+      "$value": "#9a9a9a",
+      "$type": "color",
+      "$description": "Mid Gray — Muted helper text, hairline borders, secondary metadata"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon fills, maximum-contrast borders, nav accent"
+    },
+    "cobalt-ink": {
+      "$value": "#245dc5",
+      "$type": "color",
+      "$description": "Cobalt Ink — Primary brand color — illustrated duotone wash, outlined action borders, interactive text — saturated blue against cream creates the risograph-print signature"
+    },
+    "peach-wash": {
+      "$value": "#ffc6a6",
+      "$type": "color",
+      "$description": "Peach Wash — Secondary illustration accent, decorative borders, warm tonal fill — the cheek-pink of risograph layering"
+    },
+    "fire-red": {
+      "$value": "#f04736",
+      "$type": "color",
+      "$description": "Fire Red — Outlined action borders, emphasis strokes, error-like accent — used as editorial red rather than as a functional error state"
+    },
+    "vermillion": {
+      "$value": "#f52302",
+      "$type": "color",
+      "$description": "Vermillion — Deep red-orange accent for borders and fills — the warmest ink in the riso palette"
+    },
+    "crimson": {
+      "$value": "#d42121",
+      "$type": "color",
+      "$description": "Crimson — Deep red accent — used sparingly in illustration washes and emphasis borders"
+    },
+    "marigold": {
+      "$value": "#feee71",
+      "$type": "color",
+      "$description": "Marigold — Yellow accent fill, spot-color highlights, decorative emphasis — the third riso plate"
+    },
+    "terracotta": {
+      "$value": "#b45e42",
+      "$type": "color",
+      "$description": "Terracotta — Warm brown accent for body and heading borders — the earthiest ink in the editorial palette"
+    }
+  },
+  "font": {
+    "foundersgrotesk": {
+      "$value": "FoundersGrotesk",
+      "$type": "fontFamily",
+      "$description": "Workhorse type for everything from body to display — single weight 400 with no bold variants means hierarchy is created purely through size, line-height, and letter-spacing, not weight contrast. The aggressive negative line-heights (0.80 at 130px) create magazine-cover masthead pressure. Substitute: Neue Haas Grotesk, Inter, Söhne."
+    },
+    "timesnow-semilight": {
+      "$value": "TimesNow SemiLight",
+      "$type": "fontFamily",
+      "$description": "Editorial serif contrast for select headings and navigation — a humanist serif breaks the grotesque monotony at key moments, creating the magazine-section-divider effect. Substitute: Times Now, Tiempos, Source Serif."
+    },
+    "sackville-script-hand-drawn-wordmark": {
+      "$value": "Sackville Script (hand-drawn wordmark)",
+      "$type": "fontFamily",
+      "$description": "Custom hand-inked cursive used only for the brand wordmark — overlaid on illustrations and hero compositions. Not a UI font. No substitute; this is the signature mark."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 29px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 29px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 34px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 38px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 38px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "47px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 60px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "85px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 85px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "99px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 99px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "122px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 122px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "122px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 122px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "FoundersGrotesk",
+        "fontSize": "130px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 130px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "TimesNow SemiLight",
+        "fontSize": "130px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 130px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "81px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f3f4ee",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — the warm off-white that all content sits on, never replaced by a card background"
+    },
+    "bone-white": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate surface wash for sections that need subtle differentiation from the cream canvas"
+    },
+    "peach-wash": {
+      "$value": "#ffc6a6",
+      "$type": "color",
+      "$description": "Surface level 2: Tonal illustration surface — appears as a background plate in hero artwork, not as a UI card"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sackville.co",
+      "siteName": "Sackville & Co.",
+      "extractedAt": "2026-06-03T20:19:42.245Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "color": {
+    "citrine-signal": {
+      "$value": "#e5ff5d",
+      "$type": "color",
+      "$description": "Citrine Signal — Primary action buttons, brand cube fills, accent icon strokes, decorative 3D cubes, featured logo marks — the single chromatic voice of the system"
+    },
+    "carbon-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon Black — Page canvas, primary text on light sections, dominant border color, button fills on reversed (light) sections"
+    },
+    "bone-white": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Bone White — Primary text on dark canvas, nav and body text, light icon fills, ghost button text"
+    },
+    "graphite": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Graphite — Elevated surface above carbon, secondary panels, darker card variants"
+    },
+    "ash": {
+      "$value": "#6e6e6e",
+      "$type": "color",
+      "$description": "Ash — Muted card surface, tertiary background layers behind content blocks"
+    },
+    "stone": {
+      "$value": "#9c9c9c",
+      "$type": "color",
+      "$description": "Stone — Muted body text, secondary link text, low-priority borders, helper labels"
+    },
+    "smoke": {
+      "$value": "#565656",
+      "$type": "color",
+      "$description": "Smoke — Dividers, subtle borders, decorative strokes in illustrations"
+    },
+    "chalk": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Chalk — Card borders on dark sections, hairline dividers between content blocks"
+    },
+    "cream-paper": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Cream Paper — Light section background — the single warm reversal that breaks the dark rhythm"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Maximum contrast text, logo silhouettes, hard-edge decorative fills"
+    },
+    "sand": {
+      "$value": "#b7b3a2",
+      "$type": "color",
+      "$description": "Sand — Warm-tinted decorative fills, illustration accents — the only chromatic neutral"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-text": {
+      "$value": "Neue Haas Grotesk Text",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. Weight 400 carries body, nav, and most UI; weight 500 reserved for emphasized labels and button text. Display headlines at 80px with 0.90 line-height create the signature monolithic rows. Small labels (10–12px) use positive tracking (+0.020 to +0.032em) to read as uppercase utility marks. The humanist geometry of Haas Grotesk — slightly humanist terminals, even stroke contrast — gives the dark interface a warm, editorial quality rather than feeling like a terminal."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "carbon-canvas": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 1: Page base — majority of the experience lives here"
+    },
+    "graphite-panel": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards and panels sitting on the carbon canvas"
+    },
+    "ash-plate": {
+      "$value": "#6e6e6",
+      "$type": "color",
+      "$description": "Surface level 3: Muted secondary surfaces, logo cloud backgrounds"
+    },
+    "cream-reversal": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 4: Light section — the single bright band that resets the eye"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.codex.io",
+      "siteName": "Codex.io",
+      "extractedAt": "2026-06-03T22:38:16.616Z",
+      "variant": "extended"
+    }
+  }
+}

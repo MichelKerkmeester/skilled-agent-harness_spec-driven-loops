@@ -1,0 +1,317 @@
+{
+  "color": {
+    "charcoal-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal Ink — All text, borders, icon strokes, nav links, button outlines, and structural lines. The dominant ink of the system — every shape and character carries this weight"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary page canvas, card surfaces, button fills, and inverted text on dark blocks. The ground against which everything else is set"
+    },
+    "newsprint-gray": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Newsprint Gray — Section background for content bands (article grids, footer areas) — creates quiet tonal shifts between white sections without introducing a second hue"
+    },
+    "pewter": {
+      "$value": "#bfbfbf",
+      "$type": "color",
+      "$description": "Pewter — Muted helper text, list dividers, secondary link borders — used sparingly where information is deprioritized but still present"
+    },
+    "signal-red": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Signal Red — Red outline accent for tags, dividers, and focused UI edges."
+    }
+  },
+  "font": {
+    "helveticanow": {
+      "$value": "HelveticaNow",
+      "$type": "fontFamily",
+      "$description": "The sole typeface across the entire system. Weight 600 carries headlines, button labels, and card titles; weight 400 handles body, navigation, and supporting text. The display sizes (50px and beyond) compress to tight line-heights of ~0.93–1.00, letting oversized words like 'Eindhoven' and 'Design District' stack with sculptural density. Letter-spacing tightens aggressively at large sizes (-0.05em) and loosens slightly at small sizes (+0.015em), giving the type an editorial confidence that shifts with scale."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "23px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "35px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "35px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "46px",
+        "fontWeight": 600,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNow",
+        "fontSize": "50px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas and content sections"
+    },
+    "newsprint-gray": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating section background for article grids and footer bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.eindhovendesigndistrict.com",
+      "siteName": "Eindhoven Design District",
+      "extractedAt": "2026-06-03T18:35:09.594Z",
+      "variant": "extended"
+    }
+  }
+}

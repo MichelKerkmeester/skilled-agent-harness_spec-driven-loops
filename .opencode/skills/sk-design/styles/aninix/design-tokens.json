@@ -1,0 +1,269 @@
+{
+  "color": {
+    "indigo-switch": {
+      "$value": "#374fd5",
+      "$type": "color",
+      "$description": "Indigo Switch — Violet action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, button surfaces, card backgrounds, reverse text on dark blocks"
+    },
+    "soft-mist": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Soft Mist — Secondary card surfaces, subtle fill blocks beneath product showcases"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, heavy icon strokes, structural borders, divider lines"
+    },
+    "ink-black": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Ink Black — Heading text, deep borders where pure black feels too sharp"
+    },
+    "shadow-gray": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Shadow Gray — Body text secondary weight, supporting borders"
+    },
+    "steel": {
+      "$value": "#89909a",
+      "$type": "color",
+      "$description": "Steel — Muted helper text, ghost button borders, icon strokes at lower prominence"
+    },
+    "midnight": {
+      "$value": "#0b1118",
+      "$type": "color",
+      "$description": "Midnight — Dark showcase card surfaces, near-black panels for gallery contrast"
+    },
+    "fog": {
+      "$value": "#ced3d9",
+      "$type": "color",
+      "$description": "Fog — Hairline borders, button shadow ambient layer, subtle dividers"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "euclid-circular-a": {
+      "$value": "Euclid Circular A",
+      "$type": "fontFamily",
+      "$description": "Display and heading — the site loads heavy custom geometric type at 700+ for hero and section titles. The slightly tight tracking (-0.01em) and condensed geometric forms give headlines a monolithic, confident feel against the white field"
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Captions, micro-labels, badge text — tiny, quiet, never decorative"
+    },
+    "p22-mackinac-pro": {
+      "$value": "P22 Mackinac Pro",
+      "$type": "fontFamily",
+      "$description": "Editorial body accent — a slab-influenced serif used sparingly in testimonial or contextual blocks, adding human warmth where the geometric display would feel cold"
+    },
+    "p22-mackinac-pro-medium-italic": {
+      "$value": "P22 Mackinac Pro Medium Italic",
+      "$type": "fontFamily",
+      "$description": "P22 Mackinac Pro Medium Italic — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "P22 Mackinac Pro Medium Italic",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Euclid Circular A Bold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Euclid Circular A Bold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "P22 Mackinac Pro Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(104, 116, 123, 0.15) 0px 2px 7px 0px, rgba(104, 116, 123, 0.3) 0px 5px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background; the void everything else sits on"
+    },
+    "card-light": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 1: Soft secondary surface beneath product showcases and highlight blocks"
+    },
+    "card-dark": {
+      "$value": "#0b1118",
+      "$type": "color",
+      "$description": "Surface level 2: Gallery cards showcasing dark-mode product work; the contrast beat"
+    },
+    "accent-surface": {
+      "$value": "#374fd5",
+      "$type": "color",
+      "$description": "Surface level 3: CTA fills and brand chips; the chromatic punctuation point"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.aninix.com",
+      "siteName": "Aninix",
+      "extractedAt": "2026-06-03T21:45:20.886Z",
+      "variant": "extended"
+    }
+  }
+}

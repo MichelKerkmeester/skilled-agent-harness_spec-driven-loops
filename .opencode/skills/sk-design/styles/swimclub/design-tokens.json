@@ -1,0 +1,320 @@
+{
+  "color": {
+    "tabloid-orange": {
+      "$value": "#ff9e00",
+      "$type": "color",
+      "$description": "Tabloid Orange — Full-bleed section backgrounds (announcement bar, statistic panels) — the only chromatic brand color, used at maximum saturation to break the otherwise monochrome flow"
+    },
+    "deep-capsule-navy": {
+      "$value": "#020507",
+      "$type": "color",
+      "$description": "Deep Capsule Navy — Hero gradient terminal color and product photograph backgrounds — near-black with a blue undertone, not a pure black"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, navigation dividers, card outlines, button text — the dominant structural color across the entire interface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, product image overlays, button fills, and text on dark or orange panels"
+    },
+    "cool-gray": {
+      "$value": "#d2dce1",
+      "$type": "color",
+      "$description": "Cool Gray — Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks."
+    },
+    "iron-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Iron Gray — Secondary body text and low-emphasis borders — the mid-tone of the neutral scale"
+    },
+    "ash": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Ash — Tertiary borders, disabled state outlines, muted icon strokes"
+    },
+    "smoke": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Smoke — Dividers, dashed-border accent on feature cards, subtle separator lines"
+    }
+  },
+  "font": {
+    "px-grotesk": {
+      "$value": "Px Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — body copy at 15–17px/400, subheadings at 21–31px/700, display headlines at 52–74px/700. Geometric grotesque with squared terminals gives a clinical, diagram-like feel. The 74px hero weight is set very tight (1.05) so multi-line headlines stack into a solid block."
+    },
+    "apercu-mono-pro": {
+      "$value": "Apercu Mono Pro",
+      "$type": "fontFamily",
+      "$description": "Monospace micro-copy — navigation links, section labels, input placeholders, ingredient lists, and small data captions. Set at small sizes (15–17px) with a 0.02em positive letter-spacing so uppercase strings read as printed stamps or specimen labels rather than running text."
+    },
+    "swimclub-custom-pixelbitmap-face": {
+      "$value": "Swimclub (custom pixel/bitmap face)",
+      "$type": "fontFamily",
+      "$description": "Signature display face used exclusively for the wordmark and the three giant statistic numerals (60%, 50%, 1/4). The blocky, pixelated construction makes numbers look like LCD or 7-segment readouts — a deliberate retro-digital contrast against the clean grotesque body. Never set below 90px; its identity depends on scale."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Apercu Mono Pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Apercu Mono Pro",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Apercu Mono Pro",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "37px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Px Grotesk",
+        "fontSize": "74px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 74px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Swimclub",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Swimclub",
+        "fontSize": "105px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 105px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas-gray": {
+      "$value": "#d2dce1",
+      "$type": "color",
+      "$description": "Surface level 0: Outermost page background between major sections, footer band — cool blue-gray that sets a clinical mood"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content surface — product cards, media bar, feature blocks, body sections"
+    },
+    "orange-panel": {
+      "$value": "#ff9e00",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed accent surface for announcement bar and statistic panel — interrupts the monochrome flow"
+    },
+    "capsule-black": {
+      "$value": "#020507",
+      "$type": "color",
+      "$description": "Surface level 3: Hero and product photograph background — high-contrast stage for golden capsule imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://swimclub.co",
+      "siteName": "SwimClub",
+      "extractedAt": "2026-06-03T20:51:41.003Z",
+      "variant": "extended"
+    }
+  }
+}

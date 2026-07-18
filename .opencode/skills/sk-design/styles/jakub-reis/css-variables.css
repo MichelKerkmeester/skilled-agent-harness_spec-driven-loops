@@ -1,0 +1,54 @@
+:root {
+  /* Colors */
+  --color-bone: #f8f8f8;
+  --color-carbon: #000000;
+  --color-ash: #080808;
+  --color-stone: #d8d8d8;
+
+  /* Typography — Font Families */
+  --font-degular: 'Degular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 16px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0.528px;
+  --text-body: 18px;
+  --leading-body: 1.25;
+  --tracking-body: 0.594px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.11;
+  --tracking-subheading: 1.344px;
+  --text-heading: 30px;
+  --leading-heading: 1;
+  --tracking-heading: 1.68px;
+  --text-display: 50px;
+  --leading-display: 0.92;
+  --tracking-display: 2.8px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-bone: #f8f8f8;
+}

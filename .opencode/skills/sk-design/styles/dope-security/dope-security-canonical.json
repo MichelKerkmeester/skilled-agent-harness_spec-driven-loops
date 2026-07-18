@@ -1,0 +1,2226 @@
+{
+  "source": "https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4",
+  "uuid": "e1f18a7e-5af1-46b3-8f89-bce6c78b80d4",
+  "name": "dope.security",
+  "northStar": "Midnight terminal with violet beacons",
+  "capturedAt": "2026-07-18T06:32:44.734Z",
+  "meta": {
+    "url": "https://dope.security",
+    "siteName": "dope.security",
+    "extractedAt": "2026-07-03T03:26:00.046Z",
+    "durationMs": 133555,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1059,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Violet (#af50ff) only for one feature card glow, one filled action, and one accent stroke per page — treat it as signal lighting, not theme color",
+      "Set section headings in Whyte Inktrap Mono 74px uppercase with 0.2em tracking; the letterspaced breath is the heading style",
+      "Default all cards to 19.2px radius and 0 padding internally — let layout create the boundary, not a fill or border",
+      "Use 1px or 0.5px solid #f7f9fa borders at low opacity for separation instead of shadows or fills",
+      "Reach for GrandSlang italic at 88–146px for the two or three largest display moments on a page — never for body or nav",
+      "Use the frosted nav pattern: rgba(51,50,72,0.7) background + backdrop-filter blur(10px) + 1px bottom border",
+      "End pages with a coordinate stamp footer in Whyte Inktrap 14px — it is the brand's signature closing gesture"
+    ],
+    "donts": [
+      "Don't apply box-shadows beyond the nav's single 1px hairline — the system is shadowless by design",
+      "Don't use Signal Violet for borders, text, or body backgrounds — it is reserved for fills and glows only",
+      "Don't use GrandSlang italic for anything smaller than 32px — the warmth of the brush-italic collapses at small sizes",
+      "Don't mix Whyte Inktrap Mono with GrandSlang on the same line — the mechanical stamp voice must stay in its own band",
+      "Don't introduce a new accent color — the palette is 95% achromatic and one violet, adding a third color breaks the system",
+      "Don't center body copy or use multi-column text layouts — the page rhythm is left-aligned with generous side margins",
+      "Don't round buttons to 0px or 4px; the system uses 8px for control buttons and 1584px for pill CTAs — those are the only two button radii"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#090909",
+        "name": "Near Black",
+        "role": "Page canvas, card surfaces, filled button backgrounds — the default void everything else floats in",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f9fa",
+        "name": "Almost White",
+        "role": "Primary text, icon strokes, nav labels, and 1px borders — the paper-white that does all the talking against the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Soft White",
+        "role": "Section label text in the stamped uppercase style — same family as Almost White but slightly dimmer for hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#828384",
+        "name": "Steel",
+        "role": "Muted secondary text, inactive button surfaces, subdued borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#474747",
+        "name": "Graphite",
+        "role": "Card internal text and subtle dividers — readable on the near-black without competing with the primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#423738",
+        "name": "Iron",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b6b6b",
+        "name": "Ash",
+        "role": "Nav border dividers, helper text, low-emphasis body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#af50ff",
+        "name": "Signal Violet",
+        "role": "The only chromatic voice: feature card glow, primary action fill, and accent strokes — rationed like runway lighting, not decoration",
+        "group": "brand"
+      },
+      {
+        "hex": "#e1bdff",
+        "name": "Lavender Mist",
+        "role": "Soft tint paired with Signal Violet for contrast-safe text and washed background accents",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections with a 1200px content max-width centered inside. The hero is a split composition: roughly 55/45 text-to-card, with a transparent boarding-pass card overlaying the right side of the atmospheric photograph. Below the hero, the system shifts to edge-to-edge dark bands with no visual dividers between them — rhythm comes from generous sectionGap (~120px) and the stamped 74px section labels. The 'Features' section uses a stacked monospace heading above a list of rows; the comparison block uses a 4-column card grid connected by a horizontal route line. Navigation is a single sticky frosted bar with brand left, links center, two buttons right. Density is comfortable — every section breathes. The page never uses multi-column text or card grids denser than 4 across.",
+    "imagery": "Photography is treated as a single dramatic hero asset: a wide-format twilight sky with purple and lavender clouds over a glowing horizon, a single airplane light streaking across. The image is not cropped or masked — it fills the full viewport and the text sits directly on it. After the hero, the page goes almost entirely iconographic: no product screenshots, no lifestyle photos, no stock imagery. The comparison section uses soft radial gradient blooms (blue, pink, purple) as card backgrounds, acting as abstract color studies rather than literal images. Icons are minimal line glyphs (heart, +, arrow) drawn in #f7f9fa. The overall ratio is text-and-rule dominant: imagery occupies less than 15% of the page.",
+    "similar": [
+      {
+        "why": "Same dark monochrome canvas with a single saturated accent color rationed across the interface",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical shadowless discipline — flat surfaces, hairline borders, generous dark space — paired with a minimal typographic system",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same editorial display serif + geometric sans pairing, same luxury-product restraint on a dark canvas",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Same boarding-pass / travel-coded editorial language, same extreme letter-spacing on uppercase stamps",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Same dot-matrix mono typography and inktrap geometric sans, same monochrome-with-one-glow color strategy",
+        "business": "Nothing.tech"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "19.2px",
+        "pills": "1584px",
+        "buttons": "8px",
+        "smallControls": "6px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "120px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#090909",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — every section sits directly on this"
+      },
+      {
+        "hex": "#333248b3",
+        "name": "Translucent Panel",
+        "level": 1,
+        "purpose": "Floating nav with backdrop blur — a frosted glass strip pinned to the top"
+      },
+      {
+        "hex": "#423738",
+        "name": "Iron Wash",
+        "level": 2,
+        "purpose": "Ghost button fills and subtle card washes that need to read as a surface without leaving the void"
+      },
+      {
+        "hex": "#af50ff",
+        "name": "Violet Bloom",
+        "level": 3,
+        "purpose": "Feature card backgrounds and radial glows — the one place the palette breaks monochrome"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(16, 24, 40, 0.05) 0px 1px 2px 0px",
+        "element": "Nav Bar"
+      }
+    ],
+    "northStar": "Midnight terminal with violet beacons",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": 1.8
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "section-stamp",
+        "size": 74,
+        "lineHeight": 0.9,
+        "letterSpacing": 14.8
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 0.8,
+        "letterSpacing": -2.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Boarding Pass",
+        "role": "Full-bleed hero panel with a translucent glass card on the right",
+        "description": "Full-viewport dark hero on the atmospheric sky photograph. Left column: GrandSlang italic at 146px for 'Your new', Whyte Inktrap weight 400 at 64px for the main 'Secure Web Gateway', GrandSlang italic again for 'with AI DLP'. Body subhead in Whyte Inktrap 20px weight 300, muted Almost White. Right column: 19.2px radius card with rgba(237,195,196,0.05) fill, 1px white border, 'Boarding Pass' label, 'LEGACY → DS' origin/destination line, and a vertical barcode. Two pill CTA buttons inside: 1584px radius, 20px 32px padding, white text on the faint pink wash."
+      },
+      {
+        "name": "Stamped Section Heading",
+        "role": "Full-width section signpost that replaces H2s on feature blocks",
+        "description": "Whyte Inktrap Mono 74px weight 400, uppercase, 0.2em letter-spacing, Soft White (#f0f0f0). Rendered as a single line that fills the container. Each letter spaced far enough apart to read as a stamp, not a heading. No underline, no decoration — the tracking IS the design. Example: 'S S L   I N S P E C T I O N'."
+      },
+      {
+        "name": "Filled Action Button",
+        "role": "Primary dark button with white outline",
+        "description": "Background #090909, 1px solid #f7f9fa border, 8px radius, 16px all-around padding, white text in Whyte Inktrap 16px weight 400. Used for 'Book a Demo' and 'Log In' in the nav. The button is almost the same color as the page — the border does the work."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Soft-tint pill used for secondary actions inside cards",
+        "description": "Background rgba(237,195,196,0.05), no border, 1584px radius (effectively full pill), 20px 32px padding, text #f7f9fa. Example: 'Try now with Google' and 'Try now with Microsoft'. A small brand-color logo glyph sits left of the label."
+      },
+      {
+        "name": "Compact Outlined Button",
+        "role": "Small white-bordered control for inline actions",
+        "description": "Background rgba(247,249,250,0.08), 1px solid #f7f9fa border, 6px radius, 9px 15px padding. Lighter density than the filled button — used in compact toolbars and table rows."
+      },
+      {
+        "name": "Text-Only Nav Link",
+        "role": "Unbordered link in the main navigation",
+        "description": "Transparent background, 0px radius, 10.4px vertical padding, text in #475467 (muted steel). Underline appears on hover. This is the lightest-weight interactive in the system — quiet enough to recede into the nav bar."
+      },
+      {
+        "name": "Frosted Nav Bar",
+        "role": "Sticky top navigation with backdrop blur",
+        "description": "Fixed top bar, background rgba(51,50,72,0.7) (--nav-bg-color), backdrop-filter: blur(10px), 1px bottom border in #6b6b6b. Brand wordmark on the left in Whyte Inktrap weight 500. Nav items in Whyte Inktrap 12px uppercase with 0.07em tracking. The blur is the design — it lets the atmospheric hero breathe through."
+      },
+      {
+        "name": "Comparison Card",
+        "role": "Side-by-side competitive comparison tile",
+        "description": "19.2px radius, full-bleed gradient or violet bloom background, 40px padding, no border, no shadow. Each card carries a faint oversized number (01–04) behind a small label like 'COMPLEX 15-STEP CONFIGURATION' and a white 'vs. Competitor →' link. The cards are connected by a horizontal line and circular node markers between them, like a flight route."
+      },
+      {
+        "name": "Feature Row Card",
+        "role": "Single feature block with description and link",
+        "description": "Transparent background, 19.2px radius, no padding. Left: 20px link 'Learn More'. Right: Whyte Inktrap 18px weight 400 body copy. The card IS the row — no visible container, the spacing creates the boundary."
+      },
+      {
+        "name": "Violet Bloom Card",
+        "role": "Accent card that breaks the monochrome",
+        "description": "Background #af50ff or radial-gradient violet bloom, 19.2px radius, 40px padding. Used sparingly for the 'See how in 140s' play CTA or the 'dope.swg' badge. The violet is rationed to one or two cards per page — when it appears, it should feel like a signal, not a theme."
+      },
+      {
+        "name": "Coordinate Footer",
+        "role": "Minimal page footer with geographic stamp",
+        "description": "Full-bleed dark band, no background fill, 0px padding. Left: small '+' icon, 'Fly Direct' and 'Secure Web Gateway' labels in Whyte Inktrap 14px. Right: a live-updating GPS coordinate in Whyte Inktrap 14px + a heart icon. This is the signature: the brand writes its footer as if signing a postcard from a city."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator with no weight",
+        "description": "0.5px or 1px solid stroke in #f7f9fa at 10-20% opacity. Replaces shadows and heavy borders everywhere. The system trusts line weight, not depth, to create rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — body, nav, buttons, links, and most headings. The inktrap corners (the tiny cuts where straight strokes meet) are the signature; they give the geometry warmth without losing precision. Weight 300 carries the larger sizes and creates the editorial lightness that pairs with the GrandSlang italic.",
+        "sizes": "10, 12, 14, 16, 18, 20, 24, 28, 32, 40, 48, 50, 64, 80, 88",
+        "family": "Whyte Inktrap",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.0–1.6",
+        "substitute": "Inter, General Sans",
+        "letterSpacing": "Tight on display: -0.04em at 64px, -0.03em at 48px, -0.01em at 20px, 0 at 16px, wide on labels: 0.07em at 12px uppercase, 0.18em at 10px uppercase"
+      },
+      {
+        "role": "The stamped-letterhead voice: 74px uppercase sections like 'SSL INSPECTION' and 'URL FILTERING' with 0.2em tracking. The mono is intentionally mechanical against the humanist Whyte to create the boarding-pass rhythm. This font does the section signposting.",
+        "sizes": "14, 74",
+        "family": "Whyte Inktrap Mono",
+        "weight": "400",
+        "lineHeight": "0.9–1.5",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "0.2em constant — the breath between letters is the design",
+        "fontFeatureSettings": "\"ss01\" on (if available, for the alternate inktrap cuts)"
+      },
+      {
+        "role": "The italic display serif reserved for the hero and its echoes — 'Your new', 'with AI DLP'. Its warm brush-italic swells make the brand feel human and confident where the rest of the system is clinical. This is the one font that should never be used for body or nav.",
+        "sizes": "32, 50, 64, 88, 146",
+        "family": "GrandSlang",
+        "weight": "300, 400",
+        "lineHeight": "0.8–1.5",
+        "substitute": "Tiempos Headline, Lora Italic",
+        "letterSpacing": "-0.03em — pulled in tight so the italic's natural flare reads as generous",
+        "fontFeatureSettings": "\"liga\" on, \"dlig\" on"
+      },
+      {
+        "role": "system-ui — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "system-ui",
+        "weight": "600",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "Karla — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Karla",
+        "weight": "700",
+        "lineHeight": "1, 1.2"
+      }
+    ],
+    "description": "dope.security is a midnight terminal aesthetic: near-black canvas, a single vivid violet signal flare, and typography that borrows from luxury travel editorial. The system pairs a geometric sans (Whyte Inktrap) with an italic display serif (GrandSlang) for hero drama and a monospaced inktrap with extreme tracking for the section labels that feel stamped from a boarding pass. Surfaces are flat and borderless; elevation comes from hairline strokes and translucent washes, never shadows. Color is rationed — the violet only appears as a glow, a fill on a single feature, and accent strokes — while the rest of the interface stays in a tight achromatic scale from #f7f9fa down to #090909. The result reads as confident, expensive, and slightly secretive, like a premium lounge at 2am with a single neon sign.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"dope.security design system\",\"item\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#style-reference\",\"name\":\"dope.security design system reference\",\"headline\":\"dope.security design system | Refero Styles\",\"description\":\"Explore dope.security's dark Dev Tools design system: Near Black #090909, Almost White #f7f9fa colors, Whyte Inktrap, Whyte Inktrap Mono typography, and...\",\"url\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"dope.security\",\"url\":\"https://dope.security\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"caption\":\"Screenshot of dope.security\"},\"image\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"dope.security design system\",\"dope.security website design\",\"dope.security colors\",\"dope.security typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Near Black\",\"Almost White\",\"Soft White\",\"Steel\",\"Whyte Inktrap\",\"Whyte Inktrap Mono\",\"GrandSlang\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"dope.security design system\"},{\"@type\":\"Thing\",\"name\":\"dope.security website design\"},{\"@type\":\"Thing\",\"name\":\"dope.security colors\"},{\"@type\":\"Thing\",\"name\":\"dope.security typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T18:56:58.578Z\",\"dateModified\":\"2026-05-07T18:56:58.578Z\"}]}19:T620,**Quick Color Reference**\n- text: #f7f9fa\n- background: #090909\n- border: rgba(247,249,250,0.2)\n- accent / brand signal: #af50ff\n- muted text: #828384\n- primary action: #af50ff (filled action)\n\n**Example Component Prompts**\n\n1. *Stamped Section Heading:* Render 'SSL INSPECTION' as a single line in Whyte Inktrap Mono, 74px, weight 400, uppercase, letter-spacing 0.2em, color #f0f0f0, on a #090909 background. No underline, no decoration.\n\n2. *Hero Boarding Pass Card:* Create a right-aligned card on the hero, 19.2px radius, background rgba(237,195,196,0.05), 1px solid rgba(247,249,250,0.2) border, 40px padding. Inside: a small icon + 'Boarding Pass' label in Whyte Inktrap 12px uppercase, an 'ORIGIN LEGACY → DESTINATION DS' line in 14px, a Whyte Inktrap 32px heading 'Deploys on device in minutes', and two pill buttons (1584px radius, 20px 32px padding, white text, faint pink wash background) reading 'Try now with Google' and 'Try now with Microsoft'.\n\n3. *Filled Action Button:* Build a 8px-radius button with #090909 background, 1px solid #f7f9fa border, 16px padding, white 'Book a Demo' text in Whyte Inktrap 16px weight 400.\n\n4. *Violet Bloom Feature Card:* A 19.2px-radius card filled with #af50ff, 40px padding, containing Whyte Inktrap 32px weight 400 white heading 'dope.swg' and a 14px body line. One per page maximum.\n\n5. *Coordinate Footer:* A full-width band on #090909 with a '+' icon, 'Fly Direct' and 'Secure Web Gateway' labels in Whyte Inktrap 14px on the left, a live GPS coordinate in 14px on the right, and a small heart icon in #f7f9fa."
+      }
+    ],
+    "elevationPhilosophy": "This system is fundamentally shadowless. The only shadow in the entire dataset belongs to the nav bar, and it is so subtle it reads as a hairline. Elevation is achieved through three other devices instead: (1) translucent panels with backdrop blur for the nav, (2) 0.5–1px hairline borders in white at low opacity to define cards, and (3) the violet bloom as a luminance difference on feature cards. Any new component should default to flat — reach for a 1px border before reaching for a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#090909",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13979123394671675
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "button",
+            "link"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 156434664.69190973,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 2,
+            "button/color": 1,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 37,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#f7f9fa",
+          "oklch": {
+            "c": 0.002518099453044886,
+            "h": 228.78409678946383,
+            "l": 0.9808830691912612
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 282,
+          "confidence": 1,
+          "prominence": 24652772.827531084,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 5,
+            "card/color": 4,
+            "link/color": 3,
+            "other/fill": 68,
+            "other/color": 70,
+            "button/color": 18,
+            "other/stroke": 64,
+            "heading/color": 20,
+            "nav/borderColor": 4,
+            "card/borderColor": 5,
+            "other/borderColor": 5,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#6b6b6b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5291909124744392
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 214400.5027524613,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 1,
+            "other/color": 2,
+            "nav/borderColor": 1,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#828384",
+          "oklch": {
+            "c": 0.0014459176172396811,
+            "h": 228.78153525421428,
+            "l": 0.6106228559296256
+          },
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 71195.03719486207,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "button/borderColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#474747",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3960536604210553
+          },
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 71087.84133634265,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 4,
+            "button/borderColor": 2
+          }
+        },
+        {
+          "hex": "#423738",
+          "oklch": {
+            "c": 0.014894970191649138,
+            "h": 16.25745032450145,
+            "l": 0.3499719115704776
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 50644,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#af50ff",
+          "oklch": {
+            "c": 0.24822956511330854,
+            "h": 305.13759112830553,
+            "l": 0.6344590577548265
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 47601.71603708941,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1,
+            "button/boxShadow": 3,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 43427.370012115425,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 111,
+          "confidence": 1,
+          "prominence": 26555.491550946714,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 111
+          }
+        },
+        {
+          "hex": "#475467",
+          "oklch": {
+            "c": 0.035468214592809424,
+            "h": 257.7866086156523,
+            "l": 0.44223891460946557
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4986.292027268757,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2
+          }
+        },
+        {
+          "hex": "#e1bdff",
+          "oklch": {
+            "c": 0.09754987885812547,
+            "h": 309.1693704594933,
+            "l": 0.8513140590113332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3834.0242892444767,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#d4a0ff",
+          "oklch": {
+            "c": 0.1412908834211207,
+            "h": 308.5909160569174,
+            "l": 0.7885800611004914
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 138,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.03226636342248592,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.89,
+          "background": "#f7f9fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.86,
+          "background": "#090909",
+          "foreground": "#f7f9fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.47,
+          "background": "#090909",
+          "foreground": "#f0f0f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.92,
+          "background": "#e1bdff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.25,
+          "background": "#e1bdff",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#423738",
+          "foreground": "#f7f9fa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#d4a0ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.04,
+          "background": "#423738",
+          "foreground": "#f0f0f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#d4a0ff",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.8,
+          "background": "#f7f9fa",
+          "foreground": "#474747"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.15,
+          "background": "#f0f0f0",
+          "foreground": "#474747"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.28,
+          "background": "#f7f9fa",
+          "foreground": "#475467"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.04,
+          "background": "#e1bdff",
+          "foreground": "#423738"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.75,
+          "background": "#f0f0f0",
+          "foreground": "#475467"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.72,
+          "background": "#e1bdff",
+          "foreground": "#474747"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#d4a0ff",
+          "foreground": "#423738"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#828384",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#af50ff",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#e1bdff",
+          "foreground": "#475467"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 19.2,
+          "contexts": [
+            "card",
+            "list"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 1584,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 10.8,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10000,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(16, 24, 40, 0.05) 0px 1px 2px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|icon",
+            "paddingTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 59,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingBottom|other",
+            "paddingBottom|link",
+            "marginTop|link",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|link",
+            "paddingTop|other",
+            "marginLeft|other",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|button",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|heading",
+            "columnGap|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "card"
+          ],
+          "frequency": 99,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|heading",
+            "columnGap|heading",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingBottom|button",
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "image"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "marginBottom|other",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginRight|image"
+          ]
+        },
+        {
+          "value": 136,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle closest-corner at 10% 50%, rgb(108, 75, 214), rgba(0, 0, 0, 0) 55%)",
+        "colors": [
+          "rgb(108, 75, 214)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(64, 24, 96), rgb(72, 35, 180) 50%, rgb(99, 78, 120))",
+        "colors": [
+          "rgb(64, 24, 96)",
+          "rgb(72, 35, 180)",
+          "rgb(99, 78, 120)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Whyte Inktrap",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 495,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Whyte Inktrap Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 350,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GrandSlang",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            600
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Karla",
+          "source": "google",
+          "weights": [
+            700
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0.18,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.07,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Whyte Inktrap Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "card",
+            "hero",
+            "icon",
+            "button",
+            "list"
+          ],
+          "frequency": 266,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Karla",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Karla",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 28,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.69,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GrandSlang",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GrandSlang",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Whyte Inktrap",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "GrandSlang",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Whyte Inktrap",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "GrandSlang",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "Whyte Inktrap Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 348,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Whyte Inktrap",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.07,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Whyte Inktrap",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.07,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Whyte Inktrap",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.03,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 88,
+          "family": "GrandSlang",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Whyte Inktrap",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 146,
+          "family": "GrandSlang",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/743dff94-e2b6-4e0a-95c8-90d173802ed3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"dope.security design system\",\"item\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#style-reference\",\"name\":\"dope.security design system reference\",\"headline\":\"dope.security design system | Refero Styles\",\"description\":\"Explore dope.security's dark Dev Tools design system: Near Black #090909, Almost White #f7f9fa colors, Whyte Inktrap, Whyte Inktrap Mono typography, and...\",\"url\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"dope.security\",\"url\":\"https://dope.security\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e1f18a7e-5af1-46b3-8f89-bce6c78b80d4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"caption\":\"Screenshot of dope.security\"},\"image\":\"https://images.refero.design/styles/refero.design/image/da812f52-4f13-468b-bc1e-b98b7c85d4b2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"dope.security design system\",\"dope.security website design\",\"dope.security colors\",\"dope.security typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Near Black\",\"Almost White\",\"Soft White\",\"Steel\",\"Whyte Inktrap\",\"Whyte Inktrap Mono\",\"GrandSlang\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"dope.security design system\"},{\"@type\":\"Thing\",\"name\":\"dope.security website design\"},{\"@type\":\"Thing\",\"name\":\"dope.security colors\"},{\"@type\":\"Thing\",\"name\":\"dope.security typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T18:56:58.578Z\",\"dateModified\":\"2026-05-07T18:56:58.578Z\"}]}19:T620,**Quick Color Reference**\n- text: #f7f9fa\n- background: #090909\n- border: rgba(247,249,250,0.2)\n- accent / brand signal: #af50ff\n- muted text: #828384\n- primary action: #af50ff (filled action)\n\n**Example Component Prompts**\n\n1. *Stamped Section Heading:* Render 'SSL INSPECTION' as a single line in Whyte Inktrap Mono, 74px, weight 400, uppercase, letter-spacing 0.2em, color #f0f0f0, on a #090909 background. No underline, no decoration.\n\n2. *Hero Boarding Pass Card:* Create a right-aligned card on the hero, 19.2px radius, background rgba(237,195,196,0.05), 1px solid rgba(247,249,250,0.2) border, 40px padding. Inside: a small icon + 'Boarding Pass' label in Whyte Inktrap 12px uppercase, an 'ORIGIN LEGACY → DESTINATION DS' line in 14px, a Whyte Inktrap 32px heading 'Deploys on device in minutes', and two pill buttons (1584px radius, 20px 32px padding, white text, faint pink wash background) reading 'Try now with Google' and 'Try now with Microsoft'.\n\n3. *Filled Action Button:* Build a 8px-radius button with #090909 background, 1px solid #f7f9fa border, 16px padding, white 'Book a Demo' text in Whyte Inktrap 16px weight 400.\n\n4. *Violet Bloom Feature Card:* A 19.2px-radius card filled with #af50ff, 40px padding, containing Whyte Inktrap 32px weight 400 white heading 'dope.swg' and a 14px body line. One per page maximum.\n\n5. *Coordinate Footer:* A full-width band on #090909 with a '+' icon, 'Fly Direct' and 'Secure Web Gateway' labels in Whyte Inktrap 14px on the left, a live GPS coordinate in 14px on the right, and a small heart icon in #f7f9fa."
+}

@@ -1,0 +1,130 @@
+{
+  "color": {
+    "field-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Field White — Page canvas, text on dark inverted sections, and link underline anchor for body copy"
+    },
+    "charcoal-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal Black — SVG icon fills and absolute typographic black where maximum contrast is needed (headings against light imagery)"
+    },
+    "lead-gray": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Lead Gray — Primary type, all link and border lines, and the connective tissue of the system — every hairline rule, navigation separator, and body character sits here"
+    },
+    "ash-gray": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Ash Gray — Navigation labels, muted metadata, footer text, and the secondary tonal floor that recedes behind lead-gray working type"
+    },
+    "smoke": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Smoke — Subtle border accent used sparingly to separate tertiary structural elements"
+    }
+  },
+  "font": {
+    "maison-neue-book": {
+      "$value": "Maison Neue Book",
+      "$type": "fontFamily",
+      "$description": "Signature display face for project titles and section headings — 60px at weight 300 is the defining choice, letting each garden name whisper across the page rather than announce"
+    },
+    "universltstd-light": {
+      "$value": "UniversLTStd-Light",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for navigation, country-code labels, body, footer, and all meta information — 12px handles the tiny geo tags above project names, 15px carries paragraph body at generous 1.87 leading for editorial breathing room"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "UniversLTStd-Light",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "UniversLTStd-Light",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.87
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "UniversLTStd-Light",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The single global surface — the entire interface is pressed directly onto pure white with no card or panel system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://oudolf.com",
+      "siteName": "Piet Oudolf",
+      "extractedAt": "2026-06-03T21:03:23.292Z",
+      "variant": "extended"
+    }
+  }
+}

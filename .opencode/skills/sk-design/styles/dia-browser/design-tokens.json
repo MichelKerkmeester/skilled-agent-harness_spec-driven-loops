@@ -1,0 +1,434 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#020204",
+      "$type": "color",
+      "$description": "Void Black — Hero background, dramatic dark sections — the opening stage of the experience"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Primary text, button text, icon fills — the dominant ink across all surfaces"
+    },
+    "carbon": {
+      "$value": "#636363",
+      "$type": "color",
+      "$description": "Carbon — Secondary text, muted nav, helper labels — softer than pure black for hierarchy"
+    },
+    "slate": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, inactive nav items, disabled states"
+    },
+    "silver": {
+      "$value": "#c6c6c6",
+      "$type": "color",
+      "$description": "Silver — Placeholder text, very subtle UI dividers"
+    },
+    "soft-graphite": {
+      "$value": "#575757",
+      "$type": "color",
+      "$description": "Soft Graphite — Dark button backgrounds on light surfaces — secondary action fill"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary page canvas and white card surfaces. Do not promote it to the primary CTA color"
+    },
+    "bone": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Bone — Page canvas, nav backgrounds, base surface beneath cards"
+    },
+    "linen": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Linen — Button fills, pill backgrounds, header wash — slightly warmer than Bone, the dominant secondary surface"
+    },
+    "lime-wash": {
+      "$value": "#f2fcb3",
+      "$type": "color",
+      "$description": "Lime Wash — Accent background wash, highlight zones, editorial color punctuation"
+    },
+    "saffron": {
+      "$value": "#ffdc5c",
+      "$type": "color",
+      "$description": "Saffron — Secondary accent wash, warm highlight zones"
+    },
+    "spectrum-marquee": {
+      "$value": "#FA3D1D",
+      "$type": "color",
+      "$description": "Spectrum Marquee — Sweeping rainbow gradient — the brand's signature motion element, traveling across hero and section dividers"
+    }
+  },
+  "font": {
+    "exposure-variable": {
+      "$value": "Exposure Variable",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the 112px whisper-weight serif that anchors hero and section titles. Its 0.85 line-height vertically compresses letters, making headlines feel carved and monumental rather than airy. Signature choice: anti-convention weight (300, not 700) and negative letter-spacing (-0.03em) create authority through restraint. Substitute: Playfair Display or DM Serif Display at weight 400 with tight tracking."
+    },
+    "exposure-var": {
+      "$value": "Exposure VAR",
+      "$type": "fontFamily",
+      "$description": "Section headings and large nav — the bold companion to Exposure Variable. Used for 'Dia reads between the tabs' and feature titles. Tighter tracking at -0.05em at 48px gives headline density. Substitute: Inter Tight or a condensed grotesque."
+    },
+    "abc-oracle": {
+      "$value": "ABC Oracle",
+      "$type": "fontFamily",
+      "$description": "Body text, UI labels, subheadings, and large feature headlines (54px at weight 300). The workhorse font — its humanist sans quality keeps long-form copy legible at generous line-heights (2.19 for body). Weight 500 used sparingly for emphasis. The 54px weight 300 headline is the secondary display voice, lighter than Exposure VAR but in the same serif-adjacent register. Substitute: Söhne or Inter at matching weights."
+    },
+    "abc-oracle-triple": {
+      "$value": "ABC Oracle Triple",
+      "$type": "fontFamily",
+      "$description": "Button text, inline labels, UI microcopy — a narrower variant of Oracle designed for button and tag contexts. The wide line-height (2.19) suggests single-line button use with internal padding breathing. Substitute: Inter at 16px weight 400."
+    },
+    "abc-favorit-mono": {
+      "$value": "ABC Favorit Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels, step numbers (01, 02, 03), navigation metadata — all-caps at 13px with 0.1em tracking creates the editorial chapter-marker effect. The mono face contrasts with Oracle's humanist sans, creating typographic tension."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle Triple",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.06
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Oracle Triple",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Oracle Triple",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Exposure VAR",
+        "fontSize": "24px",
+        "fontWeight": 650,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Exposure VAR",
+        "fontSize": "48px",
+        "fontWeight": 650,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Exposure Variable",
+        "fontSize": "112px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 112px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 2px 8px 0px, rgba(0, 0, 0, 0.04) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.6) 0px 8px 30px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#020204",
+      "$type": "color",
+      "$description": "Surface level 0: Hero stage, dramatic dark openings"
+    },
+    "paper": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas — the broadsheet paper feel"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated content cards, product screenshot windows, button surfaces"
+    },
+    "linen": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 3: Button fills, pill backgrounds, subtle surface differentiation"
+    },
+    "wash": {
+      "$value": "#f2fcb3",
+      "$type": "color",
+      "$description": "Surface level 4: Lime accent surface — editorial highlight zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://diabrowser.com",
+      "siteName": "Dia Browser",
+      "extractedAt": "2026-07-03T02:58:05.117Z",
+      "variant": "extended"
+    }
+  }
+}

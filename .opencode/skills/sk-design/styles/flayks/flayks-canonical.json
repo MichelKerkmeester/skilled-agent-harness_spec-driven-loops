@@ -1,0 +1,1913 @@
+{
+  "source": "https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180",
+  "uuid": "77a193de-2472-4637-802f-d930ec61c180",
+  "name": "Flayks",
+  "northStar": "Oversized editorial broadsheet — dark forest green page, peach ink headlines bleeding off the page edges, tiny Nohemi caption text anchoring the corners.",
+  "capturedAt": "2026-07-18T08:53:03.286Z",
+  "meta": {
+    "url": "https://flayks.com",
+    "siteName": "Flayks",
+    "extractedAt": "2026-06-03T21:31:04.571Z",
+    "durationMs": 40035,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 930,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Mango Grotesque at 88px or larger for any headline meant to carry the page; below 48px, switch to Nohemi weight 600.",
+      "Set all Nohemi text to letter-spacing 0.10em and uppercase — the airy tracking on small text is the signature of this system.",
+      "Use Peach Cream (#ffe0ce) as the default text and hairline border color; reserve Coral Flame and Lavender for typographic accent only, not body content.",
+      "Keep display headlines compressed at line-height 0.80–0.85 and allow them to bleed off the viewport edge — the overflow is the point.",
+      "Render cards on Charcoal or Ultraviolet surfaces with 10px radius and the four-layer black drop shadow stack, never flat against the green canvas.",
+      "Anchor the status bar (location / availability / contact) to the bottom of every page; it is a persistent furniture element, not a footer block.",
+      "Pair 3D illustration tiles with slight rotation (-5° to +5°) so they read as a collage, not a grid."
+    ],
+    "donts": [
+      "Do not introduce a filled button variant — all actions in this system are ghost-stroked with Peach Cream borders.",
+      "Do not set Mango Grotesque below 32px; the compressed grotesque loses its identity at body sizes.",
+      "Do not use white (#ffffff) text or borders; the system runs on warm Peach Cream and Bone, never neutral white.",
+      "Do not tighten letter-spacing on Nohemi — the +0.10em tracking is what makes the tiny UI text legible against the dark green canvas.",
+      "Do not center-align the hero headline — Flayks uses asymmetric, left-bleeding editorial composition throughout.",
+      "Do not add gradients; the design is strictly flat color with single-direction drop shadows only.",
+      "Do not use the violet card surfaces (#2d0458, #1e1779) for more than one tile per section — they are accent canvases, not default cards."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#00381c",
+        "name": "Forest Ink",
+        "role": "Page canvas, section backgrounds — deep saturated green creates the base atmosphere; the page reads as forest-green, not black, which warms the dark theme and separates this system from generic dark-mode SaaS",
+        "group": "brand"
+      },
+      {
+        "hex": "#002d16",
+        "name": "Forest Deep",
+        "role": "Shadow and recessed surface tone — used in card drop-shadows and inner depth layers, the slightly darker shade of the canvas adds dimension without breaking the monochrome green field",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffe0ce",
+        "name": "Peach Cream",
+        "role": "Primary text, hairline borders, outlined-action strokes — the system's only near-gray warm tone; carries the majority of legibility weight and acts as the universal border color across lists, cards, and images. Outlined ghost-button stroke color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6e9d9",
+        "name": "Bone",
+        "role": "Secondary text, decorative stroke and fill accents — a slightly cooler cream for subtle differentiation from Peach Cream without breaking the warm neutrals family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272221",
+        "name": "Charcoal",
+        "role": "Card surface, elevated panels, secondary dark surface — sits one step off pure black, warm enough to harmonize with the green canvas, used for the back-layer of illustrated artwork tiles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Deepest surface, button border, text on light card — true black reserved for max-contrast elements and neutral button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2f34",
+        "name": "Slate",
+        "role": "Neutral card surface variant for utility panels — cool-tinted alternative to Charcoal for sections that need to feel mechanical rather than warm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c3bfbc",
+        "name": "Fog",
+        "role": "Muted neutral card surface — desaturated warm gray for low-emphasis panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff8370",
+        "name": "Coral Flame",
+        "role": "Display type accent, link text, emphasis headings — vivid warm orange that dominates the hero typography and section labels; against the green canvas it reads as high-energy poster ink, not a UI CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#d1adff",
+        "name": "Lavender",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#546f57",
+        "name": "Sage",
+        "role": "Body background panels, list dividers, utility surfaces — desaturated green that sits between Forest Ink and the cream text, used for secondary content blocks and list separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d0458",
+        "name": "Ultraviolet",
+        "role": "Dramatic card surface for featured work tiles — deep saturated violet as an alternative canvas for highlight cards; high contrast with Peach Cream text",
+        "group": "accent"
+      },
+      {
+        "hex": "#1e1779",
+        "name": "Indigo Depth",
+        "role": "Accent card surface — vivid indigo for occasional card variants that need to feel different from the green field without going warm",
+        "group": "accent"
+      },
+      {
+        "hex": "#977eac",
+        "name": "Heather",
+        "role": "Muted card surface — dusty violet for low-priority cards and section dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#002a3b",
+        "name": "Navy Depths",
+        "role": "Cool card surface — deep blue-teal for cards that need to break from the warm/green field with a cool note",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed editorial composition with no max-width container — every section runs edge-to-edge against the Forest Ink canvas. The page is built in horizontal bands: hero (massive Mango Grotesque headline bleeding off the right edge + 3D illustration tile clustered bottom-left), about (asymmetric title + small Nohemi body), and a 'selected projects' section that shifts to a near-black canvas with centered Mango Grotesque section labels. Navigation is a vertical pill stack anchored to the left edge rather than a top bar; the status meta bar is pinned to the bottom of the viewport and persists across all sections. Vertical rhythm comes from oversized display type and clustered 3D tiles rather than from a column grid — the layout reads as a printed broadsheet, not a SaaS app. Section gaps are 60–100px but the giant typography makes the actual visual gaps feel larger.",
+    "imagery": "3D illustration is the dominant visual language: glossy plastic-rendered vehicles, crystalline architectural forms, sci-fi vehicles on blue-sky backgrounds with cartoon clouds, and bubbly extruded logo marks. Tiles are square or near-square, slightly rotated, with a collage arrangement rather than a grid. Photography is absent — all visual content is either 3D render or hand-drawn/illustrated logo objects. The mint-turquoise 3D 'FLAYKS' wordmark with cream highlights establishes the material palette: high-gloss plastic, warm light, soft pastel environments. Imagery occupies roughly 30–40% of the hero viewport and clusters asymmetrically alongside the oversized typography rather than behind it.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio treatment: oversized compressed display type that bleeds off the canvas, dark moody page tone, 3D illustration as primary visual content, asymmetric collage layout rather than grid.",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Full-bleed editorial dark canvases, paired custom typefaces with extreme scale contrast between display and body, work tiles rendered as illustrated cards floating off the page edge.",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Same maximalist agency-portfolio language: oversize condensed display headlines, 3D-rendered project tiles, single saturated accent color against a dark field, ghost-stroked navigation rather than filled buttons.",
+        "business": "Active Theory (activetheory.net)"
+      },
+      {
+        "why": "Custom condensed display grotesque used at near-illegible sizes, warm peach/cream against a deep dark canvas, tiny tracked-out Nohemi-style UI text anchoring the corners of the page.",
+        "business": "Gunner (gunner.io)"
+      },
+      {
+        "why": "Agency portfolio with 3D-illustrated project tiles, asymmetric collage composition, and oversized display typography that treats the viewport as a printed spread rather than a screen.",
+        "business": "B-Reel (b-reel.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "md": "10px",
+        "sm": "6px",
+        "pill": "900px"
+      },
+      "elementGap": "4-10px",
+      "sectionGap": "64px",
+      "cardPadding": "12-16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#00381c",
+        "name": "Forest Ink Canvas",
+        "level": 0,
+        "purpose": "The page field — all sections and heroes sit directly on this deep green; no lighter background exists at the page level."
+      },
+      {
+        "hex": "#546f57",
+        "name": "Sage Panel",
+        "level": 1,
+        "purpose": "Body and list background panels that need a subtle lift from the canvas without breaking the green field."
+      },
+      {
+        "hex": "#272221",
+        "name": "Charcoal Card",
+        "level": 2,
+        "purpose": "Elevated cards and illustration tile backings — warm dark surface that complements the green canvas."
+      },
+      {
+        "hex": "#2d0458",
+        "name": "Ultraviolet Feature Card",
+        "level": 3,
+        "purpose": "Accent surface for featured work tiles — the only high-chroma card surface in the system."
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.2) 0px 0px 112px 0px, rgba(0, 0, 0, 0.1) 4px -4px 12px 0px",
+        "element": "Floating Illustration Tile"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.01) 0px 62px 25px 0px, rgba(0, 0, 0, 0.05) 0px 35px 21px 0px, rgba(0, 0, 0, 0.09) 0px 16px 16px 0px, rgba(0, 0, 0, 0.1) 0px 4px 9px 0px",
+        "element": "Project Preview Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.01) 0px 262px 105px 0px, rgba(0, 0, 0, 0.05) 0px 148px 89px 0px, rgba(0, 0, 0, 0.09) 0px 66px 66px 0px, rgba(0, 0, 0, 0.1) 0px 16px 36px 0px",
+        "element": "Hero Feature Card"
+      }
+    ],
+    "northStar": "Oversized editorial broadsheet — dark forest green page, peach ink headlines bleeding off the page edges, tiny Nohemi caption text anchoring the corners.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.8
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 0.85,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "heading",
+        "size": 88,
+        "lineHeight": 0.85,
+        "letterSpacing": 1.76
+      },
+      {
+        "role": "heading-lg",
+        "size": 144,
+        "lineHeight": 0.8,
+        "letterSpacing": 2.88
+      },
+      {
+        "role": "display",
+        "size": 256,
+        "lineHeight": 0.8,
+        "letterSpacing": 5.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Status Bar Footer",
+        "role": "Persistent meta-information strip across the entire page",
+        "description": "Fixed to the bottom edge of the viewport, full-width, transparent over the green canvas. Three zones — left: location marker (Lavender dot) + 'CURRENTLY IN TOULOUSE, FR (CET)'; center: 'AVAILABLE FOR NEW PROJECTS'; right: snowflake icon + 'CONTACT'. Nohemi 14px, weight 400, letter-spacing 0.10em, uppercase, color Peach Cream. Dot indicators use 6px circles in Lavender. No background fill, no border — the type floats directly on the Forest Ink canvas with 12–16px vertical padding."
+      },
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity lockup anchored top-left",
+        "description": "Bubbly 3D-extruded 'FLAYKS' wordmark in turquoise/mint (#7df0d8 range) with cream highlights and a soft drop shadow — treated as an illustration object, not a text logotype. Pairs a glossy plastic material against the matte dark green canvas. Sits at top-left with 14px padding from the viewport edge and functions as a home link."
+      },
+      {
+        "name": "Floating Illustration Tile",
+        "role": "Featured project artwork displayed as a physical card",
+        "description": "Square or near-square card containing 3D-illustrated artwork (crystalline structures, sci-fi vehicles, clouds) on a bright blue sky background. Card sits on Charcoal (#272221) backing with slight rotation (-3° to +5°) for collage feel. 10px border-radius, 6px Peach Cream border, layered shadow stack: rgba(0,0,0,0.2) 0 0 112px 0 (ambient glow) + rgba(0,0,0,0.1) 4px -4px 12px 0 (directional). Width varies 240–400px. Tiles overlap or cluster asymmetrically rather than aligning to a grid."
+      },
+      {
+        "name": "Ghost Action Button",
+        "role": "Outlined interactive trigger — the only button variant in the system",
+        "description": "Transparent fill, 1.5–2px Peach Cream border, Nohemi 14px uppercase weight 600, letter-spacing 0.10em. 6px border-radius. Padding 10px 16px. No filled state — hover increases border weight or shifts to Coral Flame. There is no filled-button variant in this system; all CTAs are ghost-strokes against the dark canvas."
+      },
+      {
+        "name": "Vertical Side Navigation",
+        "role": "Section-anchor list rendered as a vertical pill stack",
+        "description": "Left-edge vertical list of section markers — 6–8px Lavender circles or rounded pills, 10px vertical gap. Active item renders as a larger filled Lavender dot or pill with Nohemi 14px label beside it. Inactive items are outline-only circles. The nav reads as a precise gauge rather than a horizontal bar — the page's primary navigation surface is a thin vertical column."
+      },
+      {
+        "name": "Meta Label Tag",
+        "role": "Small uppercase caption for section context",
+        "description": "Nohemi 14px, weight 400, letter-spacing 0.10em, uppercase, Peach Cream. No background, no border. Used for captions like 'I'M FÉLIX', 'UP NEXT', 'SHOWCASE OF DIVERSE WORKS'. Sits 8–16px above the element it labels. The tag is the typographic system doing the work of a section header at the smallest scale."
+      },
+      {
+        "name": "Project Preview Card",
+        "role": "Selected-project showcase tile with shadow and border",
+        "description": "Rectangular card on Ultraviolet (#2d0458) or Charcoal (#272221) background, 10px border-radius, 1px Peach Cream border. Multi-layer drop shadow: rgba(0,0,0,0.01) 0 62px 25px / 0.05 0 35px 21px / 0.09 0 16px 16px / 0.1 0 4px 9px. 16px internal padding. Contains Mango Grotesque title and Nohemi meta. Acts as a hard-edged container against the soft green canvas."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Separator line for list items and section breaks",
+        "description": "1px Peach Cream line at full or partial width, often used inside Sage (#546f57) or dark panels. No margin on the line itself — adjacent elements supply 8–16px vertical breathing room. Functions as the structural rhythm of lists and metadata stacks."
+      },
+      {
+        "name": "Oversized Headline Block",
+        "role": "Hero display type that bleeds off the viewport",
+        "description": "Mango Grotesque weight 700 at 144–518px, line-height 0.80, letter-spacing 0.015–0.025em, color Coral Flame. Headline is positioned to overflow the right and/or bottom edge of the viewport — this is intentional, not a bug. The bleed creates the editorial-poster effect that defines the system's hero rhythm. Sits on Forest Ink with no container."
+      },
+      {
+        "name": "Section Accent Label",
+        "role": "Colored eyebrow text marking section transitions",
+        "description": "Mango Grotesque weight 500 at 32–48px, Lavender (#d1adff) or Coral Flame (#ff8370), letter-spacing 0.025em, line-height 0.85. Examples: 'SELECTED', 'PROJECTS', 'DIGI-TAL'. Acts as a visual chapter mark — bold enough to be a typographic moment, small enough not to compete with the hero headline."
+      },
+      {
+        "name": "Status Dot Indicator",
+        "role": "Colored circular marker for live meta states",
+        "description": "6px filled circle in Lavender (#d1adff) with a subtle 1px Peach Cream outer ring. Sits inline with Nohemi 14px caption text. Used to indicate 'live' status (current location, availability, active nav). The dot is the smallest semantic mark in the system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading — Mango Grotesque is a condensed grotesque used at near-illegible sizes (88–518px) with compressed line-height (0.80–0.85), intentionally bleeding off the viewport. The tight tracking plus compressed leading is what makes the type read as 'poster' rather than 'web headline'. Substitutes: Anton, Bebas Neue, Druk Wide for the mass, Archivo Black for smaller weights.",
+        "sizes": "32, 40, 48, 88, 94, 97, 144, 256, 518px",
+        "family": "Mango Grotesque",
+        "weight": "500, 700",
+        "lineHeight": "0.80, 0.85, 1.00, 1.20",
+        "substitute": "Anton or Archivo Black",
+        "letterSpacing": "0.0150em, 0.0200em, 0.0250em"
+      },
+      {
+        "role": "UI body, navigation, buttons, meta text — Nohemi runs at a deliberately tiny 14–18px with generous +0.10em tracking, a signature move that makes the UI text feel like caption furniture rather than body copy. The +10% tracking is anti-convention: most body systems tighten tracking, this loosens it to keep the small text airy and readable against the dark green. Substitutes: Inter, General Sans, Satoshi.",
+        "sizes": "14, 18px",
+        "family": "Nohemi",
+        "weight": "400, 600",
+        "lineHeight": "0.85, 1.10, 1.20, 1.35",
+        "substitute": "Inter or General Sans",
+        "letterSpacing": "0.1000em"
+      },
+      {
+        "role": "System fallback for the smallest UI metadata — 13px Arial is used purely as a safe baseline when custom fonts fail; treated as invisible utility, not a design choice.",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Arial",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Flayks is a maximalist editorial portfolio that treats every screen like a printed broadsheet: a deep forest-green canvas, oversized compressed display type that intentionally overflows the viewport, and a single warm peach tone as the dominant text and border color. The system pairs two custom typefaces — Mango Grotesque for monumental condensed headlines and Nohemi for the tiny UI chrome — creating an extreme scale contrast that defines the visual rhythm. Accents appear sparingly: coral-orange for emphasis type, lavender-violet for section labels and selected states. Surfaces are flat with a single deep shadow drop pattern on cards; 3D illustration tiles float above the canvas, slightly rotated, giving the page a tactile collage quality rather than a flat app feel.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flayks design system\",\"item\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#style-reference\",\"name\":\"Flayks design system reference\",\"headline\":\"Flayks design system | Refero Styles\",\"description\":\"Explore Flayks's dark Agency design system: Forest Ink #00381c, Forest Deep #002d16 colors, Mango Grotesque, Nohemi typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\",\"mainEntityOfPage\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flayks\",\"url\":\"https://flayks.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"caption\":\"Screenshot of Flayks\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flayks design system\",\"Flayks website design\",\"Flayks colors\",\"Flayks typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Forest Ink\",\"Forest Deep\",\"Peach Cream\",\"Bone\",\"Mango Grotesque\",\"Nohemi\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flayks design system\"},{\"@type\":\"Thing\",\"name\":\"Flayks website design\"},{\"@type\":\"Thing\",\"name\":\"Flayks colors\"},{\"@type\":\"Thing\",\"name\":\"Flayks typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:14:43.603Z\",\"dateModified\":\"2026-04-30T03:14:43.603Z\"}]}19:T808,## Quick Color Reference\n- Text (primary): #ffe0ce (Peach Cream)\n- Text (secondary): #f6e9d9 (Bone)\n- Canvas: #00381c (Forest Ink)\n- Card surface: #272221 (Charcoal) or #2d0458 (Ultraviolet)\n- Accent / emphasis type: #ff8370 (Coral Flame)\n- Accent / nav active / tags: #d1adff (Lavender)\n- primary action: #ffe0ce (outlined action border)\n\n## Example Component Prompts\n\n1. **Outlined Ghost Action Button**: Transparent background, 1.5px border in #ffe0ce (Peach Cream), border-radius 6px, padding 10px 16px. Label in Nohemi weight 600, 14px, uppercase, letter-spacing 0.10em, color #ffe0ce. Hover state shifts border to #ff8370 (Coral Flame).\n\n2. **Oversized Bleeding Headline**: Mango Grotesque weight 700 at 256px, line-height 0.80, letter-spacing 0.020em, color #ff8370 (Coral Flame). Position the text block so it overflows the right viewport edge by 10–15% — this bleed is the signature. Background is #00381c (Forest Ink) with no container.\n\n3. **Floating 3D Illustration Tile**: 320px square card, background #272221 (Charcoal), border-radius 10px, 1px border in #ffe0ce (Peach Cream). Contains a 3D render (crystalline vehicle on blue sky) filling the card. Apply a slight rotation of -3°. Add the ambient shadow stack: rgba(0,0,0,0.2) 0 0 112px 0 plus rgba(0,0,0,0.1) 4px -4px 12px 0.\n\n4. **Status Bar Footer Strip**: Full-width, pinned to viewport bottom, transparent over #00381c (Forest Ink). Three columns: left is a 6px #d1adff (Lavender) dot followed by Nohemi 14px uppercase weight 400, letter-spacing 0.10em, #ffe0ce, reading 'CURRENTLY IN TOULOUSE, FR (CET)'. Center column: same type, 'AVAILABLE FOR NEW PROJECTS'. Right column: a snowflake glyph + 'CONTACT'. Vertical padding 14px.\n\n5. **Project Preview Card**: 400px wide, internal padding 16px, background #2d0458 (Ultraviolet), border-radius 10px, 1px border #ffe0ce (Peach Cream). Apply the four-layer card shadow. Title in Mango Grotesque weight 700 at 48px, line-height 0.85, color #ffe0ce. Meta line in Nohemi 14px uppercase, letter-spacing 0.10em, color #d1adff (Lavender)."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffe0ce",
+          "oklch": {
+            "c": 0.04202672841787143,
+            "h": 52.07524043380041,
+            "l": 0.9275521717355218
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "nav",
+            "link",
+            "card",
+            "list",
+            "image",
+            "heading",
+            "button"
+          ],
+          "frequency": 2764,
+          "confidence": 1,
+          "prominence": 318359274.1741327,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 89,
+            "card/color": 49,
+            "hero/color": 2,
+            "link/color": 37,
+            "list/color": 125,
+            "image/color": 62,
+            "other/color": 164,
+            "button/color": 8,
+            "heading/color": 41,
+            "nav/borderColor": 40,
+            "body/borderColor": 240,
+            "card/borderColor": 164,
+            "hero/borderColor": 8,
+            "link/borderColor": 148,
+            "list/borderColor": 488,
+            "image/borderColor": 248,
+            "other/borderColor": 636,
+            "button/borderColor": 32,
+            "heading/borderColor": 164,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#ff8370",
+          "oklch": {
+            "c": 0.15449432100303218,
+            "h": 30.164784420694232,
+            "l": 0.7457796381872429
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "card",
+            "image",
+            "link",
+            "body"
+          ],
+          "frequency": 415,
+          "confidence": 1,
+          "prominence": 20151314.642619256,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "card/color": 9,
+            "link/color": 11,
+            "image/color": 4,
+            "other/color": 10,
+            "heading/color": 30,
+            "body/borderColor": 76,
+            "card/borderColor": 36,
+            "link/borderColor": 44,
+            "image/borderColor": 16,
+            "other/borderColor": 40,
+            "heading/borderColor": 120
+          }
+        },
+        {
+          "hex": "#d1adff",
+          "oklch": {
+            "c": 0.1189634969025933,
+            "h": 303.99799618395673,
+            "l": 0.8084412299421011
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "heading",
+            "link",
+            "card",
+            "list",
+            "body"
+          ],
+          "frequency": 546,
+          "confidence": 1,
+          "prominence": 11849674.244631622,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 30,
+            "other/color": 31,
+            "other/stroke": 4,
+            "heading/color": 30,
+            "nav/borderColor": 8,
+            "other/boxShadow": 2,
+            "body/borderColor": 116,
+            "card/borderColor": 32,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "list/borderColor": 9,
+            "heading/boxShadow": 1,
+            "other/borderColor": 140,
+            "heading/borderColor": 120,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#00381c",
+          "oklch": {
+            "c": 0.07431770606007382,
+            "h": 154.75738174864006,
+            "l": 0.29918638649938223
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 139,
+          "confidence": 1,
+          "prominence": 9143305.469231918,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 9,
+            "other/fill": 9,
+            "button/color": 9,
+            "icon/borderColor": 36,
+            "button/borderColor": 36,
+            "body/backgroundColor": 38,
+            "other/backgroundColor": 1,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 425,
+          "confidence": 1,
+          "prominence": 6267643.296250771,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 42,
+            "button/color": 42,
+            "body/borderColor": 168,
+            "button/borderColor": 168,
+            "card/backgroundColor": 4,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#272221",
+          "oklch": {
+            "c": 0.007853663394832136,
+            "h": 31.128730244486466,
+            "l": 0.2571926168189533
+          },
+          "contexts": [
+            "image",
+            "other",
+            "heading",
+            "body",
+            "card"
+          ],
+          "frequency": 194,
+          "confidence": 1,
+          "prominence": 5458685.510612915,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "other/color": 18,
+            "heading/color": 9,
+            "body/borderColor": 36,
+            "other/borderColor": 72,
+            "heading/borderColor": 36,
+            "card/backgroundColor": 5,
+            "image/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#2c2f34",
+          "oklch": {
+            "c": 0.00994865471163296,
+            "h": 260.7109795830226,
+            "l": 0.3042112242196253
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1854855.35216747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#2d0458",
+          "oklch": {
+            "c": 0.131370269865135,
+            "h": 297.6580460126662,
+            "l": 0.2554663104556301
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1854855.35216747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#1e1779",
+          "oklch": {
+            "c": 0.1559507128093494,
+            "h": 274.6053455485279,
+            "l": 0.29904348069832315
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1808129,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c3bfbc",
+          "oklch": {
+            "c": 0.006156050822776581,
+            "h": 59.63020925755932,
+            "l": 0.8070186274637116
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1666113.436054996,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#977eac",
+          "oklch": {
+            "c": 0.0731716078629117,
+            "h": 309.07332392997523,
+            "l": 0.632795701143317
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1666113.436054996,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#002a3b",
+          "oklch": {
+            "c": 0.05380107208663348,
+            "h": 230.8894611361662,
+            "l": 0.267247632564524
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1666113.436054996,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#002d16",
+          "oklch": {
+            "c": 0.06335618695405194,
+            "h": 155.85501683732042,
+            "l": 0.2605170967770697
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 1613086.7543175,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 9,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#546f57",
+          "oklch": {
+            "c": 0.05013716540798987,
+            "h": 147.29556896786474,
+            "l": 0.5142268523246639
+          },
+          "contexts": [
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 782362.6327389518,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/borderColor": 3,
+            "other/borderColor": 4,
+            "body/backgroundColor": 42
+          }
+        },
+        {
+          "hex": "#f6e9d9",
+          "oklch": {
+            "c": 0.025555890902608073,
+            "h": 73.18098837182589,
+            "l": 0.940031163632937
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 111158.35791112091,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 1,
+            "other/stroke": 3,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.15472239047040065,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#000000",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.81,
+          "background": "#000000",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#2d0458",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.23,
+          "background": "#2d0458",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.15,
+          "background": "#272221",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#002d16",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.61,
+          "background": "#002a3b",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.57,
+          "background": "#272221",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#002d16",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#1e1779",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#002a3b",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#1e1779",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#c3bfbc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.24,
+          "background": "#2c2f34",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.13,
+          "background": "#000000",
+          "foreground": "#d1adff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#00381c",
+          "foreground": "#f6e9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.75,
+          "background": "#2c2f34",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.62,
+          "background": "#00381c",
+          "foreground": "#ffe0ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#c3bfbc",
+          "foreground": "#2d0458"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.77,
+          "background": "#2d0458",
+          "foreground": "#d1adff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "body",
+            "image",
+            "list"
+          ],
+          "frequency": 98
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 43
+        },
+        {
+          "value": 900,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.01) 0px 62px 25px 0px, rgba(0, 0, 0, 0.05) 0px 35px 21px 0px, rgba(0, 0, 0, 0.09) 0px 16px 16px 0px, rgba(0, 0, 0, 0.1) 0px 4px 9px 0px",
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 0px 112px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 4px -4px 12px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.01) 21px 44px 20px 0px, rgba(0, 0, 0, 0.05) 12px 25px 17px 0px, rgba(0, 0, 0, 0.09) 5px 11px 12px 0px, rgba(0, 0, 0, 0.1) 1px 3px 7px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.01) 0px 262px 105px 0px, rgba(0, 0, 0, 0.05) 0px 148px 89px 0px, rgba(0, 0, 0, 0.09) 0px 66px 66px 0px, rgba(0, 0, 0, 0.1) 0px 16px 36px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 153,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginTop|body",
+            "marginTop|list",
+            "marginRight|list",
+            "marginBottom|list",
+            "marginLeft|list",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginRight|icon",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 40,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "card",
+            "heading"
+          ],
+          "frequency": 75,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|heading",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 79,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "columnGap|heading",
+            "marginTop|other",
+            "marginRight|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|list",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingTop|list",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "link",
+            "list",
+            "other"
+          ],
+          "frequency": 37,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "marginLeft|list",
+            "marginRight|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginBottom|card",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 82,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 137,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 158,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 202,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 245,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 259,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Nohemi",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 636,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Mango Grotesque",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 145,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 102,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Nohemi",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "link",
+            "icon",
+            "list"
+          ],
+          "frequency": 165,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Nohemi",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Nohemi",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Nohemi",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "card",
+            "image",
+            "body",
+            "list",
+            "button"
+          ],
+          "frequency": 401,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Nohemi",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Nohemi",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Mango Grotesque",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.6,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Mango Grotesque",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 88,
+          "family": "Mango Grotesque",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 97,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 256,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 256,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 518,
+          "family": "Mango Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 48,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/71fdd74a-3bb7-4626-8fb7-c955c368f054.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flayks design system\",\"item\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#style-reference\",\"name\":\"Flayks design system reference\",\"headline\":\"Flayks design system | Refero Styles\",\"description\":\"Explore Flayks's dark Agency design system: Forest Ink #00381c, Forest Deep #002d16 colors, Mango Grotesque, Nohemi typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\",\"mainEntityOfPage\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flayks\",\"url\":\"https://flayks.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/77a193de-2472-4637-802f-d930ec61c180#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"caption\":\"Screenshot of Flayks\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d60e862-0da6-4c00-9d49-ce865ff73e7d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flayks design system\",\"Flayks website design\",\"Flayks colors\",\"Flayks typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Forest Ink\",\"Forest Deep\",\"Peach Cream\",\"Bone\",\"Mango Grotesque\",\"Nohemi\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flayks design system\"},{\"@type\":\"Thing\",\"name\":\"Flayks website design\"},{\"@type\":\"Thing\",\"name\":\"Flayks colors\"},{\"@type\":\"Thing\",\"name\":\"Flayks typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:14:43.603Z\",\"dateModified\":\"2026-04-30T03:14:43.603Z\"}]}19:T808,## Quick Color Reference\n- Text (primary): #ffe0ce (Peach Cream)\n- Text (secondary): #f6e9d9 (Bone)\n- Canvas: #00381c (Forest Ink)\n- Card surface: #272221 (Charcoal) or #2d0458 (Ultraviolet)\n- Accent / emphasis type: #ff8370 (Coral Flame)\n- Accent / nav active / tags: #d1adff (Lavender)\n- primary action: #ffe0ce (outlined action border)\n\n## Example Component Prompts\n\n1. **Outlined Ghost Action Button**: Transparent background, 1.5px border in #ffe0ce (Peach Cream), border-radius 6px, padding 10px 16px. Label in Nohemi weight 600, 14px, uppercase, letter-spacing 0.10em, color #ffe0ce. Hover state shifts border to #ff8370 (Coral Flame).\n\n2. **Oversized Bleeding Headline**: Mango Grotesque weight 700 at 256px, line-height 0.80, letter-spacing 0.020em, color #ff8370 (Coral Flame). Position the text block so it overflows the right viewport edge by 10–15% — this bleed is the signature. Background is #00381c (Forest Ink) with no container.\n\n3. **Floating 3D Illustration Tile**: 320px square card, background #272221 (Charcoal), border-radius 10px, 1px border in #ffe0ce (Peach Cream). Contains a 3D render (crystalline vehicle on blue sky) filling the card. Apply a slight rotation of -3°. Add the ambient shadow stack: rgba(0,0,0,0.2) 0 0 112px 0 plus rgba(0,0,0,0.1) 4px -4px 12px 0.\n\n4. **Status Bar Footer Strip**: Full-width, pinned to viewport bottom, transparent over #00381c (Forest Ink). Three columns: left is a 6px #d1adff (Lavender) dot followed by Nohemi 14px uppercase weight 400, letter-spacing 0.10em, #ffe0ce, reading 'CURRENTLY IN TOULOUSE, FR (CET)'. Center column: same type, 'AVAILABLE FOR NEW PROJECTS'. Right column: a snowflake glyph + 'CONTACT'. Vertical padding 14px.\n\n5. **Project Preview Card**: 400px wide, internal padding 16px, background #2d0458 (Ultraviolet), border-radius 10px, 1px border #ffe0ce (Peach Cream). Apply the four-layer card shadow. Title in Mango Grotesque weight 700 at 48px, line-height 0.85, color #ffe0ce. Meta line in Nohemi 14px uppercase, letter-spacing 0.10em, color #d1adff (Lavender)."
+}

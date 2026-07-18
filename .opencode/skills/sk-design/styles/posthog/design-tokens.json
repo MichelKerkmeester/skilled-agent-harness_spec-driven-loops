@@ -1,0 +1,664 @@
+{
+  "color": {
+    "sandy-desk": {
+      "$value": "#e1d7c2",
+      "$type": "color",
+      "$description": "Sandy Desk — Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks."
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Application window and card surfaces — the primary elevated layer above the sandy desk, used for main content areas and popovers"
+    },
+    "cream-paper": {
+      "$value": "#fdfdf8",
+      "$type": "color",
+      "$description": "Cream Paper — Slightly warm off-white for secondary card surfaces and hover states — bridges between the sandy desk and pure white windows"
+    },
+    "soft-linen": {
+      "$value": "#eeefe9",
+      "$type": "color",
+      "$description": "Soft Linen — Tertiary surface for nested cards, secondary buttons, and subtle washes — the middle stop in the surface stack"
+    },
+    "pale-stone": {
+      "$value": "#e5e7e0",
+      "$type": "color",
+      "$description": "Pale Stone — Quaternary surface for hover backgrounds, selected list items, and disabled states"
+    },
+    "deep-moss": {
+      "$value": "#23251d",
+      "$type": "color",
+      "$description": "Deep Moss — Primary text and heading color — near-black with a faint olive warmth, never pure #000"
+    },
+    "olive-char": {
+      "$value": "#4d4f46",
+      "$type": "color",
+      "$description": "Olive Char — Body text, secondary icons, and SVG fills — the workhorse neutral that gives the system its slightly earthy character"
+    },
+    "sage-gray": {
+      "$value": "#65675e",
+      "$type": "color",
+      "$description": "Sage Gray — Muted body text, inactive tab labels, and tertiary content — used when text must recede but remain legible"
+    },
+    "ash-green": {
+      "$value": "#9ea096",
+      "$type": "color",
+      "$description": "Ash Green — Disabled controls, placeholder text, and low-emphasis icon fills — the gray with just enough green to feel on-brand"
+    },
+    "faded-pewter": {
+      "$value": "#b3b3af",
+      "$type": "color",
+      "$description": "Faded Pewter — Hairline borders and subtle dividers — slightly cool against the warm canvas"
+    },
+    "warm-mist": {
+      "$value": "#bfc1b7",
+      "$type": "color",
+      "$description": "Warm Mist — Primary hairline border color — the most frequent border in the system, warm enough to harmonize with the sandy canvas"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon fills, dark-mode text, and maximum-contrast glyphs"
+    },
+    "signal-blue": {
+      "$value": "#2f80fa",
+      "$type": "color",
+      "$description": "Signal Blue — Blue action color for filled buttons, selected navigation states, and focused conversion moments.; Multi-stop brand gradient spanning blue → blue → orange-red → orange → amber → blue — used for the logo wordmark and occasional text-gradient decoration"
+    },
+    "amber-glow": {
+      "$value": "#eb9d2a",
+      "$type": "color",
+      "$description": "Amber Glow — Yellow action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "dark-amber": {
+      "$value": "#cd8407",
+      "$type": "color",
+      "$description": "Dark Amber — CTA hover and active states, pressed link backgrounds — the deeper shade of Amber Glow"
+    },
+    "burnished-gold": {
+      "$value": "#b17816",
+      "$type": "color",
+      "$description": "Burnished Gold — Outlined action borders and underline accents on links — the amber system uses this for ghost/outline variants"
+    },
+    "marigold": {
+      "$value": "#f1a82c",
+      "$type": "color",
+      "$description": "Marigold — Decorative illustration fills, icon accents, and the PostHog logo gradient mid-stop — not for UI controls"
+    },
+    "flame-orange": {
+      "$value": "#f54e00",
+      "$type": "color",
+      "$description": "Flame Orange — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "moss-green": {
+      "$value": "#6aa84f",
+      "$type": "color",
+      "$description": "Moss Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "open-runde": {
+      "$value": "Open Runde",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface for headings, body, and most UI text. The tight -0.025em tracking pulls letterforms together for a compact, confident feel. Weight 800 at 24px creates impact headlines; weight 400 at 15px is the workhorse body size. The geometric warmth distinguishes it from neutral sans-serifs."
+    },
+    "ibm-plex-sans-variable": {
+      "$value": "IBM Plex Sans Variable",
+      "$type": "fontFamily",
+      "$description": "Secondary UI typeface for navigation, controls, form labels, and developer-facing micro-copy. Its mechanical precision complements Open Runde's warmth — the two together signal 'friendly but technical'. Used at 13px/500 for nav items and 14px/400 for button labels."
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "Code contexts, keyboard shortcuts, and technical metadata — the system monospace for inline code and terminal-style displays"
+    },
+    "source-code-pro": {
+      "$value": "Source Code Pro",
+      "$type": "fontFamily",
+      "$description": "Source Code Pro — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "sm-17": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-17 at 14px"
+    },
+    "sm-18": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-18 at 14px"
+    },
+    "sm-19": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-19 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Open Runde",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "sandy-desk": {
+      "$value": "#e1d7c2",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level canvas — the 'desk' the entire desktop OS metaphor sits on"
+    },
+    "pale-stone": {
+      "$value": "#e5e7e0",
+      "$type": "color",
+      "$description": "Surface level 1: Hover and selected-item backgrounds — subtle surface shift for interactive states"
+    },
+    "soft-linen": {
+      "$value": "#eeefe9",
+      "$type": "color",
+      "$description": "Surface level 2: Nested card and secondary surface — used inside white windows for grouped content"
+    },
+    "cream-paper": {
+      "$value": "#fdfdf8",
+      "$type": "color",
+      "$description": "Surface level 3: Off-white variant for secondary windows and popover surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Primary application window and elevated card surface — the 'paper' pinned to the corkboard"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://posthog.com",
+      "siteName": "PostHog",
+      "extractedAt": "2026-07-03T03:36:06.150Z",
+      "variant": "extended"
+    }
+  }
+}

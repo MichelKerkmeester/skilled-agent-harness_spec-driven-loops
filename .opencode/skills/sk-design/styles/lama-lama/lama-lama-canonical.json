@@ -1,0 +1,869 @@
+{
+  "source": "https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f",
+  "uuid": "8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f",
+  "name": "Lama Lama",
+  "northStar": "midnight studio with a frozen-white spotlight",
+  "capturedAt": "2026-07-18T08:50:30.201Z",
+  "meta": {
+    "url": "https://lamalama.nl",
+    "siteName": "Lama Lama",
+    "extractedAt": "2026-06-03T21:36:18.823Z",
+    "durationMs": 34445,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 740,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every headline in Suisse Int'l weight 300 — the whisper-weight is the signature; do not promote it to 500 or 700 for emphasis",
+      "Use Ice Cyan (#d7f3f5) as the only foreground color across the entire dark canvas; never introduce a second chromatic accent",
+      "Render every link, call to action, and inline emphasis as a 1px hairline underline in Ice Cyan — no filled buttons, no rounded rectangles, no colored backgrounds in the dark sections",
+      "Use Carbon (#111314) as the surface for cards, video frames, and content blocks so they lift from Void (#020203) without introducing a new color",
+      "Apply a 15px corner radius to every image, card, and media frame; reserve 8px radius exclusively for buttons",
+      "Anchor text columns to the left margin with 40–48px horizontal gutter and let media frames run to the viewport edge — the asymmetry is the layout signature",
+      "Invert the palette exactly once, in a full-bleed Ice Cyan panel at the page foot, with dark text on light ground"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color other than Ice Cyan — no red, no green, no blue, no warm accents in the UI",
+      "Do not use weight 500 or 700 for headlines; 300 is the editorial voice and heavier weights break the cinematic calm",
+      "Do not render filled or rounded buttons on the dark sections — underlined ghost text is the only interactive treatment",
+      "Do not apply drop shadows or glow effects to cards, images, or text; elevation is communicated through Carbon-vs-Void surface shift alone",
+      "Do not center body text or headlines — left-alignment to the viewport gutter is what makes the layout read as editorial",
+      "Do not add gradients, background patterns, or decorative shapes; the void is the design",
+      "Do not invert the palette anywhere except the single closing Ice Cyan panel — multiple inversions would dilute the dramatic effect"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#d7f3f5",
+        "name": "Ice Cyan",
+        "role": "All foreground text, underlined link strokes, hairline borders, and the full-bleed inverted surface at the page foot — the only chromatic element in the system, used to make every readable word and every interactive affordance feel like it shares one voice",
+        "group": "brand"
+      },
+      {
+        "hex": "#020203",
+        "name": "Void",
+        "role": "Page background and deepest canvas layer — near-pure black with a barely-perceptible cool tint that makes Ice Cyan read slightly blue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111314",
+        "name": "Carbon",
+        "role": "Elevated card surface, section backdrop, and subtle horizontal divider band — one step lighter than Void to lift project cards and content blocks without breaking the dark mood",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container; the viewport is the canvas. Hero is an asymmetric two-column split with short text anchored to the left margin and a large media frame occupying the remaining width. Section rhythm is consistent: a 40px weight-300 section heading left-aligned, an optional underlined secondary action right-aligned on the same baseline, then generous 80–120px vertical breathing room before content. Project work appears as oversized editorial cards in a flexible grid that can hold one or two cards per row, each as wide as half the viewport. The services section is a plain two-column text list with no visual chrome. The page closes with a single full-bleed Ice Cyan inversion panel, right-aligned with the page's signature at 134px. Navigation is a minimal top bar; there is no sidebar, no sticky header, and no mega-menu.",
+    "imagery": "Imagery is editorial photography and looping silent video, always warm-toned and intimate — close-ups of hands on objects, African landscapes, architectural details — that cuts through the cold monochrome UI. Frames are large, edge-to-edge inside 15px-radius containers, and never captioned. No illustration, no 3D, no icon system beyond the brand monogram. The warm film-like photography against the icy void is the core atmospheric device.",
+    "similar": [
+      {
+        "why": "Same Dutch-agency editorial language — near-black canvas, single white foreground, weight-300 Swiss headlines, underlined ghost links, and warm editorial photography cutting through monochrome UI",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Same asymmetric full-bleed layout with short text columns anchored left and oversized media on the right, plus the same discipline of letting one typeface do all the work at light weights",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same ice-white-on-deep-black contrast and the same trick of inverting to a single full-bleed light panel at the page foot for the closing call to action",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same full-bleed dark canvas with oversized editorial photography, weight-300 Swiss headlines, and zero decorative UI chrome",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Same agency-portfolio restraint — generous gutters, asymmetric text-left/media-right splits, and a single foreground color carrying all interaction",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "15px",
+        "images": "15px",
+        "buttons": "8px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#020203",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Deepest page background, sets the mood for all content"
+      },
+      {
+        "hex": "#111314",
+        "name": "Carbon",
+        "level": 1,
+        "purpose": "Elevated card surface and subtle section banding — one step above Void to define project cards, video frames, and content blocks"
+      },
+      {
+        "hex": "#d7f3f5",
+        "name": "Ice Cyan Inversion",
+        "level": 2,
+        "purpose": "Full-bleed light panel that inverts the entire palette for the closing call to action — dark text on ice-cyan ground"
+      }
+    ],
+    "northStar": "midnight studio with a frozen-white spotlight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "caption-md",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.06
+      },
+      {
+        "role": "display",
+        "size": 134,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site chrome anchoring the brand mark and primary routes",
+        "description": "Full-bleed horizontal bar on Void background. Small Ice Cyan monogram (the four-bar 'L' mark) at the far left, followed by a horizontal row of ghost text links (Work, Branding, Grow, Jobs, Contact) set in Suisse Int'l 14px weight 400 with generous spacing (20px gap). 60px vertical padding. No background fill, no border, no shadow — the bar floats in the void."
+      },
+      {
+        "name": "Hero Split (Text + Media)",
+        "role": "First-fold statement combining a short editorial headline with a large warm-toned photograph or looping video",
+        "description": "Asymmetric two-column layout on Void. Left column holds a weight-300 headline at 50px / 1.06 line-height, with inline words styled as underlined Ice Cyan links (no other color). Below the headline, a two-paragraph body block at 16px / 1.50 in Ice Cyan. Right column holds a full-bleed media frame (video or image) that extends to the viewport edge with 15px corner radius. 64px vertical breathing room between headline and media."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "The system's only interactive surface treatment — used for nav, inline emphasis, and calls to action",
+        "description": "Ice Cyan text (#d7f3f5) with a 1px hairline underline in the same color. No background, no border, no hover fill — the link is identified purely by the stroke. Used throughout the site for navigation, inline headline words, section secondary actions ('More recent projects', 'More about us', 'Drop us a line'), and footer items."
+      },
+      {
+        "name": "Featured Project Card",
+        "role": "Large editorial card showcasing a project image with title and description beneath",
+        "description": "Carbon (#111314) surface with 15px corner radius. Contains a single edge-to-edge image (no internal padding) with 15px radius, followed by a 20px gap and a left-aligned title at 30px weight 300, then a short body description at 14–16px weight 400. No border, no shadow — the card is defined purely by its surface lift from Void to Carbon. Cards sit in a flexible grid that allows oversized editorial compositions."
+      },
+      {
+        "name": "Section Header",
+        "role": "Opens each major content section with a large editorial heading and an optional secondary ghost link",
+        "description": "Weight-300 heading at 40px / 1.17 line-height in Ice Cyan, anchored to the left margin with 40–48px horizontal gutter. A secondary action ('More recent projects', 'More about us') sits underlined and right-aligned on the same baseline, also in 14–16px Ice Cyan. 80–120px vertical breathing room below the header before content begins."
+      },
+      {
+        "name": "Service List (Two-Column Text)",
+        "role": "Compact capability list arranged as two ghost-text columns",
+        "description": "Section begins with a 'What we can do for you' heading at 40px weight 300, then two columns of services (Visual Identities, Strategy & Concept, UX Design, UI Design, Visual Design / Front-end development, Back-end development, Poë dancing, Online Marketing, Data). Items set in 16px weight 400 Ice Cyan with 8–10px row gap. No bullets, no dividers — a list of plain words."
+      },
+      {
+        "name": "Full-Bleed Inverted Panel",
+        "role": "Closing call to action that inverts the entire color system for dramatic effect",
+        "description": "A horizontal band of Ice Cyan (#d7f3f5) that spans the full viewport width and sits at the page foot. Text on this surface switches to Carbon (#111314). Used for the final 'Play heart.' display lockup at 134px weight 500, aligned to the right margin. This is the only place the palette inverts, and it carries the emotional close of the site."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "Compact two-letter locale switcher (NL EN) with active state treatment",
+        "description": "Two ghost text characters (NL, EN) set inline at 14px in Ice Cyan. The active locale is underlined with a 1px hairline in Ice Cyan; the inactive locale has no decoration. Sits in the footer region above the inverted panel."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Persistent utility strip with a looping video thumbnail, navigation links, and a signature line",
+        "description": "Horizontal bar on Void with 60px vertical padding. Far left: a small square video thumbnail with a 'Play shadow' / 'Play with sound' ghost label. Center-left: ghost text links (Updates, About, Play, Heart, Draw something) at 14px weight 400. Far right on the inverted panel: a short ghost-text invitation ('You have found us. Now let's talk.') with an underlined 'Drop us a line' action."
+      },
+      {
+        "name": "Ghost Text Button (Inverted)",
+        "role": "Secondary action on the light inverted panel",
+        "description": "Carbon (#111314) text on the Ice Cyan surface, 14–16px weight 400, with a 1px underline. No background, no border, no radius. This is the only button-like component in the system, and it exists solely on the inverted panel where a filled button would break the editorial language."
+      }
+    ],
+    "typography": [
+      {
+        "role": "SuisseIntl — detected in extracted data but not described by AI",
+        "sizes": "10px, 12px, 14px, 16px, 30px, 40px, 50px, 134px",
+        "family": "SuisseIntl",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "0.86, 1, 1.06, 1.17, 1.22, 1.25, 1.38, 1.5, 1.56"
+      },
+      {
+        "role": "Single-family Swiss grotesque used everywhere — 300 weight drives the 50px hero and 40px section headlines (anti-convention; most agencies use 600–700), which creates editorial authority through restraint rather than volume; 400 is the body and nav workhorse; 500 appears in inline emphasis and the 'Play heart.' display lockup at 134px",
+        "sizes": "10, 12, 14, 16, 30, 40, 50, 134",
+        "family": "Suisse Int'l",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.00–1.06 for display and hero, 1.17–1.25 for section and sub headings, 1.38–1.56 for body, nav, and footer",
+        "substitute": "Inter, Söhne, Helvetica Now, Neue Haas Grotesk"
+      }
+    ],
+    "description": "Lama Lama is a cinematic, near-monochrome editorial agency site: the canvas is almost pure black, the foreground is a single pale ice-cyan white used for every word on the page, and the only color punctuation is the same ice-white flipping into a full-bleed inverted panel at the foot of the page. Typography is a Swiss grotesque (Suisse Int'l) at whisper-light weights — 300 for hero and section headlines — which reads as confident, unfussy, and editorial rather than loud. Layout is asymmetric and full-bleed: short text columns anchored to the viewport's left margin, generous gutters of 40–48px, and large editorial photographs or video frames occupying the remaining width. There are almost no filled buttons; navigation, links, and calls to action are all ghost text with thin underlines, which makes the interface feel like a magazine spread rather than a product UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lama Lama design system\",\"item\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#style-reference\",\"name\":\"Lama Lama design system reference\",\"headline\":\"Lama Lama design system | Refero Styles\",\"description\":\"Explore Lama Lama's dark Agency design system: Ice Cyan #d7f3f5, Void #020203 colors, SuisseIntl, Suisse Int'l typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lama Lama\",\"url\":\"https://lamalama.nl\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"caption\":\"Screenshot of Lama Lama\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lama Lama design system\",\"Lama Lama website design\",\"Lama Lama colors\",\"Lama Lama typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ice Cyan\",\"Void\",\"Carbon\",\"SuisseIntl\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lama Lama design system\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama website design\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama colors\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:26:27.122Z\",\"dateModified\":\"2026-04-30T02:26:27.122Z\"}]}19:T5ce,**Quick Color Reference**\n- text: #d7f3f5\n- background: #020203\n- surface: #111314\n- border: #d7f3f5 (hairline 1px only)\n- accent: #d7f3f5 (inversion surface)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero section on Void (#020203) background. Left column: 50px Suisse Int'l weight 300 headline in #d7f3f5 with inline words styled as 1px underlined ghost links. Below: two-column body at 16px weight 400, #d7f3f5. Right column: full-bleed media frame with 15px corner radius, extending to viewport edge. 64px vertical gap between headline and media.\n\n2. Create a featured project card: Carbon (#111314) surface, 15px corner radius, no border, no shadow. Edge-to-edge image inside with 15px radius. Below the image, a 30px weight 300 title in #d7f3f5, then 16px weight 400 description in #d7f3f5. 20px gap between image and title.\n\n3. Create a section header: 40px Suisse Int'l weight 300 heading in #d7f3f5, left-aligned with 40px horizontal gutter. A 14px ghost-text secondary action ('More about us') right-aligned on the same baseline, 1px underlined in #d7f3f5. 80px vertical breathing room below.\n\n4. Create a service list: two columns of plain ghost text on Void background. Items in 16px weight 400 #d7f3f5 with 10px row gap. No bullets, no dividers, no background panels.\n\n5. Create a closing inverted panel: full-bleed #d7f3f5 surface, 134px Suisse Int'l weight 500 right-aligned text in #111314. Sits at the page foot, single use only."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#d7f3f5",
+          "oklch": {
+            "c": 0.02937456641186707,
+            "h": 201.90696125243636,
+            "l": 0.9444900975640986
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "button",
+            "footer"
+          ],
+          "frequency": 1634,
+          "confidence": 1,
+          "prominence": 154925387.4306937,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 40,
+            "body/color": 45,
+            "hero/color": 2,
+            "link/color": 14,
+            "other/fill": 503,
+            "image/color": 3,
+            "other/color": 84,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 36,
+            "nav/borderColor": 160,
+            "body/borderColor": 180,
+            "hero/borderColor": 8,
+            "link/borderColor": 56,
+            "image/borderColor": 12,
+            "other/borderColor": 336,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 144,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#111314",
+          "oklch": {
+            "c": 0.003787765740408758,
+            "h": 229.03022300102532,
+            "l": 0.18494630811324522
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "heading"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 81810060.13029201,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "list/color": 3,
+            "other/color": 1,
+            "heading/color": 4,
+            "link/borderColor": 8,
+            "list/borderColor": 12,
+            "other/borderColor": 4,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#020203",
+          "oklch": {
+            "c": 0.005553227830184068,
+            "h": 285.17291392654556,
+            "l": 0.08597295178590166
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 473456.8282904223,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.07722380048608918,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.8,
+          "background": "#020203",
+          "foreground": "#d7f3f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16,
+          "background": "#111314",
+          "foreground": "#d7f3f5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#020203",
+          "foreground": "#111314"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "nav",
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "paddingRight",
+            "marginTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingLeft|link",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "marginLeft|link",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "marginLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SuisseIntl",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 236,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "body",
+            "image",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 95,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "SuisseIntl",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "SuisseIntl",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "SuisseIntl",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 134,
+          "family": "SuisseIntl",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 31,
+          "lineHeight": 0.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/04b357e2-357b-42e9-9409-6f97db89423e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lama Lama design system\",\"item\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#style-reference\",\"name\":\"Lama Lama design system reference\",\"headline\":\"Lama Lama design system | Refero Styles\",\"description\":\"Explore Lama Lama's dark Agency design system: Ice Cyan #d7f3f5, Void #020203 colors, SuisseIntl, Suisse Int'l typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lama Lama\",\"url\":\"https://lamalama.nl\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8e26bf8a-44b8-4fe1-9b4b-188dd5827c0f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"caption\":\"Screenshot of Lama Lama\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9fe2503b-01a8-46dc-936b-8fc7c49273f7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lama Lama design system\",\"Lama Lama website design\",\"Lama Lama colors\",\"Lama Lama typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ice Cyan\",\"Void\",\"Carbon\",\"SuisseIntl\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lama Lama design system\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama website design\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama colors\"},{\"@type\":\"Thing\",\"name\":\"Lama Lama typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:26:27.122Z\",\"dateModified\":\"2026-04-30T02:26:27.122Z\"}]}19:T5ce,**Quick Color Reference**\n- text: #d7f3f5\n- background: #020203\n- surface: #111314\n- border: #d7f3f5 (hairline 1px only)\n- accent: #d7f3f5 (inversion surface)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero section on Void (#020203) background. Left column: 50px Suisse Int'l weight 300 headline in #d7f3f5 with inline words styled as 1px underlined ghost links. Below: two-column body at 16px weight 400, #d7f3f5. Right column: full-bleed media frame with 15px corner radius, extending to viewport edge. 64px vertical gap between headline and media.\n\n2. Create a featured project card: Carbon (#111314) surface, 15px corner radius, no border, no shadow. Edge-to-edge image inside with 15px radius. Below the image, a 30px weight 300 title in #d7f3f5, then 16px weight 400 description in #d7f3f5. 20px gap between image and title.\n\n3. Create a section header: 40px Suisse Int'l weight 300 heading in #d7f3f5, left-aligned with 40px horizontal gutter. A 14px ghost-text secondary action ('More about us') right-aligned on the same baseline, 1px underlined in #d7f3f5. 80px vertical breathing room below.\n\n4. Create a service list: two columns of plain ghost text on Void background. Items in 16px weight 400 #d7f3f5 with 10px row gap. No bullets, no dividers, no background panels.\n\n5. Create a closing inverted panel: full-bleed #d7f3f5 surface, 134px Suisse Int'l weight 500 right-aligned text in #111314. Sits at the page foot, single use only."
+}

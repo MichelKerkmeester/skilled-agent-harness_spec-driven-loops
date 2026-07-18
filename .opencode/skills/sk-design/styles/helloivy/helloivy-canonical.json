@@ -1,0 +1,934 @@
+{
+  "source": "https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51",
+  "uuid": "5af6b791-6cad-4497-9e94-ace28e4fbd51",
+  "name": "Helloivy",
+  "northStar": "Risograph-printed design journal on cream paper. A two-color editorial system where personality lives in typography, not color — the cream background, black ink, and one whisper-gray are the entire palette, and the quirky geometric display face carries all the brand energy the restrained palette deliberately withholds.",
+  "capturedAt": "2026-07-18T09:13:31.562Z",
+  "meta": {
+    "url": "https://helloivy.co",
+    "siteName": "Helloivy",
+    "extractedAt": "2026-06-03T20:25:20.801Z",
+    "durationMs": 26567,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 553,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every page background to #faf6f0 — the warm cream is the system's signature; pure white pages break the editorial identity",
+      "Use Unbounded for display sizes 34px and above, Inter for everything else — never substitute a different display family",
+      "Apply letter-spacing -0.02em to all Inter text, regardless of size — the tight tracking is what makes the body type feel editorial rather than utilitarian",
+      "Keep filled primary buttons at 9999px radius (fully rounded pill) with #000000 fill and white text — no exceptions",
+      "Use #5e697f for all secondary text; reserve #000000 strictly for headlines, primary actions, and the logo",
+      "Separate sections with generous vertical breathing room (80px+) rather than dividers or background-color shifts",
+      "Render product UI mockups on #ffffff panels with 8px radius to create the paper-on-paper layering against the cream canvas"
+    ],
+    "donts": [
+      "Don't introduce a brand color — the entire palette is black, cream, and slate; adding blue, purple, or green breaks the two-color editorial system",
+      "Don't apply drop shadows to cards, buttons, or sections — the flatness is intentional; elevation comes from color contrast only",
+      "Don't use Inter for display headlines above 34px — Unbounded's geometric character is what gives the brand its personality",
+      "Don't tighten body line-height below 1.50 — the generous leading is part of the editorial reading rhythm",
+      "Don't use #000000 for body paragraphs — it must be #5e697f or #555555 to preserve the ink-on-paper hierarchy",
+      "Don't round section cards at large radii (16px+) — keep them at 8px or less; the only fully-rounded elements are action buttons",
+      "Don't add gradients to backgrounds, buttons, or text — the system is strictly flat; gradients would break the print-artifact metaphor"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#faf6f0",
+        "name": "Cream Paper",
+        "role": "Page canvas, section backgrounds, card surfaces — the warm off-white ground that makes the whole site read like a print artifact rather than a screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Headlines, body text, primary filled buttons, logo mark, dividers, icons — the dominant structural color carrying almost all information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5e697f",
+        "name": "Slate Whisper",
+        "role": "Secondary body text, muted descriptions, helper text, subdued labels — the single desaturated accent that softens body copy without competing with headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#555555",
+        "name": "Charcoal",
+        "role": "Secondary paragraph text, sub-labels, low-emphasis copy where Slate Whisper isn't deployed — fills the gap between ink-black headlines and whisper-gray annotations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Product mockup surfaces, card-internal backgrounds, floating badge fills — the crisp inset color that product UI sits on, creating a paper-on-paper layering effect against the cream canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered, with a full-bleed cream canvas that extends to viewport edges. The hero is a tall text-first block: a compact top nav (logo left, links right, CTA pill), then a 62–82px Unbounded headline left-aligned spanning nearly the full content width, followed by a single paragraph of body copy. Below the hero, a horizontal card row splits the viewport into two: a cream feature card on the left, a video preview tile on the right. The social proof section is a full-width logo grid with thin hairlines. Feature sections alternate between a 2-column split (product mockup left, text column right) and centered text blocks. Vertical rhythm is spacious — 80px between sections, no colored bands or alternating backgrounds, just the continuous cream canvas. A floating 'Try it for free' pill sits fixed in the bottom-right corner.",
+    "imagery": "The site is overwhelmingly text-and-UI, with imagery limited to two categories: (1) product UI mockups rendered as white panels embedded in the cream canvas — these are tight, unglamorous product crops showing actual interface states, not stylized marketing renders; and (2) a monochrome logo grid for social proof, where client logos are displayed in single-color black at reduced opacity. There is no lifestyle photography, no abstract illustration, no 3D — the visual language is editorial restraint. Decorative elements are limited to a small circular 'Hi Creative Teams' text stamp that functions as an editorial ornament.",
+    "similar": [
+      {
+        "why": "Both use a single-color product UI palette where the product screenshot is the main visual element on a minimal background, though Notion uses white instead of cream and Inter instead of a display face",
+        "business": "Notion"
+      },
+      {
+        "why": "Same restrained near-monochrome approach with flat surfaces, generous spacing, and no shadows — though Linear is dark-mode and uses purple as its only accent",
+        "business": "Linear"
+      },
+      {
+        "why": "Both embrace a print-editorial visual language with warm off-white backgrounds, serif/geometric display type, and a near-absence of color — a deliberate anti-SaaS aesthetic",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same warm cream canvas, same monochrome ink approach, same editorial typography pairing where personality comes from type choices rather than color",
+        "business": "Read.cv"
+      },
+      {
+        "why": "Both use a single dominant product color (black for Pitch's dark mode, cream for Helloivy) with the display typeface doing the brand work, and both prioritize flat surfaces over elevation",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "pills": "9999px",
+        "small": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#faf6f0",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed sections — the warm paper ground"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Inset",
+        "level": 1,
+        "purpose": "Product mockup panels, card-internal backgrounds, floating elements that need to sit forward of the cream"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Pill",
+        "level": 2,
+        "purpose": "Filled primary action buttons, logo wordmark, high-contrast overlay elements"
+      }
+    ],
+    "northStar": "Risograph-printed design journal on cream paper. A two-color editorial system where personality lives in typography, not color — the cream background, black ink, and one whisper-gray are the entire palette, and the quirky geometric display face carries all the brand energy the restrained palette deliberately withholds.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading-lg",
+        "size": 34,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.34
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.62
+      },
+      {
+        "role": "display-lg",
+        "size": 82,
+        "lineHeight": 1.1,
+        "letterSpacing": 1.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Hero CTAs, top-nav 'Get Started', primary conversion actions",
+        "description": "Filled black (#000000) background, white text, Inter 14px weight 500, fully rounded (9999px radius), horizontal padding 24px, vertical padding 10px. No shadow, no border. The entire button reads as a solid ink stamp on cream paper."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary actions, floating utility actions like 'Try it for free'",
+        "description": "Filled black (#000000) background with white text, 8px radius, fixed-positioned (bottom-right). Same ink-stamp treatment as the primary button but with a small icon prefix."
+      },
+      {
+        "name": "Navigation Text Link",
+        "role": "Top-nav items: Features, Pricing, Log in",
+        "description": "No fill, no border. Inter 14px weight 500, color #000000. Sits in the header bar with generous horizontal spacing (30px+ between items). The 'Get Started' pill button terminates the nav row."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Brand mark in nav and footer",
+        "description": "Lowercase 'hello ivy' in Inter 14px weight 500, #000000, with a thick black horizontal bar (4px height) underlining only the word 'hello' — the underline is the actual brand identifier, not the type."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section openers",
+        "description": "Unbounded weight 500 at 62–82px, line-height 1.10–1.20, letter-spacing +0.01–0.02em, color #000000. The geometric letterforms at this scale carry the brand's personality. Never uses color other than black or charcoal."
+      },
+      {
+        "name": "Section Subhead",
+        "role": "Mid-page section titles ('Improve visibility, stay in the loop.')",
+        "description": "Inter weight 600 at 24–32px, line-height 1.40–1.50, color #5e697f. Stays subdued so the body paragraph beneath it can carry the real information."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "All explanatory copy beneath headlines",
+        "description": "Inter weight 400 at 16px, line-height 1.60, color #5e697f. Generous leading for the editorial feel; never tighter than 1.50."
+      },
+      {
+        "name": "Featured Card (Cream Inset)",
+        "role": "Inline feature callouts within a hero or section, e.g. the 'Instead of work happening all over the place…' block",
+        "description": "No fill — sits on the cream canvas — with a thin 1px #000000 border or subtle gray background. 24px padding, 8px radius. Contains a short lead phrase in Inter 16px weight 600 black followed by body copy in #5e697f."
+      },
+      {
+        "name": "Video Preview Tile",
+        "role": "Embedded \"Meet Hello Ivy in 60 seconds\" teaser",
+        "description": "Gray circular play button centered on a neutral field, paired with Inter 16px weight 600 title and #5e697f descriptor to the right. The circle is roughly 64px diameter with a 1px border."
+      },
+      {
+        "name": "Logo Grid Cell",
+        "role": "Social proof section: \"USED BY THE MOST PRODUCTIVE DESIGN TEAMS AND AGENCIES\"",
+        "description": "Grid of client/agency logos in monochrome (black or 40% black opacity), separated by thin vertical and horizontal hairlines. Logos sit centered in equal-width cells; the grid label is Inter 12px weight 500 uppercase, letter-spacing +0.05em, color #5e697f."
+      },
+      {
+        "name": "Product Mockup Panel",
+        "role": "In-context product UI screenshots within feature sections",
+        "description": "White (#ffffff) background panel with 8px radius, containing a realistic product UI render. Sits on the cream canvas to create a paper-on-paper layering effect. Labeled with a small Inter 12–14px weight 500 caption above."
+      },
+      {
+        "name": "Feature Split Block",
+        "role": "Two-column sections pairing a visual on one side with a text column on the other",
+        "description": "Left column: product mockup panel with caption. Right column: subhead in #5e697f Inter 24px, body copy in #5e697f Inter 16px, with bold inline emphasis. 80px vertical gap between sections, 24px gap between subhead and body."
+      },
+      {
+        "name": "Round Badge Stamp",
+        "role": "Decorative credibility mark (the \"Hi Creative Teams\" circle)",
+        "description": "Circular text stamp — Inter 10–12px uppercase arranged radially around a center, with a thin 1px border circle. 80–100px diameter. Color #5e697f or #000000. Functions as editorial ornament, not UI element."
+      },
+      {
+        "name": "Text Inline Link",
+        "role": "Emphasized terms within body paragraphs (e.g. 'Feed' tool, 'collaboration')",
+        "description": "Underlined, color #000000 or #5e697f, Inter 16px weight 500. The underline is the only differentiator from body text — no color change, no background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display and hero headlines only. The geometric, slightly quirky letterforms are the brand's only expressive color — at 62px and 82px they dominate screens with editorial confidence. The slight positive tracking (+0.01–0.02em) keeps the wide geometric shapes from feeling cold. Substitute: Space Grotesk for a similar geometric-friendliness, or DM Sans Display.",
+        "sizes": "20px, 34px, 62px, 82px",
+        "family": "Unbounded",
+        "weight": "400, 500",
+        "lineHeight": "1.10–1.40",
+        "substitute": "Space Grotesk",
+        "letterSpacing": "0.01em to 0.02em"
+      },
+      {
+        "role": "Body, UI, navigation, subheadings, button labels. The tight negative tracking (-0.02em) at all sizes gives Inter a confident editorial density that pairs with Unbounded's looser display feel. Weight 400 is the workhorse; 500–600 for subheadings; 700 reserved for inline emphasis.",
+        "sizes": "12px, 14px, 16px, 18px, 24px, 27px, 32px",
+        "family": "Inter",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.20–1.60",
+        "substitute": "Inter (Google Fonts)",
+        "letterSpacing": "-0.02em across all sizes"
+      },
+      {
+        "role": "Inter-Bold — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "Inter-Bold",
+        "weight": "700",
+        "lineHeight": "1.6"
+      },
+      {
+        "role": "Inter-Medium — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Inter-Medium",
+        "weight": "500",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Helloivy uses a warm-cream editorial canvas with near-monochrome ink-black typography, giving the product a print-magazine feel rather than typical SaaS sterility. The display typeface (Unbounded) is geometric and slightly playful, carrying personality that the restrained palette deliberately withholds; Inter does the quiet labor of body, UI, and labels. Surfaces are flat — no shadows, no gradients — and the only elevation comes from filled black pills sitting on cream, or muted gray cards containing product commentary. Color is rationed: the cream canvas (#faf6f0) anchors the page, black owns headlines and primary actions, a single slate gray (#5e697f) handles secondary text, and white is reserved for product mockup surfaces. Everything else is space, type, and the occasional thin hairline border.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Helloivy design system\",\"item\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#style-reference\",\"name\":\"Helloivy design system reference\",\"headline\":\"Helloivy design system | Refero Styles\",\"description\":\"Explore Helloivy's light Productivity design system: Cream Paper #faf6f0, Ink Black #000000 colors, sans-serif, Unbounded typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Helloivy\",\"url\":\"https://helloivy.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"caption\":\"Screenshot of Helloivy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Helloivy design system\",\"Helloivy website design\",\"Helloivy colors\",\"Helloivy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Cream Paper\",\"Ink Black\",\"Slate Whisper\",\"Charcoal\",\"sans-serif\",\"Unbounded\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Helloivy design system\"},{\"@type\":\"Thing\",\"name\":\"Helloivy website design\"},{\"@type\":\"Thing\",\"name\":\"Helloivy colors\"},{\"@type\":\"Thing\",\"name\":\"Helloivy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-26T18:48:42.000Z\",\"dateModified\":\"2026-03-26T18:48:42.000Z\"}]}19:T71f,**Quick Color Reference**\n- text (primary): #000000\n- text (secondary): #5e697f\n- background (canvas): #faf6f0\n- surface (inset/elevated): #ffffff\n- border (hairline): #000000 at 1px or #5e697f at 1px\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero headline block*: Background #faf6f0. Headline in Unbounded weight 500, 82px, line-height 1.10, letter-spacing 0.02em, color #000000. Body paragraph beneath in Inter weight 400, 18px, line-height 1.60, letter-spacing -0.02em, color #5e697f. No buttons, no imagery — just type on cream.\n\n2. *Primary navigation with filled action*: Horizontal nav bar, #faf6f0 background. Left: 'hello ivy' wordmark in Inter 14px weight 500 #000000 with a 4px-thick black bar under 'hello'. Right: 'Features' / 'Pricing' / 'Log in' in Inter 14px weight 500 #000000 with 30px gaps, then a 'Get Started' pill — #000000 background, white Inter 14px weight 500 text, 9999px radius, 10px vertical / 24px horizontal padding.\n\n3. *Feature split section*: Two-column layout, 1200px max-width, #faf6f0 background. Left column (55%): white (#ffffff) product mockup panel, 8px radius, 24px padding internally. Right column (45%): subhead in Inter 24px weight 600 #5e697f, 24px gap, body in Inter 16px weight 400 #5e697f, line-height 1.60. No card background on the text column.\n\n4. *Logo grid social proof*: Full-width section, #faf6f0 background. Label above in Inter 12px weight 500 uppercase #5e697f with +0.05em tracking, reading 'USED BY THE MOST PRODUCTIVE DESIGN TEAMS AND AGENCIES'. Below: 4-column grid of client logos, each cell 200px wide, 80px tall, logos in #000000 at 60% opacity, separated by 1px #5e697f hairlines.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design uses flat surfaces and color contrast alone for hierarchy — black-on-cream for primary actions, white-on-cream for inset product cards, and thin hairline borders for section dividers. This flatness is core to the print-editorial identity; introducing drop shadows would push the system toward generic SaaS territory."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "heading",
+            "icon",
+            "image"
+          ],
+          "frequency": 1852,
+          "confidence": 1,
+          "prominence": 118983787.55606999,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#faf6f0",
+          "oklch": {
+            "c": 0.009041041111401388,
+            "h": 78.28203992083048,
+            "l": 0.9745715111701607
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 40558828.64959332,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5e697f",
+          "oklch": {
+            "c": 0.037392465662397595,
+            "h": 264.173545473276,
+            "l": 0.5197531503672911
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 21074.857420738415,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 6929.732513893995,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1148,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0062226999577865575,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.51,
+          "background": "#faf6f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#ffffff",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#faf6f0",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#faf6f0",
+          "foreground": "#5e697f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#000000",
+          "foreground": "#5e697f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#faf6f0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 92,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 90,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 347,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 114,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Unbounded",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter-Bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter-Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "image"
+          ],
+          "frequency": 347,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter-Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter-Bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Unbounded",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Unbounded",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Unbounded",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 82,
+          "family": "Unbounded",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f6a87a30-ccce-4dfc-8fe0-ddde49efe3bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Helloivy design system\",\"item\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#style-reference\",\"name\":\"Helloivy design system reference\",\"headline\":\"Helloivy design system | Refero Styles\",\"description\":\"Explore Helloivy's light Productivity design system: Cream Paper #faf6f0, Ink Black #000000 colors, sans-serif, Unbounded typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Helloivy\",\"url\":\"https://helloivy.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5af6b791-6cad-4497-9e94-ace28e4fbd51#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"caption\":\"Screenshot of Helloivy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54649f51-0f3d-4494-b7d7-b9c48f3d464c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Helloivy design system\",\"Helloivy website design\",\"Helloivy colors\",\"Helloivy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Cream Paper\",\"Ink Black\",\"Slate Whisper\",\"Charcoal\",\"sans-serif\",\"Unbounded\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Helloivy design system\"},{\"@type\":\"Thing\",\"name\":\"Helloivy website design\"},{\"@type\":\"Thing\",\"name\":\"Helloivy colors\"},{\"@type\":\"Thing\",\"name\":\"Helloivy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-26T18:48:42.000Z\",\"dateModified\":\"2026-03-26T18:48:42.000Z\"}]}19:T71f,**Quick Color Reference**\n- text (primary): #000000\n- text (secondary): #5e697f\n- background (canvas): #faf6f0\n- surface (inset/elevated): #ffffff\n- border (hairline): #000000 at 1px or #5e697f at 1px\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero headline block*: Background #faf6f0. Headline in Unbounded weight 500, 82px, line-height 1.10, letter-spacing 0.02em, color #000000. Body paragraph beneath in Inter weight 400, 18px, line-height 1.60, letter-spacing -0.02em, color #5e697f. No buttons, no imagery — just type on cream.\n\n2. *Primary navigation with filled action*: Horizontal nav bar, #faf6f0 background. Left: 'hello ivy' wordmark in Inter 14px weight 500 #000000 with a 4px-thick black bar under 'hello'. Right: 'Features' / 'Pricing' / 'Log in' in Inter 14px weight 500 #000000 with 30px gaps, then a 'Get Started' pill — #000000 background, white Inter 14px weight 500 text, 9999px radius, 10px vertical / 24px horizontal padding.\n\n3. *Feature split section*: Two-column layout, 1200px max-width, #faf6f0 background. Left column (55%): white (#ffffff) product mockup panel, 8px radius, 24px padding internally. Right column (45%): subhead in Inter 24px weight 600 #5e697f, 24px gap, body in Inter 16px weight 400 #5e697f, line-height 1.60. No card background on the text column.\n\n4. *Logo grid social proof*: Full-width section, #faf6f0 background. Label above in Inter 12px weight 500 uppercase #5e697f with +0.05em tracking, reading 'USED BY THE MOST PRODUCTIVE DESIGN TEAMS AND AGENCIES'. Below: 4-column grid of client logos, each cell 200px wide, 80px tall, logos in #000000 at 60% opacity, separated by 1px #5e697f hairlines.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+}

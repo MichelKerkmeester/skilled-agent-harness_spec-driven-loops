@@ -1,0 +1,302 @@
+{
+  "color": {
+    "midnight-wine": {
+      "$value": "#42022e",
+      "$type": "color",
+      "$description": "Midnight Wine — Hero band background, section dividers, deep surface moments — the deepest brand tone, used as atmosphere not as UI fill"
+    },
+    "coral-ember": {
+      "$value": "#ff4143",
+      "$type": "color",
+      "$description": "Coral Ember — Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "slate-ink": {
+      "$value": "#455360",
+      "$type": "color",
+      "$description": "Slate Ink — Primary text, icons, heading strokes, input borders, default UI chrome — the dominant near-gray that gives the system its printed-paper authority"
+    },
+    "fog-gray": {
+      "$value": "#939598",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary text, helper copy, muted badges, logo tints — recedes behind Slate Ink to build typographic depth"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Canvas background, card surfaces, text on dark bands — the bright neutral that holds the content sections open"
+    },
+    "mist": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Mist — Hairline dividers, decorative stroke accents, soft borders — the quietest neutral, separates without competing"
+    },
+    "graphite": {
+      "$value": "#11110f",
+      "$type": "color",
+      "$description": "Graphite — Highest-emphasis text on light surfaces, deep icon fills — slightly warmer than pure black, reads as ink rather than absence"
+    },
+    "google-signal-blue": {
+      "$value": "#4285f4",
+      "$type": "color",
+      "$description": "Google Signal Blue — Third-party sign-in button (Google OAuth) — utility color for federated auth, not a brand accent"
+    }
+  },
+  "font": {
+    "sentinel": {
+      "$value": "Sentinel",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines. The 300-weight sentinel at 53px with -5px tracking is a signature anti-convention choice — most SaaS sites push 600-700 weight sans-serifs at this size; Sentinel whispers and the negative tracking tightens the forms so the whisper still commands. Its serif construction gives the brand a print-publication voice, distancing it from generic dashboard UI."
+    },
+    "whitney": {
+      "$value": "Whitney",
+      "$type": "fontFamily",
+      "$description": "All UI, body copy, buttons, inputs, icons-as-type, navigation, and feature subheadings. Whitney carries a slightly geometric humanist character that softens the serif display — it reads as warm utilitarian rather than tech-bro geometric. The 0.167em tracked small-caps treatment for 12px badges creates a distinct editorial eyebrow style above section heads."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sentinel",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "whitney",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "sentinel",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sentinel",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "wine-hero-band": {
+      "$value": "#42022",
+      "$type": "color",
+      "$description": "Surface level 0: Top hero, dark editorial moments — establishes the midnight-wine atmosphere"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, content sections — the bright default surface"
+    },
+    "elevated-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Feature cards, illustration frames — visually identical to canvas, separated by spatial rhythm and thin Mist borders rather than elevation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://slab.com",
+      "siteName": "Slab",
+      "extractedAt": "2026-06-03T20:05:23.933Z",
+      "variant": "extended"
+    }
+  }
+}

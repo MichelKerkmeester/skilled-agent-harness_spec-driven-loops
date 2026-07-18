@@ -1,0 +1,392 @@
+{
+  "color": {
+    "carbon-vellum": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Carbon Vellum — Primary text, inverse button text, icon strokes — near-white reads as paper against the void"
+    },
+    "obsidian": {
+      "$value": "#0a0a13",
+      "$type": "color",
+      "$description": "Obsidian — Primary page canvas and dominant background; the slight blue undertone keeps it from feeling flat black"
+    },
+    "pitch": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "void": {
+      "$value": "#040407",
+      "$type": "color",
+      "$description": "Void — Secondary canvas layer and topmost nav background, one shade lighter than Pitch"
+    },
+    "graphite": {
+      "$value": "#08080c",
+      "$type": "color",
+      "$description": "Graphite — Card surface for elevated product mockups, sits one step above Obsidian"
+    },
+    "smoke": {
+      "$value": "#757580",
+      "$type": "color",
+      "$description": "Smoke — Secondary body text and metadata — cool gray, never warm, stays quiet under headlines"
+    },
+    "ash": {
+      "$value": "#a3a3b3",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, card descriptions, inactive nav, most frequently used muted foreground"
+    },
+    "charcoal": {
+      "$value": "#2a2a32",
+      "$type": "color",
+      "$description": "Charcoal — Subtle card border on light-mode-adjacent surfaces; hairline divider"
+    },
+    "iris-glow": {
+      "$value": "#6199f6",
+      "$type": "color",
+      "$description": "Iris Glow — Sole chromatic accent — icons, eyebrow labels, links, active states, feature marks. One blue, used surgically, carries the entire brand identity"
+    },
+    "twilight": {
+      "$value": "#4f4f80",
+      "$type": "color",
+      "$description": "Twilight — Muted violet used for card borders, glow halos, and atmospheric tints — the only color allowed to live near content surfaces"
+    },
+    "specter-lilac": {
+      "$value": "#dedfee",
+      "$type": "color",
+      "$description": "Specter Lilac — Soft highlight on violet accents and light-mode card edges; cool, desaturated lavender"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "framegothic": {
+      "$value": "FrameGothic",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface for everything from 80px display headlines down to 10px metadata. The custom geometric sans carries the entire voice — tight letter-spacing (-0.045em at display sizes) makes large type feel compressed and modern, while the wide weight range (400/500/600) lets hierarchy do the talking without changing family."
+    },
+    "neuemachinainktrap": {
+      "$value": "NeueMachinaInktrap",
+      "$type": "fontFamily",
+      "$description": "Reserved exclusively for all-caps eyebrow labels (e.g. 'THE FRAME.IO PLATFORM', 'SHARING & PRESENTING', 'WORKFLOW MANAGEMENT'). Wide tracking (0.06em) and inktrap cuts give a mechanical, stamped feel — these labels are always Iris Glow or a light tone, never the body color."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback and small UI text inside embedded product mockups; carries no brand weight"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "NeueMachinaInktrap",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "FrameGothic",
+        "fontSize": "80px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cosmic-canvas": {
+      "$value": "#0a0a13",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background with deep purple/blue radial gradient overlay"
+    },
+    "nav-veil": {
+      "$value": "#040407",
+      "$type": "color",
+      "$description": "Surface level 1: Slightly darker topmost layer behind navigation bar"
+    },
+    "product-surface": {
+      "$value": "#08080c",
+      "$type": "color",
+      "$description": "Surface level 2: Embedded app UI mockups and product chrome"
+    },
+    "card-halo": {
+      "$value": "#181826",
+      "$type": "color",
+      "$description": "Surface level 3: Inset shadow tint for cards with violet borders, creates depth without lifting the surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://frame.io",
+      "siteName": "Frame.io",
+      "extractedAt": "2026-06-03T17:25:20.903Z",
+      "variant": "extended"
+    }
+  }
+}

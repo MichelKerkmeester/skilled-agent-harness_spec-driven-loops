@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-paper-white: #ffffff;
+  --color-bone-warm: #f6f2eb;
+  --color-ash-mist: #f5f5f5;
+  --color-graphite-border: #666666;
+  --color-smoke-border: #999999;
+  --color-pearl-border: #cccccc;
+  --color-silver-border: #bdbdbd;
+  --color-slate-text: #333333;
+  --color-carbon-input: #495057;
+  --color-obsidian: #212121;
+  --color-pure-black: #000000;
+
+  /* Typography — Font Families */
+  --font-dm-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.6;
+  --text-body: 16px;
+  --leading-body: 1.6;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.6;
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  --text-heading: 28px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 32px;
+  --leading-heading-lg: 1.2;
+  --text-display-sm: 40px;
+  --leading-display-sm: 1.17;
+  --text-display: 48px;
+  --leading-display: 1.17;
+  --tracking-display: -0.53px;
+  --text-display-lg: 92px;
+  --leading-display-lg: 0.79;
+  --tracking-display-lg: -1.01px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 18px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 40px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-badges: 40px;
+  --radius-images: 16px;
+  --radius-inputs: 8px;
+  --radius-buttons: 40px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(0, 0, 0) 0px 0px 0px 1px inset;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-ash-mist: #f5f5f5;
+  --surface-bone-warm: #f6f2eb;
+  --surface-obsidian: #212121;
+  --surface-pure-black: #000000;
+}

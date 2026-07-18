@@ -1,0 +1,282 @@
+{
+  "color": {
+    "ice-white": {
+      "$value": "#d8eaff",
+      "$type": "color",
+      "$description": "Ice White — Primary text and dominant border color — cool blue-tinted white that doubles as hairline borders, card outlines, and link underlines, creating a wireframe-in-light effect across all surfaces"
+    },
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Deepest surface — page canvas and footer base"
+    },
+    "carbon": {
+      "$value": "#0d0d0f",
+      "$type": "color",
+      "$description": "Carbon — Card surface — sits one shade above void, used for elevated content blocks"
+    },
+    "graphite": {
+      "$value": "#232529",
+      "$type": "color",
+      "$description": "Graphite — Body background and footer border surface — mid-layer charcoal"
+    },
+    "slate": {
+      "$value": "#2b2f33",
+      "$type": "color",
+      "$description": "Slate — Card backgrounds and the most common elevated surface — the default panel"
+    },
+    "iron": {
+      "$value": "#41464c",
+      "$type": "color",
+      "$description": "Iron — Muted body text and subtle dividers — secondary text level"
+    },
+    "steel": {
+      "$value": "#565e66",
+      "$type": "color",
+      "$description": "Steel — Tertiary body text and low-emphasis borders"
+    },
+    "fog": {
+      "$value": "#6c757f",
+      "$type": "color",
+      "$description": "Fog — Helper text and low-contrast borders — the quietest readable neutral"
+    },
+    "iron-edge": {
+      "$value": "#565657",
+      "$type": "color",
+      "$description": "Iron Edge — Medium-contrast borders and link outlines"
+    },
+    "electric-cobalt": {
+      "$value": "#1f58f2",
+      "$type": "color",
+      "$description": "Electric Cobalt — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "signal-orange": {
+      "$value": "#ff4105",
+      "$type": "color",
+      "$description": "Signal Orange — Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "monument": {
+      "$value": "Monument",
+      "$type": "fontFamily",
+      "$description": "Display and heading type — custom geometric sans used exclusively at weight 400. Headlines reach 96px with line-height 1.00, letter-spacing -0.03em. This single-weight approach forces the type to command through size alone, not boldness — a whisper-loud philosophy. Body-level Monument at 16-24px handles secondary text and large UI labels."
+    },
+    "mono": {
+      "$value": "Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, nav items, and small-caps category tags — monospaced at 10-14px with extreme tracking (0.06-0.16em). The wide letter-spacing on uppercase labels creates a scientific-instrument read, like serial numbers on laboratory equipment."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Monument",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Monument",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Monument",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Monument",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Monument",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "148": {
+      "$value": "148px",
+      "$type": "dimension",
+      "$description": "Spacing 148px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40.798px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the deepest background layer"
+    },
+    "carbon": {
+      "$value": "#0d0d0f",
+      "$type": "color",
+      "$description": "Surface level 1: Card surface — elevated content blocks and portfolio cells"
+    },
+    "graphite": {
+      "$value": "#232529",
+      "$type": "color",
+      "$description": "Surface level 2: Body background and footer border region — mid-layer"
+    },
+    "slate": {
+      "$value": "#2b2f33",
+      "$type": "color",
+      "$description": "Surface level 3: Most common card and panel surface — default elevation level"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atlantic.vc",
+      "siteName": "Atlantic.vc",
+      "extractedAt": "2026-06-03T18:06:02.805Z",
+      "variant": "extended"
+    }
+  }
+}

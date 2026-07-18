@@ -1,0 +1,858 @@
+{
+  "source": "https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28",
+  "uuid": "7f6799d9-0733-4523-9a94-036b9ad3bf28",
+  "name": "Charlie Phipps",
+  "northStar": "oversized editorial gallery wall — a single massive Helvetica headline and one full-bleed photograph, nothing else",
+  "capturedAt": "2026-07-18T07:43:49.542Z",
+  "meta": {
+    "url": "https://phippscharlie.com",
+    "siteName": "Charlie Phipps",
+    "extractedAt": "2026-06-03T19:45:21.588Z",
+    "durationMs": 34120,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 165,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Helvetica Neue at weight 400 exclusively for the entire interface — never introduce a bold, medium, or light variant; the single-weight system is the signature",
+      "Set the display headline to 162px with lineHeight 0.90 and letter-spacing -3.89px; let the line break where it breaks and allow the viewport to crop the text",
+      "Use the spacing scale of 6 / 13 / 26 / 41px only — no arbitrary in-between values, and reserve 41px for the largest section breaks",
+      "Place full-bleed photography behind text without overlay gradients or darkening scrims — the image's own contrast must carry legibility, or shift the text position to a clean area of the photo",
+      "Keep the color palette 100% achromatic — #101011 canvas, #ffffff text-on-photo, #000000 text-on-paper, and the gray scale for borders and metadata only",
+      "Float navigation at the viewport edge in three positions (left / center / right) using 13-16px text — never box it, border it, or background it",
+      "End editorial section headlines with a period (\"Selected works ©2022.\") — the declarative full stop is part of the typographic voice"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no brand reds, no accent blues, no button fills; the photograph is the only color source",
+      "Do not add border-radius to any element — keep all corners at 0px; rounded corners would break the printed-poster logic",
+      "Do not use box-shadows, drop-shadows, or any elevation effects — the design is flat against the photographic plane by intent",
+      "Do not swap the display weight to 700 or 800 in any context — if a heading needs more weight, increase size instead; 400 at scale is the only authority the system allows",
+      "Do not wrap text content in cards, panels, or bordered containers — sections are separated by whitespace alone, never by chrome",
+      "Do not use icons for social links, email, or navigation — text plus the ↗ external arrow is the entire icon vocabulary",
+      "Do not use uppercase tracking-wide labels for body copy — only the small section identifiers (EXPLORE, LATEST WORKS) use the stacked-label pattern"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#101011",
+        "name": "Canvas Black",
+        "role": "Base page canvas beneath full-bleed photography and dark bands; primary text on light surfaces; link underlines in dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text color on dark/photographic backgrounds; content section background; dominant border color (hairline rules and dividers across the layout)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Heading and body text on light surfaces; second structural border color — used wherever a slightly harder edge than #101011 is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Fog Gray",
+        "role": "Subtle surface tint separating content blocks from white paper; soft borders on body text and cards where a pure white hairline would disappear",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bab7b2",
+        "name": "Smoke Gray",
+        "role": "Muted heading accent — used for secondary headings and borders where the hierarchy needs to recede below the primary type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Ash Gray",
+        "role": "Body text metadata, link underlines in light contexts, and mid-weight borders — the workhorse neutral for anything that should be seen but not foregrounded",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262627",
+        "name": "Charcoal",
+        "role": "Deepest secondary border and muted text on light sections — just one step lighter than canvas black, used to keep dark elements feeling part of the same family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080809",
+        "name": "Void",
+        "role": "Near-pure black for the darkest link borders and emphasis text — visually indistinguishable from #000000 but kept distinct in the scale for deepest emphasis",
+        "group": "neutral"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Photography is the primary brand asset and the only source of color in the entire system. The hero uses a single large environmental photograph (currently a London red Tube train beside a billboard collage) shot at street level with high contrast and saturated color — the kind of frame a designer would shoot on a phone while walking. The image is always full-bleed, always uncropped to a fixed ratio, and always allowed to bleed off all four edges of the viewport. Below the hero, project case studies are presented as additional full-bleed photographs in their native aspect ratios with no padding, no rounded corners, and no overlaid text. There are no illustrations, no 3D renders, no abstract graphics, no icon systems, no decorative shapes — the photographic frame IS the visual language.",
+    "similar": [
+      {
+        "why": "Same single-weight Helvetica Neue at 400, oversized display headlines cropped at the viewport edge, and a near-total-achromatic palette where the only color comes from full-bleed product photography",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Same flat editorial portfolio approach — no card surfaces, no rounded corners, no shadows, single-weight sans-serif at extreme sizes, and text floating directly over full-bleed imagery",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Same printed-poster sensibility with 100% achromatic UI, dramatic 0px radii, and massive regular-weight type that uses size and tracking instead of bold weight to command attention",
+        "business": "Studio Bruch (studiobruch.com)"
+      },
+      {
+        "why": "Same London design-agency editorial restraint — generous whitespace as the primary structural device, single-weight type system, and photography treated as the only chromatic element",
+        "business": "Pentagram (pentagram.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "26px",
+      "sectionGap": "80px",
+      "cardPadding": "13px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#101011",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Dark base layer — visible only at the very top and as a thin nav strip; sets the stage for full-bleed photography"
+      },
+      {
+        "hex": "#101011",
+        "name": "Photographic Surface",
+        "level": 1,
+        "purpose": "Full-bleed images sit on the dark canvas, making saturated colors (the red tube train, billboard art) read as the only chromatic event on screen"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Content section background — flips the entire mood from cinematic to editorial, gives body type and case study imagery a clean reading surface"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Tinted Card",
+        "level": 3,
+        "purpose": "Subtle separation layer for metadata blocks, project tiles, or grouped secondary information on the white paper"
+      }
+    ],
+    "northStar": "oversized editorial gallery wall — a single massive Helvetica headline and one full-bleed photograph, nothing else",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.21
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": -0.62
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -0.83
+      },
+      {
+        "role": "display",
+        "size": 162,
+        "lineHeight": 0.9,
+        "letterSpacing": -3.89
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Photograph",
+        "role": "Opening screen background",
+        "description": "Photograph fills 100vw × 100vh with no overlay, no darkening, no gradient. All UI elements float on top: navigation, display headline, description, scroll indicator. The image is the brand — no decorative gradient or vignette is added."
+      },
+      {
+        "name": "Display Headline",
+        "role": "One-line statement over the hero",
+        "description": "Helvetica Neue 162px / lineHeight 0.90 / weight 400 / letter-spacing -3.89px / color #ffffff. Extends beyond viewport edges intentionally — the crop is part of the composition. Single sentence, no period, present tense. Anchored top-left with no padding alignment — type sits on the page edge."
+      },
+      {
+        "name": "Thin Top Navigation",
+        "role": "Persistent site chrome",
+        "description": "Three text links in Helvetica Neue 13-16px / weight 400 at the top of every screen: brand name (left), section index (center), profile (right). No background, no border, no logo mark. Links use 1px underlines only on hover. When over a photograph, text is #ffffff; over white content sections, text is #101011."
+      },
+      {
+        "name": "Section Label (EXPLORE / LATEST WORKS)",
+        "role": "Small-caps section identifier",
+        "description": "Two-line stack: uppercase category label (e.g. \"EXPLORE\") + count in parentheses + secondary line (e.g. \"Case Studies\"). Helvetica Neue 16px / weight 400 / #000000. No bullet, no border, no background — just tight typography anchoring the left margin."
+      },
+      {
+        "name": "Editorial Section Headline",
+        "role": "Large body-section opener",
+        "description": "Helvetica Neue 52-64px / lineHeight 1.00 / weight 400 / letter-spacing -0.6 to -0.8px / #000000. Used in white content sections as the counterpoint to the display hero — same weight, same family, just smaller. Period at end of sentence is a signature punctuation choice."
+      },
+      {
+        "name": "Body Description Block",
+        "role": "Centered contextual paragraph",
+        "description": "Three to four lines of Helvetica Neue 19-21px / lineHeight 1.2 / weight 400 / #ffffff on dark or #000000 on light. Max-width 480-520px, centered horizontally on the screen. Generous 26px vertical rhythm between lines."
+      },
+      {
+        "name": "Social Link Row",
+        "role": "Footer-level external links",
+        "description": "Two or three inline text links in Helvetica Neue 16px / weight 400, separated by 26px horizontal gap. Each link is preceded by the platform name in the same size; the external arrow (↗) is the only affordance — no icon, no button, no underline by default. Sits flush-left at the page bottom."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Single down-arrow cue at viewport bottom",
+        "description": "A thin downward arrow glyph (↓) in Helvetica Neue 16px / weight 400 / #ffffff. Positioned absolute at bottom-left, no animation, no label. Disappears once the user scrolls past the hero."
+      },
+      {
+        "name": "Project Card (case study tile)",
+        "role": "Image-first work sample in the project index",
+        "description": "Full-bleed photograph at natural aspect ratio (currently appearing 4:3 or 16:9) with no padding, no border, no radius. Caption appears below in Times 13px / #000000 if used. Image is the only element — no card surface, no metadata overlay, no hover state other than cursor."
+      },
+      {
+        "name": "Email Contact Link",
+        "role": "Bottom-right footer contact",
+        "description": "Single text string (email address) in Helvetica Neue 16px / weight 400 / #ffffff on dark or #000000 on light. No envelope icon, no button chrome — just the address as a link."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The entire typographic system. Weight 400 at 162px is the signature move — most portfolios would use 700-900 for a hero this large; Phipps uses regular, letting the sheer size and aggressive negative tracking carry authority instead of stroke weight. LineHeight of 0.90 on the display size means the two-line hero actually visually interlocks. All other text (body, labels, navigation, links) is the same family at the same weight — there is no secondary typeface voice.",
+        "sizes": "13px, 16px, 17px, 19px, 21px, 52px, 64px, 162px",
+        "family": "Helvetica Neue",
+        "weight": "400 (regular only — no bold, no medium, no light)",
+        "lineHeight": "0.90 (display) / 1.00 (large headings) / 1.20 (body)",
+        "substitute": "Inter, Neue Haas Grotesk, Arial, or any neutral neo-grotesque — but the substitute must stay at weight 400 for the display; a 700 weight fallback will destroy the editorial feel",
+        "letterSpacing": "-0.024em at 162px (≈-3.9px), -0.013em at 64px (≈-0.8px), -0.012em at 52px (≈-0.6px), -0.010em at 21px (≈-0.2px), -0.004em at 16-19px (≈-0.06 to -0.08px)"
+      },
+      {
+        "role": "Used only as 13px image captions or photo metadata — the serif appears as a deliberate editorial counterpoint to the Helvetica system, breaking the all-grotesque monotony at micro scale",
+        "sizes": "13px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, any transitional serif (Lora, Source Serif)"
+      }
+    ],
+    "description": "Charlie Phipps is a London graphic designer's portfolio rendered as an oversized editorial poster system: full-bleed photography as hero canvas, one monumental Helvetica Neue headline per screen, and near-total chromatic silence. The site reads like a printed zine blown up to wall scale — weight 400 at 162px is a deliberate anti-convention (no bold shout, just confident whisper-thin letters) paired with aggressive negative tracking that lets the headline crop the viewport. The base canvas is near-black (#101011) to make photographic color explosions land harder, but content sections flip to white with the same dramatic restraint. No buttons, no rounded corners, no shadows, no color tokens — interaction is implied by thin underlines and cursor states, and navigation is reduced to three thin links in a corner. Whitespace is the primary structural device, not cards or dividers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The design has zero elevation — no shadows, no borders-as-frames, no raised cards. Surface hierarchy is established entirely through photography bleed (full-bleed image = level 1) versus white paper (content surface = level 2) versus the dark canvas beneath everything (level 0). When a block needs to feel distinct, it is either given a photograph, given more whitespace, or shifted to white paper — never given a shadow or border treatment."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 475,
+          "confidence": 1,
+          "prominence": 149859889.67621222,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/color": 5,
+            "other/color": 87,
+            "heading/color": 2,
+            "image/borderColor": 20,
+            "other/borderColor": 348,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 280,
+          "confidence": 1,
+          "prominence": 16860412.52572728,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 2,
+            "image/color": 2,
+            "other/color": 45,
+            "heading/color": 5,
+            "body/borderColor": 8,
+            "card/borderColor": 8,
+            "image/borderColor": 8,
+            "other/borderColor": 180,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#ededed",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9461052851327489
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 5779423.377753938,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/color": 1,
+            "body/borderColor": 12,
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#101011",
+          "oklch": {
+            "c": 0.002042886921035309,
+            "h": 286.18480412554476,
+            "l": 0.1734824261400851
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 5212786.68856626,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "link/borderColor": 8,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#bab7b2",
+          "oklch": {
+            "c": 0.007786507356428958,
+            "h": 80.71755968239549,
+            "l": 0.7804276083561915
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 186034.58125190015,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0.00073935058374542,
+            "h": 286.3782099447543,
+            "l": 0.6252385873969066
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 24376.480378279703,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 5,
+            "body/borderColor": 4,
+            "link/borderColor": 15
+          }
+        },
+        {
+          "hex": "#262627",
+          "oklch": {
+            "c": 0.0014612521938856906,
+            "h": 286.3012691810818,
+            "l": 0.2697557747086894
+          },
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 18591.615528739916,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 6
+          }
+        },
+        {
+          "hex": "#080809",
+          "oklch": {
+            "c": 0.001218200158733205,
+            "h": 286.23494163185103,
+            "l": 0.13467055999676325
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3951.9216174982903,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00034001038990509667,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.02,
+          "background": "#ffffff",
+          "foreground": "#080809"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.02,
+          "background": "#101011",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#ededed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.1,
+          "background": "#ededed",
+          "foreground": "#080809"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.24,
+          "background": "#101011",
+          "foreground": "#ededed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#ffffff",
+          "foreground": "#262627"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.91,
+          "background": "#ededed",
+          "foreground": "#262627"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.5,
+          "background": "#bab7b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.01,
+          "background": "#bab7b2",
+          "foreground": "#080809"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#101011",
+          "foreground": "#bab7b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.56,
+          "background": "#bab7b2",
+          "foreground": "#262627"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#101011",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#ffffff",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#ededed",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 2,
+          "background": "#ffffff",
+          "foreground": "#bab7b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#ededed",
+          "foreground": "#bab7b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#101011",
+          "foreground": "#262627"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#ededed",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#101011",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 69,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 102,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 162,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/11df2101-ab58-4846-876d-10f9df21e506.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3e6c48ea-2f42-4246-8127-fee08c34a442.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Charlie Phipps design system\",\"item\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28#style-reference\",\"name\":\"Charlie Phipps design system reference\",\"headline\":\"Charlie Phipps design system | Refero Styles\",\"description\":\"Explore Charlie Phipps's mixed Design design system: Canvas Black #101011, Paper White #ffffff colors, Helvetica Neue, Times typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Charlie Phipps\",\"url\":\"https://phippscharlie.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7f6799d9-0733-4523-9a94-036b9ad3bf28#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e6c48ea-2f42-4246-8127-fee08c34a442.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e6c48ea-2f42-4246-8127-fee08c34a442.jpg\",\"caption\":\"Screenshot of Charlie Phipps\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e6c48ea-2f42-4246-8127-fee08c34a442.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Charlie Phipps design system\",\"Charlie Phipps website design\",\"Charlie Phipps colors\",\"Charlie Phipps typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas Black\",\"Paper White\",\"Ink Black\",\"Fog Gray\",\"Helvetica Neue\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Charlie Phipps design system\"},{\"@type\":\"Thing\",\"name\":\"Charlie Phipps website design\"},{\"@type\":\"Thing\",\"name\":\"Charlie Phipps colors\"},{\"@type\":\"Thing\",\"name\":\"Charlie Phipps typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:30:41.117Z\",\"dateModified\":\"2026-04-30T03:30:41.117Z\"}]}19:T44e,The page model alternates between two states: (1) a full-bleed dark photographic hero where type floats in a near-black space with no content boundaries, and (2) a white editorial content section where max-width 1400px text blocks sit on a clean paper field. Navigation is a persistent three-link text row at the top, no menu bar, no sidebar. The hero is asymmetric — headline anchored top-left cropping off the right edge, description block centered, nav distributed left/center/right, scroll indicator bottom-left, social links bottom-left, email bottom-right. Content sections are single-column with the section label (EXPLORE / Case Studies) as a left-margin anchor and a large headline + paragraph in the upper-left reading area, then large project photographs appearing further down as image-only tiles. The rhythm is: one massive statement, one breath of whitespace, one photograph, one sentence of caption. There are no card grids, no multi-column feature rows, no pricing tables — the layout is a vertical scroll of editorial spreads, each dominated by a single image and a single thought.1a:T8d4,**Quick Color Reference**\n- text (on white): #000000\n- text (on photo/dark): #ffffff\n- background (content sections): #ffffff\n- background (canvas/beneath photo): #101011\n- border / hairline: #ededed (light) or #000000 (emphasis)\n- muted text: #888888\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Full-bleed photographic hero** — Start every page with a 100vw × 100vh photograph filling the viewport edge-to-edge. Place a Helvetica Neue 162px / weight 400 / lineHeight 0.90 / letter-spacing -3.89px headline in #ffffff, anchored top-left, allowed to crop off the right viewport edge. Add the brand name in 16px Helvetica Neue 400 at the top-left corner and two more nav links at top-center and top-right. No overlay, no gradient, no scrim — the photograph must be the entire background.\n\n2. **Editorial content opener** — A white (#ffffff) content section, max-width 1400px centered. Left margin holds a stacked label: \"EXPLORE\" in 16px Helvetica Neue 400 #000000 on line one, \"(04)\" on line two, \"Case Studies\" on line three. To the right, a 52px Helvetica Neue 400 #000000 headline with lineHeight 1.00 and letter-spacing -0.62px, ending with a period. Below the headline, a paragraph at 21px / lineHeight 1.2 / #000000, max-width 520px.\n\n3. **Project photograph tile** — A single full-bleed photograph at its native aspect ratio (target 4:3 or 16:9), 0px border-radius, no padding, no border, no shadow, no caption overlay. If a caption is needed, place a 13px Times 400 #000000 string directly below the image with 13px top margin. The image is the entire component — no card surface.\n\n4. **Footer link row** — Three inline text links at 16px Helvetica Neue 400 in #ffffff, separated by 26px horizontal gap. Each link is just the platform or page name (e.g. \"Instagram\", \"LinkedIn\", \"Email\") with a thin ↗ arrow appended to external links. No icons, no underlines by default, no buttons. Positioned flush-left or flush-right at the viewport bottom edge with 26px page padding.\n\n5. **Scroll indicator** — A single ↓ glyph in 16px Helvetica Neue 400 #ffffff, positioned absolute at bottom-left of the hero viewport. No animation, no label, no border. Disappears after the user scrolls past the first screen."
+}

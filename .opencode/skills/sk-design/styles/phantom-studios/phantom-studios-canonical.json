@@ -1,0 +1,718 @@
+{
+  "source": "https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae",
+  "uuid": "1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae",
+  "name": "Phantom Studios",
+  "northStar": "green signal line on a black void",
+  "capturedAt": "2026-07-18T09:39:01.311Z",
+  "meta": {
+    "url": "https://www.phantom.land",
+    "siteName": "Phantom Studios",
+    "extractedAt": "2026-06-03T18:43:13.463Z",
+    "durationMs": 33505,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1291,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1eff66 only on the viewport-edge signal line and on input focus borders — it is a system event color, not a decoration",
+      "Keep all type uppercase across all sizes — mixed case breaks the coded/terminal reading",
+      "Use 14px radius for every rounded component (tags, inputs, buttons) — the single radius value unifies the system",
+      "Center critical content both vertically and horizontally in the viewport; the void is the layout grid",
+      "Pair Helvetica Now with ballinger-mono so every screen has a geometric-plus-mono contrast — never use a second sans-serif",
+      "Set display type (56px) at line-height 0.93 so multi-line headlines almost touch — the tight lockup is signature",
+      "Use Dark Graphite (#333333) for structural rules and White (#ffffff) for interactive borders — gray signals passive, white signals actionable"
+    ],
+    "donts": [
+      "Never fill a button or surface with a solid color — the system is outline-only on transparent void",
+      "Never use #1eff66 on body text, icons, or large surfaces — a single pixel-thin line is the maximum dose",
+      "Never introduce shadows, blurs, or gradients — depth must come from the green horizon line alone",
+      "Never use Mid Gray (#666666) for primary text — it intentionally fails contrast and should only mark inactive/muted states",
+      "Never mix in a third font family — Helvetica Now for structure, ballinger-mono for metadata, nothing else",
+      "Never pad sections less than 48px — the void needs breathing room; compact spacing collapses the poster effect",
+      "Never use a color background for cards or panels — every surface stays transparent over Pure Black"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, primary surface — the only background; every other color reads as light emitted from this base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "All text, dividers, list markers, and outline borders — 21:1 contrast against Void means type is the loudest element on the page by far",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Dark Graphite",
+        "role": "Hairline borders, secondary dividers, and structural rules — sits just above the void to define edges without lifting weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Mid Gray",
+        "role": "Muted helper text and inactive label borders — 3.7:1 against black intentionally fails contrast, signaling de-emphasis rather than legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1eff66",
+        "name": "Signal Green",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed viewport — no max-width container, no side margins. The hero is a single centered text lockup with the entire viewport as negative space around it. The Signal Green line sits at the absolute bottom edge of the viewport (not the page) as a system indicator. Navigation is absent from the visible fold; the page is treated as a poster rather than a document. Section rhythm is defined by Dark Graphite (#333333) 1px horizontal dividers with 88px vertical spacing, not by alternating surface colors — the void remains continuous top to bottom.",
+    "imagery": "No photography, illustration, or product imagery. The page is pure type on void with one Signal Green horizon line. Any visual content would compete with the terminal aesthetic and is treated as out-of-system. Iconography (if present elsewhere) is line-only in White (#ffffff) with 1px stroke, never filled and never green.",
+    "similar": [
+      {
+        "why": "Dark immersive canvas, single-color accent punctuation, geometric sans display type centered on near-empty viewport",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Creative technology studio aesthetic with near-monochrome dark pages, minimal chrome, and one signature accent doing all the work",
+        "business": "Resn"
+      },
+      {
+        "why": "Poster-like centered lockups on void, Helvetica/Helvetica-class type, uppercase wordmarks, no decoration",
+        "business": "Pentagram partner sites"
+      },
+      {
+        "why": "Creative technology agency using black canvas with selective chromatic accent lines and tight geometric typography",
+        "business": "Instrument"
+      },
+      {
+        "why": "Creative agency with all-caps wordmark, monospace metadata, and a single neon signal color against pure black",
+        "business": "Ueno"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "14px",
+        "cards": "14px",
+        "buttons": "14px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "88px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Unified page canvas — no distinction between background and surface; the entire site is one black field"
+      },
+      {
+        "hex": "#1eff66",
+        "name": "Signal Green Plane",
+        "level": 1,
+        "purpose": "Edge-of-screen accent stripe that doubles as a system indicator and the only non-monochrome surface"
+      }
+    ],
+    "elevation": [],
+    "northStar": "green signal line on a black void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 0.93,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Centered Display Lockup",
+        "role": "Primary brand mark for hero/landing screens",
+        "description": "Vertically and horizontally centered all-caps wordmark 'PHANTOM STUDIOS® TECHNOLOGY CREATIVE' — Helvetica Now 400 at 16px white (#ffffff) on Void (#000000), line-height 1.20, with a ballinger-mono 11px superscript ® separating the two phrases. Total lockup spans the full viewport with massive negative space above and below — the mark reads at arm's length."
+      },
+      {
+        "name": "Signal Horizon Line",
+        "role": "Page-level system indicator and visual anchor",
+        "description": "A 1–2px tall Signal Green (#1eff66) horizontal rule pinned to the absolute bottom edge of the viewport, full-bleed. Functions as a loading/scan bar, a system status pulse, or a closing punctuation mark. 15.6:1 contrast against Void makes even a hairline register as a deliberate UI event."
+      },
+      {
+        "name": "Outlined Link / Ghost Action Border",
+        "role": "Interactive text and outline-button borders",
+        "description": "White (#ffffff) 1px border on transparent Void fill. ACTION_BORDER evidence is strong (270 instances on #ffffff, 90 on #333333) — links and outline buttons are rendered as border-only geometry, never as filled shapes. Inset text 16px Helvetica Now 500, uppercase, letter-spacing normal."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule between content blocks",
+        "description": "Dark Graphite (#333333) 1px full-width line, 16px vertical padding above and below. Used to separate stacked sections without introducing a surface change — the void remains continuous."
+      },
+      {
+        "name": "Mono Caption / Tagline Strip",
+        "role": "Micro-copy, version marks, and metadata",
+        "description": "ballinger-mono 400 at 11px, line-height 1.10, Pure White (#ffffff) on Void. Always uppercase, always tracked at normal. Sits as a small secondary line under or beside display type, reading as a system log rather than marketing copy."
+      },
+      {
+        "name": "List Marker",
+        "role": "Ordered/unordered list bullets and item separators",
+        "description": "White (#ffffff) 1px borders used as inline list rules (list/borderColor=1796 instances). Lists are rendered as text with thin white horizontal rules between items rather than bullet glyphs — a terminal-list aesthetic."
+      },
+      {
+        "name": "Input / Form Field",
+        "role": "Text fields and form controls",
+        "description": "Transparent Void fill with White (#ffffff) 1px border, 14px corner radius, 16px Helvetica Now 400 in white, 11px ballinger-mono placeholder in Mid Gray (#666666). Focus state thickens the border to 2px and shifts to Signal Green (#1eff66) — the only time green touches a component."
+      },
+      {
+        "name": "Tag / Chip",
+        "role": "Category labels and status pills",
+        "description": "White (#ffffff) 1px border, Void fill, 14px radius, ballinger-mono 11px uppercase white text, 3px vertical / 8px horizontal padding. No fill color — tags are always hollow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and display face — geometric grotesque set tight (0.93 on the 56px display creates an almost single-line block of text)",
+        "sizes": "11, 16, 18, 22, 24, 56px",
+        "family": "Helvetica Now",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.93 (display 56px), 1.20 (16–24px)",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk"
+      },
+      {
+        "role": "Micro-copy, taglines, and trademark marks (the ® in 'PHANTOM STUDIOS® TECHNOLOGY CREATIVE'); 11px monospaced at 1.10 is intentionally difficult — it reads as metadata, not prose",
+        "sizes": "11px",
+        "family": "ballinger-mono",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Berkeley Mono"
+      }
+    ],
+    "description": "Phantom Studios operates as a near-totalist dark canvas: a single black field with one centered white text mark and a thin green horizon line anchoring the bottom of the viewport. The aesthetic is terminal-meets-poster — almost no chrome, no images, no navigation visible in the fold, just type on void with one signal color doing all the work. Typography is split between a geometric workhorse (Helvetica Now) for UI and display, and a tiny monospace face (ballinger-mono) for metadata, taglines, and trademark marks — the pairing reads as coded rather than designed. Everything is uppercase, everything is small, and the green line acts as a system indicator or cursor rather than decoration. The page makes you look harder than usual because there is almost nothing to look at; restraint is the product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Phantom Studios design system\",\"item\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#style-reference\",\"name\":\"Phantom Studios design system reference\",\"headline\":\"Phantom Studios design system | Refero Styles\",\"description\":\"Explore Phantom Studios's dark Agency design system: Void #000000, Pure White #ffffff colors, Helvetica Now, ballinger-mono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Phantom Studios\",\"url\":\"https://www.phantom.land\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"caption\":\"Screenshot of Phantom Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Phantom Studios design system\",\"Phantom Studios website design\",\"Phantom Studios colors\",\"Phantom Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Pure White\",\"Dark Graphite\",\"Mid Gray\",\"Helvetica Now\",\"ballinger-mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Phantom Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:37:17.774Z\",\"dateModified\":\"2026-04-30T00:37:17.774Z\"}]}19:T61c,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border (structural): #333333\n- border (interactive): #ffffff\n- muted: #666666\n- accent / signal: #1eff66\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Centered brand lockup: Pure Black (#000000) viewport. Wordmark 'PHANTOM STUDIOS® TECHNOLOGY CREATIVE' centered both axes, Helvetica Now 400 16px Pure White (#ffffff), line-height 1.20, uppercase, with a ballinger-mono 11px superscript ® between the two phrases. Add a 1px Signal Green (#1eff66) full-width line pinned to the absolute bottom of the viewport.\n2. Outline ghost button: 1px Pure White (#ffffff) border, transparent Void (#000000) fill, 14px radius, Helvetica Now 500 16px uppercase white text, 16px vertical / 24px horizontal padding. No fill state — hover shifts border to 2px, never changes color.\n3. Metadata caption strip: ballinger-mono 400 11px Pure White (#ffffff), line-height 1.10, uppercase, 8px margin-bottom above a 16px Helvetica Now 400 display line. Sits flush left, never centered, on Void background.\n4. Form input field: transparent Void (#000000) fill, 1px White (#ffffff) border, 14px corner radius, 16px Helvetica Now 400 white text, 11px ballinger-mono placeholder in Mid Gray (#666666), 16px vertical / 16px horizontal padding. Focus state replaces border with 2px Signal Green (#1eff66).\n5. Section divider: Dark Graphite (#333333) 1px full-width horizontal rule with 48px vertical padding above and below. Void background remains continuous — the divider is the only structure."
+      },
+      {
+        "title": "System Philosophy",
+        "content": "Phantom Studios treats the page as a terminal screen, not a website. There is no chrome, no navigation, no imagery — only a centered wordmark and one signal line. The entire visual identity is built from four neutrals and one accent, with two type families that never compete. Recreate this by defaulting to empty void, adding white type last, and reserving green for system-level events only."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is communicated through the single Signal Green accent line at the viewport edge — the only element that implies a plane above the void. Everything else sits flush on Pure Black, relying on contrast and weight (not elevation) to establish hierarchy."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 5943,
+          "confidence": 1,
+          "prominence": 114160776.45070432,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 349,
+            "link/color": 90,
+            "list/color": 449,
+            "other/color": 288,
+            "heading/color": 105,
+            "body/borderColor": 1036,
+            "link/borderColor": 270,
+            "list/borderColor": 1796,
+            "other/borderColor": 1140,
+            "heading/borderColor": 420
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 51126144.16305206,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 9,
+            "other/borderColor": 36,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 462,
+          "confidence": 1,
+          "prominence": 10669009.543280676,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 360,
+            "link/borderColor": 90,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 123770.58949702968,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1eff66",
+          "oklch": {
+            "c": 0.25257599372518935,
+            "h": 147.2269548400795,
+            "l": 0.8732512019512045
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4543,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00010568784964838059,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#1eff66",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.36,
+          "background": "#1eff66",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.25,
+          "background": "#1eff66",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#1eff66",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 347
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 180,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 194,
+          "properties": [
+            "marginBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingLeft|heading",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list",
+            "body"
+          ],
+          "frequency": 888,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|list",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 180,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 90,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Now",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 944,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ballinger-mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 347,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "ballinger-mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 347,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 835,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica Now",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 90,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Now",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Now",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Helvetica Now",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.93,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2808cb1a-7c37-4c8f-a0ee-d7707d7ff437.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Phantom Studios design system\",\"item\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#style-reference\",\"name\":\"Phantom Studios design system reference\",\"headline\":\"Phantom Studios design system | Refero Styles\",\"description\":\"Explore Phantom Studios's dark Agency design system: Void #000000, Pure White #ffffff colors, Helvetica Now, ballinger-mono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Phantom Studios\",\"url\":\"https://www.phantom.land\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1f0cc2ef-9de0-4cbb-909f-ca120ef6d0ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"caption\":\"Screenshot of Phantom Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd491a5c-430e-4456-a2dd-17e5e84d458e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Phantom Studios design system\",\"Phantom Studios website design\",\"Phantom Studios colors\",\"Phantom Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Pure White\",\"Dark Graphite\",\"Mid Gray\",\"Helvetica Now\",\"ballinger-mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Phantom Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Phantom Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:37:17.774Z\",\"dateModified\":\"2026-04-30T00:37:17.774Z\"}]}19:T61c,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border (structural): #333333\n- border (interactive): #ffffff\n- muted: #666666\n- accent / signal: #1eff66\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Centered brand lockup: Pure Black (#000000) viewport. Wordmark 'PHANTOM STUDIOS® TECHNOLOGY CREATIVE' centered both axes, Helvetica Now 400 16px Pure White (#ffffff), line-height 1.20, uppercase, with a ballinger-mono 11px superscript ® between the two phrases. Add a 1px Signal Green (#1eff66) full-width line pinned to the absolute bottom of the viewport.\n2. Outline ghost button: 1px Pure White (#ffffff) border, transparent Void (#000000) fill, 14px radius, Helvetica Now 500 16px uppercase white text, 16px vertical / 24px horizontal padding. No fill state — hover shifts border to 2px, never changes color.\n3. Metadata caption strip: ballinger-mono 400 11px Pure White (#ffffff), line-height 1.10, uppercase, 8px margin-bottom above a 16px Helvetica Now 400 display line. Sits flush left, never centered, on Void background.\n4. Form input field: transparent Void (#000000) fill, 1px White (#ffffff) border, 14px corner radius, 16px Helvetica Now 400 white text, 11px ballinger-mono placeholder in Mid Gray (#666666), 16px vertical / 16px horizontal padding. Focus state replaces border with 2px Signal Green (#1eff66).\n5. Section divider: Dark Graphite (#333333) 1px full-width horizontal rule with 48px vertical padding above and below. Void background remains continuous — the divider is the only structure."
+}

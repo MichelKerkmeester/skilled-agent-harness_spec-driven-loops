@@ -1,0 +1,335 @@
+{
+  "color": {
+    "blush-cream": {
+      "$value": "#fff4f2",
+      "$type": "color",
+      "$description": "Blush Cream — Page canvas — warm off-white that sets the editorial tone and makes the deep-indigo text read like printed ink on heavy paper"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, nav background, button fills on light backgrounds — stacked above the cream canvas to create depth without shadow"
+    },
+    "ink-violet": {
+      "$value": "#090335",
+      "$type": "color",
+      "$description": "Ink Violet — Primary text, headings, filled CTA buttons, nav links, hairline borders — the single dominant color of the entire interface; near-black with a violet undertone gives headings personality without abandoning readability"
+    },
+    "coral-flame": {
+      "$value": "#fc736c",
+      "$type": "color",
+      "$description": "Coral Flame — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "peach-whisper": {
+      "$value": "#ffb0a1",
+      "$type": "color",
+      "$description": "Peach Whisper — Orange decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color"
+    },
+    "deep-navy": {
+      "$value": "#132645",
+      "$type": "color",
+      "$description": "Deep Navy — Illustration detail fill (SVG artwork) — cooler sibling of Ink Violet used inside drawings to add tonal range to the editorial illustrations"
+    },
+    "graphite": {
+      "$value": "#434352",
+      "$type": "color",
+      "$description": "Graphite — Secondary nav text and nav borders — a softer alternative to Ink Violet for tertiary labels and dividers"
+    },
+    "silver-mist": {
+      "$value": "#8993a2",
+      "$type": "color",
+      "$description": "Silver Mist — Muted nav borders and inactive control outlines"
+    },
+    "hairline": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Hairline — Hairline link underlines and subtle dividers"
+    },
+    "zinc-mute": {
+      "$value": "#71717d",
+      "$type": "color",
+      "$description": "Zinc Mute — Helper text and tertiary metadata"
+    }
+  },
+  "font": {
+    "gilroy": {
+      "$value": "Gilroy",
+      "$type": "fontFamily",
+      "$description": "Primary interface typeface — body text, navigation, buttons, card labels, footer. Geometric sans with tight tracking gives UI elements a confident, contemporary voice."
+    },
+    "georgia": {
+      "$value": "Georgia",
+      "$type": "fontFamily",
+      "$description": "Headline and hero typeface — a classical serif reserved for editorial moments. The serif/sans pairing is the site's most distinctive typographic decision: Georgia carries warmth and craft, Gilroy carries clarity and UI density. Mixing these creates an indie-magazine feel that distinguishes Podcorn from generic SaaS layouts."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.06
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Georgia",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Georgia",
+        "fontSize": "27px",
+        "fontWeight": 700,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Georgia",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "blush-cream-canvas": {
+      "$value": "#fff4f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero backdrop, editorial sections"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, nav bar, brand logo strip, dialog surfaces"
+    },
+    "coral-accent": {
+      "$value": "#fc736c",
+      "$type": "color",
+      "$description": "Surface level 2: Primary CTA fill — single use surface"
+    },
+    "ink-violet": {
+      "$value": "#090335",
+      "$type": "color",
+      "$description": "Surface level 3: Filled button surface, deepest UI layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://podcorn.com",
+      "siteName": "Podcorn",
+      "extractedAt": "2026-06-03T20:17:13.707Z",
+      "variant": "extended"
+    }
+  }
+}

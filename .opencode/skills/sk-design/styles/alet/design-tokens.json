@@ -1,0 +1,187 @@
+{
+  "color": {
+    "taupe-paper": {
+      "$value": "#ada59b",
+      "$type": "color",
+      "$description": "Taupe Paper — Full-page canvas, the single dominant surface — every section and component sits on this warm gray, never on white or near-black. The warm undertone (vs cool slate) is what makes the whole site feel like printed stock rather than a digital UI"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders, all hairlines, all SVG strokes. Used at full opacity — no softened text grays, no 80% black. The crispness against warm taupe creates the magazine-printed feel"
+    },
+    "charcoal": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Charcoal — Navigation text and the nav underline borders. Slightly softer than pure ink for the persistent top-of-page chrome so the nav recedes behind the work"
+    },
+    "graphite": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and supporting borders where Charcoal reads too soft but pure Ink is too loud. The single mid-step between nav and body"
+    },
+    "stone": {
+      "$value": "#454545",
+      "$type": "color",
+      "$description": "Stone — Occasional inset surface for body-level containers — the only tonal step above the canvas, used sparingly for any small frame or block that needs to separate from the page without introducing color"
+    },
+    "press-black": {
+      "$value": "#060506",
+      "$type": "color",
+      "$description": "Press Black — Fine SVG illustration stroke — near-identical to Ink Black but kept distinct in the source. Use for line-art icons and decorative vector marks"
+    }
+  },
+  "font": {
+    "worksans": {
+      "$value": "WorkSans",
+      "$type": "fontFamily",
+      "$description": "All UI chrome: navigation, category labels, body copy, metadata, toggle text. Deliberately tiny — 11–13px forces an editorial intimacy and keeps the page from feeling like a product interface. Set in Work Sans Regular at default tracking; the small size is what makes it feel like print captions rather than web UI."
+    },
+    "silkserif": {
+      "$value": "SilkSerif",
+      "$type": "fontFamily",
+      "$description": "The ALET wordmark and any other serif display moment. Light weight at 23px with tight leading (0.94) and extremely wide letter-spacing — the letters almost float apart. The serif is the only non-sans on the site, which is what makes the brand mark readable as a masthead rather than a wordmark."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "WorkSans-Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "WorkSans-Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "WorkSans-Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "WorkSans-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "WorkSans-Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SilkSerif-Light",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "101": {
+      "$value": "101px",
+      "$type": "dimension",
+      "$description": "Spacing 101px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "209": {
+      "$value": "209px",
+      "$type": "dimension",
+      "$description": "Spacing 209px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10.8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "taupe-paper": {
+      "$value": "#ada59b",
+      "$type": "color",
+      "$description": "Surface level 0: The entire page. No section ever changes background color — the canvas is monolithic and the photographs are the only color that ever appears."
+    },
+    "stone-block": {
+      "$value": "#454545",
+      "$type": "color",
+      "$description": "Surface level 1: Rare inset surfaces — the occasional small framed block or bordered container that needs a subtle tonal lift off the canvas."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aletagency.com",
+      "siteName": "alet",
+      "extractedAt": "2026-06-03T19:44:19.579Z",
+      "variant": "extended"
+    }
+  }
+}

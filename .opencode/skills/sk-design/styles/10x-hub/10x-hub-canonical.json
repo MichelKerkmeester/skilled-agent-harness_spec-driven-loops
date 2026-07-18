@@ -1,0 +1,1114 @@
+{
+  "source": "https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486",
+  "uuid": "4acc13a0-c553-40d7-b78d-a9b6a4e94486",
+  "name": "10X HUB",
+  "northStar": "ink and ember poster wall",
+  "capturedAt": "2026-07-18T08:19:20.340Z",
+  "meta": {
+    "url": "https://10xdesigners.co",
+    "siteName": "10X HUB",
+    "extractedAt": "2026-06-03T17:36:34.354Z",
+    "durationMs": 28613,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 472,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use border-radius 999px for all interactive elements — buttons, toggles, tags, badges. Sharp corners belong only to form input bottom borders and structural layout lines.",
+      "Render hero and display headlines at 187–298px with the custom display face, weight 400 only, line-height 1.0, letter-spacing -0.064em. Never bold or compress further.",
+      "Alternate between #000000 and #ff1841 for full-bleed section backgrounds. White (#ffffff) appears only as a transient surface for form areas and body content.",
+      "Use #ff1841 as the sole chromatic color. Every red element — button, toggle, section background — draws from the same Ember Red token.",
+      "Set body and subheading type in Helvetica at 13–45px, weight 400 only. Build hierarchy through size jumps, not weight changes.",
+      "Keep all UI controls flat — no shadows, no gradients, no glassmorphism. Depth comes from color field transitions (black → red → white), not elevation.",
+      "Place micro-labels and word-spaced subtitles in #949494 to recede behind the primary message while maintaining readability."
+    ],
+    "donts": [
+      "Do not introduce a second accent color. The system is binary: achromatic structure with one red rupture.",
+      "Do not use font-weight 600+ anywhere. The entire system operates at weight 400; bolding breaks the typographic discipline.",
+      "Do not add shadows or elevation to cards or buttons. Flatness is the design language — #ff1841 on #000000 is the only depth mechanism.",
+      "Do not use border-radius values between 2px and 12px for buttons or interactive elements. The system jumps from 0 (input underlines) to 12px (cards) to 999px (pills).",
+      "Do not place the display font at sizes below 100px. The custom display face is designed for poster-scale rendering; using it at body size destroys its character.",
+      "Do not use #000000 as a background on the red sections or #ff1841 on the black sections. The red and black must meet as direct transitions, not through a dark-red intermediate.",
+      "Do not add photography, illustration, or decorative graphics. The system is pure typography and flat color — imagery would dilute the poster-like clarity."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff1841",
+        "name": "Ember Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#7b0016",
+        "name": "Bloodline",
+        "role": "Decorative dark red stroke, link hover states, secondary accent where a deeper red register is needed against white",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Hero section background, primary body text, icon strokes, input field text — the structural darkness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas base, text on dark backgrounds, input field backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e6e6",
+        "name": "Ash",
+        "role": "Card surfaces, subtle section backgrounds, hairline divider highlights on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Steel",
+        "role": "Muted borders, inactive control outlines, secondary dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal",
+        "role": "Deep surface layer — elevated panels, dark card backgrounds behind red sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bebcbc",
+        "name": "Fog",
+        "role": "Light border variant for input fields on white, subtle structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c7c7c7",
+        "name": "Mist",
+        "role": "Disabled control borders, tertiary structural lines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width container. Sections span the entire viewport width with no gutters or margins. The hero is a pure black field with the display headline and word-spaced subtitle centered vertically. The red form section follows as another full-bleed band, with a 3-column form grid (left column for personal fields, center for resource fields, right for uploads) at 20px column gaps. Navigation is a minimal floating top bar with no background. The overall rhythm is: black void → red field → black void, creating a binary visual alternation that functions like a poster spread.",
+    "imagery": "No photography, illustration, or product imagery is present. The visual system is pure typography and flat color fields. The only graphical elements are the dot-grid logo mark, simple plus icons inside upload buttons, and the circular toggle knob — all geometric, all monochrome or red. The 10X brand identity is carried entirely by type scale and color alternation, not by imagery.",
+    "similar": [
+      {
+        "why": "Same high-contrast black-and-white base with a single vivid accent, same massive unweighted display type, and the persistent 'Built with WIX STUDIO' badge confirms the direct relationship",
+        "business": "Wix Studio"
+      },
+      {
+        "why": "Bold minimalism with alternating full-bleed dark and light sections, pill-shaped controls, and typography that fills the viewport",
+        "business": "Framer"
+      },
+      {
+        "why": "Extremely restrained UI with near-zero decoration, relying on type scale and color contrast for hierarchy rather than shadows or borders",
+        "business": "Notion"
+      },
+      {
+        "why": "Dark-dominant canvas with stark white type, no shadow language, and a single accent for interactive states",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "999px",
+        "cards": "12px",
+        "inputs": "0px",
+        "buttons": "999px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Base page canvas and form field background"
+      },
+      {
+        "hex": "#e8e6e6",
+        "name": "Ash",
+        "level": 1,
+        "purpose": "Subtle card surfaces and light dividers"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Elevated dark surface behind or between red sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "level": 3,
+        "purpose": "Hero background — the deepest surface, full-bleed"
+      },
+      {
+        "hex": "#ff1841",
+        "name": "Ember Red",
+        "level": 4,
+        "purpose": "Branded content section background — not a UI surface in the traditional sense but a full-bleed visual field"
+      }
+    ],
+    "northStar": "ink and ember poster wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Ember Pill Button",
+        "role": "Primary action trigger",
+        "description": "Filled red (#ff1841) pill button with white text, border-radius 999px, padding 10px 20px, font-size 13px Arial weight 400. Used for 'Submit resource →' and other conversion actions. The pill shape is the only rounding convention in the system."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary or low-emphasis action",
+        "description": "Transparent fill with 1px white or #949494 border, border-radius 999px, padding 8px 20px, white or dark text. Used for toggle state containers, secondary navigation, and upload actions. Interior element (like the toggle knob) is a small red circle."
+      },
+      {
+        "name": "Underline Input",
+        "role": "Form field for text entry",
+        "description": "No box, no background — just a 1px bottom border (#000000 on white sections, #212121 on dark). Label text floats above at 13–15px Helvetica. Focus state thickens the bottom border to 2px or shifts it to #ff1841. Placeholder text in #949494."
+      },
+      {
+        "name": "Upload File Button",
+        "role": "File attachment trigger",
+        "description": "Pill-shaped ghost button matching the Ghost Outline pattern — transparent fill, dark border on red background, border-radius 999px, contains a small plus icon and 'Upload file' label in Helvetica 14px."
+      },
+      {
+        "name": "Toggle Switch",
+        "role": "Binary on/off control in the header",
+        "description": "Pill-shaped container (border-radius 999px, ~40px wide) with a circular knob. Off state: transparent fill with #949494 border, knob on left. On state: red (#ff1841) fill with red knob — the knob is the same color as the track, creating a flat solid block."
+      },
+      {
+        "name": "Dot Grid Logo Mark",
+        "role": "Brand identity icon in the header",
+        "description": "3×3 grid of small filled circles arranged in a square, rendered in white on dark backgrounds. Functions as a compact brand mark that echoes the grid structure of the 10X concept (10 dots = 10×)."
+      },
+      {
+        "name": "Massive Display Headline",
+        "role": "Hero-level typographic element",
+        "description": "Text rendered at 187–298px in the custom display face, weight 400, line-height 1.0, letter-spacing -0.064em. Fills the full viewport width. The text is white on black or black on red — never colored or gradient."
+      },
+      {
+        "name": "Red Full-Width Section",
+        "role": "Content section with branded background",
+        "description": "Full-bleed #ff1841 background spanning the viewport width. Contains form fields, labels, and body copy in black (#000000) or near-black. No inner container or max-width constraint visible — content flows edge-to-edge with 20px padding from viewport edges."
+      },
+      {
+        "name": "Form Section Header",
+        "role": "Section title within a colored background",
+        "description": "Helvetica 45px weight 400, line-height ~1.0, black text on the red section background. No decorative underline or accent — the type size alone carries the hierarchy."
+      },
+      {
+        "name": "Footer Attribution Badge",
+        "role": "Third-party platform credit",
+        "description": "Small pill-shaped badge in the bottom corner with a 'W' icon, text 'Built with WIX STUDIO'. White background, dark text, border-radius 999px, font-size 10px Arial. Functions as a persistent floating element across sections."
+      },
+      {
+        "name": "Word-Spaced Subtitle",
+        "role": "Micro-headline beneath the display headline",
+        "description": "Individual words of a sentence ('Get and share resources that let you do better work') spaced at wide intervals (~120–160px apart) across the full width, Helvetica 13px, in #949494. Creates a typographic rhythm that mirrors the display headline's breadth.",
+        "role_was_used": true
+      },
+      {
+        "name": "Sticky Top Bar",
+        "role": "Global navigation and primary CTA",
+        "description": "Fixed top bar with left-aligned dot grid logo, right-aligned toggle and red 'Submit resource' pill button. No background fill — elements float directly on the section color beneath. Height ~40px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Micro UI text — toggle labels, badge text, button micro-copy, fine print; Arial's universality here is deliberate, keeping tiny text neutral and system-native",
+        "sizes": "10px, 13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, Arial, Helvetica",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Hero display headline — the massive '10X HUB' wordmark and large section openers; weight 400 at near-300px with letter-spacing -0.064em creates a poster-scale compression that fills the viewport edge-to-edge",
+        "sizes": "187px, 298px",
+        "family": "10X Display (custom — madefor-text variant)",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Druk Wide, Inter Black, or system sans at the same size",
+        "letterSpacing": "-0.064em"
+      },
+      {
+        "role": "Workhorse for all body copy, form labels, subheadings, navigation, and secondary headings up to 45px; the only weight available is 400, forcing visual hierarchy to come from size and color contrast rather than weight shifts",
+        "sizes": "13px, 14px, 15px, 18px, 31px, 45px",
+        "family": "Helvetica W01 Roman",
+        "weight": "400",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Helvetica Neue, Inter, Arial",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19 — detected in extracted data but not described by AI",
+        "sizes": "24px, 298px",
+        "family": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "madefor-text — detected in extracted data but not described by AI",
+        "sizes": "187px",
+        "family": "madefor-text",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.064"
+      }
+    ],
+    "description": "10X Hub operates as a high-contrast editorial system built on pure black, pure white, and a single vivid red (#ff1841) that acts as both accent and full section background. The design is deliberately raw and unembellished — massive unweighted typography dominates the hero, controls reduce to pill shapes or hairline underlines, and there is no shadow language or surface elevation to soften edges. The page reads as a brutalist poster: sections alternate between ink-black voids and coral-red fields, with the white canvas peeking through for form areas and body content. Every interface element is stripped to its minimum viable form — a border, a radius of 999px, a single fill color — so the visual weight stays on the words and the red interruption.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"10X HUB design system\",\"item\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#style-reference\",\"name\":\"10X HUB design system reference\",\"headline\":\"10X HUB design system | Refero Styles\",\"description\":\"Explore 10X HUB's mixed Design design system: Ember Red #ff1841, Bloodline #7b0016 colors, Arial, 10X Display (custom — madefor-text variant) typography,...\",\"url\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"10X HUB\",\"url\":\"https://10xdesigners.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"caption\":\"Screenshot of 10X HUB\"},\"image\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"10X HUB design system\",\"10X HUB website design\",\"10X HUB colors\",\"10X HUB typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Red\",\"Bloodline\",\"Obsidian\",\"Paper White\",\"Arial\",\"10X Display (custom — madefor-text variant)\",\"Helvetica W01 Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"10X HUB design system\"},{\"@type\":\"Thing\",\"name\":\"10X HUB website design\"},{\"@type\":\"Thing\",\"name\":\"10X HUB colors\"},{\"@type\":\"Thing\",\"name\":\"10X HUB typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-21T11:29:41.000Z\",\"dateModified\":\"2026-02-21T11:29:41.000Z\"}]}19:T576,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #949494\n- accent: #ff1841\n- hero background: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed #000000 background, display headline at 298px in the custom display face weight 400, letter-spacing -0.064em, white (#ffffff) text. Below it, a word-spaced subtitle in Helvetica 13px #949494 with each word separated by ~140px. No images, no decorations.\n\n2. Create an Ember Pill Button: #ff1841 fill, white text, border-radius 999px, padding 10px 20px, font 13px Arial weight 400. Add a right arrow (→) after the label. No shadow, no border.\n\n3. Create a form input field: no background, no box. Only a 1px bottom border in #000000. Label text above at 14px Helvetica weight 400 in #000000. Placeholder text in #949494. On focus, the bottom border becomes 2px #ff1841.\n\n4. Create a red content section: full-bleed #ff1841 background, 80px top and bottom padding. Inside, a 3-column grid with 20px column gaps. Section title at 45px Helvetica weight 400, black text. All form fields and labels in black.\n\n5. Create a sticky header: transparent background, no border. Left: 3×3 dot grid in white. Right: a toggle switch (pill-shaped, 40px wide, border-radius 999px, with a small circular knob) followed by a red pill button ('Submit resource →'). Height 40px."
+      }
+    ],
+    "elevationPhilosophy": "No shadows exist in this system. Depth is created exclusively through color contrast — a red section on a black page, white text on black, black text on red. Cards do not float; they sit flat against the colored field. This flatness is the design."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "body",
+            "input",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 1376,
+          "confidence": 1,
+          "prominence": 69189516.77372727,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "heading"
+          ],
+          "frequency": 265,
+          "confidence": 1,
+          "prominence": 53450117.73591381,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 25200459.112741217,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e8e6e6",
+          "oklch": {
+            "c": 0.0021645977221373823,
+            "h": 17.196694377256033,
+            "l": 0.9264893666246053
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 10031314.37086458,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff1841",
+          "oklch": {
+            "c": 0.2487471638866803,
+            "h": 21.507584319272777,
+            "l": 0.6373882937942587
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 5074233,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2022004.6428707617,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7b0016",
+          "oklch": {
+            "c": 0.14836867421365849,
+            "h": 22.46302346370616,
+            "l": 0.3679798925121748
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 124177.34036303795,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bebcbc",
+          "oklch": {
+            "c": 0.0022486131062029817,
+            "h": 17.204677622332277,
+            "l": 0.7968357049034182
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 27043.49652115311,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5e97ff",
+          "oklch": {
+            "c": 0.16510777687766987,
+            "h": 261.4286842350674,
+            "l": 0.6861403772002236
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 25515.14948554767,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#550816",
+          "oklch": {
+            "c": 0.10702190627044017,
+            "h": 18.277192831980116,
+            "l": 0.29206996845206823
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10557,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 9799.834146991989,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c7c7c7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8296794763083973
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3352.864169017351,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e91e63",
+          "oklch": {
+            "c": 0.22978030445020348,
+            "h": 9.62807805212746,
+            "l": 0.606164542735579
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 256,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02152165488167896,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.89,
+          "background": "#e8e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.66,
+          "background": "#ffffff",
+          "foreground": "#550816"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#e8e6e6",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#c7c7c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.79,
+          "background": "#e8e6e6",
+          "foreground": "#550816"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.33,
+          "background": "#ffffff",
+          "foreground": "#7b0016"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#bebcbc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.53,
+          "background": "#c7c7c7",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.11,
+          "background": "#e8e6e6",
+          "foreground": "#7b0016"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.67,
+          "background": "#c7c7c7",
+          "foreground": "#550816"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.52,
+          "background": "#bebcbc",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.75,
+          "background": "#bebcbc",
+          "foreground": "#550816"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#c7c7c7",
+          "foreground": "#7b0016"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.99,
+          "background": "#bebcbc",
+          "foreground": "#7b0016"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#ff1841",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#e91e63",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#e91e63",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.85,
+          "background": "#ff1841",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 744.047,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "rowGap",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 290,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "helvetica-w01-roman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 70,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "madefor-text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "body",
+            "hero",
+            "footer",
+            "link"
+          ],
+          "frequency": 284,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "helvetica-w01-roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "madefor-text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.064,
+          "textTransform": "none"
+        },
+        {
+          "size": 298,
+          "family": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fbb58ca1-8219-44a5-93d1-9bb7bae0b72d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"10X HUB design system\",\"item\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#style-reference\",\"name\":\"10X HUB design system reference\",\"headline\":\"10X HUB design system | Refero Styles\",\"description\":\"Explore 10X HUB's mixed Design design system: Ember Red #ff1841, Bloodline #7b0016 colors, Arial, 10X Display (custom — madefor-text variant) typography,...\",\"url\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"10X HUB\",\"url\":\"https://10xdesigners.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4acc13a0-c553-40d7-b78d-a9b6a4e94486#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"caption\":\"Screenshot of 10X HUB\"},\"image\":\"https://images.refero.design/styles/refero.design/image/629b5579-73e1-482a-9203-081e4dcfafea.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"10X HUB design system\",\"10X HUB website design\",\"10X HUB colors\",\"10X HUB typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Red\",\"Bloodline\",\"Obsidian\",\"Paper White\",\"Arial\",\"10X Display (custom — madefor-text variant)\",\"Helvetica W01 Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"10X HUB design system\"},{\"@type\":\"Thing\",\"name\":\"10X HUB website design\"},{\"@type\":\"Thing\",\"name\":\"10X HUB colors\"},{\"@type\":\"Thing\",\"name\":\"10X HUB typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-21T11:29:41.000Z\",\"dateModified\":\"2026-02-21T11:29:41.000Z\"}]}19:T576,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #949494\n- accent: #ff1841\n- hero background: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed #000000 background, display headline at 298px in the custom display face weight 400, letter-spacing -0.064em, white (#ffffff) text. Below it, a word-spaced subtitle in Helvetica 13px #949494 with each word separated by ~140px. No images, no decorations.\n\n2. Create an Ember Pill Button: #ff1841 fill, white text, border-radius 999px, padding 10px 20px, font 13px Arial weight 400. Add a right arrow (→) after the label. No shadow, no border.\n\n3. Create a form input field: no background, no box. Only a 1px bottom border in #000000. Label text above at 14px Helvetica weight 400 in #000000. Placeholder text in #949494. On focus, the bottom border becomes 2px #ff1841.\n\n4. Create a red content section: full-bleed #ff1841 background, 80px top and bottom padding. Inside, a 3-column grid with 20px column gaps. Section title at 45px Helvetica weight 400, black text. All form fields and labels in black.\n\n5. Create a sticky header: transparent background, no border. Left: 3×3 dot grid in white. Right: a toggle switch (pill-shaped, 40px wide, border-radius 999px, with a small circular knob) followed by a red pill button ('Submit resource →'). Height 40px."
+}

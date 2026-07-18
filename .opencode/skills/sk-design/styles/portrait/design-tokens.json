@@ -1,0 +1,634 @@
+{
+  "color": {
+    "portrait-ink": {
+      "$value": "#08304c",
+      "$type": "color",
+      "$description": "Portrait Ink — Primary text, heading strokes, outlined action borders — the single deep navy that holds the entire type and structural line system"
+    },
+    "nautical-teal": {
+      "$value": "#084e72",
+      "$type": "color",
+      "$description": "Nautical Teal — Secondary brand ink for nav strokes, icons, and accent text where Ink feels too heavy"
+    },
+    "rainbow-spectrum": {
+      "$value": "#26c0ff",
+      "$type": "color",
+      "$description": "Rainbow Spectrum — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "lavender-violet": {
+      "$value": "#8e51ff",
+      "$type": "color",
+      "$description": "Lavender Violet — Decorative spectrum color — appears only as part of the rainbow gradient, never as a standalone fill"
+    },
+    "cobalt-pop": {
+      "$value": "#3b82f6",
+      "$type": "color",
+      "$description": "Cobalt Pop — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "grape-vibrant": {
+      "$value": "#ad46ff",
+      "$type": "color",
+      "$description": "Grape Vibrant — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "cherry-red": {
+      "$value": "#ff4940",
+      "$type": "color",
+      "$description": "Cherry Red — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "tangerine-warm": {
+      "$value": "#ffa130",
+      "$type": "color",
+      "$description": "Tangerine Warm — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "sunflower-yellow": {
+      "$value": "#ffc837",
+      "$type": "color",
+      "$description": "Sunflower Yellow — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "leaf-green": {
+      "$value": "#00cc3d",
+      "$type": "color",
+      "$description": "Leaf Green — Decorative spectrum color — appears only as part of the rainbow gradient composition"
+    },
+    "charcoal-outline": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Charcoal Outline — Universal stroke and heavy text color — every hairline border, icon outline, and default UI line lives here"
+    },
+    "graphite-body": {
+      "$value": "#2c2c2c",
+      "$type": "color",
+      "$description": "Graphite Body — Body text and icon strokes where Portrait Ink feels too cool — slightly warmer reading tone"
+    },
+    "slate-helper": {
+      "$value": "#797979",
+      "$type": "color",
+      "$description": "Slate Helper — Muted helper text, secondary nav text, and decorative borders that should recede behind primary ink"
+    },
+    "iron-quiet": {
+      "$value": "#585858",
+      "$type": "color",
+      "$description": "Iron Quiet — Quiet icon strokes and low-emphasis nav accents"
+    },
+    "ash-divider": {
+      "$value": "#dedede",
+      "$type": "color",
+      "$description": "Ash Divider — Light dividers and structural hairlines on neutral surfaces"
+    },
+    "fog-edge": {
+      "$value": "#c7c7c7",
+      "$type": "color",
+      "$description": "Fog Edge — Disabled state borders and placeholder strokes"
+    },
+    "mist-hairline": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Mist Hairline — Card surface tint and the lightest possible structural divider"
+    },
+    "white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White Canvas — Page background and the universal surface above which all color floats"
+    },
+    "mint-wash": {
+      "$value": "#d7ffe2",
+      "$type": "color",
+      "$description": "Mint Wash — Soft pastel surface tint used on badge chips and small highlighted areas"
+    },
+    "sky-wash": {
+      "$value": "#e8f1ff",
+      "$type": "color",
+      "$description": "Sky Wash — Soft section background, alternate surface, and quiet card fill"
+    },
+    "peach-wash": {
+      "$value": "#ffebd6",
+      "$type": "color",
+      "$description": "Peach Wash — Soft pastel surface tint used on warm-accent chips and highlighted areas"
+    }
+  },
+  "font": {
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Universal body and UI face — paragraphs, buttons, nav, links, tags, helper text, and small display moments. Reads neutral, geometric, and friendly. The 0.14em tracked all-caps variant at 10–11px is reserved for tiny eyebrow labels and New badges."
+    },
+    "basier-circle": {
+      "$value": "Basier Circle",
+      "$type": "fontFamily",
+      "$description": "Headline and hero voice only — reserved for the largest statements and key brand moments. The dramatic negative tracking at 76px (about -4.25px) pulls characters together so multi-line headlines lock into a tight block rather than a loose stack. Mixed with Switzer for subhead and body."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 540,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 540,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 540,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "39px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 39px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "39px",
+        "fontWeight": 600,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 39px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "49px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basier Circle",
+        "fontSize": "76px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 76px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.03) 0px 16px 16px -8px, rgba(0, 0, 0, 0.03) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.03) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.03) 0px 16px 16px -8px, rgba(0, 0, 0, 0.03) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.03) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "oklab(0 0 0 / 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.03) 0px 16px 16px -8px, rgba(0, 0, 0, 0.03) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.03) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "oklab(0 0 0 / 0.06) 0px 0px 0px 1px, rgba(0, 0, 0, 0.07) 0px 20px 20px -10px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.03) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "oklab(0 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 10px 16px 14px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "subtle-5": {
+      "$value": "oklab(0 0 0 / 0.1) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-5"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the warm white paper the entire scrapbook sits on"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Photo cards, profile tiles, and content cards float on white with a barely-perceptible 1px outline"
+    },
+    "sticky-nav": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Floating pill navigation bar — same white as the canvas but elevated by a soft shadow"
+    },
+    "tinted-wash": {
+      "$value": "#e8f1ff",
+      "$type": "color",
+      "$description": "Surface level 4: Pale sky-blue background for highlighted nav items, info chips, and soft category badges"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://portrait.so",
+      "siteName": "Portrait",
+      "extractedAt": "2026-06-03T17:50:33.919Z",
+      "variant": "extended"
+    }
+  }
+}

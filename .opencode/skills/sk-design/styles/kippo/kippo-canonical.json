@@ -1,0 +1,1351 @@
+{
+  "source": "https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df",
+  "uuid": "917048a3-53b3-44e6-ab33-faefc4dcc9df",
+  "name": "Kippo",
+  "northStar": "Pixel arcade boot screen in a black void. Monospace glyphs traced in white neon against a pure black void, with a single hot-pink power-up color that should feel rare and electric when it appears.",
+  "capturedAt": "2026-07-18T07:28:56.628Z",
+  "meta": {
+    "url": "https://kippo.com",
+    "siteName": "Kippo",
+    "extractedAt": "2026-06-03T20:51:47.605Z",
+    "durationMs": 42843,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 679,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Source Code Pro for every text element — body, headings, buttons, nav, labels. No secondary font.",
+      "Set all UI text to uppercase with letter-spacing 0.1em minimum; display headlines should reach 0.3–0.5em tracking.",
+      "Define cards with a 1px #ffffff border on a #000000 or #29292a fill — never with shadow, never with a colored fill.",
+      "Reserve #ee1f66 for the primary CTA background, the accent word in two-tone display headlines, and active/border-current-page states. Use it no more than once per viewport section.",
+      "Use 10px radius for buttons and tags, 15px for cards and images, 50px for icon buttons. Never exceed 15px on rectangular surfaces.",
+      "Maintain generous vertical breathing room: 100–150px between major sections, 30px inside cards, 15px between inline elements.",
+      "Enable the 'zero' font-feature on Source Code Pro so the numeral 0 is slashed — it reinforces the terminal identity."
+    ],
+    "donts": [
+      "Don't introduce a second typeface (no Inter, no Helvetica, no sans-serif fallback for body). Monospace-only is the identity.",
+      "Don't fill cards with color, gradient, or image. Cards are transparent panels — the border is the card.",
+      "Don't use drop shadows for elevation. Depth comes from overlapping layers and outline contrast, never from blur.",
+      "Don't dilute #ee1f66 by using it for body text, borders on non-action elements, or large background areas. It must remain rare.",
+      "Don't use border-radius larger than 15px on rectangular surfaces, and never use fully-rounded pill shapes on buttons (10px max).",
+      "Don't mix light and dark themes — this is a dark-only system. No white-background sections, no theme toggle.",
+      "Don't use red, green, or yellow for semantic states (success/error/warning) — those colors are decorative only in this system, and the dark canvas + white text + single pink accent is the entire signal vocabulary."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ee1f66",
+        "name": "Kippo Pink",
+        "role": "Primary action background, accent headings, active badges — the only chromatic voice in the system, rationed to feel like a power-up rather than a brand wash",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, card backgrounds, image fills — the infinite dark that everything else floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#29292a",
+        "name": "Carbon",
+        "role": "Elevated card surfaces and secondary panels — barely-distinguishable dark gray for cards that need to step forward from the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ash",
+        "role": "Subtle borders and dividers where white is too loud — a near-black separator for nested or secondary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Ghost White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffc400",
+        "name": "Sunset Gradient",
+        "role": "Gradient start stop — used only on the warm-to-cool decorative band behind the phone mockup and small accent elements",
+        "group": "accent",
+        "gradient": "linear-gradient(to right, #ffc400, #ff33e0)"
+      },
+      {
+        "hex": "#33beff",
+        "name": "Terminal Cyan",
+        "role": "Gradient start for cool accents — used sparingly in decorative gradient bands",
+        "group": "accent",
+        "gradient": "linear-gradient(to right, #33beff, #33ffb8)"
+      }
+    ],
+    "layout": "Single-column, max-width ~1200px centered layout on a pure black canvas. The hero is a two-column split: left side holds the two-tone display headline, subtitle, download badges, and QR code; right side holds the phone mockup on a gradient backdrop. Below the hero, a full-width press logo strip repeats logos in two stacked rows. Further down, sections alternate between two-column text+visual blocks (text-left/image-right) and centered single-column feature stacks. Cards are arranged in single rows, not multi-column grids. Navigation is a single horizontal bar pinned at the top: logo left, three uppercase links right, all within a thin white-bordered pill or rectangle. The overall rhythm is spacious — 100–150px between major sections, with the dark canvas absorbing visual weight and making the few colored elements feel deliberate.",
+    "imagery": "Imagery is almost entirely product-internal: phone mockups showing the app UI, and stacked profile-card illustrations that function as feature explainers. The only 'real' photography is inside the phone mockup screens (user profile photos of people, shown as small rounded thumbnails). No full-bleed lifestyle photography, no decorative illustrations outside the product, no abstract graphics. The phone mockup sits on a gradient backdrop (gold → magenta) that is the single moment of color richness in the system. Press logos in the social-proof band are the one place external brand colors appear, tolerated as content rather than decoration.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + monospace-leaning identity with a single vivid purple accent, gaming subculture coded through type and color restraint",
+        "business": "Twitch"
+      },
+      {
+        "why": "Pure-black background with thin outlined cards and minimal chromatic use — the outline-as-card approach over filled surfaces",
+        "business": "HBO Max (dark mode)"
+      },
+      {
+        "why": "Dark-mode developer brand with monospace accents, single accent color, and a preference for outlined/ghost controls over filled ones",
+        "business": "Vercel"
+      },
+      {
+        "why": "Sharp outlined UI elements, generous letter-spacing in uppercase labels, and a commitment to flat surfaces over shadowed elevation",
+        "business": "Arc browser"
+      },
+      {
+        "why": "The CRT-terminal monospace at wide tracking, pure-black void, and rationed neon accent are direct references to 80s/90s arcade attract-mode typography",
+        "business": "Retro arcade boot screens (visual reference)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "15px",
+        "icons": "50px",
+        "images": "15px",
+        "buttons": "10px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "100px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Page-level background — the infinite black everything else floats on"
+      },
+      {
+        "hex": "#29292a",
+        "name": "Carbon Panel",
+        "level": 1,
+        "purpose": "Elevated card surface, barely stepping forward from the void"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Neon Border",
+        "level": 2,
+        "purpose": "1px white outlines that define transparent cards without filling them"
+      }
+    ],
+    "northStar": "Pixel arcade boot screen in a black void. Monospace glyphs traced in white neon against a pure black void, with a single hot-pink power-up color that should feel rare and electric when it appears.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.08
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.88
+      },
+      {
+        "role": "display",
+        "size": 42,
+        "lineHeight": 1.19,
+        "letterSpacing": 0.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled magenta action — the only solid-fill button in the system",
+        "description": "Background #ee1f66, text #ffffff, Source Code Pro 12px weight 700, letter-spacing 0.1em, uppercase. Padding 10px 15px. Border-radius 10px. No border. This is the only button that uses fill rather than outline."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary actions, nav-adjacent controls",
+        "description": "Background transparent, border 1px #ffffff, text #ffffff, Source Code Pro 12px weight 700, uppercase, tracking 0.1em. Padding 10px 15px. Radius 10px. Used wherever a secondary or less-urgent action is needed."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-bar nav items",
+        "description": "Text #ffffff, Source Code Pro 12px weight 700, uppercase, letter-spacing 0.1em. No underline by default. Bottom border 1px transparent; on hover/active, border becomes #ee1f66 to signal current page with the accent."
+      },
+      {
+        "name": "Outlined Card",
+        "role": "Content container — feature blocks, media tiles, info panels",
+        "description": "Background #000000 or #29292a, border 1px #ffffff, radius 15px. Padding 30px. No shadow, no fill gradient — the border IS the card. This is the dominant card pattern; do not introduce filled or shadowed variants."
+      },
+      {
+        "name": "Press Logo Strip",
+        "role": "Social proof band",
+        "description": "Horizontal row of publication logos (Mashable, TechCrunch, etc.) in a single line, separated by generous whitespace. Logos rendered in their native brand colors (blue Mashable, green TechCrunch, red VentureBeat) on the black canvas — this is the one section where chromatic variety is tolerated, and it's because the logos ARE the content."
+      },
+      {
+        "name": "App Store Badge",
+        "role": "Download CTA",
+        "description": "Standard Apple App Store / Google Play badges, white on black. Source Code Pro used for any adjacent helper text. Sized at approximately 120×40px, with no rounding beyond the badge's native corners."
+      },
+      {
+        "name": "QR Code Block",
+        "role": "Alternative download entry",
+        "description": "White QR code on a black 1px-bordered square panel. No padding beyond the border-to-code margin. Renders as a sharp bitmap — no anti-aliasing or shadow."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Hero product showcase",
+        "description": "iPhone device frame with rounded corners ~40px, rendered on a gradient backdrop (sunset gold → magenta). The phone screen shows the app UI with its own internal color system (blue card, yellow accents). The device frame itself uses white outlines on black."
+      },
+      {
+        "name": "Code-Style Card Stack",
+        "role": "Feature illustration — profile cards fanned out",
+        "description": "Overlapping rounded-rectangle cards (radius ~15px) showing user profile photos, stacked at slight offsets to create depth. Each card has a thin white border. The overlap replaces the need for shadows — depth through layering, not elevation."
+      },
+      {
+        "name": "Code Block / Terminal Snippet",
+        "role": "Feature explainer — product UI preview",
+        "description": "Terminal-style block with monospace text, dark background (#29292a), and syntax-like coloring. Uses the Source Code Pro 'zero' feature to distinguish 0 from O. Often paired with a small accent border or pink highlight."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Brand identifier in nav",
+        "description": "'KIPPO' in Source Code Pro bold/700, all-caps, white. Letter-spacing 0.1–0.2em. Renders crisp on the black nav bar with no additional treatment."
+      },
+      {
+        "name": "Section Heading Pair",
+        "role": "Section-level headlines",
+        "description": "Two-tone display headline: first word/key noun in #ee1f66, rest in #ffffff. Source Code Pro 42px weight 700, uppercase, letter-spacing 0.3–0.5em, line-height 1.19. The two-color split within a single sentence is a signature Kippo device — don't use it for body or subheadings."
+      },
+      {
+        "name": "App Icon Tile",
+        "role": "Bottom nav icons within phone mockup",
+        "description": "Small icons (32–40px) inside the phone's bottom tab bar, rendered in a mix of pink (#ee1f66) for active state and white/gray for inactive. Radius 50px (circular touch targets)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for every text element from nav links to body copy to display headlines. Monospace at 42px/weight 700 with 0.3–0.5em tracking in all-caps creates a retro arcade marquee feel; at 16px/weight 400 it reads as clean monospace body. The slashed-zero feature is enabled, reinforcing the terminal/CRT aesthetic.",
+        "sizes": "10px, 12px, 16px, 42px",
+        "family": "Source Code Pro",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.19, 1.67, 1.88, 2.00",
+        "substitute": "JetBrains Mono, Fira Code, IBM Plex Mono",
+        "letterSpacing": "0.083em at 12px, 0.1em at 12px, 0.119em at 42px, 0.313–0.5em at 42px (display caps)",
+        "fontFeatureSettings": "\"zero\""
+      }
+    ],
+    "description": "Kippo is a neon-on-black arcade: a pitch-black canvas where every element is drawn as a thin white outline or rendered in a single hot magenta accent. Typography is exclusively monospace (Source Code Pro) at every size — a deliberate shout to the gamer subculture that refuses to be dressed up in a humanist sans. Display text sits in all-caps with generous tracking, evoking a CRT boot screen or a chat log header. Cards are transparent panels defined only by a 1px white border, never by fill or shadow — the page reads as a wireframe brought to life. The single chromatic accent (#ee1f66) is rationed sparingly: the word 'GAMERS', CTA buttons, and small badges — making each pink element feel like a power-up on a dark screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kippo design system\",\"item\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#style-reference\",\"name\":\"Kippo design system reference\",\"headline\":\"Kippo design system | Refero Styles\",\"description\":\"Explore Kippo's dark Other design system: Kippo Pink #ee1f66, Void Black #000000 colors, Source Code Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\",\"mainEntityOfPage\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kippo\",\"url\":\"https://kippo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"caption\":\"Screenshot of Kippo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kippo design system\",\"Kippo website design\",\"Kippo colors\",\"Kippo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Kippo Pink\",\"Void Black\",\"Carbon\",\"Ash\",\"Source Code Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kippo design system\"},{\"@type\":\"Thing\",\"name\":\"Kippo website design\"},{\"@type\":\"Thing\",\"name\":\"Kippo colors\"},{\"@type\":\"Thing\",\"name\":\"Kippo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:40:54.453Z\",\"dateModified\":\"2026-04-30T01:40:54.453Z\"}]}19:T767,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- surface (elevated card): #29292a\n- border: #ffffff (1px)\n- accent / primary action: #ee1f66 (filled action)\n\n**Example Component Prompts**\n1. Build a hero section on #000000. Left column: two-tone display headline in Source Code Pro 42px weight 700 uppercase, letter-spacing 0.5em, line-height 1.19 — first word in #ee1f66, rest in #ffffff. Subtitle in Source Code Pro 16px weight 400, #ffffff, line-height 1.88. Below: App Store and Google Play badges side by side, then a QR code in a 1px #ffffff-bordered square. Right column: iPhone mockup (radius 40px) on a gradient backdrop (linear-gradient(to right, #ffc400, #ff33e0)).\n\n2. Build a press logo strip. Black canvas, centered max-width 1200px. Label 'AS SEEN ON' in Source Code Pro 12px weight 700 uppercase, tracking 0.1em, #ffffff. Below: a single horizontal row of publication logos (Mashable in its blue, TechCrunch in green, etc.) spaced 60–80px apart. No borders, no card background — logos float on the void.\n\n3. Build an outlined feature card. Background #000000, border 1px #ffffff, radius 15px, padding 30px. Title in Source Code Pro 16px weight 700 uppercase, tracking 0.1em, #ffffff. Body in Source Code Pro 16px weight 400, #ffffff, line-height 1.88. No shadow, no fill, no gradient.\n\n4. Build a primary CTA button. Background #ee1f66, text #ffffff, Source Code Pro 12px weight 700 uppercase, letter-spacing 0.1em, padding 10px 15px, border-radius 10px, no border. This is the only filled button in the system — every other button is a white outline on transparent.\n\n5. Build a section heading pair. Source Code Pro 42px weight 700 uppercase, letter-spacing 0.3–0.5em, line-height 1.19. First key noun in #ee1f66, remaining words in #ffffff. The two-color split within one sentence is a Kippo signature — do not apply it to body text or subheadings."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Kippo has no shadows. Depth is created entirely through layering (overlapping profile cards, the phone mockup on a gradient plane) and through outline contrast (a 1px white border on a black fill is louder than any shadow). This is an intentional anti-convention: most dark-mode UIs rely on subtle elevation shadows to separate surfaces, but Kippo's arcade-wireframe language treats the border as the structural element and shadows as unnecessary noise. When stacking elements, overlap them with a small offset rather than adding drop-shadow or blur."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Gradients are decorative-only and used in exactly two places: (1) the backdrop behind the hero phone mockup — a warm gold-to-magenta sweep (linear-gradient(to right, #ffc400, #ff33e0)) that frames the device like neon signage; (2) a cool cyan-to-mint variant (linear-gradient(to right, #33beff, #33ffb8)) for secondary decorative bands. Never apply gradients to text, buttons, or card backgrounds. Gradients in this system are atmosphere, not chrome."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "card",
+            "icon",
+            "body"
+          ],
+          "frequency": 1365,
+          "confidence": 1,
+          "prominence": 15020541.204051139,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "nav/color": 1,
+            "body/color": 4,
+            "card/color": 10,
+            "icon/color": 9,
+            "other/fill": 147,
+            "image/color": 9,
+            "other/color": 213,
+            "nav/borderColor": 4,
+            "body/borderColor": 16,
+            "card/borderColor": 40,
+            "icon/borderColor": 36,
+            "image/borderColor": 36,
+            "other/borderColor": 828
+          }
+        },
+        {
+          "hex": "#29292a",
+          "oklch": {
+            "c": 0.0018079530789249089,
+            "h": 286.2828523858446,
+            "l": 0.2813264837944315
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1323270,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 6,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 919,
+          "confidence": 1,
+          "prominence": 818160.2232334776,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 2,
+            "icon/color": 5,
+            "link/color": 62,
+            "other/fill": 4,
+            "image/color": 52,
+            "other/color": 45,
+            "button/color": 5,
+            "heading/color": 9,
+            "nav/borderColor": 12,
+            "body/borderColor": 8,
+            "icon/borderColor": 20,
+            "link/borderColor": 248,
+            "image/borderColor": 208,
+            "other/borderColor": 180,
+            "button/borderColor": 20,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#ee1f66",
+          "oklch": {
+            "c": 0.2335375861064108,
+            "h": 9.394453315043036,
+            "l": 0.616174780485804
+          },
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 91026.8695003948,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 6,
+            "heading/borderColor": 24,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#e85c3e",
+          "oklch": {
+            "c": 0.1799382859250082,
+            "h": 33.74079201134985,
+            "l": 0.6513133035708902
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 16134.91825734137,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8
+          }
+        },
+        {
+          "hex": "#6c3737",
+          "oklch": {
+            "c": 0.07539956221944995,
+            "h": 20.933133293190743,
+            "l": 0.40469996219253046
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 11220,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 7
+          }
+        },
+        {
+          "hex": "#78ff97",
+          "oklch": {
+            "c": 0.18535551785153495,
+            "h": 148.94184187909622,
+            "l": 0.8994109115226381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 10575.081590450249,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 8821.550627525108,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#075276",
+          "oklch": {
+            "c": 0.08846812969305626,
+            "h": 237.48138998714848,
+            "l": 0.41627653854131474
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 6538.971601315388,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11
+          }
+        },
+        {
+          "hex": "#ffe947",
+          "oklch": {
+            "c": 0.17244095891047526,
+            "h": 101.31543957965476,
+            "l": 0.925112913354268
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4790.137659752628,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#00c289",
+          "oklch": {
+            "c": 0.1547980094426573,
+            "h": 163.3992512663941,
+            "l": 0.7203237351927861
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 4290.923119351845,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 24
+          }
+        },
+        {
+          "hex": "#4be085",
+          "oklch": {
+            "c": 0.17978562027562986,
+            "h": 152.61317212199603,
+            "l": 0.8065053815459715
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3756.9427378401047,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10
+          }
+        },
+        {
+          "hex": "#003044",
+          "oklch": {
+            "c": 0.05965952908829208,
+            "h": 232.50168039702345,
+            "l": 0.2906320743126823
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3171.7537776161366,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#008b3e",
+          "oklch": {
+            "c": 0.15360739967516002,
+            "h": 149.90255480115465,
+            "l": 0.5564702055446239
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2171,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#cef4d3",
+          "oklch": {
+            "c": 0.05928214842601084,
+            "h": 148.80924777461763,
+            "l": 0.9312826330169024
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2142.011805529952,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#ffb945",
+          "oklch": {
+            "c": 0.15011363257721924,
+            "h": 76.12620457593053,
+            "l": 0.8316991523125162
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1748.9821164418875,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#a9ecaf",
+          "oklch": {
+            "c": 0.10708562310372317,
+            "h": 146.84907145627193,
+            "l": 0.8826371799475569
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 725,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#028480",
+          "oklch": {
+            "c": 0.09500505725407334,
+            "h": 191.02535400030482,
+            "l": 0.5540106066231317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 664.3353626853371,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#ebffec",
+          "oklch": {
+            "c": 0.032602209575566504,
+            "h": 146.7241091859639,
+            "l": 0.9802168723193314
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 252.0090376146638,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#007943",
+          "oklch": {
+            "c": 0.12567601117544577,
+            "h": 154.75354808461108,
+            "l": 0.5059051537375575
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 50.718800023076994,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#254d58",
+          "oklch": {
+            "c": 0.04857933117128167,
+            "h": 217.9762676589356,
+            "l": 0.39595233283641484
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 10,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.023252676880574957,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.05,
+          "background": "#ebffec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.51,
+          "background": "#cef4d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#ffe947",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.55,
+          "background": "#78ff97",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#a9ecaf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#29292a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#ffffff",
+          "foreground": "#003044"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.87,
+          "background": "#ebffec",
+          "foreground": "#29292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#ebffec",
+          "foreground": "#003044"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#4be085",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#ffb945",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#cef4d3",
+          "foreground": "#29292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#ebffec",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#ffe947",
+          "foreground": "#29292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#cef4d3",
+          "foreground": "#003044"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.45,
+          "background": "#78ff97",
+          "foreground": "#29292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.29,
+          "background": "#ffe947",
+          "foreground": "#003044"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.99,
+          "background": "#78ff97",
+          "foreground": "#003044"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "button",
+            "body"
+          ],
+          "frequency": 51,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|nav",
+            "marginTop|image",
+            "marginRight|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "button",
+            "icon"
+          ],
+          "frequency": 157,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|link",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|icon",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(255, 196, 0), rgb(255, 51, 224))",
+        "colors": [
+          "rgb(255, 196, 0)",
+          "rgb(255, 51, 224)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(207, 207, 207), rgb(255, 255, 255))",
+        "colors": [
+          "rgb(207, 207, 207)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(51, 190, 255), rgb(51, 255, 184))",
+        "colors": [
+          "rgb(51, 190, 255)",
+          "rgb(51, 255, 184)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Source Code Pro",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 437,
+          "fontFeatureSettings": [
+            "\"zero\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Source Code Pro",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0.5,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Source Code Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 41,
+          "lineHeight": 2,
+          "letterSpacing": 0.4,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Source Code Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Source Code Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "card",
+            "icon"
+          ],
+          "frequency": 237,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.083,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 126,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.083,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.417,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.333,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.333,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Source Code Pro",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.88,
+          "letterSpacing": 0.313,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Source Code Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.19,
+          "letterSpacing": 0.119,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/17773304-2b88-4e88-9f73-42fd4c87e00b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kippo design system\",\"item\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#style-reference\",\"name\":\"Kippo design system reference\",\"headline\":\"Kippo design system | Refero Styles\",\"description\":\"Explore Kippo's dark Other design system: Kippo Pink #ee1f66, Void Black #000000 colors, Source Code Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\",\"mainEntityOfPage\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kippo\",\"url\":\"https://kippo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/917048a3-53b3-44e6-ab33-faefc4dcc9df#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"caption\":\"Screenshot of Kippo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c04f7402-8b98-48ad-9b5c-c59576960ea9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kippo design system\",\"Kippo website design\",\"Kippo colors\",\"Kippo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Kippo Pink\",\"Void Black\",\"Carbon\",\"Ash\",\"Source Code Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kippo design system\"},{\"@type\":\"Thing\",\"name\":\"Kippo website design\"},{\"@type\":\"Thing\",\"name\":\"Kippo colors\"},{\"@type\":\"Thing\",\"name\":\"Kippo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:40:54.453Z\",\"dateModified\":\"2026-04-30T01:40:54.453Z\"}]}19:T767,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- surface (elevated card): #29292a\n- border: #ffffff (1px)\n- accent / primary action: #ee1f66 (filled action)\n\n**Example Component Prompts**\n1. Build a hero section on #000000. Left column: two-tone display headline in Source Code Pro 42px weight 700 uppercase, letter-spacing 0.5em, line-height 1.19 — first word in #ee1f66, rest in #ffffff. Subtitle in Source Code Pro 16px weight 400, #ffffff, line-height 1.88. Below: App Store and Google Play badges side by side, then a QR code in a 1px #ffffff-bordered square. Right column: iPhone mockup (radius 40px) on a gradient backdrop (linear-gradient(to right, #ffc400, #ff33e0)).\n\n2. Build a press logo strip. Black canvas, centered max-width 1200px. Label 'AS SEEN ON' in Source Code Pro 12px weight 700 uppercase, tracking 0.1em, #ffffff. Below: a single horizontal row of publication logos (Mashable in its blue, TechCrunch in green, etc.) spaced 60–80px apart. No borders, no card background — logos float on the void.\n\n3. Build an outlined feature card. Background #000000, border 1px #ffffff, radius 15px, padding 30px. Title in Source Code Pro 16px weight 700 uppercase, tracking 0.1em, #ffffff. Body in Source Code Pro 16px weight 400, #ffffff, line-height 1.88. No shadow, no fill, no gradient.\n\n4. Build a primary CTA button. Background #ee1f66, text #ffffff, Source Code Pro 12px weight 700 uppercase, letter-spacing 0.1em, padding 10px 15px, border-radius 10px, no border. This is the only filled button in the system — every other button is a white outline on transparent.\n\n5. Build a section heading pair. Source Code Pro 42px weight 700 uppercase, letter-spacing 0.3–0.5em, line-height 1.19. First key noun in #ee1f66, remaining words in #ffffff. The two-color split within one sentence is a Kippo signature — do not apply it to body text or subheadings."
+}

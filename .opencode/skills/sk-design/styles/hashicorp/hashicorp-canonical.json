@@ -1,0 +1,1584 @@
+{
+  "source": "https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456",
+  "uuid": "834ce97f-61f2-4b12-bf5c-e9fad2544456",
+  "name": "HashiCorp",
+  "northStar": "midnight control room with violet neon — a dark technical surface where a glowing hexagonal cube serves as the only chromatic anchor",
+  "capturedAt": "2026-07-18T07:59:29.454Z",
+  "meta": {
+    "url": "https://hashicorp.com",
+    "siteName": "HashiCorp",
+    "extractedAt": "2026-06-03T18:51:13.137Z",
+    "durationMs": 31489,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 665,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the primary page background and layer surfaces in the order #000000 → #0d0e12 → #15181 for incremental elevation",
+      "Apply #2264d6 exclusively for active states, active nav items, and tab indicators — never as a decorative fill",
+      "Set all heading text in Hashicorp Sans weight 600–700 with -0.01em letter-spacing for the compressed, confident posture",
+      "Use the +0.1em tracking on Hashicorp Sans weight 600 at 13px for uppercase eyebrow labels (section headers, 'TRUSTED BY' bands)",
+      "Maintain 4px radius on all interactive controls (buttons, inputs, badges, nav items) and reserve 8px for content cards",
+      "Keep shadows at rgba(97,104,117,0.05) opacity — depth should be felt, not seen",
+      "Use the violet-to-blue gradient (#6c81ff → #c08dff) as a directional light source on hero sections and the 3D cube render"
+    ],
+    "donts": [
+      "Do not introduce additional chromatic colors — the brand signal is singular and frequency matters",
+      "Do not use rounded radii above 8px; this system is geometric and precise, not friendly or soft",
+      "Do not use drop shadows darker than 10% opacity — heavy shadows break the void-canvas illusion",
+      "Do not use #2264d6 or #2b89ff as a background fill for buttons; the filled primary button is the only exception and uses #2b89ff sparingly",
+      "Do not mix positive and negative letter-spacing within the same heading; pick one tracking register per block",
+      "Do not let body text drop below 14px or above 17px — the 15–16px sweet spot is the readable standard",
+      "Do not use full-color partner logos in the trust bar; all logos must be rendered in #d5d7db to maintain the monochrome band"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "role": "Primary page background, hero foundation, footer base — the near-black void that absorbs all other content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0e12",
+        "name": "Onyx Surface",
+        "role": "Elevated cards, panels, input fields, secondary surface layer above the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#15181e",
+        "name": "Obsidian Plate",
+        "role": "Highest elevation tier — modals, popovers, overlay containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#656a76",
+        "name": "Ash Text",
+        "role": "Muted body copy, helper text, metadata, placeholder content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3d45",
+        "name": "Steel Secondary",
+        "role": "Icon strokes, decorative line work, tertiary UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b6bd",
+        "name": "Graphite Border",
+        "role": "Borders, dividers, inactive control outlines at mid-contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d7db",
+        "name": "Fog Divider",
+        "role": "High-frequency dividers, light borders, subtle separators, partner logo treatment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e2e5",
+        "name": "Bone",
+        "role": "Button borders on filled controls, hairline outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efeff1",
+        "name": "Chalk",
+        "role": "Primary text on dark surfaces, headings, body copy at highest contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Maximum-contrast text, filled button text, the brightest surface accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2264d6",
+        "name": "Brand Cobalt",
+        "role": "Primary brand color — active nav items, links, icon fills, tab indicators, the dominant chromatic signal",
+        "group": "brand"
+      },
+      {
+        "hex": "#2b89ff",
+        "name": "Signal Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#1060ff",
+        "name": "Hyperlink Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#42225b",
+        "name": "Plum Glass",
+        "role": "Badge background fill, decorative deep-violet surface for category tags",
+        "group": "accent"
+      },
+      {
+        "hex": "#b457ff",
+        "name": "Amethyst Edge",
+        "role": "Badge borders, violet accent strokes, decorative outline highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#6c81ff",
+        "name": "Violet Dawn",
+        "role": "Gradient origin — the cool blue-violet start of the hero and cube illumination",
+        "group": "accent"
+      },
+      {
+        "hex": "#c08dff",
+        "name": "Iris Glow",
+        "role": "Gradient terminus — warm violet end of the hero gradient, the lighter face of the 3D cube render",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvases with content constrained to a 1200px max-width centered column. The hero is a full-viewport dark gradient with centered (or slightly left-aligned) headline. Sections alternate between #000000 and #0d0e12 backgrounds to create visual rhythm without light/dark polarity. Content follows a repeating 2-column split pattern: text-left/visual-right, with generous 64px section gaps. Tab-driven resource sections use a 1-large-plus-2-small asymmetric grid. The nav is a fixed top bar that transitions from transparent (over hero) to solid #0d0e12 (on scroll). Overall density is spacious — one concept per section, with breathing room between blocks.",
+    "imagery": "The visual language is dominated by 3D renders rather than photography. The signature asset is an illuminated hexagonal prism (representing the HashiCorp 'H' logo in volumetric form) rendered in a violet-to-blue gradient with a soft underglow. Supporting visuals include abstract gradient washes, data charts, and subtle architectural/circuit line drawings. Photography is absent — this is a UI-first, object-first visual system. Partner logos are flattened to monochrome. The density is low: one hero image per section, with text occupying the majority of visual real estate.",
+    "similar": [
+      {
+        "why": "Same dark-void canvas with electric accent color and geometric sans display type, though Vercel uses a warmer accent and more gradient washes",
+        "business": "Vercel"
+      },
+      {
+        "why": "Identical compressed headline tracking, dark near-black surface, and a single vivid chromatic accent (purple for Linear, blue-violet for HashiCorp) that marks every interactive moment",
+        "business": "Linear"
+      },
+      {
+        "why": "Same gradient-from-edges hero treatment and 3D brand mark as the section anchor, though Stripe's canvas is lighter",
+        "business": "Stripe"
+      },
+      {
+        "why": "Matching dark enterprise aesthetic with restrained typography, a single saturated brand signal, and 3D geometric brand visuals",
+        "business": "PlanetScale"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "8px",
+        "badges": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Primary page background — the base void against which all content floats"
+      },
+      {
+        "hex": "#0d0e12",
+        "name": "Onyx Surface",
+        "level": 2,
+        "purpose": "Cards, input fields, content sections that need to separate from the void"
+      },
+      {
+        "hex": "#15181",
+        "name": "Obsidian Plate",
+        "level": 3,
+        "purpose": "Modals, popovers, elevated overlays requiring maximum separation"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(97, 104, 117, 0.05) 0px 1px 1px 0px, rgba(97, 104, 117, 0.05) 0px 2px 2px 0px",
+        "element": "Outlined Ghost Button"
+      },
+      {
+        "style": "rgba(101, 106, 118, 0.05) 0px 1px 1px 0px, rgba(101, 106, 118, 0.05) 0px 2px 2px 0px",
+        "element": "Top Navigation"
+      },
+      {
+        "style": "rgba(97, 104, 117, 0.1) 0px 1px 2px 1px inset",
+        "element": "Input Field"
+      }
+    ],
+    "northStar": "midnight control room with violet neon — a dark technical surface where a glowing hexagonal cube serves as the only chromatic anchor",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.69
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.21,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "display",
+        "size": 82,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Gradient Banner",
+        "role": "Full-bleed dark hero with diagonal violet-blue gradient sweep",
+        "description": "Background #000000 base with linear-gradient(-45deg, #6c81ff → #c08dff) sweeping from upper-right toward lower-left, creating a luminous angled band. Headline at 82px Hashicorp Sans weight 700 in #efeff1, tracking -0.82px. Subtext at 17px system-ui weight 400 in #b2b6bd. No card surface — text sits directly on the gradient void. Padding ~80px vertical, content centered or left-aligned within 1200px max-width."
+      },
+      {
+        "name": "Announcement Pill",
+        "role": "Inline editorial announcement above the hero headline",
+        "description": "Compact pill at ~4px radius containing a tag chip (e.g. 'Do Cloud Right, Explained') with #b457ff border on #42225b fill, followed by descriptive text at 13–14px in #d5d7db, and a 'Watch now →' link in #2b89ff. Horizontal flex layout with 8–12px gaps, vertical padding ~3–4px. Functions as a content teaser, not a primary action."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary CTA on dark surfaces",
+        "description": "Transparent fill with 1px solid #efeff1 border at 4px radius. Text in #efeff1 at 15px system-ui weight 500, padding 11px 19px. The standard 'Meet The Infrastructure Cloud' / 'Learn more' variant. Box-shadow: rgba(97,104,117,0.05) 0px 1px 1px, rgba(97,104,117,0.05) 0px 2px 2px — barely-there depth that whispers elevation rather than declaring it."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary conversion action",
+        "description": "Solid #2b89ff fill with white text at 15px system-ui weight 600, 4px radius, padding 11px 19px. The 'Get started' variant — the highest-saturation chromatic button in the system, used sparingly to mark the single most important action on a page."
+      },
+      {
+        "name": "Text Link Button",
+        "role": "Tertiary navigation action",
+        "description": "No border, no fill. Text in #efeff1 at 15px system-ui weight 500, often paired with an icon (e.g. '→' for 'Try HCP'). Padding minimal. The 'Log in' / 'Contact us' style — relies on hover color shift to #2b89ff for affordance."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent over hero, then #0d0e12 on scroll. Logo (hexagonal H mark) at left, nav items at 15px system-ui weight 500 in #b2b6bd, with the active item underlined in #2264d6. Right-aligned action cluster: ghost login + outlined contact + filled get-started. Height ~64px, horizontal padding 24–48px. The nav maintains 4px radius on interactive items."
+      },
+      {
+        "name": "Partner Logo Bar",
+        "role": "Social proof band beneath hero",
+        "description": "Section header 'TRUSTED BY LEADING ORGANIZATIONS' in uppercase Hashicorp Sans weight 600, tracked at +0.1em, size 13px, color #b2b6bd. Below: horizontal row of partner logos rendered in #d5d7db at uniform height ~24px, evenly spaced with 32–48px gaps. Logos are monochrome — no original brand color survives the dark-mode treatment."
+      },
+      {
+        "name": "Feature Split Section",
+        "role": "Two-column editorial feature block",
+        "description": "Left column: eyebrow label (Hashicorp Sans 13px uppercase +0.1em in #b2b6bd) + headline (Hashicorp Sans 34–42px weight 700 in #efeff1) + body text (16px system-ui in #b2b6bd with inline links in #2b89ff) + action buttons. Right column: 3D render or product visual. Gap between columns ~64px. Section background #0d0e12 to differentiate from void canvas."
+      },
+      {
+        "name": "3D Hexagonal Cube Render",
+        "role": "Signature brand visual element",
+        "description": "A glowing isometric hexagonal prism rendered in 3D, with faces lit by the violet-to-blue gradient (#6c81ff → #c08dff) and a soft purple underglow on the surface below. The HashiCorp 'H' logo is debossed on the top face. Subtle line drawings of architectural/circuit elements extend from the base. This is the system's hero visual — the single piece of recognizable brand imagery."
+      },
+      {
+        "name": "Tab Navigation",
+        "role": "Content section switching control",
+        "description": "Horizontal tabs at top of a content section. Inactive tabs: 17px system-ui weight 500 in #656a76. Active tab: same size/weight in #efeff1 with a 2px underline in #2264d6. 4px radius on any background hover state. Tabs separated by 24–32px horizontal gap."
+      },
+      {
+        "name": "Resource Card",
+        "role": "Editorial content card for resources/reports",
+        "description": "Background #0d0e12 with 1px #15181 border, 8px radius. Padding 24px. Contains a feature image (16:9 or similar), then a headline (Hashicorp Sans 19px weight 600 in #efeff1) and descriptive text (15px system-ui in #b2b6bd). No drop shadow — separation is purely from the border and surface contrast."
+      },
+      {
+        "name": "Featured Report Card",
+        "role": "Hero-sized content card with gradient thumbnail",
+        "description": "Larger variant of the resource card. Thumbnail uses a full-bleed gradient (e.g. linear-gradient(-45deg, #ff8791, #f9b571) for warm accent) with an embedded chart/visual. Headline at 26px Hashicorp Sans weight 600, body at 15px. Occupies roughly 2/3 of the row width with companion text cards stacked on the right."
+      },
+      {
+        "name": "Badge / Category Tag",
+        "role": "Compact metadata label",
+        "description": "Small pill at 4px radius with 1px border. Default variant: #b457ff border on transparent or #42225b fill, text in #efeff1 at 13px Hashicorp Sans weight 600 with +0.1em tracking. Used for content categorization (e.g. 'What's new', 'Webinars & events'). Padding ~3px 8px."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input on dark surface",
+        "description": "Background #0d0e12, 1px #3b3d45 border, 4px radius. Text in #efeff1 at 16px system-ui, placeholder in #656a76. Inset shadow: rgba(97,104,117,0.1) 0px 1px 2px 1px inset for subtle depression. Focus state: border shifts to #2b89ff. Padding 11px 16px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, navigation links, button labels, form inputs, badges — the workhorse text stack. System UI at 15–16px with 1.6–1.71 line-height creates generous, readable body text. Weight 500 for nav emphasis, 600 for button labels. No custom tracking, relying on the platform's default kerning.",
+        "sizes": "13, 14, 15, 16, 17px",
+        "family": "system-ui",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.5–1.71 for body, 1.2 for compact UI text",
+        "substitute": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue"
+      },
+      {
+        "role": "All headings and display text — a custom geometric sans with tight negative tracking (-0.01em) that compresses the headline posture. Weight 700 at 82px anchors the hero; weight 600 carries section headings. The +0.1em positive tracking appears on uppercase eyebrow labels, creating a wide-spaced technical caption register. 'kern' feature enabled for tight headline kerning.",
+        "sizes": "13, 17, 19, 26, 34, 42, 52, 82px",
+        "family": "Hashicorp Sans",
+        "weight": "600, 700",
+        "lineHeight": "1.17–1.21 for display, 1.35 for subheadings, 1.69 for body-sized usages",
+        "substitute": "Inter, Space Grotesk, or General Sans",
+        "letterSpacing": "-0.01em on display sizes, +0.1em on uppercase eyebrow labels",
+        "fontFeatureSettings": "\"kern\""
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "HashiCorp operates a midnight control-room aesthetic: near-black canvases swallow the page, letting a single electric violet-blue brand signal carry every interactive moment. Headlines use a custom geometric sans at heavy weights with tight negative tracking, giving typography a compressed, confident posture rather than airy elegance. The 3D hexagonal cube render — glowing violet and indigo — is the signature visual, appearing wherever the brand needs to feel tangible. Surfaces stay nearly flat with hairline borders and almost imperceptible shadows; the depth comes from gradient washes, not elevation. Body copy is achromatic, generously sized, and unornamented, letting the brand blue do the work of guiding attention through links, active states, and tab indicators.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HashiCorp design system\",\"item\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#style-reference\",\"name\":\"HashiCorp design system reference\",\"headline\":\"HashiCorp design system | Refero Styles\",\"description\":\"Explore HashiCorp's dark Dev Tools design system: Void Canvas #000000, Onyx Surface #0d0e12 colors, system-ui, Hashicorp Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\",\"mainEntityOfPage\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HashiCorp\",\"url\":\"https://hashicorp.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"caption\":\"Screenshot of HashiCorp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HashiCorp design system\",\"HashiCorp website design\",\"HashiCorp colors\",\"HashiCorp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void Canvas\",\"Onyx Surface\",\"Obsidian Plate\",\"Ash Text\",\"system-ui\",\"Hashicorp Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HashiCorp design system\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp website design\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp colors\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-12T17:53:47.000Z\",\"dateModified\":\"2026-02-12T17:53:47.000Z\"}]}19:T5a5,## Quick Color Reference\n- text: #efeff1\n- background: #000000\n- surface: #0d0e12\n- border: #3b3d45\n- accent: #2264d6 (active states, links)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Split Section**: Two-column layout, 64px gap. Left: eyebrow label in Hashicorp Sans 13px weight 600 uppercase, +1.3px tracking, color #b2b6bd. Headline in Hashicorp Sans 42px weight 700, #efeff1, -0.42px tracking. Body in system-ui 16px weight 400, #b2b6bd, with inline links in #2b89ff. Right: 3D hexagonal cube render with violet-blue gradient faces.\n\n3. **Tab Navigation + Content**: Tabs row — inactive in system-ui 17px weight 500 #656a76, active in #efeff1 with 2px #2264d6 underline. Below: resource card on #0d0e12 surface, 1px #15181e border, 8px radius, 24px padding. Card headline in Hashicorp Sans 19px weight 600 #efeff1, body in system-ui 15px #b2b6bd.\n\n4. **Partner Logo Bar**: Section header 'TRUSTED BY LEADING ORGANIZATIONS' in Hashicorp Sans 13px weight 600, tracking +1.3px, color #b2b6bd. Horizontal logo row, all logos rendered in monochrome #d5d7db, ~24px height, 32–48px gaps.\n\n5. **Badge Component**: 4px radius pill, 1px #b457ff border, transparent fill, text in Hashicorp Sans 13px weight 600 uppercase with +1.3px tracking, color #efeff1. Padding 3px 8px."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is almost deliberately absent — the system relies on surface color contrast (void → onyx → obsidian) and 1px hairline borders to communicate layering. The only shadows that exist are at 5% opacity, creating a sense of weight without breaking the dark-canvas immersion."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "footer",
+            "input",
+            "nav"
+          ],
+          "frequency": 486,
+          "confidence": 1,
+          "prominence": 97914128.1268895,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d5d7db",
+          "oklch": {
+            "c": 0.005893345100974878,
+            "h": 264.5298347196413,
+            "l": 0.8787766253282798
+          },
+          "contexts": [
+            "other",
+            "list",
+            "icon",
+            "body",
+            "button",
+            "hero",
+            "card",
+            "nav"
+          ],
+          "frequency": 838,
+          "confidence": 1,
+          "prominence": 12635919.927356208,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d0e12",
+          "oklch": {
+            "c": 0.008553039748154032,
+            "h": 274.33541261900734,
+            "l": 0.1645188373191442
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "button",
+            "footer",
+            "input"
+          ],
+          "frequency": 117,
+          "confidence": 1,
+          "prominence": 8954263.54607536,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2264d6",
+          "oklch": {
+            "c": 0.1877316468026754,
+            "h": 260.6816338451491,
+            "l": 0.5304957810927858
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 316,
+          "confidence": 1,
+          "prominence": 2063691.7150182673,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b2b6bd",
+          "oklch": {
+            "c": 0.010888760180605986,
+            "h": 261.7847050538986,
+            "l": 0.7752160291505358
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 412,
+          "confidence": 1,
+          "prominence": 1195882.7608348585,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#efeff1",
+          "oklch": {
+            "c": 0.0026630019750569843,
+            "h": 286.34896416352524,
+            "l": 0.9526965579672068
+          },
+          "contexts": [
+            "badge",
+            "other",
+            "body",
+            "heading",
+            "link",
+            "icon",
+            "input",
+            "nav"
+          ],
+          "frequency": 232,
+          "confidence": 1,
+          "prominence": 780032.8953159688,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#15181e",
+          "oklch": {
+            "c": 0.01279812659921767,
+            "h": 264.24609038177596,
+            "l": 0.20859664921828713
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 722708.0311538313,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "icon"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 475102.14694536023,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#656a76",
+          "oklch": {
+            "c": 0.01982615079692776,
+            "h": 267.63166672714175,
+            "l": 0.5241776923671733
+          },
+          "contexts": [
+            "body",
+            "input",
+            "nav"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 287733.88402866013,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b89ff",
+          "oklch": {
+            "c": 0.19541465491039295,
+            "h": 256.5729871252541,
+            "l": 0.6394587339234421
+          },
+          "contexts": [
+            "link",
+            "list",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 140295.49276565175,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3b3d45",
+          "oklch": {
+            "c": 0.014018132955905665,
+            "h": 274.5257672181998,
+            "l": 0.3611885871527977
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 128,
+          "confidence": 1,
+          "prominence": 88720.06969012585,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#389aff",
+          "oklch": {
+            "c": 0.17415112049629167,
+            "h": 252.55505916774803,
+            "l": 0.6789062073023848
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 28316.940037884175,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1060ff",
+          "oklch": {
+            "c": 0.24634519207723385,
+            "h": 262.2985521191444,
+            "l": 0.5539108808544814
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 18532,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0c56e9",
+          "oklch": {
+            "c": 0.23137789102949652,
+            "h": 262.33027339500904,
+            "l": 0.5153522969828859
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10757.49286361315,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e2e5",
+          "oklch": {
+            "c": 0.004172904407969933,
+            "h": 261.79471768520625,
+            "l": 0.9117509497399735
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9849.61897851219,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b457ff",
+          "oklch": {
+            "c": 0.24097685886385864,
+            "h": 306.1479820079123,
+            "l": 0.6481015594107357
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9828.721625658203,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5990ff",
+          "oklch": {
+            "c": 0.17464586873168447,
+            "h": 262.7519278758593,
+            "l": 0.6694662287049934
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5156,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#42225b",
+          "oklch": {
+            "c": 0.1010175957393527,
+            "h": 307.61206340488366,
+            "l": 0.32430391862358
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4233,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.09540483027413166,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.29,
+          "background": "#ffffff",
+          "foreground": "#0d0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.29,
+          "background": "#000000",
+          "foreground": "#efeff1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.78,
+          "background": "#15181e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.8,
+          "background": "#0d0e12",
+          "foreground": "#efeff1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e0e2e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#15181e",
+          "foreground": "#efeff1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.86,
+          "background": "#e0e2e5",
+          "foreground": "#0d0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.57,
+          "background": "#000000",
+          "foreground": "#d5d7db"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.7,
+          "background": "#e0e2e5",
+          "foreground": "#15181e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#0d0e12",
+          "foreground": "#d5d7db"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.03,
+          "background": "#42225b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.34,
+          "background": "#15181e",
+          "foreground": "#d5d7db"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.35,
+          "background": "#42225b",
+          "foreground": "#efeff1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#ffffff",
+          "foreground": "#3b3d45"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.32,
+          "background": "#000000",
+          "foreground": "#b2b6bd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.04,
+          "background": "#e0e2e5",
+          "foreground": "#42225b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#0d0e12",
+          "foreground": "#b2b6bd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#efeff1",
+          "foreground": "#3b3d45"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#42225b",
+          "foreground": "#d5d7db"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button",
+            "list",
+            "input",
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 58
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "list",
+            "other"
+          ],
+          "frequency": 13
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(97, 104, 117, 0.05) 0px 1px 1px 0px, rgba(97, 104, 117, 0.05) 0px 2px 2px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": "rgba(101, 106, 118, 0.05) 0px 1px 1px 0px, rgba(101, 106, 118, 0.05) 0px 2px 2px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(97, 104, 117, 0.1) 0px 1px 2px 1px inset",
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 88,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 89,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 70,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 113,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 127,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 88,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(-45deg, rgb(108, 129, 255) 0%, rgb(192, 141, 255) 100%)",
+        "colors": [
+          "rgb(108, 129, 255)",
+          "rgb(192, 141, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(-45deg, rgb(255, 135, 145) 0%, rgb(249, 181, 113) 100%)",
+        "colors": [
+          "rgb(255, 135, 145)",
+          "rgb(249, 181, 113)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 555,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Hashicorp Sans",
+          "source": "custom",
+          "weights": [
+            600,
+            700
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Hashicorp Sans",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.69,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge",
+            "image",
+            "list",
+            "icon",
+            "link",
+            "body",
+            "hero",
+            "card",
+            "footer",
+            "nav"
+          ],
+          "frequency": 358,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Hashicorp Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Hashicorp Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Hashicorp Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Hashicorp Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Hashicorp Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Hashicorp Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Hashicorp Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Hashicorp Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 82,
+          "family": "Hashicorp Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3e54fb67-cdad-4706-9b6a-447c7e457ec3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HashiCorp design system\",\"item\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#style-reference\",\"name\":\"HashiCorp design system reference\",\"headline\":\"HashiCorp design system | Refero Styles\",\"description\":\"Explore HashiCorp's dark Dev Tools design system: Void Canvas #000000, Onyx Surface #0d0e12 colors, system-ui, Hashicorp Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\",\"mainEntityOfPage\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HashiCorp\",\"url\":\"https://hashicorp.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/834ce97f-61f2-4b12-bf5c-e9fad2544456#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"caption\":\"Screenshot of HashiCorp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dbda5ccf-91d5-4b8f-ad6d-d507808d5846.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HashiCorp design system\",\"HashiCorp website design\",\"HashiCorp colors\",\"HashiCorp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void Canvas\",\"Onyx Surface\",\"Obsidian Plate\",\"Ash Text\",\"system-ui\",\"Hashicorp Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HashiCorp design system\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp website design\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp colors\"},{\"@type\":\"Thing\",\"name\":\"HashiCorp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-12T17:53:47.000Z\",\"dateModified\":\"2026-02-12T17:53:47.000Z\"}]}19:T5a5,## Quick Color Reference\n- text: #efeff1\n- background: #000000\n- surface: #0d0e12\n- border: #3b3d45\n- accent: #2264d6 (active states, links)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Split Section**: Two-column layout, 64px gap. Left: eyebrow label in Hashicorp Sans 13px weight 600 uppercase, +1.3px tracking, color #b2b6bd. Headline in Hashicorp Sans 42px weight 700, #efeff1, -0.42px tracking. Body in system-ui 16px weight 400, #b2b6bd, with inline links in #2b89ff. Right: 3D hexagonal cube render with violet-blue gradient faces.\n\n3. **Tab Navigation + Content**: Tabs row — inactive in system-ui 17px weight 500 #656a76, active in #efeff1 with 2px #2264d6 underline. Below: resource card on #0d0e12 surface, 1px #15181e border, 8px radius, 24px padding. Card headline in Hashicorp Sans 19px weight 600 #efeff1, body in system-ui 15px #b2b6bd.\n\n4. **Partner Logo Bar**: Section header 'TRUSTED BY LEADING ORGANIZATIONS' in Hashicorp Sans 13px weight 600, tracking +1.3px, color #b2b6bd. Horizontal logo row, all logos rendered in monochrome #d5d7db, ~24px height, 32–48px gaps.\n\n5. **Badge Component**: 4px radius pill, 1px #b457ff border, transparent fill, text in Hashicorp Sans 13px weight 600 uppercase with +1.3px tracking, color #efeff1. Padding 3px 8px."
+}

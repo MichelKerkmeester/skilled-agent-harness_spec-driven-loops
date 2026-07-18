@@ -1,0 +1,669 @@
+{
+  "color": {
+    "ink-violet": {
+      "$value": "#01011b",
+      "$type": "color",
+      "$description": "Ink Violet — Primary text, body copy, heavy borders, data labels — the near-black ink with a violet undertone that makes charts and code blocks feel in-brand even at full contrast"
+    },
+    "plum-charcoal": {
+      "$value": "#31263b",
+      "$type": "color",
+      "$description": "Plum Charcoal — Heavy borders, icon strokes, secondary text — a warm dark that softens harsh black and gives outlines a violet cast"
+    },
+    "storm-mauve": {
+      "$value": "#43394c",
+      "$type": "color",
+      "$description": "Storm Mauve — Nav borders, tertiary text, muted headings — sits between Ink Violet and Plum Charcoal for intermediate contrast"
+    },
+    "slate-iris": {
+      "$value": "#717a94",
+      "$type": "color",
+      "$description": "Slate Iris — Muted body text, icon fills, table borders — cool blue-gray for de-emphasized UI elements"
+    },
+    "ash-lavender": {
+      "$value": "#89828d",
+      "$type": "color",
+      "$description": "Ash Lavender — Placeholder text, disabled labels, subtle icon tints"
+    },
+    "parchment": {
+      "$value": "#fffcfc",
+      "$type": "color",
+      "$description": "Parchment — Page background, card surfaces, input fills — the warm near-white canvas, never pure #fff"
+    },
+    "bone-mist": {
+      "$value": "#ecedf2",
+      "$type": "color",
+      "$description": "Bone Mist — Subtle dividers, zebra-striped table rows, hairline section separators"
+    },
+    "fog-border": {
+      "$value": "#dbd7da",
+      "$type": "color",
+      "$description": "Fog Border — Default 1px border, card outlines, nav separators"
+    },
+    "twilight-plum": {
+      "$value": "#473982",
+      "$type": "color",
+      "$description": "Twilight Plum — Brand-violet accent for focus rings (4px halo at 15% opacity), inset borders on elevated cards, decorative brand tints"
+    },
+    "amethyst": {
+      "$value": "#6f63b7",
+      "$type": "color",
+      "$description": "Amethyst — Mid-tone violet for chart series, illustration fills, and data visualization highlights"
+    },
+    "wisteria": {
+      "$value": "#9e91d6",
+      "$type": "color",
+      "$description": "Wisteria — Light violet for chart backgrounds, soft brand washes, and paired data fills"
+    },
+    "indigo-plum": {
+      "$value": "#544692",
+      "$type": "color",
+      "$description": "Indigo Plum — Deep accent violet for dark-mode callouts, gradient endpoints, and badge fills; Gradient start"
+    }
+  },
+  "font": {
+    "pp-editorial-new": {
+      "$value": "PP Editorial New",
+      "$type": "fontFamily",
+      "$description": "Hero display headline — ultra-light italic serif floats above the page, an anti-convention whisper-voice where competitors use bold sans. The 200 weight at 78px with -0.024em tracking gives the italic terminals room to breathe. Substitute: Cormorant Garamond Italic 200, or Playfair Display Italic 300 as fallback."
+    },
+    "pp-formula-semiextended": {
+      "$value": "PP Formula SemiExtended",
+      "$type": "fontFamily",
+      "$description": "Section display headings — semi-condensed industrial sans at 60px balances the editorial hero. Tight -0.031em tracking makes the letterforms lock together for a compressed, engineered read."
+    },
+    "pp-formula": {
+      "$value": "PP Formula",
+      "$type": "fontFamily",
+      "$description": "Mid-weight display subheadings — condensed 800 weight for tight, headline-grade labels"
+    },
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body — the workhorse. 400 for body, 500/600 for nav and subheadings, 700 for emphasized labels. Tracking tightens with size: -0.70px at 20px, -0.65px at 26px. Letterforms stay technical and neutral so the violet ink color does the brand work."
+    },
+    "cinetype": {
+      "$value": "Cinetype",
+      "$type": "fontFamily",
+      "$description": "Secondary UI — nav links, button text, badges, inline labels. A geometric companion to Plex Sans, used when slightly more character is needed in controls."
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Code snippets, query cells, technical annotations — confined to 11px in product screenshots and embedded code blocks"
+    },
+    "lato": {
+      "$value": "Lato",
+      "$type": "fontFamily",
+      "$description": "Tertiary small text — footers, fine print, logo-grid captions"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 10px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 10px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 11px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 11px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 11px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 12px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 12px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 12px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 12px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 12px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 12px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 12px"
+    },
+    "xs-20": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-20 at 12px"
+    },
+    "xs-21": {
+      "$value": {
+        "fontFamily": "Cinetype Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-21 at 12px"
+    },
+    "xs-22": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-22 at 12px"
+    },
+    "xs-23": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-23 at 12px"
+    },
+    "xs-24": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-24 at 12px"
+    },
+    "xs-25": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-25 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Lato",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cinetype",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "PP Formula",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Formula SemiExtended",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Editorial New",
+        "fontSize": "78px",
+        "fontWeight": 200,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 78px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(71, 57, 130, 0.1) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(49, 38, 59, 0.22) 0px 0px 0px 1px, rgba(49, 38, 59, 0.09) 0px 103px 103px 0px, rgba(49, 38, 59, 0.1) 0px 26px 57px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(255, 255, 255) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgba(71, 57, 130, 0.15) 0px 0px 0px 4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "subtle-5": {
+      "$value": "rgba(49, 38, 59, 0.22) 0px 0px 0px 1px, rgba(49, 38, 59, 0.1) 0px 26px 57px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-5"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 0px 11px 0px inset, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 16px 24px -8px, rgba(0, 0, 0, 0.05) 0px 8px 12px -4px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fffcfc",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the warm near-white that everything floats on"
+    },
+    "bone-mist-card": {
+      "$value": "#ecedf2",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate band backgrounds, table row striping, soft section breaks"
+    },
+    "plum-tinted-card": {
+      "$value": "#fffcfc",
+      "$type": "color",
+      "$description": "Surface level 2: Product screenshot cards with violet inset border (rgba(71,57,130,0.1) 0 0 0 1px inset) and layered dark shadows"
+    },
+    "elevated-product-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Notebook/app builder previews with white fill, 6px radius, and the signature three-layer shadow stack (border + 26px close shadow + 103px ambient)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://hex.tech",
+      "siteName": "Hex",
+      "extractedAt": "2026-06-03T17:39:31.908Z",
+      "variant": "extended"
+    }
+  }
+}

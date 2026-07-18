@@ -1,0 +1,720 @@
+{
+  "source": "https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3",
+  "uuid": "e57d9536-22a7-49db-8bd4-4306d8927ec3",
+  "name": "SuperHi Basic Income",
+  "northStar": "violet column beside white broadsheet",
+  "capturedAt": "2026-07-18T08:54:08.540Z",
+  "meta": {
+    "url": "https://www.superhibasicincome.com",
+    "siteName": "SuperHi Basic Income",
+    "extractedAt": "2026-06-03T21:26:52.796Z",
+    "durationMs": 37528,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 332,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #2727e6 and #ffffff — never introduce a third color, a gradient, or a shadow",
+      "Set body line-height to 1.67 and display line-height to 1.14 — the breathing room IS the typographic system",
+      "Make the left sidebar a fixed full-height #2727e6 panel with the dotted globe and white sidebar text; treat it as a permanent brand surface, not a navigation widget",
+      "Use the outlined button (1.5px #2727e6 border, 16px radius, white fill) as the only action variant — never create a filled button",
+      "Use Basis for everything functional and reserve DDC for 1–2 display moments per page where humanist character is needed",
+      "Use 50px radius for tags and 16px radius for buttons — the two-value radius system is the complete shape language",
+      "Underline every link with a 1px #2727e6 rule at baseline; never remove the underline on hover since the system is static"
+    ],
+    "donts": [
+      "Do not add a third color, a muted neutral gray for secondary text, or a tinted background — all non-white surfaces must be #2727e6 or pure white",
+      "Do not add drop shadows, inner shadows, or glow effects — the system is completely flat and any elevation will feel foreign",
+      "Do not fill buttons with #2727e6 — the system is outlined-only; a filled button would break the editorial restraint",
+      "Do not use DDC for body text, buttons, or functional UI — it is a display face for 1–2 moments per page max",
+      "Do not use border-radius values outside 0, 16px, and 50px — there are exactly two rounded shapes in the system and everything else is square",
+      "Do not break the split-screen layout with a top navigation bar, hamburger menu, or sidebar collapse — the violet column is permanent",
+      "Do not set body line-height below 1.46 or display line-height above 1.25 — the tight-display / loose-body rhythm defines the typographic voice"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#2727e6",
+        "name": "Electric Iris",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Right content canvas, card and elevated surfaces, sidebar text and illustration on the violet panel",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Split-screen: a fixed left sidebar (~33% viewport width) stays locked on screen in solid #2727e6, while the right ~67% scrolls independently as a white content canvas. Within the right canvas, content is organized into a nested two-column grid — a narrow heading sub-column on the left and a wider body sub-column on the right, separated by 32–48px. Major sections (hero, 'Free money', 'Got a question?', 'Further reading') are stacked vertically with 64px between them. The sidebar never changes — it carries the brand wordmark, globe illustration, and status label from top to bottom. Navigation is minimal: no top bar, no hamburger, no breadcrumbs — the sidebar IS the navigation. Content density is comfortable: paragraphs are long but breathing room between blocks is generous, giving the page an editorial broadsheet rhythm rather than a dense product UI feel.",
+    "imagery": "Almost no imagery. The only visual asset is a hand-drawn-style dotted globe illustration rendered in white dots on the violet sidebar — a dot-matrix sphere that occupies the entire left column. No photography, no product screenshots, no decorative icons, no avatars. Where icons appear (checklist circles, arrow markers, circled numbers) they are pure typographic Unicode characters in #2727e6, not graphic assets. The page is overwhelmingly text-dominant; the globe is the visual punctuation.",
+    "similar": [
+      {
+        "why": "Same editorial broadsheet approach — white canvas, single accent color, generous typography, minimal decoration, text that carries the entire visual weight",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Similar two-column newsletter layout with a persistent left brand column and white content reading area, plus the same restraint to a two-color palette",
+        "business": "Substack"
+      },
+      {
+        "why": "Same single-accent-color campaign-poster energy with a flat layout, large display text, and an emphasis on the proposition rather than UI chrome",
+        "business": "Kickstarter campaign pages"
+      },
+      {
+        "why": "Editorial single-accent discipline with a strong typographic voice and no decorative imagery beyond a few signature graphic elements",
+        "business": "Mubi"
+      },
+      {
+        "why": "Ruthless two-color simplicity and zero-shadow flat surfaces; both systems prove that one chromatic color plus white is enough to carry a brand",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "0px",
+        "buttons": "16px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#2727e6",
+        "name": "Violet Column",
+        "level": 0,
+        "purpose": "Fixed full-height left sidebar — the brand surface that anchors the layout"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 1,
+        "purpose": "Main content area to the right of the sidebar; the only place body copy, links, and headings live"
+      }
+    ],
+    "elevation": [],
+    "northStar": "violet column beside white broadsheet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.46
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.14
+      }
+    ],
+    "components": [
+      {
+        "name": "Fixed Violet Sidebar",
+        "role": "Brand panel",
+        "description": "Full-height fixed left column (~33% viewport width), #2727e6 background, contains dotted globe illustration centered vertically, brand wordmark 'SUPERHI BASIC INCOME' at top in white uppercase, and status label 'APPLICATIONS CLOSED' at bottom — all white text on violet. No padding inside, but elements align to a central vertical axis."
+      },
+      {
+        "name": "Sidebar Wordmark",
+        "role": "Brand label",
+        "description": "White uppercase text on #2727e6, Basis 14px weight 500, centered horizontally in sidebar, with a 1px white horizontal rule below it as a divider. Sits at the top of the sidebar."
+      },
+      {
+        "name": "Sidebar Status Label",
+        "role": "Status indicator",
+        "description": "White uppercase text on #2727e6, Basis 14px weight 500, centered horizontally at the bottom of the sidebar, preceded and followed by short white horizontal rules — functions as a 'closed' stamp."
+      },
+      {
+        "name": "Dotted Globe Illustration",
+        "role": "Sole graphic element",
+        "description": "White dot-matrix sphere on #2727e6 sidebar, takes ~60% of sidebar height, centered. Several larger solid white dots scattered across the sphere surface act as location markers. No animation, no labels — pure texture."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Section opener",
+        "description": "Basis 48px weight 400, #2727e6, line-height 1.14, tight letter-spacing. Used for the page-level hero statement. Can be 2–4 lines, left-aligned within the right content column."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Content section label",
+        "description": "Basis 32px weight 400, #2727e6, line-height 1.17, sits in the left sub-column of the right content area. Acts as the 'title' for each content block, paired with a longer body in the right sub-column."
+      },
+      {
+        "name": "Subheading (DDC variant)",
+        "role": "Character heading",
+        "description": "DDC 21–24px weight 400, #2727e6, line-height 1.00–1.14. Reserved for moments needing typographic warmth — used 1–2 times per page max. Its tight leading makes it read almost as a shape."
+      },
+      {
+        "name": "Body Text",
+        "role": "Long-form copy",
+        "description": "Basis 16px weight 400, #2727e6, line-height 1.67 (the most generous in the system). Long paragraphs encouraged — the generous leading signals editorial confidence rather than UI density."
+      },
+      {
+        "name": "Underlined Inline Link",
+        "role": "Text link",
+        "description": "Basis 14–16px weight 500, #2727e6, with a 1px #2727e6 underline at baseline. No hover state change needed — the entire system is static. Underline is always present, never removed on hover."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive element",
+        "description": "White background, 1.5px solid #2727e6 border, 16px border-radius, padding 8px 16px (or 16px 32px for larger versions), Basis 14–16px weight 500, #2727e6 text. This is the only button variant — the system never uses filled buttons. ACTION_BORDER=176 confirms this is the primary interactive treatment."
+      },
+      {
+        "name": "Pill Tag / Status Pill",
+        "role": "Compact label",
+        "description": "#2727e6 background, 50px border-radius (fully rounded), white text, Basis 13px weight 500, padding 4px 8px. Used sparingly for inline metadata or small status labels."
+      },
+      {
+        "name": "Numbered List Item",
+        "role": "Ordered list",
+        "description": "Each item opens with a circled number (① ② ③) in #2727e6, followed by Basis 16px weight 500 #2727e6 heading text, then a Basis 16px weight 400 description below. Spacing between items: 24px."
+      },
+      {
+        "name": "Arrow Bullet List (FAQ)",
+        "role": "Disclosure / question list",
+        "description": "Each item prefixed with a right-pointing triangle marker (▸) in #2727e6, text is Basis 16px weight 500 #2727e6, vertically spaced 8px apart. Used for FAQ-style question lists."
+      },
+      {
+        "name": "Two-Column Content Block",
+        "role": "Layout primitive",
+        "description": "The right content area is internally split: a narrow left sub-column (~40%) holds the section heading in Basis 32px, a wider right sub-column (~60%) holds the body text and links. Column gap is 32–48px. This nested two-column pattern repeats down the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse — body, buttons, links, most headings, sidebar labels, and numbered list markers. Weight 500 carries buttons and emphasized inline text, 700 is reserved for strong emphasis within body copy. Its geometric neutrality lets the single accent color do the talking.",
+        "sizes": "13, 14, 16, 21, 24, 32, 48px",
+        "family": "Basis Grotesque",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.14–1.67",
+        "substitute": "Basis Grotesque (free, Indian Type Foundry) → Inter, Söhne, or IBM Plex Sans",
+        "letterSpacing": "normal at all sizes"
+      },
+      {
+        "role": "A more humanist display face used sparingly for select headings where a softer, less geometric voice is wanted. Its tight line height (1.00–1.14) is the signature: DDC pulls double duty as type and as a graphical block. Substitute with a humanist sans that has stronger character than Basis — Söhne Breit, ABC Diatype Mono, or Tiempos Headline at low weight.",
+        "sizes": "21, 24px",
+        "family": "DDC",
+        "weight": "400",
+        "lineHeight": "1.00–1.14",
+        "substitute": "ABC Diatype, Söhne Breit, or PP Neue Montreal"
+      }
+    ],
+    "description": "SuperHi Basic Income is a two-color editorial system: a permanent electric-violet column anchored to the left edge, a white broadsheet of generous typography scrolling to its right. The palette is ruthlessly binary — #2727e6 and #ffffff — with no shadows, gradients, or secondary surfaces to dilute the message. Typography carries all the personality: Basis (a geometric sans) handles every functional role, DDC (a more humanist display face) appears only where character is needed, and line heights breathe generously (1.46–1.67 for body text). Components are flat and shape-defined — pill tags at 50px radius, softly rounded buttons at 16px, a dotted globe illustration as the only graphic. The mood is campaign-poster confidence: one loud color, zero decoration, and text that does the heavy lifting.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi Basic Income design system\",\"item\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#style-reference\",\"name\":\"SuperHi Basic Income design system reference\",\"headline\":\"SuperHi Basic Income design system | Refero Styles\",\"description\":\"Explore SuperHi Basic Income's light Other design system: Electric Iris #2727e6, Paper White #ffffff colors, Basis Grotesque, DDC typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi Basic Income\",\"url\":\"https://www.superhibasicincome.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"caption\":\"Screenshot of SuperHi Basic Income\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi Basic Income design system\",\"SuperHi Basic Income website design\",\"SuperHi Basic Income colors\",\"SuperHi Basic Income typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Iris\",\"Paper White\",\"Basis Grotesque\",\"DDC\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:16:51.852Z\",\"dateModified\":\"2026-04-30T02:16:51.852Z\"}]}19:T5d2,## Quick Color Reference\n- text: #2727e6\n- background: #ffffff\n- sidebar / brand surface: #2727e6\n- border (outlined actions, link underlines): #2727e6\n- primary action: #2727e6 (outlined action border)\n\n## Example Component Prompts\n1. **Create a hero section**: Permanent #2727e6 sidebar (~33% width) on the left with a white dotted-globe illustration centered vertically and white uppercase 'SUPERHI BASIC INCOME' wordmark at top. White right canvas with a display heading: Basis 48px weight 400, #2727e6, line-height 1.14. Subhead: Basis 21px weight 500, #2727e6, line-height 1.33.\n\n2. **Create an outlined action button**: White fill, 1.5px solid #2727e6 border, 16px border-radius, 8px 16px padding, Basis 14px weight 500, #2727e6 text. No hover state, no shadow. This is the only button variant in the system.\n\n3. **Create a pill tag**: #2727e6 background, 50px border-radius, white text, Basis 13px weight 500, 4px 8px padding. Used for compact inline labels only.\n\n4. **Create a two-column content block**: Left sub-column (~40% width) with Basis 32px weight 400 #2727e6 heading, line-height 1.17. Right sub-column (~60% width) with Basis 16px weight 400 #2727e6 body, line-height 1.67. 48px gap between columns. 64px gap between this block and the next.\n\n5. **Create a numbered list**: Each item starts with a circled Unicode number (① ② ③) in #2727e6, then a Basis 16px weight 500 heading line, then a Basis 16px weight 400 description line. 24px vertical gap between items."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system is completely flat — visual hierarchy comes from the two-color contrast, typographic scale, and generous whitespace, never from elevation. Any shadow would break the broadsheet metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2727e6",
+          "oklch": {
+            "c": 0.267287738158167,
+            "h": 268.81443855433497,
+            "l": 0.4512477090052162
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "link",
+            "list",
+            "icon",
+            "button"
+          ],
+          "frequency": 1544,
+          "confidence": 1,
+          "prominence": 106929562.87276632,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 89,
+            "icon/color": 3,
+            "link/color": 42,
+            "list/color": 37,
+            "icon/stroke": 6,
+            "other/color": 101,
+            "button/color": 2,
+            "other/stroke": 6,
+            "heading/color": 32,
+            "body/borderColor": 356,
+            "icon/borderColor": 12,
+            "link/borderColor": 168,
+            "list/borderColor": 148,
+            "other/borderColor": 404,
+            "button/borderColor": 8,
+            "heading/borderColor": 128,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "heading",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 42662911.12066157,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 3,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 1,
+            "other/fill": 1,
+            "other/color": 6,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 24,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.6868131202839332,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 8.34,
+          "background": "#ffffff",
+          "foreground": "#2727e6"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "list",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 103,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginTop|list",
+            "marginBottom|list",
+            "marginTop|body",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 71,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|body",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "button"
+          ],
+          "frequency": 133,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|list",
+            "paddingLeft|list",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basis",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 303,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DDC",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.46,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 155,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Basis",
+          "weight": 500,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Basis",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "DDC",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "DDC",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Basis",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Basis",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Basis",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Basis",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/50ced67d-e19f-43ce-9968-1a6a70987913.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi Basic Income design system\",\"item\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#style-reference\",\"name\":\"SuperHi Basic Income design system reference\",\"headline\":\"SuperHi Basic Income design system | Refero Styles\",\"description\":\"Explore SuperHi Basic Income's light Other design system: Electric Iris #2727e6, Paper White #ffffff colors, Basis Grotesque, DDC typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi Basic Income\",\"url\":\"https://www.superhibasicincome.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e57d9536-22a7-49db-8bd4-4306d8927ec3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"caption\":\"Screenshot of SuperHi Basic Income\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e6401f0-8abb-4c9a-88c6-c438819bd15e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi Basic Income design system\",\"SuperHi Basic Income website design\",\"SuperHi Basic Income colors\",\"SuperHi Basic Income typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Iris\",\"Paper White\",\"Basis Grotesque\",\"DDC\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Basic Income typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:16:51.852Z\",\"dateModified\":\"2026-04-30T02:16:51.852Z\"}]}19:T5d2,## Quick Color Reference\n- text: #2727e6\n- background: #ffffff\n- sidebar / brand surface: #2727e6\n- border (outlined actions, link underlines): #2727e6\n- primary action: #2727e6 (outlined action border)\n\n## Example Component Prompts\n1. **Create a hero section**: Permanent #2727e6 sidebar (~33% width) on the left with a white dotted-globe illustration centered vertically and white uppercase 'SUPERHI BASIC INCOME' wordmark at top. White right canvas with a display heading: Basis 48px weight 400, #2727e6, line-height 1.14. Subhead: Basis 21px weight 500, #2727e6, line-height 1.33.\n\n2. **Create an outlined action button**: White fill, 1.5px solid #2727e6 border, 16px border-radius, 8px 16px padding, Basis 14px weight 500, #2727e6 text. No hover state, no shadow. This is the only button variant in the system.\n\n3. **Create a pill tag**: #2727e6 background, 50px border-radius, white text, Basis 13px weight 500, 4px 8px padding. Used for compact inline labels only.\n\n4. **Create a two-column content block**: Left sub-column (~40% width) with Basis 32px weight 400 #2727e6 heading, line-height 1.17. Right sub-column (~60% width) with Basis 16px weight 400 #2727e6 body, line-height 1.67. 48px gap between columns. 64px gap between this block and the next.\n\n5. **Create a numbered list**: Each item starts with a circled Unicode number (① ② ③) in #2727e6, then a Basis 16px weight 500 heading line, then a Basis 16px weight 400 description line. 24px vertical gap between items."
+}

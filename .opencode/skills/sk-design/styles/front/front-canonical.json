@@ -1,0 +1,1691 @@
+{
+  "source": "https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798",
+  "uuid": "3281b445-805b-4dc7-933f-42b544a6d798",
+  "name": "Front",
+  "northStar": "Midnight plum control room, one lime spark. Deep aubergine walls, lavender mist borders, and a single chartreuse beacon that pulls every eye.",
+  "capturedAt": "2026-07-18T09:43:25.482Z",
+  "meta": {
+    "url": "https://front.com",
+    "siteName": "Front",
+    "extractedAt": "2026-06-03T18:24:36.831Z",
+    "durationMs": 32553,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1131,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Lime Spark (#dee948) exclusively for the single primary action on any given page — it must be the only warm color visible",
+      "Set all display headlines at 43px or above with negative tracking between -0.017em and -0.02em; the inward pull is what makes Suisse Intl feel machined",
+      "Layer surfaces by color alone: Aubergine canvas → Royal Plum band → Lilac Mist card → Frost panel; never reach for a drop shadow to create depth",
+      "Use the Pale Lilac 1px inset ring (#d0c6f0) on any interactive control that needs a defined edge on a dark surface",
+      "Keep button radius at 40px and pill controls at 64px — the large radius is part of Front's silhouette",
+      "Use #d0c6f0 (Pale Lilac) for secondary body text on dark surfaces instead of plain gray — it stays on-brand",
+      "Anchor all spacing to the 8px base: 8/16/24/32/48/80 for gaps, padding, and section rhythm"
+    ],
+    "donts": [
+      "Don't use Lime Spark for anything other than the primary action fill — it loses its power if it appears on more than one element per screen",
+      "Don't add drop shadows to cards or buttons — depth comes from the color stack, not elevation",
+      "Don't set body text in pure white on the Aubergine canvas for long passages — use Pale Lilac (#d0c6f0) for subtext to reduce harshness",
+      "Don't mix two violet button fills on the same surface — pick Royal Plum (#5b1f76) or Aubergine (#300c41) for the section, not both",
+      "Don't set display headlines at weight 700 or 800 — Suisse Intl weight 500 with tight tracking is the Front voice; bold would break the instrument-tone",
+      "Don't use the 10px or 12px sizes for anything other than metadata, badges, or legal text — anything readable should start at 14px",
+      "Don't introduce a new accent color — the system is Aubergine + Lime; any third chromatic breaks the one-spark rule"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#300c41",
+        "name": "Aubergine",
+        "role": "Page canvas, hero backgrounds, nav background — the single dominant surface color that gives Front its unmistakable identity",
+        "group": "brand"
+      },
+      {
+        "hex": "#5b1f76",
+        "name": "Royal Plum",
+        "role": "Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#dee948",
+        "name": "Lime Spark",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#8034bf",
+        "name": "Bright Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#b375f4",
+        "name": "Lavender Glow",
+        "role": "Decorative borders, accent strokes on illustrations, gradient terminus in the chat widget",
+        "group": "accent"
+      },
+      {
+        "hex": "#1c1e20",
+        "name": "Ink",
+        "role": "Primary body and heading text on light surfaces — near-black with a faint warm cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f4fe",
+        "name": "Frost",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2dcf6",
+        "name": "Pale Lilac",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedfe2",
+        "name": "Stone",
+        "role": "Borders on light surfaces, table dividers, inactive outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5b5d63",
+        "name": "Slate",
+        "role": "Secondary text, helper copy, metadata labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7c8088",
+        "name": "Pewter",
+        "role": "Tertiary text, placeholder copy, disabled labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e929b",
+        "name": "Ash",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d1d39",
+        "name": "Midnight Navy",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0c6f0",
+        "name": "Lavender Whisper",
+        "role": "Inset focus ring color, soft hover wash, tinted shadow on elevated cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1f04",
+        "name": "Deep Olive",
+        "role": "Rare dark text accent on the lime button and light surfaces with maximum contrast",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered for content, but the page itself is full-bleed across the Aubergine canvas. The hero is a centered text stack with display headline, lilac subtext, and a two-button row, with an email card mockup floating to the lower right as a product preview. Below the hero, a Royal Plum band carries the customer logo strip as a full-width social proof moment. The overall page rhythm is: dark hero → lighter purple band → content sections. Navigation is a single sticky top bar, no sidebar, no mega-menu — the product and resources links appear to be simple dropdowns. The chat widget is a fixed floating element in the bottom-right corner, present on every screen.",
+    "imagery": "Product visualization is Front's dominant visual language: email thread mockups, chat inbox previews, and workflow cards float as Lilac Mist rectangles on the Aubergine canvas, often at a subtle angle to suggest dimension without a shadow. The illustrations are flat UI snapshots, not 3D renders or lifestyle photography. Customer logos appear as white wordmarks on the Royal Plum band, no frames or treatments. The chat widget itself is the most decorative element — a lavender gradient card with pill-shaped options. No hero photography, no stock imagery, no abstract graphics: the product UI is the visual content.",
+    "similar": [
+      {
+        "why": "Same dark purple-to-lavender surface stack, same reliance on a single warm accent (Linear's purple-pink vs Front's lime), same flat cards without drop shadows, same tight neo-grotesque typography",
+        "business": "Linear"
+      },
+      {
+        "why": "Both use minimal hero compositions with a single product mockup floating off-center, both rely on color layering rather than elevation, both use a single accent against a monochrome field",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared customer-operations space and both use purple as a primary brand surface; Intercom's blue-purple gradients map to Front's lilac-to-violet card treatments",
+        "business": "Intercom"
+      },
+      {
+        "why": "Same dark-canvas product UI language, same preference for 1px hairline borders over shadows, same tightly tracked neo-grotesque headlines",
+        "business": "Attio"
+      },
+      {
+        "why": "Both lean on a single saturated dark background with one accent color, both use generous 40-64px pill radii on controls, both keep product UI as the visual centerpiece rather than hero photography",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "pills": "64px",
+        "inputs": "10px",
+        "buttons": "40px",
+        "chatWidget": "20px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#300c41",
+        "name": "Aubergine Canvas",
+        "level": 0,
+        "purpose": "Base page and hero background — the dominant dark plum that sets the mood"
+      },
+      {
+        "hex": "#5b1f76",
+        "name": "Royal Plum Band",
+        "level": 1,
+        "purpose": "Lighter purple sections, nav, card backgrounds that need to lift off the canvas"
+      },
+      {
+        "hex": "#e2dcf6",
+        "name": "Lilac Mist",
+        "level": 2,
+        "purpose": "Light card surfaces floating on the dark sections — the interface layer where most product UI lives"
+      },
+      {
+        "hex": "#f0f4fe",
+        "name": "Frost Panel",
+        "level": 3,
+        "purpose": "Highest elevation cards, modal surfaces, and white-light UI on light sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat fill, depth implied by color contrast against the plum background",
+        "element": "Lime CTA button"
+      },
+      {
+        "style": "none — depth created by the lavender gradient fill, not a drop shadow",
+        "element": "Chat widget card"
+      },
+      {
+        "style": "rgb(208, 198, 240) 0px 0px 0px 1px inset — a hairline lilac ring replaces conventional drop shadow",
+        "element": "Interactive controls (outlined buttons, inputs)"
+      }
+    ],
+    "northStar": "Midnight plum control room, one lime spark. Deep aubergine walls, lavender mist borders, and a single chartreuse beacon that pulls every eye.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.003
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.25
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading-lg",
+        "size": 43,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.73
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Lime Primary Action",
+        "role": "The single dominant CTA across all pages — the one element that should always be the most visible",
+        "description": "Fill #dee948 lime, text #0d1d39 in Suisse Intl 500 at 16px, 9999px implied pill radius (rendered as 40px from the data), horizontal padding 24px, vertical padding 12px. No border, no shadow. Sits directly on the Aubergine canvas so the lime-to-plum contrast does all the visual work."
+      },
+      {
+        "name": "Outlined Ghost Action",
+        "role": "Secondary CTA paired with the lime button on dark surfaces",
+        "description": "Transparent fill, 1px border in #e2dcf6 (Pale Lilac), text #ffffff in Suisse Intl 500 at 16px, 40px radius, 24px horizontal / 12px vertical padding. The pale lilac border replaces the conventional drop shadow — it glows softly against the plum without competing with the lime."
+      },
+      {
+        "name": "Filled Plum Nav Button",
+        "role": "Header-level action that sits in the dark navigation bar",
+        "description": "Fill #300c41 (same as canvas, defined by a 1px Pale Lilac inset ring), text #ffffff, 40px radius, padding 10px 20px. Reads as a recessed slot in the nav rather than a raised button."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Tertiary header action next to the filled nav button",
+        "description": "Transparent fill, 1px Pale Lilac border (#e2dcf6), white text, 40px radius, same padding as the filled nav button. Mirror of the hero ghost action at smaller scale."
+      },
+      {
+        "name": "Chat Widget Card",
+        "role": "Persistent floating helper in the bottom-right corner",
+        "description": "Lavender gradient card (#b375f4 → #d0c6f0), 20px radius, ~320px wide, with a purple Front icon mark at top, white 'Welcome to Front!' heading at 20px weight 500, a stack of white pill options (Get a Demo, Pricing, Product Tour, Chat with our AI Virtual Rep) at 40px radius, and a small purple send icon button in the corner. Internal padding 20px, gap between options 8px."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page single-line notification",
+        "description": "Lime fill #dee948, text #0d1d39 in Suisse Intl 14px weight 500, centered, full-bleed, padding 8px vertical. Underlined inline link in the same dark color. This is the only place lime appears as a background surface rather than a button fill."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header with logo, product links, and two CTAs",
+        "description": "Background #300c41 (Aubergine), 64-72px height, padding 16px horizontal. Logo on the left in lavender gradient. Center nav links in white at 15px weight 500 with 32px gaps. Right cluster: 'Sign in' as plain white text, then the filled plum button, then the ghost button. No visible border or shadow — the nav floats on the same plum canvas."
+      },
+      {
+        "name": "Hero Section",
+        "role": "First-screen value proposition with dual CTA",
+        "description": "Full-width Aubergine (#300c41) background, 80-120px vertical padding, centered text stack. Display headline at 62px weight 500 in white, tracking -1.24px, max-width ~900px. Sub-headline at 17-20px weight 400 in #d0c6f0 (Pale Lilac) — the lilac subtext on plum is signature, avoiding plain gray. Two-button row with 16px gap: lime primary + ghost secondary. Below: three tab-style links ('Cross-team coordination', 'Multi-step workflows', 'AI command center') with the active tab underlined in white."
+      },
+      {
+        "name": "Email Card Mockup",
+        "role": "Product visualization card embedded in the hero/feature section",
+        "description": "Lilac Mist (#e2dcf6) fill, 20px radius, padding 20px, with a white inner email thread card. Avatar circle (40px), sender name in Ink 16px weight 500, subject in Slate 14px, message body in Ink 15px. Floating at a slight angle on the Aubergine background to suggest depth without a drop shadow."
+      },
+      {
+        "name": "Customer Logo Strip",
+        "role": "Social proof band below the hero",
+        "description": "Sits on a lighter purple band (#5b1f76 Royal Plum). Left-aligned 'Trusted by 9,000+ companies' label in white at 14px. Logos in white at ~60% opacity, 32px height, distributed horizontally with 48-80px gaps. No borders or dividers between logos."
+      },
+      {
+        "name": "Pill Tab Indicator",
+        "role": "Active state underline for the three hero feature tabs",
+        "description": "2px white underline below the active tab text, 24px width, centered under the label. Inactive tabs have no underline. Tab labels in white at 16px weight 500, 32px horizontal gap between tabs."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI — body, headings, buttons, navigation. The custom neo-grotesque gives Front its machined, Swiss-instrument feel; weight 500 carries both body and display, so the system relies on tracking and size to create hierarchy rather than weight contrast.",
+        "sizes": "10, 12, 14, 15, 16, 17, 20, 25, 30, 36, 43, 52, 62px",
+        "family": "Suisse Intl",
+        "weight": "400, 500",
+        "lineHeight": "1.20 body, 1.10 display",
+        "substitute": "Inter, Helvetica Neue, or Aktiv Grotesk",
+        "letterSpacing": "Display sizes pull inward aggressively: -0.02em at 62px (-1.24px), -0.019em at 52px (-0.99px), -0.017em at 43px (-0.73px), -0.015em at 36px (-0.54px), -0.01em at 25px (-0.25px). Body and small sizes track neutral or slightly open."
+      },
+      {
+        "role": "Rare serif accent — appears as a single contextual flourish, not a structural face",
+        "sizes": "25px",
+        "family": "Suisse Works",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Tiempos Text or Source Serif Pro",
+        "letterSpacing": "-0.0100em"
+      }
+    ],
+    "description": "Front operates in a deep-plum command-center language: a single saturated purple (#300c41) carries the page, lighter lavender cards float above it, and one electric lime accent punches through the darkness as the only warm color. Typography is neo-grotesque and tightly tracked, with display sizes at weight 500 pulling inward at -0.02em so headlines feel machined rather than drawn. Surfaces are flat — no drop shadows, only a hairline 1px inset ring in pale lilac (#d0c6f0) to define interactive edges. The overall rhythm is confident and dense: rounded pill controls (40-64px radius), compact 8/16/24px spacing, and dark-on-dark layering that makes the lime CTA feel switched on.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Front design system\",\"item\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#style-reference\",\"name\":\"Front design system reference\",\"headline\":\"Front design system | Refero Styles\",\"description\":\"Explore Front's dark SaaS design system: Aubergine #300c41, Royal Plum #5b1f76 colors, Suisse Intl, Suisse Works typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Front\",\"url\":\"https://front.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"caption\":\"Screenshot of Front\"},\"image\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Front design system\",\"Front website design\",\"Front colors\",\"Front typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Aubergine\",\"Royal Plum\",\"Lime Spark\",\"Bright Violet\",\"Suisse Intl\",\"Suisse Works\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Front design system\"},{\"@type\":\"Thing\",\"name\":\"Front website design\"},{\"@type\":\"Thing\",\"name\":\"Front colors\"},{\"@type\":\"Thing\",\"name\":\"Front typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-19T09:55:28.000Z\",\"dateModified\":\"2026-02-19T09:55:28.000Z\"}]}19:T8dd,**Quick Color Reference**\n- Text: #1c1e20 (Ink) on light, #ffffff on dark, #d0c6f0 (Pale Lilac) for subtext on dark\n- Background: #300c41 (Aubergine) for dark sections, #ffffff for light sections\n- Border: #d0c6f0 (Pale Lilac) on dark, #dedfe2 (Stone) on light\n- Accent: #b375f4 (Lavender Glow) for decorative\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the hero section**: Full-bleed #300c41 Aubergine background, 100px vertical padding. Centered headline in white Suisse Intl weight 500 at 62px, letter-spacing -1.24px, max-width 900px. Subtext below in #d0c6f0 Pale Lilac at 17px weight 400, max-width 640px. Two-button row, 16px gap: first button is Lime Spark (#dee948) fill with #0d1d39 text, 40px radius, 12px 24px padding; second button is transparent with 1px #e2dcf6 border, white text, same dimensions.\n\n2. **Build the email card mockup**: Lilac Mist (#e2dcf6) card, 20px radius, 20px padding, 380px wide. Inside: 40px circular avatar top-left, sender name 'Eva Rogers' in Ink #1c1e20 at 16px weight 500, subject 'Subject: Reroute shipment' in Slate #5b5d63 at 14px. Message body in Ink at 15px weight 400 with 8px gap between lines. Place this card at a 3-4deg rotation on the Aubergine hero.\n\n3. **Build the chat widget**: 320px wide floating card, 20px radius, lavender gradient fill from #b375f4 top to #d0c6f0 bottom, 20px padding, fixed bottom-right. Top: small purple Front 'F' icon. Heading 'Welcome to Front!' in white at 20px weight 500. Four stacked pill options below, each 40px radius, white fill, Ink text at 15px weight 500, 8px vertical gap between pills. Bottom-right: 40px circle purple (#8034bf) send icon button.\n\n4. **Build the customer logo strip**: Full-width Royal Plum (#5b1f76) band, 60px vertical padding. Left-aligned 'Trusted by 9,000+ companies' in white at 14px weight 500. To its right, 5-6 white wordmark logos at 60% opacity, 32px height, distributed with 64px gaps across the remaining width.\n\n5. **Build the announcement bar**: Full-bleed Lime Spark (#dee948), 8px vertical padding, centered text. 'New research: B2B teams spend 3 hours coordinating for every 1 hour solving.' in Ink #0d1d39 at 14px weight 500, followed by underlined inline link 'Read the report' in the same color."
+      }
+    ],
+    "elevationPhilosophy": "Front deliberately avoids drop shadows. Depth is communicated through color layering alone — the Aubergine canvas sits behind Royal Plum bands, which sit behind Lilac Mist cards. The only shadow-like effect is a 1px inset lilac ring (#d0c6f0) on interactive controls, which reads as a precision outline rather than elevation. This keeps the interface feeling flat, modern, and immediate."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1c1e20",
+          "oklch": {
+            "c": 0.004888208837928081,
+            "h": 248.03722421521533,
+            "l": 0.2337397643710949
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "body",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 2312,
+          "confidence": 1,
+          "prominence": 37587608.6720692,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 22198008.2552425,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#300c41",
+          "oklch": {
+            "c": 0.09771889834235077,
+            "h": 312.48147597170396,
+            "l": 0.24589393366588438
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 240,
+          "confidence": 1,
+          "prominence": 18253160.343909837,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2dcf6",
+          "oklch": {
+            "c": 0.03569857361497714,
+            "h": 296.25094558408944,
+            "l": 0.9070931537381712
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "list",
+            "link"
+          ],
+          "frequency": 1006,
+          "confidence": 1,
+          "prominence": 11145017.34985718,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5b1f76",
+          "oklch": {
+            "c": 0.14585192413866674,
+            "h": 313.1539282193533,
+            "l": 0.374463099450337
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 7438553.868530305,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 4334166.977079473,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dee948",
+          "oklch": {
+            "c": 0.17669371569059272,
+            "h": 113.29515484074435,
+            "l": 0.8977764700164509
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 1452906.126159116,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0f4fe",
+          "oklch": {
+            "c": 0.014042324681396797,
+            "h": 268.4938944597229,
+            "l": 0.9670114340696895
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 142,
+          "confidence": 1,
+          "prominence": 1238600.4622919671,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d1d39",
+          "oklch": {
+            "c": 0.0583482506921093,
+            "h": 260.76927196203576,
+            "l": 0.23409206851969544
+          },
+          "contexts": [
+            "list",
+            "other",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 146,
+          "confidence": 1,
+          "prominence": 1135589.9196063501,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f3f3f4",
+          "oklch": {
+            "c": 0.0013269251543757737,
+            "h": 286.3747074067637,
+            "l": 0.9644347603721516
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 943350,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedfe2",
+          "oklch": {
+            "c": 0.004208249784407206,
+            "h": 271.36580319655127,
+            "l": 0.9037408160816712
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 699605.2134190432,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d0c6f0",
+          "oklch": {
+            "c": 0.05874919746159931,
+            "h": 296.0343161928659,
+            "l": 0.8482035107887294
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 574904.8042337518,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5b5d63",
+          "oklch": {
+            "c": 0.009911767631951104,
+            "h": 271.20663196309914,
+            "l": 0.4786462892464328
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 486547.80143767555,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1d1f04",
+          "oklch": {
+            "c": 0.04462177408443523,
+            "h": 113.30235744485252,
+            "l": 0.23008330418014228
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 300434.5117180672,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b375f4",
+          "oklch": {
+            "c": 0.18704690966113358,
+            "h": 304.4451056512196,
+            "l": 0.680840523359194
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 140283.92970880977,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eefc97",
+          "oklch": {
+            "c": 0.12580956122297782,
+            "h": 115.27276070878547,
+            "l": 0.9588014414980188
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7c8088",
+          "oklch": {
+            "c": 0.013020054340723989,
+            "h": 264.47013053543753,
+            "l": 0.5991214104570239
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 37141.4361270172,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8e929b",
+          "oklch": {
+            "c": 0.014086739775675127,
+            "h": 266.64992015396643,
+            "l": 0.6595401667183086
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 24352.93171929401,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3a3c40",
+          "oklch": {
+            "c": 0.007414604675503356,
+            "h": 264.4741135864075,
+            "l": 0.35574858196296993
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 119,
+          "confidence": 1,
+          "prominence": 19090.645606261947,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8034bf",
+          "oklch": {
+            "c": 0.20594896720157976,
+            "h": 304.89251080506193,
+            "l": 0.501743054833263
+          },
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 15839.096470249002,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a857f1",
+          "oklch": {
+            "c": 0.22370682021000662,
+            "h": 304.92677893084624,
+            "l": 0.6252510263796005
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9394.521071914267,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#af96f6",
+          "oklch": {
+            "c": 0.13776689994552108,
+            "h": 294.7481317935608,
+            "l": 0.7333182888239409
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6424,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#caccd0",
+          "oklch": {
+            "c": 0.005952232569298109,
+            "h": 264.52867390508635,
+            "l": 0.8448275112347682
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5349.722330620482,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 564.2466502567315,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07333704917295868,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.08,
+          "background": "#f0f4fe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.01,
+          "background": "#eefc97",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.94,
+          "background": "#f3f3f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.8,
+          "background": "#ffffff",
+          "foreground": "#1d1f04"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.77,
+          "background": "#0d1d39",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.74,
+          "background": "#300c41",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.72,
+          "background": "#ffffff",
+          "foreground": "#1c1e20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.86,
+          "background": "#dee948",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.8,
+          "background": "#e2dcf6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.76,
+          "background": "#dedfe2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.26,
+          "background": "#f0f4fe",
+          "foreground": "#1d1f04"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.24,
+          "background": "#0d1d39",
+          "foreground": "#f0f4fe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#f0f4fe",
+          "foreground": "#300c41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#eefc97",
+          "foreground": "#1d1f04"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.19,
+          "background": "#f0f4fe",
+          "foreground": "#1c1e20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.18,
+          "background": "#eefc97",
+          "foreground": "#0d1d39"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#eefc97",
+          "foreground": "#300c41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#f3f3f4",
+          "foreground": "#1d1f04"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#eefc97",
+          "foreground": "#1c1e20"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(208, 198, 240) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 262,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 188,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingBottom",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 145,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 77,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 108,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 216,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse Intl",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 905,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Works",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list",
+            "image",
+            "icon",
+            "button",
+            "footer"
+          ],
+          "frequency": 714,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.067,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Suisse Works",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dd96685a-aa99-47d2-8ca7-3a4f88d9bcc1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Front design system\",\"item\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#style-reference\",\"name\":\"Front design system reference\",\"headline\":\"Front design system | Refero Styles\",\"description\":\"Explore Front's dark SaaS design system: Aubergine #300c41, Royal Plum #5b1f76 colors, Suisse Intl, Suisse Works typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Front\",\"url\":\"https://front.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3281b445-805b-4dc7-933f-42b544a6d798#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"caption\":\"Screenshot of Front\"},\"image\":\"https://images.refero.design/styles/refero.design/image/813e4e4f-2a5e-4cff-b003-eb13c476b08a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Front design system\",\"Front website design\",\"Front colors\",\"Front typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Aubergine\",\"Royal Plum\",\"Lime Spark\",\"Bright Violet\",\"Suisse Intl\",\"Suisse Works\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Front design system\"},{\"@type\":\"Thing\",\"name\":\"Front website design\"},{\"@type\":\"Thing\",\"name\":\"Front colors\"},{\"@type\":\"Thing\",\"name\":\"Front typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-19T09:55:28.000Z\",\"dateModified\":\"2026-02-19T09:55:28.000Z\"}]}19:T8dd,**Quick Color Reference**\n- Text: #1c1e20 (Ink) on light, #ffffff on dark, #d0c6f0 (Pale Lilac) for subtext on dark\n- Background: #300c41 (Aubergine) for dark sections, #ffffff for light sections\n- Border: #d0c6f0 (Pale Lilac) on dark, #dedfe2 (Stone) on light\n- Accent: #b375f4 (Lavender Glow) for decorative\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the hero section**: Full-bleed #300c41 Aubergine background, 100px vertical padding. Centered headline in white Suisse Intl weight 500 at 62px, letter-spacing -1.24px, max-width 900px. Subtext below in #d0c6f0 Pale Lilac at 17px weight 400, max-width 640px. Two-button row, 16px gap: first button is Lime Spark (#dee948) fill with #0d1d39 text, 40px radius, 12px 24px padding; second button is transparent with 1px #e2dcf6 border, white text, same dimensions.\n\n2. **Build the email card mockup**: Lilac Mist (#e2dcf6) card, 20px radius, 20px padding, 380px wide. Inside: 40px circular avatar top-left, sender name 'Eva Rogers' in Ink #1c1e20 at 16px weight 500, subject 'Subject: Reroute shipment' in Slate #5b5d63 at 14px. Message body in Ink at 15px weight 400 with 8px gap between lines. Place this card at a 3-4deg rotation on the Aubergine hero.\n\n3. **Build the chat widget**: 320px wide floating card, 20px radius, lavender gradient fill from #b375f4 top to #d0c6f0 bottom, 20px padding, fixed bottom-right. Top: small purple Front 'F' icon. Heading 'Welcome to Front!' in white at 20px weight 500. Four stacked pill options below, each 40px radius, white fill, Ink text at 15px weight 500, 8px vertical gap between pills. Bottom-right: 40px circle purple (#8034bf) send icon button.\n\n4. **Build the customer logo strip**: Full-width Royal Plum (#5b1f76) band, 60px vertical padding. Left-aligned 'Trusted by 9,000+ companies' in white at 14px weight 500. To its right, 5-6 white wordmark logos at 60% opacity, 32px height, distributed with 64px gaps across the remaining width.\n\n5. **Build the announcement bar**: Full-bleed Lime Spark (#dee948), 8px vertical padding, centered text. 'New research: B2B teams spend 3 hours coordinating for every 1 hour solving.' in Ink #0d1d39 at 14px weight 500, followed by underlined inline link 'Read the report' in the same color."
+}

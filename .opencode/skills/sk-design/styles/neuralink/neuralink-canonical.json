@@ -1,0 +1,1177 @@
+{
+  "source": "https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3",
+  "uuid": "7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3",
+  "name": "Neuralink",
+  "northStar": "obsidian laboratory with a single color synapse — a black void where only light, shadow, and one thin spectrum of color speak",
+  "capturedAt": "2026-07-18T09:50:58.926Z",
+  "meta": {
+    "url": "https://neuralink.com",
+    "siteName": "Neuralink",
+    "extractedAt": "2026-06-03T17:54:24.904Z",
+    "durationMs": 32755,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 242,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the full-bleed hero background with #ffffff display text at 48px weight 300, letter-spacing -7.92px",
+      "Apply the Synapse Gradient only in the announcement bar and as photo-card overlay washes — never as a solid UI surface, button fill, or text color",
+      "Set border-radius to 80px on all action buttons for full pill geometry; use 20px on cards and 60px on large container elements",
+      "Maintain aggressive negative letter-spacing: -0.165em at 48px down to -0.015em at 14px, never let large type run at default tracking",
+      "Separate content sections with Ash (#f5f5f5) bands between Paper (#ffffff) blocks to create rhythm without adding color",
+      "Use weight 300 for all display and heading sizes (32px+); reserve weight 700 only for inline emphasis within body text",
+      "Keep page max-width at 1200px for content sections; let hero and announcement bar go full-bleed edge-to-edge"
+    ],
+    "donts": [
+      "Do not introduce any chromatic brand color — the system is monochrome by design, and the gradient is the only exception",
+      "Do not use drop shadows, box-elevation, or blur effects on any component — depth comes from surface contrast only",
+      "Do not use square or slightly-rounded corners (4px, 8px) on buttons — the 80px pill radius is a signature element",
+      "Do not use weight 600 or 700 for headlines — the weight 300 display is a deliberate anti-convention choice",
+      "Do not add letter-spacing to small text or use positive tracking anywhere — the entire scale runs negative or zero",
+      "Do not use the gradient as a background for text blocks or data tables — it is reserved for the announcement bar and photo overlays",
+      "Do not place multiple ghost buttons adjacent to each other on the same surface — one outlined action per zone, with filled buttons as the alternative"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page hero canvas, primary text, section dividers, dark-mode blocks. The dominant structural color — used 931 times as backgrounds, borders, and text. Creates a void-like base that makes white type and the single gradient feel electric by contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Content section background, card surfaces, ghost-button text and border. The light counterpart to Obsidian — every content section sits on Paper, and outlined/ghost buttons invert to Paper stroke on Obsidian backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Ash",
+        "role": "Soft off-white surface for the footer and secondary bands. Separates Paper from true white when a gentler contrast is needed — used for the meet-our-pioneers section background and the footer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bababa",
+        "name": "Fog",
+        "role": "Muted nav text and low-emphasis dividers. A desaturated mid-gray for inactive navigation labels and subtle hairline borders where black would feel too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6452d8",
+        "name": "Synapse Gradient",
+        "role": "The only chromatic element in the entire system. A four-stop spectrum (warm rose → cool lavender → indigo → violet) used exclusively for the announcement bar and photo-card overlays. The dominant anchor color is the violet end (#6452d8), giving the gradient a cool, neurological character",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, #e486ab, #7f80b3 20%, #435a93 50%, #6452d8 95%)"
+      }
+    ],
+    "layout": "The page follows a full-bleed → contained → full-bleed rhythm. The hero is edge-to-edge Obsidian with no max-width constraint and text anchored in the lower-left. Content sections are centered within ~1200px max-width on Paper or Ash backgrounds. The layout alternates: Obsidian hero → Paper two-column content → Ash centered-heading + two-card grid → Ash footer. Navigation is a single thin bar that persists across all sections, adapting its text/border color to the underlying surface. Vertical spacing is generous (80px section gaps) with comfortable 12-30px element gaps. No sidebar, no mega-menu, no sticky elements beyond the nav bar itself.",
+    "imagery": "Photography appears only inside Pioneer Cards, treated as full-bleed backgrounds with gradient color washes (teal-green on one card, pink-magenta on the other) that temper the photo into the brand palette. The photos are portrait-oriented, showing people in soft natural-light environments — never clinical, never staged in a lab. No product photography, no 3D renders, no illustrations appear elsewhere. The hero and all content sections are purely typographic — no images, no icons beyond a small arrow glyph inside buttons. The visual system communicates through surface contrast and one gradient, not through visual content density.",
+    "similar": [
+      {
+        "why": "Same full-bleed black hero with massive light-weight display type and near-zero color palette — both rely on surface contrast and generous whitespace rather than chromatic branding",
+        "business": "Apple"
+      },
+      {
+        "why": "Both use tight-tracked geometric sans-serifs at display sizes with pill-shaped buttons and gradient accent strips, though Stripe introduces more color in its gradients",
+        "business": "Stripe"
+      },
+      {
+        "why": "Shared commitment to monochrome interface (0% colorfulness) with information density carried by typography and spacing rather than color coding",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar monochrome-first product aesthetic with dot-matrix typography and a single accent — both use restraint as the design statement",
+        "business": "Nothing (Nothing.tech)"
+      },
+      {
+        "why": "Both position as futuristic tech brands using near-pure black/white palettes with cinematic full-bleed heroes and pill-shaped ghost buttons",
+        "business": "Humane (AI Pin)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "buttons": "80px",
+        "nav-buttons": "16px",
+        "body-elements": "60px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 1,
+        "purpose": "Full-bleed hero sections, dark mode blocks, dramatic contrast zones"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Surface",
+        "level": 2,
+        "purpose": "Primary content background, text-heavy sections, card surfaces"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Ash Band",
+        "level": 3,
+        "purpose": "Soft separator sections (meet-our-pioneers), footer, breathing room between Paper blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "obsidian laboratory with a single color synapse — a black void where only light, shadow, and one thin spectrum of color speak",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.21
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.67
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.15,
+        "letterSpacing": -2.64
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -7.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Synapse Announcement Bar",
+        "role": "Full-width gradient strip at the very top of every page",
+        "description": "Full-bleed gradient bar (Synapse Gradient: rose → lavender → indigo → violet, 90deg). White text at 12px, weight 400, centered. Close button (×) on the far right. Height ~32px, no padding beyond vertical centering. This is the ONLY place the gradient appears as a solid bar."
+      },
+      {
+        "name": "Minimal Navigation Header",
+        "role": "Primary site navigation on all pages",
+        "description": "Sits on a #000000 (Obsidian) or #ffffff (Paper) background depending on the section. Logo (stylized N-wave mark) left-aligned. Nav links (Technology, Careers, Updates) right-aligned at 16px, weight 400, in Paper or Obsidian text. A pill-shaped 'Clinical Trials' button with 16px radius sits at the far right — 1px border matching the text color, transparent fill, 6px vertical / 12px horizontal padding."
+      },
+      {
+        "name": "Full-Bleed Hero Block",
+        "role": "Primary page-opening visual zone",
+        "description": "Full-viewport-width Obsidian (#000000) background extending edge-to-edge with no max-width constraint. Display text at 48px, weight 300, in #ffffff, positioned in the lower-left quadrant with generous left and bottom padding (~80-120px). A single ghost pill button sits below the headline. No imagery, no decoration — pure black void with white type."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Outlined/ghost action button used on dark backgrounds",
+        "description": "Transparent background, 1px solid #ffffff border, border-radius 80px (full pill). Text at 16px, weight 400, #ffffff, with a 2px right arrow icon. Padding 12px vertical, 24px horizontal. No fill on hover — the button reads as a subtle outline, not a heavy action element."
+      },
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action button used on light backgrounds",
+        "description": "Solid #ffffff background on Obsidian sections, or solid #000000 on Paper sections. Border-radius 80px. Text at 16px, weight 500, contrasting color, with right arrow. Padding 12px vertical, 24px horizontal. Used sparingly — only one button appears in the hero."
+      },
+      {
+        "name": "Two-Column Content Section",
+        "role": "Text-heavy explanatory content blocks on white background",
+        "description": "#ffffff background, max-width ~1200px centered. Left column holds a large heading (44-48px, weight 300) with tight tracking. Right column holds two paragraphs of body text (16-18px, weight 400, #000000) stacked vertically with ~30px row gap. Generous vertical padding (80px top/bottom). No images, no cards — pure typographic layout."
+      },
+      {
+        "name": "Pioneer Card",
+        "role": "Large photo-overlay card for featured audience segments",
+        "description": "Aspect ratio roughly 3:4, border-radius 20px. Full-bleed photograph inside, overlaid with a gradient wash (teal/green on left card, pink/magenta on right card — used to differentiate card identity without adding UI color). White overlay text (heading at 24px weight 500, subtext at 16px weight 400) positioned in the lower-left. A ghost pill button (1px white border, 80px radius) sits below the text. Used in pairs side-by-side."
+      },
+      {
+        "name": "Centered Section Heading",
+        "role": "Section-introducing title text",
+        "description": "Centered alignment, 32-44px, weight 300, #000000. Sits on either Paper or Ash background with ~80px vertical padding above and below. No supporting subtitle — the heading stands alone, creating breathing room before the content below."
+      },
+      {
+        "name": "Footer",
+        "role": "Page-bottom information area",
+        "description": "Ash (#f5f5f5) background, full-width. Minimal content — likely links and copyright in small text (12-14px, weight 400, #000000). Generous padding (60-80px vertical). No color, no imagery — maintains the system's monochrome discipline to the bottom of the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — a custom geometric sans used at all sizes and weights. Weight 300 at display sizes is anti-convention: most bold-tech brands use 600-700 for headlines, but Neuralink's whisper-light displays with aggressive negative tracking create authority through restraint and engineered density, not volume. Weight 400 for body, 500 for nav, 700 reserved for emphasis.",
+        "sizes": "8px, 12px, 14px, 16px, 17px, 18px, 24px, 32px, 44px, 48px",
+        "family": "UntitledSans",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.00, 1.15, 1.20, 1.50",
+        "substitute": "Inter, Söhne, or General Sans",
+        "letterSpacing": "-0.165em at 48px display, -0.060em at 32px, -0.050em at 24px, -0.037em at 18px, -0.030em at 17px, -0.020em at 16px, -0.015em at 14px"
+      }
+    ],
+    "description": "Neuralink operates as a near-pure monochrome system: a near-black canvas, a white surface, and one off-white band, with no chromatic brand color at all. A single spectrum gradient — pink to violet — appears only as the announcement bar and as photo-card overlays, acting as the system's sole injection of warmth and life. Typography carries almost all of the brand voice: a geometric sans at weight 300 for display sizes with aggressively tight tracking (-0.165em at 48px) that gives headlines a compressed, engineered density. Pill-shaped controls (80px radius) sit against full-bleed black and white blocks, creating a cinematic, almost editorial rhythm where the only color signal is a faint synaptic glow.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Neuralink design system\",\"item\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#style-reference\",\"name\":\"Neuralink design system reference\",\"headline\":\"Neuralink design system | Refero Styles\",\"description\":\"Explore Neuralink's mixed AI design system: Obsidian #000000, Paper #ffffff colors, UntitledSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Neuralink\",\"url\":\"https://neuralink.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"caption\":\"Screenshot of Neuralink\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Neuralink design system\",\"Neuralink website design\",\"Neuralink colors\",\"Neuralink typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Paper\",\"Ash\",\"Fog\",\"UntitledSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Neuralink design system\"},{\"@type\":\"Thing\",\"name\":\"Neuralink website design\"},{\"@type\":\"Thing\",\"name\":\"Neuralink colors\"},{\"@type\":\"Thing\",\"name\":\"Neuralink typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T04:00:14.467Z\",\"dateModified\":\"2026-04-30T04:00:14.467Z\"}]}19:T7eb,**Quick Color Reference**\n- text: #000000\n- background (content): #ffffff\n- background (hero/footer-dark): #000000\n- background (soft band): #f5f5f5\n- border (nav/inactive): #bababa\n- accent (gradient only): #6452d8 (violet anchor) with rose→lavender→indigo→violet spectrum\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Create a full-bleed hero section*: #000000 background, edge-to-edge with no max-width. Display text at 48px, UntitledSans weight 300, #ffffff, letter-spacing -7.92px, line-height 1.0, positioned lower-left with ~80px left padding and ~120px bottom padding. A ghost pill button below: transparent fill, 1px #ffffff border, 80px border-radius, 12px 24px padding, 16px weight 400 #ffffff text with right arrow.\n\n2. *Create a two-column content section*: #ffffff background, max-width 1200px centered, 80px vertical padding. Left column: heading at 44px, UntitledSans weight 300, #000000, letter-spacing -2.64px. Right column: two paragraphs of body text at 16px, weight 400, #000000, stacked with 30px row gap.\n\n3. *Create a Pioneer Card*: 3:4 aspect ratio, border-radius 20px, full-bleed photo background. Overlay a teal-to-green gradient wash at ~40% opacity on the lower half. White heading at 24px weight 500 in the lower-left with 32px padding. Below it, a ghost pill button: transparent fill, 1px #ffffff border, 80px radius, 16px weight 400 #ffffff text with arrow.\n\n4. *Create the announcement bar*: full-bleed strip, height ~32px, background is the Synapse Gradient (linear-gradient 90deg, #e486ab, #7f80b3 20%, #435a93 50%, #6452d8 95%). White text at 12px, weight 400, centered. A white × close button on the far right.\n\n5. *Create a minimal navigation bar*: transparent or #000000 background, logo on far left, nav links (Technology, Careers, Updates) at 16px weight 400 right-aligned with 20px gap between links, and a pill button 'Clinical Trials' at 16px border-radius, 1px #ffffff border, 6px 12px padding, 16px weight 400 #ffffff text at the far right."
+      }
+    ],
+    "elevationPhilosophy": "Neuralink deliberately avoids shadows and box-elevation. The depth system is built entirely from surface color contrast: Obsidian blocks sit adjacent to Paper blocks, and Ash bands separate Paper sections. The only depth signal is the border on the gradient photo cards and the hairline button borders — no drop shadows, no blurred glows. This flat, shadowless approach reinforces the engineered, clinical aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "list",
+            "image",
+            "footer",
+            "nav"
+          ],
+          "frequency": 931,
+          "confidence": 1,
+          "prominence": 65040744.368046075,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 35,
+            "body/color": 17,
+            "hero/color": 1,
+            "icon/color": 5,
+            "list/color": 15,
+            "other/fill": 3,
+            "image/color": 2,
+            "other/color": 93,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 11,
+            "nav/borderColor": 140,
+            "body/borderColor": 68,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "list/borderColor": 60,
+            "image/borderColor": 8,
+            "other/borderColor": 372,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "body/backgroundColor": 5,
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "hero",
+            "heading"
+          ],
+          "frequency": 229,
+          "confidence": 1,
+          "prominence": 10167755.10602391,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 9,
+            "body/color": 8,
+            "hero/color": 1,
+            "icon/color": 5,
+            "link/color": 1,
+            "other/fill": 5,
+            "other/color": 13,
+            "button/color": 3,
+            "other/stroke": 5,
+            "heading/color": 2,
+            "nav/borderColor": 36,
+            "body/borderColor": 32,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 4,
+            "other/borderColor": 52,
+            "button/borderColor": 16,
+            "heading/borderColor": 8,
+            "hero/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 758250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bababa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7889206270075311
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 16132,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "nav/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#000000",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.94,
+          "background": "#ffffff",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#f5f5f5",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|body",
+            "marginRight|body",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(228, 134, 171), rgb(127, 128, 179) 20%, rgb(67, 90, 147) 50%, rgb(100, 82, 216) 95%)",
+        "colors": [
+          "rgb(228, 134, 171)",
+          "rgb(127, 128, 179)",
+          "rgb(67, 90, 147)",
+          "rgb(100, 82, 216)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "UntitledSans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 229,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "UntitledSans",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "UntitledSans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "hero",
+            "list",
+            "button",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.165,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "UntitledSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "UntitledSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "UntitledSans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/36dbaedd-e397-4407-8093-ed38c2b77dac.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Neuralink design system\",\"item\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#style-reference\",\"name\":\"Neuralink design system reference\",\"headline\":\"Neuralink design system | Refero Styles\",\"description\":\"Explore Neuralink's mixed AI design system: Obsidian #000000, Paper #ffffff colors, UntitledSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Neuralink\",\"url\":\"https://neuralink.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7510b18e-63c3-4c2a-97c3-39fa7dfa6ae3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"caption\":\"Screenshot of Neuralink\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fe4b921a-5899-4324-b783-93b758307218.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Neuralink design system\",\"Neuralink website design\",\"Neuralink colors\",\"Neuralink typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Paper\",\"Ash\",\"Fog\",\"UntitledSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Neuralink design system\"},{\"@type\":\"Thing\",\"name\":\"Neuralink website design\"},{\"@type\":\"Thing\",\"name\":\"Neuralink colors\"},{\"@type\":\"Thing\",\"name\":\"Neuralink typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T04:00:14.467Z\",\"dateModified\":\"2026-04-30T04:00:14.467Z\"}]}19:T7eb,**Quick Color Reference**\n- text: #000000\n- background (content): #ffffff\n- background (hero/footer-dark): #000000\n- background (soft band): #f5f5f5\n- border (nav/inactive): #bababa\n- accent (gradient only): #6452d8 (violet anchor) with rose→lavender→indigo→violet spectrum\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Create a full-bleed hero section*: #000000 background, edge-to-edge with no max-width. Display text at 48px, UntitledSans weight 300, #ffffff, letter-spacing -7.92px, line-height 1.0, positioned lower-left with ~80px left padding and ~120px bottom padding. A ghost pill button below: transparent fill, 1px #ffffff border, 80px border-radius, 12px 24px padding, 16px weight 400 #ffffff text with right arrow.\n\n2. *Create a two-column content section*: #ffffff background, max-width 1200px centered, 80px vertical padding. Left column: heading at 44px, UntitledSans weight 300, #000000, letter-spacing -2.64px. Right column: two paragraphs of body text at 16px, weight 400, #000000, stacked with 30px row gap.\n\n3. *Create a Pioneer Card*: 3:4 aspect ratio, border-radius 20px, full-bleed photo background. Overlay a teal-to-green gradient wash at ~40% opacity on the lower half. White heading at 24px weight 500 in the lower-left with 32px padding. Below it, a ghost pill button: transparent fill, 1px #ffffff border, 80px radius, 16px weight 400 #ffffff text with arrow.\n\n4. *Create the announcement bar*: full-bleed strip, height ~32px, background is the Synapse Gradient (linear-gradient 90deg, #e486ab, #7f80b3 20%, #435a93 50%, #6452d8 95%). White text at 12px, weight 400, centered. A white × close button on the far right.\n\n5. *Create a minimal navigation bar*: transparent or #000000 background, logo on far left, nav links (Technology, Careers, Updates) at 16px weight 400 right-aligned with 20px gap between links, and a pill button 'Clinical Trials' at 16px border-radius, 1px #ffffff border, 6px 12px padding, 16px weight 400 #ffffff text at the far right."
+}

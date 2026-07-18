@@ -1,0 +1,222 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, sidebar background, card surfaces, input fills"
+    },
+    "youtube-ink": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "YouTube Ink — Primary text, icon strokes, logo wordmark, button text — the near-black that defines the entire interface"
+    },
+    "graphite": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, metadata, timestamps, muted descriptions, nav secondary labels"
+    },
+    "ash": {
+      "$value": "#909090",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, disabled states, inactive icon strokes, micro-copy"
+    },
+    "mist": {
+      "$value": "#c6c6c6",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, inactive toggle tracks, subtle dividers"
+    },
+    "silver": {
+      "$value": "#d3d3d3",
+      "$type": "color",
+      "$description": "Silver — Button borders, input field outlines, card outlines — the structural divider"
+    },
+    "signal-blue": {
+      "$value": "#065fd4",
+      "$type": "color",
+      "$description": "Signal Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "play-red": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Play Red — Logo play triangle exclusively — the locked brand mark, never used as a functional UI color"
+    }
+  },
+  "font": {
+    "roboto": {
+      "$value": "Roboto",
+      "$type": "fontFamily",
+      "$description": "Primary interface font — nav labels, body copy, links, button text, metadata, timestamps. The 2.57 line-height on small sizes creates generous vertical breathing room for sidebar items."
+    },
+    "youtube-sans": {
+      "$value": "YouTube Sans",
+      "$type": "fontFamily",
+      "$description": "Wordmark only — the logo's custom typeface that makes 'YouTube' instantly recognizable. Never used for headings, body, or nav."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for legacy components and button labels in older UI fragments"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "YouTube Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Entire page background including sidebar and main content area — single flat layer"
+    },
+    "notification-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Alert/notification surfaces distinguished only by a hairline border, never by fill or shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://youtube.com",
+      "siteName": "YouTube",
+      "extractedAt": "2026-06-03T17:56:13.770Z",
+      "variant": "extended"
+    }
+  }
+}

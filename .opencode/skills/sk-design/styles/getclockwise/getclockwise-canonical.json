@@ -1,0 +1,1047 @@
+{
+  "source": "https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5",
+  "uuid": "6024d069-8a74-4534-917f-5f5b11224cc5",
+  "name": "Getclockwise",
+  "northStar": "monogrammed letterhead on cream paper — a warm, editorial announcement, not a product page",
+  "capturedAt": "2026-07-18T08:43:45.950Z",
+  "meta": {
+    "url": "https://www.getclockwise.com",
+    "siteName": "Getclockwise",
+    "extractedAt": "2026-06-03T21:55:48.810Z",
+    "durationMs": 30017,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 288,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Mori weight 600–700 for all headings; set line-height to 0.95–1.00 at 52px+ to keep display text compact and poster-like.",
+      "Apply -0.03em letter-spacing to all Inter text to achieve the editorial, non-system feel.",
+      "Use 800px border-radius for all pills, buttons, and logo containers — this is the system's only radius shape.",
+      "Anchor every page on the #fdf9f7 cream canvas; use #ffffff only for card/elevated surfaces above it.",
+      "Limit #039861 to link borders, thin rules, and icon accents — never as a filled background or large surface.",
+      "Set body text max-width to ~640px and center it for editorial readability, even on wide pages.",
+      "Use #d6d6d6 hairline dividers (1px) between repeated items like FAQ entries and logo grid rows."
+    ],
+    "donts": [
+      "Do not introduce filled CTA buttons or colored background buttons — the system uses ghost/outlined links only.",
+      "Do not apply drop shadows, glows, or elevation effects — the design is flat and paper-like.",
+      "Do not use system fonts as a fallback for PP Mori headlines; substitute with a geometric serif or grotesque of similar character.",
+      "Do not use #039861 for body text, headings, or large surfaces — it is an accent signal, not a structural color.",
+      "Do not use sharp 0px radii on pills or buttons — the capsule form is system-defining.",
+      "Do not use pure #000000 for text — soften to #333333 to maintain the printed, non-digital tone.",
+      "Do not add gradients, textures, or background patterns to any surface."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#003f2e",
+        "name": "Forest Ink",
+        "role": "Primary brand color, headlines, logo mark, body emphasis, heavy borders, dark surface blocks — deep emerald reads as ink-stamp rather than digital green, anchoring every page with editorial weight",
+        "group": "brand"
+      },
+      {
+        "hex": "#039861",
+        "name": "Vivid Emerald",
+        "role": "Outlined/ghost link borders, thin section rules, and occasional icon accents — the only chromatic accent in the system, used sparingly so it reads as a signal rather than decoration",
+        "group": "accent"
+      },
+      {
+        "hex": "#fdf9f7",
+        "name": "Cream Canvas",
+        "role": "Page background, document body — warm off-white gives the entire site a paper-like, non-screen feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Paper",
+        "role": "Card and elevated surfaces layered above the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ink Black",
+        "role": "Primary body and link text on light surfaces — softened pure black to feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e7673",
+        "name": "Faded Pencil",
+        "role": "Muted body text, secondary metadata, helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Hairline Gray",
+        "role": "Light borders, dividers, accordion separators, subtle structural rules",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a6",
+        "name": "Mid Gray",
+        "role": "Medium-weight borders, icon strokes, secondary dividers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-column, centered, max-width ~1200px page container with body text constrained to ~640px. The hero is a centered logo + headline + subtitle stack on the cream canvas. Below the fold, the FAQ section uses a single column of accordion items separated by hairlines. The client logo grid is a 3-column matrix of equal cells. The stat block is a 2-column centered pair of large numbers with labels. No sidebar, no multi-column body text, no asymmetric layouts — everything is vertically stacked and center-aligned.",
+    "imagery": "No photography, illustration, or decorative graphics on this page. The visual system is pure typography and logo marks. Client logos in the social-proof grid are the only graphical content, rendered in each brand's native color treatment against white cells. The page reads as an editorial document, not a visual showcase.",
+    "similar": [
+      {
+        "why": "Same warm off-white background with deep near-black text and a single brand accent used sparingly on links and key elements",
+        "business": "Notion"
+      },
+      {
+        "why": "Both use a custom display face for headlines with tight line-heights, and Inter for body, creating the same editorial-meets-product tension",
+        "business": "Linear"
+      },
+      {
+        "why": "Deep brand-color headings on warm white canvas with generous vertical spacing and pill-shaped UI elements",
+        "business": "Stripe"
+      },
+      {
+        "why": "Editorial, letter-like layout with centered single-column body text, serif or distinctive display headings, and minimal chrome",
+        "business": "Substack"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "800px",
+        "cards": "0px",
+        "logos": "800px",
+        "buttons": "800px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "64px",
+      "cardPadding": "20-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#fdf9f7",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm paper tone"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Paper",
+        "level": 1,
+        "purpose": "Cards, elevated content blocks, logo cells"
+      },
+      {
+        "hex": "#003f2",
+        "name": "Forest Ink Surface",
+        "level": 2,
+        "purpose": "Dark inverted sections, footer, brand blocks"
+      }
+    ],
+    "northStar": "monogrammed letterhead on cream paper — a warm, editorial announcement, not a product page",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 66,
+        "lineHeight": 0.95,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Primary page-level heading",
+        "description": "PP Mori weight 600–700 at 52–66px, color #003f2, line-height 0.95–1.00, center-aligned. The compact line-height is signature — large sizes stack into a tight visual block rather than spreading across multiple lines."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form editorial text",
+        "description": "Inter 400 at 18px, color #333333, line-height 1.40, max-width ~640px centered. Generous margin-bottom (20–32px) between paragraphs. Reads as letter or announcement copy, not interface text."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Primary action and navigation link",
+        "description": "No filled background. Inter 500 at 16–18px, color #039861, with a 1px #039861 bottom border. Pill or text-only form. The lack of a filled CTA is signature — the brand never shouts for clicks."
+      },
+      {
+        "name": "FAQ Accordion Item",
+        "role": "Expandable question/answer block",
+        "description": "Question in Inter 700 at 16–18px, color #003f2e. Plus-icon toggle in a 1px #003f2 circle outline (pill radius). Answer body in Inter 400 at 16px, #333333. Hairline #d6d6d6 divider between items."
+      },
+      {
+        "name": "Pill Badge / Tag",
+        "role": "Inline label or category marker",
+        "description": "Fully rounded 800px radius, 8px vertical / 14–20px horizontal padding, Inter 500 at 14–16px, color #003f2 on #fdf9f7 or transparent background with 1px #003f2 border."
+      },
+      {
+        "name": "Client Logo Grid",
+        "role": "Social proof / customer showcase",
+        "description": "3-column grid on desktop, each cell ~200px wide, logos rendered in their native brand colors against #ffffff cells. Equal column gaps of 32–48px. No card chrome — logos float directly on the cream canvas."
+      },
+      {
+        "name": "Stat Block",
+        "role": "Large quantitative highlight",
+        "description": "PP Mori 700 at 52–66px, color #003f2 for the number, followed by Inter 400 at 16–18px label in #333333. Center-aligned, minimal spacing between number and label (~8px). The number does the visual work; the label whispers beneath."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal separator between content blocks",
+        "description": "1px solid #d6d6d6, full container width, used between FAQ items and before/after major sections. Sometimes rendered as a vivid #039861 rule for emphasis."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity anchor",
+        "description": "Diamond/compass glyph in #003f2 paired with 'clockwise' wordmark in PP Mori or Inter weight 600, same green. Centered above headlines. The mark is flat, geometric, and unembellished."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All headings and display text — the custom geometric face gives headlines a distinctive modern character unavailable in system fonts; tight line-heights (0.95–1.00) make large display sizes stack into compact, poster-like blocks",
+        "sizes": "23px, 52px, 64px, 66px",
+        "family": "PP Mori",
+        "weight": "600, 700",
+        "lineHeight": "0.95–1.20",
+        "substitute": "DM Serif Display, or as fallback: Söhne Breit, General Sans"
+      },
+      {
+        "role": "Body text, subheadings, UI labels, and smaller headings — the -0.03em tracking tightens Inter enough to read as editorial body copy rather than default system text",
+        "sizes": "16px, 18px, 20px, 23px, 24px",
+        "family": "Inter",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.30–1.40",
+        "letterSpacing": "-0.03em (≈ -0.48px at 16px, -0.72px at 24px)"
+      }
+    ],
+    "description": "Clockwise speaks in a warm, paper-like voice: cream canvas, deep forest-green ink, and generous white space that lets short paragraphs breathe. The design is editorial rather than product-UI — think a well-typeset letter rather than a dashboard. A single custom display face (PP Mori) carries every heading at 52–66px with tight line-heights, while Inter handles body text with a subtle -0.03em tracking. The palette is ruthlessly restrained: nearly every visual element is either warm off-white, deep green ink, or a hairline border. Pill-shaped radii (800px) wrap around tags, buttons, and logo containers, giving every rounded element the same soft capsule form. Interactivity is whisper-quiet — no filled CTA buttons, no heavy shadows, no gradients — just a vivid emerald accent (#039861) that appears on ghost-style links and section rules.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Getclockwise design system\",\"item\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#style-reference\",\"name\":\"Getclockwise design system reference\",\"headline\":\"Getclockwise design system | Refero Styles\",\"description\":\"Explore Getclockwise's light Productivity design system: Forest Ink #003f2e, Vivid Emerald #039861 colors, PP Mori, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Getclockwise\",\"url\":\"https://www.getclockwise.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"caption\":\"Screenshot of Getclockwise\"},\"image\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Getclockwise design system\",\"Getclockwise website design\",\"Getclockwise colors\",\"Getclockwise typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Forest Ink\",\"Vivid Emerald\",\"Cream Canvas\",\"Pure Paper\",\"PP Mori\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Getclockwise design system\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise website design\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise colors\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T00:42:37.937Z\",\"dateModified\":\"2026-04-30T00:42:37.937Z\"}]}19:T528,**Quick Color Reference**\n- text: #333333\n- heading: #003f2e\n- background: #fdf9f7\n- surface (card): #ffffff\n- border: #d6d6d6\n- accent link: #039861\n- primary action: #039861 (outlined action border)\n\n**Example Component Prompts**\n\n1. *Hero announcement block*: Cream canvas (#fdf9f7). Centered logo (diamond mark + 'clockwise' wordmark, both #003f2e). Headline at 64px PP Mori weight 600, #003f2e, line-height 1.0. Subtitle at 20px Inter weight 400, #6e7673, line-height 1.30. 64px vertical padding above and below.\n\n2. *Body text paragraph*: Max-width 640px, centered. Inter 400 at 18px, #333333, line-height 1.40, letter-spacing -0.54px. 32px margin-bottom between paragraphs. Cream canvas background.\n\n3. *FAQ accordion item*: Full-width row with 1px #d6d6d6 top border. Question in Inter 700 at 18px, #003f2e. Plus-icon toggle: 32px circle with 1px #003f2e border, 800px radius. Expanded answer in Inter 400 at 16px, #333333.\n\n4. *Stat highlight*: Two-column centered pair. Number in PP Mori 700 at 66px, #003f2e, line-height 0.95. Label in Inter 400 at 16px, #333333, 8px gap above. 48px gap between the two stat columns.\n\n5. *Client logo grid*: 3-column grid, 32px gaps, each cell on #ffffff background with no border. Logos centered in each cell, ~120px wide. Full grid centered in a max-width 1200px container."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat — no box-shadows, no elevation stacking. Depth is achieved through surface color contrast alone: cream canvas → white card → forest-green block. Borders are hairline (1px) rather than shadowed."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#003f2e",
+          "oklch": {
+            "c": 0.0660061167387821,
+            "h": 168.1586590514536,
+            "l": 0.32657399420467975
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "list",
+            "image"
+          ],
+          "frequency": 1369,
+          "confidence": 1,
+          "prominence": 58953310.87705516,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "list/color": 8,
+            "other/fill": 1,
+            "image/color": 15,
+            "other/color": 213,
+            "heading/color": 21,
+            "body/borderColor": 76,
+            "list/borderColor": 32,
+            "image/borderColor": 60,
+            "other/borderColor": 812,
+            "heading/borderColor": 84,
+            "other/backgroundColor": 28
+          }
+        },
+        {
+          "hex": "#fdf9f7",
+          "oklch": {
+            "c": 0.005048513513723741,
+            "h": 48.68762825071483,
+            "l": 0.984628598894272
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6223846.597456843,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 641105,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a6a6a6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7251571669935564
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 306424.701927514,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 19
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8760963267776515
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 306424.701927514,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 19
+          }
+        },
+        {
+          "hex": "#6e7673",
+          "oklch": {
+            "c": 0.010661691718105337,
+            "h": 171.51952552331153,
+            "l": 0.5580887280753187
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 123986.02921196073,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 59976,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 2,
+            "link/borderColor": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#039861",
+          "oklch": {
+            "c": 0.13733563310188712,
+            "h": 158.9535072292933,
+            "l": 0.5994237704585412
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 23281.277923952828,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 5,
+            "link/borderColor": 20
+          }
+        },
+        {
+          "hex": "#00a972",
+          "oklch": {
+            "c": 0.1438817234324206,
+            "h": 161.2899812984776,
+            "l": 0.6490559529586133
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1956,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.17399478385885414,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#fdf9f7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12,
+          "background": "#ffffff",
+          "foreground": "#003f2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.47,
+          "background": "#fdf9f7",
+          "foreground": "#003f2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#d6d6d6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.25,
+          "background": "#d6d6d6",
+          "foreground": "#003f2e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.19,
+          "background": "#a6a6a6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.93,
+          "background": "#a6a6a6",
+          "foreground": "#003f2e"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.66,
+          "background": "#ffffff",
+          "foreground": "#6e7673"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.46,
+          "background": "#fdf9f7",
+          "foreground": "#6e7673"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.71,
+          "background": "#ffffff",
+          "foreground": "#039861"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#fdf9f7",
+          "foreground": "#039861"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.24,
+          "background": "#003f2e",
+          "foreground": "#039861"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#003f2e",
+          "foreground": "#6e7673"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#003f2e",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 77,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 117,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 263,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Mori",
+          "source": "custom",
+          "weights": [
+            600,
+            700
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "image"
+          ],
+          "frequency": 214,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "PP Mori",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "PP Mori",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 66,
+          "family": "PP Mori",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5b28e008-b5c7-4997-a759-840d66b71e96.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Getclockwise design system\",\"item\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#style-reference\",\"name\":\"Getclockwise design system reference\",\"headline\":\"Getclockwise design system | Refero Styles\",\"description\":\"Explore Getclockwise's light Productivity design system: Forest Ink #003f2e, Vivid Emerald #039861 colors, PP Mori, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Getclockwise\",\"url\":\"https://www.getclockwise.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6024d069-8a74-4534-917f-5f5b11224cc5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"caption\":\"Screenshot of Getclockwise\"},\"image\":\"https://images.refero.design/styles/refero.design/image/22be0196-3422-498b-862a-d2a45b83e78f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Getclockwise design system\",\"Getclockwise website design\",\"Getclockwise colors\",\"Getclockwise typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Forest Ink\",\"Vivid Emerald\",\"Cream Canvas\",\"Pure Paper\",\"PP Mori\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Getclockwise design system\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise website design\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise colors\"},{\"@type\":\"Thing\",\"name\":\"Getclockwise typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T00:42:37.937Z\",\"dateModified\":\"2026-04-30T00:42:37.937Z\"}]}19:T528,**Quick Color Reference**\n- text: #333333\n- heading: #003f2e\n- background: #fdf9f7\n- surface (card): #ffffff\n- border: #d6d6d6\n- accent link: #039861\n- primary action: #039861 (outlined action border)\n\n**Example Component Prompts**\n\n1. *Hero announcement block*: Cream canvas (#fdf9f7). Centered logo (diamond mark + 'clockwise' wordmark, both #003f2e). Headline at 64px PP Mori weight 600, #003f2e, line-height 1.0. Subtitle at 20px Inter weight 400, #6e7673, line-height 1.30. 64px vertical padding above and below.\n\n2. *Body text paragraph*: Max-width 640px, centered. Inter 400 at 18px, #333333, line-height 1.40, letter-spacing -0.54px. 32px margin-bottom between paragraphs. Cream canvas background.\n\n3. *FAQ accordion item*: Full-width row with 1px #d6d6d6 top border. Question in Inter 700 at 18px, #003f2e. Plus-icon toggle: 32px circle with 1px #003f2e border, 800px radius. Expanded answer in Inter 400 at 16px, #333333.\n\n4. *Stat highlight*: Two-column centered pair. Number in PP Mori 700 at 66px, #003f2e, line-height 0.95. Label in Inter 400 at 16px, #333333, 8px gap above. 48px gap between the two stat columns.\n\n5. *Client logo grid*: 3-column grid, 32px gaps, each cell on #ffffff background with no border. Logos centered in each cell, ~120px wide. Full grid centered in a max-width 1200px container."
+}

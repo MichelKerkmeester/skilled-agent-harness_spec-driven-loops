@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --color-bone: #e7ecea;
+  --color-ink: #000000;
+  --color-paper-white: #ffffff;
+
+  /* Typography — Font Families */
+  --font-space-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --text-body: 16px;
+  --leading-body: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+
+  /* Layout */
+  --card-padding: 6px;
+  --element-gap: 16px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-bone-canvas: #e7ecea;
+  --surface-ink-band: #000000;
+}

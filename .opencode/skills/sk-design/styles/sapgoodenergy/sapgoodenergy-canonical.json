@@ -1,0 +1,1672 @@
+{
+  "source": "https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259",
+  "uuid": "0cead5f0-0a56-401f-b637-81d1fe457259",
+  "name": "SAPGOODENERGY",
+  "northStar": "marathon finish line in a cleanroom",
+  "capturedAt": "2026-07-18T09:33:20.998Z",
+  "meta": {
+    "url": "https://sapgoodenergy.com",
+    "siteName": "SAPGOODENERGY",
+    "extractedAt": "2026-06-03T19:09:28.948Z",
+    "durationMs": 45370,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 383,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ff7840 sparingly — reserve for the vertical side tab and isolated filled CTAs only; let it function as a single accent, not a brand coat of paint",
+      "Set display headlines in Helvetica Neue weight 800 with −0.04em to −0.05em letter-spacing at 38–56px so the wordforms compress into a slab",
+      "Use GT Pressura at 13–16px weight 500 for all body, button, and navigation copy — never above 24px for this face",
+      "Give the product at least 100px of vertical breathing room above and below; the white canvas is part of the product",
+      "Use 7px border-radius on every button, link, and input; 18px only on cards; 14px is reserved for small floating pills",
+      "Lean on 1px hairline borders in #e7e7e7 or #c0c0c0 instead of shadows to separate content on the white canvas",
+      "Let the hero video or photograph fill 100vw with no overlay tint, gradient, or vignette — the raw image does the work"
+    ],
+    "donts": [
+      "Do not introduce additional accent colors — the 0% colorfulness is the system; one orange is the entire chromatic vocabulary",
+      "Do not set body copy in Helvetica Neue — reserve that face for 30px+ display moments only",
+      "Do not use shadows, glows, or elevated cards on the white product sections; rely on whitespace and hairline rules",
+      "Do not exceed 7px radius on buttons or 18px on cards — the radii are tightly defined and misusing them breaks the geometric rhythm",
+      "Do not center long-form paragraphs; left-align body copy in a 480–640px measure",
+      "Do not use gradient fills on backgrounds, buttons, or images — the system is strictly flat",
+      "Do not add decorative icons, illustrations, or emoji to the white product pages; the product and copy alone carry meaning"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff7840",
+        "name": "Fuel Orange",
+        "role": "Side tab accent, occasional filled action — a single warm orange against clinical white acts as the only chromatic signal in an otherwise achromatic system, reading as urgency without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, filled CTA buttons, strongest borders — the hard stop in a system that otherwise lives in warm grays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#303030",
+        "name": "Graphite",
+        "role": "Dominant text color, card and nav borders, icon strokes — softer than pure black for sustained reading while still reading as ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Sterling",
+        "role": "Muted helper text, secondary headings, subdued borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c0c0c0",
+        "name": "Silversmith",
+        "role": "Quiet dividers, decorative heading borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Bone",
+        "role": "Card surfaces, soft fills, decorative icon backgrounds — the step between canvas and card",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffffb",
+        "name": "Lab White",
+        "role": "Page canvas, the slightly warm white that makes the product photograph read as clinical rather than sterile",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, button fills, highlighted text — the cleanest tone, used where maximum contrast against graphite is needed",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Hero photography and video are documentary race-day imagery — desaturated winter light, urban marathon settings, a lone runner, signage, barriers. No studio photography, no lifestyle, no models. On white-canvas sections, the only imagery is a single product packet photographed against seamless white with subtle environmental shadows, rotated slightly in the frame. The visual language is split: raw athletic chaos above the fold, clinical product isolation below.",
+    "similar": [
+      {
+        "why": "Same split-personality approach — raw race-day imagery above the fold, clinical white product isolation below; single warm accent against monochrome",
+        "business": "On Running"
+      },
+      {
+        "why": "Clinical white canvas with a single product floating center-stage and ultra-precise utility typography; the product is presented as a specimen, not a lifestyle object",
+        "business": "Huel"
+      },
+      {
+        "why": "Dense negative tracking on display headlines, almost laboratory-clean product photography, and a single warm accent color used as punctuation rather than as coat-of-paint branding",
+        "business": "Mast Brothers"
+      },
+      {
+        "why": "Compressed neo-grotesque display type at extreme sizes with tight letter-spacing, paired with a quiet utilitarian body face for functional copy",
+        "business": "Gymshark66"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "18px",
+        "links": "7px",
+        "inputs": "7px",
+        "buttons": "7px",
+        "smallInteractive": "14px"
+      },
+      "elementGap": "4-8px",
+      "sectionGap": "100px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fffffb",
+        "name": "Lab White Canvas",
+        "level": 0,
+        "purpose": "The slightly warm page background that frames all white-canvas product sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 1,
+        "purpose": "Card surfaces and button fills where maximum contrast against the canvas is needed"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Bone Surface",
+        "level": 2,
+        "purpose": "Quiet secondary fills and decorative icon backgrounds, one step above the card"
+      }
+    ],
+    "northStar": "marathon finish line in a cleanroom",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 53,
+        "lineHeight": 1,
+        "letterSpacing": -2.65
+      },
+      {
+        "role": "display-xl",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -2.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Side Promotion Tab",
+        "role": "Persistant vertical call-to-action",
+        "description": "Fixed-position vertical tab pinned to the left edge, #ff7840 background, white GT Pressura 11–12px text rotated 90°. Reads as a ticket-stub or race bib clipped to the viewport — the only sustained splash of color in the system."
+      },
+      {
+        "name": "Minimal Top Navigation",
+        "role": "Site navigation bar",
+        "description": "White background, no border or shadow. Three entries — brand mark in parens, SHOP, WHY SAP — and a cart count (0) in the far right. GT Pressura 13–14px weight 500, uppercase or small-caps, black on white. Anchored top, no background fill, maximum air."
+      },
+      {
+        "name": "Full-Bleed Race Hero",
+        "role": "Above-the-fold brand video/image",
+        "description": "100vw video or still photograph of race conditions, overlaid with a massive 53–56px Helvetica Neue weight 800 headline at near-zero letter-spacing sitting above the viewport frame. The headline bleeds off the top edge so only its lower half is visible, creating a marquee-banner effect. No gradient, no overlay tint — the raw image carries all mood."
+      },
+      {
+        "name": "Centered Floating Product Stage",
+        "role": "Product hero on white canvas",
+        "description": "White (#fffffb) background with a single product packet (silver gel sachet) floating dead-center at slight rotation. No surface, no card, no shadow platform — the product is photographed against pure canvas and presented as a specimen. Heading at 24–30px Helvetica Neue weight 500 sits to the left in a tight 2–3 line stack."
+      },
+      {
+        "name": "Filled Black CTA Button",
+        "role": "Primary purchase action",
+        "description": "#000000 fill, white text, GT Pressura 13–14px weight 500–600 uppercase, 7px border-radius, 16px vertical × 24px horizontal padding. Hard rectangular silhouette. This is the conversion workhorse — 'BUY SAP 25G' style labels."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary or supporting action",
+        "description": "Transparent fill, 1px #000000 or #303030 border, 7px radius, 16px × 24px padding, same type spec as the filled variant. Used for less critical actions."
+      },
+      {
+        "name": "Hero Overlay Close Button",
+        "role": "Dismiss the full-bleed video hero",
+        "description": "Small circular or square 32px button in the upper-left of the hero, white or black background depending on image exposure, single 'X' glyph in 16px weight 500."
+      },
+      {
+        "name": "Hero Corner Shop Pill",
+        "role": "Persistent shop shortcut over the video",
+        "description": "White rounded pill in the bottom-right of the hero, black 'SHOP' label in GT Pressura 12–13px, 14px radius, light box-shadow for legibility over moving imagery."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Structural separator",
+        "description": "1px line in #c0c0c0 or #e7e7e7 spanning the content column, used to separate sparse text blocks on white canvas sections."
+      },
+      {
+        "name": "Distance Marker Badge",
+        "role": "Editorial KPI callout on hero imagery",
+        "description": "Cyan-blue (#7DDFFA range) rectangular sign placed in the environment of the photograph (visible in race signage at '21 KM' mark). Functions as editorial rhythm, not a UI component, but the type treatment is Helvetica Neue weight 800 white on cyan at ~80px — a borrowed visual language from real marathon signage."
+      },
+      {
+        "name": "Cart Count Indicator",
+        "role": "Header utility",
+        "description": "Plain numeric '0' in GT Pressura 13px black, right-aligned in nav, no badge background or pill — treated as a label not a notification."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse for all utility, body, navigation, button, and small-headline copy. The slightly compressed, technical character set gives every label a clinical-instrument feel; sizes stay small (10–24px) and line-heights tight, reinforcing the system’s compact density.",
+        "sizes": "10, 13, 14, 16, 24",
+        "family": "GT Pressura LC Standard",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, IBM Plex Sans, or Söhne"
+      },
+      {
+        "role": "Display and section-heading face. Used at 30–56px with weight 800 and aggressive negative tracking (−0.04em to −0.05em) so headlines compress into a dense, race-bib-like slab. Weight 500 covers the few mid-size emphasis moments. The signature choice is using the heaviest weight with the tightest tracking to create visual density without raising size — authority through compression.",
+        "sizes": "14, 18, 30, 38, 53, 56",
+        "family": "Helvetica Neue LT Std",
+        "weight": "500, 800",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Helvetica Now Display Bold, Inter Tight, or Neue Haas Grotesk Display",
+        "letterSpacing": "-0.05em at 53–56px, -0.04em at 30–38px"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "GTStandard-M",
+        "weight": "500",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "SAP Good Energy operates on a brutalist split personality: a full-bleed race-day video hero crashes into a clinical white product stage where a single silver packet floats alone in negative space. The palette is essentially monochrome — warm white canvas, near-black ink, and one vivid orange that appears only as functional punctuation (a vertical side tab, isolated CTA fills). Typography pairs a compressed neo-grotesque display face with aggressive negative tracking for headlines against a precise utility sans for body and navigation copy, both set tight and never shouting. Components are almost invisible — the product IS the hero on white screens, the race atmosphere IS the hero above the fold, and almost everything in between is empty air with hairline rules.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SAPGOODENERGY design system\",\"item\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#style-reference\",\"name\":\"SAPGOODENERGY design system reference\",\"headline\":\"SAPGOODENERGY design system | Refero Styles\",\"description\":\"Explore SAPGOODENERGY's light E-commerce design system: Fuel Orange #ff7840, Ink Black #000000 colors, GT Pressura LC Standard, Helvetica Neue LT Std...\",\"url\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SAPGOODENERGY\",\"url\":\"https://sapgoodenergy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"caption\":\"Screenshot of SAPGOODENERGY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SAPGOODENERGY design system\",\"SAPGOODENERGY website design\",\"SAPGOODENERGY colors\",\"SAPGOODENERGY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fuel Orange\",\"Ink Black\",\"Graphite\",\"Sterling\",\"GT Pressura LC Standard\",\"Helvetica Neue LT Std\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY design system\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY website design\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY colors\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:23:30.470Z\",\"dateModified\":\"2026-04-30T00:23:30.470Z\"}]}19:T629,**Quick Color Reference**\n- text: #303030\n- background: #fffffb\n- surface/card: #ffffff\n- border: #e7e7e7\n- accent: #ff7840\n- primary action: #ff7840 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #ff7840 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Top navigation bar*: White background, no border, no shadow. Left: '( SAP )' in GT Pressura 14px weight 500, #303030. Center: 'SHOP' and 'WHY SAP' in same spec, separated by 240px gaps. Far right: cart count '0' in same spec. No background fill, no sticky offset, full viewport width.\n\n3. *Full-bleed race hero*: 100vw × 100vh video element with autoplay, muted, loop, no overlay. Over it, a 53px Helvetica Neue weight 800 headline at letter-spacing -2.65px, positioned so only the bottom third of the letters is visible at the top edge, #303030 or white depending on exposure. Bottom-right floating pill: white #ffffff background, 14px radius, 'SHOP' in GT Pressura 12px weight 500 #000000, 16px 20px padding, soft 0 2px 8px rgba(0,0,0,0.15) shadow.\n\n4. *Side promotion tab*: Fixed to left edge, vertically centered. #ff7840 background, full height of the visible area, 40px wide. White 'WANT 10 OFF FIRST ORDER?' text rotated 90°, GT Pressura 12px weight 600, letter-spacing 0.04em, 16px padding from each edge.\n\n5. *Hairline section divider*: A single 1px line in #c0c0c0 spanning 100% of the 1440px max-width content column, with 64px vertical margin above and below. No label, no decoration — pure structural pause."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids drop shadows. Separation comes from hairline 1px borders in #e7e7e7 or #c0c0c0 against the warm white canvas, plus generous negative space. The only allowed shadow is a soft offset on floating UI elements (like the hero SHOP pill) that need legibility over photographic imagery."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#303030",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3109788833537154
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "icon",
+            "button",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 890,
+          "confidence": 1,
+          "prominence": 101431442.931901,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 6,
+            "card/color": 24,
+            "icon/color": 2,
+            "image/color": 5,
+            "other/color": 138,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "nav/borderColor": 28,
+            "body/borderColor": 24,
+            "card/borderColor": 96,
+            "icon/borderColor": 8,
+            "image/borderColor": 20,
+            "other/borderColor": 496,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body",
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 489,
+          "confidence": 1,
+          "prominence": 12803976.943743873,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 57,
+            "link/color": 2,
+            "other/color": 20,
+            "button/color": 3,
+            "other/stroke": 2,
+            "heading/color": 3,
+            "nav/borderColor": 28,
+            "body/borderColor": 228,
+            "link/borderColor": 8,
+            "other/borderColor": 80,
+            "button/borderColor": 8,
+            "heading/borderColor": 12,
+            "body/backgroundColor": 3,
+            "card/backgroundColor": 18,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#fffffb",
+          "oklch": {
+            "c": 0.00525145455871116,
+            "h": 106.49428859184384,
+            "l": 0.9988983387837538
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 4997462.868523585,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 3625348.523682825,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 13,
+            "other/borderColor": 1,
+            "card/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "icon",
+            "button",
+            "input"
+          ],
+          "frequency": 389,
+          "confidence": 1,
+          "prominence": 1627783.8796150712,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 5,
+            "link/color": 14,
+            "other/fill": 1,
+            "input/color": 1,
+            "other/color": 23,
+            "button/color": 10,
+            "other/stroke": 12,
+            "link/boxShadow": 1,
+            "body/borderColor": 40,
+            "icon/borderColor": 20,
+            "link/borderColor": 56,
+            "other/borderColor": 151,
+            "button/borderColor": 40,
+            "body/backgroundColor": 1,
+            "link/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c0c0c0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.80779623784442
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 290624,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 224403.49712976688,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "heading/color": 1,
+            "body/borderColor": 12,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff7840",
+          "oklch": {
+            "c": 0.1789562947307897,
+            "h": 41.70558118376411,
+            "l": 0.7232107978812412
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 14200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#afafaf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7540172565886749
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00038607039016716574,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.95,
+          "background": "#000000",
+          "foreground": "#fffffb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e7e7e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#ffffff",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.17,
+          "background": "#fffffb",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#000000",
+          "foreground": "#c0c0c0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.67,
+          "background": "#e7e7e7",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#000000",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.01,
+          "background": "#ff7840",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.25,
+          "background": "#c0c0c0",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#afafaf",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.04,
+          "background": "#ff7840",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#ffffff",
+          "foreground": "#707070"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.94,
+          "background": "#fffffb",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#000000",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#e7e7e7",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#ff7840",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.61,
+          "background": "#ff7840",
+          "foreground": "#fffffb"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#ffffff",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#fffffb",
+          "foreground": "#afafaf"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "link",
+            "input"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "corners": [
+            0,
+            0,
+            4,
+            4
+          ],
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|button",
+            "columnGap|button",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|link",
+            "columnGap|link",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link",
+            "other",
+            "card"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 116,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 165,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT Pressura LC Standard",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 306,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Neue LT Std",
+          "source": "custom",
+          "weights": [
+            500,
+            800
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "button",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 173,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GTStandard-M",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT Pressura LC Standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 38,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 38,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "Helvetica Neue LT Std",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 56,
+          "family": "Helvetica Neue LT Std",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f22bab22-0dcc-4455-a6e1-dd5d667de3ee.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SAPGOODENERGY design system\",\"item\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#style-reference\",\"name\":\"SAPGOODENERGY design system reference\",\"headline\":\"SAPGOODENERGY design system | Refero Styles\",\"description\":\"Explore SAPGOODENERGY's light E-commerce design system: Fuel Orange #ff7840, Ink Black #000000 colors, GT Pressura LC Standard, Helvetica Neue LT Std...\",\"url\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SAPGOODENERGY\",\"url\":\"https://sapgoodenergy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0cead5f0-0a56-401f-b637-81d1fe457259#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"caption\":\"Screenshot of SAPGOODENERGY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2490fe51-51e6-47ea-8963-8c64ef4d2a25.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SAPGOODENERGY design system\",\"SAPGOODENERGY website design\",\"SAPGOODENERGY colors\",\"SAPGOODENERGY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fuel Orange\",\"Ink Black\",\"Graphite\",\"Sterling\",\"GT Pressura LC Standard\",\"Helvetica Neue LT Std\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY design system\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY website design\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY colors\"},{\"@type\":\"Thing\",\"name\":\"SAPGOODENERGY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:23:30.470Z\",\"dateModified\":\"2026-04-30T00:23:30.470Z\"}]}19:T629,**Quick Color Reference**\n- text: #303030\n- background: #fffffb\n- surface/card: #ffffff\n- border: #e7e7e7\n- accent: #ff7840\n- primary action: #ff7840 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #ff7840 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Top navigation bar*: White background, no border, no shadow. Left: '( SAP )' in GT Pressura 14px weight 500, #303030. Center: 'SHOP' and 'WHY SAP' in same spec, separated by 240px gaps. Far right: cart count '0' in same spec. No background fill, no sticky offset, full viewport width.\n\n3. *Full-bleed race hero*: 100vw × 100vh video element with autoplay, muted, loop, no overlay. Over it, a 53px Helvetica Neue weight 800 headline at letter-spacing -2.65px, positioned so only the bottom third of the letters is visible at the top edge, #303030 or white depending on exposure. Bottom-right floating pill: white #ffffff background, 14px radius, 'SHOP' in GT Pressura 12px weight 500 #000000, 16px 20px padding, soft 0 2px 8px rgba(0,0,0,0.15) shadow.\n\n4. *Side promotion tab*: Fixed to left edge, vertically centered. #ff7840 background, full height of the visible area, 40px wide. White 'WANT 10 OFF FIRST ORDER?' text rotated 90°, GT Pressura 12px weight 600, letter-spacing 0.04em, 16px padding from each edge.\n\n5. *Hairline section divider*: A single 1px line in #c0c0c0 spanning 100% of the 1440px max-width content column, with 64px vertical margin above and below. No label, no decoration — pure structural pause."
+}

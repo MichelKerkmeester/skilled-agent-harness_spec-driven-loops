@@ -1,0 +1,245 @@
+{
+  "color": {
+    "aubergine-ink": {
+      "$value": "#290a08",
+      "$type": "color",
+      "$description": "Aubergine Ink — Primary text, headings, filled action buttons, footer text — the warm near-black that anchors every screen; it is the only chromatic dark in the system and the only acceptable fill for primary actions"
+    },
+    "vintage-burgundy": {
+      "$value": "#810c00",
+      "$type": "color",
+      "$description": "Vintage Burgundy — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "buttery-highlight": {
+      "$value": "#fff3cc",
+      "$type": "color",
+      "$description": "Buttery Highlight — Link text and selected heading accent — a pale custard yellow used sparingly to mark hyperlinks and tiny editorial highlights, sitting at AAA contrast on the ink"
+    },
+    "parchment-canvas": {
+      "$value": "#f6f0e1",
+      "$type": "color",
+      "$description": "Parchment Canvas — Page background — the dominant warm cream that defines the entire site mood; every screen sits on this surface"
+    },
+    "linen-card": {
+      "$value": "#fffaec",
+      "$type": "color",
+      "$description": "Linen Card — Card surfaces, list-item backgrounds, subtle elevated zones — a step lighter than the canvas, the only card treatment in the system"
+    },
+    "hairline-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Mist — All borders and dividers throughout the system; used on cards, body blocks, links, and structural dividers — the single hairline color of the site"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Button borders, reverse text on dark fills, and the lightest possible surface lift; the only true white in the palette"
+    }
+  },
+  "font": {
+    "jannon-neo": {
+      "$value": "Jannon Neo",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — carries every headline, section title, and large editorial moment from 20px through a dramatic 120px. The custom transitional serif with weight 300 for the largest sizes is the signature choice: the 'Books by Alison Roman' hero and book titles sit at whisper-light weight, giving the page a printed-book authority rather than a SaaS-bold shout. Substitute with Cormorant Garamond or EB Garamond at light weights."
+    },
+    "modale-antique": {
+      "$value": "Modale Antique",
+      "$type": "fontFamily",
+      "$description": "Body, button, card, and UI serif — a slightly more grounded old-style serif for all running text, button labels, card descriptions, and footer lines. The workhorse that lets Jannon Neo's headlines breathe. Substitute with Lora or Source Serif Pro."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System fallback for legacy card content blocks; only present at 29px with normal tracking — used as a safety net rather than a deliberate voice"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Modale Antique",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Modale Antique",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Jannon Neo",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Modale Antique",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Modale Antique",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Jannon Neo",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Jannon Neo",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Jannon Neo",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Jannon Neo",
+        "fontSize": "120px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#f6f0e1",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background — every screen starts here"
+    },
+    "linen-card": {
+      "$value": "#fffaec",
+      "$type": "color",
+      "$description": "Surface level 2: Card and list-item surfaces, elevated slightly above the canvas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Highest surface lift, used for book-cover image wells and reverse-text buttons"
+    },
+    "aubergine-ink": {
+      "$value": "#290a08",
+      "$type": "color",
+      "$description": "Surface level 4: Darkest surface — the filled button and any dark inversion blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.alisoneroman.com",
+      "siteName": "Alison Roman",
+      "extractedAt": "2026-06-03T20:57:40.601Z",
+      "variant": "extended"
+    }
+  }
+}

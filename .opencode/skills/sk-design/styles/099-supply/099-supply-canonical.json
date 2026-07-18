@@ -1,0 +1,1076 @@
+{
+  "source": "https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed",
+  "uuid": "e4a7b5f3-f393-4f6d-b4a5-ecf874024bed",
+  "name": "099 SUPPLY",
+  "northStar": "Gallery wall of black-on-white objects",
+  "capturedAt": "2026-07-18T06:26:51.573Z",
+  "meta": {
+    "url": "https://099.supply",
+    "siteName": "099 SUPPLY",
+    "extractedAt": "2026-07-03T03:40:37.533Z",
+    "durationMs": 49523,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1157,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Soehne Mono (or JetBrains Mono substitute) for every piece of text — no second typeface.",
+      "Set every label, badge, and metadata strip in uppercase with tracking between 0.02em and 0.18em.",
+      "Render all buttons at 9999px radius and all cards/tiles at 8px radius — the contrast is the system.",
+      "Use 1px solid borders in #e0e0e0 for default state, #999999 for hover, and #101010 for strong emphasis.",
+      "Keep all mockup assets on pure white backgrounds centered within their tiles — the object IS the content.",
+      "Maintain the catalog metadata pattern: asset ID left ('M 005'), asset name right ('IPHONE'), separated by a horizontal divider.",
+      "Use #101010 as the sole fill for dark elements — buttons, strokes, silhouettes, checkmark icons, loader arcs."
+    ],
+    "donts": [
+      "Never introduce chromatic color — no blues, greens, reds, or any hue. The system is monochrome.",
+      "Never apply box-shadow, drop-shadow, or any elevation effect. Depth comes from hairline borders only.",
+      "Never use a sans-serif or proportional typeface. Mono is non-negotiable.",
+      "Never use background gradients except for the single conic-gradient loader pattern (#101010 → #c8c8c8).",
+      "Never set border-radius below 4px on cards or above 9999px on buttons — the radius vocabulary is fixed.",
+      "Never use bold (600+) or light (300-) weights. Stay at 400, with 500 reserved for the 26px section heading.",
+      "Never mix section heading style — always 26px uppercase #999999 with 0.18em tracking, nothing decorative."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surfaces, button backgrounds, link containers — the gallery wall everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Ink",
+        "role": "Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Pure-black decorative fills for mockup rendering and high-contrast object silhouettes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Muted Hard",
+        "role": "Dark surface tint for elevated dark components and modal/overlay backgrounds; Dark surface fill for elevated panels, toggle/loader component backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#555555",
+        "name": "Muted",
+        "role": "Secondary body text, supporting copy, muted helper labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Muted Soft",
+        "role": "Section headings, icon fills, badge text, hover border state — the softest readable gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Border Soft",
+        "role": "Soft hairline borders for less prominent dividers and input outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Border Subtle",
+        "role": "Card edges, link borders, subtle dividers between tiles — the dominant hairline color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed white canvas with no max-width container — content extends edge to edge. Hero is a centered site title area (the '099' counter in large mono) followed by section grids. Each section begins with a left-aligned uppercase heading ('3D MOCKUPS', 'FRAMER COMPONENTS') in muted gray with wide tracking, then a uniform 5-column tile grid with consistent 12px gaps between tiles. Tiles are identically sized and shaped — a square-ish rectangle containing a centered asset and a metadata strip footer. No alternating bands, no dark sections, no asymmetric compositions. The grid is the page: museum-row after museum-row of black objects on white. Navigation is minimal — likely a top bar with category links in the same tracked-out uppercase treatment.",
+    "imagery": "Pure UI, no decorative photography. The only imagery is the mockup assets themselves — high-fidelity 3D product renders (iPhone, hoodie, Apple Watch, drink carton, cap, Pro Display, MacBook Pro, business card, digital tablet) rendered in pure black or near-black against white. Illustrations are limited to UI component previews (theme toggle, loader ring, kinetic text dot sphere, grid loader plus-pattern, compare slider garment). Icon style: thin 1-2px stroke outlines, monochrome #555 or #101010, no fills. No lifestyle, no atmosphere, no context — each object is isolated like a product shot for a catalog.",
+    "similar": [
+      {
+        "why": "Same flat white-canvas grid with no chrome — objects/content tiles presented as bare specimens with minimal labels.",
+        "business": "Are.na"
+      },
+      {
+        "why": "Monochrome dark-on-light discipline, tight typographic system, gallery-grade restraint in component design.",
+        "business": "Linear"
+      },
+      {
+        "why": "Same component-grid presentation pattern with catalog-style metadata strips under each tile.",
+        "business": "Framer Marketplace"
+      },
+      {
+        "why": "Same white-plinth aesthetic for product mockups — black objects on white, no lifestyle context, identical framing.",
+        "business": "Apple Design Resources"
+      },
+      {
+        "why": "Editorial design portfolio with same museum-catalog feel — monochrome, monospace labels, specimen-card layouts.",
+        "business": "Minimalissimo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "0px",
+        "inputs": "4px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the gallery wall."
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Individual mockup and component tile surfaces, visually identical to canvas but defined by a 1px border."
+      },
+      {
+        "hex": "#222222",
+        "name": "Elevated Dark",
+        "level": 2,
+        "purpose": "Dark mode toggle, loader ring fills, modal overlays — the only surface that breaks from white."
+      }
+    ],
+    "northStar": "Gallery wall of black-on-white objects",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "label",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": 4.68
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": 1.35
+      }
+    ],
+    "components": [
+      {
+        "name": "Mockup Tile Card",
+        "role": "Primary unit — displays a 3D mockup asset with catalog-style metadata strip",
+        "description": "White background, 1px solid #e0e0e0 border, 8px radius. Top portion: centered mockup image on white. Bottom metadata strip: padded 10px top/bottom, 12px right/left, separated from image by a 1px #e0e0e0 horizontal divider. Left metadata label in Soehne Mono 11px weight 400 #555 (format 'M 005'). Right label in Soehne Mono 12px weight 400 #555 uppercase with 0.08em tracking (asset name like 'IPHONE'). No shadow."
+      },
+      {
+        "name": "Framer Component Tile Card",
+        "role": "Second tile variant for interactive component previews",
+        "description": "White background, 1px solid #e0e0e0 border, 6px or 8px radius. Centered component preview (toggle, loader, browser frame). Bottom label strip same format as mockup tile but prefixed 'C' instead of 'M' (e.g. 'C 000 THEME TOGGLE'). Expand icon (two arrows) sits in the top-right corner as a 16px #555 stroke."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Section label above each grid block",
+        "description": "Soehne Mono 26px weight 500, uppercase, #999999, letter-spacing 0.18em (4.68px). Acts as a quiet, tracked-out curator's heading. Examples: '3D MOCKUPS', 'FRAMER COMPONENTS'. No underline, no decoration."
+      },
+      {
+        "name": "Primary Button",
+        "role": "Filled dark button for 'Buy' and conversion actions",
+        "description": "Background #101010, text #ffffff, Soehne Mono 12px weight 400 uppercase with 0.08em tracking, 9999px (pill) radius, padding ~10px 16px. Hover: background shifts to #999999. Used sparingly — appears in modal CTAs and the browser-frame demo."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary outlined button paired with primary",
+        "description": "Background transparent, border 1px #999999, text #555555, same Soehne Mono 12px uppercase treatment, 9999px radius, padding ~10px 16px. Appears alongside Primary Button in modal demo ('Close')."
+      },
+      {
+        "name": "Metadata Label",
+        "role": "Catalog-style tag below each tile",
+        "description": "Soehne Mono 12px weight 400, uppercase, 0.08em letter-spacing, #555555. Left-aligned: asset ID (e.g. 'M 005'). Right-aligned: asset name (e.g. 'IPHONE'). No background, no border, sits on the card's metadata strip."
+      },
+      {
+        "name": "Modal Panel",
+        "role": "Overlay for copy/info interactions",
+        "description": "White background, 1px #e0e0e0 border, 8px radius. Header text Soehne Mono 16px weight 400 #101010 ('Less is more'). Body copy Soehne Mono 11px #555. Footer contains a Ghost Button + Primary Button pair right-aligned."
+      },
+      {
+        "name": "Theme Toggle",
+        "role": "Interactive component demo — pill switch",
+        "description": "Pill-shaped (999px radius), 1px #e0e0e0 border, white background, inner circle thumb at left position showing #ffffff fill on #101010 track, or reversed when toggled."
+      },
+      {
+        "name": "Loader Ring",
+        "role": "Circular progress component demo",
+        "description": "Two concentric arcs forming a ring: lighter arc #e0e0e0 (background ring), darker arc #101010 (progress arc, ~270° sweep). No fill, pure stroke composition."
+      },
+      {
+        "name": "Browser Frame",
+        "role": "Windowed screenshot frame component",
+        "description": "Rounded rectangle with 8px radius, 1px #e0e0e0 border. Top chrome bar: three small circles (traffic lights) and a URL pill input with #c8c8c8 placeholder text ('https://'). Interior content area displays a globe or page preview."
+      },
+      {
+        "name": "Compare Slider",
+        "role": "Before/after image comparison component",
+        "description": "Rectangular frame split vertically: left side shows light-mode garment, right side dark-mode variant, divided by a 1px #101010 handle/bar with a draggable circle grip."
+      },
+      {
+        "name": "Table Component",
+        "role": "Structured data table demo",
+        "description": "Header row: 'COMPANY' / 'FOUNDED ↑' in Soehne Mono 12px uppercase #999999 with 0.08em tracking. Body rows alternating white background, 1px #e0e0e0 horizontal dividers, text in Soehne Mono 12px #101010. No vertical borders."
+      },
+      {
+        "name": "Form Builder Checkbox",
+        "role": "Form control component demo",
+        "description": "Small 16px square with 4px radius. Unchecked: 1px #e0e0e0 border, white fill. Checked: #101010 fill with white checkmark stroke at ~2px weight."
+      },
+      {
+        "name": "Counter Display",
+        "role": "Large numeric typographic component",
+        "description": "Soehne Mono weight 400 at large display size (~54px or scaled), rendered as three stacked digits '099' in #101010 on white. Pure typographic exercise — no frame, no border."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The exclusive typeface — used for every heading, body, badge, link, icon, and label. Weight 400 dominates; weight 500 is reserved for the 26px hero label. All non-body sizes render in uppercase with tracking between 0.02em and 0.18em. The monospaced face reinforces the museum-catalog, specimen-tag atmosphere.",
+        "sizes": "8px, 10px, 11px, 12px, 16px, 26px, 54px",
+        "family": "Soehne Mono",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "0.025em at 54px display, 0.18em at 26px hero, 0.08em at 12px badge, 0.02em at 8px micro",
+        "fontFeatureSettings": "No special features detected — monospaced face is the visual identity"
+      }
+    ],
+    "description": "099 Supply is a museum-grid: white walls, black objects, labels in tiny tracked-out monospace caps. The entire interface is reduced to a pure white canvas with one near-black (#101010) doing all the work — typography, borders, fills, buttons, mockup silhouettes — so every rendered asset reads as a specimen on a gallery plinth. Typography is exclusively Soehne Mono at weight 400, with uppercase tracking up to 0.18em giving every label the air of a curator's index card. Components are flat, borderless, and defined by 1px hairline edges and tight 8px radii; there are no shadows, no gradients, and no chromatic accents. The aesthetic is forensic — each mockup and component tile is framed identically, letting the objects themselves carry the visual weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"099 SUPPLY design system\",\"item\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#style-reference\",\"name\":\"099 SUPPLY design system reference\",\"headline\":\"099 SUPPLY design system | Refero Styles\",\"description\":\"Explore 099 SUPPLY's light Design design system: Canvas White #ffffff, Ink #101010 colors, Soehne Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"099 SUPPLY\",\"url\":\"https://099.supply\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"caption\":\"Screenshot of 099 SUPPLY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"099 SUPPLY design system\",\"099 SUPPLY website design\",\"099 SUPPLY colors\",\"099 SUPPLY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas White\",\"Ink\",\"Charcoal\",\"Muted Hard\",\"Soehne Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"099 SUPPLY design system\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY website design\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY colors\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-09T13:13:07.000Z\",\"dateModified\":\"2026-03-09T13:13:07.000Z\"}]}19:T574,**Quick Color Reference**\n- canvas/background: #ffffff\n- primary text: #101010\n- muted text: #555555\n- border default: #e0e0e0\n- border hover: #999999\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a mockup tile card: white background, 1px solid #e0e0e0 border, 8px radius. Center a black iPhone silhouette in the top 75% of the tile. Add a 1px #e0e0e0 horizontal divider below the asset. Footer strip: 10px top/bottom padding, 12px left/right padding. Left label 'M 005' in Soehne Mono 11px #555. Right label 'IPHONE' in Soehne Mono 12px uppercase 0.08em tracking #555.\n\n2. Create a section heading: Soehne Mono 26px weight 500, uppercase, #999999, letter-spacing 0.18em (4.68px). Text '3D MOCKUPS'. No underline, left-aligned with 40px top margin and 12px bottom margin.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a loader ring: two concentric SVG arcs. Background arc: stroke #e0e0e0, 4px weight, full 360°. Progress arc: stroke #101010, 4px weight, 270° sweep starting from top. No fill, centered in a 120px container.\n\n5. Create a theme toggle: pill shape at 999px radius, 40px tall, 72px wide, 1px #e0e0e0 border. Inner thumb: 16px circle, positioned 4px from left edge, white fill with 1px #999999 border. On/active state: thumb at right, #101010 fill."
+      },
+      {
+        "title": "Motion Philosophy",
+        "content": "Motion is minimal and functional. Durations cluster at 0.12s (106 occurrences) for micro-interactions like hover color shifts, with 0.3s reserved for larger transitions. The dominant easing is 'ease' (474 uses) — no bouncy or spring curves. Properties transitioned: border-color (50x), opacity (42x), color (14x) — all signaling state changes rather than spectacle. No scroll-triggered animations, no parallax, no entrance choreography. The loader ring is the only component with continuous motion."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows. All depth is conveyed through 1px hairline borders (#e0e0e0 default, #999999 on hover, #101010 for strong emphasis). The absence of shadows is deliberate — the museum-plinth aesthetic requires flat, paper-thin surfaces where objects sit on the same plane as their frames."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "card"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 17685986.339239158,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 3,
+            "other/color": 1,
+            "other/stroke": 2,
+            "card/backgroundColor": 2,
+            "link/backgroundColor": 24,
+            "other/backgroundColor": 32
+          }
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 148,
+          "confidence": 1,
+          "prominence": 467087.4224424223,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 8,
+            "link/borderColor": 96,
+            "other/borderColor": 40,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "heading",
+            "icon",
+            "badge",
+            "other",
+            "body"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 211084.04642256725,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 10,
+            "body/color": 41,
+            "other/fill": 6,
+            "badge/color": 24,
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 73,
+          "confidence": 1,
+          "prominence": 205750.23727011526,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 73
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 848,
+          "confidence": 1,
+          "prominence": 192403.25020376133,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "other/fill": 757,
+            "other/color": 7,
+            "other/stroke": 62,
+            "heading/color": 5,
+            "other/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 134875.70180149135,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 24,
+            "other/fill": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 46182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9536356015217992
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2041,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#101010",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.55,
+          "background": "#efefef",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.41,
+          "background": "#e0e0e0",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#efefef",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#e0e0e0",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#555555",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#101010",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.48,
+          "background": "#efefef",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.65,
+          "background": "#e0e0e0",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#222222",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#555555",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#555555",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#efefef",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.16,
+          "background": "#e0e0e0",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#222222",
+          "foreground": "#555555"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other",
+            "card"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|icon",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body",
+            "marginTop|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "conic",
+        "value": "conic-gradient(rgb(16, 16, 16) 0deg, rgb(16, 16, 16) 80deg, rgb(200, 200, 200) 80deg, rgb(200, 200, 200) 360deg)",
+        "colors": [
+          "rgb(16, 16, 16)",
+          "rgb(16, 16, 16)",
+          "rgb(200, 200, 200)",
+          "rgb(200, 200, 200)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Soehne Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 309,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.08,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 11,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Soehne Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.08,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "body"
+          ],
+          "frequency": 132,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Soehne Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.18,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 54,
+          "family": "Soehne Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/42002c4e-46e9-41ef-b0a2-e7e2030ba77d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"099 SUPPLY design system\",\"item\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#style-reference\",\"name\":\"099 SUPPLY design system reference\",\"headline\":\"099 SUPPLY design system | Refero Styles\",\"description\":\"Explore 099 SUPPLY's light Design design system: Canvas White #ffffff, Ink #101010 colors, Soehne Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"099 SUPPLY\",\"url\":\"https://099.supply\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e4a7b5f3-f393-4f6d-b4a5-ecf874024bed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"caption\":\"Screenshot of 099 SUPPLY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/98ff048b-c858-4879-a3de-2798524b923e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"099 SUPPLY design system\",\"099 SUPPLY website design\",\"099 SUPPLY colors\",\"099 SUPPLY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas White\",\"Ink\",\"Charcoal\",\"Muted Hard\",\"Soehne Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"099 SUPPLY design system\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY website design\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY colors\"},{\"@type\":\"Thing\",\"name\":\"099 SUPPLY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-09T13:13:07.000Z\",\"dateModified\":\"2026-03-09T13:13:07.000Z\"}]}19:T574,**Quick Color Reference**\n- canvas/background: #ffffff\n- primary text: #101010\n- muted text: #555555\n- border default: #e0e0e0\n- border hover: #999999\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a mockup tile card: white background, 1px solid #e0e0e0 border, 8px radius. Center a black iPhone silhouette in the top 75% of the tile. Add a 1px #e0e0e0 horizontal divider below the asset. Footer strip: 10px top/bottom padding, 12px left/right padding. Left label 'M 005' in Soehne Mono 11px #555. Right label 'IPHONE' in Soehne Mono 12px uppercase 0.08em tracking #555.\n\n2. Create a section heading: Soehne Mono 26px weight 500, uppercase, #999999, letter-spacing 0.18em (4.68px). Text '3D MOCKUPS'. No underline, left-aligned with 40px top margin and 12px bottom margin.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a loader ring: two concentric SVG arcs. Background arc: stroke #e0e0e0, 4px weight, full 360°. Progress arc: stroke #101010, 4px weight, 270° sweep starting from top. No fill, centered in a 120px container.\n\n5. Create a theme toggle: pill shape at 999px radius, 40px tall, 72px wide, 1px #e0e0e0 border. Inner thumb: 16px circle, positioned 4px from left edge, white fill with 1px #999999 border. On/active state: thumb at right, #101010 fill."
+}

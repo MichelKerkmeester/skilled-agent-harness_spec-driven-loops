@@ -1,0 +1,262 @@
+{
+  "color": {
+    "electric-lime": {
+      "$value": "#a6ff00",
+      "$type": "color",
+      "$description": "Electric Lime — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "deep-violet": {
+      "$value": "#040126",
+      "$type": "color",
+      "$description": "Deep Violet — Outlined action borders, subtle decorative borders — a near-black indigo that adds tonal depth to dark borders without breaking the monochrome canvas"
+    },
+    "obsidian": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, outermost background, shadow tokens — the base void that every surface floats on"
+    },
+    "carbon": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Carbon — Card surfaces, elevated content panels — the only step above Obsidian in the surface stack"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Hairline borders, card borders, subtle dividers — the structural border color, used more than any other in the system"
+    },
+    "steel": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Steel — Strokes, secondary card borders — a half-step lighter than Slate for layering borders on borders"
+    },
+    "fog": {
+      "$value": "#6f6f6f",
+      "$type": "color",
+      "$description": "Fog — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "paper": {
+      "$value": "#fdfdfd",
+      "$type": "color",
+      "$description": "Paper — Primary text, heading borders, illustration highlights — the only text color that reads as active"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — SVG fills, spectrum ring backing — pure black for graphic elements where absolute darkness is needed"
+    }
+  },
+  "font": {
+    "sf-pro-display": {
+      "$value": "SF Pro Display",
+      "$type": "fontFamily",
+      "$description": "Display and heading typography — the choice of SF Pro Display signals a premium, iOS-adjacent system voice. Weights 500-600 (never 700+) keep headings from feeling heavy; the brand's authority comes from size, not weight. Display sizes escalate to 184px, creating poster-scale type that dominates every section. Line-height tightens to 0.95 at the largest sizes, making individual letters feel monumental and architectural."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Body, links, card text, button labels — deliberately a system fallback so it stays invisible. While SF Pro Display headlines shout at 184px, Arial whispers at 14px in the background. This split (premium display + neutral body) is a deliberate hierarchy choice: the display type does all the emotional work, the body text just delivers information."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "78px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 78px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "109px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 109px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "109px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 109px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "148px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 148px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "148px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 148px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "148px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 148px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "184px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 184px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the base void that all content floats on"
+    },
+    "carbon": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces — the single elevation step above canvas, separated by hairline borders rather than shadow"
+    },
+    "electric-lime": {
+      "$value": "#a6ff00",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface — CTA fills, active states, the only chromatic surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://stryds.com",
+      "siteName": "Stryds",
+      "extractedAt": "2026-06-03T19:25:55.782Z",
+      "variant": "extended"
+    }
+  }
+}

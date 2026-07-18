@@ -1,0 +1,693 @@
+{
+  "source": "https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f",
+  "uuid": "cb266ff9-f168-4a42-a522-f0e84508f90f",
+  "name": "Desktop.fm",
+  "northStar": "Chrome disc in a laser grid — Apple keynote restraint meets cyberpunk CD-ROM nostalgia.",
+  "capturedAt": "2026-07-18T08:26:37.487Z",
+  "meta": {
+    "url": "https://desktop.fm",
+    "siteName": "Desktop.fm",
+    "extractedAt": "2026-06-03T17:16:42.795Z",
+    "durationMs": 27047,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 37,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #111111 as the only filled button background — the entire page has one CTA and it must be Carbon Black",
+      "Set all headlines at 28px with weight 800 and letter-spacing -1.008px (-0.036em)",
+      "Use 25px border-radius exclusively for the app-window card, and 20px for the button — keep the rest of the UI at 1.5px",
+      "Let the 3D render be the only source of color on the page — the UI stays strictly achromatic",
+      "Anchor the window card below the rendered hero with 30px vertical margin",
+      "Use system font stack at weights 700-800 for all interface text; never drop below weight 500",
+      "Keep line-height locked at 1.25 across every text size"
+    ],
+    "donts": [
+      "Don't introduce chromatic colors as UI tokens — the only color belongs to the rendered scene",
+      "Don't use border-radius above 25px or below 1.5px — the system is binary: sharp or lozenge",
+      "Don't use font weights below 500 anywhere — thin and regular weights break the mechanical, stamped feel",
+      "Don't add multiple CTAs or secondary buttons — this page has exactly one black filled button",
+      "Don't add visible borders to the window card — rely on the 25px radius and subtle shadow for definition",
+      "Don't use a max-width container — the layout is centered but unconstrained, the render fills the viewport",
+      "Don't substitute the 3D render with an illustration, gradient, or flat graphic — the chrome disc and laser grid IS the brand"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f1f2f3",
+        "name": "Canvas Mist",
+        "role": "Page background, dominant surface across hero and surrounding space",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Elevated card surface (app window mockup), inverse text on dark buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Graphite",
+        "role": "Secondary dark surfaces, icon strokes, muted dark UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Pale Stone",
+        "role": "Hairline borders, dividers, secondary card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b4",
+        "name": "Silver Mist",
+        "role": "Muted backgrounds, disabled states, low-emphasis surfaces",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-screen layout with no scrollable sections visible. The viewport is divided vertically: the upper ~70% is the hero render zone (3D disc and laser grid centered horizontally, floating in the gray canvas with generous negative space on all sides), and the lower ~30% contains the app window card centered horizontally. The card is narrow (roughly 200px wide) and uses no max-width constraint on the page itself — the layout is centered but unconstrained. Navigation is absent — this is a teaser/coming-soon page with a single CTA. The vertical rhythm is: render (60vh) → 30px gap → window card (~80px tall) → remaining canvas below. No alternating bands, no grid systems, no multi-column arrangements.",
+    "imagery": "The page carries exactly one visual: a 3D-rendered chrome CD floating at slight tilt, intersected by two thin neon-green laser lines that cross diagonally through the scene. The disc has realistic specular highlights — blue-white reflections on the left edge, warm reflections on the right — and a dark center hub. This is a single rendered asset, not an interactive 3D scene visible in the data. There is no photography, no illustration, no product screenshot. The render is full-bleed, centered, and occupies roughly 60% of the viewport height. Below it, the app window card serves as the only UI visual. The treatment is high-key and product-showcase oriented — the object is the hero, presented with the detached reverence of an Apple product launch.",
+    "similar": [
+      {
+        "why": "Same macOS-window card pattern, system-font-only typography at heavy weights, and a single rendered object as the entire hero with achromatic UI surrounding it",
+        "business": "Apple product launch pages (macOS, Music app)"
+      },
+      {
+        "why": "Same restrained neutral palette, aggressive bold type at tight tracking, and a single hero visual that carries the entire page's atmosphere",
+        "business": "Arc browser site (arc.net)"
+      },
+      {
+        "why": "Same minimal monochrome product page with a single CTA and dot-matrix-style type aesthetic, though Nothing adds more chromatic accents",
+        "business": "Nothing.tech"
+      },
+      {
+        "why": "Same single-screen coming-soon format with one email-capture CTA and a hero render above it",
+        "business": "Rayo.fm or other music app teasers"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "25px",
+        "buttons": "20px",
+        "default": "1.5px",
+        "window-chrome": "13px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "30px",
+      "cardPadding": "10px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f1f2f3",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Dominant background for the entire viewport — the cool light gray stage on which the disc floats"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "App Window Surface",
+        "level": 1,
+        "purpose": "Elevated white card containing the brand name and CTA — the only surface above the canvas"
+      },
+      {
+        "hex": "#111111",
+        "name": "Primary Action",
+        "level": 2,
+        "purpose": "Black button surface — sits on top of the white card, creating the page's only stacked contrast moment"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 1px 3px rgba(17,17,17,0.08), 0 4px 12px rgba(17,17,17,0.06)",
+        "element": "App Window Card"
+      }
+    ],
+    "northStar": "Chrome disc in a laser grid — Apple keynote restraint meets cyberpunk CD-ROM nostalgia.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.256
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.288
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.008
+      }
+    ],
+    "components": [
+      {
+        "name": "App Window Card",
+        "role": "The single elevated container on the page — a macOS-style window mockup that frames the brand name and CTA",
+        "description": "White (#ffffff) surface on the Canvas Mist (#f1f2f3) page. 25px border-radius (the largest radius in the system). 10px internal padding. Contains a title bar with three traffic-light dots (using #b4b4b4 and #2d2d2d) and a 2px title-bar separator. Houses the 28px 800-weight brand wordmark centered above the CTA. Subtle drop shadow provides the only elevation on the page."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "The sole interactive element — a high-contrast CTA",
+        "description": "Background #111111 (Carbon Black), text #ffffff at 12px weight 800. 20px border-radius creates a lozenge/pill profile. 10px vertical padding with 20px horizontal padding. Includes a trailing chevron (›) glyph at 12px 800 weight as an affordance cue. No hover state differentiation visible — the button is already at maximum contrast against the white card."
+      },
+      {
+        "name": "Traffic Light Window Controls",
+        "role": "Decorative macOS chrome elements signaling 'this is an app'",
+        "description": "Three small circular indicators in the window title bar at approximately 2px size. Mixed #b4b4b4 (muted/close) and #2d2d2d (graphite/minimize-maximize) fills. 1.5px radius (effectively circles at that size). Purely decorative — not interactive."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "The only headline-scale text element on the page",
+        "description": "'Desktop.fm' rendered at 28px, weight 800, color #111111. Letter-spacing -0.036em. Centered within the app window card. No subtitle, tagline, or supporting copy — the wordmark stands alone between the window controls and the CTA."
+      },
+      {
+        "name": "Hero Render Stage",
+        "role": "The full-bleed visual container that holds the 3D disc and laser scene",
+        "description": "Takes the full viewport. Background is #f1f2f3 (no separate color — the page canvas IS the stage). The 3D chrome disc and neon green laser lines are a single rendered asset, not CSS elements. Vertically centered disc with the app window card anchored below it at approximately 30px margin-top from the disc's bottom edge."
+      },
+      {
+        "name": "Chevron Affordance Glyph",
+        "role": "Trailing icon inside the primary button indicating forward action",
+        "description": "Single › character at 12px weight 800 in #ffffff. Sits at the right edge of the filled button with 2-5px gap from the label. Uses the system font's heavy weight to render as a solid triangle rather than a thin stroke."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface typeface — used for everything from the 28px bold brand wordmark to the 12px 800-weight button label and meta tags. The exclusive use of weights 700 and 800 (plus 500 for the smallest tag) is the signature: no thin or regular weights appear anywhere. Combined with -0.036em tracking on the 28px size, headlines feel mechanically precise rather than elegant.",
+        "sizes": "12px, 16px, 18px, 28px",
+        "family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+        "weight": "500, 700, 800",
+        "lineHeight": "1.25",
+        "substitute": "Inter (weights 500, 700, 800) or SF Pro Display",
+        "letterSpacing": "-0.036em (28px headlines), -0.016em (16-18px body and subhead), normal (12px caption)"
+      },
+      {
+        "role": "Reserved for single-character or ultra-short technical labels (e.g. the leading icon glyph in the waiting-list card). Monospace at weight 800 at 12px reads as a stamped serial number rather than body text.",
+        "sizes": "12px",
+        "family": "ui-monospace, 'SF Mono', Menlo, monospace",
+        "weight": "800",
+        "lineHeight": "1.25",
+        "substitute": "JetBrains Mono or IBM Plex Mono at weight 800",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Desktop.fm is a near-monochrome product page that treats a single 3D-rendered object as the entire hero. The canvas is a cold light gray, the chrome disc floats centered, and the interface furniture is reduced to a single macOS-style window card with one black button. Typography is aggressive: system fonts pushed to weights 700-800 with tight tracking, never thin or light. The page is 1% chromatic by design — the only color comes from the rendered scene (neon green laser lines across a silver CD), and that color is not part of the UI token system, it is the product. Components are compact, radii are mostly sharp (1.5px), and the only soft radius belongs to the app-window card itself (25px) and the pill-lozenge button (20px). The result reads as an Apple product page filtered through a cyberpunk CD-ROM era — restrained chrome surfaces, one bold interactive element, and atmosphere carried entirely by a 3D asset rather than by gradient or illustration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Desktop.fm design system\",\"item\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#style-reference\",\"name\":\"Desktop.fm design system reference\",\"headline\":\"Desktop.fm design system | Refero Styles\",\"description\":\"Explore Desktop.fm's light Media design system: Canvas Mist #f1f2f3, Carbon Black #111111 colors, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,...\",\"url\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Desktop.fm\",\"url\":\"https://desktop.fm\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"caption\":\"Screenshot of Desktop.fm\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Desktop.fm design system\",\"Desktop.fm website design\",\"Desktop.fm colors\",\"Desktop.fm typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Canvas Mist\",\"Carbon Black\",\"Pure White\",\"Graphite\",\"-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif\",\"ui-monospace, 'SF Mono', Menlo, monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Desktop.fm design system\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm website design\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm colors\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-01T09:09:57.000Z\",\"dateModified\":\"2026-02-01T09:09:57.000Z\"}]}19:T518,Quick Color Reference:\n- canvas: #f1f2f3\n- card surface: #ffffff\n- primary text: #111111\n- border/divider: #dddddd\n- muted surface: #b4b4b4\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero stage: full-bleed #f1f2f3 background, centered 3D chrome disc asset with two thin neon-green diagonal laser lines crossing through it. Disc positioned in the upper 70% of the viewport. Below the disc, a 30px gap, then a white app-window card centered horizontally.\n\n2. Create an app window card: 25px border-radius, #ffffff surface, 10px padding all sides, subtle soft shadow (0 1px 3px rgba(17,17,17,0.08), 0 4px 12px rgba(17,17,17,0.06)). Title bar at top with three small circular traffic-light dots in #b4b4b4 and #2d2d2d, separated from the body by a 2px #dddddd hairline divider.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a brand wordmark: 'Desktop.fm' at 28px, weight 800, color #111111, letter-spacing -0.036em (-1.008px), line-height 1.25, centered within the app window card body. No subtitle or supporting text.\n\n5. Create a hairline divider: 2px height, #dddddd color, full-width within its container. Used only to separate the window title bar from the card body."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used exactly once: to separate the white app-window card from the gray canvas. The 3D disc and laser scene do their own depth work — no UI element competes with them. Shadows are soft and neutral (warm-black tinted, low opacity) to avoid drawing attention away from the hero render."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f1f2f3",
+          "oklch": {
+            "c": 0.0010534526640435984,
+            "h": 228.76525907208324,
+            "l": 0.9615703727941585
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 6480000,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 70,
+          "confidence": 1,
+          "prominence": 344385.8386922622,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 88757.90004038475,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 72750.71862987985,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2d2d2d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2971629660895966
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 64686.93597161529,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b4b4b4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7699314175046421
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 2142.869300975003,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#777777",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5692624033839502
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 752.3047027435053,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#009942",
+          "oklch": {
+            "c": 0.16732160999125067,
+            "h": 149.23521252261162,
+            "l": 0.5964156541416237
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 648,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00835216157723955,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.85,
+          "background": "#f1f2f3",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.9,
+          "background": "#dddddd",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#2d2d2d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#2d2d2d",
+          "foreground": "#f1f2f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#dddddd",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.11,
+          "background": "#b4b4b4",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.64,
+          "background": "#b4b4b4",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.07,
+          "background": "#b4b4b4",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.85,
+          "background": "#b4b4b4",
+          "foreground": "#f1f2f3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#2d2d2d",
+          "foreground": "#111111"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#dddddd",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#dddddd",
+          "foreground": "#f1f2f3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f1f2f3",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1.5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            500,
+            700,
+            800
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "monospace",
+          "source": "system",
+          "weights": [
+            800
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "monospace",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "icon"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "-apple-system",
+          "weight": 800,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/27259dd9-dbf8-47c4-b767-d515e865b31d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Desktop.fm design system\",\"item\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#style-reference\",\"name\":\"Desktop.fm design system reference\",\"headline\":\"Desktop.fm design system | Refero Styles\",\"description\":\"Explore Desktop.fm's light Media design system: Canvas Mist #f1f2f3, Carbon Black #111111 colors, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,...\",\"url\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Desktop.fm\",\"url\":\"https://desktop.fm\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cb266ff9-f168-4a42-a522-f0e84508f90f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"caption\":\"Screenshot of Desktop.fm\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e1b7eb25-9b6d-4b41-b69b-540d8ac78a67.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Desktop.fm design system\",\"Desktop.fm website design\",\"Desktop.fm colors\",\"Desktop.fm typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Canvas Mist\",\"Carbon Black\",\"Pure White\",\"Graphite\",\"-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif\",\"ui-monospace, 'SF Mono', Menlo, monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Desktop.fm design system\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm website design\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm colors\"},{\"@type\":\"Thing\",\"name\":\"Desktop.fm typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-01T09:09:57.000Z\",\"dateModified\":\"2026-02-01T09:09:57.000Z\"}]}19:T518,Quick Color Reference:\n- canvas: #f1f2f3\n- card surface: #ffffff\n- primary text: #111111\n- border/divider: #dddddd\n- muted surface: #b4b4b4\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero stage: full-bleed #f1f2f3 background, centered 3D chrome disc asset with two thin neon-green diagonal laser lines crossing through it. Disc positioned in the upper 70% of the viewport. Below the disc, a 30px gap, then a white app-window card centered horizontally.\n\n2. Create an app window card: 25px border-radius, #ffffff surface, 10px padding all sides, subtle soft shadow (0 1px 3px rgba(17,17,17,0.08), 0 4px 12px rgba(17,17,17,0.06)). Title bar at top with three small circular traffic-light dots in #b4b4b4 and #2d2d2d, separated from the body by a 2px #dddddd hairline divider.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a brand wordmark: 'Desktop.fm' at 28px, weight 800, color #111111, letter-spacing -0.036em (-1.008px), line-height 1.25, centered within the app window card body. No subtitle or supporting text.\n\n5. Create a hairline divider: 2px height, #dddddd color, full-width within its container. Used only to separate the window title bar from the card body."
+}

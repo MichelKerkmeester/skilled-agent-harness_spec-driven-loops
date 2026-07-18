@@ -1,0 +1,2015 @@
+{
+  "source": "https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227",
+  "uuid": "1514a95f-878c-4d4d-bb14-99d1b83f6227",
+  "name": "Spotify",
+  "northStar": "Nocturnal jukebox control room",
+  "capturedAt": "2026-07-18T08:30:03.653Z",
+  "meta": {
+    "url": "https://spotify.com",
+    "siteName": "Spotify",
+    "extractedAt": "2026-06-03T16:53:22.094Z",
+    "durationMs": 34644,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1924,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #121212 as the default card/sidebar surface and #000000 as the page canvas",
+      "Use 6px border-radius for all content cards and image containers",
+      "Use 9999px border-radius for all interactive buttons and tags",
+      "Use 500px border-radius for input fields to create a soft pill shape",
+      "Use #1ed760 exclusively for play buttons, active states, and brand accents",
+      "Use SpotifyMixUI 14px weight 700 for all section headings and button labels",
+      "Use #b3b3b3 for all secondary text (artist names, metadata, timestamps)"
+    ],
+    "donts": [
+      "Do not use heavy drop shadows — Spotify's elevation comes from surface color shifts, not shadow blur",
+      "Do not use accent colors outside of #1ed760 and the promo gradient — the interface is intentionally monochrome",
+      "Do not mix border-radius families — choose 6px for content, 9999px for actions, and stay consistent",
+      "Do not use light backgrounds or white surfaces in the core interface — the dark canvas is signature",
+      "Do not use typography larger than 24px for headings — Spotify's hierarchy is compact",
+      "Do not place colored buttons on the dark surface — the primary action is always a white pill",
+      "Do not add decorative borders or outlines to cards — surface color alone defines boundaries"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1ed760",
+        "name": "Spotify Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#b85850",
+        "name": "Signal Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, top nav background, deepest surface layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Carbon",
+        "role": "Card surfaces, sidebar panels, secondary surface layer above canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Graphite",
+        "role": "Elevated surface — hover states, input fields, selected nav items",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292929",
+        "name": "Smoke",
+        "role": "Active navigation background, subtle highlight wash",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Iron",
+        "role": "Input borders, subtle dividers between surface layers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#535353",
+        "name": "Steel",
+        "role": "Muted UI elements, secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#73777c",
+        "name": "Fog",
+        "role": "Muted text, secondary icon fills, inactive nav icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Mist",
+        "role": "Secondary text, metadata, artist names, timestamps",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c5c5c5",
+        "name": "Bone",
+        "role": "Input placeholder text, subtle captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#509bf5",
+        "name": "Promo Gradient",
+        "role": "Sign-up banner gradient endpoint — energetic blue anchor",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(175, 40, 150), rgb(80, 155, 245))"
+      },
+      {
+        "hex": "#af2896",
+        "name": "Magenta Glow",
+        "role": "Promotional banner gradient start — vivid pink-to-blue sweep for marketing CTAs",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(175, 40, 150), rgb(80, 155, 245))"
+      }
+    ],
+    "layout": "Fixed two-column shell: a 340px left sidebar ('Your Library') and a fluid main content area. The top bar is a full-width 64px black strip with left-anchored search and right-anchored account actions. Main content scrolls vertically with horizontal card carousels — trending songs in 5-column square grid, popular artists in 5-column circular grid, popular albums/singles continuing the pattern. Section spacing is compact (32-48px between sections). The bottom promotional banner is sticky/fixed at viewport floor. Navigation is purely top-bar + sidebar — no mega-menu, no breadcrumbs. The rhythm alternates: square cards → circular cards → square cards, creating geometric contrast between sections.",
+    "imagery": "Album artwork and artist photography are the primary visual content. Covers are presented as tight square crops (1:1 aspect ratio) at 6px radius — sharp enough to feel editorial, soft enough to feel modern. Artist photos are circular crops, emphasizing the face as identifier. No decorative photography, no lifestyle imagery, no abstract graphics in the core interface. The only non-photographic visual is the magenta-to-blue promotional gradient banner at the bottom, which functions as the sole brand-colored energy injection. Icons are minimal, monoline, white on dark — small and functional, never decorative.",
+    "similar": [
+      {
+        "why": "Same dark-mode media browser with sidebar + horizontal card carousels, square album art tiles, and dense compact typography",
+        "business": "Apple Music"
+      },
+      {
+        "why": "Dark canvas with image-heavy card grids, similar compact sans-serif UI type, and pill-shaped playback controls",
+        "business": "YouTube Music"
+      },
+      {
+        "why": "Near-identical layout structure: fixed sidebar library, horizontal content rails, square covers, dark monochrome interface",
+        "business": "Tidal"
+      },
+      {
+        "why": "Dark-mode streaming interface with dense card grids, small utilitarian typography, and one brand accent color punctuating a monochrome shell",
+        "business": "SoundCloud"
+      },
+      {
+        "why": "Content-first dark interface with horizontal card carousels, image-dominant tiles, and minimal chrome around the content grid",
+        "business": "Netflix"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "small": "2px",
+        "images": "6px",
+        "inputs": "500px",
+        "avatars": "500px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "32-48px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, top navigation bar"
+      },
+      {
+        "hex": "#121212",
+        "name": "Sidebar",
+        "level": 2,
+        "purpose": "Left library panel, main content wrapper"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Card",
+        "level": 3,
+        "purpose": "Individual content cards, input fields, elevated tiles"
+      },
+      {
+        "hex": "#292929",
+        "name": "Card Hover",
+        "level": 4,
+        "purpose": "Interactive card hover state"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.5) 0px 8px 24px 0px",
+        "element": "Promotional Banner / Overlay Cards"
+      },
+      {
+        "style": "rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset",
+        "element": "Input Fields"
+      }
+    ],
+    "northStar": "Nocturnal jukebox control room",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 14,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "link",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Filled White)",
+        "role": "Primary conversion button — used for 'Create playlist', 'Browse podcasts', 'Sign up free'",
+        "description": "Fully rounded (9999px radius) pill shape, white background (#ffffff), black text in SpotifyMixUI 14px weight 700, 8px vertical / 12px horizontal padding. The only filled button style — stands out as the unambiguous action on a dark surface."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action — 'Log in', 'Sign up' in the top nav",
+        "description": "No background, no border. White (#ffffff) or mist (#b3b3b3) text in SpotifyMixUI 14px weight 700, horizontal padding of 12-16px. Hover state shifts text to pure white."
+      },
+      {
+        "name": "Square Album Card",
+        "role": "Song/trending content tile in horizontal scrollable grids",
+        "description": "6px border-radius on the cover image. Below the image: song title in white SpotifyMixUI 14px weight 600, artist name in #b3b3b3 weight 400. Card padding 12px. Entire card sits on #121212 canvas; hover lifts to #1f1f1f background."
+      },
+      {
+        "name": "Circular Artist Card",
+        "role": "Artist profile tile in 'Popular artists' section",
+        "description": "Artist photo clipped to full circle (500px radius). Artist name below in white 14px weight 600, 'Artist' label in #b3b3b3 12px. No background fill on the card itself — the circle IS the visual."
+      },
+      {
+        "name": "Sidebar Panel",
+        "role": "Left-column 'Your Library' container",
+        "description": "#121212 background, 6px top-left and top-right radius. Internal cards (playlist/podcast prompts) at #1f1f1f with 6px radius, 12px padding. Full-height fixed left column."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header with search, nav arrows, and account actions",
+        "description": "#000000 background, 8px vertical padding. Search input is 36px tall, #1f1f1f fill, 500px radius, white placeholder text. Nav arrows are circular icon buttons. Right side: text links + filled white pill for primary action."
+      },
+      {
+        "name": "Section Header",
+        "role": "Horizontal title row above content grids ('Trending songs', 'Popular artists')",
+        "description": "SpotifyMixUITitle 24px weight 700 white text on left, 'Show all' link in #b3b3b3 12px on right. 24px row gap to content below."
+      },
+      {
+        "name": "Promotional Banner",
+        "role": "Sticky bottom CTA for free tier sign-up",
+        "description": "Full-width, linear-gradient(90deg, #af2896, #509bf5) background. White headline and body text on the left, white pill button on the right. Sits at the viewport floor, always visible."
+      },
+      {
+        "name": "Search Input",
+        "role": "Top-bar search field",
+        "description": "#1f1f1f background, 500px border-radius (nearly circular pill). White search icon on the left, white placeholder text. 12px horizontal padding, 8px vertical."
+      },
+      {
+        "name": "Navigation Arrow Button",
+        "role": "Browser-style back/forward controls in top bar",
+        "description": "#000000 or transparent background, 9999px radius circular hit area, white chevron icon. 32px diameter."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Footer-level globe icon + language dropdown in sidebar",
+        "description": "White globe icon, white 'English' text, 9999px pill border on hover. SpotifyMixUI 14px weight 400."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, navigation, buttons, metadata, small labels — compact and information-dense, designed to disappear so artwork dominates",
+        "sizes": "11, 12, 13, 14, 16",
+        "family": "SpotifyMixUI",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20, 1.33, 1.50",
+        "substitute": "Inter, system-ui, -apple-system, sans-serif"
+      },
+      {
+        "role": "Section headings ('Trending songs', 'Popular artists') — heavy bold weight at modest size keeps headlines assertive without overwhelming card grids",
+        "sizes": "24",
+        "family": "SpotifyMixUITitle",
+        "weight": "700",
+        "lineHeight": "1.20",
+        "substitute": "Inter weight 700, system-ui bold"
+      }
+    ],
+    "description": "Spotify's web interface is a dense, dark-mode media command center: a near-black canvas punctuated by vibrant album artwork, one signature green accent, and pill-shaped controls. Typography is compact and utilitarian — a custom geometric sans-serif at small sizes that lets album art and artist photography do the visual heavy lifting. The layout is a fixed two-column shell (sidebar + main feed) with card grids of square covers and circular avatars, creating a rhythmic alternation between geometry types. The interface avoids heavy elevation, relying on subtle surface differentiation (#121212 cards on #000000 canvas) and the one large gradient banner to inject energy. The result feels like a DJ's control room: information-dense, acoustically dark, and ready to play at a glance.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spotify design system\",\"item\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#style-reference\",\"name\":\"Spotify design system reference\",\"headline\":\"Spotify design system | Refero Styles\",\"description\":\"Explore Spotify's dark Media design system: Spotify Green #1ed760, Signal Red #b85850 colors, SpotifyMixUI, SpotifyMixUITitle typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spotify\",\"url\":\"https://spotify.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"caption\":\"Screenshot of Spotify\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spotify design system\",\"Spotify website design\",\"Spotify colors\",\"Spotify typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Spotify Green\",\"Signal Red\",\"Void Black\",\"Carbon\",\"SpotifyMixUI\",\"SpotifyMixUITitle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spotify design system\"},{\"@type\":\"Thing\",\"name\":\"Spotify website design\"},{\"@type\":\"Thing\",\"name\":\"Spotify colors\"},{\"@type\":\"Thing\",\"name\":\"Spotify typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-03-18T09:35:03.000Z\",\"dateModified\":\"2026-03-18T09:35:03.000Z\"}]}19:T845,**Quick Color Reference**\n- background: #000000 (canvas), #121212 (sidebar/cards), #1f1f1f (elevated)\n- text: #ffffff (primary), #b3b3b3 (secondary/metadata)\n- border: #333333 (subtle), #73777c (muted)\n- accent: #1ed760 (Spotify green — play/active states)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Top Navigation Bar*: Full-width #000000 bar, 64px height, 8px vertical padding. Left: circular back/forward arrow buttons (32px, white chevron). Center-left: search input — #1f1f1f fill, 500px radius, white search icon, white placeholder 'What do you want to play?'. Right: ghost text links 'Premium' 'Support' 'Download' in #ffffff SpotifyMixUI 14px weight 700, divider, 'Install App' with icon, pipe divider, 'Sign up' ghost link, 'Log in' white pill button (9999px radius, #ffffff bg, #000000 text, 8px 12px padding).\n\n2. *Square Album Card*: 6px border-radius cover image filling card width. Below: song title in #ffffff SpotifyMixUI 14px weight 600, artist name in #b3b3b3 SpotifyMixUI 14px weight 400. Card background #121212, 12px padding. Hover: card background shifts to #1f1f1f.\n\n3. *Circular Artist Card*: Artist photo clipped to full circle (500px radius), no card background. Below circle: artist name #ffffff 14px weight 600, 'Artist' label in #b3b3b3 12px weight 400. 12px gap between circle and text.\n\n4. *Promotional Banner*: Full-width sticky bottom bar, linear-gradient(90deg, #af2896, #509bf5) background, 16px padding. Left: white headline SpotifyMixUI 14px weight 700 'Preview of Spotify', white body text 'Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.' Right: white pill button 'Sign up free' (9999px radius, #ffffff, #000000 text, 8px 12px padding).\n\n5. *Sidebar Library Panel*: Fixed left column, 340px wide, #121212 background, full viewport height. Top: 'Your Library' heading #ffffff 16px weight 700, '+' add button on right. Two internal cards stacked vertically: #1f1f1f background, 6px radius, 12px padding. Each card has a white bold heading, #b3b3b3 description text, and a white pill button at the bottom."
+      },
+      {
+        "title": "Geometry Rhythm",
+        "content": "Spotify's visual identity relies on a deliberate alternation of geometric shapes across horizontal sections: square album covers (1:1, 6px radius) give way to circular artist avatars (1:1, 500px radius) give way to square album/single tiles again. This rhythm prevents visual fatigue in long-scroll feeds and signals content-type changes without needing dividers or section backgrounds. Maintain this alternation — never place two circular sections or two square sections adjacent."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "nav",
+            "heading",
+            "link"
+          ],
+          "frequency": 3615,
+          "confidence": 1,
+          "prominence": 21725772.617214214,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "icon"
+          ],
+          "frequency": 1055,
+          "confidence": 1,
+          "prominence": 13017534.778688557,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "input"
+          ],
+          "frequency": 128,
+          "confidence": 1,
+          "prominence": 5735814.90538921,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "link",
+            "icon",
+            "body",
+            "input",
+            "other",
+            "heading",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 4186,
+          "confidence": 1,
+          "prominence": 639869.9333641347,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#535353",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4422550585185069
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 555520,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#73777c",
+          "oklch": {
+            "c": 0.00908385185693552,
+            "h": 253.8985610110127,
+            "l": 0.5674835774771312
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 172294.93702869213,
+          "properties": [
+            "boxShadow",
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#090909",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13979123394671675
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 171556.96109661338,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "button",
+            "input",
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 144932.88766280957,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 88236,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b85850",
+          "oklch": {
+            "c": 0.12594318236636473,
+            "h": 26.56372683682118,
+            "l": 0.576544998252932
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 68292.5491268271,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5477af",
+          "oklch": {
+            "c": 0.09605181091369308,
+            "h": 259.4901675543042,
+            "l": 0.5674114974425589
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8e69a3",
+          "oklch": {
+            "c": 0.0959514913692211,
+            "h": 312.7538736803882,
+            "l": 0.580088729345253
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#508162",
+          "oklch": {
+            "c": 0.07209680741816275,
+            "h": 155.51539354447397,
+            "l": 0.5591299284470792
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dc392b",
+          "oklch": {
+            "c": 0.20172632234362053,
+            "h": 29.405830564421656,
+            "l": 0.5916878840564032
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6e787c",
+          "oklch": {
+            "c": 0.013509374527902952,
+            "h": 223.6616157574835,
+            "l": 0.5656351297238683
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#500008",
+          "oklch": {
+            "c": 0.10998839402215616,
+            "h": 24.06492312704914,
+            "l": 0.27189585283733636
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0010c8",
+          "oklch": {
+            "c": 0.2555234611743974,
+            "h": 264.1704004924179,
+            "l": 0.3842471359292131
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#804800",
+          "oklch": {
+            "c": 0.10511837949312655,
+            "h": 62.53674907445107,
+            "l": 0.4589698751119058
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b02040",
+          "oklch": {
+            "c": 0.17757834674431672,
+            "h": 15.112954597554602,
+            "l": 0.4962969360040351
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#df009e",
+          "oklch": {
+            "c": 0.25372069928494867,
+            "h": 346.50324751915474,
+            "l": 0.600248091340753
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#386868",
+          "oklch": {
+            "c": 0.05234868052881023,
+            "h": 195.5596451884185,
+            "l": 0.48354160525202033
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#602000",
+          "oklch": {
+            "c": 0.10121469744185715,
+            "h": 42.43327811340498,
+            "l": 0.33816003188950844
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e90071",
+          "oklch": {
+            "c": 0.24230208592369346,
+            "h": 3.622603302575806,
+            "l": 0.6018006269859901
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#537c8e",
+          "oklch": {
+            "c": 0.0533667246055382,
+            "h": 227.31824411661646,
+            "l": 0.563045859055057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#485038",
+          "oklch": {
+            "c": 0.039478038149969544,
+            "h": 123.07600693115656,
+            "l": 0.41697800712219607
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#303858",
+          "oklch": {
+            "c": 0.057051905571600475,
+            "h": 272.45124166122093,
+            "l": 0.3487488121981209
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#284060",
+          "oklch": {
+            "c": 0.06317774145999426,
+            "h": 255.97519730362052,
+            "l": 0.3676199380639944
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#07838a",
+          "oklch": {
+            "c": 0.09324624813340189,
+            "h": 201.51013053659733,
+            "l": 0.555614260907268
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#701818",
+          "oklch": {
+            "c": 0.12206905625523307,
+            "h": 25.791618603948294,
+            "l": 0.361303389191093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1868a0",
+          "oklch": {
+            "c": 0.11530441877834541,
+            "h": 245.1462316276686,
+            "l": 0.4998238137094772
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b83020",
+          "oklch": {
+            "c": 0.17526127465923622,
+            "h": 30.477117137325017,
+            "l": 0.5192631478432489
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b8737",
+          "oklch": {
+            "c": 0.14501785322001481,
+            "h": 145.39995656642526,
+            "l": 0.551087109388116
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#387888",
+          "oklch": {
+            "c": 0.06965864264105824,
+            "h": 216.46394477780376,
+            "l": 0.5373302962918395
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4f8400",
+          "oklch": {
+            "c": 0.15373066884025724,
+            "h": 131.93497414818313,
+            "l": 0.5543415065263322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#305868",
+          "oklch": {
+            "c": 0.05221566071651716,
+            "h": 225.9400061387748,
+            "l": 0.4378209976190983
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#004080",
+          "oklch": {
+            "c": 0.12254189225151213,
+            "h": 254.67736923678507,
+            "l": 0.37630471107299546
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#405820",
+          "oklch": {
+            "c": 0.08676593035901749,
+            "h": 129.00983236790302,
+            "l": 0.4273395551353968
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a82838",
+          "oklch": {
+            "c": 0.1632991081209854,
+            "h": 19.272062980192366,
+            "l": 0.486436753133975
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#905850",
+          "oklch": {
+            "c": 0.07591182578935625,
+            "h": 28.692021622139805,
+            "l": 0.5212599113011768
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ac6432",
+          "oklch": {
+            "c": 0.11313346164874138,
+            "h": 53.09381938017532,
+            "l": 0.5750400661094169
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7b7b16",
+          "oklch": {
+            "c": 0.11555457602070326,
+            "h": 109.59059365449454,
+            "l": 0.5650246575973383
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c82020",
+          "oklch": {
+            "c": 0.2013549513875063,
+            "h": 27.451591602845056,
+            "l": 0.5362249243920171
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#de2e5c",
+          "oklch": {
+            "c": 0.20966560175468335,
+            "h": 12.154265139595292,
+            "l": 0.5941323511139501
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5878a1",
+          "oklch": {
+            "c": 0.07384824552452922,
+            "h": 254.96271968331803,
+            "l": 0.5650723955749947
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#857827",
+          "oklch": {
+            "c": 0.10089143815115577,
+            "h": 100.0309216365562,
+            "l": 0.5688285304081945
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a16387",
+          "oklch": {
+            "c": 0.09291864787922112,
+            "h": 344.6244234564572,
+            "l": 0.5791964421000475
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6f74a4",
+          "oklch": {
+            "c": 0.07405989887550918,
+            "h": 279.19777533153064,
+            "l": 0.5739181405103413
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#703090",
+          "oklch": {
+            "c": 0.15755588280613778,
+            "h": 312.410860307274,
+            "l": 0.4424460847241559
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#302040",
+          "oklch": {
+            "c": 0.06033118381672097,
+            "h": 305.91132159868215,
+            "l": 0.27911616660653343
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#183860",
+          "oklch": {
+            "c": 0.08010414426697499,
+            "h": 255.29645023809724,
+            "l": 0.33889289969939895
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1b8857",
+          "oklch": {
+            "c": 0.12135264760678502,
+            "h": 157.95804368466344,
+            "l": 0.5558098332141652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1ed760",
+          "oklch": {
+            "c": 0.2123598637631542,
+            "h": 148.6695151473573,
+            "l": 0.769720537433771
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 13438.978592635563,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2809402269547256
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c5c5c5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8234420009538047
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2064,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.005315626610041166,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.91,
+          "background": "#ffffff",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.62,
+          "background": "#500008",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.93,
+          "background": "#302040",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#292929",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.32,
+          "background": "#602000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.17,
+          "background": "#000000",
+          "foreground": "#c5c5c5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.84,
+          "background": "#183860",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#c5c5c5",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.46,
+          "background": "#303858",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.46,
+          "background": "#701818",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.01,
+          "background": "#0010c8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.94,
+          "background": "#1ed760",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#121212",
+          "foreground": "#c5c5c5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#284060",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#1ed760",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#004080",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "nav"
+          ],
+          "frequency": 145
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 137
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.5) 0px 8px 24px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56
+        },
+        {
+          "value": "rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "card",
+            "body"
+          ],
+          "frequency": 182,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "card"
+          ],
+          "frequency": 261,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "input",
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 308,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 162,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 172,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(175, 40, 150), rgb(80, 155, 245))",
+        "colors": [
+          "rgb(175, 40, 150)",
+          "rgb(80, 155, 245)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(0, 0, 0, 0.6) 0%, rgb(18, 18, 18) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0.6)",
+          "rgb(18, 18, 18)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SpotifyMixUI",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 1737,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SpotifyMixUITitle",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SpotifyMixUI",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 12,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "body",
+            "icon"
+          ],
+          "frequency": 233,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 265,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "input",
+            "nav",
+            "heading",
+            "card",
+            "image"
+          ],
+          "frequency": 1155,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SpotifyMixUITitle",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/44f8eaf0-cded-4660-9d62-3c296f86a4bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spotify design system\",\"item\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#style-reference\",\"name\":\"Spotify design system reference\",\"headline\":\"Spotify design system | Refero Styles\",\"description\":\"Explore Spotify's dark Media design system: Spotify Green #1ed760, Signal Red #b85850 colors, SpotifyMixUI, SpotifyMixUITitle typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spotify\",\"url\":\"https://spotify.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1514a95f-878c-4d4d-bb14-99d1b83f6227#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"caption\":\"Screenshot of Spotify\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8042d2a1-d03a-423a-8a68-b87d2b9d1002.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spotify design system\",\"Spotify website design\",\"Spotify colors\",\"Spotify typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Spotify Green\",\"Signal Red\",\"Void Black\",\"Carbon\",\"SpotifyMixUI\",\"SpotifyMixUITitle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spotify design system\"},{\"@type\":\"Thing\",\"name\":\"Spotify website design\"},{\"@type\":\"Thing\",\"name\":\"Spotify colors\"},{\"@type\":\"Thing\",\"name\":\"Spotify typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-03-18T09:35:03.000Z\",\"dateModified\":\"2026-03-18T09:35:03.000Z\"}]}19:T845,**Quick Color Reference**\n- background: #000000 (canvas), #121212 (sidebar/cards), #1f1f1f (elevated)\n- text: #ffffff (primary), #b3b3b3 (secondary/metadata)\n- border: #333333 (subtle), #73777c (muted)\n- accent: #1ed760 (Spotify green — play/active states)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Top Navigation Bar*: Full-width #000000 bar, 64px height, 8px vertical padding. Left: circular back/forward arrow buttons (32px, white chevron). Center-left: search input — #1f1f1f fill, 500px radius, white search icon, white placeholder 'What do you want to play?'. Right: ghost text links 'Premium' 'Support' 'Download' in #ffffff SpotifyMixUI 14px weight 700, divider, 'Install App' with icon, pipe divider, 'Sign up' ghost link, 'Log in' white pill button (9999px radius, #ffffff bg, #000000 text, 8px 12px padding).\n\n2. *Square Album Card*: 6px border-radius cover image filling card width. Below: song title in #ffffff SpotifyMixUI 14px weight 600, artist name in #b3b3b3 SpotifyMixUI 14px weight 400. Card background #121212, 12px padding. Hover: card background shifts to #1f1f1f.\n\n3. *Circular Artist Card*: Artist photo clipped to full circle (500px radius), no card background. Below circle: artist name #ffffff 14px weight 600, 'Artist' label in #b3b3b3 12px weight 400. 12px gap between circle and text.\n\n4. *Promotional Banner*: Full-width sticky bottom bar, linear-gradient(90deg, #af2896, #509bf5) background, 16px padding. Left: white headline SpotifyMixUI 14px weight 700 'Preview of Spotify', white body text 'Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.' Right: white pill button 'Sign up free' (9999px radius, #ffffff, #000000 text, 8px 12px padding).\n\n5. *Sidebar Library Panel*: Fixed left column, 340px wide, #121212 background, full viewport height. Top: 'Your Library' heading #ffffff 16px weight 700, '+' add button on right. Two internal cards stacked vertically: #1f1f1f background, 6px radius, 12px padding. Each card has a white bold heading, #b3b3b3 description text, and a white pill button at the bottom."
+}

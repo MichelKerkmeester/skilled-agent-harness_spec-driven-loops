@@ -1,0 +1,267 @@
+{
+  "color": {
+    "warm-canvas": {
+      "$value": "#ebeadf",
+      "$type": "color",
+      "$description": "Warm Canvas — Page background — the foundational warm off-white that gives the whole interface its sunlit, lived-in feel"
+    },
+    "pristine-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pristine Surface — Elevated card surfaces, navigation bar, product card backgrounds, pill button fills"
+    },
+    "sand-beige": {
+      "$value": "#d5cec0",
+      "$type": "color",
+      "$description": "Sand Beige — Secondary card surfaces and warm-toned background panels for product grouping and featured sections"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, hairline borders, and the brand wordmark — defines the entire typographic system"
+    },
+    "coral-pulse": {
+      "$value": "#f04923",
+      "$type": "color",
+      "$description": "Coral Pulse — Bestseller badges, promotional card backgrounds, price callouts, and active accents — the singular warm energy that breaks the cream monochrome"
+    }
+  },
+  "font": {
+    "supreme-ll-tt": {
+      "$value": "Supreme LL TT",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface used for all UI text, headings, navigation, buttons, and product labels — geometric sans with uniformly tight -0.05em tracking gives the type a compact, modern rhythm; weight 400 handles body and most labels while weight 700 drives headings and product names"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Fallback or system-rendered text where Supreme LL TT is unavailable"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Supreme LL TT",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "warm-canvas": {
+      "$value": "#ebeadf",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm off-white foundation"
+    },
+    "sand-beige": {
+      "$value": "#d5cec0",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary product grouping panels and warm-toned card backgrounds"
+    },
+    "pristine-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated product cards, navigation, and white pill buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bellakitchenware.com",
+      "siteName": "bella Kitchen Appliances",
+      "extractedAt": "2026-06-03T17:39:42.820Z",
+      "variant": "extended"
+    }
+  }
+}

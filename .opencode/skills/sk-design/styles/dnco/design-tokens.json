@@ -1,0 +1,172 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, primary surface for content blocks, card bases"
+    },
+    "hairline-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Mist — Hairline borders, dividers, subtle surface wash, filter chip backgrounds, image placeholder fill"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, brand wordmark fill, dark hero background, link text, heading color"
+    },
+    "ash": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text, captions, inactive filter labels, helper text"
+    }
+  },
+  "font": {
+    "neue-haas-unica-pro": {
+      "$value": "Neue Haas Unica Pro",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for all UI — navigation, body, headlines, and brand wordmark. Weight 400 only, no bold or light variants; hierarchy is built purely through size and tracking rather than weight contrast."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, primary content surface"
+    },
+    "image-placeholder-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 2: Solid fill behind loading or empty project tiles"
+    },
+    "obsidian-invert": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Hero/wordmark inversion — full-bleed black with white type"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dnco.com",
+      "siteName": "DNCO",
+      "extractedAt": "2026-06-03T20:17:25.554Z",
+      "variant": "extended"
+    }
+  }
+}

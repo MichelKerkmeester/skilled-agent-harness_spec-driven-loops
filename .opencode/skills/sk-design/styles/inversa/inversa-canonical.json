@@ -1,0 +1,752 @@
+{
+  "source": "https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2",
+  "uuid": "8a6dc9c8-7892-4eab-baaa-3c342d5671f2",
+  "name": "INVERSA",
+  "northStar": "topographic field terminal at midnight. A dark command surface where massive editorial type and a single neon-lime marker layer over satellite earth photography, every label set in mono as if reading mission coordinates.",
+  "capturedAt": "2026-07-18T07:35:32.422Z",
+  "meta": {
+    "url": "https://inversa.com",
+    "siteName": "INVERSA",
+    "extractedAt": "2026-06-03T20:30:47.778Z",
+    "durationMs": 26603,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 400,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set hero headlines at 58–72px NB International Pro weight 400 with line-height 0.90 and letter-spacing -0.03em — the tight leading stacks lines into a single mass.",
+      "Use #ebfc72 as the sole chromatic accent for any element that needs to be noticed: buttons, active states, data tags, and icon highlights.",
+      "Apply -0.03em letter-spacing to all NB International Pro text regardless of size — the tracking is part of the brand voice, not a display-only treatment.",
+      "Let imagery bleed to all four edges at 100vw with zero radius, zero border, and zero overlay — the photo is the surface.",
+      "Set all UI labels, button text, and metadata in JetBrains Mono — the mono voice distinguishes interface from editorial copy.",
+      "Use 3.6px border-radius consistently for buttons, tags, and inputs — do not introduce larger radii for 'softness'.",
+      "Space sections at 86–104px and separate them with whitespace, not dividers or background color shifts."
+    ],
+    "donts": [
+      "Do not add box-shadows to any element — the system is deliberately flat; depth comes from color contrast, not elevation.",
+      "Do not introduce a second accent color — the lime is alone by design. Any other chromatic addition dilutes the survey-marker effect.",
+      "Do not set body text below 18px in NB International Pro — the font's humanist proportions require generous size to read correctly.",
+      "Do not use #000000 as the canvas — the olive undertone of #13140 is what makes the dark feel organic rather than digital.",
+      "Do not round corners beyond 3.6px on any component — larger radii would contradict the instrument-panel aesthetic.",
+      "Do not use colored backgrounds for cards or content blocks — content sits directly on the dark canvas with no chrome.",
+      "Do not center body text — editorial alignment is left-aligned throughout, matching the mission-log reading flow."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#13140e",
+        "name": "Obsidian Loam",
+        "role": "Page canvas, hero background, card surfaces — the near-black base with a faint olive cast that keeps the dark from feeling synthetic",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f3e8",
+        "name": "Bone Vellum",
+        "role": "Primary text, body copy, headings, icon strokes, border color on dark — warm off-white that reads as paper, not LCD white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Iron Filings",
+        "role": "Hairline borders, footer dividers, low-emphasis rules",
+        "group": "neutral"
+      },
+      {
+        "hex": "#84837b",
+        "name": "Drift Ash",
+        "role": "Muted secondary text, placeholder input state, low-contrast labels on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebfc72",
+        "name": "Lime Surveyor",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#bacd31",
+        "name": "Marsh Olive",
+        "role": "Gradient transition shade for the lime accent — deeper stop used in horizontal lime fades",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content anchored to a max-width 1200px column. The hero is a full-viewport satellite image with bottom-left text overlay — a massive 72px headline, a lime-filled action button directly below, and minimal nav (brand wordmark top-left, menu top-right). Sections are separated by generous 86–104px vertical gaps rather than dividers, creating a sense of topographic sheets laid on a dark surface. Content alternates between full-bleed image bands and contained text blocks. The grid is narrow (2–3 columns max) — this is not a dense dashboard but a reading surface for mission briefings.",
+    "imagery": "Full-bleed aerial and satellite photography of coastline, estuaries, and terrain — the imagery IS the atmosphere, not decoration. Photos span edge-to-edge with no framing, border, or radius. Color treatment is naturalistic (greens, earth tones, water blues) allowed to carry the only chromatic weight in the system, while overlaid UI remains monochrome. No product screenshots, no illustrations, no abstract graphics — the site is a map and a logbook, not a brochure.",
+    "similar": [
+      {
+        "why": "Same full-bleed satellite earth photography as the visual backbone, dark canvas, and single-color data annotation approach",
+        "business": "Planet Labs"
+      },
+      {
+        "why": "Identical top-map-as-hero pattern with minimal text overlay and utilitarian interface chrome",
+        "business": "Sentinel Hub"
+      },
+      {
+        "why": "Dark-mode conservation/earth-observation aesthetic with editorial-scale type and restrained accent usage",
+        "business": "Radiant Earth"
+      },
+      {
+        "why": "Same editorial use of NB International-style humanist sans at large compressed sizes on dark backgrounds, treated like a publication rather than a product",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Near-identical typographic attitude — dark canvas, mono for UI labels, humanist sans for headlines, zero-radius buttons, and shadowless flat surfaces",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "3.6px",
+        "cards": "0px",
+        "inputs": "3.6px",
+        "buttons": "3.6px"
+      },
+      "elementGap": "18px",
+      "sectionGap": "86-104px",
+      "cardPadding": "14-18px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#13140",
+        "name": "Obsidian Loam",
+        "level": 1,
+        "purpose": "Page canvas, hero background, full-bleed image overlay base"
+      },
+      {
+        "hex": "#404040",
+        "name": "Iron Filings",
+        "level": 2,
+        "purpose": "Hairline borders, footer rule lines, low-emphasis dividers"
+      }
+    ],
+    "northStar": "topographic field terminal at midnight. A dark command surface where massive editorial type and a single neon-lime marker layer over satellite earth photography, every label set in mono as if reading mission coordinates.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.62,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "subheading",
+        "size": 29,
+        "lineHeight": 1.28,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1.06,
+        "letterSpacing": -1.74
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.16
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Headline",
+        "role": "Primary page-level statement, 58–72px",
+        "description": "NB International Pro weight 400, 72px, line-height 0.90, letter-spacing -2.16px, color #f4f3e8. Sits bottom-left over full-bleed image with no background treatment. The extreme line-height (0.90) stacks lines tightly into a single block, creating weight without weight-of-stroke."
+      },
+      {
+        "name": "Lime Action Button",
+        "role": "Primary call-to-action, high-emphasis interactive",
+        "description": "Background #ebfc72, text #13140, font JetBrains Mono weight 400 at 14px, padding 14px 18px, border-radius 3.6px, uppercase letter spacing. The button is the only high-saturation element on the page — its presence makes it impossible to miss without needing size or shadow emphasis."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action, low-emphasis interactive",
+        "description": "Transparent background, text #f4f3e8, border optional 1px #404040, JetBrains Mono 14px, 3.6px radius. Used for navigation items and secondary links in dark contexts."
+      },
+      {
+        "name": "Data Tag",
+        "role": "Coordinate, label, or classification marker",
+        "description": "Background #ebfc72 or transparent with #ebfc72 border, text #13140 or #f4f3e8, JetBrains Mono 13px weight 400, padding 5px 7px, 3.6px radius. Functions as the 'survey marker' of the system — small, bright, unmistakable."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Transparent over hero, fixed/sticky. Left: brand wordmark 'INVERSA' in NB International Pro 14px #f4f3e8. Right: 'Menu' trigger in JetBrains Mono 13px #f4f3e8 with small indicator dot. No background fill, no border — the nav floats on the image."
+      },
+      {
+        "name": "Full-Bleed Image Band",
+        "role": "Atmospheric section separator or context image",
+        "description": "Edge-to-edge photographic imagery (aerial/satellite) with no radius, no border, no overlay. Sits at 100vw. Provides the only color in the system outside the lime accent."
+      },
+      {
+        "name": "Text Block (Dark Surface)",
+        "role": "Contained editorial content on canvas",
+        "description": "No card chrome — content sits directly on #13140e. Headings in NB International Pro 58px #f4f3e8, body in 18px #f4f3e8 lh 1.62. No background fill, no border, no shadow. Spacing between blocks: 18px element gap, 86–104px section gap."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Full-width dark #13140 band. Top border 1px #404040. Content in JetBrains Mono 13px #f4f3e8. Sparse — typically 2–3 columns of links and metadata."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input",
+        "description": "Transparent background on dark canvas, bottom border only 1px #404040, text in NB International Pro 14px #f4f3e8, placeholder #84837b. No fill, no radius on the field — the underline IS the field."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and body — the brand's primary voice. Set at 72px for hero statements and 58px for section headers with -0.03em tracking, producing a compressed, editorial presence. Also carries body text at 18px (lh 1.62) and UI labels at 13–14px. Its humanist warmth prevents the dark canvas from feeling cold or corporate.",
+        "sizes": "13px, 14px, 18px, 58px, 72px",
+        "family": "NB International Pro",
+        "weight": "400",
+        "lineHeight": "0.90, 1.06, 1.20, 1.25, 1.62",
+        "substitute": "Söhne, Inter, or system-ui",
+        "letterSpacing": "-0.0300em"
+      },
+      {
+        "role": "Interface annotations, data labels, button text, tag values, and secondary display moments. The monospaced geometry reads as coordinates, timestamps, and telemetry — reinforcing the field-instrument metaphor. Set in weight 300 for hero-scale data callouts (65px) to keep mono from feeling mechanical at large sizes.",
+        "sizes": "13px, 14px, 18px, 29px, 65px",
+        "family": "JetBrains Mono",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.20, 1.25, 1.28",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Inversa operates as a dark conservation-tech command console: a near-black canvas saturated with aerial earth imagery, where massive editorial type and a single electric lime accent function like tactical highlights on a topo map. The visual language is sparse and deliberate — generous negative space, no shadows, near-zero radius — letting one vivid chromatic note (electric lime) cut through the otherwise binary warm-cream-on-near-black system. Typography does the heavy lifting: a humanist sans at near-architectural sizes (58–72px) speaks the narrative voice, while JetBrains Mono handles every data label, tag, and interface annotation as if reading coordinates. Components are utilitarian and unadorned — sharp 3.6px corners, no elevation, no decorative chrome — creating the feel of a field instrument rather than a marketing site.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INVERSA design system\",\"item\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#style-reference\",\"name\":\"INVERSA design system reference\",\"headline\":\"INVERSA design system | Refero Styles\",\"description\":\"Explore INVERSA's dark Other design system: Obsidian Loam #13140e, Bone Vellum #f4f3e8 colors, NB International Pro, JetBrains Mono typography, and...\",\"url\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INVERSA\",\"url\":\"https://inversa.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"caption\":\"Screenshot of INVERSA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INVERSA design system\",\"INVERSA website design\",\"INVERSA colors\",\"INVERSA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Obsidian Loam\",\"Bone Vellum\",\"Iron Filings\",\"Drift Ash\",\"NB International Pro\",\"JetBrains Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INVERSA design system\"},{\"@type\":\"Thing\",\"name\":\"INVERSA website design\"},{\"@type\":\"Thing\",\"name\":\"INVERSA colors\"},{\"@type\":\"Thing\",\"name\":\"INVERSA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-06T19:02:17.000Z\",\"dateModified\":\"2026-04-06T19:02:17.000Z\"}]}19:T4fa,**Quick Color Reference**\n- background: #13140e\n- text: #f4f3e8\n- border: #404040\n- accent: #ebfc72\n- muted text: #84837b\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a hero section: full-bleed background (any photo or solid #13140e), max-width 1200px content container, headline NB International Pro 72px weight 400 color #f4f3e8 line-height 0.90 letter-spacing -2.16px left-aligned at bottom-left. Include a lime-filled action button (#ebfc72 bg, #13140e text, JetBrains Mono 14px, 3.6px radius, 14px 18px padding).\n\n2. Create a data tag: #ebfc72 background, #13140e text, JetBrains Mono 13px weight 400, padding 5px 7px, 3.6px radius, uppercase content.\n\n3. Build a content section on dark canvas: #13140e background, no card chrome, heading in NB International Pro 58px #f4f3e8, body in NB International Pro 18px #f4f3e8 line-height 1.62, section gap 86–104px above and below.\n\n4. Create a top navigation bar: transparent background, brand 'INVERSA' left in NB International Pro 14px #f4f3e8, 'Menu' label right in JetBrains Mono 13px #f4f3e8 with a 4px #f4f3e8 dot indicator beside it.\n\n5. Build a footer: full-width #13140e band with 1px #404040 top border, 2–3 column link grid in JetBrains Mono 13px #f4f3e8, 86px top padding."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. All depth is communicated through color contrast (lime on black) and typographic scale rather than box-shadow elevation. The near-zero border radius and absence of shadows give every element a flat, instrument-panel quality — surfaces feel like etched markings, not stacked cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f4f3e8",
+          "oklch": {
+            "c": 0.014578787655908013,
+            "h": 102.45693430318876,
+            "l": 0.9619203648856193
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "heading",
+            "hero",
+            "body",
+            "image",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 964,
+          "confidence": 1,
+          "prominence": 165401092.29664132,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#13140e",
+          "oklch": {
+            "c": 0.011830023888948474,
+            "h": 115.23509386091102,
+            "l": 0.18785489376861314
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "image"
+          ],
+          "frequency": 889,
+          "confidence": 1,
+          "prominence": 45749886.565128356,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebfc72",
+          "oklch": {
+            "c": 0.16259888817494478,
+            "h": 115.4149886978534,
+            "l": 0.9517762830348302
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 7458334.202803855,
+          "properties": [
+            "color",
+            "stroke",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 5063330.21190864,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#84837b",
+          "oklch": {
+            "c": 0.01256549645932157,
+            "h": 106.7665988324582,
+            "l": 0.6090945261325628
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 380.7962075615274,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.04669164128319363,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#13140e",
+          "foreground": "#f4f3e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.49,
+          "background": "#ebfc72",
+          "foreground": "#13140e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#f4f3e8",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#ebfc72",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.86,
+          "background": "#84837b",
+          "foreground": "#13140e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#84837b",
+          "foreground": "#f4f3e8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#84837b",
+          "foreground": "#ebfc72"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3.6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 59,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 86,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 104,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 119,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 3.6px, rgb(235, 252, 114) 3.6px, rgb(235, 252, 114) 135px)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgb(235, 252, 114)",
+          "rgb(235, 252, 114)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(186, 205, 49), rgb(186, 205, 49) 3.6px, rgb(235, 252, 114) 3.6px, rgb(235, 252, 114) 135px)",
+        "colors": [
+          "rgb(186, 205, 49)",
+          "rgb(186, 205, 49)",
+          "rgb(235, 252, 114)",
+          "rgb(235, 252, 114)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NB International Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 252,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "JetBrains Mono",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 123,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "JetBrains Mono",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.28,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "list",
+            "button",
+            "footer",
+            "icon"
+          ],
+          "frequency": 104,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "JetBrains Mono",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "JetBrains Mono",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "NB International Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 36,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7f03550a-29d9-43a9-b98b-fcbc0c5918f7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INVERSA design system\",\"item\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#style-reference\",\"name\":\"INVERSA design system reference\",\"headline\":\"INVERSA design system | Refero Styles\",\"description\":\"Explore INVERSA's dark Other design system: Obsidian Loam #13140e, Bone Vellum #f4f3e8 colors, NB International Pro, JetBrains Mono typography, and...\",\"url\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INVERSA\",\"url\":\"https://inversa.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8a6dc9c8-7892-4eab-baaa-3c342d5671f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"caption\":\"Screenshot of INVERSA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f8d075c-9240-4fdf-91cf-0f69ff75c854.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INVERSA design system\",\"INVERSA website design\",\"INVERSA colors\",\"INVERSA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Obsidian Loam\",\"Bone Vellum\",\"Iron Filings\",\"Drift Ash\",\"NB International Pro\",\"JetBrains Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INVERSA design system\"},{\"@type\":\"Thing\",\"name\":\"INVERSA website design\"},{\"@type\":\"Thing\",\"name\":\"INVERSA colors\"},{\"@type\":\"Thing\",\"name\":\"INVERSA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-06T19:02:17.000Z\",\"dateModified\":\"2026-04-06T19:02:17.000Z\"}]}19:T4fa,**Quick Color Reference**\n- background: #13140e\n- text: #f4f3e8\n- border: #404040\n- accent: #ebfc72\n- muted text: #84837b\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a hero section: full-bleed background (any photo or solid #13140e), max-width 1200px content container, headline NB International Pro 72px weight 400 color #f4f3e8 line-height 0.90 letter-spacing -2.16px left-aligned at bottom-left. Include a lime-filled action button (#ebfc72 bg, #13140e text, JetBrains Mono 14px, 3.6px radius, 14px 18px padding).\n\n2. Create a data tag: #ebfc72 background, #13140e text, JetBrains Mono 13px weight 400, padding 5px 7px, 3.6px radius, uppercase content.\n\n3. Build a content section on dark canvas: #13140e background, no card chrome, heading in NB International Pro 58px #f4f3e8, body in NB International Pro 18px #f4f3e8 line-height 1.62, section gap 86–104px above and below.\n\n4. Create a top navigation bar: transparent background, brand 'INVERSA' left in NB International Pro 14px #f4f3e8, 'Menu' label right in JetBrains Mono 13px #f4f3e8 with a 4px #f4f3e8 dot indicator beside it.\n\n5. Build a footer: full-width #13140e band with 1px #404040 top border, 2–3 column link grid in JetBrains Mono 13px #f4f3e8, 86px top padding."
+}

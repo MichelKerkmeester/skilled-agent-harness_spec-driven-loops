@@ -1,0 +1,279 @@
+{
+  "color": {
+    "charcoal-ink": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, headings, body copy, icons, link color, input borders, badges — the single dominant ink that holds the whole monochrome system together"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, input fields, elevated panels, text on dark fills"
+    },
+    "concrete-gray": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Concrete Gray — Page canvas, the visible background behind every card — the tone that makes white cards feel floating rather than embedded"
+    },
+    "fog-mist": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Fog Mist — Subtle elevated surfaces, secondary panels, input hover states — a step between canvas and card"
+    },
+    "ash-border": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Ash Border — Hairline borders, input backgrounds, disabled-state fills"
+    },
+    "smoke": {
+      "$value": "#c2c2c2",
+      "$type": "color",
+      "$description": "Smoke — Muted text, disabled labels, badge backgrounds, inactive states"
+    },
+    "graphite": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, meta information, shadow tone, muted border accents"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon fills, maximum-contrast accents, deep text on light surfaces"
+    },
+    "sand-wash": {
+      "$value": "#e2ceb8",
+      "$type": "color",
+      "$description": "Sand Wash — Warm background tint on select cards and sections — the only warm chromatic wash in the system, used sparingly to break the cool gray monotony"
+    },
+    "slate-veil": {
+      "$value": "#6a728e",
+      "$type": "color",
+      "$description": "Slate Veil — Gray supporting accent for decorative details and low-frequency emphasis."
+    },
+    "highlight-yellow": {
+      "$value": "#f9f5a2",
+      "$type": "color",
+      "$description": "Highlight Yellow — Text-block highlight behind individual letters or words (the (y)our treatment) — the only vivid functional accent, used to mark a single altered character in an otherwise unstyled sentence"
+    },
+    "highlight-cyan": {
+      "$value": "#c7f6ff",
+      "$type": "color",
+      "$description": "Highlight Cyan — Secondary text highlight block, paired with yellow for selectable/emphasized letter swaps"
+    }
+  },
+  "font": {
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Universal interface font — used for every body paragraph, every label, every button, every timestamp, every card caption, and at 43px for the largest display headlines. The single-font decision is the system's most defining choice: a monospace voice applied to a creative studio site signals that this is a tool, not a magazine. The 43px display size at weight 400 is deliberately unflamboyant — no bold headline shouting, just evenly-spaced characters that read like code commits or terminal output."
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Secondary display font for occasional headline-level text where a humanist sans contrast is needed against the mono sea. Weight 300 is used for the largest 44px treatment to keep the system's anti-authoritarian restraint — no bold display shouting, just light Helvetica whispers"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "helvetica",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "helvetica",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "helvetica",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.16) 0px 3px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.18) 0px 1px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "concrete-canvas": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Surface level 0: The page background, the gray desktop on which all cards sit"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default card surface, the dominant elevated tier"
+    },
+    "fog-mist": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle secondary panels, input fields, pill buttons — a quieter step below card white"
+    },
+    "ash-input": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 3: Input field fill, the most recessed surface"
+    },
+    "sand-wash": {
+      "$value": "#e2ceb8",
+      "$type": "color",
+      "$description": "Surface level 4: Warm-tinted card variant, used to give a widget a different atmosphere"
+    },
+    "slate-veil": {
+      "$value": "#6a728",
+      "$type": "color",
+      "$description": "Surface level 5: Cool-tinted card variant for atmospheric widgets (weather, time-of-day)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://schoooool.com",
+      "siteName": "School",
+      "extractedAt": "2026-06-03T18:07:12.477Z",
+      "variant": "extended"
+    }
+  }
+}

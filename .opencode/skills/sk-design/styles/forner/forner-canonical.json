@@ -1,0 +1,1186 @@
+{
+  "source": "https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026",
+  "uuid": "2a830d03-cebc-48f0-a50f-ad78168c5026",
+  "name": "Forner",
+  "northStar": "Warm earthen atelier — imagine a ceramics studio at golden hour, where every surface is clay, bone, or roasted coffee, and the only chrome is the potter's hand-lettered note pinned to the wall.",
+  "capturedAt": "2026-07-18T08:38:14.705Z",
+  "meta": {
+    "url": "https://forner.studio",
+    "siteName": "Forner",
+    "extractedAt": "2026-06-03T22:41:05.223Z",
+    "durationMs": 64504,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 666,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Surt at weight 400 for all text — there is no bold, no light, no medium. Size and tracking create hierarchy, not weight.",
+      "Set line-height at 0.98-1.10 for all display sizes 45px and above — the compressed stacking is the signature.",
+      "Use #faf5eb for page canvas and #ecece4 for card surfaces — the two-step warm-to-cooler shift is the only elevation signal needed.",
+      "Maintain 100px+ vertical rhythm between sections; let negative space separate content rather than drawing rules.",
+      "Set all border-radius to 4px — the system is surgically sharp, not soft.",
+      "Reach for the BigDailyShort italic only 1-3 times per page — its scarcity is what gives it authority as a signed annotation.",
+      "Keep all interactive elements outlined or ghosted with #484036 borders; never introduce a chromatic action color."
+    ],
+    "donts": [
+      "Do not use bold or semibold weights — the system has one voice (regular 400) at every size.",
+      "Do not add drop shadows or box-shadows — elevation comes from tonal surface shifts, not blurred offsets.",
+      "Do not use pure white (#ffffff) or pure black (#000000) — the entire palette lives in the warm brown-to-bone spectrum.",
+      "Do not introduce accent colors (no blue, red, green, or any chromatic brand color) — 5% colorfulness is the system.",
+      "Do not use border-radius above 4px — no pills, no large rounding, no 'friendly' curves.",
+      "Do not set display line-height above 1.10 — generous spacing kills the compressed editorial rhythm.",
+      "Do not use the BigDailyShort italic for navigation, body, or buttons — it is annotation-only and loses all meaning if overused."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#484036",
+        "name": "Roast Ink",
+        "role": "Primary text, borders, icon strokes, the structural backbone of every interface — deep warm brown acts as ink on cream, the dominant foreground color across the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#faf5eb",
+        "name": "Bone Canvas",
+        "role": "Page background, the warm cream field that all surfaces sit on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ecece4",
+        "name": "Linen Surface",
+        "role": "Card surfaces, elevated panels, content blocks — one step removed from the canvas, slightly cooler and grayer to recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cacab0",
+        "name": "Sandstone",
+        "role": "Heading accents, icon strokes, decorative borders, link underlines — the lightest chromatic-feeling neutral, used when the Roast Ink feels too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d5c4",
+        "name": "Pebble",
+        "role": "Link text, secondary interactive states — warmer than the cool grays, keeps the link family inside the earth palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2e9cf",
+        "name": "Manilla Cream",
+        "role": "Warm highlight wash, soft fill for tags and subtle emphasis blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666e72",
+        "name": "Slate Border",
+        "role": "Cool-toned hairline borders, dividers, structural lines — the only break from the warm palette, providing neutral structural contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#33302c",
+        "name": "Charcoal Depth",
+        "role": "Deep heading text, near-black emphasis — warmer than pure black, reserved for the heaviest type moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212529",
+        "name": "Obsidian",
+        "role": "Maximum-contrast borders and text — the darkest available, used sparingly for absolute emphasis",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Layout is max-width contained (1440px) with generous outer padding (29-68px horizontal). The page reads as a vertical sequence of full-width sections separated by 100px+ of breathing room — there is no sidebar, no grid-of-grids complexity. Hero is a centered display headline at 112px over the cream canvas, often paired with a single full-bleed product or brand image below. Section rhythm is consistent: display heading → supporting body at 22px → visual artifact → next section. Content is arranged in single-column stacks for hero moments, expanding to 2-column text+image pairs for case studies. There is no masonry, no card grid of 3+, no pricing table. Navigation is a minimal top bar with horizontal links. The overall density is spacious and editorial — the system treats the page like a printed portfolio spread, not a dashboard.",
+    "imagery": "Imagery is portfolio-driven and high-fidelity: full-bleed product photography, brand mockups, and editorial compositions sit directly on the warm cream canvas without frames or containers. The screenshot shows a terracotta product package (Doma microdose blend) as a hero element — the photograph's own vibrant color does the work, unframed. There are no decorative illustrations, no stock photography, no abstract graphics. When product or brand work appears, it is treated as a real artifact: tight crops, sharp 4px corners only when constrained, otherwise bleeding to the canvas edge. Icon style (visible in UI): thin 1px line icons in #484036 or #cacab0, stroke-led, monoline, no filled states. Imagery is image-heavy at the portfolio level and icon-minimal at the UI level.",
+    "similar": [
+      {
+        "why": "Same warm-earth neutral palette with a single custom grotesque carrying the entire voice, plus the same editorial large-display-headline approach",
+        "business": "Aether"
+      },
+      {
+        "why": "Similar minimal aesthetic with hairline borders, flat surfaces, and the same paper-on-paper layering without shadows",
+        "business": "Resn"
+      },
+      {
+        "why": "Same spacious editorial layout rhythm, oversized display type, and refusal to use chromatic brand color — the warmth of the neutrals does the work",
+        "business": "Locomotive (MTL)"
+      },
+      {
+        "why": "Same single-weight typography discipline and earth-toned palette, with a signature reliance on a small set of custom typefaces doing all the typographic work",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "4px",
+        "images": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "14px",
+      "sectionGap": "100px",
+      "cardPadding": "29px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#faf5eb",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Page background — the warm cream field that all content sits on"
+      },
+      {
+        "hex": "#ecece4",
+        "name": "Linen Surface",
+        "level": 1,
+        "purpose": "Card and content panel background — one tonal step cooler and grayer than the canvas to recede without shadow"
+      },
+      {
+        "hex": "#f2e9cf",
+        "name": "Manilla Highlight",
+        "level": 2,
+        "purpose": "Soft emphasis fill for tags, highlights, and accent blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Warm earthen atelier — imagine a ceramics studio at golden hour, where every surface is clay, bone, or roasted coffee, and the only chrome is the potter's hand-lettered note pinned to the wall.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 17,
+        "lineHeight": 1.13,
+        "letterSpacing": 0.34
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.35,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "subheading",
+        "size": 29,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.03,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 0.98,
+        "letterSpacing": -2.24
+      },
+      {
+        "role": "display",
+        "size": 112,
+        "lineHeight": 0.98,
+        "letterSpacing": -5.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Hero Headline",
+        "role": "Hero and section-anchoring text",
+        "description": "Surt at 112px, weight 400, line-height 0.98, letter-spacing -5.6px. Color #484036 on #faf5eb canvas. The tight tracking and compressed line-height make lines nearly touch — creates a poster-like presence, not a comfortable reading experience. This is atmosphere, not information."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page structural headings",
+        "description": "Surt at 45-56px, weight 400, line-height 1.03-0.98, letter-spacing -1.8 to -2.24px. Color #484036. Same anti-convention as display: light weight at large sizes, heavy negative tracking. Headlines whisper at the scale where most sites shout."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "All paragraph text",
+        "description": "Surt at 22px, weight 400, line-height 1.35, letter-spacing 0.24px. Color #484036. The slight positive tracking on body is unusual — most grotesques tighten at body size, Surt opens up. Creates an airier, more editorial reading rhythm."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive trigger",
+        "description": "Surt at 17px, weight 400, text #484036. 1px border in #484036, 4px radius, 14px vertical padding, 29px horizontal padding. No fill — outlined only. The neutral dark border means there is no chromatic CTA; urgency comes from the border weight and generous spacing, not color. Hover state could fill to #484036 with bone text."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline navigation, footer links, tertiary actions",
+        "description": "Surt at 17-22px, weight 400, color #d5d5c4 with #cacab0 underline (1px). No background, no border. Underline is always present — the link communicates through the persistent rule, not color contrast."
+      },
+      {
+        "name": "Content Card",
+        "role": "Project tiles, case study blocks, content containers",
+        "description": "Background #ecece4 (one step cooler than canvas). 4px radius. 29px internal padding. 1px border in #666e72 (slate) for structural definition. No shadow — the slight tonal shift from canvas to card is the only elevation signal. This is a flat, paper-on-paper system, not a floating-card system."
+      },
+      {
+        "name": "Product Showcase Panel",
+        "role": "Full-bleed portfolio imagery",
+        "description": "Images treated at full scale with no frame or container — they bleed into the #faf5eb canvas. 4px radius only when constrained within a card. The screenshot shows a product photograph floating on the warm cream field, the photograph's own color (terracotta) doing the work against the muted system."
+      },
+      {
+        "name": "Editorial Annotation",
+        "role": "Pull quotes, signed notes, accent labels",
+        "description": "BigDailyShort Light Italic at 17-45px, line-height 0.98-1.03, color #484036. Used 5 times across the system — this scarcity is the design choice. When it appears, it reads as a curator's handwritten label pinned to a gallery wall. Never use for body or navigation."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Surt at 22px, weight 400, transparent on #faf5eb canvas. Horizontal links separated by 29-68px gaps. No background fill, no border, no shadow. The nav is text floating on the canvas — it does not announce itself as a UI element."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Between content sections",
+        "description": "Not a visible line — sections are separated by 86-144px of negative space alone. When a line is needed, 1px in #666e72 at 100% width. The system prefers breathing room over rules."
+      },
+      {
+        "name": "Tag or Category Label",
+        "role": "Project categories, metadata chips",
+        "description": "Surt at 17px, weight 400, text #484036. Optional 1px border in #cacab0, 4px radius, 14px vertical / 29px horizontal padding. Manilla Cream (#f2e9cf) fill available for emphasis variants. Tags are small, quiet, outlined — never filled with brand color."
+      },
+      {
+        "name": "Image Caption",
+        "role": "Below project imagery",
+        "description": "Surt at 17px, weight 400, line-height 1.13, letter-spacing 0.34px, color #666e72. Sits 14px below the image. The cooler gray and positive tracking separate it from the body voice — captions are metadata, not content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — used for body, navigation, buttons, hero, headings, and everything in between. This single font carries 606 instances across every context, making it the voice of the entire system. The tight line-heights (0.98-1.10) on large sizes are signature: display text sits so close the lines nearly touch, creating a compressed, editorial rhythm. Only weight 400 exists — there is no bold, no light. Restraint through range size, not weight.",
+        "sizes": "22px, 29px, 45px, 56px, 112px",
+        "family": "Surt",
+        "weight": "400",
+        "lineHeight": "0.98-1.10 for display, 1.35-1.50 for body",
+        "substitute": "Söhne, Inter, Neue Haas Grotesk",
+        "letterSpacing": "-0.0400em at body, 0.0110em at small sizes, -0.0500em at display"
+      },
+      {
+        "role": "Secondary display face — used for structural headings and labels where a slightly more architectural feel is needed. The ultra-tight 0.97 line-height on the 56px size is aggressive even by display standards; lines stack like a modernist poster. Pairs with Surt as the 'engineered' voice against Surt's 'neutral' voice.",
+        "sizes": "17px, 30px, 52px, 56px",
+        "family": "ClashDisplay",
+        "weight": "400",
+        "lineHeight": "0.97-1.13",
+        "substitute": "Clash Display (Fontshare), Söhne Schmal, Founders Grotesk Condensed",
+        "letterSpacing": "-0.0100em at body, 0.0200em at display"
+      },
+      {
+        "role": "Accent serif italic — appears only 5 times across the system, functioning as a hand-annotated note against the grotesque. Used for pull quotes, editorial labels, or signature moments where the system needs to feel signed rather than printed. Its scarcity is the point: when it appears, it carries weight through presence, not size.",
+        "sizes": "17px, 37px, 45px",
+        "family": "BigDailyShort",
+        "weight": "400 (Light Italic)",
+        "lineHeight": "0.98-1.03",
+        "substitute": "GT Sectra, Canela, Domaine Display Italic",
+        "letterSpacing": "-0.0500em, 0.0110em, 0.0200em"
+      }
+    ],
+    "description": "Forner operates as a sun-baked design atelier: an almost entirely warm-earth palette, a single custom grotesque carrying 95% of the voice, and typography so oversized it abandons hierarchy for atmosphere. The canvas is a dry cream; the ink is a deep roast brown; every accent lives in the same brown-to-bone spectrum. There is no chromatic brand color — the warmth itself is the brand. Surfaces are flat with hairline borders, corners are surgically sharp at 4px, and breathing room is generous (100px+ between sections). Custom serif italics appear sparingly as hand-set annotations against the grotesque's mechanical rhythm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- text: #484036\n- background: #faf5eb\n- card surface: #ecece4\n- border: #666e72\n- accent: #cacab0\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a content card: background #ecece4, 4px radius, 29px padding all sides, 1px border in #666e72. Heading at 45px Surt weight 400, #484036, letter-spacing -1.8px. Body at 22px Surt weight 400, #484036, line-height 1.35. No shadow.\n\n3. Create a navigation bar: transparent on #faf5eb canvas. Logo wordmark at 22px Surt weight 400, #484036. Links at 22px Surt weight 400, #d5d5c4 with #cacab0 1px underline, 29px gap between items. No background, no border, no shadow."
+      },
+      {
+        "title": "Typographic Philosophy",
+        "content": "The system deliberately eliminates weight variation. With only weight 400 available, hierarchy is built entirely through size, tracking, and line-height. Display sizes (56-112px) use aggressive negative tracking (-0.0400em to -0.0500em) and compressed line-heights (0.97-0.98) — text stacks like a modernist poster. Body sizes (22-29px) open up with positive tracking (0.0110em) and generous line-height (1.35-1.50) — reading becomes airy and editorial. The single weight forces every typographic decision to be about proportion, not emphasis. This is an anti-bold system: the absence of heaviness is the point."
+      },
+      {
+        "title": "Earth Palette Logic",
+        "content": "Every color in the system belongs to the brown-to-bone spectrum. There is no blue, no green, no chromatic accent, no semantic color coding in the traditional sense (no red for error, no green for success). The warmth is uniform — even the 'cool' slate (#666e72) is used structurally for borders, never for emphasis. This means success/error/warning states, if needed, must be communicated through tone (lighter/warmer Roast Ink) or through the BigDailyShort italic annotation rather than through chromatic signals. The palette's discipline is its brand: 5% colorfulness means the 95% of warm neutral is doing all the visual work."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows entirely. Elevation is communicated exclusively through tonal surface shifts — the canvas (#faf5eb) is the base, cards step cooler to Linen (#ecece4), and emphasis blocks add warmth to Manilla (#f2e9cf). Combined with 1px hairline borders in #666e72 or #484036, this creates a paper-on-paper layering system rather than a floating-card system. Shadows would introduce visual noise the earth palette cannot absorb."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#484036",
+          "oklch": {
+            "c": 0.0198292906093463,
+            "h": 73.31822999297017,
+            "l": 0.37647823293215615
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 2994,
+          "confidence": 1,
+          "prominence": 134662551.52466568,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 9,
+            "other/fill": 6,
+            "image/color": 62,
+            "other/color": 519,
+            "button/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 36,
+            "image/borderColor": 248,
+            "other/borderColor": 2076,
+            "button/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ecece4",
+          "oklch": {
+            "c": 0.010641470888015949,
+            "h": 106.60237750220662,
+            "l": 0.9408774583179241
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 19875569.650428273,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 6,
+            "other/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 8,
+            "other/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#cacab0",
+          "oklch": {
+            "c": 0.03524185098443331,
+            "h": 107.14167876961893,
+            "l": 0.8320340029913523
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1647222.0948253642,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "heading/color": 2,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#acb4b8",
+          "oklch": {
+            "c": 0.010660597568752,
+            "h": 228.93650157015517,
+            "l": 0.7648159223547016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 914861,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#faf5eb",
+          "oklch": {
+            "c": 0.014272930296336354,
+            "h": 84.58300280020052,
+            "l": 0.9712865325912495
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 570240,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666e72",
+          "oklch": {
+            "c": 0.011621606425321965,
+            "h": 229.04993347898326,
+            "l": 0.5327437582294977
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 205,
+          "confidence": 1,
+          "prominence": 350073.9800100325,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 41,
+            "other/borderColor": 164
+          }
+        },
+        {
+          "hex": "#d5d5c4",
+          "oklch": {
+            "c": 0.02294990544128723,
+            "h": 106.86812384505305,
+            "l": 0.8683626265755225
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 88030.89796205897,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 87371.40496030358,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#f2e9cf",
+          "oklch": {
+            "c": 0.035643002318876404,
+            "h": 91.12605712637166,
+            "l": 0.9343065494959674
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 40196.16688621398,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#33302c",
+          "oklch": {
+            "c": 0.008227112761935673,
+            "h": 75.27109156850106,
+            "l": 0.3108964295929462
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 28791.312333032238,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.052142785794810784,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#faf5eb",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.99,
+          "background": "#ecece4",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.73,
+          "background": "#f2e9cf",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#faf5eb",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#ecece4",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#f2e9cf",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.39,
+          "background": "#d5d5c4",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.37,
+          "background": "#faf5eb",
+          "foreground": "#484036"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.25,
+          "background": "#cacab0",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#d5d5c4",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.58,
+          "background": "#ecece4",
+          "foreground": "#484036"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.4,
+          "background": "#484036",
+          "foreground": "#f2e9cf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#cacab0",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#acb4b8",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.86,
+          "background": "#484036",
+          "foreground": "#d5d5c4"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.23,
+          "background": "#acb4b8",
+          "foreground": "#33302c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.1,
+          "background": "#484036",
+          "foreground": "#cacab0"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#acb4b8",
+          "foreground": "#484036"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.79,
+          "background": "#faf5eb",
+          "foreground": "#666e72"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.38,
+          "background": "#ecece4",
+          "foreground": "#666e72"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingTop|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 161,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 232,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 233,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 308,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Surt-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 606,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ClashDisplay-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BigDailyShort-LightItalic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 17,
+          "family": "ClashDisplay-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.98,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "BigDailyShort-LightItalic",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.98,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 590,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ClashDisplay-Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 0.97,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "ClashDisplay-Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 37,
+          "family": "BigDailyShort-LightItalic",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.03,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "BigDailyShort-LightItalic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "ClashDisplay-Medium",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 56,
+          "family": "ClashDisplay-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.98,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 112,
+          "family": "Surt-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.98,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c0269be0-a754-47ee-9a3d-a99b5eba91d3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6eec2be8-ff8a-4cdf-9146-15c86d2c6c03.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Forner design system\",\"item\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026#style-reference\",\"name\":\"Forner design system reference\",\"headline\":\"Forner design system | Refero Styles\",\"description\":\"Explore Forner's light Agency design system: Roast Ink #484036, Bone Canvas #faf5eb colors, Surt, ClashDisplay typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Forner\",\"url\":\"https://forner.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2a830d03-cebc-48f0-a50f-ad78168c5026#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6eec2be8-ff8a-4cdf-9146-15c86d2c6c03.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6eec2be8-ff8a-4cdf-9146-15c86d2c6c03.jpg\",\"caption\":\"Screenshot of Forner\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6eec2be8-ff8a-4cdf-9146-15c86d2c6c03.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Forner design system\",\"Forner website design\",\"Forner colors\",\"Forner typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Roast Ink\",\"Bone Canvas\",\"Linen Surface\",\"Sandstone\",\"Surt\",\"ClashDisplay\",\"BigDailyShort\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Forner design system\"},{\"@type\":\"Thing\",\"name\":\"Forner website design\"},{\"@type\":\"Thing\",\"name\":\"Forner colors\"},{\"@type\":\"Thing\",\"name\":\"Forner typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:30:59.225Z\",\"dateModified\":\"2026-04-30T01:30:59.225Z\"}]}"
+}

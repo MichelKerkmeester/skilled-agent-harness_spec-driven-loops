@@ -1,0 +1,187 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#f25533",
+      "$type": "color",
+      "$description": "Signal Orange — Brand accent, logo mark, decorative SVG fills, nav emphasis — the single warm chromatic note that cuts through the monochrome system"
+    },
+    "concrete": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Concrete — Page canvas, button background — the dominant surface tone that gives the system its paper-like warmth"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders (920+ uses), button outlines — pure black carries all structural line work"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, nav fills — the white layer that sits on top of the concrete canvas"
+    },
+    "carbon": {
+      "$value": "#161618",
+      "$type": "color",
+      "$description": "Carbon — Near-black for nav strokes, emphasis text, and the tinted shadow base — softer than pure ink for layered elements"
+    },
+    "mist": {
+      "$value": "#dadada",
+      "$type": "color",
+      "$description": "Mist — Subtle drop-shadow tone, decorative image edge tint"
+    },
+    "fog": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Fog — Secondary shadow tone, decorative image edge tint"
+    },
+    "parchment": {
+      "$value": "#e4d9c8",
+      "$type": "color",
+      "$description": "Parchment — Warm cream decorative surface — near-gray but carries a beige cast that ties to the orange family"
+    },
+    "alert-red": {
+      "$value": "#ff492c",
+      "$type": "color",
+      "$description": "Alert Red — Orange decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    },
+    "ember": {
+      "$value": "#f1641e",
+      "$type": "color",
+      "$description": "Ember — Orange outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "times-system-serif": {
+      "$value": "Times (system serif)",
+      "$type": "fontFamily",
+      "$description": "Body text, headings, nav items, hero copy, card content, list items, footer — Times carries 770+ uses and is the signature typographic choice. A serif body face on a B2B incident-management product is anti-convention: it borrows the authority of a legal broadsheet or technical manual, replacing the usual Inter/system-ui with something that reads as deliberately editorial. Weight 400 for body, 700 for emphasis and headings."
+    },
+    "arial-system-sans": {
+      "$value": "Arial (system sans)",
+      "$type": "fontFamily",
+      "$description": "Small UI micro-text: button labels, nav utility text, icon-adjacent labels. Arial at 13px handles the functional labels while Times carries the voice — a deliberate serif/sans split where Times says something and Arial just tags it."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(22, 22, 24, 0.02) 0px 8px 15px -3px, rgba(22, 22, 24, 0.04) 0px 4px 6px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "concrete": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the warm light-gray base everything sits on"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces and nav containers — white layer above the concrete"
+    },
+    "parchment": {
+      "$value": "#e4d9c8",
+      "$type": "color",
+      "$description": "Surface level 3: Decorative warm tint for file-type illustrations and graphic elements"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://incident.io",
+      "siteName": "Incident",
+      "extractedAt": "2026-06-03T20:44:32.574Z",
+      "variant": "extended"
+    }
+  }
+}

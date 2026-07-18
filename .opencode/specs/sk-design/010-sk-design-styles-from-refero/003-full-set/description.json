@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/010-sk-design-styles-from-refero/003-full-set",
+  "description": "Full-set extraction: all 1,290 Refero styles captured with 0 errors into the Extended-only 6-file shape, shape-validated and indexed.",
+  "keywords": [
+    "full-set",
+    "extraction",
+    "refero",
+    "styles",
+    "captured",
+    "errors",
+    "extended-only",
+    "6-file",
+    "shape",
+    "shape-validated",
+    "indexed"
+  ],
+  "lastUpdated": "2026-07-18T10:25:46.734Z",
+  "specId": "003",
+  "folderSlug": "full-set",
+  "parentChain": [
+    "sk-design",
+    "010-sk-design-styles-from-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

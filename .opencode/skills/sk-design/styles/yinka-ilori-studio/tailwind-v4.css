@@ -1,0 +1,26 @@
+@theme {
+  /* Colors */
+  --color-blush-paper: #f5e5e5;
+  --color-ink: #000000;
+  --color-rose: #d9698c;
+
+  /* Typography */
+  --font-haas-grotesk-display-r-web: 'Haas Grotesk Display R Web', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-yinka-sans-ultra: 'Yinka Sans Ultra', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 14px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --text-display: 120px;
+  --leading-display: 1.1;
+  --tracking-display: 4.8px;
+
+  /* Spacing */
+  --spacing-15: 15px;
+  --spacing-30: 30px;
+  --spacing-80: 80px;
+  --spacing-136: 136px;
+  --spacing-175: 175px;
+}

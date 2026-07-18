@@ -1,0 +1,803 @@
+{
+  "source": "https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab",
+  "uuid": "5f2dd17d-72e6-4aa4-88e6-6be9e41299ab",
+  "name": "Yuga",
+  "northStar": "Black gallery with neon lime punctuation",
+  "capturedAt": "2026-07-18T08:55:14.186Z",
+  "meta": {
+    "url": "https://yuga.com",
+    "siteName": "Yuga",
+    "extractedAt": "2026-06-03T21:24:41.530Z",
+    "durationMs": 29374,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 156,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set hero and section headlines at 52–160px in AK Monument Grotesk weight 200, line-height below 0.85, letter-spacing -0.03em",
+      "Use #000000 for all page backgrounds and #ffffff for all primary text — never introduce mid-gray text colors",
+      "Apply 90px border-radius to all buttons, 40px to nav links and tags, 30px to cards — these three radii define the system",
+      "Reserve #d3de5d for decorative accent strips and washes only; never place it on text or interactive surfaces",
+      "Let typography fill the viewport — single-sentence hero statements at display sizes with generous margin breathing room",
+      "Use the halftone dot field only as a radial-fade background texture behind hero content, fading to pure black at edges",
+      "Maintain full-bleed layouts — do not introduce a centered max-width container; the dark field should extend edge to edge"
+    ],
+    "donts": [
+      "Do not introduce additional colors — the two-tone black/white system with one acid lime accent is the entire palette",
+      "Do not add box-shadows to cards or buttons; the design relies on flat depth via surface color shifts only",
+      "Do not set body text below 16px or above 26px — the type scale jumps aggressively to display sizes",
+      "Do not use line-height above 1.1 at any size; the system is defined by its compressed vertical rhythm",
+      "Do not use #d3de5d for button fills, text, or link borders — it is decoration, never interaction",
+      "Do not add secondary fonts; AK Monument Grotesk (or substitute) carries every text role from caption to display",
+      "Do not round corners below 30px on any surface element; sharp or small radii break the system's softness"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, card surfaces, footer background — the dominant black field that swallows everything except typography and accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#131313",
+        "name": "Charcoal",
+        "role": "Elevated card surface above Void, hover-state surfaces — barely lighter than canvas, creates whisper-quiet depth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3de5d",
+        "name": "Acid Lime",
+        "role": "Decorative accent strip, highlight washes, section punctuation — chartreuse against matte black creates voltage; never used for text or buttons",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with no centered max-width constraint — content extends to viewport edges. Hero sections are full-viewport with centered or left-aligned display type over a halftone dot field. Section rhythm flows as alternating density: sparse type-driven sections followed by dense card grids, separated by 40px+ vertical gaps. The collection area uses a horizontal card row (2–3 visible cards at 30px radius, 30–40px gutters) that may scroll horizontally. Navigation is minimal — a single text line in the footer plus occasional inline links, no top bar or sticky header. Content asymmetry is common: left-aligned headings with right-aligned or off-grid supporting elements, creating a curated-gallery walkthrough rather than a standard SaaS page flow.",
+    "imagery": "The visual language is split between three modes: (1) typographic-first screens where the headline IS the image — no illustration, no photography, just monumentally scaled letterforms on void; (2) artwork showcases for collection cards featuring flat white-on-black graphic marks (skull illustrations, geometric logos) with no backgrounds, shadows, or product staging; (3) the halftone dot field as generative texture, acting as the only atmospheric graphic. No lifestyle photography, no 3D renders, no gradients. The aesthetic references 8-bit pixel art, brutalist print, and gallery-wall minimalism equally.",
+    "similar": [
+      {
+        "why": "Same custom geometric grotesque, same monochrome void-canvas approach, same reliance on monumental type over imagery",
+        "business": "Otherside (Yuga Labs sister brand)"
+      },
+      {
+        "why": "Shared black-canvas gallery treatment with white pixel-style mark and acid yellow accent strip",
+        "business": "BAYC (Bored Ape Yacht Club site)"
+      },
+      {
+        "why": "Crypto-native brand using single-vivid-accent-against-black with oversized display typography",
+        "business": "RTFKT"
+      },
+      {
+        "why": "Dark-mode NFT brand using minimal type-driven layout and a single decorative color as punctuation",
+        "business": "Doodles"
+      },
+      {
+        "why": "Gallery-wall severity: pure black, white only, content as artifact — the system borrows exhibition design language rather than SaaS conventions",
+        "business": "Rhizome / digital art institutions"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "30px",
+        "links": "40px",
+        "buttons": "90px"
+      },
+      "elementGap": "15-30px",
+      "sectionGap": "40px",
+      "cardPadding": "20-30px",
+      "pageMaxWidth": null
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Page background, the absolute base"
+      },
+      {
+        "hex": "#131313",
+        "name": "Charcoal Plate",
+        "level": 1,
+        "purpose": "Elevated card surface, used for collection cards and feature panels"
+      },
+      {
+        "hex": "#d3de5d",
+        "name": "Acid Wash",
+        "level": 2,
+        "purpose": "Accent strip, decorative side bar, highlight zone"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Surface",
+        "level": 3,
+        "purpose": "Inverse fill for logo marks, inverse button states"
+      }
+    ],
+    "northStar": "Black gallery with neon lime punctuation",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body",
+        "size": 24,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 0.94,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 0.83,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 0.82,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading-lg",
+        "size": 102,
+        "lineHeight": 0.78,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "display",
+        "size": 160,
+        "lineHeight": 0.78,
+        "letterSpacing": -0.03
+      }
+    ],
+    "components": [
+      {
+        "name": "Inverse Pill Button",
+        "role": "Primary call-to-action in the system",
+        "description": "90px border-radius (full pill), 20px vertical padding, 30px horizontal padding, background #ffffff, text #000000 in AK Monument Grotesk weight 400–700. The extreme radius pushes the button into capsule territory, softening the otherwise severe black canvas. No shadow, no border — the shape itself is the affordance."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Header and footer navigation",
+        "description": "40px border-radius, no fill, text #ffffff in 14px weight 400 with -0.02em tracking. Sits inline as a quiet underline-free link, relying on position and context to read as navigation rather than visual weight."
+      },
+      {
+        "name": "Collection Card",
+        "role": "Featured project tiles in the collections grid",
+        "description": "30px border-radius, background #131313 (Charcoal) on #000000 canvas, 30px padding. Centered artwork or logo (white on dark), title in 24–32px weight 700. Cards sit in a horizontal scroll or grid with generous gutter spacing (30–40px)."
+      },
+      {
+        "name": "Hero Display Block",
+        "role": "Full-viewport opening statement",
+        "description": "Centered or left-aligned headline at 102–160px weight 200, line-height 0.78, letter-spacing -0.03em. Single sentence (e.g. 'BUILDING.'). Set against pure #000000 with optional halftone dot field as background texture. No supporting illustration — the typography IS the hero."
+      },
+      {
+        "name": "Acid Lime Accent Strip",
+        "role": "Side decoration or section separator",
+        "description": "Vertical bar in #d3de5d, typically 4–8px wide, running full-height of a section. Acts as a neon signpost against the black field. Never carries text or interactive content — purely decorative voltage."
+      },
+      {
+        "name": "Halftone Dot Field",
+        "role": "Background texture for hero and transition zones",
+        "description": "Repeating grid of small white circles (2–3px diameter) on #000000, with a radial gradient mask that fades dots to zero density at the edges. Creates a vignette of pixel-noise that frames central content and dissolves into pure black at the margins."
+      },
+      {
+        "name": "Pixelated Logo Mark",
+        "role": "Brand mark and animated identity element",
+        "description": "Geometric letterform built from rounded-square blocks in #ffffff. Reads as 8-bit/modular at rest, can animate into scattered particles. Functions as the visual anchor across all pages — the only iconography that needs to exist."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section titles like 'OUR COLLECTION'",
+        "description": "52–102px weight 700 or 200, line-height 0.82–0.94, left-aligned or centered, #ffffff. Sits with 40px+ vertical breathing room above and below. Followed immediately by content with no subtitle — the heading carries the full weight of section entry."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Persistent site footer",
+        "description": "Fixed-bottom, full-width, #000000 background with a single 1px hairline #ffffff divider at top. Left-aligned brand name 'Yuga Labs' in 14px weight 400, right-aligned nav links in matching style. Minimal — two text elements and a line, nothing else."
+      },
+      {
+        "name": "Badge Tag",
+        "role": "Optional category or status marker",
+        "description": "40px border-radius (pill), 6–12px vertical padding, 20px horizontal padding, background #131313 or #d3de5d, text in 14px weight 700. Rare — only appears when categorization is needed; not a primary UI pattern."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface carries the entire system. Weight 200 for massive display creates a featherlight monumental effect at 102–160px; weight 700–800 for 'BUILDING.'-style statements; weight 400 for body and nav. Crushed line-heights (0.78–0.83 at display sizes) eliminate inter-line space and let type stack into graphic blocks rather than paragraphs. Tight letter-spacing (-0.02em to -0.03em) pulls letters into near-solidity at large sizes.",
+        "sizes": "14, 16, 24, 26, 32, 52, 102, 160",
+        "family": "AK Monument Grotesk",
+        "weight": "200, 400, 700, 800",
+        "lineHeight": "0.78, 0.82, 0.83, 0.90, 0.94, 1.00, 1.10",
+        "substitute": "Space Grotesk, Inter, or any geometric grotesque with tight default tracking",
+        "letterSpacing": "-0.02em at body sizes, -0.03em at display sizes",
+        "fontFeatureSettings": "no detected features"
+      }
+    ],
+    "description": "Yuga operates as a void-gallery: pure black canvases, pure white typography, and a single chartreuse flare that reads like neon in a darkroom. The system is brutally reductive — two tones carry the entire interface, with a third acid-lime color reserved for accent strips and decorative punctuation rather than action. Typography is monumental: ultra-tight tracking, crushed line-heights below 0.9 even at 100px+, and a custom geometric grotesque pushed to display sizes that fill viewports. Components are rounded generously (30–90px radii), creating a softness that contrasts with the otherwise severe monochromatic space. The halftone dot field and pixelated logo dissolve act as the only ornamentation, reinforcing a digital-art-meets-exhibition-hall atmosphere where content is the artifact and the chrome stays out of the way.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yuga design system\",\"item\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#style-reference\",\"name\":\"Yuga design system reference\",\"headline\":\"Yuga design system | Refero Styles\",\"description\":\"Explore Yuga's dark Crypto design system: Void #000000, Charcoal #131313 colors, AK Monument Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yuga\",\"url\":\"https://yuga.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"caption\":\"Screenshot of Yuga\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yuga design system\",\"Yuga website design\",\"Yuga colors\",\"Yuga typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Void\",\"Charcoal\",\"Pure\",\"Acid Lime\",\"AK Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yuga design system\"},{\"@type\":\"Thing\",\"name\":\"Yuga website design\"},{\"@type\":\"Thing\",\"name\":\"Yuga colors\"},{\"@type\":\"Thing\",\"name\":\"Yuga typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T01:25:55.779Z\",\"dateModified\":\"2026-04-30T01:25:55.779Z\"}]}19:T483,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- card surface: #131313\n- border: #ffffff (rare, 1px hairlines only)\n- accent: #d3de5d (decorative only)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. **Hero Display Section**: Full-bleed #000000 background with halftone white dot field fading radially to black. Centered headline at 160px AK Monument Grotesk weight 200, #ffffff, line-height 0.78, letter-spacing -0.03em. Single sentence, no subtext.\n\n2. **Collection Card**: 30px border-radius, #131313 background, 30px padding. Centered white logo artwork, 24px title below in weight 700, #ffffff. No border, no shadow.\n\n3. **Inverse Pill Button**: 90px border-radius, #ffffff background, 20px vertical / 30px horizontal padding, 14px AK Monument Grotesk weight 400, #000000 text. No border, no shadow.\n\n4. **Section Heading**: Left-aligned, 52px weight 700, #ffffff, line-height 0.82, letter-spacing -0.03em. 40px margin top, 40px margin bottom to content.\n\n5. **Accent Strip**: 4px wide vertical bar, #d3de5d, running full-height of a section at the right edge. No text, no interaction — pure decoration."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is communicated through surface color alone, never through shadows. The stack goes: #000000 canvas → #131313 card → #ffffff inverse fill. There is no blur, no drop-shadow, no glow. Depth exists only as a whisper of lightness against the void — one step up from absolute black for elevated surfaces, and a full inversion for the most prominent elements like the logo and inverse buttons."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "heading",
+            "button",
+            "footer",
+            "body"
+          ],
+          "frequency": 429,
+          "confidence": 1,
+          "prominence": 138123266.05516252,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "link/color": 16,
+            "list/color": 24,
+            "other/fill": 1,
+            "other/color": 28,
+            "footer/color": 2,
+            "heading/color": 6,
+            "body/borderColor": 28,
+            "link/borderColor": 64,
+            "list/borderColor": 96,
+            "other/borderColor": 112,
+            "button/borderColor": 8,
+            "footer/borderColor": 8,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "button",
+            "footer"
+          ],
+          "frequency": 353,
+          "confidence": 1,
+          "prominence": 133693135.75422277,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "hero/color": 2,
+            "link/color": 7,
+            "list/color": 5,
+            "other/fill": 1,
+            "image/color": 4,
+            "other/color": 36,
+            "button/color": 2,
+            "heading/color": 5,
+            "body/borderColor": 40,
+            "hero/borderColor": 8,
+            "link/borderColor": 28,
+            "list/borderColor": 20,
+            "image/borderColor": 16,
+            "other/borderColor": 144,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#131313",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18674120159806412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 700910.0418814132,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d3de5d",
+          "oklch": {
+            "c": 0.1523459472099135,
+            "h": 113.65573866703625,
+            "l": 0.8673690153425049
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 442225,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0005245169468408109,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#131313",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#d3de5d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.72,
+          "background": "#d3de5d",
+          "foreground": "#131313"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#d3de5d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#131313",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|link",
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "AK Monument Grotesk",
+          "source": "custom",
+          "weights": [
+            200,
+            400,
+            700,
+            800
+          ],
+          "frequency": 154,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 26,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "AK Monument Grotesk",
+          "weight": 200,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "AK Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AK Monument Grotesk",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "AK Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AK Monument Grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "AK Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "button",
+            "footer"
+          ],
+          "frequency": 72,
+          "lineHeight": 0.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "AK Monument Grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "AK Monument Grotesk",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "AK Monument Grotesk",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 102,
+          "family": "AK Monument Grotesk",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.82,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 160,
+          "family": "AK Monument Grotesk",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.82,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9431deeb-83a9-4a23-b377-0331f4e58f8c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yuga design system\",\"item\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#style-reference\",\"name\":\"Yuga design system reference\",\"headline\":\"Yuga design system | Refero Styles\",\"description\":\"Explore Yuga's dark Crypto design system: Void #000000, Charcoal #131313 colors, AK Monument Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yuga\",\"url\":\"https://yuga.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5f2dd17d-72e6-4aa4-88e6-6be9e41299ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"caption\":\"Screenshot of Yuga\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e6645c50-f563-47be-8d0d-7c869dec4ccf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yuga design system\",\"Yuga website design\",\"Yuga colors\",\"Yuga typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Void\",\"Charcoal\",\"Pure\",\"Acid Lime\",\"AK Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yuga design system\"},{\"@type\":\"Thing\",\"name\":\"Yuga website design\"},{\"@type\":\"Thing\",\"name\":\"Yuga colors\"},{\"@type\":\"Thing\",\"name\":\"Yuga typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T01:25:55.779Z\",\"dateModified\":\"2026-04-30T01:25:55.779Z\"}]}19:T483,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- card surface: #131313\n- border: #ffffff (rare, 1px hairlines only)\n- accent: #d3de5d (decorative only)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. **Hero Display Section**: Full-bleed #000000 background with halftone white dot field fading radially to black. Centered headline at 160px AK Monument Grotesk weight 200, #ffffff, line-height 0.78, letter-spacing -0.03em. Single sentence, no subtext.\n\n2. **Collection Card**: 30px border-radius, #131313 background, 30px padding. Centered white logo artwork, 24px title below in weight 700, #ffffff. No border, no shadow.\n\n3. **Inverse Pill Button**: 90px border-radius, #ffffff background, 20px vertical / 30px horizontal padding, 14px AK Monument Grotesk weight 400, #000000 text. No border, no shadow.\n\n4. **Section Heading**: Left-aligned, 52px weight 700, #ffffff, line-height 0.82, letter-spacing -0.03em. 40px margin top, 40px margin bottom to content.\n\n5. **Accent Strip**: 4px wide vertical bar, #d3de5d, running full-height of a section at the right edge. No text, no interaction — pure decoration."
+}

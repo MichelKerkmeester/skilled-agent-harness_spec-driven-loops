@@ -1,0 +1,227 @@
+{
+  "color": {
+    "warm-paper": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Warm Paper — Page canvas, card surfaces, and nav background — the base layer everything sits on"
+    },
+    "deep-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Deep Ink — Primary text, body copy, nav links, and dominant border color — the structural voice"
+    },
+    "press-black": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Press Black — Heading text and heavy borders — slightly softer than pure black for large display sizes"
+    },
+    "charcoal-trace": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Charcoal Trace — Secondary borders, dividers, and muted text on dark surfaces"
+    },
+    "ash": {
+      "$value": "#a8a8a8",
+      "$type": "color",
+      "$description": "Ash — Helper text, disabled states, and hairline borders on light surfaces"
+    },
+    "dusty-mauve": {
+      "$value": "#6c5f7d",
+      "$type": "color",
+      "$description": "Dusty Mauve — Accent panel backgrounds, heading color, and chromatic border — a near-gray purple that signals brand moments without shouting"
+    },
+    "pale-sage": {
+      "$value": "#cee6cc",
+      "$type": "color",
+      "$description": "Pale Sage — Secondary heading tint and accent border — a near-gray green that appears as quiet punctuation alongside the mauve"
+    }
+  },
+  "font": {
+    "crimson-pro": {
+      "$value": "Crimson Pro",
+      "$type": "fontFamily",
+      "$description": "Display headlines at 44–50px, weight 300 with negative tracking. The anti-conventionally light serif whispers authority instead of projecting it; most agencies use 600–700 here, this restraint is the signature move."
+    },
+    "azeret-mono": {
+      "$value": "Azeret Mono",
+      "$type": "fontFamily",
+      "$description": "Body copy, labels, and metadata at 12–18px. Monospace for a portfolio is a deliberate editorial choice — it reads as technical, precise, and un-decorative, contrasting the flowing serif headlines."
+    },
+    "system-sans-serif": {
+      "$value": "System Sans-Serif",
+      "$type": "fontFamily",
+      "$description": "Navigation links and micro-labels at 12px. Neutral utility voice that stays out of the way of the serif/mono dialogue."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Azeret Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Azeret Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Crimson Pro",
+        "fontSize": "44px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Crimson Pro",
+        "fontSize": "50px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "warm-paper": {
+      "$value": "#fcfcfc",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas and default card surface"
+    },
+    "ash-mist": {
+      "$value": "#a8a8a8",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle raised surface tint for inset panels or muted containers"
+    },
+    "dusty-mauve-panel": {
+      "$value": "#6c5f7d",
+      "$type": "color",
+      "$description": "Surface level 3: Brand overlay panels (hero text block) — the only chromatic surface"
+    },
+    "charcoal-plane": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 4: Dark surface for inverted sections or image overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://allierho.com",
+      "siteName": "Allier Ho",
+      "extractedAt": "2026-06-03T21:35:16.285Z",
+      "variant": "extended"
+    }
+  }
+}

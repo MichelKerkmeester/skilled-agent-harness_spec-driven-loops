@@ -1,0 +1,48 @@
+:root {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-ash-gray: #999999;
+
+  /* Typography — Font Families */
+  --font-lab-grotesque: 'Lab Grotesque', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 18px;
+  --leading-body-sm: 1.2;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-display: 40px;
+  --leading-display: 1.2;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-9: 9px;
+  --spacing-25: 25px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-54: 54px;
+  --spacing-63: 63px;
+  --spacing-68: 68px;
+  --spacing-72: 72px;
+  --spacing-135: 135px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 135px;
+  --card-padding: 0px;
+  --element-gap: 9px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+}

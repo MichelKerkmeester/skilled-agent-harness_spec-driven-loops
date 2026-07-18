@@ -1,0 +1,125 @@
+{
+  "color": {
+    "chalk-cream": {
+      "$value": "#e6e0d9",
+      "$type": "color",
+      "$description": "Chalk Cream — Primary page canvas and secondary section background; the warm off-white that makes brown type and sculpture photography feel curated rather than clinical"
+    },
+    "lavender-stone": {
+      "$value": "#b7b3be",
+      "$type": "color",
+      "$description": "Lavender Stone — Alternate section background and hero canvas; introduces a cool, chalky counterpoint to the warm cream without breaking the achromatic discipline"
+    },
+    "saddle-brown": {
+      "$value": "#5d3a19",
+      "$type": "color",
+      "$description": "Saddle Brown — All headings, body copy, link text, and hairline borders — the only chromatic voice in the system, used as a drawn-with-ink accent against the pale neutrals; Outlined and ghost interactive borders; links and navigation controls carry a 1px brown stroke rather than a filled background, keeping the surface quiet"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Decorative SVG fills only; never used for UI text or surface elements"
+    }
+  },
+  "font": {
+    "grandslang-roman": {
+      "$value": "GrandSlang-Roman",
+      "$type": "fontFamily",
+      "$description": "Brand mark and large display headings only — used at 58px+ for the wordmark and section titles. Weight 100 is the entire signature: hairline serif strokes that read as drawn rather than typeset. Substitute: Cormorant Garamond Ultralight or Italiana, which approximate the extreme thinness and high-contrast serif construction."
+    },
+    "neue-haas-grotesk-display": {
+      "$value": "Neue Haas Grotesk Display",
+      "$type": "fontFamily",
+      "$description": "All body copy, navigation, secondary headings, and product labels. Weights 400 for body, 500 for emphasis. The neo-grotesque geometry acts as a neutral ground for the expressive display serif — a deliberate Swiss-type baseline that lets GrandSlang perform. Substitute: Inter, Neue Haas Unica, or Helvetica Neue."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GrandSlang-Roman",
+        "fontSize": "58px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#e6e0d9",
+      "$type": "color",
+      "$description": "Surface level 1: Dominant page and product-section background"
+    },
+    "lavender-plinth": {
+      "$value": "#b7b3be",
+      "$type": "color",
+      "$description": "Surface level 2: Hero and accent section background, creates a tonal shift without introducing a new hue family"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ohdada.de",
+      "siteName": "OhDada",
+      "extractedAt": "2026-06-03T21:25:36.041Z",
+      "variant": "extended"
+    }
+  }
+}

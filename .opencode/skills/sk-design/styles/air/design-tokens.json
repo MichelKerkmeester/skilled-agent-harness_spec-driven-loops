@@ -1,0 +1,302 @@
+{
+  "color": {
+    "whiteout": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Whiteout — Primary text on dark surfaces, nav button borders, hairline strokes, card surfaces over photographic backgrounds"
+    },
+    "haze": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Haze — Card surfaces, input fields, subtle button fills on dark backgrounds — the off-white layer that sits above the dark canvas"
+    },
+    "ink": {
+      "$value": "#1b1b1b",
+      "$type": "color",
+      "$description": "Ink — Body and heading text on light surfaces, button borders on light cards"
+    },
+    "black-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black Void — Navigation borders, link underlines, deepest contrast layer on white surfaces"
+    },
+    "twilight-blue": {
+      "$value": "#426188",
+      "$type": "color",
+      "$description": "Twilight Blue — Heading text on dark backgrounds — the only chromatic text color, a desaturated steel blue that reads as cool and atmospheric rather than vivid"
+    },
+    "signal-blue": {
+      "$value": "#2b7fff",
+      "$type": "color",
+      "$description": "Signal Blue — Blue text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "control": {
+      "$value": "Control",
+      "$type": "fontFamily",
+      "$description": "Primary interface typeface — carries everything from navigation labels to body text to button text at a consistent medium weight, creating visual quietness"
+    },
+    "control-compressed": {
+      "$value": "Control Compressed",
+      "$type": "fontFamily",
+      "$description": "Ultra-large display headlines (e.g. \"MAKE IT ONCE.\") — extreme weight and tight leading create poster-scale impact, always uppercase, always dominant"
+    },
+    "control-cursive": {
+      "$value": "Control Cursive",
+      "$type": "fontFamily",
+      "$description": "Italic accent for emphasis within headlines — used for words like \"AI\" or \"real\" to add personality against the geometric sans body"
+    },
+    "control-tnt": {
+      "$value": "Control TNT",
+      "$type": "fontFamily",
+      "$description": "Alternative display variant for headlines — same scale as cursive but upright, used for taglines and feature headlines"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Control TNT",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Control Cursive",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Control",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Control Cursive",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Control TNT",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Control TNT",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Control Cursive",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Control Compressed",
+        "fontSize": "259px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 259px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "dark-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base background behind photographic sections, footer, and dark UI moments"
+    },
+    "haze-card": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Light card surface sitting on top of dark photography — off-white card on dark sky"
+    },
+    "whiteout": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Pure white for inputs and elevated form surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://air.inc",
+      "siteName": "Air",
+      "extractedAt": "2026-07-03T03:08:34.002Z",
+      "variant": "extended"
+    }
+  }
+}

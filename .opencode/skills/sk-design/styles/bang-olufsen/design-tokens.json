@@ -1,0 +1,372 @@
+{
+  "color": {
+    "porcelain-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Porcelain Canvas — Page backgrounds, product card surfaces, navigation bar — the dominant ground against which every product floats"
+    },
+    "bone": {
+      "$value": "#fcfaee",
+      "$type": "color",
+      "$description": "Bone — Secondary surface for warm-neutral blocks, button text on dark backgrounds, alternative canvas when white would feel sterile"
+    },
+    "obsidian": {
+      "$value": "#191817",
+      "$type": "color",
+      "$description": "Obsidian — Primary text and product bodies — a warm near-black that reads softer than pure #000000 against white"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Icon strokes, micro-labels, fine borders, and the harshest text contrast moments"
+    },
+    "graphite": {
+      "$value": "#555555",
+      "$type": "color",
+      "$description": "Graphite — Secondary body copy, metadata, price labels, muted helper text"
+    },
+    "mist": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Mist — Hairline input borders and the only structural divider in the system"
+    },
+    "ultramarine-velvet": {
+      "$value": "#060daa",
+      "$type": "color",
+      "$description": "Ultramarine Velvet — Hero backgrounds, dramatic full-bleed section chambers, footer washes — saturated, almost black-blue violet used to swallow entire frames and make a single product feel theatrical"
+    }
+  },
+  "font": {
+    "beosupreme": {
+      "$value": "BeoSupreme",
+      "$type": "fontFamily",
+      "$description": "The single typeface carrying the entire brand voice. Display and headings: weight 500–700 at 24–36px with tight tracking (-0.056em → -0.014em) for confident, compressed headlines. Body and UI: weight 400 at 14–16px, normal tracking, line-height 1.5–1.7. Micro-labels (nav, badges, 'Est. 1925' tagline): weight 500 at 9–12px with wide tracking up to +0.143em, rendered uppercase to function as quiet architectural annotations. No second typeface competes."
+    },
+    "object-fit-cover-object-position-center": {
+      "$value": "object-fit: cover; object-position: center;",
+      "$type": "fontFamily",
+      "$description": "object-fit: cover; object-position: center; — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "object-fit: cover; object-position: center;",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "BeoSupreme",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "236": {
+      "$value": "236px",
+      "$type": "dimension",
+      "$description": "Spacing 236px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "porcelain": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page and product listing canvas"
+    },
+    "bone": {
+      "$value": "#fcfaee",
+      "$type": "color",
+      "$description": "Surface level 2: Warm secondary surface for editorial sections"
+    },
+    "ultramarine-chamber": {
+      "$value": "#060daa",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dramatic hero and showcase moments"
+    },
+    "obsidian": {
+      "$value": "#191817",
+      "$type": "color",
+      "$description": "Surface level 4: Dark contrast surface, product photography grounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bang-olufsen.com",
+      "siteName": "Bang & Olufsen",
+      "extractedAt": "2026-06-03T15:06:20.007Z",
+      "variant": "extended"
+    }
+  }
+}

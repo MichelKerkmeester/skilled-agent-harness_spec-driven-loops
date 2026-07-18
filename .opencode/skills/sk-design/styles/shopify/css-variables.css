@@ -1,0 +1,112 @@
+:root {
+  /* Colors */
+  --color-midnight-forest: #02090a;
+  --color-deep-lichen: #061a1c;
+  --color-shaded-fern: #072720;
+  --color-spruce-border: #1e2c31;
+  --color-abyss-indigo: #000a1e;
+  --color-pure-white: #ffffff;
+  --color-mist-gray: #a1a1aa;
+  --color-sage-gray: #99b3ad;
+  --color-faded-steel: #9dabad;
+  --color-soft-pearl: #9797a2;
+  --color-carbon-black: #000000;
+  --color-slate: #71717a;
+  --color-graphite: #333333;
+  --color-shopify-mint: #36f4a4;
+  --color-mossy-edge: #133b32;
+
+  /* Typography — Font Families */
+  --font-neue-haas-grotesk: 'Neue Haas Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-variable: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.72px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: 0.28px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.32px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: 0.4px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: 0.48px;
+  --text-heading: 28px;
+  --leading-heading: 1.16;
+  --tracking-heading: 0.56px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.14;
+  --tracking-heading-lg: 1.92px;
+  --text-display: 70px;
+  --leading-display: 0.96;
+  --tracking-display: 2.8px;
+
+  /* Typography — Weights */
+  --font-weight-w330: 330;
+  --font-weight-regular: 400;
+  --font-weight-w420: 420;
+  --font-weight-w450: 450;
+  --font-weight-medium: 500;
+  --font-weight-w550: 550;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-128: 128px;
+  --spacing-208: 208px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 12px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-full: 48px;
+  --radius-full-2: 340px;
+  --radius-full-3: 405px;
+  --radius-full-4: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 12px;
+  --radius-cards: 12px;
+  --radius-pills: 9999px;
+  --radius-inputs: 4px;
+  --radius-buttons: 9999px;
+  --radius-largepanels: 20px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 8px 8px 0px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px 0px, rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+  --shadow-md: rgba(0, 0, 0, 0.2) 10px 13px 12px 2px;
+  --shadow-subtle: rgba(255, 255, 255, 0.05) 0px 1px 2px 0px, rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset;
+  --shadow-subtle-2: rgba(64, 71, 77, 0.4) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.08) 0px 1px 0px 0px;
+  --shadow-xl: rgba(5, 24, 19, 0.05) 0px 20px 60px 0px, rgb(19, 59, 50) 0px 1px 0px 0px inset;
+
+  /* Surfaces */
+  --surface-canvas: #02090a;
+  --surface-card-surface: #061a1c;
+  --surface-elevated-panel: #072720;
+  --surface-insetproduct-surface: #000a1;
+}

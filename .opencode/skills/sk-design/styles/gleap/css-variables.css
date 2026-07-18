@@ -1,0 +1,102 @@
+:root {
+  /* Colors */
+  --color-linen-canvas: #edede8;
+  --color-frosted-white: #ffffff;
+  --color-warm-stone: #dbdbd2;
+  --color-pebble: #c0c0c0;
+  --color-graphite-ink: #141414;
+  --color-charcoal-body: #292929;
+  --color-slate-caption: #6f6f6e;
+  --color-ash-subheading: #8f8f8e;
+  --color-iron-nav: #353535;
+  --color-onyx-border: #000000;
+  --color-quartz: #d0d0c8;
+  --color-lime-pulse: #4cc02b;
+
+  /* Typography — Font Families */
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-ui: 'system-ui', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-small: 12px;
+  --leading-small: 1.77;
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 19px;
+  --leading-body: 1.4;
+  --tracking-body: -0.19px;
+  --text-body-lg: 23px;
+  --leading-body-lg: 1.35;
+  --tracking-body-lg: -0.23px;
+  --text-subheading: 27px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.27px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: -0.32px;
+  --text-heading: 45px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.45px;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 0.8;
+  --tracking-heading-lg: -0.64px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -1.6px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-72: 72px;
+  --spacing-84: 84px;
+  --spacing-96: 96px;
+  --spacing-138: 138px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 18px;
+  --element-gap: 9px;
+
+  /* Border Radius */
+  --radius-md: 3.75px;
+  --radius-md-2: 6px;
+  --radius-xl: 12px;
+  --radius-3xl: 30px;
+  --radius-full: 48px;
+  --radius-full-2: 200px;
+  --radius-full-3: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-pills: 200px;
+  --radius-avatars: 9999px;
+  --radius-buttons: 200px;
+  --radius-innertiles: 6px;
+  --radius-smallelements: 3.75px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.3) 0px 32px 68px 0px;
+  --shadow-xl-2: rgba(16, 24, 40, 0.12) 0px 18px 55px 0px;
+
+  /* Surfaces */
+  --surface-linen-canvas: #edede8;
+  --surface-frosted-white: #ffffff;
+  --surface-warm-stone: #dbdbd2;
+  --surface-glass-overlay: #ffffffb3;
+  --surface-graphite: #141414;
+}

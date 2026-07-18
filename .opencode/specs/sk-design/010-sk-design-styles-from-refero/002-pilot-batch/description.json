@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
+  "description": "Run the Refero harness on ~50 styles, validate the cursor-template output, index them, and record a go/no-go for the full 1,290-style set.",
+  "keywords": [
+    "run",
+    "refero",
+    "harness",
+    "styles",
+    "validate",
+    "cursor-template",
+    "output",
+    "index",
+    "them",
+    "record",
+    "no-go",
+    "full",
+    "290-style",
+    "set"
+  ],
+  "lastUpdated": "2026-07-18T06:30:48.511Z",
+  "specId": "002",
+  "folderSlug": "pilot-batch",
+  "parentChain": [
+    "sk-design",
+    "010-sk-design-styles-from-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

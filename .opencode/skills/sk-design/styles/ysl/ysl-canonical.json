@@ -1,0 +1,465 @@
+{
+  "source": "https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422",
+  "uuid": "bb2a2b0b-c84e-48ee-9dd9-7b623f81a422",
+  "name": "Ysl",
+  "northStar": "black-and-white cinema still — a single model under a single wordmark, nothing else permitted",
+  "capturedAt": "2026-07-18T08:12:41.174Z",
+  "meta": {
+    "url": "https://ysl.com",
+    "siteName": "Ysl",
+    "extractedAt": "2026-06-03T17:56:58.227Z",
+    "durationMs": 21022,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 196,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff for every UI element — no grays, no tints, no opacity-based neutrals except at 100% or 0% on photography",
+      "Set all text in uppercase with letter-spacing between 1.0px and 2.0px — tracking carries the luxury register",
+      "Let photography bleed full-bleed (100vw) with no border-radius, no border, no overlay gradient",
+      "Keep the wordmark centered, naked, and unboxed — never wrap it in a pill, circle, or bordered container",
+      "Express all interactive feedback as a color flip (white↔black) or opacity reduction, never as a shadow, border highlight, or fill change",
+      "Use the YSL wordmark as the only brand identifier — never combine it with a wordmark subtitle or tagline in the header",
+      "Hold card and section padding to 0px; the photograph IS the surface, not a container for one"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent, brand color, or status hue — there is no green for success, no red for error, no blue for link",
+      "Never add a box-shadow, drop shadow, inner shadow, or glow to any element — the system is shadowless by design",
+      "Never apply border-radius to any UI element — all corners are square, the system reads as cut paper",
+      "Never use mixed-case or sentence-case in nav, captions, or footer — everything is uppercase",
+      "Never place the wordmark on a colored or photographic panel with a backing shape — it floats on negative space or directly on the image",
+      "Never use a sans-serif display weight above 400 for nav or captions — restraint is the design language",
+      "Never add icons, badges, tags, or decorative elements to product or editorial surfaces — the image carries all meaning"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, nav labels on light photography, footer and legal copy, card inversions, and full-bleed section dividers — the absolute dark that frames everything",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, and inverse nav labels on dark photography — the negative space that lets imagery breathe",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-column layout. The hero occupies the entire viewport (100vw × ~100vh) with a single editorial photograph and no inner padding. Navigation overlays the top of the hero as a transparent bar — no sticky behavior interferes with the photograph. Section rhythm is defined by alternating full-bleed photographic frames and thin horizontal bands of white or black solid color, separated by 68px vertical gaps. The grid is invisible: content is either centered (wordmark, captions) or left/right clustered (nav links), never gridded into columns of cards. Content density is deliberately sparse — one image, one wordmark, one line of caption per screen.",
+    "imagery": "Full-bleed editorial fashion photography is the entire visual system. High-contrast, low-key lighting on dark exteriors (night street, parked car, leather and skin). Models photographed in tight medium shots with intense direct gaze. Color is desaturated to near-monochrome — the photography already feels black-and-white even when it isn't. No product cutouts on white, no lifestyle warmth, no graphic illustration. Icons are stroke-only line icons at 1.5px weight in the nav. No decorative graphics anywhere; the system is photography + wordmark + text, nothing more.",
+    "similar": [
+      {
+        "why": "Same shadowless monochrome system, same uppercase-tracked nav, same full-bleed editorial photography replacing all UI chrome",
+        "business": "Celine (celine.com)"
+      },
+      {
+        "why": "Same single-wordmark-centered header and photography-dominant page model with zero decorative UI elements",
+        "business": "Bottega Veneta (bottegaveneta.com)"
+      },
+      {
+        "why": "Same restraint to pure black/white and uppercase small-caps nav — the interface is nearly invisible, the imagery is the brand",
+        "business": "The Row (therow.com)"
+      },
+      {
+        "why": "Same anti-decorative editorial grid, binary palette, and uppercase tracked typography as the sole UI vocabulary",
+        "business": "Helmut Lang (helmutlang.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "68px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, the field photography floats on or replaces"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inversion",
+        "level": 1,
+        "purpose": "Full-bleed dark sections and card surfaces that invert the canvas — no shadow needed, the value flip is the elevation"
+      }
+    ],
+    "northStar": "black-and-white cinema still — a single model under a single wordmark, nothing else permitted",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent bar overlaid on the hero image. Height auto, no background fill, no border. Left-aligned cluster of 4-5 uppercase text links (HIGHLIGHTS, MUJER, HOMBRE, SL PRODUCTIONS, RIVE DROITE), centered YSL wordmark, right-aligned cluster of 4 text links + search icon + bag icon (LA MAISON, TIENDAS, SERVICIOS, INICIAR SESIÓN). Text in #ffffff at 11-12px, letter-spacing ~1.2px, uppercase. Links are plain text — no underline, no color change on hover, no pill. Padding: 20px horizontal, minimal vertical."
+      },
+      {
+        "name": "YSL Wordmark Lockup",
+        "role": "Brand identifier in header",
+        "description": "Custom YSL logotype centered in the nav bar. White (#ffffff) when over dark photography, black (#000000) when over light sections. No surrounding box, no link styling — the wordmark sits naked in the negative space. Rendered at display size relative to the nav (~40-50px), exact ratio controlled by the brand asset."
+      },
+      {
+        "name": "Icon Button (Search / Bag)",
+        "role": "Utility actions in nav",
+        "description": "Text-less icon at 16-18px in #ffffff or #000000 depending on surface. No border, no background, no hover state beyond opacity or color flip. Square hit area padded to ~12px. The bag icon may carry a numeric count in 10px text adjacent."
+      },
+      {
+        "name": "Full-Bleed Editorial Image",
+        "role": "Hero and primary content",
+        "description": "Photograph fills 100vw, height typically 85-100vh for the hero. No border-radius, no border, no overlay tint. The image is the component. May carry a small text caption overlaid at bottom-center."
+      },
+      {
+        "name": "Editorial Caption",
+        "role": "Image label and collection reference",
+        "description": "Two-line block centered near the bottom of a full-bleed image. Line 1 in 12px uppercase (collection name, e.g. 'WOMEN'S SUMMER 25'). Line 2 in 10-11px uppercase (call to discover, e.g. 'DESCUBRE LA SELECCIÓN DE BOLSO'). White (#ffffff) over dark photography, letter-spacing 1.5-2px. No background, no button chrome — the caption is the call to action."
+      },
+      {
+        "name": "Footer",
+        "role": "Legal, regional, and secondary links",
+        "description": "Solid #000000 background block. Multiple columns of 11px uppercase white text with generous vertical rhythm (20-32px row gap). No icons, no logos except a small YSL mark. Link color #ffffff, no underline, no hover color change — opacity reduction is the only affordance."
+      },
+      {
+        "name": "Inverted Section Block",
+        "role": "Dark band breaking the white canvas",
+        "description": "Full-width #000000 rectangle used for editorial interludes (campaign intros, collection announcements). White text only. No radius, no border, no shadow. Sits directly adjacent to the white canvas — the seam itself is the design."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The YSL logotype is a proprietary custom mark — elongated wedges, condensed proportions, and a vertical stress that no system font replicates. Used only as the centered site identifier in the header. Do not substitute; this mark IS the brand. If a stand-in is needed, use Bodoni 175 condensed or Didot thin, tracked tightly.",
+        "sizes": "",
+        "family": "Saint Laurent Wordmark (custom)",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Bodoni 175 (Adobe) or any condensed Didone as a visual proxy"
+      },
+      {
+        "role": "Navigation labels, footer links, and small functional UI (sign in, bag, search). Always uppercase, always tracked wide. The whisper-weight restraint is intentional: the wordmark does the visual work, the nav merely signals location.",
+        "sizes": "",
+        "family": "Helvetica Neue / Inter / system sans",
+        "weight": "400",
+        "lineHeight": "1.4",
+        "substitute": "Helvetica Neue, Inter, or any neutral neo-grotesque"
+      },
+      {
+        "role": "Editorial captions and collection labels floating near image edges (e.g. 'WOMEN'S SUMMER 25 / DESCUBRE LA SELECCIÓN DE BOLSO'). Centered, uppercase, wide letter-spacing — a film-credit feel rather than a product label.",
+        "sizes": "",
+        "family": "Helvetica Neue / Inter / system sans",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "substitute": "Helvetica Neue, Inter, or any neutral neo-grotesque"
+      }
+    ],
+    "description": "YSL is a luxury fashion editorial stage where the interface dissolves into full-bleed photography and the only visible chrome is a single line of text navigation. The system is pure binary: obsidian black and pure white, with zero intermediate tones, zero shadows, zero borders, and zero decoration. Every element earns its place by carrying the brand wordmark or a functional link — there is no card, no badge, no gradient, no rounded surface. The site reads as a magazine spread: the photograph fills the screen, the YSL logotype anchors the top center, and tiny uppercase captions float near the bottom edge. Whitespace and letter-spacing do the heavy lifting that color and shadow do on conventional sites.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ysl design system\",\"item\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#style-reference\",\"name\":\"Ysl design system reference\",\"headline\":\"Ysl design system | Refero Styles\",\"description\":\"Explore Ysl's dark E-commerce design system: Obsidian #000000, Pure White #ffffff colors, Saint Laurent Wordmark (custom), Helvetica Neue / Inter / system...\",\"url\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ysl\",\"url\":\"https://ysl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"caption\":\"Screenshot of Ysl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ysl design system\",\"Ysl website design\",\"Ysl colors\",\"Ysl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Pure White\",\"Saint Laurent Wordmark (custom)\",\"Helvetica Neue / Inter / system sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ysl design system\"},{\"@type\":\"Thing\",\"name\":\"Ysl website design\"},{\"@type\":\"Thing\",\"name\":\"Ysl colors\"},{\"@type\":\"Thing\",\"name\":\"Ysl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-27T19:49:51.000Z\",\"dateModified\":\"2026-03-27T19:49:51.000Z\"}]}19:T5df,Quick Color Reference:\n- text: #000000 (on white surfaces) or #ffffff (on dark photography)\n- background: #ffffff (canvas) or #000000 (inverted blocks)\n- border: none — the system is borderless\n- accent: none — no accent color exists\n- primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Create a full-bleed hero section: photograph covering 100vw × 100vh, no border-radius, no overlay. Top nav bar overlaid transparently — left cluster of 5 uppercase links in #ffffff, 12px, letter-spacing 1.2px, tracking-wide. Centered YSL wordmark in #ffffff (use the custom logotype or Bodoni 175 condensed as proxy). Right cluster of 4 uppercase links + 16px search icon + 16px bag icon, all in #ffffff. No background on the nav bar.\n\n2. Create an editorial caption block anchored to the bottom-center of a full-bleed image: two lines of centered text in #ffffff. Line 1: 12px uppercase, letter-spacing 1.6px, e.g. 'WOMEN'S SUMMER 25'. Line 2: 10px uppercase, letter-spacing 1.5px, e.g. 'DESCUBRE LA SELECCIÓN DE BOLSO'. No background, no border, no padding wrapper — the text floats on the image with 40px margin from the bottom edge.\n\n3. Create a footer block: solid #000000 background, full-width, 68px top padding. Three to four columns of links, each link in #ffffff, 11px, uppercase, letter-spacing 1.2px, 20px row gap between links. No icons, no social media glyphs, no newsletter input — just text links. Small YSL wordmark in #ffffff at the foot, 20px above the legal line."
+      },
+      {
+        "title": "Photography Direction",
+        "content": "The visual identity is inseparable from the photography. All editorial imagery should be shot in low-key, high-contrast conditions — night or interior, single source light, deep shadow. Subjects are models in YSL product (leather, denim, tailored black), photographed in tight to medium framing with direct, unsmiling gaze. Color in the photograph should be muted toward black, charcoal, oxblood, ivory — never saturated primary colors. Avoid studio white, lifestyle warmth, candid documentary, or bright daylight. The mood reference is a Helmut Newton still or a Hedi Slimane campaign: noir, intimate, uncompromising."
+      }
+    ],
+    "elevationPhilosophy": "No shadows exist in this system. Elevation is expressed exclusively by value inversion (white-to-black) and by full-bleed photographic bleed. Adding any box-shadow would break the editorial flatness and the cinema-still feel of the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "image",
+            "footer",
+            "nav",
+            "button",
+            "list",
+            "icon",
+            "body"
+          ],
+          "frequency": 570,
+          "confidence": 1,
+          "prominence": 11867921.628230246,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "body",
+            "card",
+            "heading",
+            "icon"
+          ],
+          "frequency": 359,
+          "confidence": 1,
+          "prominence": 11005441.612843256,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 68,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica_Reg",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 179,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 12,
+          "family": "Helvetica_Reg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "link",
+            "footer",
+            "body"
+          ],
+          "frequency": 63,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica_Reg",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "body",
+            "other",
+            "image",
+            "heading",
+            "icon",
+            "list"
+          ],
+          "frequency": 109,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica_Reg",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica_Reg",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/25fb59f6-e45f-4988-a4d5-765fea08d581.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ysl design system\",\"item\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#style-reference\",\"name\":\"Ysl design system reference\",\"headline\":\"Ysl design system | Refero Styles\",\"description\":\"Explore Ysl's dark E-commerce design system: Obsidian #000000, Pure White #ffffff colors, Saint Laurent Wordmark (custom), Helvetica Neue / Inter / system...\",\"url\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ysl\",\"url\":\"https://ysl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb2a2b0b-c84e-48ee-9dd9-7b623f81a422#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"caption\":\"Screenshot of Ysl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/545a79f9-8be3-447b-a67d-bedd52afd897.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ysl design system\",\"Ysl website design\",\"Ysl colors\",\"Ysl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Pure White\",\"Saint Laurent Wordmark (custom)\",\"Helvetica Neue / Inter / system sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ysl design system\"},{\"@type\":\"Thing\",\"name\":\"Ysl website design\"},{\"@type\":\"Thing\",\"name\":\"Ysl colors\"},{\"@type\":\"Thing\",\"name\":\"Ysl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-27T19:49:51.000Z\",\"dateModified\":\"2026-03-27T19:49:51.000Z\"}]}19:T5df,Quick Color Reference:\n- text: #000000 (on white surfaces) or #ffffff (on dark photography)\n- background: #ffffff (canvas) or #000000 (inverted blocks)\n- border: none — the system is borderless\n- accent: none — no accent color exists\n- primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Create a full-bleed hero section: photograph covering 100vw × 100vh, no border-radius, no overlay. Top nav bar overlaid transparently — left cluster of 5 uppercase links in #ffffff, 12px, letter-spacing 1.2px, tracking-wide. Centered YSL wordmark in #ffffff (use the custom logotype or Bodoni 175 condensed as proxy). Right cluster of 4 uppercase links + 16px search icon + 16px bag icon, all in #ffffff. No background on the nav bar.\n\n2. Create an editorial caption block anchored to the bottom-center of a full-bleed image: two lines of centered text in #ffffff. Line 1: 12px uppercase, letter-spacing 1.6px, e.g. 'WOMEN'S SUMMER 25'. Line 2: 10px uppercase, letter-spacing 1.5px, e.g. 'DESCUBRE LA SELECCIÓN DE BOLSO'. No background, no border, no padding wrapper — the text floats on the image with 40px margin from the bottom edge.\n\n3. Create a footer block: solid #000000 background, full-width, 68px top padding. Three to four columns of links, each link in #ffffff, 11px, uppercase, letter-spacing 1.2px, 20px row gap between links. No icons, no social media glyphs, no newsletter input — just text links. Small YSL wordmark in #ffffff at the foot, 20px above the legal line."
+}

@@ -1,0 +1,1048 @@
+{
+  "source": "https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943",
+  "uuid": "43400d73-ca89-4750-8fa6-78cd2c661943",
+  "name": "Liron Moran Interiors",
+  "northStar": "fashion editorial on dark linen",
+  "capturedAt": "2026-07-18T09:21:59.248Z",
+  "meta": {
+    "url": "https://www.lironmoran-interiors.com",
+    "siteName": "Liron Moran Interiors",
+    "extractedAt": "2026-06-03T19:58:15.783Z",
+    "durationMs": 40015,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 385,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Lausanne-300 at every UI text size from 12px captions through 185px display — it is the only workhorse family",
+      "Set lineHeight to 0.80 on any display text at 75px or larger; letters should nearly touch vertically",
+      "Use 0px border-radius on every element — cards, buttons, images, tags — the editorial aesthetic demands sharp corners",
+      "Separate surfaces with 1px hairlines in Light Mist (#eeeeee) or Warm Linen (#f2f0ed), never with shadows",
+      "Pad section edges with 130–173px on the horizontal axis; the layout is full-bleed with generous breathing room from the viewport edge",
+      "Position hero imagery to physically overlap and split display typography — the image is a window through the letterforms, not a companion element",
+      "Keep the palette to seven neutrals maximum; any chromatic color breaks the monochrome editorial system"
+    ],
+    "donts": [
+      "Never introduce chromatic color — no blue, red, green, or warm accents; the system is deliberately colorless",
+      "Never apply border-radius greater than 0px; rounded corners would destroy the architectural/gallery character",
+      "Never use drop shadows or blur effects; achieve depth through tonal contrast (dark bands on light canvases)",
+      "Never set body or caption lineHeight below 1.0; only display sizes (75px+) collapse to 0.80",
+      "Never center body text or paragraph copy; editorial layouts use left-alignment exclusively",
+      "Never use more than one font family at a time per visual moment; cardinalfruit appears only at 260px scale, never as a secondary voice",
+      "Never add background fills to text labels or category tags — type alone communicates the role"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f0ed",
+        "name": "Warm Linen",
+        "role": "Primary page canvas, card surfaces, heading fills — the warm off-white that gives the site its gallery-walls aesthetic",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Light Mist",
+        "role": "Hairline borders, divider lines, light text on dark sections, icon strokes — the most-used neutral, threading structure through every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1bfbc",
+        "name": "Soft Stone",
+        "role": "Muted background washes, secondary card surfaces, subdued borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#978f84",
+        "name": "Warm Taupe",
+        "role": "Mid-tone neutral for secondary text and muted UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#41443e",
+        "name": "Dark Olive",
+        "role": "Hero section backgrounds, dark band surfaces — the deep warm-charcoal that grounds the editorial typography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#050505",
+        "name": "Near Black",
+        "role": "Deepest dark for filled button backgrounds, high-contrast overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Icon strokes, strong borders, body text emphasis — the sharpest neutral in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container. The viewport edge is the design edge. Hero section occupies the full viewport height as a dark charcoal band (#41443e) with centered-but-overflowing serif typography and an inset photograph. Horizontal edge padding ranges from 130px (nav) to 173px (section content), creating generous breathing room from the screen edge. Sections alternate between dark bands (charcoal/olive) and light canvases (warm linen/off-white). Navigation is minimal: logo top-left, single text link + hamburger top-right, both with ~39px edge offset. No sidebar, no sticky behavior described. Content arrangement is centered for hero typography, left-aligned for body text and labels. The page reads as a single-slide editorial spread rather than a scrolling feed.",
+    "imagery": "Interior photography is the sole visual content. Images are tight, architectural crops of furnished commercial spaces — living rooms, lounges, offices — shot in natural daylight with no lifestyle staging or human subjects. Color treatment is true-to-life but naturally desaturated: muted greens, warm woods, neutral textiles. The signature compositional move is positioning photography to physically intersect and split the massive serif typography, creating a window-through-letters effect. No illustrations, no icons beyond a hamburger menu, no decorative graphics. Photography is always rectangular with sharp 0px corners, never masked or rounded.",
+    "similar": [
+      {
+        "why": "Same editorial-fashion language: massive serif typography, near-zero color palette, dark-on-light section alternation, hairline borders, and the attitude that restraint itself is luxury",
+        "business": "Saint Laurent"
+      },
+      {
+        "why": "Monochrome editorial system with generous whitespace, typographic identity carrying the brand, zero chromatic accents, and gallery-like presentation of content",
+        "business": "Aesop"
+      },
+      {
+        "why": "Architectural interior portfolio aesthetic: dark warm-charcoal sections, oversized serifs, photography that IS the design, and 0px radii throughout",
+        "business": "Studio Vincent Van Duysen"
+      },
+      {
+        "why": "Same curatorial restraint — warm off-white canvases, near-colorless palette, editorial serif typography at dramatic scale, and whitespace as primary compositional element",
+        "business": "Kinfolk Magazine"
+      },
+      {
+        "why": "Minimal luxury through typographic weight alone; no color, no decoration, no icons — just massive serifs and architectural photography on alternating light/dark sections",
+        "business": "The Row"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "35px",
+      "sectionGap": "89px",
+      "cardPadding": "38px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f2f0ed",
+        "name": "Warm Linen Canvas",
+        "level": 0,
+        "purpose": "Primary page background — the warm off-white base"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Light Mist Layer",
+        "level": 1,
+        "purpose": "Subtle card or section surfaces with hairline borders"
+      },
+      {
+        "hex": "#c1bfbc",
+        "name": "Soft Stone Panel",
+        "level": 2,
+        "purpose": "Muted content panels and secondary surfaces"
+      },
+      {
+        "hex": "#41443",
+        "name": "Dark Olive Band",
+        "level": 3,
+        "purpose": "Dark hero sections and feature bands"
+      },
+      {
+        "hex": "#050505",
+        "name": "Near Black Floor",
+        "level": 4,
+        "purpose": "Deepest dark for overlays and filled elements"
+      }
+    ],
+    "northStar": "fashion editorial on dark linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 75,
+        "lineHeight": 0.8
+      },
+      {
+        "role": "display",
+        "size": 93,
+        "lineHeight": 0.8
+      },
+      {
+        "role": "display-xl",
+        "size": 185,
+        "lineHeight": 0.8
+      },
+      {
+        "role": "mega",
+        "size": 260,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Logo Monogram + Wordmark",
+        "role": "Brand identity in nav",
+        "description": "Stacked: 'LM' monogram in Lausanne-300 at ~30px, then 'LIRON MORAN' / 'INTERIORS' stacked beneath at ~12px, uppercase, letter-spacing normal, color #eeeeee on dark sections / #000000 on light. Left-aligned in top-left corner with ~39px padding from edges. No symbol or icon — pure typographic mark."
+      },
+      {
+        "name": "Nav Text Link",
+        "role": "Navigation item",
+        "description": "Plain text in Lausanne-300, ~12–13px, uppercase, color #eeeeee on dark hero / #000000 on light sections. No underline, no background, no hover state beyond opacity. Generous letter-spacing for editorial feel. 22px right margin between links."
+      },
+      {
+        "name": "Hamburger Menu Button",
+        "role": "Primary nav toggle",
+        "description": "Circular button, ~48px diameter, 1px border in #eeeeee (dark sections) or #000000 (light sections), no fill. Contains three horizontal lines as icon. No text label. Sits in top-right corner with ~39px edge padding."
+      },
+      {
+        "name": "Scroll Indicator Label",
+        "role": "Page scroll cue",
+        "description": "Small uppercase text 'SCROLL' in Lausanne-300, ~12px, #eeeeee on dark. Positioned mid-left edge. No icon, no animation described. Functions as a quiet page label."
+      },
+      {
+        "name": "Page Counter",
+        "role": "Slide/page position indicator",
+        "description": "Small text '1 - 3' in Lausanne-300, ~12px, #eeeeee on dark. Positioned mid-right edge. Minimal fraction format."
+      },
+      {
+        "name": "Category Label",
+        "role": "Section category tag",
+        "description": "Uppercase text in Lausanne-300, ~12–14px, #eeeeee on dark or #000000 on light. Positioned at bottom-left of sections. Examples like 'COMMERCIAL INTERIORS'. No background, no border — just typography."
+      },
+      {
+        "name": "Text Link (View All Projects)",
+        "role": "Navigation link to collection",
+        "description": "Uppercase text in Lausanne-300, ~12–14px, with thin underline. Color matches section context (#eeeeee on dark). Centered at bottom of hero. Hover: opacity shift."
+      },
+      {
+        "name": "Split-Typography Hero Block",
+        "role": "Hero section with embedded imagery",
+        "description": "Full-viewport dark band (#41443 background) with massive serif type ('IC INTERIORS' at ~185–260px in cardinalfruit or Lausanne) spanning beyond viewport edges. A rectangular photograph is inset, positioned to physically overlap and split the type — the image acts as a window through the letterforms. Zero padding inside the image; sharp 0px corners. Text is clipped by the image, not by CSS overflow — the composition is intentional."
+      },
+      {
+        "name": "Project Image Frame",
+        "role": "Full-bleed project photograph",
+        "description": "Rectangular image with 0px border-radius, no border, no shadow. Presented as raw photography. Used both as inset in hero typography and as standalone gallery frames. Images are tight crops on interior spaces — the object IS the frame."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal separator between sections",
+        "description": "1px hairline line in #eeeeee or #f2f0ed depending on canvas. Full-width or contained. No other decoration."
+      },
+      {
+        "name": "Footer",
+        "role": "Page footer",
+        "description": "Minimal text-only footer. Lausanne-300, ~12px, uppercase. 36px padding-bottom, 39px padding sides. Links in body context, no buttons. Possibly contains audio/CC controls in bottom-right corner."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary serif used at every scale from 12px captions to 185px display headlines. The lineHeight collapses to 0.80 at display sizes — letters physically overlap or nearly touch, creating the dense editorial texture. Used for nav links, body text, labels, and all heading levels. A refined didone-influenced serif; substitute with Playfair Display or DM Serif Display.",
+        "sizes": "12px, 13px, 14px, 20px, 23px, 30px, 75px, 93px, 185px",
+        "family": "Lausanne-300",
+        "weight": "400",
+        "lineHeight": "0.80–1.00",
+        "substitute": "Playfair Display"
+      },
+      {
+        "role": "Mega-display serif reserved for 260px hero-scale typography. The extreme size and custom letterforms make individual words into compositional objects. No substitute needed — this is a signature moment, not a workhorse.",
+        "sizes": "260px",
+        "family": "cardinalfruit-regular",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Bodoni Moda"
+      },
+      {
+        "role": "Geometric sans for select body text passages where a neutral voice is needed. Medium weight provides just enough presence without competing with the serifs.",
+        "sizes": "14px",
+        "family": "Metropolis",
+        "weight": "500",
+        "lineHeight": "1.14",
+        "substitute": "Inter",
+        "letterSpacing": "-0.0040em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Liron Moran Interiors operates as an editorial gallery portal: a near-colorless canvas of warm off-whites and charcoal olives, punctuated by oversized serifs that consume the viewport and physically intersect photography. The interface recedes — hairline borders, ghost controls, zero elevation — while the typography carries every ounce of visual weight, with letterforms at 185–260px acting as both heading and compositional frame. Sections alternate between light linen surfaces and deep charcoal bands, but the overall rhythm stays sparse and curatorial, with generous edge padding (130–173px) and vast vertical breathing room. Color is deliberately absent; every hue in the system is a desaturated neutral, so contrast and scale do all the expressive work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Liron Moran Interiors design system\",\"item\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#style-reference\",\"name\":\"Liron Moran Interiors design system reference\",\"headline\":\"Liron Moran Interiors design system | Refero Styles\",\"description\":\"Explore Liron Moran Interiors's light Agency design system: Warm Linen #f2f0ed, Light Mist #eeeeee colors, Lausanne-300, cardinalfruit-regular typography,...\",\"url\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\",\"mainEntityOfPage\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Liron Moran Interiors\",\"url\":\"https://www.lironmoran-interiors.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"caption\":\"Screenshot of Liron Moran Interiors\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Liron Moran Interiors design system\",\"Liron Moran Interiors website design\",\"Liron Moran Interiors colors\",\"Liron Moran Interiors typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Linen\",\"Light Mist\",\"Soft Stone\",\"Warm Taupe\",\"Lausanne-300\",\"cardinalfruit-regular\",\"Metropolis\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors design system\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors website design\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors colors\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:37:34.113Z\",\"dateModified\":\"2026-04-30T02:37:34.113Z\"}]}19:T6c5,**Quick Color Reference:**\n- text: #000000 (on light) / #eeeeee (on dark)\n- background: #f2f0ed (light canvas) / #41443e (dark band)\n- border: #eeeeee or #f2f0ed (hairlines)\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a hero section: full-viewport dark band, background #41443e. Display text 'IC INTERIORS' in cardinalfruit at 260px, color #f2f0ed, lineHeight 1.00, text centered and overflowing the viewport. Inset a rectangular interior photograph (0px radius) positioned center, overlapping and splitting the typography — the image is ~400px wide and physically bisects the letters. No shadows, no borders on the image.\n\n2. Create a navigation bar: logo top-left (LM monogram in Lausanne-300 30px + 'LIRON MORAN INTERIORS' stacked beneath at 12px, all #eeeeee). Top-right: 'GALLERY' text link in Lausanne-300 12px uppercase #eeeeee, followed by a circular hamburger button 48px diameter, 1px border in #eeeeee, no fill. 39px padding from all edges. 130px right padding on the link.\n\n3. Create a category label: uppercase text 'COMMERCIAL INTERIORS' in Lausanne-300 12px, color #eeeeee, left-aligned, positioned at bottom-left of a dark section. No background, no border, no icon. 35px margin-bottom from section bottom edge.\n\n4. Create a project image frame: rectangular photograph, 0px border-radius, no border, no shadow. Full-width within a section that has 173px horizontal padding. Caption below in Lausanne-300 12px #000000, left-aligned, 35px margin-top from image.\n\n5. Create a section divider: 1px horizontal line in #eeeeee, full-width, 0px margin top and bottom. No other decoration. Separates a light linen section from a following dark band."
+      },
+      {
+        "title": "Type System Philosophy",
+        "content": "The type system is the entire brand. Lausanne-300 functions as both UI text and display headline — the same family reads as a 12px nav link and a 185px section title, unified by consistent 0.80–1.00 lineHeight and 400 weight. The lineHeight collapse to 0.80 at display sizes is the most distinctive choice: at 185px, lines of text become dense vertical columns of letterforms, almost like a barcode. cardinalfruit-regular appears only at 260px as a one-off mega-display moment — it is never used for navigation, labels, or body text. This creates a hierarchy where the serif is the default voice and the display font is a singular editorial event."
+      }
+    ],
+    "elevationPhilosophy": "No drop shadows. The design achieves separation exclusively through value contrast — dark bands against light canvases, hairline 1px borders in Light Mist or Warm Linen, and generous whitespace. Elevation is implied by tonal shift, never by blur or offset."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "nav",
+            "footer",
+            "icon"
+          ],
+          "frequency": 742,
+          "confidence": 1,
+          "prominence": 12360235.04709802,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 4,
+            "nav/color": 43,
+            "body/color": 12,
+            "icon/color": 2,
+            "link/color": 6,
+            "other/fill": 132,
+            "other/color": 51,
+            "button/color": 4,
+            "footer/color": 1,
+            "nav/borderColor": 172,
+            "body/borderColor": 48,
+            "icon/borderColor": 8,
+            "link/borderColor": 24,
+            "other/borderColor": 204,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "body/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#f2f0ed",
+          "oklch": {
+            "c": 0.004547665318867307,
+            "h": 78.29770595966336,
+            "l": 0.9558423584524695
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "footer",
+            "nav"
+          ],
+          "frequency": 381,
+          "confidence": 1,
+          "prominence": 11116347.761134332,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 67,
+            "footer/color": 1,
+            "heading/color": 6,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 264,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other",
+            "button"
+          ],
+          "frequency": 197,
+          "confidence": 1,
+          "prominence": 9887646.179623174,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 14,
+            "icon/color": 7,
+            "other/fill": 9,
+            "other/color": 9,
+            "button/color": 1,
+            "other/stroke": 12,
+            "body/borderColor": 56,
+            "icon/borderColor": 28,
+            "other/borderColor": 36,
+            "button/borderColor": 4,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#41443e",
+          "oklch": {
+            "c": 0.010739321760263017,
+            "h": 128.77770575461304,
+            "l": 0.3817789551673725
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#978f84",
+          "oklch": {
+            "c": 0.018618067560778835,
+            "h": 76.03853835194091,
+            "l": 0.6537558735661363
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 18496,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#c1bfbc",
+          "oklch": {
+            "c": 0.004745282331847685,
+            "h": 78.29394943705182,
+            "l": 0.8053947017183652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7165.4701008224,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1149182763483161
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1936,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004133385573665854,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.46,
+          "background": "#000000",
+          "foreground": "#f2f0ed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#000000",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.92,
+          "background": "#050505",
+          "foreground": "#f2f0ed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.57,
+          "background": "#050505",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.45,
+          "background": "#c1bfbc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#c1bfbc",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.7,
+          "background": "#41443e",
+          "foreground": "#f2f0ed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.53,
+          "background": "#41443e",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.58,
+          "background": "#000000",
+          "foreground": "#978f84"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.38,
+          "background": "#050505",
+          "foreground": "#978f84"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.4,
+          "background": "#c1bfbc",
+          "foreground": "#41443e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.1,
+          "background": "#41443e",
+          "foreground": "#978f84"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.81,
+          "background": "#f2f0ed",
+          "foreground": "#978f84"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.75,
+          "background": "#eeeeee",
+          "foreground": "#978f84"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.12,
+          "background": "#41443e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.03,
+          "background": "#050505",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#f2f0ed",
+          "foreground": "#eeeeee"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Lausanne-300",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 200,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "cardinalfruit-regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Metropolis",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.82
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "footer",
+            "icon"
+          ],
+          "frequency": 74,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Metropolis",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 75,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 93,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 37,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 185,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 260,
+          "family": "cardinalfruit-regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/377a16fb-9f10-419a-b677-e47e54f17739.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Liron Moran Interiors design system\",\"item\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#style-reference\",\"name\":\"Liron Moran Interiors design system reference\",\"headline\":\"Liron Moran Interiors design system | Refero Styles\",\"description\":\"Explore Liron Moran Interiors's light Agency design system: Warm Linen #f2f0ed, Light Mist #eeeeee colors, Lausanne-300, cardinalfruit-regular typography,...\",\"url\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\",\"mainEntityOfPage\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Liron Moran Interiors\",\"url\":\"https://www.lironmoran-interiors.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/43400d73-ca89-4750-8fa6-78cd2c661943#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"caption\":\"Screenshot of Liron Moran Interiors\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f855a464-3b2a-4e31-a3a8-30ac5b6832f1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Liron Moran Interiors design system\",\"Liron Moran Interiors website design\",\"Liron Moran Interiors colors\",\"Liron Moran Interiors typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Linen\",\"Light Mist\",\"Soft Stone\",\"Warm Taupe\",\"Lausanne-300\",\"cardinalfruit-regular\",\"Metropolis\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors design system\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors website design\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors colors\"},{\"@type\":\"Thing\",\"name\":\"Liron Moran Interiors typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:37:34.113Z\",\"dateModified\":\"2026-04-30T02:37:34.113Z\"}]}19:T6c5,**Quick Color Reference:**\n- text: #000000 (on light) / #eeeeee (on dark)\n- background: #f2f0ed (light canvas) / #41443e (dark band)\n- border: #eeeeee or #f2f0ed (hairlines)\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a hero section: full-viewport dark band, background #41443e. Display text 'IC INTERIORS' in cardinalfruit at 260px, color #f2f0ed, lineHeight 1.00, text centered and overflowing the viewport. Inset a rectangular interior photograph (0px radius) positioned center, overlapping and splitting the typography — the image is ~400px wide and physically bisects the letters. No shadows, no borders on the image.\n\n2. Create a navigation bar: logo top-left (LM monogram in Lausanne-300 30px + 'LIRON MORAN INTERIORS' stacked beneath at 12px, all #eeeeee). Top-right: 'GALLERY' text link in Lausanne-300 12px uppercase #eeeeee, followed by a circular hamburger button 48px diameter, 1px border in #eeeeee, no fill. 39px padding from all edges. 130px right padding on the link.\n\n3. Create a category label: uppercase text 'COMMERCIAL INTERIORS' in Lausanne-300 12px, color #eeeeee, left-aligned, positioned at bottom-left of a dark section. No background, no border, no icon. 35px margin-bottom from section bottom edge.\n\n4. Create a project image frame: rectangular photograph, 0px border-radius, no border, no shadow. Full-width within a section that has 173px horizontal padding. Caption below in Lausanne-300 12px #000000, left-aligned, 35px margin-top from image.\n\n5. Create a section divider: 1px horizontal line in #eeeeee, full-width, 0px margin top and bottom. No other decoration. Separates a light linen section from a following dark band."
+}

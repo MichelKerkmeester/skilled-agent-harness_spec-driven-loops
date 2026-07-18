@@ -1,0 +1,1575 @@
+{
+  "source": "https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a",
+  "uuid": "722f32e7-8217-4808-843d-b454eea7320a",
+  "name": "Dashlane",
+  "northStar": "Midnight vault with mint keyholes.",
+  "capturedAt": "2026-07-18T09:36:02.990Z",
+  "meta": {
+    "url": "https://www.dashlane.com",
+    "siteName": "Dashlane",
+    "extractedAt": "2026-06-03T18:57:20.114Z",
+    "durationMs": 34095,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 663,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Saans weight 300 for all headlines and statistics — never bump to 600/700 for emphasis; size and color do the heavy lifting",
+      "Color the first word of hero headlines in #a2f6f5 (Mint) and leave the rest in #fcfaf9 — this is the system's signature punctuation",
+      "Use 9999px radius for all buttons, tags, and pill controls; reserve 8px for cards and 4px for inputs and small UI",
+      "Default to #200f0a (Cocoa Black) as the page background; lift to #2b2538 (Deep Plum) for cards and #4d3f3b (Aubergine) only for nested emphasis",
+      "Place the primary action as a mint-filled pill and pair it with a violet-outlined pill for the secondary action",
+      "Use #e3ccc0 (Warm Sand) at 0.3-0.5 opacity for card borders — never use #e5e7eb on dark cards, it reads as cold",
+      "Set display sizes between 72-100px for hero statistics; smaller statistics should land at 48-56px, never below 36px"
+    ],
+    "donts": [
+      "Don't use pure black (#000000) as a background — the warmth of #200f0a is the brand",
+      "Don't use weight 600 or 700 in Saans; the font is designed as a two-weight conversation between 300 and 500",
+      "Don't pair mint and violet on the same control — mint is the filled voice, violet is the outlined voice",
+      "Don't apply drop shadows to cards — use the surface scale and beige hairlines instead",
+      "Don't use #e5e7eb borders on dark surfaces; switch to #e3ccc0 for warmth consistency",
+      "Don't break the pill rule with rectangular buttons; the only exception is 8px cards and 4px inputs",
+      "Don't render body text below 14px; the 1.5 line-height at 16px is the floor for readability",
+      "Don't use white (#ffffff) for text — always use #fcfaf9 to maintain the paper-on-cocoa warmth"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#200f0a",
+        "name": "Cocoa Black",
+        "role": "Page background, primary text on light surfaces — the warm near-black base; it has subtle brown warmth that distinguishes it from pure black and pairs with mint without vibrating",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfaf9",
+        "name": "Cream Mist",
+        "role": "Primary body and heading text on dark surfaces, icon fills — soft off-white that reads as paper against cocoa",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3ccc0",
+        "name": "Warm Sand",
+        "role": "Hairline borders on cards and nav, subtle dividers — beige linework that defines edges without harshness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash Gray",
+        "role": "Secondary borders, image outlines, utility rules — neutral gray for the most abundant structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a69f9d",
+        "name": "Stone",
+        "role": "Muted helper text, link underlines in resting state — desaturated warm gray for non-prominent metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2538",
+        "name": "Deep Plum",
+        "role": "Card surfaces, elevated panels — slightly cooler and lighter than the page, reading as a card lifted off cocoa",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d3f3b",
+        "name": "Aubergine",
+        "role": "Accent surface for nested cards or highlighted zones — a warmer brown for the third elevation step",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a2f6f5",
+        "name": "Mint Keyhole",
+        "role": "Teal action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#858df9",
+        "name": "Iris",
+        "role": "Outlined action borders, secondary highlights, icon accents — vivid violet for the second action voice and decorative strokes",
+        "group": "accent"
+      },
+      {
+        "hex": "#6c74df",
+        "name": "Periwinkle",
+        "role": "Deeper violet for secondary borders and surface accents when iris needs to recede",
+        "group": "accent"
+      },
+      {
+        "hex": "#b6bbfb",
+        "name": "Lavender Mist",
+        "role": "Soft violet for inactive nav borders and gentle icon tints — the muted sibling of iris",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a max-width 1200px centered single-column flow on a full-bleed cocoa background. The hero uses a split layout: left-aligned headline stack (3-line headline, supporting paragraph, paired CTA buttons) occupies ~45% of the viewport, while the right ~55% holds a large abstract radar/scan illustration anchored to a dark card. Below the hero, content flows in alternating sections: a statistics row with three equal-width stat cards in a 3-column grid (70% / 54% / 2 hrs), then a testimonial carousel with two-up card slides and dot pagination, then a logo trust strip that breaks the rhythm as a full-width horizontal band. Navigation is a sticky top bar with the logo left, centered nav links, and a language switcher plus paired CTAs right. Section gaps sit around 80-120px, card padding at 32-40px, and element gaps at 12-24px. A floating chat widget anchors the bottom-right corner persistently.",
+    "imagery": "The site is primarily text-driven with minimal hero imagery — the hero is dominated by a large abstract radar/sweep graphic on the right side (a circular teal-and-cocoa ring system with a glowing arc) that reads as a security scan visualization. Customer logos in the trust strip are rendered as flat wordmarks in cream on cocoa, no container treatment. The chat widget avatar is a small circular headshot. Overall the visual language is text-first, icon-light, and illustration-sparse — the typography itself does the atmospheric work, with color and the occasional geometric diagram providing the only visual relief from the dark canvas.",
+    "similar": [
+      {
+        "why": "Same dark cocoa-toned vault aesthetic with warm neutrals and confident display type — both treat the security dashboard as a calm dark workspace rather than a techy blue grid",
+        "business": "1Password"
+      },
+      {
+        "why": "Same approach of whisper-weight geometric headlines (Saans ↔ Inter Display) and a single saturated accent against a near-black canvas; both let typography carry the mood",
+        "business": "Linear"
+      },
+      {
+        "why": "Same restrained dark canvas with one electric accent and pill-shaped controls; both minimize decoration and let scale + spacing do the design",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same soft warm off-white text (#fcfaf9) on a near-black background and a similar preference for flat surfaces with hairline borders over drop shadows",
+        "business": "Notion"
+      },
+      {
+        "why": "Same instinct for custom geometric sans + large confident display type + a single vivid accent color used sparingly as functional punctuation",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "images": "8px",
+        "inputs": "4px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#200f0a",
+        "name": "Cocoa Canvas",
+        "level": 0,
+        "purpose": "Page background — the base vault surface"
+      },
+      {
+        "hex": "#2b2538",
+        "name": "Deep Plum Card",
+        "level": 1,
+        "purpose": "Card and panel surfaces, one step lifted from canvas"
+      },
+      {
+        "hex": "#4d3f3b",
+        "name": "Aubergine Accent",
+        "level": 2,
+        "purpose": "Nested or highlighted card surfaces, two steps lifted"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat surfaces rely on the warm-toned surface scale and hairline beige borders for separation",
+        "element": "Cards and stat panels"
+      },
+      {
+        "style": "0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(227,204,192,0.1)",
+        "element": "Chat widget and floating panels"
+      }
+    ],
+    "northStar": "Midnight vault with mint keyholes.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.28
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "display-xl",
+        "size": 100,
+        "lineHeight": 1.1,
+        "letterSpacing": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Mint Filled Button",
+        "role": "Primary action — 'Contact Sales', 'Book a meeting'",
+        "description": "Pill shape (9999px radius), background #a2f6f5 (Mint Keyhole), text in #200f0a (Cocoa Black), Saans weight 500, 14-16px, padding 12px 24px. The high-contrast mint-on-cocoa click target reads as a physical key against the dark vault."
+      },
+      {
+        "name": "Violet Outlined Button",
+        "role": "Secondary action — 'Request a demo'",
+        "description": "Pill shape (9999px radius), transparent background, 1px border in #858df9 (Iris), text in #858df9, Saans weight 500, padding 12px 24px. The outlined violet is the system's second voice for paired CTAs."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Tertiary action — nav links, 'See customer stories'",
+        "description": "Pill or near-pill, no border, no fill, text in #fcfaf9 or #a2f6f5, Saans weight 500, padding 8px 16px. Used for low-emphasis actions inside paragraphs and cards."
+      },
+      {
+        "name": "Stat Card",
+        "role": "Large display metric panel",
+        "description": "8px radius, background #2b2538 (Deep Plum), 1px border in #e3ccc0 (Warm Sand) at low opacity or no border, padding 32-40px. Giant number in Saans weight 300 at 100px in #fcfaf9, unit suffix ('hrs', '%') at 1/3 size. Short caption below in 14-16px #fcfaf9 or #a2f6f5."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer quote panel",
+        "description": "8px radius, background #2b2538, padding 32-40px, company logo top-left in #fcfaf9, quote in Saans 300 at 18-20px in #fcfaf9, author avatar (circular) + name in weight 500 + role in #a69f9d."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky site header",
+        "description": "Full-width, background #200f0a or transparent over cocoa, logo left, nav links centered or left in Saans 500 14-16px #fcfaf9, language switcher and login right. On scroll, may gain 1px bottom border in #e3ccc0 at low opacity."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark + wordmark",
+        "description": "Dashlane D-icon (small geometric D in #fcfaf9) + 'DASHLANE' wordmark in Saans 500, uppercase, letter-spacing 0.02em, in #fcfaf9."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top promo strip",
+        "description": "Full-bleed, background #200f0a with possible thin border, text in #fcfaf9 14px Saans 500, close X right. Centered, max-height ~40px."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs (login, contact)",
+        "description": "4px radius, background #2b2538 or #200f0a, 1px border in #e3ccc0, text in #fcfaf9 Saans 500, placeholder in #a69f9d. Focus state: border shifts to #a2f6f5 (Mint)."
+      },
+      {
+        "name": "Trust Logo Strip",
+        "role": "Enterprise customer logos",
+        "description": "Horizontal row of greyscale logos in #fcfaf9 or #e5e7eb at 60-70% opacity, aligned on a shared baseline, centered under a 'TRUSTED BY TOP ENTERPRISES' overline in SaansMono 300 0.06em tracking."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary above-fold headline",
+        "description": "Saans weight 300, 72-100px, line-height 1.10, letter-spacing ~1px. Color rule: first word in #a2f6f5 (Mint Keyhole), remaining words in #fcfaf9 — the mint word acts as the 'lit doorway' in the vault."
+      },
+      {
+        "name": "Chat Widget Panel",
+        "role": "Floating bottom-right support widget",
+        "description": "8px radius, background #fcfaf9 (light surface floating on dark page), padding 16-20px, text in #200f0a, CTA buttons filled in #200f0a with #fcfaf9 text. Contrasts the dark page by being a light island."
+      },
+      {
+        "name": "Progress/Bar Indicator",
+        "role": "Thin underline bar inside stat cards",
+        "description": "4px height, horizontal bar under the giant stat, fill in #a2f6f5 (Mint) at ~40% width, track in #e3ccc0 (Warm Sand) at low opacity. Acts as a visual rhythm anchor beneath the number."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface and display type — a custom geometric sans where weight 300 carries all headlines and hero statistics while weight 500 is reserved for UI chrome (buttons, nav, labels, body). The whisper-weight headlines are the system's most distinctive move: 100px at weight 300 reads as architectural light, not aggressive marketing.",
+        "sizes": "12, 14, 16, 18, 28, 36, 48, 56, 72, 100px",
+        "family": "Saans",
+        "weight": "300, 500",
+        "lineHeight": "1.10 (display), 1.17 (headings), 1.20 (subheadings), 1.50 (body)",
+        "substitute": "Inter, Söhne, or GT America — any clean geometric sans that ships with true weight 300 and 500",
+        "letterSpacing": "0.01em at body sizes, 0.02em at small UI sizes",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Monospace utility — tracking at 0.06em gives it an uppercase tag/label feel, used for overline metadata, tags, and monospaced code-adjacent labels",
+        "sizes": "16px",
+        "family": "SaansMono",
+        "weight": "300",
+        "lineHeight": "1.10",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "0.06em"
+      }
+    ],
+    "description": "Dashlane is a dark, warm-toned security interface — a near-black cocoa canvas (#200f0a) with subtle plum depth, where mint (#a2f6f5) pierces the surface like a keyhole glow and violet (#858df9) plays the second voice. The system is built on one custom sans (Saans) that uses weight 300 for headlines and 500 for UI — a deliberate two-weight conversation that lets massive statistics whisper rather than shout. Surfaces sit on a warm scale from cocoa to deep aubergine, separated by hairline borders in muted beige (#e3ccc0) rather than cold grays. Components are pill-shaped for actions and 8px-rounded for cards; buttons feel like physical keys (9999px), never rectangles. The overall mood is 'midnight vault with a single lit doorway' — confident, restrained, with color appearing as small functional punctuation against an otherwise matte dark workspace.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dashlane design system\",\"item\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#style-reference\",\"name\":\"Dashlane design system reference\",\"headline\":\"Dashlane design system | Refero Styles\",\"description\":\"Explore Dashlane's dark SaaS design system: Cocoa Black #200f0a, Cream Mist #fcfaf9 colors, Saans, SaansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dashlane\",\"url\":\"https://www.dashlane.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"caption\":\"Screenshot of Dashlane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dashlane design system\",\"Dashlane website design\",\"Dashlane colors\",\"Dashlane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Cocoa Black\",\"Cream Mist\",\"Warm Sand\",\"Ash Gray\",\"Saans\",\"SaansMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dashlane design system\"},{\"@type\":\"Thing\",\"name\":\"Dashlane website design\"},{\"@type\":\"Thing\",\"name\":\"Dashlane colors\"},{\"@type\":\"Thing\",\"name\":\"Dashlane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:43:22.068Z\",\"dateModified\":\"2026-05-07T17:43:22.068Z\"}]}19:T8d0,Quick Color Reference:\n- background: #200f0a (Cocoa Black)\n- card surface: #2b2538 (Deep Plum)\n- primary text: #fcfaf9 (Cream Mist)\n- border: #e3ccc0 (Warm Sand)\n- primary action: #a2f6f5 (filled action)\n- secondary action border: #858df9 (Iris)\n\n3-5 Example Component Prompts:\n\n1. Create a hero section on a #200f0a background. Left-aligned headline in Saans weight 300, 100px, line-height 1.10: first word in #a2f6f5, remaining words in #fcfaf9. Supporting paragraph in Saans weight 500, 18px, #fcfaf9, max-width 480px. Below: a mint-filled pill button (background #a2f6f5, text #200f0a, Saans 500 16px, padding 12px 24px, border-radius 9999px) paired with a violet-outlined pill button (border 1px #858df9, text #858df9, same padding/radius). Right side: a dark #2b2538 rounded panel (8px radius) with a circular abstract teal radar graphic inside.\n\n2. Build a stat card: #2b2538 background, 8px border-radius, padding 40px. Display '70%' in Saans weight 300, 100px, #fcfaf9, letter-spacing 1px. Below: caption in Saans 500, 16px, #a2f6f5, max-width 280px. Underneath: a 4px-tall progress bar — track in #e3ccc0 at 30% opacity, fill in #a2f6f5 at 40% width.\n\n3. Create a testimonial card: #2b2538 background, 8px border-radius, padding 32px. Company logo top-left in #fcfaf9. Quote in Saans weight 300, 20px, #fcfaf9, italic optional. Bottom row: 40px circular avatar, author name in Saans 500 14px #fcfaf9, role in Saans 500 14px #a69f9d.\n\n4. Build a nav bar: full-width, background #200f0a, height 64px, flex with logo left (Dashlane D + wordmark in #fcfaf9, Saans 500 16px uppercase, 0.02em tracking), nav links center in Saans 500 14px #fcfaf9 with 24px gaps, right side: language switcher + 'Log in' ghost text + mint-filled 'Contact Sales' pill (background #a2f6f5, text #200f0a, Saans 500 14px, padding 10px 20px, 9999px radius) + violet-outlined 'Request a demo' pill (border 1px #858df9, text #858df9, same padding/radius).\n\n5. Create a trust logo strip: full-width band on #200f0a, centered, with 'TRUSTED BY TOP ENTERPRISES' overline in SaansMono 300 16px, letter-spacing 0.06em, #a69f9d. Below: a horizontal row of 7-8 customer wordmark logos rendered in #fcfaf9 at 50% opacity, evenly spaced, aligned to a shared baseline, with 48px gaps."
+      },
+      {
+        "title": "Signature Moves",
+        "content": "1. The 'First Word Mint' rule: in any multi-word headline, color the first word #a2f6f5 and leave the rest in #fcfaf9. This single pattern identifies the brand across every screen.\n2. Whisper-weight at scale: 100px headlines at weight 300 create the system's most distinctive tension — massive type that reads as quiet authority rather than loud marketing.\n3. Two-button pairing: primary mint-filled pill + secondary violet-outlined pill. Never a single button; never the same color twice in a CTA pair.\n4. Warm-on-warm: the palette never goes cold. Even the 'gray' borders are beige (#e3ccc0), and the blacks are cocoa (#200f0a). The warmth is the brand."
+      }
+    ],
+    "elevationPhilosophy": "Dashlane deliberately avoids drop shadows on interface cards. The dark warm-on-warm surface scale (Cocoa → Plum → Aubergine) plus 1px beige hairlines does the work of elevation. This keeps the vault feeling flat and architectural rather than skeuomorphic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "nav",
+            "list",
+            "card",
+            "hero",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 2300,
+          "confidence": 1,
+          "prominence": 114401747.93665852,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 600,
+            "body/borderColor": 160,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 36,
+            "link/borderColor": 32,
+            "list/borderColor": 36,
+            "image/borderColor": 260,
+            "other/borderColor": 1032,
+            "button/borderColor": 52,
+            "footer/borderColor": 4,
+            "heading/borderColor": 80
+          }
+        },
+        {
+          "hex": "#fcfaf9",
+          "oklch": {
+            "c": 0.0025203566805768866,
+            "h": 48.719329094653865,
+            "l": 0.986351211386999
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "nav",
+            "list",
+            "card",
+            "hero",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 523,
+          "confidence": 1,
+          "prominence": 92535386.13131313,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 144,
+            "body/color": 28,
+            "card/color": 9,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 4,
+            "list/color": 9,
+            "other/fill": 15,
+            "image/color": 1,
+            "other/color": 267,
+            "button/color": 8,
+            "footer/color": 1,
+            "heading/color": 15,
+            "body/borderColor": 4,
+            "other/borderColor": 8,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#200f0a",
+          "oklch": {
+            "c": 0.03078178952057787,
+            "h": 37.17069583373272,
+            "l": 0.19171714429963044
+          },
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "footer",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 43593492.558883935,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "button/color": 6,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 2,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 15,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3ccc0",
+          "oklch": {
+            "c": 0.030707563213842333,
+            "h": 49.415324659658964,
+            "l": 0.8610455465243402
+          },
+          "contexts": [
+            "other",
+            "card",
+            "nav"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 2743885.897324295,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 40,
+            "card/borderColor": 32,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#2b2538",
+          "oklch": {
+            "c": 0.035281293925430786,
+            "h": 298.59435112237145,
+            "l": 0.2798355459270222
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "button"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1422130.7051336593,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 6,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4d3f3b",
+          "oklch": {
+            "c": 0.020746901893034173,
+            "h": 36.49526205517933,
+            "l": 0.38112669007263594
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 678528.7864087299,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a2f6f5",
+          "oklch": {
+            "c": 0.08141016646698807,
+            "h": 194.87142012154408,
+            "l": 0.9194299967257586
+          },
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 449111.9759693034,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 18,
+            "nav/color": 28,
+            "body/color": 5,
+            "icon/color": 6,
+            "link/color": 7,
+            "other/fill": 5,
+            "other/stroke": 1,
+            "heading/color": 5,
+            "nav/borderColor": 24,
+            "link/borderColor": 12,
+            "other/borderColor": 4,
+            "button/borderColor": 4,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#a69f9d",
+          "oklch": {
+            "c": 0.008687629668346174,
+            "h": 36.54088911189936,
+            "l": 0.7078154101640107
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 77323.9163060305,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 7,
+            "link/borderColor": 28
+          }
+        },
+        {
+          "hex": "#858df9",
+          "oklch": {
+            "c": 0.15752813504200333,
+            "h": 278.17887039008616,
+            "l": 0.6853644059524717
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 27325.518534451472,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6c74df",
+          "oklch": {
+            "c": 0.16009154683195523,
+            "h": 277.25541086285875,
+            "l": 0.6046051421138007
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 26154.650582296657,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b6bbfb",
+          "oklch": {
+            "c": 0.09033172148356916,
+            "h": 280.7073370632206,
+            "l": 0.8109273546574094
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2975.2918383300507,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4
+          }
+        },
+        {
+          "hex": "#bcb7b5",
+          "oklch": {
+            "c": 0.006350006206948298,
+            "h": 43.31811760751181,
+            "l": 0.7829347902708443
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054.1114009346184,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#3a3d39",
+          "oklch": {
+            "c": 0.007900506296339036,
+            "h": 137.80093045970767,
+            "l": 0.3557394178012848
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02837931011311833,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.79,
+          "background": "#200f0a",
+          "foreground": "#fcfaf9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#a2f6f5",
+          "foreground": "#200f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.96,
+          "background": "#e5e7eb",
+          "foreground": "#200f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#2b2538",
+          "foreground": "#fcfaf9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#e3ccc0",
+          "foreground": "#200f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.96,
+          "background": "#2b2538",
+          "foreground": "#a2f6f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.91,
+          "background": "#e5e7eb",
+          "foreground": "#2b2538"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#3a3d39",
+          "foreground": "#fcfaf9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#200f0a",
+          "foreground": "#b6bbfb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.66,
+          "background": "#4d3f3b",
+          "foreground": "#fcfaf9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#e3ccc0",
+          "foreground": "#2b2538"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.33,
+          "background": "#200f0a",
+          "foreground": "#bcb7b5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#3a3d39",
+          "foreground": "#a2f6f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.9,
+          "background": "#e5e7eb",
+          "foreground": "#3a3d39"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.15,
+          "background": "#4d3f3b",
+          "foreground": "#a2f6f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.12,
+          "background": "#e5e7eb",
+          "foreground": "#4d3f3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.07,
+          "background": "#2b2538",
+          "foreground": "#b6bbfb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.43,
+          "background": "#2b2538",
+          "foreground": "#bcb7b5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#e3ccc0",
+          "foreground": "#3a3d39"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.11,
+          "background": "#200f0a",
+          "foreground": "#a69f9d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other",
+            "image",
+            "nav"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 17
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "marginLeft|icon",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 103,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "heading",
+            "nav"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|link",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingTop|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "card",
+            "nav"
+          ],
+          "frequency": 42,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "nav"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "marginRight|heading",
+            "marginRight|card",
+            "paddingBottom|nav",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card",
+            "nav"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "columnGap|nav",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Saans",
+          "source": "custom",
+          "weights": [
+            300,
+            500
+          ],
+          "frequency": 608,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SaansMono",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Saans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "nav",
+            "list",
+            "card",
+            "hero",
+            "image",
+            "footer",
+            "body"
+          ],
+          "frequency": 424,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "icon",
+            "nav"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SaansMono",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other",
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5307cace-04a1-49f9-b099-ede111beae46.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dashlane design system\",\"item\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#style-reference\",\"name\":\"Dashlane design system reference\",\"headline\":\"Dashlane design system | Refero Styles\",\"description\":\"Explore Dashlane's dark SaaS design system: Cocoa Black #200f0a, Cream Mist #fcfaf9 colors, Saans, SaansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dashlane\",\"url\":\"https://www.dashlane.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/722f32e7-8217-4808-843d-b454eea7320a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"caption\":\"Screenshot of Dashlane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1baa692-cd89-4554-bc73-9f54343e1be5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dashlane design system\",\"Dashlane website design\",\"Dashlane colors\",\"Dashlane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Cocoa Black\",\"Cream Mist\",\"Warm Sand\",\"Ash Gray\",\"Saans\",\"SaansMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dashlane design system\"},{\"@type\":\"Thing\",\"name\":\"Dashlane website design\"},{\"@type\":\"Thing\",\"name\":\"Dashlane colors\"},{\"@type\":\"Thing\",\"name\":\"Dashlane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:43:22.068Z\",\"dateModified\":\"2026-05-07T17:43:22.068Z\"}]}19:T8d0,Quick Color Reference:\n- background: #200f0a (Cocoa Black)\n- card surface: #2b2538 (Deep Plum)\n- primary text: #fcfaf9 (Cream Mist)\n- border: #e3ccc0 (Warm Sand)\n- primary action: #a2f6f5 (filled action)\n- secondary action border: #858df9 (Iris)\n\n3-5 Example Component Prompts:\n\n1. Create a hero section on a #200f0a background. Left-aligned headline in Saans weight 300, 100px, line-height 1.10: first word in #a2f6f5, remaining words in #fcfaf9. Supporting paragraph in Saans weight 500, 18px, #fcfaf9, max-width 480px. Below: a mint-filled pill button (background #a2f6f5, text #200f0a, Saans 500 16px, padding 12px 24px, border-radius 9999px) paired with a violet-outlined pill button (border 1px #858df9, text #858df9, same padding/radius). Right side: a dark #2b2538 rounded panel (8px radius) with a circular abstract teal radar graphic inside.\n\n2. Build a stat card: #2b2538 background, 8px border-radius, padding 40px. Display '70%' in Saans weight 300, 100px, #fcfaf9, letter-spacing 1px. Below: caption in Saans 500, 16px, #a2f6f5, max-width 280px. Underneath: a 4px-tall progress bar — track in #e3ccc0 at 30% opacity, fill in #a2f6f5 at 40% width.\n\n3. Create a testimonial card: #2b2538 background, 8px border-radius, padding 32px. Company logo top-left in #fcfaf9. Quote in Saans weight 300, 20px, #fcfaf9, italic optional. Bottom row: 40px circular avatar, author name in Saans 500 14px #fcfaf9, role in Saans 500 14px #a69f9d.\n\n4. Build a nav bar: full-width, background #200f0a, height 64px, flex with logo left (Dashlane D + wordmark in #fcfaf9, Saans 500 16px uppercase, 0.02em tracking), nav links center in Saans 500 14px #fcfaf9 with 24px gaps, right side: language switcher + 'Log in' ghost text + mint-filled 'Contact Sales' pill (background #a2f6f5, text #200f0a, Saans 500 14px, padding 10px 20px, 9999px radius) + violet-outlined 'Request a demo' pill (border 1px #858df9, text #858df9, same padding/radius).\n\n5. Create a trust logo strip: full-width band on #200f0a, centered, with 'TRUSTED BY TOP ENTERPRISES' overline in SaansMono 300 16px, letter-spacing 0.06em, #a69f9d. Below: a horizontal row of 7-8 customer wordmark logos rendered in #fcfaf9 at 50% opacity, evenly spaced, aligned to a shared baseline, with 48px gaps."
+}

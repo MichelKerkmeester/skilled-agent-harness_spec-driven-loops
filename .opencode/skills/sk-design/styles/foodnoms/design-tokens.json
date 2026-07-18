@@ -1,0 +1,277 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff5406",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "verdant-green": {
+      "$value": "#00b33f",
+      "$type": "color",
+      "$description": "Verdant Green — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "signal-red-orange": {
+      "$value": "#ff3400",
+      "$type": "color",
+      "$description": "Signal Red-Orange — Secondary warm accent visible in app screen UI elements and supporting brand moments. Sits one step hotter than Ember Orange for emphasis on selected or active app states"
+    },
+    "sky-blue": {
+      "$value": "#00a9dd",
+      "$type": "color",
+      "$description": "Sky Blue — Cool counter-accent for app-internal data categories (carbs/protein/other nutrient groupings). Balances the warm-dominant palette inside phone mockups"
+    },
+    "mist-blue": {
+      "$value": "#72a2c5",
+      "$type": "color",
+      "$description": "Mist Blue — Muted cool accent — softens Sky Blue for secondary data labels and chart backgrounds inside the app surfaces"
+    },
+    "sunset-orange": {
+      "$value": "#ff6d00",
+      "$type": "color",
+      "$description": "Sunset Orange — Warm accent for secondary headings and emphasis text within the marketing pages"
+    },
+    "amber": {
+      "$value": "#945300",
+      "$type": "color",
+      "$description": "Amber — Deep warm accent for data-heavy text and chart labels in the app's nutrition displays"
+    },
+    "alert-red": {
+      "$value": "#ff001e",
+      "$type": "color",
+      "$description": "Alert Red — Red supporting accent for decorative details and low-frequency emphasis"
+    },
+    "plum": {
+      "$value": "#bd4be5",
+      "$type": "color",
+      "$description": "Plum — Accent for the carbs/protein/fat macro rings and category tags inside the app interface"
+    },
+    "iris": {
+      "$value": "#5856de",
+      "$type": "color",
+      "$description": "Iris — Accent for headings and emphasis text on supporting pages, and for specific data categories inside the app"
+    },
+    "electric-blue": {
+      "$value": "#0099f9",
+      "$type": "color",
+      "$description": "Electric Blue — Accent for bold headings and highlighted text on supporting pages"
+    },
+    "graphite": {
+      "$value": "#2f2f2f",
+      "$type": "color",
+      "$description": "Graphite — Primary text, dark buttons (App Store badge), and icon strokes. The dominant non-white color in headings and body copy"
+    },
+    "charcoal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal — Maximum-emphasis text and icon fills. Used sparingly — reserved for the darkest typographic moments and SVG icon details"
+    },
+    "fog": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Fog — Alternate canvas for cards, feature sections, and soft UI containers. Distinguishes elevated content blocks from the white page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Dominant page background, button text, and card surfaces. The base layer of the entire visual system"
+    }
+  },
+  "font": {
+    "aquawax-pro-medium": {
+      "$value": "Aquawax Pro Medium",
+      "$type": "fontFamily",
+      "$description": "Aquawax Pro Medium — detected in extracted data but not described by AI"
+    },
+    "aquawax-pro": {
+      "$value": "Aquawax Pro",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface used across all display, heading, and body contexts. The custom face has a wide x-height, rounded geometric forms, and friendly proportions. Bold (700) is used for the 60px display and 30px section headlines — these are the system's typographic anchors. DemiBold (600) handles subheadings and button labels at 14–16px. Medium (500) carries body copy at 17–20px with generous 1.6–1.8 line-height for comfortable reading."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback for very small UI text and icon labels. Aquawax Pro is not used at micro sizes; system font handles them to keep render weight low."
+    },
+    "aquawax-pro-demibold": {
+      "$value": "Aquawax Pro DemiBold",
+      "$type": "fontFamily",
+      "$description": "Aquawax Pro DemiBold — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aquawax Pro DemiBold",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aquawax Pro DemiBold",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Medium",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Bold",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Medium",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Bold",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Bold",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aquawax Pro Bold",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant page canvas and base surface"
+    },
+    "fog": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate canvas for feature sections and soft card containers"
+    },
+    "graphite": {
+      "$value": "#2f2f2f",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inverted surface for the App Store download badge"
+    },
+    "ember-orange": {
+      "$value": "#ff5406",
+      "$type": "color",
+      "$description": "Surface level 3: High-emphasis filled surface for the primary header button"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://foodnoms.com",
+      "siteName": "Foodnoms",
+      "extractedAt": "2026-06-03T16:56:49.644Z",
+      "variant": "extended"
+    }
+  }
+}

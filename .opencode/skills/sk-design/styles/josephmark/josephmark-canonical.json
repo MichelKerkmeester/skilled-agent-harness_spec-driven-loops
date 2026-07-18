@@ -1,0 +1,1063 @@
+{
+  "source": "https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e",
+  "uuid": "58c0af12-8706-428f-8282-482d57d7b90e",
+  "name": "Josephmark",
+  "northStar": "Midnight editorial gallery. Monochrome walls, warm spotlights, oversized grotesque typography floating in negative space.",
+  "capturedAt": "2026-07-18T07:20:22.781Z",
+  "meta": {
+    "url": "https://josephmark.studio",
+    "siteName": "Josephmark",
+    "extractedAt": "2026-06-03T21:41:07.149Z",
+    "durationMs": 36707,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 242,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Scto Grotesk A at weight 300 for all display and heading sizes — the light weight is the signature, not a fallback",
+      "Apply negative letter-spacing consistently: -0.035em at display (70px), scaling proportionally to -0.019em at caption (12px)",
+      "Build with full-bleed sections, not contained max-width layouts — let the dark canvas extend to the viewport edges",
+      "Use #000000 and #f4f5ef as the two primary canvas colors, alternating between them for section rhythm",
+      "Define interactive elements with 1px borders and 9999px radius — the pill shape is the only button form",
+      "Set body text at 16px/1.38 with #ffffff on dark and #4e5449 on light surfaces",
+      "Separate content blocks with 1px #e5e7eb hairlines, never with shadows or background fills"
+    ],
+    "donts": [
+      "Do not introduce color beyond the single warm taupe (#a9a498) — the system's power comes from its 1% colorfulness",
+      "Do not add shadows, glows, or any drop effects — this system is rigorously flat",
+      "Do not use rounded corners on cards, images, or containers — only buttons are rounded (to 9999px)",
+      "Do not center text — everything is left-aligned, following editorial column logic",
+      "Do not use bold weights (600+) for emphasis — the scale goes 300 → 400 → 500, and contrast comes from size and color, not weight",
+      "Do not add icon systems or decorative graphics — typography and photography are the only visual elements",
+      "Do not use #ffffff as a section background — it appears only as surface within forms and as text color on dark"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary dark canvas — hero backgrounds, full-bleed section stages, base for the editorial atmosphere",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Inverse text on dark canvases, form field backgrounds, button text on filled dark elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9a498",
+        "name": "Stone Taupe",
+        "role": "The system's sole warm chromatic note — muted link states, secondary surface tints, paper-like card backgrounds that soften the black-to-gray transitions",
+        "group": "accent"
+      },
+      {
+        "hex": "#f4f5ef",
+        "name": "Bone Cream",
+        "role": "Warm off-white surface — secondary card and panel backgrounds, breaks the clinical feel of pure white and echoes the studio's paper-based brand collateral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Mist Gray",
+        "role": "Hairline borders, dividers, list separators, subtle structural lines — the 999-occurrence border color that defines spatial relationships without visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Mid-tone text — secondary headings, supporting copy, metadata that needs presence without competing with primary type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4e5449",
+        "name": "Forest Ink",
+        "role": "Body text on light surfaces — a desaturated dark olive that reads warmer than pure black, the only hue-leaning neutral in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container. Navigation is a single row of two text elements floating over the void. Hero sections span the full viewport with display headlines left-aligned. The page alternates between black stages and warm cream inserts, creating a rhythm of darkness interrupted by paper-like warmth. Content is left-aligned throughout, never centered. Project showcases appear in 2-column grids on dark backgrounds. The layout is deliberately architectural — large blocks of solid color define spatial zones rather than cards or floating elements. Density is spacious: 64-96px section padding, 40px between heading and body, giving every element room to breathe.",
+    "imagery": "Imagery is content, not chrome. The system's own visual language is pure typography on flat color — no decorative graphics, no abstract patterns, no icon systems. When imagery appears, it's always project artwork: photography of printed materials (cash-flow reports, magazines), digital design work (RCA Records, The Walking Dead), and brand collateral. The case study images are vivid and full-color (orange, green, illustrations) — the surrounding system is deliberately monochrome so the project work reads as the only colorful thing in the room. Photography treatment: natural lighting, product-focused, no filters or duotones. Images are presented full-bleed within their containers with no rounded corners or masking.",
+    "similar": [
+      {
+        "why": "Same dark-canvas editorial approach with oversized light-weight grotesque typography and minimal navigation",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Full-bleed dark sections alternating with warm content areas, project showcase grids, zero decorative chrome",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Monochrome system where project artwork provides all the color, generous whitespace, editorial typographic scale",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Grid-based project showcase on dark canvas, left-aligned display type, hairline structural elements",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Dark-dominant agency portfolio with pill-shaped text buttons and flat, borderless card surfaces",
+        "business": "Active Theory (activetheory.net)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Full-bleed dark canvas for hero, editorial sections, and project showcases"
+      },
+      {
+        "hex": "#f4f5ef",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Warm secondary surface — case study inserts, lighter content blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Light form surfaces, input fields, micro-cards"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Midnight editorial gallery. Monochrome walls, warm spotlights, oversized grotesque typography floating in negative space.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.23
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.76
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.08
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.45
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Hero",
+        "role": "Full-bleed dark opening section with oversized headline",
+        "description": "#000000 background spanning full viewport. Display headline at 70px, weight 300, color #ffffff, letter-spacing -2.45px, line-height 1.10. Generous top/bottom padding (64-96px). Navigation floats in a single row at the top with 28-32px padding."
+      },
+      {
+        "name": "Minimal Nav Bar",
+        "role": "Transparent top navigation",
+        "description": "Full-width, transparent over the dark canvas. Wordmark 'Josephmark' left-aligned in 12-14px Scto Grotesk weight 500, color #ffffff. 'Menu' text link right-aligned at same size and weight. No background, no border, no logo mark — just two pieces of text floating in the void."
+      },
+      {
+        "name": "Pill Text Button",
+        "role": "Primary interactive element",
+        "description": "Fully rounded with 9999px border-radius. Padding 8px 16px or 8px 20px. Border 1px solid #e5e7eb on dark backgrounds or #000000 on light. Text at 14px weight 500, letter-spacing -0.28px. Transparent fill — the pill is defined by its border, not its background. This is the only interactive component shape in the system."
+      },
+      {
+        "name": "Project Showcase Card",
+        "role": "Case study entry in grid",
+        "description": "Full-bleed or 2-column grid tile on #000000 background. Large project artwork/image fills the card. Project name overlaid below at 16-20px weight 400, color #ffffff, letter-spacing -0.32 to -0.5px. No border, no radius, no shadow — the image IS the card surface."
+      },
+      {
+        "name": "Cream Content Insert",
+        "role": "Warm light section breaking the dark rhythm",
+        "description": "Background #f4f5ef with sharp 0px corners. Contains product photography or printed collateral. Headings at 28-36px weight 300, color #000000. Body at 16px weight 400, color #4e5449. The warm cream creates a paper-like quality that echoes physical design deliverables."
+      },
+      {
+        "name": "Arrow Link",
+        "role": "Directional text link with chevron icon",
+        "description": "Text at 16-20px weight 400 or 500, color #ffffff on dark or #000000 on light, with a right-pointing chevron (» or →). No underline. Letter-spacing -0.32 to -0.5px. The chevron sits inline after the text with ~8px gap."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Editorial sub-section title",
+        "description": "28-36px weight 300, color #ffffff on dark surfaces or #000000 on light. Line-height 1.20, letter-spacing -0.76 to -1.08px. Generous margin-bottom of 40px. Left-aligned, full-width within its container."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph and supporting copy",
+        "description": "16px weight 400, line-height 1.38, letter-spacing -0.32px. Color #ffffff on dark sections, #4e5449 on light/cream surfaces, #666666 for secondary/supporting copy. Max-width implied by reading measure; no enforced container."
+      },
+      {
+        "name": "Horizontal Divider",
+        "role": "Structural separator between content blocks",
+        "description": "1px solid #e5e7eb line. Full-width or contained. The 999-frequency border color makes this the system's primary spatial delineation tool — it defines where one thing ends and another begins without any visual ceremony."
+      },
+      {
+        "name": "Menu Toggle",
+        "role": "Full-screen navigation overlay",
+        "description": "When activated, covers the viewport with #000000 or #f4f5ef. Large nav links at 36-70px weight 300, centered or left-aligned, with generous vertical spacing (24-40px between items). Closes via the same 'Menu' text in the top nav."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — a custom neo-grotesque used for everything from 70px display headlines down to 12px captions. Weight 300 carries display and large headings (a deliberate anti-convention choice — most agency sites use bold for impact; Josephmark whispers with light). Weight 400 for body, 500 reserved for emphasis and interactive elements. The consistent aggressive negative tracking (-0.019em to -0.035em) tightens the grotesque's natural apertures, creating a compressed, editorial density even at body sizes.",
+        "sizes": "12, 14, 16, 19, 20, 28, 36, 70",
+        "family": "Scto Grotesk A",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.10, 1.20, 1.25, 1.38, 1.40, 1.50",
+        "substitute": "Inter (weight 300/400/500), Space Grotesk, or Söhne if licensed",
+        "letterSpacing": "-0.035em at 70px display → -0.030em at 36px → -0.027em at 28px → -0.025em at 19-20px → -0.020em at 16px → -0.019em at 12-14px"
+      }
+    ],
+    "description": "Josephmark operates as a midnight editorial gallery for digital craftsmanship: dark-dominant canvases, oversized Scto Grotesk set tight with aggressive negative tracking, and an almost entirely achromatic palette where a single warm taupe (#a9a498) acts as the only chromatic relief. The system prizes restraint over decoration — flat surfaces, hairline borders, pill-shaped buttons, zero shadows, and text that does the heavy lifting through scale and weight rather than color. Screens alternate between deep charcoal stages and cream-paper inserts, creating a rhythm of dark void and quiet warmth. Content is allowed to be loud (the case study artwork, the orange RCA piece, the Walking Dead illustration) while the chrome around it stays nearly invisible — a museum wall, not a website chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Josephmark design system\",\"item\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#style-reference\",\"name\":\"Josephmark design system reference\",\"headline\":\"Josephmark design system | Refero Styles\",\"description\":\"Explore Josephmark's dark Agency design system: Carbon Black #000000, Pure White #ffffff colors, Scto Grotesk A typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Josephmark\",\"url\":\"https://josephmark.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"caption\":\"Screenshot of Josephmark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Josephmark design system\",\"Josephmark website design\",\"Josephmark colors\",\"Josephmark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon Black\",\"Pure White\",\"Stone Taupe\",\"Bone Cream\",\"Scto Grotesk A\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Josephmark design system\"},{\"@type\":\"Thing\",\"name\":\"Josephmark website design\"},{\"@type\":\"Thing\",\"name\":\"Josephmark colors\"},{\"@type\":\"Thing\",\"name\":\"Josephmark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:03:46.899Z\",\"dateModified\":\"2026-04-30T02:03:46.899Z\"}]}19:T587,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (on light): #4e5449\n- text (secondary): #666666\n- background (primary dark): #000000\n- background (warm light): #f4f5ef\n- border: #e5e7eb\n- accent: #a9a498\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed hero section: #000000 background, padding-top 96px, padding-bottom 64px. Display headline at 70px, Scto Grotesk weight 300, #ffffff, letter-spacing -2.45px, line-height 1.10. Left-aligned, no max-width.\n\n2. Create a project showcase card: no border, no radius, no shadow. Full-bleed image fills the card on #000000 background. Project title at 20px weight 400, #ffffff, letter-spacing -0.5px, positioned below the image with 16px gap.\n\n3. Create a cream content insert: #f4f5ef background, 0px radius, padding 64px. Section heading at 36px weight 300, #000000, letter-spacing -1.08px. Body text at 16px weight 400, #4e5449, line-height 1.38. Product image right-aligned with no border.\n\n4. Create a pill text button: 9999px border-radius, 1px solid #e5e7eb border, transparent fill, padding 8px 20px. Text at 14px weight 500, #ffffff, letter-spacing -0.28px. On dark backgrounds only.\n\n5. Create a full-screen menu overlay: covers viewport with #000000. Nav links stacked vertically at 70px weight 300, #ffffff, letter-spacing -2.45px, with 40px vertical gap between items. Left-aligned with 28px padding."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The palette is deliberately impoverished — seven colors total, six of them achromatic or near-achromatic. This scarcity is the system: when a studio's work is bold, colorful, and inventive (RCA Records, Walking Dead), the website itself must recede. The only chromatic accent is #a9a498, a warm taupe that appears in just two contexts: as a subtle link color and as a rare secondary surface tint. It exists to prevent the system from feeling clinical or sterile — a human warmth in the machine. Every other color decision is about value contrast: #000000 against #f4f5ef, #000000 against #ffffff, #e5e7eb as the quietest possible structural line."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Scto Grotesk A is custom — designed by Schick Toikka specifically for Josephmark. The system's typographic attitude comes from three choices: (1) weight 300 for display, which is anti-convention and forces the design to rely on scale and tracking rather than boldness for hierarchy; (2) aggressive negative tracking across the entire scale, from -0.019em at 12px to -0.035em at 70px, which compresses the grotesque's natural letterforms into a dense, editorial rhythm; (3) a line-height of 1.10 on the largest display size, meaning the headline almost touches itself — the type fills its container with no air, creating urgency and presence. There is no secondary typeface, no monospace, no serif. One family, one voice."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. No shadows, no drop effects, no blur. The system achieves spatial hierarchy through color contrast (dark vs. cream), generous whitespace, and hairline borders — never through simulated depth. This is a flat, editorial, print-derived visual logic where layers exist in sequence, not in z-axis."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "list",
+            "footer",
+            "icon"
+          ],
+          "frequency": 896,
+          "confidence": 1,
+          "prominence": 61984443.48247532,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 96,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 96,
+            "list/borderColor": 128,
+            "image/borderColor": 12,
+            "other/borderColor": 424,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 112
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "list",
+            "footer",
+            "input",
+            "icon"
+          ],
+          "frequency": 247,
+          "confidence": 1,
+          "prominence": 50263863.01933326,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 10,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 23,
+            "list/color": 32,
+            "other/fill": 1,
+            "input/color": 1,
+            "other/color": 72,
+            "button/color": 18,
+            "footer/color": 1,
+            "heading/color": 18,
+            "input/borderColor": 4,
+            "button/borderColor": 60,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 33630131.10587271,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 29,
+            "heading/color": 1,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a9a498",
+          "oklch": {
+            "c": 0.01797158773130354,
+            "h": 88.02893521861836,
+            "l": 0.7194385890076584
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4579977.380433884,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f4f5ef",
+          "oklch": {
+            "c": 0.007995124787452207,
+            "h": 114.21966115455658,
+            "l": 0.9677307115788446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1866403.6822246972,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 326519.58311662293,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "other/color": 5,
+            "heading/color": 9
+          }
+        },
+        {
+          "hex": "#4e5449",
+          "oklch": {
+            "c": 0.019246542636667086,
+            "h": 130.6896795866075,
+            "l": 0.43694518748205075
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 19895.72433262224,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012073443229314402,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.15,
+          "background": "#f4f5ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#a9a498",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#ffffff",
+          "foreground": "#4e5449"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.13,
+          "background": "#f4f5ef",
+          "foreground": "#4e5449"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.31,
+          "background": "#e5e7eb",
+          "foreground": "#4e5449"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#f4f5ef",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.14,
+          "background": "#a9a498",
+          "foreground": "#4e5449"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.69,
+          "background": "#000000",
+          "foreground": "#4e5449"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.49,
+          "background": "#a9a498",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.31,
+          "background": "#a9a498",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.27,
+          "background": "#f4f5ef",
+          "foreground": "#a9a498"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f4f5ef",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 15
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "list",
+            "other",
+            "body"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 48,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "marginBottom|heading",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|list",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Scto Grotesk A",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 240,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Scto Grotesk A",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Scto Grotesk A",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Scto Grotesk A",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.027,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 132,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Scto Grotesk A",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "footer",
+            "other",
+            "list",
+            "button",
+            "icon"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8f46e12f-64bf-4fd0-a4e0-77491bd98092.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Josephmark design system\",\"item\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#style-reference\",\"name\":\"Josephmark design system reference\",\"headline\":\"Josephmark design system | Refero Styles\",\"description\":\"Explore Josephmark's dark Agency design system: Carbon Black #000000, Pure White #ffffff colors, Scto Grotesk A typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Josephmark\",\"url\":\"https://josephmark.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/58c0af12-8706-428f-8282-482d57d7b90e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"caption\":\"Screenshot of Josephmark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/150f0f8e-534b-4848-af09-616c4a65890f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Josephmark design system\",\"Josephmark website design\",\"Josephmark colors\",\"Josephmark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon Black\",\"Pure White\",\"Stone Taupe\",\"Bone Cream\",\"Scto Grotesk A\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Josephmark design system\"},{\"@type\":\"Thing\",\"name\":\"Josephmark website design\"},{\"@type\":\"Thing\",\"name\":\"Josephmark colors\"},{\"@type\":\"Thing\",\"name\":\"Josephmark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:03:46.899Z\",\"dateModified\":\"2026-04-30T02:03:46.899Z\"}]}19:T587,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (on light): #4e5449\n- text (secondary): #666666\n- background (primary dark): #000000\n- background (warm light): #f4f5ef\n- border: #e5e7eb\n- accent: #a9a498\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed hero section: #000000 background, padding-top 96px, padding-bottom 64px. Display headline at 70px, Scto Grotesk weight 300, #ffffff, letter-spacing -2.45px, line-height 1.10. Left-aligned, no max-width.\n\n2. Create a project showcase card: no border, no radius, no shadow. Full-bleed image fills the card on #000000 background. Project title at 20px weight 400, #ffffff, letter-spacing -0.5px, positioned below the image with 16px gap.\n\n3. Create a cream content insert: #f4f5ef background, 0px radius, padding 64px. Section heading at 36px weight 300, #000000, letter-spacing -1.08px. Body text at 16px weight 400, #4e5449, line-height 1.38. Product image right-aligned with no border.\n\n4. Create a pill text button: 9999px border-radius, 1px solid #e5e7eb border, transparent fill, padding 8px 20px. Text at 14px weight 500, #ffffff, letter-spacing -0.28px. On dark backgrounds only.\n\n5. Create a full-screen menu overlay: covers viewport with #000000. Nav links stacked vertically at 70px weight 300, #ffffff, letter-spacing -2.45px, with 40px vertical gap between items. Left-aligned with 28px padding."
+}

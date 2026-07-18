@@ -1,0 +1,29 @@
+@theme {
+  /* Colors */
+  --color-electric-cobalt: #0018a8;
+  --color-ink-black: #000000;
+  --color-graphite: #6b6b6b;
+  --color-paper-white: #ffffff;
+  --color-bone: #f2f2f2;
+
+  /* Typography */
+  --font-helvetica-monospaced-pro: 'Helvetica Monospaced Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-acne-studios-custom-wordmark: 'Acne Studios (custom wordmark)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helvetica-neue-system-sans: 'Helvetica Neue / system sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-display: 120px;
+  --leading-display: 1;
+  --tracking-display: -1.2px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-18: 18px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-60: 60px;
+}

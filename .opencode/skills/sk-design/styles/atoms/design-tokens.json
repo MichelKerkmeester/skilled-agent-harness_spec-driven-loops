@@ -1,0 +1,449 @@
+{
+  "color": {
+    "atoms-blue": {
+      "$value": "#4267ff",
+      "$type": "color",
+      "$description": "Atoms Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "atoms-blue-deep": {
+      "$value": "#425ce1",
+      "$type": "color",
+      "$description": "Atoms Blue Deep — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "mac-red": {
+      "$value": "#ff5f56",
+      "$type": "color",
+      "$description": "Mac Red — Red supporting accent for decorative details and low-frequency emphasis"
+    },
+    "mac-yellow": {
+      "$value": "#ffbd2e",
+      "$type": "color",
+      "$description": "Mac Yellow — Decorative window-chrome dot on template preview thumbnails"
+    },
+    "mac-green": {
+      "$value": "#27c93f",
+      "$type": "color",
+      "$description": "Mac Green — Decorative window-chrome dot on template preview thumbnails"
+    },
+    "canvas-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Canvas Mist — Page-level background, hairline dividers, icon strokes — the dominant neutral that defines the system's floor"
+    },
+    "surface-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface White — Card backgrounds, input fields, elevated surfaces — the top layer of the surface stack"
+    },
+    "surface-fog": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface Fog — Subtle recessed surfaces, secondary card backgrounds, image overlays"
+    },
+    "ink-black": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, heading text, icon fills, input borders — near-black rather than pure black for less harshness"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Maximum-contrast text, dark template preview surfaces, image elements requiring true black"
+    },
+    "charcoal": {
+      "$value": "#3c3c3c",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text, badge labels, muted icon fills — sits between Ink Black and the mid-grays"
+    },
+    "mid-gray": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Mid Gray — Tertiary text, placeholder text, disabled button labels, input helper text"
+    },
+    "silver": {
+      "$value": "#b0b0b0",
+      "$type": "color",
+      "$description": "Silver — Muted icon fills, decorative text, low-emphasis UI marks"
+    },
+    "border-gray": {
+      "$value": "#d1d1d1",
+      "$type": "color",
+      "$description": "Border Gray — Subtle borders and dividers where Canvas Mist feels too prominent"
+    }
+  },
+  "font": {
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "The workhorse — body, buttons, nav, cards, badges, inputs, small headings. Plex Sans brings a technical, slightly geometric quality that reads as 'builder tool' rather than 'marketing page.' 400 for body, 500 for nav and button labels, 600 for card titles and section headings."
+    },
+    "ibm-plex-serif": {
+      "$value": "IBM Plex Serif",
+      "$type": "fontFamily",
+      "$description": "The hero headline voice — used at 48px/600 exactly once on the page. A serif on a dev-tool site is anti-convention; it gives the main promise editorial weight while the rest of the UI stays in the sans-serif workshop tone. This single serif moment is the brand's typographic signature."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(13, 13, 13, 0.08) 0px 8px 24px -4px, rgba(13, 13, 13, 0.04) 0px 4px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "sm": {
+      "$value": "rgba(13, 13, 13, 0.04) 0px 1px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the floor of the entire interface"
+    },
+    "surface-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, input fields, elevated content blocks"
+    },
+    "surface-fog": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 2: Recessed wells, secondary panels, subtle background differentiation"
+    },
+    "ink-black": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Surface level 3: Active/selected pill badges, dark contrast surfaces (used sparingly)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atoms.dev",
+      "siteName": "Atoms",
+      "extractedAt": "2026-06-03T18:28:58.687Z",
+      "variant": "extended"
+    }
+  }
+}

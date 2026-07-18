@@ -1,0 +1,1058 @@
+{
+  "source": "https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5",
+  "uuid": "002cc5a7-0d34-4d8d-afa0-c5fad69477d5",
+  "name": "Getburnt",
+  "northStar": "editorial monochrome on warm paper — a minimal typeset spread where warm-black ink, a light display serif, and pill-shaped controls turn a B2B tool into something that reads like a quarterly journal.",
+  "capturedAt": "2026-07-18T09:39:39.044Z",
+  "meta": {
+    "url": "https://www.getburnt.ai",
+    "siteName": "Getburnt",
+    "extractedAt": "2026-06-03T18:41:18.806Z",
+    "durationMs": 34196,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 490,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Nyght Serif weight 300 for all heading and display text — never set a heading in Switzer",
+      "Keep the entire interface within the #1a1a17 / #ffffff / #5f5f5d triad; resist introducing chromatic accents",
+      "Set all buttons, nav active states, and tags to 1440px border-radius for the pill signature",
+      "Maintain 0.03em letter-spacing on all Switzer text to preserve the editorial cadence",
+      "Use 6px radius for cards, mockup containers, and any rectangular UI surface",
+      "Place product mockups on #1a1a17 dark panels to create a museum-vitrine effect against the white page",
+      "Anchor every section with 48-64px vertical gap to keep the editorial pacing"
+    ],
+    "donts": [
+      "Do not introduce blue, green, red, or any saturated brand color — the warmth comes from the near-black, not from accents",
+      "Do not set Nyght Serif in weights other than 300 — adding bold or medium breaks the editorial voice",
+      "Do not use square or 12px+ radii on buttons or tags — the pill shape is load-bearing",
+      "Do not set body or heading text in pure #000000 — always use #1a1a17 for the warm-ink quality",
+      "Do not use heavy drop shadows on cards — the system relies on hairline borders and surface contrast, not elevation",
+      "Do not set line-height above 1.2 on Nyght Serif display sizes — the serif needs to sit tight to read as display, not body",
+      "Do not apply gradients to text, buttons, or text containers — the palette is flat by design"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1a1a17",
+        "name": "Ink",
+        "role": "Primary text, filled buttons, dark surface backgrounds, heading strokes — a warm-tinted near-black that replaces pure #000 throughout the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, light section backgrounds, button borders on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5f5f5d",
+        "name": "Ash",
+        "role": "Secondary body text, helper text, muted borders, low-emphasis UI metadata",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container, comfortable density. Hero is a 50/50 split: left column holds the serif headline at 62-72px, Switzer subtext, and a pill CTA; right column holds a full-bleed food photograph. Below the hero, a three-column stat strip divided by hairline rules. Subsequent sections alternate between left-text/right-dark-panel-with-mockup layouts and centered three-column workflow card grids. Sections are separated by 48-64px vertical gaps on a continuous white canvas. Navigation is a single white header bar with left-aligned logo and right-aligned pill CTA, no sticky behavior or mega-menu.",
+    "imagery": "Photography plays a hero role: a single large full-bleed image of stacked wooden crates of strawberries in a warehouse occupies the entire right half of the hero, warm-toned, natural light, no overlays. The image is treated as a photographic still life — the physical supply chain is the product, not abstract illustration. Product mockups appear as in-page screenshots on dark panels, functioning as visual evidence rather than decoration. No icons beyond minimal 1.5px stroke monochrome marks; no illustration system; no decorative graphics.",
+    "similar": [
+      {
+        "why": "Same editorial discipline: near-monochrome palette, generous whitespace, serif-or-grotesque type pairing, and pill-shaped controls that disappear into the layout",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical reliance on typographic scale and weight contrast over color for hierarchy, with the warm-black-on-white palette and minimal interface chrome",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same warm-tinted near-black replacing pure #000, the same avoidance of saturated accent colors, and a serif-light display weight used for editorial moments",
+        "business": "Notion"
+      },
+      {
+        "why": "Same design-philosophy move of letting a single warm-tinted near-black do all the work while reserving color for functional moments inside product surfaces",
+        "business": "Arc browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "1440px",
+        "tags": "1440px",
+        "cards": "6px",
+        "buttons": "1440px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas and default section background"
+      },
+      {
+        "hex": "#1a1a17",
+        "name": "Ink Plate",
+        "level": 1,
+        "purpose": "Inverted surface used for dark feature panels, product mockup backings, and high-contrast blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "editorial monochrome on warm paper — a minimal typeset spread where warm-black ink, a light display serif, and pill-shaped controls turn a B2B tool into something that reads like a quarterly journal.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 21,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 24,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 30,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 31.2,
+        "letterSpacing": 0.78
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 52.8,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 62,
+        "lineHeight": 68.2,
+        "letterSpacing": 0.62
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 72,
+        "letterSpacing": 0.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "Filled action button for top-level CTAs",
+        "description": "Background #1a1a17, text #ffffff, 1440px border-radius (full pill), 28px horizontal padding × ~12px vertical, Switzer 15-16px weight 500, 0.03em tracking. Optional trailing arrow icon in white. Anchors the header and hero."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Outlined or text-only action for secondary actions",
+        "description": "Transparent background, 1px border #1a1a17 or #ffffff depending on surface, 1440px radius, matching pill padding. Used for less prominent CTAs alongside the filled pill."
+      },
+      {
+        "name": "Pill Nav Link",
+        "role": "Navigation items in header",
+        "description": "Switzer 15-16px weight 400-500, no background, 1440px radius only when active (inverted: #1a1a17 bg, #ffffff text). Dropdown items get 12-16px padding."
+      },
+      {
+        "name": "Editorial Display Heading",
+        "role": "Section and hero headlines",
+        "description": "Nyght Serif weight 300, color #1a1a17, sizes 48-72px, line-height 1.0-1.1, letter-spacing 0.01em. The light weight and generous line-height create breathing space between lines — never set tight."
+      },
+      {
+        "name": "Product Mockup Card",
+        "role": "Embedded product UI screenshots within feature sections",
+        "description": "White card surface, 6px radius, ~24px internal padding, subtle #5f5f5d or #1a1a17 hairline border. Contains a miniaturized product UI with a chat input, task list, and status badges. Floats over a soft warm gradient backdrop in the surrounding panel."
+      },
+      {
+        "name": "Workflow Card",
+        "role": "Three-column feature card on light section",
+        "description": "White surface, 6px radius, 24px padding, faint 1px border. Contains a product mockup at top, then a Switzer small caps label (14px weight 500, 0.06em tracking), a Nyght Serif heading-sm (26px weight 300), and Ash body text. Three cards sit on a soft horizontal band gradient."
+      },
+      {
+        "name": "Stat Tile",
+        "role": "Metric callouts in the trust strip below hero",
+        "description": "Three equal columns separated by hairline #5f5f5d dividers. Each tile: small icon (16px) in #1a1a17, Switzer 15-16px weight 400, the numeric value not styled larger — the stat is part of the sentence rather than a hero number."
+      },
+      {
+        "name": "Feature Row",
+        "role": "Two-column text + visual feature layout",
+        "description": "Left column holds a Switzer small-caps eyebrow label and a Nyght Serif heading (48-62px weight 300). Right column holds a large dark-surface panel (#1a1a17 with subtle warm gradient) containing the product mockup. 48-64px vertical gap between rows."
+      },
+      {
+        "name": "Chat Input Bar",
+        "role": "AI assistant prompt inside product mockup",
+        "description": "Rounded pill input, white background, placeholder text in #5f5f5d, send button is a solid purple-ish or Ink filled circle. Sits as the top element of the Ozai Task List card."
+      },
+      {
+        "name": "Task List Item",
+        "role": "Individual row inside the product mockup task list",
+        "description": "White surface, no border, 16px row gap, 16px Switzer weight 500 title, 14px Ash subtitle, right-side chevron in #5f5f5d. Inactive rows fade to ~50% opacity."
+      },
+      {
+        "name": "Status Pill Badge",
+        "role": "Order/inventory status indicators inside mockups",
+        "description": "Inline pill, ~6px vertical × 10px horizontal padding, 1440px radius, Switzer 12-13px weight 500. Healthy = subtle green-tinted neutral bg + dark text; Critical = warm-tinted neutral bg + dark text. The system deliberately avoids saturated red/green — badges stay within the warm-monochrome palette."
+      },
+      {
+        "name": "Icon Bullet",
+        "role": "Small leading icon for feature list items",
+        "description": "16-18px monochrome icon, stroke weight ~1.5px, color #1a1a17, aligned to the first line of each feature row with 16-24px gap to the label."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top-of-page navigation",
+        "description": "White background, ~16px vertical padding, flex row with logo (left), nav links (center-left, 34px gap), and CTA pill (right). No border-bottom — the header relies on the white-on-white separation from the hero."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Reserved exclusively for display and heading levels (26-72px). Weight 300 is the signature: most systems reach for 600-700 serif, this whisper-weight creates editorial gravitas through restraint. Letter-spacing widens slightly at smaller sizes (0.03em) and tightens at display sizes (0.01em) to preserve optical balance.",
+        "sizes": "26px, 48px, 62px, 72px",
+        "family": "Nyght Serif",
+        "weight": "300",
+        "lineHeight": "1.00-1.20",
+        "substitute": "Fraunces (Google Fonts) at weight 300, or Cormorant Garamond Light",
+        "letterSpacing": "0.01em at 62-72px, 0.03em at 26-48px"
+      },
+      {
+        "role": "Workhorse for nav, body, buttons, labels, card metadata, and small headings. Tracking runs consistently at 0.03em — a subtle positive letter-spacing that gives the grotesque a calm, considered cadence. Weight 500 for emphasis, 600 for button text and nav active states.",
+        "sizes": "14px, 15px, 16px, 20px",
+        "family": "Switzer",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.50",
+        "substitute": "Inter, or Manrope (Google Fonts)",
+        "letterSpacing": "0.03em uniform across all sizes"
+      }
+    ],
+    "description": "Getburnt operates in a near-achromatic editorial register: a warm near-black ink against white paper, with a single mid-gray for secondary text. The visual language borrows from print typography — a featherweight display serif carries headlines while a neutral grotesque handles everything operational, creating the rhythm of a magazine spread rather than a SaaS dashboard. Pill-shaped controls and small-radius cards keep the UI tactile and quick, and the deliberate absence of chromatic accents forces hierarchy through scale, weight, and whitespace alone. Product mockups float as photographic-style still lifes within warm grayscale containers, making the interface feel like a curated catalog rather than a software platform.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Getburnt design system\",\"item\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#style-reference\",\"name\":\"Getburnt design system reference\",\"headline\":\"Getburnt design system | Refero Styles\",\"description\":\"Explore Getburnt's light AI design system: Ink #1a1a17, Paper #ffffff colors, Nyght Serif, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Getburnt\",\"url\":\"https://www.getburnt.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"caption\":\"Screenshot of Getburnt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Getburnt design system\",\"Getburnt website design\",\"Getburnt colors\",\"Getburnt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink\",\"Paper\",\"Ash\",\"Nyght Serif\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Getburnt design system\"},{\"@type\":\"Thing\",\"name\":\"Getburnt website design\"},{\"@type\":\"Thing\",\"name\":\"Getburnt colors\"},{\"@type\":\"Thing\",\"name\":\"Getburnt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-11T00:39:14.982Z\",\"dateModified\":\"2026-05-11T00:39:14.982Z\"}]}19:T7c8,Quick Color Reference:\n- text: #1a1a17\n- background: #ffffff\n- border: #5f5f5d (hairline) or #1a1a17 (emphasized)\n- accent: no distinct accent — the system is monochromatic\n- primary action: #1a1a17 (filled action)\n- inverted surface: #1a1a17\n\nExample Component Prompts:\n1. Build a hero section: white background, max-width 1200px centered. Left half holds a Nyght Serif weight 300 headline at 72px, color #1a1a17, letter-spacing 0.01em, line-height 1.0. Below it a Switzer 16px weight 400 subtext in #5f5f5d, then a pill button — #1a1a17 background, #ffffff text, 1440px radius, 28px horizontal padding, Switzer 15px weight 500. Right half is a full-bleed photograph with no border-radius.\n2. Build a workflow card: white surface, 6px radius, 24px padding, 1px border #5f5f5d. Top section is a product mockup on a #1a1a17 dark panel. Below the mockup, a Switzer 14px weight 500 eyebrow label in #1a1a17 with 0.06em tracking, then a Nyght Serif 26px weight 300 heading in #1a1a17, then a Switzer 16px weight 400 body paragraph in #5f5f5d.\n3. Build a stat strip: three equal columns separated by 1px #5f5f5d vertical dividers, no top/bottom borders. Each column has a 16px monochrome icon in #1a1a17, then Switzer 16px weight 400 text in #1a1a17, 8px row gap between icon and text.\n4. Build a feature row: two-column layout, 48px column gap. Left column has a Switzer 14px weight 500 eyebrow in #1a1a17, then a Nyght Serif 48px weight 300 heading, then three feature bullets each with a 16px icon, Switzer 20px weight 500 label, and Ash body text. Right column is a #1a1a17 dark panel, 6px radius, containing a white product mockup card with 24px padding.\n5. Build a pill nav bar: white background, 64px height, flex row. Left: logo text in Switzer 16px weight 600 #1a1a17. Center: four Switzer 15px weight 400 nav links in #1a1a17, 34px gap. Right: a pill ghost button — transparent background, 1px border #1a1a17, 1440px radius, Switzer 15px weight 500 text #1a1a17, 16px 24px padding."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows entirely. Spatial separation is achieved through hairline 1px borders in #5f5f5d, surface contrast (white card on #1a1a17 panel or white card on white canvas with border), and generous whitespace. Elevation is implied by container, not by blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a17",
+          "oklch": {
+            "c": 0.005730573343111676,
+            "h": 106.86856102323522,
+            "l": 0.21662328289395497
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "button",
+            "image",
+            "icon",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 1196,
+          "confidence": 1,
+          "prominence": 92684511.37400597,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 7,
+            "card/color": 6,
+            "hero/color": 1,
+            "icon/color": 14,
+            "link/color": 4,
+            "nav/stroke": 2,
+            "other/fill": 1,
+            "image/color": 4,
+            "other/color": 161,
+            "button/color": 1,
+            "other/stroke": 45,
+            "heading/color": 20,
+            "nav/borderColor": 76,
+            "body/borderColor": 28,
+            "card/borderColor": 24,
+            "hero/borderColor": 3,
+            "icon/borderColor": 56,
+            "link/borderColor": 16,
+            "image/borderColor": 16,
+            "other/borderColor": 595,
+            "button/borderColor": 12,
+            "heading/borderColor": 80,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "footer",
+            "link"
+          ],
+          "frequency": 728,
+          "confidence": 1,
+          "prominence": 74496952.68599603,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 41,
+            "icon/color": 6,
+            "link/color": 16,
+            "other/fill": 5,
+            "other/color": 73,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 32,
+            "heading/color": 2,
+            "nav/borderColor": 4,
+            "body/borderColor": 164,
+            "icon/borderColor": 24,
+            "link/borderColor": 64,
+            "other/borderColor": 271,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5f5f5d",
+          "oklch": {
+            "c": 0.0033034732785121807,
+            "h": 106.52245142605742,
+            "l": 0.48373702744805414
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 190782.507672065,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "other/color": 4,
+            "body/borderColor": 56,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#d71920",
+          "oklch": {
+            "c": 0.21778225336358512,
+            "h": 26.97664671749987,
+            "l": 0.5606706212862692
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1515.9716579111061,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011316258808682329,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.44,
+          "background": "#ffffff",
+          "foreground": "#1a1a17"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.4,
+          "background": "#ffffff",
+          "foreground": "#5f5f5d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#1a1a17",
+          "foreground": "#5f5f5d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 73,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 223,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Switzer",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 357,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Nyght Serif",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "button",
+            "icon",
+            "image",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 335,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Nyght Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Nyght Serif",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Nyght Serif",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Nyght Serif",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Nyght Serif",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c73d3ce0-255d-4c02-b22b-f34e242695db.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Getburnt design system\",\"item\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#style-reference\",\"name\":\"Getburnt design system reference\",\"headline\":\"Getburnt design system | Refero Styles\",\"description\":\"Explore Getburnt's light AI design system: Ink #1a1a17, Paper #ffffff colors, Nyght Serif, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Getburnt\",\"url\":\"https://www.getburnt.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/002cc5a7-0d34-4d8d-afa0-c5fad69477d5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"caption\":\"Screenshot of Getburnt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9f9caa74-7abe-4acc-86f6-0d13dc8e3a00.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Getburnt design system\",\"Getburnt website design\",\"Getburnt colors\",\"Getburnt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink\",\"Paper\",\"Ash\",\"Nyght Serif\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Getburnt design system\"},{\"@type\":\"Thing\",\"name\":\"Getburnt website design\"},{\"@type\":\"Thing\",\"name\":\"Getburnt colors\"},{\"@type\":\"Thing\",\"name\":\"Getburnt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-11T00:39:14.982Z\",\"dateModified\":\"2026-05-11T00:39:14.982Z\"}]}19:T7c8,Quick Color Reference:\n- text: #1a1a17\n- background: #ffffff\n- border: #5f5f5d (hairline) or #1a1a17 (emphasized)\n- accent: no distinct accent — the system is monochromatic\n- primary action: #1a1a17 (filled action)\n- inverted surface: #1a1a17\n\nExample Component Prompts:\n1. Build a hero section: white background, max-width 1200px centered. Left half holds a Nyght Serif weight 300 headline at 72px, color #1a1a17, letter-spacing 0.01em, line-height 1.0. Below it a Switzer 16px weight 400 subtext in #5f5f5d, then a pill button — #1a1a17 background, #ffffff text, 1440px radius, 28px horizontal padding, Switzer 15px weight 500. Right half is a full-bleed photograph with no border-radius.\n2. Build a workflow card: white surface, 6px radius, 24px padding, 1px border #5f5f5d. Top section is a product mockup on a #1a1a17 dark panel. Below the mockup, a Switzer 14px weight 500 eyebrow label in #1a1a17 with 0.06em tracking, then a Nyght Serif 26px weight 300 heading in #1a1a17, then a Switzer 16px weight 400 body paragraph in #5f5f5d.\n3. Build a stat strip: three equal columns separated by 1px #5f5f5d vertical dividers, no top/bottom borders. Each column has a 16px monochrome icon in #1a1a17, then Switzer 16px weight 400 text in #1a1a17, 8px row gap between icon and text.\n4. Build a feature row: two-column layout, 48px column gap. Left column has a Switzer 14px weight 500 eyebrow in #1a1a17, then a Nyght Serif 48px weight 300 heading, then three feature bullets each with a 16px icon, Switzer 20px weight 500 label, and Ash body text. Right column is a #1a1a17 dark panel, 6px radius, containing a white product mockup card with 24px padding.\n5. Build a pill nav bar: white background, 64px height, flex row. Left: logo text in Switzer 16px weight 600 #1a1a17. Center: four Switzer 15px weight 400 nav links in #1a1a17, 34px gap. Right: a pill ghost button — transparent background, 1px border #1a1a17, 1440px radius, Switzer 15px weight 500 text #1a1a17, 16px 24px padding."
+}

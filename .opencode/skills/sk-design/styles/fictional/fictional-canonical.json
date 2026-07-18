@@ -1,0 +1,1327 @@
+{
+  "source": "https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431",
+  "uuid": "af2e0bc4-ef1c-4365-a25d-00b691218431",
+  "name": "Fictional",
+  "northStar": "Sticker-bombed tabletop — vivid decals scattered across a warm cream surface, held down by chunky rounded type.",
+  "capturedAt": "2026-07-18T08:37:46.890Z",
+  "meta": {
+    "url": "https://fictional-typeface.com",
+    "siteName": "Fictional",
+    "extractedAt": "2026-06-03T15:04:26.450Z",
+    "durationMs": 32663,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 713,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 5px radius for buttons, 15px for cards, 144px for circular tags — these three radii are the entire shape vocabulary",
+      "Set line-height to 0.90–1.10 for any display size above 72px; the type is designed to lock up tight",
+      "Set type color to Ink Black on Cream Blush and Paper White on every saturated color block — never invert within a block",
+      "Rotate stickers between -15° and 15°; energy comes from the angle, not from varied colors within one composition",
+      "Use the 2px solid Sunburst Yellow ring as the only elevation cue on buttons and selected stickers",
+      "Keep section rhythm as alternating full-bleed color blocks (violet → yellow → red) rather than white/gray bands",
+      "Activate 'ss01' and 'dlig' font features on every Fictional text node — the ligatures and alternate forms carry the personality"
+    ],
+    "donts": [
+      "Don't use drop shadows, blur, or opacity layering — the system has exactly one shadow, and it's a solid 2px ring",
+      "Don't set body line-height above 1.40; the face tightens as it grows and reading copy stays compact",
+      "Don't introduce muted or desaturated tints of the brand colors — all five are used at full saturation",
+      "Don't use Light weight (300) for any display size above 72px; the whisper weights live at 16–29px captions only",
+      "Don't separate stickers with gray dividers or whitespace gutters — let them overlap and stack",
+      "Don't use gray fill buttons; buttons sit inside color blocks and use the yellow ring as their accent",
+      "Don't exceed four sticker colors in a single composition — the page is a collage, not a kaleidoscope"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffe9ce",
+        "name": "Cream Blush",
+        "role": "Page canvas, hero background — the warm off-white that everything else sticks to",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Speech bubble fills, text on saturated color blocks, card reverse",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hero wordmark, sticker outlines, all display typography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Slate Gray",
+        "role": "Secondary body text, link underline, muted helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Near Black",
+        "role": "Input text and input border — the UI control ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Mist Gray",
+        "role": "Disabled button fill, low-emphasis surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Pale Gray",
+        "role": "Inactive link border, disabled underline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a53ff",
+        "name": "Electric Violet",
+        "role": "Section color blocks, circular badge fills, sticker bursts — the cool anchor of the palette",
+        "group": "brand"
+      },
+      {
+        "hex": "#fd4b38",
+        "name": "Coral Blaze",
+        "role": "Starburst stickers, red section blocks, urgent decorative shouts",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffd80c",
+        "name": "Sunburst Yellow",
+        "role": "Sticker fills, section blocks, and the only shadow color in the system (2px solid ring around active controls)",
+        "group": "brand"
+      },
+      {
+        "hex": "#3ccb09",
+        "name": "Lime Spark",
+        "role": "Round sticker badges and pill tags — the fresh-pop accent in sticker compositions",
+        "group": "brand"
+      },
+      {
+        "hex": "#0500a3",
+        "name": "Deep Indigo",
+        "role": "Inverted heading text on light cards and accent text inside color blocks — the cool counterweight to Coral Blaze",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed, no max-width container. The page is a vertical stack of color-block sections, each filling the viewport edge to edge: cream hero on top, then alternating violet / yellow / red / cream blocks down the page. Within each block, content is padded generously (43–58px horizontal) but elements are not constrained to a column grid — the hero is a free composition with the wordmark center-anchored and stickers scattered at angles around it. Cards inside color blocks sit as inset rectangles, not as floating tiles. Navigation is minimal: a small diagonal 'GET IT HERE' sticker in the upper-left corner of the hero replaces a traditional nav bar. Section transitions are hard color flips, not fades or gradients. The overall rhythm is a pinboard — pieces overlap, rotate, and crowd each other — not a magazine grid.",
+    "imagery": "No photography, no product screenshots, no rendered type specimens in raster form. The visual language is entirely typographic and graphic: Fictional set huge, paired with flat geometric shapes (starbursts, circles, pills, rounded rectangles) in five vivid solid fills. Icons are absent — text inside the geometric shapes functions as the only iconography. Every visual element is vector, flat-color, and rotated. The closest thing to a photograph is the cream canvas itself, which reads as a tabletop surface rather than a digital background.",
+    "similar": [
+      {
+        "why": "Type foundry showcase using full-bleed color blocks, oversized specimen type, and scattered decorative shapes with rotated angles",
+        "business": "Pangram Pangram"
+      },
+      {
+        "why": "Friendly geometric typefaces presented on warm cream canvases with confident, sticker-like layout decisions and minimal nav",
+        "business": "Grilli Type"
+      },
+      {
+        "why": "Quirky display families marketed through playful, collage-style hero compositions with bursts and pill labels",
+        "business": "Ohno Type"
+      },
+      {
+        "why": "Bold specimen pages that treat the typeface as a poster — full-bleed color fields, no shadows, type doing the visual work",
+        "business": "Dinamo (Font of the Month)"
+      },
+      {
+        "why": "Foundry marketplace aesthetic with vivid block colors, rounded type, and informal sticker-annotation overlays",
+        "business": "Future Fonts"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "10px",
+        "cards": "15px",
+        "pills": "144px",
+        "buttons": "5px"
+      },
+      "elementGap": "12-29px",
+      "sectionGap": "60px",
+      "cardPadding": "29px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffe9ce",
+        "name": "Cream Blush Canvas",
+        "level": 1,
+        "purpose": "Default page and hero background — the tabletop everything sticks to"
+      },
+      {
+        "hex": "#8a53ff",
+        "name": "Color Block Section",
+        "level": 2,
+        "purpose": "Full-bleed violet sections that flip the canvas temperature and act as a secondary background"
+      },
+      {
+        "hex": "#fd4b38",
+        "name": "Sticker Fill",
+        "level": 3,
+        "purpose": "Decorative overlays and reverse sections carrying urgency"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White Reverse",
+        "level": 4,
+        "purpose": "Speech bubbles, specimen cards, and reverse type plates that need a neutral within a colored section"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(251, 215, 12) 0px 0px 0px 2px",
+        "element": "Active Button / Sticker Ring"
+      }
+    ],
+    "northStar": "Sticker-bombed tabletop — vivid decals scattered across a warm cream surface, held down by chunky rounded type.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.71,
+        "letterSpacing": 0.19
+      },
+      {
+        "role": "body-sm",
+        "size": 22,
+        "lineHeight": 1.67,
+        "letterSpacing": 0.26
+      },
+      {
+        "role": "body",
+        "size": 29,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.35
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 43,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.52
+      },
+      {
+        "role": "heading",
+        "size": 50,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": 0.86
+      },
+      {
+        "role": "display",
+        "size": 115,
+        "lineHeight": 1,
+        "letterSpacing": 1.38
+      },
+      {
+        "role": "display-xl",
+        "size": 202,
+        "lineHeight": 0.9,
+        "letterSpacing": 2.42
+      },
+      {
+        "role": "hero",
+        "size": 346,
+        "lineHeight": 0.9,
+        "letterSpacing": 4.15
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark",
+        "role": "The product name set as the page's first impression",
+        "description": "Fictional set at 202–346px, weight 800 (UltraBold), Ink Black on Cream Blush, line-height 0.90, letter-spacing 4.15px. Sits on the cream canvas with sticker overlays scattered around it. No headline above it — the wordmark IS the headline."
+      },
+      {
+        "name": "Starburst Sticker",
+        "role": "Decorative shout overlay floating over the hero and section blocks",
+        "description": "12-point or 16-point jagged star shape, solid Coral Blaze or Sunburst Yellow fill, white or Ink Black text at 22–29px weight 700, rotated -8° to 12°. No border, no shadow. Carries single shout words like 'KABOOOM' or 'BANG'."
+      },
+      {
+        "name": "Speech Bubble Tag",
+        "role": "Conversational annotation pinned to the wordmark or specimen",
+        "description": "Paper White fill, 15px radius, Ink Black text at 29–36px weight 400, with a small triangular tail pointing toward its referent. Sits at slight rotation. 29px vertical padding, 43px horizontal padding."
+      },
+      {
+        "name": "Circular Badge Sticker",
+        "role": "Round tag for compact shouts like 'NEW!' or 'OUT NOW'",
+        "description": "144px border-radius (full circle), Electric Violet or Lime Spark fill, Paper White text at 16–22px weight 700, centered both axes. Reads as a physical button badge."
+      },
+      {
+        "name": "Diagonal Sticker Label",
+        "role": "Rectangular angled tag for longer shout lines like 'FREE TRIAL AVAILABLE'",
+        "description": "Solid Coral Blaze fill, Ink Black text at 22px weight 700, 5px radius, rotated -12° to -20°, no border. 8px vertical padding, 29px horizontal padding. Layered above other stickers."
+      },
+      {
+        "name": "Weight Specimen Card",
+        "role": "Large color-block card listing the type family's weights",
+        "description": "Electric Violet background, 15px radius, 60px vertical padding, 43px horizontal padding. Weight names stacked vertically (Light through UltraBold) in Paper White at 36–43px weight 400. Used to present the family at a glance."
+      },
+      {
+        "name": "Specimen Description Card",
+        "role": "Companion card to the weight list, holding the brand pitch",
+        "description": "Sunburst Yellow background, 15px radius, 58px vertical padding, 43px horizontal padding. Ink Black body text at 29px weight 400, line-height 1.40. A short horizontal Ink Black rule with a centered dot divider sits below the text."
+      },
+      {
+        "name": "Character Set Display",
+        "role": "Full-width red panel showing the typeface's glyph coverage",
+        "description": "Coral Blaze full-bleed block, 15px radius on the visible specimen rectangle. Inset outlined tile in Sunburst Yellow 2px border marks the first glyph. A 144px-radius large 'A' sits in the bottom-right as a watermark."
+      },
+      {
+        "name": "Action Button (Yellow Ring)",
+        "role": "The only interactive control in the system",
+        "description": "Paper White fill, 5px radius, Sunburst Yellow 2px solid ring (the entire elevation system), Ink Black text at 16–22px weight 700, 8px vertical padding, 24px horizontal padding. On hover, the fill flips to Ink Black and text flips to Paper White."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Text link with a visible underline rule",
+        "description": "Ink Black or Slate Gray text at 29px weight 400 with a 1px Slate Gray or Pale Gray bottom border. No underline-offset trickery — the border IS the underline, sitting directly under the baseline."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field for any capture context",
+        "description": "Paper White fill, 1px Near Black border, 5px radius, Near Black text at 16px weight 400, 8px vertical padding, 12px horizontal padding. No focus ring color is added — the existing border thickens to 2px on focus."
+      },
+      {
+        "name": "Scroll Prompt Sticker",
+        "role": "Directional cue floating in the lower hero",
+        "description": "Electric Violet circle (144px radius), Paper White text at 22px weight 400 reading 'scroll down ↓', centered. Floats free, no shadow."
+      },
+      {
+        "name": "Section Color Block",
+        "role": "Full-width panel that flips the page temperature",
+        "description": "Full-bleed background in Electric Violet, Coral Blaze, or Sunburst Yellow, 60–80px vertical padding, 43–58px horizontal padding for inner content. Always paired with a contrasting block (the page rhythm is color-flipped sections, not white/gray alternation)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface. Body, display, and UI voice. The five-weight family (Light through UltraBold) maps to a single size-and-voice axis: bigger and bolder is the entire hierarchy. The whisper-light 300 is reserved for captioning the type itself; UltraBold 800 owns the hero wordmark and sticker shouts.",
+        "sizes": "16, 22, 29, 36, 40, 43, 48, 50, 72, 115, 202, 346",
+        "family": "Fictional",
+        "weight": "300, 400, 600, 700, 800",
+        "lineHeight": "0.90, 1.00, 1.10, 1.20, 1.30, 1.40, 1.67, 1.71, 1.88",
+        "substitute": "Quicksand (closest free analogue — rounded geometric with warm terminals) or Fredoka for a chunkier stand-in",
+        "letterSpacing": "0.0120em across all sizes — uniformly positive tracking, unusually open for a display face",
+        "fontFeatureSettings": "\"ss01\" on, \"dlig\" on — stylistic set 01 and discretionary ligatures shape the personality"
+      }
+    ],
+    "description": "Fictional is a sticker-bombed tabletop for a display typeface: cream canvas, oversized rounded type, and saturated color blocks behaving like die-cut decals. The page refuses grid discipline — speech bubbles, starbursts, pills, and diagonal tags scatter across the hero at free angles, each carrying a short shout in a vivid solid fill. Cards and sections are full-bleed color fields; type sits directly on them with no shadows, no gradients, no neumorphism. The only depth cue is a 2px solid yellow outline wrapping certain controls, which doubles as the system's entire elevation vocabulary. Layout reads as a collage pinned to corkboard, not a dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fictional design system\",\"item\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#style-reference\",\"name\":\"Fictional design system reference\",\"headline\":\"Fictional design system | Refero Styles\",\"description\":\"Explore Fictional's light Design design system: Cream Blush #ffe9ce, Paper White #ffffff colors, Fictional typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\",\"mainEntityOfPage\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fictional\",\"url\":\"https://fictional-typeface.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"caption\":\"Screenshot of Fictional\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fictional design system\",\"Fictional website design\",\"Fictional colors\",\"Fictional typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Cream Blush\",\"Paper White\",\"Ink Black\",\"Slate Gray\",\"Fictional\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fictional design system\"},{\"@type\":\"Thing\",\"name\":\"Fictional website design\"},{\"@type\":\"Thing\",\"name\":\"Fictional colors\"},{\"@type\":\"Thing\",\"name\":\"Fictional typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:12:52.946Z\",\"dateModified\":\"2026-04-30T02:12:52.946Z\"}]}19:T86a,Quick Color Reference\n• page canvas: #ffe9ce\n• text on canvas: #000000\n• text on color blocks: #ffffff or #0500a3\n• card / section blocks: #8a53ff, #fd4b38, #ffd80c, #3ccb09\n• border / input rule: #101010\n• accent ring: #ffd80c (2px solid)\n• primary action: no distinct CTA color\n\nExample Component Prompts\n1. Hero wordmark: cream #ffe9ce full-bleed background. The word 'Fictional' set at 346px, Fictional weight 800, line-height 0.90, letter-spacing 4.15px, color #000000, centered. Scatter three stickers around it: a Coral Blaze 16-point starburst at 72px saying 'KABOOOM' in white 22px weight 700 rotated -8°; a Paper White speech bubble (15px radius) with Ink Black 29px weight 400 reading 'A friendly & quirky typeface' rotated 4°; an Electric Violet circle (144px radius) reading 'OUT NOW' in white 22px weight 700.\n2. Weight specimen card: Electric Violet #8a53ff full card, 15px radius, 60px vertical and 43px horizontal padding. Stack five lines of weight names in Paper White at 43px weight 400, line-height 1.20: Fictional Light, Fictional Regular, Fictional SemiBold, Fictional Bold, Fictional UltraBold.\n3. Specimen description card: Sunburst Yellow #ffd80c background, 15px radius, 58px vertical and 43px horizontal padding. Ink Black body text at 29px weight 400, line-height 1.40, reading 'Fictional is a friendly, playful typeface, full of warmth and personality. Perfect for cheerful branding, packaging, game interfaces, and children's books.' A 1px Ink Black horizontal rule with a centered filled dot sits 24px below the text.\n4. Action button: Paper White #ffffff fill, 5px radius, 2px solid Sunburst Yellow #ffd80c ring, Ink Black text at 16px weight 700, 8px vertical and 24px horizontal padding. The 2px ring is the only shadow in the entire system.\n5. Section color block transition: full-bleed Coral Blaze #fd4b38 section, 72px vertical padding, containing a single Cream Blush #ffe9ce speech bubble (15px radius) with Ink Black 36px weight 400 text 'with a cartoonesque character', rotated -3°. Below it, a Lime Spark #3ccb09 circular badge (144px radius) reading 'scroll down ↓' in white 22px weight 400."
+      }
+    ],
+    "elevationPhilosophy": "No drop shadows. The only depth in the system is a 2px solid Sunburst Yellow outline (rgb(251, 215, 12) 0px 0px 0px 2px) that wraps active controls and select stickers — a hard ring, not a soft glow. Depth is created by layering, rotation, and color contrast, never by blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 3222,
+          "confidence": 1,
+          "prominence": 33983613.58744163,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 5,
+            "list/color": 308,
+            "other/fill": 2,
+            "other/color": 5,
+            "button/color": 312,
+            "heading/color": 13,
+            "body/borderColor": 4,
+            "card/borderColor": 20,
+            "list/borderColor": 1232,
+            "other/borderColor": 16,
+            "button/borderColor": 1248,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 229,
+          "confidence": 1,
+          "prominence": 9344763.199679844,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 6,
+            "hero/color": 1,
+            "link/color": 2,
+            "other/fill": 10,
+            "other/color": 15,
+            "button/color": 1,
+            "heading/color": 16,
+            "body/borderColor": 8,
+            "card/borderColor": 24,
+            "hero/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 64,
+            "button/borderColor": 4,
+            "heading/borderColor": 64
+          }
+        },
+        {
+          "hex": "#8a53ff",
+          "oklch": {
+            "c": 0.24004905556787953,
+            "h": 292.2678621531629,
+            "l": 0.5992203850218027
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 6770742.324691548,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fd4b38",
+          "oklch": {
+            "c": 0.21722075933473584,
+            "h": 29.923957897823627,
+            "l": 0.6652749099265889
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1921783.2605111385,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffe9ce",
+          "oklch": {
+            "c": 0.0428957333993347,
+            "h": 72.91496897451295,
+            "l": 0.9448045725354299
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1191100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffd80c",
+          "oklch": {
+            "c": 0.1813798005345004,
+            "h": 95.63206530554174,
+            "l": 0.8888941511704174
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 886426.235288484,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "button/boxShadow": 1,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3ccb09",
+          "oklch": {
+            "c": 0.2371149625688942,
+            "h": 140.39513434505216,
+            "l": 0.7370989065235467
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 855592,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0500a3",
+          "oklch": {
+            "c": 0.22305452218119382,
+            "h": 264.94559534977265,
+            "l": 0.32474998047064596
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 374047.5843335391,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 340736.5335086783,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 6,
+            "other/color": 1,
+            "button/color": 1,
+            "body/borderColor": 8,
+            "link/borderColor": 18,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 4963.403502197844,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 6
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3841.254276071638,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004237562675213943,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#ffffff",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.8,
+          "background": "#ffe9ce",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.13,
+          "background": "#ffe9ce",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#dddddd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#ffd80c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.01,
+          "background": "#dddddd",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.68,
+          "background": "#ffffff",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.66,
+          "background": "#ffd80c",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.85,
+          "background": "#cccccc",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.59,
+          "background": "#ffe9ce",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.07,
+          "background": "#dddddd",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.82,
+          "background": "#ffd80c",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#3ccb09",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.82,
+          "background": "#3ccb09",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.52,
+          "background": "#cccccc",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.34,
+          "background": "#3ccb09",
+          "foreground": "#0500a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.24,
+          "background": "#fd4b38",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 307
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "hero"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(251, 215, 12) 0px 0px 0px 2px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Fictional",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 703,
+          "fontFeatureSettings": [
+            "\"ss01\"",
+            "\"dlig\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 22,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.85
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "hero",
+            "other",
+            "card",
+            "list",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button"
+          ],
+          "frequency": 614,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 3.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 202,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "Fictional",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/321e0099-7af5-413b-97d1-fa04333b2022.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fictional design system\",\"item\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#style-reference\",\"name\":\"Fictional design system reference\",\"headline\":\"Fictional design system | Refero Styles\",\"description\":\"Explore Fictional's light Design design system: Cream Blush #ffe9ce, Paper White #ffffff colors, Fictional typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\",\"mainEntityOfPage\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fictional\",\"url\":\"https://fictional-typeface.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/af2e0bc4-ef1c-4365-a25d-00b691218431#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"caption\":\"Screenshot of Fictional\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f2c06e2-5e41-4572-9c0c-cb494513fc1b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fictional design system\",\"Fictional website design\",\"Fictional colors\",\"Fictional typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Cream Blush\",\"Paper White\",\"Ink Black\",\"Slate Gray\",\"Fictional\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fictional design system\"},{\"@type\":\"Thing\",\"name\":\"Fictional website design\"},{\"@type\":\"Thing\",\"name\":\"Fictional colors\"},{\"@type\":\"Thing\",\"name\":\"Fictional typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:12:52.946Z\",\"dateModified\":\"2026-04-30T02:12:52.946Z\"}]}19:T86a,Quick Color Reference\n• page canvas: #ffe9ce\n• text on canvas: #000000\n• text on color blocks: #ffffff or #0500a3\n• card / section blocks: #8a53ff, #fd4b38, #ffd80c, #3ccb09\n• border / input rule: #101010\n• accent ring: #ffd80c (2px solid)\n• primary action: no distinct CTA color\n\nExample Component Prompts\n1. Hero wordmark: cream #ffe9ce full-bleed background. The word 'Fictional' set at 346px, Fictional weight 800, line-height 0.90, letter-spacing 4.15px, color #000000, centered. Scatter three stickers around it: a Coral Blaze 16-point starburst at 72px saying 'KABOOOM' in white 22px weight 700 rotated -8°; a Paper White speech bubble (15px radius) with Ink Black 29px weight 400 reading 'A friendly & quirky typeface' rotated 4°; an Electric Violet circle (144px radius) reading 'OUT NOW' in white 22px weight 700.\n2. Weight specimen card: Electric Violet #8a53ff full card, 15px radius, 60px vertical and 43px horizontal padding. Stack five lines of weight names in Paper White at 43px weight 400, line-height 1.20: Fictional Light, Fictional Regular, Fictional SemiBold, Fictional Bold, Fictional UltraBold.\n3. Specimen description card: Sunburst Yellow #ffd80c background, 15px radius, 58px vertical and 43px horizontal padding. Ink Black body text at 29px weight 400, line-height 1.40, reading 'Fictional is a friendly, playful typeface, full of warmth and personality. Perfect for cheerful branding, packaging, game interfaces, and children's books.' A 1px Ink Black horizontal rule with a centered filled dot sits 24px below the text.\n4. Action button: Paper White #ffffff fill, 5px radius, 2px solid Sunburst Yellow #ffd80c ring, Ink Black text at 16px weight 700, 8px vertical and 24px horizontal padding. The 2px ring is the only shadow in the entire system.\n5. Section color block transition: full-bleed Coral Blaze #fd4b38 section, 72px vertical padding, containing a single Cream Blush #ffe9ce speech bubble (15px radius) with Ink Black 36px weight 400 text 'with a cartoonesque character', rotated -3°. Below it, a Lime Spark #3ccb09 circular badge (144px radius) reading 'scroll down ↓' in white 22px weight 400."
+}

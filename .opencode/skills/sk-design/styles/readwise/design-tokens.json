@@ -1,0 +1,277 @@
+{
+  "color": {
+    "pen-blue": {
+      "$value": "#478cd0",
+      "$type": "color",
+      "$description": "Pen Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "highlighter-yellow": {
+      "$value": "#fff7ca",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Yellow supporting accent for decorative details and low-frequency emphasis."
+    },
+    "reader-orange": {
+      "$value": "#fb9100",
+      "$type": "color",
+      "$description": "Reader Orange — Orange supporting accent for decorative details and low-frequency emphasis"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, product screenshot backgrounds, button text on filled buttons, and the nav background. The topmost surface tier"
+    },
+    "ink": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Ink — Primary heading and body text. Near-black rather than pure black — softer on the eye, reads as printed ink rather than digital display"
+    },
+    "page-mist": {
+      "$value": "#f1f5f8",
+      "$type": "color",
+      "$description": "Page Mist — Page canvas background. A cool, very-light blue-gray that reads as off-white paper rather than a flat gray, giving the entire page a subtle blue cast"
+    },
+    "deep-slate": {
+      "$value": "#2d2f33",
+      "$type": "color",
+      "$description": "Deep Slate — Secondary text and dark surface details. Used in nav and component borders where a slightly different tone from Ink is needed"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Dark supporting neutral for text, icons, and strong contrast."
+    }
+  },
+  "font": {
+    "charter": {
+      "$value": "Charter",
+      "$type": "fontFamily",
+      "$description": "Editorial serif used exclusively for headlines and large display text. The choice of a transitional serif in a productivity SaaS is the site's signature move — it signals 'reading' and 'books' before any copy is read. Weight 400 at 50px with lineHeight 1.00 creates tight, book-title-style display; weight 600 at 29px handles section headlines. Substitute: Source Serif Pro or Lora if Charter is unavailable."
+    },
+    "mulish": {
+      "$value": "Mulish",
+      "$type": "fontFamily",
+      "$description": "Humanist sans for everything non-display: nav, body, buttons, labels, icons. The weight range is wide — 400 for body, 600 for buttons, 700/800 for bold tags and emphasis. Tighter lineHeight (1.09) at 11px keeps captions compact; 1.50 at 16–18px gives body copy room to breathe. Consistent -0.02em tracking across all sizes tightens the sans into a clean utility voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "11px",
+        "fontWeight": 800,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Charter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Mulish",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Charter",
+        "fontSize": "29px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Charter",
+        "fontSize": "50px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Charter",
+        "fontSize": "50px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f1f5f8",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background. Cool off-white paper tone."
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Testimonial cards, product mockup backgrounds, elevated content blocks."
+    },
+    "highlight-wash": {
+      "$value": "#fff7ca",
+      "$type": "color",
+      "$description": "Surface level 2: In-line emphasis behind text. Also used as a soft callout surface."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://readwise.io",
+      "siteName": "Readwise",
+      "extractedAt": "2026-06-03T20:28:32.504Z",
+      "variant": "extended"
+    }
+  }
+}

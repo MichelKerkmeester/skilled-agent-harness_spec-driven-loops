@@ -1,0 +1,354 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, inverse text on dark buttons"
+    },
+    "carbon": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Carbon — Section backgrounds, dark surface containers, large heading text"
+    },
+    "fog-white": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Fog White — Card backgrounds, subtle elevated surfaces, ghost button hover fills"
+    },
+    "ash-gray": {
+      "$value": "#5d5d5d",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary body text, muted icon strokes, helper labels"
+    },
+    "graphite": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Graphite — Navigation text, inline link color, icon fills — softer than pure black for repeated text contexts"
+    },
+    "mist-gray": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline borders, nav separators, disabled state fills"
+    },
+    "linen": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Linen — Card hover state, second-tier surface tint"
+    },
+    "ink": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Ink — High-emphasis nav text, logo wordmark, near-black fallback"
+    },
+    "smoke": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, placeholder copy, scrollbar tracks"
+    },
+    "slate-whisper": {
+      "$value": "#64748b",
+      "$type": "color",
+      "$description": "Slate Whisper — Muted metadata, caption text, minor UI labels"
+    }
+  },
+  "font": {
+    "openai-sans": {
+      "$value": "OpenAI Sans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all surfaces. Weight 400 for body, 500 for nav and card titles, 600 for the page hero headline. The tight negative letter-spacing (-0.008em to -0.02em) pulls characters together for a dense, editorial feel at every size."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, full-bleed base"
+    },
+    "card": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 2: Feature cards, announcement banner, subtle surface lift"
+    },
+    "card-hover": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 3: Interactive card hover state, secondary tint"
+    },
+    "divider": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 4: Hairline borders, nav separators, search input background"
+    },
+    "dark-surface": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 5: Inverted sections, dark heading text, contrast blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://developers.openai.com",
+      "siteName": "OpenAI Developers",
+      "extractedAt": "2026-06-03T17:12:54.234Z",
+      "variant": "extended"
+    }
+  }
+}

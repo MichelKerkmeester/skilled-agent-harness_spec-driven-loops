@@ -1,0 +1,332 @@
+{
+  "color": {
+    "dark-cocoa": {
+      "$value": "#3b2722",
+      "$type": "color",
+      "$description": "Dark Cocoa — Primary canvas for hero/header, body text on light surfaces, structural borders, dark CTA fills — the most-used chromatic color in the system, carrying 80%+ of text and border weight"
+    },
+    "cream-parchment": {
+      "$value": "#f2ebd0",
+      "$type": "color",
+      "$description": "Cream Parchment — Light canvas for alternate sections, text on dark canvases, hairline borders, card surfaces — the warm off-white that makes the dark cocoa feel like printed kraft paper"
+    },
+    "charcoal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal — Hard-edge text and fine borders where absolute contrast is required"
+    },
+    "honeycomb-gold": {
+      "$value": "#ffca50",
+      "$type": "color",
+      "$description": "Honeycomb Gold — Filled CTA buttons on dark sections, full-bleed section canvas, nav fill — the most chromatic and warmest surface, used as functional punctuation against the brown"
+    },
+    "barn-red": {
+      "$value": "#a0342a",
+      "$type": "color",
+      "$description": "Barn Red — Red outline accent for tags, dividers, and focused UI edges."
+    },
+    "cornflower-blue": {
+      "$value": "#6aacc2",
+      "$type": "color",
+      "$description": "Cornflower Blue — Marquee band background, secondary nav fill — the sky/honey-sky blue used as a thin chromatic strip between full-bleed color blocks"
+    },
+    "sage-green": {
+      "$value": "#6fa162",
+      "$type": "color",
+      "$description": "Sage Green — Subtle accent strip alongside the blue in marquee/decorative bands — an herb-garden green that keeps the blue from feeling isolated"
+    }
+  },
+  "font": {
+    "taymakawao": {
+      "$value": "TayMakawao",
+      "$type": "fontFamily",
+      "$description": "Mega-display headlines — 'KNOW YOUR HONEY'-scale type that bleeds edge to edge, set tight (0.80 lh) with -0.01em tracking so letterforms lock together like wooden cutout letters"
+    },
+    "barkman-honey": {
+      "$value": "Barkman Honey",
+      "$type": "fontFamily",
+      "$description": "Secondary display and large numerals — the 'honey drip' serif used for sub-headlines and hero subtext (e.g. 65px section titles), its warmer curves pair against TayMakawao's mechanical weight"
+    },
+    "taybirdie": {
+      "$value": "TayBirdie",
+      "$type": "fontFamily",
+      "$description": "UI and small-body workhorse — nav links, footer text, micro-labels, and small caps. Normal tracking keeps it legible at small sizes; the tightest 1.00 lh is reserved for nav rows"
+    },
+    "times-new-roman": {
+      "$value": "Times New Roman",
+      "$type": "fontFamily",
+      "$description": "Fallback body text inside the system, also pulls double duty for italic-as-brand-voice moments where a system serif feels more honest than a designed face"
+    },
+    "anonymous-pro": {
+      "$value": "Anonymous Pro",
+      "$type": "fontFamily",
+      "$description": "Monospaced flavor for traceability codes, lot numbers, and any 'data' moment that should feel like a printed receipt — positive 0.031em tracking gives the text a stamped/inked feel"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Button and micro-copy fallback — the utilitarian text inside pill buttons where neutrality beats the warmer display faces"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TayBirdie-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "barkmanhoney",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TayBirdie-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TayBirdie-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AnonymousPro-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "TayBirdie-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "barkmanhoney",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TayBirdie-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "barkmanhoney",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "TayMakawao-Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "barkmanhoney",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TayMakawao-Regular",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TayMakawao-Regular",
+        "fontSize": "135px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 135px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "TayMakawao-Regular",
+        "fontSize": "209px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 209px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "TayMakawao-Regular",
+        "fontSize": "238px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 238px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "42.75px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "dark-cocoa-canvas": {
+      "$value": "#3b2722",
+      "$type": "color",
+      "$description": "Surface level 0: Primary hero and dark section background — the page's most prominent canvas"
+    },
+    "honeycomb-gold-section": {
+      "$value": "#ffca50",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed alternate section background for feature/CTA areas"
+    },
+    "cornflower-marquee": {
+      "$value": "#6aacc2",
+      "$type": "color",
+      "$description": "Surface level 2: Thin horizontal band used as a sectional divider with scrolling text"
+    },
+    "cream-parchment": {
+      "$value": "#f2ebd0",
+      "$type": "color",
+      "$description": "Surface level 3: Light text and hairline borders, occasionally inverted as a small content surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.busybeehoney.com",
+      "siteName": "Busy Bee Honey",
+      "extractedAt": "2026-06-03T19:30:10.367Z",
+      "variant": "extended"
+    }
+  }
+}

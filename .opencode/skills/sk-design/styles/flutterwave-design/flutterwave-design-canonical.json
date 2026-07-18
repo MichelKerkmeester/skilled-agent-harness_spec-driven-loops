@@ -1,0 +1,1414 @@
+{
+  "source": "https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097",
+  "uuid": "97bbc1bd-873f-4048-b4cc-b20ea2e70097",
+  "name": "Flutterwave Design",
+  "northStar": "warm editorial magazine on cream paper",
+  "capturedAt": "2026-07-18T07:13:22.194Z",
+  "meta": {
+    "url": "https://www.flutterwave.design",
+    "siteName": "Flutterwave Design",
+    "extractedAt": "2026-06-03T22:08:26.370Z",
+    "durationMs": 32461,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 236,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fff9f1 (Cream Paper) as the default canvas for every page — never switch to pure white.",
+      "Set display headlines in Millik 60px weight 700 with -1.5px letter-spacing and Midnight Indigo (#12122c) color.",
+      "Apply 5px border-radius to all cards, buttons, inputs, and tags — consistency is the point.",
+      "Reserve Golden Amber (#f5a623) for the primary CTA fill and the heart logo only — it is accent punctuation, not a surface color.",
+      "Use the Peach Blush (#fcd2ba) band to separate major content sections from the cream default.",
+      "Set all text to Ink Black (#171717) for body and Midnight Indigo (#12122c) for headings — do not mix pure black into the heading hierarchy.",
+      "Keep all tracking negative — Moderat at -0.036em, Millik at -0.025em — to preserve the compact editorial density."
+    ],
+    "donts": [
+      "Do not introduce drop shadows, glows, or blurs to cards or buttons — elevation comes from color contrast alone.",
+      "Do not use Golden Amber for backgrounds, panels, or large fills — it loses its punch as a accent if it covers more than button-sized areas.",
+      "Do not use pure white (#ffffff) as a surface — cream (#fff9f1) is the canvas, white breaks the warm system.",
+      "Do not set headings in pure black (#000000) — Midnight Indigo (#12122c) is the heading color, it carries the brand character.",
+      "Do not use border-radius values other than 5px — no pills, no 0px sharp corners, no 8-12px rounded cards.",
+      "Do not add gradients, patterns, or decorative backgrounds to UI chrome — illustrations on cards are where visual interest lives.",
+      "Do not set body text above 20px in Moderat — for larger sizes, switch to Millik to maintain the type hierarchy."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fff9f1",
+        "name": "Cream Paper",
+        "role": "Primary page canvas, card surfaces, nav background — the warm ground tone every screen sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Ink Black",
+        "role": "Primary text, body copy, icon strokes, hairline borders — the dominant ink across the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b5b5",
+        "name": "Steel Gray",
+        "role": "Muted card backgrounds, disabled surfaces, secondary fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8b8b8b",
+        "name": "Graphite",
+        "role": "Tertiary surface, subtle background blocks, inactive dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Hard borders on icons, nav emphasis, button outlines where maximum contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#12122c",
+        "name": "Midnight Indigo",
+        "role": "Display headings, link text, heading borders — deep violet-black replacing pure black for warmth and brand character",
+        "group": "brand"
+      },
+      {
+        "hex": "#f5a623",
+        "name": "Golden Amber",
+        "role": "Primary action fill, logo heart mark, highlighter accents — the single warm punctuation color in an otherwise cool monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcd2ba",
+        "name": "Peach Blush",
+        "role": "Accent section band backgrounds (Vibes, features) — warm wash that breaks cream monotony without introducing a new hue",
+        "group": "accent"
+      }
+    ],
+    "layout": "Centered max-width container (1200px) on a full-bleed cream canvas. The hero is a centered typographic block — no imagery above the fold, just a large Millik headline and body intro stacked vertically with generous breathing room. Below the hero, a horizontal scrolling carousel of full-bleed illustration cards peeks in from the edges, creating a sense of motion and overflow. The main content section uses a 3-column grid for story cards, with a left-aligned section header and a right-aligned 'View All' ghost link. A full-width Peach Blush band breaks the cream rhythm for featured/Vibes content. Navigation is a single top bar with no sticky behavior visible. Overall density is spacious — 60px+ between sections, compact within sections.",
+    "imagery": "Illustration-driven: every story card and section visual is a custom flat illustration with vivid colors (greens, purples, oranges, pinks, teals). Illustrations are full-bleed, filling the card edge-to-edge with no padding or framing. The style is geometric and slightly abstract — hands, objects, UI elements, nature motifs — with flat color fills and minimal shading. No photography is used in the visible sections. Icons in the UI are simple outlined shapes (circles, arrows) in Ink Black. The illustrations carry all the color personality of the site; the interface itself stays monochrome with single-amber accents.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas and minimal monochrome interface where illustration and content carry all the color",
+        "business": "Notion"
+      },
+      {
+        "why": "Similar editorial restraint — cream-tinted background, single accent color, bold display typography paired with clean sans body",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same compact density, tight letter-spacing, and 5px-radius card aesthetic in a light-mode editorial layout",
+        "business": "Pitch"
+      },
+      {
+        "why": "Shared warm-paper canvas and trust in a single vivid accent (amber/orange) against an otherwise monochrome UI",
+        "business": "Arc browser"
+      },
+      {
+        "why": "Same illustration-driven content cards with full-bleed art and minimal typographic chrome in the frame",
+        "business": "Figma Config"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "5px",
+        "cards": "5px",
+        "inputs": "5px",
+        "buttons": "5px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#fff9f1",
+        "name": "Cream Canvas",
+        "level": 1,
+        "purpose": "Default page background, nav bar, most card surfaces"
+      },
+      {
+        "hex": "#fcd2ba",
+        "name": "Peach Band",
+        "level": 2,
+        "purpose": "Featured section backgrounds that need warmth and visual separation from cream"
+      },
+      {
+        "hex": "#b5b5b5",
+        "name": "Steel Surface",
+        "level": 3,
+        "purpose": "Muted card or container backgrounds for secondary content blocks"
+      },
+      {
+        "hex": "#8b8b8b",
+        "name": "Graphite Surface",
+        "level": 4,
+        "purpose": "Tertiary background, subtle decorative blocks"
+      }
+    ],
+    "northStar": "warm editorial magazine on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.43
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.58
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.65
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.79
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Horizontal bar on cream canvas with 5px bottom hairline border in #171717. Left: wordmark 'Design' (Moderat 14-16px weight 500, Ink Black) with small amber heart icon. Center: nav links (Moderat 14px weight 400, Ink Black) spaced 26-30px apart. Right: theme toggle (two small circles, one outlined, one filled black)."
+      },
+      {
+        "name": "Display Hero Headline",
+        "role": "Primary page-level headline",
+        "description": "Millik 60px weight 700, color Midnight Indigo (#12122c), line-height 1.2, letter-spacing -1.5px. Centered on cream canvas. No gradient or decoration — pure typographic statement. Typically 2 lines, with emoji or inline element mid-sentence."
+      },
+      {
+        "name": "Hero Body Text",
+        "role": "Intro paragraph below hero headline",
+        "description": "Moderat 16-18px weight 400, Ink Black (#171717), centered, max-width ~600px. Tight -0.58px tracking keeps the paragraph compact."
+      },
+      {
+        "name": "Story Carousel Card",
+        "role": "Horizontal scrolling story preview",
+        "description": "Full-bleed illustration (no padding around image) with overlay or below-card title in Millik or Moderat bold. 5px border-radius on container. Cards are wider than grid cards (roughly 280-340px wide), no border or shadow, colored illustration fills the card edge-to-edge."
+      },
+      {
+        "name": "Story Grid Card",
+        "role": "3-column editorial story card",
+        "description": "Top: full-color illustration filling card width with 5px top-radius. Below illustration: 20px padding. Content stack: category label (Moderat 12px weight 600, uppercase, letter-spacing normal, Ink Black), title (Moderat 20px weight 600, Ink Black, 2-line clamp), meta line (Moderat 12px weight 400, uppercase, gray). No border, no shadow — sits directly on cream canvas."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Small uppercase label above story titles",
+        "description": "Moderat 12px weight 600, uppercase, Ink Black (#171717), normal letter-spacing. No background, no border — just typographic. Reads as editorial section labels (e.g. 'DESIGN THINKING')."
+      },
+      {
+        "name": "Author Byline",
+        "role": "Credit line below story title",
+        "description": "Moderat 14px weight 400, Ink Black. Format: 'By [Author Name]' with author name in weight 500 for subtle emphasis. Sits 8-10px below title."
+      },
+      {
+        "name": "Section Header",
+        "role": "Section title with optional action link",
+        "description": "Left: Millik 32px weight 700, Midnight Indigo. Right: 'VIEW ALL STORIES' in Moderat 12px weight 600, uppercase, with a small circle-arrow icon. Spaced across the max-width container with 30px+ gap between title and action."
+      },
+      {
+        "name": "Peach Section Band",
+        "role": "Full-bleed warm content section",
+        "description": "Full-width band with background #fcd2ba, 60px+ vertical padding. Contains headings in Midnight Indigo and body text in Ink Black. Used to break cream monotony and signal a different content mode (Vibes, featured)."
+      },
+      {
+        "name": "Theme Toggle",
+        "role": "Light/dark mode switcher in nav",
+        "description": "Two small circles side by side in the top-right of nav. Active mode is filled (#171717), inactive is outlined (1px #171717 border, cream fill). ~16px diameter, 5px gap between circles."
+      },
+      {
+        "name": "Golden Amber CTA Button",
+        "role": "Primary action button",
+        "description": "Background #f5a623 (Golden Amber), text Ink Black (#171717), Moderat 14-16px weight 600. 5px border-radius. Padding 10px 20px. No border, no shadow. The single warm color in the system — used sparingly for primary actions only."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary text-based action",
+        "description": "No background, no border. Moderat 12-14px weight 600, uppercase, Ink Black. Often paired with a small arrow or circle icon. Used for 'View all', 'Read more', navigation prompts."
+      },
+      {
+        "name": "Heart Logo Mark",
+        "role": "Brand identity icon",
+        "description": "Small amber/golden heart icon (~16px) positioned left of the 'Design' wordmark in the nav. Solid fill in Golden Amber (#f5a623). The only instance of the brand color as a decorative mark."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading font — used only for the hero headline and section titles. Heavy weight (700-800) with -0.025em tracking at 60px creates a poster-like authority. Custom serif-adjacent display cut gives the site its editorial magazine voice; substitute with Recoleta or Tiempos Headline if Millik is unavailable.",
+        "sizes": "32px, 60px",
+        "family": "Millik",
+        "weight": "700, 800",
+        "lineHeight": "1.20",
+        "substitute": "Recoleta, Tiempos Headline, GT Super",
+        "letterSpacing": "-1.5px at 60px, -0.42px at 32px"
+      },
+      {
+        "role": "Primary UI and body font — covers everything from 12px captions to 22px subheads. Geometrical sans with uniformly tight -0.036em tracking that keeps even small text compact and editorial. 400 for body, 500 for nav/links, 600 for labels, 700 for emphasis. Substitute with Inter or General Sans for closest match.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 22px",
+        "family": "Moderat",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.18, 1.20, 1.60, 1.63",
+        "substitute": "Inter, General Sans, Söhne",
+        "letterSpacing": "-0.43px at 12px, -0.5px at 14px, -0.58px at 16px, -0.65px at 18px, -0.72px at 20px, -0.79px at 22px"
+      },
+      {
+        "role": "Reserved for the Flutterwave wordmark and icon glyphs — not a general-purpose text face. Limited to brand marks and the small heart logo.",
+        "sizes": "14px, 16px",
+        "family": "Flutterwave",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Flutterwave brand font (proprietary)",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Flutterwave Design operates as a warm editorial canvas — cream paper (#fff9f1) instead of clinical white, with a single golden amber accent (#f5a623) acting like a highlighter stroke across otherwise monochrome content. Headings opt for deep midnight indigo (#12122c) rather than pure black, giving text a velvet weight against the warm ground. Typography is compact and confident: a bold display cut (Millik) at 60px carries the hero, while Moderat handles everything from 12px captions to 22px subheads with uniformly tight tracking. Layout breathes like a magazine spread — generous vertical section gaps, centered max-width container, illustration-driven cards in a horizontal carousel and 3-column grid. Components stay small and unfussy: 5px radius everywhere, no shadows, thin borders, color reserved for content art rather than chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flutterwave Design design system\",\"item\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#style-reference\",\"name\":\"Flutterwave Design design system reference\",\"headline\":\"Flutterwave Design design system | Refero Styles\",\"description\":\"Explore Flutterwave Design's light Design design system: Cream Paper #fff9f1, Ink Black #171717 colors, Millik, Moderat typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\",\"mainEntityOfPage\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flutterwave Design\",\"url\":\"https://www.flutterwave.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"caption\":\"Screenshot of Flutterwave Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flutterwave Design design system\",\"Flutterwave Design website design\",\"Flutterwave Design colors\",\"Flutterwave Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Cream Paper\",\"Ink Black\",\"Steel Gray\",\"Graphite\",\"Millik\",\"Moderat\",\"Flutterwave\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flutterwave Design design system\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design website design\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design colors\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:38:09.589Z\",\"dateModified\":\"2026-04-30T03:38:09.589Z\"}]}19:T6f3,**Quick Color Reference**\n- text: #171717 (Ink Black)\n- heading: #12122c (Midnight Indigo)\n- background: #fff9f1 (Cream Paper)\n- border: #171717 (Ink Black hairline)\n- accent: #f5a623 (Golden Amber — CTA fill, logo)\n- section band: #fcd2ba (Peach Blush)\n- primary action: #f5a623 (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero headline block:* Cream Paper background (#fff9f1). Centered Millik 60px weight 700, color Midnight Indigo (#12122c), letter-spacing -1.5px, line-height 1.2. Below it, a body paragraph in Moderat 18px weight 400, Ink Black (#171717), max-width 600px, centered. 80px top padding, 60px bottom padding.\n\n2. *Create a story grid card:* 5px border-radius, no border, no shadow. Full-bleed illustration fills the top half. Below: 20px padding containing a category tag (Moderat 12px weight 600, uppercase, Ink Black), then a title (Moderat 20px weight 600, Ink Black, 2 lines), then a date meta line (Moderat 12px weight 400, uppercase, #8b8b8b). Card sits directly on cream canvas.\n\n3. *Create the top navigation:* Full-width bar on #fff9f1 with a 1px #171717 bottom border. Left: heart icon (#f5a623 fill, 16px) + 'Design' wordmark (Moderat 16px weight 500, Ink Black). Center: nav links (Moderat 14px weight 400, Ink Black) with 30px horizontal gap. Right: theme toggle (two 16px circles, one filled #171717, one outlined 1px #171717). 20px vertical padding.\n\n4. Create a Primary Action Button: #f5a623 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. *Create a Peach Blush section band:* Full-width background #fcd2ba, 60px vertical padding, centered content. Heading in Millik 32px weight 700, Midnight Indigo. Body in Moderat 16px weight 400, Ink Black, max-width 700px."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids shadows entirely. Elevation is communicated through surface color contrast (cream → peach → steel) and 1px hairline borders in #171717, not drop shadows. This keeps the interface flat and editorial, letting illustrations carry visual weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "image",
+            "link",
+            "icon",
+            "card",
+            "input",
+            "button"
+          ],
+          "frequency": 782,
+          "confidence": 1,
+          "prominence": 43707790.483482905,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 45,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 5,
+            "link/color": 14,
+            "other/fill": 13,
+            "image/color": 20,
+            "input/color": 1,
+            "other/color": 52,
+            "other/stroke": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 180,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 56,
+            "image/borderColor": 80,
+            "input/borderColor": 4,
+            "other/borderColor": 202,
+            "button/borderColor": 3,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fff9f1",
+          "oklch": {
+            "c": 0.012377341942445589,
+            "h": 75.36918542079762,
+            "l": 0.984557225996381
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 249,
+          "confidence": 1,
+          "prominence": 1433841.1712391756,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 12,
+            "link/color": 12,
+            "other/fill": 1,
+            "other/color": 12,
+            "heading/color": 12,
+            "nav/borderColor": 4,
+            "body/borderColor": 48,
+            "link/borderColor": 48,
+            "other/borderColor": 49,
+            "heading/borderColor": 48,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcd2ba",
+          "oklch": {
+            "c": 0.05737577827992405,
+            "h": 51.423149197513645,
+            "l": 0.8935745859614755
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1245600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b5b5b5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7741824058993441
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 703240.3072095334,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#8b8b8b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6367600357959382
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 666079.1492653966,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#12122c",
+          "oklch": {
+            "c": 0.051039536536124856,
+            "h": 280.70337884502106,
+            "l": 0.19866284217406882
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 111177.11940139186,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 6,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "button"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 41692.12098075346,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "button/color": 1,
+            "nav/borderColor": 4,
+            "icon/borderColor": 8,
+            "button/borderColor": 1
+          }
+        },
+        {
+          "hex": "#f5a623",
+          "oklch": {
+            "c": 0.15872025489972622,
+            "h": 72.99125161858859,
+            "l": 0.7836522739084388
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6992607330816131
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3352.864169017351,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d1d1d1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.85945874308035
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1200,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 893.9188504067321,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#f5afcb",
+          "oklch": {
+            "c": 0.08867567545872783,
+            "h": 353.4822136950459,
+            "l": 0.8276985388612125
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 739,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        },
+        {
+          "hex": "#ff9b00",
+          "oklch": {
+            "c": 0.1732039976389491,
+            "h": 65.55463358502915,
+            "l": 0.7753457939553061
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 739,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        },
+        {
+          "hex": "#009a46",
+          "oklch": {
+            "c": 0.16505764473696982,
+            "h": 150.03029319704154,
+            "l": 0.5997766607916091
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 732,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        },
+        {
+          "hex": "#ff5805",
+          "oklch": {
+            "c": 0.2148189993918043,
+            "h": 39.27970766272815,
+            "l": 0.6792758774768597
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 732,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.013249531604569403,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.07,
+          "background": "#fff9f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.48,
+          "background": "#fff9f1",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.14,
+          "background": "#fff9f1",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.07,
+          "background": "#fcd2ba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#d1d1d1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.12,
+          "background": "#fcd2ba",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.86,
+          "background": "#fcd2ba",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#fff9f1",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#d1d1d1",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.88,
+          "background": "#f5afcb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.74,
+          "background": "#d1d1d1",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.36,
+          "background": "#f5a623",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#f5afcb",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.24,
+          "background": "#b5b5b5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#f5afcb",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.94,
+          "background": "#ff9b00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#fcd2ba",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.02,
+          "background": "#f5a623",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.92,
+          "background": "#b5b5b5",
+          "foreground": "#12122c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.85,
+          "background": "#f5a623",
+          "foreground": "#171717"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "card",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 51,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "card",
+            "input",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|card",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginBottom|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Moderat",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 194,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Millik",
+          "source": "custom",
+          "weights": [
+            700,
+            800
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Flutterwave",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Moderat",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Moderat",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "body"
+          ],
+          "frequency": 103,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Flutterwave",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Moderat",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Moderat",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Flutterwave",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Moderat",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Moderat",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Moderat",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Millik",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Millik",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/df513367-a25b-439f-a4eb-5122cba57a26.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flutterwave Design design system\",\"item\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#style-reference\",\"name\":\"Flutterwave Design design system reference\",\"headline\":\"Flutterwave Design design system | Refero Styles\",\"description\":\"Explore Flutterwave Design's light Design design system: Cream Paper #fff9f1, Ink Black #171717 colors, Millik, Moderat typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\",\"mainEntityOfPage\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flutterwave Design\",\"url\":\"https://www.flutterwave.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/97bbc1bd-873f-4048-b4cc-b20ea2e70097#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"caption\":\"Screenshot of Flutterwave Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f9cd8f51-8d9f-471f-bd21-d4e1e2485018.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flutterwave Design design system\",\"Flutterwave Design website design\",\"Flutterwave Design colors\",\"Flutterwave Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Cream Paper\",\"Ink Black\",\"Steel Gray\",\"Graphite\",\"Millik\",\"Moderat\",\"Flutterwave\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flutterwave Design design system\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design website design\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design colors\"},{\"@type\":\"Thing\",\"name\":\"Flutterwave Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:38:09.589Z\",\"dateModified\":\"2026-04-30T03:38:09.589Z\"}]}19:T6f3,**Quick Color Reference**\n- text: #171717 (Ink Black)\n- heading: #12122c (Midnight Indigo)\n- background: #fff9f1 (Cream Paper)\n- border: #171717 (Ink Black hairline)\n- accent: #f5a623 (Golden Amber — CTA fill, logo)\n- section band: #fcd2ba (Peach Blush)\n- primary action: #f5a623 (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero headline block:* Cream Paper background (#fff9f1). Centered Millik 60px weight 700, color Midnight Indigo (#12122c), letter-spacing -1.5px, line-height 1.2. Below it, a body paragraph in Moderat 18px weight 400, Ink Black (#171717), max-width 600px, centered. 80px top padding, 60px bottom padding.\n\n2. *Create a story grid card:* 5px border-radius, no border, no shadow. Full-bleed illustration fills the top half. Below: 20px padding containing a category tag (Moderat 12px weight 600, uppercase, Ink Black), then a title (Moderat 20px weight 600, Ink Black, 2 lines), then a date meta line (Moderat 12px weight 400, uppercase, #8b8b8b). Card sits directly on cream canvas.\n\n3. *Create the top navigation:* Full-width bar on #fff9f1 with a 1px #171717 bottom border. Left: heart icon (#f5a623 fill, 16px) + 'Design' wordmark (Moderat 16px weight 500, Ink Black). Center: nav links (Moderat 14px weight 400, Ink Black) with 30px horizontal gap. Right: theme toggle (two 16px circles, one filled #171717, one outlined 1px #171717). 20px vertical padding.\n\n4. Create a Primary Action Button: #f5a623 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. *Create a Peach Blush section band:* Full-width background #fcd2ba, 60px vertical padding, centered content. Heading in Millik 32px weight 700, Midnight Indigo. Body in Moderat 16px weight 400, Ink Black, max-width 700px."
+}

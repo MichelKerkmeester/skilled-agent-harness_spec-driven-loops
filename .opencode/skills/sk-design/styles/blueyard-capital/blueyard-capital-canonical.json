@@ -1,0 +1,1011 @@
+{
+  "source": "https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9",
+  "uuid": "ea11696a-17c0-41f8-9b08-c820851e0ea9",
+  "name": "BlueYard Capital",
+  "northStar": "Sunset editorial observatory. A warm peach horizon bleeds into pure white, one oversized headline floats in the negative space, and a single 3D celestial body hangs below like a planet in a printed monograph.",
+  "capturedAt": "2026-07-18T07:39:21.707Z",
+  "meta": {
+    "url": "https://www.blueyard.com",
+    "siteName": "BlueYard Capital",
+    "extractedAt": "2026-06-03T20:07:35.302Z",
+    "durationMs": 33416,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2551,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep 97%+ of all text and borders in #3a3a3 — let the warm near-black carry the entire interface",
+      "Use the three chromatic tints (#ffcf9, #babfff, #e3a2ef) only as card backgrounds or 1px hairline borders, never as text or icons",
+      "Set every radius to 0px — cards, buttons, tags, and nav all share sharp corners",
+      "Reserve Instrument Sans weight 500 for nav labels and the wordmark; use weight 400 for everything else including 54px display headlines",
+      "Apply -1.62px tracking to the 54px display size and proportional tightening down the scale; never use positive letter-spacing",
+      "Anchor every section with 90px of vertical breathing room top and bottom; let the white canvas do the work of hierarchy",
+      "Let one 3D or photographic artwork occupy the lower half of the hero — full-bleed, uncaptioned, off-frame"
+    ],
+    "donts": [
+      "Do not introduce shadows, glows, or elevated surfaces — the system is intentionally flat and border-driven",
+      "Do not round corners on any element, including buttons, cards, and tags — 0px radius is the signature",
+      "Do not use a chromatic color as a button background or text color — peach, lavender, and pink are card-only",
+      "Do not add a visible primary CTA button in a brand color; the system uses white-fill ghost buttons on #3a3a3 borders instead",
+      "Do not use positive letter-spacing anywhere; the system tracks tight, especially at display sizes",
+      "Do not use drop shadows under cards or images; rely on whitespace and hairlines to separate layers",
+      "Do not add decorative gradients to UI components; gradients are reserved for atmospheric hero washes only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surfaces, ghost button fill — the primary stage everything else sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a3a3e",
+        "name": "Graphite Ink",
+        "role": "Primary text, link color, icon strokes, hairline borders, ghost button borders — a warm near-black that carries 97% of all typographic weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#090b11",
+        "name": "Deep Carbon",
+        "role": "Accent text, nav strokes, strong card borders — slightly cooler and harder than Graphite Ink, reserved for moments of maximum contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b0b0",
+        "name": "Ash Veil",
+        "role": "Muted body backgrounds, soft borders — a warm gray used for secondary surface bands beneath the main canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffcf9e",
+        "name": "Apricot Wash",
+        "role": "Card backgrounds and borders — the dominant chromatic accent, used as a warm fill or hairline outline on featured cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#babfff",
+        "name": "Iris Mist",
+        "role": "Card backgrounds and borders — cool lavender counterpoint to Apricot Wash, pairs with peach on portfolio or feature cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#e3a2ef",
+        "name": "Fuchsia Bloom",
+        "role": "Card backgrounds — a vivid pink fill, the most saturated color in the system, appears as a solid block rather than a border",
+        "group": "accent"
+      },
+      {
+        "hex": "#bfe0f7",
+        "name": "Polar Blue",
+        "role": "Soft surface tint — pale sky blue used as a rare secondary card or section background, cooling the warm peach/lavender/pink palette",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with content centered or left-aligned within a ~1200px implicit max-width. The hero is the defining pattern: a massive centered Instrument Sans headline in the upper third, with a large 3D artwork hanging in the lower half bleeding off the bottom edge. Below the hero, the page flows in alternating white and soft-tinted bands (ash gray, polar blue) with 90px vertical padding separating each section. Cards appear in single-column or 2-3 column grids with 5-12px gaps. Navigation is minimal: a tiny two-line wordmark top-left and a single hamburger square top-right — no mega-menu, no horizontal nav bar. The overall rhythm is spacious and editorial, with content sections that breathe rather than pack.",
+    "imagery": "The visual identity is anchored by large, uncaptioned 3D rendered objects — primarily spherical or planetary forms with particle effects, set against warm peach-to-white radial gradients. Imagery bleeds off the viewport edges with no frame, border, or caption. There is no photography, no stock illustration, and no decorative iconography. When icons appear, they are thin-line Instrument Sans-adjacent glyphs in #3a3a3e. The 3D artwork occupies 40-60% of the viewport and functions as a magazine cover plate rather than a product screenshot.",
+    "similar": [
+      {
+        "why": "Same editorial-monograph restraint: a single typeface, white canvas, and large centered headlines paired with single atmospheric images — no SaaS chrome",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Venture capital sites that treat the homepage as a printed publication, with oversized headlines and minimal navigation relying on a single menu trigger",
+        "business": "Index Ventures"
+      },
+      {
+        "why": "Branding-agency portfolio aesthetic with pale chromatic card accents (peach, lavender, pink) sitting on white with sharp 0px corners and no shadows",
+        "business": "Koto Studio"
+      },
+      {
+        "why": "Single warm atmospheric gradient on a light canvas paired with a singular oversized 3D object as the hero visual anchor",
+        "business": "The Browser Company"
+      },
+      {
+        "why": "Quiet, text-led interface that uses a warm near-black as the sole text color against white, with chromatic tints appearing only as surface bands",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "90px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background — the dominant surface occupying most of the viewport"
+      },
+      {
+        "hex": "#b5b0b0",
+        "name": "Ash Band",
+        "level": 1,
+        "purpose": "Soft warm-gray section background used as a quiet band beneath the main canvas"
+      },
+      {
+        "hex": "#bfe0f7",
+        "name": "Polar Blue Field",
+        "level": 2,
+        "purpose": "Cool pale-blue surface tint, used as a full-bleed section background for variety"
+      },
+      {
+        "hex": "#ffcf9",
+        "name": "Apricot Field",
+        "level": 3,
+        "purpose": "Warm peach card fill — marks a single highlighted card per section"
+      },
+      {
+        "hex": "#e3a2ef",
+        "name": "Fuchsia Field",
+        "level": 4,
+        "purpose": "Vivid pink card fill — the most saturated surface, used as a singular accent block"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat surfaces, no box-shadow",
+        "element": "Cards"
+      },
+      {
+        "style": "none — flat surfaces, no box-shadow",
+        "element": "Buttons"
+      },
+      {
+        "style": "none — flat surfaces, no box-shadow",
+        "element": "Navigation"
+      }
+    ],
+    "northStar": "Sunset editorial observatory. A warm peach horizon bleeds into pure white, one oversized headline floats in the negative space, and a single 3D celestial body hangs below like a planet in a printed monograph.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "body",
+        "size": 24,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": -1.62
+      }
+    ],
+    "components": [
+      {
+        "name": "Centered Editorial Headline",
+        "role": "Hero typography block",
+        "description": "Full-width centered headline at 54px Instrument Sans weight 400, line-height 1.0, letter-spacing -1.62px, color #3a3a3e. Sits in the upper third of the viewport with generous top padding (~90px). Optional subtitle at 24px below with 24px gap. No underline, no decoration — the scale and tracking do the work."
+      },
+      {
+        "name": "Apricot-Bordered Card",
+        "role": "Featured content card with warm border",
+        "description": "White card surface with a 1px #ffcf9 border, 12px internal padding, 0px radius. Text inside uses #3a3a3 at 12-24px. No shadow. The peach border is the only signal — it reads as warm, hand-marked, not decorative."
+      },
+      {
+        "name": "Apricot Fill Card",
+        "role": "Solid peach card",
+        "description": "Full #ffcf9 background, 12px padding, 0px radius. Dark text (#3a3a3e) reads at AAA contrast (13.7:1). Used sparingly — one per section — to mark a single highlighted item."
+      },
+      {
+        "name": "Lavender-Bordered Card",
+        "role": "Cool counterpoint card",
+        "description": "White surface with 1px #babfff border, 12px padding, 0px radius. Pairs visually with Apricot cards on portfolio or team grids to create warm/cool rhythm."
+      },
+      {
+        "name": "Fuchsia Fill Card",
+        "role": "Vivid solid-color card",
+        "description": "Full #e3a2ef background, 12px padding, 0px radius, #090b11 text (10:1 contrast). The most saturated element in the system — appears as a single block, never repeated in a row."
+      },
+      {
+        "name": "Polar Blue Surface Band",
+        "role": "Soft section background",
+        "description": "Full-bleed #bfe0f7 band used as a section background — no border, no radius. Provides a cool pause between warm peach moments."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand identifier in top-left",
+        "description": "Two-line uppercase text 'BLUE / YARD' in Instrument Sans weight 500 at 12px, line-height 1.0, letter-spacing -0.36px, color #3a3a3e. No logo symbol, no container — just the text stacked tight against the top-left corner."
+      },
+      {
+        "name": "Hamburger Menu Button",
+        "role": "Primary navigation trigger",
+        "description": "A 40x40px white square in the top-right corner with a thin #3a3a3 border and a three-line hamburger icon centered inside. 0px radius, no fill. The square outline is the only chrome — the whole nav is this single tap target."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline navigation and text links",
+        "description": "Body text styled as link: #3a3a3 color, no underline by default, 1px underline on hover in #3a3a3e. Weight stays 400. Links inherit surrounding type size."
+      },
+      {
+        "name": "Full-Bleed 3D Artwork Stage",
+        "role": "Atmospheric visual anchor",
+        "description": "Large rendered sphere or abstract 3D object positioned in the lower half of the viewport, bleeding off the bottom edge. No frame, no border, no caption. Background uses a soft radial peach-to-white gradient. The artwork is the hero, not a supporting illustration."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px line in #3a3a3 spanning the full content width. No double lines, no dots, no decorative breaks. The starkest structural element in a system that otherwise avoids borders."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface. Used for every UI element, every headline, every caption. Weight 400 is default body and display; weight 500 sparingly for nav labels and emphasis. The signature move: Instrument Sans is a humanist geometric grotesque with optical corrections — paired with aggressive negative tracking at display sizes, it produces tight, modern, almost couture typography that reads as editorial, not SaaS.",
+        "sizes": "12px, 24px, 48px, 54px",
+        "family": "Instrument Sans",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.50",
+        "substitute": "Inter, Söhne, or General Sans",
+        "letterSpacing": "-0.36px at 12px, -0.24px at 24px, -1.62px at 54px, -0.54px at 48px"
+      }
+    ],
+    "description": "BlueYard Capital reads as a printed editorial object disguised as a venture capital homepage: a vast white canvas anchored by one warm peach atmospheric wash, a single oversized Instrument Sans headline, and a rendered spherical artwork that behaves like a magazine cover image. The palette is 98% achromatic — a warm near-black (#3a3a3e) does all the textual heavy lifting against pure white — with three pale chromatic tints (peach, lavender, pink) appearing only as card backgrounds and hairlines, never as functional buttons. Cards are flat, borderless or hairline-bordered, and float on whitespace rather than sitting in shadow wells. Navigation is barely there: a tiny two-line wordmark and a hamburger square. The whole site earns attention through restraint and scale, not chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BlueYard Capital design system\",\"item\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#style-reference\",\"name\":\"BlueYard Capital design system reference\",\"headline\":\"BlueYard Capital design system | Refero Styles\",\"description\":\"Explore BlueYard Capital's light Fintech design system: Canvas White #ffffff, Graphite Ink #3a3a3e colors, Instrument Sans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BlueYard Capital\",\"url\":\"https://www.blueyard.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"caption\":\"Screenshot of BlueYard Capital\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BlueYard Capital design system\",\"BlueYard Capital website design\",\"BlueYard Capital colors\",\"BlueYard Capital typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Canvas White\",\"Graphite Ink\",\"Deep Carbon\",\"Ash Veil\",\"Instrument Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BlueYard Capital design system\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital website design\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital colors\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T02:25:11.243Z\",\"dateModified\":\"2026-04-30T02:25:11.243Z\"}]}19:T4ef,Quick Color Reference:\n- text: #3a3a3e (primary) / #090b11 (accent)\n- background: #ffffff (canvas) / #b5b0b0 (ash band) / #bfe0f7 (polar blue)\n- border: #3a3a3e (hairline) / #ffcf9e (peach accent) / #babfff (lavender accent)\n- accent: #ffcf9e (apricot) / #babfff (iris) / #e3a2ef (fuchsia)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Centered Hero Headline: 54px Instrument Sans weight 400, #3a3a3e, line-height 1.0, letter-spacing -1.62px, centered, with 90px top padding on a #ffffff canvas. Optional 24px subtitle below in same color with 24px gap.\n2. Apricot-Bordered Featured Card: white surface, 1px #ffcf9e border, 12px padding, 0px radius, 12-24px #3a3a3e text inside, no shadow, 5px gap to next card.\n3. Fuchsia Fill Highlight Block: full #e3a2ef background, 12px padding, 0px radius, #090b11 text at 24px weight 400, letter-spacing -0.24px. Use once per page as a singular accent.\n4. Hamburger Nav Button: 40x40px white square with 1px #3a3a3e border, 0px radius, three-line hamburger icon centered in #3a3a3e. Positioned top-right with 12px margin.\n5. Hairline Section Divider: 1px solid #3a3a3e line spanning the full content width (~1200px), 0px height container, used between sections in place of a background-color shift."
+      },
+      {
+        "title": "Color System Philosophy",
+        "content": "The palette is structured as a 5-step surface scale rather than a traditional primary/secondary model: white (canvas) → ash (warm gray band) → polar blue (cool pause) → apricot (warm accent) → fuchsia (vivid singularity). Peach (#ffcf9e) is the workhorse chromatic, used 4x more frequently than lavender and 5x more than fuchsia. The three chromatic tints share a similar value range (~85% lightness) so they read as a family of card materials rather than competing brand colors. Text color is monolithic: #3a3a3e handles 97% of all text rendering, with #090b11 reserved for moments of maximum emphasis. This is a system that uses color as a form of categorization (what kind of card is this?) rather than as a form of decoration."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Instrument Sans is the only typeface. The system uses four sizes (12, 24, 48, 54) with a 4.5x jump from caption to display — this is an editorial scale, not a UI scale. Body text sits at a generous 24px rather than the typical 16px, which gives every paragraph printed-magazine density. The display size of 54px combined with line-height 1.0 creates a single-line headline treatment; the headline is never meant to wrap. Negative letter-spacing scales proportionally with size: -3% at 12px (-0.36px) to -3% at 54px (-1.62px), producing tightly knit letterforms that feel couture rather than corporate. Weight 500 is used only for the wordmark and nav labels — weight 400 carries everything else including the largest display text."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately absent. The system separates layers through color (white → ash → chromatic tints) and 1px hairlines rather than shadows. A shadow would break the printed-editorial metaphor and add visual weight the typographic hierarchy already provides."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3a3a3e",
+          "oklch": {
+            "c": 0.007555225507286901,
+            "h": 288.09411686185763,
+            "l": 0.35030872850114536
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "heading",
+            "card",
+            "image",
+            "icon",
+            "list",
+            "button"
+          ],
+          "frequency": 12541,
+          "confidence": 1,
+          "prominence": 464859347.00093836,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 94,
+            "card/color": 656,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 108,
+            "list/color": 1,
+            "other/fill": 3,
+            "image/color": 94,
+            "other/color": 1544,
+            "button/color": 1,
+            "heading/color": 7,
+            "nav/borderColor": 4,
+            "body/borderColor": 364,
+            "card/borderColor": 2624,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 432,
+            "list/borderColor": 4,
+            "image/borderColor": 376,
+            "other/borderColor": 6176,
+            "button/borderColor": 4,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 189,
+          "confidence": 1,
+          "prominence": 145863.54771692902,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 188,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b5b0b0",
+          "oklch": {
+            "c": 0.006528508439301002,
+            "h": 12.359890166370947,
+            "l": 0.7604241898948768
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 102,
+          "confidence": 1,
+          "prominence": 50483.0789802333,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 12,
+            "body/backgroundColor": 89,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#090b11",
+          "oklch": {
+            "c": 0.013404254507700374,
+            "h": 270.17509782332417,
+            "l": 0.15038053221094114
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 114,
+          "confidence": 1,
+          "prominence": 15772.00907737584,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "card/color": 25,
+            "nav/stroke": 5,
+            "button/color": 1,
+            "other/stroke": 1,
+            "nav/borderColor": 8,
+            "card/borderColor": 68,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffcf9e",
+          "oklch": {
+            "c": 0.0834814459026917,
+            "h": 66.98114024591432,
+            "l": 0.8848436970425472
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 5270.000499683549,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 24,
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#babfff",
+          "oklch": {
+            "c": 0.0899852032749184,
+            "h": 280.75085761425447,
+            "l": 0.823359826883088
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 4089.099186289867,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 8,
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#e3a2ef",
+          "oklch": {
+            "c": 0.12658794351098035,
+            "h": 321.14392912645206,
+            "l": 0.7997837578558158
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1900.5792822329981,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#bfe0f7",
+          "oklch": {
+            "c": 0.04714571734412116,
+            "h": 238.49050320500461,
+            "l": 0.8901530106641558
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 677,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.021077029400857622,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.67,
+          "background": "#ffffff",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#bfe0f7",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.74,
+          "background": "#ffcf9e",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.32,
+          "background": "#ffffff",
+          "foreground": "#3a3a3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.23,
+          "background": "#babfff",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10,
+          "background": "#e3a2ef",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.18,
+          "background": "#b5b0b0",
+          "foreground": "#090b11"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.21,
+          "background": "#bfe0f7",
+          "foreground": "#3a3a3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.91,
+          "background": "#ffcf9e",
+          "foreground": "#3a3a3e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.46,
+          "background": "#babfff",
+          "foreground": "#3a3a3e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.76,
+          "background": "#e3a2ef",
+          "foreground": "#3a3a3e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#b5b0b0",
+          "foreground": "#3a3a3e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 192,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 188,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 190,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 68,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|heading",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|heading",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Instrument Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1397,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1141,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 94,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 968,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "button",
+            "hero",
+            "card",
+            "image",
+            "icon",
+            "list"
+          ],
+          "frequency": 1116,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Instrument Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 250,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Instrument Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3f6e6b99-9b09-43f8-bbb0-1509a2c8dbf6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BlueYard Capital design system\",\"item\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#style-reference\",\"name\":\"BlueYard Capital design system reference\",\"headline\":\"BlueYard Capital design system | Refero Styles\",\"description\":\"Explore BlueYard Capital's light Fintech design system: Canvas White #ffffff, Graphite Ink #3a3a3e colors, Instrument Sans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BlueYard Capital\",\"url\":\"https://www.blueyard.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea11696a-17c0-41f8-9b08-c820851e0ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"caption\":\"Screenshot of BlueYard Capital\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d7edf91-de16-4b7a-a262-c6d4fb955445.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BlueYard Capital design system\",\"BlueYard Capital website design\",\"BlueYard Capital colors\",\"BlueYard Capital typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Canvas White\",\"Graphite Ink\",\"Deep Carbon\",\"Ash Veil\",\"Instrument Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BlueYard Capital design system\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital website design\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital colors\"},{\"@type\":\"Thing\",\"name\":\"BlueYard Capital typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T02:25:11.243Z\",\"dateModified\":\"2026-04-30T02:25:11.243Z\"}]}19:T4ef,Quick Color Reference:\n- text: #3a3a3e (primary) / #090b11 (accent)\n- background: #ffffff (canvas) / #b5b0b0 (ash band) / #bfe0f7 (polar blue)\n- border: #3a3a3e (hairline) / #ffcf9e (peach accent) / #babfff (lavender accent)\n- accent: #ffcf9e (apricot) / #babfff (iris) / #e3a2ef (fuchsia)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Centered Hero Headline: 54px Instrument Sans weight 400, #3a3a3e, line-height 1.0, letter-spacing -1.62px, centered, with 90px top padding on a #ffffff canvas. Optional 24px subtitle below in same color with 24px gap.\n2. Apricot-Bordered Featured Card: white surface, 1px #ffcf9e border, 12px padding, 0px radius, 12-24px #3a3a3e text inside, no shadow, 5px gap to next card.\n3. Fuchsia Fill Highlight Block: full #e3a2ef background, 12px padding, 0px radius, #090b11 text at 24px weight 400, letter-spacing -0.24px. Use once per page as a singular accent.\n4. Hamburger Nav Button: 40x40px white square with 1px #3a3a3e border, 0px radius, three-line hamburger icon centered in #3a3a3e. Positioned top-right with 12px margin.\n5. Hairline Section Divider: 1px solid #3a3a3e line spanning the full content width (~1200px), 0px height container, used between sections in place of a background-color shift."
+}

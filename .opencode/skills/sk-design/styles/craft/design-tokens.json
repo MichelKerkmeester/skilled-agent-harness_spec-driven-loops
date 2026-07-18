@@ -1,0 +1,342 @@
+{
+  "color": {
+    "bone-linen": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Bone Linen — Page canvas, body backgrounds — the warm off-white that carries almost every section and makes the dark hero and green accents feel like specimens on display"
+    },
+    "oat-milk": {
+      "$value": "#eae6df",
+      "$type": "color",
+      "$description": "Oat Milk — Card surfaces, elevated panels, secondary containers — a half-step darker than the canvas for gentle separation without shadow"
+    },
+    "driftwood": {
+      "$value": "#d7d2cc",
+      "$type": "color",
+      "$description": "Driftwood — Hairline borders, dividers, structural separators — warm gray that reads as line work, not as color"
+    },
+    "ash-mauve": {
+      "$value": "#645757",
+      "$type": "color",
+      "$description": "Ash Mauve — Secondary text, captions, muted labels — used where near-black would be too heavy, sits at 80 instances"
+    },
+    "mahogany-hush": {
+      "$value": "#504344",
+      "$type": "color",
+      "$description": "Mahogany Hush — Dark accent for small headings and emphasis — warmer alternative to the primary text color when a touch of depth is needed"
+    },
+    "obsidian-plum": {
+      "$value": "#2a1a1d",
+      "$type": "color",
+      "$description": "Obsidian Plum — Primary text, body copy, all headings, nav links — a near-black with warm plum undertone that pairs with the cream canvas at 15.3:1 contrast"
+    },
+    "forest-depths": {
+      "$value": "#1d3023",
+      "$type": "color",
+      "$description": "Forest Depths — Hero section background, dark surface, outlined ghost-button borders — the deep green room that introduces the brand and reappears as a dark contrast panel"
+    },
+    "lime-pulse": {
+      "$value": "#26d862",
+      "$type": "color",
+      "$description": "Lime Pulse — Primary action buttons, inline links, accent words inside headlines, active nav states — vivid green used sparingly as functional punctuation, never as decoration"
+    },
+    "peacock-teal": {
+      "$value": "#0e634f",
+      "$type": "color",
+      "$description": "Peacock Teal — Stat numbers, data emphasis — a deeper teal that shares hue with the forest hero but reads quieter so it can carry numerical data in stat cards"
+    }
+  },
+  "font": {
+    "abc-arizona-flare-condensed-variable": {
+      "$value": "ABC Arizona Flare Condensed Variable",
+      "$type": "fontFamily",
+      "$description": "Display and large headings — the condensed serif runs at 180px for the hero statement and steps down through 104, 48, 26, 20px for section headlines. Weight 300 carries the largest sizes, weight 400 takes the mid range. Negative tracking tightens at every size."
+    },
+    "abc-arizona-flare-variable": {
+      "$value": "ABC Arizona Flare Variable",
+      "$type": "fontFamily",
+      "$description": "Body, nav, buttons, cards, captions, and mid-size headings up to 32px. Weight 350 handles 32px headings, weight 400 takes body and UI. The lighter weight at 32px keeps subheadings from competing with the condensed display sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "13px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "15px",
+        "fontWeight": 350,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Variable",
+        "fontSize": "32px",
+        "fontWeight": 350,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 48px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "104px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 104px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "180px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 180px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "ABC Arizona Flare Condensed Variable",
+        "fontSize": "180px",
+        "fontWeight": 300,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 180px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Surface level 1: Default body background for all content sections"
+    },
+    "card-surface": {
+      "$value": "#eae6df",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards, stat tiles, contained content blocks"
+    },
+    "hero-dark-section": {
+      "$value": "#1d3023",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark sections — hero, feature moments, footer"
+    },
+    "highlight-surface": {
+      "$value": "#26d862",
+      "$type": "color",
+      "$description": "Surface level 4: Filled action buttons and occasional green wash highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://itscraft.com",
+      "siteName": "Craft",
+      "extractedAt": "2026-06-03T20:55:58.644Z",
+      "variant": "extended"
+    }
+  }
+}

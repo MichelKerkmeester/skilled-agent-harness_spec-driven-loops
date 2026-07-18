@@ -1,0 +1,412 @@
+{
+  "color": {
+    "electric-violet": {
+      "$value": "#592eff",
+      "$type": "color",
+      "$description": "Electric Violet — Primary action background, filled CTA buttons, active link borders, selected badge strokes — the single saturated chromatic that drives every conversion and active state"
+    },
+    "midnight-plum": {
+      "$value": "#21164c",
+      "$type": "color",
+      "$description": "Midnight Plum — Headline text color, display-weight typography — deep violet-ink that reads as near-black but carries a violet undertone matching the primary"
+    },
+    "obsidian-charcoal": {
+      "$value": "#353241",
+      "$type": "color",
+      "$description": "Obsidian Charcoal — Body text, paragraph copy, list items, icon strokes, default borders and dividers — the workhorse neutral that defines almost all interface line work"
+    },
+    "slate-smoke": {
+      "$value": "#5f5f69",
+      "$type": "color",
+      "$description": "Slate Smoke — Secondary body text, muted helper copy, supporting metadata"
+    },
+    "pearl-mist": {
+      "$value": "#e0e0db",
+      "$type": "color",
+      "$description": "Pearl Mist — Hairline borders on buttons, cards, and inputs; subtle structural dividers"
+    },
+    "soft-concrete": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Soft Concrete — Subtle surface fills, secondary button backgrounds, disabled or recessed controls"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page and card surfaces, button text on violet fills, nav-pill and elevated panel backgrounds"
+    },
+    "sky-tint": {
+      "$value": "#bcf2ff",
+      "$type": "color",
+      "$description": "Sky Tint — Decorative pastel accent — painterly background fills, soft highlight washes, illustrative splashes"
+    },
+    "lime-spritz": {
+      "$value": "#dfff9d",
+      "$type": "color",
+      "$description": "Lime Spritz — Decorative pastel accent — painterly background fills, squiggle underline fills, product card surface variation"
+    },
+    "cotton-candy": {
+      "$value": "#ffaae6",
+      "$type": "color",
+      "$description": "Cotton Candy — Decorative pastel accent — soft pink washes, squiggle underline highlights, atmospheric card backgrounds"
+    },
+    "neon-cyan": {
+      "$value": "#2ed6ff",
+      "$type": "color",
+      "$description": "Neon Cyan — Badge stroke and informational icon accent — vivid, used in tag outlines and feature flags"
+    },
+    "lime-pop": {
+      "$value": "#a2ea13",
+      "$type": "color",
+      "$description": "Lime Pop — Badge stroke and positive/success-leaning icon accent — vivid green used in tag outlines"
+    },
+    "magenta-pulse": {
+      "$value": "#f843c2",
+      "$type": "color",
+      "$description": "Magenta Pulse — Badge stroke and energetic icon accent — hot pink for tag outlines and feature highlights"
+    }
+  },
+  "font": {
+    "polysans": {
+      "$value": "PolySans",
+      "$type": "fontFamily",
+      "$description": "Display and headline face — custom geometric sans used exclusively for page titles, section headers, and hero copy at heavy weights. The 68px hero size with weight 700 and tight -0.02em tracking is the system's signature: it reads architectural and confident, not friendly. Substitute with General Sans Bold or Plus Jakarta Sans 700 if unavailable."
+    },
+    "plus-jakarta-sans": {
+      "$value": "Plus Jakarta Sans",
+      "$type": "fontFamily",
+      "$description": "Body, UI, and supporting type — paragraphs at 18px/1.6 weight 400, button labels and nav links at 16px weight 500, badges at 14px, medium emphasis at 500. The 32px size at tight 1.10 line-height appears in sub-section headings. Universal -0.02em tracking pulls it into the same family feel as PolySans."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "58px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 58px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "68px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, most reading surfaces"
+    },
+    "elevated-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Feature cards, product frame, nav pill, content panels"
+    },
+    "recessed-surface": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary button backgrounds, subtle alt bands"
+    },
+    "atmospheric-wash": {
+      "$value": "#bcf2ff",
+      "$type": "color",
+      "$description": "Surface level 3: Painterly decorative background bleeding behind product frames"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.adora.so",
+      "siteName": "Adora",
+      "extractedAt": "2026-06-03T15:03:57.303Z",
+      "variant": "extended"
+    }
+  }
+}

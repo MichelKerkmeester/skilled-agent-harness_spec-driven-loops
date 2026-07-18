@@ -1,0 +1,1509 @@
+{
+  "source": "https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87",
+  "uuid": "3f6e3076-e77f-487e-b212-3b5946a34e87",
+  "name": "Miranda",
+  "northStar": "Old-world broadsheet on warm cream — newspaper editorial for the digital age.",
+  "capturedAt": "2026-07-18T07:53:23.752Z",
+  "meta": {
+    "url": "https://www.niccolomiranda.com",
+    "siteName": "Miranda",
+    "extractedAt": "2026-06-03T19:16:57.231Z",
+    "durationMs": 41812,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 378,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Canopee at 200px+ for any section-divider banner — display sizes below 122px lose the system's defining character",
+      "Set line-height below 0.85 on all Canopee display text so letters crowd and nearly collide; this is the signature, not a bug",
+      "Pair every project card with a 2.88px-radius square NEW badge in Ember Orange (#c03f13) — the badge is the only chromatic note in a monochrome page",
+      "Use Editorial New weight 300 exclusively for body, nav, and small headings — heavier weights break the editorial restraint",
+      "Let images bleed to the card edge with 0px radius; sharp corners are part of the broadsheet language",
+      "Keep the page background Parchment (#e2dedb) and card surfaces Bone Cream (#cdc6be) — never introduce a white or cool gray",
+      "Use negative letter-spacing on all Canopee and Domaine Display headings; positive tracking destroys the printed-poster feel"
+    ],
+    "donts": [
+      "Do not introduce gradients, glassmorphism, or modern blur effects — this is a 1890s broadsheet, not 2024 SaaS",
+      "Do not use border-radius above 12px on any element — sharp geometry defines the print aesthetic",
+      "Do not add more than one chromatic accent — the Ember Orange only works because the rest is monochrome",
+      "Do not center-align body text longer than two lines; flush-left only for paragraphs",
+      "Do not use shadows for general depth; reserve the directional ink-color shadow for project cards only",
+      "Do not substitute system sans-serifs (Inter, Helvetica) for any of the four custom faces — the serif/gothic mix is load-bearing",
+      "Do not use line-height above 1.0 on display headings — open spacing kills the compressed woodblock feel"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e2dedb",
+        "name": "Parchment",
+        "role": "Page background, image matte areas — the warm stock everything else is printed on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdc6be",
+        "name": "Bone Cream",
+        "role": "Card surfaces, secondary panels, subtle inset backgrounds slightly darker than parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1b",
+        "name": "Ink Black",
+        "role": "Body text, nav links, borders, large display banner fills, icon strokes — the near-black that carries every contrast-critical role",
+        "group": "neutral"
+      },
+      {
+        "hex": "#69645f",
+        "name": "Charcoal",
+        "role": "Muted secondary text, subdued borders, quiet typographic accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Card outline emphasis, deepest fills, highest-contrast border work on cream surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c03f13",
+        "name": "Ember Orange",
+        "role": "Stamp illustrations, star icon accent, occasional seal/sticker color — the single chromatic punctuation in an otherwise monochrome system",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page with max-width ~1440px centered. The top opens with a thin header bar, then a three-column 'featured work' strip (image, type, image). A full-width Ink Black display banner (MIRANDA) crashes through the middle, acting as a typographic section break. Below: alternating two-column and three-column blocks of project cards and portrait illustrations, each separated by generous 43px vertical rhythm. Another full-width banner (WEBSITE) punctuates the lower half. The footer is a simple two-column text block. Navigation is minimal — a single hamburger icon top-right, no persistent nav bar. The grid is consistent: always 3 equal columns at the top tier, breaking into 2 or 1 for illustrative sections. Vertical spacing is comfortable but not airy; the density feels curated, not sparse.",
+    "imagery": "Digital illustration dominates over photography. Portrait subjects are stylized semi-realistic digital paintings with dramatic lighting (rim-lit faces, saturated backgrounds, painterly texture). Project thumbnails lean toward moody interior photography (warm wood, cool blue retail spaces). Illustrations are tightly cropped, often filling the full card width, with no border or padding buffer. One Ember Orange graphic accent (stamp sunburst) appears as a decorative seal. The overall treatment feels like a curated magazine spread — every image is art-directed, never stock.",
+    "similar": [
+      {
+        "why": "Same broadsheet editorial typography with extreme display sizes and tight letter-spacing on a cream/warm background",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Newspaper-grid layouts, oversize serif headlines bleeding off cards, monochrome with single chromatic stamp accent",
+        "business": "Pentagram portfolio pages"
+      },
+      {
+        "why": "Custom display faces, sharp-cornered image cards, generous whitespace on warm neutral canvas",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Playful experimental portfolio that uses oversize custom type as architectural elements rather than body copy",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Editorial portfolio tradition — broadsheet-inspired, serif-driven, monochrome with intentional restraint",
+        "business": "Frank Chimero"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2.88px",
+        "cards": "11.52px",
+        "images": "0px",
+        "buttons": "2.88px"
+      },
+      "elementGap": "14px",
+      "sectionGap": "43px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#e2dedb",
+        "name": "Parchment",
+        "level": 0,
+        "purpose": "Page background"
+      },
+      {
+        "hex": "#cdc6be",
+        "name": "Bone Cream",
+        "level": 1,
+        "purpose": "Card and panel surface"
+      },
+      {
+        "hex": "#1d1d1b",
+        "name": "Ink Black",
+        "level": 2,
+        "purpose": "Full-width display banner fill"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 3,
+        "purpose": "Deepest card border emphasis"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(29, 29, 27, 0.2) -4px 4px 6px 0px",
+        "element": "Project Card"
+      },
+      {
+        "style": "rgba(29, 29, 27, 0.2) -5px 3px 6px 0px",
+        "element": "Portrait Card"
+      }
+    ],
+    "northStar": "Old-world broadsheet on warm cream — newspaper editorial for the digital age.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.27
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.27,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.55
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading",
+        "size": 65,
+        "lineHeight": 0.91,
+        "letterSpacing": -2.08
+      },
+      {
+        "role": "heading-lg",
+        "size": 122,
+        "lineHeight": 0.79,
+        "letterSpacing": -4.88
+      },
+      {
+        "role": "display",
+        "size": 446,
+        "lineHeight": 0.73,
+        "letterSpacing": -22.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Header Bar",
+        "role": "Top navigation strip",
+        "description": "Full-width Parchment (#e2dedb) bar with location label left ('Amsterdam, NL'), centered brand name in Editorial New 19-20px weight 300, and hamburger icon right. 1px Ink Black border-bottom for hairline separation."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Work showcase tile",
+        "description": "3-column grid card. Thumbnail image with 0px radius fills top. Below: project title in Editorial New 20px weight 300, a 2.88px-radius square NEW badge in Ember Orange (#c03f13) with white text, and a 2-3 line description in Editorial New 16-17px. No card border; separation comes from whitespace alone."
+      },
+      {
+        "name": "Display Banner Block",
+        "role": "Hero/section divider",
+        "description": "Full-width Ink Black (#1d1d1b) rectangle spanning the page with oversize Canopee text in Parchment (#e2dedb). Text sizes 202-533px, line-height 0.71-0.79 so letters nearly touch. Negative letter-spacing up to -0.089em. This is the system's most recognizable pattern."
+      },
+      {
+        "name": "NEW Badge",
+        "role": "Project freshness tag",
+        "description": "Small square 2.88px-radius tag, Ember Orange (#c03f13) background, Editorial New 12-14px weight 300 white text. Sits inline with project title."
+      },
+      {
+        "name": "Portrait Illustration Card",
+        "role": "Large artwork showcase",
+        "description": "Full-bleed digital illustration with tight cropping. No border, no radius. Caption sits below in Canopee or Domaine Display at 43-86px, line-height 0.91-0.79, weight 400-500. The illustration does the heavy lifting; type acts as a placard."
+      },
+      {
+        "name": "Drop Cap Bio Block",
+        "role": "Author introduction",
+        "description": "Two-column intro: left column opens with a large Canopee drop cap (the brand's first letter) at 86px+, then Editorial New body text. Right column holds a larger Canopee headline ('CREATIVE DEVELOPER BASED IN AMSTERDAM, NL.') at 65-72px. The drop cap is the only typographic flourish in body text."
+      },
+      {
+        "name": "Stamp Seal Illustration",
+        "role": "Decorative editorial accent",
+        "description": "Perforated-edge postage-stamp rectangle at 11.52px radius, off-white interior with Ember Orange sunburst graphic, handwritten signature line, and two metadata rows ('NAME', 'BIRTH') in tiny Editorial New caps. Functions as a signature mark, not a functional UI element."
+      },
+      {
+        "name": "Three-Column Section Header",
+        "role": "Featured work intro",
+        "description": "Left card: image. Center card: massive Canopee heading ('ALL WORK!') in 65-86px with short Editorial New subhead. Right card: image. Visual rhythm of image-type-image. Center column centered."
+      },
+      {
+        "name": "Text Link with Underline",
+        "role": "Inline navigation/CTA",
+        "description": "Editorial New 16-19px weight 300, Ink Black (#1d1d1b) color, 1px underline offset 3px. Hover darkens to Pure Black. No background fill, no button shape — editorial hyperlinks stay as text."
+      },
+      {
+        "name": "Project Metadata Row",
+        "role": "Work card footer detail",
+        "description": "Single-line row of Editorial New 14-16px caption text in Charcoal (#69645f) below project description, listing role/agency/year. Acts as a byline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, nav, links, card descriptions, smaller headings — the workhorse serif",
+        "sizes": "16px, 17px, 19px, 20px, 24px, 29px, 31px, 32px, 37px, 86px",
+        "family": "Editorial New",
+        "weight": "300",
+        "lineHeight": "0.93, 1.08, 1.11, 1.15, 1.16, 1.18, 1.20, 1.25, 1.27, 1.33, 1.36",
+        "substitute": "Tiempos Text or Source Serif 4",
+        "letterSpacing": "-0.0400em to -0.0100em; tighter at larger sizes"
+      },
+      {
+        "role": "Display headlines and section titles — the signature font for oversize banners (MIRANDA, WEBSITE, INTERACTIVE ARTIST!)",
+        "sizes": "17px, 20px, 22px, 23px, 32px, 43px, 65px, 72px, 86px, 109px, 112px, 118px, 122px, 202px, 212px, 366px, 432px, 446px, 533px",
+        "family": "Canopee",
+        "weight": "400",
+        "lineHeight": "0.71, 0.73, 0.77, 0.78, 0.79, 0.81, 0.91, 1.00, 1.25",
+        "substitute": "Migra or Bodoni Moda at heavy weight",
+        "letterSpacing": "-0.0890em to -0.0070em; extreme tightening at display sizes"
+      },
+      {
+        "role": "Mid-weight display headings, body emphasis, secondary hero text — bridges Editorial New's restraint and Canopee's drama",
+        "sizes": "20px, 22px, 32px, 65px, 72px, 86px, 109px, 118px, 122px, 446px",
+        "family": "Domaine Display",
+        "weight": "500",
+        "lineHeight": "0.73, 0.78, 0.79, 0.91, 1.00",
+        "substitute": "Playfair Display or GT Super",
+        "letterSpacing": "-0.0600em to -0.0200em"
+      },
+      {
+        "role": "Rare gothic/blackletter accent — used for occasional impact moments that need medieval or poster-poster weight",
+        "sizes": "158px",
+        "family": "Germgoth",
+        "weight": "400",
+        "lineHeight": "normal",
+        "substitute": "Pirata One or IM Fell English",
+        "letterSpacing": "-0.0040em"
+      }
+    ],
+    "description": "A vintage broadsheet portfolio rendered on warm parchment stock. Near-black ink dominates text, borders, and large editorial banners; the cream canvas stays quiet and matte, never clinical. Display type is the brand: enormous custom serifs (Canopee, Germgoth) with negative tracking and sub-1.0 line-heights so letters collide and bleed into one another, mimicking woodblock print and 19th-century poster lettering. One warm ember-orange accent appears sparingly — a stamp, a star icon — like a hand-stamped seal. Components stay flat and borderless; depth comes from contrast, not shadow. Layout reads like a zine or newspaper spread: oversized headline banners intercut with tight three-column project grids and full-bleed illustrations.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Miranda design system\",\"item\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#style-reference\",\"name\":\"Miranda design system reference\",\"headline\":\"Miranda design system | Refero Styles\",\"description\":\"Explore Miranda's light Design design system: Parchment #e2dedb, Bone Cream #cdc6be colors, Editorial New, Canopee typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Miranda\",\"url\":\"https://www.niccolomiranda.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"caption\":\"Screenshot of Miranda\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Miranda design system\",\"Miranda website design\",\"Miranda colors\",\"Miranda typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Parchment\",\"Bone Cream\",\"Ink Black\",\"Charcoal\",\"Editorial New\",\"Canopee\",\"Domaine Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Miranda design system\"},{\"@type\":\"Thing\",\"name\":\"Miranda website design\"},{\"@type\":\"Thing\",\"name\":\"Miranda colors\"},{\"@type\":\"Thing\",\"name\":\"Miranda typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:44:13.766Z\",\"dateModified\":\"2026-04-30T02:44:13.766Z\"}]}19:T690,**Quick Color Reference**\n- background: #e2dedb (Parchment)\n- surface/card: #cdc6be (Bone Cream)\n- text: #1d1d1b (Ink Black)\n- border: #1d1d1b or #000000\n- accent: #c03f13 (Ember Orange)\n- primary action: #1d1d1b (filled action)\n\n**Example Component Prompts**\n\n1. *Full-width display banner*: Ink Black (#1d1d1b) rectangle spanning 1440px, height auto. Inside, the word 'MIRANDA' in Canopee 446px, weight 400, color #e2dedb, line-height 0.73, letter-spacing -22.3px. Letters should nearly touch.\n\n2. *Project card*: Bone Cream (#cdc6be) surface, no visible border, 24px internal padding. Top: full-width image at 0px radius. Below: 'AVRO&KO' in Editorial New 20px weight 300 color #1d1d1b, followed by a 2.88px-radius square badge (background #c03f13, text 'NEW' in Editorial New 12px weight 300 color #e2dedb). Description in Editorial New 16px weight 300 color #1d1d1b, line-height 1.27.\n\n3. *Portrait illustration block*: Two-column layout. Left: a vertical digital painting illustration filling the column, 0px radius. Right: 'DIGITAL ART DIRECTOR / INTERACTIVE DESIGNER' in Canopee 86px weight 400, color #1d1d1b, line-height 0.91, letter-spacing -2.08px.\n\n4. *Editorial header bar*: Parchment (#e2dedb) background, 1px Ink Black (#1d1d1b) bottom border. Left: 'Amsterdam, NL' in Editorial New 19px weight 300. Center: 'The Niccolò Portfolio' in Editorial New 19px weight 300. Right: hamburger icon (3 horizontal Ink Black lines).\n\n5. *Stamp seal accent*: 11.52px-radius perforated-edge rectangle, background #e2dedb, with an Ember Orange (#c03f13) sunburst icon, a signature line, and two tiny text rows ('NAME Niccolò Miranda' / 'BIRTH 18/10/1995') in Editorial New 11px."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is restrained and directional — offsets point down-right in the ink color, creating the impression of a print shadow rather than a digital drop shadow. The system relies on contrast and large type for hierarchy, not depth. Most components stay flat and borderless."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1d1d1b",
+          "oklch": {
+            "c": 0.0037772701954845184,
+            "h": 106.69295371437178,
+            "l": 0.22997171519438006
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "heading",
+            "body",
+            "badge",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 1808,
+          "confidence": 1,
+          "prominence": 97689840.62615658,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 5,
+            "card/color": 4,
+            "icon/color": 5,
+            "link/color": 22,
+            "badge/color": 1,
+            "image/color": 25,
+            "other/color": 224,
+            "button/color": 3,
+            "other/stroke": 2,
+            "heading/color": 57,
+            "card/boxShadow": 4,
+            "nav/borderColor": 68,
+            "body/borderColor": 20,
+            "icon/borderColor": 20,
+            "link/borderColor": 88,
+            "badge/borderColor": 4,
+            "image/borderColor": 100,
+            "other/borderColor": 881,
+            "button/borderColor": 12,
+            "heading/borderColor": 228,
+            "nav/backgroundColor": 3,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 3,
+            "heading/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cdc6be",
+          "oklch": {
+            "c": 0.013537429402367015,
+            "h": 71.30430295398729,
+            "l": 0.8299579946393324
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 53961813.21625094,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 8,
+            "heading/color": 3,
+            "other/borderColor": 32,
+            "heading/borderColor": 12,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 3082045.619684833,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "card/borderColor": 16,
+            "other/borderColor": 15
+          }
+        },
+        {
+          "hex": "#e2dedb",
+          "oklch": {
+            "c": 0.005984832675492949,
+            "h": 59.64399163388316,
+            "l": 0.9028901628428152
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1209322.8438759001,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c03f13",
+          "oklch": {
+            "c": 0.17269618646611662,
+            "h": 37.03974815461237,
+            "l": 0.5480367807153151
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1770.699312993992,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#69645f",
+          "oklch": {
+            "c": 0.010061179249750571,
+            "h": 67.5978171371748,
+            "l": 0.5062382514741347
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 646,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.012089628930442553,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.71,
+          "background": "#e2dedb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#e2dedb",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#cdc6be",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.98,
+          "background": "#cdc6be",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.46,
+          "background": "#69645f",
+          "foreground": "#cdc6be"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#c03f13",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.13,
+          "background": "#c03f13",
+          "foreground": "#cdc6be"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.89,
+          "background": "#69645f",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#e2dedb",
+          "foreground": "#cdc6be"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2.88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 11.52,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 7.2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(29, 29, 27, 0.2) -4px 4px 6px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(29, 29, 27, 0.2) -5px 3px 6px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginLeft|other",
+            "marginRight|other",
+            "marginBottom|heading",
+            "marginTop|heading",
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|heading",
+            "paddingTop|button",
+            "paddingTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|heading",
+            "marginLeft|heading",
+            "marginLeft|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingBottom|heading",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|other",
+            "paddingTop|heading",
+            "paddingLeft|other",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "card"
+          ],
+          "frequency": 51,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "columnGap",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "columnGap|other",
+            "paddingBottom|heading",
+            "marginTop|other",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "marginBottom|other",
+            "marginTop|heading",
+            "paddingBottom|link",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Editorial New",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 293,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Canopee",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Domaine Display",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Germgoth",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 31,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.77
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.029,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.81,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 29,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "badge",
+            "heading",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 253,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.91,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.91,
+          "letterSpacing": -0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.91,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 37,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.5,
+          "letterSpacing": -0.014,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 65,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 65,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.089,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 65,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.67,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 86,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 86,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 86,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.67,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 109,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.79,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 109,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.79,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 112,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.77,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 118,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.73,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 118,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.73,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 122,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 122,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 158,
+          "family": "Germgoth",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.55,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 202,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.71,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 212,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.68,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 366,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.79,
+          "letterSpacing": -0.045,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 432,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.67,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 446,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 446,
+          "family": "Domaine Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 533,
+          "family": "Canopee",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/14e8cfdd-dd70-40f2-9e6b-ee9033739081.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Miranda design system\",\"item\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#style-reference\",\"name\":\"Miranda design system reference\",\"headline\":\"Miranda design system | Refero Styles\",\"description\":\"Explore Miranda's light Design design system: Parchment #e2dedb, Bone Cream #cdc6be colors, Editorial New, Canopee typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Miranda\",\"url\":\"https://www.niccolomiranda.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f6e3076-e77f-487e-b212-3b5946a34e87#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"caption\":\"Screenshot of Miranda\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a0c35fe-4439-4129-8e89-554b877c7552.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Miranda design system\",\"Miranda website design\",\"Miranda colors\",\"Miranda typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Parchment\",\"Bone Cream\",\"Ink Black\",\"Charcoal\",\"Editorial New\",\"Canopee\",\"Domaine Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Miranda design system\"},{\"@type\":\"Thing\",\"name\":\"Miranda website design\"},{\"@type\":\"Thing\",\"name\":\"Miranda colors\"},{\"@type\":\"Thing\",\"name\":\"Miranda typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:44:13.766Z\",\"dateModified\":\"2026-04-30T02:44:13.766Z\"}]}19:T690,**Quick Color Reference**\n- background: #e2dedb (Parchment)\n- surface/card: #cdc6be (Bone Cream)\n- text: #1d1d1b (Ink Black)\n- border: #1d1d1b or #000000\n- accent: #c03f13 (Ember Orange)\n- primary action: #1d1d1b (filled action)\n\n**Example Component Prompts**\n\n1. *Full-width display banner*: Ink Black (#1d1d1b) rectangle spanning 1440px, height auto. Inside, the word 'MIRANDA' in Canopee 446px, weight 400, color #e2dedb, line-height 0.73, letter-spacing -22.3px. Letters should nearly touch.\n\n2. *Project card*: Bone Cream (#cdc6be) surface, no visible border, 24px internal padding. Top: full-width image at 0px radius. Below: 'AVRO&KO' in Editorial New 20px weight 300 color #1d1d1b, followed by a 2.88px-radius square badge (background #c03f13, text 'NEW' in Editorial New 12px weight 300 color #e2dedb). Description in Editorial New 16px weight 300 color #1d1d1b, line-height 1.27.\n\n3. *Portrait illustration block*: Two-column layout. Left: a vertical digital painting illustration filling the column, 0px radius. Right: 'DIGITAL ART DIRECTOR / INTERACTIVE DESIGNER' in Canopee 86px weight 400, color #1d1d1b, line-height 0.91, letter-spacing -2.08px.\n\n4. *Editorial header bar*: Parchment (#e2dedb) background, 1px Ink Black (#1d1d1b) bottom border. Left: 'Amsterdam, NL' in Editorial New 19px weight 300. Center: 'The Niccolò Portfolio' in Editorial New 19px weight 300. Right: hamburger icon (3 horizontal Ink Black lines).\n\n5. *Stamp seal accent*: 11.52px-radius perforated-edge rectangle, background #e2dedb, with an Ember Orange (#c03f13) sunburst icon, a signature line, and two tiny text rows ('NAME Niccolò Miranda' / 'BIRTH 18/10/1995') in Editorial New 11px."
+}

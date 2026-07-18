@@ -1,0 +1,165 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces — the foundational surface on which all content sits"
+    },
+    "charcoal": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Charcoal — Primary text, hairline borders, structural rules — softer than pure black, reduces glare for long reading"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Display text fill, link borders, maximum contrast elements"
+    },
+    "ash-gray": {
+      "$value": "#dcdcdc",
+      "$type": "color",
+      "$description": "Ash Gray — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "flesh-peach": {
+      "$value": "#efc4b2",
+      "$type": "color",
+      "$description": "Flesh Peach — Warm surface wash behind portrait and select portfolio imagery — the only chromatic surface, used sparingly as atmospheric punctuation"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, bio description, and work list content — system font chosen for zero-loading neutrality, letting the custom display serif own the page's identity. The system choice is deliberate: it disappears so the display type can speak."
+    },
+    "custom21879-custom49610": {
+      "$value": "custom_21879 / custom_49610",
+      "$type": "fontFamily",
+      "$description": "Display serif used for the signature '2019 — 2025' hero statement at 125-142px with weight 400 and tight negative tracking; the 12px instance serves as small-caps section labels. The extreme size jump from 12px to 125px creates the page's defining scale contrast. Substitute: GT Sectra, Editorial New, or Tobias for similar editorial character."
+    },
+    "custom49610": {
+      "$value": "custom_49610",
+      "$type": "fontFamily",
+      "$description": "custom_49610 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "custom_49610",
+        "fontSize": "125px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 125px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "142px",
+        "fontWeight": 400,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 142px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "custom_21879",
+        "fontSize": "142px",
+        "fontWeight": 400,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 142px"
+    }
+  },
+  "spacing": {
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background"
+    },
+    "flesh-surface": {
+      "$value": "#efc4b2",
+      "$type": "color",
+      "$description": "Surface level 2: Warm atmospheric wash behind portrait imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gustavo.work",
+      "siteName": "GUSTAVO Faria ©",
+      "extractedAt": "2026-06-03T20:36:14.753Z",
+      "variant": "extended"
+    }
+  }
+}

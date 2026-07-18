@@ -1,0 +1,895 @@
+{
+  "source": "https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d",
+  "uuid": "dae7cbf2-0485-433b-8f63-eea8716ad14d",
+  "name": "Equals",
+  "northStar": "Broadsheet meets spreadsheet — editorial serif authority on warm cream, punctuated by floating pastel data cells.",
+  "capturedAt": "2026-07-18T10:16:01.271Z",
+  "meta": {
+    "url": "https://equals.com",
+    "siteName": "Equals",
+    "extractedAt": "2026-04-11T19:03:11.531Z",
+    "durationMs": 112981,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 191,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Serrif Condensed weight 400 (never bold) for all headings — the editorial authority comes from scale (up to 110px) and letter-spacing (-2.2px at display), not weight",
+      "Set the page background to #FAF9F5 (Warm Cream), never pure white — the warm tint is the canvas that makes black text feel typographic rather than digital",
+      "Reserve #FFCC00 exclusively for the announcement bar and #B074CE exclusively for CTA buttons — their power comes from appearing once each, never reused as decorative color",
+      "Use 60px border-radius on CTA buttons only; all other interactive elements (inputs, dropdowns, category pills) use 0px or 6px — the pill/sharp contrast is deliberate system tension",
+      "Separate sections with 1px solid #000000 horizontal rules instead of increased vertical whitespace — this references spreadsheet grid lines and is the primary structural rhythm device",
+      "Apply negative letter-spacing to Unica77 at all sizes: -0.084px at 14px, -0.08px at 16px — never use default tracking for UI text",
+      "Display category/role color blocks as flat 24×12px solid rectangles (no radius, no border) — the raw flat swatch is the icon; never substitute icons or illustrations for these"
+    ],
+    "tags": [
+      "editorial-serif",
+      "cream-background",
+      "spreadsheet-metaphor",
+      "pill-cta",
+      "typographic-hierarchy",
+      "pastel-accents",
+      "two-font-system",
+      "horizontal-rule-structure",
+      "minimal-color",
+      "data-tools"
+    ],
+    "donts": [
+      "Never use #B074CE or #FFCC00 as background for content sections or cards — both colors are single-purpose signal colors, not palette options",
+      "Never apply border-radius to inputs or horizontal dividers — the 0px sharp edge on form elements is the system's UI register; rounding them collapses the tension with pill CTAs",
+      "Never use Serrif Condensed at weights other than 400 — do not attempt to bold or italicize headings, even for emphasis",
+      "Never replace the floating color swatch decoratives with photography or illustrations — abstract flat rectangles are the hero visual language; anything representational breaks the spreadsheet metaphor",
+      "Never use #646462 (Slate Body) for headings or CTAs — it is body-only, maintaining a strict two-tier contrast system: black for structure, slate for supporting copy",
+      "Never stack multiple orchid (#B074CE) buttons in proximity — each page view should have a single dominant CTA moment, typically the email capture composite in the hero",
+      "Never add drop shadows or elevation to section containers or cards — the only permitted shadow is on nav dropdown panels; sections live flat on the cream surface"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#FFCC00",
+        "name": "Analyst Yellow",
+        "role": "Announcement bar background only — saturated yellow on near-black text creates maximum urgency at minimal surface area, never used elsewhere so it retains its alarm-signal quality",
+        "group": "brand"
+      },
+      {
+        "hex": "#B074CE",
+        "name": "Orchid CTA",
+        "role": "Primary CTA buttons — warm violet against cream background reads as inviting rather than urgent, distinguishing CTAs from the aggressive red/orange typical of SaaS",
+        "group": "brand"
+      },
+      {
+        "hex": "#20A277",
+        "name": "Brand Green",
+        "role": "Finance category accent swatch — one of three role-coded indicator blocks (RevOps red, Founders navy, Finance green) flanking solution rows",
+        "group": "accent"
+      },
+      {
+        "hex": "#2DCBDC",
+        "name": "Glacier",
+        "role": "Background decorative color block in hero, part of the floating pastel spreadsheet-cell visual language",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight Ink",
+        "role": "All headings, body text, borders, nav links, icons — full black with zero softening; the high contrast against cream is deliberately old-media, not SaaS-neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#FAF9F5",
+        "name": "Warm Cream",
+        "role": "Page background, section backgrounds — the slight warm yellow tint separates this from clinical white and reinforces the paper/spreadsheet metaphor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "Cloud White",
+        "role": "Button text on orchid CTAs, nav hover states, input field backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#646462",
+        "name": "Slate Body",
+        "role": "Body copy, nav secondary text, descriptive subtexts under headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#CDCCC9",
+        "name": "Fog Border",
+        "role": "Nav dropdown shadows, subtle divider lines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width centered layout (~1200px) on a full-bleed #FAF9F5 cream background. Hero is full-viewport-height centered stack: 110px display headline, 18px subtext, then the email+CTA composite unit. Floating color swatches appear left and right of the text column without containing structure — they bleed near the viewport edges. Below the hero, sections are separated exclusively by 1px black horizontal rules with no vertical gap between them, creating a dense spreadsheet-row rhythm. Solution rows use a two-column layout: text left, color swatch right. Customer logos appear in a 5-column grid row, then a second row, directly on the cream surface with no container. Navigation is a single sticky top bar with logo left, five nav links centered, sign-in + email input + CTA button right. Dropdown panels float below nav items with the layered shadow system.",
+    "imagery": "No photography anywhere on the visible page. The hero's visual field is occupied entirely by flat-color rectangular swatches — glacier teal, soft lavender, pastel yellow, mint green — arranged loosely in the background at varying sizes, without radius or border, mimicking unfilled spreadsheet cells. These are purely decorative and never contain content. The logo section uses monochrome customer wordmarks forced to black, no badges or containers. Category indicators are 24×12px solid color blocks — raw data visualization primitives rather than designed icons. The visual language is resolutely non-photographic: a product confident enough that its typography IS the visual.",
+    "similar": [
+      {
+        "why": "Same black-on-cream typographic approach with a primary CTA pill button in a single accent color against an otherwise achromatic UI",
+        "business": "Notion"
+      },
+      {
+        "why": "Same two-font editorial system pairing a display serif with a tight grotesque for UI chrome, with negative letter-spacing as a signature move",
+        "business": "Linear"
+      },
+      {
+        "why": "Directly comparable spreadsheet product visual language — editorial serif headlines, cream backgrounds, minimal color accents referencing data-cell aesthetics",
+        "business": "Rows.com"
+      },
+      {
+        "why": "Monochrome logo grid on cream with single-accent CTA buttons and horizontal-rule section dividers instead of card-based layouts",
+        "business": "Retool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "inputs": "0px",
+        "buttons": "60px",
+        "dropdowns": "6px"
+      },
+      "elementGap": "12-20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "northStar": "Broadsheet meets spreadsheet — editorial serif authority on warm cream, punctuated by floating pastel data cells.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.54
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.072
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.04,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 1,
+        "letterSpacing": -2.2
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Orchid CTA Email Capture",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Solution Rows",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Testimonial Pull Quote",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Orchid CTA Button",
+        "role": "Primary call-to-action",
+        "description": "Background #B074CE, white text, 60px border-radius (full pill), 4px 12px padding, Unica77 14px weight 400. The pill radius against the otherwise 0px-radius input it sits beside creates deliberate contrast. Used for 'Get a demo' globally."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Primary navigation items",
+        "description": "Transparent background, #000000 text, 0px radius, 0px padding, Unica77 16px weight 400 with -0.08px letter-spacing. No underline at rest. Navigation links are completely unstyled except for hover state."
+      },
+      {
+        "name": "Solution Row",
+        "role": "Feature/use-case listing separated by horizontal rules",
+        "description": "Full-width row separated by 1px #000000 horizontal rule top and bottom. Left: heading in Serrif Condensed 40px + body in Unica77 16px #646462. Right: a 24×12px solid color block (red for RevOps #FF3716, navy #00B for Founders, green #20A277 for Finance) functioning as a category icon. No card background — content sits directly on #FAF9F5."
+      },
+      {
+        "name": "Nav Dropdown Panel",
+        "role": "Mega-menu navigation dropdown",
+        "description": "White #FFFFFF background, 6px border-radius, box-shadow rgba(0,0,0,0.1) 0 0 0 0.5px + rgba(0,0,0,0.05) 0 2px 8px -2px + rgba(0,0,0,0.14) 0 2px 10px -4px. Interior items use Unica77 14px-16px. The layered three-value shadow creates thin-bezel framing without aggressive depth."
+      },
+      {
+        "name": "Logo Tag",
+        "role": "Social proof / customer logo display",
+        "description": "Monochrome customer logos displayed at uniform size in a horizontal or grid layout directly on #FAF9F5. No card, no border, no padding container — logos float on the page surface. Brand names (Notion, Intercom, Cursor, etc.) rendered in their own logotype styling but forced to black."
+      },
+      {
+        "name": "Floating Color Swatch",
+        "role": "Hero background decorative element",
+        "description": "Rectangular blocks of flat color (glacier teal #2DCBDC, soft purple, warm yellow, pastel green) scattered in the hero background at varying sizes. No radius, no border, no shadow. They reference spreadsheet cell fills, creating an ambient visual field without interfering with foreground content."
+      },
+      {
+        "name": "Testimonial Pull Quote",
+        "role": "Social proof text block",
+        "description": "Large opening quotation mark in Serrif Condensed, quote body in Serrif Condensed 40-48px, attribution in Unica77 16px #646462. Placed on #FAF9F5 with no container or border. The serif quote type against the sans-serif attribution creates deliberate register shift."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and section headings — single weight 400 across all sizes is the anti-convention choice; most SaaS headlines use 700-800, this regular-weight condensed serif whispers editorial authority. The 110px size is used only for hero display text.",
+        "sizes": "40px, 48px, 110px",
+        "family": "Serrif Condensed",
+        "weight": "400",
+        "lineHeight": "1.00–1.10",
+        "substitute": "Freight Display Condensed, or Playfair Display with condensed tracking",
+        "letterSpacing": "-2.2px at 110px, -0.48px at 48px, -0.4px at 40px"
+      },
+      {
+        "role": "Every non-heading element: nav links, body copy, buttons, footer, input placeholder, labels. The negative letter-spacing at all sizes tightens an already compact grotesque into something UI-precise — a signature move that makes UI chrome feel considered rather than default.",
+        "sizes": "14px, 16px, 18px, 24px",
+        "family": "Unica77",
+        "weight": "400",
+        "lineHeight": "1.00–1.71",
+        "substitute": "Inter, Aktiv Grotesk",
+        "letterSpacing": "-0.084px at 14px, -0.08px at 16px, -0.072px at 18px"
+      },
+      {
+        "role": "Fine-print body context — 13px utility text likely used for footnotes or micro-labels. Its presence alongside Unica77 suggests a tertiary voice for data footnotes or legal-adjacent content.",
+        "sizes": "13px",
+        "family": "Aeonik Fono",
+        "weight": "400",
+        "lineHeight": "1.54",
+        "substitute": "IBM Plex Mono",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Equals feels like a newspaper broadsheet that learned to breathe — authoritative serif headlines punching at 110px sit on a warm cream field (#FAF9F5), while playful pastel color swatches float loosely in the background like spreadsheet cells coming undone. The tension between Serrif Condensed's editorial weight and Unica77's tight UI precision creates a dual-register: serious data tool and approachable product. Yellow (#FFCC00) announces itself only on the top announcement bar, orchid purple (#B074CE) appears exclusively on CTA buttons — two accent colors that never compete because they never share the same zone. Thin horizontal rules divide sections instead of whitespace padding, referencing spreadsheet grid lines as a structural metaphor throughout the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Spreadsheet Color Block System",
+        "content": "The three use-case rows (RevOps, Founders, Finance) each carry a specific solid color block that functions as both a category identifier and a data-cell visual metaphor:\n- RevOps: #FF3716 (Amber) — aggressive pipeline urgency\n- Founders: #00B (Brand Blue) — institutional authority\n- Finance: #20A277 (Brand Green) — financial health signaling\nThese blocks are 24px wide × 12px tall, zero border-radius, no border, no shadow. When building new solution rows for additional personas, select a new color from the brand token set (--brand-glacier, --brand-peach, --brand-aquamarine, --brand-sky, --brand-purple) and maintain the same rectangular proportion. Never use #FFCC00 or #B074CE for these blocks — those colors are reserved for announcement and CTA roles respectively."
+      }
+    ],
+    "elevationPhilosophy": "Flat-first with a single exception: nav dropdown panels carry a three-value layered shadow (0.5px outline ring + 8px soft spread + 10px tight shadow) that simulates a physical panel lifted off the page. Everything else — content sections, cards, form elements — sits flush on the cream surface with no elevation. The absence of card shadows is structural: sections are divided by rules, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "body",
+            "input",
+            "image",
+            "link",
+            "footer"
+          ],
+          "frequency": 817,
+          "confidence": 1,
+          "prominence": 36097609.10494414,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 90395.8974860795,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#646462",
+          "oklch": {
+            "c": 0.002551318258433082,
+            "h": 95.09387245316115,
+            "l": 0.5016538218866095
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 63695.935782904395,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffcc00",
+          "oklch": {
+            "c": 0.17682820801718266,
+            "h": 90.3815564900439,
+            "l": 0.8652089977306622
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 51300,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#b074ce",
+          "oklch": {
+            "c": 0.14344809003452658,
+            "h": 313.6599499248708,
+            "l": 0.6558269688414499
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 10418,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#cdccc9",
+          "oklch": {
+            "c": 0.004589754613122138,
+            "h": 95.0978546110879,
+            "l": 0.8454883567033699
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7480,
+          "properties": [
+            "boxShadow"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002192306397638845,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#ffcc00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cdccc9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.24,
+          "background": "#b074ce",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#ffffff",
+          "foreground": "#646462"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#ffcc00",
+          "foreground": "#646462"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#b074ce",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.76,
+          "background": "#b074ce",
+          "foreground": "#646462"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.51,
+          "background": "#ffcc00",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px, rgba(0, 0, 0, 0.05) 0px 2px 8px -2px, rgba(0, 0, 0, 0.14) 0px 2px 10px -4px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 77,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 6,
+          "properties": [
+            "columnGap",
+            "marginBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 15,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 150,
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Unica77",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 165,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Serrif Condensed",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Aeonik Fono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Aeonik Fono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 75,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "body"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Unica77",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Serrif Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Serrif Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "Serrif Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/626ed1af-aa0a-426c-a8a4-b9dc64dbd1a8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/41b47b5e-58b3-429c-aa3e-e99dab4ed9db.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Equals design system\",\"item\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d#style-reference\",\"name\":\"Equals design system reference\",\"headline\":\"Equals design system | Refero Styles\",\"description\":\"Explore Equals's light SaaS design system: Analyst Yellow #FFCC00, Orchid CTA #B074CE colors, Serrif Condensed, Unica77 typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Equals\",\"url\":\"https://equals.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dae7cbf2-0485-433b-8f63-eea8716ad14d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/41b47b5e-58b3-429c-aa3e-e99dab4ed9db.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/41b47b5e-58b3-429c-aa3e-e99dab4ed9db.jpg\",\"caption\":\"Screenshot of Equals\"},\"image\":\"https://images.refero.design/styles/refero.design/image/41b47b5e-58b3-429c-aa3e-e99dab4ed9db.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Equals design system\",\"Equals website design\",\"Equals colors\",\"Equals typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Analyst Yellow\",\"Orchid CTA\",\"Brand Green\",\"Glacier\",\"Serrif Condensed\",\"Unica77\",\"Aeonik Fono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Equals design system\"},{\"@type\":\"Thing\",\"name\":\"Equals website design\"},{\"@type\":\"Thing\",\"name\":\"Equals colors\"},{\"@type\":\"Thing\",\"name\":\"Equals typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-26T19:59:51.000Z\",\"dateModified\":\"2026-03-26T19:59:51.000Z\"}]}19:T71b,<div style=\"--color-analyst-yellow:#FFCC00;--color-orchid-cta:#B074CE;--color-brand-green:#20A277;--color-glacier:#2DCBDC;--color-midnight-ink:#000000;--color-warm-cream:#FAF9F5;--color-cloud-white:#FFFFFF;--color-slate-body:#646462;--color-fog-border:#CDCCC9;--font-serrif-condensed:'Georgia','Times New Roman',serif;--font-unica77:'Inter','Helvetica Neue',Arial,sans-serif;box-sizing:border-box;background:var(--color-warm-cream);padding:48px 40px;display:flex;flex-direction:column;align-items:center;gap:32px;width:600px;font-family:var(--font-unica77);\"><h1 style=\"font-family:var(--font-serrif-condensed);font-size:72px;font-weight:400;line-height:1.02;letter-spacing:-1.4px;color:var(--color-midnight-ink);text-align:center;margin:0;padding:0;\">What's after Excel?</h1><p style=\"font-family:var(--font-unica77);font-size:18px;font-weight:400;line-height:1.44;letter-spacing:-0.072px;color:var(--color-slate-body);text-align:center;margin:0;padding:0;max-width:420px;\">Equals is the first new spreadsheet in 20 years, engineered for AI, designed for trust.</p><div style=\"display:flex;align-items:center;background:var(--color-cloud-white);border:1px solid var(--color-fog-border);border-radius:60px;padding:6px 6px 6px 20px;width:100%;max-width:440px;box-sizing:border-box;\"><input type=\"email\" placeholder=\"Enter your work email\" style=\"flex:1;border:none;outline:none;background:transparent;font-family:var(--font-unica77);font-size:16px;font-weight:400;letter-spacing:-0.08px;color:var(--color-midnight-ink);padding:8px 0;\"/><button style=\"background:var(--color-orchid-cta);color:var(--color-cloud-white);border:none;border-radius:60px;padding:10px 22px;font-family:var(--font-unica77);font-size:14px;font-weight:400;letter-spacing:-0.084px;cursor:pointer;white-space:nowrap;\">Get a demo</button></div></div>1a:Ta58,<div style=\"--color-analyst-yellow:#FFCC00;--color-orchid-cta:#B074CE;--color-brand-green:#20A277;--color-glacier:#2DCBDC;--color-midnight-ink:#000000;--color-warm-cream:#FAF9F5;--color-cloud-white:#FFFFFF;--color-slate-body:#646462;--color-fog-border:#CDCCC9;--font-serrif-condensed:'Georgia','Times New Roman',serif;--font-unica77:'Inter','Helvetica Neue',Arial,sans-serif;background:var(--color-warm-cream);width:600px;box-sizing:border-box;font-family:var(--font-unica77);\"><div style=\"border-top:1px solid var(--color-midnight-ink);display:flex;align-items:center;justify-content:space-between;padding:36px 40px;\"><div style=\"display:flex;flex-direction:column;gap:10px;\"><h2 style=\"font-family:var(--font-serrif-condensed);font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-0.4px;color:var(--color-midnight-ink);margin:0;padding:0;\">Equals for RevOps</h2><p style=\"font-family:var(--font-unica77);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.08px;color:var(--color-slate-body);margin:0;padding:0;\">Next-level clarity into your pipeline and funnel.</p></div><div style=\"width:44px;height:22px;background:#FF3716;flex-shrink:0;\"></div></div><div style=\"border-top:1px solid var(--color-midnight-ink);display:flex;align-items:center;justify-content:space-between;padding:36px 40px;\"><div style=\"display:flex;flex-direction:column;gap:10px;\"><h2 style=\"font-family:var(--font-serrif-condensed);font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-0.4px;color:var(--color-midnight-ink);margin:0;padding:0;\">Equals for Founders</h2><p style=\"font-family:var(--font-unica77);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.08px;color:var(--color-slate-body);margin:0;padding:0;\">Real-time feedback on how each bet is playing out.</p></div><div style=\"width:44px;height:22px;background:#0000BB;flex-shrink:0;\"></div></div><div style=\"border-top:1px solid var(--color-midnight-ink);border-bottom:1px solid var(--color-midnight-ink);display:flex;align-items:center;justify-content:space-between;padding:36px 40px;\"><div style=\"display:flex;flex-direction:column;gap:10px;\"><h2 style=\"font-family:var(--font-serrif-condensed);font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-0.4px;color:var(--color-midnight-ink);margin:0;padding:0;\">Equals for Finance</h2><p style=\"font-family:var(--font-unica77);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.08px;color:var(--color-slate-body);margin:0;padding:0;\">Stand up board-ready sales and ARR reporting.</p></div><div style=\"width:44px;height:22px;background:var(--color-brand-green);flex-shrink:0;\"></div></div></div>1b:T565,<div style=\"--color-analyst-yellow:#FFCC00;--color-orchid-cta:#B074CE;--color-brand-green:#20A277;--color-glacier:#2DCBDC;--color-midnight-ink:#000000;--color-warm-cream:#FAF9F5;--color-cloud-white:#FFFFFF;--color-slate-body:#646462;--color-fog-border:#CDCCC9;--font-serrif-condensed:'Georgia','Times New Roman',serif;--font-unica77:'Inter','Helvetica Neue',Arial,sans-serif;background:var(--color-warm-cream);padding:56px 40px;width:600px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px;\"><div style=\"font-family:var(--font-serrif-condensed);font-size:80px;font-weight:400;line-height:0.7;color:var(--color-midnight-ink);\">“</div><blockquote style=\"margin:0;padding:0;\"><p style=\"font-family:var(--font-serrif-condensed);font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-0.4px;color:var(--color-midnight-ink);margin:0;padding:0;\">Equals has fundamentally changed how we operate as a company.</p></blockquote><div style=\"display:flex;flex-direction:column;gap:4px;padding-top:8px;\"><span style=\"font-family:var(--font-unica77);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.08px;color:var(--color-midnight-ink);\">Sarah Chen</span><span style=\"font-family:var(--font-unica77);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.08px;color:var(--color-slate-body);\">Head of Revenue Operations, Notion</span></div></div>1c:T7e9,**Quick Color Reference**\n- Text / headings: #000000\n- Page background: #FAF9F5\n- Body / secondary text: #646462\n- CTA button background: #B074CE\n- Announcement bar: #FFCC00\n- Borders / rules: #000000\n- Nav dropdown background: #FFFFFF\n\n**Example Component Prompts**\n\n1. **Hero Section:** Cream (#FAF9F5) full-bleed background with floating flat-color rectangles (no radius, no border) in teal #2DCBDC, lavender, pale yellow scattered in background. Centered stack: headline 'What's after Excel?' in Serrif Condensed 110px weight 400 #000000 letter-spacing -2.2px, line-height 1.0. Subtext 18px Unica77 weight 400 #646462 letter-spacing -0.072px below. Then email input (0px radius, #000000 1px border, 18px top/bottom 28px left padding, Unica77 16px placeholder #646462) with orchid CTA button (#B074CE, white text, 60px radius, 4px 12px padding) overlapping the right edge.\n\n2. **Solution Row:** Full-width row on #FAF9F5, separated top and bottom by 1px solid #000000 horizontal rule. Left column: heading in Serrif Condensed 40px #000000 letter-spacing -0.8px, below it body text Unica77 16px #646462. Right column flush right: 24×12px flat color block (no radius, no border) — #FF3716 for RevOps, #00B for Founders, #20A277 for Finance.\n\n3. **Nav Bar:** Sticky top bar on #FFFFFF, logo 'Equals' left in Unica77 bold. Center: five ghost links (Solutions, Use cases, Pricing, About) in Unica77 16px #000000 0px padding. Right: 'Sign in' ghost link + email input (compact, 0px radius) + 'Get a demo' pill button (#B074CE, 60px radius, white text, Unica77 14px).\n\n4. **Announcement Bar:** Full-viewport-width strip, #FFCC00 background, 0px radius, 6px 20px padding. Text: Unica77 14px #000000 weight 400, content with trailing '→' arrow. Placed above the nav bar, always top of page.\n\n5. **Customer Logo Row:** 5-column horizontal layout directly on #FAF9F5, no container, no border, no shadow. Monochrome customer wordmark logos forced to #000000. Equal spacing between logos (~20px column gap). No labels or captions."
+}

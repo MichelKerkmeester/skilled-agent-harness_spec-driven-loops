@@ -1,0 +1,152 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders, every hairline divider, filled language toggle — the entire structural skeleton of the page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, pill interiors, button text on dark fills"
+    },
+    "blush-bloom": {
+      "$value": "#ffc8c8",
+      "$type": "color",
+      "$description": "Blush Bloom — Brand mark fill (the ANA CUNA pill in the header) and the sole chromatic accent — a whisper of warmth that marks identity without ever shouting"
+    }
+  },
+  "font": {
+    "abcmonumentgrotesk-regular": {
+      "$value": "ABCMonumentGrotesk-Regular",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for the entire system. One weight — regular — is used at all three sizes: 94px for project titles (display), 31px for secondary headings, 15px for body, nav, tags, and footer. The refusal to introduce a bold or italic weight is a signature editorial choice; hierarchy comes purely from size, not weight."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "ABCMonumentGrotesk-Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGrotesk-Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABCMonumentGrotesk-Regular",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGrotesk-Regular",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 31px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCMonumentGrotesk-Regular",
+        "fontSize": "94px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 94px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "27.4285px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the entire site is one continuous white surface"
+    },
+    "pill-interior": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Inside of outlined pills (nav, client tags) — visually identical to the canvas, distinguished only by the 1px black border"
+    },
+    "blush-mark": {
+      "$value": "#ffc8c8",
+      "$type": "color",
+      "$description": "Surface level 2: Sole chromatic surface — the brand seal pill in the header"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://anacuna.com",
+      "siteName": "Anacuna",
+      "extractedAt": "2026-06-03T21:04:13.667Z",
+      "variant": "extended"
+    }
+  }
+}

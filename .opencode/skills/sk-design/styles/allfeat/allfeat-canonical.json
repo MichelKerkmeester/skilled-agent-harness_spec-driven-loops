@@ -1,0 +1,1534 @@
+{
+  "source": "https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b",
+  "uuid": "2f9bf724-3829-4c62-bcc8-391b32925d1b",
+  "name": "Allfeat",
+  "northStar": "Backstage monitor at midnight — one teal stage light cutting through warm cream type on charcoal glass.",
+  "capturedAt": "2026-07-18T08:44:58.295Z",
+  "meta": {
+    "url": "https://allfeat.org",
+    "siteName": "Allfeat",
+    "extractedAt": "2026-06-03T21:51:30.352Z",
+    "durationMs": 32403,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 605,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #00b18c fill as the only chromatic CTA — every interactive filled button in the system is this exact teal",
+      "Set all buttons, badges, and nav capsules to 900px radius — this is non-negotiable, the only allowed exception is cards/images at 12px",
+      "Pull all display type to letter-spacing -0.02em and line-height 0.95-1.00 so headlines collapse into confident slabs",
+      "Use the 1px inset #383835 border as the sole card depth treatment — never add a drop shadow on top of it",
+      "Reserve #ff4a5f for eyebrow labels, gradient accents, and emotional emphasis runs inside headlines — never as a button fill or body text color",
+      "Anchor every hero and major section in a soft teal radial wash fading from #00b18c at ~25% opacity to transparent",
+      "Keep body text in TASA Orbiter weight 400 at 16-18px in #fffbeb or #b8b8b8; never go below 13px"
+    ],
+    "donts": [
+      "Don't introduce a new accent color — teal and coral are the only chromatic voices in the system",
+      "Don't use 8px or 16px radius on cards or images; the system is strictly 12px for containers and 900px for interactive elements",
+      "Don't use pure white (#ffffff) for text — always #fffbeb, the warm cream tint is part of the brand",
+      "Don't apply drop shadows anywhere — the entire elevation system is inset-only",
+      "Don't break the single-typeface rule by introducing a second font; TASA Orbiter at 400/500/600 covers every need",
+      "Don't set headlines in light or thin weights — 600 is the floor for display sizes, mixing in 400-500 only as muted secondary clauses",
+      "Don't fill buttons with #ff4a5f coral — coral is atmospheric, not actionable; only #00b18c signals an action"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#151515",
+        "name": "Charcoal Stage",
+        "role": "Page canvas, primary surface, all dark backgrounds — the base layer every other color sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffbeb",
+        "name": "Warm Cream",
+        "role": "Primary text, nav links, heading copy, hairline borders on dark surfaces — never pure white, always slightly buttered",
+        "group": "neutral"
+      },
+      {
+        "hex": "#383835",
+        "name": "Card Edge",
+        "role": "Inset 1px card borders, card ambient shadow, subtle separator lines on elevated surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Mute Cream",
+        "role": "Secondary body text, subdued descriptions, muted helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a6",
+        "name": "Ash Gray",
+        "role": "Subdued heading text, list separators, inactive link borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#504f4a",
+        "name": "Bronze Veil",
+        "role": "Badge borders, card hairline accents, low-emphasis outline treatments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#00b18c",
+        "name": "Signal Teal",
+        "role": "Teal action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff4a5f",
+        "name": "Ember Coral",
+        "role": "Red action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered, full-bleed dark canvas. The hero is a full-viewport radial teal wash with the brand mark, headline, and single CTA dead-centered; the community nodes orbit this center as fixed-position circles. Below the fold, content arranges in alternating 2-column card grids (2-up on desktop, stacked on mobile) with generous 80px vertical section gaps. Each section opens with a centered eyebrow + display headline, then drops into 2-up or 3-up card rows. Navigation is a fixed top-left wordmark plus a top-right floating pill capsule — no full-width nav bar. The footer is compact, dark, and text-only. The overall rhythm is: one big centered moment, then a long quiet section of paired cards, then another big centered moment.",
+    "imagery": "Visuals are dominated by illustrated 3D isometric graphics (a translucent cube on a grid, networked circular nodes with geometric face patterns) rendered in a limited palette of teal, coral, cream, and charcoal. Photography is restricted to small circular partner portraits in the community orbital hero, presented as soft black-and-white crops. Icons are monoline geometric marks (ISRC, IPI, ISWC badges) in #b8b8b8. The illustrative style is flat-isometric with hard edges, no gradients on the objects themselves — the only gradient in the system is the atmospheric teal wash behind them.",
+    "similar": [
+      {
+        "why": "Same dark-mode music-infrastructure palette with a single vivid accent (Audius uses green, Allfeat uses teal) and pill-shaped CTAs",
+        "business": "Audius"
+      },
+      {
+        "why": "Dark canvas, teal/vivid-green primary action, minimal card system with hairline borders, single sans-serif throughout",
+        "business": "Sound.xyz"
+      },
+      {
+        "why": "Dark-mode crypto-creator platform using a single chromatic accent against near-black, with pill buttons and 12px-radius cards",
+        "business": "Zora"
+      },
+      {
+        "why": "Identical dark-canvas-plus-vivid-teal accent language, pill navigation capsules, and inset-border card treatment",
+        "business": "Lens Protocol"
+      },
+      {
+        "why": "Music-industry crypto platform with a warm-on-dark palette, single accent color, and display headlines that mix weights within one block",
+        "business": "Royal"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "900px",
+        "cards": "12px",
+        "badges": "900px",
+        "images": "12px",
+        "buttons": "900px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#151515",
+        "name": "Charcoal Canvas",
+        "level": 0,
+        "purpose": "Page base, hero background beneath the teal radial wash"
+      },
+      {
+        "hex": "#151515",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Card interior — same color as canvas, distinguished only by the 1px inset border in #383835"
+      },
+      {
+        "hex": "#00b18c",
+        "name": "Teal Wash",
+        "level": 2,
+        "purpose": "Hero radial gradient overlay creating atmospheric depth, not a true surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(56, 56, 53) 0px 0px 0px 1px inset",
+        "element": "Inset-Border Card"
+      },
+      {
+        "style": "rgba(255, 251, 235, 0.25) 0px 0px 0px 2px inset",
+        "element": "Pill Primary Button"
+      }
+    ],
+    "northStar": "Backstage monitor at midnight — one teal stage light cutting through warm cream type on charcoal glass.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 0.95,
+        "letterSpacing": -1.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "The default call-to-action — teal fill on charcoal",
+        "description": "Fully rounded (900px) pill button. Fill #00b18c, text #fffbeb at 14-16px weight 500. Padding 16px horizontal by 9px vertical. No drop shadow; instead a 2px inset ring at rgba(255,251,235,0.25) defines the edge so the button reads as illuminated rather than elevated."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Secondary navigation action — text only inside a pill outline",
+        "description": "900px radius, transparent fill on #151515, 1px border in #fffbeb at ~40% opacity, 14-16px weight 500 text in #fffbeb. Padding 16px horizontal. Sits beside filled CTAs in the nav as the quieter option."
+      },
+      {
+        "name": "Nav Capsule",
+        "role": "The header pill containing all nav controls",
+        "description": "A single 900px-radius container floating top-right of the page. Fill #151515, subtle border. Houses nav links, dropdown caret, and the 'Get started' filled pill, all separated by thin #fffbeb dividers."
+      },
+      {
+        "name": "Inset-Border Card",
+        "role": "Feature/product/insight card — the system's only card pattern",
+        "description": "12px radius, fill #151515 (same as canvas so it reads as a cutout), 1px inset border in #383835. Padding 24px. Image area at the top uses 12px radius and bleeds to card edges. No drop shadow — the inset stroke is the only depth signal."
+      },
+      {
+        "name": "Hero Radial Wash",
+        "role": "Atmospheric background for hero and section transitions",
+        "description": "A large soft radial gradient centered on the page in #00b18c at 20-35% opacity, fading to transparent over 60-80% of the viewport height. Creates a stage-light effect against the #151515 canvas."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Section-spanning typographic statement",
+        "description": "TASA Orbiter 56px weight 600, color #fffbeb, line-height 0.95, letter-spacing -1.12px (-0.02em). Mixed-weight runs are common: weight 600 for the primary statement, weight 400-500 in #a6a6a6 or #504f4a for the secondary clause, creating a built-in hierarchy within a single headline."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section pre-titles — 'OUR SOLUTION', 'PRELUDE'",
+        "description": "13-14px TASA Orbiter weight 500, letter-spacing 0.02em (positive, unusual), uppercase, color #00b18c or #ff4a5f. Acts as a colored tag that names the section before the headline arrives."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Status, tag, and identifier labels",
+        "description": "900px radius, no fill, 1px border in #504f4a or #383835, padding 6px 12px, 13px text in #fffbeb or #b8b8b8 weight 500. Used for identifiers like 'ATS', 'Soon - MIDS'."
+      },
+      {
+        "name": "Community Node",
+        "role": "Circular avatar/badge element in the hero orbital layout",
+        "description": "Fully round disc, ~80-100px diameter, #151515 fill with 1px #383835 border. Contains either a partner logo (ISRC, IPI, ISWC, etc.) in #b8b8b8 or a portrait photo. Arranged in concentric orbits around the central logo."
+      },
+      {
+        "name": "Central Brand Mark",
+        "role": "Hero focal point — the Allfeat logo with headline",
+        "description": "White #fffbeb triangular/constellation logo glyph at 48-64px, centered above a 40-56px headline in #fffbeb weight 600. Followed by a single Signal Teal filled pill button ('Discover how')."
+      },
+      {
+        "name": "Gradient Accent Border",
+        "role": "Decorative hairline that traces card or section edges in coral",
+        "description": "A 1px linear gradient from #151515 through #ff4a5f back to #151515, applied as a border on select highlight cards. Frequency is low — only used to signal featured or status-quo-breaking content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface across the entire system. Weight 600 for hero and section headlines, weight 500 for subheadings and emphasized body runs, weight 400 for body and metadata. The tight -0.02em tracking on display sizes (54-56px) collapses the headline into a confident slab; the 0.02em loosening on badge/eyebrow text (13-14px) makes labels feel like printed marks.",
+        "sizes": "13px, 14px, 16px, 18px, 19px, 20px, 24px, 25px, 40px, 54px, 56px",
+        "family": "TASA Orbiter",
+        "weight": "400, 500, 600",
+        "lineHeight": "0.95–1.20",
+        "substitute": "Inter, Manrope, or any geometric humanist sans at matching weights",
+        "letterSpacing": "-0.02em on display/headings; 0.02em on small caps and labels"
+      }
+    ],
+    "description": "Allfeat is a dark-mode music infrastructure platform that uses a warm cream-on-charcoal palette as its resting state, then ignites the canvas with a teal radial wash for heroes and a coral-red gradient for emotional punctuation. The system is built on a single typeface (TASA Orbiter) in three restrained weights, with display sizes pulled tight via -0.02em tracking so headlines read as confident blocks rather than airy declarations. Geometry splits sharply: anything interactive is a full pill (900px), anything containing content is a 12px-radius card with an inset hairline border in #383835 — no floating shadows, no glass, no blur. Color is rationed: teal is the only fill that means 'do this', coral is the only color that means 'feel something', and every other surface stays in the warm-gray neutral family. The result feels like a concert venue's backstage monitor — dark, functional, with one stage light cutting through.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allfeat design system\",\"item\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#style-reference\",\"name\":\"Allfeat design system reference\",\"headline\":\"Allfeat design system | Refero Styles\",\"description\":\"Explore Allfeat's dark Crypto design system: Charcoal Stage #151515, Warm Cream #fffbeb colors, TASA Orbiter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allfeat\",\"url\":\"https://allfeat.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"caption\":\"Screenshot of Allfeat\"},\"image\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allfeat design system\",\"Allfeat website design\",\"Allfeat colors\",\"Allfeat typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Charcoal Stage\",\"Warm Cream\",\"Card Edge\",\"Mute Cream\",\"TASA Orbiter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allfeat design system\"},{\"@type\":\"Thing\",\"name\":\"Allfeat website design\"},{\"@type\":\"Thing\",\"name\":\"Allfeat colors\"},{\"@type\":\"Thing\",\"name\":\"Allfeat typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T22:34:07.514Z\",\"dateModified\":\"2026-05-10T22:34:07.514Z\"}]}19:T594,## Quick Color Reference\n- text (primary): #fffbeb\n- text (muted): #b8b8b8\n- background (canvas): #151515\n- border (card hairline): #383835\n- accent (eyebrow, gradient): #ff4a5f\n- primary action: #00b18c (filled action)\n\n## Example Component Prompts\n\n1. **Hero Centered Stage** — Full-bleed #151515 canvas with a soft radial teal wash (#00b18c at ~25% opacity, fading to transparent over 70% viewport height). Center the white triangular logo glyph at 56px. Below it, a headline in TASA Orbiter 56px weight 600 #fffbeb, letter-spacing -1.12px, line-height 0.95. One Signal Teal pill button (900px radius, #00b18c fill, #fffbeb text 14px weight 500, padding 16px horizontal, 2px inset #fffbeb25 ring).\n\n2. Create a Primary Action Button: #00b18c background, #151515 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Mixed-Weight Display Headline** — Single TASA Orbiter 56px block, line-height 0.95, letter-spacing -1.12px. Primary clause in weight 600 #fffbeb; secondary clause in weight 400 #504f4a within the same paragraph. Above it, a 13px eyebrow in #00b18c weight 500, letter-spacing 0.26px (0.02em), uppercase.\n\n\n5. **Nav Capsule** — Floating top-right, 900px radius, #151515 fill, 1px #383835 border, padding 9px 16px. Inside: nav links in 14px #fffbeb weight 500, separated by thin dividers, a small caret glyph, and a final 'Get started' filled Signal Teal pill button."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Two gradients define all atmospheric depth in the system:\n\n1. **Teal Stage Wash** — Radial, centered, #00b18c at 20-35% opacity fading to #151515 transparent. Applied behind hero headlines and major section openings. Never applied to containers or text.\n\n2. **Coral Edge Trace** — linear-gradient(90deg, #151515 0%, #ff4a5f 50%, #151515 100%), used as a 1px border on select highlight cards. Frequency is deliberately low — only one or two cards per page earn this treatment.\n\n3. **Diagonal Ember** — linear-gradient(185deg, #fffbeb 0px, #ff4a5f 40%, #151515 77%), used sparingly as a full-section emotional backdrop, always in the lower 30% of a page where it bleeds into the dark canvas."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "TASA Orbiter carries the entire brand voice alone. The signature move is **mixed-weight display headlines**: a single 56px line where weight 600 #fffbeb carries the statement and weight 400 #504f4a trails the supporting clause. This creates hierarchy without a second color, without a second size, and without a second font. The 0.02em positive tracking on 13-14px eyebrow labels is the system's only loosened tracking — it makes section pre-titles read as stamped marks rather than flowing type, echoing the engraved-badge aesthetic of music industry identifiers (ISRC, IPI, ISWC) that the platform governs."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed entirely through inset strokes, never drop shadows. Cards define themselves with a 1px hairline in #383835 cut into the surface; buttons glow with a 2px warm cream inset ring. The system refuses to lift anything off the page — depth is drawn inward, like theater lighting on a dark stage."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fffbeb",
+          "oklch": {
+            "c": 0.02140297159563325,
+            "h": 95.27743314555003,
+            "l": 0.9868793451356372
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "card",
+            "image",
+            "body",
+            "list",
+            "button",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2065,
+          "confidence": 1,
+          "prominence": 125940902.83243869,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 69,
+            "card/color": 42,
+            "hero/color": 2,
+            "icon/color": 48,
+            "link/color": 37,
+            "list/color": 18,
+            "other/fill": 4,
+            "badge/color": 41,
+            "image/color": 64,
+            "other/color": 124,
+            "button/color": 8,
+            "footer/color": 1,
+            "heading/color": 38,
+            "nav/borderColor": 28,
+            "body/borderColor": 276,
+            "card/borderColor": 56,
+            "hero/borderColor": 8,
+            "icon/borderColor": 192,
+            "link/borderColor": 76,
+            "list/borderColor": 72,
+            "badge/borderColor": 4,
+            "image/borderColor": 256,
+            "other/borderColor": 396,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 152,
+            "card/backgroundColor": 8,
+            "link/backgroundColor": 6,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "button",
+            "body",
+            "image",
+            "icon",
+            "other",
+            "heading",
+            "badge"
+          ],
+          "frequency": 307,
+          "confidence": 1,
+          "prominence": 4161310.2084953776,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "card/color": 8,
+            "icon/color": 10,
+            "badge/color": 2,
+            "image/color": 10,
+            "other/color": 8,
+            "button/color": 5,
+            "heading/color": 10,
+            "body/borderColor": 52,
+            "icon/borderColor": 40,
+            "badge/borderColor": 8,
+            "image/borderColor": 40,
+            "other/borderColor": 32,
+            "button/borderColor": 20,
+            "heading/borderColor": 40,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 6,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#383835",
+          "oklch": {
+            "c": 0.00514188249397025,
+            "h": 106.67025444425387,
+            "l": 0.3396348443505759
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 3243671.736114429,
+          "properties": [
+            "borderColor",
+            "boxShadow",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "card/boxShadow": 7,
+            "nav/borderColor": 4,
+            "other/boxShadow": 7,
+            "card/borderColor": 48,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "body",
+            "card",
+            "other"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 1397448.7793886461,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "other/color": 1,
+            "body/borderColor": 72,
+            "other/borderColor": 4,
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#00b18c",
+          "oklch": {
+            "c": 0.13277833891501772,
+            "h": 170.84348270824268,
+            "l": 0.6767618344483173
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 1005639.9629728352,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "other/borderColor": 8,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#a6a6a6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7251571669935564
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 240308.34667474363,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 2,
+            "list/color": 3,
+            "other/color": 1,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "link/borderColor": 8,
+            "list/borderColor": 12,
+            "other/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#504f4a",
+          "oklch": {
+            "c": 0.0066204943920129015,
+            "h": 95.21200765313928,
+            "l": 0.425376461365204
+          },
+          "contexts": [
+            "button",
+            "badge",
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 429,
+          "confidence": 1,
+          "prominence": 197569.18731512837,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 5,
+            "card/borderColor": 96,
+            "link/borderColor": 72,
+            "badge/borderColor": 160,
+            "other/borderColor": 92,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff4a5f",
+          "oklch": {
+            "c": 0.21587402052507487,
+            "h": 18.92760228439929,
+            "l": 0.6730004545434393
+          },
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 59884,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.046773259870411386,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.61,
+          "background": "#151515",
+          "foreground": "#fffbeb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.34,
+          "background": "#383835",
+          "foreground": "#fffbeb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.21,
+          "background": "#b8b8b8",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.92,
+          "background": "#fffbeb",
+          "foreground": "#504f4a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#151515",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#00b18c",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#383835",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.56,
+          "background": "#ff4a5f",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#383835",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.29,
+          "background": "#383835",
+          "foreground": "#00b18c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.14,
+          "background": "#b8b8b8",
+          "foreground": "#504f4a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#383835",
+          "foreground": "#ff4a5f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#a6a6a6",
+          "foreground": "#504f4a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.17,
+          "background": "#ff4a5f",
+          "foreground": "#fffbeb"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.64,
+          "background": "#00b18c",
+          "foreground": "#fffbeb"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#fffbeb",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.91,
+          "background": "#b8b8b8",
+          "foreground": "#fffbeb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.65,
+          "background": "#ff4a5f",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.55,
+          "background": "#383835",
+          "foreground": "#151515"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.38,
+          "background": "#00b18c",
+          "foreground": "#b8b8b8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 900,
+          "contexts": [
+            "nav",
+            "button",
+            "badge"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 37
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(56, 56, 53) 0px 0px 0px 1px inset",
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": "rgba(255, 251, 235, 0.25) 0px 0px 0px 2px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "badge"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "list",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|list",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "heading",
+            "card",
+            "badge",
+            "list"
+          ],
+          "frequency": 166,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginTop|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|heading",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "badge"
+          ],
+          "frequency": 89,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|button",
+            "marginBottom|heading",
+            "marginTop|body",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "list",
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginTop|card",
+            "paddingRight|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|card",
+            "marginLeft|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|badge",
+            "marginBottom|badge",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 155,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(21, 21, 21), rgb(255, 74, 95))",
+        "colors": [
+          "rgb(21, 21, 21)",
+          "rgb(255, 74, 95)"
+        ],
+        "frequency": 10
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(185deg, rgb(255, 251, 235) 0px, rgb(255, 74, 95) 40%, rgb(21, 21, 21) 77%)",
+        "colors": [
+          "rgb(255, 251, 235)",
+          "rgb(255, 74, 95)",
+          "rgb(21, 21, 21)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TASA Orbiter",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 599,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "TASA Orbiter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "TASA Orbiter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "TASA Orbiter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TASA Orbiter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TASA Orbiter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TASA Orbiter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "body",
+            "card",
+            "image",
+            "list",
+            "icon",
+            "badge",
+            "footer"
+          ],
+          "frequency": 315,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "badge",
+            "image",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 166,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "badge",
+            "image",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 26,
+          "lineHeight": 0.87,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "TASA Orbiter",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/04d2484a-34ad-4346-810c-658ac5226376.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allfeat design system\",\"item\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#style-reference\",\"name\":\"Allfeat design system reference\",\"headline\":\"Allfeat design system | Refero Styles\",\"description\":\"Explore Allfeat's dark Crypto design system: Charcoal Stage #151515, Warm Cream #fffbeb colors, TASA Orbiter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allfeat\",\"url\":\"https://allfeat.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f9bf724-3829-4c62-bcc8-391b32925d1b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"caption\":\"Screenshot of Allfeat\"},\"image\":\"https://images.refero.design/styles/refero.design/image/07418cc0-5a8c-4562-a5ce-22c6d5055df6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allfeat design system\",\"Allfeat website design\",\"Allfeat colors\",\"Allfeat typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Charcoal Stage\",\"Warm Cream\",\"Card Edge\",\"Mute Cream\",\"TASA Orbiter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allfeat design system\"},{\"@type\":\"Thing\",\"name\":\"Allfeat website design\"},{\"@type\":\"Thing\",\"name\":\"Allfeat colors\"},{\"@type\":\"Thing\",\"name\":\"Allfeat typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T22:34:07.514Z\",\"dateModified\":\"2026-05-10T22:34:07.514Z\"}]}19:T594,## Quick Color Reference\n- text (primary): #fffbeb\n- text (muted): #b8b8b8\n- background (canvas): #151515\n- border (card hairline): #383835\n- accent (eyebrow, gradient): #ff4a5f\n- primary action: #00b18c (filled action)\n\n## Example Component Prompts\n\n1. **Hero Centered Stage** — Full-bleed #151515 canvas with a soft radial teal wash (#00b18c at ~25% opacity, fading to transparent over 70% viewport height). Center the white triangular logo glyph at 56px. Below it, a headline in TASA Orbiter 56px weight 600 #fffbeb, letter-spacing -1.12px, line-height 0.95. One Signal Teal pill button (900px radius, #00b18c fill, #fffbeb text 14px weight 500, padding 16px horizontal, 2px inset #fffbeb25 ring).\n\n2. Create a Primary Action Button: #00b18c background, #151515 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Mixed-Weight Display Headline** — Single TASA Orbiter 56px block, line-height 0.95, letter-spacing -1.12px. Primary clause in weight 600 #fffbeb; secondary clause in weight 400 #504f4a within the same paragraph. Above it, a 13px eyebrow in #00b18c weight 500, letter-spacing 0.26px (0.02em), uppercase.\n\n\n5. **Nav Capsule** — Floating top-right, 900px radius, #151515 fill, 1px #383835 border, padding 9px 16px. Inside: nav links in 14px #fffbeb weight 500, separated by thin dividers, a small caret glyph, and a final 'Get started' filled Signal Teal pill button."
+}

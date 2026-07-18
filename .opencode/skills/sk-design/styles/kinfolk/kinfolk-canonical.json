@@ -1,0 +1,1478 @@
+{
+  "source": "https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4",
+  "uuid": "ac9b040e-36aa-4881-ada5-72d4744947a4",
+  "name": "Kinfolk",
+  "northStar": "Editorial broadsheet on bone-white linen — generous margins, ink-black serif, and a single warm-paper accent for section breaks.",
+  "capturedAt": "2026-07-18T07:35:22.950Z",
+  "meta": {
+    "url": "https://www.kinfolk.com",
+    "siteName": "Kinfolk",
+    "extractedAt": "2026-06-03T20:14:28.774Z",
+    "durationMs": 34615,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 903,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all primary headlines in Kinfolk-Serif-Deck or Kinfolk-Serif-Display at weight 400 only — never bold or medium.",
+      "Reserve #dbded5 for full-bleed section bands; never use it for small surfaces, badges, or icons.",
+      "Use negative letter-spacing at every display size: -0.025em at 60px, -0.01em at 50px, -0.005em at 32px.",
+      "Let full-bleed photography carry visual weight; keep UI chrome to under 10% of the viewport at any scroll position.",
+      "Use 0px border-radius on every card, button, and image — the 2px radius appears only on inline text links.",
+      "Set body line-height to 1.5 at 15px and 1.33 at 20px; tighter line-heights are reserved for display sizes above 32px.",
+      "Reverse type (#ffffff on #000) only inside the persistent footer bar and over full-bleed photography; never on white-canvas cards."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color beyond #dbded5 — the 0% colorfulness is the brand.",
+      "Do not use filled buttons; every action is a text link with a 1px hairline border at most.",
+      "Do not add shadows or elevation to cards — the surface hierarchy is purely typographic and positional.",
+      "Do not use sans-serif for headlines, deck lines, or pull quotes; serif carries the entire editorial voice.",
+      "Do not bold or italicize any of the Kinfolk type families; weight 400 is the only registered weight.",
+      "Do not mix the #f4f4f4 mist and #dbded5 sage in adjacent surfaces — they read as conflicting neutrals.",
+      "Do not use tracking above 0.06em on any text size; wide tracking is a 13px-and-below convention only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary type, borders, icon strokes, and all hairline rules. The only foreground color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary canvas, card surfaces, and reverse text on dark photo overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Paper Mist",
+        "role": "Soft surface elevation for insets, input fields, and section backgrounds that need to step down from pure white without introducing a hue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbded5",
+        "name": "Sage Paper",
+        "role": "Warm greenish-gray paper tint used as a section-break wash and full-bleed band. Provides the only chromatic moment in the system without becoming a brand color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The site is a max-width ~1400px centred canvas on #ffffff, with full-bleed editorial sections that break out to 100vw. The first screen is a centred, vertically-stacked composition (wordmark top-left / hamburger top-right / centred issue title / centred cover image) — quiet and symmetrical. Below that, full-bleed photo sections alternate with white-space article grids, creating a print-magazine reading rhythm. The article grid is a 5-column equal-width row at desktop, collapsing to fewer columns on smaller breakpoints. Text is almost always left-aligned within cards and centred for hero/feature moments. The only persistent UI chrome is the 64px top header and the ~48px black footer bar; between them the page reads as uninterrupted editorial.",
+    "imagery": "Full-bleed editorial photography is the dominant visual asset: lifestyle, interiors, fashion, and art-direction imagery shot in muted, naturalistic palettes with a slightly desaturated, film-like quality. Photos are presented edge-to-edge (0px radius, no borders, no overlays) and act as the background for overlaid white serif type. The magazine cover and article-grid thumbnails use tight vertical and square crops. There are no illustrations, no abstract graphics, and no iconography beyond a single hamburger glyph; icons are absent because the serif type and the photography carry all semantic weight. Image density is high but never decorative — every photograph serves a story, never an empty card.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine-on-the-web approach: monochromatic palette, full-bleed photography, single-weight serif headlines, and zero decorative UI chrome.",
+        "business": "The Gentlewoman"
+      },
+      {
+        "why": "Bone-white canvas, sage/muted-warm section bands, thin serif type, and an almost complete absence of color in the interface — the photography and the type do all the work.",
+        "business": "Cereal magazine"
+      },
+      {
+        "why": "Same ultra-restrained monochromatic system with generous whitespace, serif editorial headlines, and no filled CTAs — only text-link or hairline-bordered actions.",
+        "business": "Aesop (aesop.com)"
+      },
+      {
+        "why": "Print-magazine typography ported directly to web, with single-weight serif, warm off-white paper tones, and full-bleed editorial imagery as the primary content surface.",
+        "business": "Apartamento"
+      },
+      {
+        "why": "Editorial publication with tightly tracked serif display type, black-and-white UI, and a restrained typographic system that treats whitespace as a design element.",
+        "business": "The New Order (theneworder.jp)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "2px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Base page background and majority of editorial card surfaces"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Inset Mist",
+        "level": 2,
+        "purpose": "Subtle elevation for form fields, secondary content blocks, and gentle band separation"
+      },
+      {
+        "hex": "#dbded5",
+        "name": "Sage Band",
+        "level": 3,
+        "purpose": "Full-bleed paper-tint section that reads as a magazine spread break rather than a colored block"
+      }
+    ],
+    "northStar": "Editorial broadsheet on bone-white linen — generous margins, ink-black serif, and a single warm-paper accent for section breaks.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.78
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.19,
+        "letterSpacing": 0.25
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.16,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.04,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Cover Hero",
+        "role": "Issue cover / feature image for the current issue",
+        "description": "Centred magazine-cover image (roughly 280×370px, sharp 0px corners) floating on a #ffffff canvas, with no border or shadow. Above the cover sits a two-line serif title at Kinfolk-Serif-Deck 50px (line 1) and the same size or slightly smaller (line 2) — all-caps issue number, title-case issue name. The composition is symmetrical and unhurried, with ~120px of vertical breathing room between title and image."
+      },
+      {
+        "name": "Full-Bleed Editorial Photo Section",
+        "role": "Immersive lifestyle/editorial photography that anchors a story",
+        "description": "Edge-to-edge image (100vw, no radius, no overlay tint) with white serif overlay text anchored to the lower-left or lower-right corner. Headline at Kinfolk-Serif-Deck 50px, weight 400, color #ffffff, tracking -0.01em. Captions and category labels in Kinfolk-Sans 13px with 0.06em tracking. The photo does all the visual work; type sits in negative space within the image."
+      },
+      {
+        "name": "Article Card Grid",
+        "role": "5-up grid of latest stories on the issue landing",
+        "description": "Five equal columns at the desktop breakpoint, each card is image-on-top / type-below. Image: full-column-width, 0px radius, no border. Below: 4px gap, then Kinfolk-Sans 13px category label in #000 with 0.06em tracking, then Kinfolk-Sans 16-20px headline in #000, then a 1-2 line excerpt in Kinfolk-Serif-Text 15px. The grid sits on #ffffff with 20px column gaps; no card has a background, border, or shadow."
+      },
+      {
+        "name": "Article Title Block",
+        "role": "Feature-story headline beneath the article grid",
+        "description": "Centred stack on #ffffff. Lead line in Kinfolk-Sans 25px as an eyebrow/credit (e.g. a contributor name). Main title at Kinfolk-Serif-Deck 50–60px, weight 400, line-height ~1.04, tracking -0.01em, #000. Subtitle/deck at Kinfolk-Serif-Deck 32px. Generous 60-80px vertical rhythm between lines; the block is the typographic equivalent of a magazine cover spread."
+      },
+      {
+        "name": "Latest Stories Sidebar",
+        "role": "Compact list of supplemental links in the lower-right of editorial sections",
+        "description": "Right-aligned stack with a small Kinfolk-Sans 13px all-caps label (\"LATEST STORIES\", 0.06em tracking) followed by a vertical list. Each list item is a category label in Kinfolk-Sans 13px + a story title in Kinfolk-Serif-Text 15px, separated by 15-20px of vertical space. Bullets are square or hyphen glyphs in #000; no background fill, no borders."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top-level site navigation",
+        "description": "White (#ffffff) background, no border, no shadow. KINFOLK wordmark in Kinfolk-Sans 16px, 0.06em tracking, #000, flush-left with ~24px page padding. A simple hamburger icon (two stacked 1px-thick black lines) sits flush-right. Total header height ~64px. The chrome intentionally competes with nothing."
+      },
+      {
+        "name": "Subscribe CTA Button",
+        "role": "Primary conversion in the persistent bottom bar",
+        "description": "Inline text link with a 1px #000 hairline border (border-radius 0px), 9px 13px padding, Kinfolk-Sans 13px label in #000 with 0.06em tracking. No fill, no shadow. Sits inside a full-width #000 footer bar alongside a \"Login\" ghost text link. The button feels like a typographic element, not a UI control — the inverse of a typical filled CTA."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Persistent subscription prompt at the bottom of the viewport",
+        "description": "Full-width #000 background, ~48px tall. Left-aligned helper text in Kinfolk-Sans 13px #ffffff. Right-aligned: \"Login\" text link + the outlined Subscribe CTA. The footer is the only large #000 surface in the system and reads as a printed colophon strip."
+      },
+      {
+        "name": "Category Label",
+        "role": "Issue/section tag above article titles",
+        "description": "Kinfolk-Sans 13px, weight 400, #000, 0.06em tracking, sentence-case. No background, no border, no icon. Functions as a typographic eyebrow sitting 5-10px above the related headline."
+      },
+      {
+        "name": "Cover Link Pair",
+        "role": "Read/Buy action beneath a featured cover",
+        "description": "Two text links separated by a vertical pipe (\"Buy | Read\"), centred, Kinfolk-Sans 15px #000, no decoration beyond a 1px #000 underline. Click targets inherit the same 2px underline-radius convention. The pipe separator is a print-publication convention; the absence of buttons reinforces the editorial voice."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Long-form body copy, captions, and article decks at 20px (lead paragraphs) and 15px (body). Normal letter-spacing lets the text breathe at reading size; the elevated line-height (1.5 at 15px) gives prose an airier, more literary rhythm than typical web body text.",
+        "sizes": "15px, 20px",
+        "family": "Kinfolk-Serif-Text",
+        "weight": "400",
+        "lineHeight": "1.25–1.50",
+        "substitute": "Cormorant Garamond, Lora",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Hero and feature headlines (60px, lh 1.0, tracking -0.025em / -1.5px). The tight tracking on a single 400 weight produces compressed, almost carved letterforms — authority through restraint, not volume. Used sparingly for the largest editorial moments.",
+        "sizes": "20px",
+        "family": "Kinfolk-Serif-Display",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Playfair Display, Cormorant Garamond",
+        "letterSpacing": "-0.025em",
+        "fontFeatureSettings": "\"liga\" on, \"dlig\" on"
+      },
+      {
+        "role": "Section titles, article headlines, and deck/sub-deck lines at 50/32/25px. Same 400-only discipline as the display face but at intermediate optical sizes. Tracking is still negative at the top end (-0.5px at 50px) for that dense editorial feel.",
+        "sizes": "25px, 32px, 50px, 60px",
+        "family": "Kinfolk-Serif-Deck",
+        "weight": "400",
+        "lineHeight": "1.04–1.19",
+        "substitute": "Cormorant Garamond, EB Garamond",
+        "letterSpacing": "-0.01em to -0.005em"
+      },
+      {
+        "role": "UI chrome, metadata, category labels, navigation, button text, and small functional text. Tracking opens up dramatically at the small end (0.06em / ~0.78px at 13px) — a common editorial convention that makes all-caps metadata read as labels rather than body. One weight only, with scale doing all the differentiation.",
+        "sizes": "13px, 15px, 16px, 20px, 25px",
+        "family": "Kinfolk-Sans",
+        "weight": "400",
+        "lineHeight": "1.16–1.50",
+        "substitute": "Inter, Söhne, GT America Standard",
+        "letterSpacing": "0.01em to 0.06em (widens at smaller sizes)"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Kinfolk translates a printed art-magazine to the web: bone-white canvases, full-bleed editorial photography, and serif type that does the heavy lifting while the interface stays nearly invisible. The entire palette is monochromatic — black ink on warm off-white paper, with a single warm sage-gray (#dbded5) used as a paper-tinted section break. There are no accent colors, no filled buttons, no decorative gradients; hierarchy is built through typographic scale, whitespace, and the rhythm of image-to-text transitions. Display serif at 50–60px with -0.025em tracking carries the editorial gravitas; a single weight (400) across all families creates a deliberately quiet, consistent voice. The result is less a website than a gallery wall — the photographs and headlines are the exhibits, and the UI is the white wall around them.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kinfolk design system\",\"item\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#style-reference\",\"name\":\"Kinfolk design system reference\",\"headline\":\"Kinfolk design system | Refero Styles\",\"description\":\"Explore Kinfolk's light Media design system: Ink Black #000000, Bone White #ffffff colors, Kinfolk-Serif-Text, Kinfolk-Serif-Display typography, and...\",\"url\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kinfolk\",\"url\":\"https://www.kinfolk.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"caption\":\"Screenshot of Kinfolk\"},\"image\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kinfolk design system\",\"Kinfolk website design\",\"Kinfolk colors\",\"Kinfolk typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Bone White\",\"Paper Mist\",\"Sage Paper\",\"Kinfolk-Serif-Text\",\"Kinfolk-Serif-Display\",\"Kinfolk-Serif-Deck\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kinfolk design system\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk website design\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk colors\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:42:17.813Z\",\"dateModified\":\"2026-04-30T00:42:17.813Z\"}]}19:T5e3,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Bone White)\n- border: #000000 1px hairline\n- accent: #dbded5 (Sage Paper) — section bands only\n- reverse text: #ffffff on #000000 (footer, photo overlays)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Build a feature headline block on white:* Canvas #ffffff, no border, no shadow. Eyebrow line in Kinfolk-Sans 25px, weight 400, #000000, 0.25px letter-spacing. Main title in Kinfolk-Serif-Deck 50px, weight 400, line-height 1.04, letter-spacing -0.5px, #000000, centred. Subtitle in Kinfolk-Serif-Deck 32px, weight 400, line-height 1.16, letter-spacing -0.16px, #000000, centred. 60px vertical gap between each line.\n\n2. *Build a full-bleed editorial photo section:* Edge-to-edge image at 100vw, 0px radius, no border. Overlay text anchored to the lower-left with 32px page padding. Headline in Kinfolk-Serif-Deck 50px, weight 400, line-height 1.04, letter-spacing -0.5px, #ffffff. Category label above the headline in Kinfolk-Sans 13px, #ffffff, letter-spacing 0.78px, sentence-case.\n\n3. *Build an article card:* No card background, no border, no shadow. Top: full-column-width image with 0px radius. 20px gap below image. Category label in Kinfolk-Sans 13px, #000000, letter-spacing 0.78px, then 8px gap, then headline in Kinfolk-Sans 16px, weight 400, #000000, then 10px gap, then excerpt in Kinfolk-Serif-Text 15px, line-height 1.5, #000000. Card sits in a 5-column grid with 20px column gaps."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "This system deliberately avoids box-shadows and fill-based elevation. Hierarchy is established through: (1) the contrast of full-bleed photography against bone-white canvas, (2) the sage paper band (#dbded5) as a step-down surface for section breaks, and (3) typographic scale alone — no card needs to lift off the page because nothing on the page is pretending to be a windowed UI. The only border treatment is the 1px hairline, used on text links and the subscribe CTA. A designer who needs to add a shadow should first ask whether the element belongs in a different surface layer."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Every type family ships with a single registered weight (400). Visual differentiation comes from optical size and tracking, not from weight contrast. Display faces compress with negative tracking (-0.025em at the top) while UI sans-serif opens up dramatically at small sizes (up to 0.06em at 13px). The serif/sans split mirrors a magazine's body-vs-caption convention: serif for everything the reader is meant to linger on, sans for everything functional (labels, metadata, buttons, navigation). Never set serif below 15px — at that size, the system drops to Kinfolk-Sans to preserve legibility."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "hero",
+            "image",
+            "icon",
+            "card",
+            "input",
+            "list",
+            "footer"
+          ],
+          "frequency": 3873,
+          "confidence": 1,
+          "prominence": 256033244.56323907,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 77,
+            "card/color": 197,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 176,
+            "list/color": 9,
+            "other/fill": 4,
+            "image/color": 23,
+            "input/color": 1,
+            "other/color": 230,
+            "button/color": 4,
+            "heading/color": 50,
+            "body/borderColor": 308,
+            "card/borderColor": 788,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 704,
+            "list/borderColor": 36,
+            "image/borderColor": 92,
+            "input/borderColor": 4,
+            "other/borderColor": 920,
+            "button/borderColor": 20,
+            "heading/borderColor": 200,
+            "body/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "input",
+            "list",
+            "card",
+            "footer",
+            "button"
+          ],
+          "frequency": 629,
+          "confidence": 1,
+          "prominence": 190510931.13822436,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 34,
+            "card/color": 2,
+            "link/color": 36,
+            "list/color": 14,
+            "other/color": 21,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 16,
+            "body/borderColor": 136,
+            "card/borderColor": 8,
+            "link/borderColor": 144,
+            "list/borderColor": 56,
+            "other/borderColor": 84,
+            "footer/borderColor": 4,
+            "heading/borderColor": 64,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dbded5",
+          "oklch": {
+            "c": 0.01252524664412312,
+            "h": 121.71833151300022,
+            "l": 0.8957646922028482
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 7616312.1660004705,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 38
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2032714.4071748827,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0002832181158893442,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#dbded5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#dbded5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f4f4f4",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "marginRight|heading",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "paddingTop|heading",
+            "marginLeft|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card",
+            "heading",
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "card",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 88,
+          "properties": [
+            "columnGap",
+            "marginLeft",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginLeft|button",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "marginRight|body",
+            "marginRight|other",
+            "columnGap|card",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|list",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card",
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|card",
+            "marginLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|card",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|card",
+            "marginLeft|card",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 114,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 141,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 285,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Kinfolk-Serif-Text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 522,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kinfolk-Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 286,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kinfolk-Serif-Deck",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 81,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kinfolk-Serif-Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 88,
+          "lineHeight": 1.31,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.31,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Serif-Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Serif-Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kinfolk-Serif-Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "body",
+            "icon",
+            "card",
+            "list",
+            "heading",
+            "footer"
+          ],
+          "frequency": 503,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kinfolk-Serif-Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kinfolk-Serif-Display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kinfolk-Serif-Text",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Kinfolk-Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.005,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 50,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "card"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 60,
+          "family": "Kinfolk-Serif-Deck",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4ed3ccd7-b7d4-4c8a-90bf-1b6ec72dd3e8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kinfolk design system\",\"item\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#style-reference\",\"name\":\"Kinfolk design system reference\",\"headline\":\"Kinfolk design system | Refero Styles\",\"description\":\"Explore Kinfolk's light Media design system: Ink Black #000000, Bone White #ffffff colors, Kinfolk-Serif-Text, Kinfolk-Serif-Display typography, and...\",\"url\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kinfolk\",\"url\":\"https://www.kinfolk.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac9b040e-36aa-4881-ada5-72d4744947a4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"caption\":\"Screenshot of Kinfolk\"},\"image\":\"https://images.refero.design/styles/refero.design/image/53d5881e-07aa-4f9e-9242-1bea32264bf0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kinfolk design system\",\"Kinfolk website design\",\"Kinfolk colors\",\"Kinfolk typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Bone White\",\"Paper Mist\",\"Sage Paper\",\"Kinfolk-Serif-Text\",\"Kinfolk-Serif-Display\",\"Kinfolk-Serif-Deck\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kinfolk design system\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk website design\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk colors\"},{\"@type\":\"Thing\",\"name\":\"Kinfolk typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:42:17.813Z\",\"dateModified\":\"2026-04-30T00:42:17.813Z\"}]}19:T5e3,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Bone White)\n- border: #000000 1px hairline\n- accent: #dbded5 (Sage Paper) — section bands only\n- reverse text: #ffffff on #000000 (footer, photo overlays)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Build a feature headline block on white:* Canvas #ffffff, no border, no shadow. Eyebrow line in Kinfolk-Sans 25px, weight 400, #000000, 0.25px letter-spacing. Main title in Kinfolk-Serif-Deck 50px, weight 400, line-height 1.04, letter-spacing -0.5px, #000000, centred. Subtitle in Kinfolk-Serif-Deck 32px, weight 400, line-height 1.16, letter-spacing -0.16px, #000000, centred. 60px vertical gap between each line.\n\n2. *Build a full-bleed editorial photo section:* Edge-to-edge image at 100vw, 0px radius, no border. Overlay text anchored to the lower-left with 32px page padding. Headline in Kinfolk-Serif-Deck 50px, weight 400, line-height 1.04, letter-spacing -0.5px, #ffffff. Category label above the headline in Kinfolk-Sans 13px, #ffffff, letter-spacing 0.78px, sentence-case.\n\n3. *Build an article card:* No card background, no border, no shadow. Top: full-column-width image with 0px radius. 20px gap below image. Category label in Kinfolk-Sans 13px, #000000, letter-spacing 0.78px, then 8px gap, then headline in Kinfolk-Sans 16px, weight 400, #000000, then 10px gap, then excerpt in Kinfolk-Serif-Text 15px, line-height 1.5, #000000. Card sits in a 5-column grid with 20px column gaps."
+}

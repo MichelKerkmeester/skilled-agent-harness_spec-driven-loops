@@ -1,0 +1,1413 @@
+{
+  "source": "https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646",
+  "uuid": "1287abc9-da90-410d-a997-96b8b11ad646",
+  "name": "Readymag",
+  "northStar": "Designer's editorial playground — a restrained white shell around bold, magazine-grade color blocks.",
+  "capturedAt": "2026-07-18T07:56:01.402Z",
+  "meta": {
+    "url": "https://readymag.com",
+    "siteName": "Readymag",
+    "extractedAt": "2026-06-03T19:02:23.700Z",
+    "durationMs": 35908,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 704,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the 200px pill radius for every button in the system — outline, filled, and ghost controls all share the capsule shape to create a unified button vocabulary",
+      "Reach for the custom display face at 30px or above for any heading; body and subheading sizes (12–18px) belong to Graphik and the system stack, never the display face",
+      "Fill feature cards with solid color (#000000, #ff5000, #1551ff) instead of adding shadows — depth comes from saturation against the white canvas",
+      "Apply the 86px section margin between major page sections to create print-magazine page-turn rhythm rather than SaaS compact spacing",
+      "Use #ff5000 Ember Orange sparingly and only on primary CTAs — one filled orange button per viewport maximum so the signal stays hot",
+      "Tighten tracking aggressively on display sizes: -0.067em at 80px, -0.05em at 32px, -0.014em at 12px — the negative tracking is what makes the display face feel set rather than typed",
+      "Pair any saturated brand panel with white or near-black text only — never put colored text on colored panels, and never put mid-gray on a black card"
+    ],
+    "donts": [
+      "Do not add drop shadows to cards or panels — Readymag separates elements with solid color, not elevation",
+      "Do not use a corner radius other than the defined scale (10, 16, 20, 200) — avoid 4px or 8px defaults that would read as generic SaaS",
+      "Do not use the orange #ff5000 for anything other than the primary action fill; do not paint large sections with it unless it is a deliberate brand-moment panel",
+      "Do not use the display face below 18px — it loses its geometric personality and starts to feel like a body font that forgot to be quiet",
+      "Do not stack multiple filled colored buttons next to each other in a row — the orange must be alone so the eye lands on it",
+      "Do not put two solid-color feature cards of the same hue adjacent — alternate between black, orange, blue, and violet panels across the page",
+      "Do not use system font for any heading or display moment — even at small sizes the custom face is what makes the brand feel editorial"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#8800ff",
+        "name": "Electric Violet",
+        "role": "Headline accents, decorative strokes, feature callouts — vivid violet against the white canvas makes typographic moments feel electric and editorial rather than corporate",
+        "group": "brand"
+      },
+      {
+        "hex": "#2c0fb1",
+        "name": "Deep Violet",
+        "role": "Secondary violet accent, decorative borders and outlines paired with the primary violet for layered brand moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff5000",
+        "name": "Ember Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ec520b",
+        "name": "Burnt Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffcc00",
+        "name": "Signal Yellow",
+        "role": "Decorative full-bleed accent bands and section dividers — appears in few places but dominates attention where it does",
+        "group": "accent"
+      },
+      {
+        "hex": "#1551ff",
+        "name": "Cobalt Blue",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Pure black for solid feature card backgrounds and the strongest typographic moments — makes colored cards feel printed, not screen-painted",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282828",
+        "name": "Graphite",
+        "role": "Primary text color for body copy, links, and most UI text — the workhorse near-black that keeps reading comfortable without going full contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Carbon",
+        "role": "Slightly deeper text tone used in specific body and border contexts for a richer near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0e0e",
+        "name": "Near Black",
+        "role": "Heading text color — pushed darker than body for stronger hierarchy against the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Fog Gray",
+        "role": "Subtle surface elevation for inputs, inactive controls, and the softest card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Mist Gray",
+        "role": "Hairline borders, dividers, placeholder fills — the minimum-contrast separator",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Steel Gray",
+        "role": "Muted helper text, icon stroke, and secondary metadata — sits between body text and true gray for ambient labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows an editorial, magazine-grade vertical scroll. The hero is a full-bleed masonry of project tiles (roughly 3–4 rows, mixed aspect ratios) with no padding from the viewport edges, creating a wall-of-work first impression. Below the hero, the page settles into a max-width ~1200px centered column for the main headline and CTA, then alternates into large, full-bleed colored feature blocks — a black card next to an orange card, a cobalt blue interactive demo — that break out of the centered column. Section rhythm is generous (86px gaps) with occasional full-bleed yellow bands acting as page-turn dividers. The grid is 2-column for feature comparisons and 1-column for solo statements. Navigation is a minimal floating top bar: logo X-mark on the left, a horizontal row of pill-shaped nav items centered or left-aligned, and the outlined Log in + filled orange Sign up pair on the right. No sidebar, no mega-menu, no sticky header pattern beyond a standard fixed nav.",
+    "imagery": "Readymag's visual language is dominated by its own UI and product showcase rather than traditional photography. The hero is a masonry of user-project screenshots — the platform's own canvas is the imagery, presented without padding, captions, or attribution chrome. Where photography appears, it tends to be high-contrast portrait crops on saturated color backgrounds (the purple-hooded figure in the hero tile) treated as graphic objects rather than lifestyle imagery. There is no illustration system in the traditional sense — instead, the interface uses large solid-color panels and oversized typography as visual content. Icons are minimal: a small filled X (back/close) mark, circular bullet markers, and abstract glyph-like UI controls in the demo panels. Decorative treatment is flat, full-bleed, and unframed — nothing sits inside a card with a border or shadow.",
+    "similar": [
+      {
+        "why": "Same editorial, design-forward homepage with full-bleed project tiles, oversized headlines, and a single warm accent CTA color against a white canvas",
+        "business": "Squarespace"
+      },
+      {
+        "why": "Same bold display typography with tight tracking, generous section spacing, and a confident single-color accent (Webflow's blue, Readymag's orange) that drives primary action",
+        "business": "Webflow"
+      },
+      {
+        "why": "Same restraint of the surrounding shell (white, near-black text) contrasted with saturated full-bleed feature panels, and the same pill-shaped navigation controls",
+        "business": "Framer"
+      },
+      {
+        "why": "Same dark canvas moments inside an otherwise light page, and the same creative-tool brand confidence expressed through solid color blocks rather than illustrative decoration",
+        "business": "Krea"
+      },
+      {
+        "why": "Same portfolio-platform editorial heritage — full-bleed masonry of user work as the hero, and the same print-magazine typographic attitude in section headlines",
+        "business": "Cargo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "pills": "200px",
+        "small": "10px",
+        "panels": "20px",
+        "buttons": "200px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "86px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page canvas and card surface"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Fog Gray",
+        "level": 2,
+        "purpose": "Subtle elevation for inputs and inactive controls"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Mist Gray",
+        "level": 3,
+        "purpose": "Borders, dividers, and soft card backgrounds"
+      },
+      {
+        "hex": "#000000",
+        "name": "Solid Color Panels",
+        "level": 4,
+        "purpose": "Feature card backgrounds and full-bleed dark sections that break the white canvas"
+      },
+      {
+        "hex": "#ff5000",
+        "name": "Saturated Brand Panels",
+        "level": 5,
+        "purpose": "Full-bleed ember orange feature blocks"
+      },
+      {
+        "hex": "#1551ff",
+        "name": "Interactive Canvas",
+        "level": 6,
+        "purpose": "Cobalt blue interactive demo surfaces"
+      }
+    ],
+    "northStar": "Designer's editorial playground — a restrained white shell around bold, magazine-grade color blocks.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": -0.168
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.048
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 2.67,
+        "letterSpacing": -0.486
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 2.7,
+        "letterSpacing": -1.32
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.83,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.43,
+        "letterSpacing": -2.12
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.88,
+        "letterSpacing": -5.36
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill CTA",
+        "role": "Filled call-to-action button (Sign up, Try Readymag)",
+        "description": "Pill shape at 200px border-radius, filled in #ff5000 Ember Orange with Paper White text in the custom display face at 14–16px, weight 700. Padding roughly 12px vertical, 24px horizontal. The only warm, saturated button in the system — it must stand alone, not be repeated in clusters."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary action button (Log in)",
+        "description": "Pill shape at 200px border-radius, transparent or white fill, 1.5px border in #0f0e0 Near Black, text in #0f0e0e. Same dimensions as the primary pill so they pair cleanly in a nav row. Never fill the outlined variant with color — its job is to sit beside the orange and not compete."
+      },
+      {
+        "name": "Ghost Nav Pill",
+        "role": "Navigation menu items (Solutions, Pricing, Examples, Templates, Learn)",
+        "description": "Same pill radius (200px) but with no visible border or fill at rest, becoming a subtle background on hover. Text in Graphik or system at 14–16px, weight 400, Graphite. The shared pill shape across all interactive elements is the key — it creates a visual vocabulary of capsules floating in the header."
+      },
+      {
+        "name": "Solid Color Feature Card",
+        "role": "Large content card for feature sections (Attract with interactivity, Streamline teamwork)",
+        "description": "Full panel filled with #000000 Ink Black or #ff5000 Ember Orange, no shadow, no border. Headline sits directly on the color at 30–40px display weight with white or near-black text. Padding 40–60px. These cards occupy generous screen real estate and are the signature visual element — never reduce them to a compact widget."
+      },
+      {
+        "name": "Interactive Demo Panel",
+        "role": "Editor preview surfaces (drag-and-drop, snap controls)",
+        "description": "Filled with #1551ff Cobalt Blue or another saturated brand color, 16–20px corner radius, contains floating UI controls in white pills (Snap, Sizes, Guides, Grid) with small caption text. The panel demonstrates the product by being the product — a self-aware showcase surface."
+      },
+      {
+        "name": "Yellow Accent Band",
+        "role": "Full-bleed horizontal section divider and feature highlight",
+        "description": "Saturated #ffcc00 Signal Yellow filling the full width of a section, paired with a white or off-white text panel offset to the right or left. Used sparingly — one or two per page — to break visual rhythm and create a print-magazine page-turn moment."
+      },
+      {
+        "name": "Project Showcase Tile",
+        "role": "Portfolio/grid items in the hero masonry",
+        "description": "Variable aspect-ratio rectangles filled with project thumbnails, minimal 4–10px radius, no border, no shadow. Arranged in a loose grid that mimics a designer's moodboard rather than a uniform product gallery. The tiles are the content — no chrome around them."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Large left-aligned section title with supporting body text",
+        "description": "Display face at 30–40px, Near Black #0f0e0, tight tracking. Body copy below in Graphik 16px Graphite. Optional small eyebrow label above in uppercase caption. Generous top/bottom margin (86px section gap) to let the heading breathe."
+      },
+      {
+        "name": "Caption / Eyebrow Label",
+        "role": "Small uppercase or tight-set labels above headings or inside feature panels",
+        "description": "Display face at 12–14px, weight 700, tracking tightened further (-0.025em). Sits above section headlines as a category tag. Sometimes reversed to white on dark cards."
+      },
+      {
+        "name": "Layered Display Type Stack",
+        "role": "Multi-line headline treatment inside solid color cards (Collaborate / Connect domain / Publish / Delete)",
+        "description": "Each line in the custom display face at 30–40px, with a small circular bullet or icon marker on one line, and lines layered with partial opacity or overlapping positioning. This is the editorial signature — headlines that feel set in a layout program, not typeset in CSS."
+      },
+      {
+        "name": "Footer / Body Link",
+        "role": "Inline text links in body copy",
+        "description": "Graphite #282828 text at 16px Graphik with a subtle underline on hover, or underlined at rest for important inline links. No buttons-as-links; links stay as text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "-apple-system — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1, 1.25",
+        "letterSpacing": "-0.006",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "Headlines, display copy, and large feature titles. The signature choice: a geometric sans pushed to 80px with -0.067em tracking, which makes letters visually touch and creates a tightly-set editorial title block. The 0.88 line-height on the 16px bold variant ('xgnl') is anti-conventional and creates stacked, compressed display moments in feature panels. Use for anything that needs to feel like magazine cover type.",
+        "sizes": "12, 14, 18, 30, 32, 40, 80",
+        "family": "Readymag Display (custom)",
+        "weight": "400, 700",
+        "lineHeight": "0.88, 1.00, 1.43, 1.83, 2.67, 2.70",
+        "substitute": "Suisse Int'l",
+        "letterSpacing": "-0.067em at 80px, -0.053em at 40px, -0.05em at 32px, -0.044em at 30px, -0.027em at 18px, -0.025em at 14px, -0.014em at 12px",
+        "fontFeatureSettings": "\"dlig\" 0, \"liga\" 0"
+      },
+      {
+        "role": "Secondary body and link face for utilitarian contexts where the system stack would feel too generic but full display weight would be wasteful. Its near-zero tracking keeps body paragraphs tight and modern.",
+        "sizes": "12, 16",
+        "family": "Graphik",
+        "weight": "400",
+        "lineHeight": "1.50, 2.00",
+        "substitute": "Inter",
+        "letterSpacing": "-0.003em at 16px, -0.002em at 12px"
+      },
+      {
+        "role": "Default body and UI text fallback — quietly supports the custom faces rather than competing. Tiny negative tracking (-0.006em) keeps it from feeling like a default browser font.",
+        "sizes": "16",
+        "family": "System UI",
+        "weight": "400",
+        "lineHeight": "1.00, 1.25",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "letterSpacing": "-0.006em at 16px",
+        "fontFeatureSettings": "\"liga\" 0, \"rlig\" 0"
+      },
+      {
+        "role": "custom_37866 — detected in extracted data but not described by AI",
+        "sizes": "12px, 14px, 18px, 30px, 32px, 40px, 80px",
+        "family": "custom_37866",
+        "weight": "400, 700",
+        "lineHeight": "1, 1.43, 1.83, 2.67, 2.7",
+        "letterSpacing": "-0.067, -0.053, -0.05, -0.044, -0.027, -0.025, -0.014",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "xgnl — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "xgnl",
+        "weight": "700",
+        "lineHeight": "0.88",
+        "letterSpacing": "-0.056",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      }
+    ],
+    "description": "Readymag is a designer's editorial playground: a white-canvas product shell wrapped around an unmistakably bold, magazine-grade visual identity. The interface stays restrained — pure white background, near-black text, hairline borders — so the real work happens in feature blocks painted in saturated solid panels (electric violet, cobalt blue, ember orange, pure black, signal yellow). Typography carries enormous personality: a custom geometric display face at 30–80px with aggressively tight negative tracking does the heavy lifting for headlines, while a quieter workhorse sans handles body and UI. Components feel hand-set rather than templated — pill-shaped CTAs, thick section margins, and card surfaces that confidently fill their panels with color instead of nudging content forward with elevation. The result reads less like SaaS and more like a creative agency's homepage.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Readymag design system\",\"item\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#style-reference\",\"name\":\"Readymag design system reference\",\"headline\":\"Readymag design system | Refero Styles\",\"description\":\"Explore Readymag's light Design design system: Electric Violet #8800ff, Deep Violet #2c0fb1 colors, -apple-system, Readymag Display (custom) typography, and...\",\"url\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Readymag\",\"url\":\"https://readymag.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"caption\":\"Screenshot of Readymag\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Readymag design system\",\"Readymag website design\",\"Readymag colors\",\"Readymag typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Electric Violet\",\"Deep Violet\",\"Ember Orange\",\"Burnt Orange\",\"-apple-system\",\"Readymag Display (custom)\",\"Graphik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Readymag design system\"},{\"@type\":\"Thing\",\"name\":\"Readymag website design\"},{\"@type\":\"Thing\",\"name\":\"Readymag colors\"},{\"@type\":\"Thing\",\"name\":\"Readymag typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-14T09:53:27.000Z\",\"dateModified\":\"2026-01-14T09:53:27.000Z\"}]}19:T44a,**Quick Color Reference**\n- Text (primary): #282828 Graphite\n- Text (headings): #0f0e0e Near Black\n- Background: #ffffff Paper White\n- Border: #e7e7e7 Mist Gray\n- Accent (brand): #8800ff Electric Violet\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n3. **Black feature card** — Full panel, background #000000, padding 48px, headline in custom display face 40px weight 700 at -0.053em tracking in #ffffff, body copy in Graphik 16px in #e7e7e7. No border, no shadow.\n\n4. **Section heading** — Left-aligned, custom display face 40px weight 400 at -0.053em in #0f0e0e, 86px margin top, followed by Graphik 16px body in #282828. On a #ffffff canvas with no enclosing container.\n\n5. **Cobalt interactive demo panel** — Full-width rectangle, fill #1551ff, 16px corner radius, containing four floating white pill controls (Snap, Sizes, Guides, Grid) at 200px radius with 12px text in #1551ff, arranged in a 2x2 grid offset to the upper left."
+      },
+      {
+        "title": "Editorial Type System",
+        "content": "Readymag's type behaves like a magazine masthead, not a product interface. The custom display face is the only face that should be used at 30px and above — at those sizes, its tight tracking (-0.067em at 80px down to -0.044em at 30px) creates a visual density where letters nearly touch, which gives headlines a printed, set-in-stone quality. Below 30px, switch to Graphik at 16px or the system stack at 12–14px; the display face at small sizes loses the geometric confidence and starts to look like a slightly awkward body font. The dramatic line-height on 30px and 40px sizes (2.67 and 1.43) is deliberate — it leaves generous air between lines for breathing room and lets the tight tracking do its work without crowding. Headlines should never be centered unless deliberately emulating the layered display type stack inside a solid color card; left-alignment is the default editorial mode."
+      },
+      {
+        "title": "Color Block Philosophy",
+        "content": "The single most distinctive design decision in Readymag's system is the refusal to use shadows for depth. Instead, depth is created by filling entire regions with saturated color — #000000, #ff5000, #1551ff, #8800ff, #ffcc00 — and letting those solid panels sit directly on the white canvas. This gives the page a print-editorial quality where each section feels like a magazine spread rather than a stacked web component. When designing new pages: identify the feature or message that deserves a 'spread', fill it with one of the saturated brand colors, and place a single large headline on top in white or near-black. Do not decorate the panel further — no patterns, no gradients, no inner cards. The flatness is the design."
+      }
+    ],
+    "elevationPhilosophy": "Readymag avoids shadow-based elevation almost entirely. Instead of lifting cards off the surface, it fills cards with solid color — black, orange, violet, cobalt — and lets the color contrast against the white page do the separation work. Depth comes from color saturation, not drop shadows. Hairline borders at #e7e7e7 handle the rare cases where a neutral surface needs to read as a discrete component. This is a print-editorial approach to depth: full-bleed panels, not floating cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "image",
+            "body"
+          ],
+          "frequency": 1902,
+          "confidence": 1,
+          "prominence": 79716041.00228769,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 399,
+          "confidence": 1,
+          "prominence": 11085745.563386085,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 416,
+          "confidence": 1,
+          "prominence": 6962652.847962764,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 2525556,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8800ff",
+          "oklch": {
+            "c": 0.29363624510119646,
+            "h": 296.5373200110264,
+            "l": 0.5394685674686872
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 1285729.6553947139,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2c0fb1",
+          "oklch": {
+            "c": 0.222416971329545,
+            "h": 274.4786877047016,
+            "l": 0.3698200367118667
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1146512.3669811022,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00362b",
+          "oklch": {
+            "c": 0.05637275229917849,
+            "h": 174.25992217432537,
+            "l": 0.2970281055609783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 697851,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5000",
+          "oklch": {
+            "c": 0.22129145998131555,
+            "h": 37.639261288923386,
+            "l": 0.6706600140801423
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 664624,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffcc00",
+          "oklch": {
+            "c": 0.17682820801718266,
+            "h": 90.3815564900439,
+            "l": 0.8652089977306622
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 365539,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffa200",
+          "oklch": {
+            "c": 0.17152264522601346,
+            "h": 69.1210158133906,
+            "l": 0.7874230312343786
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 308334,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f0e0e",
+          "oklch": {
+            "c": 0.0016763256585200347,
+            "h": 17.326305915800024,
+            "l": 0.16496794708655674
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 145691.07150314507,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c7c7c7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8296794763083973
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 134585,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 43572,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 32335.29592152094,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8d7128",
+          "oklch": {
+            "c": 0.09648484373556543,
+            "h": 87.48027211013954,
+            "l": 0.5617889255289282
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b2cc00",
+          "oklch": {
+            "c": 0.1866491998909784,
+            "h": 118.56332575644862,
+            "l": 0.7975762488918694
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffbb00",
+          "oklch": {
+            "c": 0.17157246384764058,
+            "h": 82.05751939920853,
+            "l": 0.8327566134069232
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0080ff",
+          "oklch": {
+            "c": 0.21081893200648957,
+            "h": 256.09895972083694,
+            "l": 0.6151653614766294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 14912.669345969993,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 8137.1661571124205,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ec520b",
+          "oklch": {
+            "c": 0.20113776784278845,
+            "h": 39.181878082905655,
+            "l": 0.6421442195620108
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4078,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007752105362195023,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.28,
+          "background": "#ffffff",
+          "foreground": "#0f0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#f4f4f4",
+          "foreground": "#0f0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e7e7e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.75,
+          "background": "#f4f4f4",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#e7e7e7",
+          "foreground": "#0f0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.9,
+          "background": "#e7e7e7",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#ffcc00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.44,
+          "background": "#00362b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#f4f4f4",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#ffcc00",
+          "foreground": "#0f0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#c7c7c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.36,
+          "background": "#ffbb00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.22,
+          "background": "#f4f4f4",
+          "foreground": "#00362b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#ffcc00",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#e7e7e7",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.6,
+          "background": "#ffffff",
+          "foreground": "#2c0fb1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 86,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 201,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 426,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "custom_37866",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 61,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "Graphik",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "xgnl",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "custom_37866",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "custom_37866",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "icon",
+            "button",
+            "image"
+          ],
+          "frequency": 375,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "xgnl",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.88,
+          "letterSpacing": -0.056,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.83,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.044,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.83,
+          "letterSpacing": -0.044,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.83,
+          "letterSpacing": -0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 6.67,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.7,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.44,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "custom_37866",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.5,
+          "letterSpacing": -0.053,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/337ff789-8fe0-4f7a-a63f-bd4209e27739.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Readymag design system\",\"item\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#style-reference\",\"name\":\"Readymag design system reference\",\"headline\":\"Readymag design system | Refero Styles\",\"description\":\"Explore Readymag's light Design design system: Electric Violet #8800ff, Deep Violet #2c0fb1 colors, -apple-system, Readymag Display (custom) typography, and...\",\"url\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Readymag\",\"url\":\"https://readymag.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1287abc9-da90-410d-a997-96b8b11ad646#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"caption\":\"Screenshot of Readymag\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0fa6fe78-1442-4621-b688-f43984b572a2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Readymag design system\",\"Readymag website design\",\"Readymag colors\",\"Readymag typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Electric Violet\",\"Deep Violet\",\"Ember Orange\",\"Burnt Orange\",\"-apple-system\",\"Readymag Display (custom)\",\"Graphik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Readymag design system\"},{\"@type\":\"Thing\",\"name\":\"Readymag website design\"},{\"@type\":\"Thing\",\"name\":\"Readymag colors\"},{\"@type\":\"Thing\",\"name\":\"Readymag typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-14T09:53:27.000Z\",\"dateModified\":\"2026-01-14T09:53:27.000Z\"}]}19:T44a,**Quick Color Reference**\n- Text (primary): #282828 Graphite\n- Text (headings): #0f0e0e Near Black\n- Background: #ffffff Paper White\n- Border: #e7e7e7 Mist Gray\n- Accent (brand): #8800ff Electric Violet\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n3. **Black feature card** — Full panel, background #000000, padding 48px, headline in custom display face 40px weight 700 at -0.053em tracking in #ffffff, body copy in Graphik 16px in #e7e7e7. No border, no shadow.\n\n4. **Section heading** — Left-aligned, custom display face 40px weight 400 at -0.053em in #0f0e0e, 86px margin top, followed by Graphik 16px body in #282828. On a #ffffff canvas with no enclosing container.\n\n5. **Cobalt interactive demo panel** — Full-width rectangle, fill #1551ff, 16px corner radius, containing four floating white pill controls (Snap, Sizes, Guides, Grid) at 200px radius with 12px text in #1551ff, arranged in a 2x2 grid offset to the upper left."
+}

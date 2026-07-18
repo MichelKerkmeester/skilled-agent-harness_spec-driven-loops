@@ -1,0 +1,237 @@
+{
+  "color": {
+    "obsidian-loam": {
+      "$value": "#13140e",
+      "$type": "color",
+      "$description": "Obsidian Loam — Page canvas, hero background, card surfaces — the near-black base with a faint olive cast that keeps the dark from feeling synthetic"
+    },
+    "bone-vellum": {
+      "$value": "#f4f3e8",
+      "$type": "color",
+      "$description": "Bone Vellum — Primary text, body copy, headings, icon strokes, border color on dark — warm off-white that reads as paper, not LCD white"
+    },
+    "iron-filings": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Iron Filings — Hairline borders, footer dividers, low-emphasis rules"
+    },
+    "drift-ash": {
+      "$value": "#84837b",
+      "$type": "color",
+      "$description": "Drift Ash — Muted secondary text, placeholder input state, low-contrast labels on light surfaces"
+    },
+    "lime-surveyor": {
+      "$value": "#ebfc72",
+      "$type": "color",
+      "$description": "Lime Surveyor — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "marsh-olive": {
+      "$value": "#bacd31",
+      "$type": "color",
+      "$description": "Marsh Olive — Gradient transition shade for the lime accent — deeper stop used in horizontal lime fades"
+    }
+  },
+  "font": {
+    "nb-international-pro": {
+      "$value": "NB International Pro",
+      "$type": "fontFamily",
+      "$description": "Display and body — the brand's primary voice. Set at 72px for hero statements and 58px for section headers with -0.03em tracking, producing a compressed, editorial presence. Also carries body text at 18px (lh 1.62) and UI labels at 13–14px. Its humanist warmth prevents the dark canvas from feeling cold or corporate."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Interface annotations, data labels, button text, tag values, and secondary display moments. The monospaced geometry reads as coordinates, timestamps, and telemetry — reinforcing the field-instrument metaphor. Set in weight 300 for hero-scale data callouts (65px) to keep mono from feeling mechanical at large sizes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "13px",
+        "fontWeight": 300,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "29px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "NB International Pro",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "obsidian-loam": {
+      "$value": "#13140",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, hero background, full-bleed image overlay base"
+    },
+    "iron-filings": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, footer rule lines, low-emphasis dividers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://inversa.com",
+      "siteName": "INVERSA",
+      "extractedAt": "2026-06-03T20:30:47.778Z",
+      "variant": "extended"
+    }
+  }
+}

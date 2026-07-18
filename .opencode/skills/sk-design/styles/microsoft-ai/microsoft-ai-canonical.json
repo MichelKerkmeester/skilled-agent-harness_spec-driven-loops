@@ -1,0 +1,1332 @@
+{
+  "source": "https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71",
+  "uuid": "46781641-8afd-4b01-9f67-06046b6eda71",
+  "name": "Microsoft AI",
+  "northStar": "old library at golden hour",
+  "capturedAt": "2026-07-18T08:24:42.525Z",
+  "meta": {
+    "url": "https://microsoft.ai",
+    "siteName": "Microsoft AI",
+    "extractedAt": "2026-06-03T15:50:27.167Z",
+    "durationMs": 41453,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 365,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Bradford LL for everything that is meant to be read as editorial content — body, headings, display. Use Red Hat Mono only for UI affordances: tabs, search, labels, toggles, footer.",
+      "Set display type at 100-125px with letter-spacing of -3px to -5px. The aggressive negative tracking is the signature — text at this size with default tracking will look generic.",
+      "Use italic Bradford LL to carry emphasis (the 'Humanist' word in the hero). Do not use bold weight to create emphasis — the system intentionally has no bold axis.",
+      "Separate surfaces with tonal steps in the cream family (#fef9ed → #f5f0e4 → #fbd3be) rather than drop shadows. The palette IS the elevation system.",
+      "Use 86px border-radius for all button and pill controls. This extreme pill is a signature — using 8px or 16px radius on controls will break the wax-seal metaphor.",
+      "Use the Apricot Wash gradient only as a full-bleed atmosphere band, never as a button fill, badge background, or inline accent.",
+      "Keep the Library Ink #2e4d4d surface reserved for the hero and the masthead. Do not introduce dark cards or dark sections lower on the page."
+    ],
+    "donts": [
+      "Do not introduce saturated brand colors — no blues, no greens, no reds. The system is 95% earth-toned by design.",
+      "Do not use box-shadow on cards, buttons, or inputs. The elevation philosophy is paper-on-table, not floating material.",
+      "Do not use bold or semibold weights. Bradford LL maxes at 450 and the system relies on size and italic for hierarchy.",
+      "Do not set body type below 15px or above 20px in Bradford LL — the comfortable density band is 15-25px. Use Red Hat Mono for anything smaller.",
+      "Do not use filled CTA buttons with distinct background colors. Action is text + arrow glyph, or text inside a pill control. ACTION_BACKGROUND is intentionally zero across the system.",
+      "Do not place light text on the warm cream sections. Walnut on Parchment is the only light-theme text combination; the system is not designed for inverted content cards below the hero.",
+      "Do not add a traditional header bar with a distinct background fill. The masthead floats on the hero void with no visible chrome."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#fef9ed",
+        "name": "Parchment",
+        "role": "Page canvas, card surface, light text on dark — the foundational warm cream that carries 80% of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f0e4",
+        "name": "Bone",
+        "role": "Secondary surface, muted panels, badge backgrounds, tab track — one shade deeper than the canvas for subtle layering without shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5d524b",
+        "name": "Walnut",
+        "role": "Primary text, body copy, nav links, icons, borders — warm dark brown replaces black, keeping the system on the earth-tone spectrum",
+        "group": "neutral"
+      },
+      {
+        "hex": "#72675b",
+        "name": "Cedar",
+        "role": "Muted secondary text, helper copy, inactive nav — mid-tone brown for de-emphasis within the warm scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cec7bc",
+        "name": "Linen",
+        "role": "Hairline borders, input outlines, dividers — warm light gray that reads as thread on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e4d4d",
+        "name": "Library Ink",
+        "role": "Hero background, dark section fill — deep desaturated teal-green, the only cool note in the system; creates the dramatic contrast with the warm display type",
+        "group": "brand"
+      },
+      {
+        "hex": "#fbd3be",
+        "name": "Apricot Wash",
+        "role": "Gradient accent, warm highlight band, peachy atmosphere — the only chromatic warmth, used as a wash rather than a fill",
+        "group": "accent"
+      },
+      {
+        "hex": "#8c5462",
+        "name": "Faded Rose",
+        "role": "Accent text, italic emphasis, decorative label — muted burgundy that recedes into the warm palette without shouting",
+        "group": "accent"
+      },
+      {
+        "hex": "#666583",
+        "name": "Slate Lilac",
+        "role": "Cool secondary accent for sparse cross-palette moments — muted blue-gray, used sparingly to break the warm monotony",
+        "group": "accent"
+      }
+    ],
+    "layout": "Page is full-bleed with no constrained max-width on the hero and gradient bands. Content sections center within ~720-1200px. Vertical rhythm is generous — 80-120px between sections, creating a gallery-like scroll where each band feels like turning a page. The hero is a full-viewport dark void with centered monumental type; below it, warm cream sections stack vertically with alternating flat-cream and gradient-peach bands. The products section uses a centered heading + paragraph + pill tab strip + image stack, reading top-to-bottom as a single editorial column. Navigation is minimal: search field left, wordmark center, text links right, no hamburger, no sidebar. The page is not a dashboard — it is a sequence of editorial spreads.",
+    "imagery": "Imagery is sparse and editorial. Photography appears as single full-width crops — a person mid-gesture on the gradient band, product surfaces in the tabs section — always with generous breathing room and no decorative framing. The peachy gradient bands and the deep teal hero void do most of the atmospheric work, so photographs function as punctuation rather than atmosphere. There are no icons in the traditional UI sense — the only glyphs are the search magnifying glass, the Playground arrow, and the MWF-MDL2 system icon font for Microsoft product marks. No illustrations, no 3D renders, no abstract graphics. The visual language is: warm paper, dark ink, one human photograph per section, no decoration.",
+    "similar": [
+      {
+        "why": "Same editorial commitment to oversized serif type with aggressive negative tracking, warm monochromatic palette, and a single dark hero moment anchoring a light-content scroll",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same restrained earth-tone palette, custom serif display type, and quiet typographic hierarchy that lets the writing carry the page",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same commitment to typographic precision, generous vertical rhythm between sections, and a palette that recedes to let structure and type lead",
+        "business": "Linear"
+      },
+      {
+        "why": "Same warm cream paper aesthetic, serif-led hierarchy, and the feeling of curating a quiet editorial space rather than a product interface",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "65px",
+        "cards": "25px",
+        "icons": "4px",
+        "badges": "4px",
+        "inputs": "50px",
+        "buttons": "86px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "96px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#2e4d4d",
+        "name": "Library Ink",
+        "level": 1,
+        "purpose": "Hero void — the deep teal-green stage for the largest display type and the masthead"
+      },
+      {
+        "hex": "#fef9ed",
+        "name": "Parchment",
+        "level": 2,
+        "purpose": "Primary page canvas — warm cream that carries all content sections below the hero"
+      },
+      {
+        "hex": "#fbd3be",
+        "name": "Apricot Wash",
+        "level": 3,
+        "purpose": "Atmospheric gradient surface — peachy band that signals a warm interlude between editorial sections"
+      },
+      {
+        "hex": "#f5f0e4",
+        "name": "Bone",
+        "level": 4,
+        "purpose": "Recessed surface — tab tracks, subtle panels, the track behind pill controls"
+      }
+    ],
+    "northStar": "old library at golden hour",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 45,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display",
+        "size": 125,
+        "lineHeight": 1,
+        "letterSpacing": -5
+      }
+    ],
+    "components": [
+      {
+        "name": "Masthead Navigation",
+        "role": "Top-of-page bar over the dark hero canvas",
+        "description": "Sits on #2e4d4d background. Left: search field (#fef9ed background, Walnut #5d524b text, 50px radius, 15px Red Hat Mono, search icon prefix). Center: MAI wordmark in Bradford LL 20px 450 #fef9ed. Right: nav links (About, News, Team, Careers) in Red Hat Mono 13px #fef9ed, followed by a 'Playground ↗' link with arrow glyph in same color. The bar has no visible border or background fill — it floats on the hero void with generous horizontal padding."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Full-bleed editorial title",
+        "description": "Bradford LL at 125px, weight 400, line-height 1.00, letter-spacing -5px. Rendered in #fef9ed on the #2e4d4d canvas. The first word uses the italic cut ('Humanist') while the second word stays roman ('Superintelligence') — the italic/roman contrast is the hero's only typographic gesture. Centered alignment with 80-120px vertical breathing room above and below."
+      },
+      {
+        "name": "Hero Subhead",
+        "role": "Tagline beneath the display headline",
+        "description": "Bradford LL 20px, weight 400, #fef9ed, line-height 1.25, letter-spacing -0.26px. Centered. Sits 24-32px below the display block. Functions as the quiet attribution to the editorial title."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Long-form statement copy in content sections",
+        "description": "Bradford LL 25px weight 400, Walnut #5d524b, line-height 1.40, letter-spacing -0.33px. Centered or left-aligned within a max-width ~720px column. No paragraph spacing — use line-height for rhythm. The serif at this size carries gravity without needing bold weight."
+      },
+      {
+        "name": "Gradient Atmosphere Band",
+        "role": "Peachy warm interlude between content sections",
+        "description": "Background uses the linear gradient from #fbd3be (top) to #fef9ed (bottom) at 50%-100% stops. Contains a single editorial body block centered in Cedar or Walnut. Full-bleed width, 200-320px tall. Functions as a visual palate cleanser between denser content sections."
+      },
+      {
+        "name": "Pill Tab Navigation",
+        "role": "Product category switcher",
+        "description": "Track: #f5f0e4 background, 65px radius, 17px row-gap and padding-top. Active tab: #fef9ed background with no visible border — distinguished from the track purely by the one-step tonal lift. Inactive tabs: transparent background, Walnut text. Labels in Red Hat Mono 15px, weight 450, letter-spacing -0.20px. All four tabs share equal width within the track. No underline, no chevron, no animation indicator."
+      },
+      {
+        "name": "Pill Search Input",
+        "role": "Search field in the masthead",
+        "description": "Bradford LL or Red Hat Mono 15px, #5d524b text on #fef9ed background. 50px border-radius (full pill). No visible border — the tonal step from track to fill is sufficient. Magnifying-glass icon prefix in Walnut. Width grows to accommodate query, min-width ~240px."
+      },
+      {
+        "name": "Accessibility Mode Toggle",
+        "role": "Persistent accessibility control, bottom-left",
+        "description": "Pill-shaped control, #fef9ed background, 4px radius, fixed position bottom-left. Contains a small toggle switch (OFF state: gray knob left) and the label 'Accessibility Mode' in Red Hat Mono 12px, Walnut text. The toggle is intentionally unobtrusive — it sits over content rather than in a drawer."
+      },
+      {
+        "name": "Section Heading (Bradford Display)",
+        "role": "Large serif title for content sections like 'Core products and experiences'",
+        "description": "Bradford LL 100px weight 400, Walnut #5d524b, line-height 1.00, letter-spacing -3px. Centered above the section. This is the display size reused below the hero — the system commits to one monumental scale rather than fragmenting into h1-h6."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Minimal text-only footer navigation",
+        "description": "Red Hat Mono 13px, weight 400, Cedar #72675b, letter-spacing -0.20px. Items separated by space, not pipes or bullets. Sits centered at the bottom of the page on the Parchment canvas with generous top padding (80-96px)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary serif for body, headings, and all display. Custom transitional serif with warm proportions; the italic cut carries the hero word 'Humanist' and functions as the system's expressive voice. Aggressive negative tracking at display sizes (up to -5px at 125px) tightens the wordmark into a sculpted slab. Single weight axis (400-450) keeps the system restrained — hierarchy comes from size and italic, never from bold.",
+        "sizes": "15, 20, 25, 35, 40, 45, 100, 125",
+        "family": "Bradford LL",
+        "weight": "400, 450",
+        "lineHeight": "1.00, 1.13, 1.20, 1.25, 1.40",
+        "substitute": "Source Serif Pro, Lora, or EB Garamond",
+        "letterSpacing": "-0.0400em at 125px, -0.0300em at 100px, -0.0200em at 45px, -0.0130em at 20-25px, -0.0100em at 15px",
+        "fontFeatureSettings": "\"kern\" on"
+      },
+      {
+        "role": "Monospace for UI chrome — search input, tab labels, badge text, navigation links, the accessibility mode toggle, footer micro-copy. Its mechanical character provides the only structural counterpoint to the flowing serif. Use with positive tracking (0.05-0.10em) for uppercase tag labels to create a printed-typesetter effect.",
+        "sizes": "12, 13, 15, 20",
+        "family": "Red Hat Mono",
+        "weight": "400, 450, 500",
+        "lineHeight": "1.00, 1.20, 1.25, 1.60",
+        "substitute": "IBM Plex Mono, JetBrains Mono, or Space Mono",
+        "letterSpacing": "-0.0170em at 12-15px, -0.0150em at 13px, -0.0130em at 15px, 0.0500em-0.1000em for tracked labels (badges, tag text)",
+        "fontFeatureSettings": "\"kern\" on"
+      },
+      {
+        "role": "MWF-MDL2 — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "MWF-MDL2",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "letterSpacing": "-0.013",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "This system has no shadows. Surfaces are flat planes of warm color stacked beside each other, with hierarchy delivered through the warm-on-warm tonal step from #fef9ed to #f5f0e4 to #fbd3be. The single dark plane (#2e4d4d) creates the only true elevation contrast in the system, and it does so through color temperature inversion rather than drop shadow. Do not introduce box-shadow on cards, buttons, or inputs — the design language is explicitly paper-on-table, not floating-material."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#5d524b",
+          "oklch": {
+            "c": 0.018442176266285627,
+            "h": 54.58908330970722,
+            "l": 0.44719804228367377
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "input",
+            "hero",
+            "heading",
+            "image",
+            "button",
+            "badge",
+            "footer"
+          ],
+          "frequency": 1349,
+          "confidence": 1,
+          "prominence": 119512532.47908443,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fef9ed",
+          "oklch": {
+            "c": 0.016678283810409773,
+            "h": 87.9966686847287,
+            "l": 0.9827228587796323
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 321,
+          "confidence": 1,
+          "prominence": 10796868.274036545,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f0e4",
+          "oklch": {
+            "c": 0.01679077472879942,
+            "h": 87.99929497708297,
+            "l": 0.9557549838541138
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "icon",
+            "badge"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 4171330.0208288217,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fbd3be",
+          "oklch": {
+            "c": 0.05328731986638465,
+            "h": 49.31374138880652,
+            "l": 0.8954737454481403
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8c5462",
+          "oklch": {
+            "c": 0.07643483047378288,
+            "h": 3.9399973750111106,
+            "l": 0.5137105675509397
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86548,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2e4d4d",
+          "oklch": {
+            "c": 0.03676071609474292,
+            "h": 195.7691443973701,
+            "l": 0.3962035539047974
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86548,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#72675b",
+          "oklch": {
+            "c": 0.023078535254461973,
+            "h": 69.7162648995702,
+            "l": 0.5205075344329758
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86548,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666583",
+          "oklch": {
+            "c": 0.04702078769864625,
+            "h": 286.16431261934446,
+            "l": 0.5191217398043888
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86548,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cec7bc",
+          "oklch": {
+            "c": 0.01630455997262615,
+            "h": 78.93000094180266,
+            "l": 0.8319158644744411
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6732,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a67c52",
+          "oklch": {
+            "c": 0.0777806772555449,
+            "h": 65.54442092367526,
+            "l": 0.6179956493594309
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 1211.4534403585162,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 846.3699753850973,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05231459110828664,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 8.75,
+          "background": "#2e4d4d",
+          "foreground": "#fef9ed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.08,
+          "background": "#2e4d4d",
+          "foreground": "#f5f0e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.21,
+          "background": "#fef9ed",
+          "foreground": "#5d524b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#f5f0e4",
+          "foreground": "#5d524b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.64,
+          "background": "#fbd3be",
+          "foreground": "#2e4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.62,
+          "background": "#8c5462",
+          "foreground": "#fef9ed"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.48,
+          "background": "#cec7bc",
+          "foreground": "#2e4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.47,
+          "background": "#fbd3be",
+          "foreground": "#5d524b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#666583",
+          "foreground": "#fef9ed"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#72675b",
+          "foreground": "#fef9ed"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.19,
+          "background": "#8c5462",
+          "foreground": "#f5f0e4"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.92,
+          "background": "#666583",
+          "foreground": "#f5f0e4"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#72675b",
+          "foreground": "#f5f0e4"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#cec7bc",
+          "foreground": "#5d524b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.55,
+          "background": "#fef9ed",
+          "foreground": "#a67c52"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#f5f0e4",
+          "foreground": "#a67c52"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.7,
+          "background": "#fbd3be",
+          "foreground": "#a67c52"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.46,
+          "background": "#2e4d4d",
+          "foreground": "#a67c52"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.03,
+          "background": "#5d524b",
+          "foreground": "#a67c52"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.58,
+          "background": "#8c5462",
+          "foreground": "#a67c52"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4.16667,
+          "contexts": [
+            "icon",
+            "badge",
+            "other"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 6.66667,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 85.8333,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 41,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 42,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 115,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 158,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 230,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(251, 211, 190) 50%, rgb(254, 249, 237) 100%)",
+        "colors": [
+          "rgb(251, 211, 190)",
+          "rgb(254, 249, 237)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgb(231, 177, 145), rgb(238, 207, 144))",
+        "colors": [
+          "rgb(231, 177, 145)",
+          "rgb(238, 207, 144)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Bradford LL",
+          "source": "custom",
+          "weights": [
+            400,
+            450
+          ],
+          "frequency": 263,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "Red Hat Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500
+          ],
+          "frequency": 73,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "MWF-MDL2",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Red Hat Mono",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Red Hat Mono",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Bradford LL",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Bradford LL",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Red Hat Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MWF-MDL2",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "link",
+            "other",
+            "hero",
+            "image",
+            "icon",
+            "body",
+            "heading"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Red Hat Mono",
+          "weight": 450,
+          "contexts": [
+            "footer",
+            "other",
+            "link",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 125,
+          "family": "Bradford LL",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c4f7867a-e912-4da4-a942-5e2567b8212f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/db828d4b-280e-40c1-8b83-f16fe8624e90.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Microsoft AI design system\",\"item\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71#style-reference\",\"name\":\"Microsoft AI design system reference\",\"headline\":\"Microsoft AI design system | Refero Styles\",\"description\":\"Explore Microsoft AI's mixed AI design system: Parchment #fef9ed, Bone #f5f0e4 colors, Bradford LL, Red Hat Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71\",\"mainEntityOfPage\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Microsoft AI\",\"url\":\"https://microsoft.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/46781641-8afd-4b01-9f67-06046b6eda71#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db828d4b-280e-40c1-8b83-f16fe8624e90.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db828d4b-280e-40c1-8b83-f16fe8624e90.jpg\",\"caption\":\"Screenshot of Microsoft AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db828d4b-280e-40c1-8b83-f16fe8624e90.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Microsoft AI design system\",\"Microsoft AI website design\",\"Microsoft AI colors\",\"Microsoft AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Bone\",\"Walnut\",\"Cedar\",\"Bradford LL\",\"Red Hat Mono\",\"MWF-MDL2\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Microsoft AI design system\"},{\"@type\":\"Thing\",\"name\":\"Microsoft AI website design\"},{\"@type\":\"Thing\",\"name\":\"Microsoft AI colors\"},{\"@type\":\"Thing\",\"name\":\"Microsoft AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-09T18:33:05.000Z\",\"dateModified\":\"2026-04-09T18:33:05.000Z\"}]}19:T45e,Microsoft AI reads like a rare-press manuscript bound in linen — warm parchment canvases, deep ink-teal voids, and oversized serif type that treats the page as editorial space rather than product surface. The palette is almost entirely earth-toned: cream, walnut, faded rose, and a single anchoring deep green-black that appears only in the hero, creating a dramatic chiaroscuro between top-of-page and everything below. Typography is the entire personality: a custom transitional serif (Bradford LL) dominates display and body, carrying italic for emphasis and aggressive negative tracking as sizes grow; a monospace (Red Hat Mono) handles the few UI affordances — tabs, labels, search, accessibility toggle. There are no saturated brand colors, no gradient buttons, no filled CTAs with hue. Action lives in text, in arrow glyphs, and in the giant pill radius that makes every control look like a wax seal on an envelope. The design intentionally avoids shadow and elevation — surfaces are flat planes of warm paper stacked against each other, separated by generous breathing room and the occasional peach wash.1a:T693,## Quick Color Reference\n\n- text: Walnut #5d524b\n- background: Parchment #fef9ed\n- border: Linen #cec7bc\n- accent: Apricot Wash #fbd3be\n- dark surface: Library Ink #2e4d4d\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Editorial hero section**: Full-bleed #2e4d4d background. Centered headline: first word in Bradford LL italic 125px weight 400, second word roman 125px weight 400, both #fef9ed, letter-spacing -5px, line-height 1.00. Subheadline 20px Bradford LL #fef9ed, 32px below. 200px vertical padding above and below the type block.\n\n2. **Product tab strip**: Track background #f5f0e4, 65px radius, centered, max-width 900px. Four tab labels (Copilot, Bing, Edge, GroupMe) in Red Hat Mono 15px weight 450, Walnut #5d524b, 20px horizontal padding. Active tab: #fef9ed background filling the full height of the track, no border. Inactive tabs: transparent.\n\n3. **Gradient atmosphere section**: Full-bleed background with linear-gradient(#fbd3be 50%, #fef9ed 100%), 240px tall. Centered body text: Bradford LL 25px weight 400, Walnut #5d524b, line-height 1.40, max-width 720px. No buttons, no images — atmosphere only.\n\n4. **Pill search field**: Background #fef9ed, border-radius 50px, no visible border. Red Hat Mono 15px #5d524b placeholder text 'Search'. Magnifying-glass icon prefix in Walnut, 16px. Min-width 240px, padding 10px 20px. Sits on the Library Ink hero canvas.\n\n5. **Section heading block**: Centered on Parchment #fef9ed canvas. Bradford LL 100px weight 400, Walnut #5d524b, letter-spacing -3px, line-height 1.00. Body paragraph 20px Bradford LL Walnut, max-width 640px, 24px below the heading. 96px section padding top and bottom."
+}

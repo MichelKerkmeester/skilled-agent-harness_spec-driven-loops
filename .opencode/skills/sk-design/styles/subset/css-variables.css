@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-ink: #241f20;
+  --color-raw-linen: #f5f4ee;
+  --color-white: #ffffff;
+  --color-fog: #808080;
+  --color-blush: #edcdc2;
+  --color-charcoal: #26262a;
+  --color-sage-leaf: #8bbd78;
+  --color-heritage-blue: #6487ba;
+  --color-midnight-forest: #233735;
+  --color-ember: #ff965b;
+
+  /* Typography — Font Families */
+  --font-foundersgrotesk: 'FoundersGrotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ttramillaslight: 'TTRamillas_Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gtstandard-m: 'GTStandard-M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.1px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.01px;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.4;
+  --tracking-heading-sm: 0.025px;
+  --text-heading: 24px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 32px;
+  --leading-heading-lg: 1.24;
+  --tracking-heading-lg: -0.01px;
+  --text-display: 42px;
+  --leading-display: 1.29;
+  --tracking-display: -0.01px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 64px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-badges: 2px;
+  --radius-buttons: 0px;
+  --radius-swatches: 9999px;
+  --radius-chat-pill: 9999px;
+
+  /* Surfaces */
+  --surface-raw-linen: #f5f4ee;
+  --surface-white: #ffffff;
+  --surface-blush: #edcdc2;
+  --surface-midnight-forest: #233735;
+}

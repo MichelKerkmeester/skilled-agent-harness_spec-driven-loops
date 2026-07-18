@@ -1,0 +1,530 @@
+{
+  "source": "https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c",
+  "uuid": "9fe18d8b-58b7-404d-bcc6-9e8a73b8862c",
+  "name": "Thomas Hedger",
+  "northStar": "Silent frame, loud prints",
+  "capturedAt": "2026-07-18T07:20:41.565Z",
+  "meta": {
+    "url": "https://thomashedger.co.uk",
+    "siteName": "Thomas Hedger",
+    "extractedAt": "2026-06-03T21:40:50.885Z",
+    "durationMs": 34819,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 161,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the full 3-column edge-to-edge mosaic for all portfolio work — pageMaxWidth is null, the grid bleeds to the viewport.",
+      "Set every corner radius to 0px — no rounded surfaces anywhere in the UI.",
+      "Use Diatype Variable at 26px 500/700 for all navigation and section headings; reserve 700 for the designer's name and active emphasis.",
+      "Use Diatype 400 at 19px for body and 9px for copyright/footer — the 9px caption is a signature scale choice.",
+      "Keep internal tile padding at 3px and inter-tile gaps at 0–3px for a print-flat-file feel.",
+      "Let project images supply all color — never introduce accent or brand color into chrome elements.",
+      "Pair Carbon Plum (#29242b) with Ink Black (#000000) only when you need editorial warmth in headings; otherwise stay in pure Ink Black."
+    ],
+    "donts": [
+      "Do not add shadows, gradients, or border-radius to any component — the design is intentionally flat.",
+      "Do not introduce accent, brand, or semantic colors (no success green, no error red) — the palette is a closed two-tone system.",
+      "Do not use a serif or display font for navigation — Diatype Variable is the only allowed heading voice.",
+      "Do not add hover backgrounds, underlines, or animation to nav links — text alone is the interactive surface.",
+      "Do not wrap the grid in a centered max-width container — the mosaic must reach the viewport edges.",
+      "Do not use type sizes outside the 9/13/19/26 scale — interpolation breaks the editorial rhythm.",
+      "Do not add card surfaces, elevated panels, or modal containers — if it needs a container, the project image should fill it directly."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surface, text on dark tiles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, card and image borders, grid hairlines, nav accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#29242b",
+        "name": "Carbon Plum",
+        "role": "Heading text — a warm near-black that softens against pure Ink Black for editorial moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Ash",
+        "role": "Subtle divider and muted border tone for low-emphasis separations",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed 3-column masonry grid extending to the viewport edges, with no max-width container, no page margin, and no inter-tile gap. A single sticky top navigation bar — left name, center contact, right icons — sits above the grid. There is no sidebar, no secondary nav, no hero section: the grid begins immediately below the nav. The footer is a single centered credit line at the bottom. The page has one vertical rhythm: nav → grid → footer, with no alternating bands or section dividers. The density is compact and museum-like; the layout trusts the work to carry all visual interest.",
+    "imagery": "Imagery is the entire content of the site. The portfolio tiles contain saturated editorial illustrations, product photography, and 3D renders — vibrant pinks, deep blues, neon yellows, and rich greens — each filling its tile edge-to-edge with no padding or background visible. No lifestyle photography, no team shots, no abstract decorative graphics outside the work itself. The contrast between the colorless chrome and the chromatic tiles is the visual signature: the UI is the white mat, the work is the painting.",
+    "similar": [
+      {
+        "why": "Same edge-to-edge image grid, monochrome chrome, type-as-navigation, zero decorative chrome — the partner studios are the only color",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Identical full-bleed portfolio mosaic with white canvas, uppercase nav, and no rounded surfaces — work-first composition",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Color-saturated editorial illustration portfolio framed by an almost colorless white grid — the contrast is the brand",
+        "business": "Aries Moross"
+      },
+      {
+        "why": "Single-row sticky nav, 3-column image mosaic, flat white background, and Diatype/Inter-class neo-grotesque type at the same scale",
+        "business": "Kasper-Florio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px"
+      },
+      "elementGap": "19px",
+      "sectionGap": "",
+      "cardPadding": "3px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background beneath the entire grid"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Tile Surface",
+        "level": 1,
+        "purpose": "Flat project-image tiles with no container styling"
+      }
+    ],
+    "northStar": "Silent frame, loud prints",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 19,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky primary header spanning full viewport width",
+        "description": "White background, 3-column flex layout: left-aligned 'THOMAS HEDGER' at 26px Diatype Variable 700, center-aligned 'CONTACT' at 26px Diatype Variable 500, right-aligned cluster of three icons (Behance, Instagram, cart) at 26px. All nav text is uppercase. No border, no shadow, no background fill — sits directly on canvas white."
+      },
+      {
+        "name": "Portfolio Grid Tile",
+        "role": "Single project image cell in the 3-column mosaic",
+        "description": "Full-bleed image contained in a rectangle with 3px internal padding and a 1px #000000 border. No border-radius. Images are flush against each other — no inter-tile gap visible at viewport scale. Each tile owns its own aspect ratio; the grid is masonry-like, not uniform."
+      },
+      {
+        "name": "3-Column Mosaic Grid",
+        "role": "Page-level layout for the portfolio body",
+        "description": "Three equal-width columns extending edge-to-edge, no max-width container. Tiles stack vertically within each column. The grid is the page — there is no surrounding wrapper, no margin, no padding outside the tiles."
+      },
+      {
+        "name": "Social Icon Link",
+        "role": "Utility icon in the top-right of the nav",
+        "description": "Behance glyph, Instagram glyph, and shopping cart glyph rendered as inline SVG or icon font at 26px in #000000. No background, no border, no hover state styling visible — the link is the icon itself."
+      },
+      {
+        "name": "Footer",
+        "role": "Minimal page-end credit line",
+        "description": "Centered single line: '©Thomas Hedger 2026' on the left and 'Thanks for looking ❤' on the right, both at 9px Diatype 400 in #000000. Sits directly on canvas white with no separator above it — the grid simply ends."
+      },
+      {
+        "name": "Nav Text Link",
+        "role": "Uppercase navigation label",
+        "description": "26px Diatype Variable 500, #000000, uppercase, no underline, no hover decoration. The link and the text are indistinguishable — type is the interface."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body and small UI text at 19px; copyright/caption at 9px. Diatype is a contemporary neo-grotesque with humanist proportions — paired with the bold Variable cut, it creates a tight, modern-editorial feel without a serif in sight. The 9px caption is intentionally tiny, like a museum wall label.",
+        "sizes": "9px, 19px",
+        "family": "Diatype",
+        "weight": "400",
+        "lineHeight": "1.10–1.30",
+        "substitute": "Inter, Söhne, Helvetica Now"
+      },
+      {
+        "role": "Primary navigation and section headings at 26px. The 500 weight is the default nav voice; 700 is reserved for emphasis and the designer's name. The 26px cap-height next to 19px body text creates a deliberate 7px gap that reads as confident hierarchy without loud type.",
+        "sizes": "26px",
+        "family": "Diatype Variable",
+        "weight": "500, 700",
+        "lineHeight": "1.10",
+        "substitute": "Inter, Söhne, GT America"
+      },
+      {
+        "role": "Occasional fallback or inherited editorial copy; not a primary voice. Appears at 13px as a quiet secondary tier.",
+        "sizes": "13px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, Source Serif"
+      }
+    ],
+    "description": "Thomas Hedger is a designer's portfolio presented as a museum catalog: a nearly colorless white frame that stages loud, saturated work. The UI speaks in only two voices — flat white canvas and Diatype typography — and the portfolio tiles are the entire color story. The grid is a full-bleed 3-column mosaic with negligible internal padding, so project images abut each other like prints in a flat-file drawer. There are no shadows, no rounded corners, no brand color, no gradients, no semantic states. Navigation is dead-center honest: the designer's name, a single contact word, and three utility icons. Every aesthetic decision recedes so the work can shout.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thomas Hedger design system\",\"item\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#style-reference\",\"name\":\"Thomas Hedger design system reference\",\"headline\":\"Thomas Hedger design system | Refero Styles\",\"description\":\"Explore Thomas Hedger's light Design design system: Canvas White #ffffff, Ink Black #000000 colors, Diatype, Diatype Variable typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thomas Hedger\",\"url\":\"https://thomashedger.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"caption\":\"Screenshot of Thomas Hedger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thomas Hedger design system\",\"Thomas Hedger website design\",\"Thomas Hedger colors\",\"Thomas Hedger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas White\",\"Ink Black\",\"Carbon Plum\",\"Ash\",\"Diatype\",\"Diatype Variable\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thomas Hedger design system\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger website design\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger colors\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:29:16.353Z\",\"dateModified\":\"2026-04-30T03:29:16.353Z\"}]}19:T53a,Quick Color Reference:\n- background: #ffffff\n- text: #000000\n- heading: #29242b\n- border: #000000\n- muted border: #e5e5e5\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a sticky top navigation: white background, 26px Diatype Variable 500 in #000000. Left: 'THOMAS HEDGER' at weight 700. Center: 'CONTACT' at weight 500. Right: three 26px black SVG icons (Behance, Instagram, cart) flush to the right edge. Zero padding inside the bar, 3px vertical breathing room.\n2. Build a 3-column full-bleed mosaic grid: three equal-width columns, no max-width, no inter-column gap. Each cell is a project image at 1px solid #000000 border with 3px internal padding and 0px border-radius. Images can be any aspect ratio — masonry, not uniform grid.\n3. Build a footer line: centered single row at 9px Diatype 400 in #000000. Left half: '©Thomas Hedger 2026'. Right half: 'Thanks for looking ❤'. No divider above, no background fill, sits directly on canvas white.\n4. Build a project tile: full-bleed image, 1px #000000 border, 3px padding, 0px radius. The image is the content — no title, no caption, no overlay.\n5. Build an editorial section heading: 'SELECTED WORK' in Diatype Variable 700 at 26px, #29242b, uppercase, left-aligned, 19px top margin above the heading, 0px below it — the grid starts immediately."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. The design refuses shadows, borders-as-decoration, and surface layering. Depth comes from the images themselves, not from UI chrome. This is an editorial print-portfolio philosophy: paper is flat, only ink and image create visual weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 754,
+          "confidence": 1,
+          "prominence": 131055748.06557624,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 48,
+            "link/color": 21,
+            "image/color": 57,
+            "other/color": 24,
+            "body/borderColor": 4,
+            "card/borderColor": 192,
+            "link/borderColor": 82,
+            "image/borderColor": 228,
+            "other/borderColor": 96,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 281107.66456904804,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#29242b",
+          "oklch": {
+            "c": 0.014647014384820835,
+            "h": 316.36133591482945,
+            "l": 0.2687202829062059
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 90044.37654161613,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "heading/color": 3,
+            "other/borderColor": 20,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9231197248349694
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 13353.30906857574,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.001962157391047367,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.2,
+          "background": "#ffffff",
+          "foreground": "#29242b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.07,
+          "background": "#e5e5e5",
+          "foreground": "#29242b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.38,
+          "background": "#000000",
+          "foreground": "#29242b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 234,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 296,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 317,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Diatype",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 136,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Diatype Variable",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 19,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Diatype",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Diatype",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Diatype Variable",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Diatype Variable",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b30cb8af-d233-44c2-92cc-452382da9cae.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thomas Hedger design system\",\"item\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#style-reference\",\"name\":\"Thomas Hedger design system reference\",\"headline\":\"Thomas Hedger design system | Refero Styles\",\"description\":\"Explore Thomas Hedger's light Design design system: Canvas White #ffffff, Ink Black #000000 colors, Diatype, Diatype Variable typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thomas Hedger\",\"url\":\"https://thomashedger.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9fe18d8b-58b7-404d-bcc6-9e8a73b8862c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"caption\":\"Screenshot of Thomas Hedger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7138c008-113e-42fa-80fb-8162fce60e35.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thomas Hedger design system\",\"Thomas Hedger website design\",\"Thomas Hedger colors\",\"Thomas Hedger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas White\",\"Ink Black\",\"Carbon Plum\",\"Ash\",\"Diatype\",\"Diatype Variable\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thomas Hedger design system\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger website design\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger colors\"},{\"@type\":\"Thing\",\"name\":\"Thomas Hedger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:29:16.353Z\",\"dateModified\":\"2026-04-30T03:29:16.353Z\"}]}19:T53a,Quick Color Reference:\n- background: #ffffff\n- text: #000000\n- heading: #29242b\n- border: #000000\n- muted border: #e5e5e5\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a sticky top navigation: white background, 26px Diatype Variable 500 in #000000. Left: 'THOMAS HEDGER' at weight 700. Center: 'CONTACT' at weight 500. Right: three 26px black SVG icons (Behance, Instagram, cart) flush to the right edge. Zero padding inside the bar, 3px vertical breathing room.\n2. Build a 3-column full-bleed mosaic grid: three equal-width columns, no max-width, no inter-column gap. Each cell is a project image at 1px solid #000000 border with 3px internal padding and 0px border-radius. Images can be any aspect ratio — masonry, not uniform grid.\n3. Build a footer line: centered single row at 9px Diatype 400 in #000000. Left half: '©Thomas Hedger 2026'. Right half: 'Thanks for looking ❤'. No divider above, no background fill, sits directly on canvas white.\n4. Build a project tile: full-bleed image, 1px #000000 border, 3px padding, 0px radius. The image is the content — no title, no caption, no overlay.\n5. Build an editorial section heading: 'SELECTED WORK' in Diatype Variable 700 at 26px, #29242b, uppercase, left-aligned, 19px top margin above the heading, 0px below it — the grid starts immediately."
+}

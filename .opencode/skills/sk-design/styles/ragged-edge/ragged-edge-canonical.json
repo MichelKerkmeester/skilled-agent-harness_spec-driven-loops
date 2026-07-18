@@ -1,0 +1,1274 @@
+{
+  "source": "https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d",
+  "uuid": "fdc0f631-442c-466d-ab79-e1fff2bfdb7d",
+  "name": "Ragged Edge",
+  "northStar": "Editorial brutalism on white marble. Imagine Vogue's typographic confidence merged with a Berlin gallery's color restraint — all ink and air, with one burst of color used as exclamation, never decoration.",
+  "capturedAt": "2026-07-18T07:35:51.239Z",
+  "meta": {
+    "url": "https://raggededge.com",
+    "siteName": "Ragged Edge",
+    "extractedAt": "2026-06-03T20:21:15.980Z",
+    "durationMs": 45463,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 430,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ABCDiatypeExpanded-Bold only at 10px or above; below that the expanded forms become illegible.",
+      "Pair Grit-Regular body text with ABCDiatypeExpanded-Bold headings — never two serifs or two expanded sans in the same block.",
+      "Reserve the 180px section gap for major content divisions; use 80px for within-section breaks.",
+      "Apply the 64px radius to all nav and button surfaces; 40–54px for body content blocks.",
+      "Use Iris Voltage (#516fea) only as a 1.5px border on outlined buttons — never as a fill, never on text.",
+      "Let the hero gradient be the only colorful surface on any given page; all subsequent sections stay on white or mint.",
+      "Set hero display text at 78–82px with -0.02em tracking to achieve the edge-to-edge brand mark effect."
+    ],
+    "donts": [
+      "Do not introduce additional accent colors — the system is 98% monochrome; a second chromatic breaks the discipline.",
+      "Do not apply box-shadows anywhere — depth comes from surface tone shifts, not elevation.",
+      "Do not use ABCDiatypeExpanded for body copy longer than 4–5 words; it is a display face, not a running-text face.",
+      "Do not center body text blocks; editorial layouts read left-aligned with generous left margin.",
+      "Do not use border-radius below 40px on any container — sharp corners clash with the pill-button system.",
+      "Do not place Iris Voltage on dark backgrounds; it loses its accent role against high-contrast surfaces.",
+      "Do not set the hero gradient above 0deg orientation or stop count; the directional flow is part of the signature."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#181f1f",
+        "name": "Obsidian Ink",
+        "role": "Primary text, hairline borders, filled action buttons — the dominant near-black that carries 90% of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Canvas background, inverted text on dark blocks, nav/button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d2d2",
+        "name": "Fog",
+        "role": "Subtle dividers and secondary borders where Obsidian would be too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a5a5",
+        "name": "Ash",
+        "role": "Muted helper text, inactive button borders, secondary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#374151",
+        "name": "Graphite",
+        "role": "Secondary body text and subtle icon strokes where a lighter black is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Navigation dividers and surface backing for select blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaf7f3",
+        "name": "Mint Wash",
+        "role": "Soft tinted surface for nav backgrounds and breathing sections — barely-there green to warm the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f3233",
+        "name": "Deep Teal",
+        "role": "Dark surface blocks for case study framing and image-overlay panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#516fea",
+        "name": "Iris Voltage",
+        "role": "Outlined action border only — the sole chromatic accent; appears as a violet ring around secondary call-to-action buttons against monochrome surroundings",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffc240",
+        "name": "Solar Bloom",
+        "role": "Hero gradient stop — warm yellow anchoring the top of the full-bleed gradient wash",
+        "group": "brand",
+        "gradient": "linear-gradient(0deg, rgba(255, 194, 64, 0), rgb(255, 194, 64) 25%, rgb(255, 196, 244) 50%, rgb(150, 235, 235) 75%, rgba(150, 235, 235, 0) 100%)"
+      }
+    ],
+    "layout": "Full-bleed hero with centered display wordmark, then alternating white and mint sections separated by 180px vertical gaps. Below-the-fold layout shifts to a 2-column split: text-left at ~5/12 width, image-right at ~7/12 width, for case study blocks. No sidebar navigation. The top-level nav is a single horizontal row of pill buttons sitting directly on the hero gradient. Content density is low — each section gets the full viewport height to breathe. Case studies stack vertically with the text/image alternating sides as the page scrolls. The overall rhythm is editorial magazine: headline, generous air, image, headline, air, image — never card grids or dense feature blocks.",
+    "imagery": "Imagery is case-study-driven: large rectangular photography and solid-color brand blocks bleed to container edges with zero border-radius on the outer boundary. Case study images carry no lifestyle context — they are product crops, packaging, or brand-environment photography that fills the frame. A signature move is rotating the project name 90° in white ABCDiatypeExpanded as a vertical watermark overlaid directly on a solid color panel (maroon, teal, etc.). No illustrations, no icons beyond simple chevrons and arrows. The only 'decorative' visual is the full-bleed hero gradient itself — a flowing yellow-to-pink-to-cyan wash that functions as the site's sole chromatic moment. Photography treatment is editorial: high-contrast, often duotone-feeling, always full-bleed within its block.",
+    "similar": [
+      {
+        "why": "Same editorial-monochrome discipline with bold display typography and full-bleed case study imagery — both treat type as the primary brand asset",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Identical pill-button navigation aesthetic, generous section spacing, and serif/sans typographic tension in case study layouts",
+        "business": "Manual (design agency)"
+      },
+      {
+        "why": "Same approach of a single chromatic gradient hero against a near-totally monochrome site below, with bold expanded display type",
+        "business": "Locomotive (MTL)"
+      },
+      {
+        "why": "Shared typographic confidence — oversized display headings, restrained palette, editorial white space, and ultra-rounded capsule buttons",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "64px",
+        "cards": "40px",
+        "inputs": "54px",
+        "buttons": "64px",
+        "body-blocks": "40px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "180px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Primary page canvas and most content sections"
+      },
+      {
+        "hex": "#eaf7f3",
+        "name": "Mint Wash",
+        "level": 2,
+        "purpose": "Tinted section background, nav pill bases — adds subtle warmth"
+      },
+      {
+        "hex": "#1f3233",
+        "name": "Deep Teal",
+        "level": 3,
+        "purpose": "Dark image/panel framing for case study blocks"
+      },
+      {
+        "hex": "#181f1f",
+        "name": "Obsidian Ink",
+        "level": 4,
+        "purpose": "Highest-elevation dark surface — hero overlay, footer"
+      }
+    ],
+    "northStar": "Editorial brutalism on white marble. Imagine Vogue's typographic confidence merged with a Berlin gallery's color restraint — all ink and air, with one burst of color used as exclamation, never decoration.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "hero",
+        "size": 80,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Gradient Banner",
+        "role": "Full-viewport opening visual",
+        "description": "Full-bleed gradient (yellow → pink → cyan, 0deg, with transparent ends) fills the entire viewport. The 'RAGGED EDGE' wordmark sits centered in white ABCDiatypeExpanded-Bold at 80px with -0.02em tracking, extending nearly edge-to-edge. No shadow, no overlay — the gradient is the surface."
+      },
+      {
+        "name": "Pill Navigation Button",
+        "role": "Primary nav and utility navigation",
+        "description": "Rounded 64px radius, 12px vertical / 32px horizontal padding, background Mint Wash (#eaf7f3) with Obsidian Ink (#181f1f) border at 1px. Label in ABCDiatypeExpanded-Bold at 10–12px, uppercase. Group of nav pills on the left, utility pills ('Join', 'Contact') on the right. No fill on the secondary right-side pills — they sit transparent on the gradient."
+      },
+      {
+        "name": "Outlined Accent Button",
+        "role": "Secondary call-to-action with chromatic distinction",
+        "description": "54px radius pill, 34px horizontal padding, 1.5px border in Iris Voltage (#516fea), white fill, Obsidian Ink label text. The only chromatic border in the entire system — reserved for actions that need to stand apart from the monochrome nav/button field."
+      },
+      {
+        "name": "Editorial Headline",
+        "role": "Section-opening statement",
+        "description": "Grit-Regular weight 500 at 56px, Obsidian Ink, line-height 1.25, -0.01em tracking. Often followed by a serif body paragraph at 20–30px / 1.43 line-height with generous 180px top margin separating it from the preceding section."
+      },
+      {
+        "name": "Case Study Split Block",
+        "role": "Project showcase with text-left, image-right layout",
+        "description": "Two-column grid at ~5/7 ratio. Left column: project name in ABCDiatypeExpanded-Bold at 20–40px, then a short Grit-Regular serif description (20px / 1.43), then a bold sans-serif tagline and location detail in Grit weight 500 at 14px. Right column: full-bleed image or color-block panel (e.g. the Free Soul maroon block) with the project name rotated 90° in white ABCDiatypeExpanded."
+      },
+      {
+        "name": "Vertical Project Mark",
+        "role": "Overlaid image identity",
+        "description": "White ABCDiatypeExpanded-Bold at 16–20px, rotated -90°, set centered within a solid-color image block. Functions as a watermark-style label on case study imagery."
+      },
+      {
+        "name": "Image-Block Panel",
+        "role": "Full-bleed case study visual",
+        "description": "Large rectangular media surface with no border-radius on the outer edges (bleeds to container), containing either photography or a solid brand color (maroon, deep teal, etc.). Padding inside is zero — type overlays directly on the image."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Thin horizontal break between content bands",
+        "description": "1px hairline in Fog (#d1d2d2) or Obsidian Ink (#181f1f) at very low opacity, spanning the full content width. Minimal — the generous 180px vertical gaps do most of the separation work."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display, brand logo, section headings, project titles, and nav labels. The extremely wide expanded letterforms (letter-spacing -0.02em at 78–82px) are the signature element — uppercase, never set small under 10px, and reserved for moments that demand visual weight. The 78–82px sizes fill the full width of the hero canvas. Weight stays at 400 because the expansion provides all the weight needed; going bolder would distort the geometric proportions.",
+        "sizes": "10px, 12px, 16px, 20px, 40px, 78px, 82px",
+        "family": "ABCDiatypeExpanded-Bold",
+        "weight": "400",
+        "lineHeight": "1.10–1.20 for display, 2.00 for vertical/rotated use",
+        "substitute": "Druk Wide, Antonio Expanded, Bebas Neue (as fallback only — no substitute matches the expansion precisely)",
+        "letterSpacing": "-0.02em at display sizes (78–82px), -0.01em at mid sizes (20–40px), normal at 10–16px",
+        "fontFeatureSettings": "\"kern\""
+      },
+      {
+        "role": "All body copy, paragraph text, descriptions, and mid-weight headings. A contemporary serif with subtle texture — provides editorial gravitas against the expanded display sans. Weight 400 for running text, 500 for emphasized phrases and sub-headings. The 56px size with 1.25 line-height creates dramatic editorial pull-quotes. Pairs with ABCDiatypeExpanded by contrasting serif warmth against geometric coldness.",
+        "sizes": "14px, 16px, 20px, 30px, 56px",
+        "family": "Grit-Regular",
+        "weight": "400, 500",
+        "lineHeight": "1.43 for body, 1.20–1.25 for headings, 2.60 for spacious lead paragraphs",
+        "substitute": "Söhne (serif alternative), GT Sectra, Tiempos Text, Lora",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "Ragged Edge operates as a confident brand consultancy site built on near-total monochrome discipline: near-black ink on white, with a single saturated violet used sparingly as an outlined accent and a singular full-bleed gradient hero that acts as the only chromatic event on the homepage. Typography is the entire personality — an extremely expanded uppercase display face (ABCDiatypeExpanded) does the shouting while a refined serif (Grit) does the talking, creating a tension between editorial magazine typography and brutalist display letterforms. Layouts are maximalist in scale (full-bleed hero, 180px section gaps) but minimal in palette, and all interactive surfaces are pill-shaped with radii in the 40–64px range, giving every button and nav item a soft capsule form that contrasts against the angular expanded type.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ragged Edge design system\",\"item\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#style-reference\",\"name\":\"Ragged Edge design system reference\",\"headline\":\"Ragged Edge design system | Refero Styles\",\"description\":\"Explore Ragged Edge's light Agency design system: Obsidian Ink #181f1f, Paper White #ffffff colors, ABCDiatypeExpanded-Bold, Grit-Regular typography, and...\",\"url\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ragged Edge\",\"url\":\"https://raggededge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"caption\":\"Screenshot of Ragged Edge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ragged Edge design system\",\"Ragged Edge website design\",\"Ragged Edge colors\",\"Ragged Edge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian Ink\",\"Paper White\",\"Fog\",\"Ash\",\"ABCDiatypeExpanded-Bold\",\"Grit-Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ragged Edge design system\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge website design\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge colors\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:35:49.924Z\",\"dateModified\":\"2026-04-30T00:35:49.924Z\"}]}19:T6b5,**Quick Color Reference**\n- text: #181f1f (Obsidian Ink)\n- background: #ffffff (Paper White)\n- border: #d1d2d2 (Fog) for subtle, #181f1f for strong\n- accent: #516fea (Iris Voltage) — outlined only, never as fill\n- tinted surface: #eaf7f3 (Mint Wash)\n- primary action: #181f1f (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero section*: Full-bleed gradient background `linear-gradient(0deg, rgba(255,194,64,0), rgb(255,194,64), rgb(255,196,244), rgb(150,235,235), rgba(150,235,235,0))`. Centered display wordmark in white ABCDiatypeExpanded-Bold at 82px, line-height 1.10, letter-spacing -1.6px, extending edge-to-edge. No buttons in hero — nav is separate.\n\n2. Create a Primary Action Button: #181f1f background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. *Create a case study split block*: Two-column grid (5fr 7fr). Left: project name in ABCDiatypeExpanded-Bold 20px, then Grit-Regular 20px/1.43 body text in Obsidian Ink, then a location detail in Grit 500 at 14px in Graphite (#374151). Right: full-bleed solid-color panel (use #1f3233 Deep Teal as default) with project name rotated -90° in white ABCDiatypeExpanded-Bold 20px, centered.\n\n4. *Create an outlined accent button*: 54px border-radius, 34px horizontal padding, 11px vertical padding, 1.5px Iris Voltage (#516fea) border, white fill, Grit-Regular 14px Obsidian Ink label. Use sparingly — this is the only chromatic UI element.\n\n5. *Create an editorial section header*: Grit-Regular weight 500 at 56px, Obsidian Ink, line-height 1.25, letter-spacing -0.56px. Followed by a serif body paragraph at 20px/1.43, max-width 720px, with 180px margin-top from the preceding section."
+      },
+      {
+        "title": "Typography Pairing Rules",
+        "content": "The site runs on a strict two-font system and the contrast is the identity: ABCDiatypeExpanded-Bold is the visual exclamation — geometric, wide, uppercase, set large. Grit-Regular is the editorial whisper — serif, warm, readable, set at human sizes. Never use ABCDiatypeExpanded for sentences longer than 4–5 words. Never set Grit at display sizes (56px+) without a wide line-height (1.25+). The expanded font's letter-spacing tightens as size increases: -0.01em at 20–40px, -0.02em at 78–82px. Grit stays at normal tracking at all sizes. Both fonts use kerning (\"kern\" feature on)."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is achieved through tonal contrast (white → mint → teal → obsidian) and generous spacing, not drop-shadows. The interface reads as flat printed editorial, not skeuomorphic UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#181f1f",
+          "oklch": {
+            "c": 0.010226865985962303,
+            "h": 196.468738019278,
+            "l": 0.23229890093149796
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "footer",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 1496,
+          "confidence": 1,
+          "prominence": 186607059.03702626,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "body/color": 67,
+            "hero/color": 1,
+            "link/color": 29,
+            "list/color": 22,
+            "other/fill": 7,
+            "image/color": 1,
+            "other/color": 158,
+            "footer/color": 1,
+            "heading/color": 16,
+            "nav/borderColor": 36,
+            "body/borderColor": 268,
+            "hero/borderColor": 4,
+            "link/borderColor": 76,
+            "list/borderColor": 88,
+            "image/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 632,
+            "footer/borderColor": 4,
+            "heading/borderColor": 64,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "hero",
+            "heading",
+            "icon",
+            "button"
+          ],
+          "frequency": 348,
+          "confidence": 1,
+          "prominence": 13095040.088932157,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 26,
+            "nav/color": 9,
+            "body/color": 14,
+            "hero/color": 1,
+            "icon/color": 13,
+            "other/fill": 16,
+            "other/color": 19,
+            "button/color": 4,
+            "heading/color": 2,
+            "nav/borderColor": 36,
+            "body/borderColor": 56,
+            "hero/borderColor": 4,
+            "icon/borderColor": 52,
+            "other/borderColor": 76,
+            "button/borderColor": 12,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#d1d2d2",
+          "oklch": {
+            "c": 0.0015370166029558773,
+            "h": 197.12932612756111,
+            "l": 0.8633008778756762
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 4584509.148800575,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 4,
+            "link/borderColor": 40,
+            "other/borderColor": 40
+          }
+        },
+        {
+          "hex": "#374151",
+          "oklch": {
+            "c": 0.03062045960968168,
+            "h": 259.7328541134383,
+            "l": 0.37292705693325034
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 424632,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 11,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#a3a5a5",
+          "oklch": {
+            "c": 0.003208452451409236,
+            "h": 197.08593037021308,
+            "l": 0.7209417210608966
+          },
+          "contexts": [
+            "input",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 264201.9844464682,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 2,
+            "input/color": 1,
+            "button/color": 4,
+            "body/borderColor": 8,
+            "link/borderColor": 8,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#516fea",
+          "oklch": {
+            "c": 0.1883410104361638,
+            "h": 269.4545915672657,
+            "l": 0.5859322228728043
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 31387.823986687363,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 29440.180143662168,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "nav/borderColor": 40,
+            "body/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#eaf7f3",
+          "oklch": {
+            "c": 0.014971114224184918,
+            "h": 175.06351736732407,
+            "l": 0.9657456896210718
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 17795.75385357982,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#1f3233",
+          "oklch": {
+            "c": 0.024671647491922397,
+            "h": 200.09982718944462,
+            "l": 0.30128680778009703
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1728,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f56565",
+          "oklch": {
+            "c": 0.17763146419145137,
+            "h": 22.945979752969034,
+            "l": 0.6881703943969121
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 92,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.022519090617414694,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.1,
+          "background": "#eaf7f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.74,
+          "background": "#181f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.22,
+          "background": "#eaf7f3",
+          "foreground": "#181f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#d1d2d2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.44,
+          "background": "#1f3233",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.22,
+          "background": "#eaf7f3",
+          "foreground": "#1f3233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#d1d2d2",
+          "foreground": "#181f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.31,
+          "background": "#ffffff",
+          "foreground": "#374151"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.37,
+          "background": "#eaf7f3",
+          "foreground": "#374151"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.87,
+          "background": "#d1d2d2",
+          "foreground": "#1f3233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.48,
+          "background": "#000000",
+          "foreground": "#a3a5a5"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.93,
+          "background": "#000000",
+          "foreground": "#f56565"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#d1d2d2",
+          "foreground": "#374151"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.76,
+          "background": "#181f1f",
+          "foreground": "#a3a5a5"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.53,
+          "background": "#181f1f",
+          "foreground": "#f56565"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.43,
+          "background": "#1f3233",
+          "foreground": "#a3a5a5"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.44,
+          "background": "#1f3233",
+          "foreground": "#f56565"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.16,
+          "background": "#a3a5a5",
+          "foreground": "#374151"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.75,
+          "background": "#eaf7f3",
+          "foreground": "#f56565"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 64,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginRight|body",
+            "marginLeft|button",
+            "rowGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|other",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button",
+            "list"
+          ],
+          "frequency": 52,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingTop|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 283,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgba(255, 194, 64, 0), rgb(255, 194, 64), rgb(255, 196, 244), rgb(150, 235, 235), rgba(150, 235, 235, 0))",
+        "colors": [
+          "rgba(255, 194, 64, 0)",
+          "rgb(255, 194, 64)",
+          "rgb(255, 196, 244)",
+          "rgb(150, 235, 235)",
+          "rgba(150, 235, 235, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Grit-Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 335,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "ABCDiatypeExpanded-Bold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Grit-Regular",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "icon",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 273,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Grit-Regular",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Grit-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 82,
+          "family": "ABCDiatypeExpanded-Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/27b1b32a-e58d-4585-8789-d3e5a4e62de7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ragged Edge design system\",\"item\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#style-reference\",\"name\":\"Ragged Edge design system reference\",\"headline\":\"Ragged Edge design system | Refero Styles\",\"description\":\"Explore Ragged Edge's light Agency design system: Obsidian Ink #181f1f, Paper White #ffffff colors, ABCDiatypeExpanded-Bold, Grit-Regular typography, and...\",\"url\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ragged Edge\",\"url\":\"https://raggededge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fdc0f631-442c-466d-ab79-e1fff2bfdb7d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"caption\":\"Screenshot of Ragged Edge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f939b18e-9001-41e6-897b-dca5a37ea7cc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ragged Edge design system\",\"Ragged Edge website design\",\"Ragged Edge colors\",\"Ragged Edge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian Ink\",\"Paper White\",\"Fog\",\"Ash\",\"ABCDiatypeExpanded-Bold\",\"Grit-Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ragged Edge design system\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge website design\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge colors\"},{\"@type\":\"Thing\",\"name\":\"Ragged Edge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:35:49.924Z\",\"dateModified\":\"2026-04-30T00:35:49.924Z\"}]}19:T6b5,**Quick Color Reference**\n- text: #181f1f (Obsidian Ink)\n- background: #ffffff (Paper White)\n- border: #d1d2d2 (Fog) for subtle, #181f1f for strong\n- accent: #516fea (Iris Voltage) — outlined only, never as fill\n- tinted surface: #eaf7f3 (Mint Wash)\n- primary action: #181f1f (filled action)\n\n**Example Component Prompts**\n\n1. *Create a hero section*: Full-bleed gradient background `linear-gradient(0deg, rgba(255,194,64,0), rgb(255,194,64), rgb(255,196,244), rgb(150,235,235), rgba(150,235,235,0))`. Centered display wordmark in white ABCDiatypeExpanded-Bold at 82px, line-height 1.10, letter-spacing -1.6px, extending edge-to-edge. No buttons in hero — nav is separate.\n\n2. Create a Primary Action Button: #181f1f background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. *Create a case study split block*: Two-column grid (5fr 7fr). Left: project name in ABCDiatypeExpanded-Bold 20px, then Grit-Regular 20px/1.43 body text in Obsidian Ink, then a location detail in Grit 500 at 14px in Graphite (#374151). Right: full-bleed solid-color panel (use #1f3233 Deep Teal as default) with project name rotated -90° in white ABCDiatypeExpanded-Bold 20px, centered.\n\n4. *Create an outlined accent button*: 54px border-radius, 34px horizontal padding, 11px vertical padding, 1.5px Iris Voltage (#516fea) border, white fill, Grit-Regular 14px Obsidian Ink label. Use sparingly — this is the only chromatic UI element.\n\n5. *Create an editorial section header*: Grit-Regular weight 500 at 56px, Obsidian Ink, line-height 1.25, letter-spacing -0.56px. Followed by a serif body paragraph at 20px/1.43, max-width 720px, with 180px margin-top from the preceding section."
+}

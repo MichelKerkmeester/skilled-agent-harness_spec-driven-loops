@@ -1,0 +1,96 @@
+:root {
+  /* Colors */
+  --color-manuscript-cream: #f9f9f7;
+  --color-press-black: #000000;
+  --color-sage-border: #d2ddd2;
+  --color-mist-green: #dee5dd;
+  --color-paper-shadow: #edf0e9;
+  --color-smoke: #c7c7c6;
+  --color-highlighter-lime: #edfe5e;
+  --color-cornflower-wash: #bed4fb;
+  --color-spring-green: #31e992;
+
+  /* Typography — Font Families */
+  --font-abcarizonasans: 'ABCArizonaSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcarizonaflare: 'ABCArizonaFlare', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abccameraheavy: 'ABCCameraHeavy', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcarizonamixvariable: 'ABCArizonaMixVariable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcarizonasansvariable: 'ABCArizonaSansVariable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcarizonatext: 'ABCArizonaText', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcarizonamix: 'ABCArizonaMix', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1;
+  --tracking-caption: 0.363px;
+  --text-body: 15px;
+  --leading-body: 1.18;
+  --tracking-body: 0.6px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.27;
+  --tracking-body-lg: 1.206px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.15;
+  --tracking-subheading: 0.5px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.07;
+  --tracking-heading-sm: -0.056px;
+  --text-heading: 57px;
+  --leading-heading: 1.04;
+  --tracking-heading: 0.114px;
+  --text-display: 68px;
+  --leading-display: 0.74;
+  --tracking-display: -0.068px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-29: 29px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-160: 160px;
+  --spacing-170: 170px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-3xl: 24px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-pills: 24px;
+  --radius-small: 3px;
+  --radius-buttons: 6px;
+  --radius-default: 6px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;
+
+  /* Surfaces */
+  --surface-page-canvas: #f9f9f7;
+  --surface-card-surface: #f9f9f7;
+  --surface-accent-card-surface: #edfe5;
+  --surface-cool-accent-surface: #bed4fb;
+}

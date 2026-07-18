@@ -1,0 +1,454 @@
+{
+  "color": {
+    "tile-grout": {
+      "$value": "#d25a24",
+      "$type": "color",
+      "$description": "Tile Grout — Signature brand border and link accent — orange tile-line strokes that frame cards, links, and section edges with the warmth of fired clay against the clinical white canvas"
+    },
+    "cold-press-green": {
+      "$value": "#113722",
+      "$type": "color",
+      "$description": "Cold-Press Green — Primary action fill — the dark botanical green of filled CTA buttons, footer band, and category button backgrounds, signaling the product inside without resorting to food-photo greens"
+    },
+    "sticker-crimson": {
+      "$value": "#6b1229",
+      "$type": "color",
+      "$description": "Sticker Crimson — Hard-offset shadow accent — deep burgundy that throws a zero-blur 5px shadow under stickers and emphasized buttons, turning flat elements into screen-print layers peeled onto the page"
+    },
+    "noir": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Noir — Navigation, body text, and default border color — the unyielding black that carries every paragraph, icon stroke, and card hairline"
+    },
+    "glacial-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Glacial White — Page canvas, card surface, and reverse text on dark nav and green CTAs — the clinical white tile of the entire system"
+    },
+    "ash": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Ash — Soft card border and subtle fill — the gray grout between white surfaces, used for hairline dividers and recessed card frames"
+    },
+    "char": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Char — Heading color and deep-surface accent — nearly-black tone for the heaviest display text and occasional dark bands"
+    },
+    "concrete": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Concrete — Mid-gray utility border and muted body text — quieter dividers where full black would be too loud"
+    },
+    "fog": {
+      "$value": "#d7d7d7",
+      "$type": "color",
+      "$description": "Fog — Input field border — neutral resting-state outline for form fields"
+    },
+    "slate": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Slate — Input text and icon fill — secondary legibility gray for form labels and small icon detail"
+    },
+    "pewter": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Pewter — Decorative low-emphasis border and text — rarely used, appears on tertiary UI marks"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "All UI and editorial text. The choice of system Helvetica is deliberate — it reads as lab-label stencil rather than fashion-serif sophistication. Weight 900 headlines shout at 40-48px in all-caps with positive tracking, weight 400-500 carries body copy at 14-18px. No custom display face: the system itself is the brand."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.79
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "30px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "32px",
+        "fontWeight": 900,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "40px",
+        "fontWeight": 900,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "46px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "228": {
+      "$value": "228px",
+      "$type": "dimension",
+      "$description": "Spacing 228px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(107, 18, 41) 5px 5px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background and most card surfaces — the white subway tile"
+    },
+    "recessed": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle alt-surface for bordered cards and section dividers"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Top navigation bar and occasional dark bands"
+    },
+    "apothecary-green": {
+      "$value": "#113722",
+      "$type": "color",
+      "$description": "Surface level 3: Primary CTA buttons and footer band"
+    },
+    "crimson-plate": {
+      "$value": "#6b1229",
+      "$type": "color",
+      "$description": "Surface level 4: Hard-offset shadow layer beneath emphasized elements"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://koox.co.uk",
+      "siteName": "Koox",
+      "extractedAt": "2026-06-03T20:16:10.877Z",
+      "variant": "extended"
+    }
+  }
+}

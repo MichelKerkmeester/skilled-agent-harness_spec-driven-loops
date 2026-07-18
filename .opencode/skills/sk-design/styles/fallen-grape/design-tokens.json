@@ -1,0 +1,350 @@
+{
+  "color": {
+    "vintage-cream": {
+      "$value": "#ece0d2",
+      "$type": "color",
+      "$description": "Vintage Cream — Page canvas, section backgrounds, footer surface — the warm paper tone that grounds all content and sets the sun-faded, natural mood"
+    },
+    "bone-white": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Bone White — Card surfaces, navigation background — a cooler off-white that lifts cards above the cream canvas without harsh contrast"
+    },
+    "walnut-ink": {
+      "$value": "#573d21",
+      "$type": "color",
+      "$description": "Walnut Ink — Primary text, headings, body copy, link color — deep brown that reads as ink on aged paper rather than digital black"
+    },
+    "saddle-brown": {
+      "$value": "#7c664d",
+      "$type": "color",
+      "$description": "Saddle Brown — Hairline borders (cards, nav, body dividers), secondary text, muted UI lines — the structural outline color that replaces shadows"
+    },
+    "peach-sand": {
+      "$value": "#e1c6ab",
+      "$type": "color",
+      "$description": "Peach Sand — Outlined action border, button fill for shop actions — warm neutral peach for CTA buttons and soft fills"
+    },
+    "terracotta-glow": {
+      "$value": "#e3a36e",
+      "$type": "color",
+      "$description": "Terracotta Glow — Filled action buttons, link highlights, secondary call-to-action fill — saturated peach-orange that signals action and energy"
+    },
+    "apricot-whisper": {
+      "$value": "#efa164",
+      "$type": "color",
+      "$description": "Apricot Whisper — Top announcement bar, promotional highlights, hover state for terracotta buttons — the warmest orange, used sparingly for urgency and promos"
+    },
+    "vine-sage": {
+      "$value": "#d8deb7",
+      "$type": "color",
+      "$description": "Vine Sage — Decorative heading accent, botanical illustration tint — the only green in the system, evoking grape leaves and organic origin"
+    }
+  },
+  "font": {
+    "romie": {
+      "$value": "Romie",
+      "$type": "fontFamily",
+      "$description": "Brand wordmark, hero display headlines, section headings, editorial body — a humanist serif that brings warmth and craft authority. The weight 400 at 48-64px sizes is the signature display voice; 700 is used for emphasis in smaller text. Free substitute: Fraunces, Lora, or DM Serif Display"
+    },
+    "arial-narrow": {
+      "$value": "Arial Narrow",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation items, button labels, product titles, utility text — a condensed utilitarian sans that creates deliberate tension with the Romie serif. Uppercase with widened tracking (0.0630em) for nav and button labels gives a vintage label feel. Free substitute: Barlow Condensed, Oswald, or Roboto Condensed"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Romie",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "110": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Spacing 110px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ece0d2",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, footer, full-bleed sections"
+    },
+    "card": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 1: Product cards, navigation bar, elevated content blocks"
+    },
+    "action-surface": {
+      "$value": "#e1c6ab",
+      "$type": "color",
+      "$description": "Surface level 2: Button fills, interactive highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.fallengrape.com",
+      "siteName": "Fallen Grape",
+      "extractedAt": "2026-06-03T15:57:06.846Z",
+      "variant": "extended"
+    }
+  }
+}

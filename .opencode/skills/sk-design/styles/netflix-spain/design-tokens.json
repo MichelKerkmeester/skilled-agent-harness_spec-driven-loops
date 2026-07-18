@@ -1,0 +1,377 @@
+{
+  "color": {
+    "netflix-red": {
+      "$value": "#e50914",
+      "$type": "color",
+      "$description": "Netflix Red — Primary CTAs, brand logo, active states, and the single chromatic accent in the entire system — the only warm color allowed to break the black void"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Dominant page canvas and deepest surface — the cinematic background that swallows everything non-essential"
+    },
+    "obsidian": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Obsidian — Elevated surface tone, barely distinguishable from black — used for subtle layering and section dividers"
+    },
+    "carbon": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Carbon — Card and button surface background — the primary elevated layer above pure black"
+    },
+    "charcoal": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Charcoal — Deeper card surface and input field background — secondary surface level for nested elements"
+    },
+    "graphite": {
+      "$value": "#323232",
+      "$type": "color",
+      "$description": "Graphite — Rounded card backgrounds and tertiary surface treatment"
+    },
+    "slate": {
+      "$value": "#393939",
+      "$type": "color",
+      "$description": "Slate — Hover states and pressed button backgrounds — a step lighter than carbon for interaction feedback"
+    },
+    "ash": {
+      "$value": "#5a5a5a",
+      "$type": "color",
+      "$description": "Ash — Hairline borders and subtle dividers on dark surfaces"
+    },
+    "steel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel — Muted body text and inactive helper copy"
+    },
+    "fog": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Fog — Secondary body text, metadata, footer links, and de-emphasized descriptions"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headings, body text, input text, and icon fills — the sole text color that carries information weight"
+    },
+    "cinema-indigo": {
+      "$value": "#192247",
+      "$type": "color",
+      "$description": "Cinema Indigo — Feature card gradient origin — deep blue-violet used as the cool terminus in card background gradients"
+    },
+    "bordeaux-glow": {
+      "$value": "#461518",
+      "$type": "color",
+      "$description": "Bordeaux Glow — Radial highlight origin on feature cards — a warm deep red that adds atmospheric luminosity to card edges"
+    },
+    "ember-arc": {
+      "$value": "#6f181d",
+      "$type": "color",
+      "$description": "Ember Arc — Horizontal light beam across card midlines — a thin warm glow that bisects feature cards with a soft red line"
+    }
+  },
+  "font": {
+    "netflix-sans": {
+      "$value": "Netflix Sans",
+      "$type": "fontFamily",
+      "$description": "Netflix Sans is a custom geometric sans optimized for on-screen readability across devices. The wide weight range (400–900) creates a dramatic hierarchy where 900-weight headlines at 56–100px feel like movie marquee titles. Body text stays at 400/500 with tight tracking. The extreme size jump from 24px to 56px signals a sharp two-tier heading system: section titles, then hero displays."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "56px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Netflix Sans",
+        "fontSize": "100px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "148": {
+      "$value": "148px",
+      "$type": "dimension",
+      "$description": "Spacing 148px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the infinite black background"
+    },
+    "obsidian": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Surface level 1: Near-black elevated section background"
+    },
+    "carbon": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Surface level 2: Card and button surface"
+    },
+    "charcoal": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Surface level 3: Input fields and nested card surfaces"
+    },
+    "graphite": {
+      "$value": "#323232",
+      "$type": "color",
+      "$description": "Surface level 4: Rounded feature card background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.netflix.com",
+      "siteName": "Netflix Spain",
+      "extractedAt": "2026-06-03T22:05:43.990Z",
+      "variant": "extended"
+    }
+  }
+}

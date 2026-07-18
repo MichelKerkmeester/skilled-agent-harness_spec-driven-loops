@@ -1,0 +1,1561 @@
+{
+  "source": "https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c",
+  "uuid": "fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c",
+  "name": "Monad",
+  "northStar": "editorial tech journal on warm parchment",
+  "capturedAt": "2026-07-18T07:06:22.833Z",
+  "meta": {
+    "url": "https://www.monad.com",
+    "siteName": "Monad",
+    "extractedAt": "2026-07-03T03:11:40.065Z",
+    "durationMs": 188446,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 689,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Untitled Serif at weight 400 for all headings — never go bold; the serif's stroke contrast and -0.02em tracking carry the weight visually",
+      "Use ABC Diatype Mono for all body copy, buttons, nav labels, badges, and functional UI text — the monospace IS the brand voice",
+      "Set all button and tag border-radius to 100px or 9999px — pill shapes are the container language of this system",
+      "Use Parchment (#f6f3f1) as the page canvas — never substitute pure white (#ffffff); the warm tint is signature",
+      "Reserve Lake Blue (#2b59d1) exclusively for the single primary action per screen; all other buttons use Off-Black or ghost variants",
+      "Use 1px solid Ash (#cecac8) for all borders and dividers — avoid thicker weights or darker border colors",
+      "Apply uppercase + tight tracking to all nav labels, buttons, and tag text via the monospace family"
+    ],
+    "donts": [
+      "Never set headings in bold or 600+ weight — Untitled Serif headlines stay at 400 across all sizes",
+      "Never use pure white (#ffffff) as a page background — always use Parchment (#f6f3f1) to preserve the warm surface",
+      "Never use Lake Blue (#2b59d1) for anything other than the single primary action fill — it loses meaning if scattered",
+      "Never substitute a sans-serif for the monospace body font — the mono/serif pairing is the defining typographic gesture",
+      "Never apply drop shadows to cards — use 1px Ash borders and surface color contrast (Parchment → Periwinkle) for elevation instead",
+      "Never use corner radii below 16px on cards or below 100px on buttons — the system is pill-and-soft-rect, never sharp",
+      "Never introduce additional accent colors for UI elements — the pastel palette (Sky, Mint, Coral, Gold) is decorative-only and belongs in illustrations and gradient washes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f3f1",
+        "name": "Parchment",
+        "role": "Page canvas and the majority of surface fills — this warm off-white IS the brand's signature surface, immediately distinguishing the site from pure-white SaaS templates",
+        "group": "brand"
+      },
+      {
+        "hex": "#2b59d1",
+        "name": "Lake Blue",
+        "role": "Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#cfdaf5",
+        "name": "Periwinkle Mist",
+        "role": "Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks.",
+        "group": "accent"
+      },
+      {
+        "hex": "#a0b5eb",
+        "name": "Sky Blue",
+        "role": "Decorative gradient stop — appears in atmospheric washes and the pipeline diagram's flow lines, never as a UI fill",
+        "group": "accent"
+      },
+      {
+        "hex": "#a7fccd",
+        "name": "Mint",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff9473",
+        "name": "Coral",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ecda98",
+        "name": "Gold",
+        "role": "Decorative gradient stop — warm accent in gradient washes, never used in functional UI",
+        "group": "accent"
+      },
+      {
+        "hex": "#f37a0a",
+        "name": "Crimson",
+        "role": "Decorative gradient stop — deep warm tone in gradient washes alongside gold and coral",
+        "group": "accent"
+      },
+      {
+        "hex": "#242424",
+        "name": "Off-Black",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Announcement bar surface and certain heading fills — the black band at the top of the page and select heading contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4e4d4d",
+        "name": "Graphite",
+        "role": "Secondary text — body copy and sub-headings that need less weight than primary headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#797776",
+        "name": "Smoke",
+        "role": "Muted helper text and tertiary links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cecac8",
+        "name": "Ash",
+        "role": "Hairline borders — 1px solid lines separating sections, outlining pipeline diagram nodes, and defining card edges",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "The visual language is dominated by a custom data pipeline diagram: pill-shaped bordered nodes connected by thin curved lines, with small icons inside each node representing data sources (Any Source, Cloud Logs, Vulnerabilities) and destinations (SIEM, Cloud Storage, Data Lake). The diagram uses a soft green radial glow at the center hub to suggest data normalization. Gradient atmospheric washes (Coral → Sky Blue, Sky Blue → Mint) with heavy blur filters create soft color halos behind hero and feature content. Partner logos appear desaturated in a single social-proof row. The 'In-flight Data Transforms' card features a large gradient illustration with overlapping translucent geometric shapes. No photography is used — the brand communicates through typography, diagram, and color wash alone.",
+    "similar": [
+      {
+        "why": "Shares the restrained monochrome palette and minimal-elevation card approach, though Monad's warm Parchment canvas and serif headlines set it apart from Linear's cooler white surface",
+        "business": "Linear"
+      },
+      {
+        "why": "Both use custom editorial serif typefaces for headlines with tight letter-spacing and -0.02em tracking, treating the homepage as a typographic composition rather than a product screenshot",
+        "business": "Stripe"
+      },
+      {
+        "why": "Shares the comfortable-density spacing, generous section gaps, and pill-shaped button language, though Monad adds the warm canvas and mono body twist",
+        "business": "Vercel"
+      },
+      {
+        "why": "Both target developer audiences with a monospace-leaning UI vocabulary and minimal decoration, but Monad layers in the editorial serif for a more literary feel",
+        "business": "Railway"
+      },
+      {
+        "why": "Both use warm off-white surfaces rather than pure white, and both treat the page as a designed editorial artifact rather than a typical SaaS template",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "40px",
+        "pills": "9999px",
+        "buttons": "100px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1432px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f6f3f1",
+        "name": "Parchment",
+        "level": 1,
+        "purpose": "Page canvas — the base warm off-white that fills the entire viewport"
+      },
+      {
+        "hex": "#cfdaf5",
+        "name": "Periwinkle Mist",
+        "level": 2,
+        "purpose": "Elevated card surface — the one colored card that breaks the monochrome to draw the eye"
+      },
+      {
+        "hex": "#242424",
+        "name": "Off-Black",
+        "level": 3,
+        "purpose": "Dark surface for secondary buttons and inverted UI contexts"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 4,
+        "purpose": "Announcement bar — the darkest surface, used for the top notification strip"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 0px 10px 0px",
+        "element": "Subtle ambient elevation"
+      }
+    ],
+    "northStar": "editorial tech journal on warm parchment",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "label",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page notification strip",
+        "description": "Full-width black (#000000) bar, ~40px tall, containing mono text in white (#f6f3f1) at 14px and a small white pill button (9999px radius, white border, 12px uppercase text) anchored right. Close icon (×) in white at far right."
+      },
+      {
+        "name": "Primary Pill Button (Blue)",
+        "role": "Primary conversion action",
+        "description": "Lake Blue (#2b59d1) fill, white text in ABC Diatype Mono at 14px uppercase, 100px border-radius, 16px 32px padding, with a trailing arrow (▸) glyph in white. Height ~48px. This is the only saturated fill in the system."
+      },
+      {
+        "name": "Primary Pill Button (Black)",
+        "role": "Secondary conversion action",
+        "description": "Off-Black (#242424) fill, white text in ABC Diatype Mono at 14px uppercase, 100px border-radius, 16px 32px padding, no arrow. Height ~48px."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Tertiary navigation action",
+        "description": "Transparent fill, 1px Off-Black (#242424) border, Off-Black text in ABC Diatype Mono at 14px uppercase, 100px border-radius, 16px 32px padding. Height ~48px."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Navigation link with directional indicator",
+        "description": "Transparent fill, Off-Black (#242424) text in ABC Diatype Mono at 14px, trailing rightward arrow (→) in Off-Black. No background or border. Uppercase tracking."
+      },
+      {
+        "name": "Pipeline Node Tag",
+        "role": "Labeled node in the data pipeline diagram",
+        "description": "Parchment (#f6f3f1) fill, 1px Ash (#cecac8) border, 9999px border-radius (full pill), small mono icon (12px) + 14px mono uppercase text, 12px 20px padding. Connected by thin curved Ash lines to adjacent nodes."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product capability card with icon, title, description",
+        "description": "Transparent or Parchment fill, 1px Ash (#cecac8) border, 40px border-radius, 40px padding. Small mono icon (20px) in top-left at 16px padding offset. Title in Untitled Serif at 24px weight 400, Off-Black. Body in ABC Diatype Mono at 16px weight 400, Graphite (#4e4d4d). No shadow."
+      },
+      {
+        "name": "Elevated Feature Card (Periwinkle)",
+        "role": "Hero feature card with gradient illustration",
+        "description": "Periwinkle Mist (#cfdaf5) fill, 40px border-radius, 40px padding. Contains a large gradient illustration on the right side using Coral → Sky Blue → Mint washes. Title in Untitled Serif 24px, body in mono 16px. This is the one card that uses a colored surface to draw the eye."
+      },
+      {
+        "name": "FAQ Accordion Item",
+        "role": "Expandable question/answer row",
+        "description": "Full-width row, 40px vertical padding, 1px Ash (#cecac8) bottom border (no top border). Question text in Untitled Serif at 24px weight 400, Off-Black. Trailing chevron icon (↓) in Off-Black, 20px, right-aligned. No background fill change on hover."
+      },
+      {
+        "name": "Logo Strip",
+        "role": "Social proof partner logo row",
+        "description": "Single horizontal row of 6-7 partner logos in grayscale (desaturated from original brand colors), evenly spaced with ~32px gaps, left-aligned within max-width container. No logo lockup borders or cards."
+      },
+      {
+        "name": "Gradient Atmospheric Wash",
+        "role": "Decorative background gradient blob",
+        "description": "Large blurred radial/linear gradient using Coral (#ff9473 80% opacity) → Sky Blue (#a0b5eb 80% opacity) or Sky Blue → Mint (#a7fccd), rendered with blur(50-75px) filter, positioned behind hero or feature content. Never sharp-edged, always softly diffused."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent or Parchment background, logo on far left (monad wordmark + circular dot mark), 4-5 nav text links centered or left-grouped in ABC Diatype Mono 18px uppercase Off-Black, action buttons (Login ghost + Get a Demo blue pill) right-aligned. ~80px height, no visible border."
+      },
+      {
+        "name": "Hero Section",
+        "role": "First-screen headline and subtext",
+        "description": "Full-width Parchment background, centered content stack: Untitled Serif headline at 80px weight 400 Off-Black, monospace subtext at 20px Graphite (#4e4d4d) at 1.35 line-height, two pill buttons centered below. No background image — pure typographic hero."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, navigation, buttons, badges, tags, and ALL UI strings. The monospace choice across every functional element gives the interface its technical-manual character — body copy at 16-20px reads as data, not marketing. Nav labels and badges use 18px uppercase with tighter tracking; small print and meta text use 12px uppercase. Weight 500 is reserved for emphasized UI labels.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 28px",
+        "family": "ABC Diatype Mono",
+        "weight": "400, 500",
+        "lineHeight": "1.0–1.35 (varies by size)",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "-0.033em at 12px, -0.025em at 16px, -0.022em at 18px, -0.02em at 14px and 20px, -0.014em at 28px"
+      },
+      {
+        "role": "Display and heading type only — used at 80px (hero), 48px (section), 40px and 32px (sub-section), 24px (feature card titles). Weight is locked at 400 across all sizes; the serif's natural contrast and the -0.02em letter-spacing do the heavy lifting instead of bold weight. This is the editorial confidence signature: headlines whisper through typographic refinement rather than shout through weight.",
+        "sizes": "24px, 32px, 40px, 48px, 80px",
+        "family": "Untitled Serif",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "substitute": "Times New Roman, Georgia, or any editorial serif with similar stroke contrast",
+        "letterSpacing": "-0.02em at all sizes (-1.6px at 80px, -0.96px at 48px, -0.8px at 40px, -0.64px at 32px, -0.48px at 24px)"
+      },
+      {
+        "role": "Untitled Sans — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Untitled Sans",
+        "weight": "400",
+        "lineHeight": "1.35",
+        "letterSpacing": "-0.02"
+      }
+    ],
+    "description": "Monad renders its entire interface on a warm parchment canvas (#f6f3f1) that immediately separates it from the typical pure-white SaaS template. Headlines carry editorial weight in Untitled Serif at weight 400 — never bold — while every body, nav, and UI string runs in ABC Diatype Mono, giving the site the texture of a technical manual typeset for a literary magazine. A single vivid Lake Blue (#2b59d1) is the only chromatic accent for primary actions; everything else lives in a warm grayscale, so a periwinkle card surface (#cfdaf5) and soft pastel gradient washes (coral, sky, mint, gold) read as deliberate punctuation rather than noise. Components lean on hairline borders and 100px pill containers rather than shadows, and the rhythm stays calm and spacious with 40px card padding and generous vertical breathing room between sections.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monad design system\",\"item\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#style-reference\",\"name\":\"Monad design system reference\",\"headline\":\"Monad design system | Refero Styles\",\"description\":\"Explore Monad's light SaaS design system: Parchment #f6f3f1, Lake Blue #2b59d1 colors, ABC Diatype Mono, Untitled Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monad\",\"url\":\"https://www.monad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"caption\":\"Screenshot of Monad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monad design system\",\"Monad website design\",\"Monad colors\",\"Monad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Parchment\",\"Lake Blue\",\"Periwinkle Mist\",\"Sky Blue\",\"ABC Diatype Mono\",\"Untitled Serif\",\"Untitled Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monad design system\"},{\"@type\":\"Thing\",\"name\":\"Monad website design\"},{\"@type\":\"Thing\",\"name\":\"Monad colors\"},{\"@type\":\"Thing\",\"name\":\"Monad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T12:13:17.485Z\",\"dateModified\":\"2026-05-07T12:13:17.485Z\"}]}19:T5fe,Quick Color Reference:\n- text: #242424 (Off-Black)\n- background: #f6f3f1 (Parchment)\n- border: #cecac8 (Ash)\n- accent: #2b59d1 (Lake Blue)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section on Parchment (#f6f3f1) background. Centered headline in Untitled Serif at 80px weight 400, color #242424, letter-spacing -1.6px. Subtext below in ABC Diatype Mono at 20px weight 400, color #4e4d4d, line-height 1.35. Two centered pill buttons: primary Lake Blue (#2b59d1) with white text, and ghost (1px #242424 border, transparent fill, #242424 text), both 100px border-radius, 16px 32px padding, ABC Diatype Mono 14px uppercase.\n\n2. Create a feature card on Parchment background. 1px solid #cecac8 border, 40px border-radius, 40px padding. Small 20px mono icon top-left at #242424. Title in Untitled Serif 24px weight 400, #242424. Body in ABC Diatype Mono 16px weight 400, #4e4d4d. No shadow.\n\n3. Create a secondary pill button: Off-Black (#242424) fill, white text in ABC Diatype Mono 14px uppercase, 100px border-radius, 16px 32px padding, no arrow.\n\n4. Create an FAQ accordion row: full-width, 40px vertical padding, 1px solid #cecac8 bottom border only. Question in Untitled Serif 24px weight 400, #242424. Trailing down-chevron icon (↓) in #242424 at 20px, right-aligned. No background fill.\n\n5. Create a pipeline diagram node tag: Parchment (#f6f3f1) fill, 1px solid #cecac8 border, 9999px border-radius, 12px 20px padding. Small 12px icon + 14px text in ABC Diatype Mono uppercase, #242424."
+      },
+      {
+        "title": "Typography Pairing Philosophy",
+        "content": "The serif-mono pairing is the single most distinctive design choice in this system. Untitled Serif handles all hierarchical display text (headlines, section titles, feature card titles, FAQ questions) — it carries editorial authority through its stroke contrast and refined letterforms, not through weight (always 400). ABC Diatype Mono handles everything functional: body paragraphs, navigation, button labels, badges, tags, and inline UI text. This creates a consistent voice: the serif announces, the mono instructs. A page that swapped in a sans-serif for body would lose its identity immediately."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids prominent shadows. Elevation is communicated through surface color contrast (Parchment canvas → Periwinkle card) and 1px hairline borders rather than drop shadows. The single shadow pattern detected (rgba(0,0,0,0.1) at 0px 0px 10px 0px) is a barely-perceptible ambient glow, used sparingly. This keeps the interface feeling flat, editorial, and paper-like rather than skeuomorphic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f6f3f1",
+          "oklch": {
+            "c": 0.004192906444823773,
+            "h": 56.37442908824549,
+            "l": 0.9659021089433236
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 63734446.385452755,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 26,
+            "nav/stroke": 4,
+            "other/color": 79,
+            "other/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 3932005.209831848,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "nav/stroke": 6,
+            "other/fill": 20,
+            "other/color": 48,
+            "button/color": 3,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button",
+            "link"
+          ],
+          "frequency": 59,
+          "confidence": 1,
+          "prominence": 3342431.764196867,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "link/color": 13,
+            "other/fill": 3,
+            "other/color": 22,
+            "button/color": 9,
+            "heading/color": 9,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cecac8",
+          "oklch": {
+            "c": 0.004984831367546834,
+            "h": 43.33782142212172,
+            "l": 0.8405040171810603
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 1659362.7648853527,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#cfdaf5",
+          "oklch": {
+            "c": 0.03905473261704567,
+            "h": 267.9457613319241,
+            "l": 0.8884335611261319
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 975984,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4e4d4d",
+          "oklch": {
+            "c": 0.0014780295490596429,
+            "h": 43.36037522839813,
+            "l": 0.4225210559773368
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 749652.8660112657,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 23,
+            "other/color": 2,
+            "heading/color": 21
+          }
+        },
+        {
+          "hex": "#797776",
+          "oklch": {
+            "c": 0.0027447749561445877,
+            "h": 43.34809366009767,
+            "l": 0.5700798715854859
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 18706.334328762994,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 3,
+            "other/color": 6
+          }
+        },
+        {
+          "hex": "#2b59d1",
+          "oklch": {
+            "c": 0.1923153260798098,
+            "h": 264.4969209860623,
+            "l": 0.5070447963644942
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9027,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007196078707582178,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.01,
+          "background": "#000000",
+          "foreground": "#f6f3f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15,
+          "background": "#cfdaf5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.05,
+          "background": "#242424",
+          "foreground": "#f6f3f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.91,
+          "background": "#cecac8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.09,
+          "background": "#cfdaf5",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.54,
+          "background": "#cecac8",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.63,
+          "background": "#f6f3f1",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#cfdaf5",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#2b59d1",
+          "foreground": "#f6f3f1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.18,
+          "background": "#cecac8",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.71,
+          "background": "#000000",
+          "foreground": "#797776"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.03,
+          "background": "#f6f3f1",
+          "foreground": "#797776"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.48,
+          "background": "#242424",
+          "foreground": "#797776"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.45,
+          "background": "#2b59d1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.18,
+          "background": "#cfdaf5",
+          "foreground": "#797776"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#2b59d1",
+          "foreground": "#242424"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.49,
+          "background": "#000000",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#242424",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#2b59d1",
+          "foreground": "#4e4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#2b59d1",
+          "foreground": "#797776"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 2000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 0px 10px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 74,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|icon",
+            "marginBottom|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "link"
+          ],
+          "frequency": 93,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 265,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(255, 148, 115, 0.8) 7%, rgba(160, 181, 235, 0.8) 83.82%)",
+        "colors": [
+          "rgba(255, 148, 115, 0.8)",
+          "rgba(160, 181, 235, 0.8)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(160, 181, 235), rgb(167, 252, 205))",
+        "colors": [
+          "rgb(160, 181, 235)",
+          "rgb(167, 252, 205)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(160, 181, 235, 0), rgb(167, 252, 205) 54.17%)",
+        "colors": [
+          "rgba(160, 181, 235, 0)",
+          "rgb(167, 252, 205)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgba(226, 193, 97, 0.7) 23.5%, rgba(243, 122, 10, 0.7) 76%)",
+        "colors": [
+          "rgba(226, 193, 97, 0.7)",
+          "rgba(243, 122, 10, 0.7)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgba(160, 181, 235, 0.6) 16.18%, rgba(255, 148, 115, 0.6) 93%)",
+        "colors": [
+          "rgba(160, 181, 235, 0.6)",
+          "rgba(255, 148, 115, 0.6)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(167, 252, 205, 0), rgb(160, 181, 235) 54%)",
+        "colors": [
+          "rgba(167, 252, 205, 0)",
+          "rgb(160, 181, 235)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(106px 67px at 12% 43%, rgb(167, 252, 205) 0%, rgb(226, 193, 97) 100%)",
+        "colors": [
+          "rgb(167, 252, 205)",
+          "rgb(226, 193, 97)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(106px 67px at 12% 57%, rgba(167, 252, 205, 0) 0%, rgb(226, 193, 97) 54%)",
+        "colors": [
+          "rgba(167, 252, 205, 0)",
+          "rgb(226, 193, 97)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(160, 181, 235) 16.18%, rgb(255, 148, 115) 93%)",
+        "colors": [
+          "rgb(160, 181, 235)",
+          "rgb(255, 148, 115)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(226, 193, 97) 23.5%, rgb(243, 122, 10) 76%)",
+        "colors": [
+          "rgb(226, 193, 97)",
+          "rgb(243, 122, 10)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(167, 252, 205, 0), rgb(226, 193, 97) 54.17%)",
+        "colors": [
+          "rgba(167, 252, 205, 0)",
+          "rgb(226, 193, 97)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(167, 252, 205, 0), rgba(243, 122, 10, 0.7) 25%)",
+        "colors": [
+          "rgba(167, 252, 205, 0)",
+          "rgba(243, 122, 10, 0.7)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Diatype Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 622,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Untitled Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Untitled Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Diatype Mono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Untitled Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Diatype Mono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.05,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 18,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 180,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.022,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "hero",
+            "body",
+            "list",
+            "image",
+            "card"
+          ],
+          "frequency": 271,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Untitled Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "ABC Diatype Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 36,
+          "lineHeight": 1,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Untitled Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Untitled Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Untitled Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Untitled Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f4a2c9d4-5dd9-4ab8-a698-acd2be4ef776.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monad design system\",\"item\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#style-reference\",\"name\":\"Monad design system reference\",\"headline\":\"Monad design system | Refero Styles\",\"description\":\"Explore Monad's light SaaS design system: Parchment #f6f3f1, Lake Blue #2b59d1 colors, ABC Diatype Mono, Untitled Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monad\",\"url\":\"https://www.monad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fc84e9f0-2058-4a0a-8d26-9cc1ba84ec9c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"caption\":\"Screenshot of Monad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ca9565c-df32-4dbf-89d2-14aa31c2b077.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monad design system\",\"Monad website design\",\"Monad colors\",\"Monad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Parchment\",\"Lake Blue\",\"Periwinkle Mist\",\"Sky Blue\",\"ABC Diatype Mono\",\"Untitled Serif\",\"Untitled Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monad design system\"},{\"@type\":\"Thing\",\"name\":\"Monad website design\"},{\"@type\":\"Thing\",\"name\":\"Monad colors\"},{\"@type\":\"Thing\",\"name\":\"Monad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T12:13:17.485Z\",\"dateModified\":\"2026-05-07T12:13:17.485Z\"}]}19:T5fe,Quick Color Reference:\n- text: #242424 (Off-Black)\n- background: #f6f3f1 (Parchment)\n- border: #cecac8 (Ash)\n- accent: #2b59d1 (Lake Blue)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section on Parchment (#f6f3f1) background. Centered headline in Untitled Serif at 80px weight 400, color #242424, letter-spacing -1.6px. Subtext below in ABC Diatype Mono at 20px weight 400, color #4e4d4d, line-height 1.35. Two centered pill buttons: primary Lake Blue (#2b59d1) with white text, and ghost (1px #242424 border, transparent fill, #242424 text), both 100px border-radius, 16px 32px padding, ABC Diatype Mono 14px uppercase.\n\n2. Create a feature card on Parchment background. 1px solid #cecac8 border, 40px border-radius, 40px padding. Small 20px mono icon top-left at #242424. Title in Untitled Serif 24px weight 400, #242424. Body in ABC Diatype Mono 16px weight 400, #4e4d4d. No shadow.\n\n3. Create a secondary pill button: Off-Black (#242424) fill, white text in ABC Diatype Mono 14px uppercase, 100px border-radius, 16px 32px padding, no arrow.\n\n4. Create an FAQ accordion row: full-width, 40px vertical padding, 1px solid #cecac8 bottom border only. Question in Untitled Serif 24px weight 400, #242424. Trailing down-chevron icon (↓) in #242424 at 20px, right-aligned. No background fill.\n\n5. Create a pipeline diagram node tag: Parchment (#f6f3f1) fill, 1px solid #cecac8 border, 9999px border-radius, 12px 20px padding. Small 12px icon + 14px text in ABC Diatype Mono uppercase, #242424."
+}

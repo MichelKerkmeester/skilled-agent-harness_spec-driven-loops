@@ -1,0 +1,1598 @@
+{
+  "source": "https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a",
+  "uuid": "d91841cf-c717-43ef-97a2-400778fa6e1a",
+  "name": "sweetgreen",
+  "northStar": "farm-stand chalkboard at golden hour",
+  "capturedAt": "2026-07-18T08:24:51.785Z",
+  "meta": {
+    "url": "https://www.sweetgreen.com",
+    "siteName": "sweetgreen",
+    "extractedAt": "2026-06-03T15:48:11.711Z",
+    "durationMs": 40347,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 356,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use SweetSans at 70–80px weight 400 with 0.85 line-height for all primary display headlines — the weight-to-size ratio is the brand voice",
+      "Default to #f4f3e7 as the page background; use #d8e5d6 or #e8dcc6 for alternating full-width content bands only",
+      "Use #e6ff55 fill + #0e150 text exclusively for the primary action button — never invert the relationship",
+      "Render all buttons as fully rounded pills (9999px radius) with 16px 24px padding and SweetSansText weight 700 at 16px",
+      "Let food photography fill its container edge-to-edge with 20px border-radius — no frames, no borders, no overlays around images",
+      "Use 'Order now →' as a Ghost Text Link (no background, arrow glyph) for all secondary product actions",
+      "Apply positive letter-spacing (0.01–0.05em) to all text below 24px in SweetSansText for legibility"
+    ],
+    "donts": [
+      "Don't use multiple accent colors — the palette is intentionally restricted to one lime (#e6ff55) and one forest green (#00473c) for action and brand respectively",
+      "Don't set headlines in weight 700 or above — the brand's authority comes from the calm confidence of 400 at large sizes",
+      "Don't add card backgrounds, borders, or drop shadows to product cards — the photograph is the card",
+      "Don't use the lime (#e6ff55) for anything other than primary CTA fills and availability badges",
+      "Don't use line-height above 1.0 for display type — the tight leading is what makes the headlines feel monumental",
+      "Don't render buttons as rectangles, capsules, or with subtle radii — pill (9999px) is the only button shape",
+      "Don't apply gradients — the system is entirely flat color, with warmth coming from the cream canvas and saturated photography"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#00473c",
+        "name": "Deep Forest",
+        "role": "Primary brand color, nav logo, dark pill buttons, text accents, badge borders, link colors — the structural green that anchors the palette",
+        "group": "brand"
+      },
+      {
+        "hex": "#e6ff55",
+        "name": "Lime Glow",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#d8e5d6",
+        "name": "Sage Mist",
+        "role": "Section backgrounds, card surfaces, content band alternation — soft botanical green that signals freshness without competing with the food photography",
+        "group": "accent"
+      },
+      {
+        "hex": "#e8dcc6",
+        "name": "Warm Sand",
+        "role": "Accent surface for alternate section bands — warm beige that pairs with food photography and adds earthy variety to the green-dominant palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#f4f3e7",
+        "name": "Cream Canvas",
+        "role": "Primary page background, the warm off-white that gives the entire system its organic, non-clinical feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e150e",
+        "name": "Forest Shadow",
+        "role": "Primary text color, borders, input strokes — near-black with a barely-perceptible green undertone that harmonizes with the brand greens",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Maximum-contrast text, hairlines, icon strokes — used where absolute sharpness is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c82",
+        "name": "Warm Gray",
+        "role": "Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#555555",
+        "name": "Slate Gray",
+        "role": "Secondary text in disabled or low-emphasis button contexts",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero photography with bottom-left text overlay panel on the landing page. Max-width 1200px centered for all content sections. Section rhythm alternates between #f4f3e7 canvas and full-width #d8e5d6 or #e8dcc6 bands with 80–120px vertical padding. Menu grid uses a 3-column card layout with square product photographs. Editorial content sections use a 2-column split (text left, single full-bleed photograph right). Navigation is a single top bar — no sidebar, no mega-menu, no sticky behavior beyond the nav itself. Generous whitespace between sections creates a calm, gallery-like pacing where the food and typography can breathe.",
+    "imagery": "Photography is the primary visual content. All images are high-saturation, overhead or 3/4-angle food photography shot in warm natural light, presented on organic surfaces (ceramic tile, concrete, wood, linen). Treatments are full-bleed within containers with consistent 20px border-radius — no frames, no borders, no decorative overlays. No illustrations, no abstract graphics, no 3D renders, no stock lifestyle photography. The food IS the visual content. Icons are minimal — line-based, single-weight strokes in #0e150, used only for functional UI (arrows, close, back). The 'ONLINE ONLY' badge is the only UI element that overlays photography directly.",
+    "similar": [
+      {
+        "why": "Same food-first photography strategy, warm neutral canvas, and pill-shaped CTAs with a single vivid accent color",
+        "business": "Cava"
+      },
+      {
+        "why": "Similar earthy warm palette with sage and cream tones, oversized custom display typography, and editorial food photography",
+        "business": "Chobani"
+      },
+      {
+        "why": "Shared farm-stand warmth in the color palette and a commitment to letting product photography dominate over UI chrome",
+        "business": "Whole Foods Market"
+      },
+      {
+        "why": "Same approach of alternating full-width colored content bands with large custom display type and lifestyle photography",
+        "business": "Goop"
+      },
+      {
+        "why": "Similar pill-shaped buttons, cream canvas, and large geometric display headlines paired with saturated product photography",
+        "business": "Olipop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "small": "4px",
+        "badges": "20px",
+        "images": "20px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f4f3e7",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm off-white that reads as organic rather than clinical"
+      },
+      {
+        "hex": "#d8e5d6",
+        "name": "Sage Mist Band",
+        "level": 1,
+        "purpose": "Full-width content sections alternating with the canvas — calm botanical background for text-forward or split-layout content"
+      },
+      {
+        "hex": "#e8dcc6",
+        "name": "Warm Sand Band",
+        "level": 2,
+        "purpose": "Alternate section background — earthy warm tone for visual rhythm variation"
+      },
+      {
+        "hex": "#e6ff55",
+        "name": "Lime Glow Highlight",
+        "level": 3,
+        "purpose": "Accent surface for badges and CTA fills — the only chromatic surface that draws functional attention"
+      },
+      {
+        "hex": "#00473c",
+        "name": "Deep Forest Surface",
+        "level": 4,
+        "purpose": "Dark accent surface for nav pills, dark-mode content blocks, or reversed text sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(14, 21, 14, 0.4) 3px 3px 32px -10px",
+        "element": "Product cards, CTA buttons"
+      }
+    ],
+    "northStar": "farm-stand chalkboard at golden hour",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.29,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.27
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.54
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.21,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -2.26
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-lg",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill CTA Button (Lime Fill)",
+        "role": "Primary action button — used for 'Order Now', 'Add to Bag', and any conversion action",
+        "description": "Fully rounded (9999px) pill shape, #e6ff55 background, #0e150 text in SweetSansText weight 700 at 16–18px with 0.017em tracking, padding 16px 24px. The lime fill against the cream canvas creates the highest-contrast functional element on any page."
+      },
+      {
+        "name": "Pill Outline Button (Forest Border)",
+        "role": "Secondary or navigation action — used for nav 'ORDER' pill, secondary CTAs",
+        "description": "Fully rounded (9999px) pill, transparent or cream fill, 2px #00473c border, #00473c text in SweetSansText weight 700 at 16px, padding 12px 20px. Outlined rather than filled to maintain a lighter visual weight than the primary CTA."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline action link — used for 'Order now →' on product cards, footer links, inline CTAs",
+        "description": "No background, no border, #0e150 text in SweetSansText weight 700 at 16px, right-arrow glyph appended. Underline on hover only. The arrow is the visual anchor."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation — persistent across all pages",
+        "description": "Horizontal bar on #f4f3e7 background, centered logo 'sweetgreen' in #00473c at 24–28px SweetSansText weight 700, nav items flanking in SweetSansText weight 700 at 14px with 0.05em tracking, all-caps. Right-side 'ORDER' item rendered as a Pill Outline Button in #00473c."
+      },
+      {
+        "name": "Menu Category Tab",
+        "role": "Section filter for menu browsing — 'Salads', 'Warm Bowls', 'Sides'",
+        "description": "Large text-only tab, no border, no background change between states. Active tab: #0e150 in SweetSans at 40px weight 400 with a small dot indicator beneath. Inactive: #0e150 at 40px with no indicator. The typographic scale itself is the navigation signal."
+      },
+      {
+        "name": "Product Card",
+        "role": "Menu item display — one card per food item in the browsing grid",
+        "description": "Top: square food photograph with 20px border-radius. Below image: 24px padding, product name in SweetSansText weight 700 at 20px #0e150, 8px gap, description in SweetSansText weight 400 at 16px #0e150 with 1.25 line-height, 16px gap, 'Order now →' Ghost Text Link. No card background, no border, no shadow — the photograph IS the card surface."
+      },
+      {
+        "name": "Online Only Badge",
+        "role": "Availability indicator on exclusive digital products",
+        "description": "Absolute-positioned top-left of product card, #e6ff55 background, #0e150 text in SweetSansText weight 700 at 12px all-caps with 0.05em tracking, padding 4px 12px, 20px border-radius. Small, bright, unmissable."
+      },
+      {
+        "name": "Full-Bleed Hero with Text Overlay",
+        "role": "Landing page hero — single product or campaign feature",
+        "description": "Full-viewport-width photograph (no border-radius) as the background layer. Semi-transparent text overlay panel in cream (#f4f3e7 at ~90% opacity) anchored bottom-left, 40px padding, containing: small-caps eyebrow text in SweetSansText weight 700 at 14px, 8px gap, product name in SweetSans at 70–80px weight 400 line-height 0.85, 24px gap, Pill CTA Button (Lime Fill)."
+      },
+      {
+        "name": "Split Content Section",
+        "role": "Feature/editorial content — catering, about, mission sections",
+        "description": "Two-column layout on a Sage Mist or Warm Sand section background. Left column: text stack with large display headline in SweetSans at 48–70px weight 400, 24px gap, structured sub-sections with bolded labels in SweetSansText weight 700 at 18px and body text in weight 400 at 16px. Right column: single full-bleed photograph with 20px border-radius. Generous 80–120px vertical padding."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Pre-headline context label — 'SUNSHINE IN A SALAD', section identifiers",
+        "description": "All-caps, SweetSansText weight 700 at 14px, 0.05em tracking, #0e150 or #00473c. Positioned 16–24px above the headline it qualifies. Functions as a typographic subtitle that adds context without visual weight."
+      },
+      {
+        "name": "Food Photograph (Standard)",
+        "role": "Product and editorial photography",
+        "description": "Overhead or 3/4 angle shots, high saturation, warm natural lighting. Rounded corners at 20px. No overlays, no text burned in. Full-bleed within their container — the food is the entire visual."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines, hero text, large category labels — used at extreme sizes (70–80px) with tight leading (0.85) that lets letterforms nearly touch; weight 400 at this size is the signature choice, creating a calm authority that doesn't shout",
+        "sizes": "40px, 70px, 80px",
+        "family": "SweetSans",
+        "weight": "400",
+        "lineHeight": "0.85–1.00",
+        "substitute": "Dazzed, Supreme, or NB Architekt as a geometric grotesque alternative"
+      },
+      {
+        "role": "Secondary display accent — ultra-thin weight with extreme negative tracking creates a delicate, editorial counterpoint to the geometric SweetSans display",
+        "sizes": "48px",
+        "family": "Grenette",
+        "weight": "200",
+        "lineHeight": "1.00",
+        "substitute": "Migra, Canela, or Editorial New as a thin editorial serif/grotesque alternative",
+        "letterSpacing": "-0.047em"
+      },
+      {
+        "role": "Body text, navigation, button labels, card descriptions, footers — positive tracking (0.01–0.05em) improves readability at small sizes; weight 700 for labels and CTAs, 400 for body",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px",
+        "family": "SweetSansText",
+        "weight": "400, 700",
+        "lineHeight": "1.20–1.38",
+        "substitute": "Söhne, Inter, or GT America as a geometric grotesque alternative",
+        "letterSpacing": "0.01em at 12–14px, 0.017em at 16px, 0.03em at 20px, 0.05em at 24px"
+      },
+      {
+        "role": "Small UI text, micro-labels, fine print — the regular-weight variant for the smallest readable sizes",
+        "sizes": "12px, 14px",
+        "family": "SweetSansText-Regular",
+        "weight": "400",
+        "lineHeight": "1.29–1.33",
+        "substitute": "Söhne, Inter",
+        "letterSpacing": "0.017em"
+      }
+    ],
+    "description": "Sweetgreen's design system is a warm, farm-stand-meets-modern-typography aesthetic: a cream canvas (#f4f3e7) rooted in natural materials, with deep forest green as the structural anchor and electric lime (#e6ff55) as a singular, high-energy action color. Photography carries the brand — saturated, overhead food shots on warm tile, ceramic, and concrete surfaces are treated as heroes, never as decoration. Typography does the heavy lifting on chrome: a custom geometric sans (SweetSans) renders oversized category labels and hero headlines at extreme weights (400 at 70–80px, with 0.85 line-height that lets letters nearly touch), while a secondary ultra-light display face (Grenette at 200) creates contrast through restraint. Components are deliberately spare — pill-shaped buttons, ghost text links with arrows, badge-free product cards — letting the food and the headline typography own every screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"sweetgreen design system\",\"item\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#style-reference\",\"name\":\"sweetgreen design system reference\",\"headline\":\"sweetgreen design system | Refero Styles\",\"description\":\"Explore sweetgreen's light E-commerce design system: Deep Forest #00473c, Lime Glow #e6ff55 colors, SweetSans, Grenette typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"sweetgreen\",\"url\":\"https://www.sweetgreen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"caption\":\"Screenshot of sweetgreen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"sweetgreen design system\",\"sweetgreen website design\",\"sweetgreen colors\",\"sweetgreen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Deep Forest\",\"Lime Glow\",\"Sage Mist\",\"Warm Sand\",\"SweetSans\",\"Grenette\",\"SweetSansText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"sweetgreen design system\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen website design\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen colors\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:42:37.563Z\",\"dateModified\":\"2026-04-30T00:42:37.563Z\"}]}19:T695,## Quick Color Reference\n- text: #0e150e\n- background: #f4f3e7\n- border: #0e150e or #00473c\n- accent: #e6ff55 (Lime Glow)\n- brand: #00473c (Deep Forest)\n- surface alt: #d8e5d6 (Sage Mist)\n- primary action: #e6ff55 (filled action)\n\n## Example Component Prompts\n\n1. Create a Primary Action Button: #e6ff55 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Product Card**: Square food photograph top, 20px border-radius. 24px padding below image. Product name in SweetSansText weight 700 at 20px, #0e150e. 8px gap. Description in SweetSansText weight 400 at 16px, #0e150e, 1.25 line-height. 16px gap. Ghost text link 'Order now →' in SweetSansText weight 700 at 16px, #0e150e. No card background, no border, no shadow.\n\n3. **Menu Category Tabs**: Horizontal row of text-only tabs. Active tab: SweetSans weight 400 at 40px, #0e150e, with a 4px dot indicator below. Inactive tabs: same size and color, no dot. 40px gap between tabs. No borders, no backgrounds, no underlines.\n\n4. **Split Feature Section**: Full-width #d8e5d6 background, 120px vertical padding. Two-column layout, max-width 1200px centered. Left column (50%): display headline in SweetSans weight 400 at 48px, #0e150e, line-height 1.0. 24px gap. Bolded sub-labels in SweetSansText weight 700 at 18px, #0e150e. Body text in SweetSansText weight 400 at 16px, #0e150e. Right column (50%): single photograph with 20px border-radius.\n\n5. **Online Only Badge**: Absolute-positioned top-left of a product card image. #e6ff55 background, #0e150e text 'ONLINE ONLY' in SweetSansText weight 700 at 12px, all-caps, 0.05em tracking, 4px 12px padding, 20px border-radius."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "card",
+            "image",
+            "nav",
+            "badge",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 1136,
+          "confidence": 1,
+          "prominence": 48286863.023029596,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 7,
+            "body/color": 26,
+            "card/color": 18,
+            "icon/color": 1,
+            "link/color": 21,
+            "list/color": 15,
+            "badge/color": 22,
+            "image/color": 27,
+            "other/color": 76,
+            "heading/color": 14,
+            "nav/borderColor": 28,
+            "body/borderColor": 104,
+            "card/borderColor": 72,
+            "icon/borderColor": 4,
+            "link/borderColor": 84,
+            "list/borderColor": 60,
+            "badge/borderColor": 88,
+            "image/borderColor": 108,
+            "other/borderColor": 303,
+            "heading/borderColor": 56
+          }
+        },
+        {
+          "hex": "#0e150e",
+          "oklch": {
+            "c": 0.017633714130720866,
+            "h": 144.8242484138043,
+            "l": 0.18581754275561832
+          },
+          "contexts": [
+            "other",
+            "button",
+            "footer",
+            "card",
+            "heading",
+            "body",
+            "input",
+            "list",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 463,
+          "confidence": 1,
+          "prominence": 6874200.719344772,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 8,
+            "icon/color": 1,
+            "link/color": 25,
+            "list/color": 30,
+            "other/fill": 1,
+            "image/color": 1,
+            "input/color": 1,
+            "other/color": 12,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 6,
+            "body/borderColor": 12,
+            "card/borderColor": 32,
+            "icon/borderColor": 4,
+            "link/borderColor": 100,
+            "list/borderColor": 120,
+            "image/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 49,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#f4f3e7",
+          "oklch": {
+            "c": 0.01588973833647283,
+            "h": 102.82903853198992,
+            "l": 0.9616560273463532
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 3028370.0076375636,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "other/color": 12,
+            "heading/color": 3,
+            "body/borderColor": 16,
+            "other/borderColor": 48,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8e5d6",
+          "oklch": {
+            "c": 0.02444880176952813,
+            "h": 141.5164171130956,
+            "l": 0.9079487223187085
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2325600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8dcc6",
+          "oklch": {
+            "c": 0.03219752308201474,
+            "h": 82.76363403069178,
+            "l": 0.8982573059292743
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1179900,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9fa19f",
+          "oklch": {
+            "c": 0.00511994562848552,
+            "h": 145.52138106649252,
+            "l": 0.7071597536852202
+          },
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 118716.86122901604,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 1,
+            "button/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#00473c",
+          "oklch": {
+            "c": 0.06553356185814259,
+            "h": 177.96642534325738,
+            "l": 0.356011286119653
+          },
+          "contexts": [
+            "link",
+            "heading",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 59725.307774697554,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 1,
+            "other/fill": 3,
+            "other/color": 1,
+            "button/color": 3,
+            "heading/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8c8c82",
+          "oklch": {
+            "c": 0.014605672421872676,
+            "h": 106.80706781598262,
+            "l": 0.6371057916145908
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 41872.960311985844,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#e6ff55",
+          "oklch": {
+            "c": 0.18959892780471152,
+            "h": 117.37314334726933,
+            "l": 0.9518292792297051
+          },
+          "contexts": [
+            "button",
+            "badge"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 28631.044657987524,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "badge/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4135.94000115385,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02084016280930585,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.82,
+          "background": "#f4f3e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.8,
+          "background": "#e6ff55",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.62,
+          "background": "#f4f3e7",
+          "foreground": "#0e150e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.6,
+          "background": "#e6ff55",
+          "foreground": "#0e150e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#d8e5d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#e8dcc6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#d8e5d6",
+          "foreground": "#0e150e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.67,
+          "background": "#e8dcc6",
+          "foreground": "#0e150e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#00473c",
+          "foreground": "#f4f3e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.56,
+          "background": "#e6ff55",
+          "foreground": "#00473c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.19,
+          "background": "#d8e5d6",
+          "foreground": "#00473c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.07,
+          "background": "#9fa19f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#e8dcc6",
+          "foreground": "#00473c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.13,
+          "background": "#9fa19f",
+          "foreground": "#0e150e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#f4f3e7",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#e6ff55",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.72,
+          "background": "#d8e5d6",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#e8dcc6",
+          "foreground": "#555555"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.11,
+          "background": "#9fa19f",
+          "foreground": "#00473c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#00473c",
+          "foreground": "#8c8c82"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "image",
+            "badge",
+            "button"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 11,
+          "corners": [
+            0,
+            11,
+            11,
+            0
+          ],
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(14, 21, 14, 0.4) 3px 3px 32px -10px",
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "nav",
+            "badge",
+            "list"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "list",
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginLeft|badge",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "badge",
+            "other",
+            "input",
+            "list",
+            "heading",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingLeft|input",
+            "marginTop|list",
+            "marginBottom|heading",
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "badge",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|body",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 32,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|link",
+            "marginLeft|other",
+            "columnGap|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|nav",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SweetSansText",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 334,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SweetSans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SweetSansText-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Grenette",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SweetSansText-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SweetSansText-Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SweetSansText-Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.64,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "heading",
+            "card",
+            "image",
+            "body",
+            "nav",
+            "badge",
+            "footer"
+          ],
+          "frequency": 155,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SweetSansText",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SweetSansText",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.21,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "SweetSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Grenette",
+          "weight": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.047,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 70,
+          "family": "SweetSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "SweetSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6002fafc-fb7b-4ff8-b658-7fd7824c99bf.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"sweetgreen design system\",\"item\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#style-reference\",\"name\":\"sweetgreen design system reference\",\"headline\":\"sweetgreen design system | Refero Styles\",\"description\":\"Explore sweetgreen's light E-commerce design system: Deep Forest #00473c, Lime Glow #e6ff55 colors, SweetSans, Grenette typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"sweetgreen\",\"url\":\"https://www.sweetgreen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d91841cf-c717-43ef-97a2-400778fa6e1a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"caption\":\"Screenshot of sweetgreen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e33deac9-56c5-4686-83b6-d08fa04d5f3e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"sweetgreen design system\",\"sweetgreen website design\",\"sweetgreen colors\",\"sweetgreen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Deep Forest\",\"Lime Glow\",\"Sage Mist\",\"Warm Sand\",\"SweetSans\",\"Grenette\",\"SweetSansText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"sweetgreen design system\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen website design\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen colors\"},{\"@type\":\"Thing\",\"name\":\"sweetgreen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:42:37.563Z\",\"dateModified\":\"2026-04-30T00:42:37.563Z\"}]}19:T695,## Quick Color Reference\n- text: #0e150e\n- background: #f4f3e7\n- border: #0e150e or #00473c\n- accent: #e6ff55 (Lime Glow)\n- brand: #00473c (Deep Forest)\n- surface alt: #d8e5d6 (Sage Mist)\n- primary action: #e6ff55 (filled action)\n\n## Example Component Prompts\n\n1. Create a Primary Action Button: #e6ff55 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Product Card**: Square food photograph top, 20px border-radius. 24px padding below image. Product name in SweetSansText weight 700 at 20px, #0e150e. 8px gap. Description in SweetSansText weight 400 at 16px, #0e150e, 1.25 line-height. 16px gap. Ghost text link 'Order now →' in SweetSansText weight 700 at 16px, #0e150e. No card background, no border, no shadow.\n\n3. **Menu Category Tabs**: Horizontal row of text-only tabs. Active tab: SweetSans weight 400 at 40px, #0e150e, with a 4px dot indicator below. Inactive tabs: same size and color, no dot. 40px gap between tabs. No borders, no backgrounds, no underlines.\n\n4. **Split Feature Section**: Full-width #d8e5d6 background, 120px vertical padding. Two-column layout, max-width 1200px centered. Left column (50%): display headline in SweetSans weight 400 at 48px, #0e150e, line-height 1.0. 24px gap. Bolded sub-labels in SweetSansText weight 700 at 18px, #0e150e. Body text in SweetSansText weight 400 at 16px, #0e150e. Right column (50%): single photograph with 20px border-radius.\n\n5. **Online Only Badge**: Absolute-positioned top-left of a product card image. #e6ff55 background, #0e150e text 'ONLINE ONLY' in SweetSansText weight 700 at 12px, all-caps, 0.05em tracking, 4px 12px padding, 20px border-radius."
+}

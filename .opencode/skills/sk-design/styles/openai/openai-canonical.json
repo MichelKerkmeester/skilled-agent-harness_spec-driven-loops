@@ -1,0 +1,993 @@
+{
+  "source": "https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f",
+  "uuid": "dc541737-8bf2-4b31-b729-0352f696e82f",
+  "name": "OpenAI",
+  "northStar": "Research lab notebook at noon.",
+  "capturedAt": "2026-07-18T06:25:23.533Z",
+  "meta": {
+    "url": "https://openai.com",
+    "siteName": "OpenAI",
+    "extractedAt": "2026-07-03T03:45:45.294Z",
+    "durationMs": 100543,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 642,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the sole filled button color — the 'Try ChatGPT' button is the system's only chromatic punctuation and filling any other button dilutes its signal",
+      "Set all borders to rgba(0,0,0,0.12) rather than a gray hex — the semi-transparent black adapts to the background and maintains consistent visual weight on white and light-gray surfaces",
+      "Apply 9999px radius to all buttons, tags, and inputs — the pill shape is the primary geometric signature and must be consistent across all interactive elements",
+      "Use 6px radius for cards and images — this near-zero radius is a deliberate choice that feels architectural rather than soft; avoid 12px or 16px which would shift the system toward 'friendly SaaS' territory",
+      "Set body text at 17px with 1.65 line-height and -0.01em tracking — the slightly larger base and generous leading create the editorial reading rhythm",
+      "Use weight 500 for navigation, labels, and subheads — weight 400 is reserved for body copy and weight 600 only for the 28px heading tier",
+      "Trust whitespace over dividers — sections are separated by 32-64px gaps and margin-bottom rather than horizontal rules or background color shifts"
+    ],
+    "donts": [
+      "Do not introduce accent colors, gradients, or brand hues — the system is deliberately monochromatic; any chromatic addition competes with the single black CTA and breaks the editorial mood",
+      "Do not use box-shadows on cards or content surfaces — the design relies on hairline borders and whitespace for structure; shadows would add visual noise the system explicitly avoids",
+      "Do not use 8px or 12px radius on buttons — the pill (9999px) is a signature; non-pill buttons would break visual continuity with the tag chip row and search input",
+      "Do not use weight 700 or 800 anywhere — the heaviest weight in the system is 600, and only at the 28px heading size; heavier weights would feel aggressive against the restrained type",
+      "Do not set body text below 16px — 17px is the base; smaller text (13-14px) is reserved for nav, labels, and metadata where compactness is functional",
+      "Do not use colored backgrounds for section breaks — separate sections with whitespace alone; the system has exactly two surface tones (Paper and Ash) and they appear only for interactive hover states",
+      "Do not add icons inside buttons or text links — the system is text-first; icons appear only in the search input and nav utility area"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, filled action button (Try ChatGPT), strongest interactive emphasis — the single period of chromatic punctuation in an otherwise achromatic system",
+        "group": "brand"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Muted captions, helper text, and de-emphasized UI labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f8f",
+        "name": "Smoke",
+        "role": "Tertiary text, disabled states, icon strokes, placeholder text — the dimmest readable voice",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, input fills — the infinite background that lets type and imagery carry all weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Ash",
+        "role": "Subtle surface elevation, hover states, language selector background — a barely-visible plane shift from Paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000001f",
+        "name": "Hairline",
+        "role": "All borders, dividers, card outlines, button outlines — structure without weight, defined as a semi-transparent black rather than a gray hex",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000000a",
+        "name": "Whisper",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is max-width contained (approximately 1200px) with generous side margins. The hero is a vertically centered prompt interaction on an empty white canvas — the search input is the entire first screen, creating a 'command line' feeling. Below the hero, content flows in a 2-column asymmetric grid: a large featured article (spanning ~65% width) on the left with full-bleed photography, and a stacked column of smaller article cards on the right. Section rhythm is consistent vertical spacing (32-64px gaps) with no background color shifts between sections. Navigation is a minimal top bar — no mega-menu, no sidebar. The overall density is spacious and editorial: one article per visual unit, large type, breathing room between elements. No card grids with 3+ columns; the layout favors 2-column editorial compositions over dashboard-style information density.",
+    "imagery": "Photography is high-impact and editorial: large-format cosmic/space imagery (planets, solar surfaces, nebulae) for hero articles, product UI screenshots for business sections, and abstract gradient washes (sunrise oranges, soft purples) for story cards. Images are edge-to-edge within cards with 6px corner radius — no padding insets, no drop shadows. The visual treatment is cinematic and full-bleed rather than lifestyle or product-shot. Illustrations and 3D renders are absent; the system uses photography as its primary visual medium. Icon style is minimal: thin-stroke line icons (search magnifier, arrow-up submit) at monochrome #000, no filled icons, no multi-color iconography.",
+    "similar": [
+      {
+        "why": "Same monochromatic editorial approach — black text on white, no accent colors, pill-shaped buttons, and a focus on large-format photography for content cards",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Identical restraint philosophy — pure black/white palette, hairline borders at low opacity, generous whitespace, and the same anti-decorative flatness",
+        "business": "Vercel"
+      },
+      {
+        "why": "Similar dark-on-light typographic confidence with custom sans, pill buttons, and 6-8px card radii — though Linear adds subtle gradients Linear omits",
+        "business": "Linear"
+      },
+      {
+        "why": "Shared editorial-composition approach: 2-column asymmetric article grids, large display headlines, photography as visual anchor, and zero chromatic UI accents",
+        "business": "Stripe"
+      },
+      {
+        "why": "Monochrome product interface with a single filled black CTA, pill-shaped controls, and the same 'research lab' typographic authority",
+        "business": "xAI / Grok"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "6px",
+        "links": "4px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12-16px",
+      "sectionGap": "32-64px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Base canvas — all content sits directly on this surface"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Ash",
+        "level": 1,
+        "purpose": "Elevated surface for language selector and subtle hover/selected states"
+      },
+      {
+        "hex": "#0000000a",
+        "name": "Whisper",
+        "level": 2,
+        "purpose": "Interactive surface tint for ghost button hover and card selection"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.02) 0px 4px 6px 0px, rgba(0, 0, 0, 0.05) 0px 0px 2px 0px",
+        "element": "Outlined Pill Button (hover state)"
+      }
+    ],
+    "northStar": "Research lab notebook at noon.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.51,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "input",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.32,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.26,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.21,
+        "letterSpacing": 0.31
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.16,
+        "letterSpacing": -1.44
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Action Button",
+        "role": "Primary conversion — the only filled button in the system",
+        "description": "Solid #000000 background, white text at 14px weight 500, full pill radius (9999px), 8px vertical / 20px horizontal padding. Used sparingly — currently only for 'Try ChatGPT'. This is the system's only chromatic punctuation."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary actions and category filters",
+        "description": "Transparent background, #000000 text at 14px weight 500, 1px solid border at rgba(0,0,0,0.12), full pill radius (9999px), 8px vertical / 20px horizontal padding. The default for tag chips like 'Talk with ChatGPT', 'Research', 'API Platform'."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Lowest-emphasis actions and navigation",
+        "description": "No background, no border, #000000 text at 13-14px weight 500. Used for nav items, breadcrumb-style links, and the 'Log in' control. Relies on hover state (Whisper background) for affordance."
+      },
+      {
+        "name": "Search Input",
+        "role": "Primary interaction surface — the ChatGPT prompt bar",
+        "description": "Transparent background, #000000 text at 16px weight 400, 1px solid border at rgb(229,231,235), full pill radius (9999px), 10px vertical / 24px right / 52px left padding (left padding reserves space for an icon). Placeholder at #666666. No visible focus ring — system relies on the cursor."
+      },
+      {
+        "name": "Article Card",
+        "role": "Content cards in the news/stories grid",
+        "description": "Transparent background, 6px border-radius, no shadow, no padding — the card is defined entirely by its image and text block. The 6px radius applies to images, creating softly clipped photographic edges. Text sits directly below or overlaid on the image."
+      },
+      {
+        "name": "Featured Article Hero Card",
+        "role": "Large editorial card — one per grid section",
+        "description": "Full-width or two-column span, large photographic header (planets, space, etc.), 48px display headline in weight 500 with -0.03em tracking below, metadata at 14px weight 500 in Graphite (#666666). The image does the visual work; type provides editorial gravity."
+      },
+      {
+        "name": "Section Header",
+        "role": "Dividing labels between content zones",
+        "description": "Small caps-style labels at 14px weight 500 in Graphite, generous top margin (32-64px), often accompanied by a 'View more' ghost link. Functions as a section anchor without using a colored bar or rule."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "description": "Fixed or sticky top bar, Paper (#ffffff) background, OpenAI wordmark left, nav items (Research, Products, Business, Developers, Company, Foundation) at 14px weight 500 in #000, search icon, Log in ghost button, Try ChatGPT filled button right. Total height ~64px. No border-bottom — separation is whitespace alone."
+      },
+      {
+        "name": "Tag Chip Row",
+        "role": "Suggested prompts below the search input",
+        "description": "Horizontal row of outlined pill buttons (see Outlined Pill Button) at 13-14px, spaced 8px apart. Functions as quick-action shortcuts. Sits centered below the prompt input on the hero."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with legal and secondary navigation",
+        "description": "Paper background, multi-column layout with link groups at 13-14px weight 500, Graphite text color, generous top padding (64px+). No social icons, no newsletter signup — utilitarian and quiet."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all UI text — custom geometric sans with humanist warmth, used at weight 400 for body, 500 for nav/labels/headings, 600 only for the largest headings. Signature: -0.03em tracking at display sizes creates compressed authority; +0.011em at 28px adds subtle breathing for subheads. Font features: 'calt' and 'liga' enable contextual alternates and ligatures.",
+        "sizes": "13px, 14px, 16px, 17px, 18px, 22px, 28px, 48px",
+        "family": "OpenAI Sans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.65",
+        "substitute": "Inter, Söhne, or system-ui sans-serif",
+        "letterSpacing": "-0.03em at 48px, 0.011em at 28px, -0.01em at 22px and below",
+        "fontFeatureSettings": "'calt' on, 'liga' on"
+      }
+    ],
+    "description": "OpenAI's interface operates as a typographic, editorial canvas — pure white surfaces, near-black type, and almost no chromatic identity. The system is defined by restraint: the only filled element on the page is the black 'Try ChatGPT' button, which functions as a single period at the end of an otherwise monochrome sentence. Hairline borders at 12% black opacity create structure without weight; cards carry a barely-perceptible 6px radius that whispers geometry rather than announcing it. Typography does the heavy lifting: a custom sans (OpenAI Sans) set at a Major Second scale with progressively tighter tracking — -0.03em at display, normal at body — gives headlines a compressed, almost newsprint authority. Components feel deliberately lightweight: pill-shaped controls, ghost buttons, transparent surfaces, and minimal elevation. The visual mood is 'research lab notebook' — quiet, confident, and trusting the reader to focus on content rather than chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OpenAI design system\",\"item\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#style-reference\",\"name\":\"OpenAI design system reference\",\"headline\":\"OpenAI design system | Refero Styles\",\"description\":\"Explore OpenAI's light AI design system: Obsidian #000000, Graphite #666666 colors, OpenAI Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OpenAI\",\"url\":\"https://openai.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"caption\":\"Screenshot of OpenAI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OpenAI design system\",\"OpenAI website design\",\"OpenAI colors\",\"OpenAI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Graphite\",\"Smoke\",\"Paper\",\"OpenAI Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OpenAI design system\"},{\"@type\":\"Thing\",\"name\":\"OpenAI website design\"},{\"@type\":\"Thing\",\"name\":\"OpenAI colors\"},{\"@type\":\"Thing\",\"name\":\"OpenAI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-30T10:04:12.000Z\",\"dateModified\":\"2026-03-30T10:04:12.000Z\"}]}19:T743,**Quick Color Reference**\n- text primary: #000000\n- text secondary: #666666\n- text tertiary: #8f8f8f\n- background: #ffffff\n- surface subtle: #f1f1f1\n- border: rgba(0,0,0,0.12)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Prompt Input**: Center a search-style input on a #ffffff canvas. Input: transparent background, 1px solid rgba(0,0,0,0.12) border, 9999px radius, 10px/52px/10px/24px padding, placeholder text 'Plan a surf trip to Costa Rica in August' at 16px weight 400 in #666666. Above it, a heading 'What can I help with?' at 48px weight 500, #000000, letter-spacing -1.44px. Below, a row of 4 outlined pill buttons (tag chips) spaced 8px apart.\n\n2. **Featured Article Card (Left Column)**: Full-bleed photographic header (no border, 6px radius), 48px display headline below in #000 weight 500 with -0.03em tracking, metadata line at 14px weight 500 in #666666 reading 'Product · 12 min read'. Card has no background, no shadow, no padding — structure comes from spacing alone.\n\n3. **Outlined Pill Tag Chip**: Transparent background, 1px solid rgba(0,0,0,0.12) border, 9999px radius, 8px/20px padding, text at 14px weight 500 in #000000. Use for category filters, suggested actions, and quick-prompt shortcuts.\n\n4. **Secondary Article Card (Right Column)**: Smaller format — 16:9 image header with 6px radius, 22px subheading in #000 weight 500 with -0.01em tracking, 14px metadata in #666666. Stacks vertically with 32px gap between cards.\n\n5. **Top Navigation Bar**: 64px height, #ffffff background, OpenAI wordmark (text-based) at far left at 14px weight 500, nav items (Research, Products, Business, Developers, Company, Foundation) spaced 16px apart at 14px weight 500 in #000, a search icon, a 'Log in' ghost text button, and a 'Try ChatGPT' filled black button (9999px radius, white text) at far right."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used minimally and only on interactive elements in their hover/active state. The system relies on hairline borders and whitespace for structural separation rather than z-axis depth. Cards have zero shadow; the flatness is intentional — the design reads as editorial print, not as a software interface with depth layers."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "heading",
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 157,
+          "confidence": 1,
+          "prominence": 825341.832105509,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 39,
+            "link/color": 47,
+            "other/fill": 10,
+            "input/color": 2,
+            "other/color": 18,
+            "button/color": 14,
+            "other/stroke": 13,
+            "heading/color": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 436055.7222437982,
+          "properties": [
+            "color",
+            "stroke",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/color": 20,
+            "other/fill": 1,
+            "other/color": 17,
+            "button/color": 3,
+            "other/stroke": 1,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 256030.7688916535,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/color": 1,
+            "other/stroke": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 13102.884993461797,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8f8f8f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6493788278468504
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054.1114009346184,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.49,
+          "background": "#000000",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.08,
+          "background": "#f1f1f1",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.23,
+          "background": "#ffffff",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.86,
+          "background": "#f1f1f1",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#f1f1f1",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6.08,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 39
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.02) 0px 4px 6px 0px, rgba(0, 0, 0, 0.05) 0px 0px 2px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 46,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 77,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|body",
+            "paddingRight|body",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list"
+          ],
+          "frequency": 77,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|link",
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginBottom|heading",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "columnGap|card",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|body",
+            "marginBottom|other",
+            "paddingLeft|link",
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingBottom|other",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "OpenAI Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 615,
+          "fontFeatureSettings": [
+            "\"calt\", \"liga\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 164,
+          "lineHeight": 1.51,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "OpenAI Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "OpenAI Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "button",
+            "icon",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 320,
+          "lineHeight": 1.65,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.26,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "OpenAI Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.21,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "OpenAI Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0433fa1a-7859-4f98-9663-b0a4a5b1eb19.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OpenAI design system\",\"item\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#style-reference\",\"name\":\"OpenAI design system reference\",\"headline\":\"OpenAI design system | Refero Styles\",\"description\":\"Explore OpenAI's light AI design system: Obsidian #000000, Graphite #666666 colors, OpenAI Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OpenAI\",\"url\":\"https://openai.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dc541737-8bf2-4b31-b729-0352f696e82f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"caption\":\"Screenshot of OpenAI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17f0359c-d693-4bca-bf6d-d777c61d250f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OpenAI design system\",\"OpenAI website design\",\"OpenAI colors\",\"OpenAI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Graphite\",\"Smoke\",\"Paper\",\"OpenAI Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OpenAI design system\"},{\"@type\":\"Thing\",\"name\":\"OpenAI website design\"},{\"@type\":\"Thing\",\"name\":\"OpenAI colors\"},{\"@type\":\"Thing\",\"name\":\"OpenAI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-30T10:04:12.000Z\",\"dateModified\":\"2026-03-30T10:04:12.000Z\"}]}19:T743,**Quick Color Reference**\n- text primary: #000000\n- text secondary: #666666\n- text tertiary: #8f8f8f\n- background: #ffffff\n- surface subtle: #f1f1f1\n- border: rgba(0,0,0,0.12)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Prompt Input**: Center a search-style input on a #ffffff canvas. Input: transparent background, 1px solid rgba(0,0,0,0.12) border, 9999px radius, 10px/52px/10px/24px padding, placeholder text 'Plan a surf trip to Costa Rica in August' at 16px weight 400 in #666666. Above it, a heading 'What can I help with?' at 48px weight 500, #000000, letter-spacing -1.44px. Below, a row of 4 outlined pill buttons (tag chips) spaced 8px apart.\n\n2. **Featured Article Card (Left Column)**: Full-bleed photographic header (no border, 6px radius), 48px display headline below in #000 weight 500 with -0.03em tracking, metadata line at 14px weight 500 in #666666 reading 'Product · 12 min read'. Card has no background, no shadow, no padding — structure comes from spacing alone.\n\n3. **Outlined Pill Tag Chip**: Transparent background, 1px solid rgba(0,0,0,0.12) border, 9999px radius, 8px/20px padding, text at 14px weight 500 in #000000. Use for category filters, suggested actions, and quick-prompt shortcuts.\n\n4. **Secondary Article Card (Right Column)**: Smaller format — 16:9 image header with 6px radius, 22px subheading in #000 weight 500 with -0.01em tracking, 14px metadata in #666666. Stacks vertically with 32px gap between cards.\n\n5. **Top Navigation Bar**: 64px height, #ffffff background, OpenAI wordmark (text-based) at far left at 14px weight 500, nav items (Research, Products, Business, Developers, Company, Foundation) spaced 16px apart at 14px weight 500 in #000, a search icon, a 'Log in' ghost text button, and a 'Try ChatGPT' filled black button (9999px radius, white text) at far right."
+}

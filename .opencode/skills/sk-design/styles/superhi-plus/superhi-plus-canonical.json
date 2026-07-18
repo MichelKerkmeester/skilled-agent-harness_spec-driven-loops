@@ -1,0 +1,1070 @@
+{
+  "source": "https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1",
+  "uuid": "a1f9e844-c4b6-4526-9cfc-81208c50aee1",
+  "name": "SuperHi Plus",
+  "northStar": "Cobalt blueprint scattered with emoji marbles. The page lives half in electric blue, half in ice white, swapping sides as you scroll.",
+  "capturedAt": "2026-07-18T08:58:33.598Z",
+  "meta": {
+    "url": "https://superhi.plus",
+    "siteName": "SuperHi Plus",
+    "extractedAt": "2026-06-03T21:13:55.418Z",
+    "durationMs": 35138,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 867,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the two-color binary (Cobalt Voltage #0033e5 and Ice White #f0f7ff) as the only two surface options. Every panel belongs to one camp or the other — never blend.",
+      "Keep all typography at weight 400. Let size (16 → 85px) and color contrast create hierarchy, never bold or light cuts.",
+      "Pair 1px inset borders (in Cobalt Voltage or Ice White) as the universal depth indicator on buttons and cards — never use drop shadows.",
+      "Use the arrow prefix (→) on all navigation text — it is the site's signature affordance for clickable text items.",
+      "Let the 3D emoji marble cluster fill the negative space of any light panel. Empty Ice White is a design failure.",
+      "Space sections at 64px vertical rhythm with 24px internal card padding. 16px is the floor for element gaps.",
+      "Scale display headlines aggressively — 56px and 85px are the normal range, not the exception."
+    ],
+    "donts": [
+      "Never introduce a third color, gradient, or tinted neutral. The system is binary by design.",
+      "Never set type in bold (600+), italic, or light (300) — weight 400 is the only voice.",
+      "Never add drop shadows, blurs, or ambient elevation effects. Use 1px inset borders or nothing.",
+      "Never use Cobalt Mist #527ceb for text on Ice White — it fails contrast (3.6:1). Reserve it for fills only.",
+      "Never use a font with high x-height or humanist character (like Open Sans or Lato). The neo-grotesque flatness is the signature.",
+      "Never place dense paragraphs in columns narrower than 480px — the single-weight face needs generous measure.",
+      "Never add decorative dividers, rules, or ornamental graphics between sections. The blue/white alternation IS the divider."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0033e5",
+        "name": "Cobalt Voltage",
+        "role": "Primary surface, page background, filled action buttons, heading text, link color, and active borders. The structural anchor of the system — every dark panel lives here",
+        "group": "brand"
+      },
+      {
+        "hex": "#f0f7ff",
+        "name": "Ice White",
+        "role": "Light surface, card backgrounds on blue sections, heading and body text on blue panels, hairline borders, ghost button outlines. Counter-surface to Cobalt Voltage",
+        "group": "neutral"
+      },
+      {
+        "hex": "#527ceb",
+        "name": "Cobalt Mist",
+        "role": "Soft blue tint used sparingly for secondary button fills and tonal accents where Cobalt Voltage would be too heavy. Falls below WCAG on Ice White",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pitch",
+        "role": "SVG icon fills, nav element fills, and decorative graphic anchors. Used as the dark accent inside light panels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed split-screen layout. Every section is divided into two equal-width panels (50/50) that swap colors — one Ice White with imagery or display type, one Cobalt Voltage with body content. Panels extend edge-to-edge with no gutters or max-width constraints; page max-width is 1440px for content within panels. Section rhythm alternates which side is which (left=blue/right=white, then left=white/right=blue). Navigation is a minimal top bar with the wordmark. Within blue panels, content stacks vertically with 16–24px gaps; within white panels, the emoji marble cluster anchors the lower 60% while type lives in the upper portion. No card grids, no pricing tables, no sidebar.",
+    "imagery": "Imagery is exclusively 3D-rendered emoji-face spheres in Cobalt Voltage and Ice White tones, clustered as organic piles on light panels. No photography, no human portraits, no flat illustration. The marbles are the brand's only visual content — they function as social proof, personality marker, and negative-space filler simultaneously. Icons in feature blocks are also 3D-rendered objects (coin, hourglass, pencil) rather than flat line icons. All graphics have soft volumetric lighting and occupy generous space.",
+    "similar": [
+      {
+        "why": "Same single-weight neo-grotesque typography, flat surfaces with no shadows, and binary color logic for hierarchy",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical split-panel composition pattern and aggressive display-type scale (50–80px range) with weight 400 only",
+        "business": "Vercel"
+      },
+      {
+        "why": "Clean neo-grotesque type at 400 with tight line-heights and vibrant brand color used as full panel, not just accent",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same playful 3D-illustration approach to brand personality and reliance on 1px borders instead of drop shadows for depth",
+        "business": "Pitch"
+      },
+      {
+        "why": "Equal commitment to a single saturated brand color flooding the canvas and a single-typeface-everywhere system",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "16px",
+        "inputs": "2px",
+        "buttons": "16px",
+        "nav-buttons": "50px",
+        "pill-buttons": "72px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#0033e5",
+        "name": "Cobalt Voltage",
+        "level": 0,
+        "purpose": "Dominant page background, hero panels, content panels"
+      },
+      {
+        "hex": "#f0f7ff",
+        "name": "Ice White",
+        "level": 1,
+        "purpose": "Counter-surface panel, card backgrounds on cobalt sections"
+      },
+      {
+        "hex": "#527ceb",
+        "name": "Cobalt Mist",
+        "level": 2,
+        "purpose": "Tonal blue tint for secondary fills and soft accents"
+      }
+    ],
+    "northStar": "Cobalt blueprint scattered with emoji marbles. The page lives half in electric blue, half in ice white, swapping sides as you scroll.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.13
+      },
+      {
+        "role": "display",
+        "size": 85,
+        "lineHeight": 1.14
+      }
+    ],
+    "components": [
+      {
+        "name": "Arrow Navigation Button",
+        "role": "Primary in-page navigation between content sections (e.g. 'Funding', 'Support', 'Tools')",
+        "description": "Large text-only button at 42px, weight 400, with a horizontal arrow (→) prefix. Background is Ice White on Cobalt Voltage or vice versa. Radius 16px. Padding 24px top/bottom, 24px left/right. No fill, no border — the arrow + size carries the affordance."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary call-to-action and section links (e.g. 'View calculator')",
+        "description": "Pill-shaped button with radius 50px. 1px border in Ice White on Cobalt Voltage background. Text at 18px weight 400, Ice White. Padding 14px vertical, 24px horizontal. Inserts a 1px Cobalt Voltage inset border as inner ring for double-line effect."
+      },
+      {
+        "name": "Numbered List Item",
+        "role": "Sequential feature explanations in body content",
+        "description": "Circled numeral (1, 2, 3) in Ice White outline at 24px, followed by a heading at 32px weight 400 in Ice White, then body copy at 18px in Ice White. Stack gap 16px. Numeral acts as section marker, not decorative bullet."
+      },
+      {
+        "name": "Stat Tile",
+        "role": "Three-column highlight strip showing funding, timeline, tools",
+        "description": "3D-rendered object icon (coin, hourglass, pencil) centered above a label and value. Icon at roughly 64px. Label at 18px Ice White. Value at 24px Ice White weight 400. Three tiles laid out in equal columns on Cobalt Voltage surface with 32px gaps."
+      },
+      {
+        "name": "Content Card on Cobalt",
+        "role": "White-surface card placed on blue background for grouped content",
+        "description": "Ice White background, 16px radius, 24px padding. 1px border in Ice White at 60% or the same blue. Used for feature groupings, ownership info blocks, and calculator callouts."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Contextual reference links within body copy",
+        "description": "Cobalt Voltage text on Ice White surface or Ice White on Cobalt Voltage, underlined, 18px weight 400. No color change on hover in static design — relies on underline for affordance."
+      },
+      {
+        "name": "Hero Split Panel",
+        "role": "First-fold composition establishing the blue/white dichotomy",
+        "description": "Two-column 50/50 split. Left panel: Ice White background, large display headline (56–85px) in Cobalt Voltage left-aligned, decorative 3D emoji marbles filling the lower portion. Right panel: Cobalt Voltage background, body copy in Ice White right-aligned. Panels extend full-bleed to viewport edges."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Transitional headers between content bands",
+        "description": "Heading at 42–56px weight 400 in Cobalt Voltage or Ice White depending on which surface it sits on. No eyebrow text, no subhead — the heading stands alone with 24px space below before body copy."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs in calculator or application flows",
+        "description": "Sharp 2px radius. Border 1px in Ice White. Background transparent on Cobalt Voltage. Padding 3px top/bottom. Text at 16px Ice White. No focus ring detected in data — uses inset border as state indicator."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Site logo in header and footer",
+        "description": "'SuperHi' in Haas Grot Disp Web at roughly 24px weight 400, with a circular smiley-face mark (○ with eyes and mouth) as the dot on the 'i'. Mark scales with text size. Always Ice White on Cobalt or Cobalt on Ice White."
+      },
+      {
+        "name": "3D Emoji Marble Cluster",
+        "role": "Decorative illustration filling light-panel negative space",
+        "description": "Pile of 3D-rendered spheres in Cobalt Voltage and Ice White tones, each printed with an emoji face (😊, 😎, ❌, 🤪, 🙂). Balls range from 60–120px diameter, overlapping organically. Provides texture and personality on otherwise empty white space. No photographic people — the marbles ARE the social proof."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single neo-grotesque display face used at all scales — from 16px body to 85px hero. The radical choice is weight 400 only: no bold, no light. The system relies on size and the blue/white contrast to create hierarchy, not weight. This flattens typographic texture into a single confident voice that reads as declarative rather than persuasive.",
+        "sizes": "16px, 18px, 24px, 32px, 42px, 56px, 85px",
+        "family": "Haas Grot Disp Web",
+        "weight": "400",
+        "lineHeight": "1.50 / 1.33 / 1.25 / 1.20 / 1.14 / 1.13 / 1.14",
+        "substitute": "Söhne (paid) or Inter (free) at weight 400. Space Grotesk is a close free alternative for the slightly geometric character of the display cut.",
+        "letterSpacing": "normal (0px) at all sizes"
+      }
+    ],
+    "description": "SuperHi Plus uses a split-screen cobalt-and-ice language: one half of every section is saturated electric blue, the other is near-white, and the two panels swap roles as you scroll. Typography is a single-weight neo-grotesque display face at enormous scale (up to 85px) — the design speaks in one voice, never shouting or whispering, just stating. Decorative 3D emoji marbles anchor the light panels as visual texture while flat content lives on the blue. Components are chunky and tactile: 1px inset borders replace shadows, pill radii (50–72px) sit next to sharp 16px cards, and arrow-prefixed text labels function as navigation. The system is deliberately unornamented — no gradients, no drop shadows, no color tints — relying on the binary blue/white tension to create rhythm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi Plus design system\",\"item\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#style-reference\",\"name\":\"SuperHi Plus design system reference\",\"headline\":\"SuperHi Plus design system | Refero Styles\",\"description\":\"Explore SuperHi Plus's dark Other design system: Cobalt Voltage #0033e5, Ice White #f0f7ff colors, Haas Grot Disp Web typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi Plus\",\"url\":\"https://superhi.plus\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"caption\":\"Screenshot of SuperHi Plus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi Plus design system\",\"SuperHi Plus website design\",\"SuperHi Plus colors\",\"SuperHi Plus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cobalt Voltage\",\"Ice White\",\"Cobalt Mist\",\"Pitch\",\"Haas Grot Disp Web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi Plus design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:20:56.073Z\",\"dateModified\":\"2026-04-30T01:20:56.073Z\"}]}19:T5bb,**Quick Color Reference**\n- text: #f0f7ff (on blue) or #0033e5 (on white)\n- background: #0033e5 (primary) or #f0f7ff (secondary)\n- border: 1px solid #f0f7ff (on blue) or 1px solid #0033e5 (on white)\n- accent/icon: #0033e5 or #f0f7ff (binary, no tints)\n- decorative fill: #000000 (SVG icons only)\n- primary action: #0033e5 (filled action)\n\n**Example Component Prompts**\n1. Build a hero split panel: full-bleed 50/50. Left = #f0f7ff background, headline at 85px sohne-var weight 400 in #0033e5, emoji marble cluster filling lower 60%. Right = #0033e5 background, body copy at 18px weight 400 in #f0f7ff, right-aligned.\n2. Create an arrow navigation button: 42px sohne-var weight 400 in #0033e5 on #f0f7ff background, prefix with → character, 16px radius, 24px padding all sides. No border, no fill change on hover — the arrow is the affordance.\n3. Build a numbered feature list: circled numeral (1, 2, 3) at 24px in #f0f7ff outline on #0033e5 background, followed by 32px heading in #f0f7ff weight 400, then 18px body in #f0f7ff. 16px stack gap between items.\n4. Create a stat tile: 3D coin icon (~64px) in #f0f7ff on #0033e5 background, label at 18px #f0f7ff, value at 24px #f0f7ff weight 400. Three tiles in equal columns with 32px gaps.\n5. Build an outlined pill button: 50px radius, 1px border in #f0f7ff on #0033e5 background, 18px text in #f0f7ff weight 400, 14px vertical and 24px horizontal padding, inner 1px inset border in #0033e5 for double-ring effect."
+      },
+      {
+        "title": "Typographic Discipline",
+        "content": "The system uses a single neo-grotesque display face (Haas Grot Disp Web) at weight 400 only. No bold, no light, no italic. Hierarchy is achieved exclusively through size (16/18/24/32/42/56/85px) and color inversion. Line heights compress at scale: 1.50 at 16px drops to 1.13 at 85px. Letter-spacing stays at 0px throughout — the display face already has tight, even tracking. This is a radical flattening choice: the page reads as one confident voice rather than a hierarchy of emphases. An AI agent should never reach for a second font family or a different weight."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately replaces drop shadows with 1px inset borders in Cobalt Voltage or Ice White. Buttons and cards achieve depth through border-inset ring alone — no blur, no offset, no ambient occlusion. This keeps every element flat and graphic, matching the typographic restraint."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f0f7ff",
+          "oklch": {
+            "c": 0.013053050750880509,
+            "h": 251.55742597416923,
+            "l": 0.973180234319126
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "list",
+            "link",
+            "icon",
+            "card",
+            "nav",
+            "button",
+            "footer"
+          ],
+          "frequency": 1422,
+          "confidence": 1,
+          "prominence": 182679660.55285907,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 74,
+            "card/color": 2,
+            "hero/color": 1,
+            "icon/color": 14,
+            "link/color": 6,
+            "list/color": 25,
+            "nav/stroke": 6,
+            "other/fill": 10,
+            "other/color": 112,
+            "button/color": 9,
+            "footer/color": 1,
+            "other/stroke": 26,
+            "heading/color": 21,
+            "nav/borderColor": 28,
+            "body/borderColor": 296,
+            "button/boxShadow": 1,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 56,
+            "link/borderColor": 24,
+            "list/borderColor": 100,
+            "other/borderColor": 452,
+            "button/borderColor": 36,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0033e5",
+          "oklch": {
+            "c": 0.26326410654225496,
+            "h": 263.9936805961679,
+            "l": 0.4546519095825828
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "card",
+            "body",
+            "list",
+            "button",
+            "link",
+            "input"
+          ],
+          "frequency": 2007,
+          "confidence": 1,
+          "prominence": 52175943.37886167,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 98,
+            "card/color": 2,
+            "icon/color": 16,
+            "link/color": 16,
+            "list/color": 27,
+            "other/fill": 95,
+            "input/color": 1,
+            "other/color": 182,
+            "button/color": 2,
+            "other/stroke": 28,
+            "heading/color": 31,
+            "body/borderColor": 392,
+            "button/boxShadow": 2,
+            "card/borderColor": 4,
+            "icon/borderColor": 64,
+            "link/borderColor": 64,
+            "list/borderColor": 108,
+            "input/borderColor": 4,
+            "other/borderColor": 724,
+            "button/borderColor": 8,
+            "heading/borderColor": 124,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "nav"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 6816027.611270744,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 62,
+            "other/fill": 34,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#527ceb",
+          "oklch": {
+            "c": 0.17366382829643726,
+            "h": 265.88464351755283,
+            "l": 0.6127606669698066
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.4181745779521479,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.45,
+          "background": "#f0f7ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#0033e5",
+          "foreground": "#f0f7ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#527ceb",
+          "foreground": "#f0f7ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.09,
+          "background": "#527ceb",
+          "foreground": "#0033e5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 2.4,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(0, 51, 229) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgb(240, 247, 255) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "marginBottom|other",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "list"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|heading",
+            "marginBottom|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "list",
+            "nav",
+            "heading"
+          ],
+          "frequency": 81,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|body",
+            "marginBottom|list",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|heading",
+            "marginTop|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "card",
+            "button",
+            "nav",
+            "input",
+            "list"
+          ],
+          "frequency": 106,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "marginTop|body",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|heading",
+            "marginTop|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginBottom|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "card",
+            "icon"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "paddingBottom|card",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "body",
+            "footer"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|body",
+            "rowGap|other",
+            "marginBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Haas Grot Disp Web",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 650,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "list",
+            "body",
+            "card",
+            "nav",
+            "button",
+            "heading",
+            "footer"
+          ],
+          "frequency": 427,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 3.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 101,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "heading",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 85,
+          "family": "Haas Grot Disp Web",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fafe14df-1a3b-42bc-845c-6703919c66af.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi Plus design system\",\"item\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#style-reference\",\"name\":\"SuperHi Plus design system reference\",\"headline\":\"SuperHi Plus design system | Refero Styles\",\"description\":\"Explore SuperHi Plus's dark Other design system: Cobalt Voltage #0033e5, Ice White #f0f7ff colors, Haas Grot Disp Web typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi Plus\",\"url\":\"https://superhi.plus\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"caption\":\"Screenshot of SuperHi Plus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a00ae69-320f-41f4-a046-ce3572d8f5b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi Plus design system\",\"SuperHi Plus website design\",\"SuperHi Plus colors\",\"SuperHi Plus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cobalt Voltage\",\"Ice White\",\"Cobalt Mist\",\"Pitch\",\"Haas Grot Disp Web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi Plus design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi Plus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:20:56.073Z\",\"dateModified\":\"2026-04-30T01:20:56.073Z\"}]}19:T5bb,**Quick Color Reference**\n- text: #f0f7ff (on blue) or #0033e5 (on white)\n- background: #0033e5 (primary) or #f0f7ff (secondary)\n- border: 1px solid #f0f7ff (on blue) or 1px solid #0033e5 (on white)\n- accent/icon: #0033e5 or #f0f7ff (binary, no tints)\n- decorative fill: #000000 (SVG icons only)\n- primary action: #0033e5 (filled action)\n\n**Example Component Prompts**\n1. Build a hero split panel: full-bleed 50/50. Left = #f0f7ff background, headline at 85px sohne-var weight 400 in #0033e5, emoji marble cluster filling lower 60%. Right = #0033e5 background, body copy at 18px weight 400 in #f0f7ff, right-aligned.\n2. Create an arrow navigation button: 42px sohne-var weight 400 in #0033e5 on #f0f7ff background, prefix with → character, 16px radius, 24px padding all sides. No border, no fill change on hover — the arrow is the affordance.\n3. Build a numbered feature list: circled numeral (1, 2, 3) at 24px in #f0f7ff outline on #0033e5 background, followed by 32px heading in #f0f7ff weight 400, then 18px body in #f0f7ff. 16px stack gap between items.\n4. Create a stat tile: 3D coin icon (~64px) in #f0f7ff on #0033e5 background, label at 18px #f0f7ff, value at 24px #f0f7ff weight 400. Three tiles in equal columns with 32px gaps.\n5. Build an outlined pill button: 50px radius, 1px border in #f0f7ff on #0033e5 background, 18px text in #f0f7ff weight 400, 14px vertical and 24px horizontal padding, inner 1px inset border in #0033e5 for double-ring effect."
+}

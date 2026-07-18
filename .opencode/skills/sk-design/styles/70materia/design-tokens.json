@@ -1,0 +1,167 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, navigation outlines — the structural ink"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Page highlights, card surfaces, text on dark surfaces, button outlines"
+    },
+    "graphite": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Graphite — Filled button background, footer surface, dark UI blocks — warm near-black replacing pure black for non-text surfaces"
+    },
+    "ash": {
+      "$value": "#bababa",
+      "$type": "color",
+      "$description": "Ash — Dominant page canvas, muted dividers, secondary surface tone"
+    }
+  },
+  "font": {
+    "matter": {
+      "$value": "Matter",
+      "$type": "fontFamily",
+      "$description": "Primary text family for headings, body, hero captions, and links. Used exclusively at weight 400 — no bold variation exists in the system, which forces hierarchy through size and placement rather than weight. Custom font with tabular numerals (\"tnum\") baked in, so numbers in body copy align like a price list."
+    },
+    "matter-mono": {
+      "$value": "Matter Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-label and UI chrome family — navigation items, button text, section labels, product codes (AT.OLO). Letter-spacing of 0.02em–0.04em widens the mono into a uppercase-leaning technical readout. This font carries the brand's architectural-drawing personality; without it the page reads as a generic minimalist site."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Matter Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Matter Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Matter Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#bababa",
+      "$type": "color",
+      "$description": "Surface level 1: Dominant page background — the warm gray field on which all content sits"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inset cards, text panels, and high-contrast image surrounds"
+    },
+    "lacquer": {
+      "$value": "#1e1e1",
+      "$type": "color",
+      "$description": "Surface level 3: Footer and filled button surfaces — the deepest UI layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://70materia.com",
+      "siteName": "70Materia",
+      "extractedAt": "2026-06-03T20:47:01.880Z",
+      "variant": "extended"
+    }
+  }
+}

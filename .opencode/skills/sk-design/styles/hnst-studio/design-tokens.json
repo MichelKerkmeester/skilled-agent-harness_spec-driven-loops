@@ -1,0 +1,287 @@
+{
+  "color": {
+    "rust-hearth": {
+      "$value": "#892500",
+      "$type": "color",
+      "$description": "Rust Hearth — Brand logo, active navigation state, section underlines, the only chromatic punctuation in the interface — carries identity weight wherever it appears"
+    },
+    "blush-whisper": {
+      "$value": "#ea9195",
+      "$type": "color",
+      "$description": "Blush Whisper — Secondary chromatic accent for hover states, soft tags, and paired decorative elements — never standalone, always supporting Rust Hearth"
+    },
+    "linen": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Linen — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "raw-silk": {
+      "$value": "#f9f6f2",
+      "$type": "color",
+      "$description": "Raw Silk — Warm off-white page background — replaces sterile pure white to give the site a tactile, natural-fiber feel"
+    },
+    "sand-plaster": {
+      "$value": "#eee5d9",
+      "$type": "color",
+      "$description": "Sand Plaster — Card backgrounds, badge fills, soft surface lifts — the warm secondary tier that differentiates containers from the page canvas"
+    },
+    "charcoal-ink": {
+      "$value": "#0e0e0e",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, navigation text, filled action buttons, dark hero overlays — near-black reads softer than pure black against the warm neutrals"
+    },
+    "stone": {
+      "$value": "#868686",
+      "$type": "color",
+      "$description": "Stone — Mid-gray for hairline borders, dividers, secondary metadata, inactive UI scaffolding — the dominant structural neutral"
+    },
+    "ash": {
+      "$value": "#b7b7b7",
+      "$type": "color",
+      "$description": "Ash — Lighter borders, muted helper text, disabled states, subtle list separators"
+    },
+    "frost": {
+      "$value": "#d7d7d7",
+      "$type": "color",
+      "$description": "Frost — Faintest divider lines on links, barely-there separators"
+    }
+  },
+  "font": {
+    "raleway": {
+      "$value": "Raleway",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — humanist sans with elegant terminals. Used for navigation, body copy, links, buttons, and footer. The 600 weight handles button labels and nav items; 400 carries running text with generous 1.67–1.79 line-height for editorial readability"
+    },
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Display and section-heading typeface — geometric sans used for hero-scale section labels like 'TRENDING' at 62px. Extreme letter-spacing (0.154em at display, 0.091em at 20px) transforms headlines into printed gallery signage, the signature typographic moment of the brand"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 4.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 4.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.79
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Raleway",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "62px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "75": {
+      "$value": "75px",
+      "$type": "dimension",
+      "$description": "Spacing 75px"
+    },
+    "114": {
+      "$value": "114px",
+      "$type": "dimension",
+      "$description": "Spacing 114px"
+    },
+    "170": {
+      "$value": "170px",
+      "$type": "dimension",
+      "$description": "Spacing 170px"
+    },
+    "185": {
+      "$value": "185px",
+      "$type": "dimension",
+      "$description": "Spacing 185px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "raw-silk": {
+      "$value": "#f9f6f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — warm off-white base for the entire site"
+    },
+    "linen": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, product panels, and elevated content blocks"
+    },
+    "sand-plaster": {
+      "$value": "#eee5d9",
+      "$type": "color",
+      "$description": "Surface level 2: Badge fills, soft tag backgrounds, warm-toned containers"
+    },
+    "charcoal-ink": {
+      "$value": "#0e0e0",
+      "$type": "color",
+      "$description": "Surface level 3: Dark inverted sections, navigation bar, filled action buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.letsbehonest.eu",
+      "siteName": "HNST Studio",
+      "extractedAt": "2026-06-03T19:22:18.964Z",
+      "variant": "extended"
+    }
+  }
+}

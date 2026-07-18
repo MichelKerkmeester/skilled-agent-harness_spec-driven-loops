@@ -1,0 +1,772 @@
+{
+  "source": "https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0",
+  "uuid": "03e03554-d7aa-40da-9764-79320ecfa1d0",
+  "name": "OHZI Interactive Studio / Dive into digital magic.",
+  "northStar": "A glowing cube suspended in a dark gallery",
+  "capturedAt": "2026-07-18T09:27:59.417Z",
+  "meta": {
+    "url": "https://ohzi.io",
+    "siteName": "OHZI Interactive Studio / Dive into digital magic.",
+    "extractedAt": "2026-06-03T19:35:15.938Z",
+    "durationMs": 26105,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 93,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Unbounded exclusively — never substitute a secondary typeface, the single-family discipline is the identity",
+      "Apply positive letter-spacing to all text; never collapse tracking below 0.067em even at display sizes",
+      "Keep all UI elements at 0px border-radius — sharp corners are non-negotiable and echo the 3D geometry",
+      "Let the 3D scene be the sole source of color and light; UI stays pure grayscale (#ffffff, #f5f5f7, #cfcfcf, #111111, #000000)",
+      "Use 1px hairline borders for all structural elements — buttons, dividers, card frames",
+      "Center-align hero content and maintain generous vertical breathing room (80-120px between sections)",
+      "Pair weight 600-700 for headlines with weight 100-400 for body to create a weight-contrast hierarchy that replaces color contrast"
+    ],
+    "donts": [
+      "Never introduce accent colors, gradients, or chromatic buttons — the system is deliberately achromatic",
+      "Never use border-radius on buttons, cards, inputs, or images — the sharp geometry is load-bearing",
+      "Never apply shadows, glows, or blur effects to UI elements — depth belongs to the 3D scene only",
+      "Never use negative letter-spacing or tight tracking — the wide-open spacing is the typographic signature",
+      "Never fill buttons with solid color — always use the transparent ghost-button treatment with a 1px stroke frame",
+      "Never use more than one typeface or mix serif/sans — Unbounded is the sole voice",
+      "Never crowd the central viewport with UI — the 3D object needs negative space to breathe"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text, icon strokes, hairline borders, outlined button frame — the only foreground color on the dark canvas, used at full opacity for headlines and at 1px hairline weight for UI structure",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Deep background fill, SVG icon bases — the absolute floor of the visual hierarchy, used for full-bleed canvas and asset fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Heading text on light sections, deep surface layer — near-black with a whisper of warmth, used where #000000 would feel too flat",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f7",
+        "name": "Fog",
+        "role": "Secondary text, subtle panel surfaces, light-section borders — cool-tinted off-white that softens transitions on inverted sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfcfcf",
+        "name": "Ash",
+        "role": "Muted helper text, disabled states, tertiary borders — the mid-gray for elements that should recede",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width constraint. Hero is a single full-viewport section: the 3D object sits dead-center, headline and subtext are centered directly above or overlapping the object, and the CTA button sits below. Navigation is minimal — a brand lockup top-left and hamburger top-right, both floating over the void with no background or container. Vertical rhythm is spacious, with 80-120px between distinct content blocks. The page likely scrolls to reveal additional sections (about, work, contact) that may alternate to lighter surfaces, but the dominant impression is of a single dark room with one illuminated object.",
+    "imagery": "Imagery is exclusively 3D-rendered geometric objects (cubes, prisms, abstract forms) floating in a dark void with reflective floor effects. No photography, no illustration, no flat icons. The 3D renders provide all chromatic content — they glow, refract, and cast reflections. UI icons (hamburger, dismiss X, logo mark) are minimal thin-stroke line geometry in #ffffff. The visual density is extremely low: one hero object, lots of void. This is an imagery-light site where a single rendered artifact carries the entire visual weight.",
+    "similar": [
+      {
+        "why": "Same dark-void hero with a single luminous 3D object as the visual centerpiece, wide-tracked uppercase headlines, minimal UI chrome",
+        "business": "Activision (gaming/entertainment)"
+      },
+      {
+        "why": "Full-bleed dark canvases with a single floating product/object, zero accent color, ghost button controls, cinematic negative space",
+        "business": "Apple Vision Pro"
+      },
+      {
+        "why": "3D-rendered hero objects suspended in dark space, geometric sans-serif typography with wide tracking, agency/tech crossover aesthetic",
+        "business": "Unity Technologies"
+      },
+      {
+        "why": "Unbounded's wide positive tracking at all sizes mirrors luxury fashion's letter-spaced wordmarks — the same typographic restraint signals premium positioning",
+        "business": "Burberry (luxury fashion)"
+      },
+      {
+        "why": "Dark immersive 3D-first landing pages with minimal UI, single hero object, grayscale interface that lets the 3D content provide all color",
+        "business": "Spline (3D design tool)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — the dark gallery floor"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon Panel",
+        "level": 2,
+        "purpose": "Inverted-section surfaces, heading backgrounds where depth is needed"
+      },
+      {
+        "hex": "#f5f5f7",
+        "name": "Fog Surface",
+        "level": 3,
+        "purpose": "Light-mode content sections that alternate with the dark hero"
+      }
+    ],
+    "elevation": [],
+    "northStar": "A glowing cube suspended in a dark gallery",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.63
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 3.01
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.38
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.66
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.61
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.27
+      },
+      {
+        "role": "display",
+        "size": 38,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.55
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost CTA Button",
+        "role": "Primary action trigger",
+        "description": "Transparent fill, 1px solid #ffffff border, 0px radius, ~15px vertical × 30px horizontal padding. Text in Unbounded weight 500, uppercase, ~15px, letter-spacing ~0.132em, color #ffffff. The button is a pure frame — no fill, no shadow, no hover fill change. Its geometry (sharp corners, thin stroke) echoes the 3D cube's edges."
+      },
+      {
+        "name": "Brand Lockup",
+        "role": "Top-left identity mark",
+        "description": "Geometric shield/hex icon in #ffffff stroke, followed by 'OHZI INTERACTIVE STUDIO' in Unbounded weight 600, ~14px, uppercase, letter-spacing ~0.188em, color #ffffff. The lockup sits at the top-left with ~25-30px padding from the viewport edge."
+      },
+      {
+        "name": "Hamburger Menu Trigger",
+        "role": "Navigation toggle",
+        "description": "Three horizontal lines in #ffffff, 0px radius, ~24px wide, positioned top-right. No background, no border — just raw stroke geometry against the void."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Page title",
+        "description": "Centered, Unbounded weight 600-700, ~38px, uppercase, letter-spacing ~0.067em, color #ffffff. The wide tracking makes it feel like a film title card — monumental but unhurried."
+      },
+      {
+        "name": "Hero Subtext",
+        "role": "Supporting description",
+        "description": "Centered, Unbounded weight 300-400, ~16-18px, letter-spacing ~0.132em, color #cfcfcf or #f5f5f7. Single sentence, sits directly beneath headline with ~20px gap."
+      },
+      {
+        "name": "3D Hero Object",
+        "role": "Central visual anchor",
+        "description": "A rendered 3D cube or geometric form floating in the center of the viewport, with a reflective wet-floor effect beneath. This is the only source of color and light in the system — it can glow blue, cyan, violet, or warm white depending on the scene. The object occupies the visual center while text wraps around or overlays it."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "Compliance overlay",
+        "description": "Fixed bottom bar, transparent or #000000 background, white text at ~14px Unbounded weight 400, letter-spacing ~0.188em. Dismiss icon (X) in top-right of banner, rendered as thin #ffffff stroke."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for everything — headlines, body, buttons, nav. Its geometric, slightly squared character with wide-aperture letterforms reads as digital-native and architectural. Weight 100 for display text creates a near-wireframe quality that feels holographic against the dark background.",
+        "sizes": "14, 16, 17, 18, 19, 23, 24, 30, 32, 38",
+        "family": "Unbounded",
+        "weight": "100, 400, 500, 600, 700",
+        "lineHeight": "1.20",
+        "substitute": "Space Grotesk, or Chakra Petch for a similar geometric-futurist feel",
+        "letterSpacing": "0.067em at 38px → 0.188em at 14px; the scale widens tracking as size decreases, inverting the usual typographic instinct"
+      }
+    ],
+    "description": "OHZI is a dark immersive void-gallery: a near-black expanse with a single luminous 3D object suspended in the center, reflected on a wet floor. The interface is deliberately skeletal — a logo, a hamburger, a headline, a ghost button — so the 3D render carries all the visual energy. Typography is exclusively Unbounded set with generous positive tracking, giving every line of text a wide, monumental, almost cinematic feel that whispers rather than shouts. Color is absent by design: the palette is pure grayscale so the 3D scene provides the only chromatic moment, making it feel like looking through a portal. Controls are thin-bordered, sharp-cornered, and translucent — they frame the experience rather than intrude on it.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$29"
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no glows, no blur. Depth is created entirely through the 3D scene's own lighting and the reflective floor effect. UI elements sit flat against the void — any elevation would compete with the central 3D object."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image"
+          ],
+          "frequency": 233,
+          "confidence": 1,
+          "prominence": 10199992.676580092,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 3,
+            "link/color": 7,
+            "other/fill": 3,
+            "image/color": 1,
+            "other/color": 28,
+            "other/stroke": 10,
+            "body/borderColor": 20,
+            "icon/borderColor": 12,
+            "link/borderColor": 28,
+            "image/borderColor": 4,
+            "other/borderColor": 112
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 522235.65191257035,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "heading/color": 7,
+            "link/borderColor": 24,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 194486.76426993133,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 17
+          }
+        },
+        {
+          "hex": "#f5f5f7",
+          "oklch": {
+            "c": 0.002650512495870664,
+            "h": 286.3501396984551,
+            "l": 0.9707137751817563
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 170137.00969130607,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 3,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 12,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#cfcfcf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8557505966797643
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 100800,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0005936641397351046,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.29,
+          "background": "#f5f5f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.34,
+          "background": "#f5f5f7",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.48,
+          "background": "#cfcfcf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#cfcfcf",
+          "foreground": "#111111"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Unbounded",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 66,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Unbounded",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unbounded",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unbounded",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unbounded",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.125,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Unbounded",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.188,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Unbounded",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.118,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Unbounded",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.111,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Unbounded",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Unbounded",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.087,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Unbounded",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Unbounded",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Unbounded",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Unbounded",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.132,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e8ad18d2-6f55-486d-ae91-6d5368b7e7eb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/66daa2e1-ed49-4e33-bdab-e3660b6cb8d3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OHZI Interactive Studio / Dive into digital magic. design system\",\"item\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0#style-reference\",\"name\":\"OHZI Interactive Studio / Dive into digital magic. design system reference\",\"headline\":\"OHZI Interactive Studio / Dive design system | Refero Styles\",\"description\":\"Explore OHZI Interactive Studio / Dive into digital magic.'s dark Agency design system: Pure White #ffffff, Void Black #000000 colors, Unbounded typography,...\",\"url\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OHZI Interactive Studio / Dive into digital magic.\",\"url\":\"https://ohzi.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/03e03554-d7aa-40da-9764-79320ecfa1d0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/66daa2e1-ed49-4e33-bdab-e3660b6cb8d3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/66daa2e1-ed49-4e33-bdab-e3660b6cb8d3.jpg\",\"caption\":\"Screenshot of OHZI Interactive Studio / Dive into digital magic.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/66daa2e1-ed49-4e33-bdab-e3660b6cb8d3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OHZI Interactive Studio / Dive into digital magic. design system\",\"OHZI Interactive Studio / Dive into digital magic. website design\",\"OHZI Interactive Studio / Dive into digital magic. colors\",\"OHZI Interactive Studio / Dive into digital magic. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Void Black\",\"Carbon\",\"Fog\",\"Unbounded\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OHZI Interactive Studio / Dive into digital magic. design system\"},{\"@type\":\"Thing\",\"name\":\"OHZI Interactive Studio / Dive into digital magic. website design\"},{\"@type\":\"Thing\",\"name\":\"OHZI Interactive Studio / Dive into digital magic. colors\"},{\"@type\":\"Thing\",\"name\":\"OHZI Interactive Studio / Dive into digital magic. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:24:01.347Z\",\"dateModified\":\"2026-04-30T02:24:01.347Z\"}]}"
+}

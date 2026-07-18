@@ -1,0 +1,404 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#ff5e24",
+      "$type": "color",
+      "$description": "Signal Orange — Primary CTA fill, hero headline emphasis, active nav link, card accent border, hover state — the single chromatic voice that earns every pixel it touches"
+    },
+    "ember-crust": {
+      "$value": "#6c3200",
+      "$type": "color",
+      "$description": "Ember Crust — Footer background, dark-mode brand block — used where the orange needs to recede into a deep, warm base"
+    },
+    "cloud-mist": {
+      "$value": "#e3f1fe",
+      "$type": "color",
+      "$description": "Cloud Mist — Page canvas tint, card surface wash, secondary button border, decorative fill behind pixel art — the soft sky that everything floats on"
+    },
+    "graphite-ink": {
+      "$value": "#232629",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text, nav links, icon strokes, body copy — the near-black with a cool cast that keeps the page from feeling sterile"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surface, button text on dark fills, nav background, app-window chrome — the brightest readable layer"
+    },
+    "slate-pencil": {
+      "$value": "#5c6066",
+      "$type": "color",
+      "$description": "Slate Pencil — Secondary body text, subdued button labels, muted icon fills — the tone of helpful but unhurried copy"
+    },
+    "ash-mist": {
+      "$value": "#989ea4",
+      "$type": "color",
+      "$description": "Ash Mist — Tertiary text, placeholder, disabled icon color, decorative pixel tints — the quietest readable neutral"
+    },
+    "blush-shadow": {
+      "$value": "#dbced0",
+      "$type": "color",
+      "$description": "Blush Shadow — Warm-tinted shadow base for card elevation — keeps shadows from looking blue-cold against the cream surface"
+    },
+    "midnight-ink": {
+      "$value": "#101828",
+      "$type": "color",
+      "$description": "Midnight Ink — Headline text and strong links where the orange isn't appropriate — a rare, almost-black alternative"
+    }
+  },
+  "font": {
+    "jersey-10": {
+      "$value": "Jersey 10",
+      "$type": "fontFamily",
+      "$description": "Display and headline type only — the chunky pixel font that names the brand. Used for hero, section headings, and any title that needs to feel like a Game Boy boot screen. Never for body or UI labels."
+    },
+    "manrope-variable": {
+      "$value": "Manrope Variable",
+      "$type": "fontFamily",
+      "$description": "Body, nav, button labels, links, small UI text, captions. Carries all the prose and functional copy so the pixel font can stay loud. Weight 600-700 for emphasis, 400 for paragraphs, 500 for buttons and nav."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Manrope Variable",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "96px",
+        "fontWeight": 500,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 49px 30px 0px, rgba(0, 0, 0, 0.03) 0px 22px 22px 0px, rgba(0, 0, 0, 0.03) 0px 5px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "md": {
+      "$value": "rgba(15, 34, 52, 0.01) 0px 27px 11px 0px, rgba(15, 34, 52, 0.02) 0px 15px 9px 0px, rgba(15, 34, 52, 0.04) 0px 7px 7px 0px, rgba(15, 34, 52, 0.04) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "oklab(1 0 5.96046e-8 / 0.17) 0px 0.5px 0.5px 0.5px inset, oklab(0.598475 0.14309 0.112215 / 0.2) 0px -1px 0.5px 0px inset, rgb(255, 94, 36) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "sky-canvas": {
+      "$value": "#e3f1fe",
+      "$type": "color",
+      "$description": "Surface level 0: The page-wide pale-blue tint that gives the entire site its cloud-paper atmosphere"
+    },
+    "card-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Lifted card and content-panel surfaces — the default elevated reading surface"
+    },
+    "app-window": {
+      "$value": "#f5f5f7",
+      "$type": "color",
+      "$description": "Surface level 2: macOS-style chrome behind product UI — slightly cooler than card paper to recede"
+    },
+    "ember-ground": {
+      "$value": "#6c3200",
+      "$type": "color",
+      "$description": "Surface level 3: Footer block — the dark warm surface that anchors the page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://obscura.net",
+      "siteName": "Obscura",
+      "extractedAt": "2026-06-03T18:44:08.118Z",
+      "variant": "extended"
+    }
+  }
+}

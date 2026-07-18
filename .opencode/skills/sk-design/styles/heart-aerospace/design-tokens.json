@@ -1,0 +1,170 @@
+{
+  "color": {
+    "stratosphere": {
+      "$value": "#716e85",
+      "$type": "color",
+      "$description": "Stratosphere — Hero and section atmospheric backgrounds, sky gradient origin, the signature non-neutral surface that carries brand mood"
+    },
+    "jetstream-blue": {
+      "$value": "#001489",
+      "$type": "color",
+      "$description": "Jetstream Blue — Outlined/ghost action borders, link text, image accent borders — the only chromatic accent, used as outlined-link color and focused-frame treatment, never as a filled button background"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Primary text, structural borders, footer background, partner logo fills"
+    },
+    "cloud": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud — Inverse text on dark and gradient backgrounds, content section canvas, navigation text on hero, gradient endpoint"
+    }
+  },
+  "font": {
+    "neuehaastext": {
+      "$value": "NeueHaasText",
+      "$type": "fontFamily",
+      "$description": "NeueHaasText — detected in extracted data but not described by AI"
+    },
+    "neuehaasgroteskdisplay": {
+      "$value": "NeueHaasGroteskDisplay",
+      "$type": "fontFamily",
+      "$description": "Monumental display headlines (ES-30 wordmark, section showstoppers) — the weight 600 at 156px with -0.02em tracking is the brand's signature voice, engineered for aerospace-scale moments that fill the viewport"
+    },
+    "neuehaasgrotesktext": {
+      "$value": "NeueHaasGroteskText",
+      "$type": "fontFamily",
+      "$description": "All UI and body text — navigation links, body copy, footer links, captions. Weight 400 is the default reading voice; weight 600 for subheadings and emphasized nav. The -0.01em tracking at 18px is subtle but consistent — tighter than browser default, which is the Ne Haas family hallmark"
+    },
+    "neuehaasdisplay": {
+      "$value": "NeueHaasDisplay",
+      "$type": "fontFamily",
+      "$description": "NeueHaasDisplay — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "NeueHaasText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "NeueHaasText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "NeueHaasText",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NeueHaasDisplay",
+        "fontSize": "46px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NeueHaasDisplay",
+        "fontSize": "156px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 156px"
+    }
+  },
+  "spacing": {
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "atmospheric-canvas": {
+      "$value": "#716e85",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed hero and feature sections — the gradient origin for sky photography overlays"
+    },
+    "cloud-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content sections below the fold — partner grids, article bodies, secondary pages"
+    },
+    "onyx-footer": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Terminal footer surface for navigation, social, and address columns"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://heartaerospace.com",
+      "siteName": "Heart Aerospace",
+      "extractedAt": "2026-06-03T18:44:12.211Z",
+      "variant": "extended"
+    }
+  }
+}

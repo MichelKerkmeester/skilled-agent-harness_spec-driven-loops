@@ -1,0 +1,69 @@
+@theme {
+  /* Colors */
+  --color-midnight-ink: #151523;
+  --color-signature-violet: #4e64df;
+  --color-signal-red: #ff0000;
+  --color-periwinkle-tint: #99a7f5;
+  --color-lavender-mist: #d0d6fb;
+  --color-deep-iris: #6c7ee4;
+  --color-graphite: #49495a;
+  --color-paper-white: #ffffff;
+  --color-fog: #e9e9ec;
+  --color-ash: #d7d7db;
+  --color-stone: #c7c7cb;
+  --color-steel: #b9b9c1;
+  --color-lavender-wash: #f1f3fe;
+
+  /* Typography */
+  --font-roobert: 'Roobert', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sharpgrotesk: 'SharpGrotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --text-body: 14px;
+  --leading-body: 1.43;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.56;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 24px;
+  --leading-heading: 1.15;
+  --text-heading-lg: 28px;
+  --leading-heading-lg: 1.14;
+  --text-display: 32px;
+  --leading-display: 1.13;
+  --text-display-lg: 40px;
+  --leading-display-lg: 1.15;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+  --spacing-240: 240px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-full: 100px;
+  --radius-full-2: 800px;
+
+  /* Shadows */
+  --shadow-sm: rgba(21, 21, 35, 0.2) 0px 2px 4px 0px;
+  --shadow-sm-2: rgba(0, 0, 0, 0.5) 0px 0px 4px 0px;
+  --shadow-sm-3: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;
+  --shadow-sm-4: rgba(21, 21, 35, 0.2) 0px 4px 8px 0px;
+}

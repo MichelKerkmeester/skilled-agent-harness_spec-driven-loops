@@ -1,0 +1,489 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#02093a",
+      "$type": "color",
+      "$description": "Midnight Ink — Hero canvas, top-of-page surface, and the brand's defining dark stage — deep navy reads as serious, focused, almost like an editor's darkroom before the content lights up"
+    },
+    "signal-blue": {
+      "$value": "#0075de",
+      "$type": "color",
+      "$description": "Signal Blue — Primary action buttons, filled CTA backgrounds, active link emphasis — the one bright blue that makes actions feel switched on against the midnight canvas"
+    },
+    "sky-tint": {
+      "$value": "#62aef0",
+      "$type": "color",
+      "$description": "Sky Tint — Decorative gradient stops, illustrated icon accents, soft highlight washes around headlines and product mockups — light blue provides the air around the heavy midnight"
+    },
+    "royal-violet": {
+      "$value": "#2537b1",
+      "$type": "color",
+      "$description": "Royal Violet — Decorative gradient accent, illustrated aura around product screenshots, secondary brand surface in dark mode navigation"
+    },
+    "periwinkle": {
+      "$value": "#455dd3",
+      "$type": "color",
+      "$description": "Periwinkle — Secondary action variant, outlined button fill, dark mode card surface elevation — sits between the midnight and signal blue as a bridge tone"
+    },
+    "cerulean": {
+      "$value": "#097fe8",
+      "$type": "color",
+      "$description": "Cerulean — Info badges, new-feature tags, inline highlight labels — cooler than Signal Blue, reserved for status and informational context"
+    },
+    "paper-white": {
+      "$value": "#f6f5f4",
+      "$type": "color",
+      "$description": "Paper White — Light section canvas, card surface on light backgrounds, the warm off-white that gives below-the-fold sections a printed-page quality"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surface above Paper White, input field background, reversed text on dark buttons — only used where maximum contrast or stacking is needed"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Primary text on light surfaces, hairline borders, icon strokes — the default ink for everything that needs to be read"
+    },
+    "graphite": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Graphite — Secondary text on light surfaces, high-contrast borders, card edges — slightly softer than pure black for visual comfort in long-form copy"
+    },
+    "warm-gray": {
+      "$value": "#615d59",
+      "$type": "color",
+      "$description": "Warm Gray — Muted helper text, secondary metadata, inactive icon strokes — warm undertone distinguishes it from cold grays in other SaaS systems"
+    },
+    "stone": {
+      "$value": "#a39e98",
+      "$type": "color",
+      "$description": "Stone — Muted icon strokes, separators, and secondary graphic details. Do not promote it to the primary CTA color"
+    },
+    "smoke": {
+      "$value": "#c6c6c5",
+      "$type": "color",
+      "$description": "Smoke — Divider lines, subtle separators between content blocks on light surfaces"
+    },
+    "faint-line": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Faint Line — Input field borders, form element outlines, the lightest structural divider"
+    },
+    "charcoal": {
+      "$value": "#31302e",
+      "$type": "color",
+      "$description": "Charcoal — Dark mode nav borders, text on dark surfaces, low-contrast dividers in the midnight stage"
+    }
+  },
+  "font": {
+    "notioninter": {
+      "$value": "NotionInter",
+      "$type": "fontFamily",
+      "$description": "The workhorse — covers all body copy, UI labels, navigation, and most headings from 12px captions up to 64px display. Weight 500 dominates body and UI, weight 600 for emphasized headlines, weight 700 reserved for the hero display. Tight negative tracking at large sizes (-0.036em at 64px) prevents the large forms from feeling airy; at 14px the tracking opens slightly positive. The 'lnum' and 'locl' features lock tabular numerals and locale forms — critical for product UI numbers and dates"
+    },
+    "lyon-text": {
+      "$value": "Lyon Text",
+      "$type": "fontFamily",
+      "$description": "Editorial accent — a serif heading that appears sparingly on feature section titles. The 32px size and 1.25 line-height give it a magazine-pull-quote quality. Its presence signals a shift from product UI to narrative content. Only weight 400, used as a moment of visual pause in an otherwise sans-serif system"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lyon Text",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "54px",
+        "fontWeight": 700,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "NotionInter",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 1px 3px 0px, rgba(0, 0, 0, 0.02) 0px 3px 7px 0px, rgba(0, 0, 0, 0.02) 0px 7px 15px 0px, rgba(0, 0, 0, 0.04) 0px 14px 28px 0px, rgba(0, 0, 0, 0.05) 0px 23px 52px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "midnight-canvas": {
+      "$value": "#02093a",
+      "$type": "color",
+      "$description": "Surface level 0: Hero and top-of-page dark stage"
+    },
+    "periwinkle-surface": {
+      "$value": "#455dd3",
+      "$type": "color",
+      "$description": "Surface level 1: Dark mode card surface, secondary nav background"
+    },
+    "royal-violet": {
+      "$value": "#2537b1",
+      "$type": "color",
+      "$description": "Surface level 2: Illustrated aura and decorative accent layer"
+    },
+    "paper-white": {
+      "$value": "#f6f5f4",
+      "$type": "color",
+      "$description": "Surface level 3: Below-the-fold light section canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Elevated cards and input fields on Paper White"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.notion.com",
+      "siteName": "Notion",
+      "extractedAt": "2026-06-03T21:46:11.701Z",
+      "variant": "extended"
+    }
+  }
+}

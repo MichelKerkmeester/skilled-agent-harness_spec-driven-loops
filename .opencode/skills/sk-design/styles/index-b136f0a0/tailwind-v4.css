@@ -1,0 +1,81 @@
+@theme {
+  /* Colors */
+  --color-abyss-black: #02030b;
+  --color-midnight-indigo: #04061c;
+  --color-slate-indigo: #0c0a2b;
+  --color-carbon-iris: #13151f;
+  --color-twilight-plum: #2c2b52;
+  --color-iris-border: #292a4d;
+  --color-graphite: #202333;
+  --color-steel: #353545;
+  --color-smoke: #9b9ba4;
+  --color-ash: #b4b4bb;
+  --color-bone: #ffffff;
+  --color-ember-coral: #ff3a63;
+  --color-electric-blue: #0067ff;
+  --color-arc-violet: #665eff;
+  --color-alpine-gradient: #4859eb;
+  --color-chartreuse: #ffff00;
+
+  /* Typography */
+  --font-index: 'Index', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.165px;
+  --text-body: 15px;
+  --leading-body: 1.6;
+  --tracking-body: 0.225px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: 0.234px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: 0.216px;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --tracking-heading: 0.192px;
+  --text-heading-lg: 42px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: 0.21px;
+  --text-display: 72px;
+  --leading-display: 1.2;
+  --tracking-display: 0.216px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-72: 72px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-lg: 9px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 30px;
+  --radius-3xl-3: 40px;
+  --radius-full: 50px;
+
+  /* Shadows */
+  --shadow-sm: oklch(0.2 0 0 / 0.4) 1px 2px 6px 0px;
+  --shadow-md: oklch(0 0 0 / 0.1) 1px 1px 10px 0px;
+  --shadow-sm-2: oklch(0.89 0 0 / 0.18) 0px 1px 8px 0px;
+  --shadow-xl: oklch(0.76 0.15 225.13 / 0.6) 0px 0px 70px 0px, oklch(0.52 0.28 280.29 / 0.11) 0px 0px 0px 26px, oklch(0.54 0.29 296.54 / 0.09) 0px 0px 0px 52px, oklch(0.62 0.27 308.71 / 0.1) 0px 0px 0px 80px;
+  --shadow-subtle: rgb(225, 225, 225) 615px 66px 0px 0px, rgb(225, 225, 225) 459px 608px 0px 0px, rgb(225, 225, 225) 692px 688px 0px 0px, rgb(225, 225, 225) 687px 124px 0px 0px, rgb(225, 225, 225) 110px 403px 0px 0px, rgb(225, 225, 225) 88px 494px 0px 0px, rgb(225, 225, 225) 109px 329px 0px 0px, rgb(225, 225, 225) 462px 264px 0px 0px, rgb(225, 225, 225) 650px 584px 0px 0px, rgb(225, 225, 225) 45px 46px 0px 0px, rgb(225, 225, 225) 71px 73px 0px 0px, rgb(225, 225, 225) 457px 495px 0px 0px, rgb(225, 225, 225) 370px 568px 0px 0px, rgb(225, 225, 225) 605px 509px 0px 0px, rgb(225, 225, 225) 616px 573px 0px 0px, rgb(225, 225, 225) 484px 253px 0px 0px, rgb(225, 225, 225) 566px 203px 0px 0px, rgb(225, 225, 225) 544px 110px 0px 0px, rgb(225, 225, 225) 495px 268px 0px 0px, rgb(225, 225, 225) 648px 372px 0px 0px, rgb(225, 225, 225) 649px 285px 0px 0px, rgb(225, 225, 225) 487px 541px 0px 0px, rgb(225, 225, 225) 264px 151px 0px 0px, rgb(225, 225, 225) 105px 614px 0px 0px, rgb(225, 225, 225) 348px 169px 0px 0px, rgb(225, 225, 225) 528px 161px 0px 0px, rgb(225, 225, 225) 217px 538px 0px 0px, rgb(225, 225, 225) 421px 608px 0px 0px, rgb(225, 225, 225) 610px 425px 0px 0px, rgb(225, 225, 225) 366px 647px 0px 0px, rgb(225, 225, 225) 191px 602px 0px 0px, rgb(225, 225, 225) 343px 505px 0px 0px, rgb(225, 225, 225) 81px 478px 0px 0px, rgb(225, 225, 225) 159px 6px 0px 0px, rgb(225, 225, 225) 463px 311px 0px 0px, rgb(225, 225, 225) 529px 70px 0px 0px, rgb(225, 225, 225) 274px 445px 0px 0px, rgb(225, 225, 225) 681px 389px 0px 0px, rgb(225, 225, 225) 323px 47px 0px 0px, rgb(225, 225, 225) 13px 413px 0px 0px, rgb(225, 225, 225) 606px 449px 0px 0px, rgb(225, 225, 225) 629px 180px 0px 0px, rgb(225, 225, 225) 526px 335px 0px 0px, rgb(225, 225, 225) 445px 363px 0px 0px, rgb(225, 225, 225) 404px 91px 0px 0px, rgb(225, 225, 225) 216px 317px 0px 0px, rgb(225, 225, 225) 422px 140px 0px 0px, rgb(225, 225, 225) 10px 521px 0px 0px, rgb(225, 225, 225) 1px 475px 0px 0px, rgb(225, 225, 225) 102px 435px 0px 0px, rgb(225, 225, 225) 92px 382px 0px 0px, rgb(225, 225, 225) 326px 45px 0px 0px, rgb(225, 225, 225) 44px 404px 0px 0px, rgb(225, 225, 225) 142px 625px 0px 0px, rgb(225, 225, 225) 47px 630px 0px 0px, rgb(225, 225, 225) 24px 534px 0px 0px, rgb(225, 225, 225) 443px 207px 0px 0px, rgb(225, 225, 225) 657px 581px 0px 0px, rgb(225, 225, 225) 168px 645px 0px 0px, rgb(225, 225, 225) 491px 622px 0px 0px;
+  --shadow-subtle-2: rgb(225, 225, 225) 435px 352px 0px 0px, rgb(225, 225, 225) 57px 465px 0px 0px, rgb(225, 225, 225) 331px 440px 0px 0px, rgb(225, 225, 225) 44px 615px 0px 0px, rgb(225, 225, 225) 151px 515px 0px 0px, rgb(225, 225, 225) 468px 627px 0px 0px, rgb(225, 225, 225) 472px 158px 0px 0px, rgb(225, 225, 225) 46px 206px 0px 0px, rgb(225, 225, 225) 610px 333px 0px 0px, rgb(225, 225, 225) 305px 595px 0px 0px, rgb(225, 225, 225) 524px 210px 0px 0px, rgb(225, 225, 225) 543px 661px 0px 0px, rgb(225, 225, 225) 136px 584px 0px 0px, rgb(225, 225, 225) 146px 162px 0px 0px, rgb(225, 225, 225) 61px 83px 0px 0px, rgb(225, 225, 225) 582px 236px 0px 0px, rgb(225, 225, 225) 671px 98px 0px 0px, rgb(225, 225, 225) 358px 280px 0px 0px, rgb(225, 225, 225) 444px 346px 0px 0px, rgb(225, 225, 225) 355px 288px 0px 0px, rgb(225, 225, 225) 587px 19px 0px 0px, rgb(225, 225, 225) 245px 80px 0px 0px, rgb(225, 225, 225) 438px 381px 0px 0px, rgb(225, 225, 225) 314px 20px 0px 0px, rgb(225, 225, 225) 151px 476px 0px 0px, rgb(225, 225, 225) 327px 470px 0px 0px, rgb(225, 225, 225) 379px 411px 0px 0px, rgb(225, 225, 225) 332px 575px 0px 0px, rgb(225, 225, 225) 132px 654px 0px 0px, rgb(225, 225, 225) 655px 71px 0px 0px, rgb(225, 225, 225) 402px 549px 0px 0px, rgb(225, 225, 225) 480px 316px 0px 0px, rgb(225, 225, 225) 215px 41px 0px 0px, rgb(225, 225, 225) 131px 94px 0px 0px, rgb(225, 225, 225) 95px 233px 0px 0px, rgb(225, 225, 225) 398px 281px 0px 0px, rgb(225, 225, 225) 54px 275px 0px 0px, rgb(225, 225, 225) 311px 686px 0px 0px, rgb(225, 225, 225) 29px 252px 0px 0px, rgb(225, 225, 225) 549px 277px 0px 0px, rgb(225, 225, 225) 665px 664px 0px 0px, rgb(225, 225, 225) 94px 240px 0px 0px, rgb(225, 225, 225) 243px 543px 0px 0px, rgb(225, 225, 225) 331px 197px 0px 0px, rgb(225, 225, 225) 478px 641px 0px 0px, rgb(225, 225, 225) 258px 68px 0px 0px, rgb(225, 225, 225) 311px 371px 0px 0px, rgb(225, 225, 225) 664px 83px 0px 0px, rgb(225, 225, 225) 692px 626px 0px 0px, rgb(225, 225, 225) 405px 195px 0px 0px, rgb(225, 225, 225) 401px 289px 0px 0px, rgb(225, 225, 225) 284px 94px 0px 0px, rgb(225, 225, 225) 617px 309px 0px 0px, rgb(225, 225, 225) 214px 393px 0px 0px, rgb(225, 225, 225) 571px 196px 0px 0px, rgb(225, 225, 225) 404px 439px 0px 0px, rgb(225, 225, 225) 522px 130px 0px 0px, rgb(225, 225, 225) 144px 535px 0px 0px, rgb(225, 225, 225) 604px 496px 0px 0px, rgb(225, 225, 225) 625px 321px 0px 0px;
+  --shadow-subtle-3: rgb(225, 225, 225) 219px 422px 0px 0px, rgb(225, 225, 225) 582px 623px 0px 0px, rgb(225, 225, 225) 223px 497px 0px 0px, rgb(225, 225, 225) 681px 529px 0px 0px, rgb(225, 225, 225) 217px 312px 0px 0px, rgb(225, 225, 225) 690px 135px 0px 0px, rgb(225, 225, 225) 30px 338px 0px 0px, rgb(225, 225, 225) 409px 448px 0px 0px, rgb(225, 225, 225) 169px 159px 0px 0px, rgb(225, 225, 225) 347px 120px 0px 0px, rgb(225, 225, 225) 134px 56px 0px 0px, rgb(225, 225, 225) 574px 250px 0px 0px, rgb(225, 225, 225) 369px 662px 0px 0px, rgb(225, 225, 225) 527px 663px 0px 0px, rgb(225, 225, 225) 570px 490px 0px 0px, rgb(225, 225, 225) 506px 370px 0px 0px, rgb(225, 225, 225) 496px 484px 0px 0px, rgb(225, 225, 225) 5px 86px 0px 0px, rgb(225, 225, 225) 435px 584px 0px 0px, rgb(225, 225, 225) 600px 652px 0px 0px, rgb(225, 225, 225) 128px 554px 0px 0px, rgb(225, 225, 225) 413px 539px 0px 0px, rgb(225, 225, 225) 202px 101px 0px 0px, rgb(225, 225, 225) 301px 572px 0px 0px, rgb(225, 225, 225) 10px 591px 0px 0px, rgb(225, 225, 225) 331px 392px 0px 0px, rgb(225, 225, 225) 317px 393px 0px 0px, rgb(225, 225, 225) 170px 81px 0px 0px, rgb(225, 225, 225) 366px 414px 0px 0px, rgb(225, 225, 225) 228px 316px 0px 0px, rgb(225, 225, 225) 464px 343px 0px 0px, rgb(225, 225, 225) 527px 232px 0px 0px, rgb(225, 225, 225) 311px 646px 0px 0px, rgb(225, 225, 225) 242px 440px 0px 0px, rgb(225, 225, 225) 121px 136px 0px 0px, rgb(225, 225, 225) 120px 591px 0px 0px, rgb(225, 225, 225) 197px 158px 0px 0px, rgb(225, 225, 225) 299px 138px 0px 0px, rgb(225, 225, 225) 429px 262px 0px 0px, rgb(225, 225, 225) 520px 552px 0px 0px, rgb(225, 225, 225) 39px 228px 0px 0px, rgb(225, 225, 225) 48px 315px 0px 0px, rgb(225, 225, 225) 127px 296px 0px 0px, rgb(225, 225, 225) 154px 265px 0px 0px, rgb(225, 225, 225) 75px 353px 0px 0px, rgb(225, 225, 225) 268px 225px 0px 0px, rgb(225, 225, 225) 25px 214px 0px 0px, rgb(225, 225, 225) 34px 656px 0px 0px, rgb(225, 225, 225) 212px 179px 0px 0px, rgb(225, 225, 225) 294px 185px 0px 0px, rgb(225, 225, 225) 106px 448px 0px 0px, rgb(225, 225, 225) 653px 130px 0px 0px, rgb(225, 225, 225) 251px 4px 0px 0px, rgb(225, 225, 225) 458px 676px 0px 0px, rgb(225, 225, 225) 417px 150px 0px 0px, rgb(225, 225, 225) 297px 367px 0px 0px, rgb(225, 225, 225) 54px 118px 0px 0px, rgb(225, 225, 225) 608px 293px 0px 0px, rgb(225, 225, 225) 136px 107px 0px 0px, rgb(225, 225, 225) 492px 212px 0px 0px;
+  --shadow-xl-2: rgba(0, 0, 0, 0.4) 0px 4px 40px 8px, rgba(0, 0, 0, 0.8) 0px 0px 0px 0.5px, rgba(255, 255, 255, 0.3) 0px 0.5px 0px 0px inset;
+}

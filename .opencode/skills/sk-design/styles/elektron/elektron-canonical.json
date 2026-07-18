@@ -1,0 +1,1278 @@
+{
+  "source": "https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0",
+  "uuid": "6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0",
+  "name": "Elektron",
+  "northStar": "Hardware control panel at midnight — a near-black canvas where product photography glows and the interface stays almost invisible.",
+  "capturedAt": "2026-07-18T09:49:01.897Z",
+  "meta": {
+    "url": "https://elektron.se",
+    "siteName": "Elektron",
+    "extractedAt": "2026-06-03T18:02:54.118Z",
+    "durationMs": 35659,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1319,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the entire UI monochrome: text in #eeeef2, surfaces in #222222/#151515/#000000, borders in #eeeef2. Color is for product photography and one or two editorial accent tiles — never for chrome.",
+      "Use Neue Haas Grotesk Text Pro weight 400 as the default. Reserve the Display cut (400/450/500) for headlines at 24px and above.",
+      "Apply positive letter-spacing to all body and utility text: 0.04em at 11–14px, tapering to 0.013em at 28–35px. Use -0.01em only on the 64px display headlines.",
+      "Use 0px corner radius on every component except inputs (7px). Square corners are the signature — the interface should read like silkscreened hardware.",
+      "Base spacing on the 4px grid. Element gaps of 4–7px, card padding of 21px, section gaps of 56–80px. Stay compact; the density is the point.",
+      "Deploy digi one v2 for at most 2–3 labels per screen — version numbers, LCD-echo technical copy. It's a flourish, not a body face.",
+      "Treat product photography as the only color source. Let images bleed full-bleed with no borders, captions, or padding."
+    ],
+    "donts": [
+      "Don't add colored buttons, hover fills, or gradients — the system refuses soft modern signals. Buttons are outlined or filled-black only.",
+      "Don't use drop shadows or elevation. The surface stack (#000000 → #151515 → #222222 → #333337) handles depth through value contrast, not shadow.",
+      "Don't round corners on cards, buttons, tags, or images. The 7px radius is reserved for inputs only.",
+      "Don't introduce a second body font. Neue Haas Grotesk Text Pro is the workhorse; digi one v2 is a decorative accent, not a substitute.",
+      "Don't use weight 600 or above anywhere — the heaviest weight in the system is 500 on display headlines. Bolder weights break the whisper-thin hardware feel.",
+      "Don't add icons with color. Icons inherit #eeeef2 from the text color; multi-color or accent-colored icons break the monochrome contract.",
+      "Don't apply letter-spacing to display headlines unless you mean the uppercase utility style (0.04em at 24-31px). The 64px hero text wants the tight -0.01em tracking, not a loose feel."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Page Canvas",
+        "role": "Page background, full-bleed canvas behind all product imagery and content bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Deep Surface",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Deepest layer — button cores, icon fills, the negative space inside navigation controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeef2",
+        "name": "Platinum",
+        "role": "Primary text, icons, link body, badges, footer text — the only light-on-dark workhorse",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Selected link states, rare icon contrast points on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333337",
+        "name": "Iron",
+        "role": "Input field surface — one subtle step above canvas for form wells",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b8",
+        "name": "Ash",
+        "role": "Input placeholder and helper text — low-contrast gray on the dark input field",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas at all times; the page is always edge-to-edge, with internal content constrained to a ~1280px max-width inside section bands. The hero is a full-viewport-width product photograph with no overlay chrome — the nav bar floats above it. Below the hero, content stacks as wide horizontal bands: a compact utility strip (ghost buttons + small text), then the product accessory carousel (4-up product cards in a single row with side arrows), then a large left-aligned display heading with a 2-column body block. Section gaps are 56-80px but individual element gaps are tight (4-7px) — the page breathes between sections, never within them. Navigation is a single minimal top bar with no sticky behavior, no mega-menu, no sidebar. The overall rhythm is: one big visual, one band of compact cards, one heading + body block, repeat.",
+    "imagery": "Product photography is the dominant visual language and the only color source in the system. Shots are cinematic, close-cropped, near-black — synthesizers and drum machines photographed in low light with the LCD screen as the brightest element, casting blue-green glow onto knobs and panels. No lifestyle context, no hands, no studio softboxes visible: the hardware is the subject, shot almost like a product catalog from a luxury watchmaker. Edge-to-edge full-bleed, no rounded corners, no overlay text except in the version-release banners (where a graffiti-distressed magenta wordmark is composited onto the photo — this is part of the image asset, not a UI element). The only non-product imagery is the Sound Pack editorial blocks, which use a single solid-color tile (red/coral) with oversized white type as a graphic device.",
+    "similar": [
+      {
+        "why": "Same hardware-product-first dark canvas with product photography as the only color source, and a custom geometric grotesque in single weight for UI chrome",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Compact industrial UI with minimal-radius components, monochrome dark theme, and product imagery shot in near-black with glowing screens",
+        "business": "1010music (Bitbox / Blackbox)"
+      },
+      {
+        "why": "Same hardware-showcase approach: full-bleed cinematic product shots on near-black canvas, restrained typography, zero decorative UI color",
+        "business": "Moog Music"
+      },
+      {
+        "why": "Dark technical-instrument aesthetic with a single custom grotesque, product photography carrying the color, and compact dense card grids",
+        "business": "Native Instruments"
+      },
+      {
+        "why": "Near-black canvas with cinematic hardware close-ups, tight typographic grid, square corners, and refusal of soft modern UI conventions",
+        "business": "Universal Audio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "icons": "0px",
+        "inputs": "7px",
+        "buttons": "0px"
+      },
+      "elementGap": "4-7px",
+      "sectionGap": "56-80px",
+      "cardPadding": "21px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#222222",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Deepest recessed layer for icon and button cores"
+      },
+      {
+        "hex": "#151515",
+        "name": "Surface",
+        "level": 2,
+        "purpose": "Standard elevated card and component surface"
+      },
+      {
+        "hex": "#333337",
+        "name": "Input",
+        "level": 3,
+        "purpose": "Form field surface, barely lifted off canvas"
+      },
+      {
+        "hex": "#eeeef2",
+        "name": "Text",
+        "level": 4,
+        "purpose": "Foreground text and iconography"
+      }
+    ],
+    "northStar": "Hardware control panel at midnight — a near-black canvas where product photography glows and the interface stays almost invisible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.56
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.31
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "heading",
+        "size": 31,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 0.95,
+        "letterSpacing": -0.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Full-bleed #222222 bar, ~64px tall, with left cluster (Catalog, Shop, Search), centered brand mark (small monochrome Elektron 'E' logo), and right cluster (Support, Account, Cart). Links in #eeeef2 at 14px Neue Haas Grotesk Text Pro weight 400 with 0.04em tracking; icons inline with labels. No background fill, no border — sits flush with the canvas."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Primary call-to-action (FIND OUT MORE, DOWNLOAD, etc.)",
+        "description": "1px solid #eeeef2 border, transparent fill, 0px radius, 11-14px horizontal padding, 7-11px vertical padding. Label in 16px NHaasGroteskDSPro / Neue Haas Grotesk Display Pro weight 400, all-caps, 0.04em tracking, #eeeef2. Square corners reinforce the industrial spec-sheet feel. No hover fill — invert to #eeeef2 background with #222222 text on interaction."
+      },
+      {
+        "name": "Filled Dark Button",
+        "role": "Secondary action",
+        "description": "0px radius, #000000 or #151515 background, #eeeef2 label, 1px solid #eeeef2 or transparent border. Used for compact icon-tile controls (account, cart, support) in the nav bar — roughly 32-40px square, icon centered."
+      },
+      {
+        "name": "Product Carousel Card",
+        "role": "Accessory/merchandise display",
+        "description": "#151515 background or transparent over #222222, 0px radius, product image flush at top (~280px tall), product name in 14-16px Neue Haas Grotesk Text Pro weight 400 #eeeef2 below at 21px padding. No border, no shadow. Optional left/right arrow overlays in #151515 with #eeeef2 chevron."
+      },
+      {
+        "name": "Carousel Navigation Arrow",
+        "role": "Slider control",
+        "description": "Square 40-48px button, #151515 background or #222222 with 1px #eeeef2 border, centered chevron icon in #eeeef2. 0px radius. Sits at vertical center of the product grid row."
+      },
+      {
+        "name": "Hero Product Image",
+        "role": "Full-bleed product photography",
+        "description": "Edge-to-edge cinematic product shot — no padding, no border, no caption overlay. Images are dark, high-contrast, blue-tinted (LCD glow), 16:9 or wider aspect. The photograph IS the hero; no headline, no button stack overlay."
+      },
+      {
+        "name": "Version Release Banner",
+        "role": "Firmware/software update announcement",
+        "description": "Two-part layout: top utility bar in #222222 with 14px #eeeef2 copy and a row of two ghost buttons (FIND OUT MORE / DOWNLOAD). Below sits the hero product photo, overlaid with a massive graffiti-style distressed headline in hot magenta/red (this is a photographic/typographic treatment, not a UI color). All UI chrome stays monochrome — the colored type is part of the image."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Major section title",
+        "description": "64px Neue Haas Grotesk Display Pro weight 450, -0.01em letter-spacing, 0.95 line-height, #eeeef2. Left-aligned. A short red/orange underline accent (~80px wide, ~4px tall) sits to the left of the heading as the only chromatic punctuation in the system. Below, a single line of supporting copy in 18px weight 400 #eeeef2."
+      },
+      {
+        "name": "Sound Pack Highlight Card",
+        "role": "Editorial spotlight block",
+        "description": "Full-width or 2-column block, 0px radius. Left side: #eeeef2 heading at 24-31px Neue Haas Grotesk Display Pro weight 450 with the small red/orange accent underline. Right side: a solid-fill tile (red/coral) with the pack name set in oversized 35-64px Neue Haas Grotesk Display Pro weight 500, white, all-caps — a single loud chromatic moment amid the monochrome."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form control",
+        "description": "#333337 background, 7px corner radius (the only radius in the entire system), 1px #eeeef2 border, 14px Neue Haas Grotesk Text Pro weight 400 input text in #eeeef2, 14px Ash #b4b4b8 placeholder. 14px vertical padding, 18px horizontal padding. No focus ring — border thickens or inverts on focus."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Site footer / utility navigation",
+        "description": "Horizontal list of links in 11-14px Neue Haas Grotesk Text Pro weight 400 #eeeef2, 0.033-0.042em tracking, separated by thin vertical 1px #eeeef2 dividers with 18px horizontal margin. No background — sits on the same #222222 canvas."
+      },
+      {
+        "name": "Brand Mark (Elektron 'E')",
+        "role": "Logo",
+        "description": "Small (~24px) monochrome wordmark/icon in #eeeef2, centered in the nav bar. The mark is a compact stylized 'E' with a horizontal slash — geometric, not ornamental."
+      },
+      {
+        "name": "Decorative Dot-Matrix Tag",
+        "role": "Signature micro-label",
+        "description": "14px digi one v2 weight 400 in #eeeef2, 0.033em tracking, 1.5 line-height. Used sparingly for version numbers, technical labels, or LCD-echo copy. Treat as an accent, not a default — overuse breaks the signature."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, navigation, labels, product names, mid-size headings — the workhorse text face used in 95% of the UI",
+        "sizes": "11px, 14px, 16px, 18px, 28px, 35px",
+        "family": "Neue Haas Grotesk Text Pro",
+        "weight": "400",
+        "lineHeight": "1.20, 1.50",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk (free tier), or Suisse Int'l",
+        "letterSpacing": "0.013em to 0.042em (positive tracking throughout — 0.042em at 11px caption, ~0.04em at 14px, ~0.033em at 16px, tapering to 0.013–0.017em at 28–35px)"
+      },
+      {
+        "role": "Display headlines and section titles — 64px for hero statements, 31px for section headings, 24px for emphasized links/labels; the 450 weight is the headline sweet spot between Helvetica Regular and Medium",
+        "sizes": "24px, 31px, 64px",
+        "family": "Neue Haas Grotesk Display Pro",
+        "weight": "400, 450, 500",
+        "lineHeight": "0.95, 1.33, 1.50",
+        "substitute": "Neue Haas Grotesk Display, Inter Display, or Suisse Int'l Medium",
+        "letterSpacing": "-0.01em at 64px display; 0.04em at 24–31px (uppercase utility labels)"
+      },
+      {
+        "role": "Decorative dot-matrix accent — echoes the LCD readouts on Elektron hardware, used for tag labels and technical micro-copy; do not over-deploy, it's a signature flourish, not a workhorse",
+        "sizes": "14px",
+        "family": "digi one v2",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Dot-Matrix (Google Fonts), or VT323 for the LCD effect",
+        "letterSpacing": "0.033em"
+      },
+      {
+        "role": "Button and input labels — same family as the display face, used for control text only",
+        "sizes": "16px",
+        "family": "NHaasGroteskDSPro",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Neue Haas Grotesk Display Pro, Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Analog One V2. — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Analog One V2.",
+        "weight": "400",
+        "lineHeight": "1.25"
+      }
+    ],
+    "description": "Elektron's interface is essentially a darkroom for showcasing hardware: a #222222 canvas with #151515 surfaces and #eeeef2 type, where the product photography — cinematic, near-black close-ups of synthesizers with blue LCD glow — does all the emotional work. The UI itself is brutally compact (4px base unit, 7px input radius, 0px everywhere else) and refuses every soft modern signal: no gradients, no shadows, no rounded buttons, no colored accents in chrome. Typography is a single custom geometric grotesque (Neue Haas Grotesk) in weight 400 only for body, with a display cut at 450/500 for headlines; a secondary dot-matrix face echoes the LCD readouts on the products themselves. All body text carries positive tracking (0.013–0.042em) that reads as industrial specification-sheet rather than marketing. The whole system feels like the printed silkscreen on a Eurorack module: monochrome, functional, hardware-obsessed.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Elektron design system\",\"item\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#style-reference\",\"name\":\"Elektron design system reference\",\"headline\":\"Elektron design system | Refero Styles\",\"description\":\"Explore Elektron's dark E-commerce design system: Page Canvas #222222, Deep Surface #151515 colors, Neue Haas Grotesk Text Pro, Neue Haas Grotesk Display...\",\"url\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Elektron\",\"url\":\"https://elektron.se\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"caption\":\"Screenshot of Elektron\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Elektron design system\",\"Elektron website design\",\"Elektron colors\",\"Elektron typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Page Canvas\",\"Deep Surface\",\"Void\",\"Platinum\",\"Neue Haas Grotesk Text Pro\",\"Neue Haas Grotesk Display Pro\",\"digi one v2\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Elektron design system\"},{\"@type\":\"Thing\",\"name\":\"Elektron website design\"},{\"@type\":\"Thing\",\"name\":\"Elektron colors\"},{\"@type\":\"Thing\",\"name\":\"Elektron typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-02T17:29:13.000Z\",\"dateModified\":\"2026-04-02T17:29:13.000Z\"}]}19:T6ba,**Quick Color Reference**\n- Canvas: #222222\n- Surface: #151515\n- Deep surface: #000000\n- Text / icon: #eeeef2\n- Border / rule: #eeeef2 (1px)\n- Input surface: #333337\n- Placeholder: #b4b4b8\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Outlined Ghost Button**: 1px solid #eeeef2 border, transparent background, 0px radius, 11px vertical padding × 24px horizontal padding, label in 16px Neue Haas Grotesk Display Pro weight 400 all-caps with 0.04em tracking, color #eeeef2. On hover, invert to #eeeef2 fill with #222222 text.\n\n2. **Product Carousel Card**: transparent background over the #222222 canvas, 0px radius. Product image flush at top, ~280px tall, no border, no rounded corners. Product name below in 16px Neue Haas Grotesk Text Pro weight 400 #eeeef2 with 21px padding-top.\n\n3. **Section Display Heading**: 64px Neue Haas Grotesk Display Pro weight 450, -0.01em letter-spacing, 0.95 line-height, #eeeef2, left-aligned. Preceded by an 80px-wide × 4px-tall red/coral (#e63946 or similar) horizontal accent rule sitting flush-left above the headline.\n\n4. **Top Navigation Bar**: full-bleed #222222, 64px tall, no border. Left cluster at 14px Neue Haas Grotesk Text Pro weight 400 #eeeef2: 'Catalog', 'Shop', 'Search' with 18px gaps. Centered: 24px monochrome Elektron 'E' mark in #eeeef2. Right cluster: 'Support', 'Account', 'Cart' with matching type and 18px gaps. Icons may accompany each label.\n\n5. **Input Field**: #333337 background, 7px corner radius, 1px solid #eeeef2 border, 14px vertical padding × 18px horizontal padding. Input text in 14px Neue Haas Grotesk Text Pro weight 400 #eeeef2, placeholder in 14px #b4b4b8. On focus, border thickens to 2px (no glow, no shadow)."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system has no shadows. Depth is communicated exclusively through a value-based surface stack (#000000 → #151515 → #222222 → #333337 → #eeeef2) where darker values recede and lighter values advance. The page canvas is #222222 — intentionally not pure black — so the deepest UI elements (#000000 buttons, #000000 icon cores) read as 'punched through' the surface rather than sitting on it. This mirrors the physical product: dark anodized aluminum with deep-recessed OLED wells. Never introduce drop shadows, glows, or blurred elevation — they would break the industrial spec-sheet language."
+      },
+      {
+        "title": "Dot-Matrix Accent",
+        "content": "The digi one v2 typeface appears at 14px only and should be treated as a signature micro-label rather than a body face. Deploy it for: firmware version numbers ('3.40'), LCD-echo technical micro-copy, or one-off decorative tags. Cap usage at 2-3 instances per screen. The font exists to echo the LCD readouts on the Digitakt/Digitone/Tonverk hardware — it ties the web UI to the physical product's visual language. Do not use it for body paragraphs, button labels, or navigation."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#eeeef2",
+          "oklch": {
+            "c": 0.0053333412442059126,
+            "h": 286.29770362806477,
+            "l": 0.9502572434456863
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "input",
+            "heading",
+            "hero",
+            "image",
+            "list",
+            "badge",
+            "footer",
+            "button"
+          ],
+          "frequency": 5592,
+          "confidence": 1,
+          "prominence": 136466125.167003,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 185,
+          "confidence": 1,
+          "prominence": 9770749.819196008,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 3328650.1932389163,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 145,
+          "confidence": 1,
+          "prominence": 3035630.20665385,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 107049.64741537189,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b4b4b8",
+          "oklch": {
+            "c": 0.00562162515679733,
+            "h": 286.26707744952455,
+            "l": 0.7711340622859753
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25939,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333337",
+          "oklch": {
+            "c": 0.007012857896032014,
+            "h": 286.0001069363335,
+            "l": 0.32262714191847053
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25939,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffcc00",
+          "oklch": {
+            "c": 0.17682820801718266,
+            "h": 90.3815564900439,
+            "l": 0.8652089977306622
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 3294.5805381627424,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#012169",
+          "oklch": {
+            "c": 0.13083829642882253,
+            "h": 262.27919519079535,
+            "l": 0.284542092916734
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1838,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8102e",
+          "oklch": {
+            "c": 0.20739611841961253,
+            "h": 22.317433322553462,
+            "l": 0.5303668548180086
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1456.5805381627424,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6a6a6e",
+          "oklch": {
+            "c": 0.00619365709318952,
+            "h": 286.18466876995535,
+            "l": 0.5256384773625552
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1245,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d52b1e",
+          "oklch": {
+            "c": 0.20669393792953691,
+            "h": 29.542629101215656,
+            "l": 0.5670540720847292
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#003399",
+          "oklch": {
+            "c": 0.17310313007227515,
+            "h": 262.12193525748063,
+            "l": 0.3708225229600231
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ed2939",
+          "oklch": {
+            "c": 0.22658362379063335,
+            "h": 23.889357014983478,
+            "l": 0.6115004249983038
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#005293",
+          "oklch": {
+            "c": 0.12633919817944148,
+            "h": 251.02550627503598,
+            "l": 0.43412451537894275
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bd3d44",
+          "oklch": {
+            "c": 0.16368004728843186,
+            "h": 21.39336919505541,
+            "l": 0.5462315465127896
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#192f5d",
+          "oklch": {
+            "c": 0.08683054684537064,
+            "h": 263.1067912824346,
+            "l": 0.3146839418557121
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 282,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bc002d",
+          "oklch": {
+            "c": 0.2021097928891783,
+            "h": 20.715693893632075,
+            "l": 0.5027631623858934
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 266,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.015016448594629653,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#151515",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.15,
+          "background": "#000000",
+          "foreground": "#eeeef2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.78,
+          "background": "#151515",
+          "foreground": "#eeeef2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.76,
+          "background": "#ffffff",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#ffcc00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#222222",
+          "foreground": "#eeeef2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#ffffff",
+          "foreground": "#192f5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#eeeef2",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.58,
+          "background": "#333337",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#ffcc00",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.3,
+          "background": "#eeeef2",
+          "foreground": "#192f5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#333337",
+          "foreground": "#eeeef2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#003399"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.52,
+          "background": "#ffcc00",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#000000",
+          "foreground": "#b4b4b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.76,
+          "background": "#ffcc00",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.39,
+          "background": "#eeeef2",
+          "foreground": "#003399"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#151515",
+          "foreground": "#b4b4b8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 7,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 224,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 216,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 103,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 42,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Grotesk Text Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1120,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "digi one v2",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Haas Grotesk Display Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NHaasGroteskDSPro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Analog One V2.",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "badge",
+            "footer",
+            "list",
+            "icon"
+          ],
+          "frequency": 974,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Analog One V2.",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "digi one v2",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NHaasGroteskDSPro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NHaasGroteskDSPro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 88,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 450,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Neue Haas Grotesk Text Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cfc27d25-793f-473f-9adc-05ebe3e392aa.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Elektron design system\",\"item\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#style-reference\",\"name\":\"Elektron design system reference\",\"headline\":\"Elektron design system | Refero Styles\",\"description\":\"Explore Elektron's dark E-commerce design system: Page Canvas #222222, Deep Surface #151515 colors, Neue Haas Grotesk Text Pro, Neue Haas Grotesk Display...\",\"url\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Elektron\",\"url\":\"https://elektron.se\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b5a0bf4-3d2a-4c3b-aa2e-652f1acb82c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"caption\":\"Screenshot of Elektron\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1f6c5705-c087-442b-8444-1f0f8ddabc35.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Elektron design system\",\"Elektron website design\",\"Elektron colors\",\"Elektron typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Page Canvas\",\"Deep Surface\",\"Void\",\"Platinum\",\"Neue Haas Grotesk Text Pro\",\"Neue Haas Grotesk Display Pro\",\"digi one v2\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Elektron design system\"},{\"@type\":\"Thing\",\"name\":\"Elektron website design\"},{\"@type\":\"Thing\",\"name\":\"Elektron colors\"},{\"@type\":\"Thing\",\"name\":\"Elektron typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-02T17:29:13.000Z\",\"dateModified\":\"2026-04-02T17:29:13.000Z\"}]}19:T6ba,**Quick Color Reference**\n- Canvas: #222222\n- Surface: #151515\n- Deep surface: #000000\n- Text / icon: #eeeef2\n- Border / rule: #eeeef2 (1px)\n- Input surface: #333337\n- Placeholder: #b4b4b8\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Outlined Ghost Button**: 1px solid #eeeef2 border, transparent background, 0px radius, 11px vertical padding × 24px horizontal padding, label in 16px Neue Haas Grotesk Display Pro weight 400 all-caps with 0.04em tracking, color #eeeef2. On hover, invert to #eeeef2 fill with #222222 text.\n\n2. **Product Carousel Card**: transparent background over the #222222 canvas, 0px radius. Product image flush at top, ~280px tall, no border, no rounded corners. Product name below in 16px Neue Haas Grotesk Text Pro weight 400 #eeeef2 with 21px padding-top.\n\n3. **Section Display Heading**: 64px Neue Haas Grotesk Display Pro weight 450, -0.01em letter-spacing, 0.95 line-height, #eeeef2, left-aligned. Preceded by an 80px-wide × 4px-tall red/coral (#e63946 or similar) horizontal accent rule sitting flush-left above the headline.\n\n4. **Top Navigation Bar**: full-bleed #222222, 64px tall, no border. Left cluster at 14px Neue Haas Grotesk Text Pro weight 400 #eeeef2: 'Catalog', 'Shop', 'Search' with 18px gaps. Centered: 24px monochrome Elektron 'E' mark in #eeeef2. Right cluster: 'Support', 'Account', 'Cart' with matching type and 18px gaps. Icons may accompany each label.\n\n5. **Input Field**: #333337 background, 7px corner radius, 1px solid #eeeef2 border, 14px vertical padding × 18px horizontal padding. Input text in 14px Neue Haas Grotesk Text Pro weight 400 #eeeef2, placeholder in 14px #b4b4b8. On focus, border thickens to 2px (no glow, no shadow)."
+}

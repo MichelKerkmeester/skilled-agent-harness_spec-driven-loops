@@ -1,0 +1,387 @@
+{
+  "color": {
+    "parchment-cream": {
+      "$value": "#f5f4df",
+      "$type": "color",
+      "$description": "Parchment Cream — Page canvas, card surfaces, text color on dark imagery — the warm off-white that keeps photography from feeling cold"
+    },
+    "carbon-ink": {
+      "$value": "#0e1620",
+      "$type": "color",
+      "$description": "Carbon Ink — Body text, headings, hairline borders, icon strokes — near-black with a cool blue undertone that pairs with the cream"
+    },
+    "pale-sky": {
+      "$value": "#c1dfef",
+      "$type": "color",
+      "$description": "Pale Sky — Soft secondary surface wash, subtle section backgrounds when cream needs contrast"
+    },
+    "shadow-khaki": {
+      "$value": "#abab9c",
+      "$type": "color",
+      "$description": "Shadow Khaki — Warm gray used in card box-shadow tinting — gives elevation a warm cast rather than a cold blue"
+    },
+    "electric-blue": {
+      "$value": "#007ae5",
+      "$type": "color",
+      "$description": "Electric Blue — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "deep-cobalt": {
+      "$value": "#1c3f99",
+      "$type": "color",
+      "$description": "Deep Cobalt — Secondary brand surface for navigation bars and accent fills — darker register of the blue for layering"
+    },
+    "outlined-action": {
+      "$value": "#083e6f",
+      "$type": "color",
+      "$description": "Outlined Action — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "sunset-orange": {
+      "$value": "#eb6110",
+      "$type": "color",
+      "$description": "Sunset Orange — Warm accent fill for decorative highlights and select illustration elements — echoes the golden-hour photography palette"
+    },
+    "peach-glow": {
+      "$value": "#ffd9c9",
+      "$type": "color",
+      "$description": "Peach Glow — Soft warm surface accent, peachy wash that harmonizes with the sunset photography"
+    },
+    "signal-blue": {
+      "$value": "#319fff",
+      "$type": "color",
+      "$description": "Signal Blue — Brighter blue accent for small icon and illustration highlights — lighter pop than the primary Electric Blue"
+    }
+  },
+  "font": {
+    "jobydisplay": {
+      "$value": "jobyDisplay",
+      "$type": "fontFamily",
+      "$description": "Display headlines and hero text. Sizes scale dramatically from 40px to 207px with tight tracking (-0.03em at the largest sizes) — the near-200px display weight is the signature: whisper-light at colossal scale, the opposite of typical bold-hero convention. Used for hero copy ('Skip traffic. Time to fly.') and section display headlines."
+    },
+    "jobytext": {
+      "$value": "jobyText",
+      "$type": "fontFamily",
+      "$description": "All body copy, navigation, badges, footer, and inline links. The 450 weight is distinctive — a custom intermediate weight between Regular and Medium that gives body text a subtly heavier presence than a standard 400. Tight letter-spacing (-0.01 to -0.02em) even at body sizes reinforces the display font's compressed character."
+    },
+    "joby-sans-display": {
+      "$value": "Joby Sans Display",
+      "$type": "fontFamily",
+      "$description": "Micro-display usage at 12px for labels and tags that need display-type personality at small scale — -0.03em tracking gives these tiny labels the same compressed character as the 200px headlines"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for button text and icon-adjacent micro-copy where system font rendering is preferred"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "10px",
+        "fontWeight": 550,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Joby Sans Display",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "12px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "14px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "jobyText",
+        "fontSize": "18px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "48px",
+        "fontWeight": 550,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "64px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "80px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "141px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 141px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "jobyDisplay",
+        "fontSize": "207px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 207px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "147.6px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "imagery-layer": {
+      "$value": "#0e1620",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed photography and dark cinematic backgrounds — the dominant first impression"
+    },
+    "parchment-canvas": {
+      "$value": "#f5f4df",
+      "$type": "color",
+      "$description": "Surface level 1: Default content surface for all editorial text sections, cards, and structural blocks"
+    },
+    "pale-sky-wash": {
+      "$value": "#c1dfef",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle alternative surface for section contrast against the cream"
+    },
+    "electric-blue-band": {
+      "$value": "#007ae5",
+      "$type": "color",
+      "$description": "Surface level 3: Saturated accent surface for the bottom tour strip and floating promo card"
+    },
+    "cobalt-depth": {
+      "$value": "#1c3f99",
+      "$type": "color",
+      "$description": "Surface level 4: Darker blue layer for navigation chrome and stacked accent surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.jobyaviation.com",
+      "siteName": "Joby Aviation",
+      "extractedAt": "2026-06-03T18:57:55.678Z",
+      "variant": "extended"
+    }
+  }
+}

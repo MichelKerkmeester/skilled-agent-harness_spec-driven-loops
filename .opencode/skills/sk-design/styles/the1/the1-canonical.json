@@ -1,0 +1,1182 @@
+{
+  "source": "https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5",
+  "uuid": "04d2e256-61b0-4184-a834-e36c15d09ea5",
+  "name": "The1",
+  "northStar": "building-scale typography on painted concrete",
+  "capturedAt": "2026-07-18T09:29:05.454Z",
+  "meta": {
+    "url": "https://the1.amsterdam",
+    "siteName": "The1",
+    "extractedAt": "2026-06-03T19:28:42.221Z",
+    "durationMs": 33755,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 3085,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every headline in KH Teka weight 400 with letter-spacing -0.06em at 60px and above, -0.03em at 60px and below; the negative tracking is the brand voice",
+      "Use line-height 0.70–0.80 on display type (60px+) so descenders of one line touch the ascenders of the next — the type forms a wall, not a paragraph",
+      "Reserve the four chromatic colors (#027b49, #f19ec8, #fa4d43, #fbb833) as full-bleed identity blocks for properties or named places; never use them for inline accents, icons, or text",
+      "Use #1f1f1f near-black for all body text, borders, and pill-button fills rather than pure #000000; the softer black feels of-a-piece with the concrete canvas",
+      "Let the four brand colors sit edge-to-edge with no card padding, no border, and no shadow — the color block is the component",
+      "Pair every dark Pill Button (border-radius 100px, fill #1f1f1f) with a leading text question in the same line, so the button reads as an answer not an action",
+      "Use 8–10px colored dots in the property's identity color as inline wayfinding marks next to its name"
+    ],
+    "donts": [
+      "Do not assign the four chromatic colors to statuses (success/error/warning/info) — they are a fixed identity set, not a semantic palette",
+      "Do not add box-shadows, gradients, or any elevation to cards, buttons, or images — the system is ruthlessly flat",
+      "Do not introduce a second display typeface; KH Teka is the only voice and must own every visible word",
+      "Do not round card corners — properties and sections are full-bleed rectangles; rounding is reserved exclusively for pills (100px) and the hamburger circle",
+      "Do not use a line-height above 1.20 anywhere; display type must be crushed to 0.70–0.80, never relaxed to 1.4–1.6 'for readability'",
+      "Do not use #027b49, #f19ec8, #fa4d43, or #fbb833 for body text, fine print, or button fills — they are surface colors, not content colors",
+      "Do not wrap the hero display type in a max-width container that breaks it across lines naturally; let the headline run full-bleed and break on its own terms"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#027b49",
+        "name": "The Green",
+        "role": "Full-bleed identity block for The Green property and any place or section it owns — deep forest green reads as architectural paint, not decoration",
+        "group": "brand"
+      },
+      {
+        "hex": "#f19ec8",
+        "name": "The Pink",
+        "role": "Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "brand"
+      },
+      {
+        "hex": "#fa4d43",
+        "name": "The Red",
+        "role": "Full-bleed identity block and dramatic section background — vermillion red carries the most visual weight and anchors expanded menu states and signature moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#fbb833",
+        "name": "The Yellow",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "brand"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Concrete",
+        "role": "Page canvas and primary surface — the light gray ground every screen sits on, treated as a material (concrete, drywall) rather than a neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Iron",
+        "role": "Primary text, pill button fills, and most structural borders — near-black rather than pure black, softer on the concrete canvas while keeping max contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Hairline borders, icon strokes, and occasional deep accents where maximum bite is needed against the colored blocks",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is full-bleed on a 1440px max-width canvas with hairline gutters, not a centered narrow column. The hero is a single open field of concrete-gray (#d9d9d9) with display type running nearly edge-to-edge — no hero image, no split layout, just type and negative space. The property section is a 4-column equal grid of full-bleed color cards, each card spanning the full content width divided by four with no internal margins. Sections are separated by hairline #1f1f1f dividers, not by whitespace bands. Navigation is a minimal top bar: wordmark left, hamburger circle right, with an optional inline text+button pair floating in the content flow. Expanded menu state covers the full viewport in red. Vertical rhythm is driven by section breaks (40px) and by the crushed line-height of display type, not by generous padding. The overall impression is gallery-wall: type hung on a flat surface, color blocks standing on the floor.",
+    "imagery": "Imagery is treated as contained content within full-bleed color blocks, not as standalone photography. Each property card is a solid brand-color rectangle (green, pink, yellow, red) with a building photograph inset at the top — the photograph's edges are clipped hard to the color block, no rounded corners, no shadow, no overlay. The photos are straight architectural shots of brick-and-glass facades, presented without lifestyle context, people, or staging — the building is the subject. The expanded menu replaces imagery entirely with a massive cropped numeral '1' in near-black on the red field, treating type itself as a graphic mark. Overall: text-dominant with photo reduced to contained documentary crops inside painted frames.",
+    "similar": [
+      {
+        "why": "Same massive-scale display type-as-architecture approach, same restraint to a near-monochrome canvas with chromatic identity moments",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same flatness, same no-shadow / no-gradient discipline, same quiet near-black-on-gray with a single accent surface for emphasis",
+        "business": "Vitsoe"
+      },
+      {
+        "why": "Same industrial-material palette (concrete gray + saturated paint colors) used as full-bleed identity blocks rather than decorative accents",
+        "business": "Tom Dixon"
+      },
+      {
+        "why": "Same typographic-led hero with crushed line-height and negative tracking, same use of vivid color as full-bleed section blocks over a neutral canvas",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "0px",
+        "buttons": "100px",
+        "menuButton": "100px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#d9d9d9",
+        "name": "Concrete Canvas",
+        "level": 0,
+        "purpose": "Default page background; the gray floor every section sits on"
+      },
+      {
+        "hex": "#fbb833",
+        "name": "Paint Block",
+        "level": 1,
+        "purpose": "First chromatic layer — full-bleed color surfaces for property cards and section blocks"
+      },
+      {
+        "hex": "#f19ec8",
+        "name": "Paint Block",
+        "level": 2,
+        "purpose": "Second chromatic layer — same role, different identity assignment"
+      },
+      {
+        "hex": "#fa4d43",
+        "name": "Paint Block",
+        "level": 3,
+        "purpose": "Heaviest chromatic layer — dramatic moments and expanded menu states"
+      },
+      {
+        "hex": "#027b49",
+        "name": "Paint Block",
+        "level": 4,
+        "purpose": "Fourth chromatic layer — completes the four-color identity set"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Iron Surface",
+        "level": 5,
+        "purpose": "Dark interactive surface for pill buttons, inverted text on light grounds"
+      }
+    ],
+    "northStar": "building-scale typography on painted concrete",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "display",
+        "size": 215,
+        "lineHeight": 0.7,
+        "letterSpacing": -0.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button",
+        "role": "Primary interactive control for 'Learn more' and 'Contact us' — the only button pattern on the site",
+        "description": "Border-radius 100px, background #1f1f1f, text in #d9d9d9 or white at 15px KH Teka weight 400, padding ~10px 20px. No border, no shadow, no hover lift — the dark pill on concrete canvas is the entire button language."
+      },
+      {
+        "name": "Hamburger Menu Trigger",
+        "role": "Top-right menu opener on every page",
+        "description": "Solid circle, ~48px diameter, background #1f1f1f, containing a three-line white hamburger glyph. No border, no shadow. The circle sits as a graphic object in the top-right corner with generous margin."
+      },
+      {
+        "name": "Property Identity Card",
+        "role": "Full-bleed color-bloc card introducing each property (The Green, The Pink, The Yellow, The Red)",
+        "description": "Zero border-radius, full-bleed fill in one of the four brand colors (#027b49 / #f19ec8 / #fa4d43 / #fbb833). A contained photograph of the building is inset within, occupying roughly the top two-thirds. Below the photo: property name in KH Teka 26px, followed by a 8–10px colored status dot, then availability copy in 15px. No card border, no shadow — the color block IS the card."
+      },
+      {
+        "name": "Status Dot",
+        "role": "Wayfinding marker next to each property name",
+        "description": "8–10px solid circle, fill matches the property's identity color (green dot for The Green, pink dot for The Pink, etc.). Sits inline next to the property name in the card footer."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Structural break between major page sections",
+        "description": "1px solid horizontal line in #1f1f1f spanning the full content width, with no padding above or below — the line is the break."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-anchor type — the signature visual element",
+        "description": "KH Teka 60–215px, weight 400, letter-spacing -0.06em at 215px dropping to -0.03em at 60px, line-height 0.70–0.80 so type stacks into a wall. Color #1f1f1f on the concrete canvas. No leading, no underlay, no decoration."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Persistent top-left identity mark",
+        "description": "\"THE1\" set in KH Teka 26px weight 400, letter-spacing -0.03em, color #1f1f1f. Plain text — no logo lockup, no symbol."
+      },
+      {
+        "name": "Expanded Menu Panel",
+        "role": "Full-viewport overlay when the hamburger is activated",
+        "description": "Full-bleed #fa4d43 surface filling the screen beneath the header strip. A massive black numeral \"1\" (KH Teka 215px, #1f1f1f or #000000) is cropped at the left edge as a graphic mark, not a word. Header bar retains the concrete canvas above the red field."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Quiet navigational link in header and card footers",
+        "description": "KH Teka 15–18px, color #1f1f1f, no underline by default. Reads as a word in a sentence, not a UI element."
+      },
+      {
+        "name": "In-Text CTA Pair",
+        "role": "Header pattern: a question phrase followed by a pill button",
+        "description": "Plain text question (\"Are you the one?\" / \"Office space at NDSM-wharf\") in KH Teka 15–18px sits immediately to the left of a dark Pill Button. The pair reads as a single conversational unit — the text is the setup, the pill is the answer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and heading face — the entire brand voice. Custom condensed sans set at 215px for the hero with letter-spacing -0.06em and line-height 0.70 so descenders kiss the next line and the word reads as a single architectural mass. Same family drops to 60px and 26px for sub-moments and 15–18px for in-line labels, always retaining negative tracking. This single family does every visible word on the site.",
+        "sizes": "15px, 18px, 26px, 60px, 215px",
+        "family": "KH Teka",
+        "weight": "400",
+        "lineHeight": "0.70–1.20 (display uses crushed 0.70–0.80; subheadings 1.00; body 1.10–1.20)",
+        "substitute": "Archivo Narrow, Barlow Condensed, or Roboto Condensed at tight tracking",
+        "letterSpacing": "-0.06em at 215px, -0.03em at 60px and below"
+      },
+      {
+        "role": "Utility micro-copy only — availability text, small annotations, fine print. Used sparingly so KH Teka remains the brand voice.",
+        "size": "12px",
+        "sizes": "12px",
+        "family": "System sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, Segoe UI, sans-serif"
+      }
+    ],
+    "description": "The1 is a typographic architecture system: a neutral concrete canvas (d9d9d9) beneath display type so large it becomes wall structure. The brand speaks through KH Teka set at architectural scale with crushed line-heights of 0.70–0.80 and negative tracking down to -0.06em, so letters collide vertically and horizontally to form facades rather than sentences. Four vivid paint colors — Green, Pink, Yellow, Red — function as a place-identity system, each one assigned to a property or moment and deployed as full-bleed color blocks behind contained photography. The interface is ruthlessly flat: no shadows, no gradients, no elevation, no decorative chrome. Navigation is a wordmark, a text line, and a single dark pill. Hairline near-black borders do the structural work that cards and shadows do elsewhere. A designer rebuilding this system should treat type as the primary surface, color as wayfinding, and the canvas as an empty gallery wall the type inhabits.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The1 design system\",\"item\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#style-reference\",\"name\":\"The1 design system reference\",\"headline\":\"The1 design system | Refero Styles\",\"description\":\"Explore The1's light Other design system: The Green #027b49, The Pink #f19ec8 colors, KH Teka, System sans-serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The1\",\"url\":\"https://the1.amsterdam\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"caption\":\"Screenshot of The1\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The1 design system\",\"The1 website design\",\"The1 colors\",\"The1 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"The Green\",\"The Pink\",\"The Red\",\"The Yellow\",\"KH Teka\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The1 design system\"},{\"@type\":\"Thing\",\"name\":\"The1 website design\"},{\"@type\":\"Thing\",\"name\":\"The1 colors\"},{\"@type\":\"Thing\",\"name\":\"The1 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:54:35.309Z\",\"dateModified\":\"2026-05-10T23:54:35.309Z\"}]}19:T6c9,**Quick Color Reference**\n- text: #1f1f1f\n- background: #d9d9d9\n- border: #1f1f1f\n- accent: #fa4d43 (and the three siblings #027b49, #f19ec8, #fbb833 — one per property, never generic)\n- pill button fill: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section on a #d9d9d9 concrete canvas. Place a display headline in KH Teka weight 400 at 215px, line-height 0.70, letter-spacing -0.06em, color #1f1f1f. The headline should fill nearly the full canvas width and break across two or three lines naturally. Add a small 'THE1' wordmark in KH Teka 26px top-left and a 48px #1f1f1f solid-circle hamburger top-right.\n\n2. Build a property card with zero border-radius, full-bleed fill #027b49 (The Green). Inset a contained architectural photograph in the top two-thirds. Below: property name 'The Green' in KH Teka 26px #1f1f1f, followed by an 8px solid #027b49 status dot, then availability copy in KH Teka 15px #1f1f1f.\n\n3. Build a header pattern: 'Are you the one?' in KH Teka 18px #1f1f1f, immediately followed by a pill button with border-radius 100px, background #1f1f1f, text 'Contact us' in #d9d9d9 at KH Teka 15px, padding 10px 20px. The text question and pill sit on the same baseline as a single conversational unit.\n\n4. Build an expanded menu state: full-viewport #fa4d43 surface. A massive near-black '1' numeral in KH Teka 215px weight 400 is cropped at the left edge of the red field, acting as a graphic mark. A hairline #1f1f1f header bar sits above the red field with the wordmark and a close affordance.\n\n5. Build a section divider: a single 1px solid #1f1f1f horizontal line spanning the full content width with zero padding above or below — the line itself is the break."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "hero",
+            "list",
+            "icon"
+          ],
+          "frequency": 9775,
+          "confidence": 1,
+          "prominence": 621377964.35979,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "hero/color": 2,
+            "icon/color": 384,
+            "list/color": 51,
+            "other/fill": 15,
+            "image/color": 82,
+            "other/color": 1429,
+            "body/borderColor": 16,
+            "hero/borderColor": 8,
+            "icon/borderColor": 1536,
+            "list/borderColor": 204,
+            "image/borderColor": 328,
+            "other/borderColor": 5716
+          }
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 343,
+          "confidence": 1,
+          "prominence": 395011992.0793983,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 34,
+            "link/color": 6,
+            "heading/color": 27,
+            "body/borderColor": 136,
+            "link/borderColor": 24,
+            "heading/borderColor": 108,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 5056,
+          "confidence": 1,
+          "prominence": 5862149.235116363,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 833,
+            "link/color": 13,
+            "other/fill": 6,
+            "heading/color": 158,
+            "body/borderColor": 3332,
+            "link/borderColor": 52,
+            "heading/borderColor": 632,
+            "body/backgroundColor": 2,
+            "other/backgroundColor": 27,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#027b49",
+          "oklch": {
+            "c": 0.12218944129850727,
+            "h": 156.72675688603775,
+            "l": 0.5130786005764525
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#f19ec8",
+          "oklch": {
+            "c": 0.11119661833104982,
+            "h": 348.2105418243456,
+            "l": 0.7936469750742681
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#fa4d43",
+          "oklch": {
+            "c": 0.2109973470156338,
+            "h": 27.708606049605194,
+            "l": 0.6635125363285447
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#fbb833",
+          "oklch": {
+            "c": 0.157054430713165,
+            "h": 79.40366068699622,
+            "l": 0.8243302214483164
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3269042.5647919173,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0005070142110393326,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#fbb833",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#1f1f1f",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.46,
+          "background": "#f19ec8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.42,
+          "background": "#fbb833",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.21,
+          "background": "#f19ec8",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.21,
+          "background": "#fa4d43",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#fa4d43",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.93,
+          "background": "#027b49",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.78,
+          "background": "#027b49",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#027b49",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.4,
+          "background": "#fa4d43",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#f19ec8",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#1f1f1f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#fbb833",
+          "foreground": "#d9d9d9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 97
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 5000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 144,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "hero",
+            "list",
+            "button"
+          ],
+          "frequency": 445,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 114,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1998,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "KH Teka Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1052,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "KH Teka Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "hero",
+            "list",
+            "icon",
+            "button"
+          ],
+          "frequency": 1998,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 276,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "KH Teka Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 505,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "KH Teka Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 215,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 215,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 215,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 138,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 215,
+          "family": "KH Teka Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dc2f4aea-3777-424f-aea4-be49c08833b6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The1 design system\",\"item\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#style-reference\",\"name\":\"The1 design system reference\",\"headline\":\"The1 design system | Refero Styles\",\"description\":\"Explore The1's light Other design system: The Green #027b49, The Pink #f19ec8 colors, KH Teka, System sans-serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The1\",\"url\":\"https://the1.amsterdam\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/04d2e256-61b0-4184-a834-e36c15d09ea5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"caption\":\"Screenshot of The1\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f6ca5cee-617d-4031-bc5c-04f1aa5b4263.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The1 design system\",\"The1 website design\",\"The1 colors\",\"The1 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"The Green\",\"The Pink\",\"The Red\",\"The Yellow\",\"KH Teka\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The1 design system\"},{\"@type\":\"Thing\",\"name\":\"The1 website design\"},{\"@type\":\"Thing\",\"name\":\"The1 colors\"},{\"@type\":\"Thing\",\"name\":\"The1 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:54:35.309Z\",\"dateModified\":\"2026-05-10T23:54:35.309Z\"}]}19:T6c9,**Quick Color Reference**\n- text: #1f1f1f\n- background: #d9d9d9\n- border: #1f1f1f\n- accent: #fa4d43 (and the three siblings #027b49, #f19ec8, #fbb833 — one per property, never generic)\n- pill button fill: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section on a #d9d9d9 concrete canvas. Place a display headline in KH Teka weight 400 at 215px, line-height 0.70, letter-spacing -0.06em, color #1f1f1f. The headline should fill nearly the full canvas width and break across two or three lines naturally. Add a small 'THE1' wordmark in KH Teka 26px top-left and a 48px #1f1f1f solid-circle hamburger top-right.\n\n2. Build a property card with zero border-radius, full-bleed fill #027b49 (The Green). Inset a contained architectural photograph in the top two-thirds. Below: property name 'The Green' in KH Teka 26px #1f1f1f, followed by an 8px solid #027b49 status dot, then availability copy in KH Teka 15px #1f1f1f.\n\n3. Build a header pattern: 'Are you the one?' in KH Teka 18px #1f1f1f, immediately followed by a pill button with border-radius 100px, background #1f1f1f, text 'Contact us' in #d9d9d9 at KH Teka 15px, padding 10px 20px. The text question and pill sit on the same baseline as a single conversational unit.\n\n4. Build an expanded menu state: full-viewport #fa4d43 surface. A massive near-black '1' numeral in KH Teka 215px weight 400 is cropped at the left edge of the red field, acting as a graphic mark. A hairline #1f1f1f header bar sits above the red field with the wordmark and a close affordance.\n\n5. Build a section divider: a single 1px solid #1f1f1f horizontal line spanning the full content width with zero padding above or below — the line itself is the break."
+}

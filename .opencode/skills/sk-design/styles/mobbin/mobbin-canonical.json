@@ -1,0 +1,1033 @@
+{
+  "source": "https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81",
+  "uuid": "ef44a995-6745-4dc7-86ab-f7227f108f81",
+  "name": "Mobbin",
+  "northStar": "Grayscale specimen board — a printer's proof sheet where typographic weight IS color.",
+  "capturedAt": "2026-07-18T10:14:36.002Z",
+  "meta": {
+    "url": "https://mobbin.com",
+    "siteName": "Mobbin",
+    "extractedAt": "2026-04-11T20:15:52.900Z",
+    "durationMs": 117274,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 672,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #141414 as the only 'color' — every UI accent, icon, filled button, and active state is this near-black, never a chromatic hue.",
+      "Apply 9999px radius to every interactive pill element: buttons, tags, search inputs, filter chips. Non-interactive content containers use 16–24px radius.",
+      "Set display headlines (56–80px) at saans weight 600–652 with letter-spacing -0.007em to -0.011em and lineHeight 1.00–1.13.",
+      "Use font-feature-settings: '\"calt\" 0, \"dlig\", \"ss07\"' on all saans text to activate the custom ligature and stylistic set that distinguish it from fallback sans-serifs.",
+      "Differentiate card elevation with 1px solid #ededed borders only — never box-shadow on cards. Reserve box-shadow exclusively for floating dropdowns.",
+      "Use fractional saans weights: 440 for UI labels/nav, 456 for mid-emphasis body, 652 for hero numerics — never round to 400/500/600 at sizes where the fractional weight is available.",
+      "Maintain 80px vertical section rhythm between major content blocks, with 24px internal card padding as the baseline."
+    ],
+    "tags": [
+      "achromatic",
+      "variable-weight typography",
+      "pill buttons",
+      "flat borders",
+      "gallery-first layout",
+      "design tool",
+      "content library",
+      "white-space dominant",
+      "typographic hierarchy",
+      "monochromatic"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color — not blue for links, not green for success states, not any hue. The entire brand palette is achromatic.",
+      "Never use box-shadow on cards or gallery thumbnails — borders do that work; shadows on content cards would compete with the screenshot imagery inside them.",
+      "Never use font-weight 700 or 800 — the heaviest weight is 652. Heavier weights would break the typographic restraint that defines the system.",
+      "Never use radius values other than 9999px (interactive), 24px (large containers), 16px (cards/images), or 8px (inline badges) — arbitrary intermediate values destroy the shape vocabulary.",
+      "Never place colored backgrounds behind sections — alternating band layouts should use #ffffff vs #f2f2f2 at most, never tinted or chromatic fills.",
+      "Never left-align hero headlines — the centered display type at 80px/56px is the layout anchor; shifting it breaks the symmetry that makes the screenshot grid feel organized.",
+      "Never remove letter-spacing from display type — at 80px, the -0.88px tracking is what makes saans feel like a custom typeface rather than a generic web font."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#141414",
+        "name": "Midnight Ink",
+        "role": "Primary text, headings, filled CTA buttons, nav items, icon strokes — the single chromatic workhorse of an achromatic system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Canvas",
+        "role": "Page background, card surfaces, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Graphite",
+        "role": "Body copy, secondary links, descriptive text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#adadad",
+        "name": "Ash",
+        "role": "Tertiary text, disabled/muted button borders, placeholder icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Fog",
+        "role": "Dividers, subtle borders, card outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Mist",
+        "role": "Nav background tint, input fields, inner surface elevation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2c2c2",
+        "name": "Silver",
+        "role": "Skeleton loaders, inactive UI fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Slate Shadow",
+        "role": "Inset button shadow ring (rgba(64,64,64,0.16) 0px 0px 0px 1px)",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width centered (~1280px), white background throughout. Hero is vertically centered text stack — large display headline (80px) over a subtitle paragraph over two pill CTAs side by side, with a featured app icon above the headline as a specimen. Below the hero: full-width trust logo bar with muted gray brand logos. The gallery section introduces a sticky secondary nav (app type tabs, search bar, filter row) above a 3-column card grid with comfortable 16-20px gutters. Testimonials section uses a 4-column masonry-style text card grid on white. Navigation is a floating top bar with logo left, text links center, CTA pill right — switches from transparent to white/f2f2f2 on scroll. Section vertical rhythm is consistently 80px between major blocks. No alternating dark/light bands — the entire page is white with card grids providing visual texture.",
+    "imagery": "Content IS the imagery: grayscale mobile app screenshots displayed as contained cards in a 3-column grid. Screenshots are cropped to phone frames, placed on white card backgrounds with 16px radius, and rendered in desaturated tones that match the achromatic brand palette — colorful apps appear muted because the surrounding UI demands it. No lifestyle photography, no illustrations, no abstract graphics. Partner/customer logos (Uber, Meta, Airbnb, etc.) appear as flat monochrome SVGs in a trust bar. The Revolut-style app icon in the hero (rounded square, 24px radius, green fill with white symbol) is the only chromatic element on the page — a deliberate specimen of the content being showcased, not a brand choice. Icon style throughout the UI is outlined, thin stroke (~1.5px), monochrome #141414.",
+    "similar": [
+      {
+        "why": "Same achromatic gallery-of-screenshots model with white backgrounds and card-border-only elevation",
+        "business": "Screenlane"
+      },
+      {
+        "why": "Pill-button navigation and 3-column content grid for design inspiration browsing",
+        "business": "Dribbble"
+      },
+      {
+        "why": "Identical concept — no-chroma UI wrapping colorful screenshot content — with similar nav and filter-pill patterns",
+        "business": "Lookup.design"
+      },
+      {
+        "why": "Fractional-weight custom typography as the primary brand differentiator in an otherwise near-monochrome system",
+        "business": "Linear"
+      },
+      {
+        "why": "App screenshot library with the same white/gray achromatic chrome and pill-shaped filter chips above a grid",
+        "business": "Refero.design"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16-24px",
+        "inputs": "9999px",
+        "modals": "24px",
+        "buttons": "9999px",
+        "thumbnails": "16px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page",
+        "level": 0,
+        "purpose": "Root page background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Gallery cards, testimonial cards — differentiated from page by 1px #ededed border, not background change"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Input / Chip",
+        "level": 2,
+        "purpose": "Search bars, nav tint, inner UI fills"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Overlay Dropdown",
+        "level": 3,
+        "purpose": "Category mega-menu, floating panels — elevated via rgba(0,0,0,0.04) 0px 8px 40px shadow"
+      }
+    ],
+    "northStar": "Grayscale specimen board — a printer's proof sheet where typographic weight IS color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 16,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 20
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 22,
+        "letterSpacing": 0.21
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 28,
+        "letterSpacing": 0.28
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 42
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 63,
+        "letterSpacing": -0.39
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 80,
+        "letterSpacing": -0.88
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Button Group — Primary, Outlined & Muted",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Search Input with Filter Pills",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Testimonial Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Main CTA — 'Join for free'",
+        "description": "Background #141414, text #ffffff, radius 9999px, padding 0px 16px (height set by line-height), font saans weight 600 at 14–16px. Inset shadow ring rgba(64,64,64,0.16) 0px 0px 0px 1px on hover state."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary action — 'See our plans'",
+        "description": "Background transparent, text #141414, border 1px solid #141414, radius 9999px, padding 0px 16px. Sits beside primary CTA as a lighter-weight alternative."
+      },
+      {
+        "name": "Muted Pill Button",
+        "role": "Tertiary / inactive filter tabs",
+        "description": "Background transparent, text #adadad, border 1px solid #adadad, radius 9999px, padding 0px 12px. Used for unselected tab filters like 'Most popular', 'Top rated'."
+      },
+      {
+        "name": "Inline Underline Link",
+        "role": "Inline text action with no pill shape",
+        "description": "Background transparent, text #141414, border-radius 0px, padding 2px on all sides. No background, no border — purely typographic. Used for secondary in-text navigation."
+      },
+      {
+        "name": "App Screenshot Card",
+        "role": "Primary content unit in the gallery grid",
+        "description": "White background, border 1px solid #ededed, radius 16px, padding 16px. Contains a mobile phone screenshot image (radius 12–16px on the image itself), a 'New' or 'Updated' badge (9999px pill, #141414 fill, white text, 12px font), and app name in saans 14px weight 440 #141414."
+      },
+      {
+        "name": "Category Navigation Menu",
+        "role": "Mega-dropdown showing filter categories",
+        "description": "White background, box-shadow rgba(0,0,0,0.04) 0px 8px 40px 0px, radius 24px, padding 24-32px. Four-column grid layout with category labels in saans 12px weight 400 #adadad uppercase, and category items in saans 16px weight 440 #141414."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky global navigation",
+        "description": "Background #ffffff or #f2f2f2 tint, padding 0 24px, height 60px. Logo left-aligned, nav links (saans 14px weight 440 #141414) center, 'Join for free' filled pill button right. All nav links are plain text — no underline, no border."
+      },
+      {
+        "name": "Filter Pill / Tab Row",
+        "role": "Horizontal scrollable filter bar above the gallery",
+        "description": "Row of pill buttons. Active: background #141414 text #ffffff radius 9999px padding 4px 12px. Inactive: background transparent text #141414 border 1px solid #141414 radius 9999px padding 4px 12px. Font saans 14px weight 440. Gap 8px between pills."
+      },
+      {
+        "name": "Search Input",
+        "role": "App/screen search bar",
+        "description": "Background #f2f2f2, border none, radius 9999px, padding 8px 16px, placeholder text saans 14px #adadad, input text saans 14px #141414. Search icon left-inset, 'Text in Screenshot' toggle pill right-inset."
+      },
+      {
+        "name": "Section Stat Display",
+        "role": "Hero library size counter",
+        "description": "Display number at 56–80px saans weight 652, letter-spacing -0.88px, line-height 1.00, color #141414. Label text below at 16–20px weight 440 #707070. Numbers are the visual centerpiece — no decorative elements."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Every text element on the site. Fractional weights (440, 456, 652) are the signature — they occupy visual mass between Regular and Semibold that no variable-axis font exposes as named stops. Display headlines at 80px/56px run weight 600–652 at lineHeight 1.00–1.13 with negative letter-spacing (-0.011em at large sizes). Body runs 14–16px at weight 400 with tracking +0.013–0.017em for small-size legibility.",
+        "sizes": "12px, 14px, 16px, 20px, 32px, 56px, 80px",
+        "family": "saans",
+        "weight": "400, 440, 456, 600, 652",
+        "lineHeight": "1.00–1.50 (tight 1.00–1.15 at display, looser 1.38–1.50 at body)",
+        "substitute": "Inter Variable or Geist (closest variable-axis fallbacks with comparable optical geometry)",
+        "letterSpacing": "-0.88px at 80px (-0.011em), -0.39px at 56px (-0.007em), +0.21px at 16px (+0.013em), +0.28px at 20px (+0.014em), +0.20px at 12px (+0.017em)",
+        "fontFeatureSettings": "\"calt\" 0, \"dlig\", \"ss07\""
+      }
+    ],
+    "description": "Mobbin runs on pure achromatic restraint — zero chroma across the entire palette, forcing hierarchy through weight, size, and tone alone. The page is white space interrupted by near-black ink (#141414) at display sizes and warm-gray (#707070, #adadad) for secondary text. The custom 'saans' typeface is the single differentiator: fractional weights (440, 456, 652) that don't exist in any system font, creating headline mass that sits between regular and semibold — typography doing the work of color. 9999px pill shapes appear on every interactive element while card content sits on 16-24px rounded rectangles, making buttons feel like badges in a sea of contained thumbnails. The content itself — mobile app screenshots in grayscale cards — IS the visual texture of the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Fractional Weight System",
+        "content": "Saans exposes five weight stops that map to semantic roles:\n- 400: long-form body copy, footnotes\n- 440: UI labels, nav links, card metadata, button text on secondary actions\n- 456: mid-emphasis body, subheadings, feature descriptions\n- 600: headlines, section titles, CTA button text\n- 652: hero display numerics, maximum-emphasis headlines at 56–80px\n\nThe gap between 440 and 456 is subtle but intentional — 456 is used where 440 reads too light on white at 16–20px, but 600 would feel heavy. Never substitute weight 500 or 700 — no stops exist between 456 and 600 in the intended rendering."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are nearly absent — the one exception is a very soft ambient lift (rgba(0,0,0,0.04) 0px 8px 40px) on dropdown menus. Card elevation is expressed entirely through 1px #ededed borders against a white page, not shadow. This flat-border approach keeps the visual field clean enough that app screenshot content reads as the highest-contrast element on every surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "nav",
+            "hero",
+            "list",
+            "heading",
+            "footer"
+          ],
+          "frequency": 2143,
+          "confidence": 1,
+          "prominence": 169171233.91619056,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 194,
+          "confidence": 1,
+          "prominence": 110951619.37988473,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 251413.58328137678,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ededed",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9461052851327489
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 180495.00661285472,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#adadad",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7476281042613462
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 136050.9367006415,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9612714969565158
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 35040,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9080413058049934
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 11024.999155016361,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#c2c2c2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.814063555644682
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5225,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#1d1f27",
+          "oklch": {
+            "c": 0.015583418671045825,
+            "h": 274.14388777135895,
+            "l": 0.24076725365517154
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00008096375963011016,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#f2f2f2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.44,
+          "background": "#ffffff",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.74,
+          "background": "#ededed",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.68,
+          "background": "#f2f2f2",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.04,
+          "background": "#ededed",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.96,
+          "background": "#e0e0e0",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#e0e0e0",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#c2c2c2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#c2c2c2",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.21,
+          "background": "#141414",
+          "foreground": "#adadad"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.32,
+          "background": "#adadad",
+          "foreground": "#1d1f27"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#ffffff",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.42,
+          "background": "#f2f2f2",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#ededed",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.72,
+          "background": "#141414",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#c2c2c2",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.24,
+          "background": "#ffffff",
+          "foreground": "#adadad"
+        },
+        {
+          "level": "fail",
+          "ratio": 2,
+          "background": "#f2f2f2",
+          "foreground": "#adadad"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#ededed",
+          "foreground": "#adadad"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 50
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 51
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 46
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(64, 64, 64, 0.16) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 8px 40px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 15,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 68,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 22,
+          "properties": [
+            "rowGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 70,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "rowGap",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 17,
+          "properties": [
+            "columnGap",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 61,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 104,
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 116,
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 120,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "saans",
+          "source": "custom",
+          "weights": [
+            400,
+            440,
+            456,
+            600,
+            652
+          ],
+          "frequency": 612,
+          "fontFeatureSettings": [
+            "\"calt\" 0, \"dlig\", \"ss07\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "saans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "saans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "saans",
+          "weight": 456,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "saans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "hero",
+            "list",
+            "image",
+            "heading",
+            "footer"
+          ],
+          "frequency": 435,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "saans",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "saans",
+          "weight": 456,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "saans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "saans",
+          "weight": 440,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "saans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "saans",
+          "weight": 652,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "saans",
+          "weight": 652,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "saans",
+          "weight": 652,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f15a0415-868b-46bb-bcee-3d1af5731684.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b764bbc8-84c8-4129-bec5-83dc1fdcd9b6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mobbin design system\",\"item\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81#style-reference\",\"name\":\"Mobbin design system reference\",\"headline\":\"Mobbin design system | Refero Styles\",\"description\":\"Explore Mobbin's light Design design system: Midnight Ink #141414, Pure Canvas #ffffff colors, saans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mobbin\",\"url\":\"https://mobbin.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ef44a995-6745-4dc7-86ab-f7227f108f81#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b764bbc8-84c8-4129-bec5-83dc1fdcd9b6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b764bbc8-84c8-4129-bec5-83dc1fdcd9b6.jpg\",\"caption\":\"Screenshot of Mobbin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b764bbc8-84c8-4129-bec5-83dc1fdcd9b6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mobbin design system\",\"Mobbin website design\",\"Mobbin colors\",\"Mobbin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Midnight Ink\",\"Pure Canvas\",\"Graphite\",\"Ash\",\"saans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mobbin design system\"},{\"@type\":\"Thing\",\"name\":\"Mobbin website design\"},{\"@type\":\"Thing\",\"name\":\"Mobbin colors\"},{\"@type\":\"Thing\",\"name\":\"Mobbin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-04T09:08:41.000Z\",\"dateModified\":\"2026-04-04T09:08:41.000Z\"}]}19:T11bb,<style>\n  :root {\n    --color-midnight-ink: #141414;\n    --color-pure-canvas: #ffffff;\n    --color-graphite: #707070;\n    --color-ash: #adadad;\n    --color-fog: #ededed;\n    --color-mist: #f2f2f2;\n    --color-silver: #c2c2c2;\n    --font-saans: 'Inter', sans-serif;\n    --shadow-subtle: rgba(64, 64, 64, 0.16) 0px 0px 0px 1px inset;\n  }\n\n  .btn-group-wrapper {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 32px;\n    padding: 48px 40px;\n    background: var(--color-pure-canvas);\n    font-family: var(--font-saans);\n    width: 600px;\n    box-sizing: border-box;\n  }\n\n  .btn-group-label {\n    font-size: 12px;\n    font-family: var(--font-saans);\n    font-weight: 400;\n    color: var(--color-ash);\n    letter-spacing: 0.2px;\n    text-transform: uppercase;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n    align-self: flex-start;\n  }\n\n  .btn-row {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 12px;\n    align-items: center;\n    width: 100%;\n  }\n\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 12px 20px;\n    background: var(--color-midnight-ink);\n    color: var(--color-pure-canvas);\n    border: none;\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 15px;\n    font-weight: 600;\n    line-height: 1.4;\n    letter-spacing: 0.1px;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n    transition: box-shadow 0.15s ease;\n  }\n\n  .btn-primary:hover {\n    box-shadow: var(--shadow-subtle);\n  }\n\n  .btn-outlined {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 6px;\n    padding: 12px 20px;\n    background: transparent;\n    color: var(--color-midnight-ink);\n    border: 1px solid var(--color-midnight-ink);\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 15px;\n    font-weight: 440;\n    line-height: 1.4;\n    letter-spacing: 0.1px;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .btn-outlined svg {\n    flex-shrink: 0;\n  }\n\n  .btn-muted {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 8px 14px;\n    background: transparent;\n    color: var(--color-ash);\n    border: 1px solid var(--color-ash);\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.4;\n    letter-spacing: 0.1px;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .btn-active-filter {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 8px 14px;\n    background: var(--color-midnight-ink);\n    color: var(--color-pure-canvas);\n    border: none;\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 14px;\n    font-weight: 440;\n    line-height: 1.4;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .divider {\n    width: 100%;\n    height: 1px;\n    background: var(--color-fog);\n  }\n\n  .section-title {\n    font-size: 11px;\n    font-family: var(--font-saans);\n    font-weight: 400;\n    color: var(--color-silver);\n    letter-spacing: 1px;\n    text-transform: uppercase;\n    align-self: flex-start;\n    margin-bottom: -20px;\n  }\n</style>\n\n<div class=\"btn-group-wrapper\">\n  <span class=\"section-title\">CTA Buttons</span>\n  <div class=\"btn-row\">\n    <a href=\"#\" class=\"btn-primary\">Join for free</a>\n    <a href=\"#\" class=\"btn-outlined\">\n      See our plans\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2.5 7H11.5M7.5 3L11.5 7L7.5 11\" stroke=\"#141414\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n  </div>\n\n  <div class=\"divider\"></div>\n\n  <span class=\"section-title\">Filter Tabs</span>\n  <div class=\"btn-row\">\n    <a href=\"#\" class=\"btn-active-filter\">Latest</a>\n    <a href=\"#\" class=\"btn-outlined\" style=\"font-size:14px;font-weight:440;padding:8px 14px;\">Most popular</a>\n    <a href=\"#\" class=\"btn-muted\">Top rated</a>\n  </div>\n\n  <div class=\"divider\"></div>\n\n  <span class=\"section-title\">Platform Tabs</span>\n  <div class=\"btn-row\">\n    <a href=\"#\" class=\"btn-outlined\" style=\"font-size:14px;font-weight:440;padding:8px 14px;\">iOS</a>\n    <a href=\"#\" class=\"btn-active-filter\">Web</a>\n    <a href=\"#\" class=\"btn-muted\">Android</a>\n  </div>\n</div>1a:T13fe,<style>\n  :root {\n    --color-midnight-ink: #141414;\n    --color-pure-canvas: #ffffff;\n    --color-graphite: #707070;\n    --color-ash: #adadad;\n    --color-fog: #ededed;\n    --color-mist: #f2f2f2;\n    --font-saans: 'Inter', sans-serif;\n  }\n\n  .search-section {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n    padding: 32px 32px;\n    background: var(--color-pure-canvas);\n    font-family: var(--font-saans);\n    width: 600px;\n    box-sizing: border-box;\n  }\n\n  .search-bar {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    background: var(--color-mist);\n    border-radius: 9999px;\n    padding: 10px 16px;\n    width: 100%;\n    box-sizing: border-box;\n  }\n\n  .search-icon {\n    flex-shrink: 0;\n    color: var(--color-ash);\n  }\n\n  .search-input {\n    flex: 1;\n    border: none;\n    background: transparent;\n    outline: none;\n    font-family: var(--font-saans);\n    font-size: 14px;\n    font-weight: 400;\n    color: var(--color-midnight-ink);\n    letter-spacing: 0.13px;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .search-input::placeholder {\n    color: var(--color-ash);\n  }\n\n  .search-toggle {\n    display: inline-flex;\n    align-items: center;\n    gap: 5px;\n    background: var(--color-pure-canvas);\n    border-radius: 9999px;\n    padding: 4px 10px;\n    font-family: var(--font-saans);\n    font-size: 12px;\n    font-weight: 400;\n    color: var(--color-graphite);\n    letter-spacing: 0.2px;\n    flex-shrink: 0;\n    cursor: pointer;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .filter-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-wrap: wrap;\n  }\n\n  .filter-label {\n    font-size: 12px;\n    font-family: var(--font-saans);\n    font-weight: 400;\n    color: var(--color-ash);\n    letter-spacing: 0.2px;\n    margin-right: 4px;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .pill-active {\n    display: inline-flex;\n    align-items: center;\n    padding: 6px 14px;\n    background: var(--color-midnight-ink);\n    color: var(--color-pure-canvas);\n    border: none;\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 13px;\n    font-weight: 440;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .pill-inactive {\n    display: inline-flex;\n    align-items: center;\n    padding: 6px 14px;\n    background: transparent;\n    color: var(--color-midnight-ink);\n    border: 1px solid var(--color-fog);\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 13px;\n    font-weight: 400;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .pill-muted {\n    display: inline-flex;\n    align-items: center;\n    padding: 6px 14px;\n    background: transparent;\n    color: var(--color-ash);\n    border: 1px solid var(--color-fog);\n    border-radius: 9999px;\n    font-family: var(--font-saans);\n    font-size: 13px;\n    font-weight: 400;\n    cursor: pointer;\n    text-decoration: none;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .secondary-nav {\n    display: flex;\n    align-items: center;\n    gap: 0;\n    border-bottom: 1px solid var(--color-fog);\n    padding-bottom: 16px;\n    margin-bottom: 0;\n  }\n\n  .snav-item {\n    font-family: var(--font-saans);\n    font-size: 14px;\n    font-weight: 440;\n    color: var(--color-graphite);\n    text-decoration: none;\n    padding: 6px 14px;\n    border-radius: 9999px;\n    background: transparent;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n    cursor: pointer;\n  }\n\n  .snav-item.active {\n    color: var(--color-midnight-ink);\n    border-bottom: 2px solid var(--color-midnight-ink);\n    border-radius: 0;\n    padding-bottom: 16px;\n    margin-bottom: -17px;\n  }\n</style>\n\n<div class=\"search-section\">\n  <div class=\"secondary-nav\">\n    <a href=\"#\" class=\"snav-item active\">Apps</a>\n    <a href=\"#\" class=\"snav-item\">Sites</a>\n  </div>\n\n  <div class=\"search-bar\">\n    <svg class=\"search-icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"7\" cy=\"7\" r=\"5\" stroke=\"#adadad\" stroke-width=\"1.5\"/>\n      <path d=\"M11 11L14 14\" stroke=\"#adadad\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n    </svg>\n    <input class=\"search-input\" type=\"text\" placeholder=\"Search on iOS...\" />\n    <div class=\"search-toggle\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\">\n        <rect x=\"1\" y=\"2\" width=\"10\" height=\"1.5\" rx=\"0.75\" fill=\"#707070\"/>\n        <rect x=\"1\" y=\"5.25\" width=\"10\" height=\"1.5\" rx=\"0.75\" fill=\"#707070\"/>\n        <rect x=\"1\" y=\"8.5\" width=\"10\" height=\"1.5\" rx=\"0.75\" fill=\"#707070\"/>\n      </svg>\n      Text in Screenshot\n    </div>\n  </div>\n\n  <div class=\"filter-row\">\n    <span class=\"filter-label\">Filter:</span>\n    <a href=\"#\" class=\"pill-active\">Latest</a>\n    <a href=\"#\" class=\"pill-inactive\">Most popular</a>\n    <a href=\"#\" class=\"pill-muted\">Top rated</a>\n    <a href=\"#\" class=\"pill-inactive\">Finance</a>\n    <a href=\"#\" class=\"pill-inactive\">Login</a>\n    <a href=\"#\" class=\"pill-muted\">Onboarding</a>\n  </div>\n</div>1b:T14fe,<style>\n  :root {\n    --color-midnight-ink: #141414;\n    --color-pure-canvas: #ffffff;\n    --color-graphite: #707070;\n    --color-ash: #adadad;\n    --color-fog: #ededed;\n    --color-mist: #f2f2f2;\n    --color-silver: #c2c2c2;\n    --font-saans: 'Inter', sans-serif;\n  }\n\n  .testimonials-wrapper {\n    width: 600px;\n    box-sizing: border-box;\n    padding: 40px 32px;\n    background: var(--color-pure-canvas);\n    font-family: var(--font-saans);\n  }\n\n  .testimonials-heading {\n    font-family: var(--font-saans);\n    font-size: 36px;\n    font-weight: 600;\n    color: var(--color-midnight-ink);\n    line-height: 1.1;\n    letter-spacing: -0.5px;\n    text-align: center;\n    margin: 0 0 32px 0;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .testimonials-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 12px;\n  }\n\n  .tcard {\n    background: var(--color-pure-canvas);\n    border: 1px solid var(--color-fog);\n    border-radius: 20px;\n    padding: 20px;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n  }\n\n  .tcard-header {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n  }\n\n  .tcard-avatar {\n    width: 42px;\n    height: 42px;\n    border-radius: 50%;\n    background: var(--color-mist);\n    flex-shrink: 0;\n    overflow: hidden;\n    position: relative;\n  }\n\n  .tcard-avatar-inner {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: var(--font-saans);\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--color-graphite);\n    background: var(--color-mist);\n  }\n\n  .tcard-badge {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    width: 14px;\n    height: 14px;\n    border-radius: 50%;\n    background: var(--color-silver);\n    border: 1.5px solid var(--color-pure-canvas);\n  }\n\n  .tcard-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 1px;\n  }\n\n  .tcard-name {\n    font-family: var(--font-saans);\n    font-size: 14px;\n    font-weight: 600;\n    color: var(--color-midnight-ink);\n    line-height: 1.3;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .tcard-company {\n    font-family: var(--font-saans);\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-ash);\n    line-height: 1.3;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n  }\n\n  .tcard-body {\n    font-family: var(--font-saans);\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-graphite);\n    line-height: 1.55;\n    letter-spacing: 0.1px;\n    font-feature-settings: 'calt' 0, 'dlig', 'ss07';\n    margin: 0;\n  }\n\n  .avatar-bg-a { background: #d9e8ff; color: #4a6fa5; }\n  .avatar-bg-b { background: #ffe0d9; color: #a5544a; }\n  .avatar-bg-c { background: #d9f5e8; color: #3a7a5a; }\n  .avatar-bg-d { background: #f0d9ff; color: #7a4aa5; }\n</style>\n\n<div class=\"testimonials-wrapper\">\n  <h2 class=\"testimonials-heading\">What our users are saying.</h2>\n\n  <div class=\"testimonials-grid\">\n    <div class=\"tcard\">\n      <div class=\"tcard-header\">\n        <div class=\"tcard-avatar\">\n          <div class=\"tcard-avatar-inner avatar-bg-a\">S</div>\n          <div class=\"tcard-badge\" style=\"background:#c2c2c2;\"></div>\n        </div>\n        <div class=\"tcard-meta\">\n          <span class=\"tcard-name\">Sebastian Speier</span>\n          <span class=\"tcard-company\">Shop</span>\n        </div>\n      </div>\n      <p class=\"tcard-body\">Mobbin is a great resource and it always comes in handy to see what the best practices or standards are for mobile patterns in our current landscape.</p>\n    </div>\n\n    <div class=\"tcard\">\n      <div class=\"tcard-header\">\n        <div class=\"tcard-avatar\">\n          <div class=\"tcard-avatar-inner avatar-bg-b\">M</div>\n          <div class=\"tcard-badge\" style=\"background:#5b8fff;\"></div>\n        </div>\n        <div class=\"tcard-meta\">\n          <span class=\"tcard-name\">Meng To</span>\n          <span class=\"tcard-company\">DesignCode</span>\n        </div>\n      </div>\n      <p class=\"tcard-body\">Mobbin is a game-changer for designers looking to step up their understanding of UX and UI design patterns. It's indispensable in the modern designer's toolbox.</p>\n    </div>\n\n    <div class=\"tcard\">\n      <div class=\"tcard-header\">\n        <div class=\"tcard-avatar\">\n          <div class=\"tcard-avatar-inner avatar-bg-c\">T</div>\n          <div class=\"tcard-badge\" style=\"background:#aaa;\"></div>\n        </div>\n        <div class=\"tcard-meta\">\n          <span class=\"tcard-name\">Taha Hossain</span>\n          <span class=\"tcard-company\">Daybreak</span>\n        </div>\n      </div>\n      <p class=\"tcard-body\">We can't imagine a product design process without Mobbin. The quality, clarity and precision it provides make it just as valuable as it is intuitive.</p>\n    </div>\n\n    <div class=\"tcard\">\n      <div class=\"tcard-header\">\n        <div class=\"tcard-avatar\">\n          <div class=\"tcard-avatar-inner avatar-bg-d\">J</div>\n          <div class=\"tcard-badge\" style=\"background:#e05;\"></div>\n        </div>\n        <div class=\"tcard-meta\">\n          <span class=\"tcard-name\">John Bai</span>\n          <span class=\"tcard-company\">Plaid</span>\n        </div>\n      </div>\n      <p class=\"tcard-body\">All my homies love Mobbin. I finally deleted that folder of 1,866 unorganized screenshots and haven't looked back since. God's work.</p>\n    </div>\n  </div>\n</div>1c:T857,**Quick Color Reference**\n- Text (primary): #141414\n- Text (secondary): #707070\n- Text (tertiary / disabled): #adadad\n- Background: #ffffff\n- Surface / input fill: #f2f2f2\n- Border / divider: #ededed\n- CTA button fill: #141414 → white text\n- Active tab: #141414 fill → white text; Inactive tab: transparent → #141414 border + text\n\n**Example Component Prompts**\n\n1. **Hero Section**: White background. App icon specimen (64px rounded square, 24px radius) centered above headline. Headline 'Discover real-world design inspiration.' at 80px saans weight 652, #141414, letter-spacing -0.88px, line-height 1.00, center-aligned. Subtitle at 20px weight 440, #707070, line-height 1.50, center-aligned, max-width 560px. Two pill CTAs side by side: filled (#141414 bg, white text, 9999px radius, 0px 16px padding) and outlined (transparent bg, #141414 border+text, same radius/padding). Vertical gap between elements: 24px.\n\n2. **Screenshot Gallery Card**: White background, border 1px solid #ededed, radius 16px, padding 16px. Phone screenshot image fills upper portion (radius 12px). Bottom row: app icon (24px circle) + app name saans 14px weight 440 #141414, left-aligned. 'New' badge top-left: #141414 fill, white text, saans 12px weight 600, radius 9999px, padding 2px 8px.\n\n3. **Global Nav Bar**: Background #ffffff, height 60px, padding 0 32px. Left: Mobbin logotype saans weight 600 14px #141414. Center: 'Pricing', 'Awards', 'Log in' in saans 14px weight 440 #141414, gap 32px. Right: 'Join for free' pill button — #141414 bg, white text, saans 14px weight 600, radius 9999px, padding 0 16px.\n\n4. **Testimonial Card**: White bg, border 1px solid #ededed, radius 16px, padding 24px. Top row: avatar circle 36px + name saans 14px weight 600 #141414 + company saans 12px weight 400 #707070. Body text saans 14px weight 400 #141414, line-height 1.50. No shadow.\n\n5. **Filter Pill Row**: Horizontal flex row, gap 8px. Active pill: #141414 bg, #ffffff text, saans 14px weight 440, radius 9999px, padding 4px 12px. Inactive pill: transparent bg, #141414 border 1px + text, same sizing. Muted/disabled variant: #adadad border + text."
+}

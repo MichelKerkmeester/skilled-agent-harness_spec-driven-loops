@@ -1,0 +1,1331 @@
+{
+  "source": "https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92",
+  "uuid": "d3caa7bf-2e2e-489a-845d-5cab274e7a92",
+  "name": "Frontier AI LLMs",
+  "northStar": "warm parchment with a campfire heart",
+  "capturedAt": "2026-07-18T09:52:32.287Z",
+  "meta": {
+    "url": "https://mistral.ai",
+    "siteName": "Frontier AI LLMs",
+    "extractedAt": "2026-06-03T17:45:40.193Z",
+    "durationMs": 36930,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 766,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fffaeb as the default page background — never pure white for full-page canvas; white is reserved for card surfaces that need to lift off the parchment.",
+      "Let the Ember orange (#fa520f) appear only as small functional punctuation: arrow icons, the M-mark, active indicators, and small accent shapes. It should never fill large surfaces except the hero landscape.",
+      "Keep all type at weight 400 — hierarchy comes from size and tracking, not from bolding. Headlines whisper; they do not shout.",
+      "Apply -0.025em letter-spacing at every size; the tracking tightens the system sans into something that feels custom-sculpted even though it ships in the browser.",
+      "Use the warm shadow stack (tinted in rgba(127, 99, 21, 0.x)) for all elevated elements — never use cool gray shadows; they would break the campfire palette.",
+      "Set button radius at 6px and tag radius at 9999px — the contrast between crisp buttons and soft pills is part of the visual vocabulary.",
+      "Stack 12px gaps within groups, 32px between groups, 80-96px between sections. The breathing room is the brand — do not pack it dense."
+    ],
+    "donts": [
+      "Do not introduce new chromatic colors — the system is cream + black + one orange. Any new hue dilutes the signature.",
+      "Do not use weight 600 or 700 — the entire typographic system runs on 400 with size-driven hierarchy; introducing bold breaks the anti-shout aesthetic.",
+      "Do not use cool gray shadows (#000000 with low alpha) — always tint shadows in the warm olive-gold hue (127, 99, 21) to stay on-palette.",
+      "Do not use 9999px radius on buttons or cards — reserve pill radius exclusively for tags, chips, and filter labels.",
+      "Do not fill the Ember orange as a button background — it is a brand accent, not an action color. The only filled button color is #000000.",
+      "Do not use pure #ffffff as a page background — the warm canvas (#fffaeb) is the system's defining surface; white pages feel clinical by comparison.",
+      "Do not stack more than two type sizes in a single block — the hierarchy must read at a glance through size jumps, not through cumulative scaling."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fffaeb",
+        "name": "Parchment Canvas",
+        "role": "Page background, hero body, section fills — warm cream-ivory that replaces the typical white SaaS canvas and gives the system its sunlit, paper-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "role": "Card surfaces, elevated panels, feature blocks, and product mockup shells — pure white that reads brighter than the canvas and creates a subtle paper-on-paper layering",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Midnight Ink",
+        "role": "Primary body text, headings, nav links, button text — near-black rather than pure black keeps text from feeling harsh against the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3c3c3c",
+        "name": "Graphite",
+        "role": "Secondary text, button hover borders, muted supporting copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fa520f",
+        "name": "Ember",
+        "role": "Brand accent — decorative arrow icons, the flag mark, section punctuation, active indicators; vivid orange against warm cream creates urgency without aggression and is the only chromatic voice in the interface",
+        "group": "brand"
+      },
+      {
+        "hex": "#fff0c2",
+        "name": "Soft Butter",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ecdaa2",
+        "name": "Honeycomb",
+        "role": "Warm hairlines, decorative block borders, subtle dividers that need to be visible against the cream canvas without breaking the warm palette",
+        "group": "accent"
+      }
+    ],
+    "layout": "Layout is max-width 1200px centered for all content blocks, with the hero breaking to full-bleed. The page rhythm follows a consistent pattern: (1) full-bleed warm hero with centered-or-left-aligned headline, (2) a white-on-cream partner logo band, (3) split sections alternating between left-text/right-feature-list and left-text/right-product-mockup, (4) 80-96px vertical breathing room between sections, no alternating dark bands — the entire post-hero page stays on the cream canvas. Navigation is a single sticky top bar. The site uses a 2-column split for all mid-page sections; no 3-column card grids. The autonomous-work section introduces a faint background grid pattern (#fff0c2 hairlines) to add texture without breaking the palette. Content arrangement is text-left dominant, with the right column always carrying either a list or a dark product surface.",
+    "imagery": "The site uses three imagery modes in sequence: (1) a full-bleed warm landscape gradient with mountain silhouettes as the hero, establishing the campfire palette; (2) decorative #fff0c2 block-grid patterns that function as abstract texture in feature sections — never photographic, always geometric and soft; (3) dark product UI mockups floating on the cream canvas, showing chat interfaces and file lists as proof of the actual product. There is no lifestyle photography, no people, no stock imagery. The only 'real world' image is the hero landscape, and even that is illustrated/silhouetted, not photographed. Iconography is minimal: the Ember M-mark as a custom flag shape, small right-arrow chevrons for actions, and simple line icons inside the product mockups. Everything else is typographic and structural.",
+    "similar": [
+      {
+        "why": "Both use a restrained palette with one vivid accent, generous whitespace, and tight tracking on headlines — but Mistral swaps Stripe's cool blue gradient for warm cream and amber.",
+        "business": "Stripe"
+      },
+      {
+        "why": "Similar display headlines with tight -0.025em tracking and a single-weight sans approach, though Linear's violet/indigo accent becomes Mistral's ember orange.",
+        "business": "Linear"
+      },
+      {
+        "why": "Both let one strong typographic voice carry the hero with minimal UI chrome, but Mistral's warm parchment canvas replaces Vercel's pure white/grayscale palette.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Both have a paper-like canvas feel and use decorative geometric blocks (Notion's shapes, Mistral's #fff0c2 Tetris grids) as visual texture in feature sections.",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "inputs": "8px",
+        "buttons": "6px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80-96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#fffaeb",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Page background — the warm cream-ivory that replaces white and defines the system's sunlit character"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "level": 1,
+        "purpose": "Product UI shells, elevated feature cards, mockup containers — brighter than the canvas to read as 'lifted off the page'"
+      },
+      {
+        "hex": "#fff0c2",
+        "name": "Butter Tag",
+        "level": 2,
+        "purpose": "Highlight surfaces — selected filter chips, active tags, soft callouts that need a third tonal step"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Dark Application",
+        "level": 3,
+        "purpose": "In-app product mockups and dark UI panels floating on the cream — the structured application surface contrasted against the warm marketing shell"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(127, 99, 21, 0.12) -8px 16px 39px 0px, rgba(127, 99, 21, 0.1) -33px 64px 72px 0px, rgba(127, 99, 21, 0.06) -73px 144px 97px 0px, rgba(127, 99, 21, 0.02) -130px 256px 115px 0px",
+        "element": "Dark Product Mockup Panel"
+      }
+    ],
+    "northStar": "warm parchment with a campfire heart",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "body",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-sm",
+        "size": 38,
+        "lineHeight": 1,
+        "letterSpacing": -0.95
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -1.4
+      },
+      {
+        "role": "display",
+        "size": 82,
+        "lineHeight": 0.95,
+        "letterSpacing": -2.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Sticky top bar on #fffaeb canvas. Left: Ember M-flag logo. Center: nav links (Products, Solutions, Research, Blog, Customers, Company) in 16px Arial weight 400, #1f1f1f, with 24px gaps. Right: ghost 'Contact Sales' button (transparent fill, 1px #1f1f1f border, 6px radius, 16px 20px padding) followed by filled 'Try Studio' button (#000000 fill, white text, 6px radius, 16px 20px padding) with a trailing chevron. Height ~64px. No drop shadow — sits flush on canvas."
+      },
+      {
+        "name": "Hero Landscape Banner",
+        "role": "Above-the-fold brand statement",
+        "description": "Full-bleed 82px display headline 'Frontier AI. In your hands.' in #1f1f1f over an amber landscape gradient. The background uses the multi-stop warm gradient (olive → amber → rust) with mountain silhouette overlays, creating a campfire-at-dusk atmosphere. Subhead at 24px weight 400, body text at 16px. Two ghost text links ('Get in touch', 'Start building') with trailing arrow icons in #fa520f sit at 48-80px below the headline."
+      },
+      {
+        "name": "Enterprise Logo Strip",
+        "role": "Social proof band",
+        "description": "Full-width row of monochrome partner logos (IBM, ASML, HSBC, Cisco, Teleperformance, SAP) on #fffaeb canvas, centered, with equal 48px column gaps. Logos rendered in #1f1f1f only — no brand colors from the partners survive. This neutralization is a deliberate brand-strengthening move: the partners lend credibility but don't compete with the visual identity."
+      },
+      {
+        "name": "Split Feature Section",
+        "role": "Mid-page value proposition",
+        "description": "Two-column layout. Left: large heading at 48px ('Your AI future belongs in your hands.') followed by a decorative block-grid pattern of #fff0c2 rectangles that echo Tetris-like shapes. Right: vertically stacked feature blocks, each with a small Ember arrow icon, a 32px subheading, and 16px body text in #1f1f1f. Feature blocks separated by 32px vertical gaps with no dividers — breathing room does the structuring."
+      },
+      {
+        "name": "Product Capability Section",
+        "role": "Feature deep-dive with UI showcase",
+        "description": "Two-column with heading on the left and stacked dark-mode product mockups on the right. Background is a faint grid pattern (#fff0c2 hairlines at 10% opacity) over the cream canvas. Left side features a 56px heading ('Autonomous work.') with 16px body text, a vertical stack of 3 Soft Butter tag pills (Workflow automation, Enterprise search, Content creation) at 9999px radius, and a filled #000000 CTA button 'Discover Le Chat' with trailing Ember arrow."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action / inline link",
+        "description": "No background, no border. 16px Arial weight 400, #1f1f1f text, with a trailing 12px Ember arrow icon (→). Underline appears on hover. Used for inline actions like 'Get in touch', 'Start building', feature list headers. The arrow becomes the visual anchor — text is just a label for the direction."
+      },
+      {
+        "name": "Filled Dark Button",
+        "role": "Primary action",
+        "description": "#000000 background, #ffffff text, 6px border-radius, 16px vertical / 20px horizontal padding, 16px Arial weight 400. May carry a trailing chevron-down for dropdown variants. Used sparingly: 'Try Studio' in nav, 'Discover Le Chat' in feature sections. The deep black against the warm cream creates the highest contrast on the page — these buttons are anchors, not decorations."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Tertiary action",
+        "description": "Transparent background, 1px #1f1f1f border, 6px radius, 16px/20px padding, 16px Arial weight 400 in #1f1f1f. Hover: fills to #fff0c2. Used for 'Contact Sales' — the gentler sibling that invites conversation without competing with the primary black button beside it."
+      },
+      {
+        "name": "Soft Butter Pill",
+        "role": "Filter, tag, or category label",
+        "description": "#fff0c2 background, #1f1f1f text, 9999px border-radius, 8px vertical / 12px horizontal padding, 14px Arial weight 400. May include a trailing checkmark icon. Used as a row of capability tags in the Autonomous work section. The pill radius contrasts intentionally with the 6px button radius — pills feel soft and categorical, buttons feel precise and actionable."
+      },
+      {
+        "name": "Feature List Item",
+        "role": "Scannable value-proposition block",
+        "description": "Vertical stack: 12px Ember right-arrow icon → 32px heading in #1f1f1f → 16px body text in #1f1f1f. 32px gap between items. No borders or backgrounds — the eyebrow icon is the only chromatic element, and it appears as a small spark of intent at the start of each block."
+      },
+      {
+        "name": "Dark Product Mockup Panel",
+        "role": "Application UI showcase",
+        "description": "Dark #1f1f1f panel with 12px radius, floating on the cream canvas. Contains simulated chat/file list interfaces with white text, colored file-type icons (xlsx in green, pdf in red — but these are product content, not design system tokens). Warm-toned shadow: rgba(127, 99, 21, 0.12) -8px 16px 39px with cascading layers extending to -130px 256px 115px at 0.02 alpha. The olive-gold shadow tint makes the dark panel feel lit by the same firelight as the hero."
+      },
+      {
+        "name": "Decorative Block Grid",
+        "role": "Visual texture in feature sections",
+        "description": "A pattern of #fff0c2 rectangles of varying sizes arranged in a loose grid/Tetris composition, sitting behind or beside heading text. No interactivity, no content. This is the system's playful signature — it turns empty layout space into brand character, the way Stripe uses gradient meshes or Linear uses dotted grids."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text — a single-weight system sans that ships in the browser. The 82px display with -0.025em tracking and 0.95 line-height gives headlines a sculpted, almost condensed feel without actually condensing. Because weight stays at 400, hierarchy comes purely from size and tracking — this is deliberate restraint: no weight-700 shouts, just scale.",
+        "sizes": "14px, 16px, 24px, 32px, 38px, 48px, 56px, 82px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "0.95-1.50",
+        "substitute": "Helvetica, Inter, system-ui",
+        "letterSpacing": "-0.025em across all sizes (tightest at 82px display, normalizing through body sizes)"
+      }
+    ],
+    "description": "Mistral's visual system reads as a sunlit workshop on warm paper — a cream-ivory canvas (#fffaeb) that feels like aged parchment, generously padded with a single vivid orange (#fa520f) doing all the chromatic talking. The hero erupts into a dramatic amber landscape gradient with mountain silhouettes, then everything afterward returns to that quiet, warm, almost tactile quietness. Typography stays in a clean system sans (Arial) with tight -0.025em tracking that tightens the lines into one confident whisper. The system has an unusual visual signature: warm-toned shadows tinted in olive-gold rather than cool gray, giving every elevated element a 'lit from within by firelight' quality. Density is comfortable and confident, not dense — breathing room is part of the brand. The product mockups in the body break into dark UI panels floating on the cream, creating contrast between the paper-warm site shell and the structured dark application surfaces.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Frontier AI LLMs design system\",\"item\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#style-reference\",\"name\":\"Frontier AI LLMs design system reference\",\"headline\":\"Frontier AI LLMs design system | Refero Styles\",\"description\":\"Explore Frontier AI LLMs's light AI design system: Parchment Canvas #fffaeb, Pure Card #ffffff colors, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Frontier AI LLMs\",\"url\":\"https://mistral.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"caption\":\"Screenshot of Frontier AI LLMs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Frontier AI LLMs design system\",\"Frontier AI LLMs website design\",\"Frontier AI LLMs colors\",\"Frontier AI LLMs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment Canvas\",\"Pure Card\",\"Midnight Ink\",\"Carbon\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs design system\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs website design\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs colors\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-30T16:15:55.000Z\",\"dateModified\":\"2026-03-30T16:15:55.000Z\"}]}19:T7d6,**Quick Color Reference**\n- text: #1f1f1f\n- background: #fffaeb\n- surface (card): #ffffff\n- border: #ecdaa2\n- accent: #fa520f (Ember orange — icons, arrows, flag mark only)\n- tag/highlight: #fff0c2\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero section**: Full-bleed warm landscape gradient (amber/rust mountain silhouettes). Headline at 82px Arial weight 400, #1f1f1f, letter-spacing -2.05px, line-height 0.95, text 'Frontier AI. In your hands.' Two ghost text links below at 16px: 'Get in touch →' and 'Start building →', each with a 12px Ember orange arrow.\n\n2. **Product capability section**: Background #fffaeb with a faint #fff0c2 grid pattern overlay. Left column: 56px heading 'Autonomous work.' in #1f1f1f, 16px body text, a vertical stack of three Soft Butter pills (#fff0c2, 9999px radius, 14px text in #1f1f1f, trailing checkmark), then a filled #000000 button 'Discover Le Chat' with trailing Ember arrow. Right column: a dark #1f1f1f product mockup panel with 12px radius, warm-tinted shadow stack (rgba(127, 99, 21, 0.12) etc.), containing white text chat/file list UI.\n\n3. **Feature list block**: Right column of a split section. 32px vertical stack of 4 items. Each item: 12px Ember right-arrow icon, 32px subheading in #1f1f1f, 16px body text in #1f1f1f, 32px gap to next item. No borders, no backgrounds, no card containers.\n\n4. **Top navigation bar**: 64px height on #fffaeb canvas. Left: Ember M-flag mark. Center: nav links (Products ▾, Solutions ▾, Research ▾, Blog ▾, Customers ▾, Company ▾) at 16px Arial weight 400, #1f1f1f, 24px gaps. Right: ghost outline button 'Contact Sales' (transparent, 1px #1f1f1f border, 6px radius) beside filled #000000 button 'Try Studio ▾' (white text, 6px radius).\n\n5. **Ghost outline button** (e.g. Contact Sales): transparent background, 1px #1f1f1f border, 6px radius, 16px vertical / 20px horizontal padding, 16px Arial weight 400 #1f1f1f text. Hover state: background fills to #fff0c2."
+      },
+      {
+        "title": "Shadow Philosophy",
+        "content": "Every shadow in the system is tinted in warm olive-gold (rgba(127, 99, 21, x)) rather than neutral black. The cascading four-layer stack extends from -8px/-130px offsets with alpha descending from 0.12 to 0.02, creating long, low-intensity directional shadows. This is the system's most distinctive technical choice: a dark panel floating on warm paper should cast a shadow that looks like it was lit by the same campfire, not by a fluorescent ceiling."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fffaeb",
+          "oklch": {
+            "c": 0.020402178899566477,
+            "h": 91.5788775549125,
+            "l": 0.9849303702322265
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "image",
+            "heading",
+            "body",
+            "list",
+            "hero",
+            "footer"
+          ],
+          "frequency": 2081,
+          "confidence": 1,
+          "prominence": 153316655.84000918,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "list",
+            "heading",
+            "icon",
+            "body",
+            "hero",
+            "button",
+            "footer"
+          ],
+          "frequency": 362,
+          "confidence": 1,
+          "prominence": 118269881.76722978,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff0c2",
+          "oklch": {
+            "c": 0.0614713281833148,
+            "h": 92.1287281781181,
+            "l": 0.9557475654002695
+          },
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 19052529.908368878,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 262,
+          "confidence": 1,
+          "prominence": 8390284.06047629,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2174400,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ecdaa2",
+          "oklch": {
+            "c": 0.07495958189777145,
+            "h": 92.36821202728326,
+            "l": 0.8897248732186009
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1896603.946528751,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fa520f",
+          "oklch": {
+            "c": 0.2141189351743125,
+            "h": 37.64148681189344,
+            "l": 0.6649251244517521
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "heading"
+          ],
+          "frequency": 122,
+          "confidence": 1,
+          "prominence": 494654.15850542084,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffd900",
+          "oklch": {
+            "c": 0.18330547477903056,
+            "h": 96.18679666676177,
+            "l": 0.8907332881788834
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffae00",
+          "oklch": {
+            "c": 0.17035820353117495,
+            "h": 75.35007034063233,
+            "l": 0.8087845735937439
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff8205",
+          "oklch": {
+            "c": 0.18411434187724626,
+            "h": 53.59782484009241,
+            "l": 0.7350115883230328
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e00400",
+          "oklch": {
+            "c": 0.23283485652154665,
+            "h": 29.397130419654207,
+            "l": 0.5702118635921205
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3c3c3c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.356179254678186
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 18668.91023168307,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06747174151638861,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.13,
+          "background": "#fffaeb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.5,
+          "background": "#fff0c2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#ffffff",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.8,
+          "background": "#fffaeb",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.18,
+          "background": "#ffd900",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#ecdaa2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.52,
+          "background": "#fff0c2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.91,
+          "background": "#ffd900",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.87,
+          "background": "#ecdaa2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.31,
+          "background": "#ffae00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#ffffff",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.57,
+          "background": "#fffaeb",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#fff0c2",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.87,
+          "background": "#ffae00",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ff8205",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.97,
+          "background": "#ffd900",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.94,
+          "background": "#ecdaa2",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#ff8205",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#000000",
+          "foreground": "#fa520f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgba(127, 99, 21, 0.12) -8px 16px 39px 0px, rgba(127, 99, 21, 0.1) -33px 64px 72px 0px, rgba(127, 99, 21, 0.06) -73px 144px 97px 0px, rgba(127, 99, 21, 0.02) -130px 256px 115px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "columnGap|body",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|icon",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|icon",
+            "paddingRight|icon",
+            "paddingBottom|icon",
+            "paddingLeft|icon"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 101,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|icon",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|link",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "button"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|image",
+            "paddingBottom|image",
+            "marginTop|other",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 53,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 38,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image",
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 45,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginBottom|hero",
+            "marginBottom|other",
+            "rowGap|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|hero",
+            "marginLeft|hero"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(255, 240, 194) 1px, rgba(0, 0, 0, 0) 1px)",
+        "colors": [
+          "rgb(255, 240, 194)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 240, 194) 1px, rgba(0, 0, 0, 0) 1px)",
+        "colors": [
+          "rgb(255, 240, 194)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left bottom in oklab, rgb(159, 82, 26) 0%, rgb(211, 129, 47) 50%, rgb(179, 93, 32) 100%)",
+        "colors": [
+          "rgb(159, 82, 26)",
+          "rgb(211, 129, 47)",
+          "rgb(179, 93, 32)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 541,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "list",
+            "body",
+            "hero",
+            "button",
+            "footer"
+          ],
+          "frequency": 307,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "icon",
+            "image"
+          ],
+          "frequency": 90,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 82,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d8c2a4ca-0f2e-48db-8c38-c87ab4364557.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Frontier AI LLMs design system\",\"item\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#style-reference\",\"name\":\"Frontier AI LLMs design system reference\",\"headline\":\"Frontier AI LLMs design system | Refero Styles\",\"description\":\"Explore Frontier AI LLMs's light AI design system: Parchment Canvas #fffaeb, Pure Card #ffffff colors, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Frontier AI LLMs\",\"url\":\"https://mistral.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d3caa7bf-2e2e-489a-845d-5cab274e7a92#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"caption\":\"Screenshot of Frontier AI LLMs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f730bbee-5418-4b62-9183-2587a616184a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Frontier AI LLMs design system\",\"Frontier AI LLMs website design\",\"Frontier AI LLMs colors\",\"Frontier AI LLMs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment Canvas\",\"Pure Card\",\"Midnight Ink\",\"Carbon\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs design system\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs website design\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs colors\"},{\"@type\":\"Thing\",\"name\":\"Frontier AI LLMs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-30T16:15:55.000Z\",\"dateModified\":\"2026-03-30T16:15:55.000Z\"}]}19:T7d6,**Quick Color Reference**\n- text: #1f1f1f\n- background: #fffaeb\n- surface (card): #ffffff\n- border: #ecdaa2\n- accent: #fa520f (Ember orange — icons, arrows, flag mark only)\n- tag/highlight: #fff0c2\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero section**: Full-bleed warm landscape gradient (amber/rust mountain silhouettes). Headline at 82px Arial weight 400, #1f1f1f, letter-spacing -2.05px, line-height 0.95, text 'Frontier AI. In your hands.' Two ghost text links below at 16px: 'Get in touch →' and 'Start building →', each with a 12px Ember orange arrow.\n\n2. **Product capability section**: Background #fffaeb with a faint #fff0c2 grid pattern overlay. Left column: 56px heading 'Autonomous work.' in #1f1f1f, 16px body text, a vertical stack of three Soft Butter pills (#fff0c2, 9999px radius, 14px text in #1f1f1f, trailing checkmark), then a filled #000000 button 'Discover Le Chat' with trailing Ember arrow. Right column: a dark #1f1f1f product mockup panel with 12px radius, warm-tinted shadow stack (rgba(127, 99, 21, 0.12) etc.), containing white text chat/file list UI.\n\n3. **Feature list block**: Right column of a split section. 32px vertical stack of 4 items. Each item: 12px Ember right-arrow icon, 32px subheading in #1f1f1f, 16px body text in #1f1f1f, 32px gap to next item. No borders, no backgrounds, no card containers.\n\n4. **Top navigation bar**: 64px height on #fffaeb canvas. Left: Ember M-flag mark. Center: nav links (Products ▾, Solutions ▾, Research ▾, Blog ▾, Customers ▾, Company ▾) at 16px Arial weight 400, #1f1f1f, 24px gaps. Right: ghost outline button 'Contact Sales' (transparent, 1px #1f1f1f border, 6px radius) beside filled #000000 button 'Try Studio ▾' (white text, 6px radius).\n\n5. **Ghost outline button** (e.g. Contact Sales): transparent background, 1px #1f1f1f border, 6px radius, 16px vertical / 20px horizontal padding, 16px Arial weight 400 #1f1f1f text. Hover state: background fills to #fff0c2."
+}

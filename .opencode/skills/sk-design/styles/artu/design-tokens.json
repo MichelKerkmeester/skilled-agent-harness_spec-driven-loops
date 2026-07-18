@@ -1,0 +1,210 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surface, image plate — the entire site sits on pure white"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — All text, hairline borders, navigation, link underlines, image frames — the sole structural color"
+    },
+    "terminal-lime": {
+      "$value": "#d7ff66",
+      "$type": "color",
+      "$description": "Terminal Lime — Footer band, surface highlight wash, terminal accent — high-chroma green that signals a page boundary the way a colored edge stops a gallery wall"
+    },
+    "signal-red": {
+      "$value": "#ff1313",
+      "$type": "color",
+      "$description": "Signal Red — Decorative border strokes, icon outlines, hairline rules in editorial layouts — used at sub-readable contrast as graphic punctuation, never as body text"
+    }
+  },
+  "font": {
+    "helveticaneuepro": {
+      "$value": "HelveticaNeuePro",
+      "$type": "fontFamily",
+      "$description": "Universal type family for navigation, body, headings, inputs, and footer — the only weight on the site (400), set in all-caps across the nav and footer, with positive tracking 0.0140em–0.0240em that gives the single weight a mechanical, catalog-like cadence"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeuePro",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, image plate"
+    },
+    "footer-band": {
+      "$value": "#d7ff66",
+      "$type": "color",
+      "$description": "Surface level 1: Terminal colored band closing the page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://artu.works",
+      "siteName": "ARTU",
+      "extractedAt": "2026-06-03T20:16:00.450Z",
+      "variant": "extended"
+    }
+  }
+}

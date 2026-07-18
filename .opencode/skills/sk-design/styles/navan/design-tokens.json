@@ -1,0 +1,642 @@
+{
+  "color": {
+    "deep-iris": {
+      "$value": "#15002c",
+      "$type": "color",
+      "$description": "Deep Iris — Footer background, primary text on light surfaces, heading color, dark card surfaces — the near-black violet that carries Navan's brand weight across all dark regions and high-emphasis text"
+    },
+    "vivid-iris": {
+      "$value": "#6307f8",
+      "$type": "color",
+      "$description": "Vivid Iris — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "iris-mist": {
+      "$value": "#e1e2fe",
+      "$type": "color",
+      "$description": "Iris Mist — Soft highlight wash, light accent surface, decorative tag fill — the barely-there violet tint that signals brand presence on neutral cards"
+    },
+    "iris-glow": {
+      "$value": "#7c51fa",
+      "$type": "color",
+      "$description": "Iris Glow — Mid-stop in atmospheric brand gradients — bridges deep iris and rose highlights in hero washes; Horizontal brand gradient wash — violet to rose light streak used as a decorative band"
+    },
+    "cinder": {
+      "$value": "#060000",
+      "$type": "color",
+      "$description": "Cinder — Primary text, icon strokes, dark UI text — the body and heading ink"
+    },
+    "graphite": {
+      "$value": "#5a5a72",
+      "$type": "color",
+      "$description": "Graphite — Muted body text, secondary borders, supporting icon strokes"
+    },
+    "fog": {
+      "$value": "#8d8da5",
+      "$type": "color",
+      "$description": "Fog — Tertiary text, caption labels, inactive placeholders"
+    },
+    "smoke": {
+      "$value": "#70708f",
+      "$type": "color",
+      "$description": "Smoke — Secondary text, metadata, low-emphasis labels"
+    },
+    "mist-border": {
+      "$value": "#c6c6d2",
+      "$type": "color",
+      "$description": "Mist Border — Hairline dividers, card borders, input borders — the universal separator"
+    },
+    "canvas-tint": {
+      "$value": "#f1f1f9",
+      "$type": "color",
+      "$description": "Canvas Tint — Page background, nav background, surface wash — the cool off-white that sets the overall canvas"
+    },
+    "surface-white": {
+      "$value": "#f8f8fd",
+      "$type": "color",
+      "$description": "Surface White — Elevated card surface, subtle panel background — sits one step above canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, button text, inverted text on dark fills, badge text"
+    },
+    "jet": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Jet — High-contrast text, icon fills, logo wordmark"
+    },
+    "violet-twilight": {
+      "$value": "#410566",
+      "$type": "color",
+      "$description": "Violet Twilight — Deep gradient origin for atmospheric hero washes — the darkest stop in radial brand gradients"
+    }
+  },
+  "font": {
+    "neue-hass-grotesk-text": {
+      "$value": "Neue Hass Grotesk Text",
+      "$type": "fontFamily",
+      "$description": "Body, nav, buttons, badges, cards — the workhorse grotesque that carries 90% of the interface. Weights stay light-to-medium (300–500), never bold, keeping the voice conversational rather than corporate"
+    },
+    "neue-haas-grotesk-display-pro": {
+      "$value": "Neue Haas Grotesk Display Pro",
+      "$type": "fontFamily",
+      "$description": "Display, nav emphasis, large UI — the 135px weight-300 headline size is the signature: an anti-convention whisper-weight display that signals premium restraint. 0.04em positive tracking on display sizes gives airy breathing room"
+    },
+    "sanomat": {
+      "$value": "Sanomat",
+      "$type": "fontFamily",
+      "$description": "Editorial headlines and section titles — a serif/display face that introduces warmth and a magazine-cover quality. Used at 30–45px with tight 1.0–1.2 leading, it contrasts the grotesque body and signals premium content"
+    },
+    "neue-hass-grotesk-display": {
+      "$value": "Neue Hass Grotesk Display",
+      "$type": "fontFamily",
+      "$description": "Neue Hass Grotesk Display — detected in extracted data but not described by AI"
+    },
+    "karla": {
+      "$value": "Karla",
+      "$type": "fontFamily",
+      "$description": "Karla — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Display",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 3.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Karla",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Neue Hass Grotesk Text",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 23px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 2.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "42px",
+        "fontWeight": 600,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "45px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 45px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Sanomat",
+        "fontSize": "45px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display Pro",
+        "fontSize": "135px",
+        "fontWeight": 500,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 135px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f1f1f9",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — the cool off-white that everything else sits on"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, product mockups, elevated panels"
+    },
+    "surface-lift": {
+      "$value": "#f8f8fd",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle secondary surface, hover wash, input fill"
+    },
+    "iris-mist": {
+      "$value": "#e1e2fe",
+      "$type": "color",
+      "$description": "Surface level 4: Light brand-tinted highlight surface for feature cards and tags"
+    },
+    "footer-iris": {
+      "$value": "#15002c",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed dark footer band — the brand's destination surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://navan.com",
+      "siteName": "Navan",
+      "extractedAt": "2026-06-03T17:52:13.655Z",
+      "variant": "extended"
+    }
+  }
+}

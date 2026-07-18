@@ -1,0 +1,337 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#0f0e0b",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, icon strokes, nav outlines — the near-black that carries 90% of all foreground weight. Not pure black: a warm brown-black that feels printed, not screened"
+    },
+    "bone": {
+      "$value": "#f9f9f0",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, nav-pill fill, button text on dark — a warm off-white with the faintest yellow-green cast that matches the sage and sand sections without competing"
+    },
+    "ash": {
+      "$value": "#6d6c67",
+      "$type": "color",
+      "$description": "Ash — Secondary text, subtle borders, muted metadata — a mid neutral that sits between Ink and the page; used when primary text would be too heavy"
+    },
+    "charcoal": {
+      "$value": "#21201c",
+      "$type": "color",
+      "$description": "Charcoal — Filled CTA buttons, active markers — slightly warmer than Ink; the button fill that reads as a dense matte stamp rather than a flat black"
+    },
+    "graphite": {
+      "$value": "#555450",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, low-emphasis borders — for labels and helper text that should recede further than Ash"
+    },
+    "mist": {
+      "$value": "#84837d",
+      "$type": "color",
+      "$description": "Mist — Heading borders, de-emphasized dividers — the lightest neutral that still registers as a line on Bone"
+    },
+    "deep-earth": {
+      "$value": "#3d3b34",
+      "$type": "color",
+      "$description": "Deep Earth — Alternate surface for code-adjacent panels and inset blocks — a warm dark that bridges Ink and the mid neutrals"
+    },
+    "soft-sand": {
+      "$value": "#ccc5a3",
+      "$type": "color",
+      "$description": "Soft Sand — Secondary section background, 1px sand-colored hairline dividers, striped-pattern accent — the warm neutral that lives between the chromatic sections and true gray"
+    },
+    "warm-stone": {
+      "$value": "#9d937c",
+      "$type": "color",
+      "$description": "Warm Stone — Khaki section background, tonal counterpoint to Sage — the muted olive-khaki that fills body-text sections and grounds the palette's middle register"
+    },
+    "sage": {
+      "$value": "#d5fad3",
+      "$type": "color",
+      "$description": "Sage — Hero section background, signature accent — a desaturated mint that signals freshness without being loud; the only color bold enough to hold a 120px headline"
+    },
+    "powder-blue": {
+      "$value": "#badbee",
+      "$type": "color",
+      "$description": "Powder Blue — Code-panel background, striped-pattern accent, 1px blue hairlines — the cool counterweight to all the warm earth tones; appears wherever monospace code or technical data lives"
+    }
+  },
+  "font": {
+    "season-serif": {
+      "$value": "Season Serif",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — display, headings, body, nav, buttons, footer, code labels. Custom variable serif with fractional weights (no standard 300/400/700 scale) that allow whisper-light display at 335–340 and confident body at 420–444."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Akkurat Mono-dea851e1d19028b9",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Akkurat Mono-dea851e1d19028b9",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "16px",
+        "fontWeight": 358,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "16px",
+        "fontWeight": 358,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "18px",
+        "fontWeight": 358,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "20px",
+        "fontWeight": 444,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "24px",
+        "fontWeight": 420,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "55px",
+        "fontWeight": 420,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "55px",
+        "fontWeight": 420,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 55px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "90px",
+        "fontWeight": 335,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 90px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "90px",
+        "fontWeight": 340,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 90px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "90px",
+        "fontWeight": 363,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 90px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Season Serif-4de1940e3ab1f834",
+        "fontSize": "120px",
+        "fontWeight": 335,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 120px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(15, 14, 11) -1px 0px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(204, 197, 163) -1px 0px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(186, 219, 238) -1px 0px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f9f9f0",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background between colored sections"
+    },
+    "sage-field": {
+      "$value": "#d5fad3",
+      "$type": "color",
+      "$description": "Surface level 1: Hero section background — carries the largest display type"
+    },
+    "warm-stone-field": {
+      "$value": "#9d937c",
+      "$type": "color",
+      "$description": "Surface level 2: Body-copy sections, editorial prose blocks"
+    },
+    "soft-sand-field": {
+      "$value": "#ccc5a3",
+      "$type": "color",
+      "$description": "Surface level 3: Tonal break sections, striped-pattern panels"
+    },
+    "powder-blue-field": {
+      "$value": "#badbee",
+      "$type": "color",
+      "$description": "Surface level 4: Code display panels, technical data surfaces"
+    },
+    "charcoal-stamp": {
+      "$value": "#21201c",
+      "$type": "color",
+      "$description": "Surface level 5: Filled button surface, inverted modal background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aptosnetwork.com",
+      "siteName": "Aptos Network",
+      "extractedAt": "2026-06-03T20:32:43.159Z",
+      "variant": "extended"
+    }
+  }
+}

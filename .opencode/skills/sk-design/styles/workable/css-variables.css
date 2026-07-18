@@ -1,0 +1,78 @@
+:root {
+  /* Colors */
+  --color-workable-ink: #0f161e;
+  --color-page-canvas: #fbfaf8;
+  --color-pure-white: #ffffff;
+  --color-body-graphite: #3d3e45;
+  --color-muted-slate: #6f7073;
+  --color-hairline-gray: #efefef;
+  --color-forest-teal: #004038;
+  --color-midnight-violet: #1d0953;
+  --color-lavender-wash: #e5d3f7;
+  --color-peach-cream: #fef1e1;
+  --color-butter-yellow: #fde8ce;
+  --color-periwinkle: #c6c4f4;
+  --color-sky-tint: #bee9f4;
+  --color-agent-spectrum: #00f5dc;
+  --gradient-agent-spectrum: linear-gradient(90deg, rgb(0,245,220), rgb(213,255,77) 48.5%, rgb(192,135,255));
+
+  /* Typography — Font Families */
+  --font-proxima-nova: 'Proxima Nova', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.67;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.38;
+  --text-body: 18px;
+  --leading-body: 1.56;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.5;
+  --text-heading: 32px;
+  --leading-heading: 1.13;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1.14;
+  --text-display: 72px;
+  --leading-display: 1.22;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-88: 88px;
+  --spacing-104: 104px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 32px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-pills: 16px;
+  --radius-images: 16px;
+  --radius-buttons: 8px;
+
+  /* Surfaces */
+  --surface-page-canvas: #fbfaf8;
+  --surface-white-card: #ffffff;
+  --surface-lavender-surface: #e5d3f7;
+  --surface-peach-surface: #fef1e1;
+  --surface-butter-surface: #fde8ce;
+}

@@ -1,0 +1,988 @@
+{
+  "source": "https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475",
+  "uuid": "3389358b-68b2-4fca-82a8-52c07b3a3475",
+  "name": "Becklyn",
+  "northStar": "Obsidian gallery with italic poetry — a black-walled room where one serif sentence glows and everything else is silence.",
+  "capturedAt": "2026-07-18T08:41:23.962Z",
+  "meta": {
+    "url": "https://becklyn.com",
+    "siteName": "Becklyn",
+    "extractedAt": "2026-06-03T22:03:28.258Z",
+    "durationMs": 28547,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 518,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cambon italic at 68–92px for all hero/display headings — the italic serif is the brand's voice, not a stylistic option",
+      "Set all interactive elements (buttons, nav, tags) to border-radius: 100px — pill shapes are non-negotiable",
+      "Build elevation through surface lightness (#1a1a1a → #3b3b3b → #ffffff), never through box-shadow",
+      "Keep letter-spacing aggressively negative at display sizes: -5.4px at 92px, -2.9px at 68px, -1.8px at 42px",
+      "Use #1a1a1a as the canvas — never #000000, the slight warmth is intentional",
+      "Reserve the spectrum gradient exclusively for the brand mark and identity moments — never apply it to buttons, icons, or functional UI",
+      "Let body text use UniversalSans at 20–22px with 1.20 line-height for comfortable reading rhythm"
+    ],
+    "donts": [
+      "Don't add drop shadows, glow effects, or blur-based elevation to any element",
+      "Don't use the spectrum gradient as a button fill, link color, or interactive state",
+      "Don't introduce additional font weights — the system stays at weight 400 across both families; hierarchy comes from size and tracking",
+      "Don't use pure black (#000000) or pure white on white — the warmth of #1a1a1a and the clarity of #ffffff are the tuned values",
+      "Don't fill buttons with solid white — the primary CTA treatment is outlined/ghost, not filled",
+      "Don't use color for emphasis — emphasis comes from size, tracking, and the Cambon/UniversalSans contrast",
+      "Don't add decorative imagery, patterns, or background textures — the canvas should remain flat and uninterrupted"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, icon strokes, hairline borders, inverted pill highlights. The single light color in the system — it does all the foreground work against the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Obsidian",
+        "role": "Page canvas, section backgrounds, inverse surface for pills and inputs. Never pure #000 — the slight warmth keeps the surface from feeling harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Lifted Charcoal",
+        "role": "Card and elevated panel surfaces. One step lighter than the canvas, giving containment without resorting to shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Smoke",
+        "role": "Muted helper text, inactive nav labels, secondary dividers, tag outlines. Quiet enough to recede behind the white content layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#004eff",
+        "name": "Spectrum Beam",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand",
+        "gradient": "linear-gradient(200deg, #004eff 0%, #710966 75%, #8e2e45 100%)"
+      }
+    ],
+    "layout": "Max-width 1200px centered container, with content sometimes bleeding to full viewport width for display headings. The hero is a centered or left-aligned typographic statement — no image, no video, just a large italic serif sentence occupying the first viewport. Sections follow a single-column or two-column text+card rhythm with 80px vertical gaps. A floating bottom navigation bar (pill-shaped, centered, fixed) is the only persistent UI element. The top header is minimal — just a tagline and brand mark with no navigation. The overall feel is a vertical scroll through a printed portfolio, with generous whitespace and no decorative chrome.",
+    "imagery": "Imagery is sparse and editorial. Project previews appear as contained cards with sharp or slightly rounded edges, sitting on the lifted charcoal surface. The tone is product-focused — screenshots and visual case studies rather than lifestyle photography. No full-bleed hero images; the hero is typographic. The only chromatic imagery is the gradient brand mark itself. The overall density is text-dominant, with images supporting rather than leading.",
+    "similar": [
+      {
+        "why": "Same dark-canvas agency aesthetic with large editorial typography and minimal chromatic palette",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Near-achromatic dark portfolio sites that let one typographic moment carry the entire hero",
+        "business": "Resn"
+      },
+      {
+        "why": "Dark-mode creative agency layouts with pill-shaped navigation and restrained color usage",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Editorial dark layouts with serif display type and monochrome-first component systems",
+        "business": "Instrument"
+      },
+      {
+        "why": "Agency sites that use a single vivid brand color against an otherwise black-and-white canvas",
+        "business": "&Walsh"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "10px",
+        "buttons": "100px",
+        "navPills": "100px",
+        "decorative": "31px",
+        "largeCards": "20px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#1a1a1a",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, hero backgrounds, section backdrops"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Case study cards, content panels, elevated blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverted Pill",
+        "level": 2,
+        "purpose": "Active nav states, selected filters, the highlighted 'Intro' chip"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Obsidian gallery with italic poetry — a black-walled room where one serif sentence glows and everything else is silence.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.46
+      },
+      {
+        "role": "body-lg",
+        "size": 22,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.53
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.76
+      },
+      {
+        "role": "heading-lg",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": -2.92
+      },
+      {
+        "role": "display",
+        "size": 92,
+        "lineHeight": 1,
+        "letterSpacing": -5.43
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Bottom Navigation",
+        "role": "Primary site navigation — a fixed pill bar at the bottom of the viewport",
+        "description": "Pill-shaped bar (border-radius: 100px) with #1a1a1a fill, sitting on the dark canvas. Contains nav labels in UniversalSans 20px weight 400 in #606060 (inactive) or #ffffff (active). Background is semi-opaque black with subtle backdrop blur. Vertically centered, horizontally centered, positioned with ~24px bottom margin from viewport edge."
+      },
+      {
+        "name": "Active Nav Chip",
+        "role": "Indicates the current page in the floating navigation",
+        "description": "The active nav item gets a white pill background (border-radius: 100px) with #1a1a1a text — a complete inversion of the bar's default state. Padding ~10px 20px. In the screenshots, 'Intro' is shown in this active state."
+      },
+      {
+        "name": "Hero Display Heading",
+        "role": "The marquee editorial statement on the landing page",
+        "description": "Cambon weight 400 in italic at 68–92px, line-height 1.00, letter-spacing -0.055em to -0.059em. Color #ffffff at ~40–60% opacity (appears muted against the dark canvas). Occupies the full viewport width, often bleeding off both edges. This is the visual signature — large, italic, and unmissable."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Content cards in the 'Cases — Einblicke & Ergebnisse' section",
+        "description": "Rounded card on #3b3b3b surface, border-radius 10–20px, padding 20px. Contains a project preview image and label text in UniversalSans 12–20px. No drop shadows — the surface lightness is the only elevation signal."
+      },
+      {
+        "name": "Brand Gradient Mark",
+        "role": "The Becklyn logo / brand identity element",
+        "description": "The wordmark or icon mark filled with the spectrum gradient (linear-gradient(200deg, #004eff 0%, #710966 75%, #8e2e45 100%)). Sits in the top-right corner of the header. The only chromatic moment on the page — appears as a small, concentrated splash of color against the achromatic field."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form descriptive text",
+        "description": "UniversalSans weight 400 at 20–22px, line-height 1.20, letter-spacing -0.023em. Color #ffffff at full or slightly reduced opacity. Generous line-height creates breathing room. Paragraphs span ~600–700px max width within the 1200px page container."
+      },
+      {
+        "name": "Muted Secondary Text",
+        "role": "Helper labels, metadata, inactive nav items, tag text",
+        "description": "UniversalSans 12–20px weight 400, color #606060. Used for navigation labels not in the active state, timestamps, filter labels, and any copy that supports but doesn't compete with the primary content layer."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separators and content boundaries",
+        "description": "1px border in #ffffff at ~10–20% opacity, or #606060 at full opacity. No horizontal rules with heavy weight — dividers are whisper-thin, barely visible. Often implied by whitespace alone."
+      },
+      {
+        "name": "Top Header Bar",
+        "role": "Minimal page header with tagline and brand mark",
+        "description": "Sits at the very top of the page with the tagline 'Exploring Digital Future. Together.' in UniversalSans on the left and the gradient brand mark on the right. No background fill — the text floats directly on the #1a1a1a canvas. Padding ~20px vertical."
+      },
+      {
+        "name": "Tag / Filter Pill",
+        "role": "Category labels and interactive filters",
+        "description": "Pill shape (border-radius: 100px) with a 1px border in #ffffff or #606060, padding 6px 16px. Text in UniversalSans 12–14px, color matching the border. No fill — these are outlined chips, not solid buttons. Used for project categories, skill tags, or filter controls."
+      },
+      {
+        "name": "CTA Button (Outlined)",
+        "role": "Primary call-to-action — notably outlined, not filled",
+        "description": "Pill shape (border-radius: 100px) with 1px solid #ffffff border, transparent or #1a1a1a fill. Text in UniversalSans 16–20px weight 400, color #ffffff. Padding 12px 24px. The outlined treatment is deliberate — this is a gallery, not a shopping cart. Actions whisper; they don't shout."
+      },
+      {
+        "name": "More Link",
+        "role": "Inline link with arrow indicator leading to additional content",
+        "description": "UniversalSans 20px weight 400 in #ffffff or #606060, followed by a small arrow glyph. No underline. Used for 'Mehr über uns' and similar navigational text within body copy. Padding-bottom: 2px for precise vertical alignment."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Sub-section titles within page content",
+        "description": "UniversalSans weight 400 at 36–42px, line-height 1.05, letter-spacing -0.025em to -0.042em. Color #ffffff. Used for headings like 'Cases — Einblicke & Ergebnisse'. No serif, no italic — these are functional markers, not editorial moments."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headings. Used in italic for hero statements like 'Wir transformieren' / 'Experiences' at 68–92px. The italic cut is the brand's signature — a serif whisper that anchors the otherwise typographically quiet page. At body sizes (22px) it appears for pull quotes and lede paragraphs. Substitute: Editorial New, Source Serif 4, or Tiempos Text.",
+        "sizes": "22px, 68px, 92px",
+        "family": "Cambon",
+        "weight": "400",
+        "lineHeight": "1.00–1.15",
+        "substitute": "Editorial New",
+        "letterSpacing": "-0.013em at 22px, -0.018em at 68px, -0.055em at 92px"
+      },
+      {
+        "role": "Body copy, UI labels, navigation, buttons, and supplementary headings. The workhorse — appears at 20px for paragraph text, 22px for slightly emphasized body, 36–42px for sub-section headings, and 68–92px for sans-serif display moments that contrast with Cambon's serif headlines. Weight stays at 400 throughout; hierarchy is built through size and tracking, not weight. Substitute: Inter, Söhne, or Suisse Int'l.",
+        "sizes": "12px, 20px, 22px, 36px, 42px, 68px, 92px",
+        "family": "UniversalSans",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter",
+        "letterSpacing": "-0.014em at 12px, -0.023em at 20px, -0.024em at 22px, -0.025em at 36px, -0.042em at 42px, -0.043em at 68px, -0.059em at 92px"
+      }
+    ],
+    "description": "Becklyn operates as a near-monochrome dark gallery: an obsidian canvas with a single spectrum beam of color used as identity punctuation. The interface is almost entirely achromatic — white type on near-black, a slightly lifted charcoal for cards, mid-gray for hairline rules and muted copy — so the typography carries the entire expressive load. Headlines lean on Cambon's italic serif cut at hero scale, paired against UniversalSans's quiet neutral geometry for body and UI. Components are deliberately thin: pill-shaped controls, hairline borders, no heavy elevation. A vivid blue-to-plum-to-crimson gradient surfaces only as a brand mark, not as a functional button or accent. The mood is editorial and restrained — closer to a print portfolio than a SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Becklyn design system\",\"item\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#style-reference\",\"name\":\"Becklyn design system reference\",\"headline\":\"Becklyn design system | Refero Styles\",\"description\":\"Explore Becklyn's dark Agency design system: Bone White #ffffff, Obsidian #1a1a1a colors, Cambon, UniversalSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Becklyn\",\"url\":\"https://becklyn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"caption\":\"Screenshot of Becklyn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Becklyn design system\",\"Becklyn website design\",\"Becklyn colors\",\"Becklyn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian\",\"Lifted Charcoal\",\"Smoke\",\"Cambon\",\"UniversalSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Becklyn design system\"},{\"@type\":\"Thing\",\"name\":\"Becklyn website design\"},{\"@type\":\"Thing\",\"name\":\"Becklyn colors\"},{\"@type\":\"Thing\",\"name\":\"Becklyn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:41:38.678Z\",\"dateModified\":\"2026-04-30T01:41:38.678Z\"}]}19:T888,## Quick Color Reference\n- Canvas / background: #1a1a1a\n- Card surface: #3b3b3b\n- Primary text / icons: #ffffff\n- Muted text / borders: #606060\n- Brand gradient: linear-gradient(200deg, #004eff 0%, #710966 75%, #8e2e45 100%)\n- primary action: no distinct CTA color\n\n## 3–5 Example Component Prompts\n\n1. **Floating Bottom Navigation Bar**\nA pill-shaped fixed bar at the bottom of the viewport, centered horizontally. Background #1a1a1a with subtle backdrop blur, border-radius: 100px, padding 8px. Contains 5 nav labels in UniversalSans 20px weight 400, color #606060. The active item ('Intro') is a white pill (border-radius: 100px, padding 10px 20px) with #1a1a1a text — a full color inversion.\n\n2. **Hero Display Heading**\nA full-width typographic statement. Cambon weight 400, italic, 92px, line-height 1.00, letter-spacing -5.43px. Color #ffffff at 50% opacity. The text bleeds to the edges of the viewport. No image, no background — just the sentence on the #1a1a1a canvas.\n\n3. **Case Study Card**\nA content card with #3b3b3b background, border-radius 10px, padding 20px. Contains a 16:9 project preview image at the top (rounded to 8px) and a label below in UniversalSans 12px weight 400, color #606060. No shadow. The card sits within the 1200px max-width container with a 20px gap between cards in a 2-column grid.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\nA pill-shaped button, border-radius: 100px, border 1px solid #ffffff, background transparent. Text: UniversalSans 18px weight 400, color #ffffff, padding 14px 28px. No fill on hover — instead the background becomes #ffffff with #1a1a1a text (full inversion). The arrow glyph after the label is a simple › character.\n\n5. **Section Heading + Body Block**\nA left-aligned content block within the 1200px container. Heading: UniversalSans 42px weight 400, color #ffffff, letter-spacing -1.76px, line-height 1.05, margin-bottom 24px. Body: UniversalSans 20px weight 400, color #ffffff at 80% opacity, line-height 1.20, max-width 680px. Below the block, a 'Mehr über uns' link in #606060, 20px, with a right-arrow indicator."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids drop shadows. Elevation is expressed exclusively through surface lightness — the canvas at #1a1a1a lifts to #3b3b3b for cards, and inverts to #ffffff for active/selected states. This creates depth through contrast, not blur, keeping the visual language crisp and architectural rather than soft and skeuomorphic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "card",
+            "body",
+            "heading",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2413,
+          "confidence": 1,
+          "prominence": 137541932.89629677,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 79,
+            "card/color": 12,
+            "icon/color": 2,
+            "link/color": 37,
+            "list/color": 8,
+            "other/fill": 1,
+            "image/color": 50,
+            "other/color": 266,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 6,
+            "heading/color": 23,
+            "body/borderColor": 316,
+            "card/borderColor": 48,
+            "icon/borderColor": 8,
+            "link/borderColor": 148,
+            "list/borderColor": 24,
+            "image/borderColor": 200,
+            "other/borderColor": 1064,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 92,
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "card"
+          ],
+          "frequency": 118,
+          "confidence": 1,
+          "prominence": 84391638.62249118,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 2,
+            "other/color": 12,
+            "button/color": 2,
+            "body/borderColor": 12,
+            "link/borderColor": 8,
+            "other/borderColor": 48,
+            "button/borderColor": 8,
+            "body/backgroundColor": 3,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 19
+          }
+        },
+        {
+          "hex": "#3b3b3b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3523247402852869
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 4569767.046659023,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 11,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4890564485258221
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 3640000.8744434067,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 9,
+            "list/borderColor": 8,
+            "other/borderColor": 36
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#1a1a1a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#3b3b3b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#ffffff",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.77,
+          "background": "#1a1a1a",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#3b3b3b",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.55,
+          "background": "#3b3b3b",
+          "foreground": "#1a1a1a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 66,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 93,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "paddingTop|card",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(200deg, rgb(0, 78, 255) 0%, rgb(113, 9, 102) 75%, rgb(142, 46, 69) 100%)",
+        "colors": [
+          "rgb(0, 78, 255)",
+          "rgb(113, 9, 102)",
+          "rgb(142, 46, 69)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "UniversalSans-500",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 495,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cambon",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "card",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 405,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Cambon",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.055,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.059,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Cambon",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 92,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 92,
+          "family": "Cambon",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 92,
+          "family": "UniversalSans-500",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.043,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dac11f38-4133-44a4-82b0-d4a0b20a8098.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Becklyn design system\",\"item\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#style-reference\",\"name\":\"Becklyn design system reference\",\"headline\":\"Becklyn design system | Refero Styles\",\"description\":\"Explore Becklyn's dark Agency design system: Bone White #ffffff, Obsidian #1a1a1a colors, Cambon, UniversalSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Becklyn\",\"url\":\"https://becklyn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3389358b-68b2-4fca-82a8-52c07b3a3475#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"caption\":\"Screenshot of Becklyn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fb227a80-e38c-4ad2-a0d3-747728649683.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Becklyn design system\",\"Becklyn website design\",\"Becklyn colors\",\"Becklyn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian\",\"Lifted Charcoal\",\"Smoke\",\"Cambon\",\"UniversalSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Becklyn design system\"},{\"@type\":\"Thing\",\"name\":\"Becklyn website design\"},{\"@type\":\"Thing\",\"name\":\"Becklyn colors\"},{\"@type\":\"Thing\",\"name\":\"Becklyn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:41:38.678Z\",\"dateModified\":\"2026-04-30T01:41:38.678Z\"}]}19:T888,## Quick Color Reference\n- Canvas / background: #1a1a1a\n- Card surface: #3b3b3b\n- Primary text / icons: #ffffff\n- Muted text / borders: #606060\n- Brand gradient: linear-gradient(200deg, #004eff 0%, #710966 75%, #8e2e45 100%)\n- primary action: no distinct CTA color\n\n## 3–5 Example Component Prompts\n\n1. **Floating Bottom Navigation Bar**\nA pill-shaped fixed bar at the bottom of the viewport, centered horizontally. Background #1a1a1a with subtle backdrop blur, border-radius: 100px, padding 8px. Contains 5 nav labels in UniversalSans 20px weight 400, color #606060. The active item ('Intro') is a white pill (border-radius: 100px, padding 10px 20px) with #1a1a1a text — a full color inversion.\n\n2. **Hero Display Heading**\nA full-width typographic statement. Cambon weight 400, italic, 92px, line-height 1.00, letter-spacing -5.43px. Color #ffffff at 50% opacity. The text bleeds to the edges of the viewport. No image, no background — just the sentence on the #1a1a1a canvas.\n\n3. **Case Study Card**\nA content card with #3b3b3b background, border-radius 10px, padding 20px. Contains a 16:9 project preview image at the top (rounded to 8px) and a label below in UniversalSans 12px weight 400, color #606060. No shadow. The card sits within the 1200px max-width container with a 20px gap between cards in a 2-column grid.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\nA pill-shaped button, border-radius: 100px, border 1px solid #ffffff, background transparent. Text: UniversalSans 18px weight 400, color #ffffff, padding 14px 28px. No fill on hover — instead the background becomes #ffffff with #1a1a1a text (full inversion). The arrow glyph after the label is a simple › character.\n\n5. **Section Heading + Body Block**\nA left-aligned content block within the 1200px container. Heading: UniversalSans 42px weight 400, color #ffffff, letter-spacing -1.76px, line-height 1.05, margin-bottom 24px. Body: UniversalSans 20px weight 400, color #ffffff at 80% opacity, line-height 1.20, max-width 680px. Below the block, a 'Mehr über uns' link in #606060, 20px, with a right-arrow indicator."
+}

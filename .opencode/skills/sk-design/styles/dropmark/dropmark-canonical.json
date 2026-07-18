@@ -1,0 +1,1407 @@
+{
+  "source": "https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff",
+  "uuid": "5618f26a-4df6-42cb-8081-15e4318b54ff",
+  "name": "Dropmark",
+  "northStar": "Warm paper atelier with cubist murals",
+  "capturedAt": "2026-07-18T07:31:54.151Z",
+  "meta": {
+    "url": "https://dropmark.com",
+    "siteName": "Dropmark",
+    "extractedAt": "2026-06-03T20:03:45.682Z",
+    "durationMs": 29578,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 394,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #00affa exclusively for the outlined action border and filled primary button — no other UI element should carry color",
+      "Set border-radius to 3px for nav, buttons, and tags; reserve 60px for true pill shapes only",
+      "Anchor headlines at DropmarkRealHead weight 500 — do not bold-up to 600/700 for display text",
+      "Keep the page background #f7f7f1; use #ffffff only for inset cards and elevated surfaces",
+      "Lean on the accent illustration palette (#1e2554, #2c2a6c, #ff5d43, #38dede, #9164fa, #f8b3b8) for mural art only, never for UI components",
+      "Use 1px #404040 hairline borders as the primary structural divider, not boxes or shadows",
+      "Pair every primary CTA with a #00affa outlined secondary action to maintain the two-button rhythm"
+    ],
+    "donts": [
+      "Do not introduce additional chromatic colors into the UI — the system is intentionally monochrome with one cyan accent",
+      "Do not use drop shadows for elevation; depth comes from surface color and illustration, not shadow",
+      "Do not use border-radius larger than 3px on cards or buttons — the flat editorial geometry is the signature",
+      "Do not bold body text above 600; 700 should appear only for rare inline emphasis",
+      "Do not use #00affa as a text or background tint for non-action elements like tags, badges, or icons",
+      "Do not place the illustration palette colors on text, borders, or background fills — they belong inside mural compositions",
+      "Do not use the cream #f7f7f1 for buttons or CTAs; the canvas color must not compete with actions"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#00affa",
+        "name": "Cyan Signal",
+        "role": "Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f7f7f1",
+        "name": "Cream Paper",
+        "role": "Page canvas, section backgrounds, soft card surfaces — the warm off-white ground everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Inset cards, modal surfaces, inverse button text, nav background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dcdcd4",
+        "name": "Stone Gray",
+        "role": "Subtle accent surfaces, inset focus rings, warm shadow tints",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Graphite",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Mid Ink",
+        "role": "Button text and border on dark surfaces, icon stroke",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Charcoal",
+        "role": "Headline text alternative, deep emphasis borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7f7f7f",
+        "name": "Pewter",
+        "role": "Secondary body text, muted helper text, inactive state text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "SVG illustration linework, deepest icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e2554",
+        "name": "Midnight Violet",
+        "role": "Illustration primary — the dominant dark shape color in cubist murals",
+        "group": "accent"
+      },
+      {
+        "hex": "#2c2a6c",
+        "name": "Deep Iris",
+        "role": "Illustration mid-tone — secondary dark purple in mural compositions",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff5d43",
+        "name": "Coral Burst",
+        "role": "Illustration warm accent — orange-red shape fills in murals",
+        "group": "accent"
+      },
+      {
+        "hex": "#38dede",
+        "name": "Aqua Glow",
+        "role": "Illustration cool accent and icon highlight — teal punctuation in murals",
+        "group": "accent"
+      },
+      {
+        "hex": "#9164fa",
+        "name": "Vivid Amethyst",
+        "role": "Illustration bright accent — saturated purple shape fills",
+        "group": "accent"
+      },
+      {
+        "hex": "#f8b3b8",
+        "name": "Blush",
+        "role": "Illustration soft accent — pink shape fills for warmth in murals",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width ~1200px centered content on a full-bleed cream canvas. The hero is a centered or left-aligned text block with paired CTAs, followed by a full-bleed illustration mural band that bleeds edge-to-edge. Below, the page uses a consistent vertical rhythm of 60px section gaps with alternating cream and white card strips. Feature blocks are horizontal 2-column (image-left, text-right at roughly 1:1.5 proportions), stacked vertically. Social-proof logo strip and stat panel break the rhythm with a dark inverse surface. Navigation is a flat top bar, not sticky, with right-aligned text links. No sidebar. Grid is used sparingly — most composition is text-plus-illustration or simple stacking.",
+    "imagery": "The visual identity is dominated by large cubist/isometric illustration murals using a fixed accent palette (#1e2554 dark violet, #2c2a6c iris, #ff5d43 coral, #38dede teal, #9164fa amethyst, #f8b3b8 blush) set against the cream canvas. Murals are full-bleed, flat-vector, geometric, with simplified human figures interacting with oversized abstract objects (monitors, books, shapes). They function as section dividers and brand punctuation — not explanatory content. Feature cards pair small square mural crops with text. Photography is absent; no product screenshots, no real-world images. The illustration is the brand's voice, so the UI deliberately stays quiet around it. Iconography is minimal and uses the same geometric language at small sizes.",
+    "similar": [
+      {
+        "why": "Same nearly-monochrome UI with a single accent color and flat editorial typography, though Notion uses black-and-white almost exclusively",
+        "business": "Notion"
+      },
+      {
+        "why": "Direct visual sibling — warm cream canvas, flat geometric illustration as brand voice, and a quiet UI that lets the art carry personality",
+        "business": "Milanote"
+      },
+      {
+        "why": "Calm light-theme interface with a single vivid accent for actions and generous spacing between sections",
+        "business": "Pitch"
+      },
+      {
+        "why": "Editorial cream-paper aesthetic, minimal UI chrome, and imagery-first page compositions with quiet typography",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "3px",
+        "cards": "0px",
+        "pills": "60px",
+        "buttons": "3px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "60px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#f7f7f1",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Page canvas and full-bleed section backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 1,
+        "purpose": "Inset cards, feature cards, nav bar, stat panel background"
+      },
+      {
+        "hex": "#dcdcd4",
+        "name": "Stone Gray",
+        "level": 2,
+        "purpose": "Subtle accent panels, illustration ground planes"
+      },
+      {
+        "hex": "#404040",
+        "name": "Graphite",
+        "level": 3,
+        "purpose": "Inverse dark surface for emphasis panels and stat blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Warm paper atelier with cubist murals",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button (filled)",
+        "role": "Main conversion CTA on hero and section blocks",
+        "description": "#00affa fill, white text, DropmarkRealText 600 at 16px, 3px radius, 12px 24px padding. No shadow. Hover should deepen the fill or add a subtle inner ring."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Secondary conversion CTA paired with primary",
+        "description": "Transparent fill, 2px #00affa border, #00affa text, DropmarkRealText 600 at 16px, 3px radius, 10px 22px padding. The chromatic outlined action is a signature of this system — it keeps the page from looking CTA-heavy."
+      },
+      {
+        "name": "Dark Filled Button",
+        "role": "Top-right nav conversion ('Sign up')",
+        "description": "#404040 fill, white text, DropmarkRealText 600 at ~14px, 3px radius, 8px 16px padding. Compact, contrasts the cream canvas."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline links, footer links, nav links",
+        "description": "#404040 default, #00affa on hover/active, DropmarkRealText 400, no underline by default, underline on hover. Border-bottom also used as a 1px divider element."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Top-of-page site navigation",
+        "description": "Cream #f7f7f1 or white background, 1px hairline bottom border in #dcdcd4 or stone-gray, DropmarkRealText 400 at ~15px. Left-aligned brand mark (cyan drop icon + wordmark), right-aligned text links spaced 20–35px apart, dark 'Sign up' button at far right. 8–10px vertical padding. Optional 2px inset focus ring on the active/hovered link."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold headline and primary conversion",
+        "description": "Cream #f7f7f1 background, centered or left-aligned DropmarkRealHead 500 at 60px headline in #404040 (or near-black), subhead in DropmarkRealText 400 at 17px in #404040, paired filled + outlined CTAs below. Headline may wrap to two lines with a wide tracking. Followed immediately by a full-bleed cubist illustration band."
+      },
+      {
+        "name": "Feature Card (horizontal)",
+        "role": "Feature highlight blocks below the hero",
+        "description": "Horizontal layout: square or 4:3 image on the left (often a cubist illustration tile), text block on the right with DropmarkRealText 600 at 20px heading, body at 15–16px, and a #00affa text link ('Find out more', 'See resources', 'Show me how'). No card chrome — sits directly on cream, separated by 30px vertical rhythm."
+      },
+      {
+        "name": "Illustration Mural Band",
+        "role": "Full-bleed decorative art between sections",
+        "description": "Wide horizontal composition using the accent palette: #1e2554, #2c2a6c, #ff5d43, #38dede, #9164fa, #f8b3b8 on cream. Geometric cubist/isometric shapes with human figures. Acts as the brand's emotional punctuation — it carries personality so the UI doesn't have to."
+      },
+      {
+        "name": "Statistics Panel",
+        "role": "Dark emphasis block ('Trusted for 15+ years')",
+        "description": "#404040 or near-black background, white text, DropmarkRealHead 500 at 40px for the figure, DropmarkRealText 400 at smaller sizes for the label. 30px+ padding. Contrasts the cream surroundings to anchor credibility."
+      },
+      {
+        "name": "Logo Strip",
+        "role": "Social proof — customer/team logos",
+        "description": "Horizontal row of monochrome logos on cream background, no card chrome, generous 30–40px vertical padding, #404040 logo fills only."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Footer column links",
+        "description": "DropmarkRealText 400 at 14–15px, #404040 with #00affa hover, stacked with ~5–10px vertical spacing. 1px #404040 hairline borders used as section dividers within the footer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section headings only — used at 60px for hero, 40px for section titles, 24px for sub-section headings. Medium weight is deliberate; avoids the heavy 700 convention to keep headlines calm and editorial rather than assertive.",
+        "sizes": "24px, 40px, 60px",
+        "family": "DropmarkRealHead",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Inter, system-ui",
+        "fontFeatureSettings": "\"lnum\", \"tnum\""
+      },
+      {
+        "role": "Body, buttons, nav, list, footer, supporting UI. 400 for body and links, 600 for emphasized sub-labels and button text, 700 reserved for occasional inline emphasis. Functions as the working sans — every non-heading element uses it.",
+        "sizes": "13px, 14px, 15px, 16px, 17px, 20px, 24px, 40px",
+        "family": "DropmarkRealText",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Inter, system-ui",
+        "fontFeatureSettings": "\"lnum\""
+      }
+    ],
+    "description": "Dropmark lives on a warm cream paper canvas (#f7f7f1) with almost no chrome, letting a vivid cubist illustration system carry the brand's voice while the interface stays nearly monochrome. The type system pairs DropmarkRealHead (weight 500, used sparingly for display and section titles) with DropmarkRealText (400/600/700) for everything else, creating a calm editorial cadence where headings whisper at medium weight rather than shout bold. A single cyan (#00affa) is the only chromatic UI accent, reserved for the outlined action border language and the filled primary button — every other surface and border is warm gray. Radii are near-zero (3px) and shadows are essentially absent, producing a flat, paper-like feel that contrasts deliberately with the bold geometric illustration murals acting as section art.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dropmark design system\",\"item\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#style-reference\",\"name\":\"Dropmark design system reference\",\"headline\":\"Dropmark design system | Refero Styles\",\"description\":\"Explore Dropmark's light Productivity design system: Cyan Signal #00affa, Cream Paper #f7f7f1 colors, DropmarkRealHead, DropmarkRealText typography, and...\",\"url\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dropmark\",\"url\":\"https://dropmark.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"caption\":\"Screenshot of Dropmark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dropmark design system\",\"Dropmark website design\",\"Dropmark colors\",\"Dropmark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Cyan Signal\",\"Cream Paper\",\"Pure White\",\"Stone Gray\",\"DropmarkRealHead\",\"DropmarkRealText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dropmark design system\"},{\"@type\":\"Thing\",\"name\":\"Dropmark website design\"},{\"@type\":\"Thing\",\"name\":\"Dropmark colors\"},{\"@type\":\"Thing\",\"name\":\"Dropmark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T03:59:38.370Z\",\"dateModified\":\"2026-04-30T03:59:38.370Z\"}]}19:T6e3,Quick Color Reference:\n- text: #404040\n- background: #f7f7f1\n- border: #404040 (hairline), #dcdcd4 (subtle)\n- accent: #00affa\n- primary action: #00affa (outlined action border)\n\nExample Component Prompts:\n1. Build a hero section: cream #f7f7f1 background, centered headline 'Your headline here' in DropmarkRealHead weight 500 at 60px in #404040, subhead in DropmarkRealText 400 at 17px in #404040. Below it, place a filled #00affa button ('Get started') with white text, 3px radius, 12px 24px padding, DropmarkRealText 600 at 16px. Next to it, an outlined #00affa secondary button ('Learn more') with 2px #00affa border, #00affa text, 3px radius, 10px 22px padding.\n\n2. Build a feature card: no card chrome, sits on cream. Left column 4:3 image tile (cubist illustration using #1e2554, #38dede, #ff5d43), right column text block. Heading in DropmarkRealText 600 at 20px #404040, body in DropmarkRealText 400 at 16px #404040, CTA link 'Find out more' in #00affa. 30px vertical gap from next block.\n\n3. Build a statistics panel: #404040 background, white text, padding 40px. Big number in DropmarkRealHead 500 at 40px white, label in DropmarkRealText 400 at 15px white at 80% opacity.\n\n4. Build the top nav: cream #f7f7f1 background, 1px bottom border in #dcdcd4. Left: cyan #00affa drop icon + 'Dropmark' wordmark in DropmarkRealText 600. Right: text links spaced 30px apart in DropmarkRealText 400 at 15px #404040, ending with a dark filled #404040 'Sign up' button, white text, 3px radius, 8px 16px padding.\n\n5. Build a full-bleed illustration mural band: 0px page margin, 300–400px tall, filled with geometric shapes in #1e2554, #2c2a6c, #ff5d43, #38dede, #9164fa, #f8b3b8 on #f7f7f1 ground. No text, no UI chrome — pure brand art acting as section divider."
+      },
+      {
+        "title": "Illustration System",
+        "content": "The illustration palette is a locked six-color set used only inside mural compositions and feature image tiles: #1e2554 (Midnight Violet — dominant dark), #2c2a6c (Deep Iris — mid dark), #ff5d43 (Coral Burst — warm accent), #38dede (Aqua Glow — cool accent), #9164fa (Vivid Amethyst — bright accent), #f8b3b8 (Blush — soft accent). Style is flat-vector cubist/isometric with simplified human figures and oversized geometric objects. No gradients, no textures, no outlines on the shapes themselves. Murals should always sit on the cream #f7f7f1 canvas and bleed edge-to-edge. Never extract these colors for UI use — they exist to make the murals feel vivid against an otherwise quiet interface."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat — the only shadow is a 2px inset stone-gray ring on the nav (rgb(220,220,210) 0 0 0 2px inset), used as a hairline focus/active state rather than elevation. Depth is created through the illustration murals and color blocks, not drop shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "heading",
+            "hero",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 908,
+          "confidence": 1,
+          "prominence": 22492437.282451015,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 17,
+            "body/color": 13,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 43,
+            "list/color": 22,
+            "other/fill": 2,
+            "image/color": 18,
+            "other/color": 71,
+            "footer/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 68,
+            "body/borderColor": 52,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 172,
+            "list/borderColor": 88,
+            "image/borderColor": 72,
+            "other/borderColor": 240,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 6049729.141871801,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 25
+          }
+        },
+        {
+          "hex": "#f7f7f1",
+          "oklch": {
+            "c": 0.007919236644211725,
+            "h": 106.54564956672431,
+            "l": 0.9744848855906234
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2164756.7821444366,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "list",
+            "body",
+            "footer"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 2032485.2645817848,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 4,
+            "list/color": 5,
+            "other/fill": 20,
+            "other/color": 4,
+            "heading/color": 1,
+            "nav/borderColor": 12,
+            "body/borderColor": 16,
+            "list/borderColor": 20,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 11,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1e2554",
+          "oklch": {
+            "c": 0.0850944725740061,
+            "h": 273.451499976171,
+            "l": 0.286993784094938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 891718.4462229941,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dcdcd4",
+          "oklch": {
+            "c": 0.010780919935950648,
+            "h": 106.61610469811163,
+            "l": 0.8922526774830063
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 805302,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "nav/boxShadow": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#00affa",
+          "oklch": {
+            "c": 0.15885988575994126,
+            "h": 238.05178413493127,
+            "l": 0.7159191270926738
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 378423.6830398626,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "link/color": 11,
+            "other/fill": 13,
+            "other/color": 4,
+            "nav/borderColor": 4,
+            "link/borderColor": 44,
+            "other/borderColor": 16,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2c2a6c",
+          "oklch": {
+            "c": 0.11151630215225465,
+            "h": 279.6737086066753,
+            "l": 0.3287887355662303
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 177496,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 15
+          }
+        },
+        {
+          "hex": "#ff5d43",
+          "oklch": {
+            "c": 0.20179982714471573,
+            "h": 31.634140893894514,
+            "l": 0.6886589166628132
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 168947.56731138413,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 13
+          }
+        },
+        {
+          "hex": "#38dede",
+          "oklch": {
+            "c": 0.1293728322961795,
+            "h": 194.92727709184143,
+            "l": 0.820569506670445
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 164192.2107336384,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 10
+          }
+        },
+        {
+          "hex": "#9164fa",
+          "oklch": {
+            "c": 0.21351822663894512,
+            "h": 293.0313638885462,
+            "l": 0.6257401597297719
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 114705.12600700058,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#f8b3b8",
+          "oklch": {
+            "c": 0.08078244978726837,
+            "h": 14.147924146340486,
+            "l": 0.8324293751258889
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 114697.37111949842,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 87917.99515604827,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#7f7f7f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.596489460818441
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 81024.21587254769,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "body/borderColor": 44
+          }
+        },
+        {
+          "hex": "#eae8df",
+          "oklch": {
+            "c": 0.012208639276498038,
+            "h": 96.42970657616235,
+            "l": 0.9300656036509335
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 70326.37111949842,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 8503.526530499681,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "button/color": 2,
+            "icon/borderColor": 8,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#775a3d",
+          "oklch": {
+            "c": 0.05720614307948178,
+            "h": 65.82570550198047,
+            "l": 0.4902583654304475
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 5169,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 7
+          }
+        },
+        {
+          "hex": "#f9e2e4",
+          "oklch": {
+            "c": 0.025391820595402584,
+            "h": 11.596329183623494,
+            "l": 0.9319446934943989
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 2741.9851262476,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8
+          }
+        },
+        {
+          "hex": "#bf9b80",
+          "oklch": {
+            "c": 0.0572067552436838,
+            "h": 58.545828386847276,
+            "l": 0.7154669015902836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 2605.6783511855806,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8
+          }
+        },
+        {
+          "hex": "#ff6b46",
+          "oklch": {
+            "c": 0.18845139274922293,
+            "h": 35.188965466129275,
+            "l": 0.7061570301742435
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 252,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fedb3f",
+          "oklch": {
+            "c": 0.16682160051438927,
+            "h": 95.78788162800298,
+            "l": 0.8956878680732008
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "other/stroke": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05206064015064286,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.53,
+          "background": "#f7f7f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.56,
+          "background": "#f7f7f1",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.11,
+          "background": "#eae8df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#f9e2e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#fedb3f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.38,
+          "background": "#eae8df",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.31,
+          "background": "#f9e2e4",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#dcdcd4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.5,
+          "background": "#1e2554",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#fedb3f",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.7,
+          "background": "#dcdcd4",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.49,
+          "background": "#f7f7f1",
+          "foreground": "#1e2554"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.69,
+          "background": "#ffffff",
+          "foreground": "#2c2a6c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#38dede",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#f8b3b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#eae8df",
+          "foreground": "#1e2554"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.8,
+          "background": "#f7f7f1",
+          "foreground": "#2c2a6c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(220, 220, 210) 0px 0px 0px 2px inset",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "nav",
+            "list"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body",
+            "paddingBottom|nav",
+            "marginBottom|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|nav",
+            "marginRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|nav",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DropmarkRealText",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 233,
+          "fontFeatureSettings": [
+            "\"lnum\""
+          ]
+        },
+        {
+          "family": "DropmarkRealHead",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"lnum\", \"tnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "DropmarkRealText",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "link",
+            "body",
+            "nav",
+            "list"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "DropmarkRealText",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "body",
+            "hero",
+            "image"
+          ],
+          "frequency": 133,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DropmarkRealText",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DropmarkRealText",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DropmarkRealHead",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "DropmarkRealText",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "DropmarkRealHead",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "DropmarkRealHead",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e3120ea3-ccb0-4a69-871a-f524b6b4faf4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dropmark design system\",\"item\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#style-reference\",\"name\":\"Dropmark design system reference\",\"headline\":\"Dropmark design system | Refero Styles\",\"description\":\"Explore Dropmark's light Productivity design system: Cyan Signal #00affa, Cream Paper #f7f7f1 colors, DropmarkRealHead, DropmarkRealText typography, and...\",\"url\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dropmark\",\"url\":\"https://dropmark.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5618f26a-4df6-42cb-8081-15e4318b54ff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"caption\":\"Screenshot of Dropmark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c857d541-b29b-4007-8720-93140636618a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dropmark design system\",\"Dropmark website design\",\"Dropmark colors\",\"Dropmark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Cyan Signal\",\"Cream Paper\",\"Pure White\",\"Stone Gray\",\"DropmarkRealHead\",\"DropmarkRealText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dropmark design system\"},{\"@type\":\"Thing\",\"name\":\"Dropmark website design\"},{\"@type\":\"Thing\",\"name\":\"Dropmark colors\"},{\"@type\":\"Thing\",\"name\":\"Dropmark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T03:59:38.370Z\",\"dateModified\":\"2026-04-30T03:59:38.370Z\"}]}19:T6e3,Quick Color Reference:\n- text: #404040\n- background: #f7f7f1\n- border: #404040 (hairline), #dcdcd4 (subtle)\n- accent: #00affa\n- primary action: #00affa (outlined action border)\n\nExample Component Prompts:\n1. Build a hero section: cream #f7f7f1 background, centered headline 'Your headline here' in DropmarkRealHead weight 500 at 60px in #404040, subhead in DropmarkRealText 400 at 17px in #404040. Below it, place a filled #00affa button ('Get started') with white text, 3px radius, 12px 24px padding, DropmarkRealText 600 at 16px. Next to it, an outlined #00affa secondary button ('Learn more') with 2px #00affa border, #00affa text, 3px radius, 10px 22px padding.\n\n2. Build a feature card: no card chrome, sits on cream. Left column 4:3 image tile (cubist illustration using #1e2554, #38dede, #ff5d43), right column text block. Heading in DropmarkRealText 600 at 20px #404040, body in DropmarkRealText 400 at 16px #404040, CTA link 'Find out more' in #00affa. 30px vertical gap from next block.\n\n3. Build a statistics panel: #404040 background, white text, padding 40px. Big number in DropmarkRealHead 500 at 40px white, label in DropmarkRealText 400 at 15px white at 80% opacity.\n\n4. Build the top nav: cream #f7f7f1 background, 1px bottom border in #dcdcd4. Left: cyan #00affa drop icon + 'Dropmark' wordmark in DropmarkRealText 600. Right: text links spaced 30px apart in DropmarkRealText 400 at 15px #404040, ending with a dark filled #404040 'Sign up' button, white text, 3px radius, 8px 16px padding.\n\n5. Build a full-bleed illustration mural band: 0px page margin, 300–400px tall, filled with geometric shapes in #1e2554, #2c2a6c, #ff5d43, #38dede, #9164fa, #f8b3b8 on #f7f7f1 ground. No text, no UI chrome — pure brand art acting as section divider."
+}

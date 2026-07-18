@@ -1,0 +1,63 @@
+@theme {
+  /* Colors */
+  --color-midnight-plum: #1c1624;
+  --color-shadow-plum: #2d2734;
+  --color-bone-white: #f1f0ec;
+  --color-fog-line: #e5e7eb;
+  --color-ash-veil: #d0c9c4;
+  --color-mid-ash: #a5a2a5;
+  --color-iron-edge: #55505b;
+  --color-lavender-spark: #b997ff;
+  --color-signal-green: #00f575;
+  --color-neon-violet: #6b13f5;
+  --color-ember-orange: #ff5632;
+  --color-plasma-pink: #ff9efa;
+
+  /* Typography */
+  --font-doppler-repro: 'Doppler Repro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.36px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.18px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.24px;
+  --text-heading: 32px;
+  --leading-heading: 1.15;
+  --tracking-heading: -0.32px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.05;
+  --tracking-heading-lg: -0.96px;
+  --text-display: 64px;
+  --leading-display: 1.05;
+  --tracking-display: -1.28px;
+  --text-display-xl: 96px;
+  --leading-display-xl: 1;
+  --tracking-display-xl: -1.92px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-full: 80px;
+  --radius-full-2: 120px;
+  --radius-full-3: 9999px;
+}

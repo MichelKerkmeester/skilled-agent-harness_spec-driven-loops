@@ -1,0 +1,489 @@
+{
+  "color": {
+    "webflow-blue": {
+      "$value": "#146ef5",
+      "$type": "color",
+      "$description": "Webflow Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "indigo-ink": {
+      "$value": "#1366e2",
+      "$type": "color",
+      "$description": "Indigo Ink — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "mercury-tint": {
+      "$value": "#6ca7ff",
+      "$type": "color",
+      "$description": "Mercury Tint — Soft blue for icon decorations, gradient transitions, and muted highlight washes within illustrations"
+    },
+    "mint-pulse": {
+      "$value": "#60ed76",
+      "$type": "color",
+      "$description": "Mint Pulse — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "apricot-glow": {
+      "$value": "#ffa666",
+      "$type": "color",
+      "$description": "Apricot Glow — Decorative warm accent in inline illustrations and product mockup contexts"
+    },
+    "obsidian": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, headings, icon strokes, dark surface fills — the near-black that carries the typographic voice"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark fills, inverted text"
+    },
+    "slate": {
+      "$value": "#5a5a5a",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, icon secondary state, muted descriptions, footer copy"
+    },
+    "ash-border": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Ash Border — Hairline borders on cards, dividers, input outlines, button strokes"
+    },
+    "smoke": {
+      "$value": "#bdbdbd",
+      "$type": "color",
+      "$description": "Smoke — Subtle shadow base and disabled control fills"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite — Dark surface for inverted sections and modal overlays"
+    },
+    "onyx": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Onyx — Deepest dark surface — footer bands and full-bleed dark sections"
+    },
+    "mist": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Mist — Subtle background tint for alternating sections, card hover, and input fills"
+    },
+    "charcoal": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Charcoal — Near-black accent surface, slightly lighter than Onyx for layered dark contexts"
+    }
+  },
+  "font": {
+    "wf-visual-sans-variable": {
+      "$value": "WF Visual Sans Variable",
+      "$type": "fontFamily",
+      "$description": "The sole sans family for the entire interface — navigation, body, headings, buttons, cards. A custom geometric variable typeface with widths that compress at display sizes. Weight 400 covers body and UI; 500–550 for subheads and labels; 600 reserved for the boldest display headlines. The variable axis enables optical sizing so display weights (56–80px) feel chiseled with tight tracking while body weights (14–16px) remain open and readable."
+    },
+    "wf-visual-sans-mono": {
+      "$value": "WF Visual Sans Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for code snippets, terminal outputs, keyboard shortcuts, and developer-facing micro-copy. Rare on the marketing site but present in product demos."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "WFVisualSans-Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "13px",
+        "fontWeight": 550,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "WFVisualSans-Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "WF Visual Sans Variable",
+        "fontSize": "80px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 54px 22px 0px, rgba(0, 0, 0, 0.04) 0px 30px 18px 0px, rgba(0, 0, 0, 0.08) 0px 13px 13px 0px, rgba(0, 0, 0, 0.09) 0px 3px 7px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 67px 27px 0px, rgba(0, 0, 0, 0.06) 0px 38px 23px 0px, rgba(0, 0, 0, 0.1) 0px 17px 17px 0px, rgba(0, 0, 0, 0.12) 0px 4px 9px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 148px 42px 0px, rgba(0, 0, 0, 0.04) 0px 95px 38px 0px, rgba(0, 0, 0, 0.15) 0px 53px 32px 0px, rgba(0, 0, 0, 0.26) 0px 24px 24px 0px, rgba(0, 0, 0, 0.29) 0px 6px 13px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background for all light sections"
+    },
+    "tinted": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating section bands and subtle card differentiation"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated content cards on tinted or canvas backgrounds"
+    },
+    "inverted": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Surface level 3: Dark mode callouts, footer, or feature sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://webflow.com",
+      "siteName": "Webflow",
+      "extractedAt": "2026-06-03T15:10:42.812Z",
+      "variant": "extended"
+    }
+  }
+}

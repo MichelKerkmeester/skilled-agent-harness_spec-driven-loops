@@ -1,0 +1,47 @@
+@theme {
+  /* Colors */
+  --color-ink-black: #1a1a1a;
+  --color-charcoal: #262626;
+  --color-graphite: #666666;
+  --color-ash: #999999;
+  --color-fog: #e6e6e6;
+  --color-mist: #f2f2f2;
+  --color-paper: #ffffff;
+  --color-pure-black: #000000;
+
+  /* Typography */
+  --font-riformallweb: 'RiformaLLWeb', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.12px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.25;
+  --tracking-body-sm: -0.16px;
+  --text-body: 18px;
+  --leading-body: 1.25;
+  --tracking-body: -0.18px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.15;
+  --tracking-subheading: -0.24px;
+  --text-heading: 40px;
+  --leading-heading: 1.1;
+  --tracking-heading: -0.4px;
+  --text-display: 64px;
+  --leading-display: 1;
+  --tracking-display: -0.64px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+}

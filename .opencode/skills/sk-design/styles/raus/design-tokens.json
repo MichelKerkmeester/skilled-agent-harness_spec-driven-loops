@@ -1,0 +1,312 @@
+{
+  "color": {
+    "charcoal": {
+      "$value": "#23212c",
+      "$type": "color",
+      "$description": "Charcoal — Body text, headings, dark surfaces, icon strokes, hairline borders. Anchors the entire system — almost-black but slightly warm, never pure black"
+    },
+    "paper": {
+      "$value": "#f7f0e1",
+      "$type": "color",
+      "$description": "Paper — Primary page background and card canvas — warm cream that gives the entire site its printed, hand-made feel. Not white, not beige; paper"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Search bar text, button labels on dark fills, image overlays, and any surface that needs to sit forward of the cream canvas"
+    },
+    "pine": {
+      "$value": "#006434",
+      "$type": "color",
+      "$description": "Pine — Brand wordmark, primary headings on hero, link text, and the only chromatic authority — deep forest green used sparingly to mark identity, never decoration"
+    },
+    "marigold": {
+      "$value": "#fcbd1c",
+      "$type": "color",
+      "$description": "Marigold — Search bar surface, accent blocks, tag fills, the single bright punctuation on an otherwise muted page. Makes the booking flow unmistakable"
+    },
+    "morning-sky": {
+      "$value": "#a6dfff",
+      "$type": "color",
+      "$description": "Morning Sky — Top announcement bar background and soft accent surfaces. Cool counterpoint to the warm canvas — signals timely, transient messaging"
+    },
+    "ember": {
+      "$value": "#dd5000",
+      "$type": "color",
+      "$description": "Ember — Gift voucher CTA on the announcement bar and warm interactive accent. Reads as firelight against the cream — chosen for urgency in promotional contexts, not for the primary booking flow"
+    }
+  },
+  "font": {
+    "neue-haas-unica": {
+      "$value": "neue-haas-unica",
+      "$type": "fontFamily",
+      "$description": "Single typeface for everything from 12px captions to 40px display headlines. Weight 300 is the signature — headings whisper rather than shout, creating authority through restraint. Weight 400 reserves itself for meta labels (IDEA 32, PERSPECTIVES, navigation items) and body copy where 300 would feel too fragile."
+    },
+    "fonts": {
+      "$value": "fonts",
+      "$type": "fontFamily",
+      "$description": "fonts — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "fonts",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "fonts",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "fonts",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "fonts",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "neue-haas-unica",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#f7f0e1",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm cream that defines the entire mood"
+    },
+    "snow-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Image overlays, search button fill, elevated card surfaces"
+    },
+    "morning-sky-band": {
+      "$value": "#a6dfff",
+      "$type": "color",
+      "$description": "Surface level 2: Top announcement strip, floating utility surfaces"
+    },
+    "marigold-bar": {
+      "$value": "#fcbd1c",
+      "$type": "color",
+      "$description": "Surface level 3: Search bar and accent blocks — the one surface that is allowed to shout"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.raus.life",
+      "siteName": "Raus",
+      "extractedAt": "2026-06-03T16:50:55.593Z",
+      "variant": "extended"
+    }
+  }
+}

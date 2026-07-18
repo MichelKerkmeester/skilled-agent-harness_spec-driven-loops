@@ -1,0 +1,56 @@
+:root {
+  /* Colors */
+  --color-carbon: #000000;
+  --color-graphite: #282828;
+  --color-bone: #ffffff;
+  --color-fluorescent: #0af500;
+  --color-ember: #ff4600;
+
+  /* Typography — Font Families */
+  --font-custom15364-bjka-display: 'custom_15364 (Bōjka Display)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system-blinkmacsystemfont-system-ui: '-apple-system / BlinkMacSystemFont (System UI)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 16px;
+  --leading-body: 16;
+  --tracking-body: -0.128px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 26;
+  --text-subheading: 22px;
+  --leading-subheading: 22;
+  --tracking-subheading: -0.176px;
+  --text-heading: 44px;
+  --leading-heading: 48;
+  --tracking-heading: 0.396px;
+  --text-display: 157px;
+  --leading-display: 157;
+  --tracking-display: -1.256px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-16: 16px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80-120px;
+  --card-padding: 32-48px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+  --radius-full: 68px;
+
+  /* Named Radii */
+  --radius-tags: 68px;
+  --radius-cards: 68px;
+  --radius-buttons: 20px;
+
+  /* Surfaces */
+  --surface-bone-canvas: #ffffff;
+  --surface-card-surface: #ffffff;
+  --surface-fluorescent-band: #0af500;
+}

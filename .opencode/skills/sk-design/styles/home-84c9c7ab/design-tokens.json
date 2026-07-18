@@ -1,0 +1,212 @@
+{
+  "color": {
+    "vellum-cream": {
+      "$value": "#fff9eb",
+      "$type": "color",
+      "$description": "Vellum Cream — Page canvas, card surfaces, text on dark — the dominant warm-paper background that sets the entire temperature of the interface"
+    },
+    "linen": {
+      "$value": "#f0e7d7",
+      "$type": "color",
+      "$description": "Linen — Secondary surface for elevated cards, button fills, and body borders — slightly warmer and denser than vellum, creates a cream-on-cream layering without leaving the neutral family"
+    },
+    "buttered-gold": {
+      "$value": "#f8e47d",
+      "$type": "color",
+      "$description": "Buttered Gold — Accent wash for highlights, badge fills, and tonal surface variation — a saturated warm gold used sparingly to suggest the ingredient palette without competing with photography"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, logo mark, and high-contrast accents — appears in nav fills and select UI chrome where absolute blackness is needed"
+    },
+    "warm-graphite": {
+      "$value": "#4d4b47",
+      "$type": "color",
+      "$description": "Warm Graphite — Muted text, secondary metadata, and low-emphasis borders — a warm dark gray that softens the otherwise stark black"
+    },
+    "oxblood": {
+      "$value": "#370808",
+      "$type": "color",
+      "$description": "Oxblood — Primary action borders, nav borders, card outlines, badge text, and the single chromatic brand color — a deep wine red that reads almost as a darker cousin of the cream rather than a competing hue, functioning as ink-with-a-pulse"
+    }
+  },
+  "font": {
+    "roslindale-display-condensed": {
+      "$value": "Roslindale Display Condensed",
+      "$type": "fontFamily",
+      "$description": "Hero display only — used at light weight 300 in tightly-leaded (0.86) display lines up to 140px; the condensed proportions and thin weight make the type feel like an etched caption on a botanical print rather than a SaaS headline"
+    },
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Universal workhorse — nav, body, buttons, badges, cards, footer, and all subheading levels from 14px caption up to 40px section headings; weight 400 for body, 700 for nav labels and emphasis"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roslindale Display Condensed",
+        "fontSize": "120px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roslindale Display Condensed",
+        "fontSize": "140px",
+        "fontWeight": 300,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 140px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "vellum-page": {
+      "$value": "#fff9eb",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant canvas — every section, hero, and footer sits on this warm cream paper tone"
+    },
+    "linen-card": {
+      "$value": "#f0e7d7",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface, button fill, and secondary background — the one step warmer than vellum for subtle layering"
+    },
+    "buttered-gold-wash": {
+      "$value": "#f8e47d",
+      "$type": "color",
+      "$description": "Surface level 2: Tonal accent surface and badge fill — used very sparingly for warmth punctuation"
+    },
+    "warm-graphite": {
+      "$value": "#4d4b47",
+      "$type": "color",
+      "$description": "Surface level 3: Dark muted surface for inverted sections or dense metadata blocks"
+    },
+    "oxblood-inset": {
+      "$value": "#370808",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest brand surface — reserved for inverted footers or hero overlays where the wine tone needs to feel solid, not just a line"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.savor.it",
+      "siteName": "Home",
+      "extractedAt": "2026-06-03T20:56:18.847Z",
+      "variant": "extended"
+    }
+  }
+}

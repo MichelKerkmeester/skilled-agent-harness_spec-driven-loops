@@ -1,0 +1,140 @@
+{
+  "color": {
+    "grid-line": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Grid Line — Primary border between tiles and around media surfaces — the only structural divider in the system, doing the work of card outlines, section separators, and elevation simultaneously"
+    },
+    "body-text": {
+      "$value": "#d4d4d4",
+      "$type": "color",
+      "$description": "Body Text — Primary readable text — project names, bio copy, metadata labels"
+    },
+    "muted-text": {
+      "$value": "#737373",
+      "$type": "color",
+      "$description": "Muted Text — Secondary metadata, category tags, and the [link] indicator — recedes behind body text to create a two-tier reading hierarchy without changing weight"
+    },
+    "subtle-divider": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Subtle Divider — Low-contrast internal dividers and edge treatments — barely visible against the page background, used where a hairline would be too loud"
+    }
+  },
+  "font": {
+    "commit-mono": {
+      "$value": "Commit Mono",
+      "$type": "fontFamily",
+      "$description": "Used for every text element in the system — headings, body, metadata, links, tags. The entire UI is a single monospace family; there is no sans-serif counterpart."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Commit Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the uninterrupted dark canvas behind the grid"
+    },
+    "tile-canvas": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 1: Inside each grid cell, matching the page so media appears to float within the border"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.verse.sh",
+      "siteName": "Verse",
+      "extractedAt": "2026-06-03T21:29:46.159Z",
+      "variant": "extended"
+    }
+  }
+}

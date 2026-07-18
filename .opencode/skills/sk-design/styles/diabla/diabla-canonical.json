@@ -1,0 +1,1043 @@
+{
+  "source": "https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2",
+  "uuid": "5528d10f-2e7d-4502-aa49-7bde290e8fe2",
+  "name": "Diabla",
+  "northStar": "Mediterranean courtyard at noon — sun-bleached pink walls, one bold red canvas awning, and editorial serif headlines stretched across the sky.",
+  "capturedAt": "2026-07-18T08:03:33.032Z",
+  "meta": {
+    "url": "https://www.diablaoutdoor.com/en",
+    "siteName": "Diabla",
+    "extractedAt": "2026-06-03T18:33:25.015Z",
+    "durationMs": 50844,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 664,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the outlined Vermillion button (#ed2e38 1px border, transparent fill, 14px radius, 6px 25px padding) as the default interactive element — it is the brand's signature control",
+      "Set display headlines in Helvetica Neue Light at 80–110px with line-height 0.88–0.91; the compressed leading is what makes type feel editorial",
+      "Use Blush Canvas (#fcf0f3) as the page background everywhere; never switch to pure white — the warm pink is the brand atmosphere",
+      "Use Charcoal Ink (#333333) for body text, not pure black; the softer black lets Vermillion read as the only sharp edge",
+      "Ration Vermillion (#ed2e38) to: the wordmark, nav links, outline-button borders, and editorial headlines — never flood-fill a surface with it",
+      "Stack uppercase eyebrows (12–14px Vermillion) above uppercase headlines (14–22px Charcoal or Vermillion) for the site's recurring editorial pattern",
+      "Let hero and editorial photography run edge-to-edge at full viewport width; never inset, round, or frame product images"
+    ],
+    "donts": [
+      "Do not use a filled red CTA — the brand communicates through outlines and ink, not filled buttons",
+      "Do not use bold or semibold weights of Helvetica; the system is intentionally monoweight (400 only) with hierarchy driven by size and color",
+      "Do not apply drop-shadows, elevation, or card lift effects — surfaces stay flat, like printed editorial pages",
+      "Do not introduce saturated accent colors beyond Vermillion; the palette is overwhelmingly neutral and the red is rationed",
+      "Do not left-align navigation — the nav is distributed left-center-right with the wordmark at center",
+      "Do not use pure white (#ffffff) for page surfaces; the canvas is always Blush Canvas (#fcf0f3)",
+      "Do not break the three-up editorial grid into asymmetric or masonry layouts; columns are equal and whitespace separates them"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ed2e38",
+        "name": "Vermillion",
+        "role": "Wordmark, link text, heading text, outlined-button borders — the single chromatic note in an otherwise neutral palette, used as outline and ink rather than flood fill to keep it editorial",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcf0f3",
+        "name": "Blush Canvas",
+        "role": "Page background, input field fills — a barely-there warm pink that softens the white experience and gives the brand its sunlit, not sterile, identity",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal Ink",
+        "role": "Body copy, paragraph text, default readable text — softer than pure black, lets the red feel like the only sharp edge on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Button text and occasional thin button borders where a neutral-bordered variant is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a full-bleed editorial scroll with no persistent sidebar. The hero is a 100vw lifestyle photograph with centered white display type and a small red scroll arrow. Below the hero, content settles to a max-width ~1200px centered column on the blush canvas, arranged in a three-up editorial grid (product / catalogue / designer) for collection features. Section rhythm is calm: large white-space gaps (80px) between bands, no alternating dark/light section contrast — the blush canvas is continuous. Navigation sits as a transparent overlay on the hero, distributed across four corners and the center wordmark rather than left-aligned. Content is always centered, never asymmetric or z-pattern. There is no sticky header visible in the data — the nav is tied to the hero image.",
+    "imagery": "Hero and editorial imagery is full-bleed, high-key, sun-drenched outdoor lifestyle photography — Mediterranean poolscapes, rocky coastlines, palm gardens, lounge chairs in pastel pink and white, striped awnings. The palette is warm and desaturated except for the product colors. Secondary imagery includes moody monochrome designer portraits and green-foliage catalogue covers. Photographs are unmasked, edge-to-edge, with no rounded corners and no overlapping text containers. Iconography is minimal and only appears inline as a small red search-magnifier and a red downward arrow scroll affordance — no icon system, no glyphs library. The visual density is image-heavy in the hero and product sections, then shifts to text-dominant in the editorial/designer blocks.",
+    "similar": [
+      {
+        "why": "Mediterranean outdoor furniture brand with a similar editorial full-bleed photography approach, all-uppercase Helvetica nav, and a single warm accent color against a neutral canvas",
+        "business": "Gandia Blasco"
+      },
+      {
+        "why": "Outdoor lifestyle furniture brand that uses generous whitespace, minimal chrome, and a single vivid brand color for accents on otherwise neutral product pages",
+        "business": "Fermob"
+      },
+      {
+        "why": "Design-forward furniture catalog with a single dominant accent color, monoweight sans-serif type, and editorial full-bleed lifestyle imagery",
+        "business": "Vitra"
+      },
+      {
+        "why": "Luxury brand treatment of fashion-editorial type at extreme display sizes (80–110px) with tight leading and a single red chromatic accent against light backgrounds",
+        "business": "Swarovski (editorial mode)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "14px",
+        "inputs": "0px",
+        "buttons": "14px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fcf0f3",
+        "name": "Blush Canvas",
+        "level": 1,
+        "purpose": "Page-wide base background — warm pink, never pure white, sets the Mediterranean mood"
+      },
+      {
+        "hex": "#0c1a0",
+        "name": "Verdant Overlay",
+        "level": 2,
+        "purpose": "Dark treatment used as a full-bleed image/photography backdrop (pool, foliage, lifestyle scenes), not a UI surface token — text overlaid in white"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Mediterranean courtyard at noon — sun-bleached pink walls, one bold red canvas awning, and editorial serif headlines stretched across the sky.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "subhead-lg",
+        "size": 22,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading",
+        "size": 33,
+        "lineHeight": 1.13
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.91
+      },
+      {
+        "role": "display-xl",
+        "size": 110,
+        "lineHeight": 0.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand mark in header navigation",
+        "description": "The literal word 'diabla' set in lowercase Helvetica Roman at ~16–18px, colored Vermillion (#ed2e38). No icon, no lockup — just the red wordmark centered in the nav row. Its visual weight is carried entirely by the red ink."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent/full-bleed across the hero image. Four nav groups (CONTACT SEARCH DISTRIBUTION | PRODUCTS ABOUT | wordmark | DESIGNERS ATTITUDE | SHOP FIND YOURSELF) set in uppercase Helvetica Roman 12–14px, Vermillion (#ed2e38), tracking normal. Distributed left-center-right rather than left-aligned. No background, no border, no shadow — the nav sits on top of hero photography."
+      },
+      {
+        "name": "Outlined Red Button",
+        "role": "Primary interactive element across the site (e.g. 'LACE', 'MORE INFO', collection CTAs)",
+        "description": "1px solid Vermillion (#ed2e38) border, transparent/blush-canvas fill, Vermillion uppercase label in Helvetica Roman 12–14px, 14px border-radius, ~6px vertical × 25px horizontal padding. Centered text, no fill state on hover visible in data — emphasis stays on the outline. This is the site's defining button: chromatic stroke, not chromatic fill."
+      },
+      {
+        "name": "Outlined Black Button",
+        "role": "Secondary or neutral action variant",
+        "description": "Same geometry as the red outlined button but with a 1px Onyx (#000000) border and Onyx text. Used where a neutral/non-branded action is needed, keeping the same pill-soft rectangular shape and 14px radius."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Full-bleed event/campaign headline overlaid on lifestyle photography",
+        "description": "Set in Helvetica Neue Light at 80–110px, line-height 0.88–0.91, white (#ffffff) on photographic backdrop. Center-aligned, no max-width cap — type is allowed to break the grid. Small uppercase eyebrow (date '21–26 ABRIL') in Helvetica Roman ~14px white above; metadata ('HALL_22 STAND B08 | MILAN 2026') below. A small red downward arrow (#ed2e38) signals scroll."
+      },
+      {
+        "name": "Editorial Content Card",
+        "role": "Three-up editorial grid block (product / catalogue / designer profile)",
+        "description": "Three equal columns on blush-canvas background. Each card stacks: full-bleed product/lifestyle image, small uppercase eyebrow label (e.g. 'LACE', 'CATALOGUE FOUNDATION', 'HÉCTOR SERRANO') in Vermillion ~12px, headline in uppercase Helvetica Roman ~14–16px either Vermillion or Charcoal, body copy in Charcoal (#333333) 14px line-height 1.50. No card border, no shadow, no background fill — whitespace alone separates columns. An outlined red CTA button ('LACE', 'MORE INFO') sits beneath each card."
+      },
+      {
+        "name": "Designer Profile Block",
+        "role": "Right-column editorial piece in the three-up grid",
+        "description": "Black-and-white portrait photograph (monochrome treatment) above a two-column name + body copy layout. Name 'HÉCTOR SERRANO' in Vermillion uppercase 14px; bio text in Charcoal 14px. Pull-quote in Charcoal with leading 1.50. No card chrome — image and text sit directly on the blush canvas."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs (search, newsletter, contact)",
+        "description": "Blush Canvas (#fcf0f3) background — note this is the same as the page, so the field reads as a slight tonal lift rather than a distinct container. ~5px vertical padding, Charcoal text. No visible border in the data; the tonal shift is the only affordance."
+      },
+      {
+        "name": "Inline Link",
+        "role": "In-body and nav links",
+        "description": "Vermillion (#ed2e38) text, 14px Helvetica Roman, no underline by default. 14px border-radius available on link containers (pill-shaped inline links) with 25px horizontal padding for clickable tag-style links."
+      },
+      {
+        "name": "Full-bleed Hero Image",
+        "role": "Atmospheric lifestyle photography that anchors the page",
+        "description": "Edge-to-edge pool/courtyard scene with no inset or margin. White headline text and red UI elements sit on top. The image IS the section; no container, no border-radius, no card framing."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines — the face is set at 80–110px with line-height compressed to 0.88–0.91, which crops ascenders/descenders and turns product names into poster-sized editorial typography. The light weight against the tight leading is the signature move: a whisper at billboard scale.",
+        "sizes": "80px, 110px",
+        "family": "LinotypeHelveticaNeueLTStdLt",
+        "weight": "400 (Light)",
+        "lineHeight": "0.88–0.91",
+        "substitute": "Helvetica Neue Light, Helvetica Light, Inter Light, system-ui weight 300",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Everything else: body, links, buttons, nav, subheadings, footer, list items. Single Roman weight, no bold variants — hierarchy is achieved by size, color (red vs charcoal), and case (uppercase for nav, sentence case for body).",
+        "sizes": "10px, 12px, 14px, 15px, 16px, 18px, 22px, 33px",
+        "family": "LinotypeHelveticaNeueLTStdRoman",
+        "weight": "400",
+        "lineHeight": "1.13–1.50 (body), 1.80–2.80 (loose display contexts)",
+        "substitute": "Helvetica Neue, Helvetica, Arial, Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Rare system-font fallback for narrow button labels where the custom face is unavailable",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, sans-serif"
+      }
+    ],
+    "description": "Diabla speaks in a sun-bleached Mediterranean vernacular: a whisper-pink canvas, editorial Helvetica, and one searing vermillion that punctuates like lipstick. Typography does the heavy lifting — the display face is set absurdly large (80–110px) and pulled almost impossibly tight (line-height 0.88–0.91), turning product names into cropped fashion headlines. Interfaces are quiet and gallery-like: generous whitespace, hairline-red outlined buttons, and almost no shadow. Color is rationed: red appears as outlines, link text, and the wordmark, never as a flat fill — the brand gestures rather than shouts. The result reads like a Vogue spread for outdoor furniture rather than an e-commerce catalog.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Diabla design system\",\"item\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#style-reference\",\"name\":\"Diabla design system reference\",\"headline\":\"Diabla design system | Refero Styles\",\"description\":\"Explore Diabla's light E-commerce design system: Vermillion #ed2e38, Blush Canvas #fcf0f3 colors, LinotypeHelveticaNeueLTStdLt,...\",\"url\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Diabla\",\"url\":\"https://www.diablaoutdoor.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"caption\":\"Screenshot of Diabla\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Diabla design system\",\"Diabla website design\",\"Diabla colors\",\"Diabla typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Vermillion\",\"Blush Canvas\",\"Charcoal Ink\",\"Onyx\",\"LinotypeHelveticaNeueLTStdLt\",\"LinotypeHelveticaNeueLTStdRoman\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Diabla design system\"},{\"@type\":\"Thing\",\"name\":\"Diabla website design\"},{\"@type\":\"Thing\",\"name\":\"Diabla colors\"},{\"@type\":\"Thing\",\"name\":\"Diabla typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:44:23.366Z\",\"dateModified\":\"2026-04-30T01:44:23.366Z\"}]}19:T6ba,**Quick Color Reference**\n- text: #333333 (Charcoal Ink)\n- background: #fcf0f3 (Blush Canvas)\n- border (brand accent): #ed2e38 (Vermillion)\n- border (neutral): #000000 (Onyx)\n- accent / link / wordmark: #ed2e38 (Vermillion)\n- primary action: #ed2e38 (outlined action border)\n\n**Example Component Prompts**\n1. *Hero section*: full-bleed lifestyle photograph. Centered display headline in Helvetica Neue Light, 110px, line-height 0.88, color #ffffff, letter-spacing normal. Small uppercase eyebrow above in Helvetica Roman 14px white. Red downward arrow (1px stroke, #ed2e38) below the headline as a scroll cue. The wordmark 'diabla' in lowercase Helvetica Roman 18px, #ed2e38, centered in the nav row above.\n2. *Outlined red button*: 1px solid border #ed2e38, background transparent, label in uppercase Helvetica Roman 12px #ed2e38, border-radius 14px, padding 6px 25px. Text centered, no fill change on interaction.\n3. *Three-up editorial grid*: blush canvas (#fcf0f3) background, three equal columns at max-width 1200px. Each column: full-bleed image on top, uppercase Vermillion 12px eyebrow, uppercase Charcoal 14–16px headline, Charcoal 14px body copy line-height 1.50, then an outlined red button beneath. 80px vertical gap between the grid and the next section.\n4. *Designer profile block*: black-and-white portrait photograph (full-bleed, no rounded corners) on the right column. Name in uppercase Vermillion 14px above a two-column Charcoal 14px bio with line-height 1.50. No card chrome, no border, no shadow.\n5. *Inline nav link*: uppercase Helvetica Roman 12px, color #ed2e38, no underline, normal letter-spacing. Optional 14px border-radius pill treatment with 25px horizontal padding for clickable nav tags."
+      }
+    ],
+    "elevationPhilosophy": "Diabla deliberately avoids drop-shadows and elevation effects. The visual hierarchy is built from type scale, generous whitespace, and the single red chromatic accent — never from lifted surfaces. Components feel printed on paper rather than floating in space, reinforcing the editorial/catalog tone."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ed2e38",
+          "oklch": {
+            "c": 0.22366482080360517,
+            "h": 24.75544585008356,
+            "l": 0.6144577722274228
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "input",
+            "heading",
+            "list",
+            "hero",
+            "image",
+            "footer",
+            "button"
+          ],
+          "frequency": 3228,
+          "confidence": 1,
+          "prominence": 50879237.60939982,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 45,
+            "hero/color": 2,
+            "link/color": 72,
+            "list/color": 8,
+            "other/fill": 4,
+            "image/color": 101,
+            "input/color": 19,
+            "other/color": 347,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 45,
+            "body/borderColor": 180,
+            "hero/borderColor": 8,
+            "link/borderColor": 288,
+            "list/borderColor": 32,
+            "image/borderColor": 404,
+            "input/borderColor": 76,
+            "other/borderColor": 1387,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 180
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 88721.06119647546,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "body/borderColor": 32
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 27710.908078212167,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "button/color": 3,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#fcf0f3",
+          "oklch": {
+            "c": 0.01349047101347846,
+            "h": 0.2583384002302533,
+            "l": 0.9653672901607759
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1615.6015629507226,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.5924428476912199,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.9,
+          "background": "#fcf0f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.37,
+          "background": "#fcf0f3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.74,
+          "background": "#fcf0f3",
+          "foreground": "#ed2e38"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 34
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|input",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "body",
+            "input",
+            "list"
+          ],
+          "frequency": 95,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginLeft|button",
+            "marginTop|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|list",
+            "marginLeft|other",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "footer",
+            "button"
+          ],
+          "frequency": 73,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingTop|other",
+            "marginBottom|body",
+            "paddingTop|footer",
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|body",
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 77,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|other",
+            "marginTop|link",
+            "marginRight|link",
+            "marginBottom|link",
+            "marginLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 643,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "LinotypeHelveticaNeueLTStdLt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "list",
+            "body",
+            "heading",
+            "input"
+          ],
+          "frequency": 122,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "input",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "hero",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 371,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 33,
+          "family": "LinotypeHelveticaNeueLTStdRoman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "LinotypeHelveticaNeueLTStdLt",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 110,
+          "family": "LinotypeHelveticaNeueLTStdLt",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.91,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/896e3301-85a5-47fa-9cd3-b2b5c80a56d1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Diabla design system\",\"item\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#style-reference\",\"name\":\"Diabla design system reference\",\"headline\":\"Diabla design system | Refero Styles\",\"description\":\"Explore Diabla's light E-commerce design system: Vermillion #ed2e38, Blush Canvas #fcf0f3 colors, LinotypeHelveticaNeueLTStdLt,...\",\"url\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Diabla\",\"url\":\"https://www.diablaoutdoor.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5528d10f-2e7d-4502-aa49-7bde290e8fe2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"caption\":\"Screenshot of Diabla\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3bf091eb-f466-4b94-8032-fa7eb7040ccf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Diabla design system\",\"Diabla website design\",\"Diabla colors\",\"Diabla typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Vermillion\",\"Blush Canvas\",\"Charcoal Ink\",\"Onyx\",\"LinotypeHelveticaNeueLTStdLt\",\"LinotypeHelveticaNeueLTStdRoman\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Diabla design system\"},{\"@type\":\"Thing\",\"name\":\"Diabla website design\"},{\"@type\":\"Thing\",\"name\":\"Diabla colors\"},{\"@type\":\"Thing\",\"name\":\"Diabla typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:44:23.366Z\",\"dateModified\":\"2026-04-30T01:44:23.366Z\"}]}19:T6ba,**Quick Color Reference**\n- text: #333333 (Charcoal Ink)\n- background: #fcf0f3 (Blush Canvas)\n- border (brand accent): #ed2e38 (Vermillion)\n- border (neutral): #000000 (Onyx)\n- accent / link / wordmark: #ed2e38 (Vermillion)\n- primary action: #ed2e38 (outlined action border)\n\n**Example Component Prompts**\n1. *Hero section*: full-bleed lifestyle photograph. Centered display headline in Helvetica Neue Light, 110px, line-height 0.88, color #ffffff, letter-spacing normal. Small uppercase eyebrow above in Helvetica Roman 14px white. Red downward arrow (1px stroke, #ed2e38) below the headline as a scroll cue. The wordmark 'diabla' in lowercase Helvetica Roman 18px, #ed2e38, centered in the nav row above.\n2. *Outlined red button*: 1px solid border #ed2e38, background transparent, label in uppercase Helvetica Roman 12px #ed2e38, border-radius 14px, padding 6px 25px. Text centered, no fill change on interaction.\n3. *Three-up editorial grid*: blush canvas (#fcf0f3) background, three equal columns at max-width 1200px. Each column: full-bleed image on top, uppercase Vermillion 12px eyebrow, uppercase Charcoal 14–16px headline, Charcoal 14px body copy line-height 1.50, then an outlined red button beneath. 80px vertical gap between the grid and the next section.\n4. *Designer profile block*: black-and-white portrait photograph (full-bleed, no rounded corners) on the right column. Name in uppercase Vermillion 14px above a two-column Charcoal 14px bio with line-height 1.50. No card chrome, no border, no shadow.\n5. *Inline nav link*: uppercase Helvetica Roman 12px, color #ed2e38, no underline, normal letter-spacing. Optional 14px border-radius pill treatment with 25px horizontal padding for clickable nav tags."
+}

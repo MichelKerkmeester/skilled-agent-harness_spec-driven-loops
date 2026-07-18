@@ -1,0 +1,217 @@
+{
+  "color": {
+    "canvas-gunmetal": {
+      "$value": "#9ea29f",
+      "$type": "color",
+      "$description": "Canvas Gunmetal — Hero and feature-section background — the warm gray-green tint distinguishes Custo from generic white SaaS canvases and reads as architectural concrete rather than digital surface"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, icon strokes — the highest-contrast ink in the system, used for headings and structural dividers"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Body section backgrounds, reversed text on gunmetal canvas, text on the dark product photography"
+    },
+    "anodized-graphite": {
+      "$value": "#4b514d",
+      "$type": "color",
+      "$description": "Anodized Graphite — Dark surface for product photography, secondary headings, and elevated text — echoes the mailbox finish so the UI and product share a material"
+    },
+    "brushed-steel": {
+      "$value": "#8e9194",
+      "$type": "color",
+      "$description": "Brushed Steel — Muted body text, list dividers, secondary icon strokes — sits between Paper White and Obsidian for inline metadata and subdued links"
+    },
+    "linen-mist": {
+      "$value": "#a7aaad",
+      "$type": "color",
+      "$description": "Linen Mist — Light border and divider color for headings and section rules — a hairline tone that never competes with Obsidian structural lines"
+    },
+    "aluminum-hairline": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Aluminum Hairline — Input field borders, footer separators, the lightest structural line — appears only where a near-invisible boundary is needed"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Single-family type system used for everything from body copy to 57px display statements — the geometric uniformity across weights is the signature choice, avoiding any secondary or display-specific font so the wordmark 'CUSTO®' set at 57px reads as the same typographic family as a 15px form input label"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "57px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 57px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "31.35px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "gunmetal-hero-canvas": {
+      "$value": "#9ea29f",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed hero and key feature band backgrounds"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Default content section background — body copy, text-image rows, footer"
+    },
+    "anodized-graphite": {
+      "$value": "#4b514d",
+      "$type": "color",
+      "$description": "Surface level 3: Dark elevated surface, product photography backdrop, reversed heading text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://custo.io",
+      "siteName": "Custo",
+      "extractedAt": "2026-06-03T18:09:43.299Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surfaces, ghost button fill — the primary stage everything else sits on"
+    },
+    "graphite-ink": {
+      "$value": "#3a3a3e",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text, link color, icon strokes, hairline borders, ghost button borders — a warm near-black that carries 97% of all typographic weight"
+    },
+    "deep-carbon": {
+      "$value": "#090b11",
+      "$type": "color",
+      "$description": "Deep Carbon — Accent text, nav strokes, strong card borders — slightly cooler and harder than Graphite Ink, reserved for moments of maximum contrast"
+    },
+    "ash-veil": {
+      "$value": "#b5b0b0",
+      "$type": "color",
+      "$description": "Ash Veil — Muted body backgrounds, soft borders — a warm gray used for secondary surface bands beneath the main canvas"
+    },
+    "apricot-wash": {
+      "$value": "#ffcf9e",
+      "$type": "color",
+      "$description": "Apricot Wash — Card backgrounds and borders — the dominant chromatic accent, used as a warm fill or hairline outline on featured cards"
+    },
+    "iris-mist": {
+      "$value": "#babfff",
+      "$type": "color",
+      "$description": "Iris Mist — Card backgrounds and borders — cool lavender counterpoint to Apricot Wash, pairs with peach on portfolio or feature cards"
+    },
+    "fuchsia-bloom": {
+      "$value": "#e3a2ef",
+      "$type": "color",
+      "$description": "Fuchsia Bloom — Card backgrounds — a vivid pink fill, the most saturated color in the system, appears as a solid block rather than a border"
+    },
+    "polar-blue": {
+      "$value": "#bfe0f7",
+      "$type": "color",
+      "$description": "Polar Blue — Soft surface tint — pale sky blue used as a rare secondary card or section background, cooling the warm peach/lavender/pink palette"
+    }
+  },
+  "font": {
+    "instrument-sans": {
+      "$value": "Instrument Sans",
+      "$type": "fontFamily",
+      "$description": "The only typeface. Used for every UI element, every headline, every caption. Weight 400 is default body and display; weight 500 sparingly for nav labels and emphasis. The signature move: Instrument Sans is a humanist geometric grotesque with optical corrections — paired with aggressive negative tracking at display sizes, it produces tight, modern, almost couture typography that reads as editorial, not SaaS."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "7px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 9px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — the dominant surface occupying most of the viewport"
+    },
+    "ash-band": {
+      "$value": "#b5b0b0",
+      "$type": "color",
+      "$description": "Surface level 1: Soft warm-gray section background used as a quiet band beneath the main canvas"
+    },
+    "polar-blue-field": {
+      "$value": "#bfe0f7",
+      "$type": "color",
+      "$description": "Surface level 2: Cool pale-blue surface tint, used as a full-bleed section background for variety"
+    },
+    "apricot-field": {
+      "$value": "#ffcf9",
+      "$type": "color",
+      "$description": "Surface level 3: Warm peach card fill — marks a single highlighted card per section"
+    },
+    "fuchsia-field": {
+      "$value": "#e3a2ef",
+      "$type": "color",
+      "$description": "Surface level 4: Vivid pink card fill — the most saturated surface, used as a singular accent block"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.blueyard.com",
+      "siteName": "BlueYard Capital",
+      "extractedAt": "2026-06-03T20:07:35.302Z",
+      "variant": "extended"
+    }
+  }
+}

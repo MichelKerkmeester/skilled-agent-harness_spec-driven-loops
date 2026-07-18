@@ -1,0 +1,155 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, background of all surfaces, inner counter of the ring forms — the negative space that gives the black marks their mass"
+    },
+    "graphite-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary mark fill, text, and the large circular ring forms. The sole chromatic-payload element in the system"
+    },
+    "fog-hairline": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog Hairline — Hairline borders, structural dividers, and subtle separator rules at 1px. The only gray in the palette and it never fills — it only divides"
+    }
+  },
+  "font": {
+    "alpha": {
+      "$value": "Alpha",
+      "$type": "fontFamily",
+      "$description": "Primary face for nav, body, and display. Used at 16px for navigation labels and links (lineHeight 1.50), 29px for mid-scale headings, and 60px for the display headline (lineHeight 1.00 — headline sits tight on its baseline). The signature move is running 60px display text at weight 400, which reads as architectural line-drawing rather than shouted headline"
+    },
+    "takt": {
+      "$value": "Takt",
+      "$type": "fontFamily",
+      "$description": "Secondary face for body copy and 36px subheadings. Tight lineHeight (1.10–1.11) at all sizes gives it a compact, editorial-block feel — runs in long stacked paragraphs where Alpha would feel too austere. Weight 400 is the ONLY weight in the entire system"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Alpha",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Alpha",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Takt",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Alpha",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Takt",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Alpha",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "208": {
+      "$value": "208px",
+      "$type": "dimension",
+      "$description": "Spacing 208px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The default white background filling the entire viewport"
+    },
+    "divider-rule": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 1: Hairline structural separator — separates sections, frames regions, and provides the only non-ink/non-paper tone in the system"
+    },
+    "ink-mark": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed black geometric mass — the ring forms, text glyphs, and nav labels sit on this layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://co-projects.xyz",
+      "siteName": "Co Projects",
+      "extractedAt": "2026-06-03T20:14:53.934Z",
+      "variant": "extended"
+    }
+  }
+}

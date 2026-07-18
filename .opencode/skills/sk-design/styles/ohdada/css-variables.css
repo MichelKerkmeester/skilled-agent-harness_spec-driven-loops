@@ -1,0 +1,45 @@
+:root {
+  /* Colors */
+  --color-chalk-cream: #e6e0d9;
+  --color-lavender-stone: #b7b3be;
+  --color-saddle-brown: #5d3a19;
+  --color-ink-black: #000000;
+
+  /* Typography — Font Families */
+  --font-grandslang-roman: 'GrandSlang-Roman', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-haas-grotesk-display: 'Neue Haas Grotesk Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.18;
+  --text-display: 58px;
+  --leading-display: 1;
+  --text-display-lg: 72px;
+  --leading-display-lg: 1;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-5: 5px;
+  --spacing-10: 10px;
+  --spacing-115: 115px;
+  --spacing-144: 144px;
+
+  /* Layout */
+  --section-gap: 115px;
+  --card-padding: 40px;
+  --element-gap: 10px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-cream-canvas: #e6e0d9;
+  --surface-lavender-plinth: #b7b3be;
+}

@@ -1,0 +1,349 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#d7d7d0",
+      "$type": "color",
+      "$description": "Parchment — Page canvas — warm gray field that recedes behind content, used as the dominant full-bleed background"
+    },
+    "cream": {
+      "$value": "#f7f6f3",
+      "$type": "color",
+      "$description": "Cream — Primary surface — card backgrounds, FAQ rows, section bands, pulled slightly warmer than white to avoid clinical feel"
+    },
+    "bone": {
+      "$value": "#fdfcfa",
+      "$type": "color",
+      "$description": "Bone — Elevated card surface — nearly white with a faint warm cast, for content blocks that need to feel slightly above the cream layer"
+    },
+    "bistre": {
+      "$value": "#1a1614",
+      "$type": "color",
+      "$description": "Bistre — Primary text, dark filled buttons, active strokes — warm near-black that replaces pure #000, never harsh on the cream"
+    },
+    "graphite": {
+      "$value": "#66635f",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, nav labels, supporting copy — the workhorse mid-tone that keeps paragraphs quiet"
+    },
+    "flint": {
+      "$value": "#a8a7a1",
+      "$type": "color",
+      "$description": "Flint — Muted helper text, dashed dividers, disabled chrome, low-emphasis stroke — sits between graphite and the canvas"
+    },
+    "slate": {
+      "$value": "#53504c",
+      "$type": "color",
+      "$description": "Slate — Tertiary text and sub-labels — slightly darker than graphite for labels that need quiet emphasis"
+    },
+    "ash": {
+      "$value": "#2a2724",
+      "$type": "color",
+      "$description": "Ash — Hover/pressed state on dark buttons and video timestamp chips — a mid-point between bistre and black"
+    },
+    "quill": {
+      "$value": "#e3e3de",
+      "$type": "color",
+      "$description": "Quill — Hairline dividers, ghost button borders, nav capsule background, tab resting surface — the lightest warm gray that still reads as a line"
+    },
+    "chartreuse-whisper": {
+      "$value": "#e2e67d",
+      "$type": "color",
+      "$description": "Chartreuse Whisper — Sole chromatic accent — appears as a small punctuation mark, badge fill, or highlight wash; deliberately desaturated so it never dominates"
+    }
+  },
+  "font": {
+    "test-signifier": {
+      "$value": "Test Signifier",
+      "$type": "fontFamily",
+      "$description": "All display and heading text from sub-heading through display — a custom contemporary serif with distinctive flared terminals. Used at weight 400 across every size, never bolded; negative letter-spacing tightens large sizes (ls=-0.037em at 54px, -0.021em at 48px). Substitute: \"Noto Serif\", Georgia, serif."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Body, nav, buttons, and all UI chrome — a neutral grotesque that stays out of the serif's way. Weight 500 is reserved for nav and button labels that need a half-step of emphasis. Default letter-spacing -0.01em gives crispness at small sizes. Substitute: \"Inter\", system-ui, sans-serif."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Section numbering labels, eyebrows, metadata, and the \"05 · FAQ\" style markers — always uppercase, tracked at 0.06–0.1em, the only text that announces itself through tracking rather than weight. Substitute: \"JetBrains Mono\", ui-monospace, monospace."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Test Signifier",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Test Signifier",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Test Signifier",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Test Signifier",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Test Signifier",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "82px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 0px 10px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 10px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#d7d7d0",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, the warm gray field that everything sits on"
+    },
+    "cream-surface": {
+      "$value": "#f7f6f3",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, FAQ rows, pull-quote backgrounds — the standard elevated surface"
+    },
+    "bone-card": {
+      "$value": "#fdfcfa",
+      "$type": "color",
+      "$description": "Surface level 2: Lightest surface for content that needs to feel slightly above the cream layer"
+    },
+    "quill-line": {
+      "$value": "#e3e3de",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline borders, ghost button backgrounds, nav capsule resting fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://antimetal.com",
+      "siteName": "Antimetal",
+      "extractedAt": "2026-07-03T03:06:29.588Z",
+      "variant": "extended"
+    }
+  }
+}

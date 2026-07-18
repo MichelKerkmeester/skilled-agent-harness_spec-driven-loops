@@ -1,0 +1,284 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary page background, card surfaces inside product mocks"
+    },
+    "warm-linen": {
+      "$value": "#f5f3f2",
+      "$type": "color",
+      "$description": "Warm Linen — Subtle warm surface tint, nav borders, gradient fade-out color — gives the page its paper-like quality"
+    },
+    "linen-stone": {
+      "$value": "#c4c3c1",
+      "$type": "color",
+      "$description": "Linen Stone — Mid neutral for muted dividers and secondary structural elements"
+    },
+    "ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink — Primary text, dominant border color — near-black, not pure, softer on the eye"
+    },
+    "fog": {
+      "$value": "#8b8c96",
+      "$type": "color",
+      "$description": "Fog — Muted text, placeholder copy, link underlines when unhovered"
+    },
+    "lavender-mist": {
+      "$value": "#d5d1f4",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft highlight wash behind inline highlighted phrases in headlines, pale violet surface"
+    },
+    "periwinkle": {
+      "$value": "#7366fe",
+      "$type": "color",
+      "$description": "Periwinkle — Sole chromatic accent — eyebrow labels, active states, icon strokes, link hover, accent borders. The one color that earns attention"
+    },
+    "steel-violet": {
+      "$value": "#6c77b0",
+      "$type": "color",
+      "$description": "Steel Violet — Secondary violet surface for muted card backgrounds and tonal variety within the violet family"
+    },
+    "dusk-gradient": {
+      "$value": "#55269c",
+      "$type": "color",
+      "$description": "Dusk Gradient — Deepest stop in the product mock gradient (radial fade from #55269c to transparent warm linen) — used only inside product UI mocks, never on the marketing surface"
+    }
+  },
+  "font": {
+    "gt-walsheim": {
+      "$value": "GT Walsheim",
+      "$type": "fontFamily",
+      "$description": "All section and page headlines. Weight 700 at 56-64px with tight 1.0 leading gives a wide, architectural, confident voice. The custom geometric forms (rounded but precise) define the brand's headline personality"
+    },
+    "gt-america-standard": {
+      "$value": "GT America Standard",
+      "$type": "fontFamily",
+      "$description": "Body, nav, labels, UI controls, everything below the headline. The signature 0.167em tracking applies across all sizes — this is the system's most distinctive typographic choice. Use 300 for body, 400 for UI/default, 500 for emphasized subheadings and nav"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.1) 11px 11px 40px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Main page background, base canvas"
+    },
+    "warm-linen": {
+      "$value": "#f5f3f2",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle warm wash for nav borders and section transitions"
+    },
+    "lavender-mist": {
+      "$value": "#d5d1f4",
+      "$type": "color",
+      "$description": "Surface level 2: Inline highlight background within headlines, soft accent surface"
+    },
+    "steel-violet": {
+      "$value": "#6c77b0",
+      "$type": "color",
+      "$description": "Surface level 3: Mid-tone violet card surface, tonal step between mist and periwinkle"
+    },
+    "periwinkle": {
+      "$value": "#7366fe",
+      "$type": "color",
+      "$description": "Surface level 4: Saturated accent surface for tags, icon fills, active states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ready.so",
+      "siteName": "Ready",
+      "extractedAt": "2026-06-03T19:36:46.768Z",
+      "variant": "extended"
+    }
+  }
+}

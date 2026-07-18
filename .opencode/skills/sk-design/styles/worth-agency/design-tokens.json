@@ -1,0 +1,297 @@
+{
+  "color": {
+    "blush-field": {
+      "$value": "#f8d4d4",
+      "$type": "color",
+      "$description": "Blush Field — Hero section background, full-bleed section dividers, decorative border washes — the warm pastel that sets the emotional temperature for the whole site"
+    },
+    "vermilion-mark": {
+      "$value": "#eb4726",
+      "$type": "color",
+      "$description": "Vermilion Mark — Sole chromatic accent — brand wordmark, link underlines, arrow icons, scroll indicator. One warm note against all the near-monochrome"
+    },
+    "mint-accent": {
+      "$value": "#d2fdd1",
+      "$type": "color",
+      "$description": "Mint Accent — Rare card or section background — the only cool note permitted, used sparingly for tonal variety"
+    },
+    "charcoal-ink": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary body text, heading text, default borders, icon strokes — the workhorse warm-black neutral"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, content section backgrounds, floating pill nav fill"
+    },
+    "jet-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Jet Black — Strong borders, high-emphasis text, icon fills — the maximum-contrast neutral"
+    },
+    "bone-gray": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Bone Gray — Subtle off-white surface for nested content blocks beneath white sections"
+    }
+  },
+  "font": {
+    "custom47163": {
+      "$value": "custom_47163",
+      "$type": "fontFamily",
+      "$description": "Primary body and heading face — used for all UI text, section headlines, links, and the scroll indicator. The custom face brings a distinctive ampersand ligature and a slightly humanist warmth that keeps the editorial tone approachable rather than austere. Substitutes: Söhne, GT America, Maison Neue."
+    },
+    "custom47178": {
+      "$value": "custom_47178",
+      "$type": "fontFamily",
+      "$description": "Exclusive display wordmark face — the 'Worth' hero text only. A custom commissioned face at exhibition scale with extreme tight tracking. This is the signature element: no other text on the site approaches this scale. Substitutes: Söhne Breit, GT America Compressed, Druk Wide."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System font fallback for icons, the small 'Agency' label in the floating pill, and micro-UI elements where the custom face isn't loaded. Kept neutral so the custom face can carry all the brand expression."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "42px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "custom_47163",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "custom_47178",
+        "fontSize": "400px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 400px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "custom_47178",
+        "fontSize": "400px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 400px"
+    }
+  },
+  "spacing": {
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#f8d4d4",
+      "$type": "color",
+      "$description": "Surface level 0: Hero and transition section backgrounds — the warm atmospheric base"
+    },
+    "bone-field": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle off-white for nested content blocks beneath white sections"
+    },
+    "white-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Content sections, cards, floating pill nav — the default content surface"
+    },
+    "mint-accent": {
+      "$value": "#d2fdd1",
+      "$type": "color",
+      "$description": "Surface level 3: Rare accent card background for tonal variety"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://worth.agency",
+      "siteName": "Worth Agency",
+      "extractedAt": "2026-06-03T17:23:21.286Z",
+      "variant": "extended"
+    }
+  }
+}

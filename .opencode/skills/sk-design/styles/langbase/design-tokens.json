@@ -1,0 +1,459 @@
+{
+  "color": {
+    "console-charcoal": {
+      "$value": "#232324",
+      "$type": "color",
+      "$description": "Console Charcoal — Dominant page canvas, structural hairline borders, and the visible grid backdrop behind the hero. The single most-used color in the system; defines the near-black field that everything else sits on"
+    },
+    "bone-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Bone White — Primary text, primary action fill, and the bright pole of the system. White-on-charcoal carries all the hierarchy; nothing else is allowed to compete"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Deepest surface tone for the darkest interactive states and the reverse-text base inside white CTA buttons. Used sparingly — never as the page background"
+    },
+    "off-white": {
+      "$value": "#ebeced",
+      "$type": "color",
+      "$description": "Off-White — Slightly warmer white for secondary text and subtle emphasis where #fafafa would feel too clinical"
+    },
+    "mute-gray": {
+      "$value": "#a1a1aa",
+      "$type": "color",
+      "$description": "Mute Gray — Muted helper text, nav links, and secondary icon strokes. The readable-but-quiet gray that supports body copy without claiming focus"
+    },
+    "wire-gray": {
+      "$value": "#5c5c61",
+      "$type": "color",
+      "$description": "Wire Gray — Hairline borders, icon strokes, and the dividing lines between content sections. The 1px wire that holds the console together"
+    },
+    "recess-black": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Recess Black — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "nav-ink": {
+      "$value": "#0e0e10",
+      "$type": "color",
+      "$description": "Nav Ink — Navigation bar background — the only surface darker than the canvas, anchoring the top of the page as a distinct horizontal band"
+    },
+    "smoke": {
+      "$value": "#454546",
+      "$type": "color",
+      "$description": "Smoke — Muted body text and the mid-tone of the neutral scale. Quieter than #a1a1aa for de-emphasized copy"
+    },
+    "ash": {
+      "$value": "#696970",
+      "$type": "color",
+      "$description": "Ash — Quietest readable gray for tertiary metadata and timestamps"
+    },
+    "aurora-spectrum": {
+      "$value": "#c7b8f5",
+      "$type": "color",
+      "$description": "Aurora Spectrum — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "geistsans": {
+      "$value": "GeistSans",
+      "$type": "fontFamily",
+      "$description": "All UI text — navigation, buttons, body copy, and subheadings. Custom geometric sans with -0.025em tracking baked in; weight 500 carries most of the voice. The maximum sans size (48px) is reserved for the hero headline, after which GeistMono takes over for display."
+    },
+    "geistmono": {
+      "$value": "GeistMono",
+      "$type": "fontFamily",
+      "$description": "Developer-identity display type and inline code/numeric emphasis. The extreme -0.3em letter-spacing at 60-72px collapses the letterforms into dense blocks of glyph — a signature choice that reads as 'terminal' rather than 'poster'. Used for large statistics, code tokens, and the largest display moments."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 60px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 60px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 72px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest accent surface — used inside inverted CTAs and the darkest focus states"
+    },
+    "nav-ink": {
+      "$value": "#0e0e10",
+      "$type": "color",
+      "$description": "Surface level 1: Sticky navigation band, the only surface that reads as distinctly darker than the canvas"
+    },
+    "recess-black": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 2: Recessed interactive fields — input boxes and dark-context buttons that feel pressed into the page"
+    },
+    "console-charcoal": {
+      "$value": "#232324",
+      "$type": "color",
+      "$description": "Surface level 3: Dominant page canvas — the architectural ground plane that carries all content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://langbase.com",
+      "siteName": "Langbase",
+      "extractedAt": "2026-06-03T19:06:24.660Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary action buttons on light surfaces, body text, headlines, card borders — the universal ink of the system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas on light sections, card surfaces, text on dark backgrounds, button text on filled buttons"
+    },
+    "deep-teal": {
+      "$value": "#0b252a",
+      "$type": "color",
+      "$description": "Deep Teal — Dark section backgrounds — the only large chromatic surface, used for narrative bands between editorial spreads"
+    },
+    "bone": {
+      "$value": "#f6f5f5",
+      "$type": "color",
+      "$description": "Bone — Card surfaces and hairline borders on light sections — the warm off-white that prevents starkness"
+    },
+    "sandstone": {
+      "$value": "#f5ece5",
+      "$type": "color",
+      "$description": "Sandstone — Warm card surface tint, section backgrounds in cream/peach areas — desert-hour warmth"
+    },
+    "ash-blush": {
+      "$value": "#ede2d7",
+      "$type": "color",
+      "$description": "Ash Blush — Soft warm card surface, secondary peach accent on portrait cards"
+    },
+    "stone": {
+      "$value": "#d7cecc",
+      "$type": "color",
+      "$description": "Stone — Muted neutral footer and section dividers — warm mid-gray grounding color"
+    },
+    "iron": {
+      "$value": "#e1dad9",
+      "$type": "color",
+      "$description": "Iron — Button and link background tint, card surface for outlined controls"
+    },
+    "pewter": {
+      "$value": "#afaeae",
+      "$type": "color",
+      "$description": "Pewter — Disabled or tertiary button fills, secondary surface fills"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Near-black for dark button fills on light surfaces where pure black feels too harsh"
+    },
+    "dusty-sky": {
+      "$value": "#c5d5e8",
+      "$type": "color",
+      "$description": "Dusty Sky — Soft blue pastel — feature card background, decorative portrait card tint"
+    },
+    "mist-mint": {
+      "$value": "#d4e6eb",
+      "$type": "color",
+      "$description": "Mist Mint — Pale mint-teal pastel — feature card background variant"
+    },
+    "wisteria": {
+      "$value": "#efe5f9",
+      "$type": "color",
+      "$description": "Wisteria — Lavender pastel — feature card background variant"
+    },
+    "desert-clay": {
+      "$value": "#e7d3bf",
+      "$type": "color",
+      "$description": "Desert Clay — Warm peach/tan pastel — feature card background variant, ties to hero photography palette"
+    },
+    "slate-teal": {
+      "$value": "#406e7a",
+      "$type": "color",
+      "$description": "Slate Teal — Muted blue-teal for feature tag pills on dark sections, badge backgrounds — the only repetitive chromatic UI element"
+    },
+    "saddle-brown": {
+      "$value": "#4c312b",
+      "$type": "color",
+      "$description": "Saddle Brown — Warm brown for badge borders and occasional accent text — echoes the terrain photography"
+    }
+  },
+  "font": {
+    "es-allianz": {
+      "$value": "ES Allianz",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI text — a high-contrast didone-influenced serif used at dramatic display sizes (74–152px) for headlines, and at body sizes (16–19px) for running text. The tight letter-spacing (-0.045em at display, -0.02em at body) tightens the serifs into a modern editorial stance. Weight 400 carries most copy; 700 for hero impact; 500 for navigation and subheadings. This serif does the heavy lifting that a sans-serif system would spread across three families."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "46px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "74px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 74px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ES Allianz",
+        "fontSize": "152px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 152px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "16000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas on light editorial sections"
+    },
+    "bone": {
+      "$value": "#f6f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, warm off-white panels on cream sections"
+    },
+    "sandstone": {
+      "$value": "#f5ece5",
+      "$type": "color",
+      "$description": "Surface level 2: Warm card tint for peach/cream feature areas"
+    },
+    "pastel-card": {
+      "$value": "#efe5f9",
+      "$type": "color",
+      "$description": "Surface level 3: Colored card surface (lavender/blue/mint/peach variants)"
+    },
+    "deep-teal": {
+      "$value": "#0b252a",
+      "$type": "color",
+      "$description": "Surface level 4: Dark narrative band background — highest contrast surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.11x.ai",
+      "siteName": "11x– Digital workers",
+      "extractedAt": "2026-06-03T15:53:42.543Z",
+      "variant": "extended"
+    }
+  }
+}

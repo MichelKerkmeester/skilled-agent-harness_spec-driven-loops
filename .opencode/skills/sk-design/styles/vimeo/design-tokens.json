@@ -1,0 +1,484 @@
+{
+  "color": {
+    "cyan-signal": {
+      "$value": "#17d5ff",
+      "$type": "color",
+      "$description": "Cyan Signal — Primary action background, active nav, the single brand chromatic — filled CTAs and selected states. Electric against matte white, cool enough to feel like light rather than pigment"
+    },
+    "cyan-depth": {
+      "$value": "#13b1d4",
+      "$type": "color",
+      "$description": "Cyan Depth — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#141a20",
+      "$type": "color",
+      "$description": "Ink Black — Dark section backgrounds (platform showcase bands, footer), filled dark buttons. Near-black with a cool blue undertone that keeps it on-brand rather than neutral"
+    },
+    "carbon": {
+      "$value": "#0a0e12",
+      "$type": "color",
+      "$description": "Carbon — Primary text, heading color, strongest dark neutral for text on light surfaces and borders on dark surfaces"
+    },
+    "slate": {
+      "$value": "#23313b",
+      "$type": "color",
+      "$description": "Slate — Secondary text, footer borders, muted UI elements. Cool gray-blue that bridges between the dark ink and mid-grays"
+    },
+    "graphite": {
+      "$value": "#3d4751",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, outlined action borders, link colors. The mid-tone that carries most secondary information"
+    },
+    "steel": {
+      "$value": "#4c5864",
+      "$type": "color",
+      "$description": "Steel — Navigation borders, body text secondary level, card text. Lighter mid-gray for tertiary UI structure"
+    },
+    "fog": {
+      "$value": "#a9b2bc",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, disabled states, low-emphasis borders. The softest mid-gray for de-emphasized content"
+    },
+    "cloud": {
+      "$value": "#dfe4ea",
+      "$type": "color",
+      "$description": "Cloud — Subtle background fills, nav hover states, light surface layer above the white canvas"
+    },
+    "paper": {
+      "$value": "#fafcfd",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, primary background. The near-white with a barely-perceptible cool tint — cleaner than pure white, warmer than #fff"
+    },
+    "midnight": {
+      "$value": "#192028",
+      "$type": "color",
+      "$description": "Midnight — Dark card surface, elevated dark panels above #141a20 backgrounds. Used for layered dark UI"
+    }
+  },
+  "font": {
+    "abcrepro": {
+      "$value": "ABCRepro",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI text. Weight 400 for body and descriptions, 500 for emphasized body and subheadings, 700 for headings and buttons. The custom neo-grotesque has tight apertures and mechanical terminals; at display sizes (40-72px) the tight tracking (-0.05em) and 1.00 leading make headlines feel architectural rather than decorative. At body sizes (16px) it reads as clean, slightly condensed, editorial — closer to a European tech product than a warm consumer brand."
+    },
+    "abcrepromono": {
+      "$value": "ABCReproMono",
+      "$type": "fontFamily",
+      "$description": "Monospace accent for code-like or technical labels. Used sparingly — only when mechanical/technical voice is needed."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABCReproMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCRepro",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(85, 85, 85) 0px 0px 0px 10000px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(34, 51, 34) 0px 0px 0px 10000px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(17, 17, 17) 0px 0px 0px 10000px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#fafcfd",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background for all light sections"
+    },
+    "cloud-lift": {
+      "$value": "#dfe4ea",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle background fills, nav hover states, soft surface layer"
+    },
+    "ink-platform": {
+      "$value": "#141a20",
+      "$type": "color",
+      "$description": "Surface level 2: Dark section backgrounds for platform showcases"
+    },
+    "midnight-card": {
+      "$value": "#192028",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated dark panels layered above #141a20"
+    },
+    "cyan-action": {
+      "$value": "#17d5ff",
+      "$type": "color",
+      "$description": "Surface level 4: Interactive fill for primary CTAs — the only chromatic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://vimeo.com",
+      "siteName": "Vimeo",
+      "extractedAt": "2026-06-03T20:47:19.106Z",
+      "variant": "extended"
+    }
+  }
+}

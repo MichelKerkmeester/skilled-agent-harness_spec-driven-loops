@@ -1,0 +1,439 @@
+{
+  "source": "https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8",
+  "uuid": "ffb945f9-2d70-45e8-9024-492900318fa8",
+  "name": "Freelance frontend UI developer and designer, Rou Hun Fan",
+  "northStar": "Riso-printed zine on black construction paper",
+  "capturedAt": "2026-07-18T07:21:47.599Z",
+  "meta": {
+    "url": "https://flowen.me",
+    "siteName": "Freelance frontend UI developer and designer, Rou Hun Fan",
+    "extractedAt": "2026-06-03T21:23:41.675Z",
+    "durationMs": 26678,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 101,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use AzeretMono 700/900 at 72–100px for all primary headlines — type scale should feel oversized, never comfortable",
+      "Apply Voltage Cyan (#1ef0e4) as flat panel backgrounds only — never as gradients, never as semi-transparent overlays",
+      "Keep all border-radius at 0px — cards, buttons, images, tags are all hard rectangles",
+      "Use Ephidona script sparingly (1–2 instances per page) as editorial flourishes on Voltage cards, not for functional text",
+      "Set elementGap to 8–16px and use whitespace as structural division between content blocks",
+      "Let display text break across columns naturally — asymmetric, magazine-grid layout is intentional",
+      "Pair Plasma Magenta text exclusively with Voltage Cyan backgrounds — never use magenta on dark or magenta as body text"
+    ],
+    "donts": [
+      "Don't add box-shadows, drop-shadows, or any form of depth simulation — the design is ruthlessly flat",
+      "Don't round corners on any element — hard edges define the brutalist editorial language",
+      "Don't use the brand accent colors for buttons or CTAs — there are no traditional CTAs; navigation is text-only",
+      "Don't introduce a third display weight between 56px and 100px — the scale jumps from readable to poster-sized, no comfortable middle ground",
+      "Don't apply gradients to any surface — the palette is 100% flat fills",
+      "Don't use the Ephidona script for body copy, navigation, or functional labels — it is decorative only",
+      "Don't soften the white text with opacity below 80% for body content — if hierarchy is needed, drop the size and weight instead"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon",
+        "role": "Page canvas and section backgrounds — near-true-black maximizes the contrast pop of white type and saturated accent blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text, display headlines, borders, and link strokes — the only voice for the majority of the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1ef0e4",
+        "name": "Voltage Cyan",
+        "role": "Accent card backgrounds, highlight panels — flat saturated cyan that screams against the dark canvas, reserved for project cards and editorial callout blocks",
+        "group": "accent"
+      },
+      {
+        "hex": "#e91e8c",
+        "name": "Plasma Magenta",
+        "role": "Display text on cyan cards, decorative script flourishes — hot pink/magenta used only as ink-on-cyan contrast or as editorial accent",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff3a1a",
+        "name": "Ember",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no visible page margins constraining the content — elements break to the viewport edges. The hero is a typographic poster: oversized white text (ROU HUN FAN, UI DEV, DESIGN, MOTION & FRONTEND) wrapping asymmetrically across multiple columns, with a Voltage Cyan project card pasted on top at an offset position. Below, a full-width candid photo sits beside a large serif/script '10+ YEARS' stat block. The page rhythm alternates between text-dominant poster sections and image-dominant photo sections, separated by generous 80–120px vertical gaps. No sidebar, no sticky header, no max-width constraint — the layout is intentionally uncontained, like a zine spread.",
+    "imagery": "Photography is warm-toned, candid, slightly desaturated — medium-format film aesthetic rather than polished commercial. Images are presented full-bleed or near-full-bleed with no rounded corners, no borders, and no decorative framing. A humanizing counterpoint to the machine typography: the photographer is shown mid-action, smiling, in a real space with natural light. The combination of a person + organic photo against the geometric type + flat cyan panels creates the core visual tension of the brand.",
+    "similar": [
+      {
+        "why": "Same editorial web-magazine layout with oversized display type, asymmetric column breaks, and a dark canvas punctuated by a single saturated accent color",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Brutalist typographic-poster hero treatments where type itself is the design, paired with full-bleed candid photography and zero decorative chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Independent developer portfolio using monospaced system type at extreme scale against dark backgrounds, with flat saturated accent panels that feel pasted onto the page",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Personal portfolio using oversized condensed display type as the primary visual element, with accent color blocks and editorial spacing rhythm",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Dark-canvas creative studio site with flat saturated accent panels, oversized type, and a print-poster rather than app-UI sensibility",
+        "business": "Active Theory"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background, section bands"
+      },
+      {
+        "hex": "#1ef0e4",
+        "name": "Voltage Card",
+        "level": 1,
+        "purpose": "Featured project cards, editorial callout panels"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Image Plate",
+        "level": 2,
+        "purpose": "Photo containers, embedded media blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Riso-printed zine on black construction paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 56,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Primary typographic element — sets the poster/magazine tone",
+        "description": "AzeretMono 700/900 at 72–100px, white (#ffffff) on Carbon (#0a0a0a), line-height 1.0–1.2, no letter-spacing. Text breaks across columns asymmetrically. This is the dominant UI element — larger than any other component on the page."
+      },
+      {
+        "name": "Editorial Script Label",
+        "role": "Section divider and humanizing accent",
+        "description": "Ephidona 400 at 72–108px, Ember (#ff3a1a) on Carbon, overlapping the edge of a Voltage Cyan card. Used as a diagonal/rotated overlay on project cards to add editorial energy. Only 1–2 instances per page."
+      },
+      {
+        "name": "Voltage Project Card",
+        "role": "Featured project showcase block",
+        "description": "Background Voltage Cyan (#1ef0e4), Plasma Magenta (#e91e8c) display text (PROBLEM STUDIO) at 48–72px AzeretMono bold, small Plasma Magenta body text below. Zero border-radius. Hard rectangular edge. Often contains a torn-paper or organic decorative shape in Plasma Magenta at the bottom edge."
+      },
+      {
+        "name": "Monospace Navigation",
+        "role": "Top-of-page nav and section links",
+        "description": "Azeret Mono 400 at 14–16px, white, uppercase, tracking slightly expanded. No background fill — text only, sitting directly on Carbon. Minimal: 3–5 items max. Separated by generous whitespace, not dividers."
+      },
+      {
+        "name": "Photo Plate",
+        "role": "Personal photography and project imagery",
+        "description": "Full-bleed or near-full-bleed images on Carbon, zero border-radius, no border. Images butt directly against display text — no padding gutters. Photography is warm-toned, candid, medium-format feel."
+      },
+      {
+        "name": "Metadata Tag",
+        "role": "Small labels for project categories, years, skills",
+        "description": "Azeret Mono 400 at 12–14px, white or dimmed white on Carbon. No background. Uppercase. Stacked vertically with 9px gaps (the detected elementGap token). No pill shape, no border."
+      },
+      {
+        "name": "Footer",
+        "role": "Contact and social links",
+        "description": "Azeret Mono 400 at 12–14px white on Carbon, full-width, left-aligned. Includes email, social handles, and copyright. No dividers. Maximum 3–4 lines."
+      },
+      {
+        "name": "Decorative Organic Shape",
+        "role": "Graphic accent on Voltage cards",
+        "description": "Plasma Magenta (#e91e8c) irregular blob/torn-paper shape at the base of Voltage Cyan cards. Flat fill, no gradient, no border. Creates visual friction between the geometric card and organic flourish."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Monospace system voice — navigation, metadata, UI labels, footer text. Brings a developer-terminal identity that matches the frontend-developer positioning",
+        "sizes": "100px",
+        "family": "Azeret Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.4–1.5",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "fontFeatureSettings": "\"aalt\" on"
+      },
+      {
+        "role": "Oversized condensed display headlines (ROU HUN FAN, UI DEV, DESIGN, MOTION & FRONTEND). The extreme scale and bold weight turn the page into a typographic poster — type IS the design",
+        "sizes": "",
+        "family": "AzeretMono (display variant)",
+        "weight": "700, 900",
+        "lineHeight": "1.0–1.2",
+        "substitute": "Bebas Neue, Anton, Tungsten Bold"
+      },
+      {
+        "role": "Calligraphic editorial script for section labels (PROJECTS). Counter-typography that breaks the geometric/mono discipline with human handwriting — the anti-machine flourish that signals personal craft over automated output",
+        "sizes": "100px, 108px",
+        "family": "Ephidona",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "substitute": "Pinyon Script, Allura, Tangerine",
+        "fontFeatureSettings": "\"aalt\" on"
+      }
+    ],
+    "description": "A brutalist editorial portfolio for an independent frontend developer: near-black canvas, oversized condensed display type, and a single high-saturation accent block that detonates against the void. Layout behaves like a printed magazine spread — text breaks across asymmetric columns, type meets image at hard edges, and whitespace is used as a structural element rather than padding. The signature move is the cyan card with magenta display text that feels pasted onto the page like a sticker, breaking the monochrome discipline. Typography carries all the weight: a monospaced geometric for system voice, a heavy condensed sans for shouting, and a calligraphic script for editorial flourishes that humanize the machine aesthetic.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$2c"
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no depth, no glassmorphism. The design is deliberately flat — every element sits on the same plane. The impression of hierarchy comes from scale contrast (100px display vs 12px caption) and color contrast (white on black, magenta on cyan), not from elevation. This is a print-design, not a UI-design sensibility applied to the web."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 500,
+          "confidence": 1,
+          "prominence": 20272056.925994992,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 7,
+            "image/color": 10,
+            "other/color": 62,
+            "footer/color": 1,
+            "heading/color": 20,
+            "link/borderColor": 28,
+            "image/borderColor": 40,
+            "other/borderColor": 248,
+            "footer/borderColor": 4,
+            "heading/borderColor": 80
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 188709,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.001390102518235749,
+      "contrastPairs": [
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#ff0000",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 9,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "AzeretMono Black",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 79,
+          "fontFeatureSettings": [
+            "\"aalt\""
+          ]
+        },
+        {
+          "family": "Ephidona",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": [
+            "\"aalt\""
+          ]
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 100,
+          "family": "AzeretMono Black",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "footer",
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 100,
+          "family": "AzeretMono Black",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 100,
+          "family": "Ephidona",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 108,
+          "family": "Ephidona",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2a528957-ebb4-48e4-8c5c-2146366d656d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cae01e99-7bbc-40c1-9177-53783321b707.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan design system\",\"item\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8#style-reference\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan design system reference\",\"headline\":\"Freelance frontend UI develope design system | Refero Styles\",\"description\":\"Explore Freelance frontend UI developer and designer, Rou Hun Fan's dark Agency design system: Carbon #0a0a0a, Bone #ffffff colors, Azeret Mono, AzeretMono...\",\"url\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan\",\"url\":\"https://flowen.me\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ffb945f9-2d70-45e8-9024-492900318fa8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cae01e99-7bbc-40c1-9177-53783321b707.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cae01e99-7bbc-40c1-9177-53783321b707.jpg\",\"caption\":\"Screenshot of Freelance frontend UI developer and designer, Rou Hun Fan\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cae01e99-7bbc-40c1-9177-53783321b707.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freelance frontend UI developer and designer, Rou Hun Fan design system\",\"Freelance frontend UI developer and designer, Rou Hun Fan website design\",\"Freelance frontend UI developer and designer, Rou Hun Fan colors\",\"Freelance frontend UI developer and designer, Rou Hun Fan typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon\",\"Bone\",\"Voltage Cyan\",\"Plasma Magenta\",\"Azeret Mono\",\"AzeretMono (display variant)\",\"Ephidona\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan design system\"},{\"@type\":\"Thing\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan website design\"},{\"@type\":\"Thing\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan colors\"},{\"@type\":\"Thing\",\"name\":\"Freelance frontend UI developer and designer, Rou Hun Fan typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:34:37.681Z\",\"dateModified\":\"2026-04-30T01:34:37.681Z\"}]}"
+}

@@ -1,0 +1,1085 @@
+{
+  "source": "https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9",
+  "uuid": "297f65f7-0fbd-4521-ab91-a5f6e17175d9",
+  "name": "Electronic Materials Office®",
+  "northStar": "Incandescent ember in a charcoal gallery",
+  "capturedAt": "2026-07-18T07:30:01.916Z",
+  "meta": {
+    "url": "https://electronicmaterialsoffice.com",
+    "siteName": "Electronic Materials Office®",
+    "extractedAt": "2026-06-03T20:53:44.735Z",
+    "durationMs": 30278,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 200,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GT-Flexa weight 200 for every display headline at 42px and above — the whisper weight is the signature",
+      "Apply the Ember Orange (#f45500) filled button with its 30px rgba(245,86,0,0.6) glow exactly once per viewport",
+      "Keep all card radii at 20px and all button radii at 20px — never break to 4px or 8px",
+      "Use #9e9eff for all inline links and outlined nav actions — it is the only cool chromatic in the system",
+      "Hold the page canvas at #202020, not #000000 — the slight lift gives product photography room to breathe",
+      "Let Tobias-light 32–42px carry section labels with its -2.6px tracking — it provides the architectural voice",
+      "Define surface edges with 1px #9d9d9d or #ffffff borders rather than shadow or background shifts"
+    ],
+    "donts": [
+      "Do not use Times or any serif for headings, labels, or UI chrome — it is body copy only",
+      "Do not apply the Ember Orange glow to anything other than the primary CTA",
+      "Do not introduce additional saturated brand colors — the system is orange + violet on charcoal",
+      "Do not use weight 400 or above for display headlines above 42px — the 200 weight is non-negotiable",
+      "Do not add box-shadows to cards, images, or navigation — shadows are reserved for the two button variants",
+      "Do not center body copy or paragraph text — left alignment only, matching the hero headline",
+      "Do not round anything below 16px — the system commits to soft, large radii"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#202020",
+        "name": "Studio Charcoal",
+        "role": "Page canvas and card surfaces — the floor of the dark gallery, never pure black so the eye can rest on edge softness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, hairline borders on images, and the rare inverted surface. Carries all type hierarchy on its own",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9d9d9d",
+        "name": "Ash Gray",
+        "role": "Muted text, subtle card borders, inactive labels — the only middle gray in the scale, used when white is too loud",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Mid Felt",
+        "role": "Light surface wash for inverted panels or modal scrims — the off-white that sits between bone and the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Deepest accent for icon strokes and contrast borders where the charcoal canvas is too light to hold an edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f45500",
+        "name": "Ember Orange",
+        "role": "Filled primary action button — the only chromatic surface in the UI, always paired with a 30px orange halo so it glows like a filament; 30px outer glow on the primary CTA — duplicates the Ember Orange hex but exists as a box-shadow, not a fill, so the button appears lit from within",
+        "group": "brand"
+      },
+      {
+        "hex": "#9e9eff",
+        "name": "Lavender Link",
+        "role": "Inline link color and the outlined secondary action border — a desaturated cool counterpoint to the warm orange ember, keeping actions readable against charcoal",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed charcoal canvas with centered max-width content (~1200px). The hero opens with a 20px-radius media card containing the product film, sitting roughly 80% viewport width, followed immediately by a multi-line GT-Flexa 200 headline that wraps across nearly the full content width. Section rhythm: one feature section with a Tobias-light all-caps label, then a 2×2 (on desktop) card grid of feature tiles. Cards use 1px #9d9d9d borders and 24px gaps between them. Generous vertical breathing — sections are separated by 48–128px of charcoal negative space rather than dividers. Navigation is a single transparent bar pinned to the top with a ghost-link cluster and one Ember CTA. No sidebar, no mega-menu, no secondary navigation.",
+    "imagery": "Imagery is product-only — close-up macro photography of the Altar I keyboard shot against pure black, lit from above so the chassis glows and keycap legends catch rim light. No lifestyle, no human hands, no environmental context. Treatment is consistently high-contrast and dark; the only color that escapes the monochrome palette is the orange power switch on the keyboard itself, which echoes the Ember Orange CTA. Images are square or 16:9, always contained within 20px-radius cards, and they bleed to the card edge (no internal padding around the photo, caption sits below the bleed). Icon style: the only iconography is the small filled circle (●) prefixing the wordmark — a single orange dot, weight ~6px.",
+    "similar": [
+      {
+        "why": "Same matte-black product-page gallery with a single saturated accent and ultra-light display type that treats the object as the only light source",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Mechanical keyboard product pages built on dark charcoal canvases with generous negative space and minimal UI chrome around large product photography",
+        "business": "Keychron"
+      },
+      {
+        "why": "Premium dark-mode hardware brand with a dot-matrix wordmark, restraint in color use, and product photography that bleeds to card edges",
+        "business": "Nothing (tech)"
+      },
+      {
+        "why": "Matte dark product pages with serif body copy beneath large display headlines, treating each product drop like a gallery exhibition",
+        "business": "Grovemade"
+      },
+      {
+        "why": "Editorial dark surfaces with serif body text, all-caps section labels, and the discipline to use only one warm accent across the entire system",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "images": "20px",
+        "buttons": "20px"
+      },
+      "elementGap": "4-8px",
+      "sectionGap": "48-128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#202020",
+        "name": "Studio Floor",
+        "level": 0,
+        "purpose": "Page background — the base of the gallery"
+      },
+      {
+        "hex": "#202020",
+        "name": "Card Matte",
+        "level": 1,
+        "purpose": "Feature cards and media frames sit on the same charcoal as the canvas, defined by 1px borders rather than surface shifts"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Inverted Panel",
+        "level": 2,
+        "purpose": "Light scrim or modal surface when the system inverts"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 30px 0px rgba(245, 86, 0, 0.6)",
+        "element": "Primary CTA (Ember Orange filled button)"
+      },
+      {
+        "style": "0px 0px 30px 0px rgba(255, 255, 255, 0.3)",
+        "element": "Secondary CTA (white ghost button on dark)"
+      }
+    ],
+    "northStar": "Incandescent ember in a charcoal gallery",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading-lg",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading-xl",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.536
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.2,
+        "letterSpacing": -2.604
+      },
+      {
+        "role": "heading-lg",
+        "size": 68,
+        "lineHeight": 1.06,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA — Ember Button",
+        "role": "The single filled action on any screen (Pre-order, Buy).",
+        "description": "Background #f45500, white text at 16px GT-Flexa 400, 20px radius, horizontal padding 16px, vertical padding 1px (sits visually low and wide). Always wrapped in the 30px rgba(245,86,0,0.6) outer glow. The thin vertical padding is intentional — the button reads as a glowing bar, not a pill."
+      },
+      {
+        "name": "Secondary CTA — White Ghost Button",
+        "role": "Companion to the Ember button when two actions sit side by side.",
+        "description": "Transparent background, 1px #ffffff border at 20px radius, white text. Mirrors the primary CTA's dimensions but carries a softer 30px rgba(255,255,255,0.3) glow — like the orange button's monochrome echo."
+      },
+      {
+        "name": "Lavender Outlined Action",
+        "role": "Tertiary or nav-level action (e.g. About, Updates in the header).",
+        "description": "1px #9e9eff border, 20px radius, lavender text. Functions as a quiet link-button — never used for purchase. The violet border separates navigation actions from the orange commerce action."
+      },
+      {
+        "name": "Inline Lavender Link",
+        "role": "Anchor text inside paragraphs or feature captions.",
+        "description": "Color #9e9eff, no underline by default, GT-Flexa 400 16px. The only inline accent in the type system — it carries affordance without weight."
+      },
+      {
+        "name": "Video / Media Card",
+        "role": "Hero film or product video frame.",
+        "description": "Charcoal (#202020) background matching the canvas, 20px radius, 1px #9d9d9d or #ffffff border, contains a centered product render with a floating 20px-radius Play pill button in the lower third. No shadow — the border is the edge."
+      },
+      {
+        "name": "Feature Card",
+        "role": "2×2 or 3×2 grid cell in the Key Features section.",
+        "description": "Charcoal canvas (no surface lift), 20px radius, 1px #9d9d9d border, 24px internal padding, top half is a square product detail photograph with no internal padding (bleeds to the card edge, clipped by the 20px radius), bottom half holds a two-line caption in Tobias-light 32px (-1.5px tracking) or GT-Flexa 24px 400."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Opening product announcement that fills the first scroll.",
+        "description": "GT-Flexa weight 200, 68–86px, line-height 1.0–1.06, color #ffffff. No text-align override needed — left-aligned by default, tracking normal, line-height tight enough that multi-line headlines stack into a single column of light. Sits directly below the video card with a 48px gap."
+      },
+      {
+        "name": "Section Header (Tobias Voice)",
+        "role": "Delineates major sections (e.g. KEY FEATURES).",
+        "description": "Tobias-light 400 at 42px, letter-spacing -0.062em (-2.6px), all caps in the visual system, color #ffffff. Provides an architectural label that contrasts with the weight-200 GT-Flexa body headlines."
+      },
+      {
+        "name": "Editorial Paragraph",
+        "role": "Body copy under hero or in product descriptions.",
+        "description": "Times 400 16px, line-height 1.2, color #ffffff. Serif body on dark background — a deliberate humanist counterpoint to the geometric display fonts. Never grows past 16px; rarity is the point."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all pages.",
+        "description": "Transparent over the charcoal canvas, no background fill, no border. Left: brand mark '● Electronic Materials Office®' in white with a small orange dot prefix. Right: two ghost links (About, Updates) in #9e9eff + 1px border, then the Ember CTA. Vertical padding ~24px, sits flush to the viewport edges with internal page padding."
+      },
+      {
+        "name": "Footer",
+        "role": "Closing block of the page.",
+        "description": "128px top margin from the last content block, charcoal background, Tobias-light wordmark or GT-Flexa 200 at 68px as a closing statement. No card surfaces, no borders — the footer is defined by the gap above it."
+      },
+      {
+        "name": "Play Overlay Button",
+        "role": "Centered trigger over video frames.",
+        "description": "White fill, #000000 text reading 'Play film', 20px radius, ~16px horizontal padding. The only white-filled button in the system — functions as the inverse of the Ember CTA."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading workhorse. Weight 200 carries every headline above 24px — the 200 weight is the signature: at 68px and 86px the letterforms dissolve into atmosphere rather than shout. Weight 400 steps in for sub-headings and card captions where a whisper isn't enough. Line-heights collapse toward 1.0 at the largest sizes so display type stacks like a column of breath.",
+        "sizes": "16px, 24px, 26px, 28px, 42px, 68px, 86px",
+        "family": "GT-Flexa",
+        "weight": "200, 400",
+        "lineHeight": "1.00–1.33",
+        "substitute": "Inter (200/400) or Manrope (200/400)"
+      },
+      {
+        "role": "Secondary display voice for section headers and the footer wordmark. Used at a step below GT-Flexa 200 to create tonal contrast — Tobias feels more architectural, more labeled, while GT-Flexa feels ambient. Negative letter-spacing tightens the wide proportions of the Tobias Light cut.",
+        "sizes": "32px, 42px",
+        "family": "Tobias-light",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Söhne Buch or Inter Tight",
+        "letterSpacing": "-0.048em at 32px, -0.062em at 42px"
+      },
+      {
+        "role": "Body text and hero paragraph copy — a deliberate serif counterpoint to the geometric display fonts. The serif adds warmth and editorial gravity to product descriptions without ever growing larger than body size.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Source Serif 4 or PT Serif"
+      }
+    ],
+    "description": "Electronic Materials Office is a nocturnal atelier: matte charcoal canvas, a single incandescent orange ember, and type that whispers rather than declares. The interface treats every screen like a darkened studio — the keyboard product photographs are the only true light source, and the UI surrenders to them. Headlines at weight 200 in GT-Flexa float in vast negative space; body text is deliberately small and humanist (Times). Color is rationed: pure white for type, a desaturated violet (#9e9eff) for links, and one orange (#f45500) CTA per page that glows with its own 30px bloom. Components stay flush to the 20px radius, borders whisper at #9d9d9d, and the only shadows in the system are those two colored halos around the primary action.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$2b"
+      }
+    ],
+    "elevationPhilosophy": "Shadow is reserved for two moments only: the orange CTA and its white ghost sibling. Every other surface sits flat against the charcoal canvas, defined by 1px #9d9d9d or #ffffff borders rather than depth. The halo shadows on the buttons aren't really 'elevation' — they're lighting, treating each button like a small lamp placed in the gallery."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "body",
+            "hero",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 814,
+          "confidence": 1,
+          "prominence": 52686576.59229094,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 39,
+            "hero/color": 2,
+            "link/color": 15,
+            "image/color": 20,
+            "other/color": 70,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 15,
+            "body/borderColor": 4,
+            "card/borderColor": 156,
+            "hero/borderColor": 8,
+            "link/borderColor": 60,
+            "image/borderColor": 80,
+            "other/borderColor": 267,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 3474151.3043092494,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#9d9d9d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6960069354631117
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 1816425.0586142153,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 11,
+            "link/color": 3,
+            "other/color": 14,
+            "heading/color": 1,
+            "card/borderColor": 44,
+            "link/borderColor": 12,
+            "other/borderColor": 69,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 724920.6150905917,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "button/color": 1,
+            "other/borderColor": 16,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#9e9eff",
+          "oklch": {
+            "c": 0.13868400069086212,
+            "h": 282.47012052679304,
+            "l": 0.7389719105208746
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 110274.50028076452,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f45500",
+          "oklch": {
+            "c": 0.2071638090464235,
+            "h": 39.8587098947703,
+            "l": 0.6581821360063616
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 67614.50028076452,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9370488987176951
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 42660,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12391,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#933400",
+          "oklch": {
+            "c": 0.13876263468290684,
+            "h": 41.59293192537641,
+            "l": 0.4562850095480841
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6835,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0032932029701462696,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#eaeaea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#202020",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.54,
+          "background": "#eaeaea",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.79,
+          "background": "#9e9eff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#ffffff",
+          "foreground": "#933400"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.03,
+          "background": "#eaeaea",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.82,
+          "background": "#202020",
+          "foreground": "#9e9eff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.39,
+          "background": "#eaeaea",
+          "foreground": "#933400"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.15,
+          "background": "#f45500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.01,
+          "background": "#202020",
+          "foreground": "#9d9d9d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#9e9eff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#f45500",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.22,
+          "background": "#9e9eff",
+          "foreground": "#933400"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#ffffff",
+          "foreground": "#9d9d9d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.39,
+          "background": "#ffffff",
+          "foreground": "#9e9eff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.25,
+          "background": "#eaeaea",
+          "foreground": "#9d9d9d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#eaeaea",
+          "foreground": "#9e9eff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.43,
+          "background": "#f45500",
+          "foreground": "#9e9eff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(245, 86, 0, 0.6) 0px 0px 30px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(255, 255, 255, 0.3) 0px 0px 30px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 98,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT-Flexa",
+          "source": "custom",
+          "weights": [
+            200,
+            400
+          ],
+          "frequency": 72,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Tobias-light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Tobias-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "card",
+            "image"
+          ],
+          "frequency": 98,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT-Flexa",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT-Flexa",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "GT-Flexa",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "GT-Flexa",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "GT-Flexa",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Tobias-light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.062,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Tobias-light",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.048,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "GT-Flexa",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Tobias-Light",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.048,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "GT-Flexa",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "GT-Flexa",
+          "weight": 200,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "GT-Flexa",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f76b49b5-559e-45d0-897b-7122d8b439de.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/959c68f5-9618-4d51-94b9-6182c40d6474.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Electronic Materials Office® design system\",\"item\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9#style-reference\",\"name\":\"Electronic Materials Office® design system reference\",\"headline\":\"Electronic Materials Office® design system | Refero Styles\",\"description\":\"Explore Electronic Materials Office®'s dark E-commerce design system: Studio Charcoal #202020, Bone White #ffffff colors, GT-Flexa, Tobias-light typography,...\",\"url\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Electronic Materials Office®\",\"url\":\"https://electronicmaterialsoffice.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/297f65f7-0fbd-4521-ab91-a5f6e17175d9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/959c68f5-9618-4d51-94b9-6182c40d6474.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/959c68f5-9618-4d51-94b9-6182c40d6474.jpg\",\"caption\":\"Screenshot of Electronic Materials Office®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/959c68f5-9618-4d51-94b9-6182c40d6474.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Electronic Materials Office® design system\",\"Electronic Materials Office® website design\",\"Electronic Materials Office® colors\",\"Electronic Materials Office® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Studio Charcoal\",\"Bone White\",\"Ash Gray\",\"Mid Felt\",\"GT-Flexa\",\"Tobias-light\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Electronic Materials Office® design system\"},{\"@type\":\"Thing\",\"name\":\"Electronic Materials Office® website design\"},{\"@type\":\"Thing\",\"name\":\"Electronic Materials Office® colors\"},{\"@type\":\"Thing\",\"name\":\"Electronic Materials Office® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:28:50.412Z\",\"dateModified\":\"2026-04-30T01:28:50.412Z\"}]}"
+}

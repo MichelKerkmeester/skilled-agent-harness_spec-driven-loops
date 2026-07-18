@@ -1,0 +1,1027 @@
+{
+  "source": "https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11",
+  "uuid": "b2ace2c1-d6ee-4d57-915e-901224cded11",
+  "name": "Alison Roman",
+  "northStar": "cookbook pages on warm cream paper — a printed spread from an artisan food memoir, translated to screen with zero loss of tactility",
+  "capturedAt": "2026-07-18T07:29:15.508Z",
+  "meta": {
+    "url": "https://www.alisoneroman.com",
+    "siteName": "Alison Roman",
+    "extractedAt": "2026-06-03T20:57:40.601Z",
+    "durationMs": 26823,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 132,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every page background to Parchment Canvas (#f6f0e1); do not introduce a true white page.",
+      "Use Jannon Neo weight 300 for any text 48px or larger; the whisper-light serif is the headline voice.",
+      "Reserve the Filled Order Button as the only chromatic action — fill #290a08, text #ffffff, 0px radius, 8px 16px padding.",
+      "Space sections 80-96px apart with whitespace alone; never use a horizontal rule or background band to separate sections.",
+      "Apply -0.03em letter-spacing to any display-size Jannon Neo text; the tight tracking is what makes the serif feel printed rather than digital.",
+      "Mark every inline link with Buttery Highlight (#fff3cc) text color — do not use blue, do not use underline.",
+      "Use Linen (#fffaec) for any card or list surface that needs to lift off the canvas; 0px radius, no border, no shadow."
+    ],
+    "donts": [
+      "Do not introduce drop shadows, glows, or blurred elevations anywhere — the system is intentionally flat.",
+      "Do not use a border-radius on any element; the 0px geometry is the design's signature.",
+      "Do not use blue for links, buttons, or accents — Buttery Highlight is the only accent color for hyperlinks.",
+      "Do not use Vintage Burgundy (#810c00) for UI chrome, text, or buttons; it is reserved for book-cover backgrounds only.",
+      "Do not use system sans-serifs (Inter, Helvetica) for headlines — the Jannon Neo serif is the identity.",
+      "Do not fill more than 15% of any page with a non-cream, non-ink color; the system is overwhelmingly two-tone.",
+      "Do not stack sections on alternating background colors; the cream canvas is continuous from top to bottom."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#290a08",
+        "name": "Aubergine Ink",
+        "role": "Primary text, headings, filled action buttons, footer text — the warm near-black that anchors every screen; it is the only chromatic dark in the system and the only acceptable fill for primary actions",
+        "group": "brand"
+      },
+      {
+        "hex": "#810c00",
+        "name": "Vintage Burgundy",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff3cc",
+        "name": "Buttery Highlight",
+        "role": "Link text and selected heading accent — a pale custard yellow used sparingly to mark hyperlinks and tiny editorial highlights, sitting at AAA contrast on the ink",
+        "group": "accent"
+      },
+      {
+        "hex": "#f6f0e1",
+        "name": "Parchment Canvas",
+        "role": "Page background — the dominant warm cream that defines the entire site mood; every screen sits on this surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffaec",
+        "name": "Linen Card",
+        "role": "Card surfaces, list-item backgrounds, subtle elevated zones — a step lighter than the canvas, the only card treatment in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Mist",
+        "role": "All borders and dividers throughout the system; used on cards, body blocks, links, and structural dividers — the single hairline color of the site",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Button borders, reverse text on dark fills, and the lightest possible surface lift; the only true white in the palette",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px, centered, fully contained — no full-bleed sections. The page reads as a single editorial column of stacked book sections. The hero is a centered serif headline ('Books by Alison Roman') with enormous breathing room above and below (96px+ top/bottom padding). Each book section is a two-column split: book cover image on the left at native ratio, title + description + 'Order' button on the right, with the title left-aligned in Jannon Neo. Sections are separated by 80-96px of vertical whitespace, never by dividers or color bands. Navigation is minimal — a simple top bar with text links. The rhythm is print-magazine, not dashboard: large headings, short body paragraphs, single action per section, generous margins on both sides.",
+    "imagery": "Imagery is book-cover photography and food photography only — no abstract graphics, no illustrations, no icons. Book covers are presented as raw product crops at full editorial scale on the left side of each book section, sitting on the parchment canvas with no frame or radius. Food photography inside the book covers is warm, natural-lit, and ingredient-forward (a bowl of tomatoes, a hand holding a dessert glass with berries). Images are always square or 4:5, always left-aligned, always paired with a right-column of text. No overlap, no masking, no decorative treatment — the photo is the artifact, not a styled element.",
+    "similar": [
+      {
+        "why": "Same warm-cream canvas, serif display headlines, and product-photography-led editorial layout for a cookbook author brand",
+        "business": "Ottolenghi"
+      },
+      {
+        "why": "Same near-black warm text on cream, zero-radius components, and book-cover-as-hero composition with right-column descriptive copy",
+        "business": "Smitten Kitchen"
+      },
+      {
+        "why": "Same editorial-magazine pacing, single warm dark accent, and minimal UI chrome that defers to typography and photography",
+        "business": "Cherry Bombe Radio"
+      },
+      {
+        "why": "Same two-tone cream-and-ink palette, serif-led hierarchy, and food-photography-first visual language",
+        "business": "Bon Appétit"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80-96px",
+      "cardPadding": "24-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f6f0e1",
+        "name": "Parchment Canvas",
+        "level": 1,
+        "purpose": "Default page background — every screen starts here"
+      },
+      {
+        "hex": "#fffaec",
+        "name": "Linen Card",
+        "level": 2,
+        "purpose": "Card and list-item surfaces, elevated slightly above the canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 3,
+        "purpose": "Highest surface lift, used for book-cover image wells and reverse-text buttons"
+      },
+      {
+        "hex": "#290a08",
+        "name": "Aubergine Ink",
+        "level": 4,
+        "purpose": "Darkest surface — the filled button and any dark inversion blocks"
+      }
+    ],
+    "northStar": "cookbook pages on warm cream paper — a printed spread from an artisan food memoir, translated to screen with zero loss of tactility",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "subheading-lg",
+        "size": 29,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Order Button",
+        "role": "Primary action for purchasing a book",
+        "description": "Dark Aubergine Ink (#290a08) background, Paper White (#ffffff) text in Modale Antique 18px weight 400, no border-radius (0px), 8px vertical padding and 16px horizontal padding, 8px row-gap before/after an inline arrow glyph. Letter-spacing -0.01em. The only filled button variant in the system — every other action defers to it."
+      },
+      {
+        "name": "Editorial Book Section",
+        "role": "Showcase a single book with cover and description",
+        "description": "Two-column row on Parchment Canvas. Left column: book cover image at native ratio, no border, no radius, no shadow. Right column: title in Jannon Neo 32-48px weight 300, description in Modale Antique 18-20px weight 400 in Aubergine Ink, optional inline links, then the Filled Order Button. 48-80px row-gap between sections."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Page-level title like 'Books by Alison Roman'",
+        "description": "Centered Jannon Neo 80-120px weight 300, Aubergine Ink, letter-spacing -0.03em, line-height 1.0. Sits on Parchment Canvas with 96-113px vertical padding above and below. No subhead, no CTA, no decoration — the type IS the hero."
+      },
+      {
+        "name": "Inline Editorial Link",
+        "role": "Hyperlink within body copy (e.g. 'here')",
+        "description": "Body text in Modale Antique 18-20px weight 400, Aubergine Ink, with the link word highlighted in Buttery Highlight (#fff3cc) rather than the standard blue. The highlight is a color swatch, not an underline. Always inline, never standalone."
+      },
+      {
+        "name": "Description Card / Book Plate",
+        "role": "The cream rectangle behind a book cover in the visual stack",
+        "description": "Linen (#fffaec) background, no border, 0px radius, 48px padding all around the inner image. The card is a tonal step up from the canvas, giving the book cover a subtle 'mounted print' feel without a border or shadow."
+      },
+      {
+        "name": "Footer / Nav Bar",
+        "role": "Top navigation and bottom footer",
+        "description": "Minimal text-only links in Modale Antique 18px weight 500, Aubergine Ink, on Parchment Canvas. 24px padding top and bottom. No background fill, no border-top — separated from content by whitespace alone."
+      },
+      {
+        "name": "Book Cover Image",
+        "role": "Primary product visual",
+        "description": "Square or 4:5 ratio, full-bleed within its column, 0px radius, 1px Hairline Mist (#e5e7eb) optional border. No drop shadow, no hover effect. The cover IS the visual; it is not framed or decorated."
+      },
+      {
+        "name": "Section Divider Spacer",
+        "role": "Vertical separation between book sections",
+        "description": "Pure whitespace — 80-96px of Parchment Canvas between sections. No horizontal rule, no color band, no icon. The cream itself does the dividing work."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — carries every headline, section title, and large editorial moment from 20px through a dramatic 120px. The custom transitional serif with weight 300 for the largest sizes is the signature choice: the 'Books by Alison Roman' hero and book titles sit at whisper-light weight, giving the page a printed-book authority rather than a SaaS-bold shout. Substitute with Cormorant Garamond or EB Garamond at light weights.",
+        "sizes": "20px, 32px, 48px, 80px, 120px",
+        "family": "Jannon Neo",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.10, 1.30",
+        "substitute": "Cormorant Garamond, EB Garamond",
+        "letterSpacing": "-0.03em at 48px+ displays, -0.02em at 20-32px, 0 at 20px body"
+      },
+      {
+        "role": "Body, button, card, and UI serif — a slightly more grounded old-style serif for all running text, button labels, card descriptions, and footer lines. The workhorse that lets Jannon Neo's headlines breathe. Substitute with Lora or Source Serif Pro.",
+        "sizes": "18px, 26px, 29px",
+        "family": "Modale Antique",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.50",
+        "substitute": "Lora, Source Serif Pro",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "System fallback for legacy card content blocks; only present at 29px with normal tracking — used as a safety net rather than a deliberate voice",
+        "sizes": "29px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "Alison Roman's site is a warm, editorial cookbook author's atelier — cream-paper canvas, elegant serif typography, and a single near-black warm-brown that carries every text and action. The palette is almost entirely tonal: three creams layered from canvas to card, a whisper-pale yellow for link underlines, and a burgundy flash reserved for book-cover backgrounds. Layout is generous, magazine-paced, and asymmetric — book covers on the left, descriptive copy on the right, with the dark-brown filled 'Order' button as the sole structural punctuation. No shadows, no gradients, no decorative borders; hierarchy is built through type scale, generous whitespace, and the contrast between warm cream and warm black. The design reads like a printed cookbook spread translated faithfully to the web: confident, restrained, and food-warm without ever resorting to food clichés.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alison Roman design system\",\"item\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#style-reference\",\"name\":\"Alison Roman design system reference\",\"headline\":\"Alison Roman design system | Refero Styles\",\"description\":\"Explore Alison Roman's light Other design system: Aubergine Ink #290a08, Vintage Burgundy #810c00 colors, Jannon Neo, Modale Antique typography, and...\",\"url\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alison Roman\",\"url\":\"https://www.alisoneroman.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"caption\":\"Screenshot of Alison Roman\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alison Roman design system\",\"Alison Roman website design\",\"Alison Roman colors\",\"Alison Roman typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aubergine Ink\",\"Vintage Burgundy\",\"Buttery Highlight\",\"Parchment Canvas\",\"Jannon Neo\",\"Modale Antique\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alison Roman design system\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman website design\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman colors\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T22:33:49.199Z\",\"dateModified\":\"2026-05-10T22:33:49.199Z\"}]}19:T510,**Quick Color Reference**\n- background: #f6f0e1 (Parchment Canvas)\n- card/surface: #fffaec (Linen)\n- text: #290a08 (Aubergine Ink)\n- border: #e5e7eb (Hairline Mist)\n- link accent: #fff3cc (Buttery Highlight)\n- primary action: #290a08 (filled action)\n\n**3 Example Component Prompts**\n\n1. Build a centered hero headline on a #f6f0e1 canvas. Set the text in Jannon Neo (substitute: Cormorant Garamond) at 96px, weight 300, color #290a08, letter-spacing -0.03em, line-height 1.0. Add 113px of padding above and below. No subtitle, no button, no decoration.\n\n2. Build a two-column book section. Left column: a square book cover image with 0px radius and a 1px #e5e7eb border, sitting inside a #fffaec card with 48px padding. Right column: a Jannon Neo 40px weight 300 title in #290a08 with -0.02em tracking, followed by a Modale Antique 20px weight 400 description in #290a08, then a filled button. The button is #290a08 background, #ffffff text in Modale Antique 18px weight 400, 0px radius, 8px vertical and 16px horizontal padding, with a 12px gap before an inline arrow glyph.\n\n3. Build an inline editorial link. Body text is Modale Antique 20px weight 400 in #290a08 on a #f6f0e1 background. The link word itself is colored #fff3cc with no underline. No other color treatment is used on the link."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally shadowless. Elevation is communicated entirely through cream-to-white surface steps (#f6f0e1 → #fffaec → #ffffff) and through 1px hairline borders in #e5e7eb. No drop shadows, no glows, no blurred halos — the page reads as a flat printed spread, not a software UI. This is a deliberate anti-SaaS choice: shadows would make the editorial typography feel like a product dashboard."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "hero",
+            "card",
+            "body",
+            "link",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 508,
+          "confidence": 1,
+          "prominence": 66372518.99769635,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 116,
+            "card/borderColor": 124,
+            "hero/borderColor": 4,
+            "link/borderColor": 56,
+            "list/borderColor": 56,
+            "image/borderColor": 8,
+            "other/borderColor": 92,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48
+          }
+        },
+        {
+          "hex": "#290a08",
+          "oklch": {
+            "c": 0.052518500596346857,
+            "h": 26.858192643700846,
+            "l": 0.1979871076561722
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "hero",
+            "card",
+            "body",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 102,
+          "confidence": 1,
+          "prominence": 49357593.83849677,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "card/color": 30,
+            "hero/color": 1,
+            "link/color": 4,
+            "image/color": 2,
+            "other/color": 19,
+            "footer/color": 1,
+            "heading/color": 10,
+            "button/borderColor": 4,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fffaec",
+          "oklch": {
+            "c": 0.01915054015640025,
+            "h": 90.53816404510398,
+            "l": 0.9851881989005095
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1242669.349604115,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "list/color": 14,
+            "other/color": 4,
+            "button/color": 1,
+            "heading/color": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#810c00",
+          "oklch": {
+            "c": 0.15012590759539032,
+            "h": 30.927975723330235,
+            "l": 0.3845038641336784
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 846146,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6f0e1",
+          "oklch": {
+            "c": 0.02034581985947757,
+            "h": 86.28360609839369,
+            "l": 0.9551875295752896
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 683013.7245358767,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 30380.107193506246,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "button/color": 4,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#fff3cc",
+          "oklch": {
+            "c": 0.052153163557874894,
+            "h": 92.92694128528032,
+            "l": 0.9638061603312746
+          },
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 9005.425801811543,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 10,
+            "heading/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03841491121490193,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.4,
+          "background": "#290a08",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.65,
+          "background": "#fffaec",
+          "foreground": "#290a08"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.6,
+          "background": "#290a08",
+          "foreground": "#fff3cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#f6f0e1",
+          "foreground": "#290a08"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.86,
+          "background": "#e5e7eb",
+          "foreground": "#290a08"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.57,
+          "background": "#810c00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#810c00",
+          "foreground": "#fffaec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.54,
+          "background": "#810c00",
+          "foreground": "#fff3cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#f6f0e1",
+          "foreground": "#810c00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.54,
+          "background": "#e5e7eb",
+          "foreground": "#810c00"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.74,
+          "background": "#810c00",
+          "foreground": "#290a08"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f6f0e1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f6f0e1",
+          "foreground": "#fffaec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.06,
+          "background": "#fffaec",
+          "foreground": "#fff3cc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#fffaec",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.03,
+          "background": "#f6f0e1",
+          "foreground": "#fff3cc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "footer",
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button",
+            "body",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "hero",
+            "card",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 142,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Modale Antique",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 64,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Jannon Neo",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 48,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 26,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "Modale Antique",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Modale Antique",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Jannon Neo",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Modale Antique",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Modale Antique",
+          "weight": 400,
+          "contexts": [
+            "hero",
+            "card"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Jannon Neo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Jannon Neo",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Jannon Neo",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Jannon Neo",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ae45e02c-c237-4235-b076-72821aff1d2c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alison Roman design system\",\"item\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#style-reference\",\"name\":\"Alison Roman design system reference\",\"headline\":\"Alison Roman design system | Refero Styles\",\"description\":\"Explore Alison Roman's light Other design system: Aubergine Ink #290a08, Vintage Burgundy #810c00 colors, Jannon Neo, Modale Antique typography, and...\",\"url\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alison Roman\",\"url\":\"https://www.alisoneroman.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b2ace2c1-d6ee-4d57-915e-901224cded11#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"caption\":\"Screenshot of Alison Roman\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0aacd8a0-1bf5-490f-a06b-7fd124988f6e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alison Roman design system\",\"Alison Roman website design\",\"Alison Roman colors\",\"Alison Roman typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Aubergine Ink\",\"Vintage Burgundy\",\"Buttery Highlight\",\"Parchment Canvas\",\"Jannon Neo\",\"Modale Antique\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alison Roman design system\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman website design\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman colors\"},{\"@type\":\"Thing\",\"name\":\"Alison Roman typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T22:33:49.199Z\",\"dateModified\":\"2026-05-10T22:33:49.199Z\"}]}19:T510,**Quick Color Reference**\n- background: #f6f0e1 (Parchment Canvas)\n- card/surface: #fffaec (Linen)\n- text: #290a08 (Aubergine Ink)\n- border: #e5e7eb (Hairline Mist)\n- link accent: #fff3cc (Buttery Highlight)\n- primary action: #290a08 (filled action)\n\n**3 Example Component Prompts**\n\n1. Build a centered hero headline on a #f6f0e1 canvas. Set the text in Jannon Neo (substitute: Cormorant Garamond) at 96px, weight 300, color #290a08, letter-spacing -0.03em, line-height 1.0. Add 113px of padding above and below. No subtitle, no button, no decoration.\n\n2. Build a two-column book section. Left column: a square book cover image with 0px radius and a 1px #e5e7eb border, sitting inside a #fffaec card with 48px padding. Right column: a Jannon Neo 40px weight 300 title in #290a08 with -0.02em tracking, followed by a Modale Antique 20px weight 400 description in #290a08, then a filled button. The button is #290a08 background, #ffffff text in Modale Antique 18px weight 400, 0px radius, 8px vertical and 16px horizontal padding, with a 12px gap before an inline arrow glyph.\n\n3. Build an inline editorial link. Body text is Modale Antique 20px weight 400 in #290a08 on a #f6f0e1 background. The link word itself is colored #fff3cc with no underline. No other color treatment is used on the link."
+}

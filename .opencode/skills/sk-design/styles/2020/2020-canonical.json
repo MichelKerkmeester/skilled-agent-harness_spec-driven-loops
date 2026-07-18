@@ -1,0 +1,2981 @@
+{
+  "source": "https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e",
+  "uuid": "ac660bff-3b21-4753-a80f-3692da6e735e",
+  "name": "2020",
+  "northStar": "Solid color poster wall. A single saturated color fills the viewport like painted drywall, and massive black type sits on top as if stenciled.",
+  "capturedAt": "2026-07-18T07:19:35.468Z",
+  "meta": {
+    "url": "https://albumcolors.com",
+    "siteName": "2020",
+    "extractedAt": "2026-06-03T21:45:03.975Z",
+    "durationMs": 30216,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 948,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines at 137px / line-height 0.79 / letter-spacing -0.05em in Helvetica LT Pro 400 — never bump the weight, the book weight is the signature",
+      "Use Olive Ink (#4f503e) for all text and borders regardless of canvas color — the text must always be the same dark warm tone so the changing background feels like a single identity expressing different moods",
+      "Let the page canvas fill 100% of the viewport edge-to-edge with no container, no max-width, no margin — full-bleed is non-negotiable",
+      "Use 20px as the only spacing unit — vertical rhythm between the headline, subtitle, and grid is always 20px",
+      "Keep all radii at 0px — album tiles, buttons, and tags are sharp-cornered; the colored field provides all the softness the page needs",
+      "Treat the canvas color as the primary navigation: the user changes the page by changing the background, not by clicking links",
+      "Set every text element in a single weight (400) — do not introduce bold, medium, or light variants"
+    ],
+    "donts": [
+      "Do not use filled buttons — a solid fill would compete with the canvas color; all actions are outlined borders or pure icons",
+      "Do not add card frames, drop shadows, or elevation to album tiles — they sit directly on the canvas with no chrome",
+      "Do not introduce a second typeface — the entire site is set in one family at one weight",
+      "Do not center body text — copy aligns left, full-bleed, and wraps naturally",
+      "Do not use a max-width container — the layout is always edge-to-edge",
+      "Do not pair Olive Ink (#4f503e) text with a colored background outside the established palette (oxblood, sienna, near-black, sage, pearl) — the six surface colors are the only valid canvases",
+      "Do not add line-height above 1.0 for any size above 21px — the tight leading (0.79–0.80) on display text is what makes the headlines feel like solid shapes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e4822e",
+        "name": "Signal Orange",
+        "role": "Primary canvas — the full-viewport page background that changes on refresh; this is the design system",
+        "group": "brand"
+      },
+      {
+        "hex": "#4f503e",
+        "name": "Olive Ink",
+        "role": "Primary text, headline color, and the only outlined action accent (outlined-button borders, link underlines) — warm dark green-brown that pairs with the orange field without competing chroma",
+        "group": "brand"
+      },
+      {
+        "hex": "#b13225",
+        "name": "Oxblood",
+        "role": "Alternating surface variation — one of the page colors the background can take on refresh",
+        "group": "accent"
+      },
+      {
+        "hex": "#c97f40",
+        "name": "Burnt Sienna",
+        "role": "Alternating surface variation — secondary warm shade the canvas can adopt",
+        "group": "accent"
+      },
+      {
+        "hex": "#081618",
+        "name": "Near Black",
+        "role": "Alternating surface variation — deep cool surface the canvas can adopt, creates the darkest mode of the page",
+        "group": "accent"
+      },
+      {
+        "hex": "#feccc0",
+        "name": "Pearl",
+        "role": "Soft warm highlight — one of the lighter surface variations the canvas can adopt",
+        "group": "accent"
+      },
+      {
+        "hex": "#99aa91",
+        "name": "Sage Mist",
+        "role": "Soft cool surface variation — one of the muted color states the canvas cycles through",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Album cover backgrounds, deep text on light surface states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161616",
+        "name": "Ink",
+        "role": "Album cover backgrounds and heavy dark surface tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Charcoal",
+        "role": "Album cover and card backgrounds within the grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8d8d",
+        "name": "Ash",
+        "role": "Mid-neutral for muted helper text and secondary surface states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Album cover backgrounds, text on dark surface states",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-screen-per-color layout. The viewport is divided into two horizontal bands: a top header zone (~40% height) containing the massive multi-line display headline spanning full width, a one-line subtitle beneath it, and one hero album cover image; and a content zone below containing a uniform grid of square album cover tiles. No sidebar, no max-width constraint, no centered column — everything is edge-to-edge. The only off-canvas element is a 90°-rotated label pinned to the right edge. Navigation is absent; the user is invited to refresh rather than click. The grid density scales with viewport but tile size stays large — this is a poster, not a feed.",
+    "imagery": "The site's only imagery is a uniform grid of 1:1 album cover thumbnails. The covers are user-submitted editorial objects — they are the content, not decoration. The grid is unframed, radius-less, and bleeds directly into the canvas color. There is no lifestyle photography, no illustration, no abstract graphics. The colored background functions as the visual atmosphere; the album covers are the products on display. Above the grid, a single magazine-cover-style layout positions the massive headline, subtitle, and one featured album hero — the visual hierarchy is editorial poster, not web page.",
+    "similar": [
+      {
+        "why": "Same single-color-canvas editorial treatment where the color itself is the subject — Pantone's year-of-color pages are also one saturated wash with minimal type on top",
+        "business": "Pantone Color of the Year"
+      },
+      {
+        "why": "Editorial curation site with full-bleed colored fields and oversized sans-serif headlines set tight to the edges — the poster-meets-web layout grammar",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Minimalist image-grid curation with zero chrome around tiles and a strong single-color identity — the no-frames, no-shadows, no-radius tile approach is shared",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same Helvetica-driven, tight-leading, single-weight, massive-scale typographic system — the headline-as-solid-shape aesthetic comes directly from this Swiss tradition",
+        "business": "Kiel Mutschelknaus / Swiss design editorial sites"
+      },
+      {
+        "why": "Both treat a website as a poster rather than an app — one bold idea per page, the color is the story, the chrome is nearly absent",
+        "business": "The Browser Company / Frank Chimero"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "page": "0px",
+        "tags": "0px",
+        "buttons": "0px",
+        "album-tiles": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "20px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#e4822",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-viewport colored field that changes on refresh — the dominant surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Album Tile",
+        "level": 1,
+        "purpose": "Default album cover background within the grid"
+      },
+      {
+        "hex": "#000000",
+        "name": "Dark Album Tile",
+        "level": 2,
+        "purpose": "Dark album cover backgrounds for contrast within the grid"
+      }
+    ],
+    "northStar": "Solid color poster wall. A single saturated color fills the viewport like painted drywall, and massive black type sits on top as if stenciled.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.05
+      },
+      {
+        "role": "heading",
+        "size": 75,
+        "lineHeight": 0.8,
+        "letterSpacing": -3.75
+      },
+      {
+        "role": "display",
+        "size": 137,
+        "lineHeight": 0.79,
+        "letterSpacing": -6.85
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline Block",
+        "role": "The page-defining typographic element — site title rendered as a monolithic shape",
+        "description": "Helvetica LT Pro 400 at 137px, line-height 0.79, letter-spacing -0.05em. Color is Olive Ink (#4f503e) — always dark regardless of canvas color. Text fills 2–4 lines of full-bleed width at the top of the page. No line breaks are manually constrained; the type wraps naturally to create a dense rectangular block. Padding: 0px from edges. This block is the visual signature."
+      },
+      {
+        "name": "Section Subtitle",
+        "role": "Short descriptive line that sits directly under the display headline",
+        "description": "Helvetica LT Pro 400 at 21px, line-height 1.2, letter-spacing -0.05em. Olive Ink (#4f503e). Set as a single sentence in all-caps, full-bleed or near-full-bleed width. Acts as the typographic period after the display headline."
+      },
+      {
+        "name": "Album Cover Tile",
+        "role": "Unframed square image in the content grid",
+        "description": "1:1 aspect ratio, 0px border-radius, 0px border, no padding, no shadow. Sits directly on the canvas with no gap treatment — the colored field bleeds between tiles. Sizing scales with viewport but tiles are uniform within a row."
+      },
+      {
+        "name": "Refresh Record Button",
+        "role": "The only interactive control — a small circular record/disc icon that triggers a full page color change",
+        "description": "Olive Ink (#4f503e) icon on the canvas background. Small, top-right corner. Functions as both the CTA and a visual metaphor (vinyl record). 0px border-radius (sharp) or true circle depending on icon shape — the icon itself is a simple disc with a center dot."
+      },
+      {
+        "name": "Rotated Side Label",
+        "role": "Vertical instructional text — tells the user the page mechanic",
+        "description": "Set in Helvetica LT Pro 400 at 16px, line-height 1.6, letter-spacing -0.05em. Olive Ink (#4f503e). Rotated 90° (reads bottom-to-top). Positioned flush to the right edge of the viewport. Acts as a micro-copy label rather than a control."
+      },
+      {
+        "name": "Outlined Action Border",
+        "role": "Chromatic border treatment for interactive elements (links, tags, light buttons)",
+        "description": "1px border in Olive Ink (#4f503e). No background fill. Padding ~20px. 0px border-radius. Pairs with Olive Ink text. This is the only 'button' variant — the site never uses filled buttons because the canvas color would clash with any solid fill."
+      },
+      {
+        "name": "Body Caption",
+        "role": "Small helper text used in metadata, tags, or footnotes",
+        "description": "Helvetica LT Pro 400 at 16px, line-height 1.6, letter-spacing -0.05em. Olive Ink (#4f503e) when on the orange canvas; Paper (#ffffff) when on dark album tiles or dark canvas states."
+      },
+      {
+        "name": "Subheading Link",
+        "role": "In-text or tag-style link element",
+        "description": "Helvetica LT Pro 400 at 21px, line-height 1.2, letter-spacing -0.05em. Olive Ink (#4f503e) with 1px Olive Ink underline. No hover state change beyond opacity reduction. Behaves like a static text label."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface across all text — display, heading, body, button, link. A single weight (400 regular) is used at every scale, which is the most distinctive typographic choice on the site. The whisper-regular giant-size headlines are anti-convention; most poster/editorial sites use 700–900 for display type, and using the book weight at 137px makes the headline feel stamped rather than shouted — authority through stillness.",
+        "sizes": "16px, 21px, 75px, 137px",
+        "family": "Helvetica LT Pro",
+        "weight": "400",
+        "lineHeight": "0.79 (display), 0.80 (heading), 0.90 (heading), 1.20 (subheading/button), 1.60 (body)",
+        "substitute": "Helvetica Neue, Inter, Neue Haas Grotesk",
+        "letterSpacing": "-0.0500em at every size (equates to -0.8px at 16px, -1.05px at 21px, -3.75px at 75px, -6.85px at 137px)"
+      },
+      {
+        "role": "Helvetica — detected in extracted data but not described by AI",
+        "sizes": "21px",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Album Colors is a color-first editorial canvas: the entire viewport is a single saturated wash that changes on refresh, and everything else — type, images, UI — defers to it. The design language is brutally minimal: one custom geometric sans (Helvetica LT Pro) in a single weight, set at extraordinary sizes with aggressively tight leading, producing headline blocks that read as solid shapes rather than text. Color is the product, the navigation, and the identity — the only chrome is a small record-button icon in the corner and a rotated label urging the viewer to refresh. Album covers float on the colored field as unframed tiles; the page is closer to a poster than a website.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"2020 design system\",\"item\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#style-reference\",\"name\":\"2020 design system reference\",\"headline\":\"2020 design system | Refero Styles\",\"description\":\"Explore 2020's light Media design system: Signal Orange #e4822e, Olive Ink #4f503e colors, Helvetica LT Pro, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"2020\",\"url\":\"https://albumcolors.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"caption\":\"Screenshot of 2020\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"2020 design system\",\"2020 website design\",\"2020 colors\",\"2020 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Orange\",\"Olive Ink\",\"Oxblood\",\"Burnt Sienna\",\"Helvetica LT Pro\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"2020 design system\"},{\"@type\":\"Thing\",\"name\":\"2020 website design\"},{\"@type\":\"Thing\",\"name\":\"2020 colors\"},{\"@type\":\"Thing\",\"name\":\"2020 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:21:29.129Z\",\"dateModified\":\"2026-04-30T03:21:29.129Z\"}]}19:T5e7,**Quick Color Reference**\n- text: #4f503e (Olive Ink)\n- background: #e4822e (Signal Orange) — changes on refresh\n- border: #4f503e (Olive Ink, 1px)\n- accent: #b13225 (Oxblood) / #c97f40 (Burnt Sienna) / #081618 (Near Black) — alternative canvas states\n- surface: #ffffff (Paper) for light album tiles, #000000 (Carbon) for dark album tiles\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the page hero: full-bleed Signal Orange (#e4822e) background, no padding, no container. Display headline 'ALBUM COLORS OF THE YEAR 2020' in Helvetica LT Pro 400 at 137px, line-height 0.79, letter-spacing -0.05em, color Olive Ink (#4f503e). Text fills width edge-to-edge, wrapping naturally. A 21px Olive Ink subtitle sits 20px below.\n2. Build a single album tile: 1:1 aspect ratio, 0px border-radius, no border, no shadow, no padding. Sits directly on the canvas with 20px gap to neighbors. Image fills the tile.\n3. Build the refresh button: top-right corner, 20px from edges, Olive Ink (#4f503e) disc icon on the orange canvas. No border, no background, icon only.\n4. Build the rotated side label: positioned flush to the right viewport edge, text rotated 90° reading bottom-to-top, Helvetica LT Pro 400 at 16px, line-height 1.6, letter-spacing -0.05em, color Olive Ink (#4f503e).\n5. Build the album grid: uniform columns of square tiles, 20px gap, no outer padding, tiles bleed to the viewport edges. Mix of Paper (#ffffff) and Carbon (#000000) backgrounds depending on cover content."
+      },
+      {
+        "title": "Color-Mechanic Philosophy",
+        "content": "The page background is the navigation system. There are no menus, no links to other pages, no categories — the only way to 'explore' the site is to refresh, which randomizes the entire canvas to a new color from a fixed six-color palette. This makes the background color a generated state, not a designed constant. When recreating this system, treat the canvas color as a variable token, not a fixed brand color: the brand is the mechanic of color change itself, and Olive Ink (#4f503e) is the one constant that anchors the identity across every color state."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#4f503e",
+          "oklch": {
+            "c": 0.028557626727808833,
+            "h": 110.17967842643282,
+            "l": 0.42489824241597396
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 4742,
+          "confidence": 1,
+          "prominence": 622220339.8649288,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 160,
+            "other/color": 635,
+            "button/color": 152,
+            "heading/color": 1,
+            "link/borderColor": 640,
+            "other/borderColor": 2540,
+            "button/borderColor": 608,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#8d8d8d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6434092199216612
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1565262,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e4822e",
+          "oklch": {
+            "c": 0.1519178601308464,
+            "h": 56.29918780431525,
+            "l": 0.700448825343159
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1407160,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1085436.0939028163,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#d9b4c5",
+          "oklch": {
+            "c": 0.048104530594551484,
+            "h": 348.8493086547339,
+            "l": 0.8073338329830103
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 782644,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e673c",
+          "oklch": {
+            "c": 0.07748895044745677,
+            "h": 67.6619739586206,
+            "l": 0.5442734019632653
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 782644,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1c2256",
+          "oklch": {
+            "c": 0.09341674464480064,
+            "h": 273.7786513175802,
+            "l": 0.28049363557253615
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 782644,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d20a14",
+          "oklch": {
+            "c": 0.21930437462583335,
+            "h": 27.77387770178006,
+            "l": 0.5454962526065915
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 782631,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0d351a",
+          "oklch": {
+            "c": 0.06587323097138942,
+            "h": 150.77509343818352,
+            "l": 0.29297746195450497
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 782631,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#81aec5",
+          "oklch": {
+            "c": 0.058576489853838315,
+            "h": 230.75594527810514,
+            "l": 0.7266674427977685
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 665532.0939028163,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 507591,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#b13225",
+          "oklch": {
+            "c": 0.16571812588128004,
+            "h": 29.73500141911928,
+            "l": 0.5093453727009065
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 338394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c97f40",
+          "oklch": {
+            "c": 0.12061522665357212,
+            "h": 58.73491584897903,
+            "l": 0.662492225059627
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 338394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#081618",
+          "oklch": {
+            "c": 0.020023390731030485,
+            "h": 207.3058460841442,
+            "l": 0.18843501335296864
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 338394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 338394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#161616",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20019308840256111
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 338394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ee2538",
+          "oklch": {
+            "c": 0.22971941978273036,
+            "h": 23.742127194219933,
+            "l": 0.6109665655583433
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ff6b15",
+          "oklch": {
+            "c": 0.1985577103592829,
+            "h": 43.83643014295157,
+            "l": 0.7027146445149195
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e0b490",
+          "oklch": {
+            "c": 0.07045848772563026,
+            "h": 60.83937237086767,
+            "l": 0.8005039889795312
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d7af20",
+          "oklch": {
+            "c": 0.15012124803601445,
+            "h": 91.27030732215688,
+            "l": 0.7682973431808945
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#08b9d9",
+          "oklch": {
+            "c": 0.12787500298217067,
+            "h": 216.19500214852638,
+            "l": 0.7243159077859643
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#04b1f3",
+          "oklch": {
+            "c": 0.1504297634500128,
+            "h": 234.45026823703913,
+            "l": 0.7171634444381886
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#2e2e2e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3011838100535464
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#9d9d9d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6960069354631117
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268170.90023451747,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c74c3a",
+          "oklch": {
+            "c": 0.16068537138427127,
+            "h": 30.843149663629976,
+            "l": 0.5789154159253663
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 268161.3904595131,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e489b3",
+          "oklch": {
+            "c": 0.12145999062549512,
+            "h": 351.34475590304834,
+            "l": 0.737785158196441
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eb3582",
+          "oklch": {
+            "c": 0.22209812302067256,
+            "h": 0.7946120159654364,
+            "l": 0.6311838068291779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f285af",
+          "oklch": {
+            "c": 0.14036971812660945,
+            "h": 356.5505044925302,
+            "l": 0.7472636913061497
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebc1cc",
+          "oklch": {
+            "c": 0.049876053968781545,
+            "h": 0.7074719964909969,
+            "l": 0.8505569218588513
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2b4cb",
+          "oklch": {
+            "c": 0.07740964699530878,
+            "h": 354.8445372393403,
+            "l": 0.8334061225689715
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ed4c73",
+          "oklch": {
+            "c": 0.19743614409952512,
+            "h": 10.15995563984313,
+            "l": 0.650222598510171
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f91419",
+          "oklch": {
+            "c": 0.2479801788472743,
+            "h": 28.1472907859211,
+            "l": 0.6216640287582756
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#65081d",
+          "oklch": {
+            "c": 0.12300002398914879,
+            "h": 16.7196567866378,
+            "l": 0.32730116580245594
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d72809",
+          "oklch": {
+            "c": 0.21204705720053507,
+            "h": 31.696957775039227,
+            "l": 0.5676080090194401
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#df352a",
+          "oklch": {
+            "c": 0.2076921533635718,
+            "h": 28.84002864423598,
+            "l": 0.59343239540334
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffa148",
+          "oklch": {
+            "c": 0.15089440325736758,
+            "h": 60.77969856147434,
+            "l": 0.7889476564523352
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f48221",
+          "oklch": {
+            "c": 0.17013829228141653,
+            "h": 54.04109194872379,
+            "l": 0.7208912286707775
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff5503",
+          "oklch": {
+            "c": 0.2172769534337907,
+            "h": 38.64175197405221,
+            "l": 0.6759560556063164
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c33b21",
+          "oklch": {
+            "c": 0.176982698777039,
+            "h": 32.863802723885115,
+            "l": 0.5496417756001178
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b56419",
+          "oklch": {
+            "c": 0.13208877329431334,
+            "h": 56.86110449933424,
+            "l": 0.5852114016918406
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d59b4a",
+          "oklch": {
+            "c": 0.11949761225343539,
+            "h": 72.99615259838544,
+            "l": 0.7298410759627288
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ede1cb",
+          "oklch": {
+            "c": 0.03207266318857341,
+            "h": 82.76556301259623,
+            "l": 0.9134831024827028
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ddc2b1",
+          "oklch": {
+            "c": 0.03863867893960542,
+            "h": 54.23020407630598,
+            "l": 0.8323838850195616
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#faf8cf",
+          "oklch": {
+            "c": 0.053156807722786026,
+            "h": 105.04521003588701,
+            "l": 0.9703579452580294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcf7b1",
+          "oklch": {
+            "c": 0.08863613643743574,
+            "h": 104.48437978661643,
+            "l": 0.9638207372999648
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ecde47",
+          "oklch": {
+            "c": 0.16435345098255497,
+            "h": 103.95744004747519,
+            "l": 0.8861136596344754
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5e10e",
+          "oklch": {
+            "c": 0.1870890964828363,
+            "h": 102.88985460571554,
+            "l": 0.8978784448731065
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fbd550",
+          "oklch": {
+            "c": 0.15243982047651683,
+            "h": 92.85281320779323,
+            "l": 0.8821946578068597
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5cd37",
+          "oklch": {
+            "c": 0.16134302419193636,
+            "h": 93.01859161580794,
+            "l": 0.8589439026032992
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e2a32f",
+          "oklch": {
+            "c": 0.14374212048162738,
+            "h": 77.67441140648589,
+            "l": 0.7572210613171639
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f8bb04",
+          "oklch": {
+            "c": 0.16870976895284379,
+            "h": 84.67404152494439,
+            "l": 0.8253468414049662
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cbca70",
+          "oklch": {
+            "c": 0.11304283796414859,
+            "h": 108.08986010949621,
+            "l": 0.82047869532005
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6e852e",
+          "oklch": {
+            "c": 0.11608876539076744,
+            "h": 122.68460314088884,
+            "l": 0.5801381902868036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8ca743",
+          "oklch": {
+            "c": 0.1305726442260115,
+            "h": 122.59789778922075,
+            "l": 0.6868805573827184
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#454a0c",
+          "oklch": {
+            "c": 0.08096896864567883,
+            "h": 114.24869929263316,
+            "l": 0.39185909188486995
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#073c17",
+          "oklch": {
+            "c": 0.08290940979573203,
+            "h": 148.50486355120356,
+            "l": 0.3132081566236749
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#062b23",
+          "oklch": {
+            "c": 0.04378724868119874,
+            "h": 175.17229528771875,
+            "l": 0.2607501489785279
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c1cf83",
+          "oklch": {
+            "c": 0.10010298562621261,
+            "h": 117.15797887797585,
+            "l": 0.8261541003502504
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#809f89",
+          "oklch": {
+            "c": 0.047211053007189537,
+            "h": 154.0873460870436,
+            "l": 0.6726110267145181
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#07bea8",
+          "oklch": {
+            "c": 0.12917995806678093,
+            "h": 180.50854389215945,
+            "l": 0.7187789183905129
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#29ad95",
+          "oklch": {
+            "c": 0.11517045966955441,
+            "h": 177.12868494949925,
+            "l": 0.6732341070463433
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2e414f",
+          "oklch": {
+            "c": 0.034268636995588006,
+            "h": 240.7832844102303,
+            "l": 0.3651414819620572
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#51606d",
+          "oklch": {
+            "c": 0.02796996535983231,
+            "h": 244.56282975860395,
+            "l": 0.4812637343485466
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#006786",
+          "oklch": {
+            "c": 0.09288952142166271,
+            "h": 227.36333423556553,
+            "l": 0.4793827724297086
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5a8dc6",
+          "oklch": {
+            "c": 0.10248207146472259,
+            "h": 252.20498409327655,
+            "l": 0.631663415967982
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5b727d",
+          "oklch": {
+            "c": 0.03210362407477152,
+            "h": 228.58027035358037,
+            "l": 0.5376690363690095
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#81a2bb",
+          "oklch": {
+            "c": 0.051829797237506664,
+            "h": 241.15486824384777,
+            "l": 0.6963806216638859
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c1cfd2",
+          "oklch": {
+            "c": 0.01581952829949444,
+            "h": 212.0067411138896,
+            "l": 0.8447242852496358
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0059a3",
+          "oklch": {
+            "c": 0.13923678832830458,
+            "h": 252.22343224117378,
+            "l": 0.4622877699918968
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#243886",
+          "oklch": {
+            "c": 0.13283935534034458,
+            "h": 268.3375624651597,
+            "l": 0.37429335182696
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#143578",
+          "oklch": {
+            "c": 0.12122572811568137,
+            "h": 262.32286020894776,
+            "l": 0.3486316166554232
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1f2e45",
+          "oklch": {
+            "c": 0.04669299391779579,
+            "h": 258.7094620095308,
+            "l": 0.2993797124355779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#042840",
+          "oklch": {
+            "c": 0.059691028378207944,
+            "h": 243.1568570415984,
+            "l": 0.2661299907824827
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1f476b",
+          "oklch": {
+            "c": 0.07628640098927215,
+            "h": 248.24844138753588,
+            "l": 0.38739480748800365
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#938bb2",
+          "oklch": {
+            "c": 0.057935166843273524,
+            "h": 294.1538931804531,
+            "l": 0.6575079241792166
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6d6b9a",
+          "oklch": {
+            "c": 0.07259852215587931,
+            "h": 285.68697605677784,
+            "l": 0.5485073837237494
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7d698e",
+          "oklch": {
+            "c": 0.060861834706510645,
+            "h": 309.0026027356139,
+            "l": 0.553535658728994
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#454b9f",
+          "oklch": {
+            "c": 0.1341167994036842,
+            "h": 276.56889506401757,
+            "l": 0.4537469445072417
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0d0827",
+          "oklch": {
+            "c": 0.06108085432853341,
+            "h": 285.08281506919536,
+            "l": 0.16523641594848879
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#030303",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.09692582811234322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#070908",
+          "oklch": {
+            "c": 0.004555014269010327,
+            "h": 165.17929996743536,
+            "l": 0.13659455657285594
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a0406",
+          "oklch": {
+            "c": 0.015642846377088158,
+            "h": 354.3317497211017,
+            "l": 0.1200732096983432
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#010005",
+          "oklch": {
+            "c": 0.033666690519581696,
+            "h": 292.47963509527096,
+            "l": 0.0604017025158918
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0efee",
+          "oklch": {
+            "c": 0.0017200405414219964,
+            "h": 67.80148549723994,
+            "l": 0.9526182961774969
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169197,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d79ac6",
+          "oklch": {
+            "c": 0.09258835417755028,
+            "h": 337.0651293262098,
+            "l": 0.7583140000542582
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5a1c8",
+          "oklch": {
+            "c": 0.09447808538753058,
+            "h": 344.1404026799872,
+            "l": 0.785810127851887
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fdbade",
+          "oklch": {
+            "c": 0.08938080063867884,
+            "h": 345.67726960360585,
+            "l": 0.8608118846716782
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c11577",
+          "oklch": {
+            "c": 0.2116391963435493,
+            "h": 353.61432922126437,
+            "l": 0.5373640388528871
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5dae2",
+          "oklch": {
+            "c": 0.016051500433353908,
+            "h": 335.0811502033876,
+            "l": 0.8994359555979191
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f50b41",
+          "oklch": {
+            "c": 0.2443144648664046,
+            "h": 20.243393119264233,
+            "l": 0.6158025077364442
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8f161c",
+          "oklch": {
+            "c": 0.15488106102032195,
+            "h": 25.123670496788062,
+            "l": 0.4208959555815779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0982e",
+          "oklch": {
+            "c": 0.15351844183661742,
+            "h": 65.35776231122182,
+            "l": 0.753277920097479
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f25123",
+          "oklch": {
+            "c": 0.20491964346115177,
+            "h": 35.74272956413659,
+            "l": 0.65175701504879
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a4732f",
+          "oklch": {
+            "c": 0.10379400518441005,
+            "h": 72.00500145330572,
+            "l": 0.5929471722783078
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b96e2d",
+          "oklch": {
+            "c": 0.1230604669777366,
+            "h": 57.841894054546835,
+            "l": 0.6096168648518057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f4ca94",
+          "oklch": {
+            "c": 0.08434395982668716,
+            "h": 73.3167989506412,
+            "l": 0.8629487855940982
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#feeba7",
+          "oklch": {
+            "c": 0.08826580891386532,
+            "h": 94.35918330672884,
+            "l": 0.9397681070610843
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fdf378",
+          "oklch": {
+            "c": 0.14459141423251964,
+            "h": 104.58927127354855,
+            "l": 0.9480312182425141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f8e28c",
+          "oklch": {
+            "c": 0.10884762794000291,
+            "h": 95.47552701431366,
+            "l": 0.9122634663757198
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3c95a",
+          "oklch": {
+            "c": 0.13639936010517723,
+            "h": 88.3751535306733,
+            "l": 0.8518366042090983
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b2b07e",
+          "oklch": {
+            "c": 0.06756922504115459,
+            "h": 105.9953342143875,
+            "l": 0.7464493635248185
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#434527",
+          "oklch": {
+            "c": 0.04690416659548628,
+            "h": 111.70274961053909,
+            "l": 0.38028122923032504
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#526f1b",
+          "oklch": {
+            "c": 0.11443245500207976,
+            "h": 126.93445890032376,
+            "l": 0.501578995445468
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c2dfcd",
+          "oklch": {
+            "c": 0.039332752604710426,
+            "h": 158.25500100215163,
+            "l": 0.877377793800679
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#407472",
+          "oklch": {
+            "c": 0.05598836727775177,
+            "h": 192.36815020598374,
+            "l": 0.5222017835005407
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2f463f",
+          "oklch": {
+            "c": 0.031104147646944656,
+            "h": 173.65219816340831,
+            "l": 0.37270788163319224
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3b6d98",
+          "oklch": {
+            "c": 0.08727982968354239,
+            "h": 246.4386539444355,
+            "l": 0.519074439671277
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#036cb6",
+          "oklch": {
+            "c": 0.14189010096997778,
+            "h": 248.85088912154328,
+            "l": 0.5204213941623024
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b5bb9",
+          "oklch": {
+            "c": 0.15782187701124162,
+            "h": 262.02349794956393,
+            "l": 0.49224688732152905
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#263755",
+          "oklch": {
+            "c": 0.05774522580890221,
+            "h": 261.24653448360556,
+            "l": 0.3370494867582151
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6f7694",
+          "oklch": {
+            "c": 0.047057794929309,
+            "h": 274.5642010462652,
+            "l": 0.5710840581215431
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5b5daa",
+          "oklch": {
+            "c": 0.12001181170253328,
+            "h": 280.16753338534,
+            "l": 0.5137577417814696
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#222876",
+          "oklch": {
+            "c": 0.1314410033620345,
+            "h": 273.2132101459711,
+            "l": 0.3264881505298892
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#704be5",
+          "oklch": {
+            "c": 0.21988353727521265,
+            "h": 287.7870432856728,
+            "l": 0.543724811916461
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3401a2",
+          "oklch": {
+            "c": 0.21015054935431238,
+            "h": 280.48338641446446,
+            "l": 0.34988868633897696
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#00000c",
+          "oklch": {
+            "c": 0.048341506802594976,
+            "h": 264.05202261636987,
+            "l": 0.06976379446441994
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 169191,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#99aa91",
+          "oklch": {
+            "c": 0.04028513885956635,
+            "h": 135.56673912892836,
+            "l": 0.7176621220324193
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39906,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#feccc0",
+          "oklch": {
+            "c": 0.059436072639243,
+            "h": 33.78089033309321,
+            "l": 0.8856784171814994
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39906,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08251187403071393,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.93,
+          "background": "#ffffff",
+          "foreground": "#010005"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.89,
+          "background": "#ffffff",
+          "foreground": "#00000c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.62,
+          "background": "#ffffff",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.33,
+          "background": "#ffffff",
+          "foreground": "#0a0406"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.97,
+          "background": "#ffffff",
+          "foreground": "#070908"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.42,
+          "background": "#ffffff",
+          "foreground": "#0d0827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.39,
+          "background": "#faf8cf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.33,
+          "background": "#faf8cf",
+          "foreground": "#010005"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.29,
+          "background": "#faf8cf",
+          "foreground": "#00000c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.08,
+          "background": "#fcf7b1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.05,
+          "background": "#faf8cf",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.01,
+          "background": "#fcf7b1",
+          "foreground": "#010005"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.98,
+          "background": "#fcf7b1",
+          "foreground": "#00000c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.78,
+          "background": "#faf8cf",
+          "foreground": "#0a0406"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.74,
+          "background": "#fcf7b1",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.47,
+          "background": "#fcf7b1",
+          "foreground": "#0a0406"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.45,
+          "background": "#ffffff",
+          "foreground": "#081618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.44,
+          "background": "#faf8cf",
+          "foreground": "#070908"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 940,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|link",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica LT Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 796,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 150,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 21,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 759,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 150,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 75,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 137,
+          "family": "Helvetica LT Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.79,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/90c338d1-33f1-40dd-a8fa-a920778736e9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"2020 design system\",\"item\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#style-reference\",\"name\":\"2020 design system reference\",\"headline\":\"2020 design system | Refero Styles\",\"description\":\"Explore 2020's light Media design system: Signal Orange #e4822e, Olive Ink #4f503e colors, Helvetica LT Pro, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"2020\",\"url\":\"https://albumcolors.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac660bff-3b21-4753-a80f-3692da6e735e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"caption\":\"Screenshot of 2020\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df26e1f0-9811-4924-82cb-0663f68137a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"2020 design system\",\"2020 website design\",\"2020 colors\",\"2020 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Orange\",\"Olive Ink\",\"Oxblood\",\"Burnt Sienna\",\"Helvetica LT Pro\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"2020 design system\"},{\"@type\":\"Thing\",\"name\":\"2020 website design\"},{\"@type\":\"Thing\",\"name\":\"2020 colors\"},{\"@type\":\"Thing\",\"name\":\"2020 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:21:29.129Z\",\"dateModified\":\"2026-04-30T03:21:29.129Z\"}]}19:T5e7,**Quick Color Reference**\n- text: #4f503e (Olive Ink)\n- background: #e4822e (Signal Orange) — changes on refresh\n- border: #4f503e (Olive Ink, 1px)\n- accent: #b13225 (Oxblood) / #c97f40 (Burnt Sienna) / #081618 (Near Black) — alternative canvas states\n- surface: #ffffff (Paper) for light album tiles, #000000 (Carbon) for dark album tiles\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the page hero: full-bleed Signal Orange (#e4822e) background, no padding, no container. Display headline 'ALBUM COLORS OF THE YEAR 2020' in Helvetica LT Pro 400 at 137px, line-height 0.79, letter-spacing -0.05em, color Olive Ink (#4f503e). Text fills width edge-to-edge, wrapping naturally. A 21px Olive Ink subtitle sits 20px below.\n2. Build a single album tile: 1:1 aspect ratio, 0px border-radius, no border, no shadow, no padding. Sits directly on the canvas with 20px gap to neighbors. Image fills the tile.\n3. Build the refresh button: top-right corner, 20px from edges, Olive Ink (#4f503e) disc icon on the orange canvas. No border, no background, icon only.\n4. Build the rotated side label: positioned flush to the right viewport edge, text rotated 90° reading bottom-to-top, Helvetica LT Pro 400 at 16px, line-height 1.6, letter-spacing -0.05em, color Olive Ink (#4f503e).\n5. Build the album grid: uniform columns of square tiles, 20px gap, no outer padding, tiles bleed to the viewport edges. Mix of Paper (#ffffff) and Carbon (#000000) backgrounds depending on cover content."
+}

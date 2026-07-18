@@ -1,0 +1,1081 @@
+{
+  "source": "https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937",
+  "uuid": "3b46c64e-b733-4d70-8cd0-531ca1f92937",
+  "name": "Threads",
+  "northStar": "newspaper column on frosted glass",
+  "capturedAt": "2026-07-18T07:47:32.433Z",
+  "meta": {
+    "url": "https://www.threads.com",
+    "siteName": "Threads",
+    "extractedAt": "2026-06-03T19:15:32.029Z",
+    "durationMs": 40820,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 732,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Ink Black (#000000) for all primary text and structural icon strokes — let the weight of black carry the hierarchy",
+      "Apply Meta Blue (#385898) exclusively to hyperlinks, verification badges, and icon accents — never as a filled surface or large block of color",
+      "Set border-radius to 1000px on every avatar, button, and badge to keep the pill/circle vocabulary consistent",
+      "Separate posts with a 1px Cloud Gray (#d5d5d5) bottom border, not with card backgrounds or spacing alone",
+      "Wrap the feed in a single 640px-max-width container with 18px radius and the 12px 4%-opacity shadow halo",
+      "Type body copy at 15px/400 system-ui with 1.4 line-height; reserve 600 weight for usernames and navigation labels",
+      "Keep all interactive controls borderless — express state through color shifts (Ash Gray → Ink Black) rather than fills or borders"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic color — the system is monochrome plus one blue, and adding another breaks the newspaper discipline",
+      "Don't use colored or gradient fills on buttons, cards, or surfaces — the only filled surface is the Ink Black Log in button",
+      "Don't use shadows on individual post cards — the single elevation halo belongs to the feed container only",
+      "Don't render text larger than 20px — the system operates in a 12–17px window and oversized type breaks the compact rhythm",
+      "Don't use a webfont when system-ui renders natively — replacing it with a custom face shifts the personality away from neutral utility",
+      "Don't put borders or backgrounds on sidebar icon buttons — they must read as a column of marks on a blank rail",
+      "Don't round card corners above 8px for embedded link previews or media — large radii on those elements compete with the feed container's own 18px curve"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, structural borders, and the filled Log in button — the load-bearing color that carries almost every interface element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Paper White",
+        "role": "Page canvas and the topmost surface layer — warm off-white that softens the contrast of pure black text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Mist Gray",
+        "role": "Secondary surface beneath the elevated feed container — the shadow-tinted plane that gives the feed column its lifted feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d5d5",
+        "name": "Cloud Gray",
+        "role": "Post dividers and card outline borders — the thinnest structural separator between stacked feed items",
+        "group": "neutral"
+      },
+      {
+        "hex": "#969696",
+        "name": "Ash Gray",
+        "role": "Secondary borders on buttons, muted metadata text, and placeholder strokes — the middle-tone neutral for inactive controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#424242",
+        "name": "Graphite",
+        "role": "Body text borders, secondary icon fills, and medium-emphasis strokes — sits between Ink Black and Ash Gray for tertiary text and outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#385898",
+        "name": "Meta Blue",
+        "role": "Outlined link borders, hyperlink text, verified-badge fill, and icon accents — the single chromatic note in the system, used for interactive emphasis without ever filling a large surface",
+        "group": "brand"
+      }
+    ],
+    "layout": "Three-column desktop layout: an ~80px left icon rail (Threads logo, nav icons, compose button, profile avatar), a centered 640px-max-width feed column with 18px radius and subtle elevation, and empty right gutter that breathes out to the viewport edge. The feed is a single vertical scroll — no grid, no masonry, no horizontal carousels. Posts stack linearly with 1px dividers. The top header is a fixed ~53px bar with a centered 'Home' label and right-aligned Log In. Section transitions are seamless: no banding, no alternating backgrounds, no section headers — the feed reads as one continuous document.",
+    "imagery": "User-generated content dominates — photographs, screenshots, and video thumbnails appear inside link preview cards and inline media blocks at their natural aspect ratios. No brand illustration, no decorative graphics, no hero imagery. The product itself is the canvas for other people's images. All embedded media sits within 8px-radius containers with no overlay chrome beyond a small site-name attribution line.",
+    "similar": [
+      {
+        "why": "Same text-first feed structure with circular avatars, single-column post stack, and minimal chrome — Threads' layout grammar is directly descended from this lineage",
+        "business": "Twitter / X"
+      },
+      {
+        "why": "Near-monochrome interface with a single accent color, thin dividers between posts, and a three-dot overflow menu per post — the desktop feed column shape is nearly identical",
+        "business": "Mastodon"
+      },
+      {
+        "why": "Rounded feed container, system-font typography, and an almost color-free palette with one blue used only for links and verification marks",
+        "business": "Bluesky"
+      },
+      {
+        "why": "Dense vertical text stream with circular avatars, ghost engagement icons, and embedded link cards with site-name attribution — the same reading-first visual rhythm",
+        "business": "Tumblr (dashboard)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "badge": "1000px",
+        "avatar": "1000px",
+        "button": "1000px",
+        "linkCard": "8px",
+        "postCard": "0px",
+        "feedColumn": "18px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "",
+      "cardPadding": "16px",
+      "pageMaxWidth": "640px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Outermost background visible around the feed container and in the sidebar gutters"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Backdrop Tint",
+        "level": 1,
+        "purpose": "The slightly darker plane revealed by the feed container's spread shadow — exists only as shadow artifact, not a painted surface"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Feed Column",
+        "level": 2,
+        "purpose": "The elevated rounded container that holds all posts; visually identical to the canvas but lifted by the 12px shadow halo and 18px radius"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Post Surface",
+        "level": 3,
+        "purpose": "Inherited from the feed column — posts are flat, separated only by 1px dividers, never by card backgrounds"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 12px rgba(0,0,0,0.04), 0 0 0 48px #fafafa",
+        "element": "Feed Container"
+      }
+    ],
+    "northStar": "newspaper column on frosted glass",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Feed Container",
+        "role": "Central scrollable surface that holds all posts",
+        "description": "Max-width 640px, centered on a #fafafa page. Rounded 18px corners. Background Paper White (#fafafa). Subtle elevation via box-shadow: 0 0 12px rgba(0,0,0,0.04) with a 48px spread halo in Paper White to create a soft lift off the #efefef plane beneath. The container is the only elevated element on the page"
+      },
+      {
+        "name": "Log In Button",
+        "role": "Primary authentication action in the top-right",
+        "description": "Pill shape (border-radius 1000px), background Ink Black (#000000), text Paper White (#fafafa), system-ui 15px/600, padding 8px 16px. No border. Fills the role of a dark filled button on an otherwise borderless surface"
+      },
+      {
+        "name": "Post Card",
+        "role": "Individual feed entry",
+        "description": "Flat, no card background — sits directly on Feed Container Paper White. Separated from neighbors by a 1px Cloud Gray (#d5d5d5) bottom border. Internal padding 16px. Three-zone vertical layout: header (avatar + username + timestamp + menu), body (text and/or media), engagement bar"
+      },
+      {
+        "name": "Circular Avatar",
+        "role": "User identity mark in post headers and sidebar",
+        "description": "Border-radius 1000px (full circle). Default 40px diameter in feed posts, 24px in engagement sub-lists. No border. Image fill only"
+      },
+      {
+        "name": "Verified Badge",
+        "role": "Identity confirmation next to usernames",
+        "description": "Small circular icon filled with Meta Blue (#385898), white checkmark inside. Sits inline after the username. The only place where the brand blue is used as a fill"
+      },
+      {
+        "name": "Post Engagement Bar",
+        "role": "Like, comment, repost, share actions beneath each post",
+        "description": "Horizontal row of four line icons (heart, comment bubble, circular arrow, paper plane). Icons are Ash Gray (#969696) at rest, Ink Black on interaction. Counts in 13px/400 system-ui, Graphite (#424242). Touch targets ~40px. No button backgrounds or borders"
+      },
+      {
+        "name": "Link Preview Card",
+        "role": "Embedded article preview within a post",
+        "description": "Full-width within post body, border 1px Cloud Gray (#d5d5d5), border-radius 8px, no shadow. Internal layout: optional image top (full-width, no radius override), then site name in 13px/400 Graphite, then headline in 15px/400 Ink Black. Padding 12px on the text zone"
+      },
+      {
+        "name": "Sidebar Icon Button",
+        "role": "Navigation targets in the left rail",
+        "description": "Square 48px touch target with a centered 24px line icon. No background, no border. Icon color Ash Gray (#969696) at rest, Ink Black when active. The Threads wordmark logo sits at the top of the same rail, ~56px square"
+      },
+      {
+        "name": "Compose Button",
+        "role": "Quick post creation entry from sidebar",
+        "description": "Larger square icon-button in the sidebar with a plus glyph. Ink Black icon, no fill. 48px target. Sits mid-rail between navigation icons"
+      },
+      {
+        "name": "Top Header Bar",
+        "role": "Page-level title and entry to authentication",
+        "description": "Full-width, ~53px tall, background Paper White. Centered 'Home' label in 15px/600 Ink Black. Right-aligned Log In button. No visible bottom border — separation is implied by whitespace"
+      },
+      {
+        "name": "Post Overflow Menu Trigger",
+        "role": "Per-post action menu",
+        "description": "Three-dot icon, Ash Gray (#969696), 20px square, top-right of every post header. No background until hover, then a very faint #efefef fill"
+      },
+      {
+        "name": "Inline Hashtag / Mention",
+        "role": "Interactive text within post body",
+        "description": "Same system-ui 15px/400 as body text, color Meta Blue (#385898). No underline by default; underline appears on hover. Functions as a text link, not a button"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Entire interface — system-ui at 15px/400 for post body text, 15px/600 for usernames, 13px/400 for timestamps and metadata, 12px/400 for fine print. The choice of system-ui rather than a webfont keeps rendering native to each platform; the narrow size range (12–17px) and tight 1.33–1.4 line-height create the compact, information-dense rhythm of a social feed where many posts share a single screen",
+        "sizes": "12px, 13px, 15px, 17px, 20px",
+        "family": "system-ui",
+        "weight": "400, 600",
+        "lineHeight": "1.33, 1.40, 1.5",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      }
+    ],
+    "description": "Threads uses a text-first social-feed language: a near-monochrome canvas where black text on warm-white surfaces carries almost all communication, with a single deep Facebook-blue (#385898) used sparingly for links, verification ticks, and hover accents. The interface strips away decorative chrome — no gradients, no color fills, no rounded buttons beyond pure pills — to keep visual weight concentrated on the words people write. Surfaces are quietly layered: a paper-white page holds a softly elevated, large-radius feed column, and every interactive element is reduced to a line icon or a thin border. The result feels closer to a newspaper column rendered on a tablet than a typical social app — dense with text, generous with whitespace, and confident enough to let the content do the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Threads design system\",\"item\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#style-reference\",\"name\":\"Threads design system reference\",\"headline\":\"Threads design system | Refero Styles\",\"description\":\"Explore Threads's light Media design system: Ink Black #000000, Paper White #fafafa colors, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Threads\",\"url\":\"https://www.threads.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"caption\":\"Screenshot of Threads\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Threads design system\",\"Threads website design\",\"Threads colors\",\"Threads typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Cloud Gray\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Threads design system\"},{\"@type\":\"Thing\",\"name\":\"Threads website design\"},{\"@type\":\"Thing\",\"name\":\"Threads colors\"},{\"@type\":\"Thing\",\"name\":\"Threads typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:59:12.567Z\",\"dateModified\":\"2026-04-30T00:59:12.567Z\"}]}19:T5b8,**Quick Color Reference**\n- text: #000000\n- background: #fafafa\n- border: #d5d5d5\n- accent / link: #385898\n- secondary text: #424242\n- primary action: #385898 (outlined action border)\n\n**Example Component Prompts**\n\n1. **Feed Container**: Max-width 640px, centered. Background #fafafa. Border-radius 18px. Box-shadow: 0 0 12px rgba(0,0,0,0.04), 0 0 0 48px #fafafa. Contains a vertical stack of post cards separated by 1px #d5d5d5 borders.\n\n2. **Post Card**: Background #fafafa (inherited from container). Padding 16px. Header row: 40px circular avatar (1000px radius, image fill) + username in 15px/600 system-ui #000000 + verified badge (10px circle filled #385898 with white check) + timestamp in 13px/400 #424242 + three-dot menu (Ash Gray #969696) flush right. Body text in 15px/400 system-ui #000000, line-height 1.4. Engagement bar: four line icons (heart, comment, repost, share) in #969696 with counts in 13px/400 #424242.\n\n3. **Log In Button**: Pill shape, border-radius 1000px. Background #000000, text #fafafa. Padding 8px 16px. system-ui 15px/600. No border.\n\n4. **Link Preview Card**: Full-width within post body. 1px border #d5d5d5, border-radius 8px. Optional full-width image on top. Below: site name in 13px/400 #424242, then headline in 15px/400 #000000. Text padding 12px.\n\n5. **Sidebar Icon Button**: 48px square touch target. Centered 24px line icon in #969696. No background, no border. Threads wordmark logo at top of same rail, 56px square."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used exactly once: the feed container floats off the page with an almost imperceptible 4%-opacity shadow spread over 12px, plus a 48px paper-white halo that blurs the shadow's edge into the canvas. No other element casts a shadow — posts, buttons, link cards, and avatars all sit flat. This single-elevation rule keeps the feed feeling like one column of text rather than a stack of cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 2008,
+          "confidence": 1,
+          "prominence": 75221526.10827073,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 46,
+            "icon/color": 6,
+            "link/color": 6,
+            "list/color": 6,
+            "other/fill": 4,
+            "image/color": 1,
+            "other/color": 328,
+            "button/color": 37,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 184,
+            "icon/borderColor": 24,
+            "link/borderColor": 24,
+            "list/borderColor": 24,
+            "image/borderColor": 4,
+            "other/borderColor": 1287,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 34370176.53576383,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "other/boxShadow": 2,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "image/backgroundColor": 2,
+            "other/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#d5d5d5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8730212912752836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 12245262.054446178,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#969696",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6731222170290512
+          },
+          "contexts": [
+            "link",
+            "button",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 486,
+          "confidence": 1,
+          "prominence": 1052754.6495107876,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "body/color": 27,
+            "icon/color": 8,
+            "link/color": 9,
+            "other/fill": 14,
+            "other/color": 13,
+            "body/borderColor": 108,
+            "icon/borderColor": 32,
+            "link/borderColor": 64,
+            "other/borderColor": 52,
+            "button/borderColor": 144,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#385898",
+          "oklch": {
+            "c": 0.11070924625164932,
+            "h": 262.8138894170231,
+            "l": 0.4685210698936081
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 921393.2642871218,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 9,
+            "link/color": 13,
+            "image/color": 4,
+            "other/color": 26,
+            "icon/borderColor": 36,
+            "link/borderColor": 24,
+            "image/borderColor": 16,
+            "other/borderColor": 96
+          }
+        },
+        {
+          "hex": "#424242",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37909358396702786
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 456,
+          "confidence": 1,
+          "prominence": 4603.582234985254,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 36,
+            "body/color": 34,
+            "icon/color": 24,
+            "other/fill": 30,
+            "other/color": 20,
+            "body/borderColor": 136,
+            "icon/borderColor": 96,
+            "other/borderColor": 80
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3638.331978986655,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 3621.7051551218246,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "icon/color": 5,
+            "other/fill": 7,
+            "icon/borderColor": 20
+          }
+        },
+        {
+          "hex": "#0095f6",
+          "oklch": {
+            "c": 0.17714973816176358,
+            "h": 248.21931205561484,
+            "l": 0.6546239126225867
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 532.8633194123173,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#bcc0c4",
+          "oklch": {
+            "c": 0.007175684987559936,
+            "h": 247.91467922903144,
+            "l": 0.8058280800072436
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.022178173907882612,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.31,
+          "background": "#d5d5d5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.48,
+          "background": "#bcc0c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#fafafa",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.74,
+          "background": "#efefef",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.1,
+          "background": "#969696",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.85,
+          "background": "#d5d5d5",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#fafafa",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.05,
+          "background": "#efefef",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#bcc0c4",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.07,
+          "background": "#b8b8b8",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#d5d5d5",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#bcc0c4",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#b8b8b8",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.4,
+          "background": "#969696",
+          "foreground": "#424242"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#000000",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#969696",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#efefef",
+          "foreground": "#969696"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 48
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "button"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px, rgb(250, 250, 250) 0px 0px 0px 48px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 37,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "marginLeft|body",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 627,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 512,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d39ac8c6-7e40-4b34-8fa6-20dba892528e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Threads design system\",\"item\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#style-reference\",\"name\":\"Threads design system reference\",\"headline\":\"Threads design system | Refero Styles\",\"description\":\"Explore Threads's light Media design system: Ink Black #000000, Paper White #fafafa colors, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Threads\",\"url\":\"https://www.threads.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b46c64e-b733-4d70-8cd0-531ca1f92937#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"caption\":\"Screenshot of Threads\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5ce0ba8a-120e-4b28-84b9-2bf7850780a1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Threads design system\",\"Threads website design\",\"Threads colors\",\"Threads typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Cloud Gray\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Threads design system\"},{\"@type\":\"Thing\",\"name\":\"Threads website design\"},{\"@type\":\"Thing\",\"name\":\"Threads colors\"},{\"@type\":\"Thing\",\"name\":\"Threads typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:59:12.567Z\",\"dateModified\":\"2026-04-30T00:59:12.567Z\"}]}19:T5b8,**Quick Color Reference**\n- text: #000000\n- background: #fafafa\n- border: #d5d5d5\n- accent / link: #385898\n- secondary text: #424242\n- primary action: #385898 (outlined action border)\n\n**Example Component Prompts**\n\n1. **Feed Container**: Max-width 640px, centered. Background #fafafa. Border-radius 18px. Box-shadow: 0 0 12px rgba(0,0,0,0.04), 0 0 0 48px #fafafa. Contains a vertical stack of post cards separated by 1px #d5d5d5 borders.\n\n2. **Post Card**: Background #fafafa (inherited from container). Padding 16px. Header row: 40px circular avatar (1000px radius, image fill) + username in 15px/600 system-ui #000000 + verified badge (10px circle filled #385898 with white check) + timestamp in 13px/400 #424242 + three-dot menu (Ash Gray #969696) flush right. Body text in 15px/400 system-ui #000000, line-height 1.4. Engagement bar: four line icons (heart, comment, repost, share) in #969696 with counts in 13px/400 #424242.\n\n3. **Log In Button**: Pill shape, border-radius 1000px. Background #000000, text #fafafa. Padding 8px 16px. system-ui 15px/600. No border.\n\n4. **Link Preview Card**: Full-width within post body. 1px border #d5d5d5, border-radius 8px. Optional full-width image on top. Below: site name in 13px/400 #424242, then headline in 15px/400 #000000. Text padding 12px.\n\n5. **Sidebar Icon Button**: 48px square touch target. Centered 24px line icon in #969696. No background, no border. Threads wordmark logo at top of same rail, 56px square."
+}

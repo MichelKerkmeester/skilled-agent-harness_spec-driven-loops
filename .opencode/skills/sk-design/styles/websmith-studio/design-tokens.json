@@ -1,0 +1,252 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f8f8f2",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas and base surface — warm off-white that softens the starkness of pure white, giving the whole site a printed-editorial warmth"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Card White — Elevated card surfaces and the nav bar — sits one step above the cream canvas to create subtle layering without shadows; White text and button labels — used on dark backgrounds and as the light-mode border on neutral card edges"
+    },
+    "studio-ink": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Studio Ink — Primary text, icons, and the filled button — near-black rather than pure black, softer on the warm canvas and used as the sole dark element in the system"
+    },
+    "deep-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Deep Black — Reserved for SVG icon fills — logo glyph and nav icon strokes; rarely surfaces as a background"
+    },
+    "powder-blue": {
+      "$value": "#bedbff",
+      "$type": "color",
+      "$description": "Powder Blue — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "mint-wash": {
+      "$value": "#a4f4cf",
+      "$type": "color",
+      "$description": "Mint Wash — Feature card surface — pastel green used as a category tint in the services grid, always paired with near-black text and an icon"
+    },
+    "blush-tint": {
+      "$value": "#ffc9c9",
+      "$type": "color",
+      "$description": "Blush Tint — Feature card surface — soft coral used as the third category tint; the warmest of the three pastels, slightly louder on the cream canvas"
+    },
+    "signal-green": {
+      "$value": "#00c950",
+      "$type": "color",
+      "$description": "Signal Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Sole typeface used across the system — the page commits fully to a single geometric system stack at a 96px display size with tight -0.025em tracking, which is the signature move: most agency sites use a serif display; Websmith uses a 96px geometric sans at negative tracking to create a flat, architectural, almost-Futura authority. Substitute with Inter at the same tracking."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "88px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 88px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "96px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f8f8f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the warm base everything sits on"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Nav bar, white service cards, and elevated content surfaces"
+    },
+    "pastel-tints": {
+      "$value": "#bedbff",
+      "$type": "color",
+      "$description": "Surface level 2: Colored service cards — one step above white in the visual stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://websmith.studio",
+      "siteName": "Websmith Studio",
+      "extractedAt": "2026-06-03T18:58:58.630Z",
+      "variant": "extended"
+    }
+  }
+}

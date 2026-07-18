@@ -1,0 +1,317 @@
+{
+  "color": {
+    "roast-ink": {
+      "$value": "#484036",
+      "$type": "color",
+      "$description": "Roast Ink — Primary text, borders, icon strokes, the structural backbone of every interface — deep warm brown acts as ink on cream, the dominant foreground color across the entire system"
+    },
+    "bone-canvas": {
+      "$value": "#faf5eb",
+      "$type": "color",
+      "$description": "Bone Canvas — Page background, the warm cream field that all surfaces sit on"
+    },
+    "linen-surface": {
+      "$value": "#ecece4",
+      "$type": "color",
+      "$description": "Linen Surface — Card surfaces, elevated panels, content blocks — one step removed from the canvas, slightly cooler and grayer to recede"
+    },
+    "sandstone": {
+      "$value": "#cacab0",
+      "$type": "color",
+      "$description": "Sandstone — Heading accents, icon strokes, decorative borders, link underlines — the lightest chromatic-feeling neutral, used when the Roast Ink feels too heavy"
+    },
+    "pebble": {
+      "$value": "#d5d5c4",
+      "$type": "color",
+      "$description": "Pebble — Link text, secondary interactive states — warmer than the cool grays, keeps the link family inside the earth palette"
+    },
+    "manilla-cream": {
+      "$value": "#f2e9cf",
+      "$type": "color",
+      "$description": "Manilla Cream — Warm highlight wash, soft fill for tags and subtle emphasis blocks"
+    },
+    "slate-border": {
+      "$value": "#666e72",
+      "$type": "color",
+      "$description": "Slate Border — Cool-toned hairline borders, dividers, structural lines — the only break from the warm palette, providing neutral structural contrast"
+    },
+    "charcoal-depth": {
+      "$value": "#33302c",
+      "$type": "color",
+      "$description": "Charcoal Depth — Deep heading text, near-black emphasis — warmer than pure black, reserved for the heaviest type moments"
+    },
+    "obsidian": {
+      "$value": "#212529",
+      "$type": "color",
+      "$description": "Obsidian — Maximum-contrast borders and text — the darkest available, used sparingly for absolute emphasis"
+    }
+  },
+  "font": {
+    "surt": {
+      "$value": "Surt",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — used for body, navigation, buttons, hero, headings, and everything in between. This single font carries 606 instances across every context, making it the voice of the entire system. The tight line-heights (0.98-1.10) on large sizes are signature: display text sits so close the lines nearly touch, creating a compressed, editorial rhythm. Only weight 400 exists — there is no bold, no light. Restraint through range size, not weight."
+    },
+    "clashdisplay": {
+      "$value": "ClashDisplay",
+      "$type": "fontFamily",
+      "$description": "Secondary display face — used for structural headings and labels where a slightly more architectural feel is needed. The ultra-tight 0.97 line-height on the 56px size is aggressive even by display standards; lines stack like a modernist poster. Pairs with Surt as the 'engineered' voice against Surt's 'neutral' voice."
+    },
+    "bigdailyshort": {
+      "$value": "BigDailyShort",
+      "$type": "fontFamily",
+      "$description": "Accent serif italic — appears only 5 times across the system, functioning as a hand-annotated note against the grotesque. Used for pull quotes, editorial labels, or signature moments where the system needs to feel signed rather than printed. Its scarcity is the point: when it appears, it carries weight through presence, not size."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "ClashDisplay-Medium",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "BigDailyShort-LightItalic",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ClashDisplay-Medium",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ClashDisplay-Medium",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "BigDailyShort-LightItalic",
+        "fontSize": "37px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "BigDailyShort-LightItalic",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ClashDisplay-Medium",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ClashDisplay-Medium",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Surt-Regular",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 112px"
+    }
+  },
+  "spacing": {
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "121": {
+      "$value": "121px",
+      "$type": "dimension",
+      "$description": "Spacing 121px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "161": {
+      "$value": "161px",
+      "$type": "dimension",
+      "$description": "Spacing 161px"
+    },
+    "232": {
+      "$value": "232px",
+      "$type": "dimension",
+      "$description": "Spacing 232px"
+    },
+    "233": {
+      "$value": "233px",
+      "$type": "dimension",
+      "$description": "Spacing 233px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#faf5eb",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm cream field that all content sits on"
+    },
+    "linen-surface": {
+      "$value": "#ecece4",
+      "$type": "color",
+      "$description": "Surface level 1: Card and content panel background — one tonal step cooler and grayer than the canvas to recede without shadow"
+    },
+    "manilla-highlight": {
+      "$value": "#f2e9cf",
+      "$type": "color",
+      "$description": "Surface level 2: Soft emphasis fill for tags, highlights, and accent blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://forner.studio",
+      "siteName": "Forner",
+      "extractedAt": "2026-06-03T22:41:05.223Z",
+      "variant": "extended"
+    }
+  }
+}

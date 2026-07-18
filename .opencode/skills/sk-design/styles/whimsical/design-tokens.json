@@ -1,0 +1,424 @@
+{
+  "color": {
+    "deep-plum": {
+      "$value": "#250835",
+      "$type": "color",
+      "$description": "Deep Plum — Primary action fill, nav borders, headline text, card borders — the structural workhorse. High-contrast against white (18:1) lets it function as both color and text simultaneously"
+    },
+    "dark-mauve": {
+      "$value": "#473054",
+      "$type": "color",
+      "$description": "Dark Mauve — Secondary text and outlined action borders, muted plum that steps back from Deep Plum without leaving the family"
+    },
+    "vivid-violet": {
+      "$value": "#ab2fed",
+      "$type": "color",
+      "$description": "Vivid Violet — Accent link color, icon stroke — the brightest chromatic in the UI, used sparingly to mark interactive text and product iconography"
+    },
+    "vivid-blue": {
+      "$value": "#0283ec",
+      "$type": "color",
+      "$description": "Vivid Blue — Secondary accent on icons and flowchart elements — pairs with Vivid Violet to give the product canvas its dual-accent personality"
+    },
+    "electric-indigo": {
+      "$value": "#4b38ee",
+      "$type": "color",
+      "$description": "Electric Indigo — Tertiary accent on icons, occasionally used in flowchart node color alongside Vivid Blue"
+    },
+    "warm-gray-purple": {
+      "$value": "#6a5b72",
+      "$type": "color",
+      "$description": "Warm Gray Purple — Muted body text, list dividers, secondary borders — stays in the plum family at lower chroma to avoid breaking the monochrome discipline"
+    },
+    "lavender-mist": {
+      "$value": "#ebe6ee",
+      "$type": "color",
+      "$description": "Lavender Mist — Default border and divider color, low-contrast page texture — the neutral that replaces what most sites would do in #e5e5e5"
+    },
+    "soft-white": {
+      "$value": "#f5f4f5",
+      "$type": "color",
+      "$description": "Soft White — Card surface slightly off-white to lift cards off the canvas without going full gray"
+    },
+    "plum-shadow": {
+      "$value": "#cdc7d1",
+      "$type": "color",
+      "$description": "Plum Shadow — Box-shadow base tone — shadows are plum-tinted (rgba(37,8,53,…)) so elevation reads as on-brand even at low opacity"
+    },
+    "lavender-wash": {
+      "$value": "#decaff",
+      "$type": "color",
+      "$description": "Lavender Wash — Decorative card and heading highlight wash — the lightest purple tint, used as background accent on badges and inline highlights"
+    },
+    "blush-bloom": {
+      "$value": "#e9bded",
+      "$type": "color",
+      "$description": "Blush Bloom — Hero gradient warm stop, decorative card surface — the pinker end of the lavender family used in gradient transitions and product showcase backgrounds"
+    },
+    "sky-mist": {
+      "$value": "#bbcfe4",
+      "$type": "color",
+      "$description": "Sky Mist — Cool decorative surface — the blue-tinted neutral used in card backgrounds and gradient cool stops to balance the purple warmth"
+    },
+    "plum-to-pink-wash": {
+      "$value": "#ba59ff",
+      "$type": "color",
+      "$description": "Plum to Pink Wash — Decorative gradient wash — purple-to-pink spectrum used in hero backgrounds and marketing sections"
+    },
+    "aurora-gradient": {
+      "$value": "#3ca1ff",
+      "$type": "color",
+      "$description": "Aurora Gradient — Full-bleed section gradient — blue→violet→pink sweep used on logo band and feature section dividers"
+    }
+  },
+  "font": {
+    "agrandir": {
+      "$value": "Agrandir",
+      "$type": "fontFamily",
+      "$description": "Display headlines only. Used at 48-96px for hero and section titles, 24px for large card titles. The 700 weight at huge sizes is confident but not heavy — character widths are wide and the negative tracking (-0.01em) tightens the silhouette. Single weight means hierarchy comes from size alone, not weight contrast. Substitute: Recoleta, Gilroy Bold, or Manrope 800 if Agrandir is unavailable."
+    },
+    "manrope": {
+      "$value": "Manrope",
+      "$type": "fontFamily",
+      "$description": "UI body font — handles everything below display: nav, buttons (400-600), body copy (400 at 14-16px), small labels (9-13px), and the occasional subheading (32px). Wide weight range allows three-tier hierarchy within UI text. Letter-spacing opens up to 0.15em on small labels (badges, 'NEW' tags) for an all-caps tracked feel. Substitute: Inter, DM Sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 2.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Agrandir-0cfc125464d8d15e",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Manrope-79d1da00e5f47c83",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Agrandir-0cfc125464d8d15e",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Agrandir-0cfc125464d8d15e",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Agrandir-0cfc125464d8d15e",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "0.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(37, 8, 53, 0.06) 0px 16px 32px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "md": {
+      "$value": "rgba(37, 8, 53, 0.2) 0px 12px 16px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, dominant canvas color across all sections"
+    },
+    "soft-surface": {
+      "$value": "#f5f4f5",
+      "$type": "color",
+      "$description": "Surface level 1: Card surface slightly lifted from canvas"
+    },
+    "lavender-border": {
+      "$value": "#ebe6ee",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, dividers, and low-contrast page texture"
+    },
+    "highlight-wash": {
+      "$value": "#decaff",
+      "$type": "color",
+      "$description": "Surface level 3: Decorative card and heading highlight backgrounds"
+    },
+    "gradient-field": {
+      "$value": "#e9bded",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed gradient section backgrounds (plum-to-pink, aurora)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://whimsical.com",
+      "siteName": "Whimsical",
+      "extractedAt": "2026-06-03T18:36:43.070Z",
+      "variant": "extended"
+    }
+  }
+}

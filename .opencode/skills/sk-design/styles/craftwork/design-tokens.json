@@ -1,0 +1,504 @@
+{
+  "color": {
+    "acid-green": {
+      "$value": "#cafc00",
+      "$type": "color",
+      "$description": "Acid Green — Brand accent — the singular chromatic highlight. Marks the Pro Access pill in the nav, the primary upgrade button, and occasional pill highlights. The only color allowed to carry brand meaning at full saturation"
+    },
+    "vermillion": {
+      "$value": "#f54911",
+      "$type": "color",
+      "$description": "Vermillion — Secondary accent — warm red-orange for emphasis text, decorative borders, and small brand moments. Never used for backgrounds at scale"
+    },
+    "magenta-pop": {
+      "$value": "#c42df9",
+      "$type": "color",
+      "$description": "Magenta Pop — Tertiary accent — vivid pink for icons, decorative strokes, and illustration pops. Functions as a tertiary tag color in the brand palette"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, heading strokes, and the dominant interface color. Carries body copy, icons, and high-contrast borders"
+    },
+    "obsidian": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Obsidian — Dark surface fill for active states, dark buttons, and inverted sections"
+    },
+    "charcoal": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Charcoal — Secondary dark surface — slightly softer than Obsidian for cards that need depth without going fully black"
+    },
+    "slate-ink": {
+      "$value": "#14151a",
+      "$type": "color",
+      "$description": "Slate Ink — Near-black for specific UI borders and text where pure black reads too harsh against warm grays"
+    },
+    "graphite": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, muted icons, and secondary button text. The workhorse mid-gray for body copy that should recede"
+    },
+    "ash-gray": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash Gray — Tertiary text, placeholder copy, and disabled icon strokes"
+    },
+    "mist": {
+      "$value": "#9ea0a8",
+      "$type": "color",
+      "$description": "Mist — Cool-leaning gray for subtle borders and muted helper text"
+    },
+    "paper": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Paper — Page canvas — the dominant background across the entire site. Slightly warm, never pure white"
+    },
+    "fog": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Fog — Secondary surface for inset panels, section dividers, and soft background washes"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "hairline": {
+      "$value": "#dee0e3",
+      "$type": "color",
+      "$description": "Hairline — Hairline borders, dividers, and input outlines. The thinnest structural line in the system"
+    }
+  },
+  "font": {
+    "euclid-circular-a": {
+      "$value": "Euclid Circular A",
+      "$type": "fontFamily",
+      "$description": "The single typeface across the entire system. Euclid Circular A is a geometric humanist sans with wide apertures and circular geometry — it reads modern but warm, which keeps a design-marketplace brand from feeling cold. Used for everything from 11px nav labels to 72px display headlines. The negative letter-spacing pattern (tightest at -0.069em for 72px, loosening to 0 at 11px) creates a deliberate density that defines the site's editorial rhythm."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "42px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "62px",
+        "fontWeight": 600,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "62px",
+        "fontWeight": 600,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 62px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "euclidCircularALightWebS",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.915px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(47, 43, 67, 0.1) 0px -1px 0px 0px inset, rgba(47, 43, 67, 0.1) 0px 1px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(47, 43, 67, 0.1) 0px 1px 3px 0px, rgba(47, 43, 67, 0.1) 0px -1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgba(20, 21, 26, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 8px 40px 0px, rgba(0, 0, 0, 0.03) 0px 2px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant warm off-white that everything sits on."
+    },
+    "snow-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and component surface — pure white that lifts content off the Paper canvas."
+    },
+    "fog-inset": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Inset panels, secondary backgrounds, and section washes that need to recede further."
+    },
+    "hairline-border": {
+      "$value": "#dee0e3",
+      "$type": "color",
+      "$description": "Surface level 3: Dividers and structural lines that define boundaries without using shadows."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://craftwork.design",
+      "siteName": "Craftwork",
+      "extractedAt": "2026-06-03T17:24:32.152Z",
+      "variant": "extended"
+    }
+  }
+}

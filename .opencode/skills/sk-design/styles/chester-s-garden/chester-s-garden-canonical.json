@@ -1,0 +1,1113 @@
+{
+  "source": "https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734",
+  "uuid": "a639fa6c-1705-47c2-b452-d4479469a734",
+  "name": "Chester's Garden",
+  "northStar": "Flimsy art-zine on drafting paper",
+  "capturedAt": "2026-07-18T09:44:50.664Z",
+  "meta": {
+    "url": "https://chester.how",
+    "siteName": "Chester's Garden",
+    "extractedAt": "2026-06-03T18:19:45.224Z",
+    "durationMs": 32221,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 254,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every headline in Fraunces weight 300 at 30, 36, or 60px with line-height 1.0-1.25 and -0.03em tracking — never bold or semibold the serif",
+      "Place every card surface on the Paper Gray (#e5e7eb) substrate using Bone White (#fafafa) as the fill; rely on this single color step instead of drop shadows for separation",
+      "Use 8px radius for image cards, 4px radius for small UI controls, and 9999px for accent tag pills",
+      "Bump single words inside Inter body sentences from 400 to 600 weight for emphasis — never use underline, italic, or color for the same purpose",
+      "Reach for Highlight Mint (#daf5ae), Highlight Butter (#fde5a7), or Highlight Sage (#b7f2cc) as tag backgrounds with Full Black text — these are the only allowed chromatic fills on UI elements",
+      "Use ui-monospace 14px with -0.025em tracking for any inline code or technical label so the mono block aligns with surrounding Inter",
+      "Keep the nav and footer as transparent text rows on the Paper Gray canvas — no fills, no borders, no logos, no icons"
+    ],
+    "donts": [
+      "Do not raise Fraunces above weight 300 — the whisper-weight serif is the defining choice and bolding it destroys the editorial voice",
+      "Do not introduce drop shadows, gradient fills, or glow effects on standard content tiles — the only shadow is the soft 10% black blur on hero image cards and the 1px inset paper edge",
+      "Do not use bright saturated brand colors for buttons, links, or CTAs — there is no CTA color in this system; actions are text links in Ink Charcoal",
+      "Do not alternate dark and light sections or introduce a dark mode — the entire page is a single Paper Gray tone",
+      "Do not add icon systems, illustrations, or 3D graphics; visuals are restricted to photographs, book covers, and screenshots inside Bone White cards",
+      "Do not set body text above 16px or below 14px — the Inter scale is intentionally narrow to maintain the compact zine rhythm",
+      "Do not use the two inline emphasis colors (Rust Underline, Navy Quotation) on more than one or two words per sentence — they are the most chromatic elements on the site and must remain rare"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Paper Gray",
+        "role": "Page background, card borders, hairline dividers — the cool, slightly blue-gray substrate that every surface sits on or against",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Bone White",
+        "role": "Card and content-tile surface — reads as warm white against the cool Paper Gray substrate, giving each block a subtle lift without any shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Full Black",
+        "role": "Primary body text, nav logo, image letterbox bars — maximum contrast, used for sentences that need to carry the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Ink Charcoal",
+        "role": "Headline and link text — almost black but not quite, so Fraunces serifs feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Soft Graphite",
+        "role": "Secondary body text, supporting metadata lines under headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Pencil Gray",
+        "role": "Tertiary text, icon strokes, placeholder labels — fades to the background and only earns attention when scanned for",
+        "group": "neutral"
+      },
+      {
+        "hex": "#daf5ae",
+        "name": "Highlight Mint",
+        "role": "Pill-tag background (FILTER, READ) — the first chromatic accent tier, like a fluorescent marker on the page",
+        "group": "accent"
+      },
+      {
+        "hex": "#fde5a7",
+        "name": "Highlight Butter",
+        "role": "Pill-tag background (NOW BREWING) — second accent tier, warmer counterpart to the mint",
+        "group": "accent"
+      },
+      {
+        "hex": "#b7f2cc",
+        "name": "Highlight Sage",
+        "role": "Pill-tag background (READ variants) — third accent tier, softer green for less emphatic tags",
+        "group": "accent"
+      },
+      {
+        "hex": "#7c2d12",
+        "name": "Rust Underline",
+        "role": "Occasional inline emphasis — the only warm chromatic voice in the palette, used sparingly to single out one word or phrase inside a body sentence",
+        "group": "brand"
+      },
+      {
+        "hex": "#0c4a6e",
+        "name": "Navy Quotation",
+        "role": "Occasional inline emphasis — the cool counterpart to Rust Underline, used for the same hand-underline-in-a-book purpose",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page is a single, unbroken vertical scroll with a max-width of ~1200px centered on the Paper Gray canvas. The first viewport is the editorial intro: a full-width left-aligned prose block on the bare substrate, no card chrome, no hero image. Below the intro, the layout shifts into a multi-column masonry grid where tiles of varying heights (2x, 3x, 4x row spans) interlock — some tiles are pure text, others are full images, others are image-plus-metadata. The grid breathes with 12-24px gaps between tiles, and individual tiles alternate between 8px and 4px corner radii to keep the rhythm slightly irregular. There is no sticky header, no sidebar, and no mega-menu; the navigation is a single thin row at the very top. Sections do not alternate light/dark — the entire page is one continuous paper-gray tone, with individual tiles doing all the visual work through their Bone White surfaces and photographic content.",
+    "imagery": "Imagery is photograph-first, not illustration-first. The site is photo-heavy in the masonry grid: book covers (studio-lit product shots against solid backgrounds), still-life photos (plants on shelves, climbing wall crops, phone screens), black-and-white film photography with visible grain, and product/app screenshots framed in white. Treatment is editorial — photos sit in their own Bone White cards with 8px radius, letterboxed where the aspect ratio demands, and captioned in 12px Inter beneath. There is no decorative illustration, no abstract gradient art, and no 3D rendering. Iconography is restricted to a single 12×12 outlined external-link arrow used to signal outbound cards; otherwise the only icons are emoji (👋 🌱 🪨) used inline in the intro prose, treating them as a typographic flourish rather than a graphic system.",
+    "similar": [
+      {
+        "why": "Same digital-garden-as-portfolio concept, same light-gray substrate with white tiles, and the same selective-bolding-within-prose emphasis pattern",
+        "business": "Maggie Appleton"
+      },
+      {
+        "why": "Personal site with a low-saturation pastel palette, serif display type for editorial voice, and a masonry card grid of mixed content blocks",
+        "business": "Tom Critchlow"
+      },
+      {
+        "why": "Quiet, almost print-like visual restraint with hairline borders, small radii, and chromatic restraint to a few pastel accent tones",
+        "business": "Are.na"
+      },
+      {
+        "why": "Editorial-portfolio hybrid with a light-warm canvas, serif headlines treated as long-form reading rather than UI, and almost no decorative chrome",
+        "business": "Craig Mod"
+      },
+      {
+        "why": "Nearly identical digital-garden masonry layout, Paper-Gray-on-Bone-White surface treatment, and Fraunces-light display headlines",
+        "business": "Coby Sherman / Coby's Garden"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "images": "8px",
+        "buttons": "4px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "24px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Drafting Paper",
+        "level": 0,
+        "purpose": "Page substrate — everything sits on or is defined against this color"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Bone White Card",
+        "level": 1,
+        "purpose": "Standard content card or project tile"
+      },
+      {
+        "hex": "#daf5ae",
+        "name": "Highlight Pill",
+        "level": 2,
+        "purpose": "Accent tag surface floating on a card"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+        "element": "Project tile / image card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.1) 0px -2px 0px 1px inset",
+        "element": "Inset card border (paper-edge effect)"
+      }
+    ],
+    "northStar": "Flimsy art-zine on drafting paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.11,
+        "letterSpacing": -1.08
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site header with brand mark and routing",
+        "description": "Transparent bar sitting on the Paper Gray canvas. Left side: 'Chester' wordmark in Inter 16px/400 Ink Charcoal. Center: nav links (Projects, Writing, Reading, Hobbies) at Inter 16px, color shifts between Full Black and Pencil Gray for active/hover. Right side: social links (GitHub, Twitter, CV) at Inter 16px Full Black. No background fill, no shadow, no border — 20px vertical padding, 28-32px horizontal padding"
+      },
+      {
+        "name": "Editorial Intro Block",
+        "role": "Opening prose section above the card grid",
+        "description": "Large left-aligned text block on the Paper Gray canvas, no card chrome. Begins with 'Hey there, I'm Chester 👋' at 60px Fraunces 300 in Ink Charcoal. Body sentences at 16px Inter 400, with strategic words bumped to weight 600 (Chester, digital garden, building, Mobbin, coffee, plants, climbing, reading, writing). 24px row gap between paragraphs. No box, no border — text floats on the substrate"
+      },
+      {
+        "name": "Project Tile (Image Card)",
+        "role": "Default unit in the masonry grid, links out to external project",
+        "description": "Bone White card with 8px radius, 1px hairline border in Paper Gray. Full-bleed image (or screenshot) clipped to the card's top, 8px top radius. Below image: 16px padding block containing 'Projects · [Project Name]' caption at Inter 14px in Soft Graphite, and a 12×12 external-link arrow icon top-right in Pencil Gray. No drop shadow. Inset top + bottom borders using rgba(0,0,0,0.1) at 1px give a subtle ruled-paper edge"
+      },
+      {
+        "name": "Book Cover Tile",
+        "role": "Card variant for reading-shelf entries",
+        "description": "Bone White card, 8px radius, 1px Paper Gray border. Left: book-cover image clipped to 4px radius. Right column: 16px Inter 600 title in Ink Charcoal, 'Donald A. Norman' at 16px Inter 400 in Soft Graphite, and an 'READ' pill badge floating at the right edge"
+      },
+      {
+        "name": "Accent Tag Pill",
+        "role": "Compact label badge on cards and metadata lines",
+        "description": "9999px (pill) radius, horizontal padding 6-8px, vertical padding 2-4px. Inter 12-14px uppercase, letter-spacing 0.5px, weight 500. Available background fills: Highlight Mint, Highlight Butter, Highlight Sage. Text always Full Black for AAA contrast on the pastels. Floating, no border"
+      },
+      {
+        "name": "Hobby Feature Card",
+        "role": "Photo-forward card for hobbies (Coffee, Plants) with headline + descriptor",
+        "description": "Tall Bone White card, 8px radius, 1px Paper Gray border. Top: full-bleed photograph at 8px top radius. Below: stacked text — a Highlight Butter or Highlight Mint tag pill, then a 30-36px Fraunces 300 headline in Ink Charcoal, then a Soft Graphite descriptor line at 14px Inter. 20px padding inside the text block"
+      },
+      {
+        "name": "Image Letterbox Card",
+        "role": "Photo entry with date and film stock caption (Camera section)",
+        "description": "Bone White card, 8px radius. Image framed by Full Black letterbox bars top and bottom (typical 2.4:1 cinematic crop). Caption strip: 'Film:NeverBik KIRO 400' at Inter 12px in Pencil Gray, bottom-left of the letterbox"
+      },
+      {
+        "name": "Inline Word Emphasis",
+        "role": "Selective bolding of single words within body sentences",
+        "description": "Within a 16px Inter 400 sentence, one or two words are bumped to weight 600 in Ink Charcoal to simulate hand-underlining. No underline, no highlight background, no italic — just a weight shift. Used for personal-noun and activity-noun emphasis (Chester, plants, climbing, writing)"
+      },
+      {
+        "name": "Ghost Link Arrow",
+        "role": "External-link affordance on every project tile",
+        "description": "12×12 outlined arrow-up-right icon in Pencil Gray, absolutely positioned top-right of card with 8px inset. No background, no border, no hover state beyond color shift to Full Black"
+      },
+      {
+        "name": "Footer Social Row",
+        "role": "Bottom-of-page social links and CV",
+        "description": "Inter 16px Full Black text links separated by 8-12px gaps, left-aligned or right-aligned in the page column. No background, no border, no icon — plain text only, matching the nav's restraint"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headings — light-weight serif at 30/36/60px. The whisper weight and optical-size personality of Fraunces make every headline feel hand-set rather than UI-generated; this is the single most distinctive typographic choice on the site",
+        "sizes": "30px, 36px, 60px",
+        "family": "Fraunces",
+        "weight": "300",
+        "lineHeight": "1.00-1.25",
+        "substitute": "Lora (300) or Cormorant Garamond Light",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "Body, navigation, metadata, card titles, footer. Used everywhere the voice is functional and not editorial. Compact 14px for card-level metadata, comfortable 16px for running prose",
+        "sizes": "14px, 16px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.43-1.63",
+        "substitute": "system-ui or IBM Plex Sans",
+        "letterSpacing": "-0.025em"
+      },
+      {
+        "role": "Code-fence and small technical labels — inherits the same tight tracking as Inter so mono blocks align with the proportional text around them",
+        "sizes": "14px",
+        "family": "ui-monospace",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "JetBrains Mono or SF Mono",
+        "letterSpacing": "-0.025em"
+      }
+    ],
+    "description": "Chester's Garden is a personal digital garden rendered as a quiet, editorial broadsheet on soft gray paper. The visual language is deliberately unfussy: a near-white canvas layered onto a cool gray substrate, serif display type at whisper-weight 300 that feels typeset rather than designed, and a masonry grid where cards of varying heights lock together like magazine columns. Body text is compact Inter with selectively bolded words inside flowing sentences, echoing how a reader underlines a phrase in a book. Pastel tag pills (mint, butter yellow, sage) and one rust-orange link color provide the only chromatic moments — accents behave like highlighter marks, not like a brand identity. Everything else is restrained: hairline borders, tiny radii, no gradients, no decorative elevation, and images sit in their own muted card frames.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Chester's Garden design system\",\"item\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#style-reference\",\"name\":\"Chester's Garden design system reference\",\"headline\":\"Chester's Garden design system | Refero Styles\",\"description\":\"Explore Chester's Garden's light Other design system: Paper Gray #e5e7eb, Bone White #fafafa colors, Fraunces, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Chester's Garden\",\"url\":\"https://chester.how\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"caption\":\"Screenshot of Chester's Garden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Chester's Garden design system\",\"Chester's Garden website design\",\"Chester's Garden colors\",\"Chester's Garden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Paper Gray\",\"Bone White\",\"Full Black\",\"Ink Charcoal\",\"Fraunces\",\"Inter\",\"ui-monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Chester's Garden design system\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden website design\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden colors\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-17T14:55:23.000Z\",\"dateModified\":\"2026-02-17T14:55:23.000Z\"}]}19:T7fc,**Quick Color Reference**\n- text: #000000 (primary body), #171717 (headlines/links), #404040 (secondary), #a3a3a3 (tertiary/icons)\n- background: #e5e7eb (page), #fafafa (card)\n- border: #e5e7eb (hairline), rgba(0,0,0,0.1) (inset paper edge)\n- accent: #daf5ae, #fde5a7, #b7f2cc (tag pill backgrounds only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the editorial intro block: Paper Gray (#e5e7eb) canvas, no card chrome. 'Hey there, I'm Chester 👋' at 60px Fraunces weight 300, color #171717, letter-spacing -1.8px, line-height 1.0. Follow with 16px Inter 400 body in #000000, selectively bolding single words (Chester, digital garden, building, Mobbin, plants, climbing) to weight 600. 24px row gap between paragraphs.\n2. Build a project tile card: Bone White (#fafafa) fill, 8px radius, 1px #e5e7eb hairline border plus the inset paper-edge shadow (rgba(0,0,0,0.1) 0px 0px 0px 1px inset, rgba(0,0,0,0.1) 0px -2px 0px 1px inset). Top: full-bleed project screenshot clipped to 8px top corners. Below: 20px padding, caption 'Projects · Design Spells' at 14px Inter 400 in #404040. Top-right 12×12 outlined arrow-up-right icon in #a3a3a3.\n3. Build an accent tag pill: 9999px radius, 6px vertical and 8px horizontal padding, Highlight Mint (#daf5ae) background, 'READ' in Inter 12px weight 500 uppercase in #000000. No border, floats on the card surface.\n4. Build a hobby feature card: tall Bone White tile, 8px radius, 1px #e5e7eb border. Full-bleed plant photograph at top with 8px top radius. Below: 20px padding, then a Highlight Butter (#fde5a7) pill with 'ARACEAE' text, then 'Philodendron hederaceum 'Micans'' at 36px Fraunces 300 in #171717, line-height 1.11, letter-spacing -1.08px.\n5. Build the top nav bar: transparent background, no shadow, 20px vertical padding, 32px horizontal padding. Left: 'Chester' at 16px Inter 400 in #171717. Center row: Projects, Writing, Reading, Hobbies at 16px Inter 400 in #000000, 12px gaps. Right row: GitHub, Twitter, CV at 16px Inter 400 in #000000, 12px gaps."
+      },
+      {
+        "title": "The Bolding-In-Prose Rule",
+        "content": "The site's most distinctive content pattern is the selective bolding of single words inside otherwise regular-weight sentences — 'I like building things and I'm currently helping to build Mobbin', where 'building' and 'Mobbin' jump to weight 600. This is the equivalent of underlining a word with a pencil while reading. When generating prose for this system, always identify one or two carry-words per sentence (proper nouns, activity verbs, project names) and bump them to 600. Do not bold phrases, do not bold more than two words per sentence, and do not introduce any other emphasis mechanism (no underline, no italic, no color)."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used as if drawing with a fine pen, not stacking z-layers. Most separation comes from the 1-step surface jump between Paper Gray substrate and Bone White card — a contrast of color value, not shadow. When shadows appear, they are extremely soft (10% black, 15-6px blur) and only on hero image cards. The signature inset border treatment (1px top + 1px offset bottom) is borrowed from ruled notebook paper and is preferred over drop shadows for content tiles."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 933,
+          "confidence": 1,
+          "prominence": 38944659.226544335,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "heading",
+            "footer",
+            "body"
+          ],
+          "frequency": 117,
+          "confidence": 1,
+          "prominence": 27164752.836730734,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 2084016.9579730062,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 949148.4277488078,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 60788,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 17765.671451457612,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7c2d12",
+          "oklch": {
+            "c": 0.11646785810261655,
+            "h": 38.17150920584814,
+            "l": 0.4083894027780714
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 6239.020790962342,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#581c87",
+          "oklch": {
+            "c": 0.16607939969502017,
+            "h": 304.9873833533124,
+            "l": 0.38074408130388165
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5628.201840060825,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0c4a6e",
+          "oklch": {
+            "c": 0.08452660423787625,
+            "h": 240.87592145961298,
+            "l": 0.39122991324580075
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4232.874916979661,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6cefe",
+          "oklch": {
+            "c": 0.06971171847494866,
+            "h": 307.587884828332,
+            "l": 0.8858175618961548
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3551,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#afe5fc",
+          "oklch": {
+            "c": 0.06339226764036276,
+            "h": 226.9522730428548,
+            "l": 0.8917682225327661
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2889.3866388146675,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdd3b1",
+          "oklch": {
+            "c": 0.06559145608098133,
+            "h": 61.14523118662719,
+            "l": 0.8955115175118734
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2687,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#365314",
+          "oklch": {
+            "c": 0.09557019277120447,
+            "h": 131.06341893214324,
+            "l": 0.40503443897817354
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2548.619701159619,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#14532d",
+          "oklch": {
+            "c": 0.0896192343374252,
+            "h": 152.5352816941364,
+            "l": 0.3925324282568997
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1863.9159008480794,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fde5a7",
+          "oklch": {
+            "c": 0.08302269423152121,
+            "h": 89.31301679859186,
+            "l": 0.9283065845187176
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1823,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#daf5ae",
+          "oklch": {
+            "c": 0.09599254318206552,
+            "h": 125.0540933099598,
+            "l": 0.9336608622142076
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1608,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b7f2cc",
+          "oklch": {
+            "c": 0.07900579006560075,
+            "h": 156.59721099217668,
+            "l": 0.9101702492496908
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1176,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016492151478477383,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.65,
+          "background": "#daf5ae",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.18,
+          "background": "#fafafa",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.94,
+          "background": "#fde5a7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.59,
+          "background": "#b7f2cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.44,
+          "background": "#afe5fc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#fdd3b1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.07,
+          "background": "#daf5ae",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#e6cefe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.48,
+          "background": "#e5e7eb",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.46,
+          "background": "#fde5a7",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.16,
+          "background": "#b7f2cc",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.18,
+          "background": "#afe5fc",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.92,
+          "background": "#fdd3b1",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.48,
+          "background": "#e6cefe",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#fafafa",
+          "foreground": "#581c87"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.93,
+          "background": "#fafafa",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#daf5ae",
+          "foreground": "#581c87"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#fafafa",
+          "foreground": "#0c4a6e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "link",
+            "image",
+            "other"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.1) 0px -2px 0px 1px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 75,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 202,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fraunces",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-monospace",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 89,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ui-monospace",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "footer",
+            "icon"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Fraunces",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Fraunces",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Fraunces",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Fraunces",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fa44fd85-d7a4-4802-98cd-bf8d4551af03.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Chester's Garden design system\",\"item\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#style-reference\",\"name\":\"Chester's Garden design system reference\",\"headline\":\"Chester's Garden design system | Refero Styles\",\"description\":\"Explore Chester's Garden's light Other design system: Paper Gray #e5e7eb, Bone White #fafafa colors, Fraunces, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Chester's Garden\",\"url\":\"https://chester.how\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a639fa6c-1705-47c2-b452-d4479469a734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"caption\":\"Screenshot of Chester's Garden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9f1c20a-d165-495f-ba0b-0c7e95d660a8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Chester's Garden design system\",\"Chester's Garden website design\",\"Chester's Garden colors\",\"Chester's Garden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Paper Gray\",\"Bone White\",\"Full Black\",\"Ink Charcoal\",\"Fraunces\",\"Inter\",\"ui-monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Chester's Garden design system\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden website design\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden colors\"},{\"@type\":\"Thing\",\"name\":\"Chester's Garden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-17T14:55:23.000Z\",\"dateModified\":\"2026-02-17T14:55:23.000Z\"}]}19:T7fc,**Quick Color Reference**\n- text: #000000 (primary body), #171717 (headlines/links), #404040 (secondary), #a3a3a3 (tertiary/icons)\n- background: #e5e7eb (page), #fafafa (card)\n- border: #e5e7eb (hairline), rgba(0,0,0,0.1) (inset paper edge)\n- accent: #daf5ae, #fde5a7, #b7f2cc (tag pill backgrounds only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the editorial intro block: Paper Gray (#e5e7eb) canvas, no card chrome. 'Hey there, I'm Chester 👋' at 60px Fraunces weight 300, color #171717, letter-spacing -1.8px, line-height 1.0. Follow with 16px Inter 400 body in #000000, selectively bolding single words (Chester, digital garden, building, Mobbin, plants, climbing) to weight 600. 24px row gap between paragraphs.\n2. Build a project tile card: Bone White (#fafafa) fill, 8px radius, 1px #e5e7eb hairline border plus the inset paper-edge shadow (rgba(0,0,0,0.1) 0px 0px 0px 1px inset, rgba(0,0,0,0.1) 0px -2px 0px 1px inset). Top: full-bleed project screenshot clipped to 8px top corners. Below: 20px padding, caption 'Projects · Design Spells' at 14px Inter 400 in #404040. Top-right 12×12 outlined arrow-up-right icon in #a3a3a3.\n3. Build an accent tag pill: 9999px radius, 6px vertical and 8px horizontal padding, Highlight Mint (#daf5ae) background, 'READ' in Inter 12px weight 500 uppercase in #000000. No border, floats on the card surface.\n4. Build a hobby feature card: tall Bone White tile, 8px radius, 1px #e5e7eb border. Full-bleed plant photograph at top with 8px top radius. Below: 20px padding, then a Highlight Butter (#fde5a7) pill with 'ARACEAE' text, then 'Philodendron hederaceum 'Micans'' at 36px Fraunces 300 in #171717, line-height 1.11, letter-spacing -1.08px.\n5. Build the top nav bar: transparent background, no shadow, 20px vertical padding, 32px horizontal padding. Left: 'Chester' at 16px Inter 400 in #171717. Center row: Projects, Writing, Reading, Hobbies at 16px Inter 400 in #000000, 12px gaps. Right row: GitHub, Twitter, CV at 16px Inter 400 in #000000, 12px gaps."
+}

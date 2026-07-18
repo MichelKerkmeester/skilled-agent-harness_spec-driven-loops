@@ -1,0 +1,454 @@
+{
+  "source": "https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2",
+  "uuid": "4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2",
+  "name": "Ryan Stephen",
+  "northStar": "Quiet gallery wall on white plaster — the portfolio is the product, the UI is invisible.",
+  "capturedAt": "2026-07-18T07:23:51.522Z",
+  "meta": {
+    "url": "https://www.ryanstephen.co",
+    "siteName": "Ryan Stephen",
+    "extractedAt": "2026-06-03T21:18:51.229Z",
+    "durationMs": 32981,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 90,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 10px border-radius for all images and any card-like surface",
+      "Keep the palette restricted to #000000, #404040, #8b8b94, and #ffffff — no accent colors",
+      "Use system-ui at 16px weight 500 for body and 12px weight 400 for meta/link rows",
+      "Set line-height to 1.20 across all text",
+      "Maintain the 3-column image grid with 15–20px gaps and 100px section breathing room",
+      "Let images sit on the white canvas with no frames, shadows, or backgrounds",
+      "Write links as plain text — no buttons, no underlines, no icons"
+    ],
+    "donts": [
+      "Don't introduce a brand color or accent — the absence of color is the brand",
+      "Don't add drop shadows, gradients, or elevation effects to any element",
+      "Don't load a custom webfont — system fonts are the system",
+      "Don't use a border-radius other than 10px on images or cards",
+      "Don't wrap the bio or link row in a card, container, or bordered box",
+      "Don't add icons to social links or nav items",
+      "Don't apply different radii to different elements — one value across the system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, image frame borders, structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Charcoal",
+        "role": "Secondary body text, subdued labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8b8b94",
+        "name": "Warm Ash",
+        "role": "Muted helper text, link borders, link text, decorative dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Plaster White",
+        "role": "Page canvas, card surfaces, image backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-zone asymmetric composition: a narrow left column (roughly 30% width) holds the bio paragraph and link row, flush-left with no alignment to the grid below. The right zone (roughly 70% width) is a 3-column image grid that starts at the top of the page and continues as a uniform stack. Both zones share the same top edge — the text doesn't center against the first row of images. Vertical spacing between the bio block and the link row is tight (single line break); the gap between the link row and the image grid is the page's first real section break. There is no header, nav bar, or footer. The page reads top-to-bottom as one continuous surface: text → links → infinite photo scroll.",
+    "imagery": "Photography is the entire visual language. The grid shows hands holding phones displaying UI work — tight first-person product crops, no lifestyle staging, no environmental context beyond a blurred tabletop or wall. Treatment is natural color, not filtered or duotone. Images are presented unframed at 10px radius with no captions or labels — the work is self-documenting. Iconography, illustration, and abstract graphics are absent; photography fills 100% of the visual space outside the text block.",
+    "similar": [
+      {
+        "why": "Same radical content-first minimalism — no chrome, no decoration, the work or text is the only thing on the page",
+        "business": "Craigslist"
+      },
+      {
+        "why": "Same grid-of-images-on-white aesthetic with system fonts and no brand color",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same photographer/designer portfolio pattern: large white canvas, image grid, minimal text, no UI ornamentation",
+        "business": "Cargo Collective portfolios"
+      },
+      {
+        "why": "Same masonry-style image grid structure with rounded image corners, though Pinterest adds much more UI chrome",
+        "business": "Pinterest"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "images": "10px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "100px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full page background — the only surface in the system"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Image Tile",
+        "level": 1,
+        "purpose": "White backstop behind photographs, 10px-clipped to the image"
+      }
+    ],
+    "northStar": "Quiet gallery wall on white plaster — the portfolio is the product, the UI is invisible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Bio Block",
+        "role": "Left-column introduction paragraph",
+        "description": "Body paragraph in 16px system-ui weight 500, #000000. Sits flush-left at the top of the page, directly above the link row. No card, no border, no background — just text on the white canvas."
+      },
+      {
+        "name": "Social Link Row",
+        "role": "Inline list of outbound links",
+        "description": "Three links (Email, Twitter, LinkedIn) separated by whitespace, 12px system-ui weight 400, #000000. No icons, no underlines, no buttons — just bare text labels on a single line."
+      },
+      {
+        "name": "Image Gallery Grid",
+        "role": "3-column photo grid showing portfolio work",
+        "description": "Three equal columns with 15–20px row and column gaps. Each tile is a photograph inside a 10px-radius container. No captions, no borders, no hover effects visible — the images speak for themselves."
+      },
+      {
+        "name": "Gallery Tile",
+        "role": "Single photograph in the grid",
+        "description": "Full-bleed image clipped to a 10px border-radius. No padding, no shadow, no border. Aspect ratio is left natural to the source photo — the grid accepts mixed orientations."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation to email/social profiles",
+        "description": "Bare text at 12–16px, #000000, no underline by default. Inherits system-ui. When chromatic, sits in #000000 — the same color as body text, distinguished only by context and convention."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "All text uses the OS system font stack. 16px weight 500 carries the bio paragraph and link text; 12px weight 400 covers the small link row (Email · Twitter · LinkedIn) and metadata. The deliberate choice of native system fonts — no custom typeface, no webfont load — keeps the chrome weightless and lets the photographs be the only typographic event on the page.",
+        "sizes": "16px",
+        "family": "system-ui",
+        "weight": "400, 500",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+      }
+    ],
+    "description": "Ryan Stephen's portfolio is a quiet gallery wall on white plaster: nearly all black and white, with one warm gray doing the work of secondary text and link borders. The layout is content-first and image-dominant — a single bio block on the left, a 3-column photo grid on the right — with no chrome, no decoration, and no brand color competing with the work. The visual system is intentionally austere: system fonts, a single 10px image radius, generous whitespace, and zero shadows or gradients. Every interface element is reduced to its function so the photographs carry the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ryan Stephen design system\",\"item\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#style-reference\",\"name\":\"Ryan Stephen design system reference\",\"headline\":\"Ryan Stephen design system | Refero Styles\",\"description\":\"Explore Ryan Stephen's light Design design system: Ink Black #000000, Charcoal #404040 colors, sans-serif, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ryan Stephen\",\"url\":\"https://www.ryanstephen.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"caption\":\"Screenshot of Ryan Stephen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ryan Stephen design system\",\"Ryan Stephen website design\",\"Ryan Stephen colors\",\"Ryan Stephen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Charcoal\",\"Warm Ash\",\"Plaster White\",\"sans-serif\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ryan Stephen design system\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen website design\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen colors\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:57:02.443Z\",\"dateModified\":\"2026-04-30T02:57:02.443Z\"}]}19:T428,Quick Color Reference:\n- text: #000000\n- muted text: #404040\n- link/secondary: #8b8b94\n- background: #ffffff\n- border: #000000\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a bio block: white (#ffffff) canvas, 16px system-ui weight 500, #000000, line-height 1.20. No border, no background, flush-left at page top. Max-width ~360px.\n\n2. Create a social link row: three bare text links (Email, Twitter, LinkedIn) on one line, separated by ~20px space. 12px system-ui weight 400, #000000, no underline, no icons.\n\n3. Create a 3-column image grid: white background, 15–20px row and column gaps, tiles clipped to 10px border-radius. No borders, no shadows, no captions. Tiles stretch to fill column width.\n\n4. Create a single gallery tile: full-width image inside a 10px-radius container, no padding, no frame, no hover state. Aspect ratio follows the source image.\n\n5. Create a plain text link: 16px system-ui weight 500, #000000, no underline, no background, no border. Distinguishable from body text only by context and convention."
+      }
+    ],
+    "elevationPhilosophy": "The design has zero elevation — no shadows, no layered surfaces, no z-axis distinction. The only depth cue is the 10px corner radius on images, which separates photograph from canvas through shape alone. Everything else is flat and flush."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 13902807.683405904,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 11,
+            "other/borderColor": 44
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2394000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 66317.21295600125,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8b8b94",
+          "oklch": {
+            "c": 0.013294724640333794,
+            "h": 286.0178948132922,
+            "l": 0.6396649835296034
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 5945.0355724642495,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 3,
+            "body/borderColor": 12,
+            "link/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01184561150014891,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#ffffff",
+          "foreground": "#404040"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.38,
+          "background": "#ffffff",
+          "foreground": "#8b8b94"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 54
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 83,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            500
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1a70ba3d-4186-4179-8d98-165d2f39724a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ryan Stephen design system\",\"item\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#style-reference\",\"name\":\"Ryan Stephen design system reference\",\"headline\":\"Ryan Stephen design system | Refero Styles\",\"description\":\"Explore Ryan Stephen's light Design design system: Ink Black #000000, Charcoal #404040 colors, sans-serif, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ryan Stephen\",\"url\":\"https://www.ryanstephen.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4080f6e4-e61c-4d3c-ab93-de74a1b5dfc2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"caption\":\"Screenshot of Ryan Stephen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8c7b1b1c-e62a-4862-b130-fa64a0adc17d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ryan Stephen design system\",\"Ryan Stephen website design\",\"Ryan Stephen colors\",\"Ryan Stephen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Charcoal\",\"Warm Ash\",\"Plaster White\",\"sans-serif\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ryan Stephen design system\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen website design\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen colors\"},{\"@type\":\"Thing\",\"name\":\"Ryan Stephen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:57:02.443Z\",\"dateModified\":\"2026-04-30T02:57:02.443Z\"}]}19:T428,Quick Color Reference:\n- text: #000000\n- muted text: #404040\n- link/secondary: #8b8b94\n- background: #ffffff\n- border: #000000\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a bio block: white (#ffffff) canvas, 16px system-ui weight 500, #000000, line-height 1.20. No border, no background, flush-left at page top. Max-width ~360px.\n\n2. Create a social link row: three bare text links (Email, Twitter, LinkedIn) on one line, separated by ~20px space. 12px system-ui weight 400, #000000, no underline, no icons.\n\n3. Create a 3-column image grid: white background, 15–20px row and column gaps, tiles clipped to 10px border-radius. No borders, no shadows, no captions. Tiles stretch to fill column width.\n\n4. Create a single gallery tile: full-width image inside a 10px-radius container, no padding, no frame, no hover state. Aspect ratio follows the source image.\n\n5. Create a plain text link: 16px system-ui weight 500, #000000, no underline, no background, no border. Distinguishable from body text only by context and convention."
+}

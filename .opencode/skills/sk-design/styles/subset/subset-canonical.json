@@ -1,0 +1,1903 @@
+{
+  "source": "https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1",
+  "uuid": "a4dcee26-dd31-415a-ac99-64299959e7f1",
+  "name": "Subset",
+  "northStar": "editorial boutique on raw linen",
+  "capturedAt": "2026-07-18T09:34:28.328Z",
+  "meta": {
+    "url": "https://knickey.com",
+    "siteName": "Subset",
+    "extractedAt": "2026-06-03T19:05:10.461Z",
+    "durationMs": 36817,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1330,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all page backgrounds and section bands to #f5f4ee Raw Linen — never use pure white as a canvas",
+      "Use #233735 Midnight Forest for primary filled buttons with #ffffff text at 14px FoundersGrotesk weight 500, 0.025em tracking, uppercase",
+      "Apply 0.10em letter-spacing to all uppercase micro-labels (NEW, ORGANIC COTTON, navigation links) at 13–15px FoundersGrotesk",
+      "Reserve #ff965b Ember exclusively for badges, star ratings, and the cart count bubble — never for large filled blocks",
+      "Use #8bbd78 Sage Leaf for hairline decorative borders and icon strokes, not for filled backgrounds",
+      "Keep component radii at 0px for cards, buttons, and product images; use 9999px only for the chat pill and color swatches",
+      "Use TTRamillas serif at 32–42px for editorial headlines; switch to FoundersGrotesk for all UI text and product information"
+    ],
+    "donts": [
+      "Don't use pure #000000 for text or button fills — use #241f20 Ink instead for warmth",
+      "Don't apply border-radius larger than 2px to product cards, buttons, or product images — the sharp rectangular geometry is the signature",
+      "Don't use the sage green #8bbd78 or blue #6487ba as large filled backgrounds — they are accent and action colors only",
+      "Don't set tracking below 0.025em on FoundersGrotesk body or UI text at 14–18px — the wide tracking is intentional",
+      "Don't use drop shadows or box-shadows on cards or buttons — the system is flat, separated only by hairline borders and surface color shifts",
+      "Don't use the blush #edcdc2 for UI components — it's a photographic surface tone, not a UI fill",
+      "Don't introduce a new chromatic color for hover or active states — deepen the existing color (e.g. #8bbd78 → #5b7763) rather than adding new hues"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#241f20",
+        "name": "Ink",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f4ee",
+        "name": "Raw Linen",
+        "role": "Page canvas and card backgrounds — warm off-white, the signature surface that distinguishes this system from generic white SaaS",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Elevated card surfaces, badge fills, inverse text on dark buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Fog",
+        "role": "Muted helper text, secondary dividers, disabled labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edcdc2",
+        "name": "Blush",
+        "role": "Accent surface wash — hero image tint, product photo backdrop, soft highlight zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#26262a",
+        "name": "Charcoal",
+        "role": "Darkest UI surface — footer dark bands, chat widget shell, overlaid panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8bbd78",
+        "name": "Sage Leaf",
+        "role": "Signature accent — top announcement bar, hairline decorative borders, icon strokes, functional green; the brand's quiet living color",
+        "group": "brand"
+      },
+      {
+        "hex": "#6487ba",
+        "name": "Heritage Blue",
+        "role": "Primary action — filled buttons, link underlines, selected states; dusty mid-blue carries trust without corporate coldness",
+        "group": "brand"
+      },
+      {
+        "hex": "#233735",
+        "name": "Midnight Forest",
+        "role": "Dark filled buttons (hero CTA), deep green-black for high-emphasis actions; warmer than charcoal, more sophisticated than black",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff965b",
+        "name": "Ember",
+        "role": "NEW badges, notification dots, star ratings, cart count bubble — vivid warm orange used sparingly as functional punctuation",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width ~1280px centered, with the hero stretching full-bleed. The hero is a full-viewport editorial image with a centered white overlay card containing headline + CTA + meta. Below the hero, sections alternate between the Raw Linen canvas and product imagery, separated by generous 64px vertical gaps. The product grid is 3 columns; the category grid is 5 columns; the press strip is a 4-column single row of quotes. Navigation is a single horizontal bar with centered serif logo, left-aligned category links, and right-aligned account/cart cluster. The page rhythm is slow and editorial: large image blocks, then text, then image — never dense information stacking.",
+    "imagery": "Large-scale editorial product and lifestyle photography dominates the visual language. Product shots are flat-lay on neutral surfaces (blush pink, raw linen), showing garments alone or in packaging with no lifestyle context. Hero imagery is split editorial: product-on-left, model-on-right, both warm-toned and softly lit. Category cards use full-bleed model portraits against neutral studio backdrops. No illustration, no 3D, no abstract graphics — photography is the only visual content and it occupies roughly 70% of the viewport on product-heavy pages. Stars in the rating system are the only graphic iconography; product imagery carries all the brand warmth.",
+    "similar": [
+      {
+        "why": "Same editorial product photography on warm neutral canvas, wide-tracked uppercase labels, serif headlines paired with geometric sans, and zero-shadow flat component design",
+        "business": "Everlane"
+      },
+      {
+        "why": "Shared warm cream canvas, restrained earth-tone palette, hairline borders, and the boutique-editorial feel where photography and whitespace replace decorative UI",
+        "business": "Cuyana"
+      },
+      {
+        "why": "Same full-bleed editorial hero, serif logo wordmark, warm neutral backgrounds, and product grids where images sit directly on canvas without card containers",
+        "business": "Reformation"
+      },
+      {
+        "why": "Similar soft, warm light-mode aesthetic with muted accent colors used sparingly on a near-white canvas, and a flat component system without heavy shadows",
+        "business": "Glossier"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "2px",
+        "buttons": "0px",
+        "swatches": "9999px",
+        "chat-pill": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f5f4ee",
+        "name": "Raw Linen",
+        "level": 1,
+        "purpose": "Base page canvas — all section backgrounds sit on this warm cream"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "level": 2,
+        "purpose": "Product cards, hero overlay card, badge fills — the only true-white surface"
+      },
+      {
+        "hex": "#edcdc2",
+        "name": "Blush",
+        "level": 3,
+        "purpose": "Accent wash — soft highlight zones in hero and editorial imagery"
+      },
+      {
+        "hex": "#233735",
+        "name": "Midnight Forest",
+        "level": 4,
+        "purpose": "Dark CTA surface — filled primary buttons, inverted panels"
+      }
+    ],
+    "northStar": "editorial boutique on raw linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.025
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.24,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "display",
+        "size": 42,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Dark Filled Button",
+        "role": "Primary call-to-action (hero, product detail, checkout)",
+        "description": "Background #233735, text #ffffff, FoundersGrotesk 14px weight 500, letter-spacing 0.025em, uppercase. Padding 16px vertical / 24px horizontal. Radius 0px — sharp rectangle, no rounding. No shadow. This is the 'SHOP MOTHERS DAY' button."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Secondary action or link-style button",
+        "description": "Transparent background, 1px border #233735 or #6487ba, text matching border color. FoundersGrotesk 14px weight 500, 0.025em tracking, uppercase. Padding 14px / 20px. Radius 0px."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide top strip",
+        "description": "Full-bleed #8bbd78 sage background. Centered text, FoundersGrotesk 13px weight 400, #241f20, letter-spacing 0.10em, uppercase. Padding 8px vertical. No border."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Sits on Raw Linen canvas. Logo (SUBSET in serif) centered. Left: category links (Start Here, Underwear, Bras, Lounge, Mens) in FoundersGrotesk 14px weight 400, 0.025em tracking. Right: search icon, Fitting Room, Recycle, Account, and cart bubble (Ember #ff965b fill, white number). All items vertically aligned, no dividers."
+      },
+      {
+        "name": "Hero Overlay Card",
+        "role": "Centered editorial card on full-width hero image",
+        "description": "White #ffffff background, 0px radius, generous padding (~48px). Contains serif headline at 42px, subtext, dark filled CTA, and meta line. Sits over split editorial imagery (product on left, model on right) at ~60% page width, centered."
+      },
+      {
+        "name": "Category Card",
+        "role": "5-up category grid (Shop Underwear, Bras, Lounge, Men's, All)",
+        "description": "Portrait-ratio image fills card top, no border, 0px radius. Label below image: FoundersGrotesk 20px weight 400, #241f20, 0.025em tracking. Product count subtext: 14px, #808080, 0.025em tracking. Full-bleed within column, no card background — image sits directly on Raw Linen."
+      },
+      {
+        "name": "Product Card",
+        "role": "3-up product grid items",
+        "description": "Square product image on Raw Linen background, no border or radius. NEW badge (Ember fill, white text, 2px radius) positioned top-right of image. Below image: star rating (Ember stars) + review count in 13px #808080. ORGANIC COTTON label in 13px #241f20, 0.10em tracking, uppercase. Product name 16px #241f20 weight 500. Price in 16px #241f20. Color swatch row: 16px circles, current variant outlined in #241f20."
+      },
+      {
+        "name": "New Badge",
+        "role": "Product freshness indicator",
+        "description": "Background #ff965b Ember, text #ffffff, FoundersGrotesk 13px weight 500, 0.10em tracking, uppercase. Padding 4px / 8px. Radius 2px. Positioned top-right of product image."
+      },
+      {
+        "name": "Press Strip",
+        "role": "Editorial social proof band below hero",
+        "description": "Raw Linen background, full-width single row. Left-aligned quote in serif (TTRamillas 18px) + bold publication name in FoundersGrotesk 14px weight 700, uppercase, 0.025em tracking. Items separated by generous horizontal whitespace, no dividers. 4 items at ~25% width each."
+      },
+      {
+        "name": "Color Swatch",
+        "role": "Product variant selector",
+        "description": "16px diameter circle, #9999px radius. Border 1px #e0e0e0 default; current selection gets 1px #241f20 outer ring. No fill change between states — only border weight signals selection."
+      },
+      {
+        "name": "Chat Widget",
+        "role": "Persistent bottom-left support trigger",
+        "description": "Pill shape, 9999px radius. Dark circle icon (#241f20) + white pill (#ffffff) with 'Chat with us' text in FoundersGrotesk 14px weight 500, #241f20. Fixed bottom-left, 16px offset from edges."
+      },
+      {
+        "name": "Cart Count Bubble",
+        "role": "Cart icon notification",
+        "description": "Small circle in navigation, #ff965b Ember fill, white number at 12px weight 700. Diameter ~20px, positioned overlapping the cart icon."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse sans for navigation, product cards, badges, body text, buttons, inputs, icons. The 0.1–0.15em letter-spacing on 13–15px sizes is the signature tracking pattern for uppercase labels (NEW, ORGANIC COTTON, Shop Underwear).",
+        "sizes": "13, 14, 15, 16, 17, 18, 20, 24",
+        "family": "FoundersGrotesk",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20–1.63",
+        "substitute": "Inter, Söhne, or DM Sans",
+        "letterSpacing": "0.0180em, 0.0210em, 0.0240em, 0.0250em, 0.0270em, 0.0280em, 0.0300em, 0.0330em, 0.1000em, 0.1500em"
+      },
+      {
+        "role": "Editorial serif for hero headline, subhead, and body excerpts. Tight -0.01em tracking and low contrast strokes create a quiet, literary feel that contrasts the geometric sans.",
+        "sizes": "18, 20, 24, 32, 40, 42",
+        "family": "TTRamillas_Light",
+        "weight": "400",
+        "lineHeight": "1.00–1.53",
+        "substitute": "Cormorant Garamond, Playfair Display, or Lora",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Specialty text at 17px with 0.025em tracking — used for minimal secondary copy, not a primary face",
+        "sizes": "17",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Söhne or Inter at matching weight",
+        "letterSpacing": "0.0250em"
+      }
+    ],
+    "description": "Subset is an editorial intimates boutique rendered on warm raw linen rather than stark white. The page breathes through a muted earth palette — sage, dusty blue, blush, ember — with Founders Grotesk as the workhorse voice and a refined serif (TT Ramillas) reserved for editorial headlines. Product photography is the hero; the UI gets out of the way with hairline borders, minimal radii, and no decorative shadows. The signature moves: aggressive letter-spacing on uppercase labels (0.1–0.15em), generous cream canvas, and color used as quiet punctuation on borders, badges, and icons rather than as large filled blocks.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Subset design system\",\"item\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#style-reference\",\"name\":\"Subset design system reference\",\"headline\":\"Subset design system | Refero Styles\",\"description\":\"Explore Subset's light E-commerce design system: Ink #241f20, Raw Linen #f5f4ee colors, FoundersGrotesk, TTRamillas_Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Subset\",\"url\":\"https://knickey.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"caption\":\"Screenshot of Subset\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Subset design system\",\"Subset website design\",\"Subset colors\",\"Subset typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Raw Linen\",\"White\",\"Fog\",\"FoundersGrotesk\",\"TTRamillas_Light\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Subset design system\"},{\"@type\":\"Thing\",\"name\":\"Subset website design\"},{\"@type\":\"Thing\",\"name\":\"Subset colors\"},{\"@type\":\"Thing\",\"name\":\"Subset typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:26:29.127Z\",\"dateModified\":\"2026-04-30T03:26:29.127Z\"}]}19:T7c7,**Quick Color Reference**\n- text: #241f20\n- background: #f5f4ee (canvas) / #ffffff (cards)\n- border: #241f20 (hairline) / #8bbd78 (decorative)\n- accent: #8bbd78 Sage / #edcdc2 Blush / #ff965b Ember\n- primary action: #233735 (filled action)\n\n**Example Component Prompts**\n1. *Hero overlay card*: Full-bleed editorial image (1280px wide), centered white card overlay (#ffffff, 0px radius, 48px padding). Serif headline 'Everyday Essentials She Deserves' at 42px TTRamillas weight 400, #241f20, -0.01em tracking. Dark filled CTA below: #233735 background, white text 'SHOP MOTHERS DAY', 14px FoundersGrotesk weight 500, 0.025em tracking, 16px/24px padding, 0px radius. Meta line: 14px FoundersGrotesk #808080, then star row (#ff965b stars) + 'Over 13,000 Five Star Reviews' in 14px #241f20.\n\n2. *Product card*: Square product image on #f5f4ee canvas, 0px radius, no border. Ember #ff965b NEW badge (2px radius) top-right. Below image: 13px #ff965b stars + 13px #808080 review count. 'ORGANIC COTTON' label at 13px FoundersGrotesk weight 500, #241f20, 0.10em tracking, uppercase. Product name at 16px weight 500 #241f20. Price at 16px #241f20. Color swatch row of 16px circles, current variant ringed 1px #241f20.\n\n3. *Category card*: Portrait-ratio model image filling card width, 0px radius, no border, sits on Raw Linen. Label 'Shop Underwear' below at 20px FoundersGrotesk weight 400, #241f20, 0.025em tracking. Count '13 Products' at 14px #808080, 0.025em tracking. No card background — image breathes into canvas.\n\n4. *Announcement bar*: Full-bleed #8bbd78 Sage strip, 8px vertical padding. Centered text at 13px FoundersGrotesk weight 400, #241f20, 0.10em tracking, uppercase. No border, no shadow.\n\n5. *Outlined action button*: Transparent background, 1px border #6487ba Heritage Blue, text #6487ba at 14px FoundersGrotesk weight 500, 0.025em tracking, uppercase, 14px/20px padding, 0px radius. The chromatic border is the action signal — no fill change on hover, only slight darken."
+      },
+      {
+        "title": "Typography Signature",
+        "content": "The defining typographic move is the wide-tracked uppercase micro-label. FoundersGrotesk at 13–15px with 0.10em to 0.15em letter-spacing appears on every category label, badge, and product attribute ('NEW', 'ORGANIC COTTON', 'Shop Underwear', announcement bar text). This tracking pattern is unusual — most systems stay at 0–0.05em — and it gives the UI a fashion-editorial cadence. Pair this with TTRamillas serif at 32–42px for headlines; the contrast between the airy tracked sans and the tight elegant serif (-0.01em) is the brand's typographic voice."
+      },
+      {
+        "title": "Flatness Philosophy",
+        "content": "Zero shadows. Zero gradients. Zero blur effects. Separation between elements comes from: surface color shifts (#f5f4ee → #ffffff), hairline 1px borders, and whitespace. Product images float directly on the Raw Linen canvas with no card containers or dividers. This flatness is deliberate — it lets the editorial photography do all the visual work and keeps the UI from competing with the garments."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#241f20",
+          "oklch": {
+            "c": 0.007879397808275998,
+            "h": 4.040302158797895,
+            "l": 0.24536707886676906
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "list",
+            "icon",
+            "image",
+            "heading",
+            "hero",
+            "card",
+            "button",
+            "input"
+          ],
+          "frequency": 4631,
+          "confidence": 1,
+          "prominence": 147750981.49639422,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 128,
+            "card/color": 11,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 107,
+            "list/color": 45,
+            "other/fill": 17,
+            "image/color": 86,
+            "other/color": 560,
+            "button/color": 20,
+            "heading/color": 10,
+            "body/borderColor": 512,
+            "card/borderColor": 44,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 326,
+            "list/borderColor": 180,
+            "image/borderColor": 344,
+            "input/borderColor": 4,
+            "other/borderColor": 2152,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#f5f4ee",
+          "oklch": {
+            "c": 0.008017490869570409,
+            "h": 98.87919964750445,
+            "l": 0.9662630602074251
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 4241178.6009501545,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 4,
+            "card/backgroundColor": 9,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#5b7763",
+          "oklch": {
+            "c": 0.04496156375443645,
+            "h": 153.64118878626198,
+            "l": 0.5411926196978428
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1819165.9894933274,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "badge",
+            "heading",
+            "input"
+          ],
+          "frequency": 152,
+          "confidence": 1,
+          "prominence": 1374563.7721816737,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 3,
+            "badge/color": 5,
+            "other/color": 7,
+            "button/color": 6,
+            "heading/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 12,
+            "badge/borderColor": 20,
+            "other/borderColor": 28,
+            "button/borderColor": 16,
+            "heading/borderColor": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 34
+          }
+        },
+        {
+          "hex": "#edcdc2",
+          "oklch": {
+            "c": 0.03926035327717159,
+            "h": 39.89794661382548,
+            "l": 0.8723386175254804
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1027055.7004673091,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "button",
+            "link"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 621194.9671041132,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 2,
+            "other/color": 4,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 6,
+            "other/borderColor": 15,
+            "button/borderColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 444,
+          "confidence": 1,
+          "prominence": 421267.2245039815,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 26,
+            "body/color": 13,
+            "link/color": 6,
+            "other/fill": 108,
+            "other/color": 43,
+            "body/borderColor": 52,
+            "link/borderColor": 24,
+            "other/borderColor": 172
+          }
+        },
+        {
+          "hex": "#8bbd78",
+          "oklch": {
+            "c": 0.10909254928429009,
+            "h": 137.38989706274597,
+            "l": 0.7458857185549187
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 298,
+          "confidence": 1,
+          "prominence": 402647.1219687392,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 27,
+            "icon/color": 27,
+            "other/fill": 27,
+            "body/borderColor": 108,
+            "icon/borderColor": 108,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6487ba",
+          "oklch": {
+            "c": 0.0873262099928078,
+            "h": 257.70723770575614,
+            "l": 0.6180313463497438
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 154702.05486092556,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 20,
+            "other/borderColor": 80,
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#233735",
+          "oklch": {
+            "c": 0.025919988519875255,
+            "h": 188.11090531076457,
+            "l": 0.31907205781195636
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 129553.01899215137,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 80,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 18479,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1
+          }
+        },
+        {
+          "hex": "#ff965b",
+          "oklch": {
+            "c": 0.14652154659823544,
+            "h": 48.739280785355625,
+            "l": 0.7724524844837009
+          },
+          "contexts": [
+            "button",
+            "body",
+            "badge",
+            "icon",
+            "other"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 8087.4813680426405,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 5,
+            "other/fill": 10,
+            "body/borderColor": 4,
+            "icon/borderColor": 20,
+            "badge/backgroundColor": 5,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4e4e4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.918869996650694
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 3134.2549805877366,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 88
+          }
+        },
+        {
+          "hex": "#26262a",
+          "oklch": {
+            "c": 0.007338314002034983,
+            "h": 285.89846872514727,
+            "l": 0.2702378640787312
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1358.7597822758805,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#27293d",
+          "oklch": {
+            "c": 0.03663570296523043,
+            "h": 279.42116794051117,
+            "l": 0.2883873050383621
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1251.1218503490395,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#5c2722",
+          "oklch": {
+            "c": 0.07900777749145682,
+            "h": 27.367557978554427,
+            "l": 0.34653258047240515
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1251.1218503490395,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04033771109138464,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.06,
+          "background": "#f5f4ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#e4e4e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.26,
+          "background": "#ffffff",
+          "foreground": "#241f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.07,
+          "background": "#26262a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#f5f4ee",
+          "foreground": "#241f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.28,
+          "background": "#27293d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.11,
+          "background": "#edcdc2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.68,
+          "background": "#f5f4ee",
+          "foreground": "#26262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.96,
+          "background": "#f5f4ee",
+          "foreground": "#27293d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.78,
+          "background": "#e4e4e4",
+          "foreground": "#241f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.58,
+          "background": "#233735",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.88,
+          "background": "#5c2722",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.86,
+          "background": "#e4e4e4",
+          "foreground": "#26262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.47,
+          "background": "#f5f4ee",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#f5f4ee",
+          "foreground": "#233735"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.23,
+          "background": "#e4e4e4",
+          "foreground": "#27293d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#edcdc2",
+          "foreground": "#241f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.78,
+          "background": "#f5f4ee",
+          "foreground": "#5c2722"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 104,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 55,
+          "properties": [
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "badge",
+            "card",
+            "heading"
+          ],
+          "frequency": 228,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|icon",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "marginRight|other",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginRight|link",
+            "marginLeft|link",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 145,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|other",
+            "columnGap|link",
+            "marginBottom|body",
+            "marginBottom|heading",
+            "marginTop|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|button",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 133,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "marginBottom|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "FoundersGrotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 1131,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TTRamillas_Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 33,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "FoundersGrotesk",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FoundersGrotesk",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.15,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.15,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1,
+          "letterSpacing": 0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 629,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.53,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.53,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 162,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.46,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "FoundersGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "TTRamillas_Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/634361a9-ab7c-4ede-aae9-051ebf1ee400.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Subset design system\",\"item\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#style-reference\",\"name\":\"Subset design system reference\",\"headline\":\"Subset design system | Refero Styles\",\"description\":\"Explore Subset's light E-commerce design system: Ink #241f20, Raw Linen #f5f4ee colors, FoundersGrotesk, TTRamillas_Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Subset\",\"url\":\"https://knickey.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a4dcee26-dd31-415a-ac99-64299959e7f1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"caption\":\"Screenshot of Subset\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a153ec7c-d0af-4cee-93c2-a7a4f3d7f5f0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Subset design system\",\"Subset website design\",\"Subset colors\",\"Subset typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Raw Linen\",\"White\",\"Fog\",\"FoundersGrotesk\",\"TTRamillas_Light\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Subset design system\"},{\"@type\":\"Thing\",\"name\":\"Subset website design\"},{\"@type\":\"Thing\",\"name\":\"Subset colors\"},{\"@type\":\"Thing\",\"name\":\"Subset typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:26:29.127Z\",\"dateModified\":\"2026-04-30T03:26:29.127Z\"}]}19:T7c7,**Quick Color Reference**\n- text: #241f20\n- background: #f5f4ee (canvas) / #ffffff (cards)\n- border: #241f20 (hairline) / #8bbd78 (decorative)\n- accent: #8bbd78 Sage / #edcdc2 Blush / #ff965b Ember\n- primary action: #233735 (filled action)\n\n**Example Component Prompts**\n1. *Hero overlay card*: Full-bleed editorial image (1280px wide), centered white card overlay (#ffffff, 0px radius, 48px padding). Serif headline 'Everyday Essentials She Deserves' at 42px TTRamillas weight 400, #241f20, -0.01em tracking. Dark filled CTA below: #233735 background, white text 'SHOP MOTHERS DAY', 14px FoundersGrotesk weight 500, 0.025em tracking, 16px/24px padding, 0px radius. Meta line: 14px FoundersGrotesk #808080, then star row (#ff965b stars) + 'Over 13,000 Five Star Reviews' in 14px #241f20.\n\n2. *Product card*: Square product image on #f5f4ee canvas, 0px radius, no border. Ember #ff965b NEW badge (2px radius) top-right. Below image: 13px #ff965b stars + 13px #808080 review count. 'ORGANIC COTTON' label at 13px FoundersGrotesk weight 500, #241f20, 0.10em tracking, uppercase. Product name at 16px weight 500 #241f20. Price at 16px #241f20. Color swatch row of 16px circles, current variant ringed 1px #241f20.\n\n3. *Category card*: Portrait-ratio model image filling card width, 0px radius, no border, sits on Raw Linen. Label 'Shop Underwear' below at 20px FoundersGrotesk weight 400, #241f20, 0.025em tracking. Count '13 Products' at 14px #808080, 0.025em tracking. No card background — image breathes into canvas.\n\n4. *Announcement bar*: Full-bleed #8bbd78 Sage strip, 8px vertical padding. Centered text at 13px FoundersGrotesk weight 400, #241f20, 0.10em tracking, uppercase. No border, no shadow.\n\n5. *Outlined action button*: Transparent background, 1px border #6487ba Heritage Blue, text #6487ba at 14px FoundersGrotesk weight 500, 0.025em tracking, uppercase, 14px/20px padding, 0px radius. The chromatic border is the action signal — no fill change on hover, only slight darken."
+}

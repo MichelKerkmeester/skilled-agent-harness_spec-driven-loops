@@ -1,0 +1,1009 @@
+{
+  "source": "https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3",
+  "uuid": "a21cf7a4-80e0-4f4a-9297-823a5180c2d3",
+  "name": "Tparkes",
+  "northStar": "Editorial broadsheet on white. A four-word image: a designer typesetting their own name at 86px and lets the page breathe around it.",
+  "capturedAt": "2026-07-18T08:58:42.763Z",
+  "meta": {
+    "url": "https://www.tparkes.com",
+    "siteName": "Tparkes",
+    "extractedAt": "2026-06-03T21:13:38.288Z",
+    "durationMs": 25651,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 180,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Instrumentsans 600/700 for all display, heading, nav, and caption text — Arial is reserved for 14px body and metadata only.",
+      "Set display headlines at 86px with line-height 0.83 and letter-spacing -3px; this compression is the signature and must not be loosened.",
+      "Use 120px as the section gap and 20px as the element gap; maintain the 4px base unit for all micro-padding (4, 8, 10, 16, 20, 24).",
+      "Use 16px radius on all work thumbnails and 8px radius on icon containers and small image tiles; do not introduce new radii.",
+      "Use #f5ffbe as the only chromatic surface, and only as a full-bleed band — never as a fill on text, buttons, or borders.",
+      "Express separation through color (white → cream) and hairline #d6d6d6 rules, never through box-shadow or elevation stacks.",
+      "Inline pictogram glyphs as text runs inside hero statements; do not place them as separate image elements."
+    ],
+    "donts": [
+      "Do not introduce any color other than #f5ffbe — the page is a monochrome system and adding a brand blue, red, or green breaks the broadsheet language.",
+      "Do not add drop-shadows, glow effects, or any box-shadow stack; the design rejects elevation.",
+      "Do not use filled buttons or colored CTA backgrounds; actions are expressed as ghost text links or the 24px black arrow badge.",
+      "Do not set display text at line-height above 0.95 — looser leading destroys the condensed broadsheet effect.",
+      "Do not use #0000ee or browser-default link blue; links are #808080 borders with #333333 text.",
+      "Do not center-align hero text or work captions; everything is flush-left.",
+      "Do not use system font weights below 600 for headings — Instrumentsans 400 would collapse the typographic hierarchy."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, work-thumbnail backings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Newsprint",
+        "role": "Primary text, dominant hairline borders, image outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a7a7a7",
+        "name": "Faint Gray",
+        "role": "Muted text, secondary borders, caption-scale copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Typesetter Gray",
+        "role": "Display-weight text, large heading fills where contrast is intentionally reduced",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Rule Gray",
+        "role": "Hairline dividers, icon strokes, light borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Nav text and nav borders, maximum-contrast moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Press Black",
+        "role": "Nav foreground, slight off-black for body nav links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Footnote",
+        "role": "Outlined link borders, secondary link text — a quiet hover/focus state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5ffbe",
+        "name": "Hi-Liter Wash",
+        "role": "The single chromatic moment — a warm pale-yellow surface used as a full-bleed band, never as fill or text",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-width, flush-left, max-width ~1200px content rail with no centered hero. The page reads top-to-bottom as a single typographic column: nav (avatar + 3 links flush-right) → massive 86px hero statement spanning 4–5 lines → 'Explore my work' ghost CTA → full-bleed dark work image with caption → bolded project title + secondary description → a 'Visual Feed' section header at 86px Instrumentsans → a 2-column image grid with 16px-radius work cards and quiet captions. Section rhythm is driven by 120px vertical gaps and 1px #d6d6d6 hairlines, not by alternating background colors. The only color interruption is a single #f5ffbe full-bleed band. No sidebar, no sticky header, no mega-menu.",
+    "imagery": "Imagery is sparse and editorial: one small square black-and-white avatar (4px radius, 1px border) in the nav, then a series of full-bleed work thumbnails (16px radius, 1px border) presented as captioned cards. No decorative photography, no lifestyle shots, no overlapping or masked visuals. The visual feed section uses a masonry-like grid of project stills — app screenshots, brand wordmarks, infographic crops — all on the same white canvas with consistent 16px rounding. Iconography is inline glyph-as-text (bird, plane, flower, arrow) flowing with the type, not a separate icon system.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio language: massive flush-left type, monochrome, white canvas, tiny avatar, work presented as captioned full-bleed images with no card chrome.",
+        "business": "Frank Chimero"
+      },
+      {
+        "why": "Identical broadsheet structure — oversized Instrumentsans-family display at tight line-height, single warm accent surface, work grid with consistent image radii.",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Same text-as-hero approach: the personal statement is the entire viewport, glyph icons inline, no buttons, no shadows, hairline rules as the only structural element.",
+        "business": "Charlie Gerard"
+      },
+      {
+        "why": "Shares the monochrome palette plus a single soft accent surface, but trades the typographic manifesto for product UI density.",
+        "business": "Linear's design site"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "links": "12px",
+        "avatars": "4px",
+        "buttons": "8px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Base canvas for the entire page"
+      },
+      {
+        "hex": "#f5ffbe",
+        "name": "Hi-Liter Band",
+        "level": 1,
+        "purpose": "Sole chromatic surface — used as a full-bleed section to break the monochrome"
+      }
+    ],
+    "northStar": "Editorial broadsheet on white. A four-word image: a designer typesetting their own name at 86px and lets the page breathe around it.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.8,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -2.996
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.09
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 0.83,
+        "letterSpacing": -3.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Statement",
+        "role": "Opening typographic manifesto",
+        "description": "Full-width Instrumentsans 600/700 at 86px, line-height 0.83, letter-spacing -3px, color #333333. Glyph icons (bird, plane, flower) sit inline as text-flow pictograms, not as separate elements. Headline wraps over 4–5 lines. Sits on #ffffff with no padding above the nav, 120px below."
+      },
+      {
+        "name": "Avatar Tile",
+        "role": "Personal mark in nav",
+        "description": "Square 4px-radius image, 40–48px, 1px #333333 border. Black-and-white photo treatment. Sits flush left of the nav row."
+      },
+      {
+        "name": "Inline Nav Link",
+        "role": "Primary navigation item",
+        "description": "Instrumentsans 600/700 at ~17–22px, color #222222, no background, no underline, no padding. Active/hover state: color shifts to #000000. 20px horizontal gap between items."
+      },
+      {
+        "name": "Section Caption",
+        "role": "Underline-free large label",
+        "description": "Instrumentsans 600/700 at 22–24px, color #333333, leading 1.18. Sits flush-left, no decorative mark, 39px top/bottom margin within the section."
+      },
+      {
+        "name": "Work Thumbnail",
+        "role": "Full-bleed project image",
+        "description": "Edge-to-edge image, 16px radius, 1px #333333 border. Caption row below: 14px Arial #333333 with a 24px Instrumentsans 600 #333333 project title. No overlay, no hover state beyond subtle color shift on the caption."
+      },
+      {
+        "name": "Hi-Liter Band",
+        "role": "The only chromatic section",
+        "description": "Full-width #f5ffbe surface, 120px vertical padding, contains a single Instrumentsans 86px statement in #222222. Functions as a palette rest and the site's only color."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Footer nav and external links",
+        "description": "Instrumentsans 600/700 14–17px, color #808080, 12px radius on hover indicator. 24px vertical stack, flush-left."
+      },
+      {
+        "name": "Hairline Rule",
+        "role": "Section divider",
+        "description": "1px #d6d6d6 horizontal line, full content width, 120px vertical breathing room above and below. The only structural separator in the system."
+      },
+      {
+        "name": "Pictogram Glyph",
+        "role": "Inline icon-as-punctuation",
+        "description": "1.2em Instrumentsans 600/700 inline with hero text, color #333333. Treated as a text run, not an image — wraps with the line. Used to break dense statements."
+      },
+      {
+        "name": "Ghost CTA Arrow",
+        "role": "Single text-link action",
+        "description": "24px circular black badge with a down-arrow glyph in white, 26px radius, paired with a 14px Arial #333333 'Explore my work' label. Sits flush-left, 20px gap between badge and text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display, heading, nav, and caption text. Condensed sans with very tight tracking. The 86px/0.83 line-height is the signature move — type runs together vertically, producing the broadsheet effect. Substitute with 'Archivo Narrow' (600, 700) or 'Roboto Condensed' (700).",
+        "sizes": "10px, 17px, 22px, 24px, 86px",
+        "family": "Instrumentsans",
+        "weight": "600, 700",
+        "lineHeight": "0.83–1.80 (tightest at 86px display, loosest at 10px caption)",
+        "substitute": "Archivo Narrow",
+        "letterSpacing": "-0.035em (≈ -0.35px at 10px, -0.84px at 24px, -3.01px at 86px)"
+      },
+      {
+        "role": "Body, metadata, link copy, and supporting micro-text. Tracked extremely tight (-0.214em ≈ -3px at 14px), which is a counter-intuitive choice for body — it reads as a typesetter pulling body to match the display weight. Substitute with system Arial or 'Helvetica Neue'.",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "Helvetica Neue",
+        "letterSpacing": "-0.214em (≈ -3px at 14px)"
+      }
+    ],
+    "description": "Tparkes is a typographic portfolio that treats the page as a printed broadsheet: almost entirely monochrome, white-canvas, text-driven, with one warm cream accent (#f5ffbe) appearing as a flash of color on a single surface. The hero is a single oversized statement — Instrumentsans at 86px, weight 600, line-height 0.83, negative tracking — that swallows the viewport and uses inline glyph icons (bird, plane, flower) as visual punctuation rather than decoration. Everything else recedes: a tiny 4px-radiused avatar, 20px nav items, a thin hairline border as section divider, and work thumbnails that are full-bleed images with 16px radius and quiet captions underneath. The system is anti-decorative — no shadows, no gradients, no fills on buttons, no card elevation. Communication is carried by scale, weight, and proximity, not by color or chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tparkes design system\",\"item\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#style-reference\",\"name\":\"Tparkes design system reference\",\"headline\":\"Tparkes design system | Refero Styles\",\"description\":\"Explore Tparkes's light Design design system: Paper White #ffffff, Newsprint #333333 colors, Instrumentsans, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tparkes\",\"url\":\"https://www.tparkes.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"caption\":\"Screenshot of Tparkes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tparkes design system\",\"Tparkes website design\",\"Tparkes colors\",\"Tparkes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Newsprint\",\"Faint Gray\",\"Typesetter Gray\",\"Instrumentsans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tparkes design system\"},{\"@type\":\"Thing\",\"name\":\"Tparkes website design\"},{\"@type\":\"Thing\",\"name\":\"Tparkes colors\"},{\"@type\":\"Thing\",\"name\":\"Tparkes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:29:22.222Z\",\"dateModified\":\"2026-04-30T03:29:22.222Z\"}]}19:T40b,Quick Color Reference:\n- canvas: #ffffff\n- text: #333333\n- border: #d6d6d6 (hairline) / #333333 (dominant)\n- muted text: #a7a7a7\n- accent surface: #f5ffbe\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Hero statement: 86px Instrumentsans 600, #333333, letter-spacing -3px, line-height 0.83, full-width flush-left on #ffffff. Inline a 1.2em bird glyph mid-sentence as text.\n2. Nav bar: 48px square avatar (4px radius, 1px #333333 border) flush-left, 3 Instrumentsans 600 17px links in #222222 flush-right, 20px gap, 4px vertical padding.\n3. Work thumbnail card: full-bleed image, 16px radius, 1px #333333 border, 24px Instrumentsans 600 project title in #333333 below, 14px Arial 400 caption in #333333, 120px section gap above.\n4. Hi-Liter band section: full-width #f5ffbe surface, 120px vertical padding, centered Instrumentsans 600 86px statement in #222222 with -3px tracking.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+      }
+    ],
+    "elevationPhilosophy": "The design has no shadow system. Elevation is expressed only through the 16px image radius and the warm cream band — surfaces separate by color, not by depth. Do not introduce drop-shadows, glow, or any box-shadow stack."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "icon"
+          ],
+          "frequency": 396,
+          "confidence": 1,
+          "prominence": 12683838.267507954,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "icon/color": 2,
+            "image/color": 9,
+            "other/color": 68,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "image/borderColor": 36,
+            "other/borderColor": 272
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 67,
+          "confidence": 1,
+          "prominence": 7363395.05277641,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 14,
+            "other/borderColor": 52,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8760963267776515
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1800533.2504442404,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 1397958.0915475504,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "heading/color": 6,
+            "other/borderColor": 20,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 379496.2253280849,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "other/color": 2,
+            "nav/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#a7a7a7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7283778541209173
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 260,
+          "confidence": 1,
+          "prominence": 121863.61302793086,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 52,
+            "other/borderColor": 208
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 35773.98236832829,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "nav/borderColor": 8
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 12432,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "link/borderColor": 12
+          }
+        },
+        {
+          "hex": "#f5ffbe",
+          "oklch": {
+            "c": 0.08372350828331296,
+            "h": 115.07994257915686,
+            "l": 0.9770169681729706
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00027197085590993035,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.93,
+          "background": "#f5ffbe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.1,
+          "background": "#f5ffbe",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d6d6d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#f5ffbe",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.95,
+          "background": "#d6d6d6",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.73,
+          "background": "#a7a7a7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#d6d6d6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#b3b3b3",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.61,
+          "background": "#a7a7a7",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.03,
+          "background": "#b3b3b3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#a7a7a7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.75,
+          "background": "#f5ffbe",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.41,
+          "background": "#ffffff",
+          "foreground": "#a7a7a7"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.28,
+          "background": "#f5ffbe",
+          "foreground": "#a7a7a7"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#ffffff",
+          "foreground": "#b3b3b3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 46,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 94,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Instrumentsans",
+          "source": "custom",
+          "weights": [
+            600,
+            700
+          ],
+          "frequency": 86,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 5,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "image",
+            "hero",
+            "icon"
+          ],
+          "frequency": 90,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.214,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Instrumentsans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Instrumentsans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Instrumentsans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Instrumentsans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Instrumentsans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/02b1ced0-9850-477e-a169-07416ecbb025.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tparkes design system\",\"item\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#style-reference\",\"name\":\"Tparkes design system reference\",\"headline\":\"Tparkes design system | Refero Styles\",\"description\":\"Explore Tparkes's light Design design system: Paper White #ffffff, Newsprint #333333 colors, Instrumentsans, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tparkes\",\"url\":\"https://www.tparkes.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a21cf7a4-80e0-4f4a-9297-823a5180c2d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"caption\":\"Screenshot of Tparkes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a473d69-97e8-4941-8f65-e2b161a94a76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tparkes design system\",\"Tparkes website design\",\"Tparkes colors\",\"Tparkes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Newsprint\",\"Faint Gray\",\"Typesetter Gray\",\"Instrumentsans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tparkes design system\"},{\"@type\":\"Thing\",\"name\":\"Tparkes website design\"},{\"@type\":\"Thing\",\"name\":\"Tparkes colors\"},{\"@type\":\"Thing\",\"name\":\"Tparkes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:29:22.222Z\",\"dateModified\":\"2026-04-30T03:29:22.222Z\"}]}19:T40b,Quick Color Reference:\n- canvas: #ffffff\n- text: #333333\n- border: #d6d6d6 (hairline) / #333333 (dominant)\n- muted text: #a7a7a7\n- accent surface: #f5ffbe\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Hero statement: 86px Instrumentsans 600, #333333, letter-spacing -3px, line-height 0.83, full-width flush-left on #ffffff. Inline a 1.2em bird glyph mid-sentence as text.\n2. Nav bar: 48px square avatar (4px radius, 1px #333333 border) flush-left, 3 Instrumentsans 600 17px links in #222222 flush-right, 20px gap, 4px vertical padding.\n3. Work thumbnail card: full-bleed image, 16px radius, 1px #333333 border, 24px Instrumentsans 600 project title in #333333 below, 14px Arial 400 caption in #333333, 120px section gap above.\n4. Hi-Liter band section: full-width #f5ffbe surface, 120px vertical padding, centered Instrumentsans 600 86px statement in #222222 with -3px tracking.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+}

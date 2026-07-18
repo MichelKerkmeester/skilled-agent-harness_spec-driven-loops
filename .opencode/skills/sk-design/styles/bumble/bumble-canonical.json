@@ -1,0 +1,1396 @@
+{
+  "source": "https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76",
+  "uuid": "f32595cf-478e-4ccd-8722-0daffa693d76",
+  "name": "Bumble",
+  "northStar": "Sunlit honey editorial",
+  "capturedAt": "2026-07-18T08:16:20.289Z",
+  "meta": {
+    "url": "https://bumble.com",
+    "siteName": "Bumble",
+    "extractedAt": "2026-06-03T17:46:44.528Z",
+    "durationMs": 47552,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1266,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffdb5b as a full-bleed section background or large card frame — never as a small accent swatch or button fill.",
+      "Set the primary action button to #202020 fill with #ffffff text at 16px radius; reserve yellow for brand warmth, not clickability.",
+      "Set card radii between 16-24px; use 1000px only for badges and tags.",
+      "Apply the one subtle shadow (rgba(32,32,32,0.12) 0px 1px 8px 0px) to white cards that need to lift off the page — avoid stacking or intensifying shadows.",
+      "Keep letter-spacing positive (0.007-0.02em) across all BumbleSans sizes; this is what gives the type its warm, open cadence.",
+      "Use lifestyle photography with diverse subjects as the primary visual content; let the people lead, let the UI recede.",
+      "Maintain 24-32px card padding and 64px section gaps to preserve the comfortable, unhurried rhythm."
+    ],
+    "donts": [
+      "Don't use #ffdb5b as a button or CTA fill — it carries no clickable affordance in this system and will compete with the dark action button.",
+      "Don't introduce additional chromatic colors (blue, green, red) for states or categories — the system is monochrome+one-yellow, and adding hues breaks the brand constraint.",
+      "Don't use sharp corners (0-4px) on cards, buttons, or nav elements; the 16-24px softness is non-negotiable.",
+      "Don't set body text below 15px or use weight 300; BumbleSans starts at 400 and the smallest size in the system is 15px.",
+      "Don't use heavy drop shadows, colored shadows, or multi-layer shadow stacks; the one approved shadow is a whisper at 12% opacity.",
+      "Don't use full-opacity black (#000000) — use #202020 for all text and interactive elements; the slight warmth is deliberate.",
+      "Don't center-align body paragraphs; the system uses left-align for all prose and reserves centering for hero display type only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffdb5b",
+        "name": "Bumble Honey",
+        "role": "Yellow state accent for badges, validation surfaces, and short status labels.",
+        "group": "brand"
+      },
+      {
+        "hex": "#fff386",
+        "name": "Pollen",
+        "role": "Lighter yellow accent surface for secondary card frames and tonal variation against Honey",
+        "group": "brand"
+      },
+      {
+        "hex": "#202020",
+        "name": "Bumble Ink",
+        "role": "Primary text, filled action buttons, all borders and dividers — the structural near-black that carries 2,100+ UI instances and is the de facto primary action color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text on dark fills, body text inverse",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Mist",
+        "role": "Subtle elevated card surface for sections that need to step forward from the white page without going dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Charcoal",
+        "role": "Secondary borders, muted icon strokes, and supplementary divider lines when Ink feels too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#575656",
+        "name": "Graphite",
+        "role": "Muted helper text, inactive nav borders, and low-emphasis UI labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#343333",
+        "name": "Onyx",
+        "role": "Badge borders and badge text — the slightly warmer dark used inside pill-shaped tags",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a full-bleed-first pattern: a yellow hero band with oversized wordmark and tilted phone screenshots, then alternating white and yellow content sections in a single-column stacked rhythm. Content sections are max-width ~1200px centered, using 2-column image+text feature blocks and 2-column product variant cards. The nav is a floating borderless bar at the top with a white pill for the active link and a dark filled button for sign-in. Vertical spacing is generous (64px between sections, 24-40px card padding), creating a magazine-like cadence. Photography sections break the grid by going edge-to-edge, then the next text section snaps back to contained width.",
+    "imagery": "Photography is the dominant visual medium and the emotional engine of the brand. Lifestyle shots feature diverse young adults in real-world settings — cafes, parks, social gatherings — shot in natural daylight with warm color grading that echoes the honey brand palette. Phone screenshots are tilted at 5-8° angles and overlap each other and the background wordmark, creating a dynamic collage feel. Product UI mockups show real app screens with profile cards, verification badges, and chat interfaces. The imagery-to-text ratio is high: photos occupy 50-60% of most feature sections, with the UI chrome intentionally minimal so the people and the app feel lead.",
+    "similar": [
+      {
+        "why": "Same warm-yellow + rounded-card + soft-shadow approach; both treat a single vivid hue as emotional signal rather than functional UI color.",
+        "business": "Headspace"
+      },
+      {
+        "why": "Single bold brand color (green for Duolingo, yellow for Bumble) flooding full-bleed sections while the rest of the UI stays near-monochrome with soft rounded geometry.",
+        "business": "Duolingo"
+      },
+      {
+        "why": "Custom-friendly geometric sans, generous whitespace, lifestyle photography that leads, and a deliberately limited color palette with one warm signature tone.",
+        "business": "Oatly"
+      },
+      {
+        "why": "Comfortable density with 24-40px card padding, pill-shaped nav and CTAs, and a brand color used as full-bleed canvas rather than button accent.",
+        "business": "Calm"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "16px",
+        "cards": "24px",
+        "badges": "1000px",
+        "buttons": "16px",
+        "small-elements": "9px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Default background for most content sections and card inner surfaces."
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Soft Card",
+        "level": 2,
+        "purpose": "Tonal step up from white for sections that need quiet elevation without shadow."
+      },
+      {
+        "hex": "#fff386",
+        "name": "Pollen Frame",
+        "level": 3,
+        "purpose": "Lighter yellow card background for product variants and secondary feature frames."
+      },
+      {
+        "hex": "#ffdb5b",
+        "name": "Honey Band",
+        "level": 4,
+        "purpose": "Full-bleed hero and feature section canvas — the brand's dominant warm surface."
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(32, 32, 32, 0.12) 0px 1px 8px 0px",
+        "element": "White Feature Card"
+      }
+    ],
+    "northStar": "Sunlit honey editorial",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.11
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.43
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.18,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": 1.36
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Action Button (Entrar / Descargar Bumble)",
+        "role": "Primary interactive element — the only filled button in the system.",
+        "description": "#202020 background, #ffffff text, 16px radius, 14px 24px padding, BumbleSans 500 at 16-17px. Used for 'Sign In', 'Download', 'Subscribe', and the 'Inscribirme' CTA. No hover state lift; relies on color inversion for feedback."
+      },
+      {
+        "name": "Active Nav Pill",
+        "role": "Marks the user's current section in the top navigation.",
+        "description": "#ffffff background, #202020 text, 16px radius, 10px 22px padding, BumbleSans 500. The active state is a white pill floating on the page canvas — the inverse of the filled action button, creating a clean toggle relationship."
+      },
+      {
+        "name": "Inactive Nav Link",
+        "role": "Standard navigation items.",
+        "description": "Transparent background, #202020 text, no border, 500 weight at 16px. The nav bar itself is borderless and floats over the page."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Globe icon + locale label in the top utility area.",
+        "description": "Transparent background, #202020 icon and text, 16px radius, paired with a filled 'Entrar' button on its right."
+      },
+      {
+        "name": "Hero Wordmark Section",
+        "role": "Full-bleed brand statement with oversized typography and tilted product screenshots.",
+        "description": "#ffdb5b background, the brand name rendered in BumbleSans 700 at approximately 200-300px+ in #202020, with phone screenshots rotated at ~5-8° and overlapping the type. This is the page's most distinctive component — the wordmark IS the hero."
+      },
+      {
+        "name": "Feature Card (White)",
+        "role": "Content card for feature explanations with image and text.",
+        "description": "#ffffff background, 16-24px radius, subtle shadow rgba(32,32,32,0.12) 0px 1px 8px 0px, 24-40px padding. Contains a lifestyle photo on one side and headline + body copy on the other in a 2-column arrangement."
+      },
+      {
+        "name": "Product Variant Card (Bumble Date / BFF)",
+        "role": "Showcases different product modes with phone mockups.",
+        "description": "Pollen (#fff386) or Honey (#ffdb5b) frame, 24px radius, contains 2-3 overlapping phone screenshots with verified-user badges, product name in BumbleSans 700 at 32px, and a short descriptive paragraph."
+      },
+      {
+        "name": "Profile Verification Badge",
+        "role": "Small trust indicator on profile screenshots.",
+        "description": "White background, #202020 text, 1000px radius (pill), 15px, with a small checkmark icon. Reads 'X% verified' in compact form."
+      },
+      {
+        "name": "Member Circle Badge",
+        "role": "Decorative seal for the community/membership program.",
+        "description": "Circular badge with gold/honey border, dark inner circle, hexagonal icon center. Appears overlaid on feature photography."
+      },
+      {
+        "name": "App Store Download Badge",
+        "role": "Platform-specific download link in the hero.",
+        "description": "#202020 background, white icon + text, 9px radius, horizontal layout with app store icon and 'Download on the App Store' / 'Get it on Google Play' label."
+      },
+      {
+        "name": "Stats Counter Pill",
+        "role": "Rotating metric badges ('Correr', 'Reggaeton', etc.) near the hero.",
+        "description": "#ffdb5b or white background, #202020 text, 1000px radius, 15-16px, with small icon prefix. Decorative but on-brand."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Site map and legal links in the page footer.",
+        "description": "#202020 text at 15-16px, 500 weight, vertical stacking with 8-12px row gaps, no dividers between items."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface for the entire product — nav, body, headings, buttons, badges, hero wordmark. Weights 400-500 for body and nav, 600 for subheadings and emphasis, 700 for display headlines.",
+        "sizes": "15, 16, 17, 18, 20, 24, 32, 34, 40, 49, 68",
+        "family": "BumbleSans",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.00, 1.10, 1.12, 1.18, 1.20, 1.25, 1.29, 1.33, 1.50",
+        "substitute": "Inter, DM Sans, or Nunito Sans for close geometric warmth; avoid Helvetica/Geist (too clinical).",
+        "letterSpacing": "0.007em at 15px (~0.11px), scaling to 0.02em at 32px+ (~0.64px)",
+        "fontFeatureSettings": "Not detected, but the slightly open tracking suggests 'kern' on and possibly 'ss01' stylistic alternates if available in the proprietary face."
+      }
+    ],
+    "description": "Bumble runs on a monochrome-plus-one-warmth system: near-black ink (#202020) carries every word, every border, every interactive surface, and one vivid honey-yellow (#ffdb5b) floods the hero and feature canvases as the brand's emotional signal. The geometry is soft and confident — 16-24px radii on cards and buttons, pill-shaped badges at 1000px, barely-there shadows at 12% opacity — so nothing feels sharp or aggressive. BumbleSans speaks in slightly opened letter-spacing (0.007-0.02em), which is unusual for a geometric sans and gives even the smallest UI copy a warm, unhurried cadence. Content is arranged in generous 24-40px padded cards over white surfaces, with full-bleed yellow bands acting as the visual punctuation between sections. The result reads like a sunlit lifestyle magazine: human photography does the heavy lifting, the brand color is never decorative noise, and the UI recedes so the people in the photos lead.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bumble design system\",\"item\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#style-reference\",\"name\":\"Bumble design system reference\",\"headline\":\"Bumble design system | Refero Styles\",\"description\":\"Explore Bumble's light Other design system: Bumble Honey #ffdb5b, Pollen #fff386 colors, BumbleSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bumble\",\"url\":\"https://bumble.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"caption\":\"Screenshot of Bumble\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bumble design system\",\"Bumble website design\",\"Bumble colors\",\"Bumble typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bumble Honey\",\"Pollen\",\"Bumble Ink\",\"Paper White\",\"BumbleSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bumble design system\"},{\"@type\":\"Thing\",\"name\":\"Bumble website design\"},{\"@type\":\"Thing\",\"name\":\"Bumble colors\"},{\"@type\":\"Thing\",\"name\":\"Bumble typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:59:28.100Z\",\"dateModified\":\"2026-04-30T00:59:28.100Z\"}]}19:T65d,**Quick Color Reference:**\n- text: #202020\n- background: #ffffff\n- surface-accent: #ffdb5b (Honey — full-bleed bands and card frames)\n- surface-soft: #f3f3f3\n- border: #202020 or #3b3b3b\n- primary action: #202020 (filled action)\n\n**Example Component Prompts:**\n\n1. **Hero Section**: Full-bleed #ffdb5b background. Brand wordmark in BumbleSans 700 at 200px+ in #202020, with 3 tilted phone screenshots (5-8° rotation) overlapping the type. Floating borderless nav at top: 'Bumble' logo left, 5 nav items center (active item is a white #ffffff pill with 16px radius), language selector + dark filled 'Entrar' button right.\n\n2. **Feature Card**: White (#ffffff) background, 24px radius, shadow rgba(32,32,32,0.12) 0px 1px 8px 0px, 32px padding. 2-column layout: lifestyle photo (16px radius) on the left, headline in BumbleSans 600 at 32px #202020 + body copy at 17px #202020 on the right.\n\n3. **Product Variant Card**: #fff386 (Pollen) frame, 24px radius, 40px padding. Contains 2 overlapping phone screenshots with white verification badges (1000px radius pills), product name 'Bumble Date' in BumbleSans 700 at 32px #202020, and a 2-line description at 17px.\n\n4. **Filled Action Button**: #202020 background, #ffffff text, 16px radius, 14px vertical / 24px horizontal padding, BumbleSans 500 at 16px, letter-spacing 0.016em. Use for 'Sign In', 'Download', 'Subscribe' — the only filled button style in the system.\n\n5. **Badge/Pill Tag**: 1000px border-radius, 10px vertical / 16px horizontal padding, BumbleSans 500 at 15px, #202020 text. Use for verified counts, category tags, and the rotating stat counters near the hero."
+      },
+      {
+        "title": "Monochrome+One Discipline",
+        "content": "The entire chromatic surface of Bumble's UI is exactly two yellows (#ffdb5b and #fff386) — everything else is achromatic. This is not a limitation, it's the brand. When building new screens, resist adding semantic colors (no red for errors, no green for success, no blue for info) unless the product context absolutely demands it. The system's confidence comes from restraint: 2,100+ instances of #202020 prove that a near-black monolith can carry an entire product experience when paired with one warm accent and generous spacing."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is minimal and singular — one approved shadow at 12% opacity and 8px blur, applied only to white cards that need to step forward from the page. Most components rely on background color contrast and generous spacing rather than shadow to establish hierarchy. The dark action button creates its own depth through color contrast against the white or yellow surface behind it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "card",
+            "heading",
+            "hero",
+            "image",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 2173,
+          "confidence": 1,
+          "prominence": 71426911.42877334,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 15,
+            "icon/fill": 22,
+            "nav/color": 90,
+            "body/color": 26,
+            "card/color": 35,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 9,
+            "list/color": 8,
+            "nav/stroke": 5,
+            "other/fill": 915,
+            "image/color": 2,
+            "other/color": 54,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 11,
+            "nav/borderColor": 348,
+            "body/borderColor": 104,
+            "card/borderColor": 116,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 36,
+            "list/borderColor": 32,
+            "image/borderColor": 8,
+            "other/borderColor": 216,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "other",
+            "card",
+            "footer",
+            "image"
+          ],
+          "frequency": 98,
+          "confidence": 1,
+          "prominence": 5838142.907473108,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "other/fill": 1,
+            "button/color": 5,
+            "body/borderColor": 64,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 5,
+            "image/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffdb5b",
+          "oklch": {
+            "c": 0.1491312182380034,
+            "h": 93.38841867099981,
+            "l": 0.8987274666463609
+          },
+          "contexts": [
+            "card",
+            "other",
+            "badge"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 3663403.076041844,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4,
+            "badge/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3b3b3b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3523247402852869
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 2285448,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 18,
+            "other/color": 6,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 24,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 941500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff386",
+          "oklch": {
+            "c": 0.1312439360176834,
+            "h": 102.98403592159387,
+            "l": 0.9514280967533578
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 381932,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#343333",
+          "oklch": {
+            "c": 0.0014117833831646769,
+            "h": 17.23039530881651,
+            "l": 0.3221054669868094
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 54000,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 3,
+            "badge/borderColor": 12
+          }
+        },
+        {
+          "hex": "#575656",
+          "oklch": {
+            "c": 0.001294051571403566,
+            "h": 17.205135757988955,
+            "l": 0.4540882346544926
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 24998.24559469954,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "other/color": 2,
+            "button/color": 2,
+            "nav/borderColor": 12,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#fe2c55",
+          "oklch": {
+            "c": 0.23809675025382254,
+            "h": 17.712523700530383,
+            "l": 0.6473434665753163
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 266,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#25f4ee",
+          "oklch": {
+            "c": 0.14611646969857825,
+            "h": 191.56738975750716,
+            "l": 0.8757774563730898
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 150,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0028620734486060283,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.68,
+          "background": "#f3f3f3",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.29,
+          "background": "#fff386",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.59,
+          "background": "#ffffff",
+          "foreground": "#343333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#ffdb5b",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#25f4ee",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.35,
+          "background": "#f3f3f3",
+          "foreground": "#343333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#ffffff",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#fff386",
+          "foreground": "#343333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.1,
+          "background": "#f3f3f3",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.82,
+          "background": "#fff386",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.32,
+          "background": "#ffdb5b",
+          "foreground": "#343333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#25f4ee",
+          "foreground": "#343333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.29,
+          "background": "#ffdb5b",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.14,
+          "background": "#25f4ee",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.32,
+          "background": "#ffffff",
+          "foreground": "#575656"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.59,
+          "background": "#f3f3f3",
+          "foreground": "#575656"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.42,
+          "background": "#fff386",
+          "foreground": "#575656"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#ffdb5b",
+          "foreground": "#575656"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#25f4ee",
+          "foreground": "#575656"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(32, 32, 32, 0.12) 0px 1px 8px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "badge",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "card",
+            "nav"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "nav",
+            "card"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "badge"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "footer"
+          ],
+          "frequency": 46,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|card",
+            "marginLeft|card",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BumbleSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 305,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "nav",
+            "icon",
+            "card",
+            "image",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 168,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.18,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "BumbleSans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BumbleSans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BumbleSans",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "BumbleSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "BumbleSans",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "BumbleSans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "BumbleSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "BumbleSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/410a415b-8daa-45a8-a4d3-a5125f486bfe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bumble design system\",\"item\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#style-reference\",\"name\":\"Bumble design system reference\",\"headline\":\"Bumble design system | Refero Styles\",\"description\":\"Explore Bumble's light Other design system: Bumble Honey #ffdb5b, Pollen #fff386 colors, BumbleSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bumble\",\"url\":\"https://bumble.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f32595cf-478e-4ccd-8722-0daffa693d76#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"caption\":\"Screenshot of Bumble\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a62c2d52-e805-4a98-becf-ba523d62ae90.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bumble design system\",\"Bumble website design\",\"Bumble colors\",\"Bumble typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bumble Honey\",\"Pollen\",\"Bumble Ink\",\"Paper White\",\"BumbleSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bumble design system\"},{\"@type\":\"Thing\",\"name\":\"Bumble website design\"},{\"@type\":\"Thing\",\"name\":\"Bumble colors\"},{\"@type\":\"Thing\",\"name\":\"Bumble typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:59:28.100Z\",\"dateModified\":\"2026-04-30T00:59:28.100Z\"}]}19:T65d,**Quick Color Reference:**\n- text: #202020\n- background: #ffffff\n- surface-accent: #ffdb5b (Honey — full-bleed bands and card frames)\n- surface-soft: #f3f3f3\n- border: #202020 or #3b3b3b\n- primary action: #202020 (filled action)\n\n**Example Component Prompts:**\n\n1. **Hero Section**: Full-bleed #ffdb5b background. Brand wordmark in BumbleSans 700 at 200px+ in #202020, with 3 tilted phone screenshots (5-8° rotation) overlapping the type. Floating borderless nav at top: 'Bumble' logo left, 5 nav items center (active item is a white #ffffff pill with 16px radius), language selector + dark filled 'Entrar' button right.\n\n2. **Feature Card**: White (#ffffff) background, 24px radius, shadow rgba(32,32,32,0.12) 0px 1px 8px 0px, 32px padding. 2-column layout: lifestyle photo (16px radius) on the left, headline in BumbleSans 600 at 32px #202020 + body copy at 17px #202020 on the right.\n\n3. **Product Variant Card**: #fff386 (Pollen) frame, 24px radius, 40px padding. Contains 2 overlapping phone screenshots with white verification badges (1000px radius pills), product name 'Bumble Date' in BumbleSans 700 at 32px #202020, and a 2-line description at 17px.\n\n4. **Filled Action Button**: #202020 background, #ffffff text, 16px radius, 14px vertical / 24px horizontal padding, BumbleSans 500 at 16px, letter-spacing 0.016em. Use for 'Sign In', 'Download', 'Subscribe' — the only filled button style in the system.\n\n5. **Badge/Pill Tag**: 1000px border-radius, 10px vertical / 16px horizontal padding, BumbleSans 500 at 15px, #202020 text. Use for verified counts, category tags, and the rotating stat counters near the hero."
+}

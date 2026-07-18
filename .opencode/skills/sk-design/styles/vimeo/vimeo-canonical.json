@@ -1,0 +1,5791 @@
+{
+  "source": "https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14",
+  "uuid": "be6c7488-9cea-43db-bb28-2606f53ade14",
+  "name": "Vimeo",
+  "northStar": "Spotlight on matte white",
+  "capturedAt": "2026-07-18T09:05:59.487Z",
+  "meta": {
+    "url": "https://vimeo.com",
+    "siteName": "Vimeo",
+    "extractedAt": "2026-06-03T20:47:19.106Z",
+    "durationMs": 52663,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1849,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #17d5ff cyan exclusively for primary action backgrounds — filled CTAs, active states, the play button. Never use it as a decorative fill, illustration color, or large background area.",
+      "Apply negative letter-spacing aggressively at display sizes: -3.6px at 72px, -1.6px at 40px, -1.15px at 32px. Body text (16px and below) should have near-zero tracking.",
+      "Keep body text leading generous: 1.58 at 16px for descriptions, 1.20-1.30 for headings. The 1.00 leading on the 72px display is a signature choice — make it architectural, not crowded.",
+      "Alternate between light (#fafcfd) and dark (#141a20) full-width sections to create vertical rhythm. The dark band is for content showcases; the light canvas is for browsing.",
+      "Use 8px radius for all interactive elements (buttons, inputs, badges, images). Reserve 16px for cards and 9999px for pill shapes. Never mix 4px and 6px into the system.",
+      "Set font-feature-settings: 'lnum' on all text using ABCRepro to ensure lining numerals throughout the interface.",
+      "Maintain compact density: 8px and 16px for element gaps, 20-24px for card padding, 64-80px for section breaks. Do not add extra breathing room 'for elegance' — the density is the point."
+    ],
+    "donts": [
+      "Don't use #17d5ff for body text, backgrounds, or any non-action element. If you need a colored element, it's almost certainly wrong.",
+      "Don't add shadows for elevation. Vimeo's UI is flat — use background color contrast (#fafcfd vs #dfe4ea) and borders for separation, not box-shadows.",
+      "Don't use letter-spacing greater than 0 on headings. The tight tracking is signature; positive tracking would make headlines feel generic.",
+      "Don't place content at full viewport width. Max content width is 1200px with comfortable margins. Hero images may be full-bleed, but text and cards are always contained.",
+      "Don't introduce additional accent colors. The system is monochrome + one cyan. Adding a second brand color (green for success, red for error) breaks the editorial restraint.",
+      "Don't use ABCRepro at weight 300 or 600 — only 400, 500, and 700 are defined. If a middle weight feels needed, use 500.",
+      "Don't center-align body text. Descriptions and paragraphs are always left-aligned. Only headlines and short labels may be centered."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#17d5ff",
+        "name": "Cyan Signal",
+        "role": "Primary action background, active nav, the single brand chromatic — filled CTAs and selected states. Electric against matte white, cool enough to feel like light rather than pigment",
+        "group": "brand"
+      },
+      {
+        "hex": "#13b1d4",
+        "name": "Cyan Depth",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#141a20",
+        "name": "Ink Black",
+        "role": "Dark section backgrounds (platform showcase bands, footer), filled dark buttons. Near-black with a cool blue undertone that keeps it on-brand rather than neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0e12",
+        "name": "Carbon",
+        "role": "Primary text, heading color, strongest dark neutral for text on light surfaces and borders on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#23313b",
+        "name": "Slate",
+        "role": "Secondary text, footer borders, muted UI elements. Cool gray-blue that bridges between the dark ink and mid-grays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d4751",
+        "name": "Graphite",
+        "role": "Tertiary text, outlined action borders, link colors. The mid-tone that carries most secondary information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c5864",
+        "name": "Steel",
+        "role": "Navigation borders, body text secondary level, card text. Lighter mid-gray for tertiary UI structure",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9b2bc",
+        "name": "Fog",
+        "role": "Muted helper text, disabled states, low-emphasis borders. The softest mid-gray for de-emphasized content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfe4ea",
+        "name": "Cloud",
+        "role": "Subtle background fills, nav hover states, light surface layer above the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafcfd",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, primary background. The near-white with a barely-perceptible cool tint — cleaner than pure white, warmer than #fff",
+        "group": "neutral"
+      },
+      {
+        "hex": "#192028",
+        "name": "Midnight",
+        "role": "Dark card surface, elevated dark panels above #141a20 backgrounds. Used for layered dark UI",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a max-width 1200px content container centered on the Paper canvas. The hero is the only full-bleed element — a full-width background image with a centered text stack overlaid. Below the hero, sections alternate between light and dark bands: a light 'Built for how you work' section with a subtle decorative blob, then a dark 'The platform that powers your video strategy' platform showcase with a 3-column feature card grid, followed by additional light content sections. Navigation is a flat top bar (64px) with logo left, centered menu items, and a cyan CTA right. Section gaps are 64-80px creating clear vertical rhythm. Card grids are consistently 3-column at desktop with 24px gaps. Content density is compact: descriptions are 1-2 sentences max, and feature cards use minimal text with a clear 'Learn more' dark pill CTA.",
+    "imagery": "Vimeo's visual language is photography-first on the hero (full-bleed editorial imagery of creators and their work — hands on keyboards, workspaces, creative environments) and product-screenshot-first for feature sections (actual Vimeo player UI, dashboard previews, embed examples). Imagery is always contained with 8px radius corners, never raw-edged or full-bleed except for the hero. The product screenshots are presented in dark frames (#141a20) even on light backgrounds, creating a 'screen within a page' effect that reinforces the video platform identity. No illustration style is used — visuals are either real photography or actual product UI.",
+    "similar": [
+      {
+        "why": "Same dark-and-light section alternation with one vivid accent color (purple vs Vimeo's cyan), tight neo-grotesque typography with negative tracking at display sizes, and flat components with small radii.",
+        "business": "Linear"
+      },
+      {
+        "why": "Creator-focused media platform with the same compact density, near-white canvas, single brand accent, and editorial typography attitude. Both treat body text as tight and functional.",
+        "business": "Descript"
+      },
+      {
+        "why": "Same light-page-with-dark-bands rhythm, custom neo-grotesque typography with aggressive negative tracking, and a single chromatic accent used exclusively for primary actions.",
+        "business": "Webflow"
+      },
+      {
+        "why": "Shared visual DNA: matte white canvas, one electric accent color, compact 8px-radius buttons, tight 1.0 leading on display headlines, and the same flat-component-no-shadow philosophy.",
+        "business": "Pitch"
+      },
+      {
+        "why": "Direct competitor in video collaboration with the same near-white canvas, dark platform sections, and single-accent action language — both are media tools that let the work be the visual hero.",
+        "business": "Frame.io"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "badges": "8px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-80px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#fafcfd",
+        "name": "Paper Canvas",
+        "level": 0,
+        "purpose": "Primary page background for all light sections"
+      },
+      {
+        "hex": "#dfe4ea",
+        "name": "Cloud Lift",
+        "level": 1,
+        "purpose": "Subtle background fills, nav hover states, soft surface layer"
+      },
+      {
+        "hex": "#141a20",
+        "name": "Ink Platform",
+        "level": 2,
+        "purpose": "Dark section backgrounds for platform showcases"
+      },
+      {
+        "hex": "#192028",
+        "name": "Midnight Card",
+        "level": 3,
+        "purpose": "Elevated dark panels layered above #141a20"
+      },
+      {
+        "hex": "#17d5ff",
+        "name": "Cyan Action",
+        "level": 4,
+        "purpose": "Interactive fill for primary CTAs — the only chromatic surface"
+      }
+    ],
+    "northStar": "Spotlight on matte white",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.58,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.15
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Cyan CTA",
+        "role": "Primary action button",
+        "description": "Background #17d5ff, text #141a20 (dark on bright cyan), 8px radius, padding 8px 16px or 12px 20px, font ABCRepro 500 at 16px, includes arrow icon (→) at 16px. Used for 'Join', 'See plans', 'Request a demo'. This is the only chromatic button fill in the system."
+      },
+      {
+        "name": "Ghost Text Link Button",
+        "role": "Secondary action with arrow",
+        "description": "No background, no border, text #fafcfd (white) on dark sections or #0a0e12 on light, 8px radius, ABCRepro 500 at 16px, trailing arrow icon. Used for 'Start for free', 'Learn about video hosting'. Pure typography carries the action."
+      },
+      {
+        "name": "Dark Pill Button",
+        "role": "Tertiary action on light backgrounds",
+        "description": "Background #141a20, text #fafcfd, 9999px radius (pill), padding 8px 16px, ABCRepro 500 at 14px. Used for 'Learn about video collaboration', 'Learn about video player'. The dark pill on white creates a secondary CTA tier below the cyan primary."
+      },
+      {
+        "name": "Outlined Cookie/Action Button",
+        "role": "Bordered neutral action",
+        "description": "Transparent background, border 1px #fafcfd (or #0a0e12 on light), text matching border color, 9999px radius, padding 6px 16px, ABCRepro 500 at 14px. Used for 'Accept all', 'Reject all' in the cookie consent."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header navigation",
+        "description": "Background #fafcfd, height ~64px, logo left, nav links center (ABCRepro 500 at 14px, #141a20), 'Contact sales' text link + 'Join' cyan CTA right. Subtle bottom border in #dfe4ea or transparent. Sticky behavior implied by the flat design language."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-bleed page header with overlay text",
+        "description": "Full-width background image with dark gradient overlay, centered text stack. Overline label in ABCRepro 500 at 12px, letter-spacing wide, uppercase, white. Display headline at 72px weight 500, white, line-height 1.00, letter-spacing -3.6px. Subtext at 16px weight 400, white at ~80% opacity, max-width ~480px. Two-button row: Filled Cyan CTA + Ghost Text Link."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column feature grid item",
+        "description": "16px radius, internal padding 20px, contains a product screenshot/image at top (8px radius), heading at 19-20px weight 500 #fafcfd, body text at 14px weight 400 #a9b2bc, trailing Dark Pill Button. Used on dark sections with #141a20 background."
+      },
+      {
+        "name": "Platform Showcase Section",
+        "role": "Dark band with content",
+        "description": "Background #141a20, full-width, padding 80px vertical. Centered heading at 40px weight 500, #fafcfd. Content area below uses Feature Card grid (3 columns, 24px gap). The dark band creates the platform's signature light/dark/light rhythm."
+      },
+      {
+        "name": "Decorative Blob Section",
+        "role": "Light section with soft background shape",
+        "description": "White canvas with a large, very pale (#fafcfd or #dfe4ea at low opacity) organic blob shape behind centered content. Heading + body + single Filled Cyan CTA centered. The blob is barely visible — more felt than seen, giving depth without distraction."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "Overlay consent dialog",
+        "description": "Fixed bottom-center, background #fafcfd, 16px radius, padding 20-24px, max-width ~600px. Heading at 16px weight 700 #0a0e12, body at 14px weight 400 #4c5864. Two Outlined Cookie Buttons right-aligned: 'Accept all', 'Reject all'. Footer row with 'More choices' and 'See our privacy policy' text links."
+      },
+      {
+        "name": "Video Player Thumbnail",
+        "role": "Product preview with play overlay",
+        "description": "16:9 or similar video aspect, 8px radius, background shows video frame. Bottom-right overlay: cyan #17d5ff play button circle (32px) + label text 'See why millions love Vimeo'. Represents the product surface within marketing."
+      },
+      {
+        "name": "Navigation Dropdown",
+        "role": "Mega-menu for Features/Use cases/Enterprise",
+        "description": "Triggered by chevron-down on top-level nav items. White background, 8-12px radius, subtle shadow or border, multi-column layout with section headings and link lists. Links in ABCRepro 400 at 14px #141a20, hover state in #17d5ff."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all UI text. Weight 400 for body and descriptions, 500 for emphasized body and subheadings, 700 for headings and buttons. The custom neo-grotesque has tight apertures and mechanical terminals; at display sizes (40-72px) the tight tracking (-0.05em) and 1.00 leading make headlines feel architectural rather than decorative. At body sizes (16px) it reads as clean, slightly condensed, editorial — closer to a European tech product than a warm consumer brand.",
+        "sizes": "10, 12, 13, 14, 16, 18, 19, 20, 24, 32, 40, 72",
+        "family": "ABCRepro",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.10, 1.14, 1.20, 1.30, 1.35, 1.40, 1.58",
+        "substitute": "Inter, Untitled Sans, Söhne",
+        "letterSpacing": "-0.0500em at 72px display, -0.0400em at 40px, -0.0360em at 32px, -0.0300em at 19-20px subheadings, near-zero at body sizes",
+        "fontFeatureSettings": "\\\"lnum\\\""
+      },
+      {
+        "role": "Monospace accent for code-like or technical labels. Used sparingly — only when mechanical/technical voice is needed.",
+        "sizes": "16",
+        "family": "ABCReproMono",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "-0.0300em",
+        "fontFeatureSettings": "\\\"lnum\\\""
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "primary action: #17d5ff (filled action)\nCreate a Primary Action Button: #17d5ff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA."
+      }
+    ],
+    "elevationPhilosophy": "Vimeo uses a flat design system with no drop-shadows for elevation. Surface separation is achieved through background color contrast (Paper → Cloud → Ink) and hairline borders in #dfe4ea or #23313b. The 10000px-spread shadows detected in the data are for overlay/lightbox scrims (cookie consent backdrop), not component elevation. Cards sit on the same plane as their parent background — distinguished by padding and internal structure, not shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0a0e12",
+          "oklch": {
+            "c": 0.010681064659462442,
+            "h": 248.50619680132922,
+            "l": 0.16133919208773284
+          },
+          "contexts": [
+            "card",
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "link",
+            "image",
+            "list",
+            "icon",
+            "body",
+            "badge"
+          ],
+          "frequency": 2579,
+          "confidence": 1,
+          "prominence": 125870873.91103964,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 247,
+            "body/color": 60,
+            "card/color": 7,
+            "hero/color": 1,
+            "icon/color": 21,
+            "link/color": 24,
+            "list/color": 6,
+            "other/fill": 10,
+            "badge/color": 2,
+            "image/color": 15,
+            "other/color": 124,
+            "heading/color": 8,
+            "nav/borderColor": 988,
+            "other/boxShadow": 2,
+            "body/borderColor": 240,
+            "card/borderColor": 28,
+            "hero/borderColor": 4,
+            "icon/borderColor": 84,
+            "link/borderColor": 96,
+            "list/borderColor": 72,
+            "badge/borderColor": 8,
+            "image/borderColor": 60,
+            "other/borderColor": 436,
+            "heading/borderColor": 32
+          }
+        },
+        {
+          "hex": "#fafcfd",
+          "oklch": {
+            "c": 0.002512418602747301,
+            "h": 228.78372421888574,
+            "l": 0.9898370510500911
+          },
+          "contexts": [
+            "card",
+            "nav",
+            "hero",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "icon",
+            "list",
+            "button",
+            "image",
+            "footer",
+            "badge"
+          ],
+          "frequency": 1928,
+          "confidence": 1,
+          "prominence": 121211528.31273255,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 28,
+            "card/color": 35,
+            "icon/color": 35,
+            "link/color": 8,
+            "list/color": 18,
+            "other/fill": 36,
+            "image/color": 36,
+            "other/color": 214,
+            "button/color": 5,
+            "heading/color": 19,
+            "body/borderColor": 112,
+            "card/borderColor": 140,
+            "icon/borderColor": 140,
+            "link/borderColor": 32,
+            "list/borderColor": 24,
+            "image/borderColor": 144,
+            "other/borderColor": 808,
+            "button/borderColor": 4,
+            "heading/borderColor": 76,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#23313b",
+          "oklch": {
+            "c": 0.02608967811757833,
+            "h": 239.77569591786715,
+            "l": 0.3049880603883166
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 59457678.15407838,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "footer/color": 1,
+            "other/borderColor": 12,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#141a20",
+          "oklch": {
+            "c": 0.01491727264567494,
+            "h": 248.52459369862888,
+            "l": 0.21444694940591438
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "icon",
+            "card",
+            "heading",
+            "link",
+            "list",
+            "badge",
+            "image"
+          ],
+          "frequency": 2676,
+          "confidence": 1,
+          "prominence": 21134629.88806093,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 81,
+            "icon/fill": 6,
+            "nav/color": 244,
+            "body/color": 46,
+            "card/color": 12,
+            "icon/color": 49,
+            "link/color": 3,
+            "list/color": 6,
+            "other/fill": 66,
+            "badge/color": 2,
+            "image/color": 6,
+            "other/color": 104,
+            "button/color": 31,
+            "heading/color": 27,
+            "nav/borderColor": 976,
+            "body/borderColor": 184,
+            "card/borderColor": 40,
+            "icon/borderColor": 196,
+            "link/borderColor": 12,
+            "list/borderColor": 24,
+            "badge/borderColor": 8,
+            "image/borderColor": 24,
+            "other/borderColor": 404,
+            "button/borderColor": 8,
+            "heading/borderColor": 108,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9a9d9f",
+          "oklch": {
+            "c": 0.00456585914847677,
+            "h": 241.1382177324247,
+            "l": 0.6937322105491929
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 926161,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#998866",
+          "oklch": {
+            "c": 0.0520902577533295,
+            "h": 84.36999173090175,
+            "l": 0.6332720489380063
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 909893,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#3d4751",
+          "oklch": {
+            "c": 0.02141330581742472,
+            "h": 248.37140159440315,
+            "l": 0.3928667682528236
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 377,
+          "confidence": 1,
+          "prominence": 639830.6896347681,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "icon/color": 4,
+            "link/color": 62,
+            "other/fill": 6,
+            "other/color": 4,
+            "button/color": 1,
+            "body/borderColor": 16,
+            "icon/borderColor": 16,
+            "link/borderColor": 248,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#a9b2bc",
+          "oklch": {
+            "c": 0.017529683062358484,
+            "h": 250.88818361044932,
+            "l": 0.7595778517394035
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 121,
+          "confidence": 1,
+          "prominence": 597290.9437511696,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "card/color": 1,
+            "link/color": 4,
+            "other/color": 7,
+            "other/boxShadow": 1,
+            "body/borderColor": 48,
+            "card/borderColor": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#887766",
+          "oklch": {
+            "c": 0.032872066745758946,
+            "h": 67.10176387058188,
+            "l": 0.5801962479863728
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 409891,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#4c5864",
+          "oklch": {
+            "c": 0.02477609703459017,
+            "h": 248.3714285424565,
+            "l": 0.4545409801025871
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card",
+            "heading"
+          ],
+          "frequency": 310,
+          "confidence": 1,
+          "prominence": 396483.30447385326,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 42,
+            "body/color": 9,
+            "card/color": 2,
+            "other/color": 7,
+            "heading/color": 2,
+            "nav/borderColor": 168,
+            "body/borderColor": 36,
+            "card/borderColor": 8,
+            "other/borderColor": 28,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "input",
+            "other"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 330662.26040985016,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 28,
+            "nav/color": 4,
+            "other/fill": 2,
+            "input/color": 1,
+            "button/color": 4,
+            "nav/borderColor": 16,
+            "input/borderColor": 4,
+            "button/borderColor": 152
+          }
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 277114.84362608695,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#666644",
+          "oklch": {
+            "c": 0.05039535469090456,
+            "h": 108.08822552814541,
+            "l": 0.5011494846665534
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 174840,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#778899",
+          "oklch": {
+            "c": 0.03249871118366844,
+            "h": 248.35133684050797,
+            "l": 0.6190201741283552
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 174840,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#ffaacc",
+          "oklch": {
+            "c": 0.10770334190822224,
+            "h": 354.0722689554833,
+            "l": 0.8301075976394473
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 130364,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#554433",
+          "oklch": {
+            "c": 0.03573169028964085,
+            "h": 66.50569184429081,
+            "l": 0.39971095966805353
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 103339,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#aabb55",
+          "oklch": {
+            "c": 0.12907601705196656,
+            "h": 117.46671390756939,
+            "l": 0.757679659874724
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 102775,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#777777",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5692624033839502
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#885588",
+          "oklch": {
+            "c": 0.09840869964709843,
+            "h": 326.8637972709617,
+            "l": 0.5250666586765301
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#aabb77",
+          "oklch": {
+            "c": 0.0927273722848577,
+            "h": 120.07661851391181,
+            "l": 0.7626794667524728
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#888877",
+          "oklch": {
+            "c": 0.024810366697968194,
+            "h": 107.09990534011773,
+            "l": 0.6218210775450151
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#bbbbbb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7920743408035346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#001133",
+          "oklch": {
+            "c": 0.07275599039788685,
+            "h": 258.90256968071526,
+            "l": 0.1885769067056641
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86180,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#192028",
+          "oklch": {
+            "c": 0.018501124924147322,
+            "h": 251.99389862695958,
+            "l": 0.24026279735634767
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39904,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#17d5ff",
+          "oklch": {
+            "c": 0.14375634088142822,
+            "h": 219.30133185647026,
+            "l": 0.8077492217663098
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "badge"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 39354.484034474146,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 2,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 15,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#13b1d4",
+          "oklch": {
+            "c": 0.12474634437392541,
+            "h": 219.15218727988247,
+            "l": 0.7035440949174381
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 20491.01543738097,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#dfe4ea",
+          "oklch": {
+            "c": 0.009781899951260397,
+            "h": 252.81545228312075,
+            "l": 0.9167862702076904
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 14361.261085748234,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 44,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#74808c",
+          "oklch": {
+            "c": 0.023206360463011663,
+            "h": 248.21787397522667,
+            "l": 0.5940907517734823
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8304,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#223322",
+          "oklch": {
+            "c": 0.03763040765224101,
+            "h": 144.5678982472761,
+            "l": 0.30051563412222937
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 513.5278502336546,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#bbaa99",
+          "oklch": {
+            "c": 0.03094285085268864,
+            "h": 67.32467262150156,
+            "l": 0.7478692130134293
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#665544",
+          "oklch": {
+            "c": 0.03463605161173619,
+            "h": 66.79092770821578,
+            "l": 0.4616758899194614
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#aa9988",
+          "oklch": {
+            "c": 0.03151431899619759,
+            "h": 67.2676618737544,
+            "l": 0.6931047108268789
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#550011",
+          "oklch": {
+            "c": 0.11417375370250414,
+            "h": 19.348548087034708,
+            "l": 0.28455614440796284
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#776655",
+          "oklch": {
+            "c": 0.03369191790199549,
+            "h": 66.97421110465466,
+            "l": 0.5217417731729151
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 293,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.031132372632144134,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.41,
+          "background": "#fafcfd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.82,
+          "background": "#fafcfd",
+          "foreground": "#0a0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.09,
+          "background": "#fafcfd",
+          "foreground": "#001133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#141a20",
+          "foreground": "#fafcfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.42,
+          "background": "#dfe4ea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.96,
+          "background": "#192028",
+          "foreground": "#fafcfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.14,
+          "background": "#dfe4ea",
+          "foreground": "#0a0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.64,
+          "background": "#fafcfd",
+          "foreground": "#550011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.56,
+          "background": "#dfe4ea",
+          "foreground": "#001133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.7,
+          "background": "#dfe4ea",
+          "foreground": "#141a20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.04,
+          "background": "#fafcfd",
+          "foreground": "#223322"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.97,
+          "background": "#23313b",
+          "foreground": "#fafcfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#dfe4ea",
+          "foreground": "#192028"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#fafcfd",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#cccccc",
+          "foreground": "#0a0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12,
+          "background": "#17d5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.87,
+          "background": "#ffaacc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#dfe4ea",
+          "foreground": "#550011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.59,
+          "background": "#cccccc",
+          "foreground": "#001133"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "badge",
+            "body",
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 124
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "card",
+            "list",
+            "badge"
+          ],
+          "frequency": 81
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "card",
+            "body"
+          ],
+          "frequency": 49
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 25
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(85, 85, 85) 0px 0px 0px 10000px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgb(34, 51, 34) 0px 0px 0px 10000px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgb(17, 17, 17) 0px 0px 0px 10000px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "badge",
+            "body",
+            "link"
+          ],
+          "frequency": 83,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginLeft|badge",
+            "rowGap|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 648,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 40,
+          "properties": [
+            "columnGap",
+            "marginLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|card",
+            "marginLeft|other",
+            "rowGap|other",
+            "rowGap|card",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 48,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 107,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 91,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "columnGap|card",
+            "marginBottom|other",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "heading"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "columnGap|card",
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 49,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card",
+            "paddingTop|card",
+            "columnGap|link",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|card",
+            "rowGap|other",
+            "rowGap|badge"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "paddingTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "hero",
+            "card",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|card",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "list",
+            "badge"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|list",
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 17, 0), rgb(0, 17, 0), rgb(34, 34, 34), rgb(34, 51, 51), rgb(34, 51, 51), rgb(17, 51, 51), rgb(0, 51, 34), rgb(0, 17, 0))",
+        "colors": [
+          "rgb(0, 17, 0)",
+          "rgb(0, 17, 0)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 51, 51)",
+          "rgb(34, 51, 51)",
+          "rgb(17, 51, 51)",
+          "rgb(0, 51, 34)",
+          "rgb(0, 17, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 17, 0), rgb(0, 34, 0), rgb(34, 34, 34), rgb(34, 51, 51), rgb(34, 68, 51), rgb(17, 68, 51), rgb(17, 51, 34), rgb(0, 34, 0))",
+        "colors": [
+          "rgb(0, 17, 0)",
+          "rgb(0, 34, 0)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 51, 51)",
+          "rgb(34, 68, 51)",
+          "rgb(17, 68, 51)",
+          "rgb(17, 51, 34)",
+          "rgb(0, 34, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 34, 0), rgb(17, 34, 17), rgb(34, 34, 34), rgb(34, 51, 51), rgb(34, 68, 51), rgb(34, 85, 34), rgb(17, 68, 34), rgb(17, 51, 17))",
+        "colors": [
+          "rgb(0, 34, 0)",
+          "rgb(17, 34, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 51, 51)",
+          "rgb(34, 68, 51)",
+          "rgb(34, 85, 34)",
+          "rgb(17, 68, 34)",
+          "rgb(17, 51, 17)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(17, 51, 17), rgb(34, 34, 17), rgb(34, 34, 34), rgb(34, 51, 51), rgb(34, 85, 51), rgb(34, 85, 34), rgb(34, 85, 34), rgb(34, 68, 17))",
+        "colors": [
+          "rgb(17, 51, 17)",
+          "rgb(34, 34, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 51, 51)",
+          "rgb(34, 85, 51)",
+          "rgb(34, 85, 34)",
+          "rgb(34, 85, 34)",
+          "rgb(34, 68, 17)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(34, 51, 17), rgb(34, 34, 34), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 85, 51), rgb(34, 85, 34), rgb(34, 85, 34), rgb(34, 68, 17))",
+        "colors": [
+          "rgb(34, 51, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 85, 51)",
+          "rgb(34, 85, 34)",
+          "rgb(34, 85, 34)",
+          "rgb(34, 68, 17)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(17, 34, 17), rgb(34, 34, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 68, 51), rgb(34, 68, 34), rgb(34, 68, 17), rgb(17, 51, 17))",
+        "colors": [
+          "rgb(17, 34, 17)",
+          "rgb(34, 34, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 68, 51)",
+          "rgb(34, 68, 34)",
+          "rgb(34, 68, 17)",
+          "rgb(17, 51, 17)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(17, 34, 0), rgb(17, 17, 17), rgb(34, 17, 34), rgb(34, 34, 34), rgb(34, 51, 34), rgb(34, 51, 34), rgb(17, 51, 17), rgb(17, 34, 0))",
+        "colors": [
+          "rgb(17, 34, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 17, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 51, 34)",
+          "rgb(34, 51, 34)",
+          "rgb(17, 51, 17)",
+          "rgb(17, 34, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 17, 0), rgb(0, 17, 0), rgb(17, 0, 17), rgb(17, 17, 34), rgb(17, 34, 34), rgb(17, 51, 34), rgb(17, 51, 17), rgb(0, 17, 0))",
+        "colors": [
+          "rgb(0, 17, 0)",
+          "rgb(0, 17, 0)",
+          "rgb(17, 0, 17)",
+          "rgb(17, 17, 34)",
+          "rgb(17, 34, 34)",
+          "rgb(17, 51, 34)",
+          "rgb(17, 51, 17)",
+          "rgb(0, 17, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(17, 17, 17), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 238), rgb(255, 255, 221), rgb(221, 221, 187), rgb(187, 187, 153), rgb(153, 153, 119), rgb(119, 136, 119), rgb(102, 119, 119), rgb(102, 119, 102))",
+        "colors": [
+          "rgb(255, 255, 238)",
+          "rgb(255, 255, 221)",
+          "rgb(221, 221, 187)",
+          "rgb(187, 187, 153)",
+          "rgb(153, 153, 119)",
+          "rgb(119, 136, 119)",
+          "rgb(102, 119, 119)",
+          "rgb(102, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 238, 221), rgb(238, 238, 204), rgb(204, 204, 187), rgb(170, 170, 136), rgb(136, 136, 102), rgb(102, 119, 102), rgb(85, 102, 102), rgb(85, 102, 102))",
+        "colors": [
+          "rgb(238, 238, 221)",
+          "rgb(238, 238, 204)",
+          "rgb(204, 204, 187)",
+          "rgb(170, 170, 136)",
+          "rgb(136, 136, 102)",
+          "rgb(102, 119, 102)",
+          "rgb(85, 102, 102)",
+          "rgb(85, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 187, 170), rgb(204, 187, 170), rgb(187, 153, 136), rgb(136, 119, 102), rgb(102, 85, 68), rgb(68, 51, 51), rgb(51, 51, 51), rgb(51, 68, 51))",
+        "colors": [
+          "rgb(204, 187, 170)",
+          "rgb(204, 187, 170)",
+          "rgb(187, 153, 136)",
+          "rgb(136, 119, 102)",
+          "rgb(102, 85, 68)",
+          "rgb(68, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 136, 119), rgb(170, 119, 119), rgb(153, 102, 102), rgb(119, 85, 68), rgb(85, 34, 17), rgb(51, 0, 0), rgb(51, 0, 0), rgb(51, 17, 0))",
+        "colors": [
+          "rgb(170, 136, 119)",
+          "rgb(170, 119, 119)",
+          "rgb(153, 102, 102)",
+          "rgb(119, 85, 68)",
+          "rgb(85, 34, 17)",
+          "rgb(51, 0, 0)",
+          "rgb(51, 0, 0)",
+          "rgb(51, 17, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 119, 102), rgb(153, 119, 102), rgb(136, 102, 85), rgb(119, 85, 68), rgb(102, 68, 34), rgb(102, 51, 17), rgb(85, 51, 0), rgb(68, 51, 17))",
+        "colors": [
+          "rgb(170, 119, 102)",
+          "rgb(153, 119, 102)",
+          "rgb(136, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(102, 68, 34)",
+          "rgb(102, 51, 17)",
+          "rgb(85, 51, 0)",
+          "rgb(68, 51, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 170, 136), rgb(170, 153, 119), rgb(153, 136, 102), rgb(136, 119, 85), rgb(136, 119, 68), rgb(136, 102, 68), rgb(136, 102, 68), rgb(102, 85, 68))",
+        "colors": [
+          "rgb(187, 170, 136)",
+          "rgb(170, 153, 119)",
+          "rgb(153, 136, 102)",
+          "rgb(136, 119, 85)",
+          "rgb(136, 119, 68)",
+          "rgb(136, 102, 68)",
+          "rgb(136, 102, 68)",
+          "rgb(102, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 187, 153), rgb(204, 187, 153), rgb(170, 153, 119), rgb(153, 136, 85), rgb(153, 136, 85), rgb(153, 136, 85), rgb(136, 119, 85), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(221, 187, 153)",
+          "rgb(204, 187, 153)",
+          "rgb(170, 153, 119)",
+          "rgb(153, 136, 85)",
+          "rgb(153, 136, 85)",
+          "rgb(153, 136, 85)",
+          "rgb(136, 119, 85)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 204, 170), rgb(221, 204, 170), rgb(187, 170, 136), rgb(153, 136, 85), rgb(153, 119, 85), rgb(153, 136, 85), rgb(136, 119, 102), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(238, 204, 170)",
+          "rgb(221, 204, 170)",
+          "rgb(187, 170, 136)",
+          "rgb(153, 136, 85)",
+          "rgb(153, 119, 85)",
+          "rgb(153, 136, 85)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 221, 204), rgb(221, 221, 187), rgb(204, 204, 170), rgb(187, 170, 136), rgb(153, 119, 102), rgb(102, 85, 68), rgb(85, 68, 68), rgb(102, 85, 85))",
+        "colors": [
+          "rgb(221, 221, 204)",
+          "rgb(221, 221, 187)",
+          "rgb(204, 204, 170)",
+          "rgb(187, 170, 136)",
+          "rgb(153, 119, 102)",
+          "rgb(102, 85, 68)",
+          "rgb(85, 68, 68)",
+          "rgb(102, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 187), rgb(204, 204, 187), rgb(187, 187, 170), rgb(170, 153, 136), rgb(136, 102, 85), rgb(102, 68, 68), rgb(85, 68, 51), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(204, 221, 187)",
+          "rgb(204, 204, 187)",
+          "rgb(187, 187, 170)",
+          "rgb(170, 153, 136)",
+          "rgb(136, 102, 85)",
+          "rgb(102, 68, 68)",
+          "rgb(85, 68, 51)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 204, 170), rgb(187, 187, 170), rgb(170, 153, 136), rgb(153, 119, 85), rgb(119, 68, 34), rgb(85, 34, 0), rgb(34, 34, 0), rgb(0, 34, 0))",
+        "colors": [
+          "rgb(187, 204, 170)",
+          "rgb(187, 187, 170)",
+          "rgb(170, 153, 136)",
+          "rgb(153, 119, 85)",
+          "rgb(119, 68, 34)",
+          "rgb(85, 34, 0)",
+          "rgb(34, 34, 0)",
+          "rgb(0, 34, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 170), rgb(170, 170, 153), rgb(153, 136, 102), rgb(119, 68, 34), rgb(85, 0, 0), rgb(51, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(187, 187, 170)",
+          "rgb(170, 170, 153)",
+          "rgb(153, 136, 102)",
+          "rgb(119, 68, 34)",
+          "rgb(85, 0, 0)",
+          "rgb(51, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 170), rgb(170, 187, 153), rgb(153, 136, 119), rgb(119, 68, 51), rgb(85, 0, 0), rgb(51, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(187, 187, 170)",
+          "rgb(170, 187, 153)",
+          "rgb(153, 136, 119)",
+          "rgb(119, 68, 51)",
+          "rgb(85, 0, 0)",
+          "rgb(51, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 170), rgb(187, 187, 170), rgb(170, 153, 136), rgb(136, 102, 85), rgb(102, 51, 51), rgb(68, 0, 0), rgb(51, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(204, 204, 170)",
+          "rgb(187, 187, 170)",
+          "rgb(170, 153, 136)",
+          "rgb(136, 102, 85)",
+          "rgb(102, 51, 51)",
+          "rgb(68, 0, 0)",
+          "rgb(51, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 187), rgb(204, 204, 170), rgb(170, 170, 153), rgb(153, 136, 119), rgb(119, 85, 85), rgb(85, 51, 51), rgb(68, 34, 34), rgb(51, 51, 34))",
+        "colors": [
+          "rgb(204, 204, 187)",
+          "rgb(204, 204, 170)",
+          "rgb(170, 170, 153)",
+          "rgb(153, 136, 119)",
+          "rgb(119, 85, 85)",
+          "rgb(85, 51, 51)",
+          "rgb(68, 34, 34)",
+          "rgb(51, 51, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 187), rgb(204, 204, 170), rgb(187, 187, 170), rgb(153, 153, 136), rgb(136, 102, 102), rgb(102, 68, 68), rgb(85, 51, 51), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(204, 204, 187)",
+          "rgb(204, 204, 170)",
+          "rgb(187, 187, 170)",
+          "rgb(153, 153, 136)",
+          "rgb(136, 102, 102)",
+          "rgb(102, 68, 68)",
+          "rgb(85, 51, 51)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(203, 213, 224) 14.2857%, rgb(255, 177, 22) 14.2857%, rgb(255, 177, 22) 28.5714%, rgb(23, 213, 255) 28.5714%, rgb(23, 213, 255) 42.8571%, rgb(32, 158, 0) 42.8571%, rgb(32, 158, 0) 57.1429%, rgb(255, 42, 207) 57.1429%, rgb(255, 42, 207) 71.4286%, rgb(251, 50, 43) 71.4286%, rgb(251, 50, 43) 85.7143%, rgb(23, 213, 255) 85.7143%)",
+        "colors": [
+          "rgb(203, 213, 224)",
+          "rgb(255, 177, 22)",
+          "rgb(255, 177, 22)",
+          "rgb(23, 213, 255)",
+          "rgb(23, 213, 255)",
+          "rgb(32, 158, 0)",
+          "rgb(32, 158, 0)",
+          "rgb(255, 42, 207)",
+          "rgb(255, 42, 207)",
+          "rgb(251, 50, 43)",
+          "rgb(251, 50, 43)",
+          "rgb(23, 213, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(17, 17, 17), rgb(68, 68, 68), rgb(119, 119, 119), rgb(136, 136, 136), rgb(119, 119, 119), rgb(85, 85, 85), rgb(51, 51, 51), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(17, 17, 17)",
+          "rgb(68, 68, 68)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(85, 85, 85), rgb(119, 119, 119), rgb(136, 136, 136), rgb(119, 119, 119), rgb(85, 85, 85), rgb(68, 68, 68), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 102), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(85, 85, 85), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(68, 68, 68), rgb(85, 85, 85), rgb(102, 102, 102), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(34, 34, 34), rgb(51, 51, 51), rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68), rgb(34, 34, 34), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(51, 51, 51), rgb(68, 68, 68), rgb(68, 68, 68), rgb(68, 68, 68), rgb(51, 51, 51), rgb(34, 34, 34), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68), rgb(51, 51, 51), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 102), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85), rgb(51, 51, 51), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 102), rgb(119, 119, 119), rgb(136, 136, 136), rgb(136, 136, 136), rgb(119, 119, 119), rgb(85, 85, 85), rgb(68, 68, 68), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(102, 102, 102), rgb(119, 119, 119), rgb(136, 136, 136), rgb(119, 119, 119), rgb(102, 102, 102), rgb(68, 68, 68), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(85, 85, 85), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(68, 68, 68), rgb(85, 85, 85), rgb(102, 102, 102), rgb(102, 102, 102), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17), rgb(0, 0, 0), rgb(17, 17, 17))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(34, 34, 34), rgb(34, 34, 34), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(34, 34, 34), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(34, 34, 34), rgb(68, 68, 68), rgb(85, 85, 85), rgb(68, 68, 68), rgb(34, 34, 34), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(34, 34, 34)",
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(51, 51, 51), rgb(85, 85, 85), rgb(102, 102, 102), rgb(102, 102, 102), rgb(68, 68, 68), rgb(34, 34, 34), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(51, 51, 51), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(85, 85, 85), rgb(51, 51, 51), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(51, 51, 51)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(51, 51, 51), rgb(85, 85, 85), rgb(102, 102, 102), rgb(102, 102, 102), rgb(68, 68, 68), rgb(51, 51, 51), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(68, 68, 68), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(68, 68, 68)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(85, 85, 85), rgb(119, 119, 119), rgb(153, 153, 153), rgb(153, 153, 153), rgb(136, 136, 136), rgb(102, 102, 102), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(119, 119, 119)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 136, 136)",
+          "rgb(102, 102, 102)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 51, 51), rgb(85, 85, 85), rgb(136, 136, 136), rgb(153, 153, 153), rgb(153, 153, 153), rgb(136, 136, 136), rgb(119, 119, 119), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(51, 51, 51)",
+          "rgb(85, 85, 85)",
+          "rgb(136, 136, 136)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(85, 85, 85), rgb(136, 136, 136), rgb(153, 153, 153), rgb(153, 153, 153), rgb(136, 136, 136), rgb(119, 119, 119), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(136, 136, 136)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(85, 85, 85), rgb(102, 102, 102), rgb(119, 119, 119), rgb(136, 136, 136), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(68, 68, 68), rgb(85, 85, 85), rgb(85, 85, 85), rgb(102, 102, 102), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 187, 170), rgb(187, 187, 170), rgb(187, 170, 170), rgb(170, 153, 153), rgb(136, 102, 102), rgb(85, 51, 34), rgb(68, 34, 17), rgb(102, 68, 85))",
+        "colors": [
+          "rgb(170, 187, 170)",
+          "rgb(187, 187, 170)",
+          "rgb(187, 170, 170)",
+          "rgb(170, 153, 153)",
+          "rgb(136, 102, 102)",
+          "rgb(85, 51, 34)",
+          "rgb(68, 34, 17)",
+          "rgb(102, 68, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(187, 170, 170), rgb(187, 170, 170), rgb(170, 136, 153), rgb(119, 102, 102), rgb(68, 51, 17), rgb(68, 34, 17), rgb(85, 68, 85))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(187, 170, 170)",
+          "rgb(187, 170, 170)",
+          "rgb(170, 136, 153)",
+          "rgb(119, 102, 102)",
+          "rgb(68, 51, 17)",
+          "rgb(68, 34, 17)",
+          "rgb(85, 68, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 170), rgb(170, 153, 170), rgb(153, 136, 136), rgb(119, 85, 85), rgb(68, 34, 0), rgb(51, 34, 0), rgb(85, 68, 68))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 153, 170)",
+          "rgb(153, 136, 136)",
+          "rgb(119, 85, 85)",
+          "rgb(68, 34, 0)",
+          "rgb(51, 34, 0)",
+          "rgb(85, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 170), rgb(170, 153, 153), rgb(136, 119, 136), rgb(102, 68, 68), rgb(51, 0, 0), rgb(51, 34, 0), rgb(85, 68, 85))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 153, 153)",
+          "rgb(136, 119, 136)",
+          "rgb(102, 68, 68)",
+          "rgb(51, 0, 0)",
+          "rgb(51, 34, 0)",
+          "rgb(85, 68, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 187, 170), rgb(170, 170, 170), rgb(170, 153, 170), rgb(136, 119, 136), rgb(102, 68, 68), rgb(34, 0, 0), rgb(51, 34, 0), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(170, 187, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 153, 170)",
+          "rgb(136, 119, 136)",
+          "rgb(102, 68, 68)",
+          "rgb(34, 0, 0)",
+          "rgb(51, 34, 0)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 170), rgb(170, 153, 170), rgb(136, 136, 136), rgb(102, 68, 68), rgb(34, 0, 0), rgb(34, 17, 0), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 153, 170)",
+          "rgb(136, 136, 136)",
+          "rgb(102, 68, 68)",
+          "rgb(34, 0, 0)",
+          "rgb(34, 17, 0)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 170), rgb(153, 153, 153), rgb(136, 119, 136), rgb(85, 68, 68), rgb(0, 0, 0), rgb(0, 0, 0), rgb(68, 68, 68))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 119, 136)",
+          "rgb(85, 68, 68)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(68, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 153), rgb(153, 153, 153), rgb(136, 136, 136), rgb(119, 102, 119), rgb(68, 51, 51), rgb(0, 0, 0), rgb(0, 0, 0), rgb(51, 34, 51))",
+        "colors": [
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 102, 119)",
+          "rgb(68, 51, 51)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(51, 34, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 238), rgb(255, 238, 221), rgb(255, 221, 204), rgb(255, 221, 204), rgb(255, 221, 204), rgb(238, 187, 187), rgb(187, 153, 153))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 238)",
+          "rgb(255, 238, 221)",
+          "rgb(255, 221, 204)",
+          "rgb(255, 221, 204)",
+          "rgb(255, 221, 204)",
+          "rgb(238, 187, 187)",
+          "rgb(187, 153, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 238), rgb(255, 238, 221), rgb(255, 221, 204), rgb(238, 204, 187), rgb(238, 204, 187), rgb(238, 204, 187), rgb(204, 170, 170), rgb(153, 136, 136))",
+        "colors": [
+          "rgb(255, 255, 238)",
+          "rgb(255, 238, 221)",
+          "rgb(255, 221, 204)",
+          "rgb(238, 204, 187)",
+          "rgb(238, 204, 187)",
+          "rgb(238, 204, 187)",
+          "rgb(204, 170, 170)",
+          "rgb(153, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 221, 204), rgb(238, 221, 187), rgb(221, 187, 170), rgb(204, 170, 153), rgb(204, 170, 153), rgb(187, 153, 153), rgb(153, 119, 119), rgb(102, 85, 68))",
+        "colors": [
+          "rgb(238, 221, 204)",
+          "rgb(238, 221, 187)",
+          "rgb(221, 187, 170)",
+          "rgb(204, 170, 153)",
+          "rgb(204, 170, 153)",
+          "rgb(187, 153, 153)",
+          "rgb(153, 119, 119)",
+          "rgb(102, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 187, 170), rgb(204, 187, 153), rgb(187, 170, 136), rgb(170, 136, 119), rgb(153, 119, 102), rgb(136, 102, 85), rgb(85, 51, 34), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(221, 187, 170)",
+          "rgb(204, 187, 153)",
+          "rgb(187, 170, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(153, 119, 102)",
+          "rgb(136, 102, 85)",
+          "rgb(85, 51, 34)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 187, 153), rgb(204, 170, 153), rgb(170, 153, 119), rgb(153, 136, 85), rgb(136, 102, 68), rgb(119, 85, 51), rgb(68, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(221, 187, 153)",
+          "rgb(204, 170, 153)",
+          "rgb(170, 153, 119)",
+          "rgb(153, 136, 85)",
+          "rgb(136, 102, 68)",
+          "rgb(119, 85, 51)",
+          "rgb(68, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 204, 170), rgb(221, 187, 170), rgb(204, 170, 136), rgb(170, 136, 102), rgb(170, 136, 102), rgb(153, 119, 102), rgb(119, 85, 68), rgb(17, 0, 0))",
+        "colors": [
+          "rgb(238, 204, 170)",
+          "rgb(221, 187, 170)",
+          "rgb(204, 170, 136)",
+          "rgb(170, 136, 102)",
+          "rgb(170, 136, 102)",
+          "rgb(153, 119, 102)",
+          "rgb(119, 85, 68)",
+          "rgb(17, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 221, 204), rgb(255, 221, 187), rgb(221, 187, 153), rgb(204, 170, 136), rgb(204, 170, 136), rgb(187, 153, 136), rgb(170, 136, 119), rgb(102, 85, 68))",
+        "colors": [
+          "rgb(255, 221, 204)",
+          "rgb(255, 221, 187)",
+          "rgb(221, 187, 153)",
+          "rgb(204, 170, 136)",
+          "rgb(204, 170, 136)",
+          "rgb(187, 153, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(102, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 238, 204), rgb(255, 221, 204), rgb(238, 204, 187), rgb(221, 187, 170), rgb(221, 187, 170), rgb(221, 187, 153), rgb(187, 153, 136), rgb(136, 119, 102))",
+        "colors": [
+          "rgb(255, 238, 204)",
+          "rgb(255, 221, 204)",
+          "rgb(238, 204, 187)",
+          "rgb(221, 187, 170)",
+          "rgb(221, 187, 170)",
+          "rgb(221, 187, 153)",
+          "rgb(187, 153, 136)",
+          "rgb(136, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 34), rgb(85, 85, 68), rgb(102, 102, 85), rgb(102, 102, 102), rgb(102, 102, 85), rgb(85, 102, 85), rgb(102, 102, 85), rgb(119, 119, 102))",
+        "colors": [
+          "rgb(68, 68, 34)",
+          "rgb(85, 85, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 85)",
+          "rgb(85, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(119, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 34), rgb(85, 85, 51), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 102, 85), rgb(85, 85, 68), rgb(102, 102, 85), rgb(119, 119, 102))",
+        "colors": [
+          "rgb(68, 68, 34)",
+          "rgb(85, 85, 51)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(85, 85, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(119, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 85, 34), rgb(85, 85, 51), rgb(85, 85, 68), rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 68), rgb(85, 102, 68), rgb(102, 102, 85))",
+        "colors": [
+          "rgb(68, 85, 34)",
+          "rgb(85, 85, 51)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 102, 68)",
+          "rgb(102, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 34), rgb(68, 85, 51), rgb(85, 85, 68), rgb(85, 85, 85), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 102, 68))",
+        "colors": [
+          "rgb(68, 68, 34)",
+          "rgb(68, 85, 51)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 102, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 34), rgb(85, 85, 51), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 85, 68), rgb(85, 85, 68))",
+        "colors": [
+          "rgb(68, 68, 34)",
+          "rgb(85, 85, 51)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)",
+          "rgb(85, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 68, 51), rgb(85, 85, 51), rgb(85, 102, 68), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 85, 68), rgb(102, 85, 68), rgb(102, 102, 68))",
+        "colors": [
+          "rgb(85, 68, 51)",
+          "rgb(85, 85, 51)",
+          "rgb(85, 102, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 102, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 51), rgb(85, 85, 68), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 85, 68), rgb(102, 102, 85), rgb(102, 102, 85))",
+        "colors": [
+          "rgb(85, 85, 51)",
+          "rgb(85, 85, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 51), rgb(102, 102, 68), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 102, 85), rgb(102, 85, 68), rgb(102, 102, 85), rgb(102, 102, 85))",
+        "colors": [
+          "rgb(85, 85, 51)",
+          "rgb(102, 102, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 102, 85)",
+          "rgb(102, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 102), rgb(102, 102, 102), rgb(102, 102, 102), rgb(85, 85, 85), rgb(68, 68, 68), rgb(34, 34, 34), rgb(34, 34, 34), rgb(51, 51, 51))",
+        "colors": [
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68), rgb(51, 51, 51), rgb(17, 17, 17), rgb(17, 17, 17), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(68, 68, 68), rgb(68, 68, 68), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17), rgb(17, 17, 17), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 68, 68), rgb(68, 68, 68), rgb(68, 68, 68), rgb(51, 51, 51), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 85, 85), rgb(85, 85, 85), rgb(85, 85, 85), rgb(68, 68, 68), rgb(68, 68, 68), rgb(51, 51, 51), rgb(34, 34, 34), rgb(34, 34, 34))",
+        "colors": [
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(85, 85, 85)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 153, 221), rgb(136, 153, 221), rgb(204, 153, 238), rgb(238, 136, 221), rgb(221, 102, 187), rgb(153, 102, 136), rgb(119, 119, 119), rgb(136, 136, 153))",
+        "colors": [
+          "rgb(68, 153, 221)",
+          "rgb(136, 153, 221)",
+          "rgb(204, 153, 238)",
+          "rgb(238, 136, 221)",
+          "rgb(221, 102, 187)",
+          "rgb(153, 102, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 153, 204), rgb(136, 153, 221), rgb(204, 136, 221), rgb(221, 119, 204), rgb(204, 102, 170), rgb(153, 102, 119), rgb(119, 102, 102), rgb(119, 119, 119))",
+        "colors": [
+          "rgb(85, 153, 204)",
+          "rgb(136, 153, 221)",
+          "rgb(204, 136, 221)",
+          "rgb(221, 119, 204)",
+          "rgb(204, 102, 170)",
+          "rgb(153, 102, 119)",
+          "rgb(119, 102, 102)",
+          "rgb(119, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 119, 187), rgb(136, 119, 187), rgb(170, 119, 170), rgb(187, 102, 153), rgb(170, 102, 119), rgb(136, 85, 85), rgb(102, 85, 51), rgb(102, 85, 68))",
+        "colors": [
+          "rgb(102, 119, 187)",
+          "rgb(136, 119, 187)",
+          "rgb(170, 119, 170)",
+          "rgb(187, 102, 153)",
+          "rgb(170, 102, 119)",
+          "rgb(136, 85, 85)",
+          "rgb(102, 85, 51)",
+          "rgb(102, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 153), rgb(119, 102, 153), rgb(136, 85, 119), rgb(153, 85, 102), rgb(136, 85, 51), rgb(102, 68, 0), rgb(68, 68, 0), rgb(68, 51, 0))",
+        "colors": [
+          "rgb(102, 102, 153)",
+          "rgb(119, 102, 153)",
+          "rgb(136, 85, 119)",
+          "rgb(153, 85, 102)",
+          "rgb(136, 85, 51)",
+          "rgb(102, 68, 0)",
+          "rgb(68, 68, 0)",
+          "rgb(68, 51, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 153), rgb(119, 102, 153), rgb(136, 85, 119), rgb(136, 68, 68), rgb(102, 68, 0), rgb(68, 51, 0), rgb(34, 34, 0), rgb(17, 34, 0))",
+        "colors": [
+          "rgb(102, 102, 153)",
+          "rgb(119, 102, 153)",
+          "rgb(136, 85, 119)",
+          "rgb(136, 68, 68)",
+          "rgb(102, 68, 0)",
+          "rgb(68, 51, 0)",
+          "rgb(34, 34, 0)",
+          "rgb(17, 34, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 187), rgb(119, 102, 170), rgb(153, 102, 153), rgb(153, 85, 119), rgb(119, 51, 85), rgb(85, 34, 34), rgb(34, 34, 17), rgb(51, 51, 17))",
+        "colors": [
+          "rgb(102, 102, 187)",
+          "rgb(119, 102, 170)",
+          "rgb(153, 102, 153)",
+          "rgb(153, 85, 119)",
+          "rgb(119, 51, 85)",
+          "rgb(85, 34, 34)",
+          "rgb(34, 34, 17)",
+          "rgb(51, 51, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 102, 221), rgb(153, 102, 221), rgb(187, 102, 204), rgb(187, 102, 170), rgb(170, 68, 136), rgb(119, 51, 102), rgb(85, 51, 85), rgb(102, 51, 85))",
+        "colors": [
+          "rgb(119, 102, 221)",
+          "rgb(153, 102, 221)",
+          "rgb(187, 102, 204)",
+          "rgb(187, 102, 170)",
+          "rgb(170, 68, 136)",
+          "rgb(119, 51, 102)",
+          "rgb(85, 51, 85)",
+          "rgb(102, 51, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 85, 238), rgb(170, 85, 238), rgb(204, 102, 221), rgb(221, 102, 204), rgb(204, 102, 170), rgb(153, 68, 136), rgb(119, 68, 102), rgb(136, 68, 102))",
+        "colors": [
+          "rgb(136, 85, 238)",
+          "rgb(170, 85, 238)",
+          "rgb(204, 102, 221)",
+          "rgb(221, 102, 204)",
+          "rgb(204, 102, 170)",
+          "rgb(153, 68, 136)",
+          "rgb(119, 68, 102)",
+          "rgb(136, 68, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 119), rgb(204, 221, 119), rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 204, 136), rgb(170, 187, 119), rgb(153, 170, 102), rgb(119, 153, 119))",
+        "colors": [
+          "rgb(204, 221, 119)",
+          "rgb(204, 221, 119)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 204, 136)",
+          "rgb(170, 187, 119)",
+          "rgb(153, 170, 102)",
+          "rgb(119, 153, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 119), rgb(204, 221, 119), rgb(204, 204, 119), rgb(187, 204, 136), rgb(187, 187, 119), rgb(170, 170, 102), rgb(136, 153, 102), rgb(102, 136, 102))",
+        "colors": [
+          "rgb(204, 221, 119)",
+          "rgb(204, 221, 119)",
+          "rgb(204, 204, 119)",
+          "rgb(187, 204, 136)",
+          "rgb(187, 187, 119)",
+          "rgb(170, 170, 102)",
+          "rgb(136, 153, 102)",
+          "rgb(102, 136, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 187, 102), rgb(170, 187, 102), rgb(170, 170, 102), rgb(170, 170, 102), rgb(170, 170, 102), rgb(153, 153, 102), rgb(119, 136, 102), rgb(68, 102, 85))",
+        "colors": [
+          "rgb(170, 187, 102)",
+          "rgb(170, 187, 102)",
+          "rgb(170, 170, 102)",
+          "rgb(170, 170, 102)",
+          "rgb(170, 170, 102)",
+          "rgb(153, 153, 102)",
+          "rgb(119, 136, 102)",
+          "rgb(68, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 119), rgb(153, 153, 102), rgb(136, 153, 102), rgb(153, 153, 102), rgb(153, 153, 102), rgb(153, 153, 102), rgb(119, 119, 102), rgb(51, 68, 85))",
+        "colors": [
+          "rgb(153, 153, 119)",
+          "rgb(153, 153, 102)",
+          "rgb(136, 153, 102)",
+          "rgb(153, 153, 102)",
+          "rgb(153, 153, 102)",
+          "rgb(153, 153, 102)",
+          "rgb(119, 119, 102)",
+          "rgb(51, 68, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 119), rgb(153, 170, 119), rgb(153, 170, 119), rgb(153, 153, 119), rgb(170, 170, 119), rgb(153, 170, 119), rgb(136, 136, 102), rgb(85, 102, 102))",
+        "colors": [
+          "rgb(170, 170, 119)",
+          "rgb(153, 170, 119)",
+          "rgb(153, 170, 119)",
+          "rgb(153, 153, 119)",
+          "rgb(170, 170, 119)",
+          "rgb(153, 170, 119)",
+          "rgb(136, 136, 102)",
+          "rgb(85, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 204, 136), rgb(187, 204, 136), rgb(187, 187, 136), rgb(187, 187, 136), rgb(187, 204, 136), rgb(187, 187, 119), rgb(153, 170, 119), rgb(102, 136, 119))",
+        "colors": [
+          "rgb(187, 204, 136)",
+          "rgb(187, 204, 136)",
+          "rgb(187, 187, 136)",
+          "rgb(187, 187, 136)",
+          "rgb(187, 204, 136)",
+          "rgb(187, 187, 119)",
+          "rgb(153, 170, 119)",
+          "rgb(102, 136, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 204, 136), rgb(170, 187, 119), rgb(119, 153, 119))",
+        "colors": [
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 204, 136)",
+          "rgb(170, 187, 119)",
+          "rgb(119, 153, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 238, 136), rgb(204, 221, 136), rgb(204, 221, 119), rgb(204, 221, 136), rgb(204, 221, 136), rgb(204, 221, 136), rgb(170, 187, 119), rgb(119, 153, 102))",
+        "colors": [
+          "rgb(221, 238, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 119)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(204, 221, 136)",
+          "rgb(170, 187, 119)",
+          "rgb(119, 153, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 102, 85), rgb(119, 102, 85), rgb(119, 102, 85), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 102, 68), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 68)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 102, 85), rgb(119, 102, 85), rgb(119, 102, 85), rgb(119, 102, 85), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 102, 85), rgb(136, 119, 85), rgb(136, 119, 102), rgb(136, 119, 102), rgb(119, 102, 85), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(136, 102, 85)",
+          "rgb(136, 119, 85)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 119, 119), rgb(136, 119, 102), rgb(136, 102, 85), rgb(119, 85, 68), rgb(119, 85, 68), rgb(119, 102, 85))",
+        "colors": [
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 119, 102), rgb(136, 136, 119), rgb(153, 136, 119), rgb(136, 119, 119), rgb(136, 102, 85), rgb(119, 85, 68), rgb(119, 102, 85), rgb(136, 119, 102))",
+        "colors": [
+          "rgb(136, 119, 102)",
+          "rgb(136, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(136, 119, 119)",
+          "rgb(136, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)",
+          "rgb(136, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 119, 102), rgb(136, 136, 119), rgb(153, 136, 119), rgb(136, 119, 102), rgb(119, 102, 85), rgb(119, 85, 68), rgb(119, 102, 85), rgb(136, 136, 119))",
+        "colors": [
+          "rgb(136, 119, 102)",
+          "rgb(136, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)",
+          "rgb(136, 136, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 119, 102), rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 102, 85), rgb(119, 85, 68), rgb(119, 102, 85), rgb(136, 119, 102))",
+        "colors": [
+          "rgb(119, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)",
+          "rgb(136, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 102, 68), rgb(119, 102, 85), rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 102, 85), rgb(102, 68, 68), rgb(102, 85, 51), rgb(102, 102, 85))",
+        "colors": [
+          "rgb(102, 102, 68)",
+          "rgb(119, 102, 85)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 102, 85)",
+          "rgb(102, 68, 68)",
+          "rgb(102, 85, 51)",
+          "rgb(102, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 238), rgb(187, 221, 238), rgb(170, 204, 221), rgb(153, 187, 204), rgb(153, 170, 204), rgb(170, 170, 204), rgb(170, 187, 204), rgb(153, 187, 204))",
+        "colors": [
+          "rgb(204, 221, 238)",
+          "rgb(187, 221, 238)",
+          "rgb(170, 204, 221)",
+          "rgb(153, 187, 204)",
+          "rgb(153, 170, 204)",
+          "rgb(170, 170, 204)",
+          "rgb(170, 187, 204)",
+          "rgb(153, 187, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 221, 238), rgb(187, 204, 221), rgb(170, 187, 204), rgb(153, 170, 187), rgb(153, 170, 187), rgb(153, 170, 204), rgb(153, 170, 204), rgb(153, 170, 187))",
+        "colors": [
+          "rgb(187, 221, 238)",
+          "rgb(187, 204, 221)",
+          "rgb(170, 187, 204)",
+          "rgb(153, 170, 187)",
+          "rgb(153, 170, 187)",
+          "rgb(153, 170, 204)",
+          "rgb(153, 170, 204)",
+          "rgb(153, 170, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 187, 204), rgb(153, 170, 187), rgb(136, 153, 170), rgb(119, 136, 153), rgb(136, 153, 170), rgb(153, 170, 187), rgb(153, 170, 187), rgb(136, 153, 170))",
+        "colors": [
+          "rgb(170, 187, 204)",
+          "rgb(153, 170, 187)",
+          "rgb(136, 153, 170)",
+          "rgb(119, 136, 153)",
+          "rgb(136, 153, 170)",
+          "rgb(153, 170, 187)",
+          "rgb(153, 170, 187)",
+          "rgb(136, 153, 170)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 170, 187), rgb(136, 153, 170), rgb(102, 102, 119), rgb(85, 85, 102), rgb(102, 119, 119), rgb(136, 136, 153), rgb(136, 136, 153), rgb(119, 119, 136))",
+        "colors": [
+          "rgb(136, 170, 187)",
+          "rgb(136, 153, 170)",
+          "rgb(102, 102, 119)",
+          "rgb(85, 85, 102)",
+          "rgb(102, 119, 119)",
+          "rgb(136, 136, 153)",
+          "rgb(136, 136, 153)",
+          "rgb(119, 119, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 153, 170), rgb(119, 136, 153), rgb(85, 85, 85), rgb(51, 34, 34), rgb(85, 68, 85), rgb(119, 102, 119), rgb(119, 119, 119), rgb(102, 102, 85))",
+        "colors": [
+          "rgb(136, 153, 170)",
+          "rgb(119, 136, 153)",
+          "rgb(85, 85, 85)",
+          "rgb(51, 34, 34)",
+          "rgb(85, 68, 85)",
+          "rgb(119, 102, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 170, 170), rgb(136, 153, 153), rgb(85, 102, 102), rgb(68, 34, 34), rgb(85, 34, 51), rgb(119, 85, 85), rgb(119, 85, 85), rgb(85, 85, 68))",
+        "colors": [
+          "rgb(153, 170, 170)",
+          "rgb(136, 153, 153)",
+          "rgb(85, 102, 102)",
+          "rgb(68, 34, 34)",
+          "rgb(85, 34, 51)",
+          "rgb(119, 85, 85)",
+          "rgb(119, 85, 85)",
+          "rgb(85, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 170, 187), rgb(153, 170, 187), rgb(119, 119, 136), rgb(102, 85, 85), rgb(102, 51, 68), rgb(102, 68, 85), rgb(102, 85, 85), rgb(85, 85, 68))",
+        "colors": [
+          "rgb(153, 170, 187)",
+          "rgb(153, 170, 187)",
+          "rgb(119, 119, 136)",
+          "rgb(102, 85, 85)",
+          "rgb(102, 51, 68)",
+          "rgb(102, 68, 85)",
+          "rgb(102, 85, 85)",
+          "rgb(85, 85, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 187, 204), rgb(153, 170, 187), rgb(136, 153, 153), rgb(119, 102, 119), rgb(102, 85, 85), rgb(102, 85, 85), rgb(102, 85, 85), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(170, 187, 204)",
+          "rgb(153, 170, 187)",
+          "rgb(136, 153, 153)",
+          "rgb(119, 102, 119)",
+          "rgb(102, 85, 85)",
+          "rgb(102, 85, 85)",
+          "rgb(102, 85, 85)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(221, 221, 221), rgb(204, 204, 204), rgb(204, 204, 204), rgb(238, 238, 238), rgb(238, 238, 238), rgb(238, 238, 238))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(221, 221, 221)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(238, 238, 238)",
+          "rgb(238, 238, 238)",
+          "rgb(238, 238, 238)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(204, 204, 204), rgb(187, 187, 187), rgb(204, 204, 204), rgb(221, 221, 221), rgb(238, 238, 238), rgb(221, 221, 221))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 187)",
+          "rgb(204, 204, 204)",
+          "rgb(221, 221, 221)",
+          "rgb(238, 238, 238)",
+          "rgb(221, 221, 221)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 238, 238), rgb(221, 221, 221), rgb(170, 170, 170), rgb(153, 153, 153), rgb(170, 170, 170), rgb(204, 204, 204), rgb(221, 221, 221), rgb(204, 204, 204))",
+        "colors": [
+          "rgb(238, 238, 238)",
+          "rgb(221, 221, 221)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(170, 170, 170)",
+          "rgb(204, 204, 204)",
+          "rgb(221, 221, 221)",
+          "rgb(204, 204, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 238, 238), rgb(221, 221, 221), rgb(170, 170, 170), rgb(136, 136, 136), rgb(170, 170, 170), rgb(204, 204, 204), rgb(204, 204, 204), rgb(187, 187, 187))",
+        "colors": [
+          "rgb(238, 238, 238)",
+          "rgb(221, 221, 221)",
+          "rgb(170, 170, 170)",
+          "rgb(136, 136, 136)",
+          "rgb(170, 170, 170)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(187, 187, 187), rgb(170, 170, 170), rgb(187, 187, 187), rgb(204, 204, 204), rgb(204, 204, 204), rgb(204, 204, 204))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(187, 187, 187)",
+          "rgb(170, 170, 170)",
+          "rgb(187, 187, 187)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(221, 221, 221), rgb(187, 187, 187), rgb(204, 204, 204), rgb(221, 221, 221), rgb(221, 221, 221), rgb(204, 204, 204))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(221, 221, 221)",
+          "rgb(187, 187, 187)",
+          "rgb(204, 204, 204)",
+          "rgb(221, 221, 221)",
+          "rgb(221, 221, 221)",
+          "rgb(204, 204, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(221, 221, 221), rgb(187, 187, 187), rgb(187, 187, 187), rgb(204, 204, 204), rgb(221, 221, 221), rgb(204, 204, 204))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(221, 221, 221)",
+          "rgb(187, 187, 187)",
+          "rgb(187, 187, 187)",
+          "rgb(204, 204, 204)",
+          "rgb(221, 221, 221)",
+          "rgb(204, 204, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(187, 187, 187), rgb(153, 153, 153), rgb(170, 170, 170), rgb(204, 204, 204), rgb(204, 204, 204), rgb(204, 204, 204))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(187, 187, 187)",
+          "rgb(153, 153, 153)",
+          "rgb(170, 170, 170)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(187, 170, 153), rgb(204, 153, 136), rgb(204, 153, 119), rgb(204, 170, 136), rgb(187, 170, 153), rgb(170, 170, 153), rgb(136, 153, 153))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(187, 170, 153)",
+          "rgb(204, 153, 136)",
+          "rgb(204, 153, 119)",
+          "rgb(204, 170, 136)",
+          "rgb(187, 170, 153)",
+          "rgb(170, 170, 153)",
+          "rgb(136, 153, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 153), rgb(170, 153, 153), rgb(187, 153, 119), rgb(187, 136, 102), rgb(187, 153, 119), rgb(170, 153, 136), rgb(153, 153, 153), rgb(119, 136, 136))",
+        "colors": [
+          "rgb(170, 170, 153)",
+          "rgb(170, 153, 153)",
+          "rgb(187, 153, 119)",
+          "rgb(187, 136, 102)",
+          "rgb(187, 153, 119)",
+          "rgb(170, 153, 136)",
+          "rgb(153, 153, 153)",
+          "rgb(119, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 153), rgb(153, 136, 136), rgb(136, 119, 102), rgb(136, 102, 68), rgb(119, 102, 68), rgb(119, 102, 102), rgb(102, 119, 119), rgb(85, 119, 119))",
+        "colors": [
+          "rgb(153, 153, 153)",
+          "rgb(153, 136, 136)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 102, 68)",
+          "rgb(119, 102, 68)",
+          "rgb(119, 102, 102)",
+          "rgb(102, 119, 119)",
+          "rgb(85, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 136, 153), rgb(153, 136, 136), rgb(119, 119, 102), rgb(102, 85, 51), rgb(68, 51, 0), rgb(34, 51, 51), rgb(34, 68, 85), rgb(51, 102, 102))",
+        "colors": [
+          "rgb(153, 136, 153)",
+          "rgb(153, 136, 136)",
+          "rgb(119, 119, 102)",
+          "rgb(102, 85, 51)",
+          "rgb(68, 51, 0)",
+          "rgb(34, 51, 51)",
+          "rgb(34, 68, 85)",
+          "rgb(51, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 136, 153), rgb(153, 136, 153), rgb(153, 136, 119), rgb(136, 102, 85), rgb(102, 68, 34), rgb(34, 51, 51), rgb(17, 68, 85), rgb(68, 102, 102))",
+        "colors": [
+          "rgb(153, 136, 153)",
+          "rgb(153, 136, 153)",
+          "rgb(153, 136, 119)",
+          "rgb(136, 102, 85)",
+          "rgb(102, 68, 34)",
+          "rgb(34, 51, 51)",
+          "rgb(17, 68, 85)",
+          "rgb(68, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 170), rgb(170, 153, 170), rgb(187, 153, 136), rgb(187, 136, 102), rgb(153, 102, 85), rgb(102, 85, 85), rgb(85, 102, 102), rgb(102, 119, 119))",
+        "colors": [
+          "rgb(153, 153, 170)",
+          "rgb(170, 153, 170)",
+          "rgb(187, 153, 136)",
+          "rgb(187, 136, 102)",
+          "rgb(153, 102, 85)",
+          "rgb(102, 85, 85)",
+          "rgb(85, 102, 102)",
+          "rgb(102, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 170), rgb(170, 153, 153), rgb(170, 153, 153), rgb(187, 153, 119), rgb(170, 136, 119), rgb(153, 119, 119), rgb(136, 119, 136), rgb(119, 136, 136))",
+        "colors": [
+          "rgb(153, 153, 170)",
+          "rgb(170, 153, 153)",
+          "rgb(170, 153, 153)",
+          "rgb(187, 153, 119)",
+          "rgb(170, 136, 119)",
+          "rgb(153, 119, 119)",
+          "rgb(136, 119, 136)",
+          "rgb(119, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 153, 153), rgb(153, 153, 153), rgb(153, 153, 136), rgb(153, 136, 119), rgb(170, 136, 119), rgb(170, 136, 119), rgb(153, 136, 136), rgb(136, 153, 153))",
+        "colors": [
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 136)",
+          "rgb(153, 136, 119)",
+          "rgb(170, 136, 119)",
+          "rgb(170, 136, 119)",
+          "rgb(153, 136, 136)",
+          "rgb(136, 153, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 34, 0), rgb(85, 51, 17), rgb(102, 51, 34), rgb(102, 68, 51), rgb(102, 68, 51), rgb(102, 68, 51), rgb(85, 51, 34), rgb(68, 34, 17))",
+        "colors": [
+          "rgb(85, 34, 0)",
+          "rgb(85, 51, 17)",
+          "rgb(102, 51, 34)",
+          "rgb(102, 68, 51)",
+          "rgb(102, 68, 51)",
+          "rgb(102, 68, 51)",
+          "rgb(85, 51, 34)",
+          "rgb(68, 34, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 34, 0), rgb(85, 34, 17), rgb(85, 51, 34), rgb(102, 68, 51), rgb(102, 68, 51), rgb(85, 51, 51), rgb(85, 34, 17), rgb(68, 17, 0))",
+        "colors": [
+          "rgb(68, 34, 0)",
+          "rgb(85, 34, 17)",
+          "rgb(85, 51, 34)",
+          "rgb(102, 68, 51)",
+          "rgb(102, 68, 51)",
+          "rgb(85, 51, 51)",
+          "rgb(85, 34, 17)",
+          "rgb(68, 17, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 34, 17), rgb(68, 51, 17), rgb(85, 51, 34), rgb(85, 68, 51), rgb(85, 51, 51), rgb(85, 51, 34), rgb(68, 34, 0), rgb(68, 17, 0))",
+        "colors": [
+          "rgb(68, 34, 17)",
+          "rgb(68, 51, 17)",
+          "rgb(85, 51, 34)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 51, 51)",
+          "rgb(85, 51, 34)",
+          "rgb(68, 34, 0)",
+          "rgb(68, 17, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 68, 51), rgb(85, 85, 68), rgb(102, 85, 68), rgb(102, 85, 85), rgb(102, 85, 68), rgb(102, 68, 68), rgb(102, 68, 51), rgb(85, 51, 51))",
+        "colors": [
+          "rgb(85, 68, 51)",
+          "rgb(85, 85, 68)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 85, 85)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 68, 68)",
+          "rgb(102, 68, 51)",
+          "rgb(85, 51, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 102, 85), rgb(119, 102, 102), rgb(119, 119, 102), rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 102, 102), rgb(119, 102, 85), rgb(119, 85, 85))",
+        "colors": [
+          "rgb(119, 102, 85)",
+          "rgb(119, 102, 102)",
+          "rgb(119, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 102, 102)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 136, 119), rgb(153, 136, 119), rgb(153, 136, 119), rgb(153, 119, 119), rgb(136, 119, 102), rgb(119, 102, 102))",
+        "colors": [
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(153, 119, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 102, 85), rgb(136, 119, 102), rgb(136, 119, 102), rgb(136, 119, 119), rgb(136, 119, 102), rgb(136, 119, 102), rgb(119, 102, 85), rgb(119, 85, 85))",
+        "colors": [
+          "rgb(119, 102, 85)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 68, 51), rgb(102, 85, 51), rgb(119, 85, 68), rgb(119, 102, 85), rgb(119, 85, 68), rgb(102, 85, 51), rgb(85, 68, 34), rgb(68, 51, 17))",
+        "colors": [
+          "rgb(102, 68, 51)",
+          "rgb(102, 85, 51)",
+          "rgb(119, 85, 68)",
+          "rgb(119, 102, 85)",
+          "rgb(119, 85, 68)",
+          "rgb(102, 85, 51)",
+          "rgb(85, 68, 34)",
+          "rgb(68, 51, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(238, 238, 238), rgb(204, 204, 204), rgb(170, 170, 170), rgb(153, 153, 153), rgb(153, 153, 153), rgb(153, 153, 153))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(204, 204, 204)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(221, 221, 221), rgb(187, 187, 187), rgb(170, 170, 170), rgb(153, 153, 153), rgb(153, 153, 153), rgb(136, 136, 136))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(221, 221, 221)",
+          "rgb(187, 187, 187)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(136, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgb(204, 204, 204), rgb(170, 170, 170), rgb(153, 153, 153), rgb(153, 153, 153), rgb(153, 153, 153), rgb(119, 119, 119))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(204, 204, 204)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(119, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(187, 187, 187), rgb(136, 136, 136), rgb(119, 119, 119), rgb(136, 136, 136), rgb(136, 136, 136), rgb(102, 102, 102))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(187, 187, 187)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(136, 136, 136)",
+          "rgb(102, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(187, 187, 187), rgb(119, 119, 119), rgb(102, 102, 102), rgb(119, 119, 119), rgb(119, 119, 119), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(187, 187, 187)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(119, 119, 119)",
+          "rgb(119, 119, 119)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(204, 204, 204), rgb(136, 136, 136), rgb(119, 119, 119), rgb(136, 136, 136), rgb(119, 119, 119), rgb(102, 102, 102))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(204, 204, 204)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(204, 204, 204), rgb(170, 170, 170), rgb(153, 153, 153), rgb(153, 153, 153), rgb(153, 153, 153), rgb(119, 119, 119))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(204, 204, 204)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(153, 153, 153)",
+          "rgb(119, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(238, 238, 238), rgb(204, 204, 204), rgb(187, 187, 187), rgb(170, 170, 170), rgb(170, 170, 170), rgb(170, 170, 170), rgb(136, 136, 136))",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(238, 238, 238)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 187)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(136, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 153, 136), rgb(170, 153, 136), rgb(170, 136, 119), rgb(170, 153, 136), rgb(187, 153, 136), rgb(187, 170, 153), rgb(187, 170, 153), rgb(187, 170, 153))",
+        "colors": [
+          "rgb(170, 153, 136)",
+          "rgb(170, 153, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(170, 153, 136)",
+          "rgb(187, 153, 136)",
+          "rgb(187, 170, 153)",
+          "rgb(187, 170, 153)",
+          "rgb(187, 170, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 153, 136), rgb(170, 153, 136), rgb(170, 136, 119), rgb(170, 136, 119), rgb(170, 153, 136), rgb(170, 153, 136), rgb(187, 170, 153), rgb(187, 170, 153))",
+        "colors": [
+          "rgb(170, 153, 136)",
+          "rgb(170, 153, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(170, 136, 119)",
+          "rgb(170, 153, 136)",
+          "rgb(170, 153, 136)",
+          "rgb(187, 170, 153)",
+          "rgb(187, 170, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 153, 136), rgb(170, 136, 119), rgb(153, 136, 119), rgb(136, 119, 102), rgb(153, 136, 119), rgb(153, 153, 136), rgb(170, 153, 153), rgb(187, 170, 153))",
+        "colors": [
+          "rgb(170, 153, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(153, 136, 119)",
+          "rgb(153, 153, 136)",
+          "rgb(170, 153, 153)",
+          "rgb(187, 170, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 153, 136), rgb(170, 153, 136), rgb(153, 119, 119), rgb(136, 119, 102), rgb(136, 119, 102), rgb(153, 153, 136), rgb(187, 170, 153), rgb(187, 170, 170))",
+        "colors": [
+          "rgb(170, 153, 136)",
+          "rgb(170, 153, 136)",
+          "rgb(153, 119, 119)",
+          "rgb(136, 119, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(153, 153, 136)",
+          "rgb(187, 170, 153)",
+          "rgb(187, 170, 170)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 153, 153), rgb(187, 153, 136), rgb(153, 119, 119), rgb(153, 119, 102), rgb(153, 136, 119), rgb(187, 170, 153), rgb(204, 170, 170), rgb(204, 187, 170))",
+        "colors": [
+          "rgb(187, 153, 153)",
+          "rgb(187, 153, 136)",
+          "rgb(153, 119, 119)",
+          "rgb(153, 119, 102)",
+          "rgb(153, 136, 119)",
+          "rgb(187, 170, 153)",
+          "rgb(204, 170, 170)",
+          "rgb(204, 187, 170)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 170, 153), rgb(187, 153, 136), rgb(170, 136, 119), rgb(153, 119, 119), rgb(170, 153, 136), rgb(204, 170, 153), rgb(204, 187, 170), rgb(204, 187, 170))",
+        "colors": [
+          "rgb(204, 170, 153)",
+          "rgb(187, 153, 136)",
+          "rgb(170, 136, 119)",
+          "rgb(153, 119, 119)",
+          "rgb(170, 153, 136)",
+          "rgb(204, 170, 153)",
+          "rgb(204, 187, 170)",
+          "rgb(204, 187, 170)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 170, 153), rgb(170, 153, 136), rgb(153, 136, 119), rgb(153, 136, 119), rgb(170, 153, 136), rgb(187, 170, 153), rgb(204, 187, 170), rgb(187, 170, 153))",
+        "colors": [
+          "rgb(187, 170, 153)",
+          "rgb(170, 153, 136)",
+          "rgb(153, 136, 119)",
+          "rgb(153, 136, 119)",
+          "rgb(170, 153, 136)",
+          "rgb(187, 170, 153)",
+          "rgb(204, 187, 170)",
+          "rgb(187, 170, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 153, 136), rgb(153, 153, 136), rgb(136, 136, 119), rgb(136, 136, 119), rgb(153, 153, 136), rgb(170, 170, 153), rgb(170, 170, 153), rgb(170, 153, 136))",
+        "colors": [
+          "rgb(170, 153, 136)",
+          "rgb(153, 153, 136)",
+          "rgb(136, 136, 119)",
+          "rgb(136, 136, 119)",
+          "rgb(153, 153, 136)",
+          "rgb(170, 170, 153)",
+          "rgb(170, 170, 153)",
+          "rgb(170, 153, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(17, 17, 17), rgb(17, 17, 17), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(34, 34, 34), rgb(34, 34, 34), rgb(34, 34, 34), rgb(17, 17, 17), rgb(17, 17, 17), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17), rgb(17, 17, 17))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(34, 34, 34), rgb(34, 34, 34), rgb(34, 34, 34), rgb(17, 17, 17), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(85, 0, 17), rgb(102, 0, 34), rgb(85, 0, 34), rgb(85, 0, 34), rgb(85, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(85, 0, 17)",
+          "rgb(102, 0, 34)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(85, 0, 17), rgb(85, 0, 34), rgb(85, 0, 34), rgb(85, 0, 34), rgb(68, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 0, 34)",
+          "rgb(68, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(85, 0, 17), rgb(85, 0, 34), rgb(85, 17, 34), rgb(85, 0, 34), rgb(68, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 17, 34)",
+          "rgb(85, 0, 34)",
+          "rgb(68, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(85, 0, 17), rgb(102, 17, 34), rgb(85, 17, 51), rgb(85, 17, 34), rgb(85, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(85, 0, 17)",
+          "rgb(102, 17, 34)",
+          "rgb(85, 17, 51)",
+          "rgb(85, 17, 34)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(102, 0, 34), rgb(119, 17, 51), rgb(102, 17, 51), rgb(102, 17, 34), rgb(85, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(102, 0, 34)",
+          "rgb(119, 17, 51)",
+          "rgb(102, 17, 51)",
+          "rgb(102, 17, 34)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(102, 0, 34), rgb(119, 17, 51), rgb(119, 17, 51), rgb(102, 0, 34), rgb(85, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(102, 0, 34)",
+          "rgb(119, 17, 51)",
+          "rgb(119, 17, 51)",
+          "rgb(102, 0, 34)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(102, 0, 17), rgb(102, 0, 34), rgb(102, 0, 51), rgb(85, 0, 34), rgb(85, 0, 17), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(102, 0, 17)",
+          "rgb(102, 0, 34)",
+          "rgb(102, 0, 51)",
+          "rgb(85, 0, 34)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 0, 0), rgb(85, 0, 0), rgb(85, 0, 17), rgb(85, 0, 34), rgb(68, 0, 34), rgb(68, 0, 34), rgb(68, 0, 0), rgb(85, 0, 0))",
+        "colors": [
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)",
+          "rgb(85, 0, 17)",
+          "rgb(85, 0, 34)",
+          "rgb(68, 0, 34)",
+          "rgb(68, 0, 34)",
+          "rgb(68, 0, 0)",
+          "rgb(85, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 187), rgb(187, 187, 204), rgb(204, 204, 204), rgb(204, 204, 221), rgb(204, 204, 221), rgb(170, 170, 187), rgb(136, 136, 136), rgb(85, 85, 85))",
+        "colors": [
+          "rgb(187, 187, 187)",
+          "rgb(187, 187, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 221)",
+          "rgb(204, 204, 221)",
+          "rgb(170, 170, 187)",
+          "rgb(136, 136, 136)",
+          "rgb(85, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 187), rgb(204, 204, 204), rgb(204, 204, 204), rgb(204, 204, 221), rgb(204, 204, 221), rgb(187, 187, 187), rgb(153, 153, 153), rgb(102, 102, 102))",
+        "colors": [
+          "rgb(204, 204, 187)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 221)",
+          "rgb(204, 204, 221)",
+          "rgb(187, 187, 187)",
+          "rgb(153, 153, 153)",
+          "rgb(102, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 204), rgb(204, 204, 204), rgb(187, 204, 204), rgb(187, 187, 204), rgb(204, 204, 204), rgb(204, 204, 204), rgb(170, 170, 170), rgb(119, 136, 136))",
+        "colors": [
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 204, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(170, 170, 170)",
+          "rgb(119, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 204), rgb(204, 204, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(204, 204, 204), rgb(204, 204, 204), rgb(170, 187, 187), rgb(136, 136, 136))",
+        "colors": [
+          "rgb(204, 221, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(170, 187, 187)",
+          "rgb(136, 136, 136)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 204), rgb(204, 204, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(170, 170, 170), rgb(119, 119, 119))",
+        "colors": [
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(170, 170, 170)",
+          "rgb(119, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 187, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 170, 187), rgb(153, 136, 153), rgb(102, 85, 85))",
+        "colors": [
+          "rgb(204, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 170, 187)",
+          "rgb(153, 136, 153)",
+          "rgb(102, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 204), rgb(187, 187, 204), rgb(187, 170, 204), rgb(187, 170, 204), rgb(187, 170, 204), rgb(170, 170, 187), rgb(136, 136, 136), rgb(85, 68, 68))",
+        "colors": [
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 170, 204)",
+          "rgb(187, 170, 204)",
+          "rgb(187, 170, 204)",
+          "rgb(170, 170, 187)",
+          "rgb(136, 136, 136)",
+          "rgb(85, 68, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 204), rgb(187, 187, 204), rgb(170, 170, 187), rgb(170, 170, 187), rgb(187, 170, 187), rgb(187, 170, 187), rgb(153, 136, 153), rgb(102, 85, 85))",
+        "colors": [
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(170, 170, 187)",
+          "rgb(170, 170, 187)",
+          "rgb(187, 170, 187)",
+          "rgb(187, 170, 187)",
+          "rgb(153, 136, 153)",
+          "rgb(102, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 204), rgb(204, 204, 204), rgb(187, 187, 204), rgb(187, 187, 187), rgb(170, 187, 187), rgb(170, 170, 170), rgb(136, 153, 153), rgb(102, 119, 119))",
+        "colors": [
+          "rgb(204, 204, 204)",
+          "rgb(204, 204, 204)",
+          "rgb(187, 187, 204)",
+          "rgb(187, 187, 187)",
+          "rgb(170, 187, 187)",
+          "rgb(170, 170, 170)",
+          "rgb(136, 153, 153)",
+          "rgb(102, 119, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 204, 204), rgb(187, 187, 187), rgb(170, 170, 187), rgb(170, 170, 170), rgb(153, 170, 170), rgb(136, 153, 153), rgb(119, 136, 136), rgb(85, 102, 102))",
+        "colors": [
+          "rgb(187, 204, 204)",
+          "rgb(187, 187, 187)",
+          "rgb(170, 170, 187)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 170, 170)",
+          "rgb(136, 153, 153)",
+          "rgb(119, 136, 136)",
+          "rgb(85, 102, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 170), rgb(136, 136, 136), rgb(119, 119, 119), rgb(102, 102, 102), rgb(85, 102, 85), rgb(68, 102, 68), rgb(17, 68, 51))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(136, 136, 136)",
+          "rgb(119, 119, 119)",
+          "rgb(102, 102, 102)",
+          "rgb(85, 102, 85)",
+          "rgb(68, 102, 68)",
+          "rgb(17, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(170, 170, 170), rgb(170, 170, 153), rgb(119, 119, 119), rgb(68, 68, 68), rgb(34, 51, 0), rgb(34, 68, 17), rgb(34, 85, 51), rgb(17, 68, 51))",
+        "colors": [
+          "rgb(170, 170, 170)",
+          "rgb(170, 170, 153)",
+          "rgb(119, 119, 119)",
+          "rgb(68, 68, 68)",
+          "rgb(34, 51, 0)",
+          "rgb(34, 68, 17)",
+          "rgb(34, 85, 51)",
+          "rgb(17, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 187), rgb(187, 187, 170), rgb(153, 136, 136), rgb(102, 102, 85), rgb(85, 102, 68), rgb(85, 119, 85), rgb(102, 119, 102), rgb(85, 119, 102))",
+        "colors": [
+          "rgb(204, 204, 187)",
+          "rgb(187, 187, 170)",
+          "rgb(153, 136, 136)",
+          "rgb(102, 102, 85)",
+          "rgb(85, 102, 68)",
+          "rgb(85, 119, 85)",
+          "rgb(102, 119, 102)",
+          "rgb(85, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 221, 204), rgb(204, 204, 187), rgb(170, 170, 153), rgb(136, 136, 119), rgb(119, 136, 119), rgb(136, 153, 136), rgb(136, 153, 136), rgb(119, 136, 119))",
+        "colors": [
+          "rgb(221, 221, 204)",
+          "rgb(204, 204, 187)",
+          "rgb(170, 170, 153)",
+          "rgb(136, 136, 119)",
+          "rgb(119, 136, 119)",
+          "rgb(136, 153, 136)",
+          "rgb(136, 153, 136)",
+          "rgb(119, 136, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 221, 204), rgb(204, 204, 187), rgb(170, 170, 153), rgb(153, 136, 136), rgb(136, 136, 119), rgb(119, 153, 136), rgb(119, 136, 136), rgb(102, 136, 119))",
+        "colors": [
+          "rgb(221, 221, 204)",
+          "rgb(204, 204, 187)",
+          "rgb(170, 170, 153)",
+          "rgb(153, 136, 136)",
+          "rgb(136, 136, 119)",
+          "rgb(119, 153, 136)",
+          "rgb(119, 136, 136)",
+          "rgb(102, 136, 119)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(187, 187, 170), rgb(170, 170, 170), rgb(153, 153, 136), rgb(119, 136, 119), rgb(102, 119, 85), rgb(85, 102, 85), rgb(68, 102, 85), rgb(51, 85, 85))",
+        "colors": [
+          "rgb(187, 187, 170)",
+          "rgb(170, 170, 170)",
+          "rgb(153, 153, 136)",
+          "rgb(119, 136, 119)",
+          "rgb(102, 119, 85)",
+          "rgb(85, 102, 85)",
+          "rgb(68, 102, 85)",
+          "rgb(51, 85, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 17, 51), rgb(0, 17, 51), rgb(0, 17, 51), rgb(0, 0, 51), rgb(0, 0, 34))",
+        "colors": [
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 17, 51), rgb(0, 0, 51), rgb(0, 0, 34), rgb(0, 0, 34))",
+        "colors": [
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 34), rgb(0, 0, 34), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 34), rgb(0, 0, 34), rgb(0, 0, 17))",
+        "colors": [
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 34), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 51), rgb(0, 0, 34), rgb(0, 0, 34), rgb(0, 0, 17))",
+        "colors": [
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 51)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 34)",
+          "rgb(0, 0, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 17, 51), rgb(0, 17, 68), rgb(0, 17, 68), rgb(0, 17, 68), rgb(0, 34, 68), rgb(0, 17, 51), rgb(0, 17, 51), rgb(0, 0, 34))",
+        "colors": [
+          "rgb(0, 17, 51)",
+          "rgb(0, 17, 68)",
+          "rgb(0, 17, 68)",
+          "rgb(0, 17, 68)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 17, 51)",
+          "rgb(0, 0, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 34, 68), rgb(0, 34, 68), rgb(0, 34, 85), rgb(0, 34, 85), rgb(0, 34, 85), rgb(0, 34, 68), rgb(0, 34, 51), rgb(0, 17, 51))",
+        "colors": [
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 51)",
+          "rgb(0, 17, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 34, 68), rgb(0, 34, 68), rgb(0, 34, 85), rgb(0, 34, 85), rgb(0, 51, 85), rgb(0, 34, 68), rgb(0, 34, 51), rgb(0, 17, 51))",
+        "colors": [
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 51, 85)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 51)",
+          "rgb(0, 17, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 34, 68), rgb(0, 34, 68), rgb(0, 34, 85), rgb(0, 34, 85), rgb(0, 34, 68), rgb(0, 34, 68), rgb(0, 34, 51), rgb(0, 17, 34))",
+        "colors": [
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 85)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 68)",
+          "rgb(0, 34, 51)",
+          "rgb(0, 17, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(17, 17, 17), rgb(17, 17, 17), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51), rgb(34, 34, 34), rgb(17, 17, 17))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(34, 34, 34)",
+          "rgb(17, 17, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(51, 51, 51), rgb(68, 68, 68), rgb(68, 68, 68), rgb(68, 68, 68), rgb(51, 51, 51), rgb(17, 17, 17))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(51, 51, 51)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(68, 68, 68)",
+          "rgb(51, 51, 51)",
+          "rgb(17, 17, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51), rgb(17, 17, 17))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(17, 17, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(34, 34, 34), rgb(34, 34, 34), rgb(34, 34, 34), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(34, 34, 34)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(17, 17, 17), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(17, 17, 17)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(255, 255, 255) 12.5%, rgb(228, 233, 239) 12.5%, rgb(228, 233, 239) 25%, rgb(203, 213, 224) 25%, rgb(203, 213, 224) 37.5%, rgb(151, 161, 173) 37.5%, rgb(151, 161, 173) 50%, rgb(104, 114, 124) 50%, rgb(104, 114, 124) 62.5%, rgb(61, 71, 81) 62.5%, rgb(61, 71, 81) 75%, rgb(37, 45, 53) 75%, rgb(37, 45, 53) 87.5%, rgb(24, 30, 36) 87.5%)",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(228, 233, 239)",
+          "rgb(228, 233, 239)",
+          "rgb(203, 213, 224)",
+          "rgb(203, 213, 224)",
+          "rgb(151, 161, 173)",
+          "rgb(151, 161, 173)",
+          "rgb(104, 114, 124)",
+          "rgb(104, 114, 124)",
+          "rgb(61, 71, 81)",
+          "rgb(61, 71, 81)",
+          "rgb(37, 45, 53)",
+          "rgb(37, 45, 53)",
+          "rgb(24, 30, 36)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(238, 255, 85), rgb(238, 255, 68), rgb(221, 255, 68), rgb(204, 238, 51), rgb(187, 221, 51), rgb(187, 221, 51), rgb(170, 204, 51), rgb(170, 187, 34))",
+        "colors": [
+          "rgb(238, 255, 85)",
+          "rgb(238, 255, 68)",
+          "rgb(221, 255, 68)",
+          "rgb(204, 238, 51)",
+          "rgb(187, 221, 51)",
+          "rgb(187, 221, 51)",
+          "rgb(170, 204, 51)",
+          "rgb(170, 187, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 255, 68), rgb(221, 255, 68), rgb(221, 238, 68), rgb(204, 238, 68), rgb(204, 221, 51), rgb(187, 221, 51), rgb(170, 204, 51), rgb(153, 187, 51))",
+        "colors": [
+          "rgb(221, 255, 68)",
+          "rgb(221, 255, 68)",
+          "rgb(221, 238, 68)",
+          "rgb(204, 238, 68)",
+          "rgb(204, 221, 51)",
+          "rgb(187, 221, 51)",
+          "rgb(170, 204, 51)",
+          "rgb(153, 187, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 238, 68), rgb(204, 238, 68), rgb(204, 238, 85), rgb(204, 238, 85), rgb(204, 221, 85), rgb(187, 221, 68), rgb(170, 187, 68), rgb(153, 170, 51))",
+        "colors": [
+          "rgb(204, 238, 68)",
+          "rgb(204, 238, 68)",
+          "rgb(204, 238, 85)",
+          "rgb(204, 238, 85)",
+          "rgb(204, 221, 85)",
+          "rgb(187, 221, 68)",
+          "rgb(170, 187, 68)",
+          "rgb(153, 170, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 221, 102), rgb(204, 221, 102), rgb(204, 204, 102), rgb(187, 204, 102), rgb(187, 204, 102), rgb(187, 187, 102), rgb(153, 170, 85), rgb(136, 153, 85))",
+        "colors": [
+          "rgb(204, 221, 102)",
+          "rgb(204, 221, 102)",
+          "rgb(204, 204, 102)",
+          "rgb(187, 204, 102)",
+          "rgb(187, 204, 102)",
+          "rgb(187, 187, 102)",
+          "rgb(153, 170, 85)",
+          "rgb(136, 153, 85)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 204, 136), rgb(204, 204, 119), rgb(187, 187, 119), rgb(170, 170, 119), rgb(170, 170, 119), rgb(153, 153, 102), rgb(136, 136, 102), rgb(119, 119, 102))",
+        "colors": [
+          "rgb(221, 204, 136)",
+          "rgb(204, 204, 119)",
+          "rgb(187, 187, 119)",
+          "rgb(170, 170, 119)",
+          "rgb(170, 170, 119)",
+          "rgb(153, 153, 102)",
+          "rgb(136, 136, 102)",
+          "rgb(119, 119, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 221, 136), rgb(221, 204, 136), rgb(187, 170, 119), rgb(170, 153, 119), rgb(153, 136, 102), rgb(136, 119, 119), rgb(119, 102, 119), rgb(102, 85, 102))",
+        "colors": [
+          "rgb(221, 221, 136)",
+          "rgb(221, 204, 136)",
+          "rgb(187, 170, 119)",
+          "rgb(170, 153, 119)",
+          "rgb(153, 136, 102)",
+          "rgb(136, 119, 119)",
+          "rgb(119, 102, 119)",
+          "rgb(102, 85, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(221, 204, 119), rgb(204, 204, 119), rgb(187, 187, 102), rgb(170, 153, 102), rgb(153, 136, 102), rgb(136, 119, 102), rgb(119, 102, 102), rgb(102, 85, 102))",
+        "colors": [
+          "rgb(221, 204, 119)",
+          "rgb(204, 204, 119)",
+          "rgb(187, 187, 102)",
+          "rgb(170, 153, 102)",
+          "rgb(153, 136, 102)",
+          "rgb(136, 119, 102)",
+          "rgb(119, 102, 102)",
+          "rgb(102, 85, 102)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 187, 68), rgb(204, 187, 68), rgb(187, 187, 85), rgb(187, 187, 85), rgb(170, 170, 85), rgb(153, 153, 85), rgb(136, 136, 68), rgb(119, 102, 68))",
+        "colors": [
+          "rgb(204, 187, 68)",
+          "rgb(204, 187, 68)",
+          "rgb(187, 187, 85)",
+          "rgb(187, 187, 85)",
+          "rgb(170, 170, 85)",
+          "rgb(153, 153, 85)",
+          "rgb(136, 136, 68)",
+          "rgb(119, 102, 68)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 68, 34), rgb(85, 68, 34), rgb(68, 51, 34), rgb(68, 51, 17), rgb(68, 51, 34), rgb(85, 51, 34), rgb(85, 68, 34), rgb(85, 68, 34))",
+        "colors": [
+          "rgb(102, 68, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(68, 51, 17)",
+          "rgb(68, 51, 34)",
+          "rgb(85, 51, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 68, 34), rgb(85, 68, 34), rgb(68, 51, 34), rgb(68, 51, 34), rgb(68, 51, 34), rgb(85, 51, 34), rgb(85, 68, 34), rgb(85, 68, 34))",
+        "colors": [
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(85, 51, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 34)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 51, 34), rgb(85, 51, 34), rgb(68, 51, 34), rgb(51, 51, 51), rgb(68, 51, 51), rgb(85, 68, 34), rgb(85, 68, 34), rgb(85, 68, 51))",
+        "colors": [
+          "rgb(85, 51, 34)",
+          "rgb(85, 51, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(68, 51, 51)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 51, 34), rgb(68, 51, 34), rgb(51, 51, 51), rgb(51, 51, 51), rgb(51, 51, 51), rgb(68, 68, 34), rgb(85, 68, 34), rgb(85, 68, 51))",
+        "colors": [
+          "rgb(68, 51, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(51, 51, 51)",
+          "rgb(68, 68, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(68, 51, 34), rgb(68, 51, 34), rgb(51, 34, 34), rgb(34, 34, 51), rgb(51, 51, 34), rgb(68, 68, 34), rgb(85, 68, 34), rgb(85, 68, 51))",
+        "colors": [
+          "rgb(68, 51, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(51, 34, 34)",
+          "rgb(34, 34, 51)",
+          "rgb(51, 51, 34)",
+          "rgb(68, 68, 34)",
+          "rgb(85, 68, 34)",
+          "rgb(85, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(85, 68, 34), rgb(68, 51, 34), rgb(51, 51, 34), rgb(51, 51, 34), rgb(51, 51, 34), rgb(68, 68, 34), rgb(85, 68, 51), rgb(85, 68, 51))",
+        "colors": [
+          "rgb(85, 68, 34)",
+          "rgb(68, 51, 34)",
+          "rgb(51, 51, 34)",
+          "rgb(51, 51, 34)",
+          "rgb(51, 51, 34)",
+          "rgb(68, 68, 34)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 68, 51), rgb(85, 68, 51), rgb(68, 51, 51), rgb(68, 51, 51), rgb(68, 68, 51), rgb(85, 68, 51), rgb(85, 68, 51), rgb(85, 68, 51))",
+        "colors": [
+          "rgb(102, 68, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(68, 51, 51)",
+          "rgb(68, 51, 51)",
+          "rgb(68, 68, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(102, 85, 51), rgb(102, 85, 51), rgb(85, 68, 51), rgb(85, 68, 51), rgb(85, 68, 51), rgb(102, 85, 68), rgb(102, 85, 51), rgb(102, 68, 51))",
+        "colors": [
+          "rgb(102, 85, 51)",
+          "rgb(102, 85, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(85, 68, 51)",
+          "rgb(102, 85, 68)",
+          "rgb(102, 85, 51)",
+          "rgb(102, 68, 51)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 170, 238), rgb(255, 170, 238), rgb(255, 153, 221), rgb(255, 153, 204), rgb(255, 153, 221), rgb(255, 170, 221), rgb(255, 153, 221), rgb(255, 153, 187))",
+        "colors": [
+          "rgb(255, 170, 238)",
+          "rgb(255, 170, 238)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 170, 221)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 170, 238), rgb(255, 170, 238), rgb(255, 153, 221), rgb(255, 153, 204), rgb(255, 153, 221), rgb(255, 170, 221), rgb(255, 153, 221), rgb(238, 153, 187))",
+        "colors": [
+          "rgb(255, 170, 238)",
+          "rgb(255, 170, 238)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 170, 221)",
+          "rgb(255, 153, 221)",
+          "rgb(238, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 170, 238), rgb(255, 170, 238), rgb(255, 153, 221), rgb(255, 153, 204), rgb(255, 153, 221), rgb(255, 153, 221), rgb(255, 153, 204), rgb(238, 153, 187))",
+        "colors": [
+          "rgb(255, 170, 238)",
+          "rgb(255, 170, 238)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(238, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 170, 238), rgb(255, 170, 238), rgb(255, 170, 221), rgb(255, 153, 204), rgb(255, 153, 204), rgb(255, 153, 221), rgb(255, 153, 204), rgb(238, 153, 187))",
+        "colors": [
+          "rgb(255, 170, 238)",
+          "rgb(255, 170, 238)",
+          "rgb(255, 170, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(255, 153, 204)",
+          "rgb(255, 153, 221)",
+          "rgb(255, 153, 204)",
+          "rgb(238, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 187, 238), rgb(255, 187, 221), rgb(255, 170, 221), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(238, 153, 187))",
+        "colors": [
+          "rgb(255, 187, 238)",
+          "rgb(255, 187, 221)",
+          "rgb(255, 170, 221)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(238, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 187, 238), rgb(255, 187, 221), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(238, 153, 187))",
+        "colors": [
+          "rgb(255, 187, 238)",
+          "rgb(255, 187, 221)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(238, 153, 187)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 187, 221), rgb(255, 187, 221), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 153, 187), rgb(238, 153, 170))",
+        "colors": [
+          "rgb(255, 187, 221)",
+          "rgb(255, 187, 221)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 153, 187)",
+          "rgb(238, 153, 170)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 170, 221), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(255, 170, 204), rgb(238, 153, 187), rgb(238, 153, 170))",
+        "colors": [
+          "rgb(255, 170, 221)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(255, 170, 204)",
+          "rgb(238, 153, 187)",
+          "rgb(238, 153, 170)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABCRepro",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 1615,
+          "fontFeatureSettings": [
+            "\"lnum\""
+          ]
+        },
+        {
+          "family": "ABCReproMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"lnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body",
+            "icon",
+            "card"
+          ],
+          "frequency": 103,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "nav",
+            "hero",
+            "button",
+            "body",
+            "icon",
+            "link",
+            "list",
+            "image",
+            "badge",
+            "footer"
+          ],
+          "frequency": 929,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 88,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCReproMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "image",
+            "icon",
+            "link"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCRepro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "link",
+            "icon",
+            "heading"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body",
+            "card",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.58,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCRepro",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "ABCRepro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cba924a9-9096-4ace-af0f-5099355e952a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bc7458ae-5e90-4e00-9d15-a6e8ddf32ac3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vimeo design system\",\"item\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14#style-reference\",\"name\":\"Vimeo design system reference\",\"headline\":\"Vimeo design system | Refero Styles\",\"description\":\"Explore Vimeo's mixed Media design system: Cyan Signal #17d5ff, Cyan Depth #13b1d4 colors, ABCRepro, ABCReproMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14\",\"mainEntityOfPage\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vimeo\",\"url\":\"https://vimeo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/be6c7488-9cea-43db-bb28-2606f53ade14#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc7458ae-5e90-4e00-9d15-a6e8ddf32ac3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc7458ae-5e90-4e00-9d15-a6e8ddf32ac3.jpg\",\"caption\":\"Screenshot of Vimeo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc7458ae-5e90-4e00-9d15-a6e8ddf32ac3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vimeo design system\",\"Vimeo website design\",\"Vimeo colors\",\"Vimeo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Cyan Signal\",\"Cyan Depth\",\"Ink Black\",\"Carbon\",\"ABCRepro\",\"ABCReproMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vimeo design system\"},{\"@type\":\"Thing\",\"name\":\"Vimeo website design\"},{\"@type\":\"Thing\",\"name\":\"Vimeo colors\"},{\"@type\":\"Thing\",\"name\":\"Vimeo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:55:18.914Z\",\"dateModified\":\"2026-04-30T00:55:18.914Z\"}]}19:T432,Vimeo's visual language treats the page as a matte white gallery wall where one electric cyan accent acts as the only spotlight. The dominant canvas is near-white (#fafcfd) with a deep ink (#141a20) used sparingly for cinematic dark bands, and a single vivid #17d5ff cyan that appears exclusively on action elements — never on decoration, illustration, or background fills. Typography carries the brand's editorial weight: a custom neo-grotesque (ABCRepro) at 400/500/700 with aggressive negative tracking at display sizes (-0.05em at 72px), tight 1.20 leading on body, and 1.00 leading on oversized headlines that makes them feel architectural. The layout alternates between breathing light sections and dense dark platforms, creating a vertical rhythm that mirrors the site's own product (lightness for browsing, darkness for viewing). Components are flat, low-elevation, and slightly rounded — 8px on buttons and inputs, 16px on cards, 9999px on tags. Density is compact: 8px and 16px do the heavy lifting, with 24px marking section breaks rather than breathing room."
+}

@@ -1,0 +1,287 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Pure black — the structural anchor, used for hairlines, border strokes, and the deepest surface layer beneath imagery"
+    },
+    "graphite": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Graphite — Primary text and dominant UI foreground — body copy, headings, and the off-black tone that softens pure black for large runs of type"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary page canvas and white card surfaces."
+    },
+    "mist": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Mist — Subtle surface wash for cards and elevated panels — the gentlest step off Paper, used where a panel needs to register without shouting"
+    },
+    "ash": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Ash — Tertiary surface and muted background fills — visible only as quiet backing for inactive states or low-emphasis blocks"
+    },
+    "steel": {
+      "$value": "#7a7a7a",
+      "$type": "color",
+      "$description": "Steel — Secondary text and subtle UI borders — metadata, timestamps, supporting copy, the mid-gray that bridges Graphite and Ash"
+    },
+    "pewter": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Pewter — Tertiary text and the quietest dividers — labels, tag text, anywhere type needs to recede into the surface"
+    }
+  },
+  "font": {
+    "graphik-medium": {
+      "$value": "Graphik Medium",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all body, headings, and links. The custom Graphik brings humanist warmth that prevents the monochrome palette from feeling cold — paired with aggressive negative tracking (-0.05em at 60px) it compresses headlines into a single film-credit-like line. Weights stay at 400 and 500 only; no bold jumps, only tonal shifts between regular and medium."
+    },
+    "lcddot-tr": {
+      "$value": "LCDDot TR",
+      "$type": "fontFamily",
+      "$description": "Rare digital accent — a pixel/dot-matrix display face used for at most one or two elements per page (counters, timestamps, glitch labels). Its positive tracking (+0.025em to +0.04em) and rigid grid construction create a single moment of machine voice in an otherwise humanist system, like a digital readout appearing in a dark room."
+    },
+    "system-sans-serif": {
+      "$value": "system sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback micro-text — utility copy, browser-rendered labels, or fallback rendering when custom fonts fail to load"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "LCDDot TR Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "LCDDot TR Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Graphik Medium",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Hero photography field, deepest base layer"
+    },
+    "graphite": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 1: Off-black for dark sections, inverse text backgrounds"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Primary page canvas"
+    },
+    "mist": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 3: Card surfaces, elevated panels, subtle section washes"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://analogueagency.com",
+      "siteName": "Analogue",
+      "extractedAt": "2026-06-03T19:41:45.785Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1358 @@
+{
+  "source": "https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551",
+  "uuid": "643f90ba-dc30-428b-a145-26f02fe70551",
+  "name": "Sneak in Peace",
+  "northStar": "Editorial gallery behind frosted glass. A single muted fashion film bleeds edge-to-edge while every interactive surface — tabs, now-playing card, product tiles — hovers in a translucent white panel pinned to the right edge, as if pinned to a museum vitrine.",
+  "capturedAt": "2026-07-18T07:59:01.997Z",
+  "meta": {
+    "url": "https://www.sneakinpeace.com",
+    "siteName": "Sneak in Peace",
+    "extractedAt": "2026-06-03T18:50:49.270Z",
+    "durationMs": 23846,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 137,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 6px radius for every card, button, badge, and input — the 26px value is reserved exclusively for circular avatars",
+      "Apply NTNeuss for all UI text; switch to RecklessNeue-Book only for narrative headlines (Now Playing titles, editorial labels)",
+      "Set tracking to 0.036–0.122em on all NTNeuss text at sizes ≤12px; let tracking fall to normal at 14px and above",
+      "Use Charcoal (#3d3d3d) for default text, borders, and dividers; reserve Ink Black (#000000) for headings, icon strokes, and badge borders where maximum contrast is needed",
+      "Treat Signal Red (#ba2223) as a rationed accent — use it only for LIVE/broadcast status, never for primary CTAs or decoration",
+      "Layer UI as a floating translucent white panel with backdrop blur over full-bleed media — never build opaque page backgrounds that would hide the visual content",
+      "Apply the subtle 1px shadow (rgba(0,0,0,0.08) 1px 1px 6px -1px) to lift cards and the glass panel off the media — no other shadows are permitted"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors beyond Signal Red and Liberty Navy — the system is 99% monochrome by design",
+      "Don't use RecklessNeue for body copy, labels, or UI chrome — its role is strictly editorial/narrative",
+      "Don't use border-radius values other than 6px (or 26px for avatars) — 4px, 8px, 12px, or pill shapes break the system's compact label aesthetic",
+      "Don't place opaque full-width page backgrounds — the media backdrop must always be visible",
+      "Don't use multi-layer shadows, colored glows, or heavy elevation — the soft 1px shadow is the entire depth language",
+      "Don't use the Liberty Navy (#142161) for fills or backgrounds — it is an outlined-action stroke color only",
+      "Don't use sizes above 14px in NTNeuss or above 21px in RecklessNeue — the system caps at editorial-headline scale, never display or poster sizes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, high-contrast borders — the strongest voice in the system, used sparingly on headlines and glyphs",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Charcoal",
+        "role": "Default text, dividers, input and card borders — the workhorse gray carrying the entire UI structure",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9e9e9e",
+        "name": "Concrete",
+        "role": "Subdued body text and secondary borders — the whisper layer beneath Charcoal",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b5b5",
+        "name": "Ash",
+        "role": "Disabled or resting-state button fills — surfaces that should recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8d8d",
+        "name": "Smoke",
+        "role": "Active tab/segmented control background — the only gray used as a filled surface to indicate selected state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page and panel backgrounds, card surfaces, icon fills, image borders — the base canvas and the glass-panel fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0eeed",
+        "name": "Bone",
+        "role": "Warm off-white used for badge fills and subtle surface lifts — gives a paper-like warmth against the cool grays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#142161",
+        "name": "Liberty Navy",
+        "role": "Outlined-action border and link underline — the only chromatic stroke in the system, indicating navigation or interactive text",
+        "group": "brand"
+      },
+      {
+        "hex": "#ba2223",
+        "name": "Signal Red",
+        "role": "Red action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed media-first layout: the viewport is dominated by a continuous fashion video/photo, with a single translucent glass panel pinned to the right edge (~30–35% width) carrying all interactive content. The panel is vertically centered and tall, holding a compact stack: tab bar → schedule toggle → view counter → Now Playing card → artist bar → product list. No traditional page sections, no hero, no grid. The layout is a constant — scrolling happens inside the product list, never on the page itself. Navigation is minimal: a 3-segment tab bar and two mode toggles.",
+    "imagery": "The visual language IS the imagery — full-bleed fashion editorial video/photography fills the entire viewport behind the UI. Treatment: muted, desaturated, slightly cool-toned, high-fashion, shot in gallery or studio environments. The photography is the hero; the UI is a glass curtain pulled aside to let you interact with it. Density: maximum — the media occupies 100% of the canvas, with the glass panel covering roughly 30–35% of the right side. No product mockups, no illustrations, no abstract graphics. The only icons are utilitarian 1px-stroke glyphs (eye, arrow, external link) in monochrome.",
+    "similar": [
+      {
+        "why": "Full-bleed editorial video with a floating translucent side panel carrying metadata and navigation — same media-first, UI-second philosophy",
+        "business": "Nowness"
+      },
+      {
+        "why": "Monochrome streetwear/luxury interface with product tiles, single red accent, and ultra-compact tracked-out sans-serif labels",
+        "business": "Highsnobiety"
+      },
+      {
+        "why": "Sparse product cards with generous whitespace, editorial serif headlines, and a single brand-driven accent color",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Compact sneaker/streetwear marketplace with dense product lists, tight radii, and minimal color used as functional punctuation",
+        "business": "Grailed"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "6px",
+        "inputs": "6px",
+        "avatars": "26px",
+        "buttons": "6px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "",
+      "cardPadding": "16px",
+      "pageMaxWidth": "420px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Media Backdrop",
+        "level": 0,
+        "purpose": "Page base — the full-bleed fashion film visually overrides this, but the underlying canvas is pure white"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Glass Panel",
+        "level": 1,
+        "purpose": "Translucent white (~70% opacity) with backdrop blur — the floating right-side container that holds all interactive UI over the video"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Opaque white tiles (Now Playing, product cards) nested inside the glass panel — full-opacity variants"
+      },
+      {
+        "hex": "#f0eeed",
+        "name": "Bone Highlight",
+        "level": 3,
+        "purpose": "Warm off-white for tags, badges, and subtle selected-state fills inside cards"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.08) 1px 1px 6px -1px",
+        "element": "Glass Panel, Card, Link tile"
+      }
+    ],
+    "northStar": "Editorial gallery behind frosted glass. A single muted fashion film bleeds edge-to-edge while every interactive surface — tabs, now-playing card, product tiles — hovers in a translucent white panel pinned to the right edge, as if pinned to a museum vitrine.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 11,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Glass Panel",
+        "role": "Primary container for all interactive UI, pinned to the right edge of the viewport",
+        "description": "Semi-transparent white (~70% opacity) surface with backdrop blur. 6px radius corners, 1px subtle shadow rgba(0,0,0,0.08) 1px 1px 6px -1px. Vertically fills the viewport and contains tabs, schedule, now-playing card, and product list."
+      },
+      {
+        "name": "Segmented Tab Bar",
+        "role": "Top-level navigation between Sneak / Shop / Wishlist",
+        "description": "Three pill segments on a single row, each 6px radius. Active segment filled with Smoke (#8d8d8d) background, white text. Inactive segments transparent with Charcoal (#3d3d3d) text. Text in NTNeuss 12px weight 500 with ~0.5px tracking. 2px vertical padding."
+      },
+      {
+        "name": "LIVE Badge",
+        "role": "Broadcast-status indicator",
+        "description": "Filled Signal Red (#ba2223) rectangle, 6px radius, 5px vertical / 7px horizontal padding. White text in NTNeuss 9px weight 500, uppercase, ~0.5px tracking. The single place vivid red appears in the system."
+      },
+      {
+        "name": "Schedule Toggle",
+        "role": "View-mode switch (Live vs Scheduled)",
+        "description": "Two compact pill segments — 'LIVE' (red filled when active) and 'SCHEDULE' (outlined Charcoal border when active). NTNeuss 9–10px uppercase text. Sits directly below the tab bar."
+      },
+      {
+        "name": "View Counter",
+        "role": "Passive social proof indicator",
+        "description": "Charcoal (#3d3d3d) text with eye icon, NTNeuss 9–10px, followed by a 3-digit count. No background — lives inline within the glass panel header."
+      },
+      {
+        "name": "Now Playing Card",
+        "role": "Featured editorial content (current broadcast presentation)",
+        "description": "Opaque white tile nested in the glass panel. 'NOW PLAYING' label in NTNeuss 10px uppercase with wide tracking (~0.6px). Serif title in RecklessNeue-Book 21px, Ink Black (#000000). Body description in NTNeuss 12px weight 400, Charcoal (#3d3d3d). 16px interior padding. 6px radius."
+      },
+      {
+        "name": "Artist / Brand Bar",
+        "role": "Source attribution below the now-playing card",
+        "description": "Single horizontal row with a 26px circular avatar, brand name in NTNeuss 12px weight 500, URL in lighter gray NTNeuss 11px, and an outbound arrow icon on the right. No background — uses the glass panel's translucency."
+      },
+      {
+        "name": "Product Card",
+        "role": "Shoppable sneaker tile linked to the current broadcast",
+        "description": "Horizontal layout: ~64px square sneaker thumbnail on the left with a 1px white border, product name and SKU in NTNeuss 12px on the right, small 'SHOP' tag in top-right corner. Charcoal (#3d3d3d) 1px border, 6px radius, 16px padding. Stacked vertically in a scrollable list."
+      },
+      {
+        "name": "Outlined Link Button",
+        "role": "Text-link with chromatic border indicator (e.g. external artist URL)",
+        "description": "No fill. Liberty Navy (#142161) 1px bottom or full border, Charcoal (#3d3d3d) text, NTNeuss 12px. Used for any link that leads off-platform or to a named brand."
+      },
+      {
+        "name": "Ghost Icon Button",
+        "role": "Compact utility action (open link, share, close)",
+        "description": "No background, 1px Charcoal border at 6px radius, ~24px square. Icon stroke at 1px in Ink Black. 2–4px internal padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse grotesque for all UI: body copy, labels, tab text, button text, badges, product metadata, timestamps, counts. Tracks wide (0.036–0.122em) — especially at 8–11px — giving micro-text a monospace-like label feel. Weight 500 is reserved for emphasized labels and tab active states; weight 400 carries everything else.",
+        "sizes": "8, 9, 10, 11, 12, 13, 14px",
+        "family": "NTNeuss",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.50, 2.10",
+        "substitute": "Inter, Söhne, or Untitled Sans",
+        "letterSpacing": "0.036em (0.36px) at 10px, 0.038em (0.456px) at 12px, 0.060em (0.72px) at 12px, 0.122em (0.976px) at 8px"
+      },
+      {
+        "role": "The editorial serif — used only for narrative titles (e.g. the 'NOW PLAYING' presentation headline). Its normal letter-spacing and serif detail cut through the utilitarian grotesque to signal editorial content. This is the ONLY moment the system speaks in anything other than UI voice.",
+        "sizes": "16px, 21px",
+        "family": "RecklessNeue-Book",
+        "weight": "400",
+        "lineHeight": "1.40, 1.50",
+        "substitute": "Reckless (Pangram Pangram), GT Sectra, or Lyon Display"
+      }
+    ],
+    "description": "Sneak in Peace operates as a floating editorial vitrine: a full-bleed fashion film runs behind a translucent white panel that carries every interactive surface. The system is aggressively monochrome — 99% of pixels live in a narrow band between white, warm off-white, and two workhorse grays (#3d3d3d and #000000). Color is rationed like ink: one vivid red reserved exclusively for live-status punctuation, one deep navy (#142161) that surfaces only as a link border, and nothing else. Typography splits sharply between a utilitarian grotesque (NTNeuss) at 8–14px with generous tracking — creating a label/UI vocabulary — and a single editorial serif (RecklessNeue) used at 16–21px for narrative titles. Components are compact, 6px-cornered, almost flat, and float over the media rather than block it. The dominant gesture is restraint: the camera does the talking, the UI whispers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sneak in Peace design system\",\"item\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#style-reference\",\"name\":\"Sneak in Peace design system reference\",\"headline\":\"Sneak in Peace design system | Refero Styles\",\"description\":\"Explore Sneak in Peace's light E-commerce design system: Ink Black #000000, Charcoal #3d3d3d colors, NTNeuss, RecklessNeue-Book typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\",\"mainEntityOfPage\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sneak in Peace\",\"url\":\"https://www.sneakinpeace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"caption\":\"Screenshot of Sneak in Peace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sneak in Peace design system\",\"Sneak in Peace website design\",\"Sneak in Peace colors\",\"Sneak in Peace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Charcoal\",\"Concrete\",\"Ash\",\"NTNeuss\",\"RecklessNeue-Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sneak in Peace design system\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace website design\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace colors\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:07:23.914Z\",\"dateModified\":\"2026-04-30T03:07:23.914Z\"}]}19:T743,Quick Color Reference:\n- text: #3d3d3d (Charcoal)\n- heading/icon: #000000 (Ink Black)\n- background/surface: #ffffff (Paper White)\n- subtle surface: #f0eeed (Bone)\n- border: #3d3d3d (Charcoal)\n- accent/status: #ba2223 (Signal Red)\n- outlined link border: #142161 (Liberty Navy)\n- primary action: #ba2223 (filled action)\n\nExample Component Prompts:\n1. Build a Now Playing Card: white opaque surface, 6px radius, 16px padding, subtle 1px shadow rgba(0,0,0,0.08) 1px 1px 6px -1px. Eyebrow label 'NOW PLAYING' in NTNeuss 10px weight 500, uppercase, letter-spacing 0.6px, #3d3d3d. Serif headline in RecklessNeue-Book 21px, line-height 1.5, #000000, normal tracking. Body description in NTNeuss 12px weight 400, line-height 1.5, letter-spacing 0.456px, #3d3d3d.\n2. Build a LIVE Badge: filled Signal Red (#ba2223) background, 6px radius, 5px vertical and 7px horizontal padding. White text in NTNeuss 9px weight 500, uppercase, letter-spacing 0.5px.\n3. Build a Product Card: horizontal layout, 1px Charcoal (#3d3d3d) border, 6px radius, 16px padding, white fill. Left: 64px square sneaker thumbnail with 1px white border. Right: product name in NTNeuss 12px weight 500 and SKU in NTNeuss 11px weight 400, both #3d3d3d. Top-right corner: small 'SHOP' tag in NTNeuss 9px uppercase on Bone (#f0eeed) fill, 6px radius.\n4. Build a Glass Panel: translucent white (~70% opacity) with backdrop blur, 6px radius, subtle 1px shadow. Pinned to the right edge, full viewport height. Contains tab bar, mode toggle, view counter, Now Playing card, artist bar, and scrollable product list stacked vertically with 12–16px gaps.\n5. Build a Segmented Tab Bar: three pill segments on one row, 6px radius. Active segment: Smoke (#8d8d8d) fill, white NTNeuss 12px weight 500 text. Inactive: transparent, Charcoal (#3d3d3d) NTNeuss 12px weight 500 text. 2px vertical padding per segment."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is nearly invisible — a single soft 1px shadow at 8% opacity creates just enough separation to lift cards off the media backdrop without breaking the flat editorial feel. No multi-layer shadows, no colored glows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "input",
+            "badge",
+            "list",
+            "card"
+          ],
+          "frequency": 405,
+          "confidence": 1,
+          "prominence": 12477537.804583872,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "icon/color": 6,
+            "link/color": 18,
+            "list/color": 11,
+            "badge/color": 1,
+            "input/color": 1,
+            "other/color": 43,
+            "card/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 72,
+            "list/borderColor": 44,
+            "badge/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 172
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "card",
+            "other",
+            "heading",
+            "badge"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 8734786.270640193,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 1,
+            "icon/color": 2,
+            "link/color": 1,
+            "badge/color": 5,
+            "other/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "card/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "badge/borderColor": 20,
+            "other/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "input",
+            "button",
+            "link",
+            "card",
+            "icon",
+            "image"
+          ],
+          "frequency": 178,
+          "confidence": 1,
+          "prominence": 855901.5589983813,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 3,
+            "link/color": 4,
+            "image/color": 4,
+            "other/color": 19,
+            "button/color": 3,
+            "body/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 16,
+            "image/borderColor": 16,
+            "other/borderColor": 72,
+            "button/borderColor": 12,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#8d8d8d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6442391577095632
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 101421.81918467997,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f0eeed",
+          "oklch": {
+            "c": 0.002544009575037079,
+            "h": 48.71781832807645,
+            "l": 0.9503788134427772
+          },
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 44481.32755439899,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "badge/backgroundColor": 4,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#696969",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5222062771265157
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17472,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#142161",
+          "oklch": {
+            "c": 0.114205595133472,
+            "h": 268.89608086476323,
+            "l": 0.2835972752573144
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 12548.85087687892,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "other/color": 1,
+            "link/borderColor": 12,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6992607330816131
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 8888.085683234374,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#828282",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6067877304440533
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2713,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2653.384051494807,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#b5b5b5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.773992188117781
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1756,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ba2223",
+          "oklch": {
+            "c": 0.1870852904146505,
+            "h": 26.737953927551793,
+            "l": 0.5117506203496226
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1196,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#acacac",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7444284092069813
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1123.8131979254833,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d41515",
+          "oklch": {
+            "c": 0.2176862310347731,
+            "h": 28.357531765637948,
+            "l": 0.5526917708219725
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 265,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.010346886944898109,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.16,
+          "background": "#f0eeed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.79,
+          "background": "#ffffff",
+          "foreground": "#142161"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.79,
+          "background": "#f0eeed",
+          "foreground": "#142161"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.24,
+          "background": "#b5b5b5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.39,
+          "background": "#f0eeed",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.25,
+          "background": "#acacac",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.84,
+          "background": "#000000",
+          "foreground": "#9e9e9e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.21,
+          "background": "#b5b5b5",
+          "foreground": "#142161"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.52,
+          "background": "#acacac",
+          "foreground": "#142161"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.33,
+          "background": "#8d8d8d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#ba2223",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#696969",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#828282",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#d41515",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.3,
+          "background": "#b5b5b5",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.79,
+          "background": "#acacac",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#000000",
+          "foreground": "#767676"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#ffffff",
+          "foreground": "#767676"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "badge",
+            "other",
+            "input",
+            "card"
+          ],
+          "frequency": 34
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.08) 1px 1px 6px -1px",
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 7
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "marginLeft",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "marginLeft|body",
+            "marginRight|button",
+            "marginRight|icon",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "badge",
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|badge",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|other",
+            "paddingBottom|card",
+            "marginBottom|card",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginBottom|heading",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginRight|input",
+            "marginBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NTNeuss",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 132,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "RecklessNeue-Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.122,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "NTNeuss",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 10,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.036,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 2.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NTNeuss",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NTNeuss",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "badge",
+            "card",
+            "image"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NTNeuss",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NTNeuss",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RecklessNeue-Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "RecklessNeue-Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9797493f-2b66-4943-9051-50a841b92ed7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sneak in Peace design system\",\"item\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#style-reference\",\"name\":\"Sneak in Peace design system reference\",\"headline\":\"Sneak in Peace design system | Refero Styles\",\"description\":\"Explore Sneak in Peace's light E-commerce design system: Ink Black #000000, Charcoal #3d3d3d colors, NTNeuss, RecklessNeue-Book typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\",\"mainEntityOfPage\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sneak in Peace\",\"url\":\"https://www.sneakinpeace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/643f90ba-dc30-428b-a145-26f02fe70551#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"caption\":\"Screenshot of Sneak in Peace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2e419e94-3ba1-4325-85b4-5d041b5be5af.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sneak in Peace design system\",\"Sneak in Peace website design\",\"Sneak in Peace colors\",\"Sneak in Peace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Charcoal\",\"Concrete\",\"Ash\",\"NTNeuss\",\"RecklessNeue-Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sneak in Peace design system\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace website design\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace colors\"},{\"@type\":\"Thing\",\"name\":\"Sneak in Peace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:07:23.914Z\",\"dateModified\":\"2026-04-30T03:07:23.914Z\"}]}19:T743,Quick Color Reference:\n- text: #3d3d3d (Charcoal)\n- heading/icon: #000000 (Ink Black)\n- background/surface: #ffffff (Paper White)\n- subtle surface: #f0eeed (Bone)\n- border: #3d3d3d (Charcoal)\n- accent/status: #ba2223 (Signal Red)\n- outlined link border: #142161 (Liberty Navy)\n- primary action: #ba2223 (filled action)\n\nExample Component Prompts:\n1. Build a Now Playing Card: white opaque surface, 6px radius, 16px padding, subtle 1px shadow rgba(0,0,0,0.08) 1px 1px 6px -1px. Eyebrow label 'NOW PLAYING' in NTNeuss 10px weight 500, uppercase, letter-spacing 0.6px, #3d3d3d. Serif headline in RecklessNeue-Book 21px, line-height 1.5, #000000, normal tracking. Body description in NTNeuss 12px weight 400, line-height 1.5, letter-spacing 0.456px, #3d3d3d.\n2. Build a LIVE Badge: filled Signal Red (#ba2223) background, 6px radius, 5px vertical and 7px horizontal padding. White text in NTNeuss 9px weight 500, uppercase, letter-spacing 0.5px.\n3. Build a Product Card: horizontal layout, 1px Charcoal (#3d3d3d) border, 6px radius, 16px padding, white fill. Left: 64px square sneaker thumbnail with 1px white border. Right: product name in NTNeuss 12px weight 500 and SKU in NTNeuss 11px weight 400, both #3d3d3d. Top-right corner: small 'SHOP' tag in NTNeuss 9px uppercase on Bone (#f0eeed) fill, 6px radius.\n4. Build a Glass Panel: translucent white (~70% opacity) with backdrop blur, 6px radius, subtle 1px shadow. Pinned to the right edge, full viewport height. Contains tab bar, mode toggle, view counter, Now Playing card, artist bar, and scrollable product list stacked vertically with 12–16px gaps.\n5. Build a Segmented Tab Bar: three pill segments on one row, 6px radius. Active segment: Smoke (#8d8d8d) fill, white NTNeuss 12px weight 500 text. Inactive: transparent, Charcoal (#3d3d3d) NTNeuss 12px weight 500 text. 2px vertical padding per segment."
+}

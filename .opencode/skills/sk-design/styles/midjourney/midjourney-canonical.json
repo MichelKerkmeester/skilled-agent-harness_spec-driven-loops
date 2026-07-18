@@ -1,0 +1,1196 @@
+{
+  "source": "https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938",
+  "uuid": "225059ac-0450-49d3-b2b7-d0e98b7ae938",
+  "name": "Midjourney",
+  "northStar": "Deep-ocean bioluminescent terminal. A pressurized darkness where intelligence visibly generates itself in ASCII streams, and controls appear as faintly glowing specimens.",
+  "capturedAt": "2026-07-18T08:32:44.051Z",
+  "meta": {
+    "url": "https://midjourney.com",
+    "siteName": "Midjourney",
+    "extractedAt": "2026-04-11T18:05:53.023Z",
+    "durationMs": 130539,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 116,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use JetBrains Mono as the primary typeface for all UI elements — navigation, headings, buttons, body copy — treating monospace as the visual identity, not a code-context exception.",
+      "Apply the three-color pill button system (green/amber/red tints at ~20% opacity) only for the Sign Up / Explore / Log In triad — do not extend the specimen-color scheme to other button types.",
+      "Set all page backgrounds to #06051d or the gradient variant linear-gradient(0deg, #06051d 30%, #061434) — never use pure #000000, which would flatten the violet cosmic depth.",
+      "Use 9999px border-radius for all pill buttons and 8px for all card/image containers — no intermediate values; the contrast between fully rounded and gently rounded is the shape system.",
+      "Render section headings at 30px JetBrains Mono weight 400 with a small amber #f0b100 icon prefix — never increase to bold weights, the whisper-weight at large sizes is the signature.",
+      "Use #63b3ed Portal Blue exclusively for inline hyperlinks and flat navigation text links — it is the only fully visible chromatic color in body content.",
+      "Maintain 64px vertical gap between page sections to preserve the spacious, pressurized-void atmosphere between content blocks."
+    ],
+    "tags": [
+      "dark",
+      "terminal",
+      "monospace",
+      "generative",
+      "cosmic",
+      "minimal-nav",
+      "translucent-glass",
+      "ai-research",
+      "specimen-palette",
+      "void"
+    ],
+    "donts": [
+      "Do not use any sans-serif or serif font as a heading font — DM Sans is for body prose only; JetBrains Mono must dominate the typographic hierarchy.",
+      "Do not create solid-fill opaque buttons — the translucent 20% opacity tinted backgrounds on pills are the system; solid fills break the bioluminescent specimen aesthetic.",
+      "Do not introduce light backgrounds (#ffffff, light grays) into page sections — the design has no light mode; all surfaces must remain within the #06051d to #314062 dark range.",
+      "Do not use more than three accent tint colors for buttons — the red/green/amber specimen triad is a closed system; adding new button colors dilutes the precision.",
+      "Do not bold section headings or use font-weight above 500 anywhere in the UI — weight 400 at display sizes is the deliberate anti-convention choice that defines the visual voice.",
+      "Do not add decorative imagery or photography — the only permitted visuals are AI-generated monochromatic renders and the ASCII/generative text hero.",
+      "Do not apply colored backgrounds to body text sections — prose content must sit directly on #06051d Cosmic Void with #cad5e2 Mist text, no content cards with contrasting backgrounds."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#06051d",
+        "name": "Cosmic Void",
+        "role": "Primary page background and hero fill — the violet undertone separates it from neutral black, making darkness feel galactic rather than empty",
+        "group": "brand",
+        "gradient": "linear-gradient(0deg, rgb(6, 5, 29) 30%, rgb(6, 20, 52))"
+      },
+      {
+        "hex": "#0f1c36",
+        "name": "Abyssal Blue",
+        "role": "Secondary surface backgrounds, button background variant — a step lighter than Cosmic Void for subtle depth layering",
+        "group": "brand"
+      },
+      {
+        "hex": "#1d293d",
+        "name": "Steel Navy",
+        "role": "Card surfaces, nav background, interactive container backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#314062",
+        "name": "Deep Slate",
+        "role": "Elevated card or hover state backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cad5e2",
+        "name": "Mist",
+        "role": "Primary body text, general UI text — slightly blue-gray rather than pure white, reducing harshness against the dark void backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Fog",
+        "role": "Borders, dividers, icon strokes throughout the UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e3038",
+        "name": "Ash",
+        "role": "Secondary text, subdued labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Ghost White",
+        "role": "Heading text at maximum contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebf8ff",
+        "name": "Ice Blue",
+        "role": "High-brightness text on dark surfaces, link contrast text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#63b3ed",
+        "name": "Portal Blue",
+        "role": "Hyperlinks, inline text links — the single fully saturated accent visible in body content, connecting to Midjourney's Discord/community ecosystem",
+        "group": "accent"
+      },
+      {
+        "hex": "#004f3b",
+        "name": "Bioluminescent Green",
+        "role": "Sign Up pill button background (20% opacity tint) — deep green specimen glow against void",
+        "group": "accent"
+      },
+      {
+        "hex": "#733e0a",
+        "name": "Terminal Amber",
+        "role": "Explore pill button background (20% opacity tint) — amber specimen variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#8b0836",
+        "name": "Crimson Depth",
+        "role": "Log In pill button background (20% opacity tint) — deep red specimen variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#00bc7d",
+        "name": "Specimen Green",
+        "role": "Icon strokes and decorative SVG fills — vivid but used sparingly in iconography only",
+        "group": "semantic"
+      },
+      {
+        "hex": "#f0b100",
+        "name": "Warning Amber",
+        "role": "Icon and UI accent strokes — section heading icons (Projects ⚙, About ℹ)",
+        "group": "semantic"
+      },
+      {
+        "hex": "#ff2056",
+        "name": "Fault Red",
+        "role": "Icon strokes, error-adjacent SVG fills",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Narrow centered column layout with a max-width of approximately 800px — deliberately constrained for a research lab publishing cadence rather than a marketing site. The hero is full-viewport dark with centered ASCII text animation and overlaid logo, creating an immersive first screen before content begins. Below the hero, content flows as a single column of prose sections separated by 64px vertical gaps. Section headings use a left-aligned icon + label pattern. The Projects section breaks into a 4-column image grid with 8px gaps. Navigation is a full-width sticky bar at the top with left-aligned text links and right-aligned pill button cluster — no hamburger menu, no mega-menu, no sidebar. The layout is deliberately text-document-like: a long scrolling page of research notes with visual inserts, not a feature-driven marketing layout.",
+    "imagery": "All imagery on this site is AI-generated — square-format monochromatic renders in blue-violet tones depicting anatomical and symbolic subjects: an eye with radiating iris lines, a stylized brain, a heart, a human hand, a profile of a head, lips, an arched passage, and a needle. Each image is contained in an 8px-radius tile with no text overlay. The color treatment is consistent: desaturated blue-violet with slight 3D relief texturing, making them feel like scientific specimens under ultraviolet light. No photography, no lifestyle imagery, no illustrations in the traditional sense. The hero visual is a generative ASCII sphere — thousands of characters forming a 3D ellipsoid — which is the primary 'image' of the page. Icon usage is minimal: small colored glyphs (gear, info circle) in amber preceding section headings. The visual content IS the product demonstration, not a metaphor for it.",
+    "similar": [
+      {
+        "why": "Dark-navy page background with monospace type and minimal navigation — similar restraint in using bold weights and color",
+        "business": "OpenAI"
+      },
+      {
+        "why": "Research-lab aesthetic with long-form prose sections on dark backgrounds and minimal decorative chrome",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Full-dark theme with translucent button styles and monospace typography as primary UI voice",
+        "business": "Perplexity AI"
+      },
+      {
+        "why": "AI-generated imagery used as the primary visual language, dark backgrounds, square image grid layouts",
+        "business": "Stability AI"
+      },
+      {
+        "why": "Monospace-first design system treating the entire interface as a terminal environment, not just code blocks",
+        "business": "Replicate"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "800px"
+    },
+    "category": "ai",
+    "surfaces": [
+      {
+        "hex": "#06051d",
+        "name": "Cosmic Void",
+        "level": 0,
+        "purpose": "Base page background — the deepest layer, the void all other surfaces float within"
+      },
+      {
+        "hex": "#061434",
+        "name": "Deep Navy Gradient",
+        "level": 1,
+        "purpose": "Upper-hero gradient terminus, slightly lighter for atmospheric depth illusion"
+      },
+      {
+        "hex": "#0f1c36",
+        "name": "Abyssal Blue",
+        "level": 2,
+        "purpose": "Button container backgrounds, secondary surface areas"
+      },
+      {
+        "hex": "#1d293d",
+        "name": "Steel Navy",
+        "level": 3,
+        "purpose": "Navigation bar background, card container backgrounds"
+      },
+      {
+        "hex": "#314062",
+        "name": "Deep Slate",
+        "level": 4,
+        "purpose": "Elevated or hover-state surfaces"
+      }
+    ],
+    "northStar": "Deep-ocean bioluminescent terminal. A pressurized darkness where intelligence visibly generates itself in ASCII streams, and controls appear as faintly glowing specimens.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.63
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.25
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Pill Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Section Heading with Body — About",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Projects Section with Image Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Sign Up Pill Button",
+        "role": "Primary registration CTA in navigation",
+        "description": "9999px border-radius pill. Background: oklch green tint at 20% opacity (#004f3b equivalent). Text: #00bc7d bright green (oklch 0.979 0.021 166.113). Border: white at 10% opacity. Padding: 8px 20px. Font: JetBrains Mono 14px. Shadow: rgba(0,0,0,0.1) 0px 4px 6px -1px, rgba(0,0,0,0.1) 0px 2px 4px -2px. The translucent jewel-tint approach makes it read as a specimen label rather than a traditional CTA button."
+      },
+      {
+        "name": "Log In Pill Button",
+        "role": "Secondary auth action in navigation",
+        "description": "9999px border-radius. Background: dark red tint (~#8b0836 at 20% opacity). Text: near-white #fff1f2. Border: white 10% opacity. Padding: 8px 20px. JetBrains Mono 14px. Double soft shadow."
+      },
+      {
+        "name": "Explore Pill Button",
+        "role": "Navigation action for main product discovery",
+        "description": "9999px border-radius pill. Background: amber/orange tint at 20% opacity (#733e0a base). Text: #fefce8 warm cream (oklch 0.987 0.026 102.212). Border: white at 10% opacity. Padding: 8px 20px. Font: JetBrains Mono 14px. Third specimen-color variant completing the red/green/amber triad in navigation."
+      },
+      {
+        "name": "Documentation Tab",
+        "role": "Navigation label for technical docs section",
+        "description": "Flat tab style: background transparent (rgba 0,0,0,0), no border-radius (0px), no padding (0px all sides). Text: #63b3ed Portal Blue at 16px JetBrains Mono. Acts as a plain text link styled to match the terminal aesthetic — no affordance chrome, relies entirely on color for identification."
+      },
+      {
+        "name": "Section Heading with Icon",
+        "role": "Page section titles (About, Projects, Careers)",
+        "description": "JetBrains Mono 30px weight 400, #ffffff text. Preceded by a small colored icon (⚙ in amber #f0b100 for Projects, ℹ in amber for About) at 16px. Icon and label sit on the same horizontal baseline with ~8px gap. No text-transform, no letter-spacing override. The monospace weight-400 at 30px is deliberately un-bold — headings do not shout."
+      },
+      {
+        "name": "Project Image Card",
+        "role": "Visual showcase grid for AI-generated imagery",
+        "description": "Square-aspect image tiles arranged in a 4-column grid with 8px gap. 8px border-radius on each image. Images are monochromatic blue-violet renders of anatomical/symbolic subjects (eye, brain, heart, hand) — no text overlay, no hover badge. Border: #e5e7eb Fog at low opacity as a subtle stroke. Cards function as pure image containers without any UI chrome."
+      },
+      {
+        "name": "Sticky Navigation Bar",
+        "role": "Primary site navigation across all pages",
+        "description": "Full-width bar with #1d293d Steel Navy background. Left side: Documentation (flat text link, #63b3ed) and Explore (amber pill) tabs. Right side: Sign Up (green pill) and Log In (red pill). All items use JetBrains Mono 14px. Vertical padding: 8px. Horizontal padding: ~48px on outer edges. Pill buttons float with translucent tinted backgrounds creating a specimen-tray organization."
+      },
+      {
+        "name": "Hero ASCII Animation Background",
+        "role": "Full-viewport hero visual",
+        "description": "Fills the entire first viewport with dense ASCII/generative text rendered in #cad5e2 Mist at very low opacity against the #06051d Cosmic Void background. The text forms a spherical/elliptical visual mass centered in the frame. Logo 'Midjourney' overlaid at center in a stylized typeface at approximately 36-40px. Three navigation pill buttons overlay the bottom of the hero. No image or photograph — the generative text IS the hero visual."
+      },
+      {
+        "name": "Inline Body Link",
+        "role": "Hyperlinks within prose content",
+        "description": "Inline text at 16px JetBrains Mono weight 400. Color: #63b3ed Portal Blue — the only chromatic accent color used in body text. No underline by default (transparent borderTopColor in the raw data). Sits at zero padding/margin within the text flow. 'community-funded research' example demonstrates usage."
+      },
+      {
+        "name": "Background Gradient Surface",
+        "role": "Full-page atmospheric depth layer",
+        "description": "CSS gradient: linear-gradient(0deg, #06051d 30%, #061434). Transitions from pure Cosmic Void at the bottom to a slightly lighter deep navy at the top, creating a sense of depth in a dark environment. Applied as the base layer beneath all content — not visible as a discrete element but sets the atmospheric depth of the entire page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Every typographic role on this site — navigation labels, body copy, headings, buttons, links. Using a monospace font as the universal typeface (not just for code) makes the entire interface read as an active terminal output. 30px at lineHeight 1.25 serves section headings; 16px at 1.50 serves body and UI labels; 14px at 1.63 serves captions and metadata.",
+        "sizes": "14px, 16px, 30px",
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "lineHeight": "1.25–1.63",
+        "substitute": "Fira Code, Source Code Pro",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "Secondary UI copy and body text in prose sections — appears at 16px only. Weight 500 for emphasis within body blocks. Provides a subtle humanist contrast against the monospace primary, used sparingly so the terminal character of JetBrains Mono dominates.",
+        "sizes": "16px",
+        "family": "DM Sans",
+        "weight": "400, 500",
+        "lineHeight": "1.50",
+        "substitute": "Inter, Outfit",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Midjourney's interface feels like peering through a deep-ocean porthole into a bioluminescent void — vast, pressurized darkness with faint light sources. The #06051d near-black with violet undertone is not simply dark but dimensionally deep, distinguished from pure black by that violet warmth that reads as cosmic rather than void. A sprawling ASCII/generative text animation fills the hero against this background, making the interface itself feel like it's generating intelligence in real time. Section headings and nav use JetBrains Mono exclusively — monospace as aesthetic choice, not technical necessity, giving every label the weight of a terminal command. The three pill buttons (Sign Up, Log In, Explore) float as translucent jewels — each tinted a different hue (green, yellow, red-orange) at 20% opacity against their dark backgrounds, with matching text colors, making them feel less like CTAs and more like categorized data packets.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Specimen Button Color System",
+        "content": "The three navigation pill buttons operate as a closed specimen-tray system where each button has its own hue tint at ~20% opacity, text color matched to that hue at high brightness, and a shared white 10% border. The triad is: Green (Sign Up) — bg #004f3b@20%, text #00bc7d; Red (Log In) — bg #8b0836@20%, text #fff1f2; Amber (Explore/Documentation) — bg #733e0a@20%, text #fefce8. This is not a priority hierarchy (primary/secondary/tertiary) — it is a categorical taxonomy where each action belongs to a different domain. Do not add a fourth color. Do not make one of the three visually dominant over the others."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed through background color steps (Cosmic Void → Abyssal Blue → Steel Navy → Deep Slate) rather than shadows. The one exception is the pill button group, which carries a soft double-layer shadow (rgba(0,0,0,0.1) 0px 4px 6px -1px, rgba(0,0,0,0.1) 0px 2px 4px -2px) — subtle enough to feel like the buttons float slightly off the nav surface without breaking the flat atmospheric plane. Shadows are not used on cards or content elements."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.006,
+            "h": 264.531,
+            "l": 0.928
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "heading",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 308,
+          "confidence": 1,
+          "prominence": 27840503.83247194,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#2e3038",
+          "oklch": {
+            "c": 0.014582062686927872,
+            "h": 274.4088625982604,
+            "l": 0.3104503913196625
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 12455125.025305195,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#ebf8ff",
+          "oklch": {
+            "c": 0.01666590568707972,
+            "h": 230.90069959612325,
+            "l": 0.9714994754260494
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 8193144.873999643,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#06051d",
+          "oklch": {
+            "c": 0.051772480791846105,
+            "h": 279.66446287535587,
+            "l": 0.1375648327572507
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5334746.033052303,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#cad5e2",
+          "oklch": {
+            "c": 0.022,
+            "h": 252.894,
+            "l": 0.869
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "image"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 3050293.633965031,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#1d293d",
+          "oklch": {
+            "c": 0.04100003402679564,
+            "h": 260.03101987957837,
+            "l": 0.279
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 121775.83885540787,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#63b3ed",
+          "oklch": {
+            "c": 0.11541792572286284,
+            "h": 242.05347804648164,
+            "l": 0.7391790634942513
+          },
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 101132.15371220313,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 86932.98787258285,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#314062",
+          "oklch": {
+            "c": 0.06188732968958787,
+            "h": 265.3886258125597,
+            "l": 0.3747324329573518
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 27509,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#fefce8",
+          "oklch": {
+            "c": 0.026,
+            "h": 102.212,
+            "l": 0.987
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 19731.018768004586,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#fff1f2",
+          "oklch": {
+            "c": 0.015,
+            "h": 12.422,
+            "l": 0.969
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 8129.27266619881,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#7e2a0c",
+          "oklch": {
+            "c": 0.12300004119820449,
+            "h": 38.171992991641055,
+            "l": 0.408
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7633,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#004f3b",
+          "oklch": {
+            "c": 0.07700002625954097,
+            "h": 168.94003210523584,
+            "l": 0.378
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5157,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0f1c36",
+          "oklch": {
+            "c": 0.05374143745884829,
+            "h": 262.8371101928553,
+            "l": 0.2302865458140089
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5157,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#8b0836",
+          "oklch": {
+            "c": 0.1590003980611684,
+            "h": 10.271974400517811,
+            "l": 0.41
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5129,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#2d0e36",
+          "oklch": {
+            "c": 0.08033974383990038,
+            "h": 317.8983616524772,
+            "l": 0.2350046151289412
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5129,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#733e0a",
+          "oklch": {
+            "c": 0.09500005370677429,
+            "h": 57.70799244567764,
+            "l": 0.421
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4630,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#281730",
+          "oklch": {
+            "c": 0.051538554232531446,
+            "h": 314.27775009903996,
+            "l": 0.23956988542989638
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4630,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f0b100",
+          "oklch": {
+            "c": 0.184,
+            "h": 86.047,
+            "l": 0.795
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3789.2502713764784,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#3182ce",
+          "oklch": {
+            "c": 0.1398063576354078,
+            "h": 250.29574558166212,
+            "l": 0.5946104226381188
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2647.001600738464,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#7f22fe",
+          "oklch": {
+            "c": 0.281,
+            "h": 293.009,
+            "l": 0.541
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2377.654369164659,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#009966",
+          "oklch": {
+            "c": 0.145,
+            "h": 163.225,
+            "l": 0.596
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2377.654369164659,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#00bc7d",
+          "oklch": {
+            "c": 0.17,
+            "h": 162.48,
+            "l": 0.696
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1267.9700005769248,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#ff2056",
+          "oklch": {
+            "c": 0.246,
+            "h": 16.439,
+            "l": 0.645
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1267.9700005769248,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#ff6900",
+          "oklch": {
+            "c": 0.213,
+            "h": 47.604,
+            "l": 0.705
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 928.7712379549449,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.08300361535631981,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.05,
+          "background": "#06051d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.39,
+          "background": "#06051d",
+          "foreground": "#fefce8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.53,
+          "background": "#06051d",
+          "foreground": "#ebf8ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.25,
+          "background": "#06051d",
+          "foreground": "#fff1f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.11,
+          "background": "#2d0e36",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.94,
+          "background": "#0f1c36",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#281730",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.54,
+          "background": "#2d0e36",
+          "foreground": "#fefce8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#0f1c36",
+          "foreground": "#fefce8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.2,
+          "background": "#e5e7eb",
+          "foreground": "#06051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.17,
+          "background": "#281730",
+          "foreground": "#fefce8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.81,
+          "background": "#2d0e36",
+          "foreground": "#ebf8ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.65,
+          "background": "#0f1c36",
+          "foreground": "#ebf8ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.57,
+          "background": "#2d0e36",
+          "foreground": "#fff1f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#281730",
+          "foreground": "#ebf8ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#0f1c36",
+          "foreground": "#fff1f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#281730",
+          "foreground": "#fff1f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#1d293d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#1d293d",
+          "foreground": "#fefce8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.82,
+          "background": "#e5e7eb",
+          "foreground": "#2d0e36"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 201,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(6, 5, 29) 30%, rgb(6, 20, 52))",
+        "colors": [
+          "rgb(6, 5, 29)",
+          "rgb(6, 20, 52)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "JetBrains Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 68,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/698dd6e9-1f77-4eb4-a8a6-b50df6bbda02.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5b263b81-2b89-41b7-a050-203ca0ec2819.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Midjourney design system\",\"item\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938#style-reference\",\"name\":\"Midjourney design system reference\",\"headline\":\"Midjourney design system | Refero Styles\",\"description\":\"Explore Midjourney's dark AI design system: Cosmic Void #06051d, Abyssal Blue #0f1c36 colors, JetBrains Mono, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938\",\"mainEntityOfPage\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Midjourney\",\"url\":\"https://midjourney.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/225059ac-0450-49d3-b2b7-d0e98b7ae938#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5b263b81-2b89-41b7-a050-203ca0ec2819.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5b263b81-2b89-41b7-a050-203ca0ec2819.jpg\",\"caption\":\"Screenshot of Midjourney\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5b263b81-2b89-41b7-a050-203ca0ec2819.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Midjourney design system\",\"Midjourney website design\",\"Midjourney colors\",\"Midjourney typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Cosmic Void\",\"Abyssal Blue\",\"Steel Navy\",\"Deep Slate\",\"JetBrains Mono\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Midjourney design system\"},{\"@type\":\"Thing\",\"name\":\"Midjourney website design\"},{\"@type\":\"Thing\",\"name\":\"Midjourney colors\"},{\"@type\":\"Thing\",\"name\":\"Midjourney typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-12T13:16:36.000Z\",\"dateModified\":\"2026-03-12T13:16:36.000Z\"}]}19:Td13,<style>\n  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');\n\n  :root {\n    --color-cosmic-void: #06051d;\n    --color-abyssal-blue: #0f1c36;\n    --color-steel-navy: #1d293d;\n    --color-bioluminescent-green: #004f3b;\n    --color-terminal-amber: #733e0a;\n    --color-crimson-depth: #8b0836;\n    --color-specimen-green: #00bc7d;\n    --color-warning-amber: #f0b100;\n    --color-fault-red: #ff2056;\n    --color-mist: #cad5e2;\n    --color-fog: #e5e7eb;\n    --color-portal-blue: #63b3ed;\n    --font-jetbrains-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;\n    --shadow-sm: rgba(0,0,0,0.1) 0px 4px 6px -1px, rgba(0,0,0,0.1) 0px 2px 4px -2px;\n  }\n\n  .pill-group-wrapper {\n    background: var(--color-cosmic-void);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    padding: 48px 32px;\n    font-family: var(--font-jetbrains-mono);\n    width: 100%;\n    box-sizing: border-box;\n  }\n\n  .pill-btn {\n    display: inline-flex;\n    align-items: center;\n    gap: 7px;\n    padding: 8px 20px;\n    border-radius: 9999px;\n    font-family: var(--font-jetbrains-mono);\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 1.63;\n    cursor: pointer;\n    border: 1px solid rgba(255, 255, 255, 0.10);\n    box-shadow: var(--shadow-sm);\n    text-decoration: none;\n    white-space: nowrap;\n    letter-spacing: normal;\n  }\n\n  .pill-btn--signup {\n    background: rgba(0, 79, 59, 0.55);\n    color: #00bc7d;\n  }\n\n  .pill-btn--login {\n    background: rgba(139, 8, 54, 0.55);\n    color: #fff1f2;\n  }\n\n  .pill-btn--explore {\n    background: rgba(115, 62, 10, 0.55);\n    color: #fefce8;\n  }\n\n  .pill-icon {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n</style>\n\n<div class=\"pill-group-wrapper\">\n  <a class=\"pill-btn pill-btn--signup\" href=\"#\">\n    <span class=\"pill-icon\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"8\" cy=\"5\" r=\"3\" stroke=\"#00bc7d\" stroke-width=\"1.5\"/>\n        <path d=\"M2 13c0-2.761 2.686-5 6-5s6 2.239 6 5\" stroke=\"#00bc7d\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n      </svg>\n    </span>\n    Sign Up\n  </a>\n\n  <a class=\"pill-btn pill-btn--login\" href=\"#\">\n    <span class=\"pill-icon\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M10 8H3m0 0l2.5-2.5M3 8l2.5 2.5\" stroke=\"#fff1f2\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        <path d=\"M7 4V3a1 1 0 011-1h4a1 1 0 011 1v10a1 1 0 01-1 1H8a1 1 0 01-1-1v-1\" stroke=\"#fff1f2\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n      </svg>\n    </span>\n    Log In\n  </a>\n\n  <a class=\"pill-btn pill-btn--explore\" href=\"#\">\n    <span class=\"pill-icon\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"2\" y=\"2\" width=\"5\" height=\"5\" rx=\"1\" stroke=\"#fefce8\" stroke-width=\"1.5\"/>\n        <rect x=\"9\" y=\"2\" width=\"5\" height=\"5\" rx=\"1\" stroke=\"#fefce8\" stroke-width=\"1.5\"/>\n        <rect x=\"2\" y=\"9\" width=\"5\" height=\"5\" rx=\"1\" stroke=\"#fefce8\" stroke-width=\"1.5\"/>\n        <rect x=\"9\" y=\"9\" width=\"5\" height=\"5\" rx=\"1\" stroke=\"#fefce8\" stroke-width=\"1.5\"/>\n      </svg>\n    </span>\n    Explore\n  </a>\n</div>1a:T952,<style>\n  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');\n\n  :root {\n    --color-cosmic-void: #06051d;\n    --color-mist: #cad5e2;\n    --color-ghost-white: #ffffff;\n    --color-portal-blue: #63b3ed;\n    --color-warning-amber: #f0b100;\n    --color-specimen-green: #00bc7d;\n    --font-jetbrains-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;\n  }\n\n  .about-section {\n    background: var(--color-cosmic-void);\n    padding: 48px 40px;\n    font-family: var(--font-jetbrains-mono);\n    max-width: 600px;\n    box-sizing: border-box;\n    width: 100%;\n  }\n\n  .section-heading {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin: 0 0 24px 0;\n  }\n\n  .section-heading__icon {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .section-heading__title {\n    font-family: var(--font-jetbrains-mono);\n    font-size: 30px;\n    font-weight: 400;\n    line-height: 1.25;\n    color: var(--color-ghost-white);\n    margin: 0;\n    letter-spacing: normal;\n  }\n\n  .about-body {\n    font-family: var(--font-jetbrains-mono);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: var(--color-mist);\n    margin: 0 0 20px 0;\n  }\n\n  .about-body:last-child {\n    margin-bottom: 0;\n  }\n\n  .about-link {\n    color: var(--color-portal-blue);\n    text-decoration: underline;\n    text-underline-offset: 2px;\n  }\n</style>\n\n<div class=\"about-section\">\n  <div class=\"section-heading\">\n    <span class=\"section-heading__icon\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"9\" cy=\"9\" r=\"7.5\" stroke=\"#f0b100\" stroke-width=\"1.5\"/>\n        <line x1=\"9\" y1=\"8\" x2=\"9\" y2=\"13\" stroke=\"#f0b100\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n        <circle cx=\"9\" cy=\"5.5\" r=\"0.85\" fill=\"#f0b100\"/>\n      </svg>\n    </span>\n    <h2 class=\"section-heading__title\">About</h2>\n  </div>\n\n  <p class=\"about-body\">\n    We're a <a class=\"about-link\" href=\"#\">community-funded research</a> lab of 60 people known for building the most beautiful AI models in the world.\n  </p>\n\n  <p class=\"about-body\">\n    We believe that we are all midjourney; that we have a rich past behind us and an unimaginable future ahead — and the question we want to most help answer is: what do we want to become?\n  </p>\n</div>1b:T2a23,<style>\n  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');\n\n  :root {\n    --color-cosmic-void: #06051d;\n    --color-abyssal-blue: #0f1c36;\n    --color-steel-navy: #1d293d;\n    --color-mist: #cad5e2;\n    --color-ghost-white: #ffffff;\n    --color-fog: #e5e7eb;\n    --color-warning-amber: #f0b100;\n    --font-jetbrains-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;\n  }\n\n  .projects-section {\n    background: var(--color-cosmic-void);\n    padding: 48px 40px;\n    font-family: var(--font-jetbrains-mono);\n    max-width: 600px;\n    box-sizing: border-box;\n    width: 100%;\n  }\n\n  .projects-heading {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin: 0 0 24px 0;\n  }\n\n  .projects-heading__title {\n    font-family: var(--font-jetbrains-mono);\n    font-size: 30px;\n    font-weight: 400;\n    line-height: 1.25;\n    color: var(--color-ghost-white);\n    margin: 0;\n    letter-spacing: normal;\n  }\n\n  .projects-body {\n    font-family: var(--font-jetbrains-mono);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 1.5;\n    color: var(--color-mist);\n    margin: 0 0 16px 0;\n  }\n\n  .projects-body:last-of-type {\n    margin-bottom: 32px;\n  }\n\n  .projects-grid {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    gap: 8px;\n  }\n\n  .project-tile {\n    aspect-ratio: 1 / 1;\n    border-radius: 8px;\n    background: var(--color-abyssal-blue);\n    border: 1px solid rgba(229, 231, 235, 0.12);\n    overflow: hidden;\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .project-tile__inner {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n  }\n\n  /* Eye tile */\n  .tile-eye {\n    background: radial-gradient(ellipse at 40% 50%, #1a3a7a 0%, #0b1e4a 60%, #060d2a 100%);\n  }\n\n  /* Needle tile */\n  .tile-needle {\n    background: radial-gradient(ellipse at 60% 40%, #162d6e 0%, #0a1a40 70%, #050e26 100%);\n  }\n\n  /* Arch tile */\n  .tile-arch {\n    background: radial-gradient(ellipse at 50% 60%, #1c3580 0%, #0d1e52 60%, #060f30 100%);\n  }\n\n  /* Head tile */\n  .tile-head {\n    background: radial-gradient(ellipse at 55% 35%, #1a3272 0%, #0c1b48 65%, #060d2c 100%);\n  }\n\n  /* Heart tile */\n  .tile-heart {\n    background: radial-gradient(ellipse at 45% 55%, #152e78 0%, #0a1940 70%, #050c24 100%);\n  }\n\n  /* Brain tile */\n  .tile-brain {\n    background: radial-gradient(ellipse at 50% 45%, #1e3888 0%, #0e2058 60%, #071232 100%);\n  }\n\n  /* Hand tile */\n  .tile-hand {\n    background: radial-gradient(ellipse at 50% 50%, #182f70 0%, #0b1b44 65%, #060e28 100%);\n  }\n\n  /* Lips tile */\n  .tile-lips {\n    background: radial-gradient(ellipse at 50% 55%, #1a3278 0%, #0c1c4a 65%, #060e2c 100%);\n  }\n\n  .tile-svg {\n    width: 65%;\n    height: 65%;\n    opacity: 0.75;\n  }\n</style>\n\n<div class=\"projects-section\">\n  <div class=\"projects-heading\">\n    <span>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M9 2L10.5 6.5H15.5L11.5 9.5L13 14L9 11L5 14L6.5 9.5L2.5 6.5H7.5L9 2Z\" stroke=\"#f0b100\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/>\n        <circle cx=\"9\" cy=\"9\" r=\"2\" stroke=\"#f0b100\" stroke-width=\"1.2\"/>\n      </svg>\n    </span>\n    <h2 class=\"projects-heading__title\">Projects</h2>\n  </div>\n\n  <p class=\"projects-body\">\n    Over the coming months, we're unveiling a wide range of ambitious projects under the themes of imagination, coordination, reflection, beauty, and human flourishing.\n  </p>\n\n  <p class=\"projects-body\">\n    We hope our work will help tell stories of a humane future that we all want to be a part of, and convince you that we aren't at the end of time, or the beginning, but that we are all midjourney in a vast and great adventure.\n  </p>\n\n  <div class=\"projects-grid\">\n    <!-- Row 1 -->\n    <div class=\"project-tile tile-eye\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <ellipse cx=\"30\" cy=\"30\" rx=\"22\" ry=\"13\" stroke=\"#7ba8e0\" stroke-width=\"1.2\" opacity=\"0.7\"/>\n          <circle cx=\"30\" cy=\"30\" r=\"8\" stroke=\"#9bbde8\" stroke-width=\"1.2\"/>\n          <circle cx=\"30\" cy=\"30\" r=\"4\" fill=\"#1a3a7a\" stroke=\"#7ba8e0\" stroke-width=\"1\"/>\n          <line x1=\"30\" y1=\"2\" x2=\"30\" y2=\"12\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n          <line x1=\"30\" y1=\"48\" x2=\"30\" y2=\"58\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n          <line x1=\"2\" y1=\"30\" x2=\"12\" y2=\"30\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n          <line x1=\"48\" y1=\"30\" x2=\"58\" y2=\"30\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n          <line x1=\"10\" y1=\"10\" x2=\"17\" y2=\"17\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.4\"/>\n          <line x1=\"50\" y1=\"10\" x2=\"43\" y2=\"17\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.4\"/>\n          <line x1=\"10\" y1=\"50\" x2=\"17\" y2=\"43\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.4\"/>\n          <line x1=\"50\" y1=\"50\" x2=\"43\" y2=\"43\" stroke=\"#5a8acc\" stroke-width=\"0.8\" opacity=\"0.4\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-needle\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M8 40 Q20 28 35 30 Q45 31 55 22\" stroke=\"#8ab4e8\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n          <path d=\"M8 44 Q22 34 36 36 Q46 37 55 26\" stroke=\"#6a94c8\" stroke-width=\"1\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <ellipse cx=\"52\" cy=\"22\" rx=\"4\" ry=\"2\" stroke=\"#9bbde8\" stroke-width=\"1\" transform=\"rotate(-35 52 22)\" opacity=\"0.8\"/>\n          <circle cx=\"55\" cy=\"21\" r=\"1\" fill=\"#8ab4e8\" opacity=\"0.9\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-arch\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M10 50 L10 28 Q10 16 19 16 Q28 16 28 28 L28 50\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" opacity=\"0.8\"/>\n          <path d=\"M32 50 L32 28 Q32 16 41 16 Q50 16 50 28 L50 50\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" opacity=\"0.8\"/>\n          <circle cx=\"19\" cy=\"13\" r=\"3\" stroke=\"#7aa4d8\" stroke-width=\"1\" opacity=\"0.7\"/>\n          <circle cx=\"30\" cy=\"11\" r=\"3\" stroke=\"#7aa4d8\" stroke-width=\"1\" opacity=\"0.7\"/>\n          <circle cx=\"41\" cy=\"13\" r=\"3\" stroke=\"#7aa4d8\" stroke-width=\"1\" opacity=\"0.7\"/>\n          <line x1=\"10\" y1=\"50\" x2=\"50\" y2=\"50\" stroke=\"#6a94c8\" stroke-width=\"1\" opacity=\"0.5\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-head\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M34 8 Q42 8 45 18 Q48 28 44 36 Q40 44 34 46 L30 48 L30 52\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n          <path d=\"M34 8 Q26 8 26 18 Q26 26 30 32\" stroke=\"#6a94c8\" stroke-width=\"1\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <circle cx=\"39\" cy=\"24\" r=\"2\" stroke=\"#9bbde8\" stroke-width=\"0.8\" opacity=\"0.7\"/>\n          <path d=\"M36 30 Q39 32 42 30\" stroke=\"#7aa4d8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n          <line x1=\"30\" y1=\"52\" x2=\"30\" y2=\"56\" stroke=\"#6a94c8\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n        </svg>\n      </div>\n    </div>\n\n    <!-- Row 2 -->\n    <div class=\"project-tile tile-heart\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M30 48 Q10 36 10 22 Q10 12 20 12 Q25 12 30 18 Q35 12 40 12 Q50 12 50 22 Q50 36 30 48Z\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" opacity=\"0.8\"/>\n          <path d=\"M30 44 Q14 33 14 22 Q14 15 20 15 Q25 15 30 21 Q35 15 40 15 Q46 15 46 22 Q46 33 30 44Z\" stroke=\"#6a94c8\" stroke-width=\"0.8\" opacity=\"0.4\"/>\n          <path d=\"M30 40 Q18 30 18 22 Q18 18 22 18 Q27 18 30 24\" stroke=\"#5a84b8\" stroke-width=\"0.7\" opacity=\"0.3\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-brain\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M30 48 L30 12\" stroke=\"#5a84b8\" stroke-width=\"0.8\" opacity=\"0.3\" stroke-dasharray=\"2 2\"/>\n          <path d=\"M30 20 Q20 16 16 22 Q12 28 16 34 Q20 40 26 40 L30 40\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n          <path d=\"M30 20 Q40 16 44 22 Q48 28 44 34 Q40 40 34 40 L30 40\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" stroke-linecap=\"round\" opacity=\"0.8\"/>\n          <path d=\"M20 26 Q24 24 28 28\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n          <path d=\"M40 26 Q36 24 32 28\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n          <path d=\"M18 32 Q22 34 26 32\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <path d=\"M42 32 Q38 34 34 32\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <line x1=\"30\" y1=\"40\" x2=\"30\" y2=\"48\" stroke=\"#7aa4d8\" stroke-width=\"1.2\" stroke-linecap=\"round\" opacity=\"0.6\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-hand\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M10 38 Q10 30 18 28 L38 26 Q44 25 46 30 Q48 35 42 36 L24 38 Q30 38 30 44 Q30 50 22 50 Q14 50 10 44 Z\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\"0.8\"/>\n          <path d=\"M24 38 L24 30\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <path d=\"M30 37 L30 28\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n          <path d=\"M36 36 L37 27\" stroke=\"#6a94c8\" stroke-width=\"0.8\" stroke-linecap=\"round\" opacity=\"0.5\"/>\n        </svg>\n      </div>\n    </div>\n\n    <div class=\"project-tile tile-lips\">\n      <div class=\"project-tile__inner\">\n        <svg class=\"tile-svg\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M10 30 Q15 22 22 24 Q26 26 30 24 Q34 22 38 24 Q45 22 50 30 Q45 38 38 36 Q34 34 30 36 Q26 34 22 36 Q15 38 10 30Z\" stroke=\"#8ab4e8\" stroke-width=\"1.3\" opacity=\"0.8\"/>\n          <path d=\"M10 30 Q20 34 30 30 Q40 26 50 30\" stroke=\"#6a94c8\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n          <path d=\"M18 27 Q24 25 30 26 Q36 25 42 27\" stroke=\"#5a84b8\" stroke-width=\"0.7\" opacity=\"0.4\"/>\n        </svg>\n      </div>\n    </div>\n  </div>\n</div>1c:T739,**Quick Color Reference**\n- Page background: #06051d (with gradient to #061434)\n- Primary text: #cad5e2\n- Headings: #ffffff\n- Inline links: #63b3ed\n- Borders/dividers: #e5e7eb\n- Nav surface: #1d293d\n- Sign Up button bg: #004f3b at 20% opacity, text: #00bc7d\n- Log In button bg: #8b0836 at 20% opacity, text: #fff1f2\n- Explore button bg: #733e0a at 20% opacity, text: #fefce8\n\n**Example Component Prompts**\n\n1. **Hero section**: Full-viewport background using linear-gradient(0deg, #06051d 30%, #061434). Center a dense ASCII text animation in #cad5e2 at ~5% opacity forming a sphere shape. Overlay the text 'Midjourney' at 36px JetBrains Mono weight 400 #ffffff centered. Place three pill buttons (Sign Up green, Log In red, Explore amber) horizontally centered at bottom of hero with 16px gaps.\n\n2. **Navigation bar**: Full-width #1d293d background, 8px vertical padding, 48px horizontal padding. Left: 'Documentation' (JetBrains Mono 14px #63b3ed, no padding, 0px radius) and 'Explore' pill (amber tint). Right: 'Sign Up' (green pill) and 'Log In' (red pill). Pills use 9999px radius, 8px 20px padding, white border at 10% opacity.\n\n3. **Section heading**: Left-aligned amber icon (16px #f0b100) + text label 'Projects' at 30px JetBrains Mono weight 400 #ffffff with 8px gap between icon and text. No bold, no uppercase, no letter-spacing modification.\n\n4. **Project image grid**: 4-column grid, 8px column and row gap. Each cell: square-aspect image with 8px border-radius, monochromatic blue-violet AI-generated content, #e5e7eb border at 15% opacity. No hover text, no captions below images.\n\n5. **Body prose block**: Max-width 640px within the 800px page column. JetBrains Mono 16px weight 400, #cad5e2, lineHeight 1.5. Inline links in #63b3ed with no underline. Paragraph gap: 16px. Sits directly on #06051d background with no card container."
+}

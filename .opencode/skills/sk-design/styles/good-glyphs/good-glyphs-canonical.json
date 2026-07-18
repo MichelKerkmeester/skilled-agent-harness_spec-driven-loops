@@ -1,0 +1,633 @@
+{
+  "source": "https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c",
+  "uuid": "41220ec0-ca0d-4697-a2fc-7a9a50d52e7c",
+  "name": "Good Glyphs",
+  "northStar": "oversized charity poster on mint paper — type so large it behaves as architecture, not text.",
+  "capturedAt": "2026-07-18T08:01:49.529Z",
+  "meta": {
+    "url": "https://goodglyphs.com",
+    "siteName": "Good Glyphs",
+    "extractedAt": "2026-06-03T18:37:47.037Z",
+    "durationMs": 25523,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 470,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the primary display at 288px / weight 300 / line-height 0.80 / tracking -8.64px — the size IS the identity",
+      "Use 1px black borders with 14px radius for cards and 140px (full pill) for every interactive control",
+      "Alternate full-bleed bands of #c7ffcd and #000000 to produce poster-strip rhythm",
+      "Hold all body and label text at 13–14px Helvetica Neue weight 400, tracking -0.0300em",
+      "Use 4px as the base spacing unit; paddings should land on 4, 7, 14, or 28px",
+      "Render any glyph artwork in Pledge Mint on the black band — it is the only color-on-color moment allowed",
+      "Let the section gap breathe at 84px between major bands — enough space to read each poster as separate"
+    ],
+    "donts": [
+      "Never introduce a second chromatic color — no semantic reds, greens, blues, or grays",
+      "Never use weight 700 for display — the system insists on light-weight headlines at extreme scale",
+      "Never add drop shadows, gradients, or blurs — flatness is the contract",
+      "Never break the pill geometry on buttons — no rounded-rect, no sharp corners, no 8px radius",
+      "Never use the custom good-glyphs font for UI text — it is product showcase only",
+      "Never set the canvas to white or off-white — Pledge Mint is the only acceptable light surface",
+      "Never add a chromatic focus or hover color — state changes happen by fill inversion (mint→black, black→mint) only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#c7ffcd",
+        "name": "Pledge Mint",
+        "role": "Page canvas, full-bleed section backgrounds, the site's only color. Washes the entire light theme",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All text, all borders, all filled elements, icon strokes, footer background, the black showcase band. The structural dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Carbon",
+        "role": "Input field borders and input text — functionally identical to Ink Black, kept as a token for form-state flexibility",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections with no max-width container — the page runs edge-to-edge as printed posters would. The hero is a single massive 288px headline stacked over a short uppercase descriptor, both flush-left, with no centered alignment. Below the hero sits a black showcase band spanning the full viewport width holding the glyph proof. Donation controls form a horizontal row of pill chips followed by a full-width pill action button. The contributor section is a 3-column card grid with 14–28px gutters. Navigation is minimal — a single flush-right project credit link in the hero's top-right corner. The overall rhythm is band-driven: mint, black, mint, with each band acting as an independent printed sheet rather than a continuous scroll.",
+    "imagery": "No photography, no illustration beyond the product itself. The 'imagery' IS the custom good-glyphs font rendered at 288px inside the black showcase band, and the hand-drawn dingbat glyphs in each contributor card. Everything is monochrome line art on flat color — the design system treats the typography as the only visual asset the page needs.",
+    "similar": [
+      {
+        "why": "Same oversized display type on a single soft tinted canvas with full-bleed section bands",
+        "business": "Pinterest Brand Pages"
+      },
+      {
+        "why": "Printed-poster aesthetic: one accent color, flat black ink, tight letter-spacing, pill controls, zero shadows",
+        "business": "Field Notes (fieldnotesbrand.com)"
+      },
+      {
+        "why": "Editorial charity-poster treatment — giant display type, tight tracking, two-color palette, no UI chrome",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Full-bleed band layouts with no max-width container and type pushed to architectural scale",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "14px",
+        "buttons": "140px"
+      },
+      "elementGap": "7px",
+      "sectionGap": "84px",
+      "cardPadding": "14px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#c7ffcd",
+        "name": "Pledge Mint Canvas",
+        "level": 1,
+        "purpose": "Base page background, all light sections, the default surface for cards and buttons"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black Band",
+        "level": 2,
+        "purpose": "Full-bleed dark section for showcasing the glyph font — the only non-mint surface"
+      }
+    ],
+    "northStar": "oversized charity poster on mint paper — type so large it behaves as architecture, not text.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.39
+      },
+      {
+        "role": "subheading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.84
+      },
+      {
+        "role": "display",
+        "size": 288,
+        "lineHeight": 0.8,
+        "letterSpacing": -8.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "The site's defining typographic moment — the project name rendered as a graphic wall.",
+        "description": "Helvetica Neue weight 300 at 288px, line-height 0.80, letter-spacing -0.0300em (-8.64px). Pure black on Pledge Mint. Uppercase. The letters are so large the line-height compresses them into a single dense block. Never use weight 700 — the system insists on light-weight display at scale."
+      },
+      {
+        "name": "Pill Donation Button",
+        "role": "Quick-select amount chips for the donation flow.",
+        "description": "Fully pill-shaped at 140px border-radius. 1px black border on transparent background over the mint canvas. Helvetica Neue weight 400, 14px, -0.42px tracking. Padding 4px 7px. On hover/active the chip fills solid black with mint text. The pill geometry is absolute — no squared or rounded-rect variants exist."
+      },
+      {
+        "name": "Pill Action Button (Large)",
+        "role": "The primary DONATE & DOWNLOAD call to action.",
+        "description": "Same 140px pill radius as donation chips, scaled up with generous horizontal padding. Black 1px border on mint background, text is weight 400, ~14px uppercase, tracking -0.42px. The button stretches nearly full-width inside its container to read as a poster strip rather than a UI control."
+      },
+      {
+        "name": "Contributor Card",
+        "role": "Grid card showing one designer's name and their submitted glyph.",
+        "description": "Mint canvas with 1px black border and 14px corner radius. Padding 14px. Designer name sits in the top-left at 14px weight 400 black, with a small letter chip (the designer's initial in a tiny black square) to the right. Glyph artwork fills the card body. Cards sit in a 3-column grid with 14–28px gutters."
+      },
+      {
+        "name": "Black Showcase Band",
+        "role": "Full-width dark section displaying the custom dingbat font at use size.",
+        "description": "Pure black (#000000) full-bleed background spanning the viewport width. A horizontal row of glyph characters rendered in the custom good-glyphs font at ~288px. The glyphs appear in the same Pledge Mint as the rest of the palette — the only color-on-black moment in the system. A small expand/collapse control sits flush-right in the top corner."
+      },
+      {
+        "name": "Body Paragraph Block",
+        "role": "Explanatory copy beneath the headline and donation controls.",
+        "description": "Black text on Pledge Mint. Helvetica Neue weight 400, 14px, line-height 1.50, tracking -0.42px. Max width not constrained — the text runs naturally across the full canvas width. Links inherit black with a black underline (no blue, no chromatic accent)."
+      },
+      {
+        "name": "Section Heading (Mid-tier)",
+        "role": "Sub-section labels like 'CONTRIBUTORS'.",
+        "description": "Helvetica Neue weight 300, 28px, line-height 1.20, tracking -0.84px. Uppercase. Black on Pledge Mint. Visually the smallest headline tier; the system jumps from 28px straight to 288px with nothing in between."
+      },
+      {
+        "name": "Form Input",
+        "role": "Custom-amount entry field beside the donation chips.",
+        "description": "Transparent background, 1px Carbon (#101010) border, 14px radius. Padding 4px 7px. Helvetica Neue weight 400 at 13–14px, black text. No focus ring color change — the system has no color to spend on focus states. Functions as a quiet inline form element."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for everything readable. Weight 300 carries the massive 288px display headlines — the light weight at extreme size lets the letters breathe inside the locked -0.03em tracking. Weight 400 handles body copy at 13–14px and short uppercase labels. 28px serves as a mid-tier subhead. The 0.80 line-height on the display is critical: it stacks the giant letters tight enough to read as a single graphic block.",
+        "sizes": "13, 14, 28, 288",
+        "family": "Helvetica Neue",
+        "weight": "300, 400",
+        "lineHeight": "0.80 (display) / 1.20 (subhead) / 1.50 (body)",
+        "substitute": "Inter, Neue Haas Grotesk, or system-ui sans",
+        "letterSpacing": "-0.0300em across all sizes; display at 288px reads as tight poster type rather than display tracking",
+        "fontFeatureSettings": "none"
+      },
+      {
+        "role": "The actual product — the dingbat glyphs themselves rendered at full display scale. Only ever appears inside the black showcase band as proof that the font works at intended size. Not used for UI text.",
+        "sizes": "288",
+        "family": "good-glyphs",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Custom / project asset — no substitute",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "none"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The system has no elevation. No drop shadows, no glows, no lifted surfaces. Hierarchy is produced entirely by scale (288px vs 14px), by band alternation (mint → black → mint), and by border weight (1px black strokes). Components sit flat on the canvas; depth would dilute the poster-strip reading."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading",
+            "card",
+            "icon",
+            "input",
+            "button",
+            "footer"
+          ],
+          "frequency": 2282,
+          "confidence": 1,
+          "prominence": 84326681.45508996,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 35,
+            "link/color": 40,
+            "input/color": 6,
+            "other/color": 304,
+            "button/color": 33,
+            "footer/color": 1,
+            "heading/color": 4,
+            "body/borderColor": 140,
+            "card/borderColor": 4,
+            "link/borderColor": 160,
+            "input/borderColor": 24,
+            "other/borderColor": 1216,
+            "button/borderColor": 260,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 32
+          }
+        },
+        {
+          "hex": "#c7ffcd",
+          "oklch": {
+            "c": 0.08770456424220574,
+            "h": 147.7049724979704,
+            "l": 0.9488134682688879
+          },
+          "contexts": [
+            "card",
+            "other",
+            "heading",
+            "icon",
+            "button"
+          ],
+          "frequency": 196,
+          "confidence": 1,
+          "prominence": 4439464.082242367,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "icon/color": 1,
+            "other/color": 4,
+            "button/color": 32,
+            "other/stroke": 4,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 128,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 26258.049082325502,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.018711121672205944,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.61,
+          "background": "#c7ffcd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.87,
+          "background": "#c7ffcd",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#000000",
+          "foreground": "#101010"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 33
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 256,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "footer"
+          ],
+          "frequency": 165,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 147,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|card",
+            "marginBottom|card",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|body",
+            "paddingLeft|body",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 336,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "good-glyphs",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 129,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "card",
+            "heading",
+            "button"
+          ],
+          "frequency": 300,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 288,
+          "family": "good-glyphs",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "good-glyphs",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 128,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bfe18b2c-f981-45d2-9ef7-0bab1803df9f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8da45655-f20d-427c-8221-952227063566.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Good Glyphs design system\",\"item\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c#style-reference\",\"name\":\"Good Glyphs design system reference\",\"headline\":\"Good Glyphs design system | Refero Styles\",\"description\":\"Explore Good Glyphs's light Design design system: Pledge Mint #c7ffcd, Ink Black #000000 colors, Helvetica Neue, good-glyphs typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Good Glyphs\",\"url\":\"https://goodglyphs.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/41220ec0-ca0d-4697-a2fc-7a9a50d52e7c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8da45655-f20d-427c-8221-952227063566.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8da45655-f20d-427c-8221-952227063566.jpg\",\"caption\":\"Screenshot of Good Glyphs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8da45655-f20d-427c-8221-952227063566.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Good Glyphs design system\",\"Good Glyphs website design\",\"Good Glyphs colors\",\"Good Glyphs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pledge Mint\",\"Ink Black\",\"Carbon\",\"Helvetica Neue\",\"good-glyphs\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Good Glyphs design system\"},{\"@type\":\"Thing\",\"name\":\"Good Glyphs website design\"},{\"@type\":\"Thing\",\"name\":\"Good Glyphs colors\"},{\"@type\":\"Thing\",\"name\":\"Good Glyphs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T04:01:18.230Z\",\"dateModified\":\"2026-04-30T04:01:18.230Z\"}]}19:T441,Good Glyphs treats the whole page as a printed charity poster: one mint-green canvas, one black ink, and type so large it functions as architecture rather than text. The system is anti-UI — there are no neutral grays, no semantic colors, no shadows, no gradients. A single soft celadon green (#c7ffcd) carries the entire chromatic load while pure black handles every stroke, border, label, and filled element. The signature move is the 288px display: the brand name itself becomes a graphic object, set tight with negative tracking so the letterforms lock into a wall of ink. Surfaces alternate between full-bleed mint and full-bleed black bands, producing a poster-strip rhythm rather than card-based hierarchy. Everything is built on a 4px base unit with tight 7–14px paddings; the only radii are 14px (soft cards) and a fully pill-shaped 140px for all interactive controls. Components feel stamped rather than designed: borders are always solid 1px black, text is always 13–14px, and the only moment of color contrast is white-on-black glyph artwork inside the dark showcase band.1a:T4ac,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #c7ffcd (Pledge Mint)\n- border: #000000 (Ink Black, 1px)\n- accent: #c7ffcd (Pledge Mint — used as mint-on-black inside the dark showcase band)\n- primary action: #c7ffcd (filled action)\n\n**Example Component Prompts**\n1. Build a hero headline: 'GOOD GLYPHS' in Helvetica Neue weight 300, 288px, line-height 0.80, letter-spacing -8.64px, uppercase, color #000000, on a #c7ffcd canvas.\n2. Build a contributor card: 1px #000000 border, 14px radius, padding 14px, with the designer's name in 14px weight 400 #000000 top-left and their glyph artwork filling the card body on a #c7ffcd background.\n3. Build a donation amount chip: 140px border-radius, 1px #000000 border on transparent over #c7ffcd, 14px weight 400 black text, padding 4px 7px, tracking -0.42px.\n4. Build a full-width action button: 140px radius, 1px #000000 border, #c7ffcd background, uppercase 14px weight 400 black text, tracking -0.42px, padding 7px 14px, stretching to nearly full container width.\n5. Build a black showcase band: full-bleed #000000 background spanning viewport width, with a horizontal row of custom dingbat glyphs at 288px rendered in #c7ffcd."
+}

@@ -1,0 +1,813 @@
+{
+  "source": "https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c",
+  "uuid": "bc4b420c-be08-4165-95a3-c8338b5a9c3c",
+  "name": "Artandcommerce",
+  "northStar": "art book spread on bone paper",
+  "capturedAt": "2026-07-18T09:11:17.368Z",
+  "meta": {
+    "url": "https://artandcommerce.com",
+    "siteName": "Artandcommerce",
+    "extractedAt": "2026-06-03T20:30:10.073Z",
+    "durationMs": 27927,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 355,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000, #e7e7e7, and #121212 — no other colors, no tints, no accents",
+      "Set display headlines in Adobe Garamond 400 at 56px with letter-spacing -1.0px and line-height 1.10",
+      "Render all UI labels, nav, and metadata in Akzidenz Grotesk uppercase with letter-spacing 0.027-0.038em",
+      "Keep all border-radius at 0px — every card, image, button, and badge is sharp-edged",
+      "Use 12px and 16px as the dominant element gaps; 44px as the standard section gap",
+      "Let images bleed edge-to-edge with no borders, shadows, or rounded corners",
+      "Use a 1px Ink (#000000) border-bottom to denote hover and active states on links and nav"
+    ],
+    "donts": [
+      "Do not introduce any color — no brand accent, no CTA fill, no gradient, no status hues",
+      "Do not use Garamond bold or italic; the serif speaks only at weight 400",
+      "Do not apply border-radius to any element; the design is rigorously rectilinear",
+      "Do not add box-shadows or drop-shadows — elevation is expressed through whitespace alone",
+      "Do not mix sentence case into nav and labels; all Grotesk UI is uppercase",
+      "Do not center body text or nav; the layout is flush-left with content anchored to the left edge",
+      "Do not use display sizes below 56px or body sizes above 20px for Garamond — the scale is deliberately compressed"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, navigation labels, logo, link borders, footer type — the single graphic ink of the system. Every stroke, border, and character mark across the site",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Bone",
+        "role": "Page canvas, card surface, elevated surface — the warm near-white that holds all imagery and text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Charcoal",
+        "role": "Secondary text and deep surface tone where slightly softer black is needed against bone",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with a 1440px max-width container. The header is a single thin row (logo left, nav right) sitting directly on the bone canvas with no border. The hero pattern is a full-viewport-width editorial image with no text overlay — the image IS the hero. Below the hero, a single-line caption row spans the same width with artist name flush left, publication/year flush right. Subsequent sections use centered single-image blocks (magazine covers) on bone with ~44px vertical breathing room. No multi-column grids, no card grids, no sidebars. The entire page reads as a vertical scroll through a curated gallery — one artwork per screen, generous whitespace between.",
+    "imagery": "The site is image-dominant — large commissioned photography and magazine covers are the primary content. Treatment: full-bleed, edge-to-edge, no cropping frames, no overlays, no rounded corners. Photography is high-production editorial work (floral compositions, portrait, fashion) presented raw and uncropped. No illustration, no icons beyond a small search glyph. The images are always editorial fine-art photography; the system does not need to support product shots, lifestyle, or stock imagery.",
+    "similar": [
+      {
+        "why": "Same editorial-gallery layout: full-bleed photography, minimal sans-serif nav uppercase, generous bone-white canvas, Garamond/serif display, no decorative color",
+        "business": "Aperture Foundation"
+      },
+      {
+        "why": "Photography agency with monochrome palette, large uncropped imagery, tiny tracked uppercase metadata, and type hierarchy built from serif display + grotesque labels",
+        "business": "Magnum Photos"
+      },
+      {
+        "why": "Art book publisher with same quiet-bone aesthetic, no CTAs, no shadows, sharp edges, editorial Garamond paired with grotesk metadata",
+        "business": "MACK Books"
+      },
+      {
+        "why": "Creative studio with art-book feel: generous whitespace, monochrome palette, serif display headlines, minimal uppercase nav",
+        "business": "Atelier Bingo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "44px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e7e7e7",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Page background — all content sits on this single warm-white surface"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Layer",
+        "level": 2,
+        "purpose": "All type, borders, and graphic marks on the bone canvas"
+      }
+    ],
+    "northStar": "art book spread on bone paper",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": 0.33
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -1
+      }
+    ],
+    "components": [
+      {
+        "name": "Site Header / Nav Bar",
+        "role": "Minimal top-bar navigation",
+        "description": "Full-width row on bone (#e7e7e7) background, ~44px tall, 16px horizontal padding. Logo 'art+commerce' in Adobe Garamond 400 at 16px sits flush left in Ink (#000000). Nav items (ARTISTS, IMAGE ARCHIVE, PROD., NEW LIGHT FILMS, EDITIONS, ABOUT, SHOP) in Akzidenz Grotesk 500 uppercase at ~10px, letter-spacing 0.033em, flush right with ~16-23px gap between items. A small search icon at the far right. No background fill, no border-bottom, no shadow — the header dissolves into the canvas."
+      },
+      {
+        "name": "Full-Bleed Editorial Image",
+        "role": "Hero / feature artwork display",
+        "description": "Edge-to-edge image filling the viewport width, no margin, no padding, no border-radius (0px). Images bleed to all four sides. No overlay, no caption box — metadata sits outside the image frame on bone canvas."
+      },
+      {
+        "name": "Image Credit Caption",
+        "role": "Attribution line below full-bleed images",
+        "description": "Two-part caption on bone background. Left side: artist name + title in Adobe Garamond 400 at 16px, Ink. Right side: publication/event + year in Akzidenz Grotesk 500 uppercase at ~10px, tracking 0.033em, Ink. Separated by the full row width — asymmetric left/right alignment with no visible divider."
+      },
+      {
+        "name": "Magazine Cover Card",
+        "role": "Featured publication / project cover",
+        "description": "A single magazine or project cover centered on bone canvas with generous top/bottom whitespace (~44px section gap). No border, no shadow, no radius. The cover image IS the component — type and layout on the cover is the cover designer's work, not the system. The card itself is a transparent container with no chrome."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Header nav item / inline link",
+        "description": "Akzidenz Grotesk 500 uppercase, ~10px, letter-spacing 0.033em, color Ink (#000000). No underline by default; on hover/active, a 1px Ink bottom border appears (border-bottom). The border-color data shows 372 link/inline border instances — the system uses borders to denote interactivity, not fills or color shifts."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with secondary nav and credits",
+        "description": "Full-width bone background, no top border or shadow. Content arranged in a single row with the same Garamond/Grotesk pairing as the header. Small Grotesk uppercase metadata (copyright, legal, social) with 12-16px gaps. Minimal — the footer does not assert itself."
+      },
+      {
+        "name": "Artwork Title",
+        "role": "Large display heading for project or feature",
+        "description": "Adobe Garamond 400 at 56px, line-height 1.10, letter-spacing -0.018em (-1.0px tracking), color Ink. This is the largest type in the system. Never bold, never italic. The tight tracking at 56px (-1px) pulls the Garamond forms together so the headline reads as a single shape rather than a string of letters."
+      },
+      {
+        "name": "Section Label",
+        "role": "Uppercase category / context label",
+        "description": "Akzidenz Grotesk 700 uppercase at 8-10px, letter-spacing 0.038em (widest tracking in the system), color Ink. Used as gallery-section markers, breadcrumb-like indicators, and metadata tags. The extra weight + extra tracking makes these labels read as stamps or printed colophons."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Editorial display and body serif. The single weight (400) does all the talking — no bold, no italic reliance. Used at 56px for display headlines (artwork titles, hero captions) with tight tracking -0.018em and 1.10 line-height, at 20px for introductory text and at 16px for body. The restraint of a single weight Garamond at display sizes creates an old-master gravitas: authority through historical type, not weight.",
+        "sizes": "16px, 20px, 56px",
+        "family": "Adobe Garamond",
+        "weight": "400",
+        "lineHeight": "1.10, 1.30",
+        "substitute": "EB Garamond, Cormorant Garamond",
+        "letterSpacing": "-0.018em consistently"
+      },
+      {
+        "role": "Functional sans-serif for all UI, navigation, labels, and metadata. Rendered almost exclusively in uppercase at 8-10px with aggressive positive tracking (+0.027 to +0.038em) — the effect is that of gallery wall labels, museum credits, and colophon text. Weight 500 highlights active nav, 700 for emphasis labels, 400 default. The grotesk never competes with Garamond for the reader's attention; it serves.",
+        "sizes": "8px, 10px, 16px",
+        "family": "Akzidenz Grotesk",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.25, 1.30",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk",
+        "letterSpacing": "0.027-0.038em in uppercase contexts"
+      }
+    ],
+    "description": "Art+Commerce is a quiet editorial gallery on bone paper: a near-monochrome canvas where large-format commissioned photography and magazine covers become the entire visual system. The type pairing is the signature — Adobe Garamond in weight 400 whispers editorial luxury while Akzidenz Grotesk in small, widely-tracked uppercase provides mechanical, gallery-label clarity. There is no brand color, no gradient, no shadow, no radius; hierarchy is built from a single black ink, generous white space, and a disciplined 56px display line. Density is sparse and the page breathes like an art book spread — images sit full-bleed, metadata hovers in tiny tracked caps at the edges, and every UI element defers to the artwork.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Artandcommerce design system\",\"item\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#style-reference\",\"name\":\"Artandcommerce design system reference\",\"headline\":\"Artandcommerce design system | Refero Styles\",\"description\":\"Explore Artandcommerce's light Agency design system: Ink #000000, Bone #e7e7e7 colors, Adobe Garamond, Akzidenz Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Artandcommerce\",\"url\":\"https://artandcommerce.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"caption\":\"Screenshot of Artandcommerce\"},\"image\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Artandcommerce design system\",\"Artandcommerce website design\",\"Artandcommerce colors\",\"Artandcommerce typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Bone\",\"Charcoal\",\"Adobe Garamond\",\"Akzidenz Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Artandcommerce design system\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce website design\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce colors\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:55:12.202Z\",\"dateModified\":\"2026-05-10T23:55:12.202Z\"}]}19:T5e0,**Quick Color Reference:**\n- text: #000000\n- background: #e7e7e7\n- border: #000000\n- accent: none (monochrome only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n1. Build a full-bleed hero image section: edge-to-edge image on #e7e7e7 canvas, 0px radius, no shadow, no border. Below the image, a caption row spanning the full width: left-aligned artist credit in Adobe Garamond 400 16px #000000, right-aligned project tag in Akzidenz Grotesk 500 uppercase 10px #000000 letter-spacing 0.033em. 44px vertical gap above the caption.\n\n2. Build a centered magazine cover card: single image centered horizontally on #e7e7e7, no border, no shadow, 0px radius, 44px top and bottom padding. No text overlays on the card itself — the cover is the content.\n\n3. Build a site header nav bar: #e7e7e7 background, full-width, 16px horizontal padding, ~44px tall. Logo 'art+commerce' in Adobe Garamond 400 16px #000000 flush left. Nav items (ARTISTS, IMAGE ARCHIVE, PROD, NEW LIGHT FILMS, EDITIONS, ABOUT, SHOP) in Akzidenz Grotesk 500 uppercase 10px #000000 letter-spacing 0.033em, 16-23px gaps, flush right. 1px #000000 bottom border on hover only.\n\n4. Build a section label: Akzidenz Grotesk 700 uppercase 8px #000000, letter-spacing 0.38em, 12px bottom margin. Reads as a printed colophon stamp.\n\n5. Build a display headline: Adobe Garamond 400 56px #000000, line-height 1.10, letter-spacing -1.0px, flush left. No bold, no italic. Sits on #e7e7e7 with 44px breathing room above and below."
+      }
+    ],
+    "elevationPhilosophy": "The design has no shadows and no elevation tokens. Hierarchy is achieved exclusively through scale (56px display vs 10px metadata), tracking (Garamond -1.0px vs Grotesk +0.38em), and whitespace (44px section gaps). Adding any shadow or fill would break the editorial-gallery language."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "footer",
+            "list",
+            "icon"
+          ],
+          "frequency": 1709,
+          "confidence": 1,
+          "prominence": 182003260.1114916,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 15,
+            "nav/color": 25,
+            "body/color": 30,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 93,
+            "list/color": 89,
+            "image/color": 1,
+            "other/color": 97,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 99,
+            "body/borderColor": 120,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 372,
+            "list/borderColor": 356,
+            "image/borderColor": 4,
+            "other/borderColor": 388,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 62700,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 367,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e7e7e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#e7e7e7",
+          "foreground": "#121212"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 73,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 101,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 181,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 235,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 239,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 314,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Adobe Garamond",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 293,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Akzidenz Grotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Akzidenz Grotesk",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Akzidenz Grotesk",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0.027,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Akzidenz Grotesk",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Akzidenz Grotesk",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Adobe Garamond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "footer",
+            "list",
+            "icon"
+          ],
+          "frequency": 277,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Akzidenz Grotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Adobe Garamond",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Adobe Garamond",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4bd29233-4a68-489e-9a9f-6076aaef2d40.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Artandcommerce design system\",\"item\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#style-reference\",\"name\":\"Artandcommerce design system reference\",\"headline\":\"Artandcommerce design system | Refero Styles\",\"description\":\"Explore Artandcommerce's light Agency design system: Ink #000000, Bone #e7e7e7 colors, Adobe Garamond, Akzidenz Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Artandcommerce\",\"url\":\"https://artandcommerce.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bc4b420c-be08-4165-95a3-c8338b5a9c3c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"caption\":\"Screenshot of Artandcommerce\"},\"image\":\"https://images.refero.design/styles/refero.design/image/052f4206-0871-43bb-a652-d5b46200701f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Artandcommerce design system\",\"Artandcommerce website design\",\"Artandcommerce colors\",\"Artandcommerce typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Bone\",\"Charcoal\",\"Adobe Garamond\",\"Akzidenz Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Artandcommerce design system\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce website design\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce colors\"},{\"@type\":\"Thing\",\"name\":\"Artandcommerce typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:55:12.202Z\",\"dateModified\":\"2026-05-10T23:55:12.202Z\"}]}19:T5e0,**Quick Color Reference:**\n- text: #000000\n- background: #e7e7e7\n- border: #000000\n- accent: none (monochrome only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n1. Build a full-bleed hero image section: edge-to-edge image on #e7e7e7 canvas, 0px radius, no shadow, no border. Below the image, a caption row spanning the full width: left-aligned artist credit in Adobe Garamond 400 16px #000000, right-aligned project tag in Akzidenz Grotesk 500 uppercase 10px #000000 letter-spacing 0.033em. 44px vertical gap above the caption.\n\n2. Build a centered magazine cover card: single image centered horizontally on #e7e7e7, no border, no shadow, 0px radius, 44px top and bottom padding. No text overlays on the card itself — the cover is the content.\n\n3. Build a site header nav bar: #e7e7e7 background, full-width, 16px horizontal padding, ~44px tall. Logo 'art+commerce' in Adobe Garamond 400 16px #000000 flush left. Nav items (ARTISTS, IMAGE ARCHIVE, PROD, NEW LIGHT FILMS, EDITIONS, ABOUT, SHOP) in Akzidenz Grotesk 500 uppercase 10px #000000 letter-spacing 0.033em, 16-23px gaps, flush right. 1px #000000 bottom border on hover only.\n\n4. Build a section label: Akzidenz Grotesk 700 uppercase 8px #000000, letter-spacing 0.38em, 12px bottom margin. Reads as a printed colophon stamp.\n\n5. Build a display headline: Adobe Garamond 400 56px #000000, line-height 1.10, letter-spacing -1.0px, flush left. No bold, no italic. Sits on #e7e7e7 with 44px breathing room above and below."
+}

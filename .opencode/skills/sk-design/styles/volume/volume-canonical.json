@@ -1,0 +1,1004 @@
+{
+  "source": "https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8",
+  "uuid": "edc0c03e-8c20-4e22-badd-2735fcb9f4a8",
+  "name": "Volume",
+  "northStar": "gallery wall with whispers — editorial restraint on paper-white canvas, the chrome is invisible, the imagery is the only color",
+  "capturedAt": "2026-07-18T09:56:28.834Z",
+  "meta": {
+    "url": "https://vol.co",
+    "siteName": "Volume",
+    "extractedAt": "2026-06-03T17:20:14.125Z",
+    "durationMs": 31950,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 140,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Messina Sans at weight 300 or 350 for all text — heavier weights break the editorial restraint",
+      "Set pill tags, buttons, and status indicators to 50px border-radius for the full pill shape",
+      "Apply -0.02em letter-spacing on display sizes (50px+) and 0.07em on small UI labels and uppercase tags",
+      "Use full-bleed photographic backgrounds for hero sections — never flat color blocks for campaign showcases",
+      "Keep the page canvas Paper (#ffffff) and let imagery be the only source of color in a section",
+      "Stack pill tags with 10px gaps beneath the hero subtitle, never float them separately",
+      "Reserve warm accent colors (Ember, Signal Red, Brick) exclusively for status and availability tags"
+    ],
+    "donts": [
+      "Do not use type weights above 350 — bold or semibold text violates the whisper-light voice",
+      "Do not use sharp corners on cards, tags, or buttons — 50px radius is system-wide",
+      "Do not add drop shadows to cards or elevated surfaces — borders alone define edges",
+      "Do not apply the warm accent palette to buttons, headings, or icons — those are strictly for status tags",
+      "Do not constrain heroes to a max-width — campaign imagery must span the full viewport",
+      "Do not use system fonts or sans-serif alternatives at different weights as a substitute for Messina Sans's specific light cut",
+      "Do not introduce gradients — the system is flat color + photography only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#272727",
+        "name": "Ink",
+        "role": "Primary text, nav, footer text, dark pill tags (funded, successful) — the workhorse near-black that grounds every layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#717171",
+        "name": "Graphite",
+        "role": "Secondary text, hairline borders on cards, images, and inputs — the quiet structural neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Ash",
+        "role": "Tertiary text, subtle borders, disabled or muted states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdcccc",
+        "name": "Fog",
+        "role": "Light placeholder text, decorative dividers on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, text on dark/image overlays — the dominant background across all sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Occasional deep surface for emphasis blocks, SVG fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e75a00",
+        "name": "Ember",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      },
+      {
+        "hex": "#c52910",
+        "name": "Signal Red",
+        "role": "Accent — alert and availability tags, sits between Ember and Brick in the warm surface stack",
+        "group": "accent"
+      },
+      {
+        "hex": "#962921",
+        "name": "Brick",
+        "role": "Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed, viewport-spanning campaign heroes stack vertically with no gaps between them. Each hero is ~500–600px tall with bottom-left text overlay. Below the hero sequence, a spacious white editorial section holds a single large headline at 80px, left-aligned with generous left padding (~30px). Navigation is a thin top bar — logo top-left, centered links, account/cart top-right — with no sticky behavior. The overall rhythm alternates between immersive photographic full-bleed blocks and quiet typographic white space, creating a gallery-walk cadence rather than a scrollable feed.",
+    "imagery": "Photography dominates as full-bleed campaign backgrounds — no illustration, no product renders, no abstract graphics within the UI itself. The geometric teal illustration in the first hero is part of the project's own artwork, not system chrome. Images are large-format editorial: architectural, typographic, atmospheric (night scenes, workshop interiors). No duotone or color treatment is applied at the system level; photographs appear in their native tonal range. Iconography is minimal to absent in the visible chrome.",
+    "similar": [
+      {
+        "why": "Same full-bleed campaign hero with overlaid title/subtitle and pill-shaped status badges beneath",
+        "business": "Kickstarter"
+      },
+      {
+        "why": "Editorial gallery rhythm alternating between large photography and quiet white typographic space",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Design-publishing sensibility with restrained chrome, letting project imagery carry the visual weight",
+        "business": "Unseen"
+      },
+      {
+        "why": "Single-light-weight sans-serif system with pill UI elements and minimal interface decoration",
+        "business": "Drip"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "50px",
+        "buttons": "50px"
+      },
+      "elementGap": "10-15px",
+      "sectionGap": "80-120px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas, body backgrounds, editorial text sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Bordered content cards on Paper, defined by hairline Graphite border rather than fill"
+      },
+      {
+        "hex": "#000000",
+        "name": "Overlay",
+        "level": 2,
+        "purpose": "Text on photographic backgrounds relies on image contrast, not a scrim"
+      }
+    ],
+    "northStar": "gallery wall with whispers — editorial restraint on paper-white canvas, the chrome is invisible, the imagery is the only color",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.98
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading",
+        "size": 50,
+        "lineHeight": 1.18,
+        "letterSpacing": -1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site chrome with centered primary links and account/cart on the right",
+        "description": "White background, no border, ~30px vertical padding. Logo top-left at ~30px. Centered nav links (EXPLORE, ABOUT) in 14px Messina Sans weight 300, Ink (#272727), letter-spacing 0.07em uppercase. Right-aligned ACCOUNT and CART links in same style. No sticky behavior implied; transparent over hero images."
+      },
+      {
+        "name": "Full-Bleed Campaign Hero",
+        "role": "Project showcase card with photographic background and overlaid text",
+        "description": "Full-viewport-width image background, 500–600px tall. White text overlay bottom-left at 30px from edge. Project title at 50px Messina Sans weight 300, white, letter-spacing -1px. Subtitle (author name) at 20px weight 300, white. Below subtitle: pill-shaped status tags with 10px gap. No gradient overlay; relies on image contrast for legibility."
+      },
+      {
+        "name": "Dark Status Pill (Funded/Successful)",
+        "role": "Indicates funding milestone reached",
+        "description": "50px border-radius (full pill). Ink (#272727) background, white text, 14px Messina Sans weight 300, letter-spacing 0.07em uppercase. Horizontal padding 15px, vertical padding 8–10px. No border."
+      },
+      {
+        "name": "Warm Status Pill (Limited/Available)",
+        "role": "Indicates scarcity or availability state",
+        "description": "50px border-radius. Signal Red (#c52910) or Ember (#e75a00) background, white text, 14px Messina Sans weight 300, letter-spacing 0.07em uppercase. Same dimensions as dark pill; distinguished only by warm fill."
+      },
+      {
+        "name": "Editorial Headline Block",
+        "role": "Large typographic statement below hero sequences",
+        "description": "White background, generous top/bottom padding (80–120px). Headline at 80px Messina Sans weight 300, Ink color, letter-spacing -1.6px, line-height 1.0. Max-width ~800px left-aligned with 30px page-edge padding. No supporting imagery — pure typography breathing."
+      },
+      {
+        "name": "Hairline-Bordered Card",
+        "role": "Content cards for supplementary project info",
+        "description": "White background, 1px Graphite (#717171) border, 50px border-radius, 30px internal padding. Content stacks vertically with 10–15px gaps. No shadow; the border alone defines the card edge."
+      },
+      {
+        "name": "Tag Input",
+        "role": "Search or filter field",
+        "description": "Transparent or white background, 1px Graphite (#717171) border, 17px horizontal padding × 13px vertical padding. 14px Messina Sans weight 300, Ink text, Fog (#cdcccc) placeholder. No focus ring color specified; relies on border."
+      },
+      {
+        "name": "Footer",
+        "role": "Minimal site footer",
+        "description": "White background, 30px padding. Ink text at 14px weight 300, letter-spacing 0.07em uppercase for links. Centered or left-aligned with no visual divider from content above."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "Fixed-bottom compliance notice",
+        "description": "White or very light background, full-width, ~60px tall. Left-aligned body text at 14px with a link to Privacy policy. Right-aligned two buttons: 'Preferences' (outlined, Ink border) and 'Accept' (filled Ink background, white text). Both buttons at 50px radius, 15px horizontal × 8px vertical padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system covering nav, body, display, and UI. The signature choice is using weight 300/350 everywhere — headlines whisper rather than shout, creating editorial restraint. 50px and 80px display sizes with tight tracking (-0.02em) float over full-bleed campaign imagery; 14–20px handles body and UI; 0.07em wide tracking is used for eyebrow labels and tag text.",
+        "sizes": "14px, 18px, 20px, 32px, 50px, 80px",
+        "family": "Messina Sans",
+        "weight": "300, 350",
+        "lineHeight": "1.00, 1.18, 1.40, 2.00",
+        "substitute": "Inter (weight 300) or Söhne Buch",
+        "letterSpacing": "-0.02em for display/headlines, 0.07em for small UI labels and tags"
+      }
+    ],
+    "description": "Volume reads as an editorial gallery for design publications: full-bleed photographic campaigns with whisper-light Messina Sans headlines floating over image backgrounds. The chrome itself is nearly invisible — paper-white canvas, charcoal type, hairline borders, and a small set of pill-shaped status tags that carry the only chromatic punctuation. The extreme light weights (300/350) and tight negative tracking create a refined, magazine-page atmosphere where negative space and imagery do the heavy lifting. Every surface favors restraint and breathing room, letting the projects — not the interface — command attention.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Volume design system\",\"item\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#style-reference\",\"name\":\"Volume design system reference\",\"headline\":\"Volume design system | Refero Styles\",\"description\":\"Explore Volume's light Media design system: Ink #272727, Graphite #717171 colors, Messina Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Volume\",\"url\":\"https://vol.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"caption\":\"Screenshot of Volume\"},\"image\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Volume design system\",\"Volume website design\",\"Volume colors\",\"Volume typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Graphite\",\"Ash\",\"Fog\",\"Messina Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Volume design system\"},{\"@type\":\"Thing\",\"name\":\"Volume website design\"},{\"@type\":\"Thing\",\"name\":\"Volume colors\"},{\"@type\":\"Thing\",\"name\":\"Volume typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:31:40.548Z\",\"dateModified\":\"2026-04-30T03:31:40.548Z\"}]}19:T55a,**Quick Color Reference**\n- text: #272727 (Ink)\n- background: #ffffff (Paper)\n- border: #717171 (Graphite, 1px)\n- accent: #c52910 (Signal Red, tags only)\n- dark surface: #272727 (Ink)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Full-bleed campaign hero*: Background is a full-viewport-width photograph. Bottom-left overlay: project title at 50px Messina Sans weight 300, #ffffff, letter-spacing -1px. Subtitle at 20px weight 300, white. Below at 10px gap: two pill tags with 50px radius, #272727 background, white text, 14px weight 300, letter-spacing 0.07em uppercase, 15px horizontal × 10px vertical padding.\n\n2. *Editorial headline section*: White background, 100px top padding. Headline at 80px Messina Sans weight 300, #272727, letter-spacing -1.6px, line-height 1.0, max-width 800px, left-aligned with 30px page-edge inset.\n\n3. *Dark status pill*: 50px border-radius, #272727 background, 14px Messina Sans weight 300 uppercase white text, letter-spacing 0.07em, 15px × 10px padding.\n\n4. *Warm availability pill*: Same dimensions as dark pill but #c52910 background, white text — used for 'Limited copies' or 'Available now' indicators.\n\n5. *Bordered content card*: White background, 1px #717171 border, 50px border-radius, 30px internal padding. No shadow. Content stacks with 12px gaps at 18px Messina Sans weight 300, #272727."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. Elevation is communicated through hairline borders (1px Graphite #717171) and the 50px pill radius rather than box-shadow. This preserves the flat editorial print feel — cards look like printed inserts, not floating panels."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#272727",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.27274100075141233
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "heading",
+            "input",
+            "footer"
+          ],
+          "frequency": 214,
+          "confidence": 1,
+          "prominence": 37014581.65093742,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "card/color": 3,
+            "link/color": 1,
+            "other/fill": 36,
+            "input/color": 1,
+            "other/color": 18,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "card/borderColor": 12,
+            "link/borderColor": 4,
+            "other/borderColor": 72,
+            "heading/borderColor": 4,
+            "input/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#717171",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5486270931665974
+          },
+          "contexts": [
+            "link",
+            "image",
+            "card",
+            "input"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 6239343.155351058,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 4,
+            "link/color": 4,
+            "image/color": 4,
+            "card/borderColor": 16,
+            "link/borderColor": 20,
+            "image/borderColor": 16,
+            "input/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "card",
+            "input",
+            "button",
+            "footer",
+            "other",
+            "link",
+            "nav"
+          ],
+          "frequency": 232,
+          "confidence": 1,
+          "prominence": 5125546.233267585,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "card/color": 11,
+            "link/color": 2,
+            "other/color": 13,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 60,
+            "card/borderColor": 44,
+            "link/borderColor": 4,
+            "other/borderColor": 52,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 44619.86432030199,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 16922.73547016324,
+          "properties": [
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#cdcccc",
+          "oklch": {
+            "c": 0.0011062450184006565,
+            "h": 17.179807102995593,
+            "l": 0.8460134771881467
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 11250,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1
+          }
+        },
+        {
+          "hex": "#c52910",
+          "oklch": {
+            "c": 0.1947129637205505,
+            "h": 31.656657957777778,
+            "l": 0.5356990014416064
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 9554.153954347128,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#962921",
+          "oklch": {
+            "c": 0.1461290433439774,
+            "h": 28.531728876725378,
+            "l": 0.4513150794061088
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7517.477140920443,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e75a00",
+          "oklch": {
+            "c": 0.1908446268229996,
+            "h": 42.93559386021508,
+            "l": 0.6435704591661957
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5024,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004246718286848416,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#ffffff",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.1,
+          "background": "#000000",
+          "foreground": "#cdcccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.32,
+          "background": "#272727",
+          "foreground": "#cdcccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.97,
+          "background": "#962921",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#000000",
+          "foreground": "#949494"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.68,
+          "background": "#c52910",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.97,
+          "background": "#962921",
+          "foreground": "#cdcccc"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.92,
+          "background": "#949494",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.88,
+          "background": "#ffffff",
+          "foreground": "#717171"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#000000",
+          "foreground": "#717171"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.17,
+          "background": "#e75a00",
+          "foreground": "#272727"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#e75a00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#c52910",
+          "foreground": "#cdcccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.06,
+          "background": "#272727",
+          "foreground": "#717171"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#949494",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.63,
+          "background": "#c52910",
+          "foreground": "#272727"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.63,
+          "background": "#962921",
+          "foreground": "#949494"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.24,
+          "background": "#e75a00",
+          "foreground": "#cdcccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.89,
+          "background": "#949494",
+          "foreground": "#cdcccc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 32,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "marginBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Messina Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            350
+          ],
+          "frequency": 101,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Messina Sans",
+          "weight": 350,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "image",
+            "footer",
+            "body"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Messina Sans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d10695e0-8240-49e7-86f7-4f299d0fe3f8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Volume design system\",\"item\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#style-reference\",\"name\":\"Volume design system reference\",\"headline\":\"Volume design system | Refero Styles\",\"description\":\"Explore Volume's light Media design system: Ink #272727, Graphite #717171 colors, Messina Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Volume\",\"url\":\"https://vol.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/edc0c03e-8c20-4e22-badd-2735fcb9f4a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"caption\":\"Screenshot of Volume\"},\"image\":\"https://images.refero.design/styles/refero.design/image/58b9d87b-8afb-49fa-8e6c-82d8067200b0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Volume design system\",\"Volume website design\",\"Volume colors\",\"Volume typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Graphite\",\"Ash\",\"Fog\",\"Messina Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Volume design system\"},{\"@type\":\"Thing\",\"name\":\"Volume website design\"},{\"@type\":\"Thing\",\"name\":\"Volume colors\"},{\"@type\":\"Thing\",\"name\":\"Volume typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:31:40.548Z\",\"dateModified\":\"2026-04-30T03:31:40.548Z\"}]}19:T55a,**Quick Color Reference**\n- text: #272727 (Ink)\n- background: #ffffff (Paper)\n- border: #717171 (Graphite, 1px)\n- accent: #c52910 (Signal Red, tags only)\n- dark surface: #272727 (Ink)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Full-bleed campaign hero*: Background is a full-viewport-width photograph. Bottom-left overlay: project title at 50px Messina Sans weight 300, #ffffff, letter-spacing -1px. Subtitle at 20px weight 300, white. Below at 10px gap: two pill tags with 50px radius, #272727 background, white text, 14px weight 300, letter-spacing 0.07em uppercase, 15px horizontal × 10px vertical padding.\n\n2. *Editorial headline section*: White background, 100px top padding. Headline at 80px Messina Sans weight 300, #272727, letter-spacing -1.6px, line-height 1.0, max-width 800px, left-aligned with 30px page-edge inset.\n\n3. *Dark status pill*: 50px border-radius, #272727 background, 14px Messina Sans weight 300 uppercase white text, letter-spacing 0.07em, 15px × 10px padding.\n\n4. *Warm availability pill*: Same dimensions as dark pill but #c52910 background, white text — used for 'Limited copies' or 'Available now' indicators.\n\n5. *Bordered content card*: White background, 1px #717171 border, 50px border-radius, 30px internal padding. No shadow. Content stacks with 12px gaps at 18px Messina Sans weight 300, #272727."
+}

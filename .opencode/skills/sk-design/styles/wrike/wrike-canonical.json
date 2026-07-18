@@ -1,0 +1,1506 @@
+{
+  "source": "https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f",
+  "uuid": "e1c7cab3-dae7-47c3-bb2c-c8f616a8124f",
+  "name": "Wrike",
+  "northStar": "Lime switch on a clean engineer's console — vivid green accents powered against deep navy authority, floating on white.",
+  "capturedAt": "2026-07-18T08:09:23.138Z",
+  "meta": {
+    "url": "https://wrike.com",
+    "siteName": "Wrike",
+    "extractedAt": "2026-06-03T18:17:12.878Z",
+    "durationMs": 32739,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1746,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Green #00e05c as the ONLY chromatic accent in the interface — no secondary brand colors, no red error states rendered in chromatic red (use navy or muted gray for errors)",
+      "Apply 40px pill radius to all standalone buttons; use 8px radius only on the email-capture button nested against an input",
+      "Use the single shadow recipe rgba(24,31,56,0.25) 0px 25px 45px -45px for product mockups and sticky nav — never stack multiple shadows",
+      "Highlight exactly one word in Signal Green within any hero or section headline (e.g. 'One platform', 'Wrike AI') — the green keyword is the visual anchor",
+      "Set all eyebrows to uppercase 12-13px with letter-spacing 0.125em in Steel Blue-Gray #657694 to create the section-rhythm pattern",
+      "Use Frost Surface #f2f5fa for feature card backgrounds and subtle section washes — never use it as a page background",
+      "Keep the final CTA section dark navy #162136 with Signal Green geometric decorations as the page's energy release"
+    ],
+    "donts": [
+      "Do not introduce a second accent color (no purple, no orange, no teal) — the system is monochromatic plus one green",
+      "Do not use square or sharp-cornered buttons — pill radius is signature",
+      "Do not stack multiple shadow recipes or add inner shadows — one shadow recipe only",
+      "Do not render the dark CTA section in any color other than #162136 — light or mid-gray breaks the final-section contrast",
+      "Do not use warm grays or beige neutrals — the entire neutral palette is cool blue-gray",
+      "Do not use full-bleed photography as a hero — the product UI mockup is always the visual hero",
+      "Do not render the Signal Green CTA in any variant other than a fully filled pill — no outlined green, no ghost green, no green text-only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#00e05c",
+        "name": "Signal Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color; Decorative geometric shapes, radial glow accents in dark sections, gradient endpoints",
+        "group": "brand",
+        "gradient": "linear-gradient(to left, rgb(0, 153, 128), rgb(0, 178, 89), rgb(0, 224, 92), rgb(0, 178, 89), rgb(0, 153, 128))"
+      },
+      {
+        "hex": "#162136",
+        "name": "Midnight Navy",
+        "role": "Headlines, primary body text, navigation, dark footer sections — the structural anchor of the entire hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b3a57",
+        "name": "Slate Navy",
+        "role": "Secondary headings, card titles, muted dark text — a softened navy for sub-hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#657694",
+        "name": "Steel Blue-Gray",
+        "role": "Helper text, secondary copy, muted labels, dropdown menus — the cool-toned equivalent of mid-gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfc7d9",
+        "name": "Mist Blue",
+        "role": "Hairline borders, dividers, input borders, subtle separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Icon strokes, high-contrast text, SVG fills, decorative geometric accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, inverse text on dark, input fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f5fa",
+        "name": "Frost Surface",
+        "role": "Feature card backgrounds, subtle wash sections, ghost button hovers — the softest cool tint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1c9d8",
+        "name": "Halo Blue-Gray",
+        "role": "Shadow tones, elevated surface edges, decorative background shapes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0073d3",
+        "name": "Link Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#737a86",
+        "name": "Smoke Gray",
+        "role": "Disabled button states, inactive controls, de-emphasized metadata",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container. Hero is a two-column split (text left, product mockup right) on white. Sections are full-bleed white bands stacked vertically with 80-120px vertical gaps, no alternating dark/light rhythm until the final CTA section which is a full-bleed dark navy band. Feature sections use 3-column card grids with equal widths. Content blocks are centered stacks with 2-column text+image alternating. Navigation is a single horizontal top bar, sticky on scroll, with no sidebar. Density is comfortable — generous padding inside cards, wide vertical breathing room between sections, never cramped.",
+    "imagery": "Photography appears only inside feature cards: real human shots of people at laptops, in meetings, in office contexts. Photos are treated as contained rectangles inside white cards, never full-bleed, and always overlaid with small floating green icon badges in the corners to inject brand color. No lifestyle hero photography — the product UI mockup IS the hero visual. Decorative geometric shapes (triangles, pill blobs, glows) appear in the dark footer section in Signal Green as brand energy. Icons are minimal: outlined or single-color flat, no 3D, no gradients, paired with green when interactive.",
+    "similar": [
+      {
+        "why": "Same near-monochrome palette with a single vivid accent and pill-shaped CTAs; product mockups as hero visuals",
+        "business": "Notion"
+      },
+      {
+        "why": "Same enterprise-SaaS white canvas with cool blue-gray neutrals, generous card padding, and structured 3-column feature grids",
+        "business": "Asana"
+      },
+      {
+        "why": "Same restraint with a single signature accent color used sparingly for active states and CTAs, plus a deep navy inverse section for final CTAs",
+        "business": "Linear"
+      },
+      {
+        "why": "Same competitive work-management positioning with bright green brand color, product mockup heroes, and award-badge social proof strips",
+        "business": "ClickUp"
+      },
+      {
+        "why": "Same vivid accent-on-white SaaS pattern with rounded card components, feature grid sections, and dark-mode final CTA bands",
+        "business": "Monday.com"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "pills": "9999px",
+        "small": "4px",
+        "inputs": "8px",
+        "buttons": "40px"
+      },
+      "elementGap": "12-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Default page background"
+      },
+      {
+        "hex": "#f2f5fa",
+        "name": "Frost Card",
+        "level": 1,
+        "purpose": "Feature cards, subtle section washes"
+      },
+      {
+        "hex": "#162136",
+        "name": "Dark Stage",
+        "level": 2,
+        "purpose": "Final CTA section, dark-mode contrast band"
+      },
+      {
+        "hex": "#00e05c",
+        "name": "Signal Layer",
+        "level": 3,
+        "purpose": "CTA fills, announcement bar, active state fills"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(24, 31, 56, 0.25) 0px 25px 45px -45px",
+        "element": "Product mockup cards"
+      },
+      {
+        "style": "rgba(24, 31, 56, 0.25) 0px 25px 45px -45px",
+        "element": "Sticky navigation"
+      }
+    ],
+    "northStar": "Lime switch on a clean engineer's console — vivid green accents powered against deep navy authority, floating on white.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.125
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.014
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.013
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.013
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.014
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.013
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "hero",
+        "size": 64,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action across hero, section CTAs, and footer",
+        "description": "Filled Signal Green (#00e05c) background, white text, TT Norms Pro weight 600 at 16px, 40px pill radius, 14px 28px padding. The vivid green against pure white makes it impossible to miss. Used for 'Try Wrike for free' everywhere."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action below primary CTA (e.g. 'Discover Wrike in 3 minutes')",
+        "description": "No background, no border. Link Blue (#0073d3) text at 14-16px weight 400, paired with a small icon (play triangle, arrow). 8px padding. Sits directly under the primary CTA as a low-pressure alternative."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Time-sensitive promo strip above the nav",
+        "description": "Full-bleed Signal Green (#00e05c) background, black or dark navy text at 13px weight 600, centered. 8-10px vertical padding. Lightning-bolt icon prefix. Appears only when a campaign is active."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Primary site navigation with logo and utility links",
+        "description": "White background, no visible border bottom, sits on the white canvas. Wrike green checkmark wordmark left, nav links (Solutions, Product, Why Wrike?, Resources, Enterprise, Pricing) in Midnight Navy at 16px weight 400 with dropdown chevrons. Right cluster: 'Contact Sales' text link, language selector ('EN'), 'Log in' text, then filled Primary CTA. The single signature shadow rgba(24, 31, 56, 0.25) 0px 25px 45px -45px may apply on scroll."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column feature block in AI section and similar grids",
+        "description": "White background, 20px radius, no visible border. Card padding 32-40px internal. Eyebrow ('3+ HOURS') in uppercase 13px letter-spacing 0.125em weight 600 muted blue. Heading in Midnight Navy weight 700 at 20-24px. Body in Steel Blue-Gray #657694 at 14-16px weight 400. Green link text with right-arrow affordance. Bottom half contains a photo or illustration with floating green icon badges overlaid."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold landing",
+        "description": "Full-bleed white background, max-width 1200px content. Two-column layout: left half has a 64px hero headline in Midnight Navy weight 700 (line-height 1.10) with one keyword highlighted in Signal Green, supporting body in Steel Blue-Gray, then Primary CTA + Ghost button stack. Right half shows a product mockup (dashboard UI) floating with the signature shadow rgba(24, 31, 56, 0.25) 0px 25px 45px -45px."
+      },
+      {
+        "name": "Product Mockup",
+        "role": "Dashboard/UI screenshot rendered as a floating element",
+        "description": "White card with 12-20px radius, floating via the signature shadow rgba(24, 31, 56, 0.25) 0px 25px 45px -45px. Internal content shows Kanban boards, charts, avatars, and project data in full color. Sometimes slightly rotated or offset to feel alive."
+      },
+      {
+        "name": "Dark CTA Footer Section",
+        "role": "Final conversion band before page end",
+        "description": "Full-bleed Midnight Navy #162136 background. Decorative green geometric shapes (triangles, pill blobs, glow circles) float on the edges as brand energy. Centered white headline weight 700 at 32-48px. Sub-copy in muted lighter navy. Email input (white fill, 8px radius, 14px placeholder) paired inline with Primary CTA. Star rating row below."
+      },
+      {
+        "name": "Email Input + Button Combo",
+        "role": "Lead capture in the dark footer section",
+        "description": "Horizontal flex row. Input: white background, 8px radius, 1px Mist Blue border, 14px placeholder in Steel Blue-Gray, 12-16px vertical padding. Button: same Primary CTA, 8px radius variant (not pill) to nest against the input edge."
+      },
+      {
+        "name": "Client Logo Strip",
+        "role": "Social proof band below hero",
+        "description": "White background, centered uppercase eyebrow 'TRUSTED BY 20,000+ HAPPY CUSTOMERS WORLDWIDE' at 13px letter-spacing 0.125em in muted gray. Row of 7-8 grayscale client logos at uniform height, evenly spaced. Logos are rendered in #000000 or muted navy with no color highlights."
+      },
+      {
+        "name": "Award Badge",
+        "role": "Third-party recognition (G2, TrustRadius, Capterra)",
+        "description": "Colorful shield/ribbon-shaped badge with multi-color gradient fills, 80-100px tall, centered above a caption label in Midnight Navy. Appears in a 3-column grid."
+      },
+      {
+        "name": "Floating Icon Badge",
+        "role": "Small decorative icon overlaid on feature card photos",
+        "description": "8-12px radius square or circle, Signal Green or white fill with green icon, semi-transparent backdrop. Overlaps the bottom corner of feature card photos to add brand color energy to otherwise neutral imagery."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system for all UI. Weight 700 for headlines and CTAs (commands attention on white), weight 600 for subheadings and button labels, weight 400 for body and descriptions. Tabular numerals (tnum) enabled for data-heavy product mockups; stylistic alternates ss01–ss04, ss06 active for refined letterforms in display sizes. The 0.125em letter-spacing on 12–13px all-caps creates the uppercase eyebrow pattern ('3+ HOURS', 'TRUSTED BY 20,000+ HAPPY CUSTOMERS WORLDWIDE') that structures every section.",
+        "sizes": "12, 13, 14, 16, 18, 20, 24, 32, 48, 64",
+        "family": "TT Norms Pro",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.10–2.00 (tight 1.10–1.20 for display, 1.38–1.50 for body, 2.00 for spacious eyebrows)",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "0.125em for uppercase eyebrows at 12-13px, 0.013-0.014em for body and small headings",
+        "fontFeatureSettings": "\"ss01\", \"ss02\", \"ss03\", \"ss04\", \"ss06\", \"tnum\""
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "600",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Wrike's design language is built on a stark white canvas punctuated by a single vivid lime green that acts as a power switch across the interface. The system uses a deep midnight navy for authority text and dark sections, with cool blue-gray neutrals providing soft surface separation rather than warm grays or heavy shadows. Typography is carried by TT Norms Pro at comfortable 4px-grid spacing, with weight 700 headlines that command attention against whisper-thin 400 body text. Components are pill-shaped (40px radius) and card-soft (20px radius), using one signature shadow recipe that floats product mockups off the page. The overall feel is enterprise-confident but energetic — a work-management tool that looks like a productivity OS, not a form.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wrike design system\",\"item\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#style-reference\",\"name\":\"Wrike design system reference\",\"headline\":\"Wrike design system | Refero Styles\",\"description\":\"Explore Wrike's light SaaS design system: Signal Green #00e05c, Midnight Navy #162136 colors, TT Norms Pro, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wrike\",\"url\":\"https://wrike.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"caption\":\"Screenshot of Wrike\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wrike design system\",\"Wrike website design\",\"Wrike colors\",\"Wrike typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Signal Green\",\"Midnight Navy\",\"Slate Navy\",\"Steel Blue-Gray\",\"TT Norms Pro\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wrike design system\"},{\"@type\":\"Thing\",\"name\":\"Wrike website design\"},{\"@type\":\"Thing\",\"name\":\"Wrike colors\"},{\"@type\":\"Thing\",\"name\":\"Wrike typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-08T19:16:24.000Z\",\"dateModified\":\"2026-03-08T19:16:24.000Z\"}]}19:T4f1,**Quick Color Reference**\n- text (primary): #162136 Midnight Navy\n- text (muted): #657694 Steel Blue-Gray\n- background (page): #ffffff Paper White\n- background (card): #f2f5fa Frost Surface\n- border: #bfc7d9 Mist Blue\n- accent: #00e05c Signal Green\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Build a feature card**: White #ffffff background, 20px border-radius, 32px internal padding. Top: uppercase eyebrow '3+ HOURS' at 13px weight 600 letter-spacing 0.125em in #657694. Middle: heading at 24px weight 700 in #162136, then body at 16px weight 400 in #657694. Below body: a Link Blue #0073d3 text link with right-arrow at 16px. Bottom half: a 16:9 photo with a floating 10px-radius green (#00e05c) icon badge overlapping the bottom-left corner.\n\n\n\n5. **Build a client logo strip**: White #ffffff background, centered. Eyebrow text 'TRUSTED BY 20,000+ HAPPY CUSTOMERS WORLDWIDE' at 13px weight 600 letter-spacing 0.125em in #657694, uppercase. Below: a single row of 8 grayscale client logos (rendered in #000000 or muted #2b3a57), each ~80px tall, evenly spaced with 40-60px gaps between them.1a:T43f,Three choices define Wrike's visual identity and would not appear in a generic SaaS system:\n\n1. **Single-shade lime green as the only chromatic accent.** Every other color in the system is achromatic, near-gray, or navy. This makes the green on CTAs and the brand wordmark feel like a power switch — it only appears where the brand needs you to act. Using two accents (e.g. a blue and a green) would dilute this.\n\n2. **Pill-shaped buttons at 40px radius.** Most enterprise SaaS uses 4-8px radius on buttons. Wrike pushes to 40px — nearly full-pill. Combined with the vivid green fill, the CTA reads as friendly and decisive, not corporate. The 8px-radius variant only appears on the email-capture button nested against the input.\n\n3. **One shadow recipe for all elevation.** rgba(24,31,56,0.25) 0px 25px 45px -45px is the only shadow in the system. Used on product mockups and the sticky nav. Negative spread (-45px) means the shadow only appears at the bottom edge, giving a 'floating sheet' feel without haloing around all sides. Other systems use 3-5 shadow tiers; Wrike uses one."
+      },
+      {
+        "title": "Signature Choices",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "Wrike uses exactly one shadow recipe across the entire interface. Elevation is rare and intentional — only the product mockup and sticky nav cast a shadow. Everything else relies on surface color contrast (#ffffff → #f2f5fa → #162136) to create depth, not shadow stacks. This keeps the system visually quiet and prevents SaaS-interface clutter."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "button",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 3733,
+          "confidence": 1,
+          "prominence": 145916932.69936934,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "button",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "icon"
+          ],
+          "frequency": 483,
+          "confidence": 1,
+          "prominence": 15066974.583530989,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#162136",
+          "oklch": {
+            "c": 0.043149089302730766,
+            "h": 262.57664607182585,
+            "l": 0.24873906444952773
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "button",
+            "nav",
+            "body",
+            "heading",
+            "card",
+            "input",
+            "footer"
+          ],
+          "frequency": 1043,
+          "confidence": 1,
+          "prominence": 12651015.675058631,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f5fa",
+          "oklch": {
+            "c": 0.00741018134610048,
+            "h": 260.73157389129045,
+            "l": 0.9692991263329261
+          },
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 145,
+          "confidence": 1,
+          "prominence": 3838740.799705307,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b3a57",
+          "oklch": {
+            "c": 0.054724675691132735,
+            "h": 262.9183527851245,
+            "l": 0.34927210757361044
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "image",
+            "list"
+          ],
+          "frequency": 706,
+          "confidence": 1,
+          "prominence": 2257433.4663165887,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebecee",
+          "oklch": {
+            "c": 0.001940287412213192,
+            "h": 252.7548310853449,
+            "l": 0.9438692655117591
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 351564,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00e05c",
+          "oklch": {
+            "c": 0.22841500426137343,
+            "h": 148.08037422859414,
+            "l": 0.7908184819872555
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 248484,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#657694",
+          "oklch": {
+            "c": 0.05094419223890525,
+            "h": 261.68626326262427,
+            "l": 0.5634334386650449
+          },
+          "contexts": [
+            "body",
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 160188.72008418982,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bfc7d9",
+          "oklch": {
+            "c": 0.026672499066503028,
+            "h": 266.57581663685175,
+            "l": 0.8290490370368807
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 309,
+          "confidence": 1,
+          "prominence": 136556.05268702493,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dce1eb",
+          "oklch": {
+            "c": 0.014645556018828049,
+            "h": 264.494368585978,
+            "l": 0.9088550020012302
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 83914.2546381809,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0073d3",
+          "oklch": {
+            "c": 0.17087702034379867,
+            "h": 252.90607020591835,
+            "l": 0.555768685389688
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 213,
+          "confidence": 1,
+          "prominence": 61931.73589120918,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#40516e",
+          "oklch": {
+            "c": 0.052877202594507774,
+            "h": 260.8742158060564,
+            "l": 0.43307154502304646
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 25847.04004471084,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c1c9d8",
+          "oklch": {
+            "c": 0.02271337460877864,
+            "h": 263.17737836080227,
+            "l": 0.8343017576778069
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 24552,
+          "properties": [
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737a86",
+          "oklch": {
+            "c": 0.02089471658486103,
+            "h": 263.4985921807073,
+            "l": 0.5775623359986112
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3651.7536016615436,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05547812776284134,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.22,
+          "background": "#f2f5fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.77,
+          "background": "#ebecee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.09,
+          "background": "#162136",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#dce1eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#f2f5fa",
+          "foreground": "#162136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#ebecee",
+          "foreground": "#162136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.61,
+          "background": "#c1c9d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.39,
+          "background": "#bfc7d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.27,
+          "background": "#dce1eb",
+          "foreground": "#162136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#00e05c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.38,
+          "background": "#ffffff",
+          "foreground": "#2b3a57"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.41,
+          "background": "#f2f5fa",
+          "foreground": "#2b3a57"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.67,
+          "background": "#c1c9d8",
+          "foreground": "#162136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#ebecee",
+          "foreground": "#2b3a57"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.49,
+          "background": "#162136",
+          "foreground": "#bfc7d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#00e05c",
+          "foreground": "#162136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.68,
+          "background": "#dce1eb",
+          "foreground": "#2b3a57"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.01,
+          "background": "#ffffff",
+          "foreground": "#40516e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#f2f5fa",
+          "foreground": "#40516e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 92
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "card",
+            "other"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(24, 31, 56, 0.25) 0px 25px 45px -45px",
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 84,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 113,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 216,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 99,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 33,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 35,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingBottom",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 264,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 41,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 68,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 85,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 103,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 214,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left, rgb(0, 153, 128), rgb(0, 178, 89), rgb(0, 224, 92), rgb(0, 178, 89), rgb(0, 153, 128))",
+        "colors": [
+          "rgb(0, 153, 128)",
+          "rgb(0, 178, 89)",
+          "rgb(0, 224, 92)",
+          "rgb(0, 178, 89)",
+          "rgb(0, 153, 128)"
+        ],
+        "frequency": 3
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TT_Norms_Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 1673,
+          "fontFeatureSettings": [
+            "\"ss01\", \"ss02\", \"ss03\", \"ss04\", \"ss06\", \"tnum\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            600
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.125,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "icon"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "image",
+            "nav",
+            "list",
+            "hero",
+            "card",
+            "body",
+            "button",
+            "footer"
+          ],
+          "frequency": 1158,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TT_Norms_Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "button",
+            "icon",
+            "card",
+            "body",
+            "heading"
+          ],
+          "frequency": 152,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "TT_Norms_Pro",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/10765e39-cc4b-4392-83cc-11180bb7860e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wrike design system\",\"item\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#style-reference\",\"name\":\"Wrike design system reference\",\"headline\":\"Wrike design system | Refero Styles\",\"description\":\"Explore Wrike's light SaaS design system: Signal Green #00e05c, Midnight Navy #162136 colors, TT Norms Pro, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wrike\",\"url\":\"https://wrike.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e1c7cab3-dae7-47c3-bb2c-c8f616a8124f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"caption\":\"Screenshot of Wrike\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5cf625d7-1e6e-4fbe-96cf-a290d35da4fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wrike design system\",\"Wrike website design\",\"Wrike colors\",\"Wrike typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Signal Green\",\"Midnight Navy\",\"Slate Navy\",\"Steel Blue-Gray\",\"TT Norms Pro\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wrike design system\"},{\"@type\":\"Thing\",\"name\":\"Wrike website design\"},{\"@type\":\"Thing\",\"name\":\"Wrike colors\"},{\"@type\":\"Thing\",\"name\":\"Wrike typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-08T19:16:24.000Z\",\"dateModified\":\"2026-03-08T19:16:24.000Z\"}]}19:T4f1,**Quick Color Reference**\n- text (primary): #162136 Midnight Navy\n- text (muted): #657694 Steel Blue-Gray\n- background (page): #ffffff Paper White\n- background (card): #f2f5fa Frost Surface\n- border: #bfc7d9 Mist Blue\n- accent: #00e05c Signal Green\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Build a feature card**: White #ffffff background, 20px border-radius, 32px internal padding. Top: uppercase eyebrow '3+ HOURS' at 13px weight 600 letter-spacing 0.125em in #657694. Middle: heading at 24px weight 700 in #162136, then body at 16px weight 400 in #657694. Below body: a Link Blue #0073d3 text link with right-arrow at 16px. Bottom half: a 16:9 photo with a floating 10px-radius green (#00e05c) icon badge overlapping the bottom-left corner.\n\n\n\n5. **Build a client logo strip**: White #ffffff background, centered. Eyebrow text 'TRUSTED BY 20,000+ HAPPY CUSTOMERS WORLDWIDE' at 13px weight 600 letter-spacing 0.125em in #657694, uppercase. Below: a single row of 8 grayscale client logos (rendered in #000000 or muted #2b3a57), each ~80px tall, evenly spaced with 40-60px gaps between them.1a:T43f,Three choices define Wrike's visual identity and would not appear in a generic SaaS system:\n\n1. **Single-shade lime green as the only chromatic accent.** Every other color in the system is achromatic, near-gray, or navy. This makes the green on CTAs and the brand wordmark feel like a power switch — it only appears where the brand needs you to act. Using two accents (e.g. a blue and a green) would dilute this.\n\n2. **Pill-shaped buttons at 40px radius.** Most enterprise SaaS uses 4-8px radius on buttons. Wrike pushes to 40px — nearly full-pill. Combined with the vivid green fill, the CTA reads as friendly and decisive, not corporate. The 8px-radius variant only appears on the email-capture button nested against the input.\n\n3. **One shadow recipe for all elevation.** rgba(24,31,56,0.25) 0px 25px 45px -45px is the only shadow in the system. Used on product mockups and the sticky nav. Negative spread (-45px) means the shadow only appears at the bottom edge, giving a 'floating sheet' feel without haloing around all sides. Other systems use 3-5 shadow tiers; Wrike uses one."
+}

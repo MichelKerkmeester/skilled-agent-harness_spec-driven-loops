@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/011-sk-design-styles-utilization",
+  "description": "Phase parent: decide how to utilize the ~1,290-style Refero library across sk-design; research phase first, implementation phases gated on findings.",
+  "keywords": [
+    "phase",
+    "parent",
+    "decide",
+    "utilize",
+    "290-style",
+    "refero",
+    "library",
+    "across",
+    "sk-design",
+    "research",
+    "first",
+    "implementation",
+    "phases",
+    "gated",
+    "findings"
+  ],
+  "lastUpdated": "2026-07-18T09:21:31.056Z",
+  "specId": "011",
+  "folderSlug": "sk-design-styles-utilization",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

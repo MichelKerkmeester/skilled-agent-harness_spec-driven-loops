@@ -1,0 +1,287 @@
+{
+  "color": {
+    "midnight-canvas": {
+      "$value": "#040714",
+      "$type": "color",
+      "$description": "Midnight Canvas — Page background, hero background, primary canvas — deep near-black navy that absorbs the eye and makes artwork pop"
+    },
+    "abyss": {
+      "$value": "#010104",
+      "$type": "color",
+      "$description": "Abyss — Deepest surface layer, navigation background — the near-pure black undercarriage beneath the canvas"
+    },
+    "eclipse": {
+      "$value": "#0e0b14",
+      "$type": "color",
+      "$description": "Eclipse — Footer background, alternate dark surface — slightly warmer dark for depth variation"
+    },
+    "carbon": {
+      "$value": "#1e1f24",
+      "$type": "color",
+      "$description": "Carbon — Elevated dark surface — used for cards or panels sitting above the canvas"
+    },
+    "slate-veil": {
+      "$value": "#282a36",
+      "$type": "color",
+      "$description": "Slate Veil — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "luminous": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Luminous — Primary text, heading text, icon fills, link text, button labels — the dominant light element across the interface"
+    },
+    "pearl": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Pearl — Border color used at scale (hairs, dividers, card edges) — the structural skeleton of the UI"
+    },
+    "mist": {
+      "$value": "#b7b8bd",
+      "$type": "color",
+      "$description": "Mist — Body text, secondary text, helper copy — muted gray for non-primary reading"
+    },
+    "fog": {
+      "$value": "#c0c0c0",
+      "$type": "color",
+      "$description": "Fog — List text, icon fills, secondary metadata — the lightest level of secondary text"
+    },
+    "deep-ink": {
+      "$value": "#02172a",
+      "$type": "color",
+      "$description": "Deep Ink — Gray text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "onyx-label": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Onyx Label — Dark text for inverted or high-contrast button labels on light fills"
+    },
+    "electric-cyan": {
+      "$value": "#33ddff",
+      "$type": "color",
+      "$description": "Electric Cyan — Primary CTA buttons (SIGN UP NOW, plan tier cards) — the sole chromatic action color; neon-cyan against the void creates cinema-marquee urgency"
+    },
+    "teal-pulse": {
+      "$value": "#02d6e8",
+      "$type": "color",
+      "$description": "Teal Pulse — Accent text, promotional price highlights (€4.99), link emphasis, body emphasis — the slightly darker teal sibling used for inline chromatic moments that aren't buttons"
+    }
+  },
+  "font": {
+    "inspire": {
+      "$value": "Inspire",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface — headings, body, buttons, labels, nav. The single-font commitment is deliberate: it means Inspire must carry both 12px micro-labels and 40px display moments without losing character. Use 700 for headings, price, and emphasis; 400 for everything else."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inspire",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "abyss": {
+      "$value": "#010104",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest background, navigation chrome"
+    },
+    "midnight-canvas": {
+      "$value": "#040714",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page and hero background"
+    },
+    "eclipse": {
+      "$value": "#0e0b14",
+      "$type": "color",
+      "$description": "Surface level 2: Footer and alternate dark bands"
+    },
+    "carbon": {
+      "$value": "#1e1f24",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated cards and panels above the canvas"
+    },
+    "slate-veil": {
+      "$value": "#282a36",
+      "$type": "color",
+      "$description": "Surface level 4: Input fields and border-defined surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.disneyplus.com",
+      "siteName": "Watch new Originals",
+      "extractedAt": "2026-06-03T20:37:55.488Z",
+      "variant": "extended"
+    }
+  }
+}

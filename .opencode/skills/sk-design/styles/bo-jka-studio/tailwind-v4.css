@@ -1,0 +1,36 @@
+@theme {
+  /* Colors */
+  --color-carbon: #000000;
+  --color-graphite: #282828;
+  --color-bone: #ffffff;
+  --color-fluorescent: #0af500;
+  --color-ember: #ff4600;
+
+  /* Typography */
+  --font-custom15364-bjka-display: 'custom_15364 (Bōjka Display)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system-blinkmacsystemfont-system-ui: '-apple-system / BlinkMacSystemFont (System UI)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 16px;
+  --leading-body: 16;
+  --tracking-body: -0.128px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 26;
+  --text-subheading: 22px;
+  --leading-subheading: 22;
+  --tracking-subheading: -0.176px;
+  --text-heading: 44px;
+  --leading-heading: 48;
+  --tracking-heading: 0.396px;
+  --text-display: 157px;
+  --leading-display: 157;
+  --tracking-display: -1.256px;
+
+  /* Spacing */
+  --spacing-16: 16px;
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+  --radius-full: 68px;
+}

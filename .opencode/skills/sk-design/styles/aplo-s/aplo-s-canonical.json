@@ -1,0 +1,850 @@
+{
+  "source": "https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d",
+  "uuid": "765e6ba8-af87-4519-afb7-774ceedc463d",
+  "name": "Aplós",
+  "northStar": "Old-world apothecary at dusk",
+  "capturedAt": "2026-07-18T07:47:13.567Z",
+  "meta": {
+    "url": "https://aplos.world",
+    "siteName": "Aplós",
+    "extractedAt": "2026-06-03T19:41:10.534Z",
+    "durationMs": 34098,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 428,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all section backgrounds to Bone (#f2f1ed); reserve pure white only for card surfaces that need lift.",
+      "Use Goudy Old Style at 26px and 40px with letter-spacing -0.012em for every heading and product name — the serif IS the brand.",
+      "Anchor all CTAs to 5px radius with 9px 12px padding; never round buttons to pill or full-circle.",
+      "Place 96–120px of vertical whitespace between major sections to maintain the printed-menu cadence.",
+      "Use Cocoa (#3b3429) for inverted accent cards to add tonal variety — never introduce chromatic color where grayscale shift can do the work.",
+      "Keep hero photography full-bleed on Ink (#000000) with white serif headlines; the contrast does the dramatization.",
+      "Set secondary body copy in Stone (#646464) at 14–16px sans-serif, never in the serif at small sizes."
+    ],
+    "donts": [
+      "Don't introduce any chromatic color (blue, green, red, etc.) — the system is deliberately 0% colorful and any hue will break the apothecary language.",
+      "Don't use large border-radius (12px+) or pill shapes — the 5px radius is non-negotiable and keeps the system feeling editorial, not app-like.",
+      "Don't use bold weights (600+) for headings — Goudy Old Style 400 only; the whisper-weight serif is the signature.",
+      "Don't add drop shadows, glows, or gradient overlays — elevation comes from tonal contrast between Bone, Paper, and Cocoa, not from blur effects.",
+      "Don't use a sans-serif for product names or section titles — those are exclusively Goudy Old Style domain.",
+      "Don't crowd sections with dense grids — the rhythm depends on 96–120px breathing room between blocks.",
+      "Don't place dark text directly on Cocoa (#3b3429) without testing contrast — use white (#ffffff) text on Cocoa surfaces."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f1ed",
+        "name": "Bone",
+        "role": "Page background, large section canvases — the warm off-white that gives the system its paper-like editorial feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, elevated panels, light benefit cards — sits one step above Bone to create lift without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3429",
+        "name": "Cocoa",
+        "role": "Dark accent cards, inverted text blocks — warm near-black that softens pure ink and keeps dark sections feeling organic rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, nav links, logo wordmark, hairline borders, hero backdrop",
+        "group": "neutral"
+      },
+      {
+        "hex": "#646464",
+        "name": "Stone",
+        "role": "Secondary body copy, muted helper text, subdued descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4aeac",
+        "name": "Ash",
+        "role": "Subtle link hover shadows, barely-there elevation hints",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered content with full-bleed dark hero and alternating section bands. The hero is a full-viewport dark slab with large product photography and left-aligned serif headline. Below, the page shifts to a Bone (#f2f1ed) canvas hosting a centered 'Benefits' section: serif heading, body paragraph, then a 3-column card grid mixing one Cocoa card and two Paper White cards. The grid is symmetric and equal-width. Subsequent sections follow the pattern: centered serif heading → 1–2 column product showcases with overlapping image+text panels. Navigation is a simple top bar (not sticky, not mega-menu) with logo left and 4–5 text links right. Footer follows in dark Ink. Vertical rhythm is very slow — 96–120px between sections — creating a gallery-like scroll rather than a dense commerce page.",
+    "imagery": "Product photography is the dominant visual element — tightly cropped cans, bottles, and styled cocktail glassware on pure black. No lifestyle, no people, no contextual environments: the object IS the hero. Photography is high-contrast, studio-lit, and occupies 60–80% of hero and product card real estate. No illustrations, no icons beyond minimal UI chrome, no decorative graphics. Color treatment is natural (sage green can, pale yellow cocktail liquid) but always grounded against black backgrounds so the warmth feels intentional rather than incidental.",
+    "similar": [
+      {
+        "why": "Same warm cream (#f2f1ed-style) canvas, serif-forward editorial type, and monochrome product photography approach",
+        "business": "Chamberlain Coffee"
+      },
+      {
+        "why": "Non-alcoholic apothecary positioning with botanical product shots, serif headlines, and a restrained warm-neutral palette",
+        "business": "Ghia"
+      },
+      {
+        "why": "Editorial commerce layout with large product imagery, centered serif section titles, and generous section breathing room",
+        "business": "Olipop"
+      },
+      {
+        "why": "Luxury wellness brand language: cream canvas, deep near-black accent blocks, classical serif typography, and product-as-art photography",
+        "business": "Augustinus Bader"
+      },
+      {
+        "why": "Non-alcoholic spirit category neighbor with dark hero slabs, serif wordmarks, and monochrome-tonal product pages",
+        "business": "Theopiq / Kin Euphorics"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "5px",
+        "cards": "5px",
+        "inputs": "5px",
+        "buttons": "5px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "96-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f2f1ed",
+        "name": "Bone",
+        "level": 0,
+        "purpose": "Page-level canvas, most section backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Card surfaces, product panels, light benefit cards"
+      },
+      {
+        "hex": "#3b3429",
+        "name": "Cocoa",
+        "level": 2,
+        "purpose": "Inverted accent cards, dark feature blocks"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Hero backdrop, footer, maximum contrast slabs"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Old-world apothecary at dusk",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.08,
+        "letterSpacing": -0.31
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.67
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top utility strip",
+        "description": "Full-width white (#ffffff) bar, 1px bottom border in #e5e3df. Single line of small sans-serif text (12–14px) centered in #000000. Fixed height ~40px."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site header with logo + nav links",
+        "description": "White background, logo wordmark 'APLŌS' in Goudy Old Style 26px #000000 left-aligned. Nav links (Shop, Recipes, Journal, Store Locator, Cart) right-aligned in sans-serif 14px #000000. Generous horizontal padding (24px+), height ~72px."
+      },
+      {
+        "name": "Dark Hero Section",
+        "role": "Full-bleed editorial hero",
+        "description": "Pure black (#000000) background, full viewport width. Headline in Goudy Old Style 40–56px white, left-aligned, sitting beside or overlapping large product photography (can + cocktail glass). No gradient, no decoration — just type and image in negative space."
+      },
+      {
+        "name": "Outlined CTA Button (Light)",
+        "role": "Primary action on dark hero",
+        "description": "White background, no border or 1px border in #ffffff, 5px radius. Sans-serif text 14px, weight 500, #000000. Padding 9px 12px. Compact pill proportion."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary action (Learn More, Shop Now)",
+        "description": "No background, no border. Sans-serif 14px, #000000, text-decoration: underline on hover only. Sits centered below content blocks."
+      },
+      {
+        "name": "Benefits Section Heading",
+        "role": "Editorial section title",
+        "description": "Centered Goudy Old Style 40px #000000, letter-spacing -0.48px, line-height 1.05. Small body paragraph below in sans-serif 14–16px #646464, max-width ~600px, centered."
+      },
+      {
+        "name": "Benefit Card (Light)",
+        "role": "Standard feature card",
+        "description": "White (#ffffff) surface on Bone (#f2f1ed) canvas. 1px border in #e5e3df. 5px radius. 24px internal padding. Goudy Old Style heading 20–26px #000000 at top, small Stone (#646464) sans-serif number ('01', '02') positioned in corner or below."
+      },
+      {
+        "name": "Benefit Card (Dark / Cocoa)",
+        "role": "High-contrast accent card",
+        "description": "Cocoa (#3b3429) surface, 5px radius, 24px internal padding. Goudy Old Style heading 20–26px #ffffff. Optional small white descriptive text in sans-serif 14px. No border — the dark fill is the contrast."
+      },
+      {
+        "name": "Product Collection Card",
+        "role": "Featured product showcase",
+        "description": "Overlapping composition: large product image (bottle/can) bleeds across full card width, ~60–70% card height. White (#ffffff) text panel overlays the lower-left with Goudy Old Style product name 26px #000000 and sans-serif description 14px #646464. No visible card border — image and text panel merge."
+      },
+      {
+        "name": "Section Divider Spacer",
+        "role": "Vertical rhythm control",
+        "description": "No visible line. Pure whitespace of 96–120px between major sections, creating the slow editorial pace."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for headlines, section titles, product names, card titles, and editorial body — a classical Venetian serif that signals craft and heritage. The narrow weight range (400 only) and tight line-heights (1.05–1.08) let the type sit in dense, menu-like stacks. Letter-spacing of -0.012em tightens optical gaps in display sizes without losing the serif's elegance.",
+        "sizes": "26px, 40px",
+        "family": "Goudy Old Style",
+        "weight": "400",
+        "lineHeight": "1.05–1.08",
+        "substitute": "Cormorant Garamond, EB Garamond, Playfair Display",
+        "letterSpacing": "-0.012em",
+        "fontFeatureSettings": "\"liga\" on, \"kern\" on"
+      },
+      {
+        "role": "Inferred secondary face for navigation, buttons, captions, and dense utility text where serif would be illegible at small sizes. Kept restrained so the serif remains dominant.",
+        "sizes": "",
+        "family": "System Sans (UI chrome)",
+        "weight": "400–500",
+        "lineHeight": "1.4–1.5",
+        "substitute": "Inter, system-ui, -apple-system, Helvetica Neue"
+      }
+    ],
+    "description": "Aplós is an old-world apothecary rendered in warm monochrome: bone-white canvas, deep cocoa accents, and a single editorial serif (Goudy Old Style) that does the work a sans-serif system normally would. The page rhythm is slow and confident — dramatic dark hero slabs, generous cream sections, and tightly spaced type that reads more like a printed cocktail menu than a DTC storefront. The product itself is always the visual hero; the interface stays out of the way with minimal borders, one shared 5px radius, and almost no chromatic accent. Color appears only as tonal shift: bone → white → cocoa → ink, never as decorative hue.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aplós design system\",\"item\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#style-reference\",\"name\":\"Aplós design system reference\",\"headline\":\"Aplós design system | Refero Styles\",\"description\":\"Explore Aplós's light E-commerce design system: Bone #f2f1ed, Paper White #ffffff colors, Goudy Old Style, System Sans (UI chrome) typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aplós\",\"url\":\"https://aplos.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"caption\":\"Screenshot of Aplós\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aplós design system\",\"Aplós website design\",\"Aplós colors\",\"Aplós typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Paper White\",\"Cocoa\",\"Ink\",\"Goudy Old Style\",\"System Sans (UI chrome)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aplós design system\"},{\"@type\":\"Thing\",\"name\":\"Aplós website design\"},{\"@type\":\"Thing\",\"name\":\"Aplós colors\"},{\"@type\":\"Thing\",\"name\":\"Aplós typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:49:17.869Z\",\"dateModified\":\"2026-04-30T02:49:17.869Z\"}]}19:T541,**Quick Color Reference**\n- Background: #f2f1ed (Bone)\n- Surface: #ffffff (Paper White)\n- Text: #000000 (Ink)\n- Secondary text: #646464 (Stone)\n- Accent surface: #3b3429 (Cocoa)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Benefits Section**: Bone (#f2f1ed) background. Centered Goudy Old Style heading 40px #000000, letter-spacing -0.48px. Below, sans-serif paragraph 16px #646464, max-width 600px, centered. 3-column card grid below with 24px gaps.\n\n3. **Cocoa Accent Card**: #3b3429 background, 5px radius, 24px padding. Goudy Old Style title 26px #ffffff at top-left, letter-spacing -0.31px. Small sans-serif number '01' in 14px #ffffff positioned bottom-left.\n\n4. **Light Benefit Card**: #ffffff background, 1px border #e5e3df, 5px radius, 24px padding. Goudy Old Style title 26px #000000 top-left, small sans-serif number '02' in 14px #646464 bottom-left.\n\n5. **Product Collection Card**: Large product image (bottle crop) occupying top 65% of card, edge-to-edge with no border-radius on image. Overlapping white text panel at lower-left: Goudy Old Style product name 26px #000000, sans-serif description 14px #646464 below, no panel background — text floats on the image."
+      },
+      {
+        "title": "Typographic Discipline",
+        "content": "The entire visual identity hinges on restraint with Goudy Old Style. Only weight 400 is used; no italic, no bold. Letter-spacing is a near-imperceptible -0.012em across all sizes — enough to tighten optical gaps in display type without making the serif feel mechanical. Line-heights of 1.05–1.08 on headings let lines stack almost touching, mimicking engraved menu typography. Body and UI text defers to a quiet sans-serif to avoid serif fatigue at small sizes."
+      },
+      {
+        "title": "Tonal Layering System",
+        "content": "With zero chromatic color, depth is built entirely from four neutral surfaces in a fixed hierarchy: Bone (#f2f1ed) → Paper White (#ffffff) → Cocoa (#3b3429) → Ink (#000000). Each step increases contrast and visual weight. New components should always be assigned a position in this stack — never invent new grays. The 0% colorfulness is a feature, not a limitation; it forces hierarchy through value, not hue."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows and blur effects. Elevation is communicated entirely through tonal layering: Bone canvas → Paper White cards → Cocoa accent cards → Ink hero slabs. The only shadow token (#b4aeac) is a barely-perceptible link hover state, never used for component lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "icon",
+            "heading",
+            "list",
+            "image",
+            "link",
+            "footer"
+          ],
+          "frequency": 945,
+          "confidence": 1,
+          "prominence": 97768884.67636597,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 36,
+            "body/color": 14,
+            "icon/color": 18,
+            "link/color": 1,
+            "list/color": 14,
+            "other/fill": 19,
+            "image/color": 18,
+            "other/color": 101,
+            "button/color": 8,
+            "other/stroke": 2,
+            "heading/color": 4,
+            "body/borderColor": 56,
+            "icon/borderColor": 72,
+            "link/borderColor": 4,
+            "list/borderColor": 56,
+            "image/borderColor": 72,
+            "other/borderColor": 404,
+            "button/borderColor": 24,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "button",
+            "image",
+            "heading",
+            "body",
+            "footer",
+            "input",
+            "icon"
+          ],
+          "frequency": 942,
+          "confidence": 1,
+          "prominence": 13971460.371380316,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "icon/color": 1,
+            "link/color": 16,
+            "list/color": 26,
+            "other/fill": 2,
+            "image/color": 14,
+            "input/color": 1,
+            "other/color": 92,
+            "button/color": 16,
+            "footer/color": 1,
+            "heading/color": 14,
+            "body/borderColor": 24,
+            "icon/borderColor": 4,
+            "link/borderColor": 64,
+            "list/borderColor": 104,
+            "image/borderColor": 56,
+            "input/borderColor": 4,
+            "other/borderColor": 368,
+            "button/borderColor": 60,
+            "footer/borderColor": 4,
+            "heading/borderColor": 56,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f2f1ed",
+          "oklch": {
+            "c": 0.005424964831153572,
+            "h": 95.10058589688354,
+            "l": 0.9578021950807308
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 5059363.391351149,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#3b3429",
+          "oklch": {
+            "c": 0.02106352591517372,
+            "h": 79.04102727498937,
+            "l": 0.3289248718249853
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 81180,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#646464",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5032293384241285
+          },
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 50365.01242821689,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 15,
+            "link/color": 1,
+            "other/color": 7,
+            "body/borderColor": 60,
+            "link/borderColor": 4,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#b4aeac",
+          "oklch": {
+            "c": 0.007461646802882018,
+            "h": 39.445585287475396,
+            "l": 0.7551911035942133
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2927,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "link/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00011108030412731346,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#f2f1ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#3b3429",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#f2f1ed",
+          "foreground": "#3b3429"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#b4aeac",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#ffffff",
+          "foreground": "#646464"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.61,
+          "background": "#b4aeac",
+          "foreground": "#3b3429"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#f2f1ed",
+          "foreground": "#646464"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.55,
+          "background": "#000000",
+          "foreground": "#646464"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#3b3429",
+          "foreground": "#646464"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#3b3429",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#f2f1ed",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 30
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "link",
+            "body",
+            "input"
+          ],
+          "frequency": 161,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|other",
+            "marginBottom|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Unica",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 367,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Goudy Old Style",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "icon",
+            "link",
+            "list",
+            "image",
+            "heading",
+            "footer",
+            "input"
+          ],
+          "frequency": 367,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Goudy Old Style",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Goudy Old Style",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Goudy Old Style",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8ee2bf02-0a4a-4e1a-8490-91b59a37a8cc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aplós design system\",\"item\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#style-reference\",\"name\":\"Aplós design system reference\",\"headline\":\"Aplós design system | Refero Styles\",\"description\":\"Explore Aplós's light E-commerce design system: Bone #f2f1ed, Paper White #ffffff colors, Goudy Old Style, System Sans (UI chrome) typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aplós\",\"url\":\"https://aplos.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/765e6ba8-af87-4519-afb7-774ceedc463d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"caption\":\"Screenshot of Aplós\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1113c4af-6183-4096-b31b-f1e3dd1d77b2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aplós design system\",\"Aplós website design\",\"Aplós colors\",\"Aplós typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Paper White\",\"Cocoa\",\"Ink\",\"Goudy Old Style\",\"System Sans (UI chrome)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aplós design system\"},{\"@type\":\"Thing\",\"name\":\"Aplós website design\"},{\"@type\":\"Thing\",\"name\":\"Aplós colors\"},{\"@type\":\"Thing\",\"name\":\"Aplós typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:49:17.869Z\",\"dateModified\":\"2026-04-30T02:49:17.869Z\"}]}19:T541,**Quick Color Reference**\n- Background: #f2f1ed (Bone)\n- Surface: #ffffff (Paper White)\n- Text: #000000 (Ink)\n- Secondary text: #646464 (Stone)\n- Accent surface: #3b3429 (Cocoa)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Benefits Section**: Bone (#f2f1ed) background. Centered Goudy Old Style heading 40px #000000, letter-spacing -0.48px. Below, sans-serif paragraph 16px #646464, max-width 600px, centered. 3-column card grid below with 24px gaps.\n\n3. **Cocoa Accent Card**: #3b3429 background, 5px radius, 24px padding. Goudy Old Style title 26px #ffffff at top-left, letter-spacing -0.31px. Small sans-serif number '01' in 14px #ffffff positioned bottom-left.\n\n4. **Light Benefit Card**: #ffffff background, 1px border #e5e3df, 5px radius, 24px padding. Goudy Old Style title 26px #000000 top-left, small sans-serif number '02' in 14px #646464 bottom-left.\n\n5. **Product Collection Card**: Large product image (bottle crop) occupying top 65% of card, edge-to-edge with no border-radius on image. Overlapping white text panel at lower-left: Goudy Old Style product name 26px #000000, sans-serif description 14px #646464 below, no panel background — text floats on the image."
+}

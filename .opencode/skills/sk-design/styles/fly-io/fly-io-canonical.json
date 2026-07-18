@@ -1,0 +1,1722 @@
+{
+  "source": "https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906",
+  "uuid": "0c77bb2a-c7cd-499b-b5cd-90268eefe906",
+  "name": "Fly.io",
+  "northStar": "surrealist cloud atlas in violet ink",
+  "capturedAt": "2026-07-18T09:58:41.725Z",
+  "meta": {
+    "url": "https://fly.io",
+    "siteName": "Fly.io",
+    "extractedAt": "2026-06-03T17:10:23.751Z",
+    "durationMs": 29902,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 479,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Mackinac at 64px / -2.88px tracking for any hero or section display headline — the serif is the brand's editorial signature, do not substitute it.",
+      "Use #7c3aed Electric Violet exclusively for filled CTA buttons and active nav states; no other saturated color should appear as a button background.",
+      "Apply 9999px radius to all primary buttons and the top navigation container; the pill shape is a defining silhouette.",
+      "Use #5e537c Heather Violet for body copy rather than pure gray — the warm violet tint keeps the page on-brand.",
+      "Use #e7e6f4 Lavender Mist for all hairline borders and dividers instead of neutral gray; the structural neutral should carry the same hue family as the text.",
+      "Space sections with 96–120px vertical gap; the generous breathing room is what makes the whimsical illustrations feel intentional rather than crowded.",
+      "Use the sky→indigo→pink gradient (#7dd3fc → #a5b4fc → #f9a8d4) for full-bleed section bands that introduce illustrated content."
+    ],
+    "donts": [
+      "Do not use a display sans-serif for headlines — the Mackinac serif is the single most distinctive type choice and removing it collapses the brand voice.",
+      "Do not use bright or saturated colors other than #7c3aed for any UI element; the system runs on one accent.",
+      "Do not use square or 4px-radius buttons for primary actions — pill shape is mandatory for CTAs and nav.",
+      "Do not use pure black (#000000) for body text; use #281950 Deep Ink Violet or #5e537c Heather Violet.",
+      "Do not apply heavy drop shadows to cards or panels; the design relies on hairline borders and tonal contrast for separation, not depth.",
+      "Do not use tight tracking on body copy or button text; the positive letter-spacing (0.025–0.05em) at small sizes is part of the editorial voice.",
+      "Do not use real photography in place of illustrations — the hand-drawn watercolor style is load-bearing for the brand atmosphere."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#7c3aed",
+        "name": "Electric Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#281950",
+        "name": "Deep Ink Violet",
+        "role": "Headlines, high-emphasis text, logo mark — anchors the brand without feeling heavy",
+        "group": "brand"
+      },
+      {
+        "hex": "#5e537c",
+        "name": "Heather Violet",
+        "role": "Body copy, paragraph text, subdued UI labels — the workhorse text color that keeps prose warm rather than cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a39ac1",
+        "name": "Mist Violet",
+        "role": "Secondary text, footer labels, icon strokes, muted links — a washed violet that recedes gracefully",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191034",
+        "name": "Midnight Plum",
+        "role": "Footer background, deepest contrast surface — terminates the page with the same hue family as headings, just darker",
+        "group": "brand"
+      },
+      {
+        "hex": "#202237",
+        "name": "Slate Dusk",
+        "role": "Navigation text, dark-mode-leaning neutral — used where a neutral (not chromatic) dark is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#676b89",
+        "name": "Overcast",
+        "role": "Muted secondary text, helper copy, timestamps — the cool counterpoint to the violet body text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Paper",
+        "role": "Card surfaces, elevated panels, button text on violet fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e6f4",
+        "name": "Lavender Mist",
+        "role": "Hairline borders, card outlines, subtle dividers, inset focus rings — the dominant structural neutral, replacing what would normally be light gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f2f9",
+        "name": "Iris Haze",
+        "role": "Page background, the canvas beneath all content — a barely-perceptible lavender tint rather than pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a5b4fc",
+        "name": "Dawn Wash",
+        "role": "Decorative gradient stop — sky-to-pink section bands",
+        "group": "accent",
+        "gradient": "linear-gradient(to right, #7dd3fc, #a5b4fc, #f9a8d4)"
+      },
+      {
+        "hex": "#a02be4",
+        "name": "Plum Veil",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent",
+        "gradient": "linear-gradient(to right bottom, #a02be4, rgba(0,0,0,0), #4f46e5)"
+      }
+    ],
+    "layout": "Max-width 1200px centered content. Full-bleed section bands with Iris Haze (#f1f2f9) canvas and occasional sky-to-pink gradient washes. Hero is full-bleed illustration behind a centered headline stack. Below the fold, sections alternate between two-column text+illustration layouts and centered text blocks. Trusted-by logo strip is a full-width centered row. Generous 96–120px vertical section gaps create a quiet, gallery-like rhythm. Navigation is a floating pill at the top center-left, not a full-width bar.",
+    "imagery": "Imagery is exclusively hand-drawn watercolor illustration with fine ink outlines. Surreal, dreamlike, populated by anthropomorphic characters (fox-like creatures, geometric beings, bird forms) and floating landscape elements — stars, moons, leaves, architectural fragments, abstract organic shapes. Color treatment is pastel: lavender, peach, teal, mint, cream, soft yellow. Illustrations are contained within sections (not full-bleed except as decorative backdrops in the hero) and always sit on the right or behind text. No photography, no 3D renders, no product screenshots. The illustration carries emotional weight while the UI stays restrained.",
+    "similar": [
+      {
+        "why": "Same violet-tinted dark/light contrast, pill navigation, single saturated accent for CTAs, and confident display typography",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar ultra-clean light canvas with generous spacing, pill buttons, and a single dark text color for hierarchy",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same editorial body type treatment with humanist grotesk, soft neutral canvas, and restrained use of a single brand color",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same devtools audience and pill-shaped navigation, though Fly distinguishes itself with hand-drawn illustration vs Railway's terminal aesthetic",
+        "business": "Railway"
+      },
+      {
+        "why": "Similar warm-neutral canvas, light hairline borders instead of heavy shadows, and playful illustrated personality",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "cards": "16px",
+        "small": "4px",
+        "inputs": "10px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96-120px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#f1f2f9",
+        "name": "Iris Haze Canvas",
+        "level": 0,
+        "purpose": "Page background — the lavender-tinted base beneath all content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Paper",
+        "level": 1,
+        "purpose": "Card surfaces, elevated panels, nav pill background"
+      },
+      {
+        "hex": "#e7e6f4",
+        "name": "Lavender Mist",
+        "level": 2,
+        "purpose": "Subtle elevated washes, gradient band bases, decorative overlays"
+      },
+      {
+        "hex": "#191034",
+        "name": "Midnight Plum",
+        "level": 3,
+        "purpose": "Footer terminal surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(91, 33, 182, 0.1) 0px 5px 5px -2px, rgba(91, 33, 182, 0.1) 0px 2px 4px -2px",
+        "element": "Primary CTA Button"
+      },
+      {
+        "style": "rgba(67, 56, 202, 0.25) 0px 0px 0px 1px inset",
+        "element": "Focused Input/Nav"
+      },
+      {
+        "style": "rgba(32, 34, 55, 0.075) 0px 0px 0px 1px, rgba(32, 34, 55, 0.05) 0px 10px 15px -3px, rgba(32, 34, 55, 0.05) 0px 4px 6px -4px",
+        "element": "Navigation Bar"
+      }
+    ],
+    "northStar": "surrealist cloud atlas in violet ink",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 18,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 25,
+        "letterSpacing": 0.38
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 30,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 25,
+        "letterSpacing": -0.55
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 48,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 74,
+        "letterSpacing": -2.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Floating pill container at 9999px radius, white (#ffffff) fill, hairline border at #e7e6f4, subtle drop shadow. Holds logo on left, nav links centered, Sign In ghost link and 'Get Started' violet CTA on right. Padding 10px vertical, 12px horizontal inside the pill."
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Primary conversion action (Deploy, Get Started, Sign Up)",
+        "description": "Vivid violet (#7c3aed) fill, white text in Fricolage Grotesque 16px weight 500, 9999px radius, 10px 20px padding. Soft violet-tinted shadow (rgba(91,33,182,0.1) two-layer) lifts it off the page. Optional right-arrow glyph in white at 14px."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Secondary action (Enterprise Features, Fly.io Security)",
+        "description": "Transparent fill, 1.5px solid #7c3aed border, 9999px radius, violet text in Fricolage 16px weight 500, 10px 20px padding. Right-arrow chevron in violet. Used for lower-emphasis but still conversion-oriented actions."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation and tertiary actions",
+        "description": "No background or border, text in #281950 or #5e537c, underline on hover only. Fricolage 16px weight 450. Used for 'Sign In', 'Learn more', and inline editorial links."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section titles",
+        "description": "Mackinac 64px weight 500, color #281950, letter-spacing -2.88px, line-height 1.15. Two-line structure common; italic word accent (e.g. 'fearlessly') set in the same Mackinac italic if available, otherwise Fricolage italic 500. Sits centered or left-aligned above a 16–18px body paragraph in #5e537c."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold introduction",
+        "description": "Full-bleed Iris Haze (#f1f2f9) canvas. Centered display headline stack (max-width 720px) floats over a wide hand-drawn watercolor illustration that extends edge-to-edge. Body paragraph 18px #5e537c, centered, max-width 560px. Single violet CTA below paragraph. Illustration occupies top 40% of viewport behind the text."
+      },
+      {
+        "name": "Gradient Feature Band",
+        "role": "Section transition with illustration",
+        "description": "Full-bleed band with linear-gradient background: #7dd3fc → #a5b4fc → #f9a8d4 (left to right). Contains a two-column layout: text block left (60%), illustration right (40%). Headline 36px Mackinac #281950, body 18px #5e537c, single horizontal hairline divider at #e7e6f4."
+      },
+      {
+        "name": "Trusted By Logo Strip",
+        "role": "Social proof",
+        "description": "Centered uppercase label 'TRUSTED BY TEAMS AT' in Fricolage 12px weight 500, letter-spacing 0.05em, color #7c3aed. Single horizontal row of 6–8 partner logos below, evenly spaced, each in monochrome dark (#281950) at consistent height ~24px."
+      },
+      {
+        "name": "Checkmark Feature List",
+        "role": "Feature checklist (Enterprise, Pricing)",
+        "description": "Vertical stack of 5–7 items. Each row: small violet checkmark glyph (16px, #7c3aed) on left, label text in Fricolage 17px weight 450 #281950 on right. Row gap 16px, no dividers between items."
+      },
+      {
+        "name": "Two-Column Feature Section",
+        "role": "Product/feature explanation with illustration",
+        "description": "Max-width 1200px centered. Alternating left-text/right-illustration and right-text/left-illustration columns. Text column: 36px Mackinac headline, 18px body paragraph, 10px hairline divider (#e7e6f4), optional outlined CTA. Illustration column: contained watercolor character scene, max-width 480px."
+      },
+      {
+        "name": "Enterprise Feature Card",
+        "role": "Grouped feature highlight",
+        "description": "White (#ffffff) surface, 16px radius, no visible border, sits on Iris Haze canvas. Internal padding 32px. Contains a headline in Mackinac 36px #281950, a 2–3 sentence body, and a row of two outlined action buttons."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer",
+        "description": "Full-bleed #191034 (Midnight Plum) background. White and Mist Violet (#a39ac1) text. Multi-column link grid with column headers in Fricolage 12px uppercase weight 500 letter-spacing 0.05em. Logo mark and copyright row at bottom."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, UI labels, button text, navigation, footer, captions. Used at 16–18px for body and 12–15px for meta. The weight 325 light is deliberate anti-convention — most devtools use 400 minimum, this whisper weight softens the dense infrastructure copy into something editorial. Positive tracking (0.025em–0.05em) at small sizes gives uppercase labels and button text a slightly spacious, unhurried feel.",
+        "sizes": "12px, 15px, 16px, 17px, 18px, 19px",
+        "family": "Fricolage Grotesque",
+        "weight": "325, 450, 500, 575",
+        "lineHeight": "1.50–1.66",
+        "substitute": "Inter, DM Sans, or General Sans",
+        "letterSpacing": "0.025em at body sizes, 0.05em at button/label sizes"
+      },
+      {
+        "role": "Display headlines and section titles. A high-contrast serif used at weight 500 only — the medium weight gives authority without feeling editorial-stiff. Aggressive negative tracking (-0.045em at 64px, -0.025em at 22–36px) tightens the letterspacing so the serif feels modern rather than traditional. Single most distinctive type choice on the site: pairs a humanist grotesque body with an editorial serif display to create a storybook voice.",
+        "sizes": "22px, 36px, 64px",
+        "family": "Mackinac",
+        "weight": "500",
+        "lineHeight": "1.15–1.33",
+        "substitute": "Source Serif Pro, Tiempos Headline, or GT Super",
+        "letterSpacing": "-0.045em at 64px display, -0.025em at 22–36px headings",
+        "fontFeatureSettings": "\"liga\" on, \"kern\" on"
+      }
+    ],
+    "description": "Fly.io reads like a hand-drawn storybook for infrastructure: a near-white canvas washed in the faintest lavender, populated by surreal watercolor creatures and floating landscapes. The voice is two-part — a confident display serif (Mackinac) sets an editorial tone for headlines with aggressive negative tracking, while a humanist grotesque (Fricolage Grotesque) handles body and UI with subtle positive tracking that keeps the prose unhurried. Interactions live in a single vivid violet pill button that pops against the muted canvas, and a deep-violet ink carries all heading weight. Sections breathe between soft sky-to-pink gradient bands, trusting illustration to carry emotion while text and UI stay restrained.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fly.io design system\",\"item\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#style-reference\",\"name\":\"Fly.io design system reference\",\"headline\":\"Fly.io design system | Refero Styles\",\"description\":\"Explore Fly.io's light Dev Tools design system: Electric Violet #7c3aed, Deep Ink Violet #281950 colors, Fricolage Grotesque, Mackinac typography, and...\",\"url\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fly.io\",\"url\":\"https://fly.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"caption\":\"Screenshot of Fly.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fly.io design system\",\"Fly.io website design\",\"Fly.io colors\",\"Fly.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Electric Violet\",\"Deep Ink Violet\",\"Heather Violet\",\"Mist Violet\",\"Fricolage Grotesque\",\"Mackinac\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fly.io design system\"},{\"@type\":\"Thing\",\"name\":\"Fly.io website design\"},{\"@type\":\"Thing\",\"name\":\"Fly.io colors\"},{\"@type\":\"Thing\",\"name\":\"Fly.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-16T17:45:56.000Z\",\"dateModified\":\"2026-01-16T17:45:56.000Z\"}]}19:T575,**Quick Color Reference**\n- text (headings): #281950\n- text (body): #5e537c\n- background (canvas): #f1f2f9\n- background (card): #ffffff\n- border (hairline): #e7e6f4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Gradient feature band*: Full-bleed band with background linear-gradient(to right, #7dd3fc, #a5b4fc, #f9a8d4). Two-column layout inside max-width 1200px. Left column: Mackinac 36px weight 500, color #281950, letter-spacing -0.9px. Body 18px Fricolage, color #5e537c. Hairline divider 1px #e7e6f4, max-width 80px. Right column: contained illustration, max-width 480px.\n\n3. *Outlined action button*: Transparent fill, 1.5px solid #7c3aed border, 9999px radius, Fricolage 16px weight 500, color #7c3aed, 10px 20px padding, optional right-arrow chevron in #7c3aed at 14px.\n\n4. *Trusted-by logo strip*: Centered uppercase label 'TRUSTED BY TEAMS AT' in Fricolage 12px weight 500, letter-spacing 0.6px, color #7c3aed. Below: single horizontal row of 6 partner logos, monochrome #281950, height 24px, evenly spaced with 48px gaps.\n\n5. *Checkmark feature list*: Vertical stack with 16px row gap. Each row: 16px #7c3aed checkmark glyph, then label in Fricolage 17px weight 450 color #281950. Five to seven items, no dividers between."
+      },
+      {
+        "title": "Typography Pairing Philosophy",
+        "content": "The defining type move is grotesque body + serif display: Fricolage Grotesque (weights 325–575, positive tracking 0.025–0.05em) carries all UI and prose, while Mackinac (weight 500 only, aggressive negative tracking -0.025 to -0.045em) appears only on display headlines. The contrast in family, weight range, and tracking direction creates the storybook voice — neither font alone would produce the same effect. Do not attempt to pair Mackinac with a different sans, and do not attempt to replace Fricolage with a more neutral grotesk like Inter; the warmth and slight looseness of Fricolage is what makes the body copy feel editorial rather than corporate."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Two distinct gradient families:\n\n1. **Section bands** — linear-gradient(to right, #7dd3fc, #a5b4fc, #f9a8d4) at full opacity. Used as full-bleed backgrounds for feature sections that introduce illustrations. The sky-to-pink wash frames the watercolor artwork without competing with it.\n\n2. **Subtle washes** — same hues at 0.1 alpha: linear-gradient(100deg, rgba(125,211,252,0.1), rgba(165,180,252,0.1), rgba(249,168,212,0.1)). Used on inner sections that need a hint of color without committing to a full band.\n\n3. **Plum-to-indigo glow** — linear-gradient(to right bottom, #a02be4, rgba(0,0,0,0), #4f46e5). Used as an accent on hero overlays or behind the primary CTA to create depth on the violet fill."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e7e6f4",
+          "oklch": {
+            "c": 0.01883819649927631,
+            "h": 289.3148559087972,
+            "l": 0.929819087178161
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "heading",
+            "body",
+            "icon",
+            "hero",
+            "list",
+            "link",
+            "button",
+            "footer"
+          ],
+          "frequency": 1349,
+          "confidence": 1,
+          "prominence": 93661037.28730856,
+          "properties": [
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5e537c",
+          "oklch": {
+            "c": 0.06682360012216082,
+            "h": 296.25642340534097,
+            "l": 0.4684959661347758
+          },
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "hero",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 167,
+          "confidence": 1,
+          "prominence": 66582285.15731912,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon",
+            "hero",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 171,
+          "confidence": 1,
+          "prominence": 15579404.877329683,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "boxShadow",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f2f9",
+          "oklch": {
+            "c": 0.009393153767144006,
+            "h": 279.6889504058654,
+            "l": 0.9623906442010182
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9006957,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a39ac1",
+          "oklch": {
+            "c": 0.05703610161718821,
+            "h": 295.4837043945033,
+            "l": 0.7072702323911171
+          },
+          "contexts": [
+            "icon",
+            "footer",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 2931652.4569270154,
+          "properties": [
+            "fill",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#281950",
+          "oklch": {
+            "c": 0.09592213116766027,
+            "h": 291.0837998497099,
+            "l": 0.26813760362192185
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button",
+            "icon",
+            "list"
+          ],
+          "frequency": 67,
+          "confidence": 1,
+          "prominence": 1100856.7802117113,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8b5cf6",
+          "oklch": {
+            "c": 0.21891508141197888,
+            "h": 292.7172241670128,
+            "l": 0.6056307551420096
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 809400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#191034",
+          "oklch": {
+            "c": 0.06778557743229748,
+            "h": 290.8592904062568,
+            "l": 0.20860901950170055
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 547200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202237",
+          "oklch": {
+            "c": 0.03941367475908064,
+            "h": 279.1082202015973,
+            "l": 0.2605018414876188
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 93402.7989255993,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7c3aed",
+          "oklch": {
+            "c": 0.24658594545285942,
+            "h": 293.00896749248056,
+            "l": 0.5413370870268791
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 35535.498603405154,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d0cdf2",
+          "oklch": {
+            "c": 0.05029081319069487,
+            "h": 288.7523844124453,
+            "l": 0.8629012710371429
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 35535.498603405154,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6d28d9",
+          "oklch": {
+            "c": 0.24123173432638603,
+            "h": 292.5809393310689,
+            "l": 0.49066649723628786
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 24708,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 20767.77058939875,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#10b981",
+          "oklch": {
+            "c": 0.14907409550888495,
+            "h": 162.47961246618206,
+            "l": 0.6958730755134862
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 11305.475932282026,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#676b89",
+          "oklch": {
+            "c": 0.04718155341024544,
+            "h": 278.7479725014329,
+            "l": 0.5357428643398807
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 9915.525404511553,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cce6f4",
+          "oklch": {
+            "c": 0.033067952831708915,
+            "h": 230.05941269086668,
+            "l": 0.9112161746708531
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 7355.868204603164,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3b82f6",
+          "oklch": {
+            "c": 0.18801473450792208,
+            "h": 259.81452852548136,
+            "l": 0.6230830326348528
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 7303.507203323087,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f59e0b",
+          "oklch": {
+            "c": 0.16465940106168822,
+            "h": 70.08038641431223,
+            "l": 0.768590359222848
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 7303.507203323087,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f97316",
+          "oklch": {
+            "c": 0.18672106768094693,
+            "h": 47.60441481059277,
+            "l": 0.7048712574475993
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 6912,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b7ead9",
+          "oklch": {
+            "c": 0.056936243238113235,
+            "h": 172.70331643452758,
+            "l": 0.8971485639599533
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4608,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c4dafc",
+          "oklch": {
+            "c": 0.05343157306438604,
+            "h": 260.2276492669265,
+            "l": 0.8822479843196851
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4608,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdd5b9",
+          "oklch": {
+            "c": 0.058538893963191646,
+            "h": 56.6339342234718,
+            "l": 0.9001428475559213
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4608,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fce2b6",
+          "oklch": {
+            "c": 0.06400462548146912,
+            "h": 80.71904440772136,
+            "l": 0.9231004257596147
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3651.7536016615436,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ca7ff8",
+          "oklch": {
+            "c": 0.18317839899230237,
+            "h": 311.2114715216279,
+            "l": 0.7221249142726538
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3273,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0091e2",
+          "oklch": {
+            "c": 0.157883216608337,
+            "h": 244.51600838253202,
+            "l": 0.6335645621029228
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2578,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8d4e4",
+          "oklch": {
+            "c": 0.04508978542644,
+            "h": 349.4418640988147,
+            "l": 0.9041131947182689
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2386.942081544208,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdd97c",
+          "oklch": {
+            "c": 0.1193107865979971,
+            "h": 88.77590414478416,
+            "l": 0.8954721602380427
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cc0000",
+          "oklch": {
+            "c": 0.2177996633277967,
+            "h": 29.23388027962791,
+            "l": 0.5307618492437486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1634,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#092e20",
+          "oklch": {
+            "c": 0.049279056120423326,
+            "h": 164.0588335987859,
+            "l": 0.27055579001423347
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1624,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fd4f00",
+          "oklch": {
+            "c": 0.22020230924233192,
+            "h": 37.57174522605911,
+            "l": 0.6663622895475854
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1126,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#443635",
+          "oklch": {
+            "c": 0.020173843616594505,
+            "h": 22.951482724740654,
+            "l": 0.34779808678770474
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 907,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08187577034992351,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.81,
+          "background": "#f1f2f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#191034",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.02,
+          "background": "#e7e6f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.69,
+          "background": "#fce2b6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.19,
+          "background": "#cce6f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.14,
+          "background": "#f1f2f9",
+          "foreground": "#191034"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.78,
+          "background": "#b7ead9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#ffffff",
+          "foreground": "#281950"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#ffffff",
+          "foreground": "#202237"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.53,
+          "background": "#f8d4e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.39,
+          "background": "#fdd5b9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.39,
+          "background": "#fdd97c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.78,
+          "background": "#c4dafc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#ffffff",
+          "foreground": "#092e20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.61,
+          "background": "#e7e6f4",
+          "foreground": "#191034"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#fce2b6",
+          "foreground": "#191034"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#f1f2f9",
+          "foreground": "#281950"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#f1f2f9",
+          "foreground": "#202237"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.9,
+          "background": "#cce6f4",
+          "foreground": "#191034"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(91, 33, 182, 0.1) 0px 5px 5px -2px, rgba(91, 33, 182, 0.1) 0px 2px 4px -2px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(67, 56, 202, 0.25) 0px 0px 0px 1px inset",
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(32, 34, 55, 0.075) 0px 0px 0px 1px, rgba(32, 34, 55, 0.05) 0px 10px 15px -3px, rgba(32, 34, 55, 0.05) 0px 4px 6px -4px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 97,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 116,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgb(160, 43, 228), rgba(0, 0, 0, 0), rgb(79, 70, 229))",
+        "colors": [
+          "rgb(160, 43, 228)",
+          "rgba(0, 0, 0, 0)",
+          "rgb(79, 70, 229)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(125, 211, 252), rgb(165, 180, 252), rgb(249, 168, 212))",
+        "colors": [
+          "rgb(125, 211, 252)",
+          "rgb(165, 180, 252)",
+          "rgb(249, 168, 212)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(100deg, rgba(125, 211, 252, 0.1), rgba(165, 180, 252, 0.1), rgba(249, 168, 212, 0.1))",
+        "colors": [
+          "rgba(125, 211, 252, 0.1)",
+          "rgba(165, 180, 252, 0.1)",
+          "rgba(249, 168, 212, 0.1)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left, rgb(125, 211, 252), rgb(165, 180, 252), rgb(249, 168, 212))",
+        "colors": [
+          "rgb(125, 211, 252)",
+          "rgb(165, 180, 252)",
+          "rgb(249, 168, 212)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(280deg, rgba(125, 211, 252, 0.1), rgba(165, 180, 252, 0.1), rgba(249, 168, 212, 0.1))",
+        "colors": [
+          "rgba(125, 211, 252, 0.1)",
+          "rgba(165, 180, 252, 0.1)",
+          "rgba(249, 168, 212, 0.1)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(163, 154, 193), rgba(163, 154, 193, 0.35) 10%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(163, 154, 193)",
+          "rgba(163, 154, 193, 0.35)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgba(254, 215, 170, 0.5), rgba(249, 115, 22, 0.4))",
+        "colors": [
+          "rgba(254, 215, 170, 0.5)",
+          "rgba(249, 115, 22, 0.4)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgba(254, 240, 138, 0.75), rgba(254, 215, 170, 0.75))",
+        "colors": [
+          "rgba(254, 240, 138, 0.75)",
+          "rgba(254, 215, 170, 0.75)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgb(160, 43, 228), rgb(124, 58, 237), rgb(79, 70, 229))",
+        "colors": [
+          "rgb(160, 43, 228)",
+          "rgb(124, 58, 237)",
+          "rgb(79, 70, 229)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgba(18, 18, 38, 0.5), rgba(34, 24, 60, 0.5), rgba(25, 16, 52, 0.5))",
+        "colors": [
+          "rgba(18, 18, 38, 0.5)",
+          "rgba(34, 24, 60, 0.5)",
+          "rgba(25, 16, 52, 0.5)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Fricolage Grotesque",
+          "source": "custom",
+          "weights": [
+            325,
+            450,
+            500,
+            575
+          ],
+          "frequency": 340,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Mackinac",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Fricolage Grotesque",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Fricolage Grotesque",
+          "weight": 575,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Fricolage Grotesque",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Fricolage Grotesque",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Fricolage Grotesque",
+          "weight": 575,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "footer",
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.66,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Fricolage Grotesque",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.66,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "icon",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 178,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fricolage Grotesque",
+          "weight": 450,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Fricolage Grotesque",
+          "weight": 325,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Fricolage Grotesque",
+          "weight": 450,
+          "contexts": [
+            "list",
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Mackinac",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Mackinac",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Mackinac",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d5d3ab31-5235-4d2f-bffd-40d9ae29e79e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fly.io design system\",\"item\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#style-reference\",\"name\":\"Fly.io design system reference\",\"headline\":\"Fly.io design system | Refero Styles\",\"description\":\"Explore Fly.io's light Dev Tools design system: Electric Violet #7c3aed, Deep Ink Violet #281950 colors, Fricolage Grotesque, Mackinac typography, and...\",\"url\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fly.io\",\"url\":\"https://fly.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0c77bb2a-c7cd-499b-b5cd-90268eefe906#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"caption\":\"Screenshot of Fly.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b131ff24-c551-43a1-b1b2-e0b546f0887b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fly.io design system\",\"Fly.io website design\",\"Fly.io colors\",\"Fly.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Electric Violet\",\"Deep Ink Violet\",\"Heather Violet\",\"Mist Violet\",\"Fricolage Grotesque\",\"Mackinac\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fly.io design system\"},{\"@type\":\"Thing\",\"name\":\"Fly.io website design\"},{\"@type\":\"Thing\",\"name\":\"Fly.io colors\"},{\"@type\":\"Thing\",\"name\":\"Fly.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-16T17:45:56.000Z\",\"dateModified\":\"2026-01-16T17:45:56.000Z\"}]}19:T575,**Quick Color Reference**\n- text (headings): #281950\n- text (body): #5e537c\n- background (canvas): #f1f2f9\n- background (card): #ffffff\n- border (hairline): #e7e6f4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Gradient feature band*: Full-bleed band with background linear-gradient(to right, #7dd3fc, #a5b4fc, #f9a8d4). Two-column layout inside max-width 1200px. Left column: Mackinac 36px weight 500, color #281950, letter-spacing -0.9px. Body 18px Fricolage, color #5e537c. Hairline divider 1px #e7e6f4, max-width 80px. Right column: contained illustration, max-width 480px.\n\n3. *Outlined action button*: Transparent fill, 1.5px solid #7c3aed border, 9999px radius, Fricolage 16px weight 500, color #7c3aed, 10px 20px padding, optional right-arrow chevron in #7c3aed at 14px.\n\n4. *Trusted-by logo strip*: Centered uppercase label 'TRUSTED BY TEAMS AT' in Fricolage 12px weight 500, letter-spacing 0.6px, color #7c3aed. Below: single horizontal row of 6 partner logos, monochrome #281950, height 24px, evenly spaced with 48px gaps.\n\n5. *Checkmark feature list*: Vertical stack with 16px row gap. Each row: 16px #7c3aed checkmark glyph, then label in Fricolage 17px weight 450 color #281950. Five to seven items, no dividers between."
+}

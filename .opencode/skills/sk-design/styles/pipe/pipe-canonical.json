@@ -1,0 +1,926 @@
+{
+  "source": "https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d",
+  "uuid": "ab201ed7-928f-4080-ba95-c3992311e39d",
+  "name": "Pipe",
+  "northStar": "midnight darkroom with one ember",
+  "capturedAt": "2026-07-18T09:02:31.878Z",
+  "meta": {
+    "url": "https://pipe.com",
+    "siteName": "Pipe",
+    "extractedAt": "2026-06-03T20:59:03.652Z",
+    "durationMs": 22785,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1650,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #e2572c Ember exclusively for primary action backgrounds and the single brand-emphasis word in a headline — never for body text, borders, or decoration",
+      "Set display headlines at 80px with line-height 0.70 and letter-spacing -0.56px to achieve the sculpted, carved look",
+      "Communicate elevation through the #000000 → #1a1a1a surface step and hairline Fog borders, never with box-shadows",
+      "Use 16px radius for cards and images, 8px for buttons, 9999px only for pill tags",
+      "Apply the +0.0060em tracking on any text 14px or smaller for legibility on dark backgrounds",
+      "Anchor every hero section with a full-bleed editorial photograph at 16px radius — let imagery carry visual weight that color and illustration don't",
+      "Keep section gaps between 64-80px to maintain the comfortable, editorial rhythm"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic color — the single-accent system is the brand's signature restraint",
+      "Don't use box-shadows on any component; elevation is surface-tone only",
+      "Don't set display text at line-height above 1.0 — the 0.70 tight setting is what makes headlines feel carved",
+      "Don't use more than one font weight (400) — bolding is not available; use size and color contrast instead",
+      "Don't fill buttons with neutral colors (#ffffff or #1a1a1a) as primary actions — Ember is the only CTA fill",
+      "Don't use #808080 for interactive text on #1a1a1a — the contrast falls below AA at smaller sizes; reserve Steel for non-interactive muted labels on #000000",
+      "Don't center-align body text or headlines; the system is left-aligned throughout"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#e2572c",
+        "name": "Ember",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, full-bleed backgrounds, image surrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Graphite",
+        "role": "Card surfaces, elevated panels, the one step up from canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Steel",
+        "role": "Muted body text, secondary labels, inactive UI — sits at AA contrast against Obsidian",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Fog",
+        "role": "Hairline borders on dark cards, light surface alternates if used",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary text and headings on dark, inverse text on light cards",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content max-width ~1280px centered. The hero pattern is a split composition: left half holds the headline block + CTA, right half holds a large editorial photograph. Navigation is a minimal top bar (transparent on Obsidian) with logo left, nav center, account links right — no sticky behavior apparent, no mega-menu. Below the hero, sections alternate as full-width bands on Obsidian with generous 64-80px vertical gaps. Content blocks within sections are typically 2-column (text + image) or 3-column card grids. No sidebar. No centered stacked layouts — everything is left-aligned. The rhythm is spacious and editorial, with breathing room between sections rather than compact information density.",
+    "imagery": "Photography is the primary visual language. Full-bleed editorial photographs anchor hero sections and major content blocks — warm-toned, documentary-style imagery of people in real working environments (phones, laptops, workspace objects). Photographs are treated at 16px border-radius with no overlay or filter, sitting directly on the Obsidian canvas. No illustrations, no 3D renders, no abstract graphics. The image-to-text ratio is high on hero sections (~50/50 split) and drops on content sections. Icons are minimal and not a primary visual element. The overall effect is editorial/magazine rather than product-screenshot-driven.",
+    "similar": [
+      {
+        "why": "Same dark-mode editorial approach with a single warm accent color and full-bleed photography in heroes",
+        "business": "Ramp"
+      },
+      {
+        "why": "Minimal dark canvas, single chromatic accent, oversized display headlines, left-aligned editorial layout",
+        "business": "Plaid"
+      },
+      {
+        "why": "Dark-mode fintech with restrained palette, large-format photography, and geometric grotesque typography",
+        "business": "Mercury"
+      },
+      {
+        "why": "Single-weight geometric sans-serif, tight display tracking, near-monochrome dark UI with one accent",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "pills": "9999px",
+        "images": "16px",
+        "buttons": "8px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64-80px",
+      "cardPadding": "24-48px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background, image surrounds, dark bands"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated panels, bordered cards, content blocks"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Light Surface",
+        "level": 2,
+        "purpose": "Rare light alternates, image cards on light sections"
+      }
+    ],
+    "northStar": "midnight darkroom with one ember",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.06
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.7,
+        "letterSpacing": -0.56
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Ember)",
+        "role": "Filled orange button for the single most important action on a page (e.g. 'Book a demo')",
+        "description": "Background #e2572c, text #ffffff, border-radius 8px, padding 16px 24px, Suisse 400 16px, no shadow. The only filled button in the system."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline and navigation links in body or header",
+        "description": "No background, no border. Text color #ffffff or #e2572c when active. 16px Suisse 400. The 'Demo' nav link uses #e2572c color as an active state marker."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Top-level site navigation",
+        "description": "Transparent or #000000 background, no border. Logo left, nav items centered or left-aligned at 13-14px Suisse 400 in #ffffff, 'Sign in' as ghost link and 'Demo' as orange text link on the right. Vertical padding ~24px."
+      },
+      {
+        "name": "Hero Photograph Panel",
+        "role": "Full-bleed image anchoring the hero section",
+        "description": "Large editorial photograph at 16px border-radius, occupying roughly the right half of the viewport. No overlay, no border. Photographs carry the visual weight that color and illustration don't."
+      },
+      {
+        "name": "Graphite Card",
+        "role": "Content card on dark canvas",
+        "description": "Background #1a1a1a, optional 1px Fog #f5f5f5 border, 16px border-radius, padding 32-48px. Text inside is #ffffff for headings, #808080 for body."
+      },
+      {
+        "name": "Image Card",
+        "role": "Card pairing a photograph with a caption or label",
+        "description": "16px border-radius on the image, caption below in 13-14px Suisse 400 #808080. No card background — sits directly on the Obsidian canvas."
+      },
+      {
+        "name": "Pill Tag",
+        "role": "Category labels, status indicators",
+        "description": "9999px border-radius, 1px hairline border in #808080 or #f5f5f5, transparent background, 12-13px Suisse 400 text in #808080, padding 4px 12px."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Obsidian #000000 background, columns of ghost text links in #808080 at 13px Suisse 400, logo and brand mark in #ffffff."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Left-aligned hero text block with brand-color emphasis word",
+        "description": "Display text at 80px Suisse 400, line-height 0.70, letter-spacing -0.56px. The lead word ('Pipe') colored #e2572c; remaining text #ffffff. Subhead at 16-20px in #808080 below. Generous left padding matching the image edge."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action where the primary CTA already exists",
+        "description": "1px border in #808080, transparent background, #ffffff text, 8px border-radius, 16px 24px padding. Rarer than the primary — used when a page needs two actions."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface. Single weight (400) used for everything from 10px micro-labels to 80px display headlines. The signature move is the display at 80px with a 0.70 line-height — headlines feel carved rather than set. Tracking is tight at display (-0.0070em) and slightly open (+0.0060em) at caption sizes for legibility.",
+        "sizes": "10, 12, 13, 14, 16, 20, 24, 32, 80",
+        "family": "Suisse",
+        "weight": "400",
+        "lineHeight": "0.70, 1.10, 1.24, 1.25, 1.33, 1.37, 1.40, 1.42, 1.43, 1.50, 1.63, 1.90",
+        "substitute": "Inter",
+        "letterSpacing": "-0.0070em at display (80px), +0.0060em at caption (10-14px)",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "Pipe runs on a midnight editorial language: pitch-black canvas, a single warm orange brand accent, and one large-format photograph anchoring each section. The system is deliberately sparse — only one chromatic color in the entire palette, used sparingly as a switch-on signal for action and brand identity. Typography is a single-family geometric grotesque at one weight (400) doing all the work, with display sizes set at extremely tight line-heights (0.70) to feel sculpted rather than typeset. Surfaces are flat with no shadows; elevation is communicated through the single half-step from #000000 to #1a1a1a. Components are small, light, and bordered rather than filled — orange appears only when something must be acted upon. The overall effect is a darkroom where a single ember glows against graphite.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pipe design system\",\"item\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#style-reference\",\"name\":\"Pipe design system reference\",\"headline\":\"Pipe design system | Refero Styles\",\"description\":\"Explore Pipe's dark Fintech design system: Ember #e2572c, Obsidian #000000 colors, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pipe\",\"url\":\"https://pipe.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"caption\":\"Screenshot of Pipe\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pipe design system\",\"Pipe website design\",\"Pipe colors\",\"Pipe typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ember\",\"Obsidian\",\"Graphite\",\"Steel\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pipe design system\"},{\"@type\":\"Thing\",\"name\":\"Pipe website design\"},{\"@type\":\"Thing\",\"name\":\"Pipe colors\"},{\"@type\":\"Thing\",\"name\":\"Pipe typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-01-15T12:14:14.000Z\",\"dateModified\":\"2026-01-15T12:14:14.000Z\"}]}19:T43d,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #f5f5f5\n- accent: #e2572c\n- muted text: #808080\n- card surface: #1a1a1a\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a content card on dark canvas: #1a1a1a Graphite background, 1px hairline #f5f5f5 Fog border, 16px border-radius, 32px padding. Heading at 24px Suisse 400 in #ffffff. Body at 16px in #808080. No shadow.\n\n3. Create a navigation header: transparent background on #000000 canvas. Logo mark in #ffffff left. Nav items at 13px Suisse 400 in #ffffff, spaced with 24px gap. 'Demo' link at far right in #e2572c Ember as the active accent. No border, no shadow.\n\n4. Create a pill tag: 9999px border-radius, 1px #808080 border, transparent fill, #808080 text at 12px Suisse 400, 4px 12px padding.\n\n5. Create a footer: #000000 background, 3-4 columns of ghost text links at 13px in #808080, brand logo in #ffffff. 48px vertical padding."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Elevation is communicated exclusively through the half-step surface change from Obsidian #000000 to Graphite #1a1a1a, plus hairline Fog #f5f5f5 borders. The flatness is deliberate — the darkroom aesthetic rejects ambient occlusion in favor of stark layering."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "heading",
+            "body",
+            "image",
+            "card",
+            "footer",
+            "button",
+            "input"
+          ],
+          "frequency": 1536,
+          "confidence": 1,
+          "prominence": 17781773.81913257,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "image",
+            "card",
+            "heading",
+            "footer"
+          ],
+          "frequency": 83,
+          "confidence": 1,
+          "prominence": 8284443.379921274,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 4524125.96719942,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "image",
+            "card"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 267944.53974177275,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 221086.67640571008,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2572c",
+          "oklch": {
+            "c": 0.1822239132440785,
+            "h": 37.10292240581499,
+            "l": 0.6339312190652499
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 39852.65224670166,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0027652839013017055,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#1a1a1a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.96,
+          "background": "#f5f5f5",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.63,
+          "background": "#e2572c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#e2572c",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.41,
+          "background": "#1a1a1a",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.73,
+          "background": "#e2572c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#1a1a1a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.06,
+          "background": "#e2572c",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 102,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse Font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1649,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "card",
+            "footer",
+            "icon",
+            "body"
+          ],
+          "frequency": 1452,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.37,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.37,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Suisse Font",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8b5a5591-598e-42a0-8368-5270a720623c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pipe design system\",\"item\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#style-reference\",\"name\":\"Pipe design system reference\",\"headline\":\"Pipe design system | Refero Styles\",\"description\":\"Explore Pipe's dark Fintech design system: Ember #e2572c, Obsidian #000000 colors, Suisse typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pipe\",\"url\":\"https://pipe.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ab201ed7-928f-4080-ba95-c3992311e39d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"caption\":\"Screenshot of Pipe\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a7f84be4-92e0-4f63-aad9-7aa9506ed1bd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pipe design system\",\"Pipe website design\",\"Pipe colors\",\"Pipe typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ember\",\"Obsidian\",\"Graphite\",\"Steel\",\"Suisse\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pipe design system\"},{\"@type\":\"Thing\",\"name\":\"Pipe website design\"},{\"@type\":\"Thing\",\"name\":\"Pipe colors\"},{\"@type\":\"Thing\",\"name\":\"Pipe typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-01-15T12:14:14.000Z\",\"dateModified\":\"2026-01-15T12:14:14.000Z\"}]}19:T43d,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #f5f5f5\n- accent: #e2572c\n- muted text: #808080\n- card surface: #1a1a1a\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a content card on dark canvas: #1a1a1a Graphite background, 1px hairline #f5f5f5 Fog border, 16px border-radius, 32px padding. Heading at 24px Suisse 400 in #ffffff. Body at 16px in #808080. No shadow.\n\n3. Create a navigation header: transparent background on #000000 canvas. Logo mark in #ffffff left. Nav items at 13px Suisse 400 in #ffffff, spaced with 24px gap. 'Demo' link at far right in #e2572c Ember as the active accent. No border, no shadow.\n\n4. Create a pill tag: 9999px border-radius, 1px #808080 border, transparent fill, #808080 text at 12px Suisse 400, 4px 12px padding.\n\n5. Create a footer: #000000 background, 3-4 columns of ghost text links at 13px in #808080, brand logo in #ffffff. 48px vertical padding."
+}

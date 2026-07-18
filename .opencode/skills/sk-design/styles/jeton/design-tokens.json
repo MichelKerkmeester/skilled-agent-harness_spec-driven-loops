@@ -1,0 +1,439 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#f73b20",
+      "$type": "color",
+      "$description": "Signal Orange — Brand accent for headings, links, icons, and key emphasis — the sole chromatic voice on an otherwise monochrome page"
+    },
+    "brand-orange-tint": {
+      "$value": "#f84d35",
+      "$type": "color",
+      "$description": "Brand Orange Tint — Subtle orange surface variant for small UI moments like nav indicators"
+    },
+    "ink-roast": {
+      "$value": "#360802",
+      "$type": "color",
+      "$description": "Ink Roast — Primary body and input text — a warm near-black that ties body copy to the orange accent family"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas and card surfaces — dominant background across all sections"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Secondary text and utility icons — used sparingly for currency labels and meta information"
+    },
+    "ash-grey": {
+      "$value": "#ababab",
+      "$type": "color",
+      "$description": "Ash Grey — Disabled states, placeholder text, and low-emphasis dividers"
+    },
+    "sand-wash": {
+      "$value": "#e7dcdb",
+      "$type": "color",
+      "$description": "Sand Wash — Tinted neutral surface for subtle section differentiation"
+    },
+    "linen-blush": {
+      "$value": "#fdedea",
+      "$type": "color",
+      "$description": "Linen Blush — Ultra-light orange-tinted surface — warm card or row background"
+    },
+    "citrus-wash": {
+      "$value": "#f5ffbb",
+      "$type": "color",
+      "$description": "Citrus Wash — Pale yellow-green surface tint for feature highlights"
+    },
+    "mint-wash": {
+      "$value": "#bcffbb",
+      "$type": "color",
+      "$description": "Mint Wash — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "coral-red": {
+      "$value": "#fb2d54",
+      "$type": "color",
+      "$description": "Coral Red — Card accent and section heading for Exchange/currency category — secondary chromatic"
+    },
+    "cobalt-blue": {
+      "$value": "#477ee9",
+      "$type": "color",
+      "$description": "Cobalt Blue — Card accent and section heading for Send category — secondary chromatic"
+    },
+    "emerald-green": {
+      "$value": "#34c771",
+      "$type": "color",
+      "$description": "Emerald Green — Card accent and section heading for Add/funding category — secondary chromatic"
+    }
+  },
+  "font": {
+    "sequel-sans": {
+      "$value": "Sequel Sans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all contexts — a custom geometric grotesque that carries the entire brand voice. Weight 500 is used universally even at 155px display sizes; the weight stays constant because the size and tight line-height carry the hierarchy, not boldness. Letter-spacing is microscopic positive tracking (0.01em at display, 0.03em at small caps/nav) which keeps the geometric forms crisp at every scale."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "12px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "33px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "106px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 106px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "106px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 106px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "110px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 110px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Sequel Sans",
+        "fontSize": "155px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 155px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "19.255px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "2xl-3": {
+      "$value": "21.66px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-3"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(247, 59, 32, 0.1) 0px 8px 24px 0px, rgba(247, 59, 32, 0.05) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px -4px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, dominant surface"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White card backgrounds with subtle inverted shadow for lift"
+    },
+    "orange-tint": {
+      "$value": "#fdedea",
+      "$type": "color",
+      "$description": "Surface level 2: Warm-tinted surface for highlighted content and input fields"
+    },
+    "frosted-glass": {
+      "$value": "#ffffff1a",
+      "$type": "color",
+      "$description": "Surface level 3: Translucent overlay for floating panels above hero imagery"
+    },
+    "category-tint": {
+      "$value": "#f73b200d",
+      "$type": "color",
+      "$description": "Surface level 4: Subtle brand-tinted background for feature category cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.jeton.com",
+      "siteName": "Jeton",
+      "extractedAt": "2026-07-03T03:16:30.698Z",
+      "variant": "extended"
+    }
+  }
+}

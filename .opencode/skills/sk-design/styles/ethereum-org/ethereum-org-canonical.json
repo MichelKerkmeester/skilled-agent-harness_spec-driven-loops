@@ -1,0 +1,1518 @@
+{
+  "source": "https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326",
+  "uuid": "f53b2759-5b4a-4509-9311-51ab74238326",
+  "name": "ethereum.org",
+  "northStar": "Lilac architecture in flat editorial space — a printed open-source almanac where the Ethereum diamond floats above duotone crowds of people.",
+  "capturedAt": "2026-07-18T07:40:27.691Z",
+  "meta": {
+    "url": "https://ethereum.org",
+    "siteName": "ethereum.org",
+    "extractedAt": "2026-06-03T19:59:28.120Z",
+    "durationMs": 29877,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 865,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Inter 900 at 48–64px for any section display heading — the geometric slab weight is non-negotiable for the brand",
+      "Use #6c24e0 for every primary action, eyebrow label, and active link — reserve all other chromatic colors for secondary text accents and illustration",
+      "Set feature card backgrounds to one of the pastel tints (lavender #ece0ff, mint, peach, pink) at 16px radius, with no shadow and no border",
+      "Place an eyebrow label (Inter 700, 14px, uppercase, #6c24e0, pill on #ece0ff) directly above every section heading",
+      "Use 4px radius on primary buttons — the square-shouldered button is a signature, not a pill",
+      "Anchor every section with at least one illustration or icon; text-only sections should be the exception",
+      "Use 64px vertical padding between major sections and 32px inside cards"
+    ],
+    "donts": [
+      "Don't use drop shadows for elevation — hierarchy comes from flat surface tints, not depth",
+      "Don't use 600 or 800 weight for headlines — the system commits to 900 or 700 only, and 900 only at display sizes",
+      "Don't introduce new saturated colors beyond the existing four (#6c24e0, #f60e9d, #3d4ceb, #0f9972) — the palette is rationed",
+      "Don't use pill-shaped buttons (9999px) for primary actions — that radius is reserved for search triggers and tags",
+      "Don't stack text directly on the full-bleed illustration without the centered headline block underneath it",
+      "Don't use centered body text — body paragraphs are always left-aligned at max 65ch width",
+      "Don't use photography as the primary visual — illustration owns this system, photos should only appear in editorial context if at all"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ece0ff",
+        "name": "Lavender Paper",
+        "role": "Page canvas, soft card surfaces, hero wash — near-gray violet that reads as neutral paper across the entire site",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surface above canvas, icon strokes, inverse text on violet buttons, nav background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfcfcf",
+        "name": "Ash Gray",
+        "role": "Hairline dividers, card borders, input borders, separator rules — the dominant border tone at 2484 occurrences",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Onyx",
+        "role": "Primary text, heading fill, dark icon strokes — the only body-color the UI commits to",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Graphite",
+        "role": "Secondary body text, muted helper copy, nav subtext",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Fog",
+        "role": "Tertiary text, disabled nav items, low-priority borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6c24e0",
+        "name": "Ethereum Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#41128c",
+        "name": "Deep Iris",
+        "role": "Hover state on violet, dark accent surface, gradient origin — the violet pushed to its shadow end",
+        "group": "brand"
+      },
+      {
+        "hex": "#f60e9d",
+        "name": "Hot Magenta",
+        "role": "Secondary accent for inline links inside feature cards, tag pills, illustration accent",
+        "group": "accent"
+      },
+      {
+        "hex": "#3d4ceb",
+        "name": "Sapphire",
+        "role": "Tertiary accent for links, icon variants, illustration cool-tone accents",
+        "group": "accent"
+      },
+      {
+        "hex": "#0f9972",
+        "name": "Mint",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#9357f4",
+        "name": "Lilac Wash",
+        "role": "Gradient origin for the hero radial glow and card overlays — never used as a flat fill",
+        "group": "accent",
+        "gradient": "radial-gradient(127.67% 82.36% at 50% -30.36%, rgba(147, 87, 244, 0.08) 0%, rgba(147, 87, 244, 0.24) 33%, rgba(67, 113, 239, 0.08) 66%, rgba(0, 0, 0, 0) 100%)"
+      }
+    ],
+    "layout": "The site uses a max-width 1200px container centered on a lavender canvas, with most sections alternating between full-bleed illustrated bands and contained two-column or three-column grids. The hero is a single edge-to-edge illustration with a centered headline stack (eyebrow → display → subhead) sitting below it, not overlapping. Content sections follow a repeating rhythm: wide lavender editorial panel with a left-aligned 48–60px display heading, then a two-column text+image block, then a three-column pastel card grid. The navigation is a single sticky top bar, no sidebar. Vertical rhythm is comfortable — 64px between major sections, 32px card padding, 8px element gaps — and the page never feels dense. Most pages end with a centered CTA block before the footer.",
+    "imagery": "Illustration is the dominant visual element — nearly every section is anchored by a full-bleed duotone line-art scene. The treatment is consistent: a cool violet-to-blue palette (#6c24e0, #3d4ceb, #9357f4) with selective warm accents in pink (#f60e9d) and mint (#0f9972). Linework is uniform-weight (1–1.5px), architectural and human figures are stylized, and the Ethereum diamond octahedron recurs as a floating motif. Scenes are flat (no perspective gradients), centered around a horizon line, and always feature groups of diverse people in built environments. Photos are almost absent — the site is illustration-first, which is unusual for a major web3 brand and gives it an almanac-like editorial feel rather than a typical product-site polish.",
+    "similar": [
+      {
+        "why": "Same illustration-first editorial approach with duotone line-art scenes and a single brand color carrying all primary actions",
+        "business": "Stellar.org"
+      },
+      {
+        "why": "Similar pastel-on-canvas card systems with square-shouldered buttons and Inter as the workhorse font",
+        "business": "Polkadot.network"
+      },
+      {
+        "why": "Comfortable-density editorial layouts with eyebrow labels above bold display headings, though Webflow uses more color contrast",
+        "business": "Webflow.com"
+      },
+      {
+        "why": "Same information-dense but airy editorial structure with flat surfaces and minimal elevation",
+        "business": "MDN Web Docs"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "16px",
+        "pills": "9999px",
+        "buttons": "4px",
+        "illustrations": "32px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ece0ff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the lilac paper tone that wraps most screens"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Default card surface, nav bar, and elevated content blocks sitting on the canvas"
+      },
+      {
+        "hex": "#ece0ff",
+        "name": "Pastel Feature Card",
+        "level": 2,
+        "purpose": "Lavender-tinted feature card variant for grouped content sections"
+      },
+      {
+        "hex": "#6c24e0",
+        "name": "Inverse Surface",
+        "level": 3,
+        "purpose": "Primary action surface (filled buttons) and the rare inverted banner"
+      },
+      {
+        "hex": "#41128c",
+        "name": "Deep Accent",
+        "level": 4,
+        "purpose": "Hover state and the deepest tier — used sparingly as a gradient end-stop"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 2px 12px 1px rgba(65, 18, 140, 0.02), 0px 12px 16px -3px rgba(65, 18, 140, 0.02), 0px 24px 32px -6px rgba(65, 18, 140, 0.02), 0px 32px 40px -12px rgba(152, 27, 27, 0.04)",
+        "element": "Feature Card (rare elevated variant)"
+      }
+    ],
+    "northStar": "Lilac architecture in flat editorial space — a printed open-source almanac where the Ethereum diamond floats above duotone crowds of people.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Main call-to-action across landing and section pages",
+        "description": "Background #6c24e0, text #ffffff, Inter 700 at 16px, padding 12px 24px, border-radius 4px. No border, no shadow. Squeezed corners (not pill-shaped) are deliberate — they read as 'link button' rather than 'chip'"
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary actions in card footers and inline links",
+        "description": "Background transparent, 1px border #cfcfcf (or #6c24e0 for chromatic ghost), text #121212 at 16px/400, 4px radius, padding 10px 16px. Arrow icon (›) follows the label"
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section category tag sitting above headlines",
+        "description": "Inter 700 at 14px, uppercase, color #6c24e0, letter-spacing slightly expanded. Pill background on #ece0ff (8px radius) — the only spot where the brand color tints a surface instead of filling it"
+      },
+      {
+        "name": "Hero Illustration Band",
+        "role": "Full-bleed visual anchor at the top of landing and section pages",
+        "description": "Edge-to-edge duotone line-art scene on a very light blue/lavender background, clipped at 32px radius when constrained. The Ethereum diamond octahedron is always centered or floating. Color is restricted to the violet–blue range even when the scene shows diverse people and architecture"
+      },
+      {
+        "name": "Feature Card (Pastel)",
+        "role": "Three-column content tiles in the 'A new way to use the internet' section",
+        "description": "Border-radius 16px, padding 32px, background one of {lavender #ece0ff, mint pastel, peach pastel, pink pastel}. No border, no shadow. Illustration centered top, Inter 700 heading at 24px, body at 16px #121212, ghost outline button footer"
+      },
+      {
+        "name": "Popular Topic Card",
+        "role": "Two-column quick-link tiles in the 'What is Ethereum?' section",
+        "description": "White card on lavender canvas, 1px border #cfcfcf, 16px radius, padding 24px. Icon left (outlined Ethereum diamond variant, 24px, stroke #6c24e0), Inter 700 label at 16px #121212 right"
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header across all pages",
+        "description": "Background #ffffff, height ~64px, bottom border 1px #cfcfcf. Logo (diamond) left, nav links (Learn / Use / Build / Participate / Research) in Inter 700 at 16px #121212 with active state in #6c24e0. Right side: search trigger with cmd/k badge, language switcher, dark mode toggle"
+      },
+      {
+        "name": "Search Command Bar",
+        "role": "Keyboard-driven search trigger in the nav",
+        "description": "Pill shape (9999px radius), 1px border #cfcfcf, background #ffffff. Magnifier icon + 'search' text in #616161, right-side keycap showing ⌘K in IBM Plex Mono 14px"
+      },
+      {
+        "name": "Two-Column Section Block",
+        "role": "Editorial text + illustration layout (e.g. 'What is Ethereum?')",
+        "description": "Left column: 60% width, eyebrow label, Inter 900 heading at 36–48px, two paragraphs of body at 18px #121212, filled primary button. Right column: 40% width, illustration clipped at 32px radius"
+      },
+      {
+        "name": "Full-Width Editorial Card",
+        "role": "Lavender panel introducing a content theme (e.g. 'A new way to use the internet')",
+        "description": "Background #ece0ff, full-bleed, 48–64px vertical padding. Inter 900 headline at 48–60px left-aligned, no centered text. Acts as a section divider that resets the visual rhythm"
+      },
+      {
+        "name": "Icon",
+        "role": "Recurring Ethereum diamond octahedron used everywhere",
+        "description": "Always 24px or 32px, stroke-only (1.5–2px) on #6c24e0 for interactive states, #121212 for neutral, #ffffff on violet surfaces. No filled variants except inside illustrations"
+      },
+      {
+        "name": "Card Arrow Link",
+        "role": "Inline action link at the end of a card or paragraph",
+        "description": "Inter 400 at 16px in #6c24e0, followed by a chevron-right character. Underline only on hover. No background, no border"
+      },
+      {
+        "name": "Image Container",
+        "role": "Wrapper for any standalone illustration",
+        "description": "Border-radius 32px (large illustrative crops) or 12px (inline diagrams). Always sits flat on a pastel surface — no white framing box"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole workhorse — body at 16px/400, section headings at 24–30px/700, and display at 48–64px/900. The 900 weight at 60–64px is the signature: headlines are not politely bold, they are geometric slabs that anchor every section",
+        "sizes": "10, 14, 16, 18, 20, 24, 30, 35, 36, 48, 60, 64",
+        "family": "Inter",
+        "weight": "400, 700, 900",
+        "lineHeight": "1.00–2.00 (tight for display, 1.60 for body)",
+        "substitute": "Inter (Google Fonts) — no substitute needed; the 900 weight and tabular spacing are core to the look"
+      },
+      {
+        "role": "Used only for keyboard shortcut hints in the search bar (cmd/k label). Never used for body or heading",
+        "sizes": "14, 16",
+        "family": "IBM Plex Mono",
+        "weight": "400",
+        "lineHeight": "1.60",
+        "substitute": "IBM Plex Mono (Google Fonts) or JetBrains Mono"
+      }
+    ],
+    "description": "Ethereum.org is a bright, illustration-driven editorial site for a decentralized ecosystem: white-and-lilac surfaces, bold Inter 900 display type, and full-bleed duotone line-art scenes that make the brand feel like a printed almanac rather than a product dashboard. Color is rationed — the dominant lavender wash (#ece0ff) reads as paper, while a single vivid violet (#6c24e0) owns every primary action, eyebrow label, and link, keeping the interface calm between dense content blocks. Feature content sits on flat pastel cards (lavender, mint, peach, pink) with 16px corners, no shadows — elevation is expressed through surface tint, not depth. Components are square-shouldered (4–8px button radius) and lightweight, the Ethereum diamond octahedron recurs as the only consistent iconographic mark, and the visual rhythm alternates between wide illustrated bands and tight typographic grids.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ethereum.org design system\",\"item\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#style-reference\",\"name\":\"ethereum.org design system reference\",\"headline\":\"ethereum.org design system | Refero Styles\",\"description\":\"Explore ethereum.org's light Crypto design system: Lavender Paper #ece0ff, Pure White #ffffff colors, Inter, IBM Plex Mono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ethereum.org\",\"url\":\"https://ethereum.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"caption\":\"Screenshot of ethereum.org\"},\"image\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ethereum.org design system\",\"ethereum.org website design\",\"ethereum.org colors\",\"ethereum.org typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Lavender Paper\",\"Pure White\",\"Ash Gray\",\"Onyx\",\"Inter\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ethereum.org design system\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org website design\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org colors\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-02-11T09:08:06.000Z\",\"dateModified\":\"2026-02-11T09:08:06.000Z\"}]}19:T770,## Quick Color Reference\n- text: #121212 (primary), #616161 (secondary), #8c8c8c (tertiary)\n- background: #ece0ff (canvas), #ffffff (card)\n- border: #cfcfcf (hairline)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- secondary accents: #f60e9d (magenta), #3d4ceb (sapphire), #0f9972 (mint)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Create a hero band**: Edge-to-edge duotone line-art illustration (violet #6c24e0, blue #3d4ceb, pink #f60e9d accents, white background #ffffff) with the Ethereum diamond octahedron centered, clipped to 32px radius if contained. Below it, a centered stack: eyebrow pill 'NETWORK' (Inter 700, 14px, uppercase, #6c24e0 text on #ece0ff, 8px radius, 4px 12px padding), then 'Welcome to Ethereum' in Inter 900 at 64px, line-height 1.0, #121212, then subtext at 18px/400 #616161.\n\n\n3. **Create a pastel feature card**: Background #ece0ff (or mint/peach/pink pastel), border-radius 16px, padding 32px, no border, no shadow. Illustration centered top, 48–64px square. Heading in Inter 700 at 24px, line-height 1.3, #121212. Body at 16px/400 #121212. Footer ghost button: 1px border #cfcfcf, 4px radius, text in #121212, arrow › trailing.\n\n4. **Create the top navigation**: Background #ffffff, 1px bottom border #cfcfcf, height 64px. Left: Ethereum diamond icon (24px, stroke #6c24e0). Nav links: 'Learn / Use / Build / Participate / Research' in Inter 700 at 16px #121212, active state in #6c24e0. Right: search pill (9999px radius, border #cfcfcf, icon + 'search' text in #616161, '⌘K' in IBM Plex Mono 14px #616161), language switcher, dark mode toggle icon.\n\n5. **Create a card arrow link**: Inline link 'Discover stablecoins ›' — Inter 400 at 16px, color #6c24e0, no background, no border, chevron-right character trailing. Underline on hover only."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadow as the primary elevation signal. Instead, hierarchy is built by stacking flat color tints — the lavender canvas sits behind white cards, and pastel cards (lavender, mint, peach, pink) differentiate feature content without any drop shadow. The single shadow token that exists is an extremely low-opacity violet wash (0.02 alpha) that barely registers; it functions as a subtle resting line rather than a true elevation cue."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#cfcfcf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8545136555239683
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "card",
+            "image",
+            "body",
+            "heading",
+            "link",
+            "icon",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 2484,
+          "confidence": 1,
+          "prominence": 181434365.9846277,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "heading",
+            "body",
+            "hero",
+            "link",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 491,
+          "confidence": 1,
+          "prominence": 143849198.90774196,
+          "properties": [
+            "color",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 4569170.025686391,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ece0ff",
+          "oklch": {
+            "c": 0.04345102251705837,
+            "h": 303.1097114537598,
+            "l": 0.925603802654646
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1420288.0654145246,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6c24e0",
+          "oklch": {
+            "c": 0.25102854319267026,
+            "h": 291.21621260713084,
+            "l": 0.49309541002034135
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 166,
+          "confidence": 1,
+          "prominence": 1209849.4831390432,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 349720.3908216224,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f60e9d",
+          "oklch": {
+            "c": 0.2618496377853238,
+            "h": 351.97263194520394,
+            "l": 0.6416857969835692
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 223002.429007012,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3d4ceb",
+          "oklch": {
+            "c": 0.23533579911963182,
+            "h": 270.8645194014606,
+            "l": 0.5146709881281982
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 184602.429007012,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f9972",
+          "oklch": {
+            "c": 0.12232008105491865,
+            "h": 166.5428386137318,
+            "l": 0.6071634604235919
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 160125.1200553848,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4926091942525259
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 118,
+          "confidence": 1,
+          "prominence": 152485.7896533185,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 31891.507412173847,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#41128c",
+          "oklch": {
+            "c": 0.17746515425194218,
+            "h": 291.28780075571876,
+            "l": 0.34789112814650963
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1434,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1616b4",
+          "oklch": {
+            "c": 0.22784419638481215,
+            "h": 267.5504343036091,
+            "l": 0.36742924183905473
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 533.3974351909447,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0cdc2",
+          "oklch": {
+            "c": 0.04247283564667292,
+            "h": 38.18315743832766,
+            "l": 0.875044478984963
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 301.14287513701964,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c9b3f5",
+          "oklch": {
+            "c": 0.0943626561099871,
+            "h": 299.5756698208781,
+            "l": 0.8082719653443856
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 253.59400011538497,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8faf6",
+          "oklch": {
+            "c": 0.06591898891222107,
+            "h": 191.4002542852508,
+            "l": 0.9400885540028018
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 190,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#88aaf1",
+          "oklch": {
+            "c": 0.11004024485850752,
+            "h": 264.2733367219174,
+            "l": 0.7408946362664068
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 120,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05272454513373549,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.49,
+          "background": "#f7f7f7",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#b8faf6",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#ece0ff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#f0cdc2",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.43,
+          "background": "#41128c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.02,
+          "background": "#cfcfcf",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#ffffff",
+          "foreground": "#1616b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.6,
+          "background": "#f7f7f7",
+          "foreground": "#41128c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#f7f7f7",
+          "foreground": "#1616b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#b8faf6",
+          "foreground": "#41128c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.04,
+          "background": "#c9b3f5",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.98,
+          "background": "#b8faf6",
+          "foreground": "#1616b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#ece0ff",
+          "foreground": "#41128c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#ece0ff",
+          "foreground": "#1616b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.41,
+          "background": "#f0cdc2",
+          "foreground": "#41128c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.09,
+          "background": "#88aaf1",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.98,
+          "background": "#cfcfcf",
+          "foreground": "#41128c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#f0cdc2",
+          "foreground": "#1616b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#cfcfcf",
+          "foreground": "#1616b4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 49
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(65, 18, 140, 0.02) 2px 2px 12px 1px, rgba(65, 18, 140, 0.02) 12px 16px 12px -3px, rgba(65, 18, 140, 0.02) 24px 32px 24px -6px, rgba(152, 27, 27, 0.04) 32px 40px 40px -12px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 47,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 149,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 146,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 100,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 153,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 192,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 211,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(127.67% 82.36% at 50% -30.36%, rgba(147, 87, 244, 0.08) 0%, rgba(147, 87, 244, 0.24) 33%, rgba(67, 113, 239, 0.08) 66%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(147, 87, 244, 0.08)",
+          "rgba(147, 87, 244, 0.24)",
+          "rgba(67, 113, 239, 0.08)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 656,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 186,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "body",
+            "link",
+            "hero",
+            "icon",
+            "footer"
+          ],
+          "frequency": 351,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ef76c2c2-f1a9-4d73-afdf-732390aa35aa.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ethereum.org design system\",\"item\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#style-reference\",\"name\":\"ethereum.org design system reference\",\"headline\":\"ethereum.org design system | Refero Styles\",\"description\":\"Explore ethereum.org's light Crypto design system: Lavender Paper #ece0ff, Pure White #ffffff colors, Inter, IBM Plex Mono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ethereum.org\",\"url\":\"https://ethereum.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f53b2759-5b4a-4509-9311-51ab74238326#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"caption\":\"Screenshot of ethereum.org\"},\"image\":\"https://images.refero.design/styles/refero.design/image/79af8662-2fa1-48c6-9e65-e7133508b81e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ethereum.org design system\",\"ethereum.org website design\",\"ethereum.org colors\",\"ethereum.org typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Lavender Paper\",\"Pure White\",\"Ash Gray\",\"Onyx\",\"Inter\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ethereum.org design system\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org website design\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org colors\"},{\"@type\":\"Thing\",\"name\":\"ethereum.org typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-02-11T09:08:06.000Z\",\"dateModified\":\"2026-02-11T09:08:06.000Z\"}]}19:T770,## Quick Color Reference\n- text: #121212 (primary), #616161 (secondary), #8c8c8c (tertiary)\n- background: #ece0ff (canvas), #ffffff (card)\n- border: #cfcfcf (hairline)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- secondary accents: #f60e9d (magenta), #3d4ceb (sapphire), #0f9972 (mint)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Create a hero band**: Edge-to-edge duotone line-art illustration (violet #6c24e0, blue #3d4ceb, pink #f60e9d accents, white background #ffffff) with the Ethereum diamond octahedron centered, clipped to 32px radius if contained. Below it, a centered stack: eyebrow pill 'NETWORK' (Inter 700, 14px, uppercase, #6c24e0 text on #ece0ff, 8px radius, 4px 12px padding), then 'Welcome to Ethereum' in Inter 900 at 64px, line-height 1.0, #121212, then subtext at 18px/400 #616161.\n\n\n3. **Create a pastel feature card**: Background #ece0ff (or mint/peach/pink pastel), border-radius 16px, padding 32px, no border, no shadow. Illustration centered top, 48–64px square. Heading in Inter 700 at 24px, line-height 1.3, #121212. Body at 16px/400 #121212. Footer ghost button: 1px border #cfcfcf, 4px radius, text in #121212, arrow › trailing.\n\n4. **Create the top navigation**: Background #ffffff, 1px bottom border #cfcfcf, height 64px. Left: Ethereum diamond icon (24px, stroke #6c24e0). Nav links: 'Learn / Use / Build / Participate / Research' in Inter 700 at 16px #121212, active state in #6c24e0. Right: search pill (9999px radius, border #cfcfcf, icon + 'search' text in #616161, '⌘K' in IBM Plex Mono 14px #616161), language switcher, dark mode toggle icon.\n\n5. **Create a card arrow link**: Inline link 'Discover stablecoins ›' — Inter 400 at 16px, color #6c24e0, no background, no border, chevron-right character trailing. Underline on hover only."
+}

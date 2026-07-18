@@ -1,0 +1,342 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fffffc",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces, button fills — the slightly warm off-white prevents stark contrast against black ink, giving the entire site a printed-paper warmth rather than a digital-screen feel"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — All text, borders, navigation background, button borders, icon strokes — the only foreground color in the system, used at full saturation with no opacity reductions"
+    }
+  },
+  "font": {
+    "circular-std": {
+      "$value": "Circular Std",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for all UI and editorial text. Used at 400 for body, nav, and captions; 700 for emphasis and display-level statements. The display sizes (109–201px) with tightened tracking and 0.80 line-height create headlines that function as architectural objects — each word occupies physical space, almost like load-bearing elements."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 34px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 34px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 50px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "109px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 109px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "134px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 134px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "166px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 166px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Circular Std",
+        "fontSize": "201px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 201px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "101": {
+      "$value": "101px",
+      "$type": "dimension",
+      "$description": "Spacing 101px"
+    },
+    "134": {
+      "$value": "134px",
+      "$type": "dimension",
+      "$description": "Spacing 134px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "174": {
+      "$value": "174px",
+      "$type": "dimension",
+      "$description": "Spacing 174px"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 0, 0) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#fffffc",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, the default background for all body content"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Navigation bar and any inverted surface — the only dark surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.clouarchitects.com",
+      "siteName": "CLOU architects",
+      "extractedAt": "2026-06-03T20:37:26.008Z",
+      "variant": "extended"
+    }
+  }
+}

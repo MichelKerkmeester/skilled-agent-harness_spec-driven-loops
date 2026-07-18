@@ -1,0 +1,410 @@
+{
+  "color": {
+    "hot-pink": {
+      "$value": "#ff82c2",
+      "$type": "color",
+      "$description": "Hot Pink — Signature accent section backgrounds (announcement bar, Studio feature block), inline link emphasis — the brand's editorial punctuation. Used full-bleed, not as a tint"
+    },
+    "sun-yellow": {
+      "$value": "#ffda40",
+      "$type": "color",
+      "$description": "Sun Yellow — Accent highlight wash and decorative badge fills. Secondary chromatic accent that pairs with the pink in the brand's signature palette"
+    },
+    "signal-blue": {
+      "$value": "#20afff",
+      "$type": "color",
+      "$description": "Signal Blue — Secondary section background, decorative callout. A cool counterpoint to the warm pink and yellow, used when a third chromatic moment is needed in long pages"
+    },
+    "ember-orange": {
+      "$value": "#ff6138",
+      "$type": "color",
+      "$description": "Ember Orange — Sporadic chromatic accent for icon strokes and small decorative highlights. Does not define sections"
+    },
+    "leaf-green": {
+      "$value": "#5ad363",
+      "$type": "color",
+      "$description": "Leaf Green — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "charcoal": {
+      "$value": "#292c33",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and dark surface variant. Slightly cooler than pure black; used where a softer dark surface is needed without losing authority"
+    },
+    "slate": {
+      "$value": "#60605e",
+      "$type": "color",
+      "$description": "Slate — Muted body copy, helper text, secondary icon fills. The workhorse secondary text color at high frequency"
+    },
+    "bone": {
+      "$value": "#f1f0eb",
+      "$type": "color",
+      "$description": "Bone — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas and inverse text on dark fills. The cleanest, coolest surface — Bone sits one step above it for warmth"
+    },
+    "mist": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Mist — Slightly cooler light surface for card variants and disabled/secondary button states where Bone would feel too warm"
+    },
+    "stone": {
+      "$value": "#c1c0bc",
+      "$type": "color",
+      "$description": "Stone — Mid-tone divider, disabled border, subtle icon stroke. A neutral that sits between Slate and Bone for hairline UI"
+    },
+    "sand": {
+      "$value": "#e4d9cf",
+      "$type": "color",
+      "$description": "Sand — Decorative warm wash and image placeholder. The warmest neutral — used as a soft tonal block, rarely as functional UI"
+    },
+    "frost": {
+      "$value": "#cfd6e5",
+      "$type": "color",
+      "$description": "Frost — Cool-toned gray for card backgrounds and image placeholders where a cooler counterpart to Bone is needed"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body copy, navigation, buttons, icons, badges, and all functional UI. Tight tracking at 0.1em on small/uppercase text gives a controlled, label-like feel rather than the looser default sans treatment."
+    },
+    "sebentafont-custom-editorial-serif": {
+      "$value": "sebentaFont (custom editorial serif)",
+      "$type": "fontFamily",
+      "$description": "Display and large headings only. A high-contrast contemporary serif used at hero scale (64–128px) with heavy negative tracking. The italic cut is the brand's voice — emphasis words like 'the sound' are set italic in the same family rather than recolored or underlined, giving headlines a literary, editorial cadence."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "80px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "sebentaFont",
+        "fontSize": "128px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 128px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background, the cleanest base"
+    },
+    "bone-surface": {
+      "$value": "#f1f0eb",
+      "$type": "color",
+      "$description": "Surface level 1: FAQ rows, secondary buttons, nav strip — the warm editorial surface"
+    },
+    "mist-surface": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 2: Cooler light card variant, subtle elevation without shadow"
+    },
+    "hot-pink-block": {
+      "$value": "#ff82c2",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed signature accent section"
+    },
+    "signal-blue-block": {
+      "$value": "#20afff",
+      "$type": "color",
+      "$description": "Surface level 4: Secondary full-bleed accent section"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://epidemicsound.com",
+      "siteName": "Epidemicsound",
+      "extractedAt": "2026-06-03T20:10:31.805Z",
+      "variant": "extended"
+    }
+  }
+}

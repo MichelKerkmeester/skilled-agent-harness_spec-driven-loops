@@ -1,0 +1,467 @@
+{
+  "color": {
+    "sunbeam-yellow": {
+      "$value": "#ffc500",
+      "$type": "color",
+      "$description": "Sunbeam Yellow — Section backgrounds, the product itself, display wordmarks — the page's primary brand canvas and the loudest single color in the system"
+    },
+    "electric-violet": {
+      "$value": "#7700ff",
+      "$type": "color",
+      "$description": "Electric Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "carbon": {
+      "$value": "#312f27",
+      "$type": "color",
+      "$description": "Carbon — Body text, heading text, icon strokes, form labels — a warm near-black chosen over pure #000 to sit comfortably against yellow and white without vibrating"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, text on violet buttons, text on dark bands — the default light surface"
+    },
+    "slate-gray": {
+      "$value": "#788086",
+      "$type": "color",
+      "$description": "Slate Gray — Hero section background — a desaturated mid-gray that lets the yellow product pop without competing with it"
+    },
+    "fog": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Fog — Light alternate surface, input fill on white sections, subtle dividers"
+    },
+    "sand": {
+      "$value": "#e9e4d9",
+      "$type": "color",
+      "$description": "Sand — Input backgrounds, callout bubbles, warm light surface — bridges between the cool neutrals and the yellow brand"
+    },
+    "ash": {
+      "$value": "#b1afa7",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, secondary borders, subdued metadata — the quietest visible neutral"
+    }
+  },
+  "font": {
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the system — a humanist geometric that handles the 68px 'playdate' wordmark and 22px body copy in the same family. Weight 400 carries UI and running text; weight 700/800 anchors display words, prices, and CTAs. The custom -0.007em tracking is applied globally so even body text sits a touch tighter than system defaults."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "19px",
+        "fontWeight": 800,
+        "lineHeight": 3.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 29px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 29px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "29px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 29px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "29px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 29px"
+    },
+    "2xl-9": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "29px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-9 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "33px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 34px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 34px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "51px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "51px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 51px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "57px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 57px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "68px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 68px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "232": {
+      "$value": "232px",
+      "$type": "dimension",
+      "$description": "Spacing 232px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.85px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "21.945px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "28.5px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "34.2px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "37.3065px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "39.9px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "152.19px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "slate-gray-hero-canvas": {
+      "$value": "#788086",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed hero section background, lets the yellow product and white text read with maximum contrast"
+    },
+    "sunbeam-yellow-band": {
+      "$value": "#ffc500",
+      "$type": "color",
+      "$description": "Surface level 2: Primary brand section background, alternates with white bands to create a catalog-style rhythm"
+    },
+    "paper-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Card surfaces on yellow and gray backgrounds — the lightest surface, used for game tiles and content blocks"
+    },
+    "sand-callout": {
+      "$value": "#e9e4d9",
+      "$type": "color",
+      "$description": "Surface level 4: Warm neutral fill for speech-bubble annotations and softer content surfaces"
+    },
+    "fog-alternate": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 5: Coolest neutral, used for input fills and the most recessed surface treatment"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://play.date",
+      "siteName": "Playdate",
+      "extractedAt": "2026-06-03T17:10:18.598Z",
+      "variant": "extended"
+    }
+  }
+}

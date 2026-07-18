@@ -1,0 +1,237 @@
+{
+  "color": {
+    "obsidian-ink": {
+      "$value": "#212123",
+      "$type": "color",
+      "$description": "Obsidian Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, inverse text on dark fills. The dominant surface; almost the entire site lives here"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Icon fills, decorative graphic strokes, active state fills for the navigation dot indicator. Used sparingly for maximum tonal contrast against Bone"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Medium-contrast borders, control outlines, and structural separators."
+    },
+    "pebble": {
+      "$value": "#a6a6a7",
+      "$type": "color",
+      "$description": "Pebble — Muted helper text, fine body dividers, secondary metadata. The lightest functional gray — used for price labels and supporting copy that must recede"
+    }
+  },
+  "font": {
+    "sequel100wide": {
+      "$value": "Sequel100Wide",
+      "$type": "fontFamily",
+      "$description": "Sole brand typeface, used at weight 400 only across every context — nav, body, headings, hero copy, prices, labels. The wide-set geometric character with generous letter-spacing carries the entire brand voice. The absence of bold weight is deliberate: hierarchy comes from uppercase casing, tracking, and position, not from weight variation."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for button rendering in legacy contexts. Not part of the brand voice — appears only when Sequel100Wide fails to load."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sequel100Wide",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "146": {
+      "$value": "146px",
+      "$type": "dimension",
+      "$description": "Spacing 146px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "7.8768px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "full": {
+      "$value": "50.4px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background; the void that frames all content."
+    },
+    "product-plinth": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product card surfaces — same as canvas, relying on the product image and whitespace to define the card boundary rather than a border or shadow."
+    },
+    "active-node": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Filled circle indicator for the active navigation item, selected-state icon fills."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ino.jewelry",
+      "siteName": "INO",
+      "extractedAt": "2026-06-03T18:13:32.148Z",
+      "variant": "extended"
+    }
+  }
+}

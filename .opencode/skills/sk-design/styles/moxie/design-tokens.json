@@ -1,0 +1,292 @@
+{
+  "color": {
+    "periwinkle-flare": {
+      "$value": "#84acfb",
+      "$type": "color",
+      "$description": "Periwinkle Flare — Primary action background, italic emphasis text, active nav state, heading accent — the lone chromatic signal in an otherwise achromatic system, used surgically to make interactions feel switched on"
+    },
+    "warm-cream": {
+      "$value": "#f4efd4",
+      "$type": "color",
+      "$description": "Warm Cream — Primary text, card borders, hairline dividers, card surfaces — a warm off-white that softens the black void and carries the editorial tone"
+    },
+    "warm-ash": {
+      "$value": "#626055",
+      "$type": "color",
+      "$description": "Warm Ash — Secondary card borders, muted text, button borders — a mid-tone warm gray for layering depth between cream borders and the black canvas"
+    },
+    "charcoal-veil": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal Veil — Subtle borders, low-emphasis dividers, body text borders — the deepest visible neutral for near-invisible structural lines"
+    }
+  },
+  "font": {
+    "ibm-plex-serif": {
+      "$value": "IBM Plex Serif",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — weight 300 at 55px creates a whisper-light editorial presence; this serif choice signals PR-agency sophistication and gives the brand a magazine-editorial voice that distinguishes it from typical sans-serif tech sites"
+    },
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "Body, UI, navigation, buttons, captions — the functional workhorse at 16-17px weight 400; weight 300 is used for secondary text creating a light, airy body voice; weight 500 for emphasis and button labels"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "43px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "55px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 55px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Serif",
+        "fontSize": "55px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 55px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.65108px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13.8417px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the deep black that everything sits on, creating maximum contrast for cream typography"
+    },
+    "card-surface": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card backgrounds for testimonials, case study tiles, and content blocks"
+    },
+    "cream-border": {
+      "$value": "#f4efd4",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline card borders that define structure without elevation — the primary border color"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://moxiegrouppr.com",
+      "siteName": "Moxie",
+      "extractedAt": "2026-06-03T21:33:53.994Z",
+      "variant": "extended"
+    }
+  }
+}

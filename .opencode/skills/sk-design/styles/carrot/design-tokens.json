@@ -1,0 +1,235 @@
+{
+  "color": {
+    "citrus-field": {
+      "$value": "#d4e04a",
+      "$type": "color",
+      "$description": "Citrus Field — Full-page canvas and dominant brand surface — the chartreuse wash that defines the entire product. Used as hero background, section backgrounds, and feature card backgrounds with no variation or gradient"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary type, filled CTA buttons, icon strokes, borders, and graphic silhouettes (the bottle hero). The structural ink of the system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Text on black buttons, product screenshot card backgrounds, and any inverted surfaces. Pure white — not off-white"
+    },
+    "moss-shadow": {
+      "$value": "#535521",
+      "$type": "color",
+      "$description": "Moss Shadow — Quiet secondary accent for subdued text or border moments where pure black would feel too heavy. Rarely used — the chartreuse does the color work"
+    }
+  },
+  "font": {
+    "signifier": {
+      "$value": "Signifier",
+      "$type": "fontFamily",
+      "$description": "Display and large headings only — the editorial voice of the brand. The 300 weight is deliberately anti-convention: at 72px it whispers authority rather than shouts. The old-style numerals (onum) add a printed-magazine quality to any data that appears. Used exclusively for hero and section-headline moments."
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Body copy, subheadings, UI labels, buttons, card titles, navigation. 400 for running text and 500 for emphasis (card titles, button labels). Tight line-height (1.25) at heading sizes and loose (1.40) at body sizes creates a clear rhythm shift between scan and read modes."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 29px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "29px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 29px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "50px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "citrus-canvas": {
+      "$value": "#d4e04a",
+      "$type": "color",
+      "$description": "Surface level 1: The entire page — no other base surface exists. Hero, sections, and gaps all share this single field."
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product screenshot cards and device mockup containers that need to lift off the chartreuse."
+    },
+    "black-inversion": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: CTA buttons and the hero bottle silhouette — solid black forms floating on the chartreuse."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://carrot.tech",
+      "siteName": "Carrot",
+      "extractedAt": "2026-06-03T22:02:30.136Z",
+      "variant": "extended"
+    }
+  }
+}

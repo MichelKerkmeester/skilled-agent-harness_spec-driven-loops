@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+
+  /* Typography — Font Families */
+  --font-storenorskejalight: 'store_norske_ja_light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 24px;
+  --leading-body: 28.8;
+  --tracking-body: -0.48px;
+  --text-display: 490px;
+  --leading-display: 490;
+  --tracking-display: -9.8px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+
+  /* Layout */
+  --section-gap: 24px;
+  --element-gap: 24px;
+
+  /* Named Radii */
+  --radius-dots: 9999px;
+  --radius-rows: 0px;
+  --radius-headers: 0px;
+  --radius-brand-mark: 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+}

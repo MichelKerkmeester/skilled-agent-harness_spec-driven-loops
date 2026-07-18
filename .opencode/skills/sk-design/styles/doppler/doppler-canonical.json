@@ -1,0 +1,1320 @@
+{
+  "source": "https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c",
+  "uuid": "10654184-eb92-4b75-a7af-bd92bc6cdc5c",
+  "name": "Doppler",
+  "northStar": "violet-lit vault at midnight. A near-black canvas glows with a single lavender signal and a green confirmation light, every surface rounded just enough to feel handled.",
+  "capturedAt": "2026-07-18T08:02:55.706Z",
+  "meta": {
+    "url": "https://doppler.com",
+    "siteName": "Doppler",
+    "extractedAt": "2026-06-03T18:42:16.816Z",
+    "durationMs": 25292,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 513,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #00f575 only for the single most important action per viewport — it is a rationed resource, not a decorative color",
+      "Apply the 20px radius to all card surfaces, 12px to all buttons, 8px to small inline elements like tags or badges",
+      "Set letter-spacing to -0.02em on any text 48px and above, and 0.03em on any text 12px and below",
+      "Use #b997ff for brand wordmarks, highlighted headline words, and eyebrow labels — never for body text or backgrounds",
+      "Separate surfaces with #e5e7eb at 10-15% opacity borders, not with box-shadows or color fills",
+      "Keep the hero product screenshot at or above 50% viewport width — the product IS the hero",
+      "Use weight 450 as the default body and UI weight — weight 500 for headings, weight 700 only for display-size headlines"
+    ],
+    "donts": [
+      "Don't add more than one filled green button per viewport — the signal loses meaning with repetition",
+      "Don't use #b997ff or #00f575 for large background fills — these are accent colors, not surface colors",
+      "Don't introduce drop shadows on cards — the system uses surface color steps, not elevation shadows",
+      "Don't use pure white (#ffffff) for text — the warm off-white #f1f0ec is the system standard",
+      "Don't break the single-font rule — Doppler Repro handles everything from captions to displays",
+      "Don't use asymmetric or off-grid layouts — every section is centered and symmetrically balanced",
+      "Don't add photography, lifestyle imagery, or decorative illustrations — product screenshots and logos are the only visual content"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1c1624",
+        "name": "Midnight Plum",
+        "role": "Page canvas, primary dark surface — the near-black with a violet undertone that gives the UI its cool, secure temperature",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2734",
+        "name": "Shadow Plum",
+        "role": "Elevated card surface, input fields, nested panels — one step lighter than canvas to suggest depth without a shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f0ec",
+        "name": "Bone White",
+        "role": "Primary text, icon strokes, button labels on dark — warm off-white avoids the sterile feel of pure white against violet-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Fog Line",
+        "role": "Hairline borders, dividers, card outlines — the most-used neutral in the system, defining every container edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0c9c4",
+        "name": "Ash Veil",
+        "role": "Muted secondary text, disabled labels, ghost button text — sits between white and mid-gray for tertiary hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a5a2a5",
+        "name": "Mid Ash",
+        "role": "Muted helper text, placeholder copy, secondary metadata — low-priority text that recedes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#55505b",
+        "name": "Iron Edge",
+        "role": "Subtle dividers, input borders in resting state — barely visible structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b997ff",
+        "name": "Lavender Spark",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#00f575",
+        "name": "Signal Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis",
+        "group": "brand"
+      },
+      {
+        "hex": "#6b13f5",
+        "name": "Neon Violet",
+        "role": "Radial gradient anchor, deep brand violet used in decorative aurora effects behind hero text",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff5632",
+        "name": "Ember Orange",
+        "role": "Terminal color in the violet-to-orange hero gradient — adds warmth to the cool palette at the gradient terminus",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff9efa",
+        "name": "Plasma Pink",
+        "role": "Radial gradient origin point — the pink hotspot in the aurora glow behind the hero",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with generous side padding. Hero is a 2-column split: headline + CTA on the left (50%), product screenshot on the right (50%), with the radial gradient glow centered behind the screenshot. Below the hero, a 4-column card grid for integrations with 20px gaps. Then a centered section heading followed by a 3-column feature card grid. Navigation is a sticky glass header with centered logo+nav and right-aligned CTA cluster. Vertical rhythm: 64px section gaps, 32px card padding, 16px element spacing. The layout is always symmetric and centered — no asymmetric or off-grid compositions.",
+    "imagery": "Product screenshots are the primary visual element — the Doppler dashboard UI rendered at large scale in the hero and feature sections. These screenshots use the same dark palette as the marketing site, creating visual continuity. Integration partner logos (AWS, Azure, GCP, GitHub, etc.) appear as contained 48-64px marks inside cards. No photography, no lifestyle imagery, no illustrations — the product UI IS the hero. Background atmosphere comes from a soft radial gradient (violet→pink→dark) behind the hero, providing subtle warmth without competing with the product shot.",
+    "similar": [
+      {
+        "why": "Same dark-mode product-UI-as-hero approach, similar geometric sans typography with tight tracking at large sizes, purple-tinted dark canvas with single accent for action",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark canvas with rationed color usage, geometric sans at all sizes, product screenshots as primary visual content, minimal decoration",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark purple-tinted canvas, single vivid accent for primary action, product-forward hero with dashboard screenshot, 20px card radii",
+        "business": "Railway"
+      },
+      {
+        "why": "Dark mode developer-tool aesthetic with green accent for action, monospace-influenced geometric sans, product UI as hero visual",
+        "business": "Supabase"
+      },
+      {
+        "why": "Dark canvas with high-contrast accent color for CTAs, developer-focused density, single custom font handling all type roles, minimal decorative imagery",
+        "business": "PlanetScale"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "pills": "9999px",
+        "buttons": "12px",
+        "large-features": "20px",
+        "small-elements": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#1c1624",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed sections, hero field"
+      },
+      {
+        "hex": "#2d2734",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Integration cards, feature panels, product screenshots, nested containers"
+      },
+      {
+        "hex": "#3a3340",
+        "name": "Elevated Panel",
+        "level": 2,
+        "purpose": "Modals, popovers, tooltip surfaces — inferred one step above card surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 60px rgba(185, 151, 255, 0.15)",
+        "element": "Product Screenshot Frame"
+      },
+      {
+        "style": "radial gradient overlay, no box-shadow",
+        "element": "Hero Glow"
+      }
+    ],
+    "gradients": [
+      {
+        "hex": "#6b13f5",
+        "name": "Aurora Radial",
+        "role": "Hero background atmosphere — soft violet-to-pink glow radiating from upper right",
+        "group": "brand",
+        "gradient": "radial-gradient(78.16% 78.1% at 77.15% 26.77%, #ff9efa 0%, #6b13f5 50%, #231736 100%)"
+      },
+      {
+        "hex": "#855aff",
+        "name": "Sunset Linear",
+        "role": "Decorative gradient on highlighted headline words — violet to warm orange",
+        "group": "brand",
+        "gradient": "linear-gradient(91deg, #855aff 14.92%, #ff5632 90.53%)"
+      }
+    ],
+    "northStar": "violet-lit vault at midnight. A near-black canvas glows with a single lavender signal and a green confirmation light, every surface rounded just enough to feel handled.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.28
+      },
+      {
+        "role": "display-xl",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button",
+        "role": "The 'go' button — filled vivid green with black text, used for Start for Free, Get Demo, and other conversion moments",
+        "description": "Background #00f575, text #000000, radius 12px, padding 12px 24px, font weight 500 at 15px. The high-contrast green-on-black-text combination is the loudest visual element on any page — it should appear sparingly, no more than 1-2 per viewport. Includes a right arrow icon (→) after the label."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary action in the header — outline button for Sign In and similar low-priority actions",
+        "description": "Transparent background, 1px border in #55505b or #e5e7eb at 30% opacity, text #f1f0ec, radius 12px, padding 8px 16px, font weight 450 at 14px. Sits next to the green CTA without competing for attention."
+      },
+      {
+        "name": "Integration Card",
+        "role": "Feature card showcasing a third-party integration (AWS, Azure, GCP, etc.)",
+        "description": "Background #2d2734, 1px hairline border in #e5e7eb at ~15% opacity, radius 20px, padding 32px. Contains a 48-64px brand logo at top, h3 heading at 24px weight 500 in #f1f0ec, body text at 14-15px in #d0c9c4, and a 'Learn More →' link at bottom. Cards sit in a 4-column grid with 16-20px gaps."
+      },
+      {
+        "name": "Why-Choose Feature Card",
+        "role": "Value proposition card in the mid-page section — larger surface with internal structure",
+        "description": "Background #2d2734, border #e5e7eb at low opacity, radius 20px, padding 32px. Contains a mini product screenshot or icon at top, followed by heading and body text. Wider format than integration cards, sometimes 2-column internal layout."
+      },
+      {
+        "name": "Glass Header",
+        "role": "Sticky top navigation with frosted-glass effect",
+        "description": "Background #1c1624 at ~80% opacity with backdrop-filter blur, 1px bottom border in #e5e7eb at 10% opacity. Contains the Doppler wordmark (left), nav links (center-left, weight 450 at 14px), and CTA cluster (right: ghost 'Get Demo' + green 'Start for Free' + ghost 'Sign In'). Padding 16px 32px."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page headline with multi-color word emphasis",
+        "description": "Font size 64-96px, weight 700, line-height 1.0-1.05, letter-spacing -0.02em. Text in #f1f0ec with one or two key words in #b997ff or the violet-to-orange gradient. The word 'Keep' in the hero uses a background-clip gradient creating a sunset effect from violet to ember."
+      },
+      {
+        "name": "Gradient Highlighted Text",
+        "role": "Inline text accent within headlines — single words or short phrases that carry brand voice",
+        "description": "Uses background: linear-gradient(91deg, #855aff, #ff5632) with -webkit-background-clip: text and -webkit-text-fill-color: transparent. Applied to 1-2 key words per headline. The gradient runs left-to-right, warm at the end."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "In-context product UI shown in the hero and feature sections",
+        "description": "Contained in a dark card surface (#2d2734) with 20px radius, 1px border, and a subtle box-shadow. The product UI itself uses a dark theme with purple accents matching the site. Often shown at slight perspective or with a glow halo."
+      },
+      {
+        "name": "Top Banner",
+        "role": "Promotional announcement bar above the header",
+        "description": "Full-width strip at top, background #1c1624 with a slightly lighter tint, padding 6-10px vertical, text centered at 12-14px in #f1f0ec. Contains an inline link in #00f575 or #b997ff. Dismissable with a close button at right."
+      },
+      {
+        "name": "Section Heading",
+        "role": "H2 or H3 heading for content sections below the hero",
+        "description": "Font size 32-48px, weight 500, line-height 1.15, letter-spacing -0.01em, text #f1f0ec. Centered above section content. May be preceded by a small eyebrow label in #b997ff at 12-14px with 0.03em tracking."
+      },
+      {
+        "name": "Link / Inline CTA",
+        "role": "Text links with arrow affordance, used for 'Learn More' and navigation",
+        "description": "Color #f1f0ec or #b997ff, weight 500 at 14-15px, followed by a right arrow (→). Underline appears on hover only. No box or background — purely inline."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Doppler brand mark in the header — asterisk + wordmark",
+        "description": "Asterisk icon in #b997ff (the lavender violet, the brand's chromatic signature), wordmark 'Doppler' in #f1f0ec at weight 500, ~20px. The asterisk is the visual anchor — it appears in the same violet across the brand."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system — custom geometric sans handling everything from 12px captions to 96px displays. Weight 450 is the signature workhorse (slightly heavier than 400 but lighter than 500), giving text a distinctive medium-confident feel. At 64px+ sizes, letter-spacing tightens to -0.02em for compressed, engineered headlines; at 12px it opens to 0.03em for readable small text. Replaces the visual job that a secondary serif or monospace would do on other sites — consistency over contrast.",
+        "sizes": "12, 14, 15, 16, 18, 24, 32, 48, 64, 96",
+        "family": "Doppler Repro",
+        "weight": "400, 450, 500, 700",
+        "lineHeight": "1.00, 1.05, 1.15, 1.20, 1.40, 1.50",
+        "substitute": "Inter or Geist — geometric sans-serifs with similar weight range and tight tracking behavior",
+        "letterSpacing": "-0.0200em, -0.0100em, 0.0100em, 0.0300em"
+      }
+    ],
+    "description": "Doppler operates as a dark-mode security console: a near-black violet-tinted canvas (#1c1624) with whisper-thin light borders, one vivid green that signals 'go', and one lavender violet that carries brand voice in headlines and highlights. The interface feels like a vault UI — dense product surfaces, glass-blur header, 20px rounded cards floating on a midnight field. Typography is a single custom geometric sans (Doppler Repro) that tightens aggressively at large sizes (-0.02em) for a compressed, engineered feel. Color is rationed: green appears only where action is requested, violet only where brand voice is needed, everything else is monochrome. The hero headline uses a multi-stop violet gradient to create a single moment of chromatic warmth before the page settles back into its dark security posture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Doppler design system\",\"item\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#style-reference\",\"name\":\"Doppler design system reference\",\"headline\":\"Doppler design system | Refero Styles\",\"description\":\"Explore Doppler's dark Dev Tools design system: Midnight Plum #1c1624, Shadow Plum #2d2734 colors, Doppler Repro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Doppler\",\"url\":\"https://doppler.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"caption\":\"Screenshot of Doppler\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Doppler design system\",\"Doppler website design\",\"Doppler colors\",\"Doppler typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Midnight Plum\",\"Shadow Plum\",\"Bone White\",\"Fog Line\",\"Doppler Repro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Doppler design system\"},{\"@type\":\"Thing\",\"name\":\"Doppler website design\"},{\"@type\":\"Thing\",\"name\":\"Doppler colors\"},{\"@type\":\"Thing\",\"name\":\"Doppler typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-31T13:42:47.000Z\",\"dateModified\":\"2026-03-31T13:42:47.000Z\"}]}19:T7ac,## Quick Color Reference\n- text: #f1f0ec\n- background: #1c1624\n- border: #e5e7eb (at 15% opacity)\n- accent: #b997ff\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Integration Card**: Background #2d2734, border 1px #e5e7eb at 15% opacity, radius 20px, padding 32px. Top: 56px partner logo. Heading 'Doppler + AWS' at 24px weight 500, color #f1f0ec, letter-spacing -0.24px. Body at 15px weight 400, color #d0c9c4, line-height 1.5. Bottom: 'Learn More →' link at 14px weight 500, color #f1f0ec.\n\n3. **Glass Header**: Sticky, full-width, background #1c1624 at 80% opacity with backdrop-filter blur(12px), border-bottom 1px #e5e7eb at 10% opacity. Height ~64px, padding 0 32px. Left: asterisk icon #b997ff + 'Doppler' wordmark in #f1f0ec at 18px weight 500. Center-left: nav links at 14px weight 450, color #f1f0ec, with 24px horizontal gaps. Right cluster: ghost 'Get Demo' button (transparent bg, 1px #55505b border, 12px radius, 8px 16px padding) + filled 'Start for Free' button (#00f575, #000000 text, 12px radius) + ghost 'Sign In' button.\n\n4. **Feature Grid Section**: Background #1c1624, section padding 64px vertical. Centered section heading: 'Why companies choose Doppler' at 48px weight 500, #f1f0ec, letter-spacing -0.96px, max-width 700px. Below: 3-column grid with 20px gaps, each card at #2d2734 with 20px radius and 1px #e5e7eb/15% border, padding 32px. Card content: 120px tall preview area at top, then h3 at 24px weight 500, body at 15px weight 400 in #d0c9c4.\n\n5. **Gradient Highlighted Word**: Inline span within a headline. CSS: background: linear-gradient(91deg, #855aff 14.92%, #ff5632 90.53%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block. Apply to a single word in a 64px+ headline to create the signature warm-cool gradient moment."
+      },
+      {
+        "title": "Color Rationing Philosophy",
+        "content": "The system uses exactly two chromatic colors with strict role separation: #b997ff (lavender) is for brand voice and identity, #00f575 (green) is for action confirmation. They never overlap in role. Lavender never appears on a button; green never appears in a headline. This creates a visual grammar where users learn: 'if it's green, I can click it; if it's violet, it's speaking to me as the brand.' Every other color is a neutral on the dark canvas. The result is an interface that feels calm and information-dense while still having clear moments of color — but those moments are earned, not decorative."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is created through surface color steps (#1c1624 → #2d2734) and a single violet-tinted glow behind the hero product screenshot, not through multi-layer drop shadows. Cards float by being one tone lighter than the canvas, separated by a whisper-thin border at ~15% opacity. This keeps the UI feeling flat, engineered, and screen-native — closer to a dark IDE than a glossy marketing page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "image",
+            "nav",
+            "heading",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 1772,
+          "confidence": 1,
+          "prominence": 94712147.67242871,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f0ec",
+          "oklch": {
+            "c": 0.005429187801234229,
+            "h": 95.10084394492627,
+            "l": 0.9547951433050447
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "heading",
+            "card",
+            "button",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 295,
+          "confidence": 1,
+          "prominence": 72047500.87765826,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1c1624",
+          "oklch": {
+            "c": 0.02832074258771115,
+            "h": 303.73130294292486,
+            "l": 0.2142755096515133
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 40755238.87002192,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 32475662.13808028,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b997ff",
+          "oklch": {
+            "c": 0.14918212784314897,
+            "h": 297.75627758821946,
+            "l": 0.7483005633251564
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4228840,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8b877d",
+          "oklch": {
+            "c": 0.015455583484868472,
+            "h": 88.73323532611481,
+            "l": 0.6238947099599572
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3678967.14915602,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6b13f5",
+          "oklch": {
+            "c": 0.27951006396899253,
+            "h": 288.1488224932435,
+            "l": 0.503510695968846
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3529106.0334307393,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2d2734",
+          "oklch": {
+            "c": 0.0248163119645298,
+            "h": 305.81944611529946,
+            "l": 0.2848778993570142
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1732534.511137344,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d0c9c4",
+          "oklch": {
+            "c": 0.010443823520176329,
+            "h": 58.18931282084492,
+            "l": 0.8401176158945622
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 328377.4694042215,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#55505b",
+          "oklch": {
+            "c": 0.01885090438652018,
+            "h": 306.07514948169523,
+            "l": 0.44003827825222064
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 318843.7363450735,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a5a2a5",
+          "oklch": {
+            "c": 0.0047631840626773825,
+            "h": 329.1318989784428,
+            "l": 0.7158329279463439
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 97413.4737382883,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00f575",
+          "oklch": {
+            "c": 0.2321409891462449,
+            "h": 150.25989668088408,
+            "l": 0.8481416219903588
+          },
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 20652,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3e3844",
+          "oklch": {
+            "c": 0.021984034402937162,
+            "h": 307.76812895328305,
+            "l": 0.351558931879997
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 633.9850002884624,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.02028534304530033,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#f1f0ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#1c1624",
+          "foreground": "#f1f0ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#00f575",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#e5e7eb",
+          "foreground": "#1c1624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.83,
+          "background": "#d0c9c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.69,
+          "background": "#2d2734",
+          "foreground": "#f1f0ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#00f575",
+          "foreground": "#1c1624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.69,
+          "background": "#e5e7eb",
+          "foreground": "#2d2734"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.79,
+          "background": "#1c1624",
+          "foreground": "#d0c9c4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.93,
+          "background": "#f1f0ec",
+          "foreground": "#3e3844"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#2d2734",
+          "foreground": "#00f575"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#e5e7eb",
+          "foreground": "#3e3844"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.93,
+          "background": "#b997ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#2d2734",
+          "foreground": "#d0c9c4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.31,
+          "background": "#a5a2a5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.72,
+          "background": "#00f575",
+          "foreground": "#3e3844"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.51,
+          "background": "#b997ff",
+          "foreground": "#1c1624"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.99,
+          "background": "#1c1624",
+          "foreground": "#a5a2a5"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#d0c9c4",
+          "foreground": "#3e3844"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "footer",
+            "button"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 143,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 98,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(91deg, rgb(133, 90, 255) 14.92%, rgb(255, 86, 50) 90.53%)",
+        "colors": [
+          "rgb(133, 90, 255)",
+          "rgb(255, 86, 50)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(78.16% 78.1% at 77.15% 26.77%, rgb(255, 158, 250) 0%, rgb(107, 19, 245) 50%, rgb(35, 23, 54) 100%)",
+        "colors": [
+          "rgb(255, 158, 250)",
+          "rgb(107, 19, 245)",
+          "rgb(35, 23, 54)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Doppler Repro",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500,
+            700
+          ],
+          "frequency": 453,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Doppler Repro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Doppler Repro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Doppler Repro",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "icon",
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 55,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "card",
+            "icon",
+            "body",
+            "footer",
+            "list"
+          ],
+          "frequency": 276,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Doppler Repro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Doppler Repro",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Doppler Repro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Doppler Repro",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Doppler Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Doppler Repro",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Doppler Repro",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Doppler Repro",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Doppler Repro",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8643e0f3-afda-4ab9-ac9c-2a5ad27b9039.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Doppler design system\",\"item\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#style-reference\",\"name\":\"Doppler design system reference\",\"headline\":\"Doppler design system | Refero Styles\",\"description\":\"Explore Doppler's dark Dev Tools design system: Midnight Plum #1c1624, Shadow Plum #2d2734 colors, Doppler Repro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Doppler\",\"url\":\"https://doppler.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/10654184-eb92-4b75-a7af-bd92bc6cdc5c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"caption\":\"Screenshot of Doppler\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cda55e59-cb1b-4be3-a7a4-34c954ff72ec.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Doppler design system\",\"Doppler website design\",\"Doppler colors\",\"Doppler typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Midnight Plum\",\"Shadow Plum\",\"Bone White\",\"Fog Line\",\"Doppler Repro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Doppler design system\"},{\"@type\":\"Thing\",\"name\":\"Doppler website design\"},{\"@type\":\"Thing\",\"name\":\"Doppler colors\"},{\"@type\":\"Thing\",\"name\":\"Doppler typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-31T13:42:47.000Z\",\"dateModified\":\"2026-03-31T13:42:47.000Z\"}]}19:T7ac,## Quick Color Reference\n- text: #f1f0ec\n- background: #1c1624\n- border: #e5e7eb (at 15% opacity)\n- accent: #b997ff\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Integration Card**: Background #2d2734, border 1px #e5e7eb at 15% opacity, radius 20px, padding 32px. Top: 56px partner logo. Heading 'Doppler + AWS' at 24px weight 500, color #f1f0ec, letter-spacing -0.24px. Body at 15px weight 400, color #d0c9c4, line-height 1.5. Bottom: 'Learn More →' link at 14px weight 500, color #f1f0ec.\n\n3. **Glass Header**: Sticky, full-width, background #1c1624 at 80% opacity with backdrop-filter blur(12px), border-bottom 1px #e5e7eb at 10% opacity. Height ~64px, padding 0 32px. Left: asterisk icon #b997ff + 'Doppler' wordmark in #f1f0ec at 18px weight 500. Center-left: nav links at 14px weight 450, color #f1f0ec, with 24px horizontal gaps. Right cluster: ghost 'Get Demo' button (transparent bg, 1px #55505b border, 12px radius, 8px 16px padding) + filled 'Start for Free' button (#00f575, #000000 text, 12px radius) + ghost 'Sign In' button.\n\n4. **Feature Grid Section**: Background #1c1624, section padding 64px vertical. Centered section heading: 'Why companies choose Doppler' at 48px weight 500, #f1f0ec, letter-spacing -0.96px, max-width 700px. Below: 3-column grid with 20px gaps, each card at #2d2734 with 20px radius and 1px #e5e7eb/15% border, padding 32px. Card content: 120px tall preview area at top, then h3 at 24px weight 500, body at 15px weight 400 in #d0c9c4.\n\n5. **Gradient Highlighted Word**: Inline span within a headline. CSS: background: linear-gradient(91deg, #855aff 14.92%, #ff5632 90.53%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block. Apply to a single word in a 64px+ headline to create the signature warm-cool gradient moment."
+}

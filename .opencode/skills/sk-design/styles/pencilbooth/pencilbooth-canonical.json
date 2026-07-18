@@ -1,0 +1,1074 @@
+{
+  "source": "https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9",
+  "uuid": "47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9",
+  "name": "PencilBooth",
+  "northStar": "Monochrome broadsheet manifesto. PencilBooth looks like a typographic broadsheet laid flat on a gallery wall — enormous display type anchoring two-column reading rows, hairline rules separating sections, and a single deep-navy accent breaking the gray silence only when a state is active.",
+  "capturedAt": "2026-07-18T08:51:46.601Z",
+  "meta": {
+    "url": "https://www.pencilbooth.com",
+    "siteName": "PencilBooth",
+    "extractedAt": "2026-06-03T21:33:43.238Z",
+    "durationMs": 34233,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1346,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 96px Soehne weight 700 for all section-opening display headlines; pair with a 32px weight 400 subtitle in #5a5e62",
+      "Apply #0f1ea1 (Deep Navy) exclusively to active/selected states — never to decorative elements, never to primary actions outside the tab context",
+      "Use 1px #e5e7eb hairline borders for all component edges; never use box-shadows for elevation",
+      "Maintain the two-column editorial row template: display heading left, body copy right, separated by whitespace not vertical rules",
+      "Use #f2f2f2 for the page canvas and #ffffff for cards — the contrast between these two near-whites IS the elevation system",
+      "Let emoji glyphs carry the system's color variety in icon avatars; do not replace them with monochrome line icons or SVG illustrations",
+      "Keep letter-spacing at 0.0100em across all sizes — this uniform tracking is part of the Soehne voice"
+    ],
+    "donts": [
+      "Do not use color (blue, green, red) to signal links or clickable elements — links are #000000 with optional hairline underline",
+      "Do not apply box-shadows to cards, modals, or popovers — the system is intentionally flat",
+      "Do not use gradient fills on any surface, button, or background",
+      "Do not introduce additional accent colors beyond Deep Navy (#0f1ea1), Sky Blue (#8fbaff), and Pale Lavender (#cfd2ec)",
+      "Do not use display sizes smaller than 96px for section headlines — the extreme scale jump is the system's signature",
+      "Do not use icons with custom SVG line illustrations; emoji-style colorful avatars are the icon system",
+      "Do not use border-radius larger than 10px for any rectangular element — only icon avatars (9999px) and tags (2px) deviate from the 10px standard"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, display headlines, icon strokes — the only true black in the system, used at full strength for headlines and body to maximize contrast against the light canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, elevated panels, and inset backgrounds — the bright surface that floats above the canvas gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Canvas Gray",
+        "role": "Page background and recessed surface — the dominant canvas that makes white cards feel lifted without using shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Gray",
+        "role": "Borders, dividers, card outlines, and structural rules — by far the most-used color (4960 occurrences), it defines every interface edge with 1px restraint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a5e62",
+        "name": "Body Gray",
+        "role": "Secondary body text — softened black for long-form copy in the right column, reduces visual weight without sacrificing legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b2b2",
+        "name": "Muted Gray",
+        "role": "Tertiary text and metadata — captions, labels, and supporting copy that should recede behind primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f1ea1",
+        "name": "Deep Navy",
+        "role": "Active/selected tab background and the system's sole chromatic accent — appears once per section to signal the current state against the monochrome field",
+        "group": "brand"
+      },
+      {
+        "hex": "#8fbaff",
+        "name": "Sky Blue",
+        "role": "Subtle surface wash and decorative highlight — soft chromatic field used sparingly behind small elements, never as a CTA",
+        "group": "accent"
+      },
+      {
+        "hex": "#cfd2ec",
+        "name": "Pale Lavender",
+        "role": "Soft surface tint — the gentlest chromatic wash for background sections that need to break the achromatic field without competing with content",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page follows a max-width contained model (1200px centered) with a strict two-column editorial grid. Every major section opens with a massive left-aligned display headline (96px) in the left column, paired with dense body copy in the right column — this two-column reading row is the structural DNA and repeats throughout. Between major sections, a feature-stack component appears in the left column: a vertical list of icon+text items with the active item highlighted in deep navy, while the right column shows a corresponding description with its own display heading. The final section breaks to a 4-column image grid for portfolio thumbnails. Vertical rhythm is generous (48-80px between sections) but content density within each column is compact. No sidebar, no sticky header, no mega-menu — navigation is minimal. The overall feel is a scrollable broadsheet, not a dashboard.",
+    "imagery": "Imagery is sparse and editorial. The only consistent visual pattern is the image grid of portfolio thumbnails (square crops of artists' work, full-bleed, no rounded corners, no borders, no overlays). Individual images carry their own color and style — they are the product, not decorative atmosphere. Outside the portfolio grid, the page is pure typography. There are no hero images, no background photographs, no decorative illustrations. Emoji glyphs (👁, 💜, 🎨, etc.) serve as the only colorful visual elements in the interface itself, acting as functional iconography rather than illustration.",
+    "similar": [
+      {
+        "why": "Same editorial-broadsheet layout philosophy — text-first two-column grids, massive display type, and color that appears only as functional punctuation rather than decoration",
+        "business": "Are.na"
+      },
+      {
+        "why": "Creator-portfolio platform with a similar monochrome canvas and typographic hierarchy, where the artist's work itself provides all the color",
+        "business": "Cargo Collective"
+      },
+      {
+        "why": "Editorial long-form layout with oversized display headlines, tight body measure, and a restrained palette that lets the typography carry the visual weight",
+        "business": "The Creative Independent"
+      },
+      {
+        "why": "Same typographic architecture approach — display type at extreme sizes, flat surfaces, hairline borders, and a single chromatic accent for state indication",
+        "business": "Readymag"
+      },
+      {
+        "why": "Shares the compact dense information design and monochrome editorial voice that makes PencilBooth feel more like a printed broadsheet than a web product",
+        "business": "Field Notes (print)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "cards": "10px",
+        "icons": "9999px",
+        "buttons": "2px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "48-80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the base field that the entire editorial layout sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Feature list panels, content cards, and elevated surfaces — defined by hairline borders rather than shadow"
+      },
+      {
+        "hex": "#cfd2ec",
+        "name": "Tinted",
+        "level": 2,
+        "purpose": "Chromatic wash for sections requiring gentle color separation from the achromatic field"
+      },
+      {
+        "hex": "#0f1ea1",
+        "name": "Active",
+        "level": 3,
+        "purpose": "Selected tab or active state surface — the only fully saturated surface in the system"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — elevation is achieved through surface contrast (#ffffff on #f2f2f2 canvas) and 1px hairline borders in #e5e7eb",
+        "element": "Content Card"
+      },
+      {
+        "style": "none — flat surface with hairline bottom border",
+        "element": "Feature Tab Item"
+      },
+      {
+        "style": "none — the #0f1ea1 fill itself signals elevation through chromatic contrast",
+        "element": "Active Feature Tab"
+      }
+    ],
+    "northStar": "Monochrome broadsheet manifesto. PencilBooth looks like a typographic broadsheet laid flat on a gallery wall — enormous display type anchoring two-column reading rows, hairline rules separating sections, and a single deep-navy accent breaking the gray silence only when a state is active.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": 0.96
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline Block",
+        "role": "Section anchor — the 96px bold headline that opens every editorial section",
+        "description": "Soehne weight 700 at 96px, line-height 1.0, letter-spacing 0.96px, color #000000. Paired directly beneath with a weight 400 subtitle at 32px in a medium gray (#5a5e62 or #b2b2b2). The extreme size ratio (96px headline → 32px subtitle) creates the broadsheet's signature vertical rhythm."
+      },
+      {
+        "name": "Two-Column Editorial Row",
+        "role": "Primary content layout — pairs a left display column with a right body text column",
+        "description": "Left column: 96px display heading + 32px subtitle, left-aligned. Right column: 16px body copy at weight 400 in #5a5e62, narrow measure (~400-500px). Columns separated by generous whitespace, not vertical rules. This is the page's structural DNA — every major section follows this template."
+      },
+      {
+        "name": "Feature Tab Item",
+        "role": "Selectable list item in the left column feature stack",
+        "description": "Full-width row with 10px horizontal padding, 10-12px vertical padding, 10px border-radius. Left side: circular icon avatar (40px, 9999px radius, white background with emoji-style icon). Right side: 16px weight 400 label in #000000. Hairline bottom border (#e5e7eb) between items. Background: #ffffff."
+      },
+      {
+        "name": "Active Feature Tab",
+        "role": "Selected state for a feature tab item — the system's sole chromatic surface",
+        "description": "Same dimensions as Feature Tab Item, but background switches to #0f1ea1 (Deep Navy), text to #ffffff, and icon avatar to a gold/yellow emoji. This inversion is the only place Deep Navy appears in the interface — it functions as wayfinding, not decoration."
+      },
+      {
+        "name": "Content Card",
+        "role": "Generic elevated surface for grouped content blocks",
+        "description": "White (#ffffff) background, 10px border-radius, 1px hairline border in #e5e7eb, internal padding 24px. No shadow — elevation is achieved through surface contrast against the #f2f2f2 canvas. Cards never use chromatic fills or gradients."
+      },
+      {
+        "name": "Icon Avatar",
+        "role": "Circular badge containing an emoji-style icon — the system's only multi-color element",
+        "description": "40px circle with 9999px border-radius, white (#ffffff) background, containing a full-color emoji glyph (👁, 💜, 📔, 🎨, 🌐, 📩, 🌊, 🆓, 📊, 💸, ✅, 💰). The emoji's native color is the source of all chromatic variety on the page — it is never replaced by monochrome line icons."
+      },
+      {
+        "name": "Image Grid Tile",
+        "role": "Portfolio thumbnail in the 'Meet the Crowd' section",
+        "description": "Square or near-square tile, no border, no radius constraint (edges are sharp by default). Each tile contains a full-bleed image at its native aspect ratio. Caption sits below: 14px weight 400 in #000000, with a small ↗ arrow link in #000000."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Text link with minimal visual treatment",
+        "description": "Color: #000000 (black) with 1px underline in #e5e7eb (hairline gray), or no underline at all. Weight 400, inherits surrounding body size. 2px border-radius only appears on small tag-like links or pill badges. Links never use blue — color is never the signal for clickability."
+      },
+      {
+        "name": "Metadata Caption",
+        "role": "Small text for labels, tags, and supporting information",
+        "description": "12-14px, weight 400, color #b2b2b2 (Muted Gray). Used above section heads, below image tiles, and as inline metadata. Never bold, never colored — it should recede behind primary content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for display, headings, body, links, icons, and everything between. Weight 700 carries all display and heading roles; weight 400 handles body, captions, and links. Soehne's humanist grotesque proportions and tight terminals give the editorial broadsheet its distinctive voice — a system font would feel too neutral, too SaaS-generic.",
+        "sizes": "12px, 14px, 16px, 18px, 32px, 96px",
+        "family": "Soehne",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter or Untitled Sans — both are humanist grotesques with similar x-height and terminal treatment; General Sans is also a close match for the open apertures",
+        "letterSpacing": "0.0100em applied uniformly (0.96px at 96px, 0.18px at 18px, 0.12px at 12px)"
+      }
+    ],
+    "description": "PencilBooth is a monochrome editorial broadsheet: pure white and soft gray surfaces carry the load, with a single deep navy accent reserved exclusively for the active/selected state. The visual system is dominated by typographic architecture — 96px display headlines at weight 700 act as section anchors, while body copy stays compact and dense in a two-column reading grid. The interface reads like a curated print manifesto, not a SaaS dashboard: components are flat, borders are hairlines, and chromatic color appears only as functional punctuation (a highlighted tab, a colored emoji-style icon avatar). Every surface decision prioritizes legibility and quiet hierarchy over visual flourish.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PencilBooth design system\",\"item\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#style-reference\",\"name\":\"PencilBooth design system reference\",\"headline\":\"PencilBooth design system | Refero Styles\",\"description\":\"Explore PencilBooth's light SaaS design system: Ink Black #000000, Paper White #ffffff colors, Soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PencilBooth\",\"url\":\"https://www.pencilbooth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"caption\":\"Screenshot of PencilBooth\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PencilBooth design system\",\"PencilBooth website design\",\"PencilBooth colors\",\"PencilBooth typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ink Black\",\"Paper White\",\"Canvas Gray\",\"Hairline Gray\",\"Soehne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PencilBooth design system\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth website design\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth colors\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T15:48:44.978Z\",\"dateModified\":\"2026-05-07T15:48:44.978Z\"}]}19:T55b,**Quick Color Reference**\n- text: #000000\n- background: #f2f2f2\n- card/surface: #ffffff\n- border: #e5e7eb\n- secondary text: #5a5e62\n- accent: #cfd2ec\n- active/selected: #0f1ea1\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Display Headline Block*: Full-width section opener. Left column: 96px Soehne weight 700, #000000, line-height 1.0, letter-spacing 0.96px. Directly below: 32px Soehne weight 400, #5a5e62, line-height 1.0. Right column: 16px Soehne weight 400, #5a5e62, max-width 480px, three short paragraphs of body copy.\n\n2. *Feature Tab Item*: Full-width row, 10px border-radius, #ffffff background, 1px #e5e7eb bottom border. Left: 40px circular icon avatar (9999px radius, white fill, emoji glyph centered). Right: 16px Soehne weight 400 label in #000000. Vertical padding 12px, horizontal padding 10px.\n\n3. *Active Feature Tab*: Same dimensions as Feature Tab Item, but background #0f1ea1, text #ffffff, and icon avatar switches to a gold-toned emoji. This is the ONLY place #0f1ea1 appears.\n\n4. *Content Card*: 10px border-radius, #ffffff background, 1px #e5e7eb border, 24px internal padding. No shadow. Contains 16-18px Soehne weight 400 body copy in #000000.\n\n5. *Image Grid Tile*: Square aspect ratio, no border, no radius. Below: 14px Soehne weight 400 caption in #000000, followed by a small ↗ link glyph also in #000000."
+      },
+      {
+        "title": "Type System",
+        "content": "The type system is the most distinctive part of PencilBooth's visual identity. Soehne is the sole typeface at weights 400 and 700. The scale is extreme: body text sits at 16-18px while display headlines jump to 96px — a 5x size ratio that no conventional SaaS interface attempts. Line-height is tight (1.0-1.2 across the board), which means the 96px display headline is visually compact, not airy. Letter-spacing is uniformly 0.0100em — a barely perceptible expansion that softens Soehne's terminals without distorting them. Weight 700 carries all display and heading roles; weight 400 handles everything else. There is no medium, semibold, or light weight — this binary weight system reinforces the editorial binary of headline vs. body."
+      },
+      {
+        "title": "Color Restraint Principle",
+        "content": "With 1% colorfulness, PencilBooth operates under extreme chromatic discipline. The 99% achromatic field is not a limitation — it is the design. Every chromatic element (Deep Navy active state, Sky Blue wash, Pale Lavender tint, emoji avatars) earns its presence by performing a specific function: state indication, section separation, or iconographic representation. When building new pages, add color only when it can be justified by a functional role. Decorative color does not exist in this system. If a new page feels too gray, the answer is stronger typography and better spacing — not more color."
+      }
+    ],
+    "elevationPhilosophy": "PencilBooth deliberately avoids shadows entirely. The design system uses a flat, layered approach: the #f2f2f2 canvas provides a recessed field, #ffffff cards sit on top as elevated planes, and 1px hairline borders in #e5e7eb define edges. The single chromatic fill (#0f1ea1) on active states replaces what shadows would normally communicate. This is a print-design approach to UI — elevation through tone, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 4960,
+          "confidence": 1,
+          "prominence": 722787058.5779098,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 1660,
+            "card/borderColor": 320,
+            "icon/borderColor": 372,
+            "link/borderColor": 28,
+            "image/borderColor": 256,
+            "other/borderColor": 2256,
+            "footer/borderColor": 4,
+            "heading/borderColor": 64
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 1133,
+          "confidence": 1,
+          "prominence": 597427527.1708335,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 231,
+            "card/color": 80,
+            "icon/color": 92,
+            "link/color": 85,
+            "image/color": 63,
+            "other/color": 542,
+            "footer/color": 1,
+            "other/stroke": 24,
+            "heading/color": 15
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 506,
+          "confidence": 1,
+          "prominence": 56042638.40328626,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 86,
+            "icon/color": 1,
+            "link/color": 2,
+            "other/fill": 1,
+            "image/color": 1,
+            "other/color": 12,
+            "link/borderColor": 320,
+            "link/backgroundColor": 80,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 43444001.41883625,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 80,
+            "other/backgroundColor": 44
+          }
+        },
+        {
+          "hex": "#b2b2b2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7635757140646726
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 256625.4712597299,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "other/color": 10,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#0f1ea1",
+          "oklch": {
+            "c": 0.20232843905222211,
+            "h": 266.4548864323017,
+            "l": 0.3495266001247341
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 103020.97758437443,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#cfd2ec",
+          "oklch": {
+            "c": 0.035949726208659806,
+            "h": 280.3979738209968,
+            "l": 0.8695257370089642
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 40101.73132324355,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#8fbaff",
+          "oklch": {
+            "c": 0.10942125289555575,
+            "h": 259.62647884565735,
+            "l": 0.7846630377420319
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 24463.784104921167,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#5a5e62",
+          "oklch": {
+            "c": 0.00816861856165073,
+            "h": 247.99795645081605,
+            "l": 0.47974690502899464
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 6732.920703063471,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 80
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012402250309487889,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.08,
+          "background": "#cfd2ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.2,
+          "background": "#0f1ea1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.9,
+          "background": "#f2f2f2",
+          "foreground": "#0f1ea1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#8fbaff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#b2b2b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.86,
+          "background": "#e5e7eb",
+          "foreground": "#0f1ea1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.18,
+          "background": "#cfd2ec",
+          "foreground": "#0f1ea1"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.54,
+          "background": "#ffffff",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#8fbaff",
+          "foreground": "#0f1ea1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.84,
+          "background": "#f2f2f2",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.76,
+          "background": "#0f1ea1",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#e5e7eb",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.38,
+          "background": "#cfd2ec",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.31,
+          "background": "#8fbaff",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.08,
+          "background": "#b2b2b2",
+          "foreground": "#5a5e62"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.12,
+          "background": "#ffffff",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.97,
+          "background": "#8fbaff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 141
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 80
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 80
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 322,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 212,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 540,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 200,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Soehne",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1320,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 80,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 1051,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 80,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Soehne",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Soehne",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/05084d2c-a726-4881-aacf-c4a694b0a4e7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PencilBooth design system\",\"item\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#style-reference\",\"name\":\"PencilBooth design system reference\",\"headline\":\"PencilBooth design system | Refero Styles\",\"description\":\"Explore PencilBooth's light SaaS design system: Ink Black #000000, Paper White #ffffff colors, Soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PencilBooth\",\"url\":\"https://www.pencilbooth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/47b15ce2-34c8-46e3-b2de-f7eed0b6a3b9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"caption\":\"Screenshot of PencilBooth\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8acb56e5-b1be-4c09-8d58-0f3955dd1f02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PencilBooth design system\",\"PencilBooth website design\",\"PencilBooth colors\",\"PencilBooth typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ink Black\",\"Paper White\",\"Canvas Gray\",\"Hairline Gray\",\"Soehne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PencilBooth design system\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth website design\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth colors\"},{\"@type\":\"Thing\",\"name\":\"PencilBooth typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T15:48:44.978Z\",\"dateModified\":\"2026-05-07T15:48:44.978Z\"}]}19:T55b,**Quick Color Reference**\n- text: #000000\n- background: #f2f2f2\n- card/surface: #ffffff\n- border: #e5e7eb\n- secondary text: #5a5e62\n- accent: #cfd2ec\n- active/selected: #0f1ea1\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Display Headline Block*: Full-width section opener. Left column: 96px Soehne weight 700, #000000, line-height 1.0, letter-spacing 0.96px. Directly below: 32px Soehne weight 400, #5a5e62, line-height 1.0. Right column: 16px Soehne weight 400, #5a5e62, max-width 480px, three short paragraphs of body copy.\n\n2. *Feature Tab Item*: Full-width row, 10px border-radius, #ffffff background, 1px #e5e7eb bottom border. Left: 40px circular icon avatar (9999px radius, white fill, emoji glyph centered). Right: 16px Soehne weight 400 label in #000000. Vertical padding 12px, horizontal padding 10px.\n\n3. *Active Feature Tab*: Same dimensions as Feature Tab Item, but background #0f1ea1, text #ffffff, and icon avatar switches to a gold-toned emoji. This is the ONLY place #0f1ea1 appears.\n\n4. *Content Card*: 10px border-radius, #ffffff background, 1px #e5e7eb border, 24px internal padding. No shadow. Contains 16-18px Soehne weight 400 body copy in #000000.\n\n5. *Image Grid Tile*: Square aspect ratio, no border, no radius. Below: 14px Soehne weight 400 caption in #000000, followed by a small ↗ link glyph also in #000000."
+}

@@ -1,0 +1,1476 @@
+{
+  "source": "https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c",
+  "uuid": "43c1b150-0dab-42f9-9bce-fe0be3dde26c",
+  "name": "Delphi",
+  "northStar": "warm parchment editorial with ember sparks",
+  "capturedAt": "2026-07-18T10:07:46.857Z",
+  "meta": {
+    "url": "https://delphi.ai",
+    "siteName": "Delphi",
+    "extractedAt": "2026-06-03T15:38:48.639Z",
+    "durationMs": 32228,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 737,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Martina Plantijn Light weight 300 with letter-spacing -0.022em for all section and hero headlines — the whisper-light serif is the brand's editorial signature.",
+      "Place the primary CTA on a chestnut (#3e2407) fill with the peach (#fed0b3) glow shadow; never use a conventional blue or green for action buttons.",
+      "Keep page background on Parchment (#fdf6ee); switch to Pure Card (#ffffff) only for cards that need to lift above the canvas.",
+      "Apply 12px radius to buttons and 16px radius to image-bearing cards — 70px only for avatar circles, never for other shapes.",
+      "Reserve saffron (#ff5c00) and ember orange (#f65726) for one or two punctuation moments per viewport — never for large fills or backgrounds.",
+      "Set the hero as a scattered constellation of white question cards around a centered serif headline; do not use a single hero illustration.",
+      "Anchor each section with a centered eyebrow tag above a two-line serif headline; one short paragraph below, no more."
+    ],
+    "donts": [
+      "Do not use bright blue, green, or any cool color as a primary CTA fill — chestnut brown is the only button fill color in this system.",
+      "Do not apply heavy drop shadows to cards; the design uses flat surfaces and hairline borders, not elevation stacks.",
+      "Do not set body text in the serif face — Inter handles all copy below 20px, Martina Plantijn only for display.",
+      "Do not use pure black (#000000) as body text on cream — the eye reads it too cold; use sepia (#2b180a) or charcoal bark (#21201c) instead. Black is reserved for nav text and icon strokes.",
+      "Do not introduce gradients on cards or buttons — the page is flat, with the single exception of the portrait panel and the peach button glow.",
+      "Do not exceed two text colors per block (one heading tone, one body tone); the warmth comes from limited palette use, not from variation.",
+      "Do not add rounded-radius values outside the scale of 4px, 8px, 12px, 16px, and 70px — the radii vocabulary is deliberately short."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fdf6ee",
+        "name": "Parchment",
+        "role": "Page canvas, hero background, card surfaces on light sections — sets the warm literary tone that distinguishes this from the cool-white default of most SaaS",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0e6dc",
+        "name": "Soft Cream",
+        "role": "Navigation background, secondary surface layer, subtle hover/elevated zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "role": "Foreground card surface for content blocks, feature panels, and the floating chat testimonials in the hero",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, and border lines — used at the highest prominence to anchor every paragraph and heading",
+        "group": "neutral"
+      },
+      {
+        "hex": "#21201c",
+        "name": "Charcoal Bark",
+        "role": "Body text on light surfaces where pure black reads too cold against the cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b180a",
+        "name": "Sepia",
+        "role": "Headings, button text, emphasized inline elements — dark brown instead of black gives headlines a printed-ink quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7f6e60",
+        "name": "Bronze",
+        "role": "Muted secondary body text, descriptive captions beneath headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#94877c",
+        "name": "Driftwood",
+        "role": "Tertiary text, nav links, low-emphasis labels, and warm-toned dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a99d93",
+        "name": "Stone",
+        "role": "Disabled or lowest-emphasis text, ghost iconography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9cfc3",
+        "name": "Pebble",
+        "role": "Hairline borders, card edges, and subtle dividers on cream surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e2407",
+        "name": "Chestnut",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f65726",
+        "name": "Ember Orange",
+        "role": "Accent text, in-card highlights, conversational emphasis — warm vivid orange that ignites against the parchment",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff5c00",
+        "name": "Saffron Pulse",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#fed0b3",
+        "name": "Peach Glow",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Delphi uses a max-width ~1200px centered container on a full-bleed parchment canvas. The hero is a distinctive constellation layout: a centered serif headline ('Digitize Your Mind') sits in the visual middle, with 8-10 small white question cards scattered loosely around it at varying sizes and positions, creating a sense of orbiting voices. Below the hero, sections follow a consistent rhythm: a centered eyebrow tag ('Why Delphi', 'Trust'), a two-line serif headline, one short body paragraph, then either a 2-column feature grid or a 3-up card row. The 'Trust' section uses a 3-column grid flanking a tall centered portrait card, where the left and right columns contain stacked feature cards. Navigation is a minimal top bar with left-aligned industry/resource links, a centered wordmark, and right-aligned discover/sign-in/get-started actions. No sidebar, no sticky header, no mega-menu.",
+    "imagery": "Imagery on Delphi is minimal and serves as social proof, not decoration. The hero uses no illustration or product screenshot — instead, the visual energy comes from scattered floating question cards, each containing a circular avatar portrait and a line of quoted expertise. The single full-bleed photographic moment is a centered trust-section portrait (a smiling expert on a warm orange-red background) that bleeds into the canvas via a soft fade. Avatars are tight headshots, not lifestyle photography. The overall feel is 'magazine table of contents' rather than 'product hero' — the people are the visual content, not the product UI.",
+    "similar": [
+      {
+        "why": "Same editorial serif-headline + warm-cream-canvas approach, where the product UI is dressed like a long-form publication",
+        "business": "Substack"
+      },
+      {
+        "why": "Similar light minimalism with warm neutrals and a single non-blue accent for action emphasis",
+        "business": "Notion AI"
+      },
+      {
+        "why": "Centered serif display headlines floating on a soft warm canvas with subtle scatter-card hero composition",
+        "business": "Gamma"
+      },
+      {
+        "why": "Editorial typography-first homepage where the serif headline carries personality and the product UI stays quiet and warm-toned",
+        "business": "Anthropic"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "12-16px",
+        "avatars": "70px",
+        "buttons": "12px",
+        "smallElements": "4px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "80px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#fdf6ee",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Page-wide background, hero, and section backgrounds"
+      },
+      {
+        "hex": "#f0e6dc",
+        "name": "Soft Cream",
+        "level": 1,
+        "purpose": "Navigation bar, subtle elevated zones, hover backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "level": 2,
+        "purpose": "Content cards, feature panels, floating testimonial cards"
+      },
+      {
+        "hex": "#3e2407",
+        "name": "Chestnut Block",
+        "level": 3,
+        "purpose": "Primary CTA button, dark accent surfaces"
+      }
+    ],
+    "northStar": "warm parchment editorial with ember sparks",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.32,
+        "letterSpacing": -0.015
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.32,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.312
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -1.232
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Chestnut Button",
+        "role": "Hero CTA and main conversion action",
+        "description": "Chestnut (#3e2407) solid fill, white text, 12px border-radius, horizontal padding ~16px, vertical padding ~10px. The signature detail is the peach (#fed0b3) box-shadow glow that radiates from behind the button — a warm bloom rather than a neutral drop shadow. Inter 15px / 500. This button replaces the conventional blue CTA with a brown that reads as 'considered, premium'."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action paired with the primary CTA (e.g. 'See it in action')",
+        "description": "Transparent fill, 1px pebble (#d9cfc3) or charcoal border, 12px radius, Inter 15px / 500 in sepia (#2b180a). No background, no shadow — sits in conversation with the filled button."
+      },
+      {
+        "name": "Nav Pill Button",
+        "role": "Top-right 'Get Started' action in the navigation bar",
+        "description": "Soft cream (#f0e6dc) background, sepia text, fully rounded 12px radius with generous horizontal padding. Reads as a soft chip rather than a hard button — a gentler approach to navigation conversion."
+      },
+      {
+        "name": "Floating Question Card",
+        "role": "Hero scatter element — miniature testimonial cards that surround the headline",
+        "description": "White (#ffffff) surface, 12px border-radius, subtle hairline border or very soft shadow, 12-16px internal padding. Each card stacks: circular 70px avatar, name + role in Inter 12-13px, and a one-sentence question in Inter 14px. These are the signature design moment — they replace a hero illustration with living proof."
+      },
+      {
+        "name": "Avatar Bubble",
+        "role": "Circular profile image used in question cards and feature panels",
+        "description": "70px border-radius (effectively a perfect circle), image fill with no border. Appears with a small blue/verified check overlay on certain positions."
+      },
+      {
+        "name": "Section Eyebrow Tag",
+        "role": "Small label above section titles ('Why Delphi', 'Trust')",
+        "description": "Pebble-colored text (#d9cfc3) or saffron (#ff5c00) on the cream background, Inter ~12-13px, centered above the heading. Sometimes sits inside a hairline-bordered pill. Functions as a low-volume category marker."
+      },
+      {
+        "name": "Feature Side Card",
+        "role": "Two-column feature blocks (e.g. 'Never Repeat Yourself Again')",
+        "description": "Off-white or cream surface, 16px border-radius, generous internal padding (24-32px). Heading in Martina Plantijn Light 24px, body in Inter 15px bronze, optional chat preview or automation trigger rendered as a sub-card at the bottom with a monospaced condition line."
+      },
+      {
+        "name": "Trigger Preview Card",
+        "role": "Inline preview of a Delphi automation trigger inside a feature card",
+        "description": "Nested sub-card with 8-12px radius, white or cream fill, small Inter label ('When') in muted gray, a one-line condition in Inter 14px where the variable value is highlighted in ember orange (#f65726), and a '+ Add Action' row below in subdued text."
+      },
+      {
+        "name": "Centered Portrait Panel",
+        "role": "Trust section centerpiece — a single full-color portrait card flanked by two feature cards",
+        "description": "Tall card with 16px radius, warm gradient or photographic portrait background, name and role overlay in white sans text near the bottom. The portrait bleeds into a soft fade that merges with the parchment canvas below."
+      },
+      {
+        "name": "Verified Badge Dot",
+        "role": "Small marker indicating a verified expert on avatar bubbles",
+        "description": "Cobalt blue circle (~#1da1f2 or similar) with a white check, positioned at the lower-right of the avatar. The only true blue element on the page, making it pop as a system signal."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Centered two-line display title for each section",
+        "description": "First line in Martina Plantijn Light 56px, second line in lighter or italic weight for contrast — a deliberate two-tone line treatment. Below it, a single paragraph of body copy in Inter ~17px bronze (#7f6e60), centered, max-width ~640px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display and heading face — a humanist serif that carries the editorial, literary voice of the brand. Light weight (300) is used for the largest display headlines, where the negative letter-spacing tightens the characters into a single confident mark. This font is the most distinctive choice in the system: a serif on a product interface signals thoughtfulness and preservation rather than speed and automation.",
+        "sizes": "8, 10, 12, 14, 15, 20, 24, 40, 56, 64",
+        "family": "Martina Plantijn Light",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.00, 1.20, 1.22, 1.32, 1.34",
+        "substitute": "Cormorant Garamond or Lora (Google Fonts)",
+        "letterSpacing": "-0.0300em at 64px, -0.0220em at 56px, -0.0200em at 40px, -0.0130em at 24px, -0.0120em at 20px"
+      },
+      {
+        "role": "Body, navigation, and UI text — the workhorse sans that handles everything below the headlines. Weight 400 is default body, weight 500 for emphasized labels and nav. Tight -0.0100em tracking keeps the small sizes legible without feeling clinical.",
+        "sizes": "10, 13, 14, 15, 17",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.40",
+        "substitute": "Inter (Google Fonts — native match)",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Used sparingly for inline code-like references (e.g. the '> 50 chats' trigger syntax in feature cards) — a monospace accent that signals system or automation language within editorial copy",
+        "sizes": "13",
+        "family": "Roboto Mono",
+        "weight": "400",
+        "lineHeight": "1.40"
+      }
+    ],
+    "description": "Delphi reads like an editorial spread on warm parchment: cream canvas, brown-black ink, a serif display voice, and orange sparks of energy. The product promises digital preservation of human expertise, and the visual language mirrors that — quiet, literary surfaces, generous whitespace, and chrome that feels printed rather than engineered. Color is used sparingly: the page stays achromatic-warm, with a single dark-chestnut button tone and a vivid ember orange reserved for trust signals, highlights, and the conversational heat of the hero's scattered question cards. Components are flat, low-elevation, and rely on thin hairlines and soft 12px corners rather than shadow stacks. Typography carries the personality — a humanist serif at whisper-light weight for headlines, a workhorse sans for body — creating the rhythm of a long-form magazine sitting next to a product interface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Delphi design system\",\"item\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#style-reference\",\"name\":\"Delphi design system reference\",\"headline\":\"Delphi design system | Refero Styles\",\"description\":\"Explore Delphi's light AI design system: Parchment #fdf6ee, Soft Cream #f0e6dc colors, sans-serif, Martina Plantijn Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Delphi\",\"url\":\"https://delphi.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"caption\":\"Screenshot of Delphi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Delphi design system\",\"Delphi website design\",\"Delphi colors\",\"Delphi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Soft Cream\",\"Pure Card\",\"Ink Black\",\"sans-serif\",\"Martina Plantijn Light\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Delphi design system\"},{\"@type\":\"Thing\",\"name\":\"Delphi website design\"},{\"@type\":\"Thing\",\"name\":\"Delphi colors\"},{\"@type\":\"Thing\",\"name\":\"Delphi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-28T11:34:45.000Z\",\"dateModified\":\"2026-01-28T11:34:45.000Z\"}]}19:T7ec,**Quick Color Reference**\n- text (heading): #2b180a (Sepia)\n- text (body): #7f6e60 (Bronze)\n- background (canvas): #fdf6ee (Parchment)\n- background (card): #ffffff (Pure Card)\n- border (hairline): #d9cfc3 (Pebble)\n- accent (highlight): #ff5c00 (Saffron Pulse)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Build a feature card: Pure Card (#ffffff) surface, 16px border-radius, 24px padding. Martina Plantijn Light 24px Sepia heading 'Never Repeat Yourself Again'. Inter 15px bronze body paragraph below. Nest a Trigger Preview sub-card inside (8px radius, #fdf6ee fill) with a 'When' label in 12px Inter driftwood, a condition line 'User has completed > 50 chats' where '> 50 chats' is highlighted in Ember Orange (#f65726), and a '+ Add Action' row in 13px Inter stone (#a99d93).\n\n3. Build a section header block: centered, Parchment canvas above. Top eyebrow tag is Inter 12px Saffron Pulse (#ff5c00) reading 'Why Delphi'. Below, a two-line display headline in Martina Plantijn Light weight 300 at 40px Sepia with -0.8px letter-spacing. Underneath, a single Inter 15px bronze paragraph, max-width 640px, centered.\n\n4. Build a trust portrait panel: 16px radius card, full-bleed photographic portrait with a warm orange-red ambient background, name and role overlay in white Inter 14px near the bottom third, soft 20% black-to-transparent gradient at the bottom edge so text remains readable. Flank with two stacked feature cards on each side (white, 12px radius, sepia 24px serif heading, bronze 15px body).\n\n5. Build the navigation bar: Soft Cream (#f0e6dc) background, 12px content height, left-aligned Inter 14px sepia links ('Industries', 'Resources', 'Pricing', 'Immortal'), centered wordmark, right-aligned 'Discover' and 'Sign in' in 14px Inter sepia followed by a 'Get Started' pill button (soft cream fill, 12px radius, sepia text, ~10px/16px padding)."
+      }
+    ],
+    "elevationPhilosophy": "Delphi uses a deliberately flat elevation model: cards and panels sit on the parchment canvas with a 1px pebble border or no border at all, rather than relying on shadow depth. The single exception is the primary chestnut button, which receives a soft peach (#fed0b3) bloom-shadow — a warm, on-brand glow rather than a neutral drop shadow. This restraint is editorial: the page reads as a printed spread, not as a layered app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1560,
+          "confidence": 1,
+          "prominence": 97626305.18749726,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdf6ee",
+          "oklch": {
+            "c": 0.013004621444940058,
+            "h": 71.33254146334626,
+            "l": 0.9763757786552623
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "footer",
+            "button",
+            "link"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 49304811.75632359,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b180a",
+          "oklch": {
+            "c": 0.03878785543209481,
+            "h": 55.78019827750898,
+            "l": 0.23112743711418562
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body"
+          ],
+          "frequency": 195,
+          "confidence": 1,
+          "prominence": 324082.05096554325,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#94877c",
+          "oklch": {
+            "c": 0.022570236747303428,
+            "h": 62.66404720724176,
+            "l": 0.6317631142334373
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 298716.2285684391,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7f6e60",
+          "oklch": {
+            "c": 0.030122878915012037,
+            "h": 61.60797413097711,
+            "l": 0.5502113352860187
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 194480.7387733622,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9cfc3",
+          "oklch": {
+            "c": 0.019780593414764423,
+            "h": 72.54795026016029,
+            "l": 0.8592619961868297
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 182727.9245218074,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 167625.57511295736,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3e2407",
+          "oklch": {
+            "c": 0.05691094435583692,
+            "h": 64.51130388895301,
+            "l": 0.287945464220897
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 146381.59152214509,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#645f5c",
+          "oklch": {
+            "c": 0.007986949862588974,
+            "h": 53.321168362346754,
+            "l": 0.48916484506093866
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 54688.639910735044,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0e6dc",
+          "oklch": {
+            "c": 0.017285698061338207,
+            "h": 67.61301207357383,
+            "l": 0.9300894563782248
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 24603,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a99d93",
+          "oklch": {
+            "c": 0.020130354596619913,
+            "h": 62.32940604602047,
+            "l": 0.703426346913855
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 20103.636844058386,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#21201c",
+          "oklch": {
+            "c": 0.007562526260803069,
+            "h": 95.3724351322528,
+            "l": 0.24313967875227874
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 12857.215805850017,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#faa68a",
+          "oklch": {
+            "c": 0.10690618301900434,
+            "h": 39.3005915962611,
+            "l": 0.800634627626699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12273.949605584632,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fed0b3",
+          "oklch": {
+            "c": 0.0649560997835411,
+            "h": 53.896729945029115,
+            "l": 0.8885773820744214
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9256,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f65726",
+          "oklch": {
+            "c": 0.20340738462785568,
+            "h": 36.59474575333773,
+            "l": 0.6650634788822426
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 6098.938559142046,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5c00",
+          "oklch": {
+            "c": 0.21203484414425622,
+            "h": 40.59224446321439,
+            "l": 0.6837012382475699
+          },
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 5037.988083927238,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2344.5609881540886,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#50b848",
+          "oklch": {
+            "c": 0.17926183752188654,
+            "h": 142.18463119268287,
+            "l": 0.6969543106379145
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 36,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03766609991261634,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.59,
+          "background": "#fdf6ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.06,
+          "background": "#f0e6dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.97,
+          "background": "#ffffff",
+          "foreground": "#2b180a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.3,
+          "background": "#ffffff",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.83,
+          "background": "#fdf6ee",
+          "foreground": "#2b180a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#fdf6ee",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#fed0b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#3e2407",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.78,
+          "background": "#f0e6dc",
+          "foreground": "#2b180a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.66,
+          "background": "#d9cfc3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#fdf6ee",
+          "foreground": "#3e2407"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#f0e6dc",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#fed0b3",
+          "foreground": "#2b180a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#f0e6dc",
+          "foreground": "#3e2407"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#fed0b3",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.04,
+          "background": "#d9cfc3",
+          "foreground": "#2b180a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.89,
+          "background": "#faa68a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.61,
+          "background": "#d9cfc3",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.2,
+          "background": "#fed0b3",
+          "foreground": "#3e2407"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 70,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 48
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 8.21,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 582,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 114,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 92,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 90,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 62,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 525,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 106,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martina Plantijn Light",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 78,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 5,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 5,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "link",
+            "image",
+            "hero",
+            "footer"
+          ],
+          "frequency": 525,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 67,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Martina Plantijn Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Martina Plantijn Light",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Martina Plantijn Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Martina Plantijn Light",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Martina Plantijn Light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Martina Plantijn Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Martina Plantijn Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/75d02a4e-ac0e-452a-b7fb-996d3932089b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Delphi design system\",\"item\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#style-reference\",\"name\":\"Delphi design system reference\",\"headline\":\"Delphi design system | Refero Styles\",\"description\":\"Explore Delphi's light AI design system: Parchment #fdf6ee, Soft Cream #f0e6dc colors, sans-serif, Martina Plantijn Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Delphi\",\"url\":\"https://delphi.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/43c1b150-0dab-42f9-9bce-fe0be3dde26c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"caption\":\"Screenshot of Delphi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/78dadfa6-9fe7-4920-801f-0e0676d2adc0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Delphi design system\",\"Delphi website design\",\"Delphi colors\",\"Delphi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Soft Cream\",\"Pure Card\",\"Ink Black\",\"sans-serif\",\"Martina Plantijn Light\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Delphi design system\"},{\"@type\":\"Thing\",\"name\":\"Delphi website design\"},{\"@type\":\"Thing\",\"name\":\"Delphi colors\"},{\"@type\":\"Thing\",\"name\":\"Delphi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-28T11:34:45.000Z\",\"dateModified\":\"2026-01-28T11:34:45.000Z\"}]}19:T7ec,**Quick Color Reference**\n- text (heading): #2b180a (Sepia)\n- text (body): #7f6e60 (Bronze)\n- background (canvas): #fdf6ee (Parchment)\n- background (card): #ffffff (Pure Card)\n- border (hairline): #d9cfc3 (Pebble)\n- accent (highlight): #ff5c00 (Saffron Pulse)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Build a feature card: Pure Card (#ffffff) surface, 16px border-radius, 24px padding. Martina Plantijn Light 24px Sepia heading 'Never Repeat Yourself Again'. Inter 15px bronze body paragraph below. Nest a Trigger Preview sub-card inside (8px radius, #fdf6ee fill) with a 'When' label in 12px Inter driftwood, a condition line 'User has completed > 50 chats' where '> 50 chats' is highlighted in Ember Orange (#f65726), and a '+ Add Action' row in 13px Inter stone (#a99d93).\n\n3. Build a section header block: centered, Parchment canvas above. Top eyebrow tag is Inter 12px Saffron Pulse (#ff5c00) reading 'Why Delphi'. Below, a two-line display headline in Martina Plantijn Light weight 300 at 40px Sepia with -0.8px letter-spacing. Underneath, a single Inter 15px bronze paragraph, max-width 640px, centered.\n\n4. Build a trust portrait panel: 16px radius card, full-bleed photographic portrait with a warm orange-red ambient background, name and role overlay in white Inter 14px near the bottom third, soft 20% black-to-transparent gradient at the bottom edge so text remains readable. Flank with two stacked feature cards on each side (white, 12px radius, sepia 24px serif heading, bronze 15px body).\n\n5. Build the navigation bar: Soft Cream (#f0e6dc) background, 12px content height, left-aligned Inter 14px sepia links ('Industries', 'Resources', 'Pricing', 'Immortal'), centered wordmark, right-aligned 'Discover' and 'Sign in' in 14px Inter sepia followed by a 'Get Started' pill button (soft cream fill, 12px radius, sepia text, ~10px/16px padding)."
+}

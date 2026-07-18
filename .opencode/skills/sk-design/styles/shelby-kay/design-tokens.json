@@ -1,0 +1,255 @@
+{
+  "color": {
+    "olive-ink": {
+      "$value": "#393c2a",
+      "$type": "color",
+      "$description": "Olive Ink — Primary text, borders, and structural strokes — all type from body to display headings, all card and image borders, all interactive outlines"
+    },
+    "sage-type": {
+      "$value": "#737955",
+      "$type": "color",
+      "$description": "Sage Type — Display headings and brand voice — used for the monumental SHELBY wordmark, section anchors, and selective heading accents that carry the brand's botanical identity"
+    },
+    "linen": {
+      "$value": "#efe6d9",
+      "$type": "color",
+      "$description": "Linen — Primary canvas and card surfaces — page background, card fills, the base warm tone the entire system sits on"
+    },
+    "sienna": {
+      "$value": "#d6b292",
+      "$type": "color",
+      "$description": "Sienna — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "driftwood": {
+      "$value": "#afa199",
+      "$type": "color",
+      "$description": "Driftwood — Tertiary surface and muted helpers — profile-section backdrop, desaturated metadata, low-emphasis UI text and dividers"
+    },
+    "riverstone": {
+      "$value": "#7b8785",
+      "$type": "color",
+      "$description": "Riverstone — Cool-toned neutral for subtle contrast shifts — secondary surface, hover or muted state for UI elements needing visual separation from the warm base"
+    }
+  },
+  "font": {
+    "ranade": {
+      "$value": "Ranade",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines. Used at extreme scale (83–265px) for the wordmark and section anchors, and at 24px for the CONTACT callout. The geometric, slightly condensed forms give the brand its monumental-but-restrained voice — the type fills the frame without shouting. Substitute: Boldonse or Bold Neue for display, Space Grotesk for smaller uses."
+    },
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Everything else: body copy, nav, labels, metadata, card titles, list items. The compact grotesque reads as editorial running text. Weight 500–600 is the workhorse range; 700 is reserved for section headers and emphasized nav. Substitute: Inter, Untitled Sans, or Suisse Int'l for full weight coverage."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Ranade",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Ranade",
+        "fontSize": "83px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 83px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Ranade",
+        "fontSize": "158px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 158px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Ranade",
+        "fontSize": "265px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 265px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "linen": {
+      "$value": "#efe6d9",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — hero, default section background"
+    },
+    "sienna": {
+      "$value": "#d6b292",
+      "$type": "color",
+      "$description": "Surface level 2: Work/index section — tonal page break"
+    },
+    "driftwood": {
+      "$value": "#afa199",
+      "$type": "color",
+      "$description": "Surface level 3: Profile section background — deeper warm shift"
+    },
+    "riverstone": {
+      "$value": "#7b8785",
+      "$type": "color",
+      "$description": "Surface level 4: Cool-tinted neutral for contrast states or secondary overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://shelbykay.dev",
+      "siteName": "Shelby Kay",
+      "extractedAt": "2026-06-03T21:11:25.668Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,2146 @@
+{
+  "source": "https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d",
+  "uuid": "8288950a-2731-44fd-85ef-211aecd8091d",
+  "name": "Assembly Coffee London",
+  "northStar": "Embers in a dark roastery. A near-black canvas with warm, low-lit product photography and italic serif labels — the feeling of a specialty coffee menu printed in a midnight zine.",
+  "capturedAt": "2026-07-18T06:23:39.834Z",
+  "meta": {
+    "url": "https://assemblycoffee.co.uk",
+    "siteName": "Assembly Coffee London",
+    "extractedAt": "2026-06-03T18:15:44.656Z",
+    "durationMs": 63205,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1471,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set headlines and product names in ID00 Serif italic — the italic serif is the brand's voice. Setting them in roman or in the sans destroys the editorial feel.",
+      "Keep the canvas near-black (#0e1311 or #000000) and let bone (#ffffff) type carry the hierarchy. Reach for colored surfaces only for inverted sections or badge fills.",
+      "Use 4px radii on cards, buttons, inputs, and badges. The 60px radius is reserved exclusively for the cream price pill — do not apply it to other components.",
+      "Place product photography on warm, low-lit studio backdrops (ember red, dark amber, charcoal). Avoid white or bright backgrounds — they break the dark-gallery mood.",
+      "Use badge colors (citron #faf080, lichen #cadcac, antique gold #cfa53b) sparingly and only for editorial tags, not for actions or alerts.",
+      "Make CTAs typographic links in ID00 Serif italic, not filled buttons. A 4px-radius ghost button is acceptable only for secondary utility actions like the cart selector.",
+      "Separate layers with 1px hairlines in #1a1a1a or #dfdbca, not with shadows. The system runs on border contrast, not elevation."
+    ],
+    "donts": [
+      "Do not introduce a filled chromatic CTA button. The system is intentionally CTA-less at the primary level — actions are italic serif links.",
+      "Do not set body copy or navigation in the serif. GT America is for UI; ID00 Serif is for editorial and product naming. Mixing the two roles dilutes both.",
+      "Do not use bright white (#ffffff) as a page background. The system is dark-first; invert only for price chips, modal overlays, and the rare light section.",
+      "Do not apply saturated brand colors to backgrounds, cards, or text. The chromatic palette exists only as small badge fills and hairlines.",
+      "Do not use large drop shadows. The 10px blur at 5% opacity is the ceiling — anything heavier reads as Material/iOS, not editorial gallery.",
+      "Do not set headlines in weight 600 or 700. The serif runs 300–400 italic and the sans runs 400–500. Anything bolder breaks the whisper-quiet tone.",
+      "Do not place product photography on a white or light-gray background. Always shoot against a warm, dark studio tone to maintain the ember-roastery atmosphere."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0e1311",
+        "name": "Obsidian",
+        "role": "Primary canvas — page backgrounds, hero sections, card surfaces. The near-black with a faint green undertone makes white type glow without feeling sterile",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Deepest surface, borders, and type. Used for maximum-contrast outlines, product box photography backgrounds, and the darkest UI strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Ash Charcoal",
+        "role": "Secondary surface and border tone — slightly lifted from black for subtle layering on nav, dividers, and outlined button edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Mid-neutral for secondary text, input borders, and card outlines where pure black is too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Stone Gray",
+        "role": "Image placeholder and muted background tone — holds space where product photography is loading or absent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Silver",
+        "role": "De-emphasized borders and helper text on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text on dark canvases, price-chip fills, inverted button surfaces. The brightest accent in an otherwise low-key palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f7f2",
+        "name": "Linen",
+        "role": "Warm off-white surface for inverted sections, price pill backgrounds, and soft button fills. Sits between bone and the khaki family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfdbca",
+        "name": "Sand Khaki",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cadcac",
+        "name": "Lichen Green",
+        "role": "Green state accent for badges, validation surfaces, and short status labels.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#faf080",
+        "name": "Citron",
+        "role": "Yellow state accent for badges, validation surfaces, and short status labels.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#cfa53b",
+        "name": "Antique Gold",
+        "role": "Accent stroke and border for promotional or limited-availability badges. Reads as aged brass — never neon",
+        "group": "accent"
+      },
+      {
+        "hex": "#4d4a31",
+        "name": "Olive Bark",
+        "role": "Dark olive link/announcement background — the deep green-brown of the top bar, grounded and earthy",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-width dark sections stack vertically with generous vertical breathing room (80px+ between sections). No centered max-width container; content stretches edge-to-edge and uses generous left/right gutters. The hero is a two-column split: a left 'index' column (about 30% width) of typographic editorial entries, and a right 'photograph' column (about 55% width) holding a single product image, with empty black space at the far right acting as breathing room. Below the hero, sections alternate between centered prose (the manifesto block), two-column product+text splits, and wide product card grids. The product grid is 3 columns on desktop, 2 on tablet, with cards that are roughly square and tightly packed. Navigation is a centered horizontal bar in the header. The overall rhythm: quiet black, loud photograph, quiet black, quiet copy, loud photograph — a gallery cadence, not a SaaS cadence.",
+    "imagery": "Photography is the dominant visual medium, and it is shot like editorial still-life: products on warm studio backdrops (deep ember-red, dark amber, charcoal) with soft directional lighting and a single visible floor shadow. No lifestyle imagery, no hands, no people, no café interiors — the object (a coffee bag, a V60 dripper on a timber block, a black roastery box) is always the hero, shot at close-to-product scale. Treated backgrounds are slightly desaturated, low-key, and warm — the product is in color, the world around it is in shadow. Iconography is minimal: a single chat-bubble glyph in a bone circle bottom-right, and thin line icons in the header. No illustration, no abstract graphics, no gradients applied to UI — gradients appear only in the hero backdrop as a soft ember wash behind the photograph.",
+    "similar": [
+      {
+        "why": "Same dark editorial aesthetic with warm studio product photography and serif-driven product names over near-black canvases.",
+        "business": "Square Mile Coffee Roasters"
+      },
+      {
+        "why": "Specialty coffee brand using a near-black canvas with hairline borders and minimal CTAs, letting photography carry the visual weight.",
+        "business": "Onyx Coffee Lab"
+      },
+      {
+        "why": "Dark-mode product-first ecommerce with italic serif product naming and warm-toned product photography on moody backdrops.",
+        "business": "Manhattan Special Roasting Co."
+      },
+      {
+        "why": "UK specialty roaster with a similarly restrained palette, serif italic editorial labels, and product-photography-led hero sections.",
+        "business": "Workshop Coffee"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "4px",
+        "badges": "4px",
+        "inputs": "4px",
+        "buttons": "4px",
+        "pricePills": "60px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#0e1311",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page and section background — the default dark surface"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Lifted Black",
+        "level": 1,
+        "purpose": "Subtle elevation on nav, outlined controls, and card borders"
+      },
+      {
+        "hex": "#dfdbca",
+        "name": "Warm Card",
+        "level": 2,
+        "purpose": "Product card border and hairline dividers — the khaki undertone that warms the dark UI"
+      },
+      {
+        "hex": "#f6f7f2",
+        "name": "Linen Invert",
+        "level": 3,
+        "purpose": "Inverted light surface for price chips, soft button fills, and occasional light-on-light sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone Overlay",
+        "level": 4,
+        "purpose": "Highest-elevation surface — full-invert buttons, modal backgrounds, and badge fills"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 2.5px 10px -4px",
+        "element": "Product card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+        "element": "Lifted card"
+      }
+    ],
+    "northStar": "Embers in a dark roastery. A near-black canvas with warm, low-lit product photography and italic serif labels — the feeling of a specialty coffee menu printed in a midnight zine.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 42,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page utility strip",
+        "description": "Full-bleed bar at the very top, olive-bark background (#4d4a31) with cream text. GT America 11–13px, centered, single line. Used for shipping thresholds and time-sensitive messaging."
+      },
+      {
+        "name": "Primary Header / Nav",
+        "role": "Site-wide navigation",
+        "description": "Sticky dark header on #0e1311. Left: monogram + '10' (10th anniversary mark) in bone serif. Center: nav items in GT America 14px weight 500 (Coffee, Equipment, Accessories, Learning) with dropdown indicators, separated by a vertical hairline. Right: search icon, 'Log In' text link, cart count in parentheses, currency selector. Border-bottom 1px in #1a1a1a."
+      },
+      {
+        "name": "Editorial Hero — Featured Column",
+        "role": "Left-side hero index",
+        "description": "On dark gradient background (black → ember red), a vertical stack of four editorial entries. Each entry: product name in ID00 Serif italic 18–21px, bone (#ffffff); call-to-action subtext in GT America 13–14px weight 400, slightly dimmed. 'FEATURED' label in GT America 11px uppercase letter-spaced at the top. Entries are typographic links, not cards — generous vertical spacing (40–56px between entries) turns the index into a table of contents."
+      },
+      {
+        "name": "Product Hero — Studio Photograph",
+        "role": "Right-side hero visual",
+        "description": "Large product photograph (a black coffee box, 60% of viewport height) on a warm ember-red studio backdrop with soft floor shadow. No text overlay. The object is the hero; the UI defers to it."
+      },
+      {
+        "name": "Editorial Manifesto Block",
+        "role": "Brand statement section",
+        "description": "Full-width black (#0e1311) section. Centered or left-aligned ID00 Serif italic 30–36px, bone color, weight 300–400. Generous line-height (1.2). No buttons, no links — the prose IS the content."
+      },
+      {
+        "name": "Product Card (Dark)",
+        "role": "Catalog product tile",
+        "description": "Black or near-black background. Product photograph fills the upper 60–70% of the card on a warm-tinted studio backdrop. Product name in ID00 Serif italic 21–24px bone. Tasting notes in GT America 13–14px #b3b3b3. Price pill anchored bottom-left. Hairline border 1px in #1a1a1a, radius 4px."
+      },
+      {
+        "name": "Price Pill",
+        "role": "Inline price chip",
+        "description": "Linseed off-white (#f6f7f2) pill, border-radius 60px (near-full). Text 'From — €XX.XX' in GT America 13px weight 500, #0e1311. Horizontal padding 12–16px, vertical 6–8px. Sits inline with product name or floats bottom-left of a card."
+      },
+      {
+        "name": "Editorial Tag Badge",
+        "role": "Category / status label",
+        "description": "Small pill, radius 4px, padding 4px 8px. Text GT America 11px weight 500 uppercase, #0e1311. Background fills: #faf080 for 'New Release', #cadcac for 'Elevated Brewing' / editorial categories, #cfa53b stroke for limited-edition or special-release items. Always bone or #0e1311 text — never chromatic text on chromatic background."
+      },
+      {
+        "name": "Outlined Text Button",
+        "role": "Primary navigation action",
+        "description": "No filled CTA. 'Shop Now' and similar actions are ID00 Serif italic 16–18px bone, no border, no background — pure typographic links. Underline appears on hover."
+      },
+      {
+        "name": "Search Icon Button",
+        "role": "Header utility",
+        "description": "24px line icon, bone stroke, no background, 8px hit area padding. In the right-side header cluster."
+      },
+      {
+        "name": "Cart Indicator",
+        "role": "Header utility",
+        "description": "Text-only 'Cart (0)' in GT America 14px weight 500 bone, parentheses around the count, no badge or pill — restraint over notification badges."
+      },
+      {
+        "name": "Pairing Banner (Red Box)",
+        "role": "Co-branded event block",
+        "description": "Large deep-red (#7a1212 approx) framed block containing partner logos at top, event title in GT America uppercase, product name in ID00 Serif 30px, event date at bottom. 4px hairline border, radius 4px. Used for SHED/OTHER wine-pairing events."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The UI workhorse: navigation labels, body copy, button text, metadata, footer text, cart count, form fields. Weight 400 for body, 500 for nav items, 600 sparingly for tiny uppercase labels like 'FEATURED'. At 11–14px it carries the entire structural layer.",
+        "sizes": "11, 12, 13, 14, 16, 18, 20, 21, 24, 42px",
+        "family": "GT America Standard",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "1.20, 1.25, 1.40, 1.50, 2.00",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk"
+      },
+      {
+        "role": "The editorial voice: product names, section headings, the 'Shop Now' and 'Limited Time Offer' labels in the hero, the 'Independent specialty coffee roaster…' manifesto copy. Almost always set in italic — this is the signature move. The italic serif against a black canvas is what makes the site read as a curated coffee journal rather than a store.",
+        "sizes": "16, 18, 30, 36, 42px",
+        "family": "ID00 Serif",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.20, 1.25, 1.50",
+        "substitute": "GT Sectra, Cormorant Garamond Italic, or Playfair Display Italic"
+      },
+      {
+        "role": "Fallback / system substitute for small tertiary text and icons where GT America is not loaded.",
+        "sizes": "11, 14px",
+        "family": "Helvetica",
+        "weight": "400, 500",
+        "lineHeight": "1.50",
+        "substitute": "system-ui, -apple-system, Arial"
+      },
+      {
+        "role": "reviewsio-font — detected in extracted data but not described by AI",
+        "sizes": "15px, 16px, 22px, 24px",
+        "family": "reviewsio-font",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Assembly Coffee's visual system reads like an editorial magazine printed on black paper. The interface is overwhelmingly dark — near-black canvases carry everything — interrupted only by product photography lit against warm studio backdrops (ember-red, deep amber) and hairline typography in white. Two type families do all the work: a geometric sans (GT America) for UI scaffolding, navigation, and metadata, and a refined serif (ID00 Serif) for product names, section labels, and editorial copy, almost always in italic, which turns a functional nav list into a curated index. The palette is almost monochromatic: the chromatic vocabulary is rationed to badge fills (pale yellow, sage green, antique gold) and the occasional warm-tinted cream surface. Buttons are not loud — price chips and 'Shop Now' links live as small text or pill-shaped cream labels. Components are thin, sharp-cornered, and rely on borders and weight contrast rather than shadows or fills for separation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Assembly Coffee London design system\",\"item\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#style-reference\",\"name\":\"Assembly Coffee London design system reference\",\"headline\":\"Assembly Coffee London design system | Refero Styles\",\"description\":\"Explore Assembly Coffee London's dark E-commerce design system: Obsidian #0e1311, Pure Black #000000 colors, GT America Standard, ID00 Serif typography, and...\",\"url\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Assembly Coffee London\",\"url\":\"https://assemblycoffee.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"caption\":\"Screenshot of Assembly Coffee London\"},\"image\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Assembly Coffee London design system\",\"Assembly Coffee London website design\",\"Assembly Coffee London colors\",\"Assembly Coffee London typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Pure Black\",\"Ash Charcoal\",\"Graphite\",\"GT America Standard\",\"ID00 Serif\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London design system\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London website design\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London colors\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:18:07.021Z\",\"dateModified\":\"2026-04-30T00:18:07.021Z\"}]}19:T649,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (secondary/muted): #b3b3b3\n- Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- surface (warm border / hairline): #dfdbca\n- accent (editorial badge — new release): #faf080\n- primary action: #000000 (filled action)\n\n**3–5 Example Component Prompts**\n\n1. *Editorial Hero Index Entry*: A vertical stack entry on #0e1311 canvas. Product name in ID00 Serif italic 21px, #ffffff. Sublabel 'Shop Now' or 'Limited Time Offer' in ID00 Serif italic 16px, #b3b3b3. Vertical spacing 48px between entries. No border, no background, no button — pure typographic link.\n\n2. *Product Card (Dark)*: Square card on #0e1311 background, 4px radius, 1px border in #1a1a1a. Upper 65%: product photograph on a warm ember-red studio backdrop with soft shadow. Lower 35%: product name in ID00 Serif italic 24px #ffffff, tasting notes in GT America 14px #b3b3b3, price pill at bottom-left.\n\n3. *Price Pill*: Inline pill, 60px radius, #f6f7f2 background, padding 6px 16px. Text 'From — €29.95' in GT America 13px weight 500, #0e1311. No border, no shadow.\n\n4. *Editorial Tag Badge*: Small pill, 4px radius, #faf080 background, padding 4px 8px. Text 'New Release' in GT America 11px weight 500 uppercase, #0e1311. No border.\n\n5. *Manifesto Block*: Full-width #0e1311 section, 80px vertical padding above and below. Centered or left-aligned text in ID00 Serif italic 36px, #ffffff, line-height 1.2, weight 300. No buttons, no links, no images — the prose is the section."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is whisper-quiet — a barely-there 10px blur at 5% black. The design relies on the contrast between near-black canvases and warm cream borders (#dfdbca) to separate layers, not shadow. Anything more visible would break the gallery-print feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "body",
+            "icon",
+            "footer",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "badge",
+            "list",
+            "input"
+          ],
+          "frequency": 3729,
+          "confidence": 1,
+          "prominence": 120692674.05905408,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 86,
+            "body/color": 71,
+            "card/color": 24,
+            "hero/color": 2,
+            "icon/color": 5,
+            "link/color": 11,
+            "list/color": 102,
+            "other/fill": 2,
+            "badge/color": 27,
+            "image/color": 44,
+            "input/color": 1,
+            "other/color": 342,
+            "button/color": 37,
+            "footer/color": 2,
+            "other/stroke": 2,
+            "heading/color": 7,
+            "nav/borderColor": 344,
+            "body/borderColor": 284,
+            "card/borderColor": 96,
+            "hero/borderColor": 8,
+            "icon/borderColor": 20,
+            "link/borderColor": 44,
+            "list/borderColor": 408,
+            "badge/borderColor": 108,
+            "image/borderColor": 176,
+            "input/borderColor": 4,
+            "other/borderColor": 1277,
+            "button/borderColor": 144,
+            "footer/borderColor": 7,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 6,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "icon",
+            "input",
+            "list",
+            "badge",
+            "card"
+          ],
+          "frequency": 1897,
+          "confidence": 1,
+          "prominence": 34063831.87632276,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 115,
+            "body/color": 18,
+            "icon/color": 2,
+            "link/color": 87,
+            "list/color": 24,
+            "nav/stroke": 4,
+            "other/fill": 6,
+            "badge/color": 65,
+            "input/color": 2,
+            "other/color": 23,
+            "button/color": 13,
+            "other/stroke": 2,
+            "heading/color": 22,
+            "nav/borderColor": 460,
+            "body/borderColor": 72,
+            "icon/borderColor": 8,
+            "link/borderColor": 348,
+            "list/borderColor": 96,
+            "badge/borderColor": 260,
+            "input/borderColor": 8,
+            "other/borderColor": 92,
+            "button/borderColor": 52,
+            "heading/borderColor": 88,
+            "card/backgroundColor": 2,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 22,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "input",
+            "icon",
+            "body"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 1562292,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 3,
+            "card/color": 1,
+            "icon/color": 1,
+            "other/fill": 3,
+            "other/color": 5,
+            "body/borderColor": 12,
+            "icon/borderColor": 4,
+            "other/borderColor": 21,
+            "card/backgroundColor": 8,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6f7f2",
+          "oklch": {
+            "c": 0.006678394008699239,
+            "h": 115.70425906631533,
+            "l": 0.9739949400842997
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1328076.5334917733,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1096758.299873579,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "button/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 12,
+            "button/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dfdbca",
+          "oklch": {
+            "c": 0.023236038041125773,
+            "h": 95.98741991896433,
+            "l": 0.8899633293163998
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1071629.5384270994,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "card/borderColor": 4,
+            "other/borderColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9b786e",
+          "oklch": {
+            "c": 0.04665035796099761,
+            "h": 36.52122488161545,
+            "l": 0.6039218988970948
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8d6459",
+          "oklch": {
+            "c": 0.05626527759096793,
+            "h": 35.59242754268193,
+            "l": 0.5428357145187267
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 467845,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 422077.7088597202,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 30
+          }
+        },
+        {
+          "hex": "#0e1311",
+          "oklch": {
+            "c": 0.008796515150698438,
+            "h": 169.151394639211,
+            "l": 0.18055524119181768
+          },
+          "contexts": [
+            "other",
+            "button",
+            "badge"
+          ],
+          "frequency": 937,
+          "confidence": 1,
+          "prominence": 188138.47756398047,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 84,
+            "other/color": 103,
+            "button/color": 2,
+            "badge/borderColor": 336,
+            "other/borderColor": 412
+          }
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 148114.74569239203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#686653",
+          "oklch": {
+            "c": 0.029003213374673563,
+            "h": 102.40362889244044,
+            "l": 0.5065165872976543
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 77669,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 58240,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "footer/borderColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4d4a31",
+          "oklch": {
+            "c": 0.039206493518907974,
+            "h": 102.15762961947419,
+            "l": 0.4049589217250698
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 56880,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "badge",
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 49482.51274814411,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "badge/color": 2,
+            "other/color": 2,
+            "body/borderColor": 8,
+            "badge/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#010101",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.06720461569746486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 24156.474569239203,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42023714570450815
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 7666.1004669002505,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "link/borderColor": 8
+          }
+        },
+        {
+          "hex": "#cadcac",
+          "oklch": {
+            "c": 0.06689650673395038,
+            "h": 124.47948570322887,
+            "l": 0.868698880872408
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5480.800327493757,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#faf080",
+          "oklch": {
+            "c": 0.13423428621111286,
+            "h": 104.10347655990641,
+            "l": 0.940430149285968
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2695,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cfa53b",
+          "oklch": {
+            "c": 0.12983728021480404,
+            "h": 86.5708653031557,
+            "l": 0.7416020684057741
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 490,
+          "confidence": 1,
+          "prominence": 2288.5322788645612,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 98,
+            "badge/borderColor": 392
+          }
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 484,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02709313203327078,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.87,
+          "background": "#ffffff",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.51,
+          "background": "#f6f7f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.39,
+          "background": "#f6f7f2",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.75,
+          "background": "#ffffff",
+          "foreground": "#0e1311"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.84,
+          "background": "#faf080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.73,
+          "background": "#faf080",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.42,
+          "background": "#f6f7f2",
+          "foreground": "#0e1311"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.72,
+          "background": "#e6e6e6",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.17,
+          "background": "#f6f7f2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.93,
+          "background": "#faf080",
+          "foreground": "#0e1311"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#262626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#dfdbca",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.03,
+          "background": "#dfdbca",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#e6e6e6",
+          "foreground": "#0e1311"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.79,
+          "background": "#faf080",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.34,
+          "background": "#cadcac",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#cadcac",
+          "foreground": "#010101"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "input",
+            "button",
+            "nav",
+            "other",
+            "badge",
+            "image",
+            "card"
+          ],
+          "frequency": 89
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 2.5px 10px -4px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 56,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|body",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 105,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "button",
+            "nav",
+            "link",
+            "input",
+            "other",
+            "badge",
+            "card"
+          ],
+          "frequency": 132,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingLeft|input",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "marginTop|body",
+            "rowGap|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "input",
+            "other"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|link",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 99,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|nav",
+            "marginRight|list",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "input",
+            "card"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "columnGap|nav",
+            "paddingRight|input",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "footer",
+            "nav",
+            "heading",
+            "body",
+            "list",
+            "card"
+          ],
+          "frequency": 180,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|other",
+            "marginTop|heading",
+            "marginTop|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|list",
+            "marginTop|card",
+            "marginLeft|card",
+            "marginBottom|heading",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "badge",
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "rowGap|badge",
+            "marginBottom|body",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|button",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "heading",
+            "other",
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "marginBottom|badge",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(207, 165, 59) 0%, rgba(0, 0, 0, 0.25) 0.1%)",
+        "colors": [
+          "rgb(207, 165, 59)",
+          "rgba(0, 0, 0, 0.25)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT America Standard",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 1168,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "reviewsio-font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 128,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ID00 Serif",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 103,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "badge",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Standard",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "input"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "body",
+            "input",
+            "icon",
+            "list"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "icon"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "reviewsio-font",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "footer",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "list",
+            "card",
+            "badge"
+          ],
+          "frequency": 576,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ID00 Serif",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "card",
+            "image",
+            "badge",
+            "body"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "reviewsio-font",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 100,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ID00 Serif",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "heading",
+            "body"
+          ],
+          "frequency": 52,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Standard",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "badge",
+            "other",
+            "list",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 211,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "reviewsio-font",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "reviewsio-font",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ID00 Serif",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "ID00 Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "ID00 Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "GT America Standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8765a1de-348c-46ad-8cae-0ce3fd44f17f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Assembly Coffee London design system\",\"item\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#style-reference\",\"name\":\"Assembly Coffee London design system reference\",\"headline\":\"Assembly Coffee London design system | Refero Styles\",\"description\":\"Explore Assembly Coffee London's dark E-commerce design system: Obsidian #0e1311, Pure Black #000000 colors, GT America Standard, ID00 Serif typography, and...\",\"url\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Assembly Coffee London\",\"url\":\"https://assemblycoffee.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8288950a-2731-44fd-85ef-211aecd8091d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"caption\":\"Screenshot of Assembly Coffee London\"},\"image\":\"https://images.refero.design/styles/refero.design/image/627efb03-9916-44bc-8dee-99f46636fd9b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Assembly Coffee London design system\",\"Assembly Coffee London website design\",\"Assembly Coffee London colors\",\"Assembly Coffee London typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Pure Black\",\"Ash Charcoal\",\"Graphite\",\"GT America Standard\",\"ID00 Serif\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London design system\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London website design\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London colors\"},{\"@type\":\"Thing\",\"name\":\"Assembly Coffee London typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:18:07.021Z\",\"dateModified\":\"2026-04-30T00:18:07.021Z\"}]}19:T649,**Quick Color Reference**\n- text (on dark): #ffffff\n- text (secondary/muted): #b3b3b3\n- Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- surface (warm border / hairline): #dfdbca\n- accent (editorial badge — new release): #faf080\n- primary action: #000000 (filled action)\n\n**3–5 Example Component Prompts**\n\n1. *Editorial Hero Index Entry*: A vertical stack entry on #0e1311 canvas. Product name in ID00 Serif italic 21px, #ffffff. Sublabel 'Shop Now' or 'Limited Time Offer' in ID00 Serif italic 16px, #b3b3b3. Vertical spacing 48px between entries. No border, no background, no button — pure typographic link.\n\n2. *Product Card (Dark)*: Square card on #0e1311 background, 4px radius, 1px border in #1a1a1a. Upper 65%: product photograph on a warm ember-red studio backdrop with soft shadow. Lower 35%: product name in ID00 Serif italic 24px #ffffff, tasting notes in GT America 14px #b3b3b3, price pill at bottom-left.\n\n3. *Price Pill*: Inline pill, 60px radius, #f6f7f2 background, padding 6px 16px. Text 'From — €29.95' in GT America 13px weight 500, #0e1311. No border, no shadow.\n\n4. *Editorial Tag Badge*: Small pill, 4px radius, #faf080 background, padding 4px 8px. Text 'New Release' in GT America 11px weight 500 uppercase, #0e1311. No border.\n\n5. *Manifesto Block*: Full-width #0e1311 section, 80px vertical padding above and below. Centered or left-aligned text in ID00 Serif italic 36px, #ffffff, line-height 1.2, weight 300. No buttons, no links, no images — the prose is the section."
+}

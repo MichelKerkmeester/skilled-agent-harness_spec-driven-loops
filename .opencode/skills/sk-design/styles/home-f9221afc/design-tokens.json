@@ -1,0 +1,247 @@
+{
+  "color": {
+    "parchment-cream": {
+      "$value": "#f7f6e3",
+      "$type": "color",
+      "$description": "Parchment Cream — Page canvas, card surfaces, bordered containers — near-gray cream that warms the entire interface and gives the whole site its paper-like calm; Outlined/ghost action borders, pill outlines, and interactive rings that echo the canvas tone — only visible against darker overlays"
+    },
+    "ink-black": {
+      "$value": "#262d29",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, navigation, body copy, card borders, icon strokes — the only structural color, used for hairline definition and all readable content"
+    },
+    "electric-lemon": {
+      "$value": "#ffff48",
+      "$type": "color",
+      "$description": "Electric Lemon — Filled CTA buttons, active states, standout badges — a single saturated yellow that breaks the cream/ink calm to signal action; the ratio against #262d29 is 13.2:1 AAA"
+    }
+  },
+  "font": {
+    "prody": {
+      "$value": "Prody",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the signature voice. Used at 131px for the hero statement and 42px for secondary display; the heavy serif counters against the flat grotesque body to create editorial tension. Weight stays at 400; size alone carries the authority."
+    },
+    "suisseintl": {
+      "$value": "SuisseIntl",
+      "$type": "fontFamily",
+      "$description": "Body copy, card titles, subheadings, UI labels — the working typeface. Weight 500 for emphasized text, 600 for card titles, 400 default. Sizes step 13→14→16→19→21→33→42 covering caption through heading."
+    },
+    "suisseintl-book": {
+      "$value": "SuisseIntl Book",
+      "$type": "fontFamily",
+      "$description": "Navigation links, form input text, small button labels — a lighter cut of the same family for quieter interactive surfaces"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisseintl Book",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisseintl Book",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Prody",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Suisseintl",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Prody",
+        "fontSize": "131px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 131px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.424px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18.72px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "37.44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f7f6e3",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, section fills, card surfaces"
+    },
+    "card-surface": {
+      "$value": "#f7f6e3",
+      "$type": "color",
+      "$description": "Surface level 1: Portfolio cards, program cards, testimonial blocks — same tone as canvas, defined by radius and padding"
+    },
+    "ink-surface": {
+      "$value": "#262d29",
+      "$type": "color",
+      "$description": "Surface level 2: Dark mode blocks, navigation bars, footer on dark sections — used sparingly as a full-bleed invert"
+    },
+    "accent-surface": {
+      "$value": "#ffff48",
+      "$type": "color",
+      "$description": "Surface level 3: Filled CTA buttons only — never as a section or card background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.airtree.vc",
+      "siteName": "Home",
+      "extractedAt": "2026-06-03T21:07:46.701Z",
+      "variant": "extended"
+    }
+  }
+}

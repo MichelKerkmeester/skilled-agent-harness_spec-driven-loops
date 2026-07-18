@@ -1,0 +1,439 @@
+{
+  "color": {
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button fills on dark — the entire layout sits on flat white without competing surface tones"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, display headlines, nav borders, icon strokes — near-universal ink color, the dominant chromatic presence"
+    },
+    "hairline-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Hairline Gray — Borders, dividers, subtle button outlines, muted surface backgrounds — the structural neutral that defines card edges without adding weight"
+    },
+    "shadow-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Shadow Gray — Soft drop-shadow tint and secondary borders — only used in shadow stacks, never as a fill"
+    },
+    "terracotta": {
+      "$value": "#bc5346",
+      "$type": "color",
+      "$description": "Terracotta — Decorative outline accent on headings, body links, and section borders — the warm architectural counterweight to the cool palette"
+    },
+    "magenta-pencil": {
+      "$value": "#ff00bc",
+      "$type": "color",
+      "$description": "Magenta Pencil — High-frequency outline accent on borders and links — vivid magenta used as fine 1–2px strokes, never as a fill or background"
+    },
+    "olive-foliage": {
+      "$value": "#51633c",
+      "$type": "color",
+      "$description": "Olive Foliage — Muted green text and border accent — evokes plant material and landscape, used sparingly on body copy and decorative dividers"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "helvetica-neue-lt-pro-md": {
+      "$value": "Helvetica Neue LT Pro (Md)",
+      "$type": "fontFamily",
+      "$description": "Display and large headings — the 105px size defines the masthead scale, while 18–21px handles subheadings. The medium weight at extreme sizes is signature: heavy enough to anchor the page, never so heavy it becomes a poster."
+    },
+    "helvetica-neue-lt-pro-roman": {
+      "$value": "Helvetica Neue LT Pro (Roman)",
+      "$type": "fontFamily",
+      "$description": "Body text, nav, buttons, lists — the everyday workhorse at 16–20px, with 39px available for feature headings"
+    },
+    "helvetica-neue-lt-pro-lt": {
+      "$value": "Helvetica Neue LT Pro (Lt)",
+      "$type": "fontFamily",
+      "$description": "Fine-print body variant — used only at 12px for secondary micro-copy and captions"
+    },
+    "helvetica-neue-lt-pro-bd": {
+      "$value": "Helvetica Neue LT Pro (Bd)",
+      "$type": "fontFamily",
+      "$description": "Bold body emphasis at 16px — sparingly used for in-paragraph highlights and label-like text"
+    },
+    "new-century-schoolbook-lt-std-roman": {
+      "$value": "New Century Schoolbook LT Std (Roman)",
+      "$type": "fontFamily",
+      "$description": "The editorial serif: body paragraphs, editorial headings, and section titles. Its slab-serif warmth counterbalances the industrial Helvetica display, giving long-form reading a literary feel. Used at 16–18px for body and 39–43px for editorial headings."
+    },
+    "newcenturyschlbkltstd-roman": {
+      "$value": "NewCenturySchlbkLTStd-Roman",
+      "$type": "fontFamily",
+      "$description": "NewCenturySchlbkLTStd-Roman — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Lt",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Lt",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Md",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Bd",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Md",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Md",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Roman",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Md",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Roman",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 39px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "NewCenturySchlbkLTStd-Roman",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "67px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 67px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNeueLTPro-Md",
+        "fontSize": "105px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 105px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "9.999px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "37.5px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 4px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgb(237, 237, 237) 2px -1px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background and primary surface — the layout is intentionally flat, with no competing surface tones"
+    },
+    "hairline": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Surface level 2: Border, divider, and subtle surface variant — defines card edges at 1–2px without adding visual weight"
+    },
+    "accent-stroke": {
+      "$value": "#ff00bc",
+      "$type": "color",
+      "$description": "Surface level 3: Chromatic outline used as a decorative surface edge — never a fill, always a 1–2px border treatment"
+    },
+    "warm-accent": {
+      "$value": "#bc5346",
+      "$type": "color",
+      "$description": "Surface level 4: Terracotta outline on headings and links — secondary chromatic stroke layered on white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://idheal.fr",
+      "siteName": "IDHEAL",
+      "extractedAt": "2026-06-03T21:08:01.797Z",
+      "variant": "extended"
+    }
+  }
+}

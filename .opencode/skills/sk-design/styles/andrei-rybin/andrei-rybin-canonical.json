@@ -1,0 +1,857 @@
+{
+  "source": "https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da",
+  "uuid": "519ca09b-9a85-4eec-8630-0d7aae5ac2da",
+  "name": "Andrei Rybin",
+  "northStar": "monochrome atelier notebook — a designer's sketchbook where phone screens are pinned like contact sheets on a white wall",
+  "capturedAt": "2026-07-18T08:45:08.469Z",
+  "meta": {
+    "url": "https://andreirybin.com",
+    "siteName": "Andrei Rybin",
+    "extractedAt": "2026-06-03T21:51:21.069Z",
+    "durationMs": 25265,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 520,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the entire interface achromatic — Ink on Paper, with Graphite and Stone for soft hierarchy.",
+      "Use 8px radius for project tiles, 16px for icon containers, 40px (or 9999px) for pill labels and circular buttons.",
+      "Set body and caption type at Inter 12px with -0.0170em letter-spacing; reserve 24px Inter for the single intro paragraph.",
+      "Separate header columns with whitespace alone — no vertical rules or dividers between nav items.",
+      "Use 10px element gap inside cards and 120px section gap between page bands.",
+      "Let image weight carry the page; the system should be invisible behind the work."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no accent, no brand hue, no semantic state color.",
+      "Do not use multiple font weights — Inter 400 is the only voice; no bold, no light, no italic.",
+      "Do not apply shadows, gradients, or fills to tiles or buttons; borders are the only separator.",
+      "Do not center body text — captions and metadata are left- or context-aligned, not centered except where a tile naturally centers its caption beneath.",
+      "Do not use a border radius below 8px on cards or above 16px on icons — the radii carry the system's softness and must stay consistent.",
+      "Do not add navigation patterns (hamburgers, sidebars, mega-menus); the header is a single text strip.",
+      "Do not break the grid with asymmetric or overlapping tile placements — the grid is the page's structural truth."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, card surfaces, image holders — the dominant canvas; everything sits on this",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, link text, icon strokes, thin section dividers — the only mark-making color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858585",
+        "name": "Graphite",
+        "role": "Secondary text, muted metadata, and softer border lines that recede behind primary ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e90",
+        "name": "Stone",
+        "role": "Cool-toned border and divider strokes for borders that need a hairline without competing with Ink",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page on a white canvas, max-width ~1440px. Header is a single row of four text blocks separated by whitespace (name, showreel, social, index). Below sits a two-column intro: contact email left, welcome paragraph right, separated by 40px gap and generous horizontal space. The main body is a 5-column responsive grid of project tiles at 16px gutters, each tile containing a pill label, a circular arrow button, an image, and a centered caption beneath. Section gap of 120px separates the intro from the grid; the grid itself flows without internal section breaks.",
+    "imagery": "Photography-style product mockups of iPhone screens are the only visual content — tightly cropped, high-contrast, most showing dark UI inside white phone frames. Each card is a portrait-ratio still. No lifestyle photography, no illustrations, no abstract graphics. The phone IS the hero; the system frames it like a contact sheet.",
+    "similar": [
+      {
+        "why": "Same monochrome grid-of-tiles approach with generous whitespace and minimal chrome — content is the design.",
+        "business": "Cargo Collective portfolios"
+      },
+      {
+        "why": "Editorial-grade minimal layouts where typography does all the work and the system disappears behind showcased work.",
+        "business": "Readymag project pages"
+      },
+      {
+        "why": "Single-weight type, achromatic palette, and large project tiles arranged in a quiet grid — restraint as a visual language.",
+        "business": "Tobias van Schneider portfolio"
+      },
+      {
+        "why": "Crisp type, flat surfaces, no decorative gradients, and a strong reliance on whitespace and thin borders to organize content.",
+        "business": "Linear app marketing pages"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "40px",
+        "cards": "8px",
+        "icons": "16px",
+        "buttons": "9999px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "120px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Full-page canvas and the back of every card and image tile"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Mask",
+        "level": 2,
+        "purpose": "The near-black surfaces that appear inside phone-screen mockups — not a page surface, but defines the photo-to-canvas contrast"
+      }
+    ],
+    "elevation": [],
+    "northStar": "monochrome atelier notebook — a designer's sketchbook where phone screens are pinned like contact sheets on a white wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.23,
+        "letterSpacing": -0.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Tile Card",
+        "role": "Container for a single showcase image (phone mockup) with label and navigation arrow",
+        "description": "White paper surface, 8px radius, no border, 16px internal padding. A pill label sits top-left at 40px corner radius with 1px Ink border, 10px vertical / 8px horizontal padding, Inter 12px. A 32px circular arrow button with 1px Ink border sits top-right. Caption text (Inter 12px Graphite) sits centered beneath the card with 8px gap."
+      },
+      {
+        "name": "Pill Label",
+        "role": "Project category tag overlaid on each card",
+        "description": "Fully rounded capsule (40px radius) on white paper. 1px Ink border, 6px padding top/bottom, 8px padding left/right. Text: Inter 12px, color Ink, letter-spacing -0.0170em."
+      },
+      {
+        "name": "Arrow Navigation Button",
+        "role": "Compact circular control to open a project",
+        "description": "32px circle, white fill, 1px Ink border, centered right-pointing arrow icon at 16px radius geometry. No shadow, no fill state — the border is the only affordance."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top-of-page identity, nav, and social link strip",
+        "description": "Full-bleed white band with 16px padding. Four text columns separated by generous white space: name+role (left), showreel link (center-left), social links (center-right), index+about (right). All Inter 12px, Ink, letter-spacing -0.0170em. No dividers between columns — whitespace carries the rhythm."
+      },
+      {
+        "name": "Intro Block",
+        "role": "Two-column intro: contact email on the left, welcome paragraph on the right",
+        "description": "40px row gap between the email and the welcome copy. Email is Inter 12px Ink; the welcome paragraph is Inter 24px Graphite at line-height 1.23 — this is the largest type in the system, used exactly once."
+      },
+      {
+        "name": "Project Grid",
+        "role": "Responsive grid of project tiles filling the rest of the page",
+        "description": "5 columns at full width, 16px gutters. Each tile occupies a fixed aspect slot (roughly 3:5 portrait). The grid recedes visually — its job is to hold images, not to assert itself."
+      },
+      {
+        "name": "Caption Label",
+        "role": "One-line description under each tile describing the project type",
+        "description": "Inter 12px, Graphite (#858585), centered, 8px below the card. Format is 'X → Y' or a short noun phrase."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Body copy, project captions, and the larger intro paragraphs. Used at a single weight — regularity IS the signature; no bold headlines shout, no light weight whispers.",
+        "sizes": "12px, 24px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.20, 1.23, 1.30",
+        "substitute": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+        "letterSpacing": "-0.0170em"
+      },
+      {
+        "role": "Small UI labels, tag text, icon-adjacent microcopy. Appears wherever a single token of body-size type recurs — utility, not statement.",
+        "sizes": "12px",
+        "family": "system-ui (sans-serif)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "inherit Inter or use system sans",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": ".SFNSText — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": ".SFNSText",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.017"
+      }
+    ],
+    "description": "A monochrome atelier notebook: a near-pure black-on-white canvas where the only visual event is typography against a generous grid of project tiles. Every surface is paper-white; every element either ink-black or a single shade of graphite for secondary information — there is no accent color, no gradient, no fill that isn't neutral. Components are stripped to their function: a pill-shaped label names the work, a circular arrow button invites the next view, thin 1px borders quietly separate sections. The product is the showcase, so the system recedes — the phone mockups carry all the visual weight while the framework stays silent.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Andrei Rybin design system\",\"item\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#style-reference\",\"name\":\"Andrei Rybin design system reference\",\"headline\":\"Andrei Rybin design system | Refero Styles\",\"description\":\"Explore Andrei Rybin's light Design design system: Paper #ffffff, Ink #000000 colors, sans-serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\",\"mainEntityOfPage\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Andrei Rybin\",\"url\":\"https://andreirybin.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"caption\":\"Screenshot of Andrei Rybin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Andrei Rybin design system\",\"Andrei Rybin website design\",\"Andrei Rybin colors\",\"Andrei Rybin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper\",\"Ink\",\"Graphite\",\"Stone\",\"sans-serif\",\"Inter\",\"system-ui (sans-serif)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Andrei Rybin design system\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin website design\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin colors\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-10T23:16:10.663Z\",\"dateModified\":\"2026-05-10T23:16:10.663Z\"}]}19:T4d7,Quick Color Reference\n- text: #000000 (Ink)\n- background: #ffffff (Paper)\n- border: #858585 (Graphite) or #8e8e90 (Stone) for soft rules, #000000 (Ink) for structural borders\n- muted text: #858585 (Graphite)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Header strip: white background, full-bleed within 1440px max-width, 16px padding. Four text items in a single row (left/center-left/center-right/right), all Inter 12px weight 400, color #000000, letter-spacing -0.0170em. No dividers between items — whitespace only.\n2. Project tile: white background, 8px border-radius, 16px padding. A pill label at top-left: 40px border-radius, 1px solid #000000 border, 6px padding top/bottom and 8px left/right, text Inter 12px #000000. A 32px circular button at top-right: white fill, 1px solid #000000 border, centered right-arrow icon.\n3. Intro block: two columns. Left column: Inter 12px #000000 email link. Right column: Inter 24px #858585, line-height 1.23, letter-spacing -0.4px. 40px row gap between rows.\n4. Tile caption: Inter 12px #858585, centered, 8px below the tile card.\n5. Project grid: 5 equal columns, 16px column gap, each tile showing an image that fills its slot. No borders, no shadows between tiles."
+      }
+    ],
+    "elevationPhilosophy": "The design uses no shadow, no blur, no z-axis elevation. Depth is implied only by the contrast of Ink on Paper, with 1px borders doing all the work that shadows would do in a richer system. Flatness is the philosophy."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 1993,
+          "confidence": 1,
+          "prominence": 43976952.52318626,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 40,
+            "body/color": 30,
+            "icon/color": 20,
+            "link/color": 7,
+            "other/fill": 19,
+            "image/color": 4,
+            "other/color": 325,
+            "other/stroke": 1,
+            "body/borderColor": 120,
+            "icon/borderColor": 80,
+            "link/borderColor": 28,
+            "image/borderColor": 16,
+            "other/borderColor": 1300,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 22526019.379745673,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 48
+          }
+        },
+        {
+          "hex": "#858585",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.616706943829689
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 210,
+          "confidence": 1,
+          "prominence": 379677.3315054871,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 40,
+            "other/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 160,
+            "other/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8e8e90",
+          "oklch": {
+            "c": 0.0029344278259821753,
+            "h": 286.3173717145456,
+            "l": 0.6473524375178475
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 133349.37801290487,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 32,
+            "body/borderColor": 128
+          }
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 101512.09328368788,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 77618,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 61510.809690487346,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 61510.809690487346,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 38809,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000524572865889577,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#ffffff",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#ffffff",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.16,
+          "background": "#ffffff",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.42,
+          "background": "#000000",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.05,
+          "background": "#0a0a0a",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.73,
+          "background": "#121212",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#000000",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.37,
+          "background": "#0a0a0a",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#1c1c1c",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.08,
+          "background": "#121212",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.75,
+          "background": "#242424",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#1c1c1c",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#2b2b2b",
+          "foreground": "#8e8e90"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.21,
+          "background": "#242424",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#2b2b2b",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#ffffff",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#ffffff",
+          "foreground": "#8e8e90"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 80,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 154,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 369,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 110,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": ".SFNSText",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 369,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": ".SFNSText",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 89,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ebe0d93d-a4d9-4667-a60e-cc8ce3a033b1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Andrei Rybin design system\",\"item\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#style-reference\",\"name\":\"Andrei Rybin design system reference\",\"headline\":\"Andrei Rybin design system | Refero Styles\",\"description\":\"Explore Andrei Rybin's light Design design system: Paper #ffffff, Ink #000000 colors, sans-serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\",\"mainEntityOfPage\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Andrei Rybin\",\"url\":\"https://andreirybin.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/519ca09b-9a85-4eec-8630-0d7aae5ac2da#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"caption\":\"Screenshot of Andrei Rybin\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0af62b2d-07c1-4e58-a5ee-8f00b2277383.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Andrei Rybin design system\",\"Andrei Rybin website design\",\"Andrei Rybin colors\",\"Andrei Rybin typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper\",\"Ink\",\"Graphite\",\"Stone\",\"sans-serif\",\"Inter\",\"system-ui (sans-serif)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Andrei Rybin design system\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin website design\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin colors\"},{\"@type\":\"Thing\",\"name\":\"Andrei Rybin typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-10T23:16:10.663Z\",\"dateModified\":\"2026-05-10T23:16:10.663Z\"}]}19:T4d7,Quick Color Reference\n- text: #000000 (Ink)\n- background: #ffffff (Paper)\n- border: #858585 (Graphite) or #8e8e90 (Stone) for soft rules, #000000 (Ink) for structural borders\n- muted text: #858585 (Graphite)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Header strip: white background, full-bleed within 1440px max-width, 16px padding. Four text items in a single row (left/center-left/center-right/right), all Inter 12px weight 400, color #000000, letter-spacing -0.0170em. No dividers between items — whitespace only.\n2. Project tile: white background, 8px border-radius, 16px padding. A pill label at top-left: 40px border-radius, 1px solid #000000 border, 6px padding top/bottom and 8px left/right, text Inter 12px #000000. A 32px circular button at top-right: white fill, 1px solid #000000 border, centered right-arrow icon.\n3. Intro block: two columns. Left column: Inter 12px #000000 email link. Right column: Inter 24px #858585, line-height 1.23, letter-spacing -0.4px. 40px row gap between rows.\n4. Tile caption: Inter 12px #858585, centered, 8px below the tile card.\n5. Project grid: 5 equal columns, 16px column gap, each tile showing an image that fills its slot. No borders, no shadows between tiles."
+}

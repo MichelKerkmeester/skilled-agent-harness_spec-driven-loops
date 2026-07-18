@@ -1,0 +1,334 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#1c1d20",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Page background, card surfaces, text on light surfaces, hairline borders — the near-black that owns 95% of the interface"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, inverted card surfaces, link text on violet, subtle inset borders — the only light tone in the system"
+    },
+    "fog": {
+      "$value": "#999d9e",
+      "$type": "color",
+      "$description": "Fog — Muted secondary text, captions, metadata — sits between the canvas and white in the neutral scale"
+    },
+    "graphite": {
+      "$value": "#494a4d",
+      "$type": "color",
+      "$description": "Graphite — Elevated surface layer above the canvas, soft card backgrounds, link hover glow — adds a half-step of depth without breaking the monochrome read"
+    },
+    "electric-iris": {
+      "$value": "#455ce9",
+      "$type": "color",
+      "$description": "Electric Iris — Accent card fills, link/button backgrounds, active state highlights — the one chromatic voice; its vividness is amplified by 99% achromatic surroundings"
+    },
+    "deep-iris": {
+      "$value": "#334bd3",
+      "$type": "color",
+      "$description": "Deep Iris — Secondary accent surface, deeper violet card variant — used when the primary iris needs a stepped companion for layered cards or gradient-feeling stacks"
+    }
+  },
+  "font": {
+    "dennis-sans": {
+      "$value": "Dennis Sans",
+      "$type": "fontFamily",
+      "$description": "Single-family system. Weight 450 is non-standard — not light, not bold, sits in the medium range to feel editorial rather than corporate. Uniform 0.0500em letter-spacing across all sizes creates a distinctive mechanical rhythm. Display sizes (60–216px) use tight line-height (1.00–1.07) so headlines touch or nearly touch; body sizes (14–17px) open up to 1.40–1.66 for readability. The 216px hero name is the signature element — it dwarfs everything else and bleeds off-canvas as intent."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "10px",
+        "fontWeight": 450,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "10px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "12px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "17px",
+        "fontWeight": 450,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "17px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "17px",
+        "fontWeight": 450,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "33px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "33px",
+        "fontWeight": 450,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "60px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "76px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 76px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "88px",
+        "fontWeight": 450,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 88px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Dennis Sans",
+        "fontSize": "216px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 216px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    },
+    "189": {
+      "$value": "189px",
+      "$type": "dimension",
+      "$description": "Spacing 189px"
+    },
+    "230": {
+      "$value": "230px",
+      "$type": "dimension",
+      "$description": "Spacing 230px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "36.72px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#1c1d20",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the default ground for every screen"
+    },
+    "graphite": {
+      "$value": "#494a4d",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated surface for cards, badges, and secondary panels"
+    },
+    "deep-iris": {
+      "$value": "#334bd3",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface for featured or category cards"
+    },
+    "electric-iris": {
+      "$value": "#455ce9",
+      "$type": "color",
+      "$description": "Surface level 4: Top accent surface for CTA cards and interactive link fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dennissnellenberg.com",
+      "siteName": "Dennis Snellenberg",
+      "extractedAt": "2026-06-03T17:51:09.281Z",
+      "variant": "extended"
+    }
+  }
+}

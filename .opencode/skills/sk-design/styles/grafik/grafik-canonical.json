@@ -1,0 +1,481 @@
+{
+  "source": "https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d",
+  "uuid": "0226e028-3cd3-440d-b469-ca459267161d",
+  "name": "Grafik",
+  "northStar": "Editorial gallery on warm paper. A design annual laid out as a full-bleed screen — typographic grid lines, monochrome photography, and nothing between the work and the page.",
+  "capturedAt": "2026-07-18T07:48:10.035Z",
+  "meta": {
+    "url": "https://grafik.co.nz",
+    "siteName": "Grafik",
+    "extractedAt": "2026-06-03T19:39:48.463Z",
+    "durationMs": 41928,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1201,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Grotesk at weight 400 — never introduce bold, semibold, or light variants. The single-weight discipline is the signature.",
+      "Set backgrounds to #f0eeeb for the page canvas and #ffffff for card/image inserts. The warm bone is non-negotiable; pure white as canvas breaks the paper metaphor.",
+      "Separate all portfolio elements with 1px solid #000000 hairlines. Use borders to create the grid, never padding gaps or box-shadows.",
+      "Set border-radius to 0px on every element. No rounded corners on images, cards, buttons, or containers — the design is architecturally sharp.",
+      "Type at three sizes only: 20px for body and metadata, 38px and 40px for headings. The sparse scale forces hierarchy through content, not through type variety.",
+      "Apply negative letter-spacing: -0.02em at 38px, -0.01em at 40px, -0.005em at 20px. This tracking is what makes Grotesk feel like editorial print rather than screen type.",
+      "Keep the interface fully monochromatic. Any color should live inside portfolio content (photography, project artifacts), never in the UI chrome."
+    ],
+    "donts": [
+      "Do not introduce a second typeface. Grotesk carries the entire system — adding a serif or display face fragments the editorial cohesion.",
+      "Do not add box-shadows or any form of elevation. The design uses surface contrast and hairline borders, not depth.",
+      "Do not use rounded corners on any element. Every edge is sharp — cards, images, buttons, tags.",
+      "Do not use bright or saturated colors in the UI. The green and brown tones in screenshots are project content, not system tokens.",
+      "Do not set the page background to pure #ffffff. The warm #f0eeeb canvas is the paper-like foundation — white-as-canvas looks clinical and breaks the design annual metaphor.",
+      "Do not add decorative gradients, patterns, or background textures. The design is flat, monochromatic, and print-faithful.",
+      "Do not use bold or semibold weights. The entire system runs on Grotesk 400 — adding weight breaks the measured, restrained voice."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f0eeeb",
+        "name": "Bone",
+        "role": "Page background and primary canvas — a warm off-white that reads as paper rather than screen, the defining surface of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, body copy, navigation, project metadata, 1px grid lines, image borders, and dark image treatments — the only non-canvas color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, image backgrounds, and reverse-text blocks — white inserts on the warm canvas to isolate portfolio pieces",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Photography dominates: large, full-bleed, black-and-white portrait and editorial photography fills the 3-column grid. Treatment is high-contrast, gallery-style — tight crops, subjects centered, no lifestyle staging. Color appears only within portfolio content (a neon green business card on the Tom Gould project, a sepia-brown panel on the Beings project) but these are artifacts within the work, not system colors. No icons, no illustrations, no decorative graphics. The portfolio imagery IS the visual language.",
+    "similar": [
+      {
+        "why": "Editorial portfolio aesthetic with a single weight per page, hairline grid structure, and monochromatic restraint — same gallery-on-paper approach to showcasing work",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Minimal text-only navigation, full-bleed project imagery, and a typographic system built on a single sans-serif at regular weight with negative tracking",
+        "business": "Manual (manual.to)"
+      },
+      {
+        "why": "Swiss-design sensibility with sharp 0px corners, monochromatic interface, and oversized black-and-white photography in a rigid grid",
+        "business": "DIA Studio"
+      },
+      {
+        "why": "Editorial typography-first portfolio with hairline dividers, no decorative shadows, and a canvas that reads as paper rather than screen",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Full-bleed project showcases with device-framed screenshots, monochromatic chrome, and generous vertical breathing room between sections",
+        "business": "Ramotion (agency site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px — no rounded corners anywhere in the system",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f0eeeb",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — the warm off-white that defines the paper-like quality"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Reverse surfaces and image cards sitting on the canvas"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inverted",
+        "level": 2,
+        "purpose": "Dark image treatments and high-contrast blocks within the grid"
+      }
+    ],
+    "northStar": "Editorial gallery on warm paper. A design annual laid out as a full-bleed screen — typographic grid lines, monochrome photography, and nothing between the work and the page.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.76
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Hairline Grid Divider",
+        "role": "Structural separator between portfolio columns and rows",
+        "description": "1px solid #000000 lines that form the portfolio grid. No gaps, no gutters — images and metadata sit flush against these hairlines. The lines are the skeleton of every page section."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Site-wide top navigation",
+        "description": "Full-bleed horizontal bar on #f0eeeb canvas. Left: 'Grafik, About, Contact.' in Grotesk 400 at 20px with #000000. Right: a greeting ('Hi') in the same style. No background fill, no border, no logo mark — text is the entire nav system. Fixed positioning not assumed."
+      },
+      {
+        "name": "Portfolio Grid Cell",
+        "role": "Single project tile within the 3-column portfolio grid",
+        "description": "Full-bleed image container with 1px solid #000000 border. Images sit on #ffffff or #000000 background depending on project. No padding, no radius, no shadow. Images extend edge-to-edge within their grid cell."
+      },
+      {
+        "name": "Project Metadata Block",
+        "role": "Caption beneath each portfolio item",
+        "description": "Three lines of Grotesk 400 at 20px, #000000, line-height 1.0. Line 1: project number ('1', '2'). Line 2: project name and year. Line 3: service categories. Aligned left, sits in the warm canvas zone below the image grid with ~80px gap."
+      },
+      {
+        "name": "Full-Bleed Image",
+        "role": "Oversized project image spanning full viewport width",
+        "description": "Some portfolio images break the 3-column grid and span full-bleed at 100vw. Maintains 1px #000000 border, 0px radius, no padding. The image is the entire section — no overlaid text or framing."
+      },
+      {
+        "name": "Tablet/Device Frame",
+        "role": "Portfolio project shown in context (tablet or browser frame)",
+        "description": "A project artifact (website screenshot, app screen) displayed inside a device frame with 1px #000000 border and #000000 background fill. The frame is a structural device, not decorative — it shows the work in its native medium."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with contact and legal",
+        "description": "Minimal text block in Grotesk 400 at 20px, #000000 on #f0eeeb. Single line of text with 'Contact' link. Matches nav treatment exactly — text-only, no rules, no columns."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all UI — navigation, project metadata, and headlines. Used exclusively at weight 400 (no bold, no light), which is anti-convention for an agency portfolio; the regular weight whispers where competitors shout. Negative tracking tightens headlines at -0.02em while body sits at -0.005em, giving every line a printed-page density. The dlig feature enables discretionary ligatures for editorial flourish.",
+        "sizes": "20px, 38px, 40px",
+        "family": "Grotesk",
+        "weight": "400",
+        "lineHeight": "1.00, 1.11, 1.20",
+        "substitute": "Söhne or Neue Haas Grotesk (paid); Inter at weight 400 with negative tracking is the closest free alternative",
+        "letterSpacing": "-0.02em at 38px, -0.01em at 40px, -0.005em at 20px",
+        "fontFeatureSettings": "\"dlig\""
+      }
+    ],
+    "description": "Grafik is a monochromatic editorial portfolio rendered as a design annual: a warm off-white canvas (#f0eeeb) holds a rigid 3-column grid of oversized black-and-white photography, separated by hairline 1px lines rather than gutters or shadows. Typography is reduced to a single weight (Grotesk 400) at three sizes, with negative tracking that pulls headlines tight and gives body text a measured, printed-page feel. Color is deliberately absent from the interface — the vivid green block on the Tom Gould card and the sepia Beings panel are content within the portfolio, not UI tokens. The design's confidence comes from restraint: no rounded corners, no elevation, no gradients, no secondary typeface, no bold weight. The grid lines and the type are the entire visual system.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Grafik design system\",\"item\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#style-reference\",\"name\":\"Grafik design system reference\",\"headline\":\"Grafik design system | Refero Styles\",\"description\":\"Explore Grafik's light Agency design system: Bone #f0eeeb, Ink #000000 colors, Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Grafik\",\"url\":\"https://grafik.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"caption\":\"Screenshot of Grafik\"},\"image\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Grafik design system\",\"Grafik website design\",\"Grafik colors\",\"Grafik typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Ink\",\"Paper\",\"Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Grafik design system\"},{\"@type\":\"Thing\",\"name\":\"Grafik website design\"},{\"@type\":\"Thing\",\"name\":\"Grafik colors\"},{\"@type\":\"Thing\",\"name\":\"Grafik typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:50:01.460Z\",\"dateModified\":\"2026-04-30T01:50:01.460Z\"}]}19:T5a3,Quick Color Reference:\n- text: #000000\n- background: #f0eeeb (canvas) / #ffffff (card)\n- border: #000000\n- accent: no distinct accent color — system is fully monochromatic\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Portfolio grid cell: 1px solid #000000 border, 0px radius, background #ffffff or #000000 depending on image. Image fills the cell edge-to-edge with no padding. Three of these cells sit side by side in a 3-column row, separated by 1px #000000 hairlines.\n\n2. Navigation bar: full-width horizontal bar on #f0eeeb background. Left-aligned text 'Grafik, About, Contact.' in Grotesk 400, 20px, #000000, letter-spacing -0.1px. Right-aligned 'Hi' in the same style. No background fill, no border, no logo.\n\n3. Project metadata caption: three lines of Grotesk 400 at 20px, #000000, line-height 1.0. Line 1 is a project number, line 2 is project name and year, line 3 is service categories. Left-aligned, sits on the #f0eeeb canvas ~80px below the image grid.\n\n4. Full-bleed project image: a single image spanning 100vw with 1px solid #000000 border, 0px radius. No overlaid text, no padding, no caption inside the image area. Functions as a full-width section break.\n\n5. Device-framed project: a website or app screenshot displayed inside a rectangular frame with 1px solid #000000 border and #000000 background fill, showing the work in context. No shadow, no radius, no padding between frame and content."
+      },
+      {
+        "title": "Editorial Principles",
+        "content": "The interface is structured like a printed design annual: a fixed 3-column grid, hairline rules, generous vertical air, and a single typeface at a single weight. Every layout decision should feel like a page in a curated book — whitespace is structural, not decorative. The warm off-white canvas (#f0eeeb) is essential; it makes the black text and photography feel printed rather than displayed. Resist any urge to add visual complexity. The system is complete with three colors, one weight, three sizes, and zero elevation."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are entirely absent. The design achieves hierarchy through surface contrast (warm bone vs white vs black) and 1px hairline grid lines, not through elevation. Depth is implied by content layering, not by box-shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 5976,
+          "confidence": 1,
+          "prominence": 812933515.1707197,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 54,
+            "link/color": 54,
+            "image/color": 259,
+            "other/color": 826,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 216,
+            "link/borderColor": 216,
+            "image/borderColor": 1036,
+            "other/borderColor": 3304,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0eeeb",
+          "oklch": {
+            "c": 0.004554811773747956,
+            "h": 78.29758300785598,
+            "l": 0.949822795247408
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 12167109.739137707,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 28
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 588420,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000057114906139834203,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.13,
+          "background": "#f0eeeb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#f0eeeb",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 564,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 225,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1201,
+          "fontFeatureSettings": [
+            "\"dlig\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 20,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "link"
+          ],
+          "frequency": 1179,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "footer",
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.6,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a28cd1f9-0681-4874-8981-47d37cac5138.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Grafik design system\",\"item\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#style-reference\",\"name\":\"Grafik design system reference\",\"headline\":\"Grafik design system | Refero Styles\",\"description\":\"Explore Grafik's light Agency design system: Bone #f0eeeb, Ink #000000 colors, Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Grafik\",\"url\":\"https://grafik.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0226e028-3cd3-440d-b469-ca459267161d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"caption\":\"Screenshot of Grafik\"},\"image\":\"https://images.refero.design/styles/refero.design/image/644a3fdd-ab9f-4c37-9446-cd9c1138983b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Grafik design system\",\"Grafik website design\",\"Grafik colors\",\"Grafik typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Ink\",\"Paper\",\"Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Grafik design system\"},{\"@type\":\"Thing\",\"name\":\"Grafik website design\"},{\"@type\":\"Thing\",\"name\":\"Grafik colors\"},{\"@type\":\"Thing\",\"name\":\"Grafik typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:50:01.460Z\",\"dateModified\":\"2026-04-30T01:50:01.460Z\"}]}19:T5a3,Quick Color Reference:\n- text: #000000\n- background: #f0eeeb (canvas) / #ffffff (card)\n- border: #000000\n- accent: no distinct accent color — system is fully monochromatic\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Portfolio grid cell: 1px solid #000000 border, 0px radius, background #ffffff or #000000 depending on image. Image fills the cell edge-to-edge with no padding. Three of these cells sit side by side in a 3-column row, separated by 1px #000000 hairlines.\n\n2. Navigation bar: full-width horizontal bar on #f0eeeb background. Left-aligned text 'Grafik, About, Contact.' in Grotesk 400, 20px, #000000, letter-spacing -0.1px. Right-aligned 'Hi' in the same style. No background fill, no border, no logo.\n\n3. Project metadata caption: three lines of Grotesk 400 at 20px, #000000, line-height 1.0. Line 1 is a project number, line 2 is project name and year, line 3 is service categories. Left-aligned, sits on the #f0eeeb canvas ~80px below the image grid.\n\n4. Full-bleed project image: a single image spanning 100vw with 1px solid #000000 border, 0px radius. No overlaid text, no padding, no caption inside the image area. Functions as a full-width section break.\n\n5. Device-framed project: a website or app screenshot displayed inside a rectangular frame with 1px solid #000000 border and #000000 background fill, showing the work in context. No shadow, no radius, no padding between frame and content."
+}

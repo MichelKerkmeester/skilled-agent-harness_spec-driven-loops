@@ -1,0 +1,1496 @@
+{
+  "source": "https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b",
+  "uuid": "3f56ea4d-ed9d-4a36-8fb5-a801519ef80b",
+  "name": "Leif Products",
+  "northStar": "Apothecary on raw linen. A warm, hand-pressed editorial where ink-black type sits on bone-cream paper beside botanical product photography.",
+  "capturedAt": "2026-07-18T07:38:43.163Z",
+  "meta": {
+    "url": "https://leifproducts.com",
+    "siteName": "Leif Products",
+    "extractedAt": "2026-06-03T20:08:44.606Z",
+    "durationMs": 41045,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 480,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Right Grotesk weight 200 for all display headlines at 34px and above — the ultra-thin stroke is the signature, never substitute with weight 400 or 500",
+      "Apply Söhne Mono 11-12px with 0.05em tracking for all small uppercase labels (scent families, badges, metadata) — this creates the museum-tag rhythm",
+      "Keep all corners at 0px radius — every component should have sharp rectangular edges to maintain the editorial print feel",
+      "Use #fafaf9 (Bone) as the exclusive page background — never pure white, never gray",
+      "Let product photography carry the color — the interface palette stays warm-neutral so botanicals and amber bottles become the only chromatic elements",
+      "Use 1px borders in #e5e2dc (Stone) or #000000 (Ink) for all separation — no shadows, no fills, no background tints to create depth",
+      "Set display headlines to line-height 1.0 with tight negative tracking (-0.015em) so the thin strokes lock into a cohesive editorial block"
+    ],
+    "donts": [
+      "Don't use any chromatic brand color for buttons, links, or CTAs — the system is intentionally achromatic; color appears only in the Blush announcement bar and Citron promotional wash",
+      "Don't add border-radius to buttons, cards, images, or tags — sharp corners are non-negotiable",
+      "Don't use box-shadows or drop-shadows for elevation — depth comes from whitespace and hairline borders only",
+      "Don't use PP Right Grotesk below 26px — the ultra-thin weight becomes illegible at small sizes; switch to Söhne for anything under that threshold",
+      "Don't use pure white (#ffffff) as a background — the slightly warm Bone (#fafaf9) is the canvas, pure white would feel sterile and break the linen paper metaphor",
+      "Don't center-align body copy or long-form descriptions — left-align all paragraphs; centering is reserved for the announcement bar and hero subheadings only",
+      "Don't use bright or saturated colors for icons, hover states, or active states — Ink (#000000) and Graphite (#595959) are the only two interaction colors"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fafaf9",
+        "name": "Bone",
+        "role": "Page canvas, primary card surface — the off-white paper tone the entire interface sits on, warm enough to feel linen, not bright enough to feel clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "All body type, primary action border, all interactive strokes — the only dark in the system, pure black rather than warm charcoal to create maximum contrast against the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e2dc",
+        "name": "Stone",
+        "role": "Card borders, hairline dividers, subtle section breaks — the warm gray-beige that separates elements without drawing attention",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edede7",
+        "name": "Linen",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595959",
+        "name": "Graphite",
+        "role": "Card secondary text, muted metadata, price-adjacent labels — the mid-gray that recedes behind the primary ink-black headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d1c7",
+        "name": "Silt",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ead1d0",
+        "name": "Blush",
+        "role": "Decorative accent surface, soft wash behind editorial text blocks, occasional section tints — the dusty rose that nods to botanical petals without becoming saccharine",
+        "group": "accent"
+      },
+      {
+        "hex": "#f3ffa9",
+        "name": "Citron",
+        "role": "Promotional highlight surface — used sparingly as a wash behind sale tags, value bundle badges, or limited-edition callouts; pale enough to never compete with product photography",
+        "group": "accent"
+      }
+    ],
+    "layout": "Leif uses a full-bleed max-width 1440px layout with no centered narrow-column constraint. The homepage hero is a dramatic 50/50 split: left half is a full-bleed product photograph extending to the viewport edge, right half is a Bone panel with vertically centered text. Below the hero, product collections use a 3-column grid with generous gutters. Category pages ('Meet the family') use an asymmetric two-column layout: a compact left sidebar (approximately 25% width) listing scent families, paired with a large featured category display on the right. Section rhythm is consistent: full-width product grid bands separated by editorial text+image split sections. Navigation is a minimal top bar with no sticky behavior, no mega-menu, no sidebar. Vertical spacing between sections is generous (64px) but not extreme — comfortable editorial pacing, not luxurious whitespace.",
+    "imagery": "Product photography is the dominant visual element. Style: editorial, high-key, studio-lit with soft natural shadows. Products are shot on neutral stone or skin-tone backgrounds, often with hands, botanicals, or raw ingredients (rose petals, fruit, clay) as supporting context. No lifestyle environments — no bathrooms, no kitchens, no human models in settings. The object is always the hero. Close-up crops show texture and material quality (amber glass, matte ceramic, paper labels). Image treatment: no filters, no duotone, no overlays — pure photography. Aspect ratios are consistently square for product grid, full-bleed vertical for hero. No illustrations, no icons beyond minimal UI line icons, no 3D renders. The imagery language is 'still life catalog' — the way a botanical reference book or Aesop product page treats its subjects.",
+    "similar": [
+      {
+        "why": "Same achromatic warm-cream palette, same editorial split layouts, same restraint in using the product photography as the only color in the system",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same near-monochrome interface, same zero-radius sharp components, same ultra-thin display headlines paired with quiet neutral grotesk body type",
+        "business": "Aarke"
+      },
+      {
+        "why": "Same warm bone-and-ink palette, same museum-tag small-caps mono labels, same full-bleed botanical product photography treatment",
+        "business": "Mara Beauty"
+      },
+      {
+        "why": "Same editorial split-hero composition with large display type on one side and full-bleed photography on the other",
+        "business": "Hims"
+      },
+      {
+        "why": "Same scent/mood-based category navigation pattern with radio-dot selectors and compact sidebar list, same botanical still-life photography style",
+        "business": "Oase"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "64px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fafaf9",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Page canvas — the linen-paper foundation every element sits on"
+      },
+      {
+        "hex": "#f3ffa9",
+        "name": "Citron Wash",
+        "level": 2,
+        "purpose": "Promotional surface — used behind value badges and sale highlights"
+      },
+      {
+        "hex": "#ead1d0",
+        "name": "Blush Wash",
+        "level": 3,
+        "purpose": "Editorial accent surface — soft pink wash behind descriptive text blocks"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 4,
+        "purpose": "Inverted surface — primary action buttons, dark product cards, full-bleed footer zones"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Apothecary on raw linen. A warm, hand-pressed editorial where ink-black type sits on bone-cream paper beside botanical product photography.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.35,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.27
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": -0.78
+      },
+      {
+        "role": "display-lg",
+        "size": 75,
+        "lineHeight": 1,
+        "letterSpacing": -0.75
+      }
+    ],
+    "components": [
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive trigger (e.g. 'EXPLORE COLLECTION')",
+        "description": "Ink-black (#000000) 1px border, Bone (#fafaf9) fill, Ink text in Söhne 12px weight 500 uppercase with 0.02em tracking. Zero radius — sharp rectangular edges reinforce the editorial print feel. Padding 12px 24px. No shadow, no fill state — the action is communicated entirely through the outline weight."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary text-based actions and navigation links",
+        "description": "Ink text in Söhne 13px weight 500, underlined with Ink 1px border-bottom. No background, no padding beyond text height. Used for 'Shop', 'About', 'Journal' in nav and 'SHOP KAKADU PLUM' style inline actions."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid cell for product listings in collections",
+        "description": "Square product image with no radius on the Bone (#fafaf9) background. Product name in Söhne 16px weight 400 left-aligned below image. Price in Söhne 16px weight 400 right-aligned. No card border, no shadow. Scentscape label in Söhne Mono 11px uppercase at bottom of card with 0.05em tracking."
+      },
+      {
+        "name": "Value Bundle Badge",
+        "role": "Promotional label overlaid on product cards",
+        "description": "Citron (#f3ffa9) background fill, Ink (#000000) text in Söhne Mono 11px uppercase. Zero radius, sits at top-left of product image. The only color on a product card, drawing the eye without competing with the product photo."
+      },
+      {
+        "name": "Hero Editorial Split",
+        "role": "Full-viewport homepage hero",
+        "description": "Two-column 50/50 split. Left: full-bleed product photography (hands holding a cream box with 'Wild Rosella' printed in PP Right Grotesk 200). Right: Bone (#fafaf9) panel with 'Scents of affection' headline at PP Right Grotesk 52px weight 200, tracking -0.78px, followed by body copy in Söhne 16px weight 400. Black outlined 'EXPLORE COLLECTION' button below."
+      },
+      {
+        "name": "Scent Family Filter",
+        "role": "Left-sidebar category navigation on collection pages",
+        "description": "Vertical list of scent categories. Each row: small square thumbnail image left, category name in Söhne Mono 11px uppercase centered, radio dot right. Active row has a filled black dot; inactive rows have empty circles. Border-bottom 1px Stone (#e5e2dc) separates rows. Zero padding beyond the image height — extremely compact."
+      },
+      {
+        "name": "Category Feature Card",
+        "role": "Right-side featured display on the 'Meet the family' page",
+        "description": "Large square product/botanical photograph (50% width) on left, text panel on right. Headline 'Kakadu Plum' in PP Right Grotesk 34px weight 200. Subtitle 'BUTTERY & SOFT' in Söhne Mono 11px uppercase. Description in Söhne 15px weight 400. Inline 'SHOP KAKADU PLUM' ghost link at bottom."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Blush (#ead1d0) background bar spanning full viewport width. Centered text in Söhne Mono 12px uppercase with 0.05em tracking: 'FREE STD SHIPPING AU WIDE ON ORDERS $50+'. Close icon (×) at right. Height approximately 40px. The only persistent colored surface on the site."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Top bar with logo and menu items",
+        "description": "Bone (#fafaf9) background, no border-bottom. 'leif' wordmark at left in PP Right Grotesk 200 at ~26px. Center menu items ('Shop', 'About', 'Journal', 'Loyalty') in Söhne 13px weight 500. Right cluster: currency selector 'EUR ▾', search icon, account icon, cart icon — all Ink stroke icons, no fills."
+      },
+      {
+        "name": "Product Card Hover State",
+        "role": "Interactive feedback for product grid items",
+        "description": "On hover, the product name gains an Ink underline border. The image itself does not zoom or shift — the restraint is the point. No color change, no shadow lift, no overlay."
+      },
+      {
+        "name": "Footer",
+        "role": "Bottom-of-page navigation and legal content",
+        "description": "Ink (#000000) background, Bone (#fafaf9) text. Column-based layout with category links in Söhne 13px weight 400. Section headings in Söhne Mono 11px uppercase. Logo in Bone at the bottom. Generous vertical padding (64px+)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and section titles — weight 200 is anti-convention for commerce; the ultra-thin strokes create a calligraphic, editorial whisper that treats product names as poetry rather than slogans. Tight tracking (-0.015em) pulls the delicate strokes into a cohesive block.",
+        "sizes": "34px, 52px, 75px",
+        "family": "PP Right Grotesk",
+        "weight": "200",
+        "lineHeight": "1.00",
+        "substitute": "Inter Tight at weight 200, or Manrope 200",
+        "letterSpacing": "-0.015em to -0.01em"
+      },
+      {
+        "role": "Primary body, UI, navigation, product names, buttons — the workhorse neutral grotesque. Weight 400 for body copy keeps a quiet editorial feel; weight 500 for navigation and product names adds enough presence to guide the eye. Slight positive tracking on uppercase labels opens them up to read as proper editorial tags.",
+        "sizes": "10px, 12px, 13px, 15px, 16px, 18px, 20px, 22px, 26px",
+        "family": "Söhne",
+        "weight": "400, 500",
+        "lineHeight": "1.15 to 1.38",
+        "substitute": "Inter, Söhne Trial, or General Sans",
+        "letterSpacing": "0.02em (uppercase labels), -0.01em (body)"
+      },
+      {
+        "role": "Micro-labels and scent-family tags — used for 'SMOKY & MEDITATIVE', 'BUTTERY & SOFT', 'VALUE BUNDLE' type annotations. The monospace width and widened tracking (0.05em) give these labels a scientific, museum-catalog quality that contrasts with the organic display type.",
+        "sizes": "11px, 12px, 13px",
+        "family": "Söhne Mono",
+        "weight": "400",
+        "lineHeight": "1.17 to 1.23",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Geist Mono",
+        "letterSpacing": "0.05em"
+      }
+    ],
+    "description": "Leif is an editorial apothecary: warm cream canvas, botanical product photography, and whisper-thin display type that treats body care like a fashion magazine spread. The palette is almost entirely warm neutrals — stone, bone, ink, a dusty rose blush, and a pale chartreuse for accent — so the only color in the interface comes from the products and botanicals themselves. Layout breathes through generous product photography, split editorial compositions, and minimal chrome. Type does the heavy lifting: PP Right Grotesk at weight 200 for headlines creates a calligraphic lightness uncommon in commerce, while Söhne Mono small caps label scent families like museum tags. Components stay quiet — hairline borders, near-zero radii, no shadows — letting the imagery and typography carry the brand.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Leif Products design system\",\"item\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#style-reference\",\"name\":\"Leif Products design system reference\",\"headline\":\"Leif Products design system | Refero Styles\",\"description\":\"Explore Leif Products's light E-commerce design system: Bone #fafaf9, Ink #000000 colors, PP Right Grotesk, Söhne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Leif Products\",\"url\":\"https://leifproducts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"caption\":\"Screenshot of Leif Products\"},\"image\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Leif Products design system\",\"Leif Products website design\",\"Leif Products colors\",\"Leif Products typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Stone\",\"Linen\",\"PP Right Grotesk\",\"Söhne\",\"Söhne Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Leif Products design system\"},{\"@type\":\"Thing\",\"name\":\"Leif Products website design\"},{\"@type\":\"Thing\",\"name\":\"Leif Products colors\"},{\"@type\":\"Thing\",\"name\":\"Leif Products typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:18:27.276Z\",\"dateModified\":\"2026-04-30T02:18:27.276Z\"}]}19:T8a2,**Quick Color Reference**\n- text: #000000 (Ink)\n- background: #fafaf9 (Bone)\n- border: #e5e2dc (Stone) for subtle, #000000 (Ink) for interactive\n- accent surface: #ead1d0 (Blush) for announcement bars, #f3ffa9 (Citron) for promotional badges\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Editorial Split**: Full-viewport 50/50 layout. Left half: full-bleed product photo. Right half: Bone (#fafaf9) background. Headline 'Scents of affection' in PP Right Grotesk 52px weight 200, color Ink (#000000), letter-spacing -0.78px, line-height 1.0. Subtext in Söhne 15px weight 400, line-height 1.38. Outlined button below: 1px Ink border, Bone fill, text 'EXPLORE COLLECTION' in Söhne 12px weight 500 uppercase with 0.02em tracking, padding 12px 24px, 0px radius.\n\n2. **Product Grid Card**: Bone (#fafaf9) background, no border, 0px radius. Square product image fills the card. Below: product name in Söhne 16px weight 400 left-aligned, price in Söhne 16px weight 400 right-aligned. Bottom row: scent label in Söhne Mono 11px uppercase, 0.05em tracking, e.g. 'SMOKY & MEDITATIVE'. Optional Citron (#f3ffa9) badge top-left with text 'VALUE BUNDLE' in Söhne Mono 11px uppercase on Ink.\n\n3. **Scent Family Filter Row**: Full-width row, 1px Stone (#e5e2dc) border-bottom. Small square thumbnail (~60px) on left, scent name in Söhne Mono 11px uppercase centered in the row, radio indicator on right (filled Ink dot if active, empty circle if not). Zero vertical padding beyond image height.\n\n4. **Announcement Bar**: Full-bleed Blush (#ead1d0) background, 40px height. Centered text 'FREE STD SHIPPING AU WIDE ON ORDERS $50+' in Söhne Mono 12px uppercase, 0.05em tracking, Ink color. Close × icon at right in Ink.\n\n5. **Category Feature Display**: Two-column asymmetric layout — left 50% is a large square botanical/product photograph, right 50% is Bone (#fafaf9) with text stacked vertically. Headline 'Kakadu Plum' in PP Right Grotesk 34px weight 200, Ink. Subtitle 'BUTTERY & SOFT' in Söhne Mono 11px uppercase below headline. Description paragraph in Söhne 15px weight 400. Ghost link 'SHOP KAKADU PLUM' in Söhne 13px weight 500, Ink, 1px Ink border-bottom, at bottom."
+      },
+      {
+        "title": "Type Pairing Logic",
+        "content": "PP Right Grotesk (display) and Söhne (body) are intentionally contrasting: the calligraphic ultra-thin display against the neutral grotesque body creates tension between editorial poetry and practical commerce. Söhne Mono (labels) sits between them, bridging the two with its scientific monospace voice. The rule: display type (34px+) always uses PP Right Grotesk 200; body and UI (≤26px) always uses Söhne 400/500; labels and metadata (≤13px) always uses Söhne Mono with uppercase + 0.05em tracking. Never mix the roles."
+      },
+      {
+        "title": "Chromatic Restraint",
+        "content": "The interface is 0% colorful — all warmth comes from the Bone/Stone/Linen neutrals and the two accent washes (Blush and Citron). This is a deliberate choice: Leif sells botanical body care where the products themselves (amber oils, green extracts, colored bars) are the only color in the user's experience. Adding brand color to the UI would compete with the products. The Citron (#f3ffa9) appears only on sale/value badges; the Blush (#ead1d0) appears only on the announcement bar. Both are desaturated enough to feel like part of the paper-stock palette, not chromatic interruptions."
+      }
+    ],
+    "elevationPhilosophy": "Leif uses zero shadows. Depth comes from border hairlines, whitespace, and the contrast between full-bleed product photography and the flat cream canvas. A shadow would feel heavy and digital — antithetical to the hand-pressed, paper-stock aesthetic. All 'elevation' is achieved through background color shifts (Bone → Citron → Blush → Ink) and border weight changes."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "icon",
+            "button",
+            "input",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "badge"
+          ],
+          "frequency": 2134,
+          "confidence": 1,
+          "prominence": 102982249.54523954,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 53,
+            "card/color": 47,
+            "icon/color": 6,
+            "link/color": 66,
+            "list/color": 48,
+            "other/fill": 29,
+            "badge/color": 7,
+            "image/color": 23,
+            "input/color": 3,
+            "other/color": 149,
+            "button/color": 7,
+            "other/stroke": 7,
+            "heading/color": 17,
+            "body/borderColor": 212,
+            "card/borderColor": 180,
+            "icon/borderColor": 24,
+            "link/borderColor": 255,
+            "list/borderColor": 189,
+            "badge/borderColor": 27,
+            "image/borderColor": 92,
+            "input/borderColor": 11,
+            "other/borderColor": 586,
+            "button/borderColor": 27,
+            "heading/borderColor": 68,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5e2dc",
+          "oklch": {
+            "c": 0.00871171407852305,
+            "h": 84.57403886944701,
+            "l": 0.9134559164516769
+          },
+          "contexts": [
+            "other",
+            "card",
+            "list",
+            "badge"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 6583458.898594242,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 8,
+            "list/borderColor": 3,
+            "badge/borderColor": 1,
+            "other/borderColor": 9
+          }
+        },
+        {
+          "hex": "#fafaf9",
+          "oklch": {
+            "c": 0.00131901478923202,
+            "h": 106.4238006899913,
+            "l": 0.9848252504730842
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 3613625.281558547,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 7,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#edede7",
+          "oklch": {
+            "c": 0.007980691848077783,
+            "h": 106.55142817848876,
+            "l": 0.9444393849662202
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 693627.1170246456,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#595959",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.464002143159062
+          },
+          "contexts": [
+            "button",
+            "card",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 81240.65429158481,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 7,
+            "body/borderColor": 4,
+            "card/borderColor": 28,
+            "button/borderColor": 1
+          }
+        },
+        {
+          "hex": "#ead1d0",
+          "oklch": {
+            "c": 0.02804200604095747,
+            "h": 20.447647666236747,
+            "l": 0.8810826935093162
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 57000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d6d1c7",
+          "oklch": {
+            "c": 0.014693276173314066,
+            "h": 84.58620312530189,
+            "l": 0.8618845796137904
+          },
+          "contexts": [
+            "link",
+            "input"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 56793.48888316851,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 9,
+            "input/borderColor": 1
+          }
+        },
+        {
+          "hex": "#f3ffa9",
+          "oklch": {
+            "c": 0.1086838242337198,
+            "h": 114.92729738115003,
+            "l": 0.9716561554752882
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2328,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000868289811566213,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.11,
+          "background": "#fafaf9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.69,
+          "background": "#f3ffa9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.87,
+          "background": "#000000",
+          "foreground": "#edede7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.24,
+          "background": "#e5e2dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#ead1d0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.8,
+          "background": "#d6d1c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.71,
+          "background": "#fafaf9",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.57,
+          "background": "#f3ffa9",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.96,
+          "background": "#edede7",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#e5e2dc",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#ead1d0",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.6,
+          "background": "#d6d1c7",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 3,
+          "background": "#000000",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#ead1d0",
+          "foreground": "#edede7"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#fafaf9",
+          "foreground": "#edede7"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f3ffa9",
+          "foreground": "#edede7"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingTop|body",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|card",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|body",
+            "paddingTop|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "list",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list",
+            "card",
+            "body",
+            "heading",
+            "badge",
+            "input"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|card",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|heading",
+            "paddingTop|list",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|input"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "input",
+            "card",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "heading",
+            "card",
+            "body",
+            "badge"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginBottom|body",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|other",
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 157,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Söhne",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 392,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Söhne Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 40,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Right Grotesk",
+          "source": "custom",
+          "weights": [
+            200,
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Söhne Mono",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Söhne Mono",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.18,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Söhne Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Söhne Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Söhne Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button",
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "link",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Söhne",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "image",
+            "card",
+            "button",
+            "icon",
+            "badge"
+          ],
+          "frequency": 276,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Söhne",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "PP Right Grotesk",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.68,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "PP Right Grotesk",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.68,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "PP Right Grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "PP Right Grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.68,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/db3e2d16-4e6b-41f9-a7c5-010f76aadb79.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Leif Products design system\",\"item\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#style-reference\",\"name\":\"Leif Products design system reference\",\"headline\":\"Leif Products design system | Refero Styles\",\"description\":\"Explore Leif Products's light E-commerce design system: Bone #fafaf9, Ink #000000 colors, PP Right Grotesk, Söhne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Leif Products\",\"url\":\"https://leifproducts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f56ea4d-ed9d-4a36-8fb5-a801519ef80b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"caption\":\"Screenshot of Leif Products\"},\"image\":\"https://images.refero.design/styles/refero.design/image/16a3a514-b2fb-42b3-ae9a-8848ce0eaf57.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Leif Products design system\",\"Leif Products website design\",\"Leif Products colors\",\"Leif Products typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Stone\",\"Linen\",\"PP Right Grotesk\",\"Söhne\",\"Söhne Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Leif Products design system\"},{\"@type\":\"Thing\",\"name\":\"Leif Products website design\"},{\"@type\":\"Thing\",\"name\":\"Leif Products colors\"},{\"@type\":\"Thing\",\"name\":\"Leif Products typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:18:27.276Z\",\"dateModified\":\"2026-04-30T02:18:27.276Z\"}]}19:T8a2,**Quick Color Reference**\n- text: #000000 (Ink)\n- background: #fafaf9 (Bone)\n- border: #e5e2dc (Stone) for subtle, #000000 (Ink) for interactive\n- accent surface: #ead1d0 (Blush) for announcement bars, #f3ffa9 (Citron) for promotional badges\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Editorial Split**: Full-viewport 50/50 layout. Left half: full-bleed product photo. Right half: Bone (#fafaf9) background. Headline 'Scents of affection' in PP Right Grotesk 52px weight 200, color Ink (#000000), letter-spacing -0.78px, line-height 1.0. Subtext in Söhne 15px weight 400, line-height 1.38. Outlined button below: 1px Ink border, Bone fill, text 'EXPLORE COLLECTION' in Söhne 12px weight 500 uppercase with 0.02em tracking, padding 12px 24px, 0px radius.\n\n2. **Product Grid Card**: Bone (#fafaf9) background, no border, 0px radius. Square product image fills the card. Below: product name in Söhne 16px weight 400 left-aligned, price in Söhne 16px weight 400 right-aligned. Bottom row: scent label in Söhne Mono 11px uppercase, 0.05em tracking, e.g. 'SMOKY & MEDITATIVE'. Optional Citron (#f3ffa9) badge top-left with text 'VALUE BUNDLE' in Söhne Mono 11px uppercase on Ink.\n\n3. **Scent Family Filter Row**: Full-width row, 1px Stone (#e5e2dc) border-bottom. Small square thumbnail (~60px) on left, scent name in Söhne Mono 11px uppercase centered in the row, radio indicator on right (filled Ink dot if active, empty circle if not). Zero vertical padding beyond image height.\n\n4. **Announcement Bar**: Full-bleed Blush (#ead1d0) background, 40px height. Centered text 'FREE STD SHIPPING AU WIDE ON ORDERS $50+' in Söhne Mono 12px uppercase, 0.05em tracking, Ink color. Close × icon at right in Ink.\n\n5. **Category Feature Display**: Two-column asymmetric layout — left 50% is a large square botanical/product photograph, right 50% is Bone (#fafaf9) with text stacked vertically. Headline 'Kakadu Plum' in PP Right Grotesk 34px weight 200, Ink. Subtitle 'BUTTERY & SOFT' in Söhne Mono 11px uppercase below headline. Description paragraph in Söhne 15px weight 400. Ghost link 'SHOP KAKADU PLUM' in Söhne 13px weight 500, Ink, 1px Ink border-bottom, at bottom."
+}

@@ -1,0 +1,292 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text on light surfaces, dark section backgrounds, inverse text on light cards — the void that carries the constellation"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light section text on dark backgrounds, card surfaces, button backgrounds on dark hero — the positive space"
+    },
+    "hairline-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Gray — Hairline borders, dividers, card outlines — the most-used neutral at 1500+ occurrences forms the structural skeleton"
+    },
+    "mid-gray": {
+      "$value": "#757575",
+      "$type": "color",
+      "$description": "Mid Gray — Secondary text, muted link borders, disabled states, tertiary metadata"
+    },
+    "warm-bone": {
+      "$value": "#f2f1e9",
+      "$type": "color",
+      "$description": "Warm Bone — Input field borders, warm off-white fills — a slight warm shift from the achromatic scale"
+    },
+    "ash": {
+      "$value": "#acaba6",
+      "$type": "color",
+      "$description": "Ash — Tertiary borders, muted icon fills — the quietest neutral in the system"
+    },
+    "signal-green": {
+      "$value": "#00ec97",
+      "$type": "color",
+      "$description": "Signal Green — Primary action buttons, active link backgrounds, accent text, and any element that must pulse — the only chromatic function color in the system"
+    },
+    "mint-sage": {
+      "$value": "#c7f5d8",
+      "$type": "color",
+      "$description": "Mint Sage — Full-bleed light section backgrounds — a flat, desaturated mint that reads as ambient rather than decorative, providing visual rest between dark bands"
+    },
+    "teal-pulse": {
+      "$value": "#17d9d4",
+      "$type": "color",
+      "$description": "Teal Pulse — Secondary accent within the AI text-tile pattern and illustration details — cool teal offset against Signal Green adds chromatic depth without competing"
+    }
+  },
+  "font": {
+    "fkgrotesk": {
+      "$value": "FKGrotesk",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI, headings, and body — a geometric grotesque that handles the extreme 16-to-80px range without losing character. Weight 500 carries display headlines, allowing scale (80px) to do the work that weight 700 would do in a conventional system. The tight letter-spacing and near-1.0 line-height at large sizes make headlines feel architectural rather than editorial."
+    },
+    "mona-sans": {
+      "$value": "Mona Sans",
+      "$type": "fontFamily",
+      "$description": "Caption/eyebrow labels and micro-copy — weight 600 at 12px creates compact, all-caps-feeling tags that sit beside larger FKGrotesk text as functional punctuation"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "FKGrotesk",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Dark section base — hero, feature blocks, and footer bands form the dominant canvas"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Light section base and card surface — appears as a white band in the alternating rhythm"
+    },
+    "mint": {
+      "$value": "#c7f5d8",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed accent section — used sparingly for the Vision band"
+    },
+    "signal": {
+      "$value": "#00ec97",
+      "$type": "color",
+      "$description": "Surface level 4: Active state surface — button fills, link hovers, the only chromatic surface layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://near.org",
+      "siteName": "NEAR",
+      "extractedAt": "2026-06-03T20:01:05.474Z",
+      "variant": "extended"
+    }
+  }
+}

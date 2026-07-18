@@ -1,0 +1,399 @@
+{
+  "color": {
+    "void": {
+      "$value": "#08080a",
+      "$type": "color",
+      "$description": "Void — Page canvas, deepest surface, card backgrounds — the base layer against which everything else floats"
+    },
+    "charcoal": {
+      "$value": "#0d0d12",
+      "$type": "color",
+      "$description": "Charcoal — Section backgrounds, elevated panels, modal surfaces — first step off the canvas"
+    },
+    "graphite": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Graphite — Card surfaces, nested containers, secondary panels"
+    },
+    "slate": {
+      "$value": "#25252d",
+      "$type": "color",
+      "$description": "Slate — Elevated surface fill, subtle button hover states, dark interactive variant"
+    },
+    "iron": {
+      "$value": "#31313a",
+      "$type": "color",
+      "$description": "Iron — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#62626f",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, inactive icons, low-emphasis body"
+    },
+    "fog": {
+      "$value": "#8b8e9c",
+      "$type": "color",
+      "$description": "Fog — Secondary text, placeholder copy, subheadings, icon strokes"
+    },
+    "pearl": {
+      "$value": "#aeaac0",
+      "$type": "color",
+      "$description": "Pearl — Primary body text, card borders, heading borders — the dominant foreground voice"
+    },
+    "chalk": {
+      "$value": "#dad7de",
+      "$type": "color",
+      "$description": "Chalk — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "lavender-beam": {
+      "$value": "#ab8ff1",
+      "$type": "color",
+      "$description": "Lavender Beam — Link borders, accent strokes, chromatic highlight — the violet signal that breaks the monochrome"
+    },
+    "iris-glow": {
+      "$value": "#8960f0",
+      "$type": "color",
+      "$description": "Iris Glow — Deeper violet for link hover, gradient endpoint, chromatic emphasis on interactive accents"
+    },
+    "webgl-aurora": {
+      "$value": "#8e6ce4",
+      "$type": "color",
+      "$description": "WebGL Aurora — Hero radial gradient — the signature prismatic light burst that defines the brand atmosphere"
+    }
+  },
+  "font": {
+    "overused-grotesk": {
+      "$value": "Overused Grotesk",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — the signature voice. Aggressive negative tracking (up to -6.3%) pulls letters into near-contact, and near-1.0 line-height lets large sizes stack tight without descender collision. Weight stays at 400–500; the font does the shouting through size and tracking, not weight."
+    },
+    "sprat": {
+      "$value": "Sprat",
+      "$type": "fontFamily",
+      "$description": "Secondary display for select editorial moments. Same tight tracking philosophy as Overused Grotesk but with a different personality — more condensed, more fragile. Use sparingly for typographic variety, not as a workhorse."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Body, UI, navigation, buttons, cards. The system stack keeps file weight at zero and provides a neutral voice for everything that isn't display. Subtle -1% tracking tightens the default rendering without distorting it. Weight 500 is the default emphasis level, not 600 or 700."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Overused Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Overused Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sprat",
+        "fontSize": "46px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Overused Grotesk",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sprat",
+        "fontSize": "61px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 61px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Overused Grotesk",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Overused Grotesk",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 0.99
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 215px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "118": {
+      "$value": "118px",
+      "$type": "dimension",
+      "$description": "Spacing 118px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.4) 0px 2px 4px -1.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "subtle": {
+      "$value": "rgb(49, 49, 58) 0px -1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#08080a",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the void — the darkest layer, used for full-page surface and most section backgrounds"
+    },
+    "panel": {
+      "$value": "#0d0d12",
+      "$type": "color",
+      "$description": "Surface level 1: First surface elevation — section-level containers, hero overlays, contained content blocks"
+    },
+    "card": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Surface level 2: Nested cards, feature blocks, content surfaces that need to sit above the section"
+    },
+    "elevated": {
+      "$value": "#25252d",
+      "$type": "color",
+      "$description": "Surface level 3: Highest interactive surface — hover states, selected items, popover backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.unicorn.studio",
+      "siteName": "Unicorn Studio",
+      "extractedAt": "2026-06-03T20:12:22.803Z",
+      "variant": "extended"
+    }
+  }
+}

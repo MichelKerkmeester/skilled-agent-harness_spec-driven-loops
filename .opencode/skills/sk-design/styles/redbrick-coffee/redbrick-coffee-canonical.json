@@ -1,0 +1,1522 @@
+{
+  "source": "https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f",
+  "uuid": "9307193e-7ce3-48c1-b650-8ab77aa83c3f",
+  "name": "Redbrick Coffee",
+  "northStar": "Scarlet ink editorial on butcher paper",
+  "capturedAt": "2026-07-18T08:08:46.048Z",
+  "meta": {
+    "url": "https://redbrick.coffee",
+    "siteName": "Redbrick Coffee",
+    "extractedAt": "2026-06-03T18:15:41.140Z",
+    "durationMs": 32599,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 326,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Brick Red #e82c2a for every interactive text element, every section label, and every outlined action — the system is monochrome with a single chromatic thread.",
+      "Set display headlines in Editorial Old weight 300 at 100–150px with line-height ~1.0; never bold, never weight 400+.",
+      "Apply consistent positive tracking to Surt: 0.013em at 15px, 0.017em at 20px, 0.03em at 30px, 0.04em at 35px, 0.06em at 10px labels.",
+      "Use 25px border-radius for all cards and image blocks; 50px for pill buttons and inputs; 3.75px for inline text links.",
+      "Pair every image block with a text block in a 50/50 split — the system is editorial, not full-bleed spectacle.",
+      "Use 10px GTStandard-M with 0.06em tracking for running heads, announcement text, and arrow links — never a larger size for utility labels.",
+      "Keep product cards on a #f2f2f2 surface with 30px padding; no drop shadows, let the 25px radius do the elevation work."
+    ],
+    "donts": [
+      "Do not introduce a filled (solid background) button style — Redbrick's only action surface is the outlined chromatic link.",
+      "Do not bold the display headline; weight 300 thin serif IS the hierarchy, increasing weight destroys the brand.",
+      "Do not add a second brand color; the system is red-on-cream, not multi-color.",
+      "Do not use drop shadows on cards or images; elevation is expressed by 25px radius and the #f2f2f2 surface shift.",
+      "Do not center the display headline in narrow columns — it belongs in a wide left/right split with generous left padding.",
+      "Do not place white text directly on the #f2c2f2 surface (low contrast) or on the announcement bar with anything other than pure white.",
+      "Do not use stock product-on-white e-commerce photography; imagery must be warm overhead lifestyle with wooden surfaces, books, and hands."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e82c2a",
+        "name": "Brick Red",
+        "role": "Red accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#212529",
+        "name": "Press Black",
+        "role": "Primary body and paragraph text, hero supporting text, and darkest surface accents where deeper contrast than white-on-red is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cream White",
+        "role": "Page canvas, image backgrounds, nav fill, and card surface base — the warm white that makes Brick Red feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Soft Grey",
+        "role": "Product card surface and elevated panels, one subtle step below the white canvas to separate scrolled content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Carbon",
+        "role": "Dark anchor for footer, inverse panels, and the few dark-on-light UI elements that need more weight than Press Black provides",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections with edge-to-edge content; the canvas is unconstrained horizontally. The dominant pattern is a 50/50 split of lifestyle image and editorial text, alternating left/right as the user scrolls. Section rhythm is marked by tiny uppercase red labels with a hairline rule and a right-aligned 'Shop blends →' arrow link — like magazine running heads. The top of the page has a full-width red announcement bar, then a white nav strip, then a hero split. A product card row (4–5 cards) appears at major intervals. A secondary sub-nav row sits between the primary nav and the hero. The page feels like a printed broadsheet, not a typical online store.",
+    "imagery": "Photography is warm overhead lifestyle — wooden tables, open books, magazines, espresso machines, hands cradling cups. Shots are tightly cropped and feel like magazine spreads. Product packaging is shown on pastel or branded colored backgrounds within the card frame. There is no white-cyc product photography, no studio lighting, no model shots — the coffee and its context are the hero. Color treatment is warm and slightly desaturated, leaning into amber and cream tones that harmonize with the Brick Red and cream-white palette.",
+    "similar": [
+      {
+        "why": "Same editorial typography pairing — thin serif display + tracked sans body — and a single restrained color thread throughout the interface.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Magazine-spread layout language with alternating image+text splits, serif display headlines at huge sizes, and tiny tracked section labels.",
+        "business": "Goop"
+      },
+      {
+        "why": "Same coffee brand restraint — generous whitespace, warm lifestyle photography, and editorial section rhythm over product-grid density.",
+        "business": "Blue Bottle Coffee"
+      },
+      {
+        "why": "Same thin-serif-at-scale display treatment paired with a clean humanist sans for body, and warm product photography on neutral surfaces.",
+        "business": "Fellow Products"
+      },
+      {
+        "why": "Same full-bleed editorial storefront — image-led halves, hairline section rules, and arrow-link navigation that reads like a print catalog.",
+        "business": "MoMA Design Store"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "25px",
+        "links": "3.75px",
+        "images": "25px",
+        "inputs": "50px",
+        "buttons": "50px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "50px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Cream White Canvas",
+        "level": 0,
+        "purpose": "Page base background for all sections and the dominant reading surface"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Soft Grey Card",
+        "level": 1,
+        "purpose": "Product card and content block surface, one tonal step below the canvas"
+      },
+      {
+        "hex": "#e82c2a",
+        "name": "Brick Red Panel",
+        "level": 2,
+        "purpose": "Top announcement bar and occasional full-width red bands"
+      },
+      {
+        "hex": "#121212",
+        "name": "Carbon Panel",
+        "level": 3,
+        "purpose": "Dark footer and inverse panels"
+      }
+    ],
+    "northStar": "Scarlet ink editorial on butcher paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.195
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.34
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.4
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 0.99,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "display-lg",
+        "size": 150,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Full-width top banner",
+        "description": "Full-bleed #e82c2a background spanning the viewport edge-to-edge. Center-aligned tagline in 10px GTStandard-M white text with 0.06em tracking. Right side holds secondary nav links (About, Wholesale, Office Coffee, Contact) in same micro type. Height ~30px. Acts as a red frame that bleeds into the logo and nav below."
+      },
+      {
+        "name": "Brick Logo Mark + Wordmark",
+        "role": "Brand identity in header",
+        "description": "A small 3D red house/brick icon paired with 'REDBRICK' in Surt 400, ~20px, 0.017em tracking, all #e82c2a. The icon and wordmark are vertically aligned, left-padded from the viewport edge with ~30px. The red is the same Brick Red as everything else — no logo-specific variant."
+      },
+      {
+        "name": "Primary Nav Link",
+        "role": "Top-level navigation items",
+        "description": "Surt 400, ~15px, 0.013em tracking, color #e82c2a. Horizontal list spaced ~30px apart. No underline by default, no background. On hover, color stays red (no color shift) — the only state change is opacity. No dropdowns in the primary tier."
+      },
+      {
+        "name": "Secondary Nav Row",
+        "role": "Sub-category navigation strip",
+        "description": "Horizontal list of product categories (Coffee Coffee, Good Day, Rogue Coffee, Dark Coffee, Decaf Coffee) in Surt 400 ~15px #e82c2a, separated by ~30px padding. Sits below primary nav, separated by a 1px #e82c2a rule."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero and section headlines",
+        "description": "Editorial Old weight 300, 100–150px, line-height ~1.0, color #e82c2a. Sits as the left column in a 50/50 image+text split. Never bold, never condensed. Allows the letterforms to dominate the viewport — the thin weight is the anti-statement that becomes the statement."
+      },
+      {
+        "name": "Section Label",
+        "role": "Magazine-style running head for content blocks",
+        "description": "Tiny 10px uppercase-style label in Surt 400, color #e82c2a, 0.06em tracking. Sits flush left at the top of a content section, above a 1px red rule, paired with a right-aligned 'Shop blends →' arrow link at the same size."
+      },
+      {
+        "name": "Arrow Link",
+        "role": "Editorial cross-link with directional indicator",
+        "description": "10–15px Surt 400 #e82c2a, right-aligned, with a thin '→' or '⟶' arrow character after the label. 3.75px border-radius (effectively a thin underline). Used to navigate between collections, e.g. 'Shop blends →', 'Stock up →', 'Enquire →'."
+      },
+      {
+        "name": "Product Card",
+        "role": "Blend and single-serve product tiles",
+        "description": "Rounded card with 25px border-radius, #f2f2f2 background fill, and 30px padding all sides. Contains a centered product package image (bag or sachet) on a pastel or colored background. Below the image sits a product name in Surt 400 20px #212529 and small descriptors. No drop shadow — the 25px radius does the work of separation."
+      },
+      {
+        "name": "Lifestyle Image Block",
+        "role": "Full-bleed hero photography",
+        "description": "Rounded 25px radius, full-bleed within its grid column. Photography is overhead or waist-level, warm-toned, featuring coffee on wooden tables, books, magazines, espresso machines, and hands. No overlays, no text on image — the image is a stand-alone visual paragraph."
+      },
+      {
+        "name": "Split Text Block",
+        "role": "Companion copy for an image block",
+        "description": "Right or left column of a 50/50 split. Contains the Editorial Old display headline (already specified) followed by a 20px Surt 400 #212529 paragraph at 1.3 line-height, max-width ~480px. Whitespace above and below the text is generous (~50px) to let the serif breathe."
+      },
+      {
+        "name": "Outlined Action Link",
+        "role": "Ghost-style CTA inside content blocks",
+        "description": "Ghost/outlined action in 1px #e82c2a border, 3.75px radius, 10–15px Surt 400 #e82c2a text, 10px vertical / 20px horizontal padding. No fill. Functions as the system's primary action style — no filled buttons exist in this system."
+      },
+      {
+        "name": "Footer Mini-Nav",
+        "role": "Bottom utility links",
+        "description": "Horizontal list in Surt 400 15px #e82c2a, separated by ~30px padding, sits at the foot of a dark (#121212) or light panel. No icons, no grouping — just inline text links."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, nav links, buttons, card labels, and all functional UI. Positive tracking (0.013–0.05em) is consistent across sizes, giving the type a typeset, slightly old-style feel that pairs with the editorial display serif. Replaces body and UI text at every level.",
+        "sizes": "15px, 20px, 30px, 35px",
+        "family": "Surt",
+        "weight": "400",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Söhne, Inter, or Untitled Sans",
+        "letterSpacing": "0.013em at 15px, 0.017em at 20px, 0.03em at 30px, 0.04em at 35px"
+      },
+      {
+        "role": "Display headlines only. The weight-300 thin serif at 100–150px with ~1.0 line-height is the signature — anti-convention, never bold, letting the letterforms carry the page rather than weight. Enable 'clig' and 'liga' for contextual alternates.",
+        "sizes": "100px, 105px, 150px",
+        "family": "Editorial Old",
+        "weight": "300",
+        "lineHeight": "0.99–1.20",
+        "substitute": "Playfair Display, GT Super, or PP Editorial Old (paid)",
+        "letterSpacing": "near-zero (-0.005em to 0.006em)",
+        "fontFeatureSettings": "\"clig\" on, \"liga\" on"
+      },
+      {
+        "role": "Micro-labels and uppercase taglines (e.g. 'For Coffee Drinkers' banner). Tight 10px with 0.06em tracking mimics letterpress taglines.",
+        "sizes": "10px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "GT Standard Mono, JetBrains Mono, or system-ui mono",
+        "letterSpacing": "0.0600em"
+      },
+      {
+        "role": "system-ui — detected in extracted data but not described by AI",
+        "sizes": "10px",
+        "family": "system-ui",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.06"
+      }
+    ],
+    "description": "Redbrick is an editorial coffee storefront printed in scarlet ink on warm white pages. The system is defined by a single aggressive red (#e82c2a) that saturates every interactive surface — logo, nav text, section labels, borders, arrows, and the announcement bar — while the page canvas stays creamy white and cards sit on soft #f2f2f2 surfaces. Display headlines are a weight-300 didone-adjacent serif (Editorial Old) at extraordinary sizes (100–150px) with near-1.0 line-height, letting the letterforms breathe without bold weight. Body and UI copy use a humanist sans (Surt) with consistent positive tracking, giving even short labels a printed, typeset quality. Photography is overhead lifestyle — wooden tables, open books, espresso machines, hands cradling cups — warm and editorial rather than glossy e-commerce. Layout alternates half-width image and text blocks, anchored by tiny uppercase section labels and right-aligned arrow links that behave like magazine running heads.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redbrick Coffee design system\",\"item\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#style-reference\",\"name\":\"Redbrick Coffee design system reference\",\"headline\":\"Redbrick Coffee design system | Refero Styles\",\"description\":\"Explore Redbrick Coffee's light E-commerce design system: Brick Red #e82c2a, Press Black #212529 colors, Surt, Editorial Old typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Redbrick Coffee\",\"url\":\"https://redbrick.coffee\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"caption\":\"Screenshot of Redbrick Coffee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Redbrick Coffee design system\",\"Redbrick Coffee website design\",\"Redbrick Coffee colors\",\"Redbrick Coffee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Brick Red\",\"Press Black\",\"Cream White\",\"Soft Grey\",\"Surt\",\"Editorial Old\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee design system\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee website design\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee colors\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:34:58.950Z\",\"dateModified\":\"2026-04-30T02:34:58.950Z\"}]}19:T78f,Quick Color Reference:\n- text: #212529 (Press Black for body), #e82c2a (Brick Red for interactive/headlines), #ffffff (Cream White for canvas)\n- background: #ffffff canvas, #f2f2f2 card surface, #e82c2a red band, #121212 dark panel\n- border: #e82c2a at 1px for rules, section dividers, and outlined actions\n- accent: #e82c2a is the single accent — used for logo, nav, labels, arrows, display headlines\n- primary action: #e82c2a (outlined action border)\n\n3–5 Example Component Prompts:\n\n1. Create a hero section in the Redbrick style: full-bleed white background. Left half holds an Editorial Old weight 300 headline at 100px line-height 1.0 in #e82c2a, tracking -0.5px. Below the headline, a 20px Surt weight 400 paragraph in #212529, max-width 480px, line-height 1.3, tracking 0.017em. Right half holds a rounded-25px lifestyle image of a coffee cup on a wooden table.\n\n2. Create a product blend card grid: 4 cards in a row on #f2f2f2 surface, 25px radius, 30px padding. Each card has a centered product bag image, a 20px Surt 400 product name in #212529 below (tracking 0.017em), and tiny 10px Surt 400 #e82c2a descriptor text (tracking 0.06em). No drop shadow.\n\n3. Create a section divider with running head: a 1px #e82c2a hairline rule, a 10px Surt 400 #e82c2a section label left-aligned above the rule (tracking 0.06em), and a right-aligned 'Shop blends →' arrow link in the same type, using the 3.75px radius underlined link style.\n\n4. Create an outlined action link: 1px #e82c2a border, 3.75px border-radius, 10px vertical and 20px horizontal padding, text is 15px Surt 400 #e82c2a (tracking 0.013em). No fill, no shadow. Reads as the primary interactive surface in this system.\n\n5. Create the top announcement bar: full-bleed #e82c2a background, ~30px tall, centered 10px GTStandard-M white text at 0.06em tracking. Right side holds About / Wholesale / Office Coffee / Contact as the same white micro-type, evenly spaced."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows entirely. Elevation is communicated through (1) the 25px border-radius on cards and images, (2) the one-step surface shift from #ffffff canvas to #f2f2f2 card, and (3) the full-bleed red band as a chromatic divider. Shadows would read as e-commerce convention and undermine the editorial identity."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 34407033.92267477,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "other/fill": 2,
+            "other/color": 9,
+            "hero/borderColor": 4,
+            "other/borderColor": 36
+          }
+        },
+        {
+          "hex": "#e82c2a",
+          "oklch": {
+            "c": 0.22186317187690888,
+            "h": 27.48980766134932,
+            "l": 0.6028368618116288
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "nav",
+            "body",
+            "list",
+            "card",
+            "image",
+            "input",
+            "button",
+            "footer",
+            "icon"
+          ],
+          "frequency": 1147,
+          "confidence": 1,
+          "prominence": 11207989.015863439,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 22,
+            "card/color": 11,
+            "icon/color": 10,
+            "link/color": 31,
+            "list/color": 25,
+            "other/fill": 2,
+            "image/color": 2,
+            "input/color": 1,
+            "other/color": 98,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 13,
+            "nav/borderColor": 56,
+            "body/borderColor": 88,
+            "card/borderColor": 44,
+            "icon/borderColor": 40,
+            "link/borderColor": 124,
+            "list/borderColor": 100,
+            "image/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 390,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 52,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 1223368.4533710945,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 525105.9235251808,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 4,
+            "other/fill": 16,
+            "other/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 16,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 17556.69791913346,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 20,
+            "other/fill": 20
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5734,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#006fcf",
+          "oklch": {
+            "c": 0.17039186771823575,
+            "h": 253.49710662392374,
+            "l": 0.5440331002992141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2047.2903005711555,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#5a31f4",
+          "oklch": {
+            "c": 0.26385043687247617,
+            "h": 281.10249524482936,
+            "l": 0.5077459821513816
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 912,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fff48d",
+          "oklch": {
+            "c": 0.1252004784051848,
+            "h": 103.11337298863897,
+            "l": 0.9543947209212326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 792,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#005b9a",
+          "oklch": {
+            "c": 0.12526813293287806,
+            "h": 248.40387071678353,
+            "l": 0.46083434150784336
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 727,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#0e73b9",
+          "oklch": {
+            "c": 0.13704139734209692,
+            "h": 246.9486902778753,
+            "l": 0.5399605063176147
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 520,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#059da4",
+          "oklch": {
+            "c": 0.10695099043357031,
+            "h": 200.44312216380203,
+            "l": 0.6331255916995415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 371,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#142688",
+          "oklch": {
+            "c": 0.16242128594415978,
+            "h": 267.37449748569094,
+            "l": 0.3340041612506964
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 332.84212515144276,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#eb001b",
+          "oklch": {
+            "c": 0.24092118323984527,
+            "h": 26.895939121129537,
+            "l": 0.5913400776286699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f79e1b",
+          "oklch": {
+            "c": 0.16305037209073486,
+            "h": 68.44570771704122,
+            "l": 0.7713824833196328
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#5f6368",
+          "oklch": {
+            "c": 0.009388640685799315,
+            "h": 253.91440396968414,
+            "l": 0.49787747998321896
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 159,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1d1c1c",
+          "oklch": {
+            "c": 0.0015428021023055297,
+            "h": 17.270039872497257,
+            "l": 0.22755957564058207
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 157.89111045234063,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#3086c8",
+          "oklch": {
+            "c": 0.129101361824074,
+            "h": 245.79640074303785,
+            "l": 0.6000926508529643
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 81,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1e3764",
+          "oklch": {
+            "c": 0.0850166845326298,
+            "h": 261.1915226564557,
+            "l": 0.3420823286201777
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 79,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ff5f00",
+          "oklch": {
+            "c": 0.20969416782610914,
+            "h": 41.41897947318606,
+            "l": 0.6872155937778596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#cc0066",
+          "oklch": {
+            "c": 0.22030215095267489,
+            "h": 2.1145919375423774,
+            "l": 0.5457416410595
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#012169",
+          "oklch": {
+            "c": 0.13083829642882253,
+            "h": 262.27919519079535,
+            "l": 0.284542092916734
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 33,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fbbc04",
+          "oklch": {
+            "c": 0.1699294319223394,
+            "h": 84.01425825712796,
+            "l": 0.8304239092121405
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.5239728533288965,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#121212",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#fff48d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#ffffff",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#f2f2f2",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#fff48d",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.43,
+          "background": "#ffffff",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.19,
+          "background": "#f2f2f2",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#fff48d",
+          "foreground": "#1d1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.76,
+          "background": "#ffffff",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.78,
+          "background": "#f2f2f2",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.65,
+          "background": "#fff48d",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.18,
+          "background": "#f2f2f2",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.06,
+          "background": "#fff48d",
+          "foreground": "#012169"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#142688"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#fbbc04",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#ffffff",
+          "foreground": "#1e3764"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.28,
+          "background": "#f2f2f2",
+          "foreground": "#142688"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.17,
+          "background": "#fff48d",
+          "foreground": "#142688"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 25,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 3.75,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginBottom|input",
+            "marginLeft|input"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "heading",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 121,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "list",
+            "other",
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list",
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 117,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 234,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Surt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 231,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorial Old",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\""
+          ]
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "list",
+            "card",
+            "body",
+            "image",
+            "footer",
+            "icon"
+          ],
+          "frequency": 190,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Surt",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Editorial Old",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "Editorial Old",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.99,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 150,
+          "family": "Editorial Old",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.004,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/95522e8d-4eec-41c3-8e80-de844c04f7c2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redbrick Coffee design system\",\"item\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#style-reference\",\"name\":\"Redbrick Coffee design system reference\",\"headline\":\"Redbrick Coffee design system | Refero Styles\",\"description\":\"Explore Redbrick Coffee's light E-commerce design system: Brick Red #e82c2a, Press Black #212529 colors, Surt, Editorial Old typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Redbrick Coffee\",\"url\":\"https://redbrick.coffee\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9307193e-7ce3-48c1-b650-8ab77aa83c3f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"caption\":\"Screenshot of Redbrick Coffee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac247b5e-5a05-42bc-b6ec-0be55b305197.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Redbrick Coffee design system\",\"Redbrick Coffee website design\",\"Redbrick Coffee colors\",\"Redbrick Coffee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Brick Red\",\"Press Black\",\"Cream White\",\"Soft Grey\",\"Surt\",\"Editorial Old\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee design system\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee website design\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee colors\"},{\"@type\":\"Thing\",\"name\":\"Redbrick Coffee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:34:58.950Z\",\"dateModified\":\"2026-04-30T02:34:58.950Z\"}]}19:T78f,Quick Color Reference:\n- text: #212529 (Press Black for body), #e82c2a (Brick Red for interactive/headlines), #ffffff (Cream White for canvas)\n- background: #ffffff canvas, #f2f2f2 card surface, #e82c2a red band, #121212 dark panel\n- border: #e82c2a at 1px for rules, section dividers, and outlined actions\n- accent: #e82c2a is the single accent — used for logo, nav, labels, arrows, display headlines\n- primary action: #e82c2a (outlined action border)\n\n3–5 Example Component Prompts:\n\n1. Create a hero section in the Redbrick style: full-bleed white background. Left half holds an Editorial Old weight 300 headline at 100px line-height 1.0 in #e82c2a, tracking -0.5px. Below the headline, a 20px Surt weight 400 paragraph in #212529, max-width 480px, line-height 1.3, tracking 0.017em. Right half holds a rounded-25px lifestyle image of a coffee cup on a wooden table.\n\n2. Create a product blend card grid: 4 cards in a row on #f2f2f2 surface, 25px radius, 30px padding. Each card has a centered product bag image, a 20px Surt 400 product name in #212529 below (tracking 0.017em), and tiny 10px Surt 400 #e82c2a descriptor text (tracking 0.06em). No drop shadow.\n\n3. Create a section divider with running head: a 1px #e82c2a hairline rule, a 10px Surt 400 #e82c2a section label left-aligned above the rule (tracking 0.06em), and a right-aligned 'Shop blends →' arrow link in the same type, using the 3.75px radius underlined link style.\n\n4. Create an outlined action link: 1px #e82c2a border, 3.75px border-radius, 10px vertical and 20px horizontal padding, text is 15px Surt 400 #e82c2a (tracking 0.013em). No fill, no shadow. Reads as the primary interactive surface in this system.\n\n5. Create the top announcement bar: full-bleed #e82c2a background, ~30px tall, centered 10px GTStandard-M white text at 0.06em tracking. Right side holds About / Wholesale / Office Coffee / Contact as the same white micro-type, evenly spaced."
+}

@@ -1,0 +1,669 @@
+{
+  "source": "https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3",
+  "uuid": "3e397dc6-0e68-435f-9dee-1966a9d245d3",
+  "name": "Riptype Foundry",
+  "northStar": "ink on black paper — the type is the only bright thing in the room",
+  "capturedAt": "2026-07-18T07:13:31.948Z",
+  "meta": {
+    "url": "https://www.riptype.xyz",
+    "siteName": "Riptype Foundry",
+    "extractedAt": "2026-06-03T22:06:14.473Z",
+    "durationMs": 26956,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 190,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #d9ff00 exclusively for the Download Pill CTA and decorative star marks — the acid green's power comes from scarcity",
+      "Pair all body text (#d0d0d0) with the Workshop Black (#121212) canvas — contrast ratio 12.2:1 exceeds AAA",
+      "Set type specimens at 43px+ with 0.083em letter-spacing to give the display characters room to demonstrate their own proportions",
+      "Use 6px as the default element gap; 7px rowGap is the specimen-book rhythm",
+      "Communicate elevation through surface tone (#121212 → #292929) and 1px #d0d0d0 hairlines, never through shadows",
+      "Keep radius at 0px for cards and images — the only rounded elements are the 144px pill CTA and the 4px standard button",
+      "Default to Office 400 for all UI; reach for Office 700 only for display specimens and emphasis moments"
+    ],
+    "donts": [
+      "Do not introduce additional chromatic colors — the red announcement panel and acid green are the only breaks from monochrome",
+      "Do not add drop shadows to any component — the system is intentionally flat and print-referenced",
+      "Do not use rounded corners on cards or images beyond what the data specifies (0px)",
+      "Do not substitute a different display font for specimens — the typeforms on this site ARE the product catalog",
+      "Do not soften the dark canvas with gradients or tints — #121212 is absolute and edge-to-edge",
+      "Do not apply the acid green to body text, icons, or large areas — it loses signal value at any surface area larger than the pill button",
+      "Do not add decorative dividers, background tints, or section backgrounds — content is separated by whitespace and hairlines only"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Workshop Black",
+        "role": "Page background, primary canvas — the dark surface the type sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292929",
+        "name": "Platen Gray",
+        "role": "Raised surface for buttons, hover fills, interactive plate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0d0d0",
+        "name": "Bone",
+        "role": "Default body text, link strokes, hairline rules, icon outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a0a0a0",
+        "name": "Ash",
+        "role": "Secondary text, metadata, subdued borders and captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Headings, display type, high-contrast text, image borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9ff00",
+        "name": "Acid Flash",
+        "role": "Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Three-column full-bleed layout with no max-width container. Left column (~200px): sticky navigation with text links and small icon marks, separated by hairline borders. Center column (flexible, dominant): font specimens stacked vertically with 7px row gap, paired with descriptive copy. Right column (~260px): vertical image gallery of custom type applications, each image a square or near-square tile. The red announcement panel interrupts the center column as a full-height block, breaking the monochrome rhythm. The grid is intentionally tight and editorial — the layout reads like a specimen book opened to a spread, not a modern web page. Navigation lives in the left margin, content in the middle, proof on the right. No hero, no large display area at the top — the first viewport is already into the product.",
+    "imagery": "Product photography is tightly cropped and square, focused on objects that demonstrate the type in use: printed packaging, laser-cut letter forms on a lunar surface, resin-cast specimen objects, branded product shots. Images are treated as flat tiles with 1px #d0d0d0 borders and no rounding — they read as prints pinned to the page. The right column functions as a visual proof gallery: each image answers the question 'what does this type look like in the world?' with minimal lifestyle context. No people, no environments beyond controlled studio setups. The red announcement panel carries a visible grain/noise texture overlay that references risograph and screen-print production aesthetics — a deliberate signal that this is a workshop, not a storefront.",
+    "similar": [
+      {
+        "why": "Same type-foundry specimen-book layout: dark canvas, dense character displays, minimal chrome, and the type itself as the visual hero",
+        "business": "Dinamo (dinamo.xyz)"
+      },
+      {
+        "why": "Editorial dark-mode specimen presentation with single accent color signals and monospace-grid information density",
+        "business": "Production Type"
+      },
+      {
+        "why": "Type foundry site that treats typography as product — border-driven flat cards, no shadows, high-contrast monochrome with rare chromatic punctuation",
+        "business": "Grilli Type"
+      },
+      {
+        "why": "Dark specimen sheets with acid-bright accent color for interactive elements, prioritizing the typeforms over UI ornamentation",
+        "business": "OH no Type"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "pills": "144px",
+        "buttons": "4px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "84px",
+      "cardPadding": "13px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#121212",
+        "name": "Workshop Black",
+        "level": 0,
+        "purpose": "Base page canvas — extends edge to edge"
+      },
+      {
+        "hex": "#292929",
+        "name": "Platen Gray",
+        "level": 1,
+        "purpose": "Interactive surface for buttons and hover states"
+      }
+    ],
+    "northStar": "ink on black paper — the type is the only bright thing in the room",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.19,
+        "letterSpacing": 0.083
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.58,
+        "letterSpacing": 0.016
+      },
+      {
+        "role": "display",
+        "size": 43,
+        "lineHeight": 1,
+        "letterSpacing": 0.083
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Nav Link",
+        "role": "Primary navigation entry",
+        "description": "Text link in Office 400 at 12–16px, color #d0d0d0 with optional #a0a0a0 hover. Preceded by a small icon mark. Zero radius, no background, separated by hairline #d0d0d0 borders at 1px. No fill state — selected items are implied by absence of stroke or by icon color shift."
+      },
+      {
+        "name": "Acid Download Pill",
+        "role": "Primary CTA — the single most important action on the site",
+        "description": "Pill-shaped button at 144px radius, background transparent, 1px #d9ff00 border. Text in Office 400, #d9ff00, 12px with 0.083em letter-spacing. 8px vertical padding, 13px horizontal padding. Small download icon glyph precedes the label. This is the only filled-feeling button in the system — its signal value depends on the rarity of the green."
+      },
+      {
+        "name": "Platen Button",
+        "role": "Secondary action, secondary CTA",
+        "description": "Standard button at 4px radius, background #292929, text #ffffff in Office 700, 12px. 6px vertical / 13px horizontal padding. Used when a surface-level interactive element is needed but the acid green pill is too loud."
+      },
+      {
+        "name": "Font Specimen Row",
+        "role": "Core content unit — the product itself",
+        "description": "Horizontal row pairing a font name label (Office 400, 16px, #ffffff) with a large character specimen (43px+ display, #d0d0d0 or #ffffff, letter-spacing 0.083em). Dotted #a0a0a0 underline below the specimen. No card chrome — the type sits directly on the black canvas. 7px row gap between specimens creates the dense specimen-book feel."
+      },
+      {
+        "name": "Annotation Block",
+        "role": "Descriptive copy paired with specimens",
+        "description": "Left-aligned text in Office 400, 16px, #d0d0d0, line-height 1.58. Tight column, 13px right padding from the next element. Headings and first letters in #ffffff for contrast within the same block."
+      },
+      {
+        "name": "Custom Type Image Card",
+        "role": "Showcase of a commissioned type project",
+        "description": "Full-bleed image in a square or rectangular frame with 1px #d0d0d0 border. No radius, no shadow. Caption may sit above or below in 12px #a0d0d0. The image IS the card — no padding around it."
+      },
+      {
+        "name": "Release Announcement Panel",
+        "role": "Featured product launch banner",
+        "description": "Full-width red (#d8261b) block with a grain/noise texture overlay. White display type at 43px, weight 700, letter-spacing 0.083em, centered. Sits between sidebar and image column, breaking the black/white rhythm. This is the one place saturated red appears — it earns its presence by being the only block that breaks monochrome."
+      },
+      {
+        "name": "Decorative Star Mark",
+        "role": "Ornamental accent on nav and section headers",
+        "description": "Small star icon in #d9ff00, placed at the start of section headers. Not interactive. Functions as the visual equivalent of a printer's ornament — a moment of color punctuation."
+      },
+      {
+        "name": "Cart Badge",
+        "role": "Persistent shopping indicator",
+        "description": "Circular badge at bottom-left, 4px radius approximation, #d9ff00 fill, #121212 text in Office 700, 12px. Minimal label, always visible."
+      },
+      {
+        "name": "Section Header",
+        "role": "Major content section title",
+        "description": "Office 400 at 16px, #ffffff, left-aligned, often paired with a #d9ff00 star mark. 6px top margin from section boundary. The text is small but white-on-black gives it full weight."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for navigation, body, buttons, specimens, and display. The foundry sells custom type so the UI type IS the product showcase. Weights 400 (regular) for UI and body, 700 (bold) for the large display announcement and emphasis.",
+        "sizes": "12, 16, 43",
+        "family": "Office",
+        "weight": "400, 700",
+        "lineHeight": "0.95–1.58 (context-dependent: 0.95 for tight display, 1.58 for body)",
+        "substitute": "Inter (system fallback) or any clean geometric grotesque",
+        "letterSpacing": "0.015em–0.016em for body and UI; 0.083em (wide) for tracked labels and display specimens"
+      }
+    ],
+    "description": "Riptype is a specimen-book for a type foundry: a dark matte canvas the type sits on like ink on black paper. Monochrome structure is absolute — the only chromatic element is a single acid yellow-green (#d9ff00) that functions as a signal flare, marking interactive moments and decorative accents without ever becoming decorative. Typography is the product, so the layout is dense and editorial, with characters rendered at spec-sheet size and minimal chrome between them. Components are flat, border-driven, and near-invisible — the system gets out of the way so the typeforms can speak. The mood is workshop-dark: process-oriented, print-referenced, confident in restraint.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Riptype Foundry design system\",\"item\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#style-reference\",\"name\":\"Riptype Foundry design system reference\",\"headline\":\"Riptype Foundry design system | Refero Styles\",\"description\":\"Explore Riptype Foundry's dark Other design system: Workshop Black #121212, Platen Gray #292929 colors, Office typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Riptype Foundry\",\"url\":\"https://www.riptype.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"caption\":\"Screenshot of Riptype Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Riptype Foundry design system\",\"Riptype Foundry website design\",\"Riptype Foundry colors\",\"Riptype Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Workshop Black\",\"Platen Gray\",\"Bone\",\"Ash\",\"Office\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Riptype Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:06:28.471Z\",\"dateModified\":\"2026-04-30T02:06:28.471Z\"}]}19:T536,**Quick Color Reference**\n- text (body): #d0d0d0\n- text (heading): #ffffff\n- background: #121212\n- border/hairline: #d0d0d0\n- accent: #d9ff00 (decoration + outlined action border)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a navigation link: transparent background, no border, text in Office 400 at 16px color #d0d0d0, 6px top margin, preceded by a small icon mark. Separated from the next link by a 1px #d0d0d0 hairline.\n2. Build a font specimen row: 43px display text in Office 400 with 0.083em letter-spacing, color #d0d0d0, line-height 1.0, with the font name label in 16px #ffffff above it. Dotted #a0a0a0 underline at 7px row gap to the next specimen.\n3. Build an acid download pill: 144px border-radius, transparent background, 1px solid #d9ff00 border, text in Office 400 at 12px with 0.083em letter-spacing, color #d9ff00, 8px vertical / 13px horizontal padding, with a small download icon glyph before the label.\n4. Build a custom type image card: full-bleed square image, 1px #d0d0d0 border, 0px radius, no padding, optional 12px #a0a0a0 caption below in Office 400.\n5. Build a release announcement panel: full-width block, solid red (#d8261b) background with a grain/noise texture overlay, centered white display text at 43px in Office 700 with 0.083em letter-spacing, line-height 1.0."
+      }
+    ],
+    "elevationPhilosophy": "The system is shadowless. Elevation is communicated through surface tone shift (#121212 → #292929) and hairline #d0d0d0 borders, never through drop shadows. The flat, unlit quality keeps attention on the typeforms."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#d0d0d0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8563688996390459
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "card",
+            "image"
+          ],
+          "frequency": 589,
+          "confidence": 1,
+          "prominence": 11929124.202946968,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "icon/color": 10,
+            "link/color": 2,
+            "other/fill": 1,
+            "image/color": 14,
+            "other/color": 95,
+            "card/borderColor": 4,
+            "icon/borderColor": 40,
+            "link/borderColor": 8,
+            "image/borderColor": 56,
+            "other/borderColor": 358
+          }
+        },
+        {
+          "hex": "#a0a0a0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7064058164388182
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 171,
+          "confidence": 1,
+          "prominence": 149483.28324739853,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 31,
+            "link/borderColor": 4,
+            "other/borderColor": 136
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "icon",
+            "image",
+            "button"
+          ],
+          "frequency": 165,
+          "confidence": 1,
+          "prominence": 148422.66855585686,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "link/color": 5,
+            "image/color": 4,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 21,
+            "icon/borderColor": 8,
+            "link/borderColor": 16,
+            "image/borderColor": 16,
+            "other/borderColor": 7,
+            "heading/borderColor": 84
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 56244,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#d9ff00",
+          "oklch": {
+            "c": 0.22312908067771245,
+            "h": 120.03634425854557,
+            "l": 0.939467923726422
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 8803.865035572646,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "button/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28277677468745854
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0038533646606979098,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#121212",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#121212",
+          "foreground": "#d9ff00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#292929",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.65,
+          "background": "#292929",
+          "foreground": "#d9ff00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.15,
+          "background": "#121212",
+          "foreground": "#d0d0d0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#292929",
+          "foreground": "#d0d0d0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.16,
+          "background": "#121212",
+          "foreground": "#a0a0a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.56,
+          "background": "#292929",
+          "foreground": "#a0a0a0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 97,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|link",
+            "marginBottom|button",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Office",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 189,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Office",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.58,
+          "letterSpacing": 0.083,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Office",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image",
+            "button",
+            "card"
+          ],
+          "frequency": 165,
+          "lineHeight": 1.19,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Office",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Office",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Office",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/db676c00-0b8c-4a69-9373-3a065403c675.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Riptype Foundry design system\",\"item\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#style-reference\",\"name\":\"Riptype Foundry design system reference\",\"headline\":\"Riptype Foundry design system | Refero Styles\",\"description\":\"Explore Riptype Foundry's dark Other design system: Workshop Black #121212, Platen Gray #292929 colors, Office typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Riptype Foundry\",\"url\":\"https://www.riptype.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e397dc6-0e68-435f-9dee-1966a9d245d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"caption\":\"Screenshot of Riptype Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/15dbf4b7-37ad-4471-82cf-bcc66e7b4d2c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Riptype Foundry design system\",\"Riptype Foundry website design\",\"Riptype Foundry colors\",\"Riptype Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Workshop Black\",\"Platen Gray\",\"Bone\",\"Ash\",\"Office\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Riptype Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Riptype Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:06:28.471Z\",\"dateModified\":\"2026-04-30T02:06:28.471Z\"}]}19:T536,**Quick Color Reference**\n- text (body): #d0d0d0\n- text (heading): #ffffff\n- background: #121212\n- border/hairline: #d0d0d0\n- accent: #d9ff00 (decoration + outlined action border)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a navigation link: transparent background, no border, text in Office 400 at 16px color #d0d0d0, 6px top margin, preceded by a small icon mark. Separated from the next link by a 1px #d0d0d0 hairline.\n2. Build a font specimen row: 43px display text in Office 400 with 0.083em letter-spacing, color #d0d0d0, line-height 1.0, with the font name label in 16px #ffffff above it. Dotted #a0a0a0 underline at 7px row gap to the next specimen.\n3. Build an acid download pill: 144px border-radius, transparent background, 1px solid #d9ff00 border, text in Office 400 at 12px with 0.083em letter-spacing, color #d9ff00, 8px vertical / 13px horizontal padding, with a small download icon glyph before the label.\n4. Build a custom type image card: full-bleed square image, 1px #d0d0d0 border, 0px radius, no padding, optional 12px #a0a0a0 caption below in Office 400.\n5. Build a release announcement panel: full-width block, solid red (#d8261b) background with a grain/noise texture overlay, centered white display text at 43px in Office 700 with 0.083em letter-spacing, line-height 1.0."
+}

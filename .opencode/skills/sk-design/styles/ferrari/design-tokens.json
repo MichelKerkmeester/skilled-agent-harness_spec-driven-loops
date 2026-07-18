@@ -1,0 +1,292 @@
+{
+  "color": {
+    "rosso-corsa": {
+      "$value": "#da291c",
+      "$type": "color",
+      "$description": "Rosso Corsa — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "rosso-scuro": {
+      "$value": "#9d2211",
+      "$type": "color",
+      "$description": "Rosso Scuro — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "bianco-ferrari": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bianco Ferrari — Canvas, primary text on dark surfaces, iconography, and link color — the dominant tone across the entire interface"
+    },
+    "carbone-nero": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbone Nero — Full-bleed dark backgrounds, hero panels, and overlay surfaces — creates the cinematic void behind photography"
+    },
+    "notte-profonda": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Notte Profonda — Footer and secondary dark surfaces — one step softer than pure black to break the infinite void"
+    },
+    "grafite": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Grafite — Borders, dividers, and muted surface treatments — thin structural separation between dark layers"
+    },
+    "fumo": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Fumo — Muted body text, caption labels, and secondary metadata on light surfaces"
+    },
+    "piombo": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Piombo — Supporting body text and quieter label treatments"
+    },
+    "argento-chiaro": {
+      "$value": "#d2d2d2",
+      "$type": "color",
+      "$description": "Argento Chiaro — Light surface dividers and disabled borders on white backgrounds"
+    },
+    "velo-di-luce": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Velo di Luce — Lightest surface wash — subtle background tonal shifts on white sections"
+    },
+    "cemento": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Cemento — Section backgrounds on light areas — the only chromatic step in the white canvas"
+    }
+  },
+  "font": {
+    "body-font": {
+      "$value": "Body-Font",
+      "$type": "fontFamily",
+      "$description": "Body-Font — detected in extracted data but not described by AI"
+    },
+    "ferrarisans": {
+      "$value": "FerrariSans",
+      "$type": "fontFamily",
+      "$description": "Primary display and interface typeface — custom sans used across all copy"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "7px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 9px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "FerrariSans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Body-Font",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "FerrariSans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "FerrariSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "123": {
+      "$value": "123px",
+      "$type": "dimension",
+      "$description": "Spacing 123px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed hero panels and cinematic section backgrounds"
+    },
+    "night-surface": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 1: Footer and secondary dark surfaces — one tonal step softer than void"
+    },
+    "graphite-edge": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders and subtle dividers on dark surfaces"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Light section backgrounds and primary text color"
+    },
+    "smoke-wash": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 4: Tonal shifts on white sections — almost imperceptible warmth"
+    },
+    "concrete": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Surface level 5: Lightest background step for alternating sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ferrari.com",
+      "siteName": "Ferrari",
+      "extractedAt": "2026-07-03T03:38:44.685Z",
+      "variant": "extended"
+    }
+  }
+}

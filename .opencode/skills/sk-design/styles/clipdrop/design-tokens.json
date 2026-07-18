@@ -1,0 +1,302 @@
+{
+  "color": {
+    "cobalt-signal": {
+      "$value": "#1c60f6",
+      "$type": "color",
+      "$description": "Cobalt Signal — Violet action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "ember-vermillion": {
+      "$value": "#fa4028",
+      "$type": "color",
+      "$description": "Ember Vermillion — Brand mark accent, the Jasper wordmark stem, and the rare warm fill. Used sparingly so it never dilutes the cobalt's primacy as the action color"
+    },
+    "midnight-ink": {
+      "$value": "#24355c",
+      "$type": "color",
+      "$description": "Midnight Ink — Deep navy-violet for icon fills and emphasis body copy. Sits between black and cobalt in the chromatic hierarchy — a quieter alternative to pure black when an element needs a hint of brand color"
+    },
+    "periwinkle-mist": {
+      "$value": "#c9d7f5",
+      "$type": "color",
+      "$description": "Periwinkle Mist — Soft lavender-blue used as a ghost/secondary button surface. Reads as a desaturated echo of Cobalt Signal — the same hue at low saturation, signaling a non-primary action without going neutral"
+    },
+    "bone": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Bone — Page canvas, hairline borders, and the dominant surface tone. With 1000+ occurrences it is the structural backbone of the system — everything else sits on it or is carved out of it"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Maximum-emphasis headings, primary text, and icon strokes. Reserved for the loudest moments; never used for body copy where 2d2d/404040 take over"
+    },
+    "charcoal": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Charcoal — Headings and button text — slightly softer than pure black for elements that need weight but not the harshest contrast"
+    },
+    "graphite": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Graphite — Body copy, secondary headings, and icon fills. The workhorse neutral — used wherever readability matters but Ink Black feels too heavy"
+    },
+    "slate": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Slate — Muted helper text, captions, and low-emphasis labels. The lightest text color that still passes on bone canvas"
+    },
+    "frost": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Frost — Subtle dividers and elevated surface tone, one step darker than the canvas bone. Used when a section needs a quiet visual break"
+    },
+    "ash": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Ash — Card and tag backgrounds in compact density zones. Mid-gray surface that lifts content off the bone canvas without introducing color"
+    },
+    "onyx": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Onyx — Deep alternative to Ink Black for links and emphasis icons when the element needs to feel slightly warmer or paired with cobalt"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Button text on cobalt fills, and the second surface tier for cards/elevated content layered over bone canvas"
+    }
+  },
+  "font": {
+    "primary": {
+      "$value": "Primary",
+      "$type": "fontFamily",
+      "$description": "Primary — detected in extracted data but not described by AI"
+    },
+    "custom-sans-likely-inter-or-a-geometric-humanist-substitute": {
+      "$value": "Custom Sans (likely Inter or a geometric humanist substitute)",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, button text, captions, card titles. The utilitarian workhorse — never decorative. Weight 500 for emphasis, 600 for card titles, 400 for body and labels."
+    },
+    "editorial-serif-custom-high-contrast-modern-serif-didone-family": {
+      "$value": "Editorial Serif (custom — high-contrast modern serif, Didone family)",
+      "$type": "fontFamily",
+      "$description": "Hero and section headlines only. The signature choice — a whisper-weight serif at display sizes against an otherwise sans-serif interface creates editorial tension. Weight 400 at 96px is anti-convention; most AI tool brands use 700 sans-serif, this trusts the typeface's contrast and tracking to carry authority."
+    },
+    "secondaryfont": {
+      "$value": "SecondaryFont",
+      "$type": "fontFamily",
+      "$description": "SecondaryFont — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Primary",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SecondaryFont",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SecondaryFont",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 1: Full-page background — the bone paper that the entire system is printed on."
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Tool cards, FAQ items, and any content block that needs to lift off the canvas."
+    },
+    "subtle-elevation": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Surface level 3: Quiet section dividers and inline emphasis blocks, one shade darker than canvas."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://clipdrop.co",
+      "siteName": "Clipdrop",
+      "extractedAt": "2026-06-03T21:40:52.643Z",
+      "variant": "extended"
+    }
+  }
+}

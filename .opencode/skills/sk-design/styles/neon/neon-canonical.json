@@ -1,0 +1,1929 @@
+{
+  "source": "https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e",
+  "uuid": "cc38369a-41e3-4bcd-b619-230ccffe7e8e",
+  "name": "Neon",
+  "northStar": "Server Room After Dark. A deep black environment where data and interactions are the only sources of light.",
+  "capturedAt": "2026-07-18T10:18:45.906Z",
+  "meta": {
+    "url": "https://neon.tech",
+    "siteName": "Neon",
+    "extractedAt": "2026-04-11T17:38:19.074Z",
+    "durationMs": 79650,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 4600,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use pure Blackout (#000000) for all main section backgrounds.",
+      "Reserve Neon Glow (#34d59a) for interactive highlights, data visualizations, and small decorative accents only.",
+      "Employ the Whiteout (#ffffff) pill button for all primary calls-to-action.",
+      "Use GeistMono for all code snippets, terminal simulations, and compact UI labels.",
+      "Apply tight negative letter-spacing (-1.2px or more) to all headlines 48px and larger.",
+      "Achieve depth by layering near-black surfaces (e.g., #151617 on #000000), not with box-shadows.",
+      "Maintain a strict dichotomy of shapes: 9999px radius for buttons, 4px for all other containers."
+    ],
+    "tags": [
+      "dark-mode",
+      "developer",
+      "technical",
+      "monochrome",
+      "futuristic",
+      "data-visualization",
+      "monospaced",
+      "neon-accent",
+      "minimalist"
+    ],
+    "donts": [
+      "Don't use gradients or background colors on main page sections.",
+      "Don't use traditional box-shadows for elevation.",
+      "Don't use Neon Glow (#34d59a) for body copy or headlines.",
+      "Don't use saturated colors other than the primary brand green and the occasional red alert accent.",
+      "Don't mix Inter and GeistMono within the same sentence or headline.",
+      "Don't use rounded corners larger than 4px on cards, code blocks, or input fields.",
+      "Don't create buttons that aren't pill-shaped."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#34d59a",
+        "name": "Neon Glow",
+        "role": "Key brand accent, active state indicators, data visualizations — injects a vibrant, code-like energy.",
+        "group": "brand"
+      },
+      {
+        "hex": "#285d49",
+        "name": "Neon Muted",
+        "role": "Subtle background tones in visualizations, less prominent brand elements.",
+        "group": "brand"
+      },
+      {
+        "hex": "#39a57d",
+        "name": "Scanline Fade",
+        "role": "Special effect for highlighting code or UI elements, mimicking a terminal scanline.",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, rgba(57, 165, 125, 0.6) 50%, rgba(0, 0, 0, 0) 50%)"
+      },
+      {
+        "hex": "#ff3621",
+        "name": "System Warning",
+        "role": "Used sparingly for icons or highlights requiring urgent attention.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Whiteout",
+        "role": "Primary text, primary CTA button backgrounds, icons.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#797d86",
+        "name": "Ash",
+        "role": "Secondary text, descriptive copy, inactive navigation links.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#94979",
+        "name": "Pewter",
+        "role": "Tertiary text, metadata, placeholder text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9cbcf",
+        "name": "Cloud",
+        "role": "Hover states on dark elements, subtle highlights.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#303236",
+        "name": "Graphite Light",
+        "role": "Borders, dividers, subtle UI structure.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242628",
+        "name": "Graphite",
+        "role": "Secondary surfaces floating on the background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151617",
+        "name": "Graphite Deep",
+        "role": "Card backgrounds, code block surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0b",
+        "name": "Depth",
+        "role": "The darkest surface color before pure black, for subtle elevation.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Blackout",
+        "role": "The absolute page background.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page structure is full-bleed black, creating an immersive, infinite canvas. A centered headline over an abstract data-viz graphic defines the hero. Below the hero, content is organized within a centered max-width container (approx. 1200px), creating focus. Sections flow seamlessly into one another without visual dividers, relying on generous vertical spacing (96-128px) to create rhythm. Content is arranged in simple, symmetrical layouts: centered stacks for headlines, two-column grids for feature lists, and multi-column grids for logos. A sticky header provides persistent navigation.",
+    "imagery": "Visuals are exclusively abstract, generative graphics resembling data streams, server activity, or glitch art. Composed of thin vertical lines in Neon Glow (#34d59a) and other muted tones, they serve as atmospheric backdrops rather than informational content. Product visuals are limited to stylized screenshots of terminal windows and code blocks, treated as UI components. Photography and traditional illustrations are absent. This text-and-abstract-graphic approach creates a purely digital, code-native environment.",
+    "similar": [
+      {
+        "why": "Identical developer focus with a black/white monochrome palette, single accent color, and use of Inter font.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Shares a pristine, high-contrast dark UI, minimalist aesthetic, and sharp focus on typography.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar dark-mode theming, developer-centric tooling aesthetic, and heavy reliance on monospaced fonts for identity.",
+        "business": "GitHub"
+      },
+      {
+        "why": "Also uses a dark, code-focused environment with vibrant color accents to appeal to a developer audience.",
+        "business": "Replit"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "4px",
+        "inputs": "4px",
+        "buttons": "9999px",
+        "containers": "4px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "96-128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "dev-tools",
+    "northStar": "Server Room After Dark. A deep black environment where data and interactions are the only sources of light.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.7
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.7
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.43
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -3.2
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Terminal Code Block",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Feature Navigation List",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Pill Button",
+        "role": "The main call-to-action, e.g., 'Get started', 'Sign up'.",
+        "description": "A pill-shaped button with a Whiteout (#ffffff) background and Graphite Deep (#151617) text. Uses Inter font. Padding is H: 28px, V: 12px. Radius is 9999px."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary actions, e.g., 'Read the docs', 'Log in'.",
+        "description": "A pill-shaped button with a transparent background, Whiteout (#ffffff) text, and a 1px solid border in Graphite Light (#303236). Uses Inter font. Padding is H: 18px, V: 12px. Radius is 9999px."
+      },
+      {
+        "name": "Feature List Item",
+        "role": "Bulleted items in feature sections.",
+        "description": "Whiteout (#ffffff) text using Inter. Preceded by a small dot or icon colored with Neon Glow (#34d59a)."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Links in the main site header.",
+        "description": "Text in Ash (#797d86) using Inter font. On hover or active state, text becomes Whiteout (#ffffff)."
+      },
+      {
+        "name": "Tag Badge",
+        "role": "Small informational tags, like 'A DATABRICKS COMPANY'.",
+        "description": "Small, all-caps text using GeistMono in Ash (#797d86) or a similar gray. Often preceded by a Neon Glow (#34d59a) icon or symbol."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "A persistent top bar for site-wide announcements.",
+        "description": "Full-width bar with a Blackout (#000000) background. Text uses Inter font in a legible color like Whiteout (#ffffff) or Neon Glow (#34d59a)."
+      },
+      {
+        "name": "Logo Bar",
+        "role": "A section displaying logos of partner or client companies.",
+        "description": "A row of logos rendered in a monochrome Ash (#797d86) or Pewter (#94979e) color on a Blackout (#000000) background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Headlines and primary marketing copy. Its clean, neutral geometry provides high readability, contrasting with the more stylized monospaced font.",
+        "sizes": "10px, 12px, 13px, 14px, 15px, 16px, 18px, 20px, 24px, 28px, 32px, 40px, 44px, 48px, 60px, 80px",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.13, 1.25, 1.38, 1.50",
+        "substitute": "Inter",
+        "letterSpacing": "Tight negative tracking on all display and heading sizes (-3.2px at 80px, -1.2px at 48px), becoming normal at body copy sizes."
+      },
+      {
+        "role": "Code snippets, UI labels, and data displays. Its monospaced form adds a technical, typewriter-like precision, reinforcing the developer-centric identity.",
+        "sizes": "12px, 14px, 16px, 18px, 20px",
+        "family": "GeistMono",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00, 1.13, 1.38, 1.50, 1.65",
+        "substitute": "Fira Code, Source Code Pro",
+        "letterSpacing": "Slight negative tracking enhances density in UI contexts (-0.7px at 14px, -0.43px at 16px)."
+      }
+    ],
+    "description": "The design feels like a high-end server room after dark — a pure black void where information glows. A strict monochrome palette of pure black (#000000) and white (#ffffff) creates maximum contrast, ensuring text and UI are starkly legible. All visual energy comes from a single, electric green (#34d59a) that mimics terminal output and data visualizations, used exclusively for accents and decorative, code-like background graphics. The system achieves depth not with shadows but with subtle, layered near-black surfaces. A unique tension exists between the pill-shaped buttons and the sharp, 4px corners of all other UI containers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved through layered, near-black surfaces, not traditional box-shadows. Surfaces like Graphite Deep (#151617) float on the pure Blackout (#000000) background, creating depth through contrast without relying on blurs. This reinforces a flat, digital-native aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "icon",
+            "list",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 20260,
+          "confidence": 1,
+          "prominence": 235618975.05751538,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#61646b",
+          "oklch": {
+            "c": 0.01168224981801515,
+            "h": 267.27113138533184,
+            "l": 0.5029908522261954
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 25335624.332704064,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "list",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 862,
+          "confidence": 1,
+          "prominence": 13571727.898300257,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#151617",
+          "oklch": {
+            "c": 0.0025431713872111302,
+            "h": 247.9543077182358,
+            "l": 0.1995037954531629
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 5545651.518215288,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#303236",
+          "oklch": {
+            "c": 0.00763883666015702,
+            "h": 264.4591800276341,
+            "l": 0.3167071392166695
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "body",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 5529027.182883892,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#797d86",
+          "oklch": {
+            "c": 0.01450003344618504,
+            "h": 266.62845273263173,
+            "l": 0.58930868557797
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 302,
+          "confidence": 1,
+          "prominence": 4276558.662625767,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e4f1eb",
+          "oklch": {
+            "c": 0.01589751953566614,
+            "h": 166.71823769863565,
+            "l": 0.9467515294316523
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3517844.1259433827,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#c9cbcf",
+          "oklch": {
+            "c": 0.005957763850329397,
+            "h": 264.5285620480295,
+            "l": 0.8417244584617515
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 530976.8055393945,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#94979e",
+          "oklch": {
+            "c": 0.010829826589955877,
+            "h": 267.3213373718988,
+            "l": 0.6761393601542505
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 445,
+          "confidence": 1,
+          "prominence": 245545.1072077765,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#242628",
+          "oklch": {
+            "c": 0.004727087543854236,
+            "h": 248.00458646743496,
+            "l": 0.26735667489325443
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 190,
+          "confidence": 1,
+          "prominence": 150942.38225447212,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0a0a0b",
+          "oklch": {
+            "c": 0.0021317856266083427,
+            "h": 286.13129982212183,
+            "l": 0.14524931713837394
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 116326.27562576196,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#285d49",
+          "oklch": {
+            "c": 0.06623659339815832,
+            "h": 166.10937510992215,
+            "l": 0.43590588730238955
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 114728.33264038777,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#111215",
+          "oklch": {
+            "c": 0.006328552213164988,
+            "h": 271.05488194223074,
+            "l": 0.18243018247353418
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 59388,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#cae6d9",
+          "oklch": {
+            "c": 0.034385164112379095,
+            "h": 165.9528884597066,
+            "l": 0.9008268284208438
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 46845,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e4e5e7",
+          "oklch": {
+            "c": 0.002908840575871191,
+            "h": 264.54142941670074,
+            "l": 0.9217062900024651
+          },
+          "contexts": [
+            "icon",
+            "link",
+            "other"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 38932.67532966606,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#34d59a",
+          "oklch": {
+            "c": 0.1551457704966964,
+            "h": 163.06705593349835,
+            "l": 0.7782161028176308
+          },
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 36401.68806377571,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#afb1b6",
+          "oklch": {
+            "c": 0.007446339839082666,
+            "h": 268.52929735049094,
+            "l": 0.7602989221401332
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 8042.346001038465,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#494b50",
+          "oklch": {
+            "c": 0.008701338419504536,
+            "h": 268.4422138792441,
+            "l": 0.4127763935948016
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6909.6047644276505,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#00e599",
+          "oklch": {
+            "c": 0.1829769168432065,
+            "h": 160.37239866587302,
+            "l": 0.8136836472389966
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 5380.257193080146,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ff3621",
+          "oklch": {
+            "c": 0.23699439455264187,
+            "h": 30.33461549982805,
+            "l": 0.6495121837176328
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 713.6518222585223,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#2c6d4c",
+          "oklch": {
+            "c": 0.08580931641650588,
+            "h": 158.52670145038707,
+            "l": 0.4829462837259886
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1800,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01999988039133362,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.79,
+          "background": "#0a0a0b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#111215",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.12,
+          "background": "#151617",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.08,
+          "background": "#e4f1eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#e4f1eb",
+          "foreground": "#0a0a0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#000000",
+          "foreground": "#e4e5e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.13,
+          "background": "#e4f1eb",
+          "foreground": "#111215"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.83,
+          "background": "#cae6d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#0a0a0b",
+          "foreground": "#e4e5e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.6,
+          "background": "#e4f1eb",
+          "foreground": "#151617"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.19,
+          "background": "#ffffff",
+          "foreground": "#242628"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.92,
+          "background": "#cae6d9",
+          "foreground": "#0a0a0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.86,
+          "background": "#111215",
+          "foreground": "#e4e5e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#151617",
+          "foreground": "#e4e5e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.12,
+          "background": "#cae6d9",
+          "foreground": "#111215"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.66,
+          "background": "#cae6d9",
+          "foreground": "#151617"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#e4f1eb",
+          "foreground": "#242628"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.93,
+          "background": "#000000",
+          "foreground": "#c9cbcf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#303236",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 63
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.4) 0px 8px 20px 0px",
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 109,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 62,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 27,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 63,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 151,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 22,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 26,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 25,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginLeft",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 44,
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 50,
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "columnGap",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 73,
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 20,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 88,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 92,
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 9,
+          "properties": [
+            "columnGap",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 160,
+          "frequency": 8,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 168,
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 195,
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 200,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 240,
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgba(57, 165, 125, 0.6) 50%, rgba(0, 0, 0, 0) 50%)",
+        "colors": [
+          "rgba(57, 165, 125, 0.6)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GeistMono",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 3951,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 570,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GeistMono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.65,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "icon",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "image",
+            "body",
+            "list",
+            "nav",
+            "hero",
+            "footer"
+          ],
+          "frequency": 358,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 3694,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistMono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 146,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f8702c84-0251-44b0-b71f-1706ef64345d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b9b8dd42-f956-4f8f-9008-a7b4cc3d4d7d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Neon design system\",\"item\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e#style-reference\",\"name\":\"Neon design system reference\",\"headline\":\"Neon design system | Refero Styles\",\"description\":\"Explore Neon's dark Dev Tools design system: Neon Glow #34d59a, Neon Muted #285d49 colors, Inter, GeistMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Neon\",\"url\":\"https://neon.tech\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cc38369a-41e3-4bcd-b619-230ccffe7e8e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b9b8dd42-f956-4f8f-9008-a7b4cc3d4d7d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b9b8dd42-f956-4f8f-9008-a7b4cc3d4d7d.jpg\",\"caption\":\"Screenshot of Neon\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b9b8dd42-f956-4f8f-9008-a7b4cc3d4d7d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Neon design system\",\"Neon website design\",\"Neon colors\",\"Neon typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Neon Glow\",\"Neon Muted\",\"Scanline Fade\",\"System Warning\",\"Inter\",\"GeistMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Neon design system\"},{\"@type\":\"Thing\",\"name\":\"Neon website design\"},{\"@type\":\"Thing\",\"name\":\"Neon colors\"},{\"@type\":\"Thing\",\"name\":\"Neon typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-10T10:15:31.000Z\",\"dateModified\":\"2026-03-10T10:15:31.000Z\"}]}19:Tc31,<style>\n  :root {\n    --color-neon-glow: #34d59a;\n    --color-whiteout: #ffffff;\n    --color-blackout: #000000;\n    --color-graphite-deep: #151617;\n    --color-graphite-light: #303236;\n    --color-ash: #797d86;\n    --font-inter: 'Inter', sans-serif;\n    --font-geistmono: 'Fira Code', 'Source Code Pro', monospace;\n  }\n\n  .cta-wrapper {\n    background: var(--color-blackout);\n    padding: 64px 40px;\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 12px;\n    font-family: var(--font-inter);\n    max-width: 600px;\n    box-sizing: border-box;\n  }\n\n  .cta-eyebrow {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-family: var(--font-geistmono);\n    font-size: 11px;\n    font-weight: 500;\n    letter-spacing: 0.08em;\n    color: var(--color-ash);\n    text-transform: uppercase;\n    margin-bottom: 8px;\n  }\n\n  .cta-eyebrow-icon {\n    width: 0;\n    height: 0;\n    border-top: 5px solid transparent;\n    border-bottom: 5px solid transparent;\n    border-left: 8px solid #ff3621;\n    display: inline-block;\n  }\n\n  .cta-headline {\n    font-family: var(--font-inter);\n    font-size: 48px;\n    font-weight: 500;\n    line-height: 1.13;\n    letter-spacing: -1.2px;\n    color: var(--color-whiteout);\n    margin: 0 0 8px 0;\n  }\n\n  .cta-subtext {\n    font-family: var(--font-inter);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 1.5;\n    letter-spacing: -0.43px;\n    color: var(--color-ash);\n    margin: 0 0 28px 0;\n    max-width: 440px;\n  }\n\n  .cta-buttons {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n  }\n\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    color: var(--color-graphite-deep);\n    background: var(--color-whiteout);\n    border: none;\n    border-radius: 9999px;\n    padding: 12px 28px;\n    cursor: pointer;\n    text-decoration: none;\n    letter-spacing: -0.2px;\n    transition: opacity 0.15s ease;\n    white-space: nowrap;\n  }\n\n  .btn-primary:hover {\n    opacity: 0.88;\n  }\n\n  .btn-ghost {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    color: var(--color-whiteout);\n    background: transparent;\n    border: 1px solid var(--color-graphite-light);\n    border-radius: 9999px;\n    padding: 12px 18px;\n    cursor: pointer;\n    text-decoration: none;\n    letter-spacing: -0.2px;\n    transition: border-color 0.15s ease;\n    white-space: nowrap;\n  }\n\n  .btn-ghost:hover {\n    border-color: var(--color-ash);\n  }\n</style>\n\n<div class=\"cta-wrapper\">\n  <div class=\"cta-eyebrow\">\n    <span class=\"cta-eyebrow-icon\"></span>\n    Agent Platform\n  </div>\n  <h2 class=\"cta-headline\">Fast Postgres<br>for Teams and Agents</h2>\n  <p class=\"cta-subtext\">Codegen and agent platforms rely on Neon to run the backend for user-generated apps.</p>\n  <div class=\"cta-buttons\">\n    <a href=\"#\" class=\"btn-primary\">Get started</a>\n    <a href=\"#\" class=\"btn-ghost\">Read the docs</a>\n  </div>\n</div>1a:T120f,<style>\n  :root {\n    --color-neon-glow: #34d59a;\n    --color-neon-muted: #285d49;\n    --color-whiteout: #ffffff;\n    --color-blackout: #000000;\n    --color-graphite-deep: #151617;\n    --color-graphite: #242628;\n    --color-graphite-light: #303236;\n    --color-ash: #797d86;\n    --color-cloud: #c9cbcf;\n    --font-inter: 'Inter', sans-serif;\n    --font-geistmono: 'Fira Code', 'Source Code Pro', monospace;\n  }\n\n  .terminal-wrapper {\n    background: var(--color-blackout);\n    padding: 40px 32px;\n    max-width: 600px;\n    box-sizing: border-box;\n    font-family: var(--font-inter);\n  }\n\n  .terminal-label {\n    font-family: var(--font-inter);\n    font-size: 12px;\n    letter-spacing: 0.05em;\n    text-transform: uppercase;\n    color: var(--color-ash);\n    margin-bottom: 16px;\n    font-weight: 400;\n  }\n\n  .terminal-block {\n    background: var(--color-graphite-deep);\n    border-radius: 4px;\n    border: 1px solid var(--color-graphite-light);\n    overflow: hidden;\n  }\n\n  .terminal-titlebar {\n    background: var(--color-graphite);\n    padding: 10px 16px;\n    display: flex;\n    align-items: center;\n    gap: 7px;\n    border-bottom: 1px solid var(--color-graphite-light);\n  }\n\n  .terminal-dot {\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: var(--color-graphite-light);\n  }\n\n  .terminal-body {\n    padding: 20px 20px 24px;\n    font-family: var(--font-geistmono);\n    font-size: 13px;\n    line-height: 1.65;\n    letter-spacing: -0.3px;\n  }\n\n  .terminal-prompt {\n    color: var(--color-cloud);\n    margin-bottom: 16px;\n    display: block;\n  }\n\n  .terminal-prompt .dollar {\n    color: var(--color-neon-glow);\n    margin-right: 8px;\n  }\n\n  .terminal-output-title {\n    color: var(--color-cloud);\n    margin-bottom: 10px;\n    display: block;\n  }\n\n  .terminal-step {\n    display: flex;\n    align-items: flex-start;\n    gap: 10px;\n    color: var(--color-ash);\n    margin-bottom: 6px;\n  }\n\n  .terminal-step-indicator {\n    width: 10px;\n    height: 10px;\n    border-radius: 2px;\n    background: var(--color-graphite-light);\n    flex-shrink: 0;\n    margin-top: 3px;\n  }\n\n  .terminal-step-indicator.active {\n    background: var(--color-neon-glow);\n  }\n\n  .terminal-step.completed {\n    color: var(--color-ash);\n  }\n\n  .terminal-step.in-progress {\n    color: var(--color-cloud);\n  }\n\n  .step-text strong {\n    font-weight: 600;\n    color: var(--color-cloud);\n  }\n\n  .step-text.neon strong {\n    color: var(--color-neon-glow);\n  }\n\n  .terminal-divider {\n    height: 1px;\n    background: var(--color-graphite-light);\n    margin: 14px 0;\n  }\n\n  .terminal-stat {\n    display: flex;\n    align-items: center;\n    gap: 0;\n    font-family: var(--font-geistmono);\n    font-size: 13px;\n    letter-spacing: -0.3px;\n    color: var(--color-ash);\n  }\n\n  .terminal-stat .stat-label {\n    color: var(--color-ash);\n  }\n\n  .terminal-stat .stat-value {\n    color: var(--color-neon-glow);\n    margin-left: 8px;\n  }\n\n  .terminal-stat .stat-separator {\n    color: var(--color-graphite-light);\n    margin: 0 12px;\n  }\n</style>\n\n<div class=\"terminal-wrapper\">\n  <div class=\"terminal-label\">Neon Project Initialization</div>\n  <div class=\"terminal-block\">\n    <div class=\"terminal-titlebar\">\n      <div class=\"terminal-dot\"></div>\n      <div class=\"terminal-dot\"></div>\n      <div class=\"terminal-dot\"></div>\n    </div>\n    <div class=\"terminal-body\">\n      <span class=\"terminal-prompt\">\n        <span class=\"dollar\">$</span>npx neonctl init\n      </span>\n      <span class=\"terminal-output-title\">Neon Project Initialization</span>\n      <div class=\"terminal-step completed\">\n        <div class=\"terminal-step-indicator\"></div>\n        <span class=\"step-text\">Step 1/3: <strong>Configuring Neon MCP Server...</strong></span>\n      </div>\n      <div class=\"terminal-step completed\">\n        <div class=\"terminal-step-indicator\"></div>\n        <span class=\"step-text\">Step 2/3: <strong>Creating neon.md with detailed guidelines...</strong></span>\n      </div>\n      <div class=\"terminal-step in-progress\">\n        <div class=\"terminal-step-indicator active\"></div>\n        <span class=\"step-text neon\">Step 3/3: <strong>Creating AGENTS.md</strong></span>\n      </div>\n      <div class=\"terminal-divider\"></div>\n      <div class=\"terminal-stat\">\n        <span class=\"stat-label\">Databases deployed:</span>\n        <span class=\"stat-value\">37,005</span>\n        <span class=\"stat-separator\">|</span>\n        <span class=\"stat-label\">Active:</span>\n        <span class=\"stat-value\">16,561</span>\n        <span class=\"stat-separator\">|</span>\n        <span class=\"stat-label\">Idle: 1,942</span>\n      </div>\n    </div>\n  </div>\n</div>1b:T14b7,<style>\n  :root {\n    --color-neon-glow: #34d59a;\n    --color-whiteout: #ffffff;\n    --color-blackout: #000000;\n    --color-graphite-deep: #151617;\n    --color-graphite: #242628;\n    --color-graphite-light: #303236;\n    --color-ash: #797d86;\n    --color-cloud: #c9cbcf;\n    --font-inter: 'Inter', sans-serif;\n    --font-geistmono: 'Fira Code', 'Source Code Pro', monospace;\n  }\n\n  .feature-nav-wrapper {\n    background: var(--color-blackout);\n    padding: 48px 32px;\n    max-width: 600px;\n    box-sizing: border-box;\n    font-family: var(--font-inter);\n  }\n\n  .feature-nav-kicker {\n    font-family: var(--font-geistmono);\n    font-size: 11px;\n    font-weight: 500;\n    letter-spacing: 0.1em;\n    text-transform: uppercase;\n    color: var(--color-ash);\n    margin-bottom: 24px;\n    display: block;\n  }\n\n  .feature-nav-headline {\n    font-family: var(--font-inter);\n    font-size: 32px;\n    font-weight: 500;\n    line-height: 1.25;\n    letter-spacing: -0.64px;\n    color: var(--color-whiteout);\n    margin: 0 0 8px 0;\n  }\n\n  .feature-nav-sub {\n    font-family: var(--font-inter);\n    font-size: 32px;\n    font-weight: 500;\n    line-height: 1.25;\n    letter-spacing: -0.64px;\n    color: var(--color-ash);\n    margin: 0 0 40px 0;\n  }\n\n  .feature-nav-divider {\n    height: 1px;\n    background: var(--color-graphite-light);\n    margin-bottom: 8px;\n  }\n\n  .feature-nav-item {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding: 14px 0;\n    border-bottom: 1px solid var(--color-graphite-light);\n    cursor: pointer;\n    text-decoration: none;\n    transition: all 0.15s ease;\n  }\n\n  .feature-nav-item.active .feature-dot {\n    background: var(--color-neon-glow);\n    box-shadow: 0 0 8px rgba(52, 213, 154, 0.5);\n  }\n\n  .feature-nav-item.active .feature-item-label {\n    color: var(--color-whiteout);\n  }\n\n  .feature-dot {\n    width: 8px;\n    height: 8px;\n    border-radius: 50%;\n    background: var(--color-graphite-light);\n    flex-shrink: 0;\n    transition: background 0.15s ease;\n  }\n\n  .feature-item-label {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-ash);\n    letter-spacing: -0.2px;\n    transition: color 0.15s ease;\n    flex: 1;\n  }\n\n  .feature-item-arrow {\n    color: var(--color-graphite-light);\n    display: flex;\n    align-items: center;\n    opacity: 0;\n    transition: opacity 0.15s ease;\n  }\n\n  .feature-nav-item.active .feature-item-arrow {\n    opacity: 1;\n    color: var(--color-neon-glow);\n  }\n\n  .feature-active-bar {\n    width: 3px;\n    height: 100%;\n    background: var(--color-neon-glow);\n    border-radius: 0 2px 2px 0;\n    position: absolute;\n    left: 0;\n    top: 0;\n  }\n\n  .feature-nav-item {\n    position: relative;\n  }\n\n  .feature-pill {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: rgba(52, 213, 154, 0.08);\n    border: 1px solid rgba(52, 213, 154, 0.2);\n    border-radius: 4px;\n    padding: 3px 8px;\n    font-family: var(--font-geistmono);\n    font-size: 11px;\n    color: var(--color-neon-glow);\n    font-weight: 500;\n    letter-spacing: 0.03em;\n    margin-left: auto;\n  }\n</style>\n\n<div class=\"feature-nav-wrapper\">\n  <span class=\"feature-nav-kicker\">● AI</span>\n  <h2 class=\"feature-nav-headline\">Postgres for the AI Engineering era.</h2>\n  <p class=\"feature-nav-sub\">Integrate with a single command and the LLM does the hard work.</p>\n\n  <div class=\"feature-nav-divider\"></div>\n\n  <a href=\"#\" class=\"feature-nav-item active\">\n    <span class=\"feature-dot\"></span>\n    <span class=\"feature-item-label\">Advanced Autoscaling</span>\n    <span class=\"feature-pill\">New</span>\n    <span class=\"feature-item-arrow\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </span>\n  </a>\n\n  <a href=\"#\" class=\"feature-nav-item\">\n    <span class=\"feature-dot\"></span>\n    <span class=\"feature-item-label\">Instant Branching</span>\n    <span class=\"feature-item-arrow\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </span>\n  </a>\n\n  <a href=\"#\" class=\"feature-nav-item\">\n    <span class=\"feature-dot\"></span>\n    <span class=\"feature-item-label\">Auth Included</span>\n    <span class=\"feature-item-arrow\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </span>\n  </a>\n\n  <a href=\"#\" class=\"feature-nav-item\">\n    <span class=\"feature-dot\"></span>\n    <span class=\"feature-item-label\">Production-Grade Features</span>\n    <span class=\"feature-item-arrow\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </span>\n  </a>\n</div>1c:T592,### Quick Color Reference\n- **Page Background:** Blackout (`#000000`)\n- **Primary Text:** Whiteout (`#ffffff`)\n- **Secondary Text:** Ash (`#797d86`)\n- **Accent / Highlight:** Neon Glow (`#34d59a`)\n- **CTA Button:** Whiteout (`#ffffff`) background, Graphite Deep (`#151617`) text\n- **Border / Divider:** Graphite Light (`#303236`)\n\n### Example Component Prompts\n1.  **Hero Section:** \"Create a full-screen hero section with a `Blackout` #000000 background. Add a large display headline: text 'Fast Postgres Databases', font `Inter` 80px weight 500, color `Whiteout` #ffffff, line-height 1.0, and letter-spacing -3.2px. Below it, add a primary CTA button: 'Get started' in a `Whiteout` #ffffff pill with `Graphite Deep` #151617 text, 9999px radius, and 12px 28px padding.\"\n2.  **Code Block:** \"Design a terminal code block component. Use a `Graphite Deep` #151617 background with 4px rounded corners and 24px padding. The text inside should use the `GeistMono` font at 14px. Default text color is `Whiteout` #ffffff. Highlight specific keywords or outputs with `Neon Glow` #34d59a.\"\n3.  **Feature Section:** \"Create a two-column section on a `Blackout` #000000 background. In the left column, create a list of features with `Whiteout` #ffffff text and a `Neon Glow` #34d59a dot prefix. In the right column, add a heading 'Integrate with a single command' using `Inter` 48px, `Whiteout` #ffffff color, and -1.2px letter-spacing.\""
+}

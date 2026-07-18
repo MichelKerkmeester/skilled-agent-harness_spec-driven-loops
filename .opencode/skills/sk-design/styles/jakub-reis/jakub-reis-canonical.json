@@ -1,0 +1,746 @@
+{
+  "source": "https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966",
+  "uuid": "3af36935-8383-49e7-857e-9fb5caa06966",
+  "name": "Jakub Reis",
+  "northStar": "gallery wall on bone paper — every screen is a quiet white room where only typography and photography exist",
+  "capturedAt": "2026-07-18T09:44:03.377Z",
+  "meta": {
+    "url": "https://jakubreis.com",
+    "siteName": "Jakub Reis",
+    "extractedAt": "2026-06-03T18:21:48.958Z",
+    "durationMs": 25355,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 174,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Degular exclusively at weights 300 and 400 only — never introduce 500, 600, or 700",
+      "Set tracking to 0.033em on body sizes (16–18px) and 0.056em on display sizes (30–50px) — positive tracking on large type is non-negotiable",
+      "Use #f8f8f8 as the sole background and #000000 as the sole text color — no additional neutrals, no grays for text",
+      "Use the tilde (~) with single spaces as the separator character in any list of names, skills, or categories",
+      "Use 80px between portfolio items and 20px between an image and its caption — these two values are the entire vertical rhythm",
+      "Let images be the only source of color, texture, and visual weight — the UI must stay typographically monochrome",
+      "Keep the project title in Degular 400 at 24px and category labels in Degular 400 at 16px — these sizes are the only ones used in content blocks"
+    ],
+    "donts": [
+      "Do not add buttons, badges, tags with backgrounds, or any container with a fill color",
+      "Do not use shadows, borders, or rounded corners on any element — flatness is the system",
+      "Do not introduce a second typeface, a monospace font, or a serif fallback",
+      "Do not use color for interactive states — hover, focus, and active are expressed through opacity (e.g. 0.6) or underline only",
+      "Do not add gradients, background images to UI elements, or decorative SVG patterns",
+      "Do not use font-weight 500 or above — the maximum weight in the system is 400",
+      "Do not tighten tracking on display sizes to match conventional headline practice — 0.056em at 50px is the signature, not a mistake"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Bone",
+        "role": "Page canvas, the only background tone — a warm off-white that keeps the page from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, project titles, navigation links, all body copy — the only ink the system ever uses",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080808",
+        "name": "Ash",
+        "role": "Secondary text, near-identical to Carbon for AAA contrast on Bone — exists for accessibility, not visual contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Stone",
+        "role": "Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-column asymmetric grid for the project showcase, with images of varying heights creating a staggered, magazine-like vertical flow. The top of the page splits into two halves: left column holds the headline (name + discipline), right column holds the intro paragraph — both top-aligned, no visual divider between them. Navigation is a single thin top bar with email far-left and social links far-right, no logo, no border beneath it. Section transitions are marked only by vertical whitespace (80px gaps), never by background color changes or dividers. The overall rhythm is: sparse top → dense image grid → sparse bottom with a 120px footer spacer. Content is contained within a ~1200px max-width and centered, but images within that container are edge-to-edge of their column.",
+    "imagery": "The site is image-dominant: full-bleed editorial photography fills the entire content area of each project block, and the UI deliberately steps back to let these photographs carry the visual system. Images are tight crops of fashion editorials, product photography, and studio portraits — high-production, bold color, often with dramatic lighting (deep blues, saturated yellows, neon pinks). They are presented raw: no overlays, no duotone treatment, no rounded corners, no contained framing. The contrast is intentional — the UI is bone-white and typographically austere while the portfolio images are vivid and sensory-rich, so the work itself becomes the burst of color the page otherwise refuses.",
+    "similar": [
+      {
+        "why": "Same bone-white canvas, single-weight type, and editorial restraint — visual identity communicated entirely through generous whitespace and high-production imagery",
+        "business": "Aman Resorts (aman.com)"
+      },
+      {
+        "why": "Same two-column project/lookbook grid, same positive tracking on display type, same refusal of color in the UI in favor of letting photography carry the brand",
+        "business": "COS (cosstores.com)"
+      },
+      {
+        "why": "Same whisper-weight display type (300/400 only), same typographic personality as the only system component, same flatness with no shadows or rounded corners",
+        "business": "Studio Dumbar portfolio projects"
+      },
+      {
+        "why": "Same gallery-wall layout with image-led portfolio blocks, same typographic discipline where the UI almost disappears to let work dominate",
+        "business": "Manual (manual.co)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Page canvas — the single, flat background that runs edge to edge"
+      }
+    ],
+    "northStar": "gallery wall on bone paper — every screen is a quiet white room where only typography and photography exist",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.528
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.594
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.11,
+        "letterSpacing": 1.344
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1,
+        "letterSpacing": 1.68
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 0.92,
+        "letterSpacing": 2.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Image Block",
+        "role": "Primary content unit — each portfolio piece",
+        "description": "Full-bleed photograph with no padding, no border, no radius. The image is the component. Below the image sits a 20px gap, then the project title in Degular 400 at 24px in #000000, followed by a 5px gap, then category labels in Degular 400 at 16px in #000000. No card container, no background fill, no hover state on the image."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header — email left, social links right",
+        "description": "Transparent background over the #f8f8f8 canvas. Email address at far left in Degular 400 at 16px, #000000, all lowercase, no decoration. Social platform names (Twitter, Instagram, LinkedIn, Dribbble) at far right in the same style, separated by 20px gaps. No logo, no hamburger, no sticky behavior implied. All caps would break the system — everything is uppercase or lowercase as written, never transformed."
+      },
+      {
+        "name": "Headline Block",
+        "role": "Opening identity statement",
+        "description": "Name on one line, discipline on the next, both left-aligned. Name at 30px Degular 300, #000000, letter-spacing 1.68px, line-height 1.0. Discipline line at 30px same specs. Optional tilde (~) appears after the name as a decorative terminator. The tilde is the system's only ornament."
+      },
+      {
+        "name": "Intro Paragraph",
+        "role": "Client list and credibility statement",
+        "description": "Degular 400 at 18px, #000000, line-height 1.25. Client names are separated by tilde characters (~) with a single space on each side — 'Nike ~ Louis Vuitton ~ Marvel ~ DNB Bank'. The tilde is not a bullet, not a pipe, not a slash; it is a typographic signature unique to this site."
+      },
+      {
+        "name": "Category Label",
+        "role": "Discipline tag beneath project title",
+        "description": "Degular 400 at 16px, #000000, line-height 1.33. Always a short phrase like 'Visual Identity, User Interface Design' separated by commas. No badge background, no border, no dot — just text."
+      },
+      {
+        "name": "Project Grid",
+        "role": "Two-column portfolio layout",
+        "description": "Two equal-width columns, left and right, with each project occupying one column. Vertical rhythm between projects is 80px. The two columns are not locked to a strict row grid — images can vary in height, creating a staggered editorial flow similar to a magazine spread."
+      },
+      {
+        "name": "Footer Spacer",
+        "role": "End-of-page breathing room",
+        "description": "A single 120px top padding at the bottom of the page — the largest spacing token in the system, used once, to let the last project breathe before the page ends. No footer content, no copyright, no links."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for all text — display, body, navigation, and labels. Weight 300 carries display and project titles (the 'whisper' that makes a 50px headline feel editorial, not aggressive). Weight 400 is reserved for body copy, category labels, and nav. Only two weights in the entire system, which is itself a signature choice — there is no 'bold' to reach for.",
+        "sizes": "16px, 18px, 24px, 30px, 50px",
+        "family": "Degular",
+        "weight": "300, 400",
+        "lineHeight": "1.33, 1.25, 1.11, 1.00, 0.92",
+        "substitute": "Söhne or Inter at weights 300/400 — both share Degular's geometric, slightly humanist character and similar x-height proportions",
+        "letterSpacing": "0.033em at body sizes (16–18px), 0.056em at display sizes (30–50px) — positive tracking on large type is deliberately counter-trend; it widens the headline into a gallery-label rhythm rather than the tight, punchy -0.02em default most sites use"
+      }
+    ],
+    "description": "Jakub Reis is a type-driven portfolio: a bone-white canvas, a single custom sans-serif at whisper weights, and photographs that carry every drop of color the system refuses to supply. The site reads like a printed exhibition catalog — a name, a discipline, a grid of framed works, and nothing else. Hierarchy is built entirely from size, weight (300 vs 400 only), and the generous negative space between blocks; there are no buttons, no badges, no borders, no shadows, no gradients. The signature is restraint: even the separator between client names in the intro paragraph is a tilde (~) instead of a dot, pipe, or comma — a typographic personality choice that the entire UI leans into. Components are essentially text labels attached to full-bleed images; the design system exists to disappear so the work can speak.",
+    "customSections": [
+      {
+        "title": "Tilde Convention",
+        "content": "The tilde character (~) is the system's only typographic ornament and is used in three places: (1) as a trailing character after the name in the headline block, (2) as the separator between client names in the intro paragraph, and (3) as the separator between disciplines and project names wherever a list is needed. Always rendered with a single space on each side. Never replace with a bullet, pipe, slash, em-dash, or comma — the tilde is what makes the site's voice distinguishable from a generic portfolio template."
+      },
+      {
+        "title": "Weight Restraint",
+        "content": "The entire system uses only two font weights: 300 for display/headline elements and 400 for everything else. This binary creates a distinctive editorial tone where 400 already carries enough presence to serve as 'bold' in context. Introducing a medium or semibold weight would immediately flatten the hierarchy and make the design feel like a standard SaaS template. If a design needs more emphasis, increase size or letter-spacing — never weight."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no z-axis. Depth is implied only through vertical spacing between image blocks and the generous gap between sections. The system actively refuses elevation as a visual language — flatness IS the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 870,
+          "confidence": 1,
+          "prominence": 85160498.9342281,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 38,
+            "hero/color": 1,
+            "link/color": 20,
+            "list/color": 5,
+            "image/color": 6,
+            "other/color": 88,
+            "footer/color": 1,
+            "heading/color": 15,
+            "body/borderColor": 152,
+            "hero/borderColor": 4,
+            "link/borderColor": 80,
+            "list/borderColor": 20,
+            "image/borderColor": 24,
+            "other/borderColor": 352,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 617650.3767560303,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#7848e8",
+          "oklch": {
+            "c": 0.2265432711762273,
+            "h": 290.7620770902073,
+            "l": 0.5495413621551117
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 476100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8d8f8",
+          "oklch": {
+            "c": 0.04631030612844901,
+            "h": 307.8939667556359,
+            "l": 0.9048610986053566
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 411439,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13440923139492972
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 411439,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f8e8d8",
+          "oklch": {
+            "c": 0.02755648796413563,
+            "h": 67.48258695835673,
+            "l": 0.9394712536297084
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 410852,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 318575,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0009257914427834815,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#f8f8f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.86,
+          "background": "#f8f8f8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#f8e8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.71,
+          "background": "#f8e8d8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#e8d8f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#e8d8f8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.05,
+          "background": "#d8d8d8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.89,
+          "background": "#7848e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#080808",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "footer",
+            "body"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "paddingBottom|footer",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Degular",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 174,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "hero",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 95,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.056,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Degular",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Degular",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Degular",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Degular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "Degular",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "Degular",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/812511f5-bfde-4f6a-b48d-f229b68f1843.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1566f90e-8c95-469e-bb3f-41b3996f12e3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Jakub Reis design system\",\"item\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966#style-reference\",\"name\":\"Jakub Reis design system reference\",\"headline\":\"Jakub Reis design system | Refero Styles\",\"description\":\"Explore Jakub Reis's light Design design system: Bone #f8f8f8, Carbon #000000 colors, Degular typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Jakub Reis\",\"url\":\"https://jakubreis.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3af36935-8383-49e7-857e-9fb5caa06966#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1566f90e-8c95-469e-bb3f-41b3996f12e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1566f90e-8c95-469e-bb3f-41b3996f12e3.jpg\",\"caption\":\"Screenshot of Jakub Reis\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1566f90e-8c95-469e-bb3f-41b3996f12e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Jakub Reis design system\",\"Jakub Reis website design\",\"Jakub Reis colors\",\"Jakub Reis typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Bone\",\"Carbon\",\"Ash\",\"Stone\",\"Degular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Jakub Reis design system\"},{\"@type\":\"Thing\",\"name\":\"Jakub Reis website design\"},{\"@type\":\"Thing\",\"name\":\"Jakub Reis colors\"},{\"@type\":\"Thing\",\"name\":\"Jakub Reis typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:42:10.081Z\",\"dateModified\":\"2026-04-30T03:42:10.081Z\"}]}"
+}

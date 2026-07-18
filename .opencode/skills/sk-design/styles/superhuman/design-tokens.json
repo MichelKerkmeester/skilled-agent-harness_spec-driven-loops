@@ -1,0 +1,434 @@
+{
+  "color": {
+    "midnight-wine": {
+      "$value": "#421d24",
+      "$type": "color",
+      "$description": "Midnight Wine — Primary action buttons, announcement banner, footer — a warm near-black maroon that reads as ink rather than red, anchoring the palette without screaming"
+    },
+    "royal-violet": {
+      "$value": "#714cb6",
+      "$type": "color",
+      "$description": "Royal Violet — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "lilac-mist": {
+      "$value": "#d4c7ff",
+      "$type": "color",
+      "$description": "Lilac Mist — Secondary surface fills, light-tinted badges, ghost button backgrounds — desaturated violet that hints at the brand accent without claiming focus"
+    },
+    "deep-lagoon": {
+      "$value": "#0c4243",
+      "$type": "color",
+      "$description": "Deep Lagoon — Dark band section background for feature storytelling — the only dark surface in the system, paired with overlaid geometric art"
+    },
+    "warm-parchment": {
+      "$value": "#f2f0eb",
+      "$type": "color",
+      "$description": "Warm Parchment — Page canvas — the dominant surface; warm cream that replaces white as the base, giving the whole system an editorial warmth"
+    },
+    "soft-mist": {
+      "$value": "#e3e3e2",
+      "$type": "color",
+      "$description": "Soft Mist — Hairline borders, card outlines, divider lines — warm light gray that disappears against parchment but defines edges crisply"
+    },
+    "ink-charcoal": {
+      "$value": "#292827",
+      "$type": "color",
+      "$description": "Ink Charcoal — Primary text, headings, icon strokes — warm near-black with just enough brown to feel like ink on paper, never a cold #000"
+    },
+    "stone-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Stone Gray — Secondary body text, helper copy, muted descriptions — the only mid-gray, used sparingly so it never competes with primary text"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Elevated card surfaces, floating UI overlays, text on dark backgrounds — reserved for cards that must lift off the parchment canvas"
+    }
+  },
+  "font": {
+    "super-sans-vf": {
+      "$value": "Super Sans VF",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. Variable axes span 460 (the signature light-cut voice for all large display text) through 540 (body emphasis) to 700 (small bold labels). The custom VF is what makes weight 460 headlines feel intentional rather than accidental — at 48-64px with tight tracking the light cut reads as confidence, not thinness."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "14px",
+        "fontWeight": 460,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "14px",
+        "fontWeight": 460,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "16px",
+        "fontWeight": 460,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "16px",
+        "fontWeight": 460,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "18px",
+        "fontWeight": 540,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "20px",
+        "fontWeight": 460,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "20px",
+        "fontWeight": 460,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "20px",
+        "fontWeight": 540,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "20px",
+        "fontWeight": 460,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "20px",
+        "fontWeight": 460,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "22px",
+        "fontWeight": 460,
+        "lineHeight": 0.76
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "26px",
+        "fontWeight": 460,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "28px",
+        "fontWeight": 540,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "48px",
+        "fontWeight": 460,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "49px",
+        "fontWeight": 460,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 49px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "64px",
+        "fontWeight": 540,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Super Sans VF",
+        "fontSize": "64px",
+        "fontWeight": 540,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(113, 76, 182) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#f2f0eb",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, dominant surface"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated product cards, floating UI elements, suite tabs"
+    },
+    "lilac-wash": {
+      "$value": "#d4c7ff",
+      "$type": "color",
+      "$description": "Surface level 2: Accent surface for secondary buttons and selected states"
+    },
+    "deep-lagoon-band": {
+      "$value": "#0c4243",
+      "$type": "color",
+      "$description": "Surface level 3: Dark feature section with overlaid art"
+    },
+    "wine-ground": {
+      "$value": "#421d24",
+      "$type": "color",
+      "$description": "Surface level 4: Footer and announcement banner ground"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superhuman.com",
+      "siteName": "Superhuman",
+      "extractedAt": "2026-07-03T02:59:15.080Z",
+      "variant": "extended"
+    }
+  }
+}

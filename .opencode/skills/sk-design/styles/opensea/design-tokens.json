@@ -1,0 +1,354 @@
+{
+  "color": {
+    "ice-signal": {
+      "$value": "#83c3ff",
+      "$type": "color",
+      "$description": "Ice Signal — Verified badges, link text, outlined button borders, focus rings, and filter pills — the only chromatic accent on a monochrome canvas, cool enough to read as informational rather than promotional"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text, icon strokes, hairline borders, and checkbox fills — the dominant surface signal against the near-black canvas"
+    },
+    "fog": {
+      "$value": "#acadae",
+      "$type": "color",
+      "$description": "Fog — Muted secondary text, placeholder copy, and subtle borders — the bridge tone between paper white and the dark surfaces"
+    },
+    "iron": {
+      "$value": "#34353c",
+      "$type": "color",
+      "$description": "Iron — Outlined button borders and tertiary dividers on the main canvas — the lightest neutral that still reads as a structural edge"
+    },
+    "slate": {
+      "$value": "#3c3d40",
+      "$type": "color",
+      "$description": "Slate — Hover-state surface wash on icons and small controls, lightest elevated background in the stack"
+    },
+    "graphite": {
+      "$value": "#26272d",
+      "$type": "color",
+      "$description": "Graphite — Navigation rail, footer, and elevated panel backgrounds — one step above the page surface"
+    },
+    "charcoal": {
+      "$value": "#1b1d1f",
+      "$type": "color",
+      "$description": "Charcoal — Page canvas and card surface — the dominant background under all content"
+    },
+    "obsidian": {
+      "$value": "#141415",
+      "$type": "color",
+      "$description": "Obsidian — Top navigation bar and footer base — the deepest layer of the surface stack"
+    },
+    "void": {
+      "$value": "#080809",
+      "$type": "color",
+      "$description": "Void — Body backdrop, outer page shell, and deepest shadow zone behind the nav"
+    }
+  },
+  "font": {
+    "gtamerica": {
+      "$value": "gtAmerica",
+      "$type": "fontFamily",
+      "$description": "Primary UI typeface — body copy, labels, nav items, buttons, and section headings from 12px through 32px, weight 500 reserved for labels and emphasized links, weight 400 for body and headings"
+    },
+    "gtamericamono": {
+      "$value": "gtAmericaMono",
+      "$type": "fontFamily",
+      "$description": "Monospaced data typeface — ETH/USDC floor prices, token counts, contract-style strings, and any numeric value that must align column-to-column"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "gtAmericaMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "gtAmerica",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.08) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.03) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#080809",
+      "$type": "color",
+      "$description": "Surface level 0: Outer page shell, behind the nav rail and footer"
+    },
+    "obsidian": {
+      "$value": "#141415",
+      "$type": "color",
+      "$description": "Surface level 1: Top navigation bar and footer base band"
+    },
+    "charcoal": {
+      "$value": "#1b1d1f",
+      "$type": "color",
+      "$description": "Surface level 2: Primary page canvas and most card surfaces"
+    },
+    "graphite": {
+      "$value": "#26272d",
+      "$type": "color",
+      "$description": "Surface level 3: Navigation rail, elevated panels, and footer border zone"
+    },
+    "slate": {
+      "$value": "#3c3d40",
+      "$type": "color",
+      "$description": "Surface level 4: Hover wash on small controls and the lightest elevated state"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://opensea.io",
+      "siteName": "OpenSea",
+      "extractedAt": "2026-06-03T16:30:06.467Z",
+      "variant": "extended"
+    }
+  }
+}

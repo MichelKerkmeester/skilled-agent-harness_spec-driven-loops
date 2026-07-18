@@ -1,0 +1,339 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page background, nav fill, terminal surface"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon — Primary surface, card base, hero canvas"
+    },
+    "graphite": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Graphite — Elevated card background, case-study card fill"
+    },
+    "iron": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Iron — Hairline borders, dividers, subtle separation"
+    },
+    "slate": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Slate — Muted borders, icon strokes, secondary lines"
+    },
+    "pewter": {
+      "$value": "#505050",
+      "$type": "color",
+      "$description": "Pewter — Subtle dividers, decorative rules"
+    },
+    "steel": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Steel — Tertiary text, icon detail, inactive labels"
+    },
+    "ash": {
+      "$value": "#7e7e7e",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, small annotations"
+    },
+    "fog": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Fog — Secondary text, label text, muted body"
+    },
+    "chalk": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Chalk — Light borders, stroke detail on icons"
+    },
+    "paper": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Paper — Primary text, nav links, heading fill, button text"
+    },
+    "ember": {
+      "$value": "#da5c2c",
+      "$type": "color",
+      "$description": "Ember — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "berkeleymono": {
+      "$value": "BerkeleyMono",
+      "$type": "fontFamily",
+      "$description": "Universal typeface — headlines, body, nav, buttons, code, table cells, logo. Weight 400 carries prose and UI labels; weight 700 is reserved for emphasis and primary CTAs. The monospaced geometry unifies the brand and signals engineering audience. Every line of text, including navigation and button labels, sits in this monospaced grid — there is no proportional fallback for content."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary text layer — small icon labels, fine print, tertiary annotations where proportional letterforms reduce visual density below the mono baseline"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "BerkeleyMono",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page base, nav, terminal canvas"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content surface, hero background, announcement strip, logo cells"
+    },
+    "graphite": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards, case-study panels, inset blocks"
+    },
+    "iron": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 3: Borders, dividers, subtle inner separation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://axiom.co",
+      "siteName": "Axiom",
+      "extractedAt": "2026-06-03T17:36:40.258Z",
+      "variant": "extended"
+    }
+  }
+}

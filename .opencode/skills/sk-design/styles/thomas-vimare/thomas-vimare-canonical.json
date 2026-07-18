@@ -1,0 +1,546 @@
+{
+  "source": "https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5",
+  "uuid": "1b293bed-e6fc-4880-9691-2dbf04339bd5",
+  "name": "Thomas Vimare",
+  "northStar": "midnight monochrome atelier — a designer's darkroom where white type and saturated photography are the only light",
+  "capturedAt": "2026-07-18T08:18:31.656Z",
+  "meta": {
+    "url": "https://thms.works",
+    "siteName": "Thomas Vimare",
+    "extractedAt": "2026-06-03T17:44:25.253Z",
+    "durationMs": 27765,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 122,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only three colors: #171717 for canvas, #ffffff for primary text, #9a9a9a for muted text. No accent colors, no brand color, no semantic states.",
+      "Set all type in HelveticaNowDisplay-Light at weight 400. Never introduce a second typeface or weight variation.",
+      "Apply border-radius: 0 to all elements. Images, cards, buttons, tags — all sharp corners.",
+      "Use 120px vertical gaps between major page sections and 20px gaps between text elements. Spaciousness is structural.",
+      "Set letter-spacing to -0.010em at 56px, -0.008em at 32px, -0.007em at 28px, -0.006em at 24px, -0.005em at 20px, and -0.003em at 16px. Tracking compresses as size increases.",
+      "Let full-bleed photography provide all chromatic content. Images are edge-to-edge with no frame, padding, or border.",
+      "Left-align all text. The layout is strictly left-justified — no centered headings, no justified blocks."
+    ],
+    "donts": [
+      "Do not add a CTA button, filled action, or accent color. The system has no interactive controls beyond text links.",
+      "Do not use shadows, glows, or any elevation effect. The surface is flat by design.",
+      "Do not add border-radius to images, cards, or containers. All corners stay sharp at 0px.",
+      "Do not introduce a second font weight, a bold variant, or italic. The system runs on a single weight (400).",
+      "Do not use color to signal state. Active navigation is indicated by a white underline, not a color shift.",
+      "Do not center-align headings or body text. Everything is left-aligned to the same edge.",
+      "Do not add card backgrounds, borders, or containers around content blocks. Elements sit directly on the canvas."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#171717",
+        "name": "Obsidian Canvas",
+        "role": "Page background, all surface layers — the flat dark base every element sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Chalk",
+        "role": "Headlines, primary body text, active nav text, active nav underline border, project titles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a9a9a",
+        "name": "Ash",
+        "role": "Muted secondary text — project descriptions, section labels, inactive supporting copy",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-page layout with no max-width constraint. Navigation is a minimal top bar (text links left, name right) with no background fill. The hero is a left-aligned multi-line headline at display size (56px) with a section label below it, both flush to the left edge. Below the hero, a two-column project grid displays portfolio entries — each entry is a full-bleed image stacked with a title and one-line description, with no card chrome. Vertical rhythm is built on 120px section gaps between the hero and the grid, and 60px padding around the grid container. The layout is strictly left-justified with a consistent left margin; no centered compositions, no asymmetric splits, no overlapping layers. Navigation stays at the top, no sticky behavior, no sidebar.",
+    "imagery": "Photography is the sole source of color and visual energy. Project images are full-bleed with sharp 0px corners, sitting edge-to-edge in the grid. The photography style varies by project — editorial fashion (KAEMA), lifestyle/portraiture (Airbuds), product/technology (Samsung Serif TV, Kard) — but all images are high-contrast, saturated, and unframed. No illustrations, no icons, no abstract graphics, no product screenshots with chrome. The images do not overlap text or each other; they are isolated tiles in a clean grid. Photography functions as both content and decoration — the chromatic counterpoint to the otherwise monochrome interface.",
+    "similar": [
+      {
+        "why": "Same extreme monochrome dark-mode approach with a single typeface and zero accent colors — type and whitespace do all the work",
+        "business": "rauno.me"
+      },
+      {
+        "why": "Similar minimal dark portfolio structure with left-aligned type and project grid, no UI chrome beyond text",
+        "business": "cobeisfresh.com"
+      },
+      {
+        "why": "Dark editorial portfolio aesthetic with full-bleed photography and restrained typography in a tight two-column grid",
+        "business": "philippebarriere.com"
+      },
+      {
+        "why": "Shared commitment to a near-black canvas (#171717-family) and single-weight display type at tight tracking, though Linear adds accent color",
+        "business": "linear.app"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#171717",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Single flat surface — the entire page is one plane, no card elevations"
+      }
+    ],
+    "northStar": "midnight monochrome atelier — a designer's darkroom where white type and saturated photography are the only light",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -0.56
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "Full-width transparent bar on #171717 canvas. Left side: text links (Work, Biography, Lab, Life) at 16px, weight 400, tracking -0.05px. Right side: name label in #9a9a9a muted gray. No background, no border, no shadow. Padding: 5px top, 10px bottom. Uses HelveticaNowDisplay-Light exclusively."
+      },
+      {
+        "name": "Active Nav Link",
+        "role": "Current page indicator",
+        "description": "16px white text (#ffffff) with a 1-2px white bottom border acting as underline. The only use of a visible border in the system — it replaces the convention of bolding or coloring the active state. Padding-bottom: 10px to create space for the underline."
+      },
+      {
+        "name": "Inactive Nav Link",
+        "role": "Secondary navigation items",
+        "description": "16px white text (#ffffff), no underline, no styling. Hover state not defined — the design relies on the persistent active indicator rather than hover affordance."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Opening statement / page introduction",
+        "description": "Left-aligned display text at 56px, weight 400, line-height 1.0, letter-spacing -0.56px in #ffffff. Multi-line, wraps naturally. Sits directly on the #171717 canvas with generous breathing room above and below. No background treatment, no border, no max-width constraint — text fills its column naturally."
+      },
+      {
+        "name": "Section Indicator",
+        "role": "Section label with scroll cue",
+        "description": "Small uppercase or sentence-case label like '↓ Selected projects' at 16px in #9a9a9a. Includes a downward arrow character (↓) as a scroll affordance. Positioned below the hero headline, left-aligned, with 20-40px gap above. Functions as both label and directional cue."
+      },
+      {
+        "name": "Project Card",
+        "role": "Portfolio entry — image with title and description",
+        "description": "Two-column grid card with no background, no border, no shadow, no padding. Structure: full-bleed project image (0px border-radius, sharp corners) on top, then 20px gap, then project title in #ffffff at 20px, then 5px gap, then one-line description in #9a9a9a at 16px. The image IS the card — there is no container styling."
+      },
+      {
+        "name": "Project Card Image",
+        "role": "Visual entry point for each project",
+        "description": "Full-bleed, edge-to-edge photography with 0px border-radius. Images maintain natural aspect ratios (roughly 3:2 or 4:3). High-contrast, saturated photography — the only source of color on the entire site. No overlay, no tint, no caption baked in."
+      },
+      {
+        "name": "Project Card Title",
+        "role": "Project name label",
+        "description": "20px, weight 400, #ffffff, letter-spacing -0.1px, line-height 1.4. Appears directly below the project image with 20px gap. Sentence case. Functions as the primary identifier for each portfolio entry."
+      },
+      {
+        "name": "Project Card Description",
+        "role": "One-line project summary",
+        "description": "16px, weight 400, #9a9a9a, letter-spacing -0.05px, line-height 1.5. Sits 5px below the project title. Single line, truncated by column width. Muted gray deliberately recedes so the title and image carry the weight."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for the entire site — headlines, body, navigation, descriptions. The single weight (400, marketed as 'Light') at tight negative tracking gives the site its quiet, editorial voice. Display sizes pull in to -0.010em while body sits at -0.003em, creating a compression gradient that intensifies at scale.",
+        "sizes": "16px, 20px, 24px, 28px, 32px, 56px",
+        "family": "HelveticaNowDisplay-Light",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20, 1.40, 1.50",
+        "substitute": "Helvetica Neue, Inter, Söhne",
+        "letterSpacing": "Scales from -0.05px at 16px to -0.56px at 56px; tighter as size grows"
+      }
+    ],
+    "description": "thms.works is a monochrome dark-mode portfolio built on absolute restraint. The entire interface is three colors: a near-black canvas, white type, and one muted gray for secondary information. A single custom typeface — HelveticaNowDisplay-Light — carries every word on the site, with tight negative tracking that tightens further at display sizes. The layout is spacious and editorial: large left-aligned headlines, generous 120px section gaps, and a two-column project grid where full-bleed photography is the only chromatic content. There are no buttons, no shadows, no accent colors, no border radii — just type, image, and negative space doing all the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thomas Vimare design system\",\"item\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#style-reference\",\"name\":\"Thomas Vimare design system reference\",\"headline\":\"Thomas Vimare design system | Refero Styles\",\"description\":\"Explore Thomas Vimare's dark Design design system: Obsidian Canvas #171717, Chalk #ffffff colors, HelveticaNowDisplay-Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thomas Vimare\",\"url\":\"https://thms.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"caption\":\"Screenshot of Thomas Vimare\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thomas Vimare design system\",\"Thomas Vimare website design\",\"Thomas Vimare colors\",\"Thomas Vimare typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian Canvas\",\"Chalk\",\"Ash\",\"HelveticaNowDisplay-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thomas Vimare design system\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare website design\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare colors\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:43:42.448Z\",\"dateModified\":\"2026-04-30T03:43:42.448Z\"}]}19:T60d,**Quick Color Reference**\n- Text (primary): #ffffff\n- Text (muted/secondary): #9a9a9a\n- Background (canvas): #171717\n- Border (active nav indicator): #ffffff\n- Accent: none — system is strictly monochrome\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Create a navigation bar:* Transparent background over #171717. Left-aligned text links at 16px, weight 400, color #ffffff, letter-spacing -0.05px, padding-bottom 10px. The active link has a 1px white bottom border. Right-aligned name label in #9a9a9a at 16px. No background, no shadow, no border-radius.\n\n2. *Create a hero headline:* Left-aligned display text at 56px, weight 400, line-height 1.0, letter-spacing -0.56px, color #ffffff on #171717 canvas. Multi-line, no max-width. 120px vertical padding above and below.\n\n3. *Create a project card:* No background, no border, no shadow, 0px border-radius. Full-bleed image (0px radius, sharp corners) on top. 20px gap, then project title at 20px weight 400 #ffffff letter-spacing -0.1px. 5px gap, then description at 16px weight 400 #9a9a9a letter-spacing -0.05px. Images sit edge-to-edge in a two-column grid.\n\n4. *Create a section indicator:* Left-aligned text at 16px in #9a9a9a, prefixed with a ↓ arrow character. Sits 20px below the preceding heading. No styling, no background — just muted gray text on the dark canvas.\n\n5. *Create the page canvas:* Solid #171717 background, full-bleed, no gradients, no textures. All content sits directly on this single flat surface with no card or panel containers."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevations, no border-radius anywhere. The design rejects depth cues entirely. Visual hierarchy is built through type scale, generous whitespace, and the full-bleed photography that breaks the monochrome plane with saturated color. The flatness is the point — the designer trusts type and image to do all spatial work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "heading",
+            "image",
+            "body"
+          ],
+          "frequency": 525,
+          "confidence": 1,
+          "prominence": 83371219.52801366,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 29,
+            "list/color": 29,
+            "image/color": 17,
+            "other/color": 10,
+            "heading/color": 19,
+            "body/borderColor": 4,
+            "link/borderColor": 116,
+            "list/borderColor": 116,
+            "image/borderColor": 68,
+            "other/borderColor": 40,
+            "heading/borderColor": 76
+          }
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1960200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#9a9a9a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6862225908810762
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 85,
+          "confidence": 1,
+          "prominence": 237514.74533378953,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 17,
+            "heading/borderColor": 68
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#171717",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#171717",
+          "foreground": "#9a9a9a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginRight|link",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNowDisplay-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 122,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "HelveticaNowDisplay-Light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7049519a-8be1-40a4-8ba0-52c86a96170f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thomas Vimare design system\",\"item\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#style-reference\",\"name\":\"Thomas Vimare design system reference\",\"headline\":\"Thomas Vimare design system | Refero Styles\",\"description\":\"Explore Thomas Vimare's dark Design design system: Obsidian Canvas #171717, Chalk #ffffff colors, HelveticaNowDisplay-Light typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thomas Vimare\",\"url\":\"https://thms.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b293bed-e6fc-4880-9691-2dbf04339bd5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"caption\":\"Screenshot of Thomas Vimare\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5baeb92-02e1-44a9-a1f9-9d4fde8382f2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thomas Vimare design system\",\"Thomas Vimare website design\",\"Thomas Vimare colors\",\"Thomas Vimare typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian Canvas\",\"Chalk\",\"Ash\",\"HelveticaNowDisplay-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thomas Vimare design system\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare website design\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare colors\"},{\"@type\":\"Thing\",\"name\":\"Thomas Vimare typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:43:42.448Z\",\"dateModified\":\"2026-04-30T03:43:42.448Z\"}]}19:T60d,**Quick Color Reference**\n- Text (primary): #ffffff\n- Text (muted/secondary): #9a9a9a\n- Background (canvas): #171717\n- Border (active nav indicator): #ffffff\n- Accent: none — system is strictly monochrome\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Create a navigation bar:* Transparent background over #171717. Left-aligned text links at 16px, weight 400, color #ffffff, letter-spacing -0.05px, padding-bottom 10px. The active link has a 1px white bottom border. Right-aligned name label in #9a9a9a at 16px. No background, no shadow, no border-radius.\n\n2. *Create a hero headline:* Left-aligned display text at 56px, weight 400, line-height 1.0, letter-spacing -0.56px, color #ffffff on #171717 canvas. Multi-line, no max-width. 120px vertical padding above and below.\n\n3. *Create a project card:* No background, no border, no shadow, 0px border-radius. Full-bleed image (0px radius, sharp corners) on top. 20px gap, then project title at 20px weight 400 #ffffff letter-spacing -0.1px. 5px gap, then description at 16px weight 400 #9a9a9a letter-spacing -0.05px. Images sit edge-to-edge in a two-column grid.\n\n4. *Create a section indicator:* Left-aligned text at 16px in #9a9a9a, prefixed with a ↓ arrow character. Sits 20px below the preceding heading. No styling, no background — just muted gray text on the dark canvas.\n\n5. *Create the page canvas:* Solid #171717 background, full-bleed, no gradients, no textures. All content sits directly on this single flat surface with no card or panel containers."
+}

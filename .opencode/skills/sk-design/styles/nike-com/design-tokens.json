@@ -1,0 +1,307 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Obsidian — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surface, button text on dark fills, icon strokes — the default canvas for product grids and category sections"
+    },
+    "concrete-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Concrete Gray — Borders, dividers, hairline separators between grid sections, subtle input outlines"
+    },
+    "soft-mist": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Soft Mist — Subtle background tint for secondary surfaces, nav search field fill, tag backgrounds"
+    },
+    "steel": {
+      "$value": "#707072",
+      "$type": "color",
+      "$description": "Steel — Secondary text, muted helper copy, icon outlines at smaller sizes, breadcrumb labels, footer link separators"
+    },
+    "faint-gray": {
+      "$value": "#9e9ea0",
+      "$type": "color",
+      "$description": "Faint Gray — Disabled icon strokes, tertiary UI affordances, lowest-emphasis borders"
+    }
+  },
+  "font": {
+    "helvetica-now-text-medium": {
+      "$value": "Helvetica Now Text Medium",
+      "$type": "fontFamily",
+      "$description": "Helvetica Now Text Medium — detected in extracted data but not described by AI"
+    },
+    "helvetica-now-text": {
+      "$value": "Helvetica Now Text",
+      "$type": "fontFamily",
+      "$description": "Primary UI body and interface text — nav links, button labels, card titles, product names, footer lists, all running copy"
+    },
+    "helvetica-now-display-medium": {
+      "$value": "Helvetica Now Display Medium",
+      "$type": "fontFamily",
+      "$description": "Section headings, card category labels, medium-scale titles — medium weight at 20-24px is the signature of Nike's non-hero headings: never bold, always composed"
+    },
+    "nike-futura-nd": {
+      "$value": "Nike Futura ND",
+      "$type": "fontFamily",
+      "$description": "Hero-scale editorial headlines — used at full display size with line-height locked to 1.0 for maximum impact; the one moment where Nike uses a custom display face instead of Helvetica Now"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Helvetica Neue — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text Medium",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text Medium",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Medium",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Medium",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Nike Futura ND",
+        "fontSize": "76px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 76px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background for product grids, category sections, and footer"
+    },
+    "soft-mist": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 2: Search field fill, subtle section background tint, tag pill backgrounds"
+    },
+    "concrete-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Surface level 3: Borders, dividers, separator lines between grid sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://nike.com",
+      "siteName": "Nike.com",
+      "extractedAt": "2026-06-03T15:44:37.448Z",
+      "variant": "extended"
+    }
+  }
+}

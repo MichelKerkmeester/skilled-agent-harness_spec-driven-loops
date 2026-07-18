@@ -1,0 +1,760 @@
+{
+  "source": "https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248",
+  "uuid": "b7fc2173-c9b1-45ed-bd3a-9999320b3248",
+  "name": "Nakedcityfilms",
+  "northStar": "electric blue headline over cinematic void",
+  "capturedAt": "2026-07-18T09:30:31.327Z",
+  "meta": {
+    "url": "https://www.nakedcityfilms.com",
+    "siteName": "Nakedcityfilms",
+    "extractedAt": "2026-06-03T19:24:04.168Z",
+    "durationMs": 31785,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 368,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Electric Cobalt (#0004eb) at large scale (26px+) for any primary headline or category label — it is a voice, not a highlight color",
+      "Pair Haas Grotesk weight 100 (ambient) with weight 500 (emphasis) in the same block to create tension within a single family",
+      "Apply tight tracking at scale: -2.04px at 68px, -1.32px at 44px, -0.39px at 26px — looser tracking at display sizes reads as weak",
+      "Alternate between #e6e6e6 light canvas and #050516 dark canvas section-by-section; the swing is the rhythm",
+      "Let media bleed to the viewport edge; overlay UI on top with white or dark cards, never inset imagery into containers",
+      "Use TRJNDaVinci italic at 26px+ exclusively for project categories and editorial accent — never for body or UI labels",
+      "Maintain zero radius on all surfaces, blocks, and cards — the system is architecturally sharp"
+    ],
+    "donts": [
+      "Do not apply shadows, blurs, or any elevation effects — depth comes from surface contrast only",
+      "Do not round corners on the blue logo block, cards, buttons, or images — the flatness is the identity",
+      "Do not use Electric Cobalt (#0004eb) for small text below 16px — it loses authority at micro scale",
+      "Do not mix the display serif (DaVinci) with body copy or navigation — it belongs only to editorial category labels",
+      "Do not center content unless it is the hero card — the layout language is asymmetric, not balanced",
+      "Do not add gradients, textures, or decorative backgrounds to the blue — it must read as a single flat ink",
+      "Do not use #979797 for primary text or interactive states — it is reserved for meta labels, placeholders, and ticker backgrounds"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#0004eb",
+        "name": "Electric Cobalt",
+        "role": "Headlines, nav links, logo block fill, project category labels, section accents — the only chromatic voice in the system, treated at massive scale (wordmarks, 44–68px type) to dominate every surface it touches",
+        "group": "brand"
+      },
+      {
+        "hex": "#050516",
+        "name": "Abyssal Ink",
+        "role": "Dark section canvases, primary body text on light surfaces, reversed logo lockup — near-black with a barely-perceptible blue cast that keeps it on-brand rather than neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Light section canvases, inverted text on dark and blue surfaces, floating card backgrounds over media",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Concrete Mist",
+        "role": "Primary light-mode page canvas, muted text fills, ghost-surface panels — the cool gray ground that lets the blue detonate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#979797",
+        "name": "Fog Gray",
+        "role": "Secondary text, meta labels, placeholders, scrolling ticker background, low-emphasis chrome",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Full-bleed cinematic video and high-resolution photography dominate immersive sections — outdoor lifestyle footage (canoeing on a lake, people in nature) shot in warm golden-hour light, intentionally contrasting with the cool gray UI that floats on top. Imagery is never cropped to UI containers; it always bleeds to the viewport edge, with cards and text overlaid. No product screenshots, no illustrations, no abstract graphics. The visual language is pure documentary cinema: the people, the place, the story.",
+    "similar": [
+      {
+        "why": "Same full-bleed cinematic media with minimal flat UI overlay, and commitment to a single saturated accent color against neutral canvas",
+        "business": "Buck"
+      },
+      {
+        "why": "Asymmetric editorial layouts, ultralight-to-medium weight contrast within a single geometric sans, and zero-decoration flat surfaces",
+        "business": "Manual Creative"
+      },
+      {
+        "why": "Production company portfolio with dark immersive project sections alternating with light editorial canvas, tight typographic system",
+        "business": "Giant Ant"
+      },
+      {
+        "why": "Bold single-color accent (electric blue) used at massive type scale, sharp angular layout with no rounded corners or shadows",
+        "business": "Studio Terri"
+      },
+      {
+        "why": "Editorial magazine-spread rhythm, display italic serif paired with neo-grotesque body, generous negative space used compositionally",
+        "business": "Pentagram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "buttons": "0px",
+        "logoBlock": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "70px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#e6e6e6",
+        "name": "Light Canvas",
+        "level": 1,
+        "purpose": "Default page background for editorial sections, text-heavy zones, transition areas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Floating Card",
+        "level": 2,
+        "purpose": "White panels that float above media or sit on the light canvas for maximum contrast and content isolation"
+      },
+      {
+        "hex": "#050516",
+        "name": "Dark Mode Canvas",
+        "level": 3,
+        "purpose": "Immersive project showcase sections, work reels, dark editorial spreads"
+      },
+      {
+        "hex": "video/image",
+        "name": "Full-Bleed Media",
+        "level": 4,
+        "purpose": "Cinematic background footage with UI floating as overlay cards"
+      }
+    ],
+    "elevation": [],
+    "northStar": "electric blue headline over cinematic void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.216
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.39
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.32
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": -2.04
+      }
+    ],
+    "components": [
+      {
+        "name": "NKD Logo Lockup",
+        "role": "Primary brand mark",
+        "description": "Custom wordmark: 'NKD' in Haas Grotesk weight 500 in #050516 (light mode) or #ffffff (dark mode), followed by a superscripted blue (#0004eb) square accent. The full extended lockup pairs NKD with 'CITY' set in white weight 500 on an Electric Cobalt (#0004eb) rectangular block of equal cap-height. Zero radius on the blue block. Total lockup is the loudest element on every page."
+      },
+      {
+        "name": "Floating Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Top-aligned nav with NKD center, link groups flanking left ('Talents¹³', 'Studio') and right ('About', 'Contact'). Links in Haas Grotesk weight 100 at 13px, color #0004eb on light canvas / #ffffff on dark canvas. Superscript count badge ('¹³') in weight 500 adds editorial detail. No background fill, no border — floats directly on canvas."
+      },
+      {
+        "name": "Editorial Headline Block",
+        "role": "Primary content statement",
+        "description": "Haas Grotesk weight 500 at 44–68px, line-height 1.10–1.20, color #0004eb on light surfaces. Tight tracking (-1.32px to -2.04px) creates dense, magazine-cover compression. Often paired with a gray placeholder bar (#979797) for redacted/forthcoming content. Asymmetric placement — pushed to the right column, not centered."
+      },
+      {
+        "name": "Project Card (Dark Mode)",
+        "role": "Work showcase entry",
+        "description": "Full-width card on #050516 canvas. Category label in DaVinci italic at 26px, #0004eb, leading the card. Project title in Haas Grotesk weight 500 at 18–26px, #ffffff, tracking -0.216 to -0.39px. No border, no shadow, no radius — content sits directly on dark surface with generous vertical gap (40–70px) between cards. Asymmetric grid placement, not uniform columns."
+      },
+      {
+        "name": "Hero Media Overlay Card",
+        "role": "Hero section UI",
+        "description": "White (#ffffff) rectangular panel floating centered over full-bleed cinematic video. Contains the NKD CITY extended lockup at massive scale and bottom-edge scrolling ticker. No border, no radius, no shadow — the contrast with media is enough to separate it."
+      },
+      {
+        "name": "Scrolling Ticker",
+        "role": "Scroll-prompt marquee",
+        "description": "Horizontal repeating text band at the bottom of the hero card. 'scroll down ·' in Haas Grotesk weight 500 at 12–13px, #0004eb on #979797 background, or reversed. Letter-spacing tight (-0.12px), line-height 1.67. Continuous CSS scroll animation."
+      },
+      {
+        "name": "Tagline Strip",
+        "role": "Brand micro-voice",
+        "description": "Single-line statement in Haas Grotesk weight 100 at 13px, color #0004eb, positioned bottom-left of light sections. 'Smart stories. Bold execution. No shortcuts.' — serves as a quiet editorial signature, not a CTA."
+      },
+      {
+        "name": "Placeholder/Redacted Text Bar",
+        "role": "Forthcoming content indicator",
+        "description": "Solid #979797 rectangle used to mask unreleased project names or statements. Sits inline with editorial headline blocks, same cap-height as surrounding type, creating a deliberate 'classified' or 'censored' visual gesture. This is a signature element, not an error state."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary type system for all UI, nav, body, and display. Weight 100 (ultralight) and weight 500 (medium) are used in deliberate tension — ultralight for ambient/nav/micro-copy, medium for headlines and emphasis. The ultralight is anti-convention; most brands use 500–700 for headlines, this system whispers and then SHOUTS with the same family",
+        "sizes": "12, 13, 16, 18, 26, 44, 68",
+        "family": "Haas Grotesk",
+        "weight": "100, 500",
+        "lineHeight": "1.00, 1.10, 1.11, 1.20, 1.67, 2.31",
+        "substitute": "Neue Haas Grotesk, Inter, Helvetica Neue",
+        "letterSpacing": "-0.0300em at 44–68px, -0.0150em at 26px, -0.0120em at 18px, -0.0100em at 12–16px"
+      },
+      {
+        "role": "Display italic serif for project category labels and editorial accent lines ('Basketball', 'New York Knicks', 'Prompt & Purpose') — the only non-grotesque voice in the system, used sparingly to create a cinematic-magazine credit-roll feel against the geometric body type",
+        "sizes": "26, 44, 68",
+        "family": "TRJNDaVinci",
+        "weight": "500 italic",
+        "lineHeight": "1.10, 1.20",
+        "substitute": "Playfair Display Italic, Tiempos Headline Italic, Lora Italic",
+        "letterSpacing": "-0.0300em"
+      }
+    ],
+    "description": "Naked City Films operates as a high-contrast editorial production brand: a flat, shadowless canvas that swings between cool gray daylight and near-black midnight, anchored by a single electric blue (#0004eb) that functions as both voice and verb. Typography is the entire interface — an ultralight-to-medium neo-grotesque pairs against an italic display serif for category labels, creating a magazine-spread rhythm where giant 68px headlines sit beside 13px navigation in the same family. Layout is deliberately asymmetric, floating UI panels over full-bleed cinematic media, with generous negative space used as a compositional element rather than leftover. The system rejects decoration: no shadows, no gradients, no rounded corners — confidence comes from type weight contrast, color commitment, and scale.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nakedcityfilms design system\",\"item\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#style-reference\",\"name\":\"Nakedcityfilms design system reference\",\"headline\":\"Nakedcityfilms design system | Refero Styles\",\"description\":\"Explore Nakedcityfilms's mixed Media design system: Electric Cobalt #0004eb, Abyssal Ink #050516 colors, Haas Grotesk, TRJNDaVinci typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nakedcityfilms\",\"url\":\"https://www.nakedcityfilms.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"caption\":\"Screenshot of Nakedcityfilms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nakedcityfilms design system\",\"Nakedcityfilms website design\",\"Nakedcityfilms colors\",\"Nakedcityfilms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Electric Cobalt\",\"Abyssal Ink\",\"Bone White\",\"Concrete Mist\",\"Haas Grotesk\",\"TRJNDaVinci\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms design system\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms website design\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms colors\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-07T17:46:37.000Z\",\"dateModified\":\"2026-04-07T17:46:37.000Z\"}]}19:T990,**Quick Color Reference**\n- text: #050516 (dark on light) / #ffffff (light on dark)\n- background: #e6e6e6 (light canvas) / #050516 (dark canvas) / #ffffff (floating card)\n- border: none (the system does not use borders)\n- accent: #0004eb (Electric Cobalt — headlines, links, category labels, logo block)\n- muted: #979797 (meta text, placeholders, ticker background)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed cinematic video background (16:9, outdoor documentary footage). Over it, a centered white (#ffffff) floating card with zero radius, no shadow. Inside the card, the NKD CITY lockup: 'NKD' in Haas Grotesk 500 at 120px in #050516, followed by 'CITY' in Haas Grotesk 500 at 120px white text on an #0004eb block of equal cap-height. Below the card, a scrolling ticker bar: #979797 background, 'scroll down · scroll down ·' in #0004eb Haas Grotesk 500 at 13px, letter-spacing -0.13px, animated left-scrolling.\n\n2. Create an editorial headline section on #e6e6e6 canvas. Headline in Haas Grotesk 500 at 68px, #0004eb, line-height 1.00, letter-spacing -2.04px, positioned right-aligned at 60% page width. Below it, a #979797 solid rectangle bar (40% width, 20px height) as a redacted-content placeholder. Bottom-left corner: tagline in Haas Grotesk 100 at 13px, #0004eb, letter-spacing -0.13px.\n\n3. Create a dark project grid on #050516 canvas. Project cards placed in an asymmetric layout (not uniform columns). Each card: category label in DaVinci italic 500 at 26px in #0004eb with letter-spacing -0.78px, followed by project title in Haas Grotesk 500 at 18px in #ffffff with letter-spacing -0.18px. 70px vertical gap between cards. No borders, no shadows, no backgrounds — text sits directly on the dark canvas.\n\n4. Create a navigation bar: NKD logo center in Haas Grotesk 500 at 16px #050516, with a small #0004eb superscript square accent after the K. Left group: 'Talents¹³' and 'Studio' links in Haas Grotesk 100 at 13px #0004eb, letter-spacing -0.13px. Right group: 'About' and 'Contact' in same style. The '¹³' superscript in weight 500. No background, no border, sits directly on the #e6e6e6 canvas.\n\n5. Create a scrolling marquee ticker: full-width bar, 28px height, #979797 background. Text: 'scroll down · ' repeated, in Haas Grotesk 500 at 12px #0004eb, letter-spacing -0.12px, animated with continuous left-scroll CSS animation, linear timing, no easing."
+      },
+      {
+        "title": "Motion & Interaction",
+        "content": "The system is visually static but alive at edges: a continuous horizontal scroll ticker is the only persistent motion element. Scroll-triggered section reveals should be instant cuts (no fade, no slide) — the light-to-dark section alternation is the transition. Hover states on links and nav items: color shift to #0004eb if not already, or weight shift from 100 to 500. No parallax, no scroll-jacking, no decorative animation."
+      }
+    ],
+    "elevationPhilosophy": "The design system has zero shadows. Depth is created exclusively through surface contrast — light gray (#e6e6e6) against white (#ffffff), dark (#050516) against the electric blue (#0004eb), and media beneath floating cards. This flatness is a deliberate statement: the brand does not lift off the page, it commits to it. The absence of blur and ambient shadow is what gives the type its power."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "heading"
+          ],
+          "frequency": 881,
+          "confidence": 1,
+          "prominence": 109792595.04657845,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0004eb",
+          "oklch": {
+            "c": 0.2934441500649681,
+            "h": 264.0774703437178,
+            "l": 0.4263872475464091
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 446,
+          "confidence": 1,
+          "prominence": 24430213.3971787,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#050516",
+          "oklch": {
+            "c": 0.039027056355620676,
+            "h": 279.4002605867275,
+            "l": 0.1285941018821125
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 23137549.079933587,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 12188057.139137026,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#979797",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6764032429050417
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 300,
+          "confidence": 1,
+          "prominence": 20691.08624769713,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.21319607983811387,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.2,
+          "background": "#050516",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e6e6e6",
+          "foreground": "#050516"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#0004eb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#e6e6e6",
+          "foreground": "#0004eb"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.91,
+          "background": "#979797",
+          "foreground": "#050516"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.24,
+          "background": "#979797",
+          "foreground": "#0004eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.92,
+          "background": "#979797",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#979797",
+          "foreground": "#e6e6e6"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#050516",
+          "foreground": "#0004eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#e6e6e6",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 67,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 85,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Haas Grotesk Medium",
+          "source": "custom",
+          "weights": [
+            100,
+            500
+          ],
+          "frequency": 309,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Haas Grotesk Medium",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 54,
+          "lineHeight": 2.31,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 188,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Haas Grotesk Medium",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 68,
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 68,
+          "family": "TRJNDaVinci Medium Trial Italic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "capitalize"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/70a1390f-3d21-45d1-93e5-2690fb28d21e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nakedcityfilms design system\",\"item\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#style-reference\",\"name\":\"Nakedcityfilms design system reference\",\"headline\":\"Nakedcityfilms design system | Refero Styles\",\"description\":\"Explore Nakedcityfilms's mixed Media design system: Electric Cobalt #0004eb, Abyssal Ink #050516 colors, Haas Grotesk, TRJNDaVinci typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nakedcityfilms\",\"url\":\"https://www.nakedcityfilms.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b7fc2173-c9b1-45ed-bd3a-9999320b3248#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"caption\":\"Screenshot of Nakedcityfilms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f0c332bb-fb0e-4100-9293-69120f1d6e83.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nakedcityfilms design system\",\"Nakedcityfilms website design\",\"Nakedcityfilms colors\",\"Nakedcityfilms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Electric Cobalt\",\"Abyssal Ink\",\"Bone White\",\"Concrete Mist\",\"Haas Grotesk\",\"TRJNDaVinci\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms design system\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms website design\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms colors\"},{\"@type\":\"Thing\",\"name\":\"Nakedcityfilms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-07T17:46:37.000Z\",\"dateModified\":\"2026-04-07T17:46:37.000Z\"}]}19:T990,**Quick Color Reference**\n- text: #050516 (dark on light) / #ffffff (light on dark)\n- background: #e6e6e6 (light canvas) / #050516 (dark canvas) / #ffffff (floating card)\n- border: none (the system does not use borders)\n- accent: #0004eb (Electric Cobalt — headlines, links, category labels, logo block)\n- muted: #979797 (meta text, placeholders, ticker background)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed cinematic video background (16:9, outdoor documentary footage). Over it, a centered white (#ffffff) floating card with zero radius, no shadow. Inside the card, the NKD CITY lockup: 'NKD' in Haas Grotesk 500 at 120px in #050516, followed by 'CITY' in Haas Grotesk 500 at 120px white text on an #0004eb block of equal cap-height. Below the card, a scrolling ticker bar: #979797 background, 'scroll down · scroll down ·' in #0004eb Haas Grotesk 500 at 13px, letter-spacing -0.13px, animated left-scrolling.\n\n2. Create an editorial headline section on #e6e6e6 canvas. Headline in Haas Grotesk 500 at 68px, #0004eb, line-height 1.00, letter-spacing -2.04px, positioned right-aligned at 60% page width. Below it, a #979797 solid rectangle bar (40% width, 20px height) as a redacted-content placeholder. Bottom-left corner: tagline in Haas Grotesk 100 at 13px, #0004eb, letter-spacing -0.13px.\n\n3. Create a dark project grid on #050516 canvas. Project cards placed in an asymmetric layout (not uniform columns). Each card: category label in DaVinci italic 500 at 26px in #0004eb with letter-spacing -0.78px, followed by project title in Haas Grotesk 500 at 18px in #ffffff with letter-spacing -0.18px. 70px vertical gap between cards. No borders, no shadows, no backgrounds — text sits directly on the dark canvas.\n\n4. Create a navigation bar: NKD logo center in Haas Grotesk 500 at 16px #050516, with a small #0004eb superscript square accent after the K. Left group: 'Talents¹³' and 'Studio' links in Haas Grotesk 100 at 13px #0004eb, letter-spacing -0.13px. Right group: 'About' and 'Contact' in same style. The '¹³' superscript in weight 500. No background, no border, sits directly on the #e6e6e6 canvas.\n\n5. Create a scrolling marquee ticker: full-width bar, 28px height, #979797 background. Text: 'scroll down · ' repeated, in Haas Grotesk 500 at 12px #0004eb, letter-spacing -0.12px, animated with continuous left-scroll CSS animation, linear timing, no easing."
+}

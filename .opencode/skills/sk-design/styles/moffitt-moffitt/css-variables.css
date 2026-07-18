@@ -1,0 +1,61 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-bone: #ffffff;
+  --color-mist: #f5f5f5;
+  --color-fog: #ebecec;
+  --color-ash: #d8d8da;
+  --color-graphite: #595b60;
+  --color-steel: #888888;
+
+  /* Typography — Font Families */
+  --font-lyon: 'Lyon', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse: 'Suisse', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --text-body: 16px;
+  --leading-body: 1.25;
+  --text-subheading: 22px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.17;
+  --text-heading: 40px;
+  --leading-heading: 1.13;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+
+  /* Layout */
+  --section-gap: 40px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-full: 50px;
+  --radius-full-2: 100px;
+
+  /* Named Radii */
+  --radius-tags: 50px;
+  --radius-cards: 5px;
+  --radius-buttons: 50px;
+  --radius-iconbuttons: 50%;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-wash: #f5f5f5;
+  --surface-ink: #000000;
+}

@@ -1,0 +1,537 @@
+{
+  "color": {
+    "cream-parchment": {
+      "$value": "#f8f9eb",
+      "$type": "color",
+      "$description": "Cream Parchment — Page canvas, primary background, nav and body surface"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, icon fills inside outlined containers, text on dark buttons"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Hairline borders, primary text, outline strokes, dark surface dividers"
+    },
+    "charcoal": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Charcoal — Filled button background, dark elevated surfaces, secondary text on cream"
+    },
+    "sage-mist": {
+      "$value": "#c0c2a9",
+      "$type": "color",
+      "$description": "Sage Mist — Muted borders, icon strokes, secondary text, soft dividers between sections"
+    },
+    "olive-slate": {
+      "$value": "#5a5a4f",
+      "$type": "color",
+      "$description": "Olive Slate — Secondary and meta text, subdued captions, lower-emphasis copy"
+    },
+    "pebble": {
+      "$value": "#7c7d76",
+      "$type": "color",
+      "$description": "Pebble — Tertiary text, caption labels, subdued helper copy on cream"
+    },
+    "bone": {
+      "$value": "#edeee1",
+      "$type": "color",
+      "$description": "Bone — Subtle button border, faint hover surface, near-canvas divider"
+    },
+    "forest-depths": {
+      "$value": "#003d21",
+      "$type": "color",
+      "$description": "Forest Depths — Hero feature section background, brand-defining dark band, bold UI surface"
+    },
+    "mint-sprout": {
+      "$value": "#aafdc0",
+      "$type": "color",
+      "$description": "Mint Sprout — Light green card surface, heading accent stroke, lively pastel fill"
+    },
+    "cobalt-ink": {
+      "$value": "#041668",
+      "$type": "color",
+      "$description": "Cobalt Ink — Decorative icon fill, deep accent stroke, secondary brand hue"
+    },
+    "plum-depth": {
+      "$value": "#2d0078",
+      "$type": "color",
+      "$description": "Plum Depth — Decorative icon fill, deep accent stroke, tertiary brand hue"
+    },
+    "wine-shadow": {
+      "$value": "#3f0929",
+      "$type": "color",
+      "$description": "Wine Shadow — Decorative icon fill, deep accent stroke, warm accent hue"
+    },
+    "lilac-wash": {
+      "$value": "#d3beff",
+      "$type": "color",
+      "$description": "Lilac Wash — Soft purple card surface, pastel feature tile"
+    },
+    "sky-wash": {
+      "$value": "#b0f4ff",
+      "$type": "color",
+      "$description": "Sky Wash — Soft teal card surface, pastel feature tile"
+    },
+    "rose-wash": {
+      "$value": "#ffc0e6",
+      "$type": "color",
+      "$description": "Rose Wash — Soft pink card surface, pastel feature tile"
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "monument-grotesk-custom": {
+      "$value": "Monument Grotesk (custom)",
+      "$type": "fontFamily",
+      "$description": "The single voice of the brand — headlines, body, buttons, nav, and tags all use this custom geometric grotesque. Weight 800 for monumental display, 500 for medium emphasis, 400 for body and UI. The tight 0.90 leading on large sizes is a signature: type compresses into architectural blocks instead of airy editorial columns."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Code-like monospace used for pill tags, small status badges, and technical microcopy. The mono voice deliberately contrasts the rounded geometric grotesque, signaling 'system' or 'label' rather than 'message'."
+    },
+    "system-ui-sans": {
+      "$value": "System UI Sans",
+      "$type": "fontFamily",
+      "$description": "Fallback and accessibility text where Monument Grotesk is unavailable; also used for non-brand secondary text and link rendering in card surfaces"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "jetBrainsMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "21px",
+        "fontWeight": 800,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "25px",
+        "fontWeight": 800,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "34px",
+        "fontWeight": 800,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "45px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "54px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "63px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 63px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "72px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "abcMonumentGrotesk",
+        "fontSize": "134px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 134px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "89": {
+      "$value": "89px",
+      "$type": "dimension",
+      "$description": "Spacing 89px"
+    },
+    "107": {
+      "$value": "107px",
+      "$type": "dimension",
+      "$description": "Spacing 107px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.94498px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13.4175px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "17.89px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "22.3625px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "26.835px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "44.725px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cream-parchment": {
+      "$value": "#f8f9eb",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas, nav background, hero surface"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surface inside dark sections, icon fills"
+    },
+    "pastel-mint": {
+      "$value": "#aafdc0",
+      "$type": "color",
+      "$description": "Surface level 2: Light feature card surface, text accent on dark sections"
+    },
+    "pastel-lilac": {
+      "$value": "#d3beff",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel card surface variant"
+    },
+    "pastel-sky": {
+      "$value": "#b0f4ff",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel card surface variant"
+    },
+    "pastel-rose": {
+      "$value": "#ffc0e6",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel card surface variant"
+    },
+    "charcoal": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 3: Filled button surface, dark elevated card"
+    },
+    "forest-depths": {
+      "$value": "#003d21",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed feature band, brand-defining dark surface"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Outlined and bordered containers, text, inline graphic glyphs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.coda.co",
+      "siteName": "Coda",
+      "extractedAt": "2026-06-03T16:57:55.775Z",
+      "variant": "extended"
+    }
+  }
+}

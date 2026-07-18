@@ -1,0 +1,442 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#f8f9fa",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surfaces, section bands — the off-white ground that prevents harshness against pure white product screenshots"
+    },
+    "charcoal-ink": {
+      "$value": "#202124",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, display headlines, active icon strokes — the deepest readable black-blue for maximum hierarchy"
+    },
+    "graphite": {
+      "$value": "#3c4043",
+      "$type": "color",
+      "$description": "Graphite — Secondary headings, nav text, strong body — one step lighter than charcoal for sub-headings and navigation labels"
+    },
+    "slate": {
+      "$value": "#5f6368",
+      "$type": "color",
+      "$description": "Slate — Muted body text, helper copy, icon glyphs, breadcrumb separators, footer micro-copy"
+    },
+    "mist": {
+      "$value": "#dadce0",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, card outlines, input strokes, dividers between sections — the only structural separator in the system"
+    },
+    "cloud-shadow": {
+      "$value": "#c4c6c7",
+      "$type": "color",
+      "$description": "Cloud Shadow — Soft elevation on focused inputs and floating chips"
+    },
+    "google-blue": {
+      "$value": "#1a73e8",
+      "$type": "color",
+      "$description": "Google Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "google-blue-deep": {
+      "$value": "#1967d2",
+      "$type": "color",
+      "$description": "Google Blue Deep — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "classroom-green": {
+      "$value": "#188038",
+      "$type": "color",
+      "$description": "Classroom Green — Green supporting accent for decorative details and low-frequency emphasis"
+    }
+  },
+  "font": {
+    "google-sans-display": {
+      "$value": "Google Sans Display",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles. The 80px display weight is the page's signature — tightly tracked and stacked to two lines in the hero. At 48px and below, tracking relaxes toward 0. Substituting with Inter (closest free analog) or Product Sans preserves the geometric warmth; system sans-serif will feel colder."
+    },
+    "google-sans-text": {
+      "$value": "Google Sans Text",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, buttons, form inputs, helper text, breadcrumbs. Weight 400 is the default; 500 marks emphasis and nav-active states. The positive tracking at small sizes (0.036em at 12px) is anti-convention — it adds air to prevent the dense, gray-on-gray feel that typical SaaS body copy produces."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Google Sans Text",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Google Sans Display",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f8f9fa",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the soft off-white that prevents glare against white product screenshots"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Feature cards, modal dialogs, embedded UI containers — true white to lift content off the canvas"
+    },
+    "feature-panel-tint": {
+      "$value": "#e8f0fe",
+      "$type": "color",
+      "$description": "Surface level 2: Soft blue wash behind product screenshots in feature cards — ties the product UI to the brand accent"
+    },
+    "scrim": {
+      "$value": "#20212480",
+      "$type": "color",
+      "$description": "Surface level 3: Modal overlay background — dims the page to focus attention"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://classroom.google.com",
+      "siteName": "Google for Education",
+      "extractedAt": "2026-06-03T17:37:16.469Z",
+      "variant": "extended"
+    }
+  }
+}

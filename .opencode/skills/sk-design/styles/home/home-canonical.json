@@ -1,0 +1,1411 @@
+{
+  "source": "https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35",
+  "uuid": "1a519123-071a-449f-b5df-0def73ed7f35",
+  "name": "Home",
+  "northStar": "editorial broadsheet in a green room",
+  "capturedAt": "2026-07-18T07:06:50.492Z",
+  "meta": {
+    "url": "https://www.newformcap.com",
+    "siteName": "Home",
+    "extractedAt": "2026-07-03T03:08:30.113Z",
+    "durationMs": 87434,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 754,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero headline in PP Mondwest 400 at 165–295px with lineHeight 0.9 and letterSpacing -0.04em — the tight tracking is what makes the type read as printed ink",
+      "Use #2bee4b fill + #93b799 green-tinted shadow for the primary action; never use a gray drop shadow on the accent button",
+      "Apply the grayscale + hue-rotate(80deg) filter to every photographic asset so all images read as the same tonal family as the page",
+      "Keep the canvas at #fafffa (warm bone white) — do not use pure #ffffff, the warm tint is what separates this from a standard SaaS surface",
+      "Use TWK Lausanne 11px / 550 uppercase with +0.01em tracking for every micro-label, nav item, and button — micro-typography does the work of chrome here",
+      "Float editorial photo tiles (radius 14px) inline between display-type lines rather than in a grid, mirroring print layout",
+      "Anchor every page with the full-bleed #2bee4b band before the footer; it functions as the closing signature"
+    ],
+    "donts": [
+      "Do not introduce a second saturated accent color — green is the only chromatic note on an otherwise monochrome page",
+      "Do not use rounded pill shapes (9999px) on the primary action button; 5px keeps it sharp and rectangular, matching the editorial tone",
+      "Do not set body copy larger than 18px — the design relies on the size gap between 18px body and 96px+ display to create rhythm",
+      "Do not use box-shadow on cards or content blocks; elevation lives only on the green button",
+      "Do not render photographs in full color — they must pass through the grayscale-to-green filter to belong to the system",
+      "Do not use sans-serif for display headlines; the Mondwest / Editorial New contrast is what gives the page its editorial voice",
+      "Do not exceed a 1400px content width — the wide canvas with oversized type is what makes the page feel like a broadsheet"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fafffa",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, primary text on dark sections — a warm-tinted near-white that keeps the page reading like paper rather than screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121613",
+        "name": "Press Black",
+        "role": "Primary headline color, footer background, dominant surface — near-true black with a faint green-cool bias that ties it to the accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Typesetter Ink",
+        "role": "Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232924",
+        "name": "Slate Verdant",
+        "role": "Secondary surface, bordered sections, muted dark accent — sits between Press Black and the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#516254",
+        "name": "Newsprint Gray",
+        "role": "Muted captions, helper text, and de-emphasized UI labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8d2c8",
+        "name": "Muted Sage",
+        "role": "Light text on dark surfaces, inverse labels, and high-contrast captions.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2bee4b",
+        "name": "Highlighter Green",
+        "role": "Primary action fill, active nav underline, and full-bleed footer band — the single vivid accent, used like a marker swipe over the monochrome page",
+        "group": "brand"
+      },
+      {
+        "hex": "#93b799",
+        "name": "Shadow Moss",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#c4e4c9",
+        "name": "Echo Green",
+        "role": "Gray supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed editorial canvas capped at ~1400px content width. The hero is a typographic wall: oversized Mondwest/Editorial New headline (165–295px) with small grayscale photo tiles floated between the lines. Navigation is a minimal top bar — wordmark left, 'Menu' with a green three-bar icon right. Below the hero, content alternates between wide Bone White sections with 80px vertical breathing room and a near-black (#121613) editorial block containing ghost-outline buttons. A category grid uses 3–4 columns with muted sage tags and stat callouts in Newsprint Gray. The page closes with a dark footer followed by a full-bleed #2bee4b accent band. Section gaps are generous (80px), element gaps sit at 20px, and the page reads vertically like a printed broadsheet rather than a SaaS dashboard.",
+    "imagery": "All photography is grayscale processed through a filter chain (grayscale → invert 0.27 → sepia 0.07 → saturate 10.67 → hue-rotate 80deg) that tints shadows toward the brand green. Images are cropped as small rectangular tiles (roughly 200×140px), radius 14px, placed inline between lines of display type rather than in grid cells. No full-bleed hero image, no overlapping media, no lifestyle photography — every image is a documentary-style editorial insert (architecture, people in financial contexts) that interrupts the typographic flow. Icons are minimal stroke marks in #000000 or #fafffa, no multicolor iconography.",
+    "similar": [
+      {
+        "why": "Same generous white-canvas editorial typography at massive scale, with the brand voice carried by type weight rather than color",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same brutalist-meets-editorial approach: oversized mixed serif/grotesque display type, monochrome pages, a single vivid accent",
+        "business": "Koto Studio"
+      },
+      {
+        "why": "Same investment-firm broadsheet language — typographic hero, small grayscale documentary inserts, near-black section breaks, no decorative chrome",
+        "business": "Index Ventures"
+      },
+      {
+        "why": "Same single-accent-on-monochrome treatment with the accent functioning as a highlighter over otherwise black-and-white layouts",
+        "business": "A24"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "pills": "10px",
+        "round": "9999px",
+        "images": "14px",
+        "buttons": "5px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#fafffa",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Default page background, reads as warm paper"
+      },
+      {
+        "hex": "#121613",
+        "name": "Dark Section",
+        "level": 2,
+        "purpose": "Mid-page editorial break and footer background"
+      },
+      {
+        "hex": "#2bee4b",
+        "name": "Accent Band",
+        "level": 3,
+        "purpose": "Full-bleed brand band, primary action surface, active state underline"
+      }
+    ],
+    "northStar": "editorial broadsheet in a green room",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.11
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 60,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "heading",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "heading-lg",
+        "size": 155,
+        "lineHeight": 1,
+        "letterSpacing": -6.2
+      },
+      {
+        "role": "display",
+        "size": 295,
+        "lineHeight": 0.9,
+        "letterSpacing": -11.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Highlighter Green Action Button",
+        "role": "Primary CTA — the only filled, saturated button on the site",
+        "description": "Fill #2bee4b, label #000000 in TWK Lausanne 11px / 550 uppercase with +0.01em tracking. Padding 20px 30px, radius 5px. Outer shadow rgba(16,94,29,0.45) 1px 8px 20px 0 (green-tinted, not gray) so the elevation reads as the same green bleeding outward."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action on dark sections",
+        "description": "Transparent fill, 1px border in #fafffa, label #fafffa in TWK Lausanne 11px / 550 uppercase. Radius 10px, padding 50px 20px — the tall vertical padding makes these read as full-height menu items rather than compact buttons."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "Default inline link and footer navigation",
+        "description": "No fill, no border, Times 16px / 400 with a 1px black or white underline that hugs the baseline. Underline thickness is the only structural treatment — links do not change weight or color."
+      },
+      {
+        "name": "Editorial Photo Insert",
+        "role": "Decorative image block placed inline with headline text",
+        "description": "Grayscale photographs (filter: grayscale(1) saturate(1) invert(0.27) sepia(0.07) saturate(10.67) hue-rotate(80deg) brightness(1.02) contrast(0.83)) cropped to small rectangular tiles, radius 14px, floating between lines of display type rather than in a grid."
+      },
+      {
+        "name": "Stat Callout",
+        "role": "Hero metric figures (e.g. '100 M+')",
+        "description": "Set in Newsprint Gray #516254 at display scale, no decoration — the muted color is what makes it read as editorial data rather than a hero number."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Topic labels in section grids ('Blockchain', 'Finance', 'Data')",
+        "description": "Muted Sage #c8d2c8, TWK Lausanne 14px / 350, +0.01em tracking. No background, no border — just a tinted uppercase label."
+      },
+      {
+        "name": "Navigation Wordmark",
+        "role": "Top-left brand lockup",
+        "description": "TWK Lausanne bold 'New Form' with a 2px Highlighter Green underline beneath 'New'. The underline is the entire logo treatment — no icon, no lockup frame."
+      },
+      {
+        "name": "Full-Bleed Accent Band",
+        "role": "Page section divider and footer signature",
+        "description": "Edge-to-edge #2bee4b fill, ~640px tall, used as a visual full stop between content and footer. Contains only the wordmark 'N' in white at the top-left."
+      },
+      {
+        "name": "Dark Editorial Section",
+        "role": "Mid-page content block over near-black",
+        "description": "Background #121613, headline type in #fafffa at 96px / TWK Lausanne 550, body in #fafffa at 18px / 200. Ghost buttons replace filled ones on this surface."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Background #121613, small-caps TWK Lausanne 11px / 550 in #fafffa for nav columns, 18px / 200 body for contact lines. Followed by the full-bleed Highlighter Green band that closes the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and navigation face — small-caps micro-labels (11px / 550 uppercase), compact body (16px / 400), and large display headlines (96px and 155px / 550) with tight -0.04em tracking",
+        "sizes": "11px, 14px, 16px, 18px, 72px, 96px, 155px",
+        "family": "TWK Lausanne",
+        "weight": "200, 350, 400, 550",
+        "lineHeight": "1.0–1.4",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk",
+        "letterSpacing": "uppercase micro-labels +0.01em; display sizes -0.04em; mid sizes -0.02em"
+      },
+      {
+        "role": "Display serif for the largest editorial headlines — extremely tight leading (0.9) and aggressive -0.04em tracking make the wordmark read as a single block of ink",
+        "sizes": "60px, 165px, 295px",
+        "family": "PP Mondwest",
+        "weight": "400",
+        "lineHeight": "0.9",
+        "substitute": "GT Sectra, Tiempos Headline, Recoleta",
+        "letterSpacing": "-0.04em at all sizes"
+      },
+      {
+        "role": "Secondary display face for italic-leaning editorial passages — the lighter 300 weight creates contrast against Mondwest's heavier serifs",
+        "sizes": "60px, 140px, 240px",
+        "family": "Editorial New",
+        "weight": "300",
+        "lineHeight": "0.9",
+        "substitute": "GT Super, Domaine Display, Canela",
+        "letterSpacing": "-0.02em to -0.01em"
+      },
+      {
+        "role": "System serif fallback for browser-rendered body copy and icon-adjacent text — deliberately old-school, reinforcing the broadsheet metaphor",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "substitute": "Times New Roman, system serif"
+      }
+    ],
+    "description": "New Form reads like a printed financial broadsheet reimagined for the web: monumental serif and grotesque headlines dominate the page, small-caps micro-labels run the navigation, and a single saturated neon green acts as a highlighter pen over an otherwise monochrome canvas. The page is overwhelmingly typographic — photographs are treated as grayscale, duotone-tinted rectangular inserts that interrupt the text flow rather than float above it. The layout is spacious and almost editorial-magazine in its rhythm: oversized display type, generous breathing room, and a footer that flips to near-black with green band accents. Buttons are pill-soft with green-tinted shadows; the rest of the UI stays stripped back to type and hairline structure.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Fintech design system: Bone White #fafffa, Press Black #121613 colors, TWK Lausanne, PP Mondwest typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.newformcap.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Bone White\",\"Press Black\",\"Typesetter Ink\",\"Slate Verdant\",\"TWK Lausanne\",\"PP Mondwest\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T18:05:30.188Z\",\"dateModified\":\"2026-05-07T18:05:30.188Z\"}]}19:T6f4,**Quick Color Reference**\n- text: #121613 on light surfaces, #fafffa on dark surfaces\n- background (canvas): #fafffa\n- surface (dark section / footer): #121613\n- border: #232924 or hairline #000000\n- accent (footer band, active nav): #2bee4b\n- primary action: #2bee4b (filled action)\n\n**Example Component Prompts**\n1. *Hero editorial headline block*: 1400px max-width centered on #fafffa canvas. Headline in PP Mondwest at 165px, weight 400, lineHeight 0.9, letterSpacing -6.6px, color #121613. Three grayscale photo tiles (radius 14px) floated inline between the lines, each passing through filter: grayscale(1) saturate(1) invert(0.27) sepia(0.07) saturate(10.67) hue-rotate(80deg) brightness(1.02) contrast(0.83).\n2. *Highlighter Green action button*: Fill #2bee4b, label in TWK Lausanne 11px / 550 uppercase, letterSpacing +0.11px, color #000000. Padding 20px 30px, border-radius 5px, box-shadow rgba(16,94,29,0.45) 1px 8px 20px 0. Arrow icon in #000000 sits to the right of the label.\n3. *Dark editorial section*: Full-width #121613 background, max-width content container 1400px. Headline at 96px TWK Lausanne 550, lineHeight 1.0, letterSpacing -1.92px, color #fafffa. Body copy 18px TWK Lausanne 200, lineHeight 1.0, letterSpacing -0.36px, color #fafffa. Ghost button: transparent fill, 1px solid #fafffa border, radius 10px, padding 50px 20px, label 11px uppercase #fafffa.\n4. *Category tag row*: Muted Sage #c8d2c8 label, TWK Lausanne 14px / 350, letterSpacing +0.14px. No fill, no border, 20px gap between tags. Used above section headlines and in stat grids.\n5. *Full-bleed accent band*: Edge-to-edge #2bee4b fill, 640px tall. Wordmark 'N' in TWK Lausanne bold #fafffa, positioned top-left with 50px padding. No additional content — the band is the closing signature."
+      },
+      {
+        "title": "Typography Stacking",
+        "content": "The system relies on three display faces playing off each other: PP Mondwest (serif, weight 400, tightest -0.04em) for the wordmark and biggest statements; Editorial New (lighter serif, weight 300) for italic-leaning editorial pull-quotes; TWK Lausanne (grotesque) for everything UI and for the 96–155px sub-display headlines that alternate with the serif. The contrast between Mondwest's heavy block and Lausanne's sharp sans at the same physical size is what makes the page feel like a printed spread rather than a single-voice website. Body and micro-labels stay in TWK Lausanne at 11–18px; the system Times fallback handles any rendered browser text."
+      },
+      {
+        "title": "Image Treatment",
+        "content": "Every photographic asset passes through the same filter chain: grayscale(1) saturate(1) invert(0.27) sepia(0.07) saturate(10.67) hue-rotate(80deg) brightness(1.02) contrast(0.83). The 80-degree hue rotation after a partial invert pushes the monochrome into the green family — blacks become deep green-blacks, whites become bone, midtones pick up a sage cast. This filter is applied at the asset level so it works on any uploaded image without per-asset color grading. Result: the entire site reads as a two-tone green duotone regardless of the original photograph's content."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used sparingly and only on the primary action. The green button carries a green-tinted shadow (rgba(16,94,29,0.45) 1px 8px 20px 0) so the depth belongs to the accent system rather than reading as generic gray UI elevation. All other surfaces — cards, sections, images — are flat with hairline 1px borders or no border at all; structure comes from typography, spacing, and color contrast rather than shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121613",
+          "oklch": {
+            "c": 0.00858884575282009,
+            "h": 153.10407822166846,
+            "l": 0.19468165808113316
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 6480000,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 4,
+            "other/color": 12,
+            "heading/color": 5,
+            "other/backgroundColor": 7,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fafffa",
+          "oklch": {
+            "c": 0.008394224810150536,
+            "h": 145.51227797612066,
+            "l": 0.9948650919909926
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 739930.7705571319,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 3,
+            "other/color": 20,
+            "button/color": 3,
+            "heading/color": 5
+          }
+        },
+        {
+          "hex": "#232924",
+          "oklch": {
+            "c": 0.012482717536505948,
+            "h": 150.1779649666595,
+            "l": 0.2731606494935078
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 634490.7533986103,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/color": 4,
+            "heading/color": 4,
+            "other/borderColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 174131.8981352295,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "button/color": 13
+          }
+        },
+        {
+          "hex": "#516254",
+          "oklch": {
+            "c": 0.030446368473243356,
+            "h": 150.2280384330274,
+            "l": 0.4774585976678939
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 46896.42227412216,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 30
+          }
+        },
+        {
+          "hex": "#2bee4b",
+          "oklch": {
+            "c": 0.2507533547426417,
+            "h": 144.7268105430036,
+            "l": 0.8285632230062118
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 42816.31023724736,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c8d2c8",
+          "oklch": {
+            "c": 0.01742876968553216,
+            "h": 145.4205124448135,
+            "l": 0.8532461027176124
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 35808,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 3
+          }
+        },
+        {
+          "hex": "#93b799",
+          "oklch": {
+            "c": 0.0564533661971655,
+            "h": 149.72689005642806,
+            "l": 0.743872002861077
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 19496,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#3a463c",
+          "oklch": {
+            "c": 0.022915725090133475,
+            "h": 149.9629285211551,
+            "l": 0.3801030096879325
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 9397.242666775734,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2
+          }
+        },
+        {
+          "hex": "#c4e4c9",
+          "oklch": {
+            "c": 0.04956611624917492,
+            "h": 149.94445567385154,
+            "l": 0.8875577888952386
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8932,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1222099650001956,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.75,
+          "background": "#fafffa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#121613",
+          "foreground": "#fafffa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.29,
+          "background": "#c4e4c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#232924",
+          "foreground": "#fafffa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#c8d2c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#2bee4b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.3,
+          "background": "#c4e4c9",
+          "foreground": "#121613"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.75,
+          "background": "#121613",
+          "foreground": "#c8d2c8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#2bee4b",
+          "foreground": "#121613"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.81,
+          "background": "#c4e4c9",
+          "foreground": "#232924"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#fafffa",
+          "foreground": "#3a463c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.55,
+          "background": "#232924",
+          "foreground": "#c8d2c8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.5,
+          "background": "#2bee4b",
+          "foreground": "#232924"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#93b799",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.24,
+          "background": "#93b799",
+          "foreground": "#121613"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.21,
+          "background": "#c4e4c9",
+          "foreground": "#3a463c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#93b799",
+          "foreground": "#232924"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.43,
+          "background": "#fafffa",
+          "foreground": "#516254"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#c8d2c8",
+          "foreground": "#3a463c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.33,
+          "background": "#2bee4b",
+          "foreground": "#3a463c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9.9936,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 4.9968,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(16, 94, 29, 0.45) 1px 8px 20px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(18, 146, 39, 0.25) 1px 8px 20px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "card"
+          ],
+          "frequency": 45,
+          "properties": [
+            "marginRight",
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "columnGap|other",
+            "rowGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|heading",
+            "marginLeft|other",
+            "paddingBottom|heading",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|footer"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 175,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 190,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 205,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 317,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWK Lausanne",
+          "source": "custom",
+          "weights": [
+            200,
+            350,
+            400,
+            550
+          ],
+          "frequency": 379,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 307,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorial New",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 34,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Mondwest",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.67
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "icon",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 307,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "card"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "PP Mondwest",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 254,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 155,
+          "family": "TWK Lausanne",
+          "weight": 550,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 165,
+          "family": "PP Mondwest",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 240,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 295,
+          "family": "PP Mondwest",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7c3ba206-e006-45ad-b671-d4e4ae331533.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Fintech design system: Bone White #fafffa, Press Black #121613 colors, TWK Lausanne, PP Mondwest typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.newformcap.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1a519123-071a-449f-b5df-0def73ed7f35#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7bb246d7-937c-491d-8699-d47280f82d11.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Bone White\",\"Press Black\",\"Typesetter Ink\",\"Slate Verdant\",\"TWK Lausanne\",\"PP Mondwest\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T18:05:30.188Z\",\"dateModified\":\"2026-05-07T18:05:30.188Z\"}]}19:T6f4,**Quick Color Reference**\n- text: #121613 on light surfaces, #fafffa on dark surfaces\n- background (canvas): #fafffa\n- surface (dark section / footer): #121613\n- border: #232924 or hairline #000000\n- accent (footer band, active nav): #2bee4b\n- primary action: #2bee4b (filled action)\n\n**Example Component Prompts**\n1. *Hero editorial headline block*: 1400px max-width centered on #fafffa canvas. Headline in PP Mondwest at 165px, weight 400, lineHeight 0.9, letterSpacing -6.6px, color #121613. Three grayscale photo tiles (radius 14px) floated inline between the lines, each passing through filter: grayscale(1) saturate(1) invert(0.27) sepia(0.07) saturate(10.67) hue-rotate(80deg) brightness(1.02) contrast(0.83).\n2. *Highlighter Green action button*: Fill #2bee4b, label in TWK Lausanne 11px / 550 uppercase, letterSpacing +0.11px, color #000000. Padding 20px 30px, border-radius 5px, box-shadow rgba(16,94,29,0.45) 1px 8px 20px 0. Arrow icon in #000000 sits to the right of the label.\n3. *Dark editorial section*: Full-width #121613 background, max-width content container 1400px. Headline at 96px TWK Lausanne 550, lineHeight 1.0, letterSpacing -1.92px, color #fafffa. Body copy 18px TWK Lausanne 200, lineHeight 1.0, letterSpacing -0.36px, color #fafffa. Ghost button: transparent fill, 1px solid #fafffa border, radius 10px, padding 50px 20px, label 11px uppercase #fafffa.\n4. *Category tag row*: Muted Sage #c8d2c8 label, TWK Lausanne 14px / 350, letterSpacing +0.14px. No fill, no border, 20px gap between tags. Used above section headlines and in stat grids.\n5. *Full-bleed accent band*: Edge-to-edge #2bee4b fill, 640px tall. Wordmark 'N' in TWK Lausanne bold #fafffa, positioned top-left with 50px padding. No additional content — the band is the closing signature."
+}

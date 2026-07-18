@@ -1,0 +1,309 @@
+{
+  "color": {
+    "midnight-violet": {
+      "$value": "#2a2a63",
+      "$type": "color",
+      "$description": "Midnight Violet — Headings, body text, link text, and border accents — the signature ink color"
+    },
+    "deep-ink": {
+      "$value": "#151531",
+      "$type": "color",
+      "$description": "Deep Ink — Primary text, icon strokes, link color, and high-emphasis surface elements"
+    },
+    "periwinkle-accent": {
+      "$value": "#6868f7",
+      "$type": "color",
+      "$description": "Periwinkle Accent — Rare vivid accent surface for highlighted cards or callout blocks — a single bright note against the monochrome body"
+    },
+    "cream-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background and elevated card surface — the warm white base layer"
+    },
+    "lavender-mist": {
+      "$value": "#f0f0fe",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft tinted card surface for content blocks and feature containers"
+    },
+    "mist-border": {
+      "$value": "#e9ecef",
+      "$type": "color",
+      "$description": "Mist Border — Hairline borders, dividers, card edges, and structural separators"
+    },
+    "graphite": {
+      "$value": "#343a40",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and muted surface details"
+    },
+    "smoke": {
+      "$value": "#cfd0d1",
+      "$type": "color",
+      "$description": "Smoke — Subtle shadow base and low-contrast surface tone"
+    },
+    "fog": {
+      "$value": "#c3c4c6",
+      "$type": "color",
+      "$description": "Fog — Tertiary shadow tint for layered elevation"
+    }
+  },
+  "font": {
+    "sf-pro-rounded": {
+      "$value": "SF Pro Rounded",
+      "$type": "fontFamily",
+      "$description": "Primary typeface — headings, body, links, UI chrome. The rounded terminals give text a soft, bookish warmth that defines the brand's voice."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary typeface — used sparingly for body text blocks"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "12px",
+        "fontWeight": 900,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "40px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SF Pro Rounded",
+        "fontSize": "60px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(13, 19, 27, 0.1) 0px 2px 10px 0px, rgba(13, 19, 27, 0.2) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgba(13, 19, 27, 0.05) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(13, 19, 27, 0.25) 0px 0px 1px 0px, rgba(13, 19, 27, 0.05) 0px 2px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm off-white base"
+    },
+    "lavender-mist": {
+      "$value": "#f0f0fe",
+      "$type": "color",
+      "$description": "Surface level 1: Tinted card or feature-block surface"
+    },
+    "periwinkle-highlight": {
+      "$value": "#6868f7",
+      "$type": "color",
+      "$description": "Surface level 2: Rare accent surface for callout or featured content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.june.so",
+      "siteName": "June",
+      "extractedAt": "2026-06-03T21:46:25.936Z",
+      "variant": "extended"
+    }
+  }
+}

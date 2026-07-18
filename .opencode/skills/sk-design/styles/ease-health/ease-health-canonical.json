@@ -1,0 +1,1417 @@
+{
+  "source": "https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734",
+  "uuid": "e9f5e976-53f7-42f5-a882-4e63b3c2f734",
+  "name": "Ease Health",
+  "northStar": "Botanical greenhouse on cream paper",
+  "capturedAt": "2026-07-18T07:12:36.072Z",
+  "meta": {
+    "url": "https://easehealth.com",
+    "siteName": "Ease Health",
+    "extractedAt": "2026-07-03T03:18:42.774Z",
+    "durationMs": 158930,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 798,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Forest Ink (#0f3e17) for every CTA, heading, and primary link — it is the only saturated dark and must remain singular",
+      "Set all display headings in Faire Octave weight 300 with tight tracking (-0.03em at 56–74px) — never bold the serif",
+      "Pair serif questions with sans-serif answers in FAQ and feature blocks to create typographic contrast",
+      "Layer surfaces using cream → keylime → mint → sage → slate in order to create depth without shadows",
+      "Use 14px border-radius on all cards and buttons, 999px on all badges and tags — consistency is non-negotiable",
+      "Apply 0.08em letter-spacing with uppercase and 600 weight for eyebrow labels only — nowhere else",
+      "Keep the Slate Hush panel as the exclusive home for product screenshots — it provides the cool counterbalance to warm green panels"
+    ],
+    "donts": [
+      "Never add box-shadow to cards — the system communicates elevation through tinted layers only",
+      "Don't use Forest Ink as a background tint — it is too dark for surface washes; reserve for text and action fills only",
+      "Avoid mixing multiple heading weights — everything is weight 300 in Faire Octave; bold would break the hushed editorial tone",
+      "Don't place colored borders on cards — depth comes from fill contrast, not strokes",
+      "Never use more than one serif at a time — Faire Octave owns display, Suisse Intl owns everything else",
+      "Don't introduce new accent hues — the palette is strictly botanical greens + slate; any other color breaks the greenhouse metaphor",
+      "Avoid tight padding under 21px on cards — generous 28–42px padding is essential to the soft, breathing-room aesthetic",
+      "Don't use the sage or keylime tones for text — they are surface colors only and fail contrast for copy"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0f3e17",
+        "name": "Forest Ink",
+        "role": "Primary action buttons, headings, links, icon strokes — deep botanical green reads as ink, the only saturated dark in the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#b1dbb8",
+        "name": "Sage Mist",
+        "role": "Mid-tone card backgrounds and decorative washes, panel-level surfaces",
+        "group": "brand"
+      },
+      {
+        "hex": "#e1f4df",
+        "name": "Keylime Wash",
+        "role": "Hero panel background, light card surfaces — the dominant tinted canvas tone",
+        "group": "brand"
+      },
+      {
+        "hex": "#cfe7d3",
+        "name": "Mint Veil",
+        "role": "Accent card surfaces, soft section dividers between sage and keylime layers",
+        "group": "brand"
+      },
+      {
+        "hex": "#b6ced5",
+        "name": "Slate Hush",
+        "role": "Cool counter-balance panel for product preview and feature blocks — breaks the green monotony with desaturated blue-gray",
+        "group": "accent"
+      },
+      {
+        "hex": "#fffefc",
+        "name": "Cream Paper",
+        "role": "Page background, badge backgrounds, button text — warm off-white that softens every green",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Navigation text and minor UI strokes — restrained secondary ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efeeeb",
+        "name": "Border Mist",
+        "role": "Hairline dividers and subtle borders throughout the layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c2f10",
+        "name": "Forest Shadow",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with 64–96px vertical section gaps. Hero is a two-column split: left panel tinted Keylime Wash with serif headline + body + CTA; right panel tinted Slate Hush housing three product preview cards (CRM, EHR, RCM) in a row. Below the hero, sections alternate between cream canvas and tinted panels in a botanical rhythm. FAQ uses a two-column text grid (serif question left, sans answer right). The investor logo strip is a single full-width row on cream. Navigation is minimal — left-aligned logo, centered text links, right-aligned CTA pill — no sticky behavior or mega-menu. The overall page rhythm is generous and editorial rather than dense.",
+    "imagery": "Imagery is product-first and UI-native: floating product screenshots (CRM cards, EHR patient views, RCM revenue graphs) rendered as crisp white cards on Slate Hush panels. No lifestyle photography, no stock imagery. Iconography is minimal stroke-based, rendered in Forest Ink. Illustrations, where present, use the same sage/keylime palette to stay on-system. The visual density is text-dominant with product mockups serving as proof, not decoration.",
+    "similar": [
+      {
+        "why": "Same botanical palette approach with sage greens and soft tinted panels, plus serif-leaning editorial calm and generous breathing room",
+        "business": "Headspace"
+      },
+      {
+        "why": "Nature-inspired muted greens against cream, generous whitespace, flat surfaces without shadows, and a serene clinical-adjacent tone",
+        "business": "Calm"
+      },
+      {
+        "why": "Deep single-color ink (#0f3e17 forest vs Mercury's near-black) against a warm off-white canvas with editorial serif display type at weight 300",
+        "business": "Mercury"
+      },
+      {
+        "why": "Behavioral health branding with green-dominant palette, soft panel layering, and humanist sans body type paired with serif accents",
+        "business": "Spring Health"
+      },
+      {
+        "why": "Healthcare SaaS using sage and mint greens against cream, with rounded components and a botanical rather than clinical visual mood",
+        "business": "Grow Therapy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "7px",
+        "cards": "14px",
+        "badges": "999px",
+        "buttons": "14px",
+        "sections": "9999px"
+      },
+      "elementGap": "14-21px",
+      "sectionGap": "64-96px",
+      "cardPadding": "28-42px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fffefc",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Base page background — warm off-white dominates the canvas"
+      },
+      {
+        "hex": "#e1f4df",
+        "name": "Keylime Wash",
+        "level": 1,
+        "purpose": "Primary tinted panel — hero left column, light feature blocks"
+      },
+      {
+        "hex": "#cfe7d3",
+        "name": "Mint Veil",
+        "level": 2,
+        "purpose": "Mid-tone section surface between keylime and sage"
+      },
+      {
+        "hex": "#b1dbb8",
+        "name": "Sage Mist",
+        "level": 3,
+        "purpose": "Heavier tinted panels — hero accents, feature highlights"
+      },
+      {
+        "hex": "#b6ced5",
+        "name": "Slate Hush",
+        "level": 4,
+        "purpose": "Cool counter-panel for product showcases and visual contrast"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Botanical greenhouse on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.61,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.22
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Forest Button",
+        "role": "Filled CTA for demos, explores, and form submits",
+        "description": "Background #0f3e17, text #fffefc, 14px border-radius, padding 14px 21px, Suisse Intl 14px/400. Arrow icon in white at trailing edge. Hover transitions to #0c2f10."
+      },
+      {
+        "name": "Large Forest Button",
+        "role": "Hero-scale CTA with generous breathing room",
+        "description": "Same Forest Ink fill and white text, but padding scales to 42px all sides for hero placement. Rounded 14px corners. Used sparingly for maximum-weight calls to action."
+      },
+      {
+        "name": "Pill Badge / Tag",
+        "role": "Category labels, CRM/EHR/RCM module tags, status indicators",
+        "description": "Background #fffefc, text Forest Ink #0f3e17, 999px border-radius (full pill), padding 9px 14px, Suisse Intl 14px/400. Inverted cream-on-green relationship makes tags feel like paper labels."
+      },
+      {
+        "name": "Sage Feature Card",
+        "role": "Heavier-tinted content panel for feature highlights",
+        "description": "Background Sage Mist #b1dbb8, 14px border-radius, 42px padding all sides, no shadow. Hosts illustration or product preview content. Flat surface — depth comes from color not elevation."
+      },
+      {
+        "name": "Keylime Soft Card",
+        "role": "Light-tinted content panel for secondary features",
+        "description": "Background Keylime Wash #e1f4df, 14px border-radius, 28px padding, no shadow. Tighter padding than sage variant for compact content blocks."
+      },
+      {
+        "name": "Slate Product Panel",
+        "role": "Cool-toned container for product UI screenshots and demos",
+        "description": "Background Slate Hush #b6ced5, 14px border-radius, 42px padding, no shadow. Provides cool visual counterpoint to warm green panels — the only non-green tinted surface."
+      },
+      {
+        "name": "Product Preview Card (Inner)",
+        "role": "White floating card within Slate Product Panel",
+        "description": "Background Cream Paper #fffefc, 14px border-radius, 28px padding, no border or shadow. Represents a product screen mockup (CRM, EHR, RCM). Sits on the Slate panel like a printed screenshot."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent over cream canvas, text Charcoal #222222, Suisse Intl 14px/400, 7px radius on interactive items. 'Book a Demo' CTA pill on the right uses Forest Ink fill."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section category tag above headings",
+        "description": "Suisse Intl 11px/600, letter-spacing 0.08em, uppercase, Forest Ink color. Tiny typographic marker that labels each section's theme (e.g. 'QUICK ANSWER')."
+      },
+      {
+        "name": "FAQ Row",
+        "role": "Two-column question/answer layout",
+        "description": "Left column: Faire Octave 40px/300 in Forest Ink for question. Right column: Suisse Intl 14px/400 in Charcoal for answer. 1px Border Mist divider between rows."
+      },
+      {
+        "name": "Investor Logo Strip",
+        "role": "Social proof row of VC logos",
+        "description": "Single horizontal row, monochrome treatment in Charcoal #222222 on cream canvas, generous vertical padding (42px+). No decorative borders — relies on whitespace for rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display serif for all section headings and hero copy",
+        "sizes": "40px, 56px, 74px",
+        "family": "Faire Octave",
+        "weight": "300",
+        "lineHeight": "1.05–1.35",
+        "substitute": "Cormorant Garamond, Playfair Display",
+        "letterSpacing": "-0.01em at 40px, -0.03em at 56–74px"
+      },
+      {
+        "role": "Body, navigation, UI labels, buttons, captions — humanist sans at whisper weight for feature lists and normal weight for copy",
+        "sizes": "10px, 11px, 12px, 14px, 18px, 23px, 28px, 56px",
+        "family": "Suisse Intl",
+        "weight": "300, 400, 600",
+        "lineHeight": "1.00–1.61",
+        "substitute": "Inter, Söhne, Helvetica Neue",
+        "letterSpacing": "0.08em uppercase at 11px/600 (eyebrow labels); natural tracking otherwise"
+      }
+    ],
+    "description": "Ease Health uses a clinical-botanical language: a warm cream canvas layered with soft sage, keylime, and slate-blue panels that feel like a greenhouse rendered on paper. Typography carries the entire personality — weight 300 serif headlines (Faire Octave) paired against a humanist sans (Suisse Intl) create a hushed, editorial authority unusual for healthtech. A single deep forest green (#0f3e17) anchors every action and heading, reading like ink on watercolor. Surfaces are flat and shadowless; depth comes from layered tinted panels and generous padding, not elevation. Components are rounded (~14px) and pill-shaped for tags, keeping the whole system soft and approachable without losing clinical seriousness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ease Health design system\",\"item\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#style-reference\",\"name\":\"Ease Health design system reference\",\"headline\":\"Ease Health design system | Refero Styles\",\"description\":\"Explore Ease Health's light Other design system: Forest Ink #0f3e17, Sage Mist #b1dbb8 colors, Faire Octave, Suisse Intl typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ease Health\",\"url\":\"https://easehealth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"caption\":\"Screenshot of Ease Health\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ease Health design system\",\"Ease Health website design\",\"Ease Health colors\",\"Ease Health typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Forest Ink\",\"Sage Mist\",\"Keylime Wash\",\"Mint Veil\",\"Faire Octave\",\"Suisse Intl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ease Health design system\"},{\"@type\":\"Thing\",\"name\":\"Ease Health website design\"},{\"@type\":\"Thing\",\"name\":\"Ease Health colors\"},{\"@type\":\"Thing\",\"name\":\"Ease Health typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:13:33.860Z\",\"dateModified\":\"2026-04-30T00:13:33.860Z\"}]}19:T47a,**Quick Color Reference**\n- Text/Heading: #0f3e17 (Forest Ink)\n- Page background: #fffefc (Cream Paper)\n- Hero/light panel: #e1f4df (Keylime Wash)\n- Feature panel: #b1dbb8 (Sage Mist)\n- Product showcase panel: #b6ced5 (Slate Hush)\n- Border: #efeeeb\n- primary action: #0f3e17 (filled action)\n\n**Example Component Prompts**\n1. Create a Primary Action Button: #0f3e17 background, #fffefc text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature card**: Sage Mist #b1dbb8 background, 14px border-radius, 42px padding all sides, no shadow. Eyebrow label in Suisse Intl 11px/600 uppercase with 0.08em tracking, Forest Ink color. Heading in Faire Octave 40px/300, Forest Ink. Body in Suisse Intl 14px/400, Charcoal #222222.\n\n3. **Pill badge**: Background Cream Paper #fffefc, text Forest Ink #0f3e17, 999px border-radius, padding 9px 14px, Suisse Intl 14px/400. Place above section headings as a category tag.\n\n4. **FAQ row**: Two-column grid. Left: Faire Octave 40px/300 question in Forest Ink. Right: Suisse Intl 14px/400 answer in Charcoal #222222. Separator: 1px solid Border Mist #efeeeb below each row."
+      },
+      {
+        "title": "Type Pairing Philosophy",
+        "content": "The serif/sans split is the system's defining typographic move. Faire Octave (or Cormorant Garamond as substitute) handles ALL headings at weight 300 — never bold. Suisse Intl (or Inter) handles ALL UI and body text. The whisper-weight serif creates editorial calm unusual in healthtech, where most competitors use bold geometric sans headlines. Tracking tightens as size grows: -0.01em at 40px, -0.03em at 56–74px. Body text uses natural tracking. The only uppercase treatment is 11px/600 eyebrows at 0.08em — these are navigational markers, not decorative caps."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows entirely — boxShadow=none on all card variants. Depth and hierarchy are communicated through layered tinted surfaces (cream → keylime → sage → slate) rather than elevation. This keeps the interface feeling like watercolor paper rather than glassmorphic UI, matching the botanical-greenhouse metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fffefc",
+          "oklch": {
+            "c": 0.0028470190114866763,
+            "h": 84.55865787610281,
+            "l": 0.9972310468957699
+          },
+          "contexts": [
+            "other",
+            "button",
+            "badge"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 6778528.345690834,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8,
+            "other/color": 6,
+            "button/color": 7,
+            "other/stroke": 2,
+            "badge/backgroundColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e1f4df",
+          "oklch": {
+            "c": 0.03432325678891153,
+            "h": 142.6182934848391,
+            "l": 0.9474266113946479
+          },
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3368116.183118676,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 364,
+          "confidence": 1,
+          "prominence": 3299844.7805651915,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 364
+          }
+        },
+        {
+          "hex": "#b1dbb8",
+          "oklch": {
+            "c": 0.06528517454123316,
+            "h": 149.71557775073987,
+            "l": 0.8519743660600748
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 3041712,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/stroke": 2,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#b6ced5",
+          "oklch": {
+            "c": 0.027671466303258847,
+            "h": 217.18418054030099,
+            "l": 0.835665574428606
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1665726.2467812656,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#0f3e17",
+          "oklch": {
+            "c": 0.08281577200879707,
+            "h": 146.25321258670658,
+            "l": 0.32190993508510135
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 180,
+          "confidence": 1,
+          "prominence": 1107824.7355187216,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "link/color": 19,
+            "other/fill": 50,
+            "other/color": 44,
+            "other/stroke": 9,
+            "heading/color": 11,
+            "button/borderColor": 20,
+            "body/backgroundColor": 6,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#cfe7d3",
+          "oklch": {
+            "c": 0.03704488778560535,
+            "h": 150.24691260068929,
+            "l": 0.9047726625424318
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1013904,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 16004.951332282235,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 8
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 11442,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "nav/stroke": 2
+          }
+        },
+        {
+          "hex": "#addbe8",
+          "oklch": {
+            "c": 0.05102302071033935,
+            "h": 216.89594313657813,
+            "l": 0.863253501749779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4575,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#a9e6b0",
+          "oklch": {
+            "c": 0.09659989922605162,
+            "h": 147.6702398454777,
+            "l": 0.8694274490725389
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 229,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#0a7a9b",
+          "oklch": {
+            "c": 0.10078338592001487,
+            "h": 225.69577926191332,
+            "l": 0.540100597537168
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 108,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#009b19",
+          "oklch": {
+            "c": 0.19645084377942051,
+            "h": 143.58936294488237,
+            "l": 0.5982211074293449
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 107,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#016d00",
+          "oklch": {
+            "c": 0.1574904938062453,
+            "h": 142.43688052914197,
+            "l": 0.4634620846651804
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 98,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07176347840135819,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.83,
+          "background": "#fffefc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.21,
+          "background": "#e1f4df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.02,
+          "background": "#cfe7d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.78,
+          "background": "#fffefc",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.63,
+          "background": "#a9e6b0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.07,
+          "background": "#addbe8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.79,
+          "background": "#e1f4df",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#eeeeee",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#b1dbb8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.78,
+          "background": "#b6ced5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.14,
+          "background": "#cfe7d3",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.1,
+          "background": "#0f3e17",
+          "foreground": "#fffefc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.09,
+          "background": "#a9e6b0",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.66,
+          "background": "#addbe8",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.57,
+          "background": "#0f3e17",
+          "foreground": "#e1f4df"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.51,
+          "background": "#eeeeee",
+          "foreground": "#0f3e17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#b1dbb8",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.68,
+          "background": "#b6ced5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#cfe7d3",
+          "foreground": "#0f3e17"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 14.08,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 7.04,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "list",
+            "badge",
+            "heading",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingLeft",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|nav",
+            "paddingLeft|list",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "list",
+            "badge"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "list",
+            "badge",
+            "heading"
+          ],
+          "frequency": 59,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|body",
+            "marginBottom|list",
+            "marginTop|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 141,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 156,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisseintl",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            600
+          ],
+          "frequency": 357,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Faire Octave",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.61,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Suisseintl",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "card",
+            "button",
+            "icon",
+            "hero",
+            "body",
+            "list",
+            "footer"
+          ],
+          "frequency": 255,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "badge",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 74,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisseintl",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Faire Octave",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Faire Octave",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Suisseintl",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "Faire Octave",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e34cea93-f414-41af-a3fa-a7e61f7137bb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ease Health design system\",\"item\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#style-reference\",\"name\":\"Ease Health design system reference\",\"headline\":\"Ease Health design system | Refero Styles\",\"description\":\"Explore Ease Health's light Other design system: Forest Ink #0f3e17, Sage Mist #b1dbb8 colors, Faire Octave, Suisse Intl typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ease Health\",\"url\":\"https://easehealth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9f5e976-53f7-42f5-a882-4e63b3c2f734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"caption\":\"Screenshot of Ease Health\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a4d7d0e5-d64d-4830-b058-77b8d5c73fd8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ease Health design system\",\"Ease Health website design\",\"Ease Health colors\",\"Ease Health typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Forest Ink\",\"Sage Mist\",\"Keylime Wash\",\"Mint Veil\",\"Faire Octave\",\"Suisse Intl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ease Health design system\"},{\"@type\":\"Thing\",\"name\":\"Ease Health website design\"},{\"@type\":\"Thing\",\"name\":\"Ease Health colors\"},{\"@type\":\"Thing\",\"name\":\"Ease Health typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:13:33.860Z\",\"dateModified\":\"2026-04-30T00:13:33.860Z\"}]}19:T47a,**Quick Color Reference**\n- Text/Heading: #0f3e17 (Forest Ink)\n- Page background: #fffefc (Cream Paper)\n- Hero/light panel: #e1f4df (Keylime Wash)\n- Feature panel: #b1dbb8 (Sage Mist)\n- Product showcase panel: #b6ced5 (Slate Hush)\n- Border: #efeeeb\n- primary action: #0f3e17 (filled action)\n\n**Example Component Prompts**\n1. Create a Primary Action Button: #0f3e17 background, #fffefc text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature card**: Sage Mist #b1dbb8 background, 14px border-radius, 42px padding all sides, no shadow. Eyebrow label in Suisse Intl 11px/600 uppercase with 0.08em tracking, Forest Ink color. Heading in Faire Octave 40px/300, Forest Ink. Body in Suisse Intl 14px/400, Charcoal #222222.\n\n3. **Pill badge**: Background Cream Paper #fffefc, text Forest Ink #0f3e17, 999px border-radius, padding 9px 14px, Suisse Intl 14px/400. Place above section headings as a category tag.\n\n4. **FAQ row**: Two-column grid. Left: Faire Octave 40px/300 question in Forest Ink. Right: Suisse Intl 14px/400 answer in Charcoal #222222. Separator: 1px solid Border Mist #efeeeb below each row."
+}

@@ -1,0 +1,1269 @@
+{
+  "source": "https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e",
+  "uuid": "0a489bce-4f93-4b38-b612-d87b1d00999e",
+  "name": "Hims App",
+  "northStar": "spa brochure on vellum paper",
+  "capturedAt": "2026-07-18T08:32:53.468Z",
+  "meta": {
+    "url": "https://app.forhims.com",
+    "siteName": "Hims App",
+    "extractedAt": "2026-06-03T16:27:04.689Z",
+    "durationMs": 38532,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 198,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Hims Violet #5d48db only for display headlines and occasional 1px borders — never for filled buttons, backgrounds, or body text",
+      "Set card border-radius to 30px for standard cards, 45px for feature/hero cards, and 52px for the nav pill",
+      "Apply shadow rgba(0,0,0,0.12) 0px 27px 104px to standard cards — the long spread is essential to the floating effect",
+      "Set page background to #ffffff and let cards share the same color; differentiation comes from shadow and radius, not fill",
+      "Use sofia at weight 400 for all body and display text; reserve weight 500 sparingly for emphasis",
+      "Center headlines at 84px+ and apply letter-spacing between -0.017em and -0.047em — tight tracking is signature",
+      "Maintain 90px vertical gaps between major sections and 32px internal card padding"
+    ],
+    "donts": [
+      "Do not introduce a second accent color into the marketing UI — violet #5d48db is the only chromatic voice",
+      "Do not use filled colored buttons — the action style is the white pill with black border at 30px radius",
+      "Do not apply tight shadows (0 2px 4px) — every shadow in this system spreads 27px+ vertically",
+      "Do not use black at less than 2e2e2 for heading text — the slightly softer graphite prevents harshness on white",
+      "Do not add decorative gradients to UI surfaces — gradients are reserved for product imagery inside phone mockups",
+      "Do not set card radii below 30px or above 52px — the system has exactly three radius tiers",
+      "Do not use body type above 20px without shifting to heading role and applying -0.017em tracking"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#5d48db",
+        "name": "Hims Violet",
+        "role": "Headline text, display borders, brand accent — the single chromatic voice in an otherwise monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, hairline borders, icon fills, nav dividers — the structural ink of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, nav background, image backgrounds — the base surface at every elevation level",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Vellum Gray",
+        "role": "List dividers, subtle row separators, muted list text — the quietest structural neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e2e2e",
+        "name": "Graphite",
+        "role": "Secondary heading text, heading borders — slightly softer than pure black for non-display headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Linen",
+        "role": "Hairline borders, list separators, thin structural strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f8f",
+        "name": "Stone",
+        "role": "Muted body copy, subdued links, secondary metadata text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3fd194",
+        "name": "Soft Mint",
+        "role": "Decorative product accent — appears inside app screenshot tiles (e.g. Acne Program card), not a UI token",
+        "group": "accent"
+      },
+      {
+        "hex": "#9685ff",
+        "name": "Iris",
+        "role": "Decorative product accent — appears in product gradient washes inside phone mockup content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Page model is centered and max-width contained (1200px). The hero is a full-width white canvas with a centered headline pair ('Total care. / Totally different.') stacked vertically at 84–141px, with the phone mockup floating below. Sections flow vertically with 90px gaps, no alternating dark/light bands — the entire page stays on white. Content is arranged in centered stacks: headline → icon tile → body text. No asymmetric compositions, no side-by-side text+image pairs in the visible flow. Navigation is a pill-shaped floating bar at the top. The overall rhythm is editorial: each section gets the full viewport's attention before the next begins.",
+    "imagery": "Imagery is photographic and intimate: a human hand (appears to be a woman's hand with neutral-toned nails) holding an iPhone in soft, diffused light. The device is the hero — there is no lifestyle context, no room, no environment. The phone screen displays the actual product UI, which uses its own gradient-washed cards (mint-to-teal, iris-to-lavender) as secondary color language. Behind the device, a soft radial glow in pale violet bleeds into the white canvas, connecting the product to the brand accent. No illustrations, no 3D renders, no abstract graphics. Treatment: full-bleed centered, no rounded masking on the device itself, and the lavender glow is the only atmospheric element.",
+    "similar": [
+      {
+        "why": "Same oversized type-in-near-empty-space approach, soft long-spread shadows, and near-monochrome palette with a single muted accent",
+        "business": "Calm"
+      },
+      {
+        "why": "Shared spacious, breathy layout with centered headlines, rounded-everything components, and warm-but-restrained visual tone",
+        "business": "Headspace"
+      },
+      {
+        "why": "Same editorial precision: custom geometric sans, tight letter-spacing at display sizes, and a violet/purple accent used sparingly for emphasis",
+        "business": "Stripe"
+      },
+      {
+        "why": "Similar health/wellness positioning with minimal UI, soft shadows, and product-foreground photography on pure white",
+        "business": "Whoop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "52px",
+        "cards": "30px",
+        "buttons": "30px",
+        "app-icon": "45px",
+        "feature-cards": "45px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "90px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base background for all sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Elevated cards, app icon tiles, program cards — same color as canvas, distinguished by shadow and radius only"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Nav Surface",
+        "level": 2,
+        "purpose": "Top navigation bar, pill-shaped container at 52px radius with soft shadow"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.12) 0px 27px 104px 0px",
+        "element": "Card (standard)"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.11) 0px 8px 127px 0px",
+        "element": "Card (large/feature)"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 9px 46px 0px",
+        "element": "Phone mockup"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.06) 0px 8px 30px 0px",
+        "element": "Nav bar"
+      }
+    ],
+    "northStar": "spa brochure on vellum paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.017
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.017
+      },
+      {
+        "role": "heading-lg",
+        "size": 84,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.017
+      },
+      {
+        "role": "display",
+        "size": 141,
+        "lineHeight": 1.04,
+        "letterSpacing": -0.047
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero-level typographic statement",
+        "description": "Sofia weight 400 at 84–141px, line-height 1.04–1.10, letter-spacing -0.017em to -0.047em. Color: Hims Violet #5d48db for primary displays, Carbon Black #000000 for section dividers. Centered alignment. No accompanying subtitle at this level — the type stands alone against white space."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section anchors",
+        "description": "Sofia weight 400 at 32–44px, line-height 1.15–1.20, letter-spacing -0.017em. Color: Carbon Black #000000 or Graphite #2e2e2e. Centered or left-aligned depending on layout. Often paired with a rounded-square icon tile above (45px radius, white card, soft shadow, single-stroke icon)."
+      },
+      {
+        "name": "Icon Tile",
+        "role": "Decorative section marker",
+        "description": "White card at 45px border-radius, approximately 120×120px, containing a single outlined/filled icon in Carbon Black. Shadow: rgba(0,0,0,0.12) 0px 27px 104px. Floats above the heading it labels."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Hero visual anchor",
+        "description": "iPhone device frame held by a human hand (photographic). Device shadow: rgba(0,0,0,0.25) 0px 9px 46px. Sits centered on a soft purple/lavender radial glow gradient (violet bleed from the product imagery into white canvas). The phone screen content is the product — not a static screenshot but styled with internal gradient cards."
+      },
+      {
+        "name": "Top Nav Bar",
+        "role": "Primary site navigation",
+        "description": "Pill-shaped container at 52px border-radius, white fill, shadow rgba(0,0,0,0.06) 0px 8px 30px. Left: Hims & Hers wordmark in sofia. Right: Apple App Store download badge (pill, white background, 1px black border at 30px radius, 16px vertical padding, 22px horizontal padding). Padding: 16px top/bottom, 22px sides."
+      },
+      {
+        "name": "App Store Download Button",
+        "role": "Primary conversion action",
+        "description": "Pill shape at 30px border-radius, white fill, 1px Carbon Black border. Apple logo + 'Download now' text in sofia 16px weight 400. No filled CTA variant — the outlined pill IS the action style for this system."
+      },
+      {
+        "name": "Program Card (in-app)",
+        "role": "Product category card inside phone mockup",
+        "description": "Rounded card with product-tinted gradient background (e.g. iris-to-lavender, or mint-to-teal). Small badge label ('ED Program', 'Acne Program') at top-right in white text on a translucent dark pill. Headline text overlaid in white. Represents the product's own UI, not the marketing site's UI."
+      },
+      {
+        "name": "Feature Row",
+        "role": "Content section with icon and heading",
+        "description": "Vertical stack: Icon Tile (120×120, 45px radius) → 40px gap → Section Heading (32–44px) → 32px gap → body text. Centered or left-aligned. All spacing uses the 4px base unit scaled up (32, 40, 64, 90px)."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with legal and nav",
+        "description": "White background, 100px top padding, 64px horizontal padding. Carbon Black text at 14–16px. Hairline borders at 1px in Vellum Gray #f0f0f0 separate columns."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sofia is the sole typeface. Its geometric, low-contrast letterforms carry everything from 14px nav labels to 280px display heroes. Weight 400 is the default at all sizes; weight 500 is reserved for emphasis. The extreme size range (14→280px) with consistent tight tracking (-0.012em to -0.057em) creates a system that scales smoothly from caption to billboard. Signature choice: the ultra-tight tracking even at body sizes (-0.012em at 14px) gives body text a compressed, editorial density unusual for a consumer health app.",
+        "sizes": "14, 16, 18, 20, 24, 32, 35, 37, 39, 44, 81, 84, 85, 141, 220, 280",
+        "family": "sofia",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.04, 1.10, 1.15, 1.18, 1.20, 1.25, 1.33, 1.43, 1.67, 2.44, 2.50, 2.78",
+        "substitute": "Inter, Manrope, or DM Sans",
+        "letterSpacing": "-0.057em at 280px, -0.047em at 220px, -0.017em at 84px, -0.012em at 14–20px"
+      }
+    ],
+    "description": "Hims App operates as a calm, monochrome wellness interface where one violet accent does all the emotional work against an otherwise achromatic canvas. The system is built for breath: oversized type in a custom geometric sans (sofia), generously rounded surfaces (30–52px radii), and long-spread soft shadows that make cards appear to float rather than sit. The hero is photographic and intimate — a hand holding a phone, product color bleeding into real skin — but the surrounding UI stays austere: white canvas, black type, hairline borders. Violet #5d48db is reserved almost exclusively for headlines and occasional borders, never for filled buttons. Components feel like printed editorial spreads: large negative space, no decorative gradients in chrome, and a single type family carrying every weight of meaning.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hims App design system\",\"item\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#style-reference\",\"name\":\"Hims App design system reference\",\"headline\":\"Hims App design system | Refero Styles\",\"description\":\"Explore Hims App's light Other design system: Hims Violet #5d48db, Carbon Black #000000 colors, sofia typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hims App\",\"url\":\"https://app.forhims.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"caption\":\"Screenshot of Hims App\"},\"image\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hims App design system\",\"Hims App website design\",\"Hims App colors\",\"Hims App typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Hims Violet\",\"Carbon Black\",\"Paper White\",\"Vellum Gray\",\"sofia\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hims App design system\"},{\"@type\":\"Thing\",\"name\":\"Hims App website design\"},{\"@type\":\"Thing\",\"name\":\"Hims App colors\"},{\"@type\":\"Thing\",\"name\":\"Hims App typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:35:41.928Z\",\"dateModified\":\"2026-04-30T02:35:41.928Z\"}]}19:T688,## Quick Color Reference\n\n- Primary text: #000000 (Carbon Black)\n- Background: #ffffff (Paper White)\n- Muted text: #8f8f8f (Stone)\n- Hairline border: #e0e0e0 (Linen) or #f0f0f0 (Vellum Gray)\n- Headline accent: #5d48db (Hims Violet)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Display Headline Section**\nWhite #ffffff canvas. Centered headline 'Total care. Totally different.' in sofia weight 400, 141px, line-height 1.04, letter-spacing -0.047em, color #5d48db. No subtitle. 90px gap below before next section.\n\n**2. Icon Tile + Section Heading**\nWhite canvas. Centered Icon Tile: 120×120px, 45px border-radius, white fill, shadow rgba(0,0,0,0.12) 0px 27px 104px. Contains a single black outlined icon centered. 40px gap below, then heading 'Programs' in sofia weight 400, 84px, line-height 1.10, letter-spacing -0.017em, color #000000.\n\n**3. Feature Card Grid**\nWhite canvas. 3-column grid of cards, each 30px border-radius, 32px padding, white fill, shadow rgba(0,0,0,0.11) 0px 8px 127px. Card heading in sofia 32px weight 400 #000000. Card body in sofia 18px weight 400 #8f8f8f. 20px gap between cards horizontally, 32px vertically.\n\n**4. Outlined Pill Download Button**\nWhite fill, 1px #000000 border, 30px border-radius, padding 16px vertical × 22px horizontal. Apple logo icon (16px, black) + text 'Download now' in sofia 16px weight 400 #000000. No fill variant exists.\n\n**5. Floating Nav Bar**\nPill-shaped container, 52px border-radius, white fill, shadow rgba(0,0,0,0.06) 0px 8px 30px. Padding 16px top/bottom. Left: 'hims & hers' wordmark in sofia. Right: outlined download pill (see component 4). Fixed position at top of page."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is generated by long-spread, low-opacity shadows rather than tight drop shadows. The system prefers shadows that diffuse over 100+ pixels of distance to create a sense of objects hovering in soft light. No colored shadows — always pure black at 0.06–0.25 opacity. This produces a 'printed on cotton' feel rather than a 'raised plastic' feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "heading",
+            "hero",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 497,
+          "confidence": 1,
+          "prominence": 423211713.6582218,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 12,
+            "nav/color": 10,
+            "card/color": 19,
+            "hero/color": 1,
+            "icon/color": 6,
+            "list/color": 7,
+            "other/fill": 17,
+            "image/color": 4,
+            "other/color": 34,
+            "heading/color": 11,
+            "nav/borderColor": 40,
+            "card/borderColor": 76,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "list/borderColor": 25,
+            "image/borderColor": 16,
+            "other/borderColor": 136,
+            "heading/borderColor": 44,
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "footer",
+            "link",
+            "body"
+          ],
+          "frequency": 350,
+          "confidence": 1,
+          "prominence": 117663978.47401501,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "body/color": 1,
+            "card/color": 15,
+            "hero/color": 1,
+            "link/color": 4,
+            "list/color": 9,
+            "other/fill": 9,
+            "image/color": 6,
+            "other/color": 22,
+            "footer/color": 1,
+            "heading/color": 6,
+            "body/borderColor": 4,
+            "card/borderColor": 60,
+            "hero/borderColor": 4,
+            "link/borderColor": 16,
+            "list/borderColor": 36,
+            "image/borderColor": 24,
+            "other/borderColor": 88,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 7,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#5d48db",
+          "oklch": {
+            "c": 0.21323424040153113,
+            "h": 282.40500747092494,
+            "l": 0.514937597035092
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1073808.9325745725,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 981006.5271079451,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/color": 4,
+            "list/borderColor": 16
+          }
+        },
+        {
+          "hex": "#2e2e2e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.30078233197619053
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 410087.9429365025,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 298792.67303439043,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1,
+            "list/borderColor": 3
+          }
+        },
+        {
+          "hex": "#8f8f8f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6493788278468504
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 242001.07945015348,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 21327.255409703877,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003208846090434165,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#000000",
+          "foreground": "#f0f0f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.58,
+          "background": "#ffffff",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#f0f0f0",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.29,
+          "background": "#e0e0e0",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.38,
+          "background": "#bfbfbf",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.49,
+          "background": "#000000",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.15,
+          "background": "#ffffff",
+          "foreground": "#5d48db"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#000000",
+          "foreground": "#5d48db"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.23,
+          "background": "#ffffff",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.55,
+          "background": "#000000",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#ffffff",
+          "foreground": "#f0f0f0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 45,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 27px 104px 0px",
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.11) 0px 8px 127px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 9px 46px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 8px 30px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 156,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 250,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|hero",
+            "marginTop|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 271,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(166.14deg, rgb(232, 244, 247) 0px, rgb(175, 205, 222) 100%)",
+        "colors": [
+          "rgb(232, 244, 247)",
+          "rgb(175, 205, 222)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(166.14deg, rgb(83, 170, 255) 1.38%, rgb(53, 119, 191) 38.84%, rgb(0, 0, 0) 74.76%)",
+        "colors": [
+          "rgb(83, 170, 255)",
+          "rgb(53, 119, 191)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(243.63deg, rgb(63, 209, 148) 16.96%, rgb(47, 165, 158) 60.78%)",
+        "colors": [
+          "rgb(63, 209, 148)",
+          "rgb(47, 165, 158)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(123.97deg, rgb(79, 216, 171) 10.62%, rgb(94, 161, 231) 43.12%, rgb(131, 117, 208) 89.61%)",
+        "colors": [
+          "rgb(79, 216, 171)",
+          "rgb(94, 161, 231)",
+          "rgb(131, 117, 208)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(93.37deg, rgb(150, 133, 255) -1.4%, rgb(209, 178, 202) 34.29%, rgb(181, 173, 225) 85.34%)",
+        "colors": [
+          "rgb(150, 133, 255)",
+          "rgb(209, 178, 202)",
+          "rgb(181, 173, 225)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(123.97deg, rgb(127, 191, 188) 10.62%, rgb(85, 107, 113) 49.7%, rgb(0, 0, 0) 89.61%)",
+        "colors": [
+          "rgb(127, 191, 188)",
+          "rgb(85, 107, 113)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sofia",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 166,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.81
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "hero",
+            "list",
+            "footer"
+          ],
+          "frequency": 105,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sofia",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sofia",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sofia",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "sofia",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 81,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.057,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.44,
+          "letterSpacing": -0.057,
+          "textTransform": "none"
+        },
+        {
+          "size": 85,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 141,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.057,
+          "textTransform": "none"
+        },
+        {
+          "size": 220,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.057,
+          "textTransform": "none"
+        },
+        {
+          "size": 280,
+          "family": "sofia",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.057,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/62bc3c29-75e1-4058-a576-4ae5a16b15c2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hims App design system\",\"item\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#style-reference\",\"name\":\"Hims App design system reference\",\"headline\":\"Hims App design system | Refero Styles\",\"description\":\"Explore Hims App's light Other design system: Hims Violet #5d48db, Carbon Black #000000 colors, sofia typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hims App\",\"url\":\"https://app.forhims.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0a489bce-4f93-4b38-b612-d87b1d00999e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"caption\":\"Screenshot of Hims App\"},\"image\":\"https://images.refero.design/styles/refero.design/image/acb739b0-a265-4dcf-a092-281b530e338e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hims App design system\",\"Hims App website design\",\"Hims App colors\",\"Hims App typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Hims Violet\",\"Carbon Black\",\"Paper White\",\"Vellum Gray\",\"sofia\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hims App design system\"},{\"@type\":\"Thing\",\"name\":\"Hims App website design\"},{\"@type\":\"Thing\",\"name\":\"Hims App colors\"},{\"@type\":\"Thing\",\"name\":\"Hims App typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:35:41.928Z\",\"dateModified\":\"2026-04-30T02:35:41.928Z\"}]}19:T688,## Quick Color Reference\n\n- Primary text: #000000 (Carbon Black)\n- Background: #ffffff (Paper White)\n- Muted text: #8f8f8f (Stone)\n- Hairline border: #e0e0e0 (Linen) or #f0f0f0 (Vellum Gray)\n- Headline accent: #5d48db (Hims Violet)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Display Headline Section**\nWhite #ffffff canvas. Centered headline 'Total care. Totally different.' in sofia weight 400, 141px, line-height 1.04, letter-spacing -0.047em, color #5d48db. No subtitle. 90px gap below before next section.\n\n**2. Icon Tile + Section Heading**\nWhite canvas. Centered Icon Tile: 120×120px, 45px border-radius, white fill, shadow rgba(0,0,0,0.12) 0px 27px 104px. Contains a single black outlined icon centered. 40px gap below, then heading 'Programs' in sofia weight 400, 84px, line-height 1.10, letter-spacing -0.017em, color #000000.\n\n**3. Feature Card Grid**\nWhite canvas. 3-column grid of cards, each 30px border-radius, 32px padding, white fill, shadow rgba(0,0,0,0.11) 0px 8px 127px. Card heading in sofia 32px weight 400 #000000. Card body in sofia 18px weight 400 #8f8f8f. 20px gap between cards horizontally, 32px vertically.\n\n**4. Outlined Pill Download Button**\nWhite fill, 1px #000000 border, 30px border-radius, padding 16px vertical × 22px horizontal. Apple logo icon (16px, black) + text 'Download now' in sofia 16px weight 400 #000000. No fill variant exists.\n\n**5. Floating Nav Bar**\nPill-shaped container, 52px border-radius, white fill, shadow rgba(0,0,0,0.06) 0px 8px 30px. Padding 16px top/bottom. Left: 'hims & hers' wordmark in sofia. Right: outlined download pill (see component 4). Fixed position at top of page."
+}

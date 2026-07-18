@@ -1,0 +1,125 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page background, full-bleed canvas for all content"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — All text, navigation, footer instructions, and thin UI strokes"
+    },
+    "ash-gray": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary or muted text, de-emphasized labels, inactive hints"
+    }
+  },
+  "font": {
+    "akzidenz-grotesk": {
+      "$value": "Akzidenz-Grotesk",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across navigation, body, footer, and brand mark. The weight 400/700 pairing is the entire hierarchy system — no color, no size jumps, no italic to differentiate roles. At 14–15px the grotesk reads as utilitarian editorial; at 20–21px it becomes signage. Normal tracking preserves the geometric, mechanical feel."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "AkzidenzGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "AkzidenzGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AkzidenzGrotesk",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "AkzidenzGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "AkzidenzGrotesk",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Single-level surface — there is no card or panel layer above the canvas; content sits directly on black"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.eduardodelfraile.com",
+      "siteName": "Eduardo del Fraile",
+      "extractedAt": "2026-06-03T22:00:46.566Z",
+      "variant": "extended"
+    }
+  }
+}

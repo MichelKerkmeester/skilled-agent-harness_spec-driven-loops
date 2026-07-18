@@ -1,0 +1,536 @@
+{
+  "source": "https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744",
+  "uuid": "a6b2d6dc-7d71-4d2d-af3e-b34a8b665744",
+  "name": "Katherine Pihl",
+  "northStar": "art gallery wall at dawn — a white-walled space where black type, generous gaps, and full-bleed imagery do all the work, and the UI itself is almost invisible.",
+  "capturedAt": "2026-07-18T08:42:39.868Z",
+  "meta": {
+    "url": "https://katherinepihl.com",
+    "siteName": "Katherine Pihl",
+    "extractedAt": "2026-06-03T21:59:07.963Z",
+    "durationMs": 34505,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 124,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the three-color palette only: #000000 for ink, #b3b3b3 for paper, #999999 for muted labels. No chromatic color anywhere in the UI.",
+      "Set all images to 0px border-radius. Sharp corners are part of the gallery-wall language.",
+      "Use Neue Montreal for every piece of structural text (nav, labels, body) and reserve Ryhmes exclusively for display titles overlaid on imagery.",
+      "Space the grid with 40px row gaps and 24px column gaps. The white space IS the design system.",
+      "Express active state through weight (500 vs 400), not color or background. 'All' is bold; the others are regular.",
+      "Open letter-spacing on uppercase nav text to ~0.07em; tighten display serif to -0.03em. The two typographic temperatures must be felt at a glance.",
+      "Place all color into project imagery. Let photographs and solid color blocks carry visual weight; the chrome stays quiet."
+    ],
+    "donts": [
+      "Do not introduce any accent color, gradient, or brand hue — even a CTA blue. This system has no chromatic accent by design.",
+      "Do not add card backgrounds, borders, or drop shadows to project images. The white wall is the surface.",
+      "Do not use Ryhmes for nav, labels, body, or any non-display text. It is reserved for the serif moment over imagery.",
+      "Do not round corners on images, buttons, or containers. Every edge is 0px.",
+      "Do not use icons, buttons, or hamburger menus for navigation. Two text links is the entire nav system.",
+      "Do not center-align project labels. Left-align name + category stack under the image.",
+      "Do not add hover transforms, scale, or color shifts to images. A subtle opacity change is the maximum interaction feedback."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, all structural borders, hairline page frames, link underlines — the single typographic ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Fog",
+        "role": "Page background, watermark-level surfaces, lightest borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Ash",
+        "role": "Medium-contrast borders, control outlines, and structural separators.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page within a max-width ~1400px centered container. Header is a two-text-link top bar with ~40px vertical breathing room. Below: a single filter row, then a 3-column grid of project cards. Each card is image (natural aspect ratio) stacked above a 2-line label group, separated by 12px; rows are separated by 40px; columns are separated by 24px. The grid is the page — there are no other section types, no sidebars, no footers visible in the viewport. The rhythm is uniform: header → filter → row 1 → row 2 → row N. The visual weight alternates row by row only because the project images differ in tone and color — the grid skeleton is identical across all rows.",
+    "imagery": "Imagery is the entire color and visual system. The portfolio contains photography (product shots, landscape, editorial), solid color blocks (orange, deep blue), and graphic compositions — all treated identically as full-bleed image content with 0px radius. No icons, no illustrations, no decorative graphics outside the project images themselves. Display titles (Ryhmes 300, white or black) are overlaid on imagery at editorial scale. Images are shown at their native aspect ratio — no cropping, no masking, no color treatment. The 'icon' vocabulary is zero; the 'illustration' vocabulary is zero; the only graphic language is the photograph or block.",
+    "similar": [
+      {
+        "why": "Same gallery-wall layout: white canvas, no card borders, 3-column image grid, and project labels hanging in whitespace below images",
+        "business": "Studio Bruch"
+      },
+      {
+        "why": "Same editorial-portfolio language with mixed grotesque + display-serif typography and no chromatic accent in the UI",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same full-bleed image grid with 0px radius, generous row gaps, and text-only navigation — the work is the entire visual system",
+        "business": "Anish Tailor (anishtailor.com)"
+      },
+      {
+        "why": "Same restrained two-font approach: a neo-grotesque for structure and a high-contrast serif used sparingly as display type over imagery",
+        "business": "Pentagram portfolio pages"
+      },
+      {
+        "why": "Same achromatic UI with a neo-grotesque sans for nav/labels, letting project photography supply all color and atmosphere",
+        "business": "Manual (manualcreative.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "40px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#b3b3b3",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page background — light, warm, barely-tinted near-white"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 2,
+        "purpose": "No actual card surfaces — project images sit directly on the page background"
+      }
+    ],
+    "northStar": "art gallery wall at dawn — a white-walled space where black type, generous gaps, and full-bleed imagery do all the work, and the UI itself is almost invisible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.84
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Portfolio Header",
+        "role": "Top of page — brand mark and single contact link",
+        "description": "Two text elements on the white background. Left: 'KATHERINE PIHL' in Neue Montreal 300, 12px, uppercase, letter-spacing 0.07em, color Ink (#000000). Right: 'CONTACT' in the same spec. No background, no border, no hamburger, no menu bar. ~40px top/bottom padding from the page edge."
+      },
+      {
+        "name": "Filter Nav",
+        "role": "Category filter for the project grid",
+        "description": "Inline horizontal text row, no buttons, no pills. Three items: 'All' (Neue Montreal 500, 13px, color Ink), 'Branding' (Neue Montreal 400, 13px, color Ash #999999), 'Web Design' (same as Branding). 24px gap between items. Active state = weight change, not color change. No underline, no background, no border."
+      },
+      {
+        "name": "Project Image Block",
+        "role": "Full-bleed photographic or graphic content in the grid",
+        "description": "No border, no radius (0px), no shadow, no padding. Image fills its column edge-to-edge. Aspect ratio varies per project (portrait, landscape, square, solid color field). The orange block and the photographic landscapes are treated identically as 'image content'."
+      },
+      {
+        "name": "Project Card",
+        "role": "Composite unit = image + label group",
+        "description": "An image block stacked above a label group with 12px gap. The label group has 8px bottom margin to the next row. No card container, no border, no background — the white space between cards IS the card system. Spacing between rows: 40px."
+      },
+      {
+        "name": "Project Label",
+        "role": "Name + category text below each project image",
+        "description": "Two-line stack. Line 1: project name in Neue Montreal 500, 13px, color Ink. Line 2: category ('Branding', 'Web Design', 'Branding & Web Design') in Neue Montreal 400, 13px, color Ash (#999999). 4px gap between lines. Left-aligned, not centered."
+      },
+      {
+        "name": "Display Title Overlay",
+        "role": "Large serif title set directly over hero imagery",
+        "description": "Ryhmes 300, ~64px, line-height 1.10, letter-spacing -0.03em, color white (#ffffff) over dark images or Ink (#000000) when it appears as project label in the grid. Positioned bottom-left or centered within the image. The thin weight over a full-bleed photograph is the portfolio's signature moment."
+      },
+      {
+        "name": "Date Stamp",
+        "role": "Small editorial annotation on hero imagery",
+        "description": "e.g. 'NYC 2025'. Neue Montreal 400, 12px, uppercase, letter-spacing 0.07em, color white or Ink depending on image. Positioned top-right of the image. Functions as a publication-style byline."
+      },
+      {
+        "name": "Text Link",
+        "role": "Navigational link (header 'CONTACT', filter items)",
+        "description": "Neue Montreal 300–400, 12–13px, uppercase, letter-spacing 0.07em, color Ink. No underline at rest; underline appears on hover via 1px Ink border-bottom. No button shape, no background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All structural UI text: top-bar name, contact link, filter nav, project labels, category tags. Weight 300 for uppercase nav and filter items, 400 for body, 500 for active filter ('All') and project names. Letter-spacing opens dramatically at small sizes (0.07em at 12px) to give the nav a typeset, editorial cadence.",
+        "sizes": "16px",
+        "family": "Neue Montreal",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.20 (display use), 1.50 (body use)",
+        "substitute": "Inter or General Sans at matching weights",
+        "letterSpacing": "0.07em at 12px (uppercase nav), 0.02em at 16px (body), 0 at display use"
+      },
+      {
+        "role": "Display serif used exclusively for project titles overlaid on hero imagery (e.g. 'recreation', 'BROWN JORDAN'). Weight 300 — the thinnest possible stroke — combined with tight tracking (-0.03em) makes the text feel etched into the photograph rather than placed on top. This serif is the portfolio's only expressive voice; it never appears in chrome, nav, or labels.",
+        "sizes": "32px",
+        "family": "Ryhmes",
+        "weight": "300",
+        "lineHeight": "1.10",
+        "substitute": "Playfair Display or DM Serif Display at weight 300",
+        "letterSpacing": "-0.03em (tightened tracking at all sizes)"
+      }
+    ],
+    "description": "Katherine Pihl is an editorial portfolio system where the work does the talking and the interface recedes into the wall. The page is a pure white canvas with black and two grays — zero chromatic accent, zero decorative gradient, zero shadow — so the imagery carries all the color. The typographic system is the only expressive layer: a precise neo-grotesque (Neue Montreal) at 300–500 for all structural and label text, paired with a high-contrast light-weight serif (Ryhmes) that appears only as large display type overlaid on project imagery. Cards are not cards — they are unbordered, full-bleed images with text labels hanging in the whitespace below. Navigation is two text links. The layout rhythm is a 3-column grid with generous vertical breathing room; everything else is silence.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Katherine Pihl design system\",\"item\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#style-reference\",\"name\":\"Katherine Pihl design system reference\",\"headline\":\"Katherine Pihl design system | Refero Styles\",\"description\":\"Explore Katherine Pihl's light Agency design system: Ink #000000, Fog #b3b3b3 colors, Neue Montreal, Ryhmes typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Katherine Pihl\",\"url\":\"https://katherinepihl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"caption\":\"Screenshot of Katherine Pihl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Katherine Pihl design system\",\"Katherine Pihl website design\",\"Katherine Pihl colors\",\"Katherine Pihl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Fog\",\"Ash\",\"Neue Montreal\",\"Ryhmes\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Katherine Pihl design system\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl website design\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl colors\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:51:26.879Z\",\"dateModified\":\"2026-04-30T02:51:26.879Z\"}]}19:T5b1,**Quick Color Reference**\n- text: #000000\n- background: #b3b3b3 (page), #ffffff (canvas)\n- border: #000000\n- muted text: #999999\n- accent: none — this system has no chromatic accent\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Portfolio Header**: White background. Left-aligned 'KATHERINE PIHL' in Neue Montreal 300, 12px, uppercase, letter-spacing 0.07em, color #000000. Right-aligned 'CONTACT' in identical spec. 40px top/bottom padding. No border, no background.\n\n2. **Filter Nav**: Inline horizontal row. 'All' in Neue Montreal 500, 13px, #000000. 'Branding' and 'Web Design' in Neue Montreal 400, 13px, #999999. 24px gap between items. No buttons, no pills, no backgrounds. Active state = weight only.\n\n3. **Project Card**: Image block at 0px radius, full-bleed to column edges, no border, no shadow. Below: 12px gap, then 'Skinfix' in Neue Montreal 500, 13px, #000000, then 4px gap, then 'Branding' in Neue Montreal 400, 13px, #999999. Left-aligned. No card container.\n\n4. **Display Title Overlay**: Ryhmes 300, 64px, line-height 1.10, letter-spacing -0.03em, white #ffffff, positioned bottom-left over a full-bleed photograph at 0px radius. No background plate, no scrim — text sits directly on the image.\n\n5. **Project Image Block — Solid Color**: A solid #ff5a1f rectangle filling the grid column at 0px radius, identical structural treatment to a photograph. Treated as image content, not as a UI surface."
+      }
+    ],
+    "elevationPhilosophy": "This system uses no shadows. Elevation is expressed entirely through white-space separation and typographic weight. Cards float not by being raised but by the negative space around them."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "footer"
+          ],
+          "frequency": 560,
+          "confidence": 1,
+          "prominence": 38113549.209780276,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 15,
+            "image/color": 7,
+            "other/color": 72,
+            "footer/color": 1,
+            "heading/color": 13,
+            "body/borderColor": 16,
+            "link/borderColor": 60,
+            "image/borderColor": 28,
+            "other/borderColor": 288,
+            "footer/borderColor": 4,
+            "heading/borderColor": 52
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 18089.364415547097,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "body/borderColor": 40
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 5683.84614942108,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "columnGap",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "columnGap|other",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "footer",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 120,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Ryhmes",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "footer",
+            "body"
+          ],
+          "frequency": 67,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Ryhmes",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/720a286f-d357-4844-9a0b-e618815845d7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Katherine Pihl design system\",\"item\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#style-reference\",\"name\":\"Katherine Pihl design system reference\",\"headline\":\"Katherine Pihl design system | Refero Styles\",\"description\":\"Explore Katherine Pihl's light Agency design system: Ink #000000, Fog #b3b3b3 colors, Neue Montreal, Ryhmes typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Katherine Pihl\",\"url\":\"https://katherinepihl.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6b2d6dc-7d71-4d2d-af3e-b34a8b665744#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"caption\":\"Screenshot of Katherine Pihl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d66d1f0-6b3a-40d4-b319-bb3e5be129da.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Katherine Pihl design system\",\"Katherine Pihl website design\",\"Katherine Pihl colors\",\"Katherine Pihl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Fog\",\"Ash\",\"Neue Montreal\",\"Ryhmes\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Katherine Pihl design system\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl website design\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl colors\"},{\"@type\":\"Thing\",\"name\":\"Katherine Pihl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:51:26.879Z\",\"dateModified\":\"2026-04-30T02:51:26.879Z\"}]}19:T5b1,**Quick Color Reference**\n- text: #000000\n- background: #b3b3b3 (page), #ffffff (canvas)\n- border: #000000\n- muted text: #999999\n- accent: none — this system has no chromatic accent\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Portfolio Header**: White background. Left-aligned 'KATHERINE PIHL' in Neue Montreal 300, 12px, uppercase, letter-spacing 0.07em, color #000000. Right-aligned 'CONTACT' in identical spec. 40px top/bottom padding. No border, no background.\n\n2. **Filter Nav**: Inline horizontal row. 'All' in Neue Montreal 500, 13px, #000000. 'Branding' and 'Web Design' in Neue Montreal 400, 13px, #999999. 24px gap between items. No buttons, no pills, no backgrounds. Active state = weight only.\n\n3. **Project Card**: Image block at 0px radius, full-bleed to column edges, no border, no shadow. Below: 12px gap, then 'Skinfix' in Neue Montreal 500, 13px, #000000, then 4px gap, then 'Branding' in Neue Montreal 400, 13px, #999999. Left-aligned. No card container.\n\n4. **Display Title Overlay**: Ryhmes 300, 64px, line-height 1.10, letter-spacing -0.03em, white #ffffff, positioned bottom-left over a full-bleed photograph at 0px radius. No background plate, no scrim — text sits directly on the image.\n\n5. **Project Image Block — Solid Color**: A solid #ff5a1f rectangle filling the grid column at 0px radius, identical structural treatment to a photograph. Treated as image content, not as a UI surface."
+}

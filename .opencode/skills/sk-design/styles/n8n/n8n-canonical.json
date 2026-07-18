@@ -1,0 +1,1604 @@
+{
+  "source": "https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436",
+  "uuid": "8601c8ef-e1ea-4186-adb2-6f9a74caf436",
+  "name": "N8n",
+  "northStar": "Workflow engine at midnight — the feeling of a live automation canvas running in a dark server room, lit by status indicators and data flows.",
+  "capturedAt": "2026-07-18T10:18:36.086Z",
+  "meta": {
+    "url": "https://n8n.io",
+    "siteName": "N8n",
+    "extractedAt": "2026-04-11T22:06:16.927Z",
+    "durationMs": 134304,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 912,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0e0918 as the only page background — never substitute with pure #000000 or neutral dark gray; the violet undertone is load-bearing for the palette",
+      "Apply the Ember gradient (linear-gradient(30deg, rgb(253,137,37), rgb(255,12,0))) exclusively to primary CTA buttons — using it for decorative elements dilutes its focal pull",
+      "Set geomanist 300 at line-height 0.88 for 48–54px display headlines with letter-spacing -0.018em to -0.020em; the tight stack is intentional",
+      "Use inset box-shadows (rgba(255,255,255,0.1) 1px inset + rgba(255,142,93,0.3) bottom inset) instead of border properties on transparent-background cards",
+      "Maintain card surfaces at rgb(26,22,36) or rgb(27,23,40) — exactly one visible step above the base void; three distinct surface levels exist: page → card → elevated panel",
+      "Use 8px border-radius for buttons and inputs, 16px for standard cards, 24px for large feature panels — apply the correct tier per component scale",
+      "Apply Electric Current gradient (linear-gradient(141deg, #077ac7, #6b21ef)) only for link underlines, focus rings, and canvas connection lines — it signals interactivity and data flow"
+    ],
+    "tags": [
+      "dark-mode",
+      "violet-black",
+      "automation",
+      "workflow-canvas",
+      "ember-gradient",
+      "dev-tools",
+      "technical",
+      "low-code",
+      "AI",
+      "node-graph"
+    ],
+    "donts": [
+      "Never use a warm or neutral dark gray (#1a1a1a, #222, #333) as a surface — all surfaces must carry the violet undertone that differentiates n8n's dark from generic dark mode",
+      "Never use geomanist 700 or 800 weight — the type system is intentionally limited to 300 and 400; heavy weight breaks the restrained visual register",
+      "Never place body text in #ffffff at normal reading sizes — use #d1cece or #e5e7eb; pure white at 15–16px creates harshness against the violet-black background",
+      "Never use drop-shadows (outset box-shadows) for card elevation — elevation is expressed through background color stepping, not shadow lifting",
+      "Never use the Ember gradient as a background fill for sections or banners — it appears only on interactive CTA buttons",
+      "Never apply 9999px radius to cards or section containers — pill radius (9999px) is reserved for tags, status indicators, and circular icon wrappers only",
+      "Never show partner/customer logos in their brand colors — all logos in the social proof row must be monochrome #d1cece to avoid palette pollution"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0e0918",
+        "name": "Void Base",
+        "role": "Primary page background and hero section — the near-black violet creates depth without being neutral charcoal",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1624",
+        "name": "Elevated Surface",
+        "role": "Card backgrounds (rgb(26,22,36)) — one step above void, visible as panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1728",
+        "name": "Deep Panel",
+        "role": "Secondary card surface (rgb(27,23,40)) — close to Elevated Surface, used for 24px-radius feature cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2834",
+        "name": "Muted Shell",
+        "role": "Ghost button backgrounds — semi-transparent frosted layer over dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e3a46",
+        "name": "Border Smoke",
+        "role": "Nav and container borders — low-contrast edge definition on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1cece",
+        "name": "Ash Text",
+        "role": "Primary body and UI text — warm-gray rather than pure white, reducing harshness against dark bg",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9d9797",
+        "name": "Fog Text",
+        "role": "Secondary body text, captions, de-emphasized labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Silver Rail",
+        "role": "Border lines across components and nav — light border on dark background creates fine hairline edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cloud White",
+        "role": "High-emphasis headings, icon fills, badge text, active nav items",
+        "group": "neutral"
+      },
+      {
+        "hex": "#48556a",
+        "name": "Steel Muted",
+        "role": "Badge text on light badge backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fd8925",
+        "name": "Ember CTA",
+        "role": "Primary CTA buttons — orange-to-red gradient (rgb(253,137,37) → rgb(255,12,0)) burns against the dark void; the only warm-chromatic element above the fold, creating immediate focal pull",
+        "group": "brand",
+        "gradient": "linear-gradient(30deg, rgb(253, 137, 37), rgb(255, 12, 0))"
+      },
+      {
+        "hex": "#077ac7",
+        "name": "Electric Current",
+        "role": "Link underline glow, active focus rings, node connection lines in workflow canvas — blue-to-violet gradient (rgb(7,122,199) → rgb(107,33,239)) signals data flow and connectivity",
+        "group": "accent",
+        "gradient": "linear-gradient(141deg, rgb(7, 122, 199), rgb(107, 33, 239))"
+      },
+      {
+        "hex": "#ff492c",
+        "name": "Ember Scorch",
+        "role": "Icon fills and secondary highlight accents — pure saturated red-orange for SVG emphasis marks",
+        "group": "accent"
+      },
+      {
+        "hex": "#56312d",
+        "name": "Crimson Glow",
+        "role": "Card box-shadow tint — dark muted red used in shadow layers beneath cards, creating a heat-haze underneath panels",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with max-width ~1200px content columns centered horizontally. Hero is left-aligned headline + CTA column with a right-bleed 3D illustration occupying 50% viewport width — the illustration breaks the content boundary intentionally. Below hero: a social proof logo bar flush to section bottom. Feature sections use large 24px-radius dark panels (full content width) containing split layouts: text column left, product screenshot right. A 'use case' section uses a left sidebar of vertical tab pills next to a right-fill product canvas — asymmetric 30/70 split. Stats/proof section: 3-column equal card grid using Glowing Inset Cards. Integration section: centered headline over a dense icon grid. Vertical section rhythm uses ~80–120px gaps with no divider lines — sections are distinguished by surface color changes (void → panel → void alternation). Footer is full-bleed with ember radial glow in the upper-right corner, 5-column link grid below a logo/tagline row.",
+    "imagery": "Primary visual is a single hero 3D illustration — a glowing orange-red lightning bolt rendered with volumetric light, glass-like facets, and bloom glow, positioned right-bleed over the dark background. This is product-metaphor imagery, not photography. The bolt bleeds off the right edge with no containment, which creates asymmetric tension with the left-aligned headline block. Workflow canvas screenshots appear in product sections as contained flat UI captures with 24px border-radius clipping — the product IS the imagery. Section backgrounds use subtle radial gradients (warm ember at corners, faint blue halos) that function as atmospheric depth rather than visible graphics. No photography, no lifestyle imagery. Icons in workflow nodes are multi-color brand icons (Slack, Jira, etc.) appearing at 32–48px within 12px-radius containers — the only colorful elements outside the CTA and hero illustration. Overall density is image-light with one hero hero and one product-screenshot per section.",
+    "similar": [
+      {
+        "why": "Same dark violet-black surface palette with orange accent buttons and workflow canvas product screenshots as primary imagery",
+        "business": "Retool"
+      },
+      {
+        "why": "Shared automation-platform category but inverted: where n8n uses dark violet + ember, Zapier uses white + orange — both isolate warm CTA against monochrome field",
+        "business": "Zapier"
+      },
+      {
+        "why": "Dark dev-tools aesthetic with deep purple-black surfaces, light-weight display type, and electric-gradient accent on interactive elements",
+        "business": "Temporal.io"
+      },
+      {
+        "why": "Dark background with single electric-green/blue accent isolated on CTA, geomanist-class geometric sans at light weight for headlines",
+        "business": "Supabase"
+      },
+      {
+        "why": "Violet-tinted dark surfaces (#0e0918 vs Linear's #0f0f10), weight-300 display headlines, inset border cards without drop shadows",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "nodes": "12px",
+        "pills": "9999px",
+        "badges": "24px",
+        "inputs": "8px",
+        "buttons": "8px",
+        "cardsLarge": "24px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "dev-tools",
+    "surfaces": [
+      {
+        "hex": "#0e0918",
+        "name": "Void Base",
+        "level": 0,
+        "purpose": "Page background, hero, full-bleed sections"
+      },
+      {
+        "hex": "#1a1624",
+        "name": "Elevated Surface",
+        "level": 1,
+        "purpose": "Primary card backgrounds in features grid"
+      },
+      {
+        "hex": "#1b1728",
+        "name": "Deep Panel",
+        "level": 2,
+        "purpose": "Large feature panels and workflow canvas backdrops"
+      },
+      {
+        "hex": "#2c2834",
+        "name": "Muted Shell",
+        "level": 3,
+        "purpose": "Ghost buttons and tertiary interactive surfaces"
+      }
+    ],
+    "northStar": "Workflow engine at midnight — the feeling of a live automation canvas running in a dark server room, lit by status indicators and data flows.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 0.94,
+        "letterSpacing": -0.86
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 0.88,
+        "letterSpacing": -1.08
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Social Proof Stat Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Use Case Sidebar Tabs",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Ember Gradient CTA Button",
+        "role": "Primary call-to-action, top nav and hero section",
+        "description": "Background: linear-gradient(30deg, rgb(253,137,37), rgb(255,12,0)). Text: #ffffff, geomanist 400 14–16px. Border-radius: 8px. Padding: 10–14px vertical, 20–24px horizontal. No border. On hover, the gradient intensifies. This is the only warm-chromatic element in the nav."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action, hero section ('Talk to sales')",
+        "description": "Background: rgba(0,0,0,0). Border: 1px solid rgb(229,231,235) (#e5e7eb). Text: #ffffff, geomanist 400. Border-radius: 6px. Padding: 24px all sides (generous equal padding creates a square-ratio for short labels). Shadow: none."
+      },
+      {
+        "name": "Frosted Ghost Button",
+        "role": "Tertiary actions and icon buttons over dark card surfaces",
+        "description": "Background: rgba(13,10,25,0.28). Border: 1px solid rgba(255,255,255,0.1). Text: rgb(209,206,206). Border-radius: 8px. Padding: 14px all sides. Box-shadow: rgba(0,0,0,0.26) 0px 0px 8px 0px. Translucent panel-within-panel effect."
+      },
+      {
+        "name": "Pill Tag Button",
+        "role": "Use-case category pills and filter selectors",
+        "description": "Background: rgba(163,163,163,0.2). Border: 1px solid rgb(229,231,235). Text: #ffffff. Border-radius: 8px. Padding: 0 20px. Height implicit from line-height. Flat matte surface, no gradient."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Primary content panels in features section",
+        "description": "Background: rgb(26,22,36) (#1a1624). Border-radius: 16px. Padding: 48px 44px. No box-shadow. The elevated surface sits 1 step above the #0e0918 page background through color alone — no drop shadow needed."
+      },
+      {
+        "name": "Glowing Inset Card",
+        "role": "Highlighted stats, testimonials, community proof cards",
+        "description": "Background: rgba(0,0,0,0) — transparent so page bg shows through. Border: rgba(255,255,255,0.1) 0px 0px 0px 1px inset (white hairline) + rgba(255,142,93,0.3) 0px 1px 0px 0px inset (orange bottom-edge glow). Border-radius: 24px. The orange inset bottom line mimics a backlit indicator."
+      },
+      {
+        "name": "Dark Feature Panel",
+        "role": "Full-width section panels with workflow canvas previews",
+        "description": "Background: rgb(27,23,40) (#1b1728). Border-radius: 24px. No padding on container (content bleeds). Used as viewport-wide dark stage for product screenshots."
+      },
+      {
+        "name": "Hiring Badge",
+        "role": "Status indicator tags (e.g., 'Hiring' label in footer nav)",
+        "description": "Background: #ffffff. Text: rgb(72,85,106) (#48556a), geomanist 400 12px. Border-radius: 24px. Padding: 4px 10px. White pill on dark background — maximum contrast for status signaling."
+      },
+      {
+        "name": "Workflow Node",
+        "role": "Canvas node objects in workflow diagram illustrations",
+        "description": "Background: #1a1624 or app-brand color. Border-radius: 12px. Connected by lines using Electric Current gradient (linear-gradient(141deg, #077ac7, #6b21ef)). Icons centered with 40–48px container. Appear in product screenshot sections."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Sticky top navigation",
+        "description": "Background: #0e0918 (same as page, full-bleed). Border-bottom: 1px solid #3e3a46. Height: 66px. Left: n8n logo with chain-link icon. Center: nav links in geomanist 400 14px, color #d1cece. Right: GitHub star count (pill, frosted glass), 'Sign in' ghost, 'Get Started' Ember gradient button at 8px radius."
+      },
+      {
+        "name": "Social Proof Row",
+        "role": "Logo bar showing enterprise customers",
+        "description": "Background: transparent, sits within dark section. Logos rendered in #d1cece (muted ash) — desaturated to prevent brand color competition. No card wrapper, pure horizontal flex layout with 32–48px columnGap."
+      },
+      {
+        "name": "Footer Mega-Nav",
+        "role": "Site-wide footer with multi-column link grid",
+        "description": "Background: radial-gradient warm ember glow (rgba(175,106,140,0.46) → rgba(98,65,83,0.38) → transparent) overlaid on #0e0918. Column headers in geomanist 400 14px #ffffff. Links in geomanist 300 14px #9d9797. 5-column grid. Top section has logo + tagline + social icons in #d1cece at 24px size."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole display and body typeface. Weight 300 at 48–54px is the defining choice — headlines whisper against the dark background rather than asserting. Weight 400 handles body copy at 15–18px with 1.5–1.7 line-height for comfortable reading in dark contexts. The compressed line-height of 0.88 at 54px stacks headline lines into a dense visual block.",
+        "sizes": "12px, 14px, 15px, 16px, 18px, 20px, 24px, 48px, 54px",
+        "family": "geomanist",
+        "weight": "300, 400",
+        "lineHeight": "0.88–1.70 (tight 0.88 at display sizes, 1.5–1.7 at body sizes)",
+        "substitute": "DM Sans, Inter (variable, set to weight 300 for display)",
+        "letterSpacing": "-1.08px at 54px, -0.86px at 48px (from -0.018em to -0.020em; tight negative tracking at display sizes, normal at body)"
+      },
+      {
+        "role": "Medium-emphasis subheadings and section labels. The 'book' variant sits optically between 300 and regular 400, used for callout text in feature cards and section introductions at 20–24px.",
+        "sizes": "16px, 18px, 20px, 24px",
+        "family": "geomanist-book",
+        "weight": "400",
+        "lineHeight": "1.00, 1.50",
+        "substitute": "DM Sans 500",
+        "letterSpacing": "-0.29px at 16px (from -0.0180em); -0.17px at 24px (from -0.0070em)"
+      }
+    ],
+    "description": "n8n is a dark workflow canvas that feels like staring into a running machine at night — deep purple-black surfaces lit from within by orange fire and electric blue current. The #0e0918 base is nearly black but carries a violet undertone that makes the darkness feel technological rather than neutral. The signature visual move is the orange-to-red gradient CTA against this void: rgb(253,137,37) → rgb(255,12,0) at 30deg creates an ember glow that reads as kinetic energy. Typography runs entirely in geomanist at weights 300 and 400 — the light weight at 54px headline sizes feels deliberately restrained, letting the lightning bolt hero illustration do the shouting. Cards are not floating objects but embedded panels, using inset white-10% borders and faint orange inset bottom-glows (rgba(255,142,93,0.3)) that suggest backlit hardware.",
+    "customSections": [
+      {
+        "title": "Gradient System",
+        "content": "$1c"
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1d"
+      }
+    ],
+    "elevationPhilosophy": "n8n uses color-stepping instead of drop shadows for elevation. Moving from #0e0918 → #1a1624 → #1b1728 creates three panel depths visible only through background color — no outset shadow appears on any card. The single exception is the frosted ghost button which uses rgba(0,0,0,0.26) 0px 0px 8px as a halo, not an elevation lift. Cards that need 'active' or 'highlighted' states use inset white and orange glow shadows (rgba(255,255,255,0.1) + rgba(255,142,93,0.3)) — light emanates from within the surface, not beneath it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "body",
+            "image",
+            "heading",
+            "link",
+            "icon",
+            "card",
+            "list",
+            "footer",
+            "badge"
+          ],
+          "frequency": 3105,
+          "confidence": 1,
+          "prominence": 136390671.50769326,
+          "properties": [
+            "borderColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#d1cece",
+          "oklch": {
+            "c": 0.003318017460957689,
+            "h": 17.222201899770038,
+            "l": 0.8537988012476402
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "image",
+            "card",
+            "button",
+            "icon",
+            "list",
+            "link",
+            "footer"
+          ],
+          "frequency": 607,
+          "confidence": 1,
+          "prominence": 108727541.60223824,
+          "properties": [
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#0e0918",
+          "oklch": {
+            "c": 0.031918559605897144,
+            "h": 298.017135969387,
+            "l": 0.15543491369754983
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 4223237.492585752,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#1f192a",
+          "oklch": {
+            "c": 0.03328439309814218,
+            "h": 299.999602689747,
+            "l": 0.2289057116225612
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 2997149.794643746,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "badge"
+          ],
+          "frequency": 151,
+          "confidence": 1,
+          "prominence": 1109404.0248452423,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#56312d",
+          "oklch": {
+            "c": 0.05544213997583139,
+            "h": 27.02571619206916,
+            "l": 0.3584413694618857
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 698700,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#3e3a46",
+          "oklch": {
+            "c": 0.0211112071758181,
+            "h": 300.54051607277,
+            "l": 0.3579677153854342
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 620257.9509588084,
+          "properties": [
+            "borderColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#9d9797",
+          "oklch": {
+            "c": 0.007055964652106212,
+            "h": 17.32951369437349,
+            "l": 0.681497377822587
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 110133.49782456133,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#b6b5b9",
+          "oklch": {
+            "c": 0.005707945790487827,
+            "h": 297.69395004032503,
+            "l": 0.7751126011299191
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 48000,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#077ac7",
+          "oklch": {
+            "c": 0.14778691648105585,
+            "h": 247.43959537698464,
+            "l": 0.5644581361911191
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 22296.01279098149,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#2c2834",
+          "oklch": {
+            "c": 0.02232741849218803,
+            "h": 300.22449135218216,
+            "l": 0.2854503530887922
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7168.785390761789,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 3044.391678064655,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#48556a",
+          "oklch": {
+            "c": 0.03835201239298234,
+            "h": 259.9223848151815,
+            "l": 0.44675185299313974
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1605,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#7a7a7a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5795099213745528
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1123,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ea4b71",
+          "oklch": {
+            "c": 0.1954050070488325,
+            "h": 10.360684513745754,
+            "l": 0.6439640853309395
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1123,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ff492c",
+          "oklch": {
+            "c": 0.22244731451443875,
+            "h": 31.82880898664511,
+            "l": 0.6656601653910652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 396,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.015703053777939194,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.61,
+          "background": "#0e0918",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.06,
+          "background": "#1f192a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.84,
+          "background": "#0e0918",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#2c2834",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.78,
+          "background": "#1f192a",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#d1cece",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#0e0918",
+          "foreground": "#d1cece"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#2c2834",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.21,
+          "background": "#ffffff",
+          "foreground": "#56312d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#ffffff",
+          "foreground": "#3e3a46"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.91,
+          "background": "#1f192a",
+          "foreground": "#d1cece"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.3,
+          "background": "#b6b5b9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.62,
+          "background": "#0e0918",
+          "foreground": "#b6b5b9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.2,
+          "background": "#2c2834",
+          "foreground": "#d1cece"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#e5e7eb",
+          "foreground": "#56312d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.93,
+          "background": "#e5e7eb",
+          "foreground": "#3e3a46"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.37,
+          "background": "#1f192a",
+          "foreground": "#b6b5b9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.55,
+          "background": "#ffffff",
+          "foreground": "#48556a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 80
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other",
+            "badge"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 14
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 1px 1px 0px inset, rgba(8, 8, 8, 0.2) 0px 1px 2px 0px, rgba(8, 8, 8, 0.08) 0px 4px 4px 0px, rgb(7, 122, 199) 0px 7px 0px -12px, rgba(255, 255, 255, 0.12) 0px 6px 12px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.26) 0px 0px 8px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset, rgba(255, 142, 93, 0.3) 0px 1px 0px 0px inset",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 69,
+          "properties": [
+            "marginTop",
+            "columnGap",
+            "rowGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 365,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 25,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 63,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 44,
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 57,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 23,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 71,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 121,
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(141deg, rgb(7, 122, 199), rgb(107, 33, 239))",
+        "colors": [
+          "rgb(7, 122, 199)",
+          "rgb(107, 33, 239)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(30deg, rgb(253, 137, 37), rgb(255, 12, 0))",
+        "colors": [
+          "rgb(253, 137, 37)",
+          "rgb(255, 12, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(126.99% 234.27% at 10.15% 142.35%, rgba(217, 126, 75, 0.133) 0px, rgba(255, 255, 255, 0) 37%)",
+        "colors": [
+          "rgba(217, 126, 75, 0.133)",
+          "rgba(255, 255, 255, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(66.99% 135.93% at 77.49% 23.63%, rgba(4, 0, 255, 0.09) 0px, rgba(162, 166, 135, 0) 80%)",
+        "colors": [
+          "rgba(4, 0, 255, 0.09)",
+          "rgba(162, 166, 135, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(65.55% 111.2% at 50% 0px, rgba(168, 92, 92, 0.043) 0px, rgba(103, 69, 69, 0))",
+        "colors": [
+          "rgba(168, 92, 92, 0.043)",
+          "rgba(103, 69, 69, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle farthest-side at 100% -80%, rgba(175, 106, 140, 0.46), rgba(98, 65, 83, 0.38) 39%, rgba(0, 0, 0, 0) 55%)",
+        "colors": [
+          "rgba(175, 106, 140, 0.46)",
+          "rgba(98, 65, 83, 0.38)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 50% 100%, rgba(122, 57, 109, 0.29), rgba(42, 25, 41, 0.39))",
+        "colors": [
+          "rgba(122, 57, 109, 0.29)",
+          "rgba(42, 25, 41, 0.39)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 0px 100%, rgba(255, 79, 49, 0.12), rgba(255, 255, 255, 0))",
+        "colors": [
+          "rgba(255, 79, 49, 0.12)",
+          "rgba(255, 255, 255, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 50% 100%, rgba(75, 57, 122, 0.43), rgba(42, 25, 41, 0.39))",
+        "colors": [
+          "rgba(75, 57, 122, 0.43)",
+          "rgba(42, 25, 41, 0.39)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle farthest-side at 0px 100%, rgba(178, 0, 255, 0.15), rgba(255, 255, 255, 0) 56%)",
+        "colors": [
+          "rgba(178, 0, 255, 0.15)",
+          "rgba(255, 255, 255, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 50% 100%, rgba(163, 100, 58, 0.53), rgba(42, 25, 41, 0.39))",
+        "colors": [
+          "rgba(163, 100, 58, 0.53)",
+          "rgba(42, 25, 41, 0.39)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(255, 255, 255, 0.25), rgba(81, 89, 217, 0.7))",
+        "colors": [
+          "rgba(255, 255, 255, 0.25)",
+          "rgba(81, 89, 217, 0.7)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 5% 50%, rgba(253, 152, 37, 0.65) 0px, rgba(255, 59, 33, 0) 50%)",
+        "colors": [
+          "rgba(253, 152, 37, 0.65)",
+          "rgba(255, 59, 33, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 90% 40%, rgba(251, 151, 51, 0.65) 0px, rgba(255, 59, 33, 0) 50%)",
+        "colors": [
+          "rgba(251, 151, 51, 0.65)",
+          "rgba(255, 59, 33, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "geomanist",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 818,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "geomanist-book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 123,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "image",
+            "card",
+            "button",
+            "icon",
+            "list",
+            "link",
+            "footer"
+          ],
+          "frequency": 574,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "geomanist",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "geomanist",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "geomanist-book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "geomanist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2b8d750c-14d8-42c9-98e9-a56341120d1a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2ec61bc6-614a-4991-ab07-5cd64a1d93ce.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"N8n design system\",\"item\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436#style-reference\",\"name\":\"N8n design system reference\",\"headline\":\"N8n design system | Refero Styles\",\"description\":\"Explore N8n's dark Dev Tools design system: Void Base #0e0918, Elevated Surface #1a1624 colors, geomanist, geomanist-book typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"N8n\",\"url\":\"https://n8n.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8601c8ef-e1ea-4186-adb2-6f9a74caf436#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ec61bc6-614a-4991-ab07-5cd64a1d93ce.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ec61bc6-614a-4991-ab07-5cd64a1d93ce.jpg\",\"caption\":\"Screenshot of N8n\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ec61bc6-614a-4991-ab07-5cd64a1d93ce.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"N8n design system\",\"N8n website design\",\"N8n colors\",\"N8n typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void Base\",\"Elevated Surface\",\"Deep Panel\",\"Muted Shell\",\"geomanist\",\"geomanist-book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"N8n design system\"},{\"@type\":\"Thing\",\"name\":\"N8n website design\"},{\"@type\":\"Thing\",\"name\":\"N8n colors\"},{\"@type\":\"Thing\",\"name\":\"N8n typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-10T16:32:17.000Z\",\"dateModified\":\"2026-03-10T16:32:17.000Z\"}]}19:T751,<div style=\"--color-void-base:#0e0918;--color-elevated-surface:#1a1624;--color-deep-panel:#1b1728;--color-muted-shell:#2c2834;--color-border-smoke:#3e3a46;--color-ash-text:#d1cece;--color-fog-text:#9d9797;--color-silver-rail:#e5e7eb;--color-cloud-white:#ffffff;--color-ember-cta:linear-gradient(30deg,rgb(253,137,37),rgb(255,12,0));--color-electric-current:linear-gradient(141deg,rgb(7,122,199),rgb(107,33,239));--font-geomanist:'DM Sans',sans-serif;background:var(--color-void-base);padding:48px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:32px;width:600px;box-sizing:border-box;font-family:var(--font-geomanist);\"><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:300;font-size:48px;line-height:0.94;letter-spacing:-0.86px;color:var(--color-cloud-white);max-width:480px;\">AI agents and workflows<br><span style=\"color:var(--color-cloud-white);\">you can see and control</span></p><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:16px;line-height:1.6;color:var(--color-ash-text);max-width:440px;\">Build visually, go deep with code, connect to anything. Every step of your agents' reasoning, traceable on the canvas.</p><div style=\"display:flex;flex-direction:row;gap:12px;align-items:center;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-ember-cta);color:var(--color-cloud-white);font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1;padding:14px 24px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;\">Get started for free</a><a href=\"#\" style=\"display:inline-block;background:transparent;color:var(--color-cloud-white);font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1;padding:14px 24px;border-radius:6px;text-decoration:none;border:1px solid var(--color-silver-rail);cursor:pointer;\">Talk to sales</a></div></div>1a:Tf5f,<div style=\"--color-void-base:#0e0918;--color-elevated-surface:#1a1624;--color-deep-panel:#1b1728;--color-ash-text:#d1cece;--color-fog-text:#9d9797;--color-cloud-white:#ffffff;--color-ember-scorch:#ff492c;--font-geomanist:'DM Sans',sans-serif;background:var(--color-void-base);padding:48px 32px;display:flex;flex-direction:column;gap:16px;width:600px;box-sizing:border-box;font-family:var(--font-geomanist);\"><div style=\"display:flex;flex-direction:row;gap:12px;width:100%;\"><div style=\"flex:1;background:transparent;border-radius:24px;padding:20px 20px 22px;box-shadow:rgba(255,255,255,0.1) 0px 0px 0px 1px inset,rgba(255,142,93,0.3) 0px 1px 0px 0px inset;display:flex;flex-direction:row;align-items:flex-start;gap:14px;\"><div style=\"width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1a1624,#2c1e3a);flex-shrink:0;display:flex;align-items:center;justify-content:center;\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z\" fill=\"#d1cece\"/></svg></div><div><p style=\"margin:0 0 4px;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-cloud-white);\"><strong style=\"font-weight:700;\">Top 50 Github.</strong> Our 183.4k stars place us among the most popular projects.</p></div></div><div style=\"flex:1;background:transparent;border-radius:24px;padding:20px 20px 22px;box-shadow:rgba(255,255,255,0.1) 0px 0px 0px 1px inset,rgba(255,142,93,0.3) 0px 1px 0px 0px inset;display:flex;flex-direction:row;align-items:flex-start;gap:14px;\"><div style=\"width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1a1624,#2c1e3a);flex-shrink:0;display:flex;align-items:center;justify-content:center;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z\" fill=\"#ff492c\"/></svg></div><div><p style=\"margin:0 0 4px;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-cloud-white);\"><strong style=\"font-weight:700;\">4.9/5 stars on G2.</strong> To quote \"I can move fast and never feel boxed in.\"</p></div></div></div><div style=\"width:100%;background:transparent;border-radius:24px;padding:20px 20px 22px;box-shadow:rgba(255,255,255,0.1) 0px 0px 0px 1px inset,rgba(255,142,93,0.3) 0px 1px 0px 0px inset;display:flex;flex-direction:row;align-items:flex-start;gap:14px;box-sizing:border-box;\"><div style=\"width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1a1624,#2c1e3a);flex-shrink:0;display:flex;align-items:center;justify-content:center;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"9\" cy=\"7\" r=\"4\" fill=\"#d1cece\"/><path d=\"M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2\" stroke=\"#d1cece\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"17\" cy=\"7\" r=\"3\" fill=\"#9d9797\"/><path d=\"M21 21v-2a3 3 0 00-3-3h-1\" stroke=\"#9d9797\" stroke-width=\"2\" fill=\"none\"/></svg></div><div><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-cloud-white);\"><strong style=\"font-weight:700;\">200k+ community members.</strong> This wouldn't be possible without you.</p></div></div></div>1b:T14b1,<div style=\"--color-void-base:#0e0918;--color-elevated-surface:#1a1624;--color-deep-panel:#1b1728;--color-muted-shell:#2c2834;--color-border-smoke:#3e3a46;--color-ash-text:#d1cece;--color-fog-text:#9d9797;--color-cloud-white:#ffffff;--color-ember-scorch:#ff492c;--color-ember-cta:linear-gradient(30deg,rgb(253,137,37),rgb(255,12,0));--font-geomanist:'DM Sans',sans-serif;background:var(--color-void-base);padding:48px 32px;width:600px;box-sizing:border-box;font-family:var(--font-geomanist);\"><p style=\"margin:0 0 32px;font-family:var(--font-geomanist);font-weight:300;font-size:12px;line-height:1.5;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-fog-text);\">Who it's for</p><div style=\"display:flex;flex-direction:row;gap:0;width:100%;\"><div style=\"width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--color-border-smoke);padding-left:0;\"><div style=\"display:flex;flex-direction:row;align-items:flex-start;gap:0;border-left:2px solid var(--color-ember-scorch);padding:14px 16px 14px 18px;cursor:pointer;\"><div><p style=\"margin:0 0 2px;font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1.3;color:var(--color-cloud-white);\"><strong style=\"font-weight:600;\">IT Ops</strong> can</p><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-ash-text);\">On-board new employees</p></div></div><div style=\"display:flex;flex-direction:row;align-items:flex-start;border-left:2px solid transparent;padding:14px 16px 14px 18px;cursor:pointer;\"><div><p style=\"margin:0 0 2px;font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1.3;color:var(--color-fog-text);\"><strong style=\"font-weight:600;\">Dev Ops</strong> can</p><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-fog-text);\">Convert natural language into API calls</p></div></div><div style=\"display:flex;flex-direction:row;align-items:flex-start;border-left:2px solid transparent;padding:14px 16px 14px 18px;cursor:pointer;\"><div><p style=\"margin:0 0 2px;font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1.3;color:var(--color-fog-text);\"><strong style=\"font-weight:600;\">Sales</strong> can</p><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-fog-text);\">Generate customer insights from reviews</p></div></div><div style=\"display:flex;flex-direction:row;align-items:flex-start;border-left:2px solid transparent;padding:14px 16px 14px 18px;cursor:pointer;\"><div><p style=\"margin:0 0 2px;font-family:var(--font-geomanist);font-weight:400;font-size:15px;line-height:1.3;color:var(--color-fog-text);\"><strong style=\"font-weight:600;\">You</strong> can</p><p style=\"margin:0;font-family:var(--font-geomanist);font-weight:400;font-size:14px;line-height:1.4;color:var(--color-fog-text);\">Watch this video to hear our pitch</p></div></div></div><div style=\"flex:1;background:var(--color-deep-panel);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;min-height:220px;\"><div style=\"display:flex;flex-direction:row;gap:10px;align-items:center;\"><div style=\"width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#077ac7,#6b21ef);display:flex;align-items:center;justify-content:center;flex-shrink:0;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M13 10V3L4 14h7v7l9-11h-7z\" fill=\"white\"/></svg></div><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:13px;color:var(--color-ash-text);\">AI Agent · Tools Agent</span></div><div style=\"width:100%;height:1px;background:var(--color-border-smoke);\"></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><div style=\"background:rgba(255,255,255,0.05);border-radius:8px;padding:10px 14px;\"><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:12px;color:var(--color-fog-text);\">On 'Create User' form submission</span></div><div style=\"display:flex;flex-direction:row;gap:8px;\"><div style=\"flex:1;background:rgba(255,255,255,0.05);border-radius:8px;padding:10px 14px;\"><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:12px;color:var(--color-fog-text);\">Chat Model</span></div><div style=\"flex:1;background:rgba(255,255,255,0.05);border-radius:8px;padding:10px 14px;\"><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:12px;color:var(--color-fog-text);\">Memory</span></div><div style=\"flex:1;background:rgba(255,255,255,0.05);border-radius:8px;padding:10px 14px;\"><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:12px;color:var(--color-fog-text);\">Is a manager?</span></div></div></div><div style=\"margin-top:auto;display:flex;flex-direction:row;gap:8px;align-items:center;\"><div style=\"width:28px;height:28px;border-radius:8px;background:#ff492c22;display:flex;align-items:center;justify-content:center;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\"><path d=\"M13 10V3L4 14h7v7l9-11h-7z\" fill=\"#ff492c\"/></svg></div><span style=\"font-family:var(--font-geomanist);font-weight:400;font-size:12px;color:var(--color-fog-text);\">Update profile · updateProfile: user</span></div></div></div></div>1c:T422,Two primary gradients drive the entire chromatic identity:\n\n1. EMBER (CTAs): linear-gradient(30deg, rgb(253,137,37), rgb(255,12,0)) — orange-to-red at shallow angle. Applied ONLY to the 'Get Started' primary button. Creates fire-colored focal anchor against the void.\n\n2. ELECTRIC CURRENT (connectivity): linear-gradient(141deg, rgb(7,122,199), rgb(107,33,239)) — blue-to-violet at steep diagonal. Applied to link hover underlines, active focus rings, and workflow canvas edge connections. Signals data flow and active state.\n\n3. ATMOSPHERIC EMBER (backgrounds): radial-gradient(126.99% 234.27% at 10.15% 142.35%, rgba(217,126,75,0.133) 0%, rgba(255,255,255,0) 37%) — very-low-opacity warm glow used as section atmosphere. Opacity 13% makes it subliminal, not visible at a glance.\n\n4. FOOTER ROSE (footer header): radial-gradient(circle farthest-side at 100% -80%, rgba(175,106,140,0.46), rgba(98,65,83,0.38) 39%, rgba(0,0,0,0) 55%) — muted rose/wine glow behind footer top edge. References the orange brand hue through a cooled, desaturated variant.1d:T7d4,QUICK COLOR REFERENCE:\n- Page background: #0e0918\n- Primary text: #d1cece\n- Headline text: #ffffff\n- Card surface: #1a1624\n- CTA button: linear-gradient(30deg, rgb(253,137,37), rgb(255,12,0))\n- Border / divider: #3e3a46\n- Secondary text: #9d9797\n- Active / accent: linear-gradient(141deg, #077ac7, #6b21ef)\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. HERO SECTION: Dark full-bleed background #0e0918. Left column (50%): headline 54px geomanist weight 300 #ffffff letter-spacing -1.08px line-height 0.88, stacked 2 lines. Below headline: body text 16px geomanist 400 #d1cece line-height 1.5. CTA row: 'Get started' button with linear-gradient(30deg, rgb(253,137,37), rgb(255,12,0)) background, #ffffff text, 8px radius, 12px 24px padding. 'Talk to sales' ghost button: transparent bg, 1px solid #e5e7eb border, #ffffff text, 6px radius, 24px padding. Right side: 3D illustration bleeding off right edge.\n\n2. FEATURE CARD: Background rgb(26,22,36), border-radius 16px, padding 48px 44px. Section label: 12px geomanist 400 #9d9797 uppercase. Card headline: 24px geomanist-book 400 #ffffff letter-spacing -0.17px. Body: 16px geomanist 300 #d1cece line-height 1.5. No box-shadow.\n\n3. GLOWING PROOF CARD: Background transparent. Box-shadow: rgba(255,255,255,0.1) 0px 0px 0px 1px inset, rgba(255,142,93,0.3) 0px 1px 0px 0px inset. Border-radius 24px. Padding 24px 32px. Body text 14px geomanist 400 #d1cece. Bold label in #ffffff.\n\n4. NAV BAR: Background #0e0918, border-bottom 1px solid #3e3a46, height 66px. Logo left. Center links: geomanist 400 14px #d1cece with chevron for dropdowns. Right: GitHub count pill (frosted glass bg rgba(13,10,25,0.28), border rgba(255,255,255,0.1), 8px radius), 'Sign in' text link #d1cece, 'Get Started' Ember gradient button 8px radius.\n\n5. FOOTER COLUMN: Background #0e0918 with radial rose glow top-right. Column header: geomanist 400 14px #ffffff. Links: geomanist 300 14px #9d9797, line-height 1.7. 5-column grid, 32px column gap. Show more links in #9d9797 with underline on hover."
+}

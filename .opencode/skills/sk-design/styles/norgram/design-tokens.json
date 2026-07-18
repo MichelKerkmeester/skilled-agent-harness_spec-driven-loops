@@ -1,0 +1,287 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, dominant border ink, iconography, link default"
+    },
+    "charcoal": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Charcoal — Body text, card surface, dark UI block on white canvas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surface, inverse text on dark blocks"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "smoke": {
+      "$value": "#cecece",
+      "$type": "color",
+      "$description": "Smoke — Light dividers, secondary borders on cards"
+    },
+    "ash": {
+      "$value": "#b2b2b2",
+      "$type": "color",
+      "$description": "Ash — Disabled button fill, inactive controls"
+    },
+    "pewter": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Pewter — Muted link surface, inactive background"
+    },
+    "iron": {
+      "$value": "#777777",
+      "$type": "color",
+      "$description": "Iron — Secondary body text, metadata, muted links, supporting borders"
+    },
+    "graphite": {
+      "$value": "#5e5e5e",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, micro-copy"
+    },
+    "onyx": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Onyx — Dark mode surface (project case blocks), inverse hero panel"
+    }
+  },
+  "font": {
+    "helvetica-now-display": {
+      "$value": "Helvetica Now Display",
+      "$type": "fontFamily",
+      "$description": "Display and primary voice — used at all scales from 10px micro-labels through 87px hero headlines. The custom geometric sans is the entire typographic identity."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Secondary serif for card descriptions, footer text, editorial body copy — a deliberate contrast voice to the sans display"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Medium",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Regular",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display - Regular",
+        "fontSize": "87px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 87px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.0678px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas and most section backgrounds"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary surface wash, subtle differentiation within light sections"
+    },
+    "onyx": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 2: Dark hero block for project statements and credited context"
+    },
+    "charcoal": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 3: Card surface, dense text block background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.norgram.co",
+      "siteName": "Norgram",
+      "extractedAt": "2026-06-03T19:47:11.765Z",
+      "variant": "extended"
+    }
+  }
+}

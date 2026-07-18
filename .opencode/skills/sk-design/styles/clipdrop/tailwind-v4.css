@@ -1,0 +1,55 @@
+@theme {
+  /* Colors */
+  --color-cobalt-signal: #1c60f6;
+  --color-ember-vermillion: #fa4028;
+  --color-midnight-ink: #24355c;
+  --color-periwinkle-mist: #c9d7f5;
+  --color-bone: #ededed;
+  --color-ink-black: #000000;
+  --color-charcoal: #2d2d2d;
+  --color-graphite: #404040;
+  --color-slate: #767676;
+  --color-frost: #dddddd;
+  --color-ash: #8f8f8f;
+  --color-onyx: #171717;
+  --color-paper-white: #ffffff;
+
+  /* Typography */
+  --font-primary: 'Primary', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-custom-sans-likely-inter-or-a-geometric-humanist-substitute: 'Custom Sans (likely Inter or a geometric humanist substitute)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial-serif-custom-high-contrast-modern-serif-didone-family: 'Editorial Serif (custom — high-contrast modern serif, Didone family)', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-secondaryfont: 'SecondaryFont', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-heading: 60px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.2px;
+  --text-display: 96px;
+  --leading-display: 1.1;
+  --tracking-display: -1.92px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+}

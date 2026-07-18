@@ -1,0 +1,372 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Primary page background, card surfaces, button text"
+    },
+    "soft-cream": {
+      "$value": "#f0eee9",
+      "$type": "color",
+      "$description": "Soft Cream — Subtle warm surface variant for alternating sections"
+    },
+    "hairline-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Mist — Default borders, dividers, card outlines, input strokes"
+    },
+    "silver-rule": {
+      "$value": "#d9d9dd",
+      "$type": "color",
+      "$description": "Silver Rule — Secondary borders, nav dividers, subtle separators"
+    },
+    "fog": {
+      "$value": "#93939f",
+      "$type": "color",
+      "$description": "Fog — Muted body text, helper text, secondary labels"
+    },
+    "slate-caption": {
+      "$value": "#75758a",
+      "$type": "color",
+      "$description": "Slate Caption — Nav text, subdued annotations, breadcrumb-style labels"
+    },
+    "graphite-body": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Graphite Body — Tertiary body text, metadata, timestamps"
+    },
+    "press-black": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Press Black — Primary text, heading fill, icon stroke — the workhorse dark"
+    },
+    "inkwell": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Inkwell — Dark surfaces, filled pill buttons, footer background, code panels"
+    },
+    "charcoal-depth": {
+      "$value": "#2e2e2e",
+      "$type": "color",
+      "$description": "Charcoal Depth — Deepest surface accent, overlay tint, code block background"
+    },
+    "coral-glow": {
+      "$value": "#ff7759",
+      "$type": "color",
+      "$description": "Coral Glow — Decorative gradient stop — appears only in photography washes and ornamental highlights, never on UI controls"
+    },
+    "iris-wash": {
+      "$value": "#7670c5",
+      "$type": "color",
+      "$description": "Iris Wash — Decorative gradient midstop — transitional violet in the signature warm-to-cool sweep"
+    },
+    "signal-blue": {
+      "$value": "#4c6ee6",
+      "$type": "color",
+      "$description": "Signal Blue — Decorative gradient endpoint — cool terminal in the signature gradient, also a faint illustration accent"
+    },
+    "lilac-mist": {
+      "$value": "#f0dff3",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft highlight wash, gradient surface tint for feature cards"
+    },
+    "orchid": {
+      "$value": "#d18ee2",
+      "$type": "color",
+      "$description": "Orchid — Mid-saturation accent in decorative washes and tag backgrounds"
+    }
+  },
+  "font": {
+    "unica77": {
+      "$value": "Unica77",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — weight 400 for body, captions, buttons, and nav; weight 700 for subheadings and card titles. The custom geometric-humanist forms give Cohere a distinctive editorial warmth that system sans-serifs cannot replicate. Letter-spacing -0.0100em across all sizes tightens the rhythm and keeps the display sizes from feeling airy."
+    },
+    "coheretext": {
+      "$value": "CohereText",
+      "$type": "fontFamily",
+      "$description": "Display-only face for the hero headline. Line-height locked at 1.00 and tracking at -0.0200em create a monumental, tightly-stacked wordmark presence — the first thing a visitor reads sits at this scale. Reserved exclusively for the largest statement on each page; never used below 48px."
+    },
+    "coheremono": {
+      "$value": "CohereMono",
+      "$type": "fontFamily",
+      "$description": "Monospaced accent for version tags, code-like metadata, and micro-labels in the nav. The 8px size with 0.0200em tracking gives a technical, almost stamped quality that contrasts the editorial serif-adjacent primary face."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "CohereMono",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "CohereMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Unica77 Cohere Web",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "CohereText",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "CohereText",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background, the default surface for all content"
+    },
+    "warm-cream": {
+      "$value": "#f0eee9",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section background for visual separation without contrast"
+    },
+    "lilac-wash": {
+      "$value": "#f0dff3",
+      "$type": "color",
+      "$description": "Surface level 3: Soft chromatic surface for feature cards and decorative blocks"
+    },
+    "code-panel": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Surface level 4: Dark inset surface for code snippets, AI response previews, and the dark pill button"
+    },
+    "footer": {
+      "$value": "#17171c",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed dark surface for site footer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cohere.com",
+      "siteName": "Cohere",
+      "extractedAt": "2026-06-03T19:12:30.417Z",
+      "variant": "extended"
+    }
+  }
+}

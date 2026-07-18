@@ -1,0 +1,1392 @@
+{
+  "source": "https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568",
+  "uuid": "7c4e9339-591c-46c3-ac3d-20c1b5b5a568",
+  "name": "Perplexity AI",
+  "northStar": "Garden of computational flora — technical interface blooming through botanical haze",
+  "capturedAt": "2026-07-18T08:15:51.139Z",
+  "meta": {
+    "url": "https://www.perplexity.ai/products/computer",
+    "siteName": "Perplexity AI",
+    "extractedAt": "2026-04-17T02:02:05.925Z",
+    "durationMs": 153976,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 267,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 40px borderRadius exclusively for navigation pills and primary CTAs — full-pill buttons against 4-12px everywhere else creates instant visual hierarchy",
+      "Set display headlines at weight 300 (pplxSans 96px or pplxSerif 72-96px) — the whisper-weight approach creates authority through restraint, not volume",
+      "Layer white (#ffffff) cards on Parchment (#faf8f5) canvas — never put white directly on white or cream directly on cream. The 2-3% luminance difference creates subtle depth without shadows",
+      "Apply -0.028em letter-spacing to all pplxSans text — the custom tracking is part of the typeface's identity, not optional stylistic flourish",
+      "Use pplxSansMono at 10-14px for all code-adjacent elements (/query markers, task IDs, status labels) — monospace signals technical credibility in an AI agent context",
+      "Maintain 28-40px vertical rhythm between major sections — the generous whitespace lets content breathe like clearings in botanical density",
+      "Keep #271a00 (Aged Sepia) as primary text across all contexts — the near-brown warmth is the brand's chromatic signature, not interchangeable with true black"
+    ],
+    "donts": [
+      "Never use drop shadows or box-shadow — depth comes from color layering (#ffffff → #faf8f5 → #d1cfc7) and blur filters on imagery, not elevation shadows",
+      "Never set body text below 15px for primary content — the comfortable line-height: 1.5 pattern requires sufficient font size to maintain readability",
+      "Never use 40px borderRadius on cards or content containers — full-pill radius is reserved for nav and CTAs. Cards stay at 12px, inputs/badges at 4px",
+      "Never introduce saturated accent colors beyond #0f3639 (Teal Accent) — the warm sepia palette is intentionally muted. Vivid blues/greens/reds break the botanical atmosphere",
+      "Never use true black (#000000) for primary text — reserve Absolute Black for footer backgrounds and terminal page anchors. Primary text uses #271a00 or #121516",
+      "Never set pplxSerif below 24px — serif is for declarations at display/heading scale. Body text and UI elements use pplxSans",
+      "Never stack multiple layers of transparency without sufficient contrast — frosted-glass buttons (rgba(255,255,255,0.6)) work over blurred imagery, not over other transparent surfaces"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#271a00",
+        "name": "Aged Sepia",
+        "role": "Primary text, borders, icons, strokes — the near-brown warmth softens digital harshness without sacrificing legibility. Appears across every UI context from nav to body to buttons.",
+        "group": "brand"
+      },
+      {
+        "hex": "#faf8f5",
+        "name": "Parchment",
+        "role": "Page backgrounds, card surfaces, heading text on dark — the cream canvas against which all content rests. Acts as both background and reversed foreground.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1cfc7",
+        "name": "Fog",
+        "role": "Button fills, borders, dividers — a muted gray-beige midtone that bridges Parchment and Aged Sepia without introducing new chromatic energy.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute Black",
+        "role": "Footer backgrounds, high-contrast text inversion — appears sparingly, reserved for terminal anchoring at page bottom.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card backgrounds, reversed text, button fills — pristine whites float above Parchment base, creating layered depth.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7c7464",
+        "name": "Moss Shadow",
+        "role": "Secondary body text, muted labels — a desaturated brown-gray for deemphasized content.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#23291b",
+        "name": "Deep Forest",
+        "role": "Nav backgrounds on scroll, elevated surfaces — a near-black with faint greenish tint echoing the botanical imagery.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f3639",
+        "name": "Teal Accent",
+        "role": "Nav active states, subtle highlights — the only cool color in a warm palette, used sparingly for interactive focus.",
+        "group": "accent"
+      },
+      {
+        "hex": "#e5e5e3",
+        "name": "Ash Mist",
+        "role": "Tertiary text, disabled states — lightest text color before transitioning to pure white.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121516",
+        "name": "Slate Edge",
+        "role": "Headline text, button borders — nearly black but slightly warmer, used for maximum contrast without harshness.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed model with centered content overlays. Hero section spans full viewport with blurred botanical photography, centered 'Computer' headline at 96px, and centered nav pills. Below hero, the page alternates between full-bleed imagery sections and max-width text blocks on Parchment canvas. No strict container — sections breathe edge-to-edge, with content inset as needed. Feature sections use 3-column card grids (white cards on Parchment) separated by 24px gaps. Workflow demos show stacked task cards with transparent backgrounds floating over botanical imagery. Footer shifts to Absolute Black (#000000) background, terminal anchoring. Navigation is sticky top bar with 40px pill buttons, transitioning to Deep Forest (#23291b) background on scroll. Asymmetry appears in text+image splits, but overall rhythm is centered stacks with alternating imagery density. Vertical spacing follows 28-40px section gaps, creating generous breathing room.",
+    "imagery": "Full-bleed botanical photography — lush garden scenes with white wildflowers, blue forget-me-nots, ornamental grasses. Images receive 20px blur via backdrop-filter, creating softened, out-of-focus greenery that UI elements float above. Treatment is naturalistic, not stylized — actual flora captured in close-up, not illustrated or abstracted. UI cards and text overlay these blurred backgrounds like glass panels compositing onto nature footage. Edges vignette into white at image boundaries, creating soft fade-to-canvas transitions. The imagery is atmospheric and decorative, establishing brand mood rather than explaining product features. Density is high — the hero and several feature sections use full-viewport botanical backgrounds, making the site feel like navigating through a conservatory.",
+    "similar": [
+      {
+        "why": "Weight 300 display headlines and muted-neutral palettes create authority through restraint, not volume",
+        "business": "Linear"
+      },
+      {
+        "why": "Custom serif + sans pairing and cream/warm-white layered surfaces for depth without shadows",
+        "business": "Notion"
+      },
+      {
+        "why": "Full-bleed atmospheric imagery overlaid with minimal UI chrome, letting visuals dominate",
+        "business": "Midjourney"
+      },
+      {
+        "why": "Pill-shaped primary actions (40px radius) contrasting with subtle-radius everywhere else (4-12px)",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "other": "4px",
+        "badges": "4px",
+        "inputs": "4px",
+        "buttons": "40px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "28px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#faf8f5",
+        "name": "Parchment Canvas",
+        "level": 1,
+        "purpose": "Page background — the cream foundation upon which all content rests"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 2,
+        "purpose": "Primary content cards — pristine white floats 2-3% above Parchment base"
+      },
+      {
+        "hex": "#d1cfc7",
+        "name": "Fog Divider",
+        "level": 3,
+        "purpose": "Borders, button fills, subtle separators — midtone bridging layer"
+      },
+      {
+        "hex": "#23291b",
+        "name": "Deep Forest Overlay",
+        "level": 4,
+        "purpose": "Nav on scroll, elevated dark surfaces — near-black with botanical tint"
+      }
+    ],
+    "northStar": "Garden of computational flora — technical interface blooming through botanical haze",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 96,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Task Cards — Workflow Step Stack",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Button Group — CTA Variants",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Feature Card — White on Parchment",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Transparent navigation links",
+        "description": "backgroundColor: transparent, color: #271a00, border: 1px solid rgba(39,26,0,0.14), borderRadius: 0px, padding: 0. Invisible container, only text and hairline border visible."
+      },
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary action (Try Computer)",
+        "description": "backgroundColor: #d6d5d4, color: #171615, border: 1px solid #171615, borderRadius: 40px, padding: 0 24px. Full-pill radius contrasts with 4-12px everywhere else, making CTAs unmistakable."
+      },
+      {
+        "name": "Frosted Glass Button",
+        "role": "Secondary actions on imagery",
+        "description": "backgroundColor: rgba(255,255,255,0.6), color: #271a00, border: 1px solid rgba(39,26,0,0.14), borderRadius: 4px, padding: 4px. Translucent white surface floats over blurred backgrounds."
+      },
+      {
+        "name": "White Feature Card",
+        "role": "Main content containers",
+        "description": "backgroundColor: #ffffff, borderRadius: 12px, padding: 40px, boxShadow: none. Pure white cards float on Parchment (#faf8f5) canvas with soft rounded corners."
+      },
+      {
+        "name": "Transparent Task Card",
+        "role": "Workflow step containers",
+        "description": "backgroundColor: transparent, borderRadius: 4px, padding: 10px 12px. No fill, only content, creating negative-space composition over botanical imagery."
+      },
+      {
+        "name": "Tinted Overlay Card",
+        "role": "Elevated surfaces on dark sections",
+        "description": "backgroundColor: rgba(39,26,0,0.08), borderRadius: 0px, padding: 0. Subtle sepia tint creates surface without hard edges."
+      },
+      {
+        "name": "Monospace Badge",
+        "role": "Code markers (/query, task IDs)",
+        "description": "font: pplxSansMono 10-12px weight 400-600, color: #271a00, backgroundColor: transparent, borderRadius: 4px, padding: 0. Inline code style without visible container."
+      },
+      {
+        "name": "Status Badge",
+        "role": "Task counters (0, 4 in sidebar)",
+        "description": "font: pplxSans 11px weight 400, color: #271a00, backgroundColor: transparent, borderRadius: 0px. Bare numerals, no container decoration."
+      },
+      {
+        "name": "Serif Headline Block",
+        "role": "Section declarations",
+        "description": "font: pplxSerif 48-96px weight 300-400, lineHeight: 1.00-1.12, color: #271a00 or #121516. Massive weight 300 type set tight (1.00-1.12 leading) creates architectural presence."
+      },
+      {
+        "name": "Sans Hero Headline",
+        "role": "Primary page title",
+        "description": "font: pplxSans 96px weight 300, lineHeight: 1.00, letterSpacing: -2.69px, color: #271a00. Display-scale sans at whisper-weight with aggressive negative tracking."
+      },
+      {
+        "name": "Body Stack",
+        "role": "Feature descriptions, workflow text",
+        "description": "font: pplxSans 15-16px weight 400, lineHeight: 1.50, color: #271a00 or #7c7464. Comfortable 1.5 leading creates breathing room in dense content."
+      },
+      {
+        "name": "Nav Pill",
+        "role": "Top navigation items",
+        "description": "font: pplxSans 15px weight 400, color: #271a00, backgroundColor: transparent, borderRadius: 40px when active, padding: 20px vertical. Morphs into pill shape on hover/active."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Interface workhorse — nav, body, buttons, badges, links at 11-16px for UI, 32-96px for hero headlines. Weight 300 at display sizes creates authority through whisper-weight restraint. Custom typeface ensures brand distinction unavailable through system fonts.",
+        "sizes": "11-96px",
+        "family": "pplxSans",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.00-1.50",
+        "substitute": "Inter, -apple-system, sans-serif",
+        "letterSpacing": "-0.0280em"
+      },
+      {
+        "role": "Code snippets, technical badges (/query markers), status labels — monospace grounds the AI agent narrative in developer credibility. Appears at 10-14px in buttons and badges.",
+        "sizes": "10-14px",
+        "family": "pplxSansMono",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00-1.50",
+        "substitute": "JetBrains Mono, Consolas, monospace",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Section headlines, declaration moments — serif at 48-96px creates editorial gravitas, separating feature announcements from interface chrome. Weight 300 at 72-96px continues the whisper-weight authority pattern.",
+        "sizes": "24-96px",
+        "family": "pplxSerif",
+        "weight": "300, 400",
+        "lineHeight": "1.00-1.12",
+        "substitute": "Georgia, Times New Roman, serif",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "PPLX Serif Beta v0 VF — detected in extracted data but not described by AI",
+        "sizes": "48px",
+        "family": "PPLX Serif Beta v0 VF",
+        "weight": "400",
+        "lineHeight": "1.12"
+      },
+      {
+        "role": "PPLX Mono — detected in extracted data but not described by AI",
+        "sizes": "10px",
+        "family": "PPLX Mono",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "PPLX Mono Beta v0 VF — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "PPLX Mono Beta v0 VF",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Perplexity Computer — naturalistic interface camouflage. The design mimics a lush garden: white flower clusters (cards) float against softly blurred botanical photography, like UI elements composited onto nature footage. Warm sepia text (#271a00 — nearly brown) and cream surfaces (#faf8f5) create the impression of aged parchment overlaid on living greenery. Serif headlines at display sizes contrast with sans-serif UI, echoing the organic/digital tension. 4px and 12px radii appear across all elements except nav pills (40px), maintaining subtle roundness without full-pill uniformity. Generous whitespace (28-40px vertical rhythm) lets content breathe like clearings in foliage. The typeface suite — pplxSans for interface, pplxSerif for declarations — reinforces brand identity through custom letterforms rather than stock choices.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Botanical Imagery System",
+        "content": "Full-bleed nature photography is the brand's signature atmospheric layer. Use close-up botanical scenes: wildflowers (white clusters, blue forget-me-nots), ornamental grasses, garden foliage in soft natural light. Apply 20px blur via backdrop-filter to all hero/feature section backgrounds — the out-of-focus treatment lets UI elements remain sharp while imagery creates mood. Edges should vignette into white (#ffffff) or Parchment (#faf8f5) using linear gradients (rgba(255,255,255,0) to rgba(255,255,255,1) over 200px). Never use stylized illustrations or abstract patterns — imagery must be photorealistic flora. Density: 40-60% of viewport area in image-heavy sections, allowing Parchment canvas to dominate elsewhere. The blur + vignette combo creates a 'glass overlay' effect where UI feels composited onto nature, not embedded within it."
+      },
+      {
+        "title": "Typography Hierarchy Rules",
+        "content": "Display scale (72-96px): pplxSerif or pplxSans weight 300, line-height 1.0-1.12, letter-spacing -0.028em (sans only). Heading scale (32-48px): pplxSerif weight 400 or pplxSans weight 300, line-height 1.0-1.2. Subheading (24px): pplxSerif weight 400, line-height 1.2. Body (15-16px): pplxSans weight 400, line-height 1.5, letter-spacing -0.028em. Captions/badges (10-12px): pplxSansMono weight 400-600, line-height 1.0-1.2. Never mix serif and sans within a single text block — serif is for declarations and headlines, sans is for body and UI. Weight 300 at display sizes is mandatory, not optional — it's the brand's signature restraint move. All pplxSans text receives -0.028em tracking; serif and mono use normal."
+      }
+    ],
+    "elevationPhilosophy": "Depth without shadows — layering achieved through color progression (#ffffff → #faf8f5 → #d1cfc7) and blur filters on botanical imagery (blur(20px) backdrop filters). Cards float through luminance contrast, not drop shadows. The design avoids box-shadow entirely, creating a flattened-layered aesthetic where surfaces stack like pressed botanical specimens between glass panes."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#271a00",
+          "oklch": {
+            "c": 0.046909272488439936,
+            "h": 83.0924353720673,
+            "l": 0.22817404659108173
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "card",
+            "body",
+            "badge",
+            "button",
+            "icon",
+            "image",
+            "link",
+            "footer"
+          ],
+          "frequency": 214,
+          "confidence": 1,
+          "prominence": 106297101.28664672,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#faf8f5",
+          "oklch": {
+            "c": 0.004519735584262973,
+            "h": 78.29817786156882,
+            "l": 0.9798268821176696
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 47459783.242230624,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 27437908,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3291618.031402697,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#d1cfc7",
+          "oklch": {
+            "c": 0.010768325351949057,
+            "h": 91.13766549324181,
+            "l": 0.853813281684511
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 2292667.2987055834,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#23291b",
+          "oklch": {
+            "c": 0.02630997325750656,
+            "h": 126.9275139927752,
+            "l": 0.27035566013128143
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1625943.2911398022,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#7c7464",
+          "oklch": {
+            "c": 0.02681251954001083,
+            "h": 86.05435433885931,
+            "l": 0.5625150693781351
+          },
+          "contexts": [
+            "body",
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 132433.796056511,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#121516",
+          "oklch": {
+            "c": 0.005116514337711598,
+            "h": 219.73575996423,
+            "l": 0.19290204755942972
+          },
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 129030,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#e5e5e3",
+          "oklch": {
+            "c": 0.002507141820763691,
+            "h": 91.43299109886067,
+            "l": 0.9206481186024796
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 86532.38859703687,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#0f3639",
+          "oklch": {
+            "c": 0.043142479977713116,
+            "h": 202.33846934985596,
+            "l": 0.30723875138438983
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 27914,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#656564",
+          "oklch": {
+            "c": 0.0018685934646863274,
+            "h": 106.46623804851204,
+            "l": 0.5056589370475898
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1095.2090879983189,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#7c7b76",
+          "oklch": {
+            "c": 0.008231725867899782,
+            "h": 96.44184390626341,
+            "l": 0.5822897702008406
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 135,
+          "properties": [
+            "color"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09735326226310734,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.81,
+          "background": "#000000",
+          "foreground": "#faf8f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.35,
+          "background": "#ffffff",
+          "foreground": "#121516"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.31,
+          "background": "#faf8f5",
+          "foreground": "#121516"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.02,
+          "background": "#ffffff",
+          "foreground": "#271a00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.65,
+          "background": "#000000",
+          "foreground": "#e5e5e3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.05,
+          "background": "#faf8f5",
+          "foreground": "#271a00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.95,
+          "background": "#23291b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#e5e5e3",
+          "foreground": "#121516"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.11,
+          "background": "#23291b",
+          "foreground": "#faf8f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.49,
+          "background": "#e5e5e3",
+          "foreground": "#271a00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.46,
+          "background": "#d1cfc7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#0f3639",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.33,
+          "background": "#0f3639",
+          "foreground": "#faf8f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.85,
+          "background": "#23291b",
+          "foreground": "#e5e5e3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#d1cfc7",
+          "foreground": "#121516"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.91,
+          "background": "#d1cfc7",
+          "foreground": "#271a00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.36,
+          "background": "#0f3639",
+          "foreground": "#e5e5e3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.58,
+          "background": "#23291b",
+          "foreground": "#d1cfc7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.38,
+          "background": "#0f3639",
+          "foreground": "#d1cfc7"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "hero",
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "hero",
+            "footer",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "rowGap|footer",
+            "columnGap|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "pplxSans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 186,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "pplxSansMono",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 56,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "pplxSerif",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PPLX Serif Beta v0 VF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PPLX Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PPLX Mono Beta v0 VF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "pplxSansMono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "PPLX Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "pplxSans",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "link",
+            "footer",
+            "badge",
+            "icon",
+            "button"
+          ],
+          "frequency": 127,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "pplxSansMono",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "PPLX Mono Beta v0 VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "pplxSansMono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "pplxSansMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "pplxSansMono",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "pplxSerif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "pplxSans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "pplxSans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PPLX Serif Beta v0 VF",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "pplxSerif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "pplxSerif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b3858e2b-e9b7-4ba4-9bb8-e1317b003845.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d93659f7-5852-4df6-a673-1e9094f99cdb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Perplexity AI design system\",\"item\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568#style-reference\",\"name\":\"Perplexity AI design system reference\",\"headline\":\"Perplexity AI design system | Refero Styles\",\"description\":\"Explore Perplexity AI's light AI design system: Aged Sepia #271a00, Parchment #faf8f5 colors, pplxSans, pplxSansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Perplexity AI\",\"url\":\"https://www.perplexity.ai/products/computer\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7c4e9339-591c-46c3-ac3d-20c1b5b5a568#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d93659f7-5852-4df6-a673-1e9094f99cdb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d93659f7-5852-4df6-a673-1e9094f99cdb.jpg\",\"caption\":\"Screenshot of Perplexity AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d93659f7-5852-4df6-a673-1e9094f99cdb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Perplexity AI design system\",\"Perplexity AI website design\",\"Perplexity AI colors\",\"Perplexity AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Aged Sepia\",\"Parchment\",\"Fog\",\"Absolute Black\",\"pplxSans\",\"pplxSansMono\",\"pplxSerif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Perplexity AI design system\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI website design\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI colors\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-17T02:02:05.940Z\",\"dateModified\":\"2026-04-17T02:02:05.940Z\"}]}19:Ta91,<style>\n  :root {\n    --color-aged-sepia: #271a00;\n    --color-parchment: #faf8f5;\n    --color-fog: #d1cfc7;\n    --color-pure-white: #ffffff;\n    --color-moss-shadow: #7c7464;\n    --color-ash-mist: #e5e5e3;\n    --font-pplxsans: 'Inter', -apple-system, sans-serif;\n    --font-pplxsansmono: 'JetBrains Mono', Consolas, monospace;\n    --font-pplxserif: Georgia, 'Times New Roman', serif;\n  }\n  .task-stack-wrapper {\n    width: 600px;\n    background: var(--color-parchment);\n    padding: 40px;\n    box-sizing: border-box;\n    font-family: var(--font-pplxsans);\n  }\n  .task-card {\n    background: var(--color-pure-white);\n    border-radius: 12px;\n    padding: 20px 24px;\n    margin-bottom: 12px;\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n  }\n  .task-card:last-child {\n    margin-bottom: 0;\n  }\n  .task-number {\n    font-family: var(--font-pplxsans);\n    font-size: 11px;\n    font-weight: 400;\n    color: var(--color-moss-shadow);\n    letter-spacing: -0.028em;\n    line-height: 1.2;\n  }\n  .task-body {\n    font-family: var(--font-pplxsans);\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-aged-sepia);\n    letter-spacing: -0.028em;\n    line-height: 1.5;\n    flex: 1;\n  }\n  .task-footer {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n  }\n  .task-badge {\n    font-family: var(--font-pplxsansmono);\n    font-size: 11px;\n    font-weight: 500;\n    color: var(--color-moss-shadow);\n    letter-spacing: normal;\n    line-height: 1;\n  }\n  .task-card.faded {\n    opacity: 0.45;\n  }\n</style>\n<div class=\"task-stack-wrapper\">\n  <div class=\"task-card\">\n    <div class=\"task-number\">03</div>\n    <div class=\"task-body\">Research the top 10 AI startups from YC's W24 batch and summarize their core products, funding, and growth metrics into a structured report.</div>\n    <div class=\"task-footer\"><span class=\"task-badge\">/query</span></div>\n  </div>\n  <div class=\"task-card\">\n    <div class=\"task-number\">04</div>\n    <div class=\"task-body\">Analyze the ISM Manufacturing Index vs S&amp;P 500 YoY returns since 2000 and create an excel spreadsheet and report.</div>\n    <div class=\"task-footer\"><span class=\"task-badge\">/query</span></div>\n  </div>\n  <div class=\"task-card\">\n    <div class=\"task-number\">05</div>\n    <div class=\"task-body\">Build a mobile web app for Huberman's strength protocol with exercise guides, logging, and downloadable reports.</div>\n    <div class=\"task-footer\"><span class=\"task-badge\">/query</span></div>\n  </div>\n  <div class=\"task-card faded\">\n    <div class=\"task-number\">06</div>\n    <div class=\"task-body\"></div>\n    <div class=\"task-footer\"><span class=\"task-badge\">/query</span></div>\n  </div>\n</div>1a:T1061,<style>\n  :root {\n    --color-aged-sepia: #271a00;\n    --color-parchment: #faf8f5;\n    --color-fog: #d1cfc7;\n    --color-pure-white: #ffffff;\n    --color-moss-shadow: #7c7464;\n    --color-slate-edge: #121516;\n    --color-ash-mist: #e5e5e3;\n    --font-pplxsans: 'Inter', -apple-system, sans-serif;\n    --font-pplxsansmono: 'JetBrains Mono', Consolas, monospace;\n  }\n  .btn-group-wrapper {\n    width: 600px;\n    background: var(--color-parchment);\n    padding: 48px 40px;\n    box-sizing: border-box;\n    font-family: var(--font-pplxsans);\n    display: flex;\n    flex-direction: column;\n    gap: 28px;\n  }\n  .btn-row {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    flex-wrap: wrap;\n  }\n  .btn-label {\n    font-family: var(--font-pplxsans);\n    font-size: 11px;\n    font-weight: 400;\n    color: var(--color-moss-shadow);\n    letter-spacing: -0.028em;\n    line-height: 1.2;\n    width: 100%;\n    margin-bottom: 4px;\n  }\n  /* Primary pill CTA */\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    height: 40px;\n    padding: 0 24px;\n    background: #d6d5d4;\n    color: #171615;\n    border: 1px solid #171615;\n    border-radius: 40px;\n    font-family: var(--font-pplxsans);\n    font-size: 15px;\n    font-weight: 400;\n    letter-spacing: -0.028em;\n    line-height: 1;\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n  }\n  /* Secondary / ghost nav button */\n  .btn-ghost {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    height: 40px;\n    padding: 0 20px;\n    background: transparent;\n    color: var(--color-aged-sepia);\n    border: 1px solid rgba(39,26,0,0.18);\n    border-radius: 40px;\n    font-family: var(--font-pplxsans);\n    font-size: 15px;\n    font-weight: 400;\n    letter-spacing: -0.028em;\n    line-height: 1;\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n  }\n  /* Frosted glass button */\n  .btn-frosted {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    height: 36px;\n    padding: 0 16px;\n    background: rgba(255,255,255,0.6);\n    color: var(--color-aged-sepia);\n    border: 1px solid rgba(39,26,0,0.14);\n    border-radius: 4px;\n    font-family: var(--font-pplxsans);\n    font-size: 14px;\n    font-weight: 400;\n    letter-spacing: -0.028em;\n    line-height: 1;\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n    backdrop-filter: blur(8px);\n  }\n  /* Monospace badge button */\n  .btn-mono {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    height: 32px;\n    padding: 0 14px;\n    background: transparent;\n    color: var(--color-aged-sepia);\n    border: 1px solid rgba(39,26,0,0.22);\n    border-radius: 4px;\n    font-family: var(--font-pplxsansmono);\n    font-size: 12px;\n    font-weight: 500;\n    letter-spacing: normal;\n    line-height: 1;\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n  }\n  .divider {\n    width: 100%;\n    height: 1px;\n    background: var(--color-fog);\n    border: none;\n    margin: 0;\n  }\n</style>\n<div class=\"btn-group-wrapper\">\n  <div class=\"btn-row\">\n    <div class=\"btn-label\">Primary CTA — pill radius</div>\n    <a class=\"btn-primary\" href=\"#\">Try Computer</a>\n    <a class=\"btn-primary\" href=\"#\">Try with Slack</a>\n  </div>\n  <hr class=\"divider\">\n  <div class=\"btn-row\">\n    <div class=\"btn-label\">Ghost / Nav — transparent with hairline border</div>\n    <a class=\"btn-ghost\" href=\"#\">About</a>\n    <a class=\"btn-ghost\" href=\"#\">How it works</a>\n    <a class=\"btn-ghost\" href=\"#\">Features</a>\n    <a class=\"btn-ghost\" href=\"#\">Get started</a>\n  </div>\n  <hr class=\"divider\">\n  <div class=\"btn-row\">\n    <div class=\"btn-label\">Frosted glass — over imagery surfaces</div>\n    <a class=\"btn-frosted\" href=\"#\">View report</a>\n    <a class=\"btn-frosted\" href=\"#\">Download</a>\n    <a class=\"btn-frosted\" href=\"#\">Open app</a>\n  </div>\n  <hr class=\"divider\">\n  <div class=\"btn-row\">\n    <div class=\"btn-label\">Monospace — code-adjacent actions</div>\n    <span class=\"btn-mono\">/query</span>\n    <span class=\"btn-mono\">/build</span>\n    <span class=\"btn-mono\">/analyze</span>\n  </div>\n</div>1b:T129e,<style>\n  :root {\n    --color-aged-sepia: #271a00;\n    --color-parchment: #faf8f5;\n    --color-fog: #d1cfc7;\n    --color-pure-white: #ffffff;\n    --color-moss-shadow: #7c7464;\n    --color-ash-mist: #e5e5e3;\n    --color-slate-edge: #121516;\n    --font-pplxsans: 'Inter', -apple-system, sans-serif;\n    --font-pplxsansmono: 'JetBrains Mono', Consolas, monospace;\n    --font-pplxserif: Georgia, 'Times New Roman', serif;\n  }\n  .feature-wrapper {\n    width: 600px;\n    background: var(--color-parchment);\n    padding: 40px;\n    box-sizing: border-box;\n    font-family: var(--font-pplxsans);\n  }\n  .section-eyebrow {\n    font-family: var(--font-pplxsansmono);\n    font-size: 11px;\n    font-weight: 500;\n    color: var(--color-moss-shadow);\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    line-height: 1.2;\n    margin-bottom: 16px;\n  }\n  .section-headline {\n    font-family: var(--font-pplxserif);\n    font-size: 36px;\n    font-weight: 300;\n    color: var(--color-slate-edge);\n    line-height: 1.1;\n    letter-spacing: normal;\n    margin: 0 0 32px 0;\n  }\n  .cards-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 16px;\n  }\n  .feature-card {\n    background: var(--color-pure-white);\n    border-radius: 12px;\n    padding: 28px 24px;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n  }\n  .feature-card.wide {\n    grid-column: 1 / -1;\n  }\n  .card-icon {\n    width: 36px;\n    height: 36px;\n    border-radius: 8px;\n    background: var(--color-parchment);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .card-title {\n    font-family: var(--font-pplxsans);\n    font-size: 15px;\n    font-weight: 500;\n    color: var(--color-aged-sepia);\n    letter-spacing: -0.028em;\n    line-height: 1.3;\n    margin: 0;\n  }\n  .card-desc {\n    font-family: var(--font-pplxsans);\n    font-size: 14px;\n    font-weight: 400;\n    color: var(--color-moss-shadow);\n    letter-spacing: -0.028em;\n    line-height: 1.5;\n    margin: 0;\n    flex: 1;\n  }\n  .card-tag {\n    display: inline-flex;\n    align-items: center;\n    font-family: var(--font-pplxsansmono);\n    font-size: 11px;\n    font-weight: 500;\n    color: var(--color-moss-shadow);\n    background: var(--color-parchment);\n    border-radius: 4px;\n    padding: 3px 7px;\n    letter-spacing: normal;\n    line-height: 1.2;\n    align-self: flex-start;\n  }\n  .card-image-placeholder {\n    width: 100%;\n    height: 100px;\n    background: linear-gradient(135deg, #e8e4dc 0%, #d5d0c7 100%);\n    border-radius: 8px;\n    margin-top: 4px;\n  }\n</style>\n<div class=\"feature-wrapper\">\n  <div class=\"section-eyebrow\">What it does</div>\n  <h2 class=\"section-headline\">Built for every kind<br>of complex task</h2>\n  <div class=\"cards-grid\">\n    <div class=\"feature-card wide\">\n      <div class=\"card-icon\">\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"2\" y=\"3\" width=\"14\" height=\"2\" rx=\"1\" fill=\"#7c7464\"/><rect x=\"2\" y=\"8\" width=\"10\" height=\"2\" rx=\"1\" fill=\"#7c7464\"/><rect x=\"2\" y=\"13\" width=\"12\" height=\"2\" rx=\"1\" fill=\"#7c7464\"/></svg>\n      </div>\n      <div class=\"card-title\">Research &amp; Analysis</div>\n      <div class=\"card-desc\">Perplexity Computer searches the web, reads documents, and synthesizes insights — then compiles everything into polished reports, spreadsheets, or slideshows ready to share.</div>\n      <div class=\"card-image-placeholder\"></div>\n      <span class=\"card-tag\">/query</span>\n    </div>\n    <div class=\"feature-card\">\n      <div class=\"card-icon\">\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"3\" y=\"3\" width=\"5\" height=\"5\" rx=\"1.5\" fill=\"#7c7464\"/><rect x=\"10\" y=\"3\" width=\"5\" height=\"5\" rx=\"1.5\" fill=\"#7c7464\"/><rect x=\"3\" y=\"10\" width=\"5\" height=\"5\" rx=\"1.5\" fill=\"#7c7464\"/><rect x=\"10\" y=\"10\" width=\"5\" height=\"5\" rx=\"1.5\" fill=\"#7c7464\"/></svg>\n      </div>\n      <div class=\"card-title\">App Building</div>\n      <div class=\"card-desc\">Scaffold and deploy full-stack web apps, dashboards, and tools from a single prompt — no engineering required.</div>\n      <span class=\"card-tag\">/build</span>\n    </div>\n    <div class=\"feature-card\">\n      <div class=\"card-icon\">\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><polyline points=\"3,13 7,8 10,11 15,4\" stroke=\"#7c7464\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n      </div>\n      <div class=\"card-title\">Data Visualization</div>\n      <div class=\"card-desc\">Turn raw data into charts, graphs, and interactive reports that tell a clear story at a glance.</div>\n      <span class=\"card-tag\">/analyze</span>\n    </div>\n  </div>\n</div>1c:T603,**Quick Color Reference**\n• Text: #271a00 (Aged Sepia) — primary across all contexts\n• Background: #faf8f5 (Parchment) — page canvas\n• Cards: #ffffff (Pure White) — content surfaces\n• Borders: #d1cfc7 (Fog) — dividers and button fills\n• Accent: #0f3639 (Teal Accent) — interactive focus\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-viewport height. Blurred botanical photography background (blur(20px)). Centered headline 'Computer' at 96px pplxSans weight 300, color #271a00, line-height 1.0, letter-spacing -2.69px. Below: body text 15px pplxSans weight 400, color #7c7464, line-height 1.5. CTA button: 'Try Computer', background #d6d5d4, color #171615, border 1px solid #171615, border-radius 40px, padding 12px 24px.\n\n2. **White Feature Card**: background #ffffff, border-radius 12px, padding 40px, no shadow. Headline 24px pplxSerif weight 400, color #121516, line-height 1.12. Body 15px pplxSans weight 400, color #271a00, line-height 1.5. 8px gap between text blocks.\n\n3. **Monospace Badge**: font pplxSansMono 12px weight 500, color #271a00, background transparent, border-radius 4px, padding 2px 6px. Content: '/query' or task ID.\n\n4. **Nav Pill Button**: font pplxSans 15px weight 400, color #271a00, background transparent, border-radius 40px, padding 20px vertical 24px horizontal. On hover/active: background rgba(15,54,57,0.1).\n\n5. **Section Headline**: font pplxSerif 72px weight 300, color #271a00, line-height 1.0, letter-spacing normal. Render as single line, centered, 40px margin below."
+}

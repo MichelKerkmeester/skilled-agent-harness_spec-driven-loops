@@ -1,0 +1,911 @@
+{
+  "source": "https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1",
+  "uuid": "e6fb72b4-877d-46ab-8f94-590b971d4dc1",
+  "name": "Telescope",
+  "northStar": "Editorial pasteboard on cream paper. A warm bone-white canvas with full-bleed magazine photography, one bright lime accent, and serif headlines that lay out around the images like an art director's spread.",
+  "capturedAt": "2026-07-18T08:05:07.650Z",
+  "meta": {
+    "url": "https://telescope.fyi",
+    "siteName": "Telescope",
+    "extractedAt": "2026-06-03T18:26:59.876Z",
+    "durationMs": 40975,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 551,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Lime Pulse (#e3f794) exclusively for the primary Sign Up button. Never use it for decorative elements, hover states, or secondary actions.",
+      "Set all corners to 2px radius — images, buttons, cards, everything. This uniform sharpness is a defining trait of the system.",
+      "Render headlines in Beausite at 55–57px with letter-spacing tightening to -0.94px and -1.14px respectively. The negative tracking is not optional; it gives the serif its modern editorial voice.",
+      "Use DM Mono 12px with +0.36px tracking in all-caps for every UI label: status indicators, button text, navigation items. Reserve Beausite for editorial and body content.",
+      "Let the page breathe on Bone Paper (#f4f3f0). Maintain 48–71px between major sections and 6–10px between inline elements. The cream canvas needs room to read as paper.",
+      "Float editorial photographs freely into the layout — around headlines, inline between words, full-bleed as section breaks. Treat images as layout elements, not content blocks.",
+      "Write body and card text in Beausite 400 at 19–23px with -0.13 to -0.16px tracking. The single weight (400) means hierarchy comes from size and spacing alone."
+    ],
+    "donts": [
+      "Never use shadows, drop-shadow filters, or box-elevation effects. The system is flat; depth comes from photography and surface color contrast only.",
+      "Never round corners beyond 2px. No pill buttons, no large radii on cards, no circular avatars. The sharp 2px corner is non-negotiable.",
+      "Never apply Lime Pulse to anything other than the Sign Up button. Using the accent for links, icons, tags, or highlights destroys its scarcity value.",
+      "Never use Ash (#82868e) for primary body text. It's for secondary metadata, borders, and receded labels only. Body copy is always Ink (#1a1915).",
+      "Never set Beausite headlines in bold or black weight — the face only ships at 400. Hierarchy through size, never through weight contrast.",
+      "Never add background colors to images or place photographs in containers with visible borders. Photos should sit raw on the cream canvas.",
+      "Never use a sans-serif system font for editorial text. Beausite (or its serif substitute) is the only body and display face. DM Mono handles UI labels separately."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4f3f0",
+        "name": "Bone Paper",
+        "role": "Page canvas — the warm off-white that reads as paper stock, not screen white. Everything sits on this surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1915",
+        "name": "Ink",
+        "role": "Primary text, body copy, headings, borders, and hairline rules. A warm near-black, never pure #000, so the contrast against Bone Paper feels printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#82868e",
+        "name": "Ash",
+        "role": "Secondary text, meta labels, and subtle borders. The cool counterpoint to Ink's warmth — used when type needs to recede without losing legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Surface layer above Bone Paper for inline cards and the bottom navigation bar. Rare — most surfaces stay on Bone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3f794",
+        "name": "Lime Pulse",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no page max-width constraint. The hero uses a centered headline in the visual middle of the viewport with photographs scattered freely in the surrounding whitespace at varying sizes and rotations. The signature pattern is text interrupted by inline images — the headline reads 'by real [portrait] people' with a photograph sitting between the words at the same baseline. Section transitions are full-viewport photographs with overlaid centered headlines. The only persistent UI is a fixed bottom navigation bar (white, ~48px tall) containing beta status, wordmark, login, and sign up. No top nav, no sidebar, no grid containers — the page reads top to bottom as a magazine spread, with generous vertical breathing room (48–71px) between sections.",
+    "imagery": "Full-bleed editorial photography is the primary visual medium. Images are uncropped or loosely cropped portraits and product/lifestyle shots with natural lighting and rich color — magazine-quality, not e-commerce product photography. Floating product images on the hero sit at small scales (80–160px) scattered art-directedly around the headline, with no captions, borders, or containers. Full-bleed section images span the entire viewport with overlaid white serif text. The photography style is warm, human, and curated — it should feel like a fashion editorial contact sheet, not a product catalog. No illustrations, no abstract graphics, no icons beyond the minimal scroll chevron.",
+    "similar": [
+      {
+        "why": "Same editorial, minimal-chrome approach with warm off-white canvas, floating image cards, and serif-first typography that lets the content breathe",
+        "business": "Are.na"
+      },
+      {
+        "why": "Shared magazine-spread sensibility: cream paper background, full-bleed editorial photography, and tight serif headlines with aggressive negative tracking",
+        "business": "Cereal magazine"
+      },
+      {
+        "why": "Curatorial media platform with a single accent color rationed to one action, serif display type, and photography-first layout that treats the page as a contact sheet",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Same warm near-black on cream-white palette with a single reserved accent, tight serif typography, and a stripped-back UI that lets product imagery carry the page",
+        "business": "Aesop (aesop.com)"
+      },
+      {
+        "why": "Editorial publication aesthetic with warm bone background, generous whitespace, serif at large sizes, and full-bleed lifestyle photography as section dividers",
+        "business": "Kinfolk"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "2px",
+        "cards": "2px",
+        "images": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "6-10px",
+      "sectionGap": "48-71px",
+      "cardPadding": "10-14px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f4f3f0",
+        "name": "Bone Paper",
+        "level": 0,
+        "purpose": "Full-bleed page canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 1,
+        "purpose": "Bottom navigation bar and inline card surfaces"
+      },
+      {
+        "hex": "#e3f794",
+        "name": "Lime Pulse",
+        "level": 2,
+        "purpose": "Primary action button fill"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial pasteboard on cream paper. A warm bone-white canvas with full-bleed magazine photography, one bright lime accent, and serif headlines that lay out around the images like an art director's spread.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "body-sm",
+        "size": 19,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body",
+        "size": 23,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "heading",
+        "size": 55,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.94
+      },
+      {
+        "role": "heading-lg",
+        "size": 57,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.14
+      },
+      {
+        "role": "display",
+        "size": 250,
+        "lineHeight": 1,
+        "letterSpacing": -0.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Bottom Navigation Bar",
+        "role": "Fixed chrome layer — the only persistent navigation",
+        "description": "Full-width white (#ffffff) bar anchored to the bottom of the viewport. Three regions: left ('CURRENTLY IN BETA' in DM Mono 12px caps, tracking 0.36px, Ink color), center (Beausite wordmark 'Telescope' in body weight, with 'LOGIN' and 'SIGN UP' actions to the right), and right ('SCROLL' label with a small down-chevron icon in Ink). Height approximately 48–56px. 2px top border in Ink. No background blur or shadow — sits flat on the page."
+      },
+      {
+        "name": "Sign Up Button",
+        "role": "The sole primary action in the interface",
+        "description": "Filled rectangle with Lime Pulse (#e3f794) background, Ink (#1a1915) text in DM Mono 12px all-caps, tracking 0.36px. 2px border radius — sharp, not rounded. Padding approximately 7px horizontal, 10px vertical. No shadow, no hover gradient. Its isolation in lime against the monochrome system makes it the loudest thing on the page."
+      },
+      {
+        "name": "Login Link",
+        "role": "Secondary navigation action in the bottom bar",
+        "description": "Text-only 'LOGIN' in DM Mono 12px caps, Ink color, 0.36px tracking. No background, no border. 7px horizontal padding. Sits directly left of the Sign Up button."
+      },
+      {
+        "name": "Beta Status Label",
+        "role": "Contextual status indicator in the bottom-left of the navigation bar",
+        "description": "'CURRENTLY IN BETA' in DM Mono 12px caps, Ash (#82868e) or Ink color, 0.36px tracking. No background. Quiet metadata that signals the platform is early-stage."
+      },
+      {
+        "name": "Floating Editorial Photo",
+        "role": "Scattered product and lifestyle imagery surrounding hero headlines",
+        "description": "Rectangular images with 2px border radius, floating freely around the page headline in an art-directed scatter. No captions, no borders, no shadows — just raw photographs laid out like a magazine contact sheet. Sizes vary (roughly 80–160px wide on the hero). Full-color editorial photography, not product white-background shots."
+      },
+      {
+        "name": "Full-Bleed Editorial Hero",
+        "role": "Section-opening photography for editorial content blocks",
+        "description": "Full-viewport-width photograph with no border, no radius, no overlay treatment. Beausite 55–57px headline overlays the image in white or semi-transparent text, centered. The photograph IS the section — no container, no card, no padding around it."
+      },
+      {
+        "name": "Inline Image-in-Headline Composition",
+        "role": "Signature layout pattern where photographs interrupt the text flow of a headline",
+        "description": "A headline rendered in Beausite 55–57px is split with a small photograph placed inline between the text words, so the reading flow wraps around the image. The image sits on the same baseline as the text, 2px radius, sized to match the cap-height of the surrounding serif. This is a magazine layout technique, not a standard web component."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Gentle prompt to scroll past the hero",
+        "description": "'SCROLL' in DM Mono 12px caps with a small downward chevron icon in Ink (#1a1915). Anchored bottom-right of the viewport. 2px stroke weight on the chevron."
+      },
+      {
+        "name": "Curator Portrait",
+        "role": "Subject photography for the people behind recommendations",
+        "description": "Full-bleed editorial portrait photograph, uncropped or loosely cropped, used as the visual anchor for curator profiles. Beausite 55–57px white headline overlaid, centered horizontally and vertically. The portrait's natural framing does all the compositional work."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole display and body face. Used at four sizes: 19px for body and card text, 23px for emphasized body and sub-headings, 55px for section headings, and 57px for hero headlines. Single weight (400) across all sizes — the system relies on size and negative tracking for hierarchy, not weight contrast. Letter-spacing tightens aggressively at large sizes: -0.007em at 19–23px, deepening to -0.017em at 55px and -0.020em at 57px. This negative tracking is the signature — it gives the serif a modern, tight, fashion-editorial feel rather than a bookish one.",
+        "sizes": "19, 23, 55, 57",
+        "family": "Beausite",
+        "weight": "400",
+        "lineHeight": "1.05–1.15",
+        "substitute": "GT Super, Tiempos Text, or Domaine Display — any contemporary serif with refined terminals and good display behavior",
+        "letterSpacing": "-0.0200em, -0.0170em, -0.0070em"
+      },
+      {
+        "role": "Exclusively for UI chrome: the 'CURRENTLY IN BETA' label, 'LOGIN' and 'SIGN UP' button text, and the 'SCROLL' indicator. Set in all-caps at 12px with +0.03em tracking (0.36px), creating a widened mechanical texture that contrasts sharply with Beausite's organic serif. This is the only typographic texture outside the serif system.",
+        "sizes": "12",
+        "family": "DM Mono",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "0.0300em"
+      },
+      {
+        "role": "A massive decorative display at 250px — likely a brand wordmark or oversized brand-mark element rendered as layout sculpture, not readable copy. Line-height of 1.00 with minimal -0.002em tracking. Use sparingly as an atmospheric or branding element, never for functional text.",
+        "sizes": "250",
+        "family": "CM Geom",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "No substitute — treat as a custom brand element. Approximate with any geometric display face at extreme scale if needed.",
+        "letterSpacing": "-0.0020em"
+      }
+    ],
+    "description": "Telescope reads as an editorial fashion magazine printed on warm cream paper: a nearly monochrome world of bone-white canvas, warm near-black type, and full-bleed editorial photography, punctuated by a single vivid lime accent that signals the only interactive surface. The UI is stripped to the bone — no cards, no panels, no decorative chrome — with a fixed bottom bar in mono caps doing all the navigation work and photos floating freely into the headline as if laid out on a pasteboard. Typography does the heavy lifting: a quiet custom serif at generous sizes with tight negative tracking whispers rather than shouts, while the mono labels at 12px are the only typographic texture outside the serif system. Everything is sharp at 2px corners, spacing is generous, and the lime green is rationed — one button, nothing else.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Telescope design system\",\"item\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#style-reference\",\"name\":\"Telescope design system reference\",\"headline\":\"Telescope design system | Refero Styles\",\"description\":\"Explore Telescope's light Media design system: Bone Paper #f4f3f0, Ink #1a1915 colors, Beausite, DM Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Telescope\",\"url\":\"https://telescope.fyi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"caption\":\"Screenshot of Telescope\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Telescope design system\",\"Telescope website design\",\"Telescope colors\",\"Telescope typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Bone Paper\",\"Ink\",\"Ash\",\"Pure White\",\"Beausite\",\"DM Mono\",\"CM Geom\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Telescope design system\"},{\"@type\":\"Thing\",\"name\":\"Telescope website design\"},{\"@type\":\"Thing\",\"name\":\"Telescope colors\"},{\"@type\":\"Thing\",\"name\":\"Telescope typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:30:59.944Z\",\"dateModified\":\"2026-04-30T00:30:59.944Z\"}]}19:T7df,**Quick Color Reference**\n- Text (primary): #1a1915\n- Text (secondary): #82868e\n- Background (canvas): #f4f3f0\n- Background (surface): #ffffff\n- Border: #1a1915\n- Accent / primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero with floating editorial photos**: Bone Paper (#f4f3f0) full-bleed background. Centered headline in Beausite 400 at 57px, color #1a1915, letter-spacing -1.14px, line-height 1.05. Surround the headline with 6–8 small editorial photographs (100–160px wide, 2px radius) scattered freely in the surrounding whitespace at varied positions. No captions, no borders on the images.\n\n2. **Bottom navigation bar**: Fixed white (#ffffff) bar, full width, ~48px tall, 2px top border in #1a1915. Left: 'CURRENTLY IN BETA' in DM Mono 12px caps, color #82868e, tracking 0.36px. Center-left: 'Telescope' wordmark in Beausite 400 at 19px, color #1a1915. Immediately right: 'LOGIN' in DM Mono 12px caps, #1a1915, then a filled Sign Up button (Lime Pulse #e3f794 background, Ink #1a1915 text, 2px radius, 10px vertical / 7px horizontal padding). Right: 'SCROLL' in DM Mono 12px caps with a small down-chevron icon in #1a1915.\n\n3. **Full-bleed editorial section**: Full-viewport-width photograph (uncropped, no border, no radius) filling the entire section height. Overlaid centered in the middle: a headline in Beausite 400 at 55px, color #ffffff, letter-spacing -0.94px, line-height 1.05. The text should sit at roughly 40% from the top of the image.\n\n4. **Inline image-in-headline composition**: A single line of Beausite 400 at 55px, color #1a1915, letter-spacing -0.94px, with a small portrait photograph (~80px tall, 2px radius) inserted inline between two words at the same baseline as the text. The line should read like: 'by real [photo] people' with the image replacing the gap between words.\n\n5. **Status badge / label**: 'CURRENTLY IN BETA' in DM Mono 12px caps, color #82868e, tracking 0.36px, no background, no border, no padding. Used inline as quiet metadata text."
+      }
+    ],
+    "elevationPhilosophy": "Flat by design. The interface uses zero shadows — depth is communicated through the full-bleed photography and the contrast between the white navigation bar and the cream canvas. This flatness reinforces the printed/paper metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1915",
+          "oklch": {
+            "c": 0.007795591757851328,
+            "h": 95.42448661115986,
+            "l": 0.21303450339820218
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "image",
+            "button",
+            "card",
+            "icon",
+            "badge",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 2466,
+          "confidence": 1,
+          "prominence": 303567343.4268311,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 35,
+            "card/color": 14,
+            "icon/color": 14,
+            "link/color": 2,
+            "list/color": 4,
+            "badge/color": 14,
+            "image/color": 26,
+            "other/color": 143,
+            "button/color": 15,
+            "footer/color": 1,
+            "other/stroke": 16,
+            "heading/color": 222,
+            "body/borderColor": 140,
+            "card/borderColor": 56,
+            "icon/borderColor": 56,
+            "link/borderColor": 8,
+            "list/borderColor": 16,
+            "badge/borderColor": 56,
+            "image/borderColor": 104,
+            "other/borderColor": 572,
+            "button/borderColor": 60,
+            "footer/borderColor": 4,
+            "heading/borderColor": 888
+          }
+        },
+        {
+          "hex": "#f4f3f0",
+          "oklch": {
+            "c": 0.004128442853625556,
+            "h": 91.44666561499147,
+            "l": 0.964084576672561
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 15905926,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e3f794",
+          "oklch": {
+            "c": 0.12541210690028473,
+            "h": 118.21720783833796,
+            "l": 0.9397093621358167
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3888000,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 3418341.7172251614,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 23
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1269385.3720900689,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#82868e",
+          "oklch": {
+            "c": 0.012910023548546031,
+            "h": 264.47409783833746,
+            "l": 0.6193104816170408
+          },
+          "contexts": [
+            "body",
+            "list",
+            "icon",
+            "other"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 49320.779716078876,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 2,
+            "list/color": 3,
+            "other/stroke": 4,
+            "body/borderColor": 20,
+            "icon/borderColor": 8,
+            "list/borderColor": 12
+          }
+        },
+        {
+          "hex": "#231f20",
+          "oklch": {
+            "c": 0.006380422797871483,
+            "h": 0.5935423003805331,
+            "l": 0.24418954591201783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 32138.082039475674,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 9,
+            "other/stroke": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0214941447920708,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#f4f3f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18,
+          "background": "#e3f794",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.59,
+          "background": "#ffffff",
+          "foreground": "#1a1915"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.3,
+          "background": "#ffffff",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.85,
+          "background": "#f4f3f0",
+          "foreground": "#1a1915"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#e3f794",
+          "foreground": "#1a1915"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.69,
+          "background": "#f4f3f0",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#e3f794",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.65,
+          "background": "#ffffff",
+          "foreground": "#82868e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#f4f3f0",
+          "foreground": "#82868e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.13,
+          "background": "#e3f794",
+          "foreground": "#82868e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "badge",
+            "link"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|badge",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|list",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 225,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Beausite",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 447,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DM Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "CM Geom",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 19,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "DM Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "badge",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "card",
+            "list",
+            "icon",
+            "heading",
+            "footer"
+          ],
+          "frequency": 181,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 205,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 250,
+          "family": "CM Geom",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fc4b4633-54fd-4c03-a770-afefaa2b50ed.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Telescope design system\",\"item\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#style-reference\",\"name\":\"Telescope design system reference\",\"headline\":\"Telescope design system | Refero Styles\",\"description\":\"Explore Telescope's light Media design system: Bone Paper #f4f3f0, Ink #1a1915 colors, Beausite, DM Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Telescope\",\"url\":\"https://telescope.fyi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e6fb72b4-877d-46ab-8f94-590b971d4dc1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"caption\":\"Screenshot of Telescope\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f186515-e39b-4c4f-bcbd-1f64e3499a70.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Telescope design system\",\"Telescope website design\",\"Telescope colors\",\"Telescope typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Bone Paper\",\"Ink\",\"Ash\",\"Pure White\",\"Beausite\",\"DM Mono\",\"CM Geom\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Telescope design system\"},{\"@type\":\"Thing\",\"name\":\"Telescope website design\"},{\"@type\":\"Thing\",\"name\":\"Telescope colors\"},{\"@type\":\"Thing\",\"name\":\"Telescope typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:30:59.944Z\",\"dateModified\":\"2026-04-30T00:30:59.944Z\"}]}19:T7df,**Quick Color Reference**\n- Text (primary): #1a1915\n- Text (secondary): #82868e\n- Background (canvas): #f4f3f0\n- Background (surface): #ffffff\n- Border: #1a1915\n- Accent / primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero with floating editorial photos**: Bone Paper (#f4f3f0) full-bleed background. Centered headline in Beausite 400 at 57px, color #1a1915, letter-spacing -1.14px, line-height 1.05. Surround the headline with 6–8 small editorial photographs (100–160px wide, 2px radius) scattered freely in the surrounding whitespace at varied positions. No captions, no borders on the images.\n\n2. **Bottom navigation bar**: Fixed white (#ffffff) bar, full width, ~48px tall, 2px top border in #1a1915. Left: 'CURRENTLY IN BETA' in DM Mono 12px caps, color #82868e, tracking 0.36px. Center-left: 'Telescope' wordmark in Beausite 400 at 19px, color #1a1915. Immediately right: 'LOGIN' in DM Mono 12px caps, #1a1915, then a filled Sign Up button (Lime Pulse #e3f794 background, Ink #1a1915 text, 2px radius, 10px vertical / 7px horizontal padding). Right: 'SCROLL' in DM Mono 12px caps with a small down-chevron icon in #1a1915.\n\n3. **Full-bleed editorial section**: Full-viewport-width photograph (uncropped, no border, no radius) filling the entire section height. Overlaid centered in the middle: a headline in Beausite 400 at 55px, color #ffffff, letter-spacing -0.94px, line-height 1.05. The text should sit at roughly 40% from the top of the image.\n\n4. **Inline image-in-headline composition**: A single line of Beausite 400 at 55px, color #1a1915, letter-spacing -0.94px, with a small portrait photograph (~80px tall, 2px radius) inserted inline between two words at the same baseline as the text. The line should read like: 'by real [photo] people' with the image replacing the gap between words.\n\n5. **Status badge / label**: 'CURRENTLY IN BETA' in DM Mono 12px caps, color #82868e, tracking 0.36px, no background, no border, no padding. Used inline as quiet metadata text."
+}

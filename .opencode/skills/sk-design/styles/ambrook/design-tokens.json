@@ -1,0 +1,437 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#fcfaf1",
+      "$type": "color",
+      "$description": "Parchment — Page canvas and card surfaces — warm off-white replaces pure #ffffff to keep the system grounded in an agricultural, paper-like register"
+    },
+    "bone": {
+      "$value": "#efe9e0",
+      "$type": "color",
+      "$description": "Bone — Secondary surface for footer, soft sections, and hairline borders that need separation from the parchment canvas without harsh contrast"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card and product-mockup surface — used sparingly to lift specific panels (like the Ledger screenshot) above the parchment base"
+    },
+    "loam": {
+      "$value": "#c7bcaf",
+      "$type": "color",
+      "$description": "Loam — Subtle dividers, card edges, and low-emphasis borders between the canvas and content blocks"
+    },
+    "bark": {
+      "$value": "#96897b",
+      "$type": "color",
+      "$description": "Bark — Muted helper text, metadata, and supporting labels where a softer voice is needed than primary body copy"
+    },
+    "saddle": {
+      "$value": "#50463c",
+      "$type": "color",
+      "$description": "Saddle — Secondary body text and subdued icon fills — a warm brown-gray that recedes without disappearing"
+    },
+    "ink": {
+      "$value": "#211b15",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading strokes, and the dominant border color across the system. Warm near-black with a hint of umber keeps the interface from feeling clinical"
+    },
+    "charcoal-olive": {
+      "$value": "#252a23",
+      "$type": "color",
+      "$description": "Charcoal Olive — Dark mode–style panels, product UI containers, and high-emphasis icon fills — used when a section needs to invert the warm page into something product-focused"
+    },
+    "deep-olive": {
+      "$value": "#434f40",
+      "$type": "color",
+      "$description": "Deep Olive — Navigation borders, icon strokes, and the most-used neutral divider in the system — a moss-toned dark that reads as organic rather than industrial"
+    },
+    "sage": {
+      "$value": "#7a9779",
+      "$type": "color",
+      "$description": "Sage — Green accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "honey-amber": {
+      "$value": "#e8b672",
+      "$type": "color",
+      "$description": "Honey Amber — Primary action button fill — the system's singular chromatic accent for CTAs, earning attention through warmth rather than saturation"
+    },
+    "wheat": {
+      "$value": "#f0c891",
+      "$type": "color",
+      "$description": "Wheat — Lighter amber used for heading borders, icon accents, and subtle decorative strokes where honey would be too heavy"
+    }
+  },
+  "font": {
+    "lateral": {
+      "$value": "Lateral",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body, nav, buttons, inputs, and secondary headings. Weight 400 for running text, 500 for buttons and emphasis. Custom letterforms give it subtle warmth a generic sans would miss — slightly humanist proportions rather than mechanical geometric."
+    },
+    "lateral-narrow": {
+      "$value": "Lateral Narrow",
+      "$type": "fontFamily",
+      "$description": "Condensed variant for tighter column headings and subhead text where horizontal space is constrained but body voice is still wanted."
+    },
+    "lateral-display": {
+      "$value": "Lateral Display",
+      "$type": "fontFamily",
+      "$description": "Hero and section display face. Used at weight 500 (not the default 700) for major headlines — this restraint is signature: the type whispers authority instead of shouting. Slight serif character in the terminals gives it an editorial, almost newspaper-headline feel that matches the agricultural brand voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Lateral Narrow",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Lateral Narrow",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Lateral Narrow",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lateral Narrow",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Lateral Narrow",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Lateral Display",
+        "fontSize": "38px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Lateral Display",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lateral Display",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lateral Display",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.75px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "7.5px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.25px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fcfaf1",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white as the default surface."
+    },
+    "pure-white-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards and product-mockup containers that need to lift above the canvas."
+    },
+    "bone-footer": {
+      "$value": "#efe9e0",
+      "$type": "color",
+      "$description": "Surface level 2: Section dividers and footer band — a step warmer than the canvas to signal section boundaries."
+    },
+    "charcoal-olive-panel": {
+      "$value": "#252a23",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted product UI panels that flip the warm page into a dark, focused work surface."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ambrook.com",
+      "siteName": "Ambrook",
+      "extractedAt": "2026-06-03T20:05:27.377Z",
+      "variant": "extended"
+    }
+  }
+}

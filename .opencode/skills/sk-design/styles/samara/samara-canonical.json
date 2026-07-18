@@ -1,0 +1,1652 @@
+{
+  "source": "https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54",
+  "uuid": "934a61aa-50ff-4e90-852b-4ad0b8262d54",
+  "name": "Samara",
+  "northStar": "Sunlit architectural model. The design combines the precision of a blueprint with the warmth and airiness of natural light.",
+  "capturedAt": "2026-07-18T10:19:14.005Z",
+  "meta": {
+    "url": "https://samara.com",
+    "siteName": "Samara",
+    "extractedAt": "2026-04-11T17:53:21.380Z",
+    "durationMs": 85022,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1100,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use `regola-light` with tight negative letter-spacing for all headlines above 30px.",
+      "Set the primary page background to #fdfdf7 (Parchment), never pure #ffffff.",
+      "Reserve the vibrant #0096f7 (Sky Blue) for primary interactive elements like CTAs and links.",
+      "Apply a consistent 12px border-radius to almost all buttons, inputs, and cards.",
+      "Employ generous whitespace (96px-120px) between major content sections.",
+      "Use subtle, short shadows like `rgba(0, 0, 0, 0.12) 0px 0.5px 2px 0px` to gently lift elements.",
+      "Mix large, airy typography with high-quality product photography and clean 3D renders."
+    ],
+    "tags": [
+      "architectural",
+      "light",
+      "spacious",
+      "warm neutrals",
+      "geometric sans",
+      "minimalist",
+      "premium",
+      "calm",
+      "typographic",
+      "airy"
+    ],
+    "donts": [
+      "Don't use pure white (#ffffff) for large background areas.",
+      "Don't use bold or heavy font weights for headlines; use size and light weight instead.",
+      "Don't use sharp 0px corners on primary UI components like buttons and cards.",
+      "Don't use a busy color palette; stick to the core Parchment/Ink/Sky Blue system.",
+      "Don't use strong, deep, or colored shadows.",
+      "Don't neglect typography details; specific letter-spacing and line-height values are critical.",
+      "Don't place elements close together; the design relies on spaciousness."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0096f7",
+        "name": "Sky Blue",
+        "role": "Primary CTAs, interactive links, iconography — a single point of vivid color signifying action.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff4000",
+        "name": "Signal Orange",
+        "role": "Secondary high-visibility CTAs, often used in dark contexts for urgent calls to action.",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Headlines, body text, UI labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Text on dark or colored backgrounds, button text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfdf7",
+        "name": "Parchment",
+        "role": "Primary page background, giving a warm, tactile feel.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f2de",
+        "name": "Warm Sand",
+        "role": "Card backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e3e1",
+        "name": "Driftwood",
+        "role": "Button surfaces for secondary or tertiary actions.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3d3d3",
+        "name": "Ash",
+        "role": "Decorative elements, disabled states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Stone",
+        "role": "Subtle borders, placeholder text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Secondary text, metadata.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#375033",
+        "name": "Evergreen",
+        "role": "Product visualization accents within text blocks.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The layout is built on a centered, max-width container of approximately 1280px, creating generous white space on either side. The page begins with a full-bleed hero image or a dark banner with overlaid text, transitioning to a vertical stack of content sections on the warm Parchment background. Section breaks are defined by large vertical gaps (96-120px) rather than visual dividers, creating a calm, unhurried rhythm. Content is arranged in simple, centered 1-column stacks for narrative and 2- or 3-column grids for feature breakdowns.",
+    "imagery": "The visual language is a dichotomy of warm aspiration and clean objectivity. Product photography is dominant, featuring the homes in bright, natural, sunlit environments, often surrounded by nature to evoke a feeling of peaceful, premium living. This is contrasted with clean, isolated 3D product renders embedded directly within text blocks, which serve to explain features with technical clarity. All imagery is contained within sharp-edged containers or cards with a soft 12px radius; there are no abstract or decorative graphics.",
+    "similar": [
+      {
+        "why": "Similar use of a custom geometric sans-serif, spacious light UI, and a focus on premium hardware.",
+        "business": "Oura"
+      },
+      {
+        "why": "Combines high-end hardware with a clean, tech-forward aesthetic and typographic precision.",
+        "business": "Tonal"
+      },
+      {
+        "why": "Shares the architectural, minimalist aesthetic with an emphasis on structure and form.",
+        "business": "Anyone"
+      },
+      {
+        "why": "Mixes hardware innovation with a clean, adventurous, and nature-adjacent visual language.",
+        "business": "Rivian"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "pills": "24px",
+        "inputs": "12px",
+        "buttons": "12px",
+        "specialtyCards": "18px"
+      },
+      "elementGap": "",
+      "sectionGap": "",
+      "cardPadding": "",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "technology",
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.12) 0px 0.5px 2px 0px",
+        "element": "Subtle Card/Button"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.2) 0px 2px 4px 0px",
+        "element": "Elevated Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.08) 0px 2px 10px 0px",
+        "element": "Hover/Active Interaction"
+      }
+    ],
+    "northStar": "Sunlit architectural model. The design combines the precision of a blueprint with the warmth and airiness of natural light.",
+    "typeScale": [
+      {
+        "role": "caption-sm",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.49,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "body-lg",
+        "size": 23,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.46
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.3
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 0.96,
+        "letterSpacing": -2.46
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 0.9,
+        "letterSpacing": -4.51
+      }
+    ],
+    "components": [
+      {
+        "html": "<div style=\"--color-sky-blue:#0096f7;--color-signal-orange:#ff4000;--color-ink:#000000;--color-pure-white:#ffffff;--color-parchment:#fdfdf7;--color-warm-sand:#f5f2de;--color-driftwood:#e7e3e1;--color-ash:#d3d3d3;--color-stone:#999999;--color-graphite:#666666;--font-regola:'Plus Jakarta Sans',Manrope,sans-serif;box-sizing:border-box;width:600px;background:var(--color-ink);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-family:var(--font-regola);\"><p style=\"font-family:var(--font-regola);font-size:16px;line-height:1.49;letter-spacing:-0.22px;color:var(--color-pure-white);margin:0;font-weight:400;\">Support for homeowners in fire-affected Southern California communities</p><a href=\"#\" style=\"display:inline-block;background:var(--color-signal-orange);color:var(--color-pure-white);font-family:var(--font-regola);font-size:14px;font-weight:400;letter-spacing:-0.56px;padding:10px 20px;border-radius:12px;text-decoration:none;white-space:nowrap;\">Find out more</a></div>",
+        "name": "Alert Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$19",
+        "name": "Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Model Feature Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Button",
+        "role": "The main call-to-action button.",
+        "description": "Background: #0096f7 (Sky Blue). Text: #ffffff (Pure White). Padding: 14px. Radius: 12px. Font: regola, 14-15px."
+      },
+      {
+        "name": "Urgent CTA Button",
+        "role": "A high-contrast call-to-action for dark headers.",
+        "description": "Background: #ff4000 (Signal Orange). Text: #ffffff (Pure White). Padding: ~8px 18px. Radius: 12px."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "A subtle, secondary action link styled as a button.",
+        "description": "Background: rgba(0, 0, 0, 0.04). Text: #000000 (Ink). Radius: 24px. Padding may vary, often used for text links."
+      },
+      {
+        "name": "Standard Card",
+        "role": "Default content container for features or testimonials.",
+        "description": "Background: #f7f7f0 (darker Parchment). Radius: 12px. Shadow: `rgba(0, 0, 0, 0.2) 0px 2px 4px 0px`. Contains its own padded content."
+      },
+      {
+        "name": "Warm Sand Card",
+        "role": "A warmer, more prominent card variant.",
+        "description": "Background: #f5f2de (Warm Sand). Radius: 18px. Shadow: `rgba(0, 0, 0, 0.12) 0px 0.5px 2px 0px`. Padding: 36px."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "Standard user input field.",
+        "description": "Background: rgba(0, 0, 0, 0.03). Border: 1px solid rgba(0, 0, 0, 0.1). Radius: 12px. Padding: 15px. Text: #000000 (Ink)."
+      },
+      {
+        "name": "Hero Banner",
+        "role": "The top-of-page introduction, transitioning on scroll.",
+        "description": "Initial state: Black (#000000) background with white text and a Sky Blue or Signal Orange CTA. Scrolls to a transparent or white background integrated with the main page content."
+      },
+      {
+        "name": "Inline-Render Headline",
+        "role": "A signature component mixing large text with small 3D product renders.",
+        "description": "Uses `display` or `heading-lg` typography with small, floating product models (e.g., houses) interspersed within the text flow, creating a dynamic, informational headline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The signature font for the entire system. The 'light' variant is used for large, airy headlines, creating a distinctive look of understated confidence. 'Book' and 'regular' weights are for body copy and UI text. Tight negative letter-spacing is applied at larger sizes, enhancing its geometric precision.",
+        "sizes": "12px, 13px, 14px, 15px, 16px, 18px, 21px, 23px, 29px, 30px, 36px, 43px, 48px, 60px, 96px",
+        "family": "regola",
+        "weight": "400 (aliased as 'light', 'book', 'regular')",
+        "lineHeight": "0.90, 0.96, 1.00, 1.10, 1.12, 1.14, 1.16, 1.20, 1.25, 1.28, 1.33, 1.49, 1.50, 1.60",
+        "substitute": "Plus Jakarta Sans, Manrope",
+        "fontFeatureSettings": "\"lnum\", \"tnum\""
+      }
+    ],
+    "description": "The design feels like an architectural plan rendered on warm, premium paper. It establishes authority through restraint, using vast negative space and a whisper-thin display font (Regola Light) for headlines, making them feel expansive and considered rather than loud. The palette is strictly controlled: a warm off-white (#fdfdf7) background, black ink for text, and a single, vibrant Sky Blue (#0096f7) for all primary actions. This creates a calm, focused environment where the product—modern, livable spaces—is the hero. Soft 12px radii on cards and buttons provide a touch of organic friendliness to the otherwise precise, geometric typography.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1b"
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "button",
+            "icon",
+            "image",
+            "link",
+            "body",
+            "list",
+            "card",
+            "input"
+          ],
+          "frequency": 4419,
+          "confidence": 1,
+          "prominence": 392358513.1986329,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#0096f7",
+          "oklch": {
+            "c": 0.1773227662214033,
+            "h": 248.07982434617327,
+            "l": 0.6574705557759872
+          },
+          "contexts": [
+            "nav",
+            "image",
+            "link",
+            "icon",
+            "other",
+            "body",
+            "button",
+            "list"
+          ],
+          "frequency": 163,
+          "confidence": 1,
+          "prominence": 18307943.80413127,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "heading",
+            "list",
+            "card",
+            "link",
+            "image"
+          ],
+          "frequency": 302,
+          "confidence": 1,
+          "prominence": 17088223.31534918,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#fdfdf7",
+          "oklch": {
+            "c": 0.007883688820359168,
+            "h": 106.54238880369822,
+            "l": 0.9924012135952708
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 5837310.43953772,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d3d3d3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8668630753134526
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "button",
+            "image",
+            "other"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 5347554.260963805,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e7e3e1",
+          "oklch": {
+            "c": 0.005138203512184603,
+            "h": 48.68192296359629,
+            "l": 0.9183892527696172
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2667240,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#263db5",
+          "oklch": {
+            "c": 0.19020854935460796,
+            "h": 268.20166344873303,
+            "l": 0.4277698194223058
+          },
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1711759.5007788485,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#b4d9ff",
+          "oklch": {
+            "c": 0.06587326490951903,
+            "h": 249.277514774714,
+            "l": 0.8714297888258765
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1080000,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 889080,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 393889.90346146945,
+          "properties": [
+            "borderColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 163972.2955121072,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f5f2de",
+          "oklch": {
+            "c": 0.02652706779770167,
+            "h": 99.91119388252604,
+            "l": 0.9581427185959916
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 114720,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffbd00",
+          "oklch": {
+            "c": 0.17198237328058244,
+            "h": 83.07031184373244,
+            "l": 0.8365135016623462
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100515,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17325.225095382957,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ff4000",
+          "oklch": {
+            "c": 0.23280410863870532,
+            "h": 34.52438242498138,
+            "l": 0.6559355428754692
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5935,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#375033",
+          "oklch": {
+            "c": 0.056419914664142,
+            "h": 141.09565561725674,
+            "l": 0.4022748202484265
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1156,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01620875574670111,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.57,
+          "background": "#fdfdf7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.64,
+          "background": "#f5f2de",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.47,
+          "background": "#e7e3e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.31,
+          "background": "#b4d9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d3d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.53,
+          "background": "#ffbd00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.38,
+          "background": "#fdfdf7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.21,
+          "background": "#f5f2de",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.91,
+          "background": "#e7e3e1",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.91,
+          "background": "#375033",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.72,
+          "background": "#fdfdf7",
+          "foreground": "#375033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#263db5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.61,
+          "background": "#b4d9ff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.51,
+          "background": "#fdfdf7",
+          "foreground": "#263db5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#4d4d4d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.44,
+          "background": "#333333",
+          "foreground": "#d3d3d3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.28,
+          "background": "#fdfdf7",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.91,
+          "background": "#f5f2de",
+          "foreground": "#375033"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "image",
+            "icon",
+            "list",
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card",
+            "link",
+            "input",
+            "list"
+          ],
+          "frequency": 40
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 0.5px 2px 0px",
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 2px 10px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 2px 4px 0px",
+          "contexts": [
+            "image",
+            "button",
+            "card"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 2px 4px 0px",
+          "contexts": [
+            "image"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 0.5px 1px 0px",
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 0.5px 2px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 41,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 106,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 22,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 47,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 17,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 42,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 54,
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 89,
+          "frequency": 4,
+          "properties": [
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 113,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 167,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255) 0px, rgb(0, 0, 0) 50%)",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0) 50%, rgb(253, 253, 247) 100%)",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(253, 253, 247)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "regola-book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 819,
+          "fontFeatureSettings": [
+            "\"lnum\", \"tnum\""
+          ]
+        },
+        {
+          "family": "regola-light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 123,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "regola-regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.49,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "regola-regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "button",
+            "input",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.28,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "regola-regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.28,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "icon",
+            "body",
+            "card"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "regola-regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "list",
+            "icon",
+            "link",
+            "card"
+          ],
+          "frequency": 662,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "image"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading",
+            "icon",
+            "other"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.28,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "regola-book",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "regola-light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.041,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/84cc80b6-a715-4ea5-92ae-af8ee9d0a282.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5773cf89-3801-4dea-872d-15d4f3788cd5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Samara design system\",\"item\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54#style-reference\",\"name\":\"Samara design system reference\",\"headline\":\"Samara design system | Refero Styles\",\"description\":\"Explore Samara's light Agency design system: Sky Blue #0096f7, Signal Orange #ff4000 colors, regola typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54\",\"mainEntityOfPage\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Samara\",\"url\":\"https://samara.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/934a61aa-50ff-4e90-852b-4ad0b8262d54#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5773cf89-3801-4dea-872d-15d4f3788cd5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5773cf89-3801-4dea-872d-15d4f3788cd5.jpg\",\"caption\":\"Screenshot of Samara\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5773cf89-3801-4dea-872d-15d4f3788cd5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Samara design system\",\"Samara website design\",\"Samara colors\",\"Samara typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Sky Blue\",\"Signal Orange\",\"Ink\",\"Pure White\",\"regola\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Samara design system\"},{\"@type\":\"Thing\",\"name\":\"Samara website design\"},{\"@type\":\"Thing\",\"name\":\"Samara colors\"},{\"@type\":\"Thing\",\"name\":\"Samara typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-05T09:29:27.000Z\",\"dateModified\":\"2026-03-05T09:29:27.000Z\"}]}19:T942,<div style=\"--color-sky-blue:#0096f7;--color-signal-orange:#ff4000;--color-ink:#000000;--color-pure-white:#ffffff;--color-parchment:#fdfdf7;--color-warm-sand:#f5f2de;--color-driftwood:#e7e3e1;--color-ash:#d3d3d3;--color-stone:#999999;--color-graphite:#666666;--font-regola:'Plus Jakarta Sans',Manrope,sans-serif;box-sizing:border-box;width:600px;background:var(--color-parchment);padding:48px 40px;display:flex;flex-direction:column;gap:32px;align-items:flex-start;font-family:var(--font-regola);\"><p style=\"font-family:var(--font-regola);font-size:13px;font-weight:400;letter-spacing:-0.48px;color:var(--color-graphite);margin:0;text-transform:uppercase;\">Actions</p><div style=\"display:flex;flex-wrap:wrap;gap:12px;align-items:center;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-sky-blue);color:var(--color-pure-white);font-family:var(--font-regola);font-size:15px;font-weight:400;letter-spacing:-0.56px;padding:14px 24px;border-radius:12px;text-decoration:none;box-shadow:rgba(0,0,0,0.12) 0px 0.5px 2px 0px;\">Design yours</a><a href=\"#\" style=\"display:inline-block;background:var(--color-driftwood);color:var(--color-ink);font-family:var(--font-regola);font-size:15px;font-weight:400;letter-spacing:-0.56px;padding:14px 24px;border-radius:12px;text-decoration:none;box-shadow:rgba(0,0,0,0.12) 0px 0.5px 2px 0px;\">View models</a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.04);color:var(--color-ink);font-family:var(--font-regola);font-size:15px;font-weight:400;letter-spacing:-0.56px;padding:14px 24px;border-radius:24px;text-decoration:none;\">Learn more <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#000\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--color-graphite);font-family:var(--font-regola);font-size:15px;font-weight:400;letter-spacing:-0.56px;padding:14px 0;border-radius:0;text-decoration:none;\">Tell us where to build next <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#666\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div></div>1a:Td29,<div style=\"--color-sky-blue:#0096f7;--color-signal-orange:#ff4000;--color-ink:#000000;--color-pure-white:#ffffff;--color-parchment:#fdfdf7;--color-warm-sand:#f5f2de;--color-driftwood:#e7e3e1;--color-ash:#d3d3d3;--color-stone:#999999;--color-graphite:#666666;--font-regola:'Plus Jakarta Sans',Manrope,sans-serif;box-sizing:border-box;width:600px;background:var(--color-parchment);padding:40px;font-family:var(--font-regola);\"><div style=\"background:var(--color-warm-sand);border-radius:18px;padding:36px;box-shadow:rgba(0,0,0,0.12) 0px 0.5px 2px 0px;display:flex;flex-direction:column;gap:24px;\"><div style=\"width:100%;height:200px;background:linear-gradient(135deg,#e2ddc8 0%,#ccc8b0 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;\"><div style=\"display:flex;flex-direction:column;align-items:center;gap:6px;\"><div style=\"width:100px;height:48px;background:#4a5240;border-radius:6px 6px 0 0;position:relative;\"><div style=\"position:absolute;bottom:0;left:10px;width:18px;height:28px;background:#2a3020;border-radius:3px 3px 0 0;\"></div><div style=\"position:absolute;top:12px;right:12px;width:20px;height:14px;background:rgba(255,255,255,0.3);border-radius:2px;\"></div></div><div style=\"width:116px;height:8px;background:#3a3a3a;border-radius:0 0 3px 3px;\"></div></div></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><div style=\"display:flex;align-items:baseline;justify-content:space-between;gap:12px;\"><h2 style=\"font-family:var(--font-regola);font-size:48px;line-height:1;letter-spacing:-1.3px;color:var(--color-ink);margin:0;font-weight:400;\">XL 10</h2><span style=\"font-family:var(--font-regola);font-size:14px;line-height:1.5;letter-spacing:-0.56px;color:var(--color-graphite);font-weight:400;\">New model</span></div><p style=\"font-family:var(--font-regola);font-size:18px;line-height:1.33;letter-spacing:-0.18px;color:var(--color-ink);margin:0;font-weight:400;\">Introducing Backyard XL 10: Two bedrooms, two baths. 950 square feet.</p></div><div style=\"display:flex;flex-wrap:wrap;gap:10px;\"><div style=\"background:rgba(0,0,0,0.06);border-radius:24px;padding:8px 16px;font-family:var(--font-regola);font-size:13px;letter-spacing:-0.48px;color:var(--color-ink);\">2 bed</div><div style=\"background:rgba(0,0,0,0.06);border-radius:24px;padding:8px 16px;font-family:var(--font-regola);font-size:13px;letter-spacing:-0.48px;color:var(--color-ink);\">2 bath</div><div style=\"background:rgba(0,0,0,0.06);border-radius:24px;padding:8px 16px;font-family:var(--font-regola);font-size:13px;letter-spacing:-0.48px;color:var(--color-ink);\">950 sq ft</div><div style=\"background:rgba(0,0,0,0.06);border-radius:24px;padding:8px 16px;font-family:var(--font-regola);font-size:13px;letter-spacing:-0.48px;color:var(--color-ink);\">Solar-ready</div></div><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:var(--color-pure-white);color:var(--color-ink);font-family:var(--font-regola);font-size:15px;font-weight:400;letter-spacing:-0.56px;padding:14px 22px;border-radius:12px;text-decoration:none;box-shadow:rgba(0,0,0,0.2) 0px 2px 4px 0px;align-self:flex-start;\">Learn more <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#000\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div></div>1b:T477,### Quick Color Reference\n- **Background**: `#fdfdf7` (Parchment)\n- **Text**: `#000000` (Ink)\n- **Primary CTA**: `#0096f7` (Sky Blue)\n- **Card Background**: `#f5f2de` (Warm Sand)\n- **Border**: `rgba(0, 0, 0, 0.1)` (Black 10%)\n\n### Example Component Prompts\n1. **Primary Button:** \"Create a button with text 'Design yours'. Use background color #0096f7, white text, 12px border radius, and 14px padding all around. Use a 15px regola font.\"\n2. **Display Headline:** \"Create a headline 'Small living, supersized.' using the regola font at 96px size, weight 400 (light), color #000000, line-height 0.9, and letter-spacing -4.51px.\"\n3. **Content Card:** \"Create a card with a background color of #f5f2de, a 18px border radius, and a subtle shadow of `rgba(0, 0, 0, 0.12) 0px 0.5px 2px 0px`. Add 36px of padding inside the card.\"\n4. **Hero Section:** \"Generate a hero section. Full width dark banner with background #000000. It contains a centered headline 'Support for homeowners' in white text, 36px regola font, and a call-to-action button next to it. The button text is 'Find out more' on a #ff4000 background with white text and a 12px radius.\""
+}

@@ -1,0 +1,130 @@
+{
+  "color": {
+    "vermillion": {
+      "$value": "#d15022",
+      "$type": "color",
+      "$description": "Vermillion — Display type, navigation, outlined action borders, section headings — burnt orange against white and mint creates the system's only chromatic voice; it carries every heading, every link, and the massive name lockup"
+    },
+    "acid-mint": {
+      "$value": "#75dfb5",
+      "$type": "color",
+      "$description": "Acid Mint — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Image borders, hairline dividers, secondary borders, and body-text outlines where Vermillion isn't used — the structural ink that frames every photograph"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary canvas behind image collages and the opening viewport — flat, untextured, the gallery wall on which the photographs are pinned"
+    }
+  },
+  "font": {
+    "helvetica-now-display": {
+      "$value": "Helvetica Now Display",
+      "$type": "fontFamily",
+      "$description": "Body emphasis, navigation labels, sub-headings, image captions, link text — the non-display workhorse at 29px bold for the bio statement and 18px for running text. The 800 weight everywhere (no medium, no regular) is a signature choice: the system never steps down from maximum volume."
+    },
+    "helvetica-now-display-condensed": {
+      "$value": "Helvetica Now Display Condensed",
+      "$type": "fontFamily",
+      "$description": "Display name lockup and section-spanning hero type — the ultra-condensed bold at 72px+ fills viewports and overlaps photography. The condensation is the brand's signature: standard Helvetica at 800 wouldn't create the same monolithic, poster-scale letters that define the site's identity."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display",
+        "fontSize": "10px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display",
+        "fontSize": "29px",
+        "fontWeight": 800,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display",
+        "fontSize": "29px",
+        "fontWeight": 800,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now Display Condensed",
+        "fontSize": "72px",
+        "fontWeight": 800,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary canvas for the opening viewport and image collage sections — the gallery wall"
+    },
+    "acid-mint": {
+      "$value": "#75dfb5",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed section background for bio, about, and content-heavy pages — the only saturated surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.daniellelevitt.com",
+      "siteName": "Daniellelevitt",
+      "extractedAt": "2026-06-03T21:16:53.370Z",
+      "variant": "extended"
+    }
+  }
+}

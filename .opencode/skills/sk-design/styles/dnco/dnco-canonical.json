@@ -1,0 +1,676 @@
+{
+  "source": "https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8",
+  "uuid": "c072c00a-ee7f-4160-bd06-645cca12f7a8",
+  "name": "DNCO",
+  "northStar": "editorial gallery on white linen.",
+  "capturedAt": "2026-07-18T07:23:33.166Z",
+  "meta": {
+    "url": "https://dnco.com",
+    "siteName": "DNCO",
+    "extractedAt": "2026-06-03T20:17:25.554Z",
+    "durationMs": 31189,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 727,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Neue Haas Unica Pro (or Inter / Neue Haas Grotesk) at weight 400 exclusively — never introduce bold, medium, or light weights",
+      "Set all type with letter-spacing -0.025em; tight tracking is non-negotiable for the editorial feel",
+      "Use only #ffffff, #e5e7eb, #000000, and #a3a3a3 — no chromatic accents anywhere in the UI",
+      "Build hierarchy through size jumps (16 → 18 → 22 → 72), not through weight or color shifts",
+      "Separate sections with 1px #e5e7eb hairlines or generous whitespace, never with fills or shadows",
+      "Make every interactive element a pill (9999px) or a text-only label — no filled buttons, no rounded cards, no bordered inputs",
+      "Let photography carry all color; images bleed into the layout without frames, radii, or overlays"
+    ],
+    "donts": [
+      "Do not add a second typeface family — the system is monotypographic by design",
+      "Do not introduce any color other than the four neutrals — no brand red, blue, or accent green",
+      "Do not use box-shadows or elevation on any component — depth comes from whitespace, not blur",
+      "Do not add border-radius to cards or images — only navigation and chips use 9999px",
+      "Do not bold or italicize text to create emphasis — increase size instead",
+      "Do not place content inside bordered containers or filled panels — use whitespace to group",
+      "Do not use background colors for buttons, tags, or interactive states — use text color and the dot indicator"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, primary surface for content blocks, card bases",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Mist",
+        "role": "Hairline borders, dividers, subtle surface wash, filter chip backgrounds, image placeholder fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, brand wordmark fill, dark hero background, link text, heading color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Ash",
+        "role": "Muted secondary text, captions, inactive filter labels, helper text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is a wide single-column or 2-column grid with a generous max-width (~1400px) and flush-left alignment. The hero is a full-bleed black band dominated by the DNCO wordmark at extreme scale — no headline copy competes. Below the hero, the layout shifts to white with an editorial two-line headline flush-left at the page edge. Project work is presented as a multi-column image grid (2–3 columns) with no card chrome, separated by whitespace alone. Filter controls sit as a plain text list above the grid, not as a toolbar. Section rhythm is defined by hairline #e5e7eb dividers and 64px vertical gaps rather than by alternating background bands. Navigation is a minimal top bar with pill-radius text links and a tiny dot indicator for the active route.",
+    "imagery": "Photography is the only source of color in the system. Project images are shot on location — outdoor environments, people in public spaces, architecture, transit, signage, urban textures. Treatment is natural-light, documentary-style, full-bleed, and uncropped: no duotone, no overlay, no border, no radius. Images are presented at large landscape aspect ratios (roughly 4:3 or 3:2) and arranged in generous grids where whitespace does the work of gutters. The first-viewport brand wordmark is set in pure white on black, creating a dramatic tonal pivot before the white gallery layout begins. No illustrations, no icons, no abstract graphics — the visual identity is carried entirely by the wordmark and the project photography.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — a single neutral canvas, a single typeface, typographic navigation, and photography as the sole color source",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Dutch design-agency aesthetic with generous whitespace, monotypographic system, and pill-shaped nav on a white surface",
+        "business": "Werkplaats"
+      },
+      {
+        "why": "Wordmark-as-hero opener, achromatic palette, grid of large uncropped project photography, minimal text chrome",
+        "business": "Anagrama"
+      },
+      {
+        "why": "Gallery-like presentation of place-based work, white background, hairline dividers, no decorative UI elements",
+        "business": "Apt Studio"
+      },
+      {
+        "why": "Brand-agency site language: massive headlines in a single weight, near-zero color, project photography bleeding into a clean grid",
+        "business": "Made Thought"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 1,
+        "purpose": "Page background, primary content surface"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Image Placeholder Mist",
+        "level": 2,
+        "purpose": "Solid fill behind loading or empty project tiles"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Invert",
+        "level": 3,
+        "purpose": "Hero/wordmark inversion — full-bleed black with white type"
+      }
+    ],
+    "northStar": "editorial gallery on white linen.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.55
+      },
+      {
+        "role": "heading",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -1.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Wordmark Hero",
+        "role": "Signature full-bleed opener",
+        "description": "Massive 'DNCO' logotype at ~72px+, white on pure black (#000000), fills the entire first viewport edge-to-edge with no padding or safe area. The wordmark is the hero — no headline, no subtext, no CTA. Acts as the brand's single most identifiable moment."
+      },
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Horizontal text-only nav, 14px weight 400, 24px gap between items, floating on white. Active item marked by a small filled circle (•) beneath the label rather than color change. No background, no border, no logo lockup beyond the wordmark at far left."
+      },
+      {
+        "name": "Editorial Headline",
+        "role": "Page-level statement copy",
+        "description": "72px Neue Haas Unica Pro, weight 400, line-height 1.0, tracking -0.025em, color #000000. Sits flush-left at page edge with no max-width constraint. Two lines maximum, set tight and confident."
+      },
+      {
+        "name": "Filter Chip Row",
+        "role": "Project categorization controls",
+        "description": "Vertical stack of text labels (All, Sector, Location, Expertise) at 16px weight 400, #a3a3a3 for inactive items, #000000 for active. No background, no border, no chip shape — filters are typographic only, not buttons."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Visual section separation",
+        "description": "1px solid #e5e7eb, full container width. The only structural divider in the system — replaces all spacing-only breaks and card borders."
+      },
+      {
+        "name": "Project Image Tile",
+        "role": "Case study thumbnail in grid",
+        "description": "Raw photographic image, no border, no radius, no shadow, no caption overlay. Aspect ratio is generous (landscape). Tiles are separated by whitespace alone, not by visible borders. Where an image is missing, a solid #e5e7eb fill takes its place."
+      },
+      {
+        "name": "Filter Label Active Indicator",
+        "role": "Active state for filter chips",
+        "description": "A 4px filled circle (#000000) rendered 4px below the active filter label. Sole indicator of state — no color change, underline, or weight shift."
+      },
+      {
+        "name": "Text Link Inline",
+        "role": "In-content navigation / project titles",
+        "description": "16–18px weight 400, color #000000, no underline by default, tracking -0.025em. Hover state not defined in data — assume underline appearance or color hold."
+      },
+      {
+        "name": "Case Study Card (Grid Unit)",
+        "role": "Project entry on Work index",
+        "description": "Image-only unit in a multi-column grid. No card chrome, no padding, no background — the photograph is the entire card. Spacing between tiles is achieved through container padding, not internal margin."
+      },
+      {
+        "name": "Footer Text Block",
+        "role": "Site-level links and contact",
+        "description": "Small text at 16px weight 400, #000000 or #a3a3a3, flush-left, minimal structure. No social icon row, no newsletter signup, no decorative elements — just contact and legal links."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for all UI — navigation, body, headlines, and brand wordmark. Weight 400 only, no bold or light variants; hierarchy is built purely through size and tracking rather than weight contrast.",
+        "sizes": "16px, 18px, 22px, 72px",
+        "family": "Neue Haas Unica Pro",
+        "weight": "400",
+        "lineHeight": "1.00–1.56",
+        "substitute": "Inter, Neue Haas Grotesk, Helvetica Now, Untitled Sans",
+        "letterSpacing": "-0.025em across all sizes (tight tracking creates a refined, editorial density)"
+      }
+    ],
+    "description": "DNCO operates on radical typographic restraint: a single sans-serif at a single weight (Neue Haas Unica Pro, 400) deployed across a 72px-to-16px scale, anchored on a near-achromatic palette of white, off-white, and pure black. The site reads like an editorial print spread — headlines breathe against generous whitespace, borders are whisper-thin hairlines (#e5e7eb), and the only color in the system comes from project photography, never from chrome or accent fills. Navigation and interactive elements are pill-shaped (9999px radius), text is always the interactive primitive, and the brand wordmark doubles as a full-bleed hero that inverts to black. Components are minimal, weightless, and border-driven rather than shadow-driven — the aesthetic is gallery catalogue, not SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DNCO design system\",\"item\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#style-reference\",\"name\":\"DNCO design system reference\",\"headline\":\"DNCO design system | Refero Styles\",\"description\":\"Explore DNCO's light Agency design system: Canvas White #ffffff, Hairline Mist #e5e7eb colors, Neue Haas Unica Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DNCO\",\"url\":\"https://dnco.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"caption\":\"Screenshot of DNCO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DNCO design system\",\"DNCO website design\",\"DNCO colors\",\"DNCO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Canvas White\",\"Hairline Mist\",\"Obsidian\",\"Ash\",\"Neue Haas Unica Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DNCO design system\"},{\"@type\":\"Thing\",\"name\":\"DNCO website design\"},{\"@type\":\"Thing\",\"name\":\"DNCO colors\"},{\"@type\":\"Thing\",\"name\":\"DNCO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:36:06.076Z\",\"dateModified\":\"2026-04-30T01:36:06.076Z\"}]}19:T5df,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border / divider: #e5e7eb\n- muted text: #a3a3a3\n- dark surface (hero inversion): #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Brand wordmark hero*: Full-bleed black (#000000) section, edge-to-edge. The text 'DNCO' set in Neue Haas Unica Pro (or Inter) at 72px+, weight 400, color #ffffff, letter-spacing -0.025em, flush-left with no padding offset. No other elements on the screen.\n\n2. *Editorial page headline*: 72px Neue Haas Unica Pro, weight 400, line-height 1.0, tracking -0.025em, color #000000, flush-left at the page edge over a #ffffff background. No max-width constraint.\n\n3. *Pill navigation bar*: Horizontal row of text links at 16px weight 400, color #000000, gap 24px, over a #ffffff background. Active item is marked by a 4px black filled circle positioned 4px below the label — no background fill, no border, no weight change. Top-left wordmark 'DNCO' at 16px weight 400.\n\n4. *Filter label group*: Vertical stack of four text labels (All, Sector, Location, Expertise) at 16px weight 400. Inactive items in #a3a3a3, active item in #000000 with a 4px black dot 4px below the label. No chip background, no border.\n\n5. *Project image grid*: Two or three equal columns of uncropped landscape photography, no borders, no radius, no captions overlaid. Tiles separated only by container padding (24px gap). Missing images render as a solid #e5e7eb fill block at the same aspect ratio."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system has zero elevation. No component uses box-shadow, drop-shadow, or blur. Depth is created exclusively through: (1) whitespace between elements, (2) 1px #e5e7eb hairline dividers, and (3) the single full-bleed black inversion that breaks the otherwise all-white canvas. Never add shadows to cards, buttons, modals, or popovers — if a component appears to need depth, it should be flattened against the surface instead."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "nav",
+            "list",
+            "button",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 2667,
+          "confidence": 1,
+          "prominence": 364823408.68012315,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 32,
+            "body/borderColor": 324,
+            "link/borderColor": 352,
+            "list/borderColor": 76,
+            "image/borderColor": 192,
+            "other/borderColor": 1308,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 292,
+            "other/backgroundColor": 71
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "list",
+            "button",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 872,
+          "confidence": 1,
+          "prominence": 313161893.7478059,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 71,
+            "list/color": 5,
+            "image/color": 48,
+            "other/color": 386,
+            "button/color": 4,
+            "heading/color": 72,
+            "other/borderColor": 284,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "nav",
+            "footer",
+            "body"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 153623999.83921996,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 5,
+            "link/color": 1,
+            "other/fill": 9,
+            "other/color": 10,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "body",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 108,
+          "confidence": 1,
+          "prominence": 274720.60174269543,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 76,
+            "link/color": 16,
+            "list/color": 14,
+            "other/color": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011371680300946754,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.33,
+          "background": "#000000",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.52,
+          "background": "#ffffff",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.04,
+          "background": "#e5e7eb",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e5e7eb",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 72
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 142,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "other",
+            "nav",
+            "footer"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Unica Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 720,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 438,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 142,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ff5aa988-25a2-4535-82cb-51e739ff7b5c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DNCO design system\",\"item\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#style-reference\",\"name\":\"DNCO design system reference\",\"headline\":\"DNCO design system | Refero Styles\",\"description\":\"Explore DNCO's light Agency design system: Canvas White #ffffff, Hairline Mist #e5e7eb colors, Neue Haas Unica Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DNCO\",\"url\":\"https://dnco.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c072c00a-ee7f-4160-bd06-645cca12f7a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"caption\":\"Screenshot of DNCO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/afe9b898-6a90-47fa-879b-9bc63e0198a3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DNCO design system\",\"DNCO website design\",\"DNCO colors\",\"DNCO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Canvas White\",\"Hairline Mist\",\"Obsidian\",\"Ash\",\"Neue Haas Unica Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DNCO design system\"},{\"@type\":\"Thing\",\"name\":\"DNCO website design\"},{\"@type\":\"Thing\",\"name\":\"DNCO colors\"},{\"@type\":\"Thing\",\"name\":\"DNCO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:36:06.076Z\",\"dateModified\":\"2026-04-30T01:36:06.076Z\"}]}19:T5df,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border / divider: #e5e7eb\n- muted text: #a3a3a3\n- dark surface (hero inversion): #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Brand wordmark hero*: Full-bleed black (#000000) section, edge-to-edge. The text 'DNCO' set in Neue Haas Unica Pro (or Inter) at 72px+, weight 400, color #ffffff, letter-spacing -0.025em, flush-left with no padding offset. No other elements on the screen.\n\n2. *Editorial page headline*: 72px Neue Haas Unica Pro, weight 400, line-height 1.0, tracking -0.025em, color #000000, flush-left at the page edge over a #ffffff background. No max-width constraint.\n\n3. *Pill navigation bar*: Horizontal row of text links at 16px weight 400, color #000000, gap 24px, over a #ffffff background. Active item is marked by a 4px black filled circle positioned 4px below the label — no background fill, no border, no weight change. Top-left wordmark 'DNCO' at 16px weight 400.\n\n4. *Filter label group*: Vertical stack of four text labels (All, Sector, Location, Expertise) at 16px weight 400. Inactive items in #a3a3a3, active item in #000000 with a 4px black dot 4px below the label. No chip background, no border.\n\n5. *Project image grid*: Two or three equal columns of uncropped landscape photography, no borders, no radius, no captions overlaid. Tiles separated only by container padding (24px gap). Missing images render as a solid #e5e7eb fill block at the same aspect ratio."
+}

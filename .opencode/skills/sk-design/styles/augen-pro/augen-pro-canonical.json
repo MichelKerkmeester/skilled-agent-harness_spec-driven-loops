@@ -1,0 +1,1009 @@
+{
+  "source": "https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2",
+  "uuid": "0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2",
+  "name": "Augen Pro",
+  "northStar": "Apple keynote on surgical white — clinical, weightless, electric blue as single accent in monochrome void",
+  "capturedAt": "2026-07-18T06:34:27.532Z",
+  "meta": {
+    "url": "https://augen.pro",
+    "siteName": "Augen Pro",
+    "extractedAt": "2026-07-03T03:18:40.191Z",
+    "durationMs": 79038,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 157,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 350 as the default for ALL text from 10px to 27px — hierarchy comes from size, not weight",
+      "Set every link's text color to Signal Blue (#0071e3) and never apply a fill background to interactive elements — blue as wireframe, not paint",
+      "Apply border-radius 54px to all content cards and 9999px to all tags/pills for the signature soft enclosure shape",
+      "Maintain 90-100px vertical gaps between sections to preserve the editorial breathing rhythm",
+      "Use the Off-Black (#0f1012) for text on light surfaces and Pure White (#fdfdfd) for text on the dark footer — never invert this pairing",
+      "Render all nav and interactive containers as floating pills (10-26px radius) centered or top-aligned, never as full-width bars",
+      "Set letter-spacing to -0.0200em uniformly — tight tracking is the typographic signature"
+    ],
+    "donts": [
+      "Never use drop shadows for elevation — use white-tone shifts (#fdfdfd on #f2f2f4) and 0.5px hairline borders instead",
+      "Never apply Signal Blue (#0071e3) as a filled background — it is exclusively a border and text color",
+      "Never use font-weight above 400 — bold, semibold, and medium break the whisper-weight system",
+      "Never center-justify multi-line body text — keep all paragraphs left-aligned for editorial readability",
+      "Never add decorative gradients, patterns, or background imagery to content sections — the 3D hero render carries all visual weight",
+      "Never use the CSS token colors green/orange/yellow as UI accents — they are inactive vars; the live system is monochrome + blue",
+      "Never exceed max-width 1200px for content containers — the centered-constrain rhythm depends on consistent measure"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0f1012",
+        "name": "Off-Black",
+        "role": "Primary text, hero and footer backgrounds, icon fills — near-pure black with a barely-perceptible cool cast that keeps it from feeling dead",
+        "group": "neutral"
+      },
+      {
+        "hex": "#020201",
+        "name": "Pure Black",
+        "role": "Secondary text, icon strokes, emphasis fills where maximum contrast against white surfaces is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f4",
+        "name": "Off-White",
+        "role": "Page canvas, card surfaces, large background fills — the signature light that carries the entire light theme",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfdfd",
+        "name": "Pure White",
+        "role": "Elevated card surfaces, input backgrounds, secondary panels — brighter than the canvas for subtle layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5e5e5e",
+        "name": "Steel Gray",
+        "role": "Muted body text, captions, inactive labels — meets AA at 6.4:1 for readable but clearly secondary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f8f",
+        "name": "Ash Gray",
+        "role": "Disabled button text, tertiary helper text, very low-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0071e3",
+        "name": "Signal Blue",
+        "role": "Blue outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed sections with max-width 1200px content centering. Navigation is a floating pill (rounded 10px container) with 5 inline links, positioned top-center. Hero is full-viewport with the 3D render centered-right and text block bottom-left. Below the hero, sections alternate between white canvas and slightly recessed #f2f2f4 panels separated by generous 90-100px vertical breathing room. The 'Breakthrough' section uses a 3-column asymmetric grid (narrow labels | wide heading | side paragraph). Footer is a full-bleed dark band (#0f1012) with centered white text. Throughout, content stays left-aligned within its container, never center-justified in multi-line blocks.",
+    "imagery": "The hero is a single high-fidelity 3D-rendered portrait (a woman in profile, shaved head, closed eyes) that fades from solid form into pure white at the edges — a vignetted dissolution effect that makes the figure feel like it emerges from the page. The render uses warm browns against cool clinical white, creating temperature contrast. No photography, no illustration, no product shots anywhere else — the 3D render carries the entire visual identity. Iconography is minimal: a single 8-pointed star/compass glyph in the nav and footer. Imagery density is extremely low — text dominates at roughly 95% of all content.",
+    "similar": [
+      {
+        "why": "Same weightless white canvas, weight-300/350 typography whisper-weight headlines, floating pill nav centered over full-viewport hero with 3D-rendered human figure as the sole visual anchor",
+        "business": "Apple (apple.com)"
+      },
+      {
+        "why": "Same clinical white product pages with one chromatic accent (red for Nothing, blue for Augen), dot-matrix aesthetic, pill-shaped tags, and 3D-rendered product photography on pure white",
+        "business": "Nothing (nothing.tech)"
+      },
+      {
+        "why": "Same near-black #0f1012/#020201 text on light backgrounds, tight letter-spacing, minimal flat UI with hairline borders, and a single accent color rationed across interactive elements only",
+        "business": "Linear"
+      },
+      {
+        "why": "Same max-width centered content, generous vertical section gaps, monochrome palette with one signal accent color used exclusively for interactive states",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same humanistic tech positioning with 3D portrait as hero, clinical-white void aesthetic, and pill-shaped interactive elements floating in negative space",
+        "business": "Humane (humane.ai)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "buttons": "26px",
+        "nav-pills": "10px",
+        "large-cards": "54px",
+        "tags-and-links": "9999px",
+        "body-containers": "63px",
+        "hairline-elements": "1.8px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "90-100px",
+      "cardPadding": "69px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f2f2f4",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Full-page background — slightly cool off-white that recedes behind all content"
+      },
+      {
+        "hex": "#fdfdfd",
+        "name": "Elevated Panel",
+        "level": 1,
+        "purpose": "Cards, nav bar, tag chips — pure white lifted from canvas by tone difference, no shadow needed"
+      },
+      {
+        "hex": "#0f1012",
+        "name": "Dark Surface",
+        "level": 2,
+        "purpose": "Hero image backdrop, footer band — deep charcoal for full-bleed contrast moments"
+      }
+    ],
+    "northStar": "Apple keynote on surgical white — clinical, weightless, electric blue as single accent in monochrome void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 12,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 19.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 21.6,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 32.4,
+        "letterSpacing": -0.54
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Floating horizontal bar, background #fdfdfd, border-radius 10px, padding 11px horizontal, sits at 34px from page top. Contains a star icon + 5 text links (Wearable, Neural, Programs, Updates, Search) all at 16px weight 350. The container itself is a soft pill — not a full-width header — making it feel like a floating control rather than a structural nav."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Inline navigational link",
+        "description": "No background fill, no border. Text at 16px weight 350 in #0f1012. Underline appears on hover. Used for nav items and footer links — the default unstyled link."
+      },
+      {
+        "name": "Signal Blue Text Link",
+        "role": "Interactive content link",
+        "description": "Text color #0071e3, no underline at rest, optional 0.5px border-bottom in #0071e3. Always rendered at 16px weight 350. This is the only chromatic interactive element — blue text = 'this leads somewhere.'"
+      },
+      {
+        "name": "Pill Tag Chip",
+        "role": "Category label or product tag",
+        "description": "Border-radius 9999px (full pill), border 0.5px solid #0071e3, text #0071e3, padding 2px 10px, no background fill. Font 10-12px weight 350. Used for 'A¹ Sense', 'B¹ Eye', 'A¹ Neuro' product tags — blue outline signals these are interactive product names."
+      },
+      {
+        "name": "Rounded Card",
+        "role": "Content container",
+        "description": "Background #fdfdfd, border-radius 54px, border 0.5px solid rgba(0,0,0,0.06), padding 69px on all sides. No shadow. The massive 54px radius is the signature card shape — nearly circular corners that make containers feel like soft enclosures rather than rectangles."
+      },
+      {
+        "name": "Floating CTA Pill",
+        "role": "Primary action button (e.g. 'Discover the future in every update')",
+        "description": "Border-radius 26px, background rgba(12,13,15,0.05) — near-transparent charcoal wash, text #020201 weight 400 at 13px. Small icon (link glyph) in #0071e3 to the left of text. Sits between ghost and filled: present but not loud."
+      },
+      {
+        "name": "Dark Band Footer",
+        "role": "Page footer",
+        "description": "Full-width #0f1012 background, padding 50px top and 69px horizontal, text centered in white at 10-16px weight 350. Contains 'AI Augen Pro' tagline, secondary 'We make human accessible' link, and footer nav. The dark band creates a clear bookend after the light content sections."
+      },
+      {
+        "name": "Section Label Pair",
+        "role": "Two-line section heading",
+        "description": "Small 10-12px label in #8f8f8f (muted) above a 27px weight 350 title in #0f1012. Used as 'Overview / Breakthrough' in the content sections. The size jump (12→27px) with the same weight 350 creates hierarchy through scale alone, with the label acting as a quiet preamble."
+      },
+      {
+        "name": "Inline Icon Link",
+        "role": "Link with leading icon",
+        "description": "Blue link glyph (chain/link icon) in #0071e3 at 10-13px, paired with blue text label. Used for 'Go to Updates' and 'Research Insight' — the icon reinforces the link affordance without needing color to do double duty."
+      },
+      {
+        "name": "Update Banner",
+        "role": "Promotional strip",
+        "description": "Small floating banner with text 'Discover the future in every update' in a semi-transparent container, paired with a blue 'NEW' pill badge (border-radius 9999px, blue border, blue text). Sits above the hero as a subtle announcement layer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Weight 350 (Book) carries everything from body to display headings — the entire site whispers at near-regular weight, avoiding bold/bolder entirely. Weight 400 appears only for tiny button/icon labels. The flat 350 across 27px headlines and 16px body creates a uniform typographic texture where size alone builds hierarchy, not weight. Substitute: Inter (350/400) or Söhne (350/400).",
+        "sizes": "10, 12, 13, 14, 16, 18, 27",
+        "family": "PP Neue Montreal",
+        "weight": "350, 400",
+        "lineHeight": "1.20",
+        "substitute": "Inter (300/400 weights), Söhne (350/400), or General Sans (350/400)",
+        "letterSpacing": "-0.0200em applied uniformly across all sizes — tight tracking at every scale pulls characters together for a compressed, engineered feel rather than airy editorial spacing",
+        "fontFeatureSettings": "\"ss01\" on, \"ss02\" on, \"cv01\" on, \"cv11\" on — PP Neue Montreal's stylistic alternates shape the geometric character of the brand"
+      }
+    ],
+    "description": "Augen Pro operates in a clinical-white void anchored by deep charcoal typography and one precise electric blue. The entire system reads as a high-end consumer tech brand: sparse, weight-350 type, pill-shaped interface elements floating in near-infinite negative space, and zero decorative chrome. Color is rationed — blue appears only as functional borders on links and tags, never as fills, giving the interface a cool, instrument-panel quality. The layout breathes vertically with 90+px section gaps and max-width centering, creating an editorial rhythm that treats every section like a spread.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Augen Pro design system\",\"item\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#style-reference\",\"name\":\"Augen Pro design system reference\",\"headline\":\"Augen Pro design system | Refero Styles\",\"description\":\"Explore Augen Pro's light SaaS design system: Off-Black #0f1012, Pure Black #020201 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Augen Pro\",\"url\":\"https://augen.pro\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"caption\":\"Screenshot of Augen Pro\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Augen Pro design system\",\"Augen Pro website design\",\"Augen Pro colors\",\"Augen Pro typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Off-Black\",\"Pure Black\",\"Off-White\",\"Pure White\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Augen Pro design system\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro website design\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro colors\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-10T18:02:40.000Z\",\"dateModified\":\"2026-02-10T18:02:40.000Z\"}]}19:T544,Quick Color Reference:\n- Text: #0f1012 (primary), #020201 (emphasis), #5e5e5e (muted), #8f8f8f (disabled)\n- Background: #f2f2f4 (page canvas), #fdfdfd (elevated surfaces), #0f1012 (dark bands)\n- Border: 0.5px solid rgba(0,0,0,0.06) for cards, #0071e3 for interactive outlines\n- Accent: #0071e3 (links, tags, interactive borders — text and border only, never fill)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Create a section heading pair: small 12px weight 350 muted label in #8f8f8f above a 27px weight 350 title in #0f1012, letter-spacing -0.54px, sitting on #f2f2f4 canvas with 94px top padding.\n2. Create a product tag pill: border-radius 9999px, border 0.5px solid #0071e3, no background fill, text #0071e3 at 12px weight 350, padding 2px 10px, containing text like 'A¹ Sense'.\n3. Create a content card: background #fdfdfd, border-radius 54px, border 0.5px solid rgba(0,0,0,0.06), padding 69px, no shadow, containing 27px weight 350 heading and 16px weight 350 body text.\n4. Create a text link: color #0071e3, 16px weight 350, no underline at rest, optional 0.5px #0071e3 border-bottom on hover, sitting inline within a paragraph.\n5. Create the floating nav bar: centered, background #fdfdfd, border-radius 10px, padding 11px 30px, containing a star icon and 5 inline text links at 16px weight 350 in #0f1012."
+      },
+      {
+        "title": "Border System",
+        "content": "Borders are hairlines only — exclusively 0.5px solid (16 occurrences) or 1px solid (4 occurrences). Never use 2px+ borders; the system demands precision at the edge of perception. Interactive borders use #0071e3; structural borders use rgba(0,0,0,0.06) or rgba(0,0,0,0.04) — always semi-transparent black, never solid gray."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows. Elevation is communicated through pure-white tone shifts (#fdfdfd against #f2f2f4 canvas) and through hairline borders (0.5px solid at 16 occurrences). This zero-shadow philosophy keeps the interface weightless and lets the 3D human render in the hero do all the visual depth work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0f1012",
+          "oklch": {
+            "c": 0.004445579805663804,
+            "h": 264.45159676956445,
+            "l": 0.1727969431689547
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body",
+            "hero",
+            "footer"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 8831270.75035841,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 1,
+            "other/fill": 11,
+            "other/color": 4,
+            "button/color": 3,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2f2f4",
+          "oklch": {
+            "c": 0.0026567132069135026,
+            "h": 286.3495588323728,
+            "l": 0.9617157146005919
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "hero"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 7412101.909073873,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 10,
+            "other/fill": 11,
+            "other/color": 3,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0071e3",
+          "oklch": {
+            "c": 0.1933293052875748,
+            "h": 256.1557014963944,
+            "l": 0.5629227436952499
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 3211976.5029137232,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "other/fill": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fdfdfd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9940481626903693
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#868788",
+          "oklch": {
+            "c": 0.001604663787843637,
+            "h": 264.54320870060087,
+            "l": 0.621624579398821
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 846124,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8f8f8f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.651365646050826
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 14264.662506490406,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#5e5e5e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4819314937343141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2015.6808340373598,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#020201",
+          "oklch": {
+            "c": 0.007234469575092304,
+            "h": 107.87193221417849,
+            "l": 0.08333424055561436
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1440,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "button/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15459573845310504,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.41,
+          "background": "#fdfdfd",
+          "foreground": "#020201"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.71,
+          "background": "#fdfdfd",
+          "foreground": "#0f1012"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.57,
+          "background": "#f2f2f4",
+          "foreground": "#020201"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#f2f2f4",
+          "foreground": "#0f1012"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#fdfdfd",
+          "foreground": "#5e5e5e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.89,
+          "background": "#0f1012",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.8,
+          "background": "#f2f2f4",
+          "foreground": "#5e5e5e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.77,
+          "background": "#868788",
+          "foreground": "#020201"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#868788",
+          "foreground": "#0f1012"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#fdfdfd",
+          "foreground": "#0071e3"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.42,
+          "background": "#0071e3",
+          "foreground": "#020201"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#0071e3",
+          "foreground": "#f2f2f4"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.05,
+          "background": "#0071e3",
+          "foreground": "#0f1012"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.22,
+          "background": "#868788",
+          "foreground": "#f2f2f4"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.18,
+          "background": "#fdfdfd",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.89,
+          "background": "#f2f2f4",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#0071e3",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#868788",
+          "foreground": "#0071e3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#868788",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#fdfdfd",
+          "foreground": "#f2f2f4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 54,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1.8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 69,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 94,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 220,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 126,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "nav",
+            "image",
+            "hero",
+            "footer"
+          ],
+          "frequency": 67,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "PP Neue Montreal",
+          "weight": 350,
+          "contexts": [
+            "heading",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0bd71252-c89f-48af-bf1d-2f0bf77a1a49.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Augen Pro design system\",\"item\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#style-reference\",\"name\":\"Augen Pro design system reference\",\"headline\":\"Augen Pro design system | Refero Styles\",\"description\":\"Explore Augen Pro's light SaaS design system: Off-Black #0f1012, Pure Black #020201 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Augen Pro\",\"url\":\"https://augen.pro\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0f7da1b2-9d06-4ef5-b5a8-ef7f92e57ab2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"caption\":\"Screenshot of Augen Pro\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7219b9fe-393e-4748-b68a-d4cbfa2af9bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Augen Pro design system\",\"Augen Pro website design\",\"Augen Pro colors\",\"Augen Pro typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Off-Black\",\"Pure Black\",\"Off-White\",\"Pure White\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Augen Pro design system\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro website design\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro colors\"},{\"@type\":\"Thing\",\"name\":\"Augen Pro typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-10T18:02:40.000Z\",\"dateModified\":\"2026-02-10T18:02:40.000Z\"}]}19:T544,Quick Color Reference:\n- Text: #0f1012 (primary), #020201 (emphasis), #5e5e5e (muted), #8f8f8f (disabled)\n- Background: #f2f2f4 (page canvas), #fdfdfd (elevated surfaces), #0f1012 (dark bands)\n- Border: 0.5px solid rgba(0,0,0,0.06) for cards, #0071e3 for interactive outlines\n- Accent: #0071e3 (links, tags, interactive borders — text and border only, never fill)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Create a section heading pair: small 12px weight 350 muted label in #8f8f8f above a 27px weight 350 title in #0f1012, letter-spacing -0.54px, sitting on #f2f2f4 canvas with 94px top padding.\n2. Create a product tag pill: border-radius 9999px, border 0.5px solid #0071e3, no background fill, text #0071e3 at 12px weight 350, padding 2px 10px, containing text like 'A¹ Sense'.\n3. Create a content card: background #fdfdfd, border-radius 54px, border 0.5px solid rgba(0,0,0,0.06), padding 69px, no shadow, containing 27px weight 350 heading and 16px weight 350 body text.\n4. Create a text link: color #0071e3, 16px weight 350, no underline at rest, optional 0.5px #0071e3 border-bottom on hover, sitting inline within a paragraph.\n5. Create the floating nav bar: centered, background #fdfdfd, border-radius 10px, padding 11px 30px, containing a star icon and 5 inline text links at 16px weight 350 in #0f1012."
+}

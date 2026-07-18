@@ -1,0 +1,634 @@
+{
+  "source": "https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c",
+  "uuid": "5fd2cdc0-05ac-4290-b67c-72e7525a532c",
+  "name": "Alt–Border",
+  "northStar": "Monochrome editorial gallery — broadsheet headline on gallery white.",
+  "capturedAt": "2026-07-18T07:36:09.720Z",
+  "meta": {
+    "url": "https://www.alt-border.com",
+    "siteName": "Alt–Border",
+    "extractedAt": "2026-06-03T20:28:05.870Z",
+    "durationMs": 51954,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 162,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines in Neuehaasdisplay 300 at 105px with line-height 0.85 — the compressed vertical rhythm is the signature, not a default.",
+      "Use #000000 for all primary type, borders, and rules; #808080 only for soft dividers.",
+      "Keep all radii at 0px — the design is anti-rounded, it reads as print, not product UI.",
+      "Separate sections with a single 1px #808080 hairline and 7-9px vertical padding, never with background color changes or cards.",
+      "Let photographs carry all color and texture; the type and chrome stay strictly achromatic.",
+      "Set body and supporting type at 21px with letter-spacing -0.0270em — the negative tracking is consistent across the Inferi and Suisseintl families.",
+      "Place small square thumbnails inline within hero text as if they were characters on the baseline."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — the palette is achromatic by design, not by omission.",
+      "Do not add drop shadows, blurs, or any elevation — separation comes from rules and whitespace alone.",
+      "Do not round corners on images, buttons, or cards — 0px radius is the system.",
+      "Do not use a CTA button style — there is no primary action color; navigation is text-only with arrow links.",
+      "Do not exceed 0.92 line-height on the 105px display — looser tracking destroys the broadsheet compression.",
+      "Do not set body type below 14px or above 34px — the scale jumps are deliberate: 14, 21, 34, 105.",
+      "Do not add background fills to sections, cards, or navigation — the page is a single white sheet."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary type, body text, hairline rules, link borders, and the structural color of the entire page — used at high frequency for borders and text alike, creating a printed-ink quality against the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, card and image backgrounds, the negative space that lets type and photography breathe",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Secondary text, muted borders, image strokes — a slightly softened black for elements that should not compete with primary ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Section divider rules, link borders, faint hairlines where a true black stroke would be too assertive",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial spread with no max-width constraint — text and images both run edge-to-edge of the viewport. The page is a vertical sequence of typographic and photographic bands: (1) minimal top nav with three text items distributed across the row, (2) hero headline at 105px filling the width across 2-3 lines, (3) section label row with hairline rule, (4) 3-column image grid with ~9px gaps, (5) second display statement headline, (6) another 3-column grid. Every section is separated by a single 1px hairline in #808080. There is no sidebar, no sticky header, no mega-menu, no footer beyond the navigation itself. The rhythm is: type → images → type → images, like flipping through a magazine.",
+    "imagery": "Photography is the entire color story. The visual language is high-fashion editorial: tight beauty close-ups (lips, eyes, skin), product still-life (perfume bottles, headphones, glassware) on saturated colored backdrops (magenta, cyan, deep blue), and CGI/3D-rendered objects with a glossy, hyperreal finish. Treatment is always full-bleed, 0px radius, no overlays, no filters. Images are presented in a strict 3-column grid with ~9px gaps, each one a self-contained visual statement. There is no lifestyle context, no candid photography, no people-in-environment shots — every frame is a controlled studio composition. Icons and illustration are absent; the photographic crops ARE the graphic system.",
+    "similar": [
+      {
+        "why": "Same Parisian art-direction pedigree with monochrome editorial layouts, massive display type, and full-bleed photography grids.",
+        "business": "M/M (Paris)"
+      },
+      {
+        "why": "Identical approach of letting a single display typeface dominate the viewport against pure white, with photography in strict equal-column grids.",
+        "business": "Bureau Borsche"
+      },
+      {
+        "why": "Shared editorial-spread layout language — typographic hero, hairline section rules, 3-column image feeds with zero decoration.",
+        "business": "Commission Studio"
+      },
+      {
+        "why": "Same restraint: no shadows, no rounded corners, achromatic chrome, with color and personality carried entirely by photography.",
+        "business": "Random Studio"
+      },
+      {
+        "why": "Identical treatment of 0px radii, hairline rules as section dividers, and oversized single-weight display type as the primary design move.",
+        "business": "Savvy Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "9px",
+      "sectionGap": "",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-page background, the only surface layer"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Image Plate",
+        "level": 2,
+        "purpose": "Behind photographs in the feed grid — invisible, just the white showing between images"
+      },
+      {
+        "hex": "#808080",
+        "name": "Rule Line",
+        "level": 3,
+        "purpose": "Hairline horizontal dividers that separate sections and groupings"
+      }
+    ],
+    "northStar": "Monochrome editorial gallery — broadsheet headline on gallery white.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "body",
+        "size": 21,
+        "lineHeight": 1,
+        "letterSpacing": -0.57
+      },
+      {
+        "role": "subheading",
+        "size": 34,
+        "lineHeight": 1,
+        "letterSpacing": -0.92
+      },
+      {
+        "role": "heading",
+        "size": 105,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal global navigation — three items distributed across the full viewport width.",
+        "description": "Full-width bar, no background fill, no border on top or bottom. Logo (brand name) flush left in 21px Inferi or Neuehaasdisplay at 300 weight. Two text links ('PROJECTS (Index)' and 'INFORMATION') flush center and right respectively, same size and weight. A single 1px hairline rule in #808080 may sit below."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Opening statement that defines the studio's identity.",
+        "description": "Spans full viewport width with 7-9px top padding. Type: Neuehaasdisplay 300 weight at 105px, line-height 0.85, letter-spacing normal. Color: #000000. No background, no border, no decoration. Text wraps naturally across 2-3 lines. Small thumbnail images may be embedded inline within the text flow as inline-block elements."
+      },
+      {
+        "name": "Section Label Row",
+        "role": "Identifies the section and provides a navigation cue to related content.",
+        "description": "Horizontal row with a small section title on the left ('Feed', 'Our practice', 'Selected projects') at 14px Inferi 400 weight, #000000. On the right, an arrow-prefixed link ('→ Instagram', '→ Read more', '→ View all projects') at the same size. A 1px hairline in #808080 below the row."
+      },
+      {
+        "name": "Image Feed Grid",
+        "role": "Three-column photography showcase for project work and social feed.",
+        "description": "Three equal columns, 9px gap between images, 0px border-radius, 0px padding. Images are object-fit cover, no captions visible at grid level. Each image is a full-bleed rectangle with a 1px #333333 or #000000 border at very low frequency."
+      },
+      {
+        "name": "Image Card with Caption",
+        "role": "Individual portfolio thumbnail with title underneath.",
+        "description": "Image at top, 9px gap, then a title in 14px Inferi 400 weight #000000 below (e.g. 'Water games', 'Woke up like this', 'Nike — 24.7'). No border, no padding around the text."
+      },
+      {
+        "name": "Statement Section",
+        "role": "Mid-page manifesto block — the second editorial moment after the hero.",
+        "description": "Full-width block with ~19px top margin, set in Neuehaasdisplay 300 at 105px with line-height 0.92 and 7-9px top padding. No background fill, no border. Functions as a typographic breather between image grids."
+      },
+      {
+        "name": "Link with Arrow",
+        "role": "Inline navigation cue used in section label rows.",
+        "description": "Right arrow glyph (→) followed by text in 14px Inferi 400 weight #000000. 5px padding-bottom. No underline, no color change on hover — the system relies on cursor change only."
+      },
+      {
+        "name": "Inline Thumbnail",
+        "role": "Small photographic element embedded within a hero headline.",
+        "description": "Square or near-square image, ~60-80px, placed inline with the display type as if it were a character. 0px radius. Sits on the same baseline grid as the surrounding text."
+      },
+      {
+        "name": "Section Divider Rule",
+        "role": "Hairline separator between editorial sections.",
+        "description": "1px horizontal line in #808080 spanning the full viewport width. 7-9px vertical padding above and below. The only structural element in the entire system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero display — used only for the massive opening headline and section-statement lines that fill the viewport. The 0.85 line-height is a deliberate choice: lines nearly touch, producing the compressed broadsheet effect. Substitute: Neue Haas Grotesk Display Pro 35 Thin, or Inter at extreme sizes.",
+        "sizes": "105px",
+        "family": "Neuehaasdisplay",
+        "weight": "300",
+        "lineHeight": "0.85-0.92",
+        "substitute": "Neue Haas Grotesk Display Pro 35 Thin",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Multi-purpose face — medium-weight paragraphs (21px), oversized secondary statements (34px, 120px), and small UI labels (14px). The negative tracking (-0.0270em) tightens the rhythm at every size. Substitute: Söhne, Inter, or Untitled Sans.",
+        "sizes": "14px, 21px, 34px, 120px",
+        "family": "Inferi",
+        "weight": "200-400",
+        "lineHeight": "1.00-2.00",
+        "substitute": "Söhne",
+        "letterSpacing": "-0.0270em"
+      },
+      {
+        "role": "Body and supporting copy — quiet, legible, never decorative. Same negative tracking as Inferi keeps the family consistent. Substitute: Suisse Int'l Light, or Inter Light.",
+        "sizes": "21px",
+        "family": "Suisseintl",
+        "weight": "300",
+        "lineHeight": "1.00",
+        "substitute": "Suisse Int'l Light",
+        "letterSpacing": "-0.0270em"
+      }
+    ],
+    "description": "Alt–Border is an editorial gallery built on a strict monochrome foundation: pure white canvas, near-black ink, hairline gray rules, and image as the sole carrier of color. Typography carries the entire personality — a massive condensed display face at ~105px with line-height locked near 0.85 lets headlines sprawl edge-to-edge like a magazine cover, while a lighter humanist sans handles body and labels. The layout reads as a print spread translated to the web: a minimal top bar, a hero that is just type, thin rules that separate sections, and 3-column image grids with almost no gap. There is no decoration, no shadow, no rounded corner language, no button styling — every interface decision is editorial restraint. The site treats itself as a publication, not a product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alt–Border design system\",\"item\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#style-reference\",\"name\":\"Alt–Border design system reference\",\"headline\":\"Alt–Border design system | Refero Styles\",\"description\":\"Explore Alt–Border's light Agency design system: Ink #000000, Gallery White #ffffff colors, Neuehaasdisplay, Inferi typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alt–Border\",\"url\":\"https://www.alt-border.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"caption\":\"Screenshot of Alt–Border\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alt–Border design system\",\"Alt–Border website design\",\"Alt–Border colors\",\"Alt–Border typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Gallery White\",\"Graphite\",\"Ash\",\"Neuehaasdisplay\",\"Inferi\",\"Suisseintl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alt–Border design system\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border website design\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border colors\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:51:17.833Z\",\"dateModified\":\"2026-04-30T01:51:17.833Z\"}]}19:T5cf,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border / hairline: #808080\n- muted border: #333333\n- accent: none (no chromatic accent in the system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create the hero headline band: white background, full viewport width. Type 'A multidisciplinary art direction studio working across fashion, beauty, and luxury.' set in Neuehaasdisplay 300 weight at 105px, color #000000, line-height 0.85, letter-spacing normal. 7-9px top padding. A 1px #808080 hairline below.\n\n2. Create a section label row: full-width, white background. Left side reads 'Feed' in 14px Inferi 400 weight #000000. Right side reads '→ Instagram' in the same type. 1px #808080 hairline below with 7-9px vertical padding.\n\n3. Create a 3-column image grid: full viewport width, white background, 9px gap between columns and rows. Images are object-fit cover, 0px border-radius, no captions inside the grid. Below one image, place a title in 14px Inferi 400 weight #000000 with 9px top margin.\n\n4. Create a statement section: white background, full-width, 19px top margin. Type 'We create concept-driven imagery and identities through CGI, photography, and design.' in Neuehaasdisplay 300 at 105px, line-height 0.92, color #000000. 7-9px top padding. No border, no background.\n\n5. Create a text-link with arrow: 14px Inferi 400 weight #000000, preceded by a → glyph, 5px padding-bottom. No underline, no hover color change, no border."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadow language. The design treats every element as flat ink on flat paper. Separation is achieved through whitespace and hairline rules, never through drop shadow or blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 162,
+          "confidence": 1,
+          "prominence": 21953436.16465868,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "image/color": 11,
+            "other/color": 24,
+            "image/borderColor": 44,
+            "other/borderColor": 83
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 14658741.920618381,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "other/boxShadow": 4,
+            "other/borderColor": 3,
+            "button/borderColor": 8,
+            "other/backgroundColor": 11,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "image",
+            "heading",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 491,
+          "confidence": 1,
+          "prominence": 6966809.00561662,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 36,
+            "link/color": 7,
+            "image/color": 9,
+            "other/color": 46,
+            "heading/color": 4,
+            "body/borderColor": 144,
+            "link/borderColor": 23,
+            "image/borderColor": 36,
+            "other/borderColor": 171,
+            "heading/borderColor": 15
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 6137842.984204063,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 5,
+            "other/borderColor": 23,
+            "heading/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|image",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|heading",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inferi",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neuehaasdisplay",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisseintl",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 21,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inferi",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 13,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Inferi",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 33,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Suisseintl",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Inferi",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Inferi",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.68,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "Neuehaasdisplay",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "Neuehaasdisplay",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Inferi",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bd1b487c-44e8-4ef5-9eb4-006a32f0b617.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alt–Border design system\",\"item\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#style-reference\",\"name\":\"Alt–Border design system reference\",\"headline\":\"Alt–Border design system | Refero Styles\",\"description\":\"Explore Alt–Border's light Agency design system: Ink #000000, Gallery White #ffffff colors, Neuehaasdisplay, Inferi typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alt–Border\",\"url\":\"https://www.alt-border.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5fd2cdc0-05ac-4290-b67c-72e7525a532c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"caption\":\"Screenshot of Alt–Border\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e6e27aaa-2765-4ffb-8427-1128a16fce9a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alt–Border design system\",\"Alt–Border website design\",\"Alt–Border colors\",\"Alt–Border typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Gallery White\",\"Graphite\",\"Ash\",\"Neuehaasdisplay\",\"Inferi\",\"Suisseintl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alt–Border design system\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border website design\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border colors\"},{\"@type\":\"Thing\",\"name\":\"Alt–Border typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:51:17.833Z\",\"dateModified\":\"2026-04-30T01:51:17.833Z\"}]}19:T5cf,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border / hairline: #808080\n- muted border: #333333\n- accent: none (no chromatic accent in the system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create the hero headline band: white background, full viewport width. Type 'A multidisciplinary art direction studio working across fashion, beauty, and luxury.' set in Neuehaasdisplay 300 weight at 105px, color #000000, line-height 0.85, letter-spacing normal. 7-9px top padding. A 1px #808080 hairline below.\n\n2. Create a section label row: full-width, white background. Left side reads 'Feed' in 14px Inferi 400 weight #000000. Right side reads '→ Instagram' in the same type. 1px #808080 hairline below with 7-9px vertical padding.\n\n3. Create a 3-column image grid: full viewport width, white background, 9px gap between columns and rows. Images are object-fit cover, 0px border-radius, no captions inside the grid. Below one image, place a title in 14px Inferi 400 weight #000000 with 9px top margin.\n\n4. Create a statement section: white background, full-width, 19px top margin. Type 'We create concept-driven imagery and identities through CGI, photography, and design.' in Neuehaasdisplay 300 at 105px, line-height 0.92, color #000000. 7-9px top padding. No border, no background.\n\n5. Create a text-link with arrow: 14px Inferi 400 weight #000000, preceded by a → glyph, 5px padding-bottom. No underline, no hover color change, no border."
+}

@@ -1,0 +1,1448 @@
+{
+  "source": "https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39",
+  "uuid": "e586b296-bfac-4e93-add2-daa384712b39",
+  "name": "Watch new Originals",
+  "northStar": "Cinematic void with electric spotlight. Picture a darkened theater lobby where a single cyan marquee light is the only chromatic thing in sight — everything else is monochrome depth leading the eye to the posters on the wall.",
+  "capturedAt": "2026-07-18T07:33:08.133Z",
+  "meta": {
+    "url": "https://www.disneyplus.com",
+    "siteName": "Watch new Originals",
+    "extractedAt": "2026-06-03T20:37:55.488Z",
+    "durationMs": 74640,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 735,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #33ddff (Electric Cyan) exclusively for filled CTA buttons and active plan tier cards — no other fills should carry this color",
+      "Keep all text on the dark canvas in #fafafa for primary, #b7b8bd for secondary, #c0c0c0 for tertiary — never use a chromatic color for body text",
+      "Use Teal Pulse (#02d6e8) for inline emphasis, savings callouts, and informational highlights — not for buttons",
+      "Apply Inspire at all sizes with the same 0.025em letter-spacing — do not tighten tracking on display sizes",
+      "Use 12px border-radius for all buttons and content cards; 8px for inputs and nav elements",
+      "Let poster artwork occupy the full card area — never wrap posters in visible card frames, borders, or shadows",
+      "Center-align section headings and let generous 48-64px vertical space create the cadence between content rails"
+    ],
+    "donts": [
+      "Do not introduce additional accent colors — the system is monochrome with one cyan and one teal; any other chromatic is off-system",
+      "Do not apply box-shadows to cards, buttons, or content tiles — the design uses flat color and borders for structure, not elevation",
+      "Do not use cyan (#33ddff) for non-action text, icons, or decorative elements — reserve it strictly for filled buttons",
+      "Do not override the positive letter-spacing on large headings — 0.025em at 40px produces 1px tracking, which is the intended whisper-not-shout scale",
+      "Do not place light text on cyan fills without testing contrast — use #02172a (Deep Ink) for dark text on cyan, not #17171c or pure black",
+      "Do not add background fills to content poster cards — the artwork is the card; adding a frame reduces the cinematic effect",
+      "Do not use a secondary typeface for display or hero moments — Inspire carries the full type scale, from 12px captions to 40px headings"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#040714",
+        "name": "Midnight Canvas",
+        "role": "Page background, hero background, primary canvas — deep near-black navy that absorbs the eye and makes artwork pop",
+        "group": "neutral"
+      },
+      {
+        "hex": "#010104",
+        "name": "Abyss",
+        "role": "Deepest surface layer, navigation background — the near-pure black undercarriage beneath the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0b14",
+        "name": "Eclipse",
+        "role": "Footer background, alternate dark surface — slightly warmer dark for depth variation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1f24",
+        "name": "Carbon",
+        "role": "Elevated dark surface — used for cards or panels sitting above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282a36",
+        "name": "Slate Veil",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Luminous",
+        "role": "Primary text, heading text, icon fills, link text, button labels — the dominant light element across the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Pearl",
+        "role": "Border color used at scale (hairs, dividers, card edges) — the structural skeleton of the UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b7b8bd",
+        "name": "Mist",
+        "role": "Body text, secondary text, helper copy — muted gray for non-primary reading",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c0c0c0",
+        "name": "Fog",
+        "role": "List text, icon fills, secondary metadata — the lightest level of secondary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#02172a",
+        "name": "Deep Ink",
+        "role": "Gray text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#17171c",
+        "name": "Onyx Label",
+        "role": "Dark text for inverted or high-contrast button labels on light fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#33ddff",
+        "name": "Electric Cyan",
+        "role": "Primary CTA buttons (SIGN UP NOW, plan tier cards) — the sole chromatic action color; neon-cyan against the void creates cinema-marquee urgency",
+        "group": "brand"
+      },
+      {
+        "hex": "#02d6e8",
+        "name": "Teal Pulse",
+        "role": "Accent text, promotional price highlights (€4.99), link emphasis, body emphasis — the slightly darker teal sibling used for inline chromatic moments that aren't buttons",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content arranged in horizontal scroll rails (poster carousels) stacked vertically. Hero section: poster-grid background dimmed to near-black, with a centered pricing/email-capture block floating in the middle third. Content sections: 'Top 10 Today' is a horizontal row of 6-7 poster tiles with large cyan rank numerals, scrollable. Plan selection: three equal-width cyan tier cards arranged in a centered row. Feature comparison: full-width table with left-aligned feature labels and center-aligned column values. All content sits within a max-width of ~1200px, centered, with generous 48-64px gaps between sections. Navigation is a minimal top bar with logo left and login right. The page rhythm is: hero → content rail → plan selection → comparison table → device-agnostic CTA → footer, with each section separated by vertical breathing room rather than visual dividers.",
+    "imagery": "The visual language is overwhelmingly content-as-imagery: movie and series poster artwork dominates the interface at full poster-aspect (2:3) tiles arranged in horizontal scroll rails. There is no lifestyle photography, no abstract illustration, no 3D render — the content library IS the visual design. Posters are presented as raw artwork with rounded corners (12px) and no frames, shadows, or overlays beyond a large cyan rank numeral for Top 10 items. Icons are minimal and monochromatic (white line/fill on dark), appearing only for checkmarks, navigation, and utility controls. The hero section uses the poster grid itself as a darkened photographic background — blurred/dimmed tiles create atmospheric depth behind the centered pricing offer. No decorative gradients, no illustrative flourishes, no product UI screenshots. The entire visual system defers to the licensed content, treating UI chrome as a dark theater shell around the artwork.",
+    "similar": [
+      {
+        "why": "Same dark-canvas cinematic approach, content-as-imagery with poster tiles, single-brand accent color for CTAs, and minimal UI chrome that defers to artwork",
+        "business": "Netflix"
+      },
+      {
+        "why": "Identical near-black canvas, horizontally scrolling content rails, white typography on dark, and flat color-block CTAs without shadow elevation",
+        "business": "HBO Max"
+      },
+      {
+        "why": "Same dark-theater aesthetic, generous negative space between content sections, and the strategy of letting licensed content carry the visual weight while UI stays monochrome",
+        "business": "Apple TV+"
+      },
+      {
+        "why": "Dark-mode streaming interface with a single chromatic accent (Prime's signature blue-cyan), content poster grids, and flat non-elevated card design",
+        "business": "Prime Video"
+      },
+      {
+        "why": "Dark canvas with vibrant accent for CTAs, poster-tile carousels for anime content, and flat component design that prioritizes artwork visibility",
+        "business": "Crunchyroll"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "12px",
+        "inputs": "8px",
+        "buttons": "12px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48-64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#010104",
+        "name": "Abyss",
+        "level": 0,
+        "purpose": "Deepest background, navigation chrome"
+      },
+      {
+        "hex": "#040714",
+        "name": "Midnight Canvas",
+        "level": 1,
+        "purpose": "Primary page and hero background"
+      },
+      {
+        "hex": "#0e0b14",
+        "name": "Eclipse",
+        "level": 2,
+        "purpose": "Footer and alternate dark bands"
+      },
+      {
+        "hex": "#1e1f24",
+        "name": "Carbon",
+        "level": 3,
+        "purpose": "Elevated cards and panels above the canvas"
+      },
+      {
+        "hex": "#282a36",
+        "name": "Slate Veil",
+        "level": 4,
+        "purpose": "Input fields and border-defined surfaces"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Cinematic void with electric spotlight. Picture a darkened theater lobby where a single cyan marquee light is the only chromatic thing in sight — everything else is monochrome depth leading the eye to the posters on the wall.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.45
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.7
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Cyan CTA Button",
+        "role": "Primary conversion action — sign up, subscribe, plan selection",
+        "description": "Fill: #33ddff (Electric Cyan). Text: #02172a (Deep Ink), Inspire 700, 14-16px, letter-spacing 0.4px. Padding: 12px 24px. Border-radius: 12px. No border, no shadow. The button is a flat slab of neon — its flatness is the point. The dark text on cyan fill creates inverted contrast against the void, making the button glow without elevation."
+      },
+      {
+        "name": "Plan Tier Card",
+        "role": "Subscription option display (Standard with Ads, Standard, Premium)",
+        "description": "Full-width cyan fill (#33ddff), padding ~24px vertical, border-radius 12px. Plan name in Inspire 700 at 16-18px, #02172a. Price in Inspire 700, ~20px, #02172a. Savings callout in Teal Pulse (#02d6e8) for emphasis. The entire card is the button — click target is the full card area, not a nested button."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Newsletter / sign-up email capture",
+        "description": "Background: transparent or #040714 canvas. Border: 1px solid #282a36 or #e5e7eb at low opacity. Border-radius: 8px. Padding: 12px 16px. Placeholder text: #b7b8bd. Text: #fafafa. Inspire 400, 16px. The input sits flush against the cyan CTA button — a dark-to-neon transition that frames the conversion moment."
+      },
+      {
+        "name": "Content Tile Card",
+        "role": "Movie/series poster card in carousels and grids",
+        "description": "No background fill — the poster artwork IS the card. Aspect ratio 2:3 (poster portrait). Border-radius: 12px. Minimal or no border. Optional rank number (1-10) overlaid top-left in Inspire 700 at ~40px, #33ddff or #fafafa. Metadata strip below poster: title in Inspire 700 14px #fafafa, genre/year in Inspire 400 12px #b7b8bd."
+      },
+      {
+        "name": "Top 10 Ranked Card",
+        "role": "Hero content ranking with large numeral overlay",
+        "description": "Portrait poster tile (2:3 aspect) with a large rank numeral (1-10) in Inspire 700, 40px, positioned overlapping the tile's top-left. Numeral is #33ddff (Electric Cyan) — the only chromatic moment in the content rail. Card has no border, no shadow, no background. The numeral is the badge."
+      },
+      {
+        "name": "Feature Comparison Row",
+        "role": "Plan comparison table — concurrent streams, Dolby Atmos, ads, etc.",
+        "description": "Row separator: 1px #e5e7eb at low opacity. Feature label left-aligned in Inspire 400, 16px, #fafafa. Values center-aligned per column. Checkmark icons in #fafafa for supported, #282a36 dash for unsupported. Column headers (plan names) in Inspire 700, 14-16px, #33ddff when active/highlighted. No card backgrounds — the table breathes against the canvas."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Content section title (e.g., 'Top 10 Today', 'Choose your plan', 'Watch the way you want')",
+        "description": "Inspire 700, 28-40px, #fafafa, letter-spacing 0.7-1.0px. Center-aligned. No underline, no accent line. Optional subheading in Inspire 400, 18px, #b7b8bd, centered below. Generous space (40-64px) above the heading creates a quiet pause before the section content."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Background: #010104 (Abyss) or transparent over canvas. Border-bottom: 1px #6f717b at low opacity. Logo left. Links in Inspire 400, 14-16px, #fafafa. Login button right: border 1px #e5e7eb, text #fafafa, border-radius 8px, padding 8px 16px. No dropdown menus visible in primary nav — minimal chrome."
+      },
+      {
+        "name": "Hero Pricing Banner",
+        "role": "Central conversion offer overlay on poster-grid background",
+        "description": "Centered stack over darkened poster mosaic. Headline 'From' in Inspire 400 20px #fafafa. Price '€4.99' in Inspire 700 40px or larger, inside a cyan (#33ddff) rounded rectangle (border-radius 12px) as the visual anchor. Duration 'a month for 3 months' in Inspire 400 20px #fafafa. Deadline in Inspire 400 14px #b7b8bd. Email input + cyan CTA below."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action — 'View all plans', 'Learn more'",
+        "description": "No fill (transparent or canvas-color background). Border: 1px solid #e5e7eb or #fafafa. Text: #fafafa, Inspire 400-700, 14-16px. Border-radius: 8-12px. Padding: 8px 16px to 12px 24px. Underline on text is common for text-link variants. This is the restrained sibling of the cyan CTA."
+      },
+      {
+        "name": "Footer",
+        "role": "Legal links, fine print, bottom-of-page content",
+        "description": "Background: #0e0b14 (Eclipse). Text: #b7b8bd and #c0c0c0, Inspire 400, 12-14px. Links are #fafafa with no underline by default, underline on hover. Separated from main content by visual padding (~48px) rather than a hard border."
+      },
+      {
+        "name": "Promotional Price Highlight",
+        "role": "Strikethrough or savings callout in pricing contexts",
+        "description": "Savings text ('Save €2.00 per month') in Teal Pulse (#02d6e8), Inspire 400, 14-16px. The teal (not cyan) placement is deliberate — teal reads as informational emphasis, while cyan is reserved for action. This creates a two-tier chromatic hierarchy: cyan = act, teal = inform."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire interface — headings, body, buttons, labels, nav. The single-font commitment is deliberate: it means Inspire must carry both 12px micro-labels and 40px display moments without losing character. Use 700 for headings, price, and emphasis; 400 for everything else.",
+        "sizes": "12, 14, 16, 18, 20, 28, 40px",
+        "family": "Inspire",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.38, 1.40, 1.50, 1.83",
+        "substitute": "Inter, Helvetica Neue, Arial",
+        "letterSpacing": "0.0250em uniformly — this consistent positive tracking is the quiet signature of the type system, applied identically at 12px and 40px, creating a measured, premium rhythm"
+      }
+    ],
+    "description": "Disney+ operates as a dark theatrical canvas: a near-black void ( #040714) where movie and series artwork is the protagonist, and UI chrome recedes into the periphery. The interface relies on extreme contrast (white #fafafa on near-black) and a single chromatic accent — electric cyan (#33ddff) — that functions as the only reason to look away from the content. Typography is a single custom sans-serif (Inspire) at modest sizes, with positive letter-spacing (0.025em) that gives even short labels a measured, premium cadence. The system is content-first: cards are poster-aspect tiles, sections are horizontal scroll rails, and the only elevated color decisions (cyan CTA fills, teal link text) exist to drive conversion, never decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Watch new Originals design system\",\"item\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#style-reference\",\"name\":\"Watch new Originals design system reference\",\"headline\":\"Watch new Originals design system | Refero Styles\",\"description\":\"Explore Watch new Originals's dark Media design system: Midnight Canvas #040714, Abyss #010104 colors, Inspire typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Watch new Originals\",\"url\":\"https://www.disneyplus.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"caption\":\"Screenshot of Watch new Originals\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Watch new Originals design system\",\"Watch new Originals website design\",\"Watch new Originals colors\",\"Watch new Originals typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Midnight Canvas\",\"Abyss\",\"Eclipse\",\"Carbon\",\"Inspire\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Watch new Originals design system\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals website design\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals colors\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:04:39.731Z\",\"dateModified\":\"2026-04-30T01:04:39.731Z\"}]}19:T477,**Quick Color Reference**\n- text (primary): #fafafa\n- text (secondary): #b7b8bd\n- background (canvas): #040714\n- border / hairline: #e5e7eb\n- accent (informational emphasis): #02d6e8\n- primary action: #33ddff (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #33ddff background, #17171c text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Plan Tier Card**: Full-width card with fill #33ddff, border-radius 12px, padding 24px. Plan name in Inspire 700 at 18px, color #02172a. Price in Inspire 700 at 20px, color #02172a. Savings line in #02d6e8, Inspire 400, 14px.\n\n3. **Content Poster Tile**: No background, no border, no shadow. Poster artwork fills a 2:3 portrait frame with border-radius 12px. Rank numeral overlaid top-left in Inspire 700, 40px, color #33ddff. Title below in Inspire 700, 14px, #fafafa. Genre/year in Inspire 400, 12px, #b7b8bd.\n\n\n5. **Section Heading + Subheading**: Inspire 700, 28px, #fafafa, letter-spacing 0.7px, center-aligned. Subheading below: Inspire 400, 18px, #b7b8bd, center-aligned. 64px space above heading, 24px gap to content below."
+      },
+      {
+        "title": "Chromatic Hierarchy",
+        "content": "The system enforces a strict two-tier chromatic discipline:\n\n- **Cyan (#33ddff)** = ACTION. Used only for filled buttons and active/highlighted plan cards. When a user sees cyan, it must be clickable or currently selected.\n- **Teal (#02d6e8)** = INFORMATION. Used for savings amounts, emphasis text, and inline highlights that are read but not clicked.\n\nNo other color should appear as a fill, stroke, or text color in the interface. This creates a visual contract: cyan = do, teal = know. If you need a third state (error, success, warning), use neutral grays and iconography rather than introducing new chromatic colors — the system intentionally does not use semantic color coding."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately flat — no box-shadows, no drop-shadows, no glow effects on any component. Structure is communicated through color contrast, hairline borders (#e5e7eb at low opacity), and background surface layering (5 dark levels from #010104 to #282a36). The cyan CTA buttons are flat neon slabs, not raised elements. Content poster cards have no elevation because the poster artwork is the visual elevation. This flatness is a cinema-theater metaphor: the audience looks at the screen, not at the frame around it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "input",
+            "button",
+            "body",
+            "link",
+            "list",
+            "card",
+            "icon",
+            "badge",
+            "footer"
+          ],
+          "frequency": 2703,
+          "confidence": 1,
+          "prominence": 90147916.59238572,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 36,
+            "body/borderColor": 532,
+            "card/borderColor": 96,
+            "hero/borderColor": 8,
+            "icon/borderColor": 136,
+            "link/borderColor": 144,
+            "list/borderColor": 260,
+            "badge/borderColor": 28,
+            "image/borderColor": 192,
+            "input/borderColor": 4,
+            "other/borderColor": 1115,
+            "button/borderColor": 76,
+            "footer/borderColor": 4,
+            "heading/borderColor": 72
+          }
+        },
+        {
+          "hex": "#c0c0c0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.80779623784442
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "footer",
+            "list",
+            "icon",
+            "button",
+            "image",
+            "body"
+          ],
+          "frequency": 140,
+          "confidence": 1,
+          "prominence": 56453160.77765521,
+          "properties": [
+            "color",
+            "fill",
+            "stroke",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "nav/color": 5,
+            "body/color": 1,
+            "icon/color": 2,
+            "list/color": 39,
+            "other/fill": 14,
+            "icon/stroke": 4,
+            "image/color": 2,
+            "other/color": 31,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 7,
+            "other/borderColor": 17
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "input",
+            "button",
+            "icon",
+            "hero",
+            "other",
+            "image",
+            "list",
+            "card",
+            "badge",
+            "body"
+          ],
+          "frequency": 520,
+          "confidence": 1,
+          "prominence": 15566118.485179419,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 5,
+            "body/color": 35,
+            "card/color": 24,
+            "hero/color": 2,
+            "icon/color": 32,
+            "link/color": 36,
+            "list/color": 26,
+            "other/fill": 17,
+            "badge/color": 7,
+            "image/color": 46,
+            "input/color": 1,
+            "other/color": 254,
+            "button/color": 9,
+            "heading/color": 18,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#040714",
+          "oklch": {
+            "c": 0.030464695053062787,
+            "h": 268.53268065209636,
+            "l": 0.13287157504660088
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 5966658.143676297,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#0e0b14",
+          "oklch": {
+            "c": 0.019334758042081474,
+            "h": 299.48049768524174,
+            "l": 0.15813665550465478
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2505547.282774001,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b7b8bd",
+          "oklch": {
+            "c": 0.0071113940978801415,
+            "h": 277.1338081467063,
+            "l": 0.7833051941020919
+          },
+          "contexts": [
+            "input",
+            "body",
+            "other"
+          ],
+          "frequency": 102,
+          "confidence": 1,
+          "prominence": 1506488.6282759607,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 88,
+            "input/color": 1,
+            "other/color": 5,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#282a36",
+          "oklch": {
+            "c": 0.021162942027347358,
+            "h": 274.93645400271737,
+            "l": 0.28897802803245076
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 451167.0059060546,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 24,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1e1f24",
+          "oklch": {
+            "c": 0.009628029733776241,
+            "h": 276.6737392566685,
+            "l": 0.24036578325888902
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 253065.24385810047,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#02d6e8",
+          "oklch": {
+            "c": 0.13655060727848276,
+            "h": 205.58153911921124,
+            "l": 0.7998269423475606
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 35473.20394463584,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#17171c",
+          "oklch": {
+            "c": 0.00983871746743313,
+            "h": 285.5081334405147,
+            "l": 0.20686904214344984
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 32826.401103619566,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 6
+          }
+        },
+        {
+          "hex": "#33ddff",
+          "oklch": {
+            "c": 0.13753760125453604,
+            "h": 215.29519893077673,
+            "l": 0.8295875114611713
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 32826.401103619566,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#6f717b",
+          "oklch": {
+            "c": 0.0156149260618039,
+            "h": 276.8527231955362,
+            "l": 0.5502919697213556
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10281.497604161239,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4
+          }
+        },
+        {
+          "hex": "#02172a",
+          "oklch": {
+            "c": 0.047732781882455826,
+            "h": 247.23283876002677,
+            "l": 0.19890179162127714
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9895,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#010104",
+          "oklch": {
+            "c": 0.01546970545780468,
+            "h": 267.050567967972,
+            "l": 0.07673995292675817
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4428,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01522027023497289,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.97,
+          "background": "#010104",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.24,
+          "background": "#040714",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.69,
+          "background": "#0e0b14",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.37,
+          "background": "#fafafa",
+          "foreground": "#02172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.11,
+          "background": "#fafafa",
+          "foreground": "#17171c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#e5e7eb",
+          "foreground": "#010104"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.22,
+          "background": "#e5e7eb",
+          "foreground": "#040714"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.76,
+          "background": "#1e1f24",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.75,
+          "background": "#e5e7eb",
+          "foreground": "#0e0b14"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.64,
+          "background": "#e5e7eb",
+          "foreground": "#02172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#e5e7eb",
+          "foreground": "#17171c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.64,
+          "background": "#282a36",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.29,
+          "background": "#e5e7eb",
+          "foreground": "#1e1f24"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.83,
+          "background": "#33ddff",
+          "foreground": "#010104"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.36,
+          "background": "#33ddff",
+          "foreground": "#040714"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#33ddff",
+          "foreground": "#0e0b14"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.7,
+          "background": "#010104",
+          "foreground": "#02d6e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#e5e7eb",
+          "foreground": "#282a36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.46,
+          "background": "#010104",
+          "foreground": "#c0c0c0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.27,
+          "background": "#040714",
+          "foreground": "#02d6e8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 14
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 170,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 55,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 73,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "button",
+            "list",
+            "footer"
+          ],
+          "frequency": 159,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|button",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingBottom|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 201,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 259,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inspire",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 690,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "list",
+            "input",
+            "icon",
+            "link",
+            "button",
+            "image",
+            "body"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inspire",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "input",
+            "link",
+            "list",
+            "button",
+            "card",
+            "body",
+            "icon",
+            "badge"
+          ],
+          "frequency": 324,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inspire",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inspire",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inspire",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inspire",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/048e5f06-98c3-448f-b13d-c2c0799729e2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Watch new Originals design system\",\"item\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#style-reference\",\"name\":\"Watch new Originals design system reference\",\"headline\":\"Watch new Originals design system | Refero Styles\",\"description\":\"Explore Watch new Originals's dark Media design system: Midnight Canvas #040714, Abyss #010104 colors, Inspire typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Watch new Originals\",\"url\":\"https://www.disneyplus.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e586b296-bfac-4e93-add2-daa384712b39#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"caption\":\"Screenshot of Watch new Originals\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dee4dd38-0bcd-437d-9df7-cae13c088173.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Watch new Originals design system\",\"Watch new Originals website design\",\"Watch new Originals colors\",\"Watch new Originals typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Midnight Canvas\",\"Abyss\",\"Eclipse\",\"Carbon\",\"Inspire\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Watch new Originals design system\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals website design\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals colors\"},{\"@type\":\"Thing\",\"name\":\"Watch new Originals typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:04:39.731Z\",\"dateModified\":\"2026-04-30T01:04:39.731Z\"}]}19:T477,**Quick Color Reference**\n- text (primary): #fafafa\n- text (secondary): #b7b8bd\n- background (canvas): #040714\n- border / hairline: #e5e7eb\n- accent (informational emphasis): #02d6e8\n- primary action: #33ddff (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #33ddff background, #17171c text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Plan Tier Card**: Full-width card with fill #33ddff, border-radius 12px, padding 24px. Plan name in Inspire 700 at 18px, color #02172a. Price in Inspire 700 at 20px, color #02172a. Savings line in #02d6e8, Inspire 400, 14px.\n\n3. **Content Poster Tile**: No background, no border, no shadow. Poster artwork fills a 2:3 portrait frame with border-radius 12px. Rank numeral overlaid top-left in Inspire 700, 40px, color #33ddff. Title below in Inspire 700, 14px, #fafafa. Genre/year in Inspire 400, 12px, #b7b8bd.\n\n\n5. **Section Heading + Subheading**: Inspire 700, 28px, #fafafa, letter-spacing 0.7px, center-aligned. Subheading below: Inspire 400, 18px, #b7b8bd, center-aligned. 64px space above heading, 24px gap to content below."
+}

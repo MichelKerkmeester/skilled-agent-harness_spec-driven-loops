@@ -1,0 +1,142 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, primary background — the dominant surface that recedes so work thumbnails advance"
+    },
+    "graphite": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Graphite — Elevated surface, card thumbnail backgrounds, and content containers that need to sit one level above the page"
+    },
+    "bone": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Bone — Primary text, hero headlines, card titles — near-white that reads as soft rather than clinical against the dark canvas"
+    },
+    "ash": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text, subtitles, card descriptions — one step quieter than primary text for hierarchy without color"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All body text, subtitles, card titles, UI labels, navigation — single weight (400) across every context, relying on size and color contrast rather than weight shifts for hierarchy"
+    },
+    "twklausanne": {
+      "$value": "twkLausanne",
+      "$type": "fontFamily",
+      "$description": "Sole display face for the hero headline — a custom typeface with tight tracking and unusually compressed line-height that gives the 32px headline editorial gravitas without bold weight. The -0.04em letter-spacing is aggressive for body size but measured for display, pulling characters close enough to read as a unified mark rather than individual letters"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "twkLausanne",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "obsidian": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas; everything floats on this"
+    },
+    "graphite": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card thumbnails and content containers needing subtle separation from the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://kirschberg.co.nz",
+      "siteName": "David Kirschberg",
+      "extractedAt": "2026-06-03T20:58:21.817Z",
+      "variant": "extended"
+    }
+  }
+}

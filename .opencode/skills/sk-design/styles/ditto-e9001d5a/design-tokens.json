@@ -1,0 +1,302 @@
+{
+  "color": {
+    "deep-ink": {
+      "$value": "#130e30",
+      "$type": "color",
+      "$description": "Deep Ink — Primary text color, heading ink, card borders, secondary button fills — near-black violet that adds warmth over pure black"
+    },
+    "hi-yellow": {
+      "$value": "#ffe228",
+      "$type": "color",
+      "$description": "Hi-Yellow — Primary action fill (filled CTA buttons), hero pill backgrounds, accent highlights — bright highlighter yellow with near-black text for maximum contrast"
+    },
+    "moss-green": {
+      "$value": "#59e25d",
+      "$type": "color",
+      "$description": "Moss Green — Decorative organic shape fill behind hero — warm leaf green used in background blobs, not UI controls"
+    },
+    "fuchsia": {
+      "$value": "#e261e5",
+      "$type": "color",
+      "$description": "Fuchsia — Decorative organic shape fill behind hero — vivid pink used in background blobs, not UI controls"
+    },
+    "slate": {
+      "$value": "#5f5c6e",
+      "$type": "color",
+      "$description": "Slate — Body text, helper copy, muted icons, subtle borders — cool desaturated gray for secondary information"
+    },
+    "canvas": {
+      "$value": "#f9fbf2",
+      "$type": "color",
+      "$description": "Canvas — Page background, button ghost fills, lightest surface — near-white with slight green-warmth"
+    },
+    "soft-meadow": {
+      "$value": "#eff2e5",
+      "$type": "color",
+      "$description": "Soft Meadow — Card surfaces, nav background, elevated panels, hero backdrop — green-tinted off-white for soft surface separation"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Secondary dark button text and borders, nav dividers — softer than pure black for dark UI elements"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Logo mark, nav text, input borders, fine stroke details — true black for highest-contrast elements"
+    }
+  },
+  "font": {
+    "hedvig-letters-serif": {
+      "$value": "Hedvig Letters Serif",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — all hero/section headlines, used at large sizes with tight letter-spacing. The warm humanist serif is the brand's voice; it gives the compliance product a literary, trustworthy quality instead of a sterile SaaS feel. The 700 weight carries the headlines, while 400 appears in larger pull-quote contexts."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All UI and body text — nav links, button labels, form fields, card copy, footer text, small caps labels. Inter handles the functional layer with neutral efficiency, letting the serif carry the personality. Weight 500 for nav and labels, 400 for body, 600 for emphasis."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Hedvig Letters Serif",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9fbf2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, outermost layer"
+    },
+    "soft-meadow": {
+      "$value": "#eff2e5",
+      "$type": "color",
+      "$description": "Surface level 1: Card surface, nav bar, hero backdrop, elevated panels"
+    },
+    "hi-yellow-accent": {
+      "$value": "#ffe228",
+      "$type": "color",
+      "$description": "Surface level 2: Primary action surface — CTA buttons and highlight pills"
+    },
+    "deep-ink": {
+      "$value": "#130e30",
+      "$type": "color",
+      "$description": "Surface level 3: Dark mode/contrast surface — not used as full page but available for dark sections or inverted components"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://trustditto.com",
+      "siteName": "Ditto",
+      "extractedAt": "2026-06-03T18:10:42.858Z",
+      "variant": "extended"
+    }
+  }
+}

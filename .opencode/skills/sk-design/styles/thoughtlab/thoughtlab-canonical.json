@@ -1,0 +1,1056 @@
+{
+  "source": "https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99",
+  "uuid": "82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99",
+  "name": "ThoughtLab",
+  "northStar": "Obsidian monument with crimson signal. A void-black canvas where a single saturated red pill is the only chromatic object in a cathedral of oversized white type.",
+  "capturedAt": "2026-07-18T06:26:36.775Z",
+  "meta": {
+    "url": "https://www.thoughtlab.com",
+    "siteName": "ThoughtLab",
+    "extractedAt": "2026-07-03T03:42:08.490Z",
+    "durationMs": 105193,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 305,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px border-radius for every button, tag, and pill — the full pill is non-negotiable",
+      "Set display headlines at 198px or 91px in weight 700, uppercase, line-height ≤ 0.96",
+      "Keep the palette to Void, Ash, Frost, Graphite, and Crimson Signal — no additional accent colors ever",
+      "Apply 126px horizontal page margins on desktop — the negative space is the design",
+      "Use Crimson Signal (#fc1c46) only for the single primary action per view and the logo mark",
+      "Set body text in #cccccc rather than pure white to reduce optical glare on the black canvas",
+      "Build hierarchy through scale jumps and tracking, never through drop shadows or background fills"
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, or any box-shadow value to any component",
+      "Do not introduce a second accent color — red is the only chromatic signal",
+      "Do not fill cards with background colors, gradients, or borders — cards must remain transparent",
+      "Do not set body text below 10px or use serif, script, or display faces — sui is the only family",
+      "Do not use border-radius on cards, inputs, or any non-button element",
+      "Do not use line-height above 1.25 for body or 1.10 for supporting copy — the system breathes through tightness",
+      "Do not place Crimson Signal on a non-action element — its rarity is what makes it work"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page background, canvas — the absolute base on which all other elements float",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash",
+        "role": "Body and link text, default copy tone on the black canvas — chosen over pure white to soften optical glare",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Frost",
+        "role": "Display headings, button text, input field text and rules — the brightest tier, reserved for content that must lead",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c4c4c",
+        "name": "Graphite",
+        "role": "Copyright, meta, tertiary helper text — deliberately muted so it never competes with the body tier",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fc1c46",
+        "name": "Crimson Signal",
+        "role": "Primary action fill — the single red accent; appears on the Contact Us pill, in the brand logo mark, and nowhere else. Its rarity is the design",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with generous horizontal margins (126px on each side, pushing the content column to ~1400px). The header is a single 72px row: logo left, tagline center, pill CTA and hamburger right. The hero is a split composition — oversized 198px uppercase headline on the left with supporting 18px body below, and the 3D sphere overlapping from the center-right, partially eating into the text. Below the hero, sections flow in spacious vertical rhythm with 86–108px gaps between them. Work items appear as a stacked, near-full-width list rather than a card grid. There is no sidebar, no mega-menu, no footer with column grids — the footer is a single quiet line of copyright and contact in #4c4c4c. Navigation beyond the header is triggered by the hamburger into a full-screen overlay.",
+    "imagery": "Imagery is scarce and intentional. The dominant visual is a large WebGL-rendered obsidian liquid sphere — a dark, near-black 3D form with subtle blue and amber rim reflections that floats on the black canvas and partially overlaps the display headline. It functions as brand iconography more than illustration. Project thumbnails appear as photographic or video stills in a flowing vertical list, presented edge-to-edge with no frame. No lifestyle photography, no stock imagery, no decorative gradients. The sphere and the type are the only visual events on the page.",
+    "similar": [
+      {
+        "why": "Same near-black canvas with oversized uppercase display type and a single chromatic accent reserved for the primary action",
+        "business": "Instrument"
+      },
+      {
+        "why": "Dark-mode agency site pairing massive display headlines with a 3D/WebGL centerpiece as the only visual event",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Black-canvas experimental studio with weightless transparent components and type that functions as architecture",
+        "business": "Resn"
+      },
+      {
+        "why": "Same zero-elevation philosophy — no shadows, no card fills, hierarchy built through scale and whitespace alone",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Dark agency aesthetic with a single saturated brand color and display type that dominates the page",
+        "business": "Ueno"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "9px",
+      "sectionGap": "86-108px",
+      "cardPadding": "22px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed"
+      },
+      {
+        "hex": "#000000",
+        "name": "Transparent card",
+        "level": 1,
+        "purpose": "Project/work items float directly on the canvas with zero surface fill or border"
+      }
+    ],
+    "northStar": "Obsidian monument with crimson signal. A void-black canvas where a single saturated red pill is the only chromatic object in a cathedral of oversized white type.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 72,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 91,
+        "lineHeight": 0.92,
+        "letterSpacing": -1.82
+      },
+      {
+        "role": "display",
+        "size": 198,
+        "lineHeight": 0.96,
+        "letterSpacing": -1.78
+      }
+    ],
+    "components": [
+      {
+        "name": "Crimson Pill CTA",
+        "role": "The only filled button in the system. Reserved for the single primary action per view.",
+        "description": "Background #fc1c46, text #ffffff, border-radius 9999px, horizontal padding 30px, vertical padding 0 (height driven by line-height), font 15px sui weight 400 uppercase, letter-spacing tight. No border, no shadow. The radius is a true pill — the cap is the shape."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary actions, inline triggers, 'View all' style links within blocks.",
+        "description": "Transparent background, text #000000 or #ffffff depending on surface, border-radius 0px, no padding, no border. Underline on hover. Weight 400, 14–17px sui."
+      },
+      {
+        "name": "Transparent Project Card",
+        "role": "Work showcase tiles in the portfolio grid.",
+        "description": "All 12 card variants share: background rgba(0,0,0,0), border-radius 0px, box-shadow none, padding 0px. The card is a content container, not a visual surface — images and text define the edges. Internal padding comes from the 22px cardPadding token only when text needs breathing room."
+      },
+      {
+        "name": "Hairline Input",
+        "role": "Form fields in contact flows.",
+        "description": "Transparent background, text #ffffff, border-bottom-only rule in #ffffff (or 1px top/bottom depending on context), border-radius 0px, padding 7.2px vertical / 21.6px horizontal. No fill, no boxed look — the input is a line on the void."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening statements.",
+        "description": "198px sui weight 700, line-height 0.96, letter-spacing -1.78px, uppercase, #ffffff. Lines stack tight; the 0.96 leading means descenders kiss ascenders. This is the type that defines the brand."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Sub-hero headings, section labels.",
+        "description": "91px sui weight 700, line-height 0.92, letter-spacing -1.82px, uppercase, #ffffff or #cccccc. 0.92 line-height is extreme — only works at this weight and size."
+      },
+      {
+        "name": "Body Lead",
+        "role": "Supporting paragraph under display headlines.",
+        "description": "18px sui weight 400, line-height 1.10, #cccccc. Tighter than typical body — 1.10 is a deliberate choice that lets the type read as architectural rather than conversational."
+      },
+      {
+        "name": "Uppercase Eyebrow",
+        "role": "Category labels, kicker text, pre-headings.",
+        "description": "15px sui weight 400, uppercase, letter-spacing default, #cccccc or #4c4c4d. Used sparingly above larger headings."
+      },
+      {
+        "name": "Meta / Copyright Text",
+        "role": "Footer legal, phone numbers, secondary info.",
+        "description": "10–14px sui weight 400, #4c4c4c. Deliberately quiet — must not compete with body text."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Top-of-page brand bar.",
+        "description": "Three-zone layout: logo mark + wordmark left, tagline center, CTA pill right, hamburger far right. All on transparent / #000000. Height ~72px. No background fill, no border-bottom."
+      },
+      {
+        "name": "Hero 3D Sphere",
+        "role": "The brand's signature visual element — appears on the homepage and case-study headers.",
+        "description": "Large dark obsidian liquid blob/sphere rendered in WebGL, positioned absolute so it overlaps the display headline. No defined color — reads as black with subtle blue/purple/amber rim reflections from the render lighting. Functions as the only 'decoration' the system permits."
+      },
+      {
+        "name": "Hamburger Menu Trigger",
+        "role": "Full-screen menu open affordance.",
+        "description": "Two thin horizontal #ffffff lines, no background, no border, positioned in the far-right of the header. 14px height total."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface. Sui is a custom geometric sans used for everything from 198px display down to 10px caption. Weight 700 is reserved for monumental display and large headings; weight 400 carries the rest of the system. The bold/regular contrast is the type system — no second family is needed.",
+        "sizes": "10, 14, 15, 17, 18, 27, 72, 91, 198",
+        "family": "sui",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "0.92, 0.96, 1.00, 1.10, 1.15, 1.20, 1.25, 1.50, 2.14",
+        "substitute": "Space Grotesk (closest free geometric match) or Inter for a more neutral alternative. Neue Haas Grotesk Display if licensed.",
+        "letterSpacing": "-0.0670em, -0.0200em, -0.0090em"
+      }
+    ],
+    "description": "ThoughtLab operates as a black-cathedral design language: pure black canvas, one red pulse, and typography so large it functions as architecture. The system is almost entirely achromatic — #cccccc carries the body, #ffffff carries the display — with #fc1c46 appearing only on the single primary action as a controlled voltage spike against the void. Hierarchy is built through extreme scale jumps (198px → 14px), not through color, shadows, or fills. Components are weightless: transparent cards, pill buttons, hairline inputs, no elevation stack — the page breathes through negative space and tightly-tracked uppercase display type rather than through containers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ThoughtLab design system\",\"item\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#style-reference\",\"name\":\"ThoughtLab design system reference\",\"headline\":\"ThoughtLab design system | Refero Styles\",\"description\":\"Explore ThoughtLab's dark Agency design system: Void #000000, Ash #cccccc colors, sui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\",\"mainEntityOfPage\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ThoughtLab\",\"url\":\"https://www.thoughtlab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"caption\":\"Screenshot of ThoughtLab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ThoughtLab design system\",\"ThoughtLab website design\",\"ThoughtLab colors\",\"ThoughtLab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Ash\",\"Frost\",\"Graphite\",\"sui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ThoughtLab design system\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab website design\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab colors\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:01:52.491Z\",\"dateModified\":\"2026-04-30T02:01:52.491Z\"}]}19:T5fc,**Quick Color Reference**\n- text: #cccccc\n- background: #000000\n- border: #ffffff\n- accent: #fc1c46\n- primary action: #fc1c46 (filled action)\n- muted/tertiary text: #4c4c4c\n\n**Example Component Prompts**\n\n1. **Display Hero Headline** — 'Render a hero headline: pure black #000000 background. Text at 198px, sui weight 700, uppercase, #ffffff, letter-spacing -1.78px, line-height 0.96. Below it, a 18px body line in #cccccc, line-height 1.10. No card, no border, no shadow.'\n\n2. **Crimson Pill CTA** — 'Create a primary action button: fill #fc1c46, text #ffffff, border-radius 9999px, padding 0 30px, height driven by line-height. Font: 15px sui weight 400, uppercase. No border, no shadow. Use only one per view.'\n\n3. **Ghost Text Link** — 'Create a secondary text button: transparent background, text #ffffff, border-radius 0, no border, no padding. Font: 14px sui weight 400. Underline on hover only. For use on the black canvas.'\n\n4. **Transparent Project Card** — 'Create a portfolio card: background transparent, border-radius 0, box-shadow none, padding 22px. Typography inside uses 27px sui weight 400 for project name in #ffffff and 14px sui in #cccccc for the descriptor. The card has no visible edges — it is a content frame, not a surface.'\n\n5. **Hairline Input** — 'Create a form input on a #000000 background: transparent fill, text #ffffff, border-bottom 1px solid #ffffff only, border-radius 0, padding 7.2px top/bottom and 21.6px left/right. Placeholder text in #4c4c4c. No box, no fill — just a line.'"
+      },
+      {
+        "title": "Restraint Principle",
+        "content": "The system's discipline is subtraction. Only five colors. Only one font family. Only one rounded shape (the pill). No shadows. No card fills. No secondary accent. The Crimson Signal appears once per view maximum. Every element that could be added has been removed — the remaining components are the only ones allowed. When extending the system, the first question is always 'can this be removed?' not 'can this be styled?'"
+      }
+    ],
+    "elevationPhilosophy": "No shadows. No elevation stack. Hierarchy is constructed entirely through scale, tracking, and whitespace — never through drop-shadow depth. The 12 card variants all carry box-shadow: none, confirming this as a deliberate zero-elevation philosophy. If a component needs to feel 'above' the canvas, it gets a hairline border or a transparent background, not a blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 67,
+          "confidence": 1,
+          "prominence": 608837.5960676527,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "link/color": 7,
+            "other/fill": 1,
+            "other/color": 41,
+            "heading/color": 6,
+            "body/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "input"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 53465.2477209094,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "input/color": 1,
+            "other/color": 4,
+            "button/color": 1,
+            "other/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#4c4c4c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41653969239784205
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 8877,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 4,
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#fc1c46",
+          "oklch": {
+            "c": 0.24466111601011148,
+            "h": 20.327804653427584,
+            "l": 0.6340195356775985
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3980,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3009.2188109740214,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "button/color": 2
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.006297583423683693,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffffff",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.39,
+          "background": "#fc1c46",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#cccccc",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.89,
+          "background": "#fc1c46",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.46,
+          "background": "#808080",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.42,
+          "background": "#fc1c46",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.21,
+          "background": "#fc1c46",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.17,
+          "background": "#808080",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#ffffff",
+          "foreground": "#cccccc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "list"
+          ],
+          "frequency": 83,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other",
+            "marginBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginTop|heading",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 126,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 40,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sui",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 303,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "card",
+            "hero",
+            "body",
+            "footer"
+          ],
+          "frequency": 95,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "button",
+            "other",
+            "body",
+            "list",
+            "icon"
+          ],
+          "frequency": 92,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "sui",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.067,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "sui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 91,
+          "family": "sui",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 32,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 198,
+          "family": "sui",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.009,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6c356f1e-aa20-4428-8b02-1ff99c6a2454.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ThoughtLab design system\",\"item\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#style-reference\",\"name\":\"ThoughtLab design system reference\",\"headline\":\"ThoughtLab design system | Refero Styles\",\"description\":\"Explore ThoughtLab's dark Agency design system: Void #000000, Ash #cccccc colors, sui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\",\"mainEntityOfPage\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ThoughtLab\",\"url\":\"https://www.thoughtlab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/82d52a5f-b1bb-4a69-91a3-15a7eb8bbe99#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"caption\":\"Screenshot of ThoughtLab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aa6eb31b-f06a-426b-9b05-e57ed80774de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ThoughtLab design system\",\"ThoughtLab website design\",\"ThoughtLab colors\",\"ThoughtLab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Ash\",\"Frost\",\"Graphite\",\"sui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ThoughtLab design system\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab website design\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab colors\"},{\"@type\":\"Thing\",\"name\":\"ThoughtLab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:01:52.491Z\",\"dateModified\":\"2026-04-30T02:01:52.491Z\"}]}19:T5fc,**Quick Color Reference**\n- text: #cccccc\n- background: #000000\n- border: #ffffff\n- accent: #fc1c46\n- primary action: #fc1c46 (filled action)\n- muted/tertiary text: #4c4c4c\n\n**Example Component Prompts**\n\n1. **Display Hero Headline** — 'Render a hero headline: pure black #000000 background. Text at 198px, sui weight 700, uppercase, #ffffff, letter-spacing -1.78px, line-height 0.96. Below it, a 18px body line in #cccccc, line-height 1.10. No card, no border, no shadow.'\n\n2. **Crimson Pill CTA** — 'Create a primary action button: fill #fc1c46, text #ffffff, border-radius 9999px, padding 0 30px, height driven by line-height. Font: 15px sui weight 400, uppercase. No border, no shadow. Use only one per view.'\n\n3. **Ghost Text Link** — 'Create a secondary text button: transparent background, text #ffffff, border-radius 0, no border, no padding. Font: 14px sui weight 400. Underline on hover only. For use on the black canvas.'\n\n4. **Transparent Project Card** — 'Create a portfolio card: background transparent, border-radius 0, box-shadow none, padding 22px. Typography inside uses 27px sui weight 400 for project name in #ffffff and 14px sui in #cccccc for the descriptor. The card has no visible edges — it is a content frame, not a surface.'\n\n5. **Hairline Input** — 'Create a form input on a #000000 background: transparent fill, text #ffffff, border-bottom 1px solid #ffffff only, border-radius 0, padding 7.2px top/bottom and 21.6px left/right. Placeholder text in #4c4c4c. No box, no fill — just a line.'"
+}

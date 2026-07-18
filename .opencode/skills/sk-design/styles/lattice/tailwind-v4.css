@@ -1,0 +1,71 @@
+@theme {
+  /* Colors */
+  --color-parchment: #f7f6f2;
+  --color-paper-white: #ffffff;
+  --color-forest-ink: #001f1f;
+  --color-lichen-gray: #5c7070;
+  --color-stone: #6a7878;
+  --color-slate: #455252;
+  --color-mist: #889494;
+  --color-meadow: #cdface;
+  --color-deep-forest: #2a4e1c;
+  --color-deep-teal: #003d3d;
+  --color-olive: #515c0b;
+  --color-plum: #7a2251;
+  --color-saffron: #a36a14;
+  --color-iris: #652ea3;
+  --color-mint-surface: #e4f7f9;
+  --color-lime-surface: #f8fbe7;
+  --color-lavender-surface: #e1e1fa;
+  --color-blush-surface: #fcf2fe;
+  --color-buttercream: #fff3c2;
+  --color-sage-glow: #eff5ce;
+  --color-petal: #fde5ff;
+  --color-lilac-stroke: #dcc2eb;
+  --color-halo-gradient: #a9eba9;
+
+  /* Typography */
+  --font-matter: 'Matter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.3;
+  --tracking-caption: 0.88px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.3;
+  --text-body: 16px;
+  --leading-body: 1.3;
+  --text-subheading: 19px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 47px;
+  --leading-heading: 1;
+  --tracking-heading: -1.13px;
+  --text-display: 72px;
+  --leading-display: 0.9;
+  --tracking-display: -1.73px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+  --spacing-116: 116px;
+  --spacing-188: 188px;
+
+  /* Border Radius */
+  --radius-lg: 7.2192px;
+  --radius-xl: 11.5507px;
+  --radius-xl-2: 14.4384px;
+  --radius-2xl: 18.048px;
+  --radius-2xl-2: 21.6576px;
+  --radius-3xl: 28.8768px;
+  --radius-3xl-2: 43.3152px;
+
+  /* Shadows */
+  --shadow-md: color(srgb 0 0.121569 0.121569 / 0.04) 0px 12px 12px -6px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 6px 6px -3px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 3px 3px -1.5px, color(srgb 0 0.121569 0.121569 / 0.08) 0px 1px 1px -0.5px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 0px 0px 1px;
+}

@@ -1,0 +1,737 @@
+{
+  "source": "https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff",
+  "uuid": "d1941450-00be-4988-beaa-76bb68ae09ff",
+  "name": "ARTU",
+  "northStar": "Gallery wall on white paper. ARTU treats the browser as a museum spread — massive product photography, hairline rules, and a single shock of lime at the bottom edge to close the room.",
+  "capturedAt": "2026-07-18T09:16:10.402Z",
+  "meta": {
+    "url": "https://artu.works",
+    "siteName": "ARTU",
+    "extractedAt": "2026-06-03T20:16:00.450Z",
+    "durationMs": 27681,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 446,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only one type family (HelveticaNeuePro or Neue Haas Grotesk substitute) and one weight (400) across the entire site",
+      "Set all navigation and footer text in uppercase with positive tracking 0.014–0.024em",
+      "Reserve #d7ff66 for the footer band or a single terminal surface — never spread it across the page",
+      "Use 1px solid #000000 hairlines for all section dividers and image borders",
+      "Let product photography fill the viewport at 0px radius with no overlay text or CTA",
+      "Keep 0px border-radius on every image, card, button, and tag — sharpness is the brand"
+    ],
+    "donts": [
+      "Don't introduce a second type weight, a serif, or a display face — 400 Helvetica is the system",
+      "Don't use #ff1313 for body text, headings, or CTAs — its 3.9:1 contrast on white is the point; it belongs only in thin decorative strokes",
+      "Don't add drop shadows, gradients, or glass effects — the site is flat by design",
+      "Don't use rounded corners on any element — not images, not buttons, not tags",
+      "Don't fill the page with the lime green — it only appears as the closing footer band",
+      "Don't add a sticky header, sidebar, or modal — the layout is one continuous gallery scroll",
+      "Don't break the all-caps nav convention with mixed-case menu items or sentence-case headings"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surface, image plate — the entire site sits on pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All text, hairline borders, navigation, link underlines, image frames — the sole structural color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7ff66",
+        "name": "Terminal Lime",
+        "role": "Footer band, surface highlight wash, terminal accent — high-chroma green that signals a page boundary the way a colored edge stops a gallery wall",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff1313",
+        "name": "Signal Red",
+        "role": "Decorative border strokes, icon outlines, hairline rules in editorial layouts — used at sub-readable contrast as graphic punctuation, never as body text",
+        "group": "accent"
+      }
+    ],
+    "layout": "Single-column, single-page gallery scroll. The first viewport is a full-bleed hero photograph with a thin top navigation bar (logo left, menu items comma-separated, language/cart/menu right) and minimal carousel arrows at the bottom-right of the image. Below the hero sits a 1px black hairline divider, then a spacious editorial image grid that mixes scales asymmetrically — small thumbnail, medium square, and large portrait images at varying widths (roughly 25–55% of the page), all on white with no gutters wider than 32px. The page terminates with a full-width lime-green (#d7ff66) footer band roughly 24–32px tall. The overall feel is a printed catalog spread — typography stays in the margins, photography takes the center, and the lime band closes the room.",
+    "imagery": "Photography is the entire visual identity. Full-bleed, high-resolution product shots of chairs and furniture, shot in warm interior light with natural shadows falling on white or wood floors. The first hero image fills the entire viewport edge-to-edge. The gallery section uses an asymmetric editorial layout with images at mixed scales and aspect ratios (1:1, 3:4, 2:3) arranged with generous white gutters, no captions, no overlays. There are no illustrations, no icons beyond a few thin red-stroked marks, no abstract graphics, and no lifestyle photography — the object is always the subject, shot in context but never decorated.",
+    "similar": [
+      {
+        "why": "Same furniture-catalog discipline: white canvas, product photography as the entire layout, hairline rules, comma-separated nav, and almost no decorative UI",
+        "business": "Vitra"
+      },
+      {
+        "why": "Shares the neo-grotesque single-weight typography and editorial image grids, though HAY uses color more liberally",
+        "business": "HAY (hay.dk)"
+      },
+      {
+        "why": "Same brand-book-as-website restraint: single font, flat surfaces, photography-first pages, no shadows or gradients",
+        "business": "Massimo (massimolubicz.com)"
+      },
+      {
+        "why": "Specialty product brand that treats the site as a gallery — large hero images, minimal nav, single accent color used sparingly",
+        "business": "Fellow (fellowproducts.com)"
+      },
+      {
+        "why": "Premium product site with white canvas, product photography, thin black nav, and a single bold accent color reserved for terminal moments",
+        "business": "Aarke"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "11px",
+      "sectionGap": "32px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, image plate"
+      },
+      {
+        "hex": "#d7ff66",
+        "name": "Footer Band",
+        "level": 1,
+        "purpose": "Terminal colored band closing the page"
+      }
+    ],
+    "northStar": "Gallery wall on white paper. ARTU treats the browser as a museum spread — massive product photography, hairline rules, and a single shock of lime at the bottom edge to close the room.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.014
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.014
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.022
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0.024
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent global navigation",
+        "description": "Single-row header: logo ('artu' lowercase, weight 400, 18–20px, black) at the left edge, then PRODUCTS, STORES, ABOUT, NEWS, CONTACTS in all-caps at 400 weight with 0.022em tracking, separated by commas not pipes. Right edge: EN, CART (0), MENU, same weight and case. No background fill, no border, 17px padding-top, 32px column-gap between items, sits directly on white."
+      },
+      {
+        "name": "Full-bleed Hero Image",
+        "role": "Opening viewport statement",
+        "description": "Edge-to-edge product photography with no caption, no overlay, no button. 0px radius, no border, spans full viewport width. The image IS the hero — the only frame is a 1px black hairline (border-bottom on the section) separating it from the next block."
+      },
+      {
+        "name": "Editorial Image Grid",
+        "role": "Scrolling product gallery",
+        "description": "Asymmetric multi-column layout mixing 1:1, 3:4, and 2:3 ratio product shots at varying sizes (roughly 3–4 columns, images sized 40–55% of viewport). White gutters between images, no captions or titles, 0px radius, no borders. Composition feels curated, not gridded."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid black (#000000) horizontal rule, full-width or content-width, used between major page sections. Carries the visual structure that padding and gaps do elsewhere."
+      },
+      {
+        "name": "Decorative Red Border",
+        "role": "Editorial graphic accent",
+        "description": "Thin red (#ff1313) stroked lines used sparingly inside content blocks and around icons — a graphic mark, not a container. Contrast is intentionally below WCAG; it exists to be seen as a line, not read as text."
+      },
+      {
+        "name": "Carousel Arrows",
+        "role": "Image slider controls",
+        "description": "Two simple black arrows (← →) at 18–20px, positioned bottom-right of the hero image block, on the white margin between the image and the hairline divider. No circle, no fill — just the glyph in #000000 at 1px stroke weight."
+      },
+      {
+        "name": "Lime Footer Band",
+        "role": "Page terminal / site footer",
+        "description": "Full-width band filled #d7ff66, no text inside, acts as a colored wall that closes the page. Sits below all content, height set by footer padding (~24–32px). The vivid green is the only color that occupies real estate in the layout."
+      },
+      {
+        "name": "Footer Link Row",
+        "role": "Secondary navigation",
+        "description": "If present, sits just above the lime band: all-caps, 400 weight, 18px, comma-separated links in #000000 with 29–37px margin-bottom between rows. Inherits the nav's all-caps typographic system."
+      },
+      {
+        "name": "Image Thumbnail Link",
+        "role": "Product teaser",
+        "description": "Unframed product image, 0px radius, optional 1px black border, no caption beneath. Behaves as a visual link in a gallery — the image is the affordance, not a button."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal type family for navigation, body, headings, inputs, and footer — the only weight on the site (400), set in all-caps across the nav and footer, with positive tracking 0.0140em–0.0240em that gives the single weight a mechanical, catalog-like cadence",
+        "sizes": "18px, 20px, 24px, 32px",
+        "family": "HelveticaNeuePro",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Neue Haas Grotesk, Inter, Helvetica Now",
+        "letterSpacing": "0.0140em at body, stepping up to 0.0240em at display — positive tracking everywhere is anti-default for neo-grotesques and is a signature of the brand"
+      }
+    ],
+    "description": "ARTU operates as a furniture gallery in browser form: one custom neo-grotesque at a single weight, pure white canvas, product photography that fills the viewport, and almost no visible UI chrome. The discipline is extreme — there is one weight, one type family, two surface colors, and negative space does the work that shadows and gradients do elsewhere. Color is used surgically: a high-chroma lime green (#d7ff66) punctuates only the footer band as a terminal signal, while a raw red (#ff1313) appears as thin border lines and icon strokes — deliberately failing contrast, it functions as graphic rhythm, not information. The result reads less like a commerce site and more like an art-book spread: the products are the layout, the layout is whitespace, and the UI is a thin black line of all-caps navigation at the top edge.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARTU design system\",\"item\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#style-reference\",\"name\":\"ARTU design system reference\",\"headline\":\"ARTU design system | Refero Styles\",\"description\":\"Explore ARTU's light E-commerce design system: Canvas White #ffffff, Ink Black #000000 colors, HelveticaNeuePro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARTU\",\"url\":\"https://artu.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"caption\":\"Screenshot of ARTU\"},\"image\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARTU design system\",\"ARTU website design\",\"ARTU colors\",\"ARTU typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Ink Black\",\"Terminal Lime\",\"Signal Red\",\"HelveticaNeuePro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARTU design system\"},{\"@type\":\"Thing\",\"name\":\"ARTU website design\"},{\"@type\":\"Thing\",\"name\":\"ARTU colors\"},{\"@type\":\"Thing\",\"name\":\"ARTU typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:55:23.951Z\",\"dateModified\":\"2026-05-10T23:55:23.951Z\"}]}19:T774,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines)\n- accent surface: #d7ff66 (footer band only)\n- decorative stroke: #ff1313 (thin lines, sub-readable contrast)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Top Navigation Bar** — White background, no border. Left: 'artu' logo in 400 HelveticaNeuePro at 20px, #000000, lowercase. Right of logo, comma-separated: PRODUCTS, STORES, ABOUT, NEWS, CONTACTS in 400 weight, all-caps, 0.022em tracking, #000000. Far right: EN, CART (0), MENU in same style. 17px padding-top, 32px gap between items, 11px row gap. No background fill, no sticky behavior.\n\n2. **Full-bleed Hero Image** — Edge-to-edge photograph spanning 100% viewport width, 0px radius, no border except a 1px solid #000000 hairline at the bottom. No overlay text, no caption, no button. Bottom-right corner: two 18px black arrows (← →) at 1px stroke weight, sitting on the white margin below the image, 32px from the right edge.\n\n3. **Editorial Image Grid Section** — White canvas, asymmetric 3-column grid where images are sized independently (one image at 55% width, one at 40%, one at 45%, one at 30%, etc.) with 32px gaps. All images at 0px radius, no borders, no captions. Below the grid, a 1px solid #000000 full-width hairline divider, then 32px of whitespace, then the footer band.\n\n4. **Lime Footer Band** — Full-width strip filled #d7ff66, height ~24–32px set by padding, no text inside, no border. It is a pure colored wall that closes the page; no other element on the site should use this color.\n\n5. **Decorative Red Hairline** — A 1px solid #ff1313 line used as a graphic mark inside an editorial content block, either as a horizontal rule between two stacked images or as a thin frame around a small icon. Contrast is intentionally low on white — it is seen as a line, not read as text."
+      },
+      {
+        "title": "Single-Weight Typography Philosophy",
+        "content": "The entire site uses HelveticaNeuePro at weight 400 only. There is no bold, no light, no italic. Hierarchy is built entirely through size (18, 20, 24, 32px), case (lowercase logo vs. all-caps nav/footer), and tracking (0.014em body → 0.024em display). Positive tracking on a neo-grotesque is unconventional — it pushes the type toward a catalog/spec-sheet voice rather than the tight, dense feel of default web Helvetica. When recreating this system, resist the urge to add a bold weight for headings; the visual hierarchy must come from scale and whitespace alone."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "input",
+            "image",
+            "icon",
+            "heading",
+            "footer"
+          ],
+          "frequency": 1936,
+          "confidence": 1,
+          "prominence": 53899055.23044679,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 20,
+            "body/color": 3,
+            "icon/color": 4,
+            "link/color": 112,
+            "list/color": 27,
+            "other/fill": 39,
+            "icon/stroke": 8,
+            "image/color": 40,
+            "input/color": 2,
+            "other/color": 172,
+            "footer/color": 1,
+            "other/stroke": 30,
+            "heading/color": 7,
+            "body/borderColor": 12,
+            "icon/borderColor": 16,
+            "link/borderColor": 448,
+            "list/borderColor": 108,
+            "image/borderColor": 160,
+            "input/borderColor": 7,
+            "other/borderColor": 688,
+            "footer/borderColor": 4,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 12759343.884009618,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#d7ff66",
+          "oklch": {
+            "c": 0.1827115502816934,
+            "h": 122.35463159836202,
+            "l": 0.942685612404412
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 898911.4822840036,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff1313",
+          "oklch": {
+            "c": 0.25337589893329093,
+            "h": 28.718035705475774,
+            "l": 0.6321881849243366
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 168,
+          "confidence": 1,
+          "prominence": 92710.81669830692,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "icon/color": 6,
+            "icon/stroke": 12,
+            "other/color": 6,
+            "other/stroke": 6,
+            "body/borderColor": 72,
+            "icon/borderColor": 24,
+            "other/borderColor": 24
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0549663591244783,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.39,
+          "background": "#d7ff66",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#ffffff",
+          "foreground": "#ff1313"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.43,
+          "background": "#d7ff66",
+          "foreground": "#ff1313"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "columnGap",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "columnGap|other",
+            "marginLeft|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "marginTop|heading",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNeuePro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 398,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.022,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 291,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "HelveticaNeuePro",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/370474ce-eca5-4d55-9f11-44fb4fd34726.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARTU design system\",\"item\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#style-reference\",\"name\":\"ARTU design system reference\",\"headline\":\"ARTU design system | Refero Styles\",\"description\":\"Explore ARTU's light E-commerce design system: Canvas White #ffffff, Ink Black #000000 colors, HelveticaNeuePro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARTU\",\"url\":\"https://artu.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d1941450-00be-4988-beaa-76bb68ae09ff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"caption\":\"Screenshot of ARTU\"},\"image\":\"https://images.refero.design/styles/refero.design/image/82576297-d0ae-43f5-8f44-ac245d5757c5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARTU design system\",\"ARTU website design\",\"ARTU colors\",\"ARTU typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Ink Black\",\"Terminal Lime\",\"Signal Red\",\"HelveticaNeuePro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARTU design system\"},{\"@type\":\"Thing\",\"name\":\"ARTU website design\"},{\"@type\":\"Thing\",\"name\":\"ARTU colors\"},{\"@type\":\"Thing\",\"name\":\"ARTU typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:55:23.951Z\",\"dateModified\":\"2026-05-10T23:55:23.951Z\"}]}19:T774,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines)\n- accent surface: #d7ff66 (footer band only)\n- decorative stroke: #ff1313 (thin lines, sub-readable contrast)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Top Navigation Bar** — White background, no border. Left: 'artu' logo in 400 HelveticaNeuePro at 20px, #000000, lowercase. Right of logo, comma-separated: PRODUCTS, STORES, ABOUT, NEWS, CONTACTS in 400 weight, all-caps, 0.022em tracking, #000000. Far right: EN, CART (0), MENU in same style. 17px padding-top, 32px gap between items, 11px row gap. No background fill, no sticky behavior.\n\n2. **Full-bleed Hero Image** — Edge-to-edge photograph spanning 100% viewport width, 0px radius, no border except a 1px solid #000000 hairline at the bottom. No overlay text, no caption, no button. Bottom-right corner: two 18px black arrows (← →) at 1px stroke weight, sitting on the white margin below the image, 32px from the right edge.\n\n3. **Editorial Image Grid Section** — White canvas, asymmetric 3-column grid where images are sized independently (one image at 55% width, one at 40%, one at 45%, one at 30%, etc.) with 32px gaps. All images at 0px radius, no borders, no captions. Below the grid, a 1px solid #000000 full-width hairline divider, then 32px of whitespace, then the footer band.\n\n4. **Lime Footer Band** — Full-width strip filled #d7ff66, height ~24–32px set by padding, no text inside, no border. It is a pure colored wall that closes the page; no other element on the site should use this color.\n\n5. **Decorative Red Hairline** — A 1px solid #ff1313 line used as a graphic mark inside an editorial content block, either as a horizontal rule between two stacked images or as a thin frame around a small icon. Contrast is intentionally low on white — it is seen as a line, not read as text."
+}

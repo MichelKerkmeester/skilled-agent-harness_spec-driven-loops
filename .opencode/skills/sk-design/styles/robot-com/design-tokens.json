@@ -1,0 +1,447 @@
+{
+  "color": {
+    "yellix-yellow": {
+      "$value": "#fff65d",
+      "$type": "color",
+      "$description": "Yellix Yellow — Primary action buttons, section accent blocks, highlight tags, decorative fills — the sole chromatic color, used sparingly to make a single element pop per view"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, inverted text on dark blocks, filled button text"
+    },
+    "warm-parchment": {
+      "$value": "#f8f6f3",
+      "$type": "color",
+      "$description": "Warm Parchment — Card surfaces, secondary canvas tone, subtle elevation over pure white"
+    },
+    "fog-gray": {
+      "$value": "#d9d7d5",
+      "$type": "color",
+      "$description": "Fog Gray — Quietest neutral surface layer, faint dividers, muted backgrounds"
+    },
+    "ash-gray": {
+      "$value": "#8f8e8d",
+      "$type": "color",
+      "$description": "Ash Gray — Tertiary body text, subtle borders, caption-weight copy"
+    },
+    "stone-gray": {
+      "$value": "#727272",
+      "$type": "color",
+      "$description": "Stone Gray — Secondary body text, quiet helper copy, secondary borders"
+    },
+    "ink-black": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, heading color, dominant border color, dark section fill — near-black with slight warmth, never pure #000"
+    },
+    "charcoal": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Charcoal — Card-level dark surface, deep accent block alternative to Ink Black"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Primary action button fill, high-contrast decorative fills — reserved for moments demanding maximum weight"
+    }
+  },
+  "font": {
+    "yellix": {
+      "$value": "Yellix",
+      "$type": "fontFamily",
+      "$description": "Yellix is a custom grotesque with personality — slightly humanist proportions, aggressively tight tracking at display sizes (-0.214em at 100px) that makes headlines read as compressed editorial blocks rather than airy SaaS titles. The ss01 and salt features suggest alternates and stylistic glyph variants used selectively. Yellix carries the entire system: nav, body, display, buttons. The line-height ratio collapses at display (0.96-1.0) creating stacked headline density, then opens to 1.16-1.25 for body for legibility."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "41px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 41px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "52px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "52px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Yellix",
+        "fontSize": "100px",
+        "fontWeight": 600,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background, dominant surface for the majority of content"
+    },
+    "warm-card": {
+      "$value": "#f8f6f3",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface, subtle warm tint that differentiates from canvas without stark contrast"
+    },
+    "fog": {
+      "$value": "#d9d7d5",
+      "$type": "color",
+      "$description": "Surface level 2: Quietest neutral, faint dividers and muted background bands"
+    },
+    "charcoal-block": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 3: Full-width section flip to dark mode for editorial quotes and contrast moments"
+    },
+    "yellow-accent": {
+      "$value": "#fff65d",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed editorial accent section, highest visual prominence in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.robot.com",
+      "siteName": "robot.com",
+      "extractedAt": "2026-06-03T17:52:52.524Z",
+      "variant": "extended"
+    }
+  }
+}

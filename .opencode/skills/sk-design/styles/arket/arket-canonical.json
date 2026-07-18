@@ -1,0 +1,1148 @@
+{
+  "source": "https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b",
+  "uuid": "3c605c8e-daf2-4d46-94d7-2cb705a93b7b",
+  "name": "ARKET",
+  "northStar": "Scandinavian white gallery. Full-bleed photography on bone-white canvases, hairline rules, and a small-caps monospace labeling each section like a museum wall tag.",
+  "capturedAt": "2026-07-18T09:48:24.546Z",
+  "meta": {
+    "url": "https://arket.com",
+    "siteName": "ARKET",
+    "extractedAt": "2026-06-03T18:04:39.057Z",
+    "durationMs": 33543,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 437,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 2px radius on all buttons, inputs, and tags — sharp corners are a signature of the ARKET restraint",
+      "Pair a solid black button with an outlined white button at the same height when offering primary + secondary actions, rather than using a chromatic accent",
+      "Use arketSCSansMono at 10–12px with -0.05em letter-spacing for editorial category labels and metadata, never for body copy",
+      "Keep all UI surfaces achromatic — #ffffff canvas, Carbon text, Mist dividers, Linen borders — and let the photography supply the only color on a page",
+      "Maintain 16px element gaps and 64–80px section gaps; whitespace is the primary hierarchy tool, not weight or color",
+      "Use #000000 filled cards (like the membership overlay) as the only way to introduce tonal contrast; never add shadows to lift a surface",
+      "Anchor every editorial content card with an edge-to-edge photograph at 0px radius — the image IS the card, the type sits below it like a caption"
+    ],
+    "donts": [
+      "Never use the #3860be Indigo Whisper as a decorative fill, badge background, or illustration color — it exists only for link or interactive states",
+      "Never increase type weight above 400 to signal emphasis — use size, position, or tonal contrast (black on white vs. white on black) instead",
+      "Never add gradient fills, glow effects, or colored shadows — the system is deliberately flat",
+      "Never round card corners with anything other than 0px in grids or 20px on isolated content blocks; mixing radii breaks the gallery wall feel",
+      "Never replace the custom Arket Sans or arketSansMono with a system fallback in production — the mono is essential to the editorial voice",
+      "Never add more than one filled black button per viewport — the inversion effect loses its emphasis if everything is inverted",
+      "Never apply shadows to elevate cards, navigation, or modals — the single rgba(0,0,0,0.1) 0px 2px 10px 2px shadow is reserved for floating link tooltips only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, navigation, icons, hairline borders, filled emphasis buttons, and the membership overlay surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, and inverse text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeae8",
+        "name": "Linen",
+        "role": "Outlined button borders, tag and chip backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Mist",
+        "role": "Hairline dividers, input borders, subtle section separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Slate",
+        "role": "Button labels and secondary headings on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Input placeholder text and form helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Pewter",
+        "role": "Muted metadata, tag fill, and secondary link underlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080808",
+        "name": "Obsidian",
+        "role": "Deep text and link stroke alternative — visually indistinguishable from Carbon but slightly softer on screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3860be",
+        "name": "Indigo Whisper",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "ARKET uses a full-bleed page model with no central max-width container on the hero and editorial bands — imagery and content stretch edge-to-edge. The page opens with a sticky two-row header (utility bar + main header) followed by a thin category navigation, then a single full-viewport hero photograph with a centered outlined text button beneath it. Below the hero, content shifts to a 4-column editorial card grid for journal content, with generous 64–80px vertical gaps between bands. A persistent membership overlay card anchors the bottom-right of the viewport, floating above all content. The footer is a dense 4–5 column link grid separated from the page by a 1px hairline. The system never uses alternating colored bands — every section shares the same #ffffff canvas, with tonal variation introduced only by photography.",
+    "imagery": "ARKET's visual language is photography-first, editorial-grade lifestyle imagery rendered as full-bleed or edge-to-edge blocks with 0px radius. Shots are high-key, softly lit by natural window light, and staged in calm domestic interiors — linen bedding, warm wood, neutral ceramics. Models appear unposed and intimate, often in motion or partially cropped, reinforcing the unretouched, quiet-luxury voice. Wardrobe stays within muted earth tones and softened primaries (terracotta, navy, oatmeal, deep red), so the photography carries all the chromatic weight the interface refuses to. The single blue accent (#3860be) never appears inside the imagery — it belongs only to the UI as a near-invisible link color. Icons throughout the site are thin, single-color Carbon line icons at 16–24px, used sparingly for account, search, wishlist, and cart actions.",
+    "similar": [
+      {
+        "why": "Same Scandinavian restraint, achromatic UI, full-bleed editorial photography, and 2px corner radius on interactive elements",
+        "business": "COS"
+      },
+      {
+        "why": "Identical white-gallery aesthetic, large serif-free headings paired with mono labels, and no color anywhere except inside campaign imagery",
+        "business": "Toteme"
+      },
+      {
+        "why": "Same monochrome editorial layout language — black-on-white sans type, full-bleed hero photography, and a persistent side utility card",
+        "business": "Mr Porter"
+      },
+      {
+        "why": "Equal commitment to achromatic UI, thin rule lines, monospace category labels, and letting the product photography carry all visual interest",
+        "business": "Aesop"
+      },
+      {
+        "why": "Shares the H&M-group design DNA — custom humanist sans + monospace pairing, hairline borders, and a flat card-driven editorial grid",
+        "business": "&Other Stories"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "inputs": "2px",
+        "modals": "0px",
+        "buttons": "2px",
+        "contentBlocks": "20px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64-80px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background and card surfaces — the dominant uninterrupted light field"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Hairline",
+        "level": 2,
+        "purpose": "Dividers, input borders, and tag outlines that separate content bands without weight"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inverse Panel",
+        "level": 3,
+        "purpose": "Membership card and filled emphasis buttons — solid black panels that invert type to white"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 2px 10px 2px",
+        "element": "Floating link tooltip"
+      }
+    ],
+    "northStar": "Scandinavian white gallery. Full-bleed photography on bone-white canvases, hairline rules, and a small-caps monospace labeling each section like a museum wall tag.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-md",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.21,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.23,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 28,
+        "lineHeight": 1.21,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Slim top strip surfacing seasonal or membership messages",
+        "description": "Full-bleed #ffffff background, single line of 12px arketSansMono text in Carbon. Inline link underlined with 1px Pewter. Padding 8px top/bottom, centered content. No divider above or below — it sits flush against the header."
+      },
+      {
+        "name": "Primary Header Bar",
+        "role": "Sticky top navigation containing brand mark, search, and account actions",
+        "description": "#ffffff background, 64px tall, no border. Left: ARKET wordmark in Arket Sans 24px Carbon. Center: 48px-tall search input with Linen border (#eaeae8), 2px radius, 12px Arket Sans placeholder in Graphite, and a leading search icon in Carbon. Right: account, wishlist, and bag icons in Carbon, 24px, 32px gap between."
+      },
+      {
+        "name": "Category Navigation",
+        "role": "Horizontal product category selector below the header",
+        "description": "#ffffff background, 48px tall, no border. Arket Sans 13px Carbon, uppercase-transformed, 32px horizontal gap. Active item uses Carbon weight 400 (no bolder weight — the system never increases weight to indicate state). Right-aligned utility links ('ARKET CAFÉ', 'Servicio de atención al cliente') and locale switcher in the same type style."
+      },
+      {
+        "name": "Outlined Text Button",
+        "role": "Secondary action — explore, discover, read more",
+        "description": "Transparent background, 1px Carbon border, 2px radius. Padding 12px 24px. Arket Sans 13px Carbon, uppercase or sentence case. Example from the hero: 'Explora novedades en ropa femenina' — a quiet invitation that doesn't compete with the photography."
+      },
+      {
+        "name": "Solid Black Button",
+        "role": "Primary emphasis action — commit, join, checkout",
+        "description": "#000000 fill, #ffffff text, 2px radius. Padding 12px 24px. Arket Sans 13px, letter-spacing normal. Example: 'Hacerse miembro' on the membership card. Always used sparingly — never more than one per viewport — because the system inverts for emphasis rather than colors."
+      },
+      {
+        "name": "Membership Overlay Card",
+        "role": "Persistent bottom-right panel promoting the loyalty program",
+        "description": "#000000 solid surface, #ffffff text, 0px radius (flush square corner). Padding 24px. Width ~320px. Headline in Arket Sans 16px white, body copy 12px white at 80% opacity, three checklist items with circular check icons in white. Solid Black Button anchored at the bottom for the CTA. The card floats above page content with no shadow — it relies on its tonal contrast alone to separate from the page."
+      },
+      {
+        "name": "Editorial Content Card",
+        "role": "Journal or story tile in the 4-up content grid",
+        "description": "Vertical card on #ffffff canvas, no border, no shadow, no radius (square corners in the grid, 20px radius only on container blocks). Image fills the top 70% of the card edge-to-edge with 0px radius. Below the image: 10px arketSansMono uppercase category label in Slate (#333333), then 22px Arket Sans headline in Carbon, then 13px Arket Sans excerpt in Pewter. 20px vertical gap between image and headline, 8px between headline and excerpt. Grid gap: 24px column, 32px row."
+      },
+      {
+        "name": "Hero Image Block",
+        "role": "Full-bleed editorial photography anchoring the top of the page",
+        "description": "100vw width, auto height (typically 70vh), 0px radius, no overlay text. A single outlined text button ('Explora novedades en ropa femenina') sits centered just below the image as the only UI element in the hero zone. The button has a #ffffff background to lift it off the photo."
+      },
+      {
+        "name": "Search Input",
+        "role": "Inline product and content search in the header",
+        "description": "#ffffff fill, 1px Linen (#eaeae8) border, 2px radius. 40px height, 16px horizontal padding. Leading search icon 16px Carbon. Placeholder 'Buscar' in 13px Graphite (#666666). No visible focus ring — on focus the border darkens to Carbon."
+      },
+      {
+        "name": "Category Tag (Small Caps)",
+        "role": "Editorial metadata label above headlines and on product cards",
+        "description": "#ffffff background, no border. 10px arketSCSansMono uppercase, letter-spacing -0.05em, in Slate (#333333). 0px padding, 8px bottom margin to the headline it labels."
+      },
+      {
+        "name": "Footer Link Column",
+        "role": "Dense link grid in the site footer",
+        "description": "#ffffff background, separated from content by a 1px Mist (#e0e0e0) top border. Column titles in 12px arketSansMono uppercase Carbon, 16px gap to the first link. Links in 13px Arket Sans Carbon, 8px row gap. Four to five columns on desktop, stacking to two on tablet and one on mobile."
+      },
+      {
+        "name": "Product Card (implicit)",
+        "role": "Merchandising tile for clothing items in category grids",
+        "description": "#ffffff surface, no border or radius. Product image edge-to-edge, 0px radius. Below: product name in 13px Arket Sans Carbon, price in 13px arketSansMono Carbon. 16px vertical gap between image and name, 4px between name and price. No hover state beyond image scale — the system doesn't add color or shadows on interaction."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body typeface. Renders navigation, buttons, links, form labels, and product copy. Humanist proportions with generous x-height keep body text legible at 13–16px while the 18–24px steps carry section headings without visual weight.",
+        "sizes": "10px, 13px, 16px, 18px, 24px",
+        "family": "Arket Sans",
+        "weight": "400",
+        "lineHeight": "1.23, 1.50",
+        "substitute": "Inter, Söhne, or system-ui sans-serif"
+      },
+      {
+        "role": "The signature editorial label font. Used for navigation, product cards, tags, button text, and headings throughout the site. The monospace geometry contrasts the humanist sans and reinforces the museum-catalogue voice.",
+        "sizes": "10px, 12px, 16px, 22px, 28px",
+        "family": "arketSansMono",
+        "weight": "400",
+        "lineHeight": "1.21, 1.27, 1.38, 1.50, 1.88",
+        "substitute": "IBM Plex Mono, JetBrains Mono, or Roboto Mono"
+      },
+      {
+        "role": "Small-caps variant of the mono for editorial metadata like 'GUÍA DE CUIDADO', 'FEBRERO 2026', 'ENTREVISTAS'. Tighter letter-spacing (-0.05em) and uppercase transforms make category labels feel like archival wall text.",
+        "sizes": "10px, 12px, 16px",
+        "family": "arketSCSansMono",
+        "weight": "400",
+        "lineHeight": "1.00, 1.38, 1.50",
+        "substitute": "IBM Plex Mono SC, JetBrains Mono with text-transform: uppercase",
+        "letterSpacing": "-0.5",
+        "fontFeatureSettings": "\"smcp\" on, \"c2sc\" on"
+      }
+    ],
+    "description": "ARKET is a Scandinavian fashion retailer whose digital presence reads as a curated white-gallery space: bone-white canvases, carbon-black type, hairline borders, and no color anywhere except inside the photography itself. Typography pairs a quiet humanist sans with a small-caps monospace that labels editorial cards like museum wall text, reinforcing the art-direction-over-advertising voice. Interactive elements are sharp (2px corners), flat, and rely on inversion rather than color for emphasis — a solid black button sits beside an outlined one at the same height. The system prizes restraint: generous whitespace, no gradients, minimal elevation, and a single nearly invisible blue accent reserved for links. Every screen should feel like a printed lookbook page — spacious, monochrome, and let the imagery do the chromatic work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARKET design system\",\"item\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#style-reference\",\"name\":\"ARKET design system reference\",\"headline\":\"ARKET design system | Refero Styles\",\"description\":\"Explore ARKET's light E-commerce design system: Carbon #000000, Bone White #ffffff colors, Arket Sans, arketSansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARKET\",\"url\":\"https://arket.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"caption\":\"Screenshot of ARKET\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARKET design system\",\"ARKET website design\",\"ARKET colors\",\"ARKET typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Bone White\",\"Linen\",\"Mist\",\"Arket Sans\",\"arketSansMono\",\"arketSCSansMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARKET design system\"},{\"@type\":\"Thing\",\"name\":\"ARKET website design\"},{\"@type\":\"Thing\",\"name\":\"ARKET colors\"},{\"@type\":\"Thing\",\"name\":\"ARKET typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-20T15:41:00.000Z\",\"dateModified\":\"2026-03-20T15:41:00.000Z\"}]}19:T78d,**Quick Color Reference**\n- text: #000000 Carbon\n- background: #ffffff Bone White\n- border: #e0e0e0 Mist\n- accent: #3860be Indigo Whisper (links only)\n- inverse surface: #000000 Carbon with #ffffff text\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the header: 64px tall, #ffffff background, no border. Left ARKET wordmark in Arket Sans 24px #000000. Center a 48px search input with 1px #eaeae8 border, 2px radius, 13px 'Buscar' placeholder in #666666. Right three icons (account, wishlist, bag) in #000000, 32px gap, 24px size.\n\n2. Build an editorial content card: vertical card, no border, no shadow, 0px radius. Top 70% is a full-bleed photograph with 0px radius. Below the image, 20px gap, then a 10px arketSCSansMono uppercase category label in #333333. Below that 8px gap, a 22px Arket Sans headline in #000000. Below that 4px gap, a 13px Arket Sans excerpt in #767676.\n\n3. Build the membership overlay card: 320px wide, #000000 background, #ffffff text, 0px radius, 24px padding. Headline 'Te damos la bienvenida al programa de membresía de ARKET' in Arket Sans 16px white at 100%. Three checklist items in 12px white at 80% opacity with circular check icons. Bottom-anchored solid black-outlined button with #ffffff border, #ffffff text, 2px radius, 12px 24px padding, reading 'Hacerse miembro'.\n\n4. Build the hero zone: 100vw width, 70vh height, edge-to-edge photograph, 0px radius, no overlay text. Centered 16px below the image, an outlined text button — #ffffff background, 1px #000000 border, 2px radius, 12px 24px padding, 13px Arket Sans #000000 text reading 'Explora novedades en ropa femenina'.\n\n5. Build the category navigation: 48px tall, #ffffff background, no border. Horizontal list of Arket Sans 13px #000000 items, uppercase, 32px column gap. Left-aligned: Mujer, Hombre, Niños, Home. Right-aligned: ARKET CAFÉ, Servicio de atención al cliente, ES | ES locale switcher."
+      },
+      {
+        "title": "Typography Pairing Logic",
+        "content": "The Arket Sans / arketSansMono pairing is load-bearing for the brand voice. Arket Sans (humanist, 400 only) carries everything that reads as 'product' — navigation, body copy, button labels, prices, forms. arketSansMono (monospace, 400 only) carries everything that reads as 'editorial' — section labels, category tags, dates, and metadata, especially in the arketSCSansMono small-caps variant. Because both families are locked at weight 400, hierarchy is expressed entirely through size, spacing, and the mono/sans switch — not through weight contrast. The small-caps variant arketSCSansMono at 10–12px with -0.05em letter-spacing is reserved exclusively for archival-style labels above editorial content, mimicking museum wall text."
+      }
+    ],
+    "elevationPhilosophy": "ARKET deliberately avoids elevation. Surfaces are flat and rely on tonal contrast (black on white) and whitespace to create separation. The only shadow in the system is a single subtle drop shadow reserved for floating link tooltips — everything else sits flush against the canvas as if printed on paper."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "button",
+            "link",
+            "nav",
+            "list",
+            "heading",
+            "card",
+            "footer"
+          ],
+          "frequency": 1776,
+          "confidence": 1,
+          "prominence": 68120770.79150788,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "icon",
+            "body",
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 4419739.465066378,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 161863.64022567953,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 69535.49126939909,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 9789,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13440923139492972
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 9716.874040210825,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eaeae8",
+          "oklch": {
+            "c": 0.002670287437244648,
+            "h": 106.45105338169809,
+            "l": 0.9364866152892432
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5252.201350635213,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4924.353563873802,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3860be",
+          "oklch": {
+            "c": 0.154617829201828,
+            "h": 264.29308784243807,
+            "l": 0.5118534910068104
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4334.982113709379,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#38793f",
+          "oklch": {
+            "c": 0.11131828097595944,
+            "h": 145.9164309230777,
+            "l": 0.518240614345989
+          },
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1488.9384004153858,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0018463808312504007,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.03,
+          "background": "#ffffff",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.43,
+          "background": "#eaeae8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.63,
+          "background": "#eaeae8",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#e0e0e0",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.49,
+          "background": "#eaeae8",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#e0e0e0",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#ffffff",
+          "foreground": "#3860be"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#ffffff",
+          "foreground": "#38793f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#767676",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#767676",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.41,
+          "background": "#767676",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.97,
+          "background": "#000000",
+          "foreground": "#38793f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#000000",
+          "foreground": "#3860be"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#767676",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#000000",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "button",
+            "input",
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 2px 10px 2px",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 79,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 178,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "arketSansMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 335,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arket Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "arketSCSansMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "nav",
+            "link",
+            "list",
+            "body",
+            "image",
+            "heading",
+            "card",
+            "footer"
+          ],
+          "frequency": 237,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "arketSCSansMono",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "arketSCSansMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input",
+            "other",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSCSansMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSCSansMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Arket Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "arketSansMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3f7b39a1-7524-44b5-aacf-bdeb53bdfa0c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARKET design system\",\"item\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#style-reference\",\"name\":\"ARKET design system reference\",\"headline\":\"ARKET design system | Refero Styles\",\"description\":\"Explore ARKET's light E-commerce design system: Carbon #000000, Bone White #ffffff colors, Arket Sans, arketSansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARKET\",\"url\":\"https://arket.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3c605c8e-daf2-4d46-94d7-2cb705a93b7b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"caption\":\"Screenshot of ARKET\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d95b8ca1-d9c5-4827-8baf-24c73eeefbde.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARKET design system\",\"ARKET website design\",\"ARKET colors\",\"ARKET typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Bone White\",\"Linen\",\"Mist\",\"Arket Sans\",\"arketSansMono\",\"arketSCSansMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARKET design system\"},{\"@type\":\"Thing\",\"name\":\"ARKET website design\"},{\"@type\":\"Thing\",\"name\":\"ARKET colors\"},{\"@type\":\"Thing\",\"name\":\"ARKET typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-20T15:41:00.000Z\",\"dateModified\":\"2026-03-20T15:41:00.000Z\"}]}19:T78d,**Quick Color Reference**\n- text: #000000 Carbon\n- background: #ffffff Bone White\n- border: #e0e0e0 Mist\n- accent: #3860be Indigo Whisper (links only)\n- inverse surface: #000000 Carbon with #ffffff text\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the header: 64px tall, #ffffff background, no border. Left ARKET wordmark in Arket Sans 24px #000000. Center a 48px search input with 1px #eaeae8 border, 2px radius, 13px 'Buscar' placeholder in #666666. Right three icons (account, wishlist, bag) in #000000, 32px gap, 24px size.\n\n2. Build an editorial content card: vertical card, no border, no shadow, 0px radius. Top 70% is a full-bleed photograph with 0px radius. Below the image, 20px gap, then a 10px arketSCSansMono uppercase category label in #333333. Below that 8px gap, a 22px Arket Sans headline in #000000. Below that 4px gap, a 13px Arket Sans excerpt in #767676.\n\n3. Build the membership overlay card: 320px wide, #000000 background, #ffffff text, 0px radius, 24px padding. Headline 'Te damos la bienvenida al programa de membresía de ARKET' in Arket Sans 16px white at 100%. Three checklist items in 12px white at 80% opacity with circular check icons. Bottom-anchored solid black-outlined button with #ffffff border, #ffffff text, 2px radius, 12px 24px padding, reading 'Hacerse miembro'.\n\n4. Build the hero zone: 100vw width, 70vh height, edge-to-edge photograph, 0px radius, no overlay text. Centered 16px below the image, an outlined text button — #ffffff background, 1px #000000 border, 2px radius, 12px 24px padding, 13px Arket Sans #000000 text reading 'Explora novedades en ropa femenina'.\n\n5. Build the category navigation: 48px tall, #ffffff background, no border. Horizontal list of Arket Sans 13px #000000 items, uppercase, 32px column gap. Left-aligned: Mujer, Hombre, Niños, Home. Right-aligned: ARKET CAFÉ, Servicio de atención al cliente, ES | ES locale switcher."
+}

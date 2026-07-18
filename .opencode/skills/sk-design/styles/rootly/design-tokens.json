@@ -1,0 +1,422 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#100f12",
+      "$type": "color",
+      "$description": "Ink — Primary text, dominant borders, filled CTA buttons, badge borders. Near-black with a barely-perceptible violet undertone that makes it warmer than pure black against the lavender-tinted canvas"
+    },
+    "snow": {
+      "$value": "#fbfaff",
+      "$type": "color",
+      "$description": "Snow — Page canvas and outer backgrounds. A whisper of violet lifts it above pure white so it harmonizes with the brand washes"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, secondary button fills. Pure white stacked on Snow creates depth without shadows"
+    },
+    "graphite": {
+      "$value": "#44434e",
+      "$type": "color",
+      "$description": "Graphite — Mid-weight borders and dividers, secondary text emphasis. Sits between Ink and the body grays for hierarchy layers"
+    },
+    "slate": {
+      "$value": "#65646e",
+      "$type": "color",
+      "$description": "Slate — Body text, helper copy, subdued labels. Neutral mid-gray that keeps copy readable without competing with headings"
+    },
+    "mist": {
+      "$value": "#787685",
+      "$type": "color",
+      "$description": "Mist — Lighter borders, muted text, form-field outlines. Carries the cool-violet cast that ties the gray scale to the brand washes"
+    },
+    "lavender-wash": {
+      "$value": "#ebe5ff",
+      "$type": "color",
+      "$description": "Lavender Wash — Soft highlight surfaces, tag fills, muted card backgrounds. The brand's pastel floor — used when a surface needs warmth without saturation"
+    },
+    "lilac-edge": {
+      "$value": "#d9cffa",
+      "$type": "color",
+      "$description": "Lilac Edge — Input borders, tag outlines, decorative hairlines. A mid-violet that reads as a line, not a fill — the border counterpart to the brand accent"
+    },
+    "iris": {
+      "$value": "#8d6fde",
+      "$type": "color",
+      "$description": "Iris — Brand accent — outlined actions, decorative borders, highlight strokes, iconography. Vivid enough to claim attention but used in thin strokes, not large fills, so it punctuates rather than floods"
+    },
+    "amethyst": {
+      "$value": "#4a3e8a",
+      "$type": "color",
+      "$description": "Amethyst — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "dawn-viol": {
+      "$value": "#7748f6",
+      "$type": "color",
+      "$description": "Dawn Viol — Gradient stop — hero sky anchor. The saturated violet that opens the morning gradient"
+    },
+    "rose-drift": {
+      "$value": "#f5bbc3",
+      "$type": "color",
+      "$description": "Rose Drift — Gradient stop — hero sky terminus. Warm rose that softens the violet into dawn warmth"
+    }
+  },
+  "font": {
+    "ppmori": {
+      "$value": "Ppmori",
+      "$type": "fontFamily",
+      "$description": "Single custom typeface driving the entire voice. Weight 200 at 52px for display creates the signature whisper-headline — anti-convention in a category that defaults to 600-700 hero type. Weight 500 carries all body, UI, and navigation copy. Weight 600 is reserved for active nav items and emphasized labels. The narrow weight gap between 200 and 500 means headings don't shout — they hover."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "10px",
+        "fontWeight": 200,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Ppmori",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "62": {
+      "$value": "62px",
+      "$type": "dimension",
+      "$description": "Spacing 62px"
+    },
+    "69": {
+      "$value": "69px",
+      "$type": "dimension",
+      "$description": "Spacing 69px"
+    },
+    "114": {
+      "$value": "114px",
+      "$type": "dimension",
+      "$description": "Spacing 114px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6.92px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "13.84px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "17.3px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20.76px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "27.68px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "34.6px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fbfaff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero backdrop, outermost wrapper"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI panels, feature cards, nav surfaces, content blocks"
+    },
+    "wash": {
+      "$value": "#ebe5ff",
+      "$type": "color",
+      "$description": "Surface level 2: Highlighted cards, tag fills, soft callout backgrounds"
+    },
+    "edge": {
+      "$value": "#d9cffa",
+      "$type": "color",
+      "$description": "Surface level 3: Input borders, outlined tag surfaces, decorative hairlines"
+    },
+    "reverse": {
+      "$value": "#100f12",
+      "$type": "color",
+      "$description": "Surface level 4: Dark mode surfaces — phone mockup UI, filled CTA buttons, dark card variants"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://rootly.com",
+      "siteName": "Rootly",
+      "extractedAt": "2026-06-03T19:22:51.200Z",
+      "variant": "extended"
+    }
+  }
+}

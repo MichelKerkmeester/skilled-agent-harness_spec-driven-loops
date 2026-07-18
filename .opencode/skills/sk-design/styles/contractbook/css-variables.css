@@ -1,0 +1,98 @@
+:root {
+  /* Colors */
+  --color-ultramarine: #1009f6;
+  --color-gold: #ffba09;
+  --color-forest: #304801;
+  --color-tangerine: #ff3b09;
+  --color-royal: #505cf9;
+  --color-sky: #add3e5;
+  --color-thistle: #e3c7de;
+  --color-mint: #00e9a7;
+  --color-cream: #f0f0ec;
+  --color-pearl: #f7f7f3;
+  --color-white: #ffffff;
+  --color-smoke: #d4d4d0;
+  --color-concrete: #eaeae6;
+  --color-washed-black: #1a1a1a;
+  --color-ink: #222222;
+  --color-charcoal: #4d4d4d;
+  --color-dim: #6d6868;
+  --color-black: #000000;
+
+  /* Typography — Font Families */
+  --font-abcwhyte: 'Abcwhyte', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.87;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 25px;
+  --leading-subheading: 1.3;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 32px;
+  --leading-heading: 1.3;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.2;
+  --text-display: 48px;
+  --leading-display: 1.25;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-9: 9px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-21: 21px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 120px;
+  --card-padding: 48px;
+  --element-gap: 14px;
+
+  /* Border Radius */
+  --radius-md: 4.375px;
+  --radius-lg: 10.5px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 40px;
+  --radius-full: 96px;
+  --radius-full-2: 99px;
+  --radius-full-3: 999px;
+  --radius-full-4: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 24px;
+  --radius-chips: 999px;
+  --radius-images: 40px;
+  --radius-inputs: 4px;
+  --radius-buttons: 999px;
+  --radius-hero-panels: 40px;
+
+  /* Surfaces */
+  --surface-cream-canvas: #f0f0ec;
+  --surface-pearl-card: #f7f7f3;
+  --surface-white-card: #ffffff;
+  --surface-brand-surface: #1009f6;
+  --surface-dark-footer: #1a1a1a;
+}

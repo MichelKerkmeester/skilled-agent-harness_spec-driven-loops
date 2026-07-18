@@ -1,0 +1,724 @@
+{
+  "source": "https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de",
+  "uuid": "e045b276-ae8d-442e-98de-fa8650e284de",
+  "name": "Studio Oker",
+  "northStar": "darkened gallery with scarlet punctuation — a black-walled portfolio room where white type floats and one red whisper cuts through the silence.",
+  "capturedAt": "2026-07-18T07:30:58.746Z",
+  "meta": {
+    "url": "https://oker.com",
+    "siteName": "Studio Oker",
+    "extractedAt": "2026-06-03T21:03:14.903Z",
+    "durationMs": 33404,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 354,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Pure Black (#000000) as the universal background — never introduce gray surfaces, tints, or off-white panels",
+      "Set all radii to 0px — cards, buttons, images, and tags all share sharp corners",
+      "Use NextBook weight 300 at 80px for section headings, with -0.02em letter-spacing (-1.6px) — the whisper-weight is the signature, not the size",
+      "Reserve Scarlet Signal (#e4002b) for exactly one use per screen — a single red dot, a single red panel, or a single red link — never as a fill color across multiple elements",
+      "Honor the 120px section gap and 240–264px breathing-room margins as the page's structural rhythm; collapse these only inside dense tile grids",
+      "Use #a0a0a0 for ALL secondary text, metadata, and image borders — never invent intermediate grays",
+      "Treat photographs as edge-to-edge artwork with no inner padding, no rounded corners, and no overlay treatments"
+    ],
+    "donts": [
+      "Don't add drop shadows, inner shadows, or glow effects — the system uses void, not elevation, to separate elements",
+      "Don't introduce a second accent color — the scarlet is the only chromatic signal in the entire system",
+      "Don't use bullet points, numbered lists, or icon prefixes in body copy — the Services list and Studio stat block prove that raw stacked text carries more weight than decorated lists",
+      "Don't center-align body paragraphs — every long-form block is left-aligned and reads as a typographic column, not a display statement",
+      "Don't use buttons with backgrounds — actions are dots, links, or text; the red dot IS the button",
+      "Don't add gradients to UI elements (the rose panel is a single brand artifact, not a pattern to replicate on cards, buttons, or backgrounds)",
+      "Don't use NextBook weight 600+ — the system only operates at 300 and 400; bolder weights would break the whisper-confident voice"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Page canvas, section backgrounds, project card fills — the void everything else floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Soft Black",
+        "role": "Subtle surface elevation over the pure black canvas, card backgrounds in tight stacks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, headings, hairline borders, nav text — the only light in the room",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a0a0a0",
+        "name": "Fog Gray",
+        "role": "Secondary text, metadata, captions, image borders, inactive labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#484848",
+        "name": "Graphite",
+        "role": "Footer borders, section dividers, rare structural lines that recede into the dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4002b",
+        "name": "Scarlet Signal",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "brand"
+      },
+      {
+        "hex": "#e85a5a",
+        "name": "Rose Brand Spectrum",
+        "role": "Brand color exploration panel — a pink-to-black swatch that walks from #f5a5a5 → #e85a5a → #d42020 → #7a0a0a → #2a0606 → #000000 as a literal brand-color system reveal",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, #f5a5a5 0%, #e85a5a 25%, #d42020 50%, #7a0a0a 70%, #2a0606 85%, #000000 100%)"
+      }
+    ],
+    "layout": "Full-bleed dark canvas, no max-width containment. The page is structured as a vertical sequence of full-width sections separated by 120–240px vertical air. Top: a fixed-height nav bar, then a 3- or 4-column asymmetric grid of project tiles (varying aspect ratios create rhythm — a white logo card, a rose-gradient panel, a photo card, a red 'Think Big' panel). Middle: the About/Studio section uses a 3-column text block (description, manifesto, services+stats) at left-aligned, then a 'Feed' heading that introduces a 2-column project showcase grid. Navigation is a single minimal top bar — no sidebar, no mega-menu. Density is sparse: large negative-space margins dominate, and information is meted out in small typographic blocks rather than dense panels.",
+    "imagery": "Photography is the dominant visual element. Treatment: full-bleed, edge-to-edge, no rounding, no internal padding, no overlay text. Subjects range from tight product crops (the Strutt wheelchair joystick, the tablet showing a website) to human portraiture (the smiling woman in soft natural light) to abstract textures (the dark grid with scattered red dots). Images are high-resolution and treated as artwork objects, not content blocks — they get breathing room (120px+ margins) and are arranged in asymmetric grids. The studio does not use illustrations, icons (except a single 2×2 expand glyph in the nav), or 3D renders of their own. Color treatment is natural and unmanipulated, with the exception of one image (the red-dot grid) that doubles as a brand reference.",
+    "similar": [
+      {
+        "why": "Same full-bleed dark canvas approach, generous vertical breathing room between sections, and a portfolio-first grid where project photography carries visual weight with zero chrome",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Shared Scandinavian agency restraint — left-aligned typographic columns, hairline dividers, and project showcases that let oversized photography dominate without competing UI",
+        "business": "Snøhetta (snohetta.com)"
+      },
+      {
+        "why": "Same zero-radius, dark-canvas, single-accent-color discipline; both use a vivid color as a single punctuation mark inside an otherwise monochrome portfolio grid",
+        "business": "Manual (manual.to)"
+      },
+      {
+        "why": "Same project-tile-as-art-object treatment — each work is its own bordered image without padding or decoration, arranged in a grid that reads as a wall rather than a list",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Shared obsession with type-as-architecture — large display sizes at whisper weights, tight negative letter-spacing, and a willingness to let one oversized word fill a panel",
+        "business": "& Studio Cheha (studiocheha.com) \"\""
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "120px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas Black",
+        "level": 0,
+        "purpose": "Full-bleed page background across all sections"
+      },
+      {
+        "hex": "#101010",
+        "name": "Soft Black",
+        "level": 1,
+        "purpose": "Rare slightly-elevated card or panel that breaks the void by 1-2% lightness"
+      },
+      {
+        "hex": "#484848",
+        "name": "Graphite Line",
+        "level": 2,
+        "purpose": "Hairline divider between footer blocks and major section breaks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "darkened gallery with scarlet punctuation — a black-walled portfolio room where white type floats and one red whisper cuts through the silence.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide persistent header",
+        "description": "Full-bleed #000000 bar, ~48px tall, 16px horizontal padding. Three zones: left = 'Studio Oker' wordmark in NextBook 16px #ffffff; center = timestamp/date in NextBook 16px #a0a0a0 ('2758.22.57:55'); right = nav links (Work, Feed, Studio, Contact) in NextBook 16px #ffffff with 16px gaps, followed by a 2×2 grid expand icon. No background fill beyond black, no border-bottom — the bar blends into the canvas."
+      },
+      {
+        "name": "Project Tile Card",
+        "role": "Grid cell in the work showcase",
+        "description": "Aspect-ratio-locked tile (varies per tile, appears ~1:1, ~3:4, and ~4:3) with 0px radius. Content is either a brand mark on white (#ffffff background, black logo) or a full-bleed photograph. Tiles are separated by 16px gutters on a #000000 canvas. No border, no shadow, no padding — the edge of the photograph IS the edge of the card."
+      },
+      {
+        "name": "Full-Bleed Red Panel",
+        "role": "Hero-scale statement tile (e.g. 'Think Big.')",
+        "description": "Single tile spanning roughly one full grid column at large height, #000000 background, displaying oversized type in #e4002b. The text is NextBook weight 300, approximately 120–160px, set tight. A small red dot (●) followed by 'Read more' in NextBook 400 16px #ffffff sits at the bottom-left with 16px padding. This is the system's only place where color shouts."
+      },
+      {
+        "name": "Brand Color Swatch Panel",
+        "role": "A literal brand-system reveal inside a project tile",
+        "description": "One tile is dedicated to a 6-stop pink-to-black gradient (#f5a5a5 → #e85a5a → #d42020 → #7a0a0a → #2a0606 → #000000), split into vertical bars of equal width. The tile IS the gradient — no labels, no copy. Functions as a self-portrait of the brand's color DNA."
+      },
+      {
+        "name": "Typography Specimen Tile",
+        "role": "A client's font system displayed inside a project card",
+        "description": "White (#f5f5f5 or #ffffff) tile containing 'Circular Std' and 'Book Bold' labels in small caps, followed by 'AaBbCc' and '1234' in large display sizes. Used to show a brand's typographic identity at a glance. Zero radius, tight margins."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Top-of-section title for Feed, Studio, etc.",
+        "description": "Left-aligned, NextBook weight 300 or 400, 80px, line-height 1.0, letter-spacing -1.6px, #ffffff on #000000. Sits with 120px margin-bottom to its content. The size commands the room; the weight keeps it from shouting."
+      },
+      {
+        "name": "Studio Stat Block",
+        "role": "Compact label/value pairs in the About/Studio section",
+        "description": "Two-column layout. Labels ('Established', 'Location', 'Employees', 'Clients') in NextBook 400 16px #a0a0a0. Values ('2018.08.05', 'Stavanger, Norway', '11', '66') in NextBook 400 16px #ffffff directly below, no gap. No borders, no boxes — typography does the structuring."
+      },
+      {
+        "name": "Services List",
+        "role": "Vertical list of service offerings",
+        "description": "Plain stack of strings — 'Brand strategy', 'Brand design', 'Digital experiences', 'Motion design', 'Spatial design' — each in NextBook 400 16px #ffffff with no bullets, no leading characters, line-height 1.25. Functions as raw copy, not a styled list."
+      },
+      {
+        "name": "Project Showcase Card (Feed)",
+        "role": "Large format work card with image + caption",
+        "description": "Full-width or half-width block, #000000 background, 0px radius. Image fills the upper portion (no padding, edge-to-edge). Below the image: client name in NextBook 400 ~24px #ffffff, then a short project description in NextBook 400 16px #a0a0a0, then a list of disciplines in 16px #a0a0a0. Caption block has ~16px padding. No border, no shadow — the photograph defines the card's boundary."
+      },
+      {
+        "name": "Link with Red Dot",
+        "role": "Standalone call-to-action / read-more affordance",
+        "description": "A 6px #e4002b circle followed by 16px text in NextBook 400 #ffffff. The dot is the only color element; the text is the only typographic element. No underline, no padding, no border — the dot does the work of a button without a button shape."
+      },
+      {
+        "name": "Footer",
+        "role": "Page-bottom site info",
+        "description": "#000000 background, 16px padding, 1px top border in #484848. Content in NextBook 400 16px #a0a0a0 (or #ffffff for the 'Studio Oker' mark). Minimal, quiet, no CTAs."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The studio's own custom display and text face. Weight 300 whispers in section headings and 80px display; weight 400 carries body, labels, and nav. Used across every context — hero, body, heading, link, list, icon, footer.",
+        "sizes": "16px, 24px, 32px, 80px",
+        "family": "NextBook",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.13, 1.25",
+        "substitute": "Söhne (Klim Type Foundry) or Inter as a free alternative — both share the same humanist-geometric balance and tight tracking behavior",
+        "letterSpacing": "-0.01em to -0.02em — tighter as size grows (16px uses -0.01em, 32–80px use -0.02em)"
+      },
+      {
+        "role": "Referenced inside project case studies (the 'AaBbCc 1234' specimen tile) as a client font example — not part of Studio Oker's own UI system",
+        "sizes": "specimen display sizes only",
+        "family": "Circular Std",
+        "weight": "Book, Bold",
+        "lineHeight": "1.0",
+        "substitute": "Inter or Manrope"
+      }
+    ],
+    "description": "Studio Oker presents a darkened gallery aesthetic where pure black canvases frame white typography and project showcases with monastic restraint. The system speaks through negative space — generous 120–264px section breaks, hairline borders, and tight letter-spacing that pulls type into whisper-thin compositions. A single vivid scarlet acts as punctuation rather than decoration, surfacing only in project-specific contexts and a single 'Think Big' hero moment. Photography dominates the surface, displayed in asymmetric tile grids that let the work carry visual weight without decorative chrome. The rhythm is slow, considered, and confident — a portfolio that trusts silence over spectacle and treats every margin as a deliberate composition choice.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\\n- text: #ffffff\\n- secondary text: #a0a0a0\\n- background: #000000\\n- border / divider: #a0a0a0 or #484848\\n- accent (scarce): #e4002b\\n- primary action: no distinct CTA color"
+      },
+      {
+        "title": "Negative Space Philosophy",
+        "content": "The 120px / 240px / 264px margin values are not arbitrary — they are the system's primary structural tool. Every section break uses one of these to create deliberate pauses. The 264px side margin (the widest observed) is reserved for the most important content blocks (large project showcases, the About columns). The 240px vertical break is used between major page sections. The 120px margin is the standard within-section gap. Designers should treat these values as the rhythm of the page — collapsing them flattens the composition, exceeding them turns the page into a cemetery of voids."
+      },
+      {
+        "title": "Color Rationing",
+        "content": "The system operates on a strict color ration: ~95% achromatic, ~5% scarlet. The scarlet (#e4002b) is rationed like ink — one drop per screen at most. When multiple elements compete for attention, the system defaults to more black, more negative space, smaller type, thinner weights — never to more color. The rose gradient swatch panel is the ONE exception: it exists precisely to spend the color budget in a single deliberate burst, which makes every other use of red feel earned."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is replaced by the void. The design treats the pure black canvas itself as the lowest surface and refuses to add shadows, glows, or tonal lifts — cards and tiles sit on the same plane as the page, distinguished only by the content (image, type, color) they contain. When separation is needed, a single hairline border at #484848 or #a0a0a0 is used. This is a deliberate anti-skeuomorphic stance: the page behaves like a gallery wall, not a stack of cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "hero",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 850,
+          "confidence": 1,
+          "prominence": 73731815.19042078,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 20,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 19,
+            "list/color": 22,
+            "other/fill": 3,
+            "other/color": 87,
+            "footer/color": 1,
+            "heading/color": 19,
+            "body/borderColor": 80,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 76,
+            "list/borderColor": 88,
+            "other/borderColor": 344,
+            "heading/borderColor": 76
+          }
+        },
+        {
+          "hex": "#a0a0a0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7057570122420298
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "body",
+            "icon"
+          ],
+          "frequency": 815,
+          "confidence": 1,
+          "prominence": 11636633.773441672,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 17,
+            "icon/color": 12,
+            "link/color": 17,
+            "image/color": 21,
+            "other/color": 96,
+            "body/borderColor": 68,
+            "icon/borderColor": 48,
+            "link/borderColor": 68,
+            "image/borderColor": 84,
+            "other/borderColor": 384
+          }
+        },
+        {
+          "hex": "#484848",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4016665194169638
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 4065428.8143497654,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 4425.654369164659,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 277.5329788605819,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 12
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#ffffff",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#ffffff",
+          "foreground": "#484848"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.03,
+          "background": "#000000",
+          "foreground": "#a0a0a0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.28,
+          "background": "#a0a0a0",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.5,
+          "background": "#a0a0a0",
+          "foreground": "#484848"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|image",
+            "paddingLeft|other",
+            "paddingRight|image",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "body",
+            "footer"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|other",
+            "marginLeft|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "paddingLeft|list",
+            "marginRight|list",
+            "paddingTop|body",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 264,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NextBookRegular",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 330,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NextBookLight",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "NextBookRegular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "hero",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 297,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NextBookRegular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NextBookLight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "NextBookRegular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "NextBookRegular",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "NextBookLight",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c5ce3ddb-8d17-489d-95a9-697f6844af1a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e21cda26-e911-4df5-8872-c64085d42c0e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Oker design system\",\"item\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de#style-reference\",\"name\":\"Studio Oker design system reference\",\"headline\":\"Studio Oker design system | Refero Styles\",\"description\":\"Explore Studio Oker's dark Agency design system: Pure Black #000000, Soft Black #101010 colors, NextBook, Circular Std typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Studio Oker\",\"url\":\"https://oker.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e045b276-ae8d-442e-98de-fa8650e284de#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e21cda26-e911-4df5-8872-c64085d42c0e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e21cda26-e911-4df5-8872-c64085d42c0e.jpg\",\"caption\":\"Screenshot of Studio Oker\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e21cda26-e911-4df5-8872-c64085d42c0e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Studio Oker design system\",\"Studio Oker website design\",\"Studio Oker colors\",\"Studio Oker typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure Black\",\"Soft Black\",\"Bone White\",\"Fog Gray\",\"NextBook\",\"Circular Std\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Studio Oker design system\"},{\"@type\":\"Thing\",\"name\":\"Studio Oker website design\"},{\"@type\":\"Thing\",\"name\":\"Studio Oker colors\"},{\"@type\":\"Thing\",\"name\":\"Studio Oker typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:58:18.049Z\",\"dateModified\":\"2026-04-30T02:58:18.049Z\"}]}"
+}

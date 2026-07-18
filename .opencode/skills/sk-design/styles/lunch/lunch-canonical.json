@@ -1,0 +1,740 @@
+{
+  "source": "https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677",
+  "uuid": "cd3fbf9d-8d35-411b-9e69-89a03018b677",
+  "name": "LUNCH",
+  "northStar": "velvet runway on warm parchment",
+  "capturedAt": "2026-07-18T08:22:20.358Z",
+  "meta": {
+    "url": "https://lunchconcept.com",
+    "siteName": "LUNCH",
+    "extractedAt": "2026-06-03T17:26:11.337Z",
+    "durationMs": 32307,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 568,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the four-token palette: #000000 for all text and lines, #f4f1e4 for content backgrounds, #fcfaf1 for the hero-context UI and surface variant, #b8aad0 for the brand whisper (announcement, footer, Sold Out).",
+      "Set all text in Good Sans; reach for weight (400 vs 700) for hierarchy before increasing size.",
+      "Make interactive elements text links with 1px underlines, not filled buttons — this is a text-driven interface, not a button-driven one.",
+      "Let product and editorial photography be the visual weight; the UI is a frame, not a performer.",
+      "Use the hero wordmark as the single moment of typographic spectacle — one large Redaction instance per page, nothing else at display scale.",
+      "Pair dark full-bleed photography with Warm Parchment product sections to create the editorial rhythm.",
+      "Keep card and image edges sharp (0px radius everywhere) — the system relies on flush, gallery-style composition."
+    ],
+    "donts": [
+      "Don't introduce filled buttons, pill shapes, or rounded corners — the system is 0px radius across all components.",
+      "Don't use #b8aad0 as a CTA background or call-to-action fill — it is a brand whisper for the announcement bar, footer, and 'Sold Out' state only.",
+      "Don't add gradients, drop shadows, or glassmorphism — the system uses flat surfaces and photographic depth.",
+      "Don't scale body text above 32px outside the hero wordmark — Good Sans is a workhorse, not a display face.",
+      "Don't place colored borders or chromatic UI elements; all structural lines are #000000.",
+      "Don't split the brand color into light/dark variants — Lilac Veil is one flat tone, used as a punctuation mark.",
+      "Don't add decorative iconography, badges, or UI ornamentation — the product photography and wordmark are the only visual performers."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#b8aad0",
+        "name": "Lilac Veil",
+        "role": "Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All body text, navigation text, link borders, card borders, and badge borders — the structural linework of the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f1e4",
+        "name": "Warm Parchment",
+        "role": "Page and section backgrounds in the editorial/product area — the calm canvas against which the product photography sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfaf1",
+        "name": "Ivory Mist",
+        "role": "Navigation text color over the dark hero, subtle surface variant and hairline borders — a warmer alternative to pure white for the dark-section UI",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1280px centered for the content sections; the hero is full-bleed edge-to-edge. The page rhythm is: full-bleed dark hero (viewport height) → centered text intro on Warm Parchment → 4-5 column product grid on the same parchment → Lilac Veil footer band. Navigation sits as a thin text bar over the hero (light text on dark) and above the intro (dark text on light). The product grid is a tight 5px-gutter flush layout with no card padding or visual separation between images. The intro section is a narrow centered column (~600-700px) with generous vertical breathing room (60-80px) above and below. Overall density: spacious in the editorial sections, compressed in the product grid.",
+    "imagery": "Editorial fashion photography dominates: full-bleed dark, high-contrast model imagery for the hero (moody studio lighting, avant-garde styling — red leather corset, tartan, dramatic poses) and clean product/lookbook shots on flat neutral backgrounds for the grid (models and items photographed against light gray/white with no lifestyle context). Images are sharp-edged, zero radius, and sit flush against adjacent images in the grid. The hero image bleeds to all four edges of the viewport with the 3D chrome wordmark overlapping the subject. Product grid images maintain consistent height-to-width ratios across the row. No illustrations, no icons beyond minimal text-based navigation. The visual language is: shoot it well, frame it tight, let the photography carry the brand.",
+    "similar": [
+      {
+        "why": "Same dramatic full-bleed dark editorial hero with oversized brand wordmark, followed by a restrained monochrome product grid",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Fashion concept-store identity with sharp-edged product photography on warm neutral backgrounds and text-link-only navigation",
+        "business": "Farfetch"
+      },
+      {
+        "why": "Concept-store editorial language: one bold typographic or photographic moment at the top, then quiet product cataloging",
+        "business": "Dover Street Market"
+      },
+      {
+        "why": "Warm parchment/ivory surfaces with black text, zero-radius flush product imagery, and minimal sans-serif typography",
+        "business": "Toteme"
+      },
+      {
+        "why": "Curated independent-designer store with text-link navigation, single-accent status indicators, and gallery-style product grids",
+        "business": "Need Supply Co."
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20-30px",
+      "sectionGap": "60-80px",
+      "cardPadding": "",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f4f1e4",
+        "name": "Editorial Canvas",
+        "level": 0,
+        "purpose": "Page background for the intro, product grid, and all post-hero content"
+      },
+      {
+        "hex": "#000000",
+        "name": "Hero Void",
+        "level": 1,
+        "purpose": "Full-bleed dark backdrop for the opening photographic spread and overlaid wordmark"
+      },
+      {
+        "hex": "#b8aad0",
+        "name": "Brand Whisper",
+        "level": 2,
+        "purpose": "Announcement bar and footer — punctuation strips of lilac that bookend the content"
+      }
+    ],
+    "northStar": "velvet runway on warm parchment",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.08
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.144
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide top message strip",
+        "description": "Full-width #b8aad0 background, centered #000000 text at 12-16px Good Sans regular, line-height 1.8. No padding above/below — the color band itself is the container. Typically a single sentence about store status or thanks."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site header navigation",
+        "description": "Horizontal text-only link bar: LUNCH CONCEPT (left, weight 700), then ABOUT, SHOP, JOURNAL, SEARCH spaced across the right. Text in #fcfaf1 over the dark hero, switching to #000000 over light sections. No background, no borders, no icons. Gap between items approximately 20-30px."
+      },
+      {
+        "name": "Hero with 3D Wordmark",
+        "role": "Full-bleed opening viewport",
+        "description": "Full-viewport-width photographic image (model, product, or editorial scene) with the brand wordmark rendered as oversized 3D metallic/chrome text overlaid across the full width. The wordmark uses Redaction at 72px but with 3D extrusion and reflective material treatment. Text spans edge-to-edge, partially intersecting the subject."
+      },
+      {
+        "name": "Intro Text Block",
+        "role": "Brand statement / about paragraph",
+        "description": "Centered paragraph on Warm Parchment (#f4f1e4) background, max-width approximately 600-700px. Body text at 16px Good Sans regular, line-height 1.8. Followed by a centered underlined 'Find Out More' link in 12px uppercase."
+      },
+      {
+        "name": "Text Link (Underline)",
+        "role": "Primary interactive element",
+        "description": "12-16px Good Sans, weight 400, #000000, with a 1px #000000 underline offset 2-4px below the baseline. No fill, no border, no radius. Uppercase for navigational links (FIND OUT MORE), mixed case for inline links (Learn more)."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid item in the product gallery",
+        "description": "Zero radius. Product/lookbook image at native proportions on a flat #fcfaf1 or white panel. Below the image: brand name in 12px Good Sans bold (#000000), product name in 12px regular, price in 12px bold, followed by 'Sold Out' in 12px Lilac Veil (#b8aad0) when unavailable. No card border, no shadow, no padding wrapper — the image IS the card."
+      },
+      {
+        "name": "Product Grid",
+        "role": "Gallery layout for products and editorial looks",
+        "description": "4-5 column grid, gap approximately 5px between columns. Images are flush — no gutters, no padding between cards. The grid flows full-width up to the page max-width of ~1280px."
+      },
+      {
+        "name": "Sold Out Status",
+        "role": "Availability indicator on product cards",
+        "description": "Inline text 'Sold Out' in 12px Good Sans, color #b8aad0 (Lilac Veil). Appears immediately after the price. No background, no badge shape, no border — it is text colored with the brand accent."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "Bottom-right utility notice",
+        "description": "Small white card with black text, positioned bottom-right corner. Body text at 12px with a 'Learn more.' underlined link. Minimal close affordance."
+      },
+      {
+        "name": "Footer Band",
+        "role": "Page-close branding strip",
+        "description": "Full-width #b8aad0 (Lilac Veil) background, likely with centered navigation or brand text in #000000. Mirrors the announcement bar to bookend the page with the brand color."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole workhorse typeface for navigation, body copy, product metadata, links, and all UI text. The dual-weight system (regular 400 for body/labels, bold 700 for brand names, prices, and emphasis) creates hierarchy without size escalation. The near-zero positive letter-spacing keeps it editorial rather than geometric.",
+        "sizes": "12px, 16px, 24px, 32px",
+        "family": "Good Sans",
+        "weight": "400, 700",
+        "lineHeight": "1.00 (nav), 1.80 (body)",
+        "substitute": "Söhne, Inter, or Untitled Sans",
+        "letterSpacing": "0.0050em to 0.0130em, increasing slightly at larger sizes"
+      },
+      {
+        "role": "Hero wordmark only — a custom display face for the 'LUNCH' 3D chrome text that anchors the full-bleed hero. Used exactly once per page; this is the typographic signature, not a reusable component.",
+        "sizes": "72px",
+        "family": "Redaction",
+        "weight": "700",
+        "lineHeight": "1.80",
+        "substitute": "GT Sectra Display Bold, Domaine Display Bold, or Editorial New Bold",
+        "letterSpacing": "0.0020em"
+      }
+    ],
+    "description": "LUNCH CONCEPT reads as a printed fashion editorial dropped onto the web: one full-bleed dark photographic hero where the brand wordmark appears as oversized 3D chrome text, followed by a calm, catalog-like product gallery on warm parchment. The page alternates between cinematic confrontation and quiet restraint — the hero assaults, the body section whispers. A single muted lavender surfaces only on the announcement bar, the 'Sold Out' state, and the footer, acting as a brand period rather than a shout. Typography is overwhelmingly one custom sans-serif (Good Sans) at modest sizes, with the hero wordmark as the singular moment of typographic spectacle. Interaction is text-link only: no filled buttons, no gradients, no decorative chrome beyond the hero's 3D logotype.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"LUNCH design system\",\"item\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#style-reference\",\"name\":\"LUNCH design system reference\",\"headline\":\"LUNCH design system | Refero Styles\",\"description\":\"Explore LUNCH's mixed E-commerce design system: Lilac Veil #b8aad0, Ink Black #000000 colors, Good Sans, Redaction typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"LUNCH\",\"url\":\"https://lunchconcept.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"caption\":\"Screenshot of LUNCH\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"LUNCH design system\",\"LUNCH website design\",\"LUNCH colors\",\"LUNCH typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Lilac Veil\",\"Ink Black\",\"Warm Parchment\",\"Ivory Mist\",\"Good Sans\",\"Redaction\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"LUNCH design system\"},{\"@type\":\"Thing\",\"name\":\"LUNCH website design\"},{\"@type\":\"Thing\",\"name\":\"LUNCH colors\"},{\"@type\":\"Thing\",\"name\":\"LUNCH typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:06:06.444Z\",\"dateModified\":\"2026-04-30T03:06:06.444Z\"}]}19:T4f7,## Quick Color Reference\n- text: #000000\n- background: #f4f1e4\n- surface variant: #fcfaf1\n- border: #000000\n- accent: #b8aad0 (Lilac Veil — announcement bar, footer, Sold Out only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Announcement Bar**: Full-width #b8aad0 background strip, 12-16px Good Sans regular #000000 text, centered, single line. No padding wrapper, no border.\n\n2. **Product Card**: Flush image (zero radius) on #fcfaf1 panel. Below: brand name 12px Good Sans weight 700 #000000, product name 12px weight 400 #000000, price 12px weight 700 #000000. If sold out, append 'Sold Out' in 12px #b8aad0.\n\n3. **Hero Wordmark**: Full-bleed dark photograph filling the viewport. Overlaid across the full width: the word 'LUNCH' in 72px Redaction weight 700 with 3D metallic chrome material treatment, partially intersecting the photographic subject.\n\n4. **Text Link**: 12px Good Sans weight 400 #000000 with 1px #000000 underline offset 4px from baseline. No background, no border, no radius. Uppercase for navigational links.\n\n5. **Intro Text Block**: Centered column, max-width 640px, on #f4f1e4 background. 16px Good Sans regular #000000, line-height 1.8. Followed by 'FIND OUT MORE' centered text link 12px uppercase underlined."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "image",
+            "icon",
+            "card",
+            "hero",
+            "body",
+            "list",
+            "badge",
+            "heading",
+            "footer"
+          ],
+          "frequency": 2635,
+          "confidence": 1,
+          "prominence": 68245867.42554967,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 153,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 180,
+            "list/color": 14,
+            "badge/color": 60,
+            "image/color": 33,
+            "other/color": 47,
+            "footer/color": 1,
+            "heading/color": 34,
+            "nav/borderColor": 8,
+            "body/borderColor": 612,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 720,
+            "list/borderColor": 56,
+            "badge/borderColor": 240,
+            "image/borderColor": 132,
+            "other/borderColor": 188,
+            "footer/borderColor": 4,
+            "heading/borderColor": 136
+          }
+        },
+        {
+          "hex": "#b8aad0",
+          "oklch": {
+            "c": 0.05566610894540879,
+            "h": 301.8891566175173,
+            "l": 0.7623653413225412
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1601485.734791174,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcfaf1",
+          "oklch": {
+            "c": 0.01204139313469316,
+            "h": 96.41893734485615,
+            "l": 0.9841783419152449
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 509717.3488639179,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "nav/borderColor": 44
+          }
+        },
+        {
+          "hex": "#f4f1e4",
+          "oklch": {
+            "c": 0.017496022145446453,
+            "h": 96.10540938423658,
+            "l": 0.9569354181791894
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 295777.77707207855,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 6999.537382927351,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 30,
+            "body/borderColor": 120
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03750056682194279,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.08,
+          "background": "#fcfaf1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.55,
+          "background": "#f4f1e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.7,
+          "background": "#b8aad0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#f4f1e4",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.07,
+          "background": "#b8aad0",
+          "foreground": "#fcfaf1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.85,
+          "background": "#b8aad0",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f4f1e4",
+          "foreground": "#fcfaf1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 30,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|icon",
+            "paddingRight|icon",
+            "paddingBottom|icon",
+            "paddingLeft|icon"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "list",
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "footer",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "link",
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Good Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 567,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Redaction",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "image",
+            "icon",
+            "card",
+            "hero",
+            "list",
+            "badge",
+            "body",
+            "footer"
+          ],
+          "frequency": 490,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Good Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Good Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Good Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.007,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Good Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Redaction",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.002,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3658a9c5-9b78-4110-8c53-3e30e242843a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"LUNCH design system\",\"item\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#style-reference\",\"name\":\"LUNCH design system reference\",\"headline\":\"LUNCH design system | Refero Styles\",\"description\":\"Explore LUNCH's mixed E-commerce design system: Lilac Veil #b8aad0, Ink Black #000000 colors, Good Sans, Redaction typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"LUNCH\",\"url\":\"https://lunchconcept.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cd3fbf9d-8d35-411b-9e69-89a03018b677#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"caption\":\"Screenshot of LUNCH\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dd38725e-82e9-4cc0-948f-58ed1d0382a9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"LUNCH design system\",\"LUNCH website design\",\"LUNCH colors\",\"LUNCH typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Lilac Veil\",\"Ink Black\",\"Warm Parchment\",\"Ivory Mist\",\"Good Sans\",\"Redaction\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"LUNCH design system\"},{\"@type\":\"Thing\",\"name\":\"LUNCH website design\"},{\"@type\":\"Thing\",\"name\":\"LUNCH colors\"},{\"@type\":\"Thing\",\"name\":\"LUNCH typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:06:06.444Z\",\"dateModified\":\"2026-04-30T03:06:06.444Z\"}]}19:T4f7,## Quick Color Reference\n- text: #000000\n- background: #f4f1e4\n- surface variant: #fcfaf1\n- border: #000000\n- accent: #b8aad0 (Lilac Veil — announcement bar, footer, Sold Out only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Announcement Bar**: Full-width #b8aad0 background strip, 12-16px Good Sans regular #000000 text, centered, single line. No padding wrapper, no border.\n\n2. **Product Card**: Flush image (zero radius) on #fcfaf1 panel. Below: brand name 12px Good Sans weight 700 #000000, product name 12px weight 400 #000000, price 12px weight 700 #000000. If sold out, append 'Sold Out' in 12px #b8aad0.\n\n3. **Hero Wordmark**: Full-bleed dark photograph filling the viewport. Overlaid across the full width: the word 'LUNCH' in 72px Redaction weight 700 with 3D metallic chrome material treatment, partially intersecting the photographic subject.\n\n4. **Text Link**: 12px Good Sans weight 400 #000000 with 1px #000000 underline offset 4px from baseline. No background, no border, no radius. Uppercase for navigational links.\n\n5. **Intro Text Block**: Centered column, max-width 640px, on #f4f1e4 background. 16px Good Sans regular #000000, line-height 1.8. Followed by 'FIND OUT MORE' centered text link 12px uppercase underlined."
+}

@@ -1,0 +1,509 @@
+{
+  "color": {
+    "manuscript-cream": {
+      "$value": "#f9f9f7",
+      "$type": "color",
+      "$description": "Manuscript Cream — Page canvas, card surfaces, button text on dark — warm off-white that reads as paper rather than screen"
+    },
+    "press-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Press Black — All borders, body text, headings, icon strokes — the single ink that draws the entire structural system"
+    },
+    "sage-border": {
+      "$value": "#d2ddd2",
+      "$type": "color",
+      "$description": "Sage Border — Secondary card and button borders where a softer hairline is needed — desaturated green-gray"
+    },
+    "mist-green": {
+      "$value": "#dee5dd",
+      "$type": "color",
+      "$description": "Mist Green — Icon strokes and fills, button borders on tertiary controls — barely-there gray-green for subordinate elements"
+    },
+    "paper-shadow": {
+      "$value": "#edf0e9",
+      "$type": "color",
+      "$description": "Paper Shadow — Button fill for neutral or disabled states — warm gray-green, almost a shadow of the cream canvas"
+    },
+    "smoke": {
+      "$value": "#c7c7c6",
+      "$type": "color",
+      "$description": "Smoke — The only shadow tone used — rgba(0,0,0,0.2) modulated to a neutral mid-gray for the single soft button shadow"
+    },
+    "highlighter-lime": {
+      "$value": "#edfe5e",
+      "$type": "color",
+      "$description": "Highlighter Lime — Primary accent fill on cards, tags, and featured swatches — electric yellow-green that reads as a marker pen swiped across the page"
+    },
+    "cornflower-wash": {
+      "$value": "#bed4fb",
+      "$type": "color",
+      "$description": "Cornflower Wash — Secondary accent fill on cards, category chips, and illustration swatches — dusty cornflower blue that cools the palette without darkening it"
+    },
+    "spring-green": {
+      "$value": "#31e992",
+      "$type": "color",
+      "$description": "Spring Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "abcarizonasans": {
+      "$value": "ABCArizonaSans",
+      "$type": "fontFamily",
+      "$description": "Body, UI controls, navigation, captions, links, footer — the workhorse grotesque for everything that isn't a heading"
+    },
+    "abcarizonaflare": {
+      "$value": "ABCArizonaFlare",
+      "$type": "fontFamily",
+      "$description": "Section and card headings — flared terminals and light weights create editorial authority; weight 300 at 57px is a deliberate whisper that trusts the reader to lean in"
+    },
+    "abccameraheavy": {
+      "$value": "ABCCameraHeavy",
+      "$type": "fontFamily",
+      "$description": "Hero and display headings — extremely tight leading (0.74) stacks letters into dense editorial blocks; this is the loudest voice on the page and is used sparingly"
+    },
+    "abcarizonamixvariable": {
+      "$value": "ABCArizonaMixVariable",
+      "$type": "fontFamily",
+      "$description": "Subheadings and inline labels — sits between body and section heading, bridging the grotesque to the display faces"
+    },
+    "abcarizonasansvariable": {
+      "$value": "ABCArizonaSansVariable",
+      "$type": "fontFamily",
+      "$description": "ABCArizonaSansVariable — detected in extracted data but not described by AI"
+    },
+    "abcarizonatext": {
+      "$value": "ABCArizonaText",
+      "$type": "fontFamily",
+      "$description": "ABCArizonaText — detected in extracted data but not described by AI"
+    },
+    "abcarizonamix": {
+      "$value": "ABCArizonaMix",
+      "$type": "fontFamily",
+      "$description": "ABCArizonaMix — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 15px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 15px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABCArizonaSansVariable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABCArizonaSans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABCArizonaText",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABCArizonaMixVariable",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABCArizonaMix",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCArizonaFlare-Regular",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABCArizonaFlare-Regular",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ABCArizonaFlare-Regular",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCArizonaFlare-Regular",
+        "fontSize": "57px",
+        "fontWeight": 300,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 57px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABCCamera-Heavy",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABCCamera-Heavy",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABCCamera-Heavy",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 68px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "170": {
+      "$value": "170px",
+      "$type": "dimension",
+      "$description": "Spacing 170px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 2px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f9f9f7",
+      "$type": "color",
+      "$description": "Surface level 0: Warm cream paper background for the entire site"
+    },
+    "card-surface": {
+      "$value": "#f9f9f7",
+      "$type": "color",
+      "$description": "Surface level 1: Default card fill — same as canvas, so cards are defined purely by their black border"
+    },
+    "accent-card-surface": {
+      "$value": "#edfe5",
+      "$type": "color",
+      "$description": "Surface level 2: Featured or highlighted cards use the highlighter lime fill"
+    },
+    "cool-accent-surface": {
+      "$value": "#bed4fb",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary featured cards use the cornflower wash"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://switch-lit.com",
+      "siteName": "Switch-Lit",
+      "extractedAt": "2026-06-03T21:15:29.096Z",
+      "variant": "extended"
+    }
+  }
+}

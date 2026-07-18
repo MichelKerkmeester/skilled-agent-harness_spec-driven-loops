@@ -1,0 +1,1964 @@
+{
+  "source": "https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87",
+  "uuid": "f22f1195-837d-4b1d-a48c-9123b122bf87",
+  "name": "Kindsight",
+  "northStar": "Sunlit field journal at dusk — an earthy, editorial calm built from cream paper, olive ink, and a single flash of chartreuse highlight.\n\nKindsight feels like a sustainably-printed nonprofit annual report: warm cream backgrounds, near-black text with a green undertone, a deep olive hero panel, and terracotta as the only shout. The single chartreuse accent is used sparingly — as underline punctuation on italic display words, badge fills, and illustrative highlights — never as a functional color. Display type in Times Now at weights 200-300 with tight tracking reads like editorial cover typography, not SaaS headlines.",
+  "capturedAt": "2026-07-18T09:22:46.141Z",
+  "meta": {
+    "url": "https://kindsight.io",
+    "siteName": "Kindsight",
+    "extractedAt": "2026-06-03T19:56:07.105Z",
+    "durationMs": 35942,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 406,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Times Now at weights 200-300 for all display and hero headlines — never go above weight 400 for serif type",
+      "Set hero display headlines at 80-120px with line-height below 0.90 and letter-spacing between -0.034em and -0.064em to achieve the compressed editorial look",
+      "Underline exactly one italicized word per hero headline with a hand-drawn chartreuse (#e1f079) stroke — this is the brand's most recognizable gesture",
+      "Use terracotta (#de7653) filled buttons as the sole primary CTA — never substitute another color for the filled action button",
+      "Let the cream canvas (#faf5f1) breathe — maintain 80-120px section gaps and avoid stacking more than two surface levels per viewport",
+      "Use Founders Grotesk weight 400 at 16px as the default body text with line-height 1.40 and letter-spacing -0.008em",
+      "Reserve chartreuse (#e1f079) for decorative emphasis — underlines, badges, illustration fills, ghost buttons — never as text color on cream or as a functional state indicator"
+    ],
+    "donts": [
+      "Never use chartreuse (#e1f079) as a text color for body copy or paragraphs — it fails contrast on cream and is too loud for sustained reading",
+      "Do not add drop shadows to content cards or section blocks — depth comes from tonal contrast between cream, linen, and olive surfaces only",
+      "Never use a sans-serif font for display headlines or hero copy — Times Now or an equivalent editorial serif is non-negotiable for brand identity",
+      "Do not exceed weight 400 in Times Now for any text — the whisper-weight aesthetic (200-300) is the signature; heavier weights break the editorial feel",
+      "Avoid placing terracotta (#de7653) on the dark olive hero background — use the outline ghost button or chartreuse highlight there instead",
+      "Do not use blue or any cool-toned accent — the entire palette is warm (cream, olive, terracotta, chartreuse); introducing cool colors breaks the earthy brand atmosphere",
+      "Never center-align body paragraphs — only display headlines and the logo trust bar may be centered; body text and UI labels are always left-aligned"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#faf5f1",
+        "name": "Cream Paper",
+        "role": "Page background, nav surface, warm canvas base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fefffa",
+        "name": "Soft Linen",
+        "role": "Card surface, slightly brighter than canvas for subtle elevation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0f0a",
+        "name": "Ink Black",
+        "role": "Primary text, borders, icons — near-black with a subtle green undertone that warms the entire palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Midnight Black",
+        "role": "Body text fallback, secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Button text on filled terracotta, pure white highlights",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e1d6",
+        "name": "Warm Sand",
+        "role": "Muted section dividers, secondary card backgrounds, beige illustration fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d4128",
+        "name": "Olive Grove",
+        "role": "Hero panel background, dark accent surface — earthy green-black anchors the brand and gives the chartreuse somewhere to glow",
+        "group": "brand"
+      },
+      {
+        "hex": "#e1f079",
+        "name": "Chartreuse Spark",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "accent"
+      },
+      {
+        "hex": "#de7653",
+        "name": "Terracotta CTA",
+        "role": "Orange action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#e7573d",
+        "name": "Coral Outline",
+        "role": "Outlined/ghost CTA variant, secondary action borders — a deeper, redder cousin of terracotta for outlined button treatment",
+        "group": "brand"
+      },
+      {
+        "hex": "#24280f",
+        "name": "Deep Olive",
+        "role": "Input field text, deepest green-black for hairline borders on dark surfaces",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Kindsight uses a max-width 1200px centered content column with generous outer padding. The hero is full-bleed dark olive with a 2-column split: oversized Times Now headline left (40-50% width), layered product mockup right (50-60% width). Below the hero, sections alternate between cream canvas and occasional warm-sand (#e5e1d6) blocks. Feature sections follow a consistent 2-column pattern: photographic image or product screenshot left, headline + body text right, with the image slightly overlapping the section boundary to create visual flow. The logo trust bar is centered, single row, generous vertical padding. Navigation is a clean top bar with no sticky behavior evident — cream background, hairline bottom border, logo left, links center, two buttons right. The overall density is spacious: 80-120px between major sections, 40px card padding, 12-24px element gaps within cards.",
+    "imagery": "Photography is warm-toned, candid portraiture — people of diverse backgrounds photographed in natural light, looking at screens or in conversation. No corporate headshots, no staged stock imagery. Photos are treated with warm color grading that matches the cream/olive palette. The hero product visualization is a layered UI mockup: overlapping dashboard cards with charts, profile cards with circular score gauges, and notification badges — all rendered in the brand's own chartreuse and terracotta palette. Illustration appears in promotional sections (KindFest banner) as flat, slightly retro graphic elements: acoustic guitars, cowboy boots, music notes, sun motifs in a limited palette of terracotta, olive, and cream. Icons are minimal and line-based, drawn in Founders Grotesk geometric style at thin weights.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas with dark near-black text, editorial serif display type, and generous whitespace — the 'sustainable print publication' feel",
+        "business": "Substack"
+      },
+      {
+        "why": "Warm, friendly color palette with cream backgrounds, dark text, and a single vivid accent color used sparingly for personality rather than utility",
+        "business": "Mailchimp (rebrand era)"
+      },
+      {
+        "why": "Warm-toned palette, rounded generous card radii, and a design system that prioritizes atmosphere and warmth over cold utility",
+        "business": "Headspace"
+      },
+      {
+        "why": "Spacious layout, serif display headlines, cream/off-white canvas, and restrained use of a single accent color for brand personality",
+        "business": "Notion (marketing site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "other": "3px",
+        "badges": "18px",
+        "inputs": "10px",
+        "buttons": "10px",
+        "buttonPill": "50px"
+      },
+      "elementGap": "12-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#faf5f1",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Page canvas — the warm off-white base that all content sits on"
+      },
+      {
+        "hex": "#fefffa",
+        "name": "Soft Linen",
+        "level": 1,
+        "purpose": "Card surface, elevated above the cream canvas by a barely-perceptible brightness shift"
+      },
+      {
+        "hex": "#e5e1d6",
+        "name": "Warm Sand",
+        "level": 2,
+        "purpose": "Section dividers, secondary cards, muted content blocks — a step darker than the canvas"
+      },
+      {
+        "hex": "#3d4128",
+        "name": "Olive Grove",
+        "level": 3,
+        "purpose": "Dark hero panel — the highest-elevation dramatic surface, used sparingly to anchor hero sections"
+      }
+    ],
+    "northStar": "Sunlit field journal at dusk — an earthy, editorial calm built from cream paper, olive ink, and a single flash of chartreuse highlight.\n\nKindsight feels like a sustainably-printed nonprofit annual report: warm cream backgrounds, near-black text with a green undertone, a deep olive hero panel, and terracotta as the only shout. The single chartreuse accent is used sparingly — as underline punctuation on italic display words, badge fills, and illustrative highlights — never as a functional color. Display type in Times Now at weights 200-300 with tight tracking reads like editorial cover typography, not SaaS headlines.",
+    "typeScale": [
+      {
+        "role": "fine-print",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "micro",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.36,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -1
+      },
+      {
+        "role": "heading-sm",
+        "size": 50,
+        "lineHeight": 0.9,
+        "letterSpacing": -2
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 0.86,
+        "letterSpacing": -2.94
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 0.84,
+        "letterSpacing": -4
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.78,
+        "letterSpacing": -7.68
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled CTA Button",
+        "role": "Highest-priority action — Get a Demo, Register Now, primary conversions",
+        "description": "Solid #de7653 background, #ffffff text, 10px border-radius, Founders Grotesk weight 400 at 16px, padding 14px 24px. No border. Generous horizontal padding gives the button a confident, grounded weight. Used for the single most important action per page."
+      },
+      {
+        "name": "Outline Ghost Button",
+        "role": "Secondary CTA — See Kindsight in Action, secondary navigation actions",
+        "description": "Chartreuse #e1f079 background with #0e0f0a text, 10px border-radius, Founders Grotesk weight 400 at 16px, padding 14px 24px. The lime fill is the brand's playful secondary action — it only appears on the hero-level secondary CTA, not throughout the system."
+      },
+      {
+        "name": "Outlined Coral Button",
+        "role": "Tertiary action, KindCon-style register buttons",
+        "description": "2px solid #e7573d border, #e7573d text, transparent fill, 50px pill radius, Founders Grotesk weight 400 at 14-16px, padding 12px 24px. A deeper, redder outlined variant for festival/promotional CTAs — full pill shape distinguishes it from standard buttons."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-level nav items — Products, Who We Serve, Pricing, Resources, Company",
+        "description": "Founders Grotesk weight 400 at 16px, #0e0f0a text, no underline by default, 8-10px horizontal padding. The nav sits on the cream canvas with a subtle hairline bottom border (#0e0f0a at low opacity). Clean, unadorned, lets the display type do the talking."
+      },
+      {
+        "name": "Login Outlined Button",
+        "role": "Low-priority nav action — Login",
+        "description": "1px solid #0e0f0a border, transparent fill, #0e0f0a text, 10px border-radius, padding 8px 20px, Founders Grotesk weight 400 at 16px. Restrained: the filled terracotta 'Get a Demo' does the heavy lifting; login stays visually quiet beside it."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Page-level headline with brand-italic emphasis",
+        "description": "Times Now weight 200-300, #e1f079 color on dark olive background (or #0e0f0a on cream), sizes 80-120px, line-height 0.78-0.90, letter-spacing -0.05em to -0.064em. The signature move: one word per headline is set in italic and underlined with a hand-drawn chartreuse stroke — this is the brand's editorial flourish. Example pattern: 'Fundraising intelligence that unlocks opportunities' with 'opportunities' italicized and underlined."
+      },
+      {
+        "name": "Feature Section Card",
+        "role": "Content card pairing image + headline + body text",
+        "description": "No background fill (sits on cream canvas), no visible border, 0px radius on the card itself, but the product screenshot inside has 24px radius with a subtle shadow. Image sits left, text right, or stacked on narrow viewports. Headline at Times Now 50-60px, body at Founders Grotesk 16-18px #0e0f0a."
+      },
+      {
+        "name": "Logo Trust Bar",
+        "role": "Social proof — partner/mission organization logos",
+        "description": "Single horizontal row of 5-6 monochrome logos on cream canvas, centered, preceded by a Times Now weight 300 headline ('Driving these missions forward') at 40-50px. Logos are rendered in #0e0f0a at consistent visual weight — no brand-color logos, everything unified to the ink-black palette."
+      },
+      {
+        "name": "Product Dashboard Mockup",
+        "role": "Hero product visualization — floating UI panels showing the product",
+        "description": "Overlapping card panels with 24px radius, #fefffa background, subtle hairline #0e0f0a border (1px at ~10% opacity), inner content shows charts/badges in chartreuse and terracotta. Panels overlap slightly to create depth. Text within mockups uses Founders Grotesk at smaller sizes. The mockup floats on the olive hero background with the faintest shadow."
+      },
+      {
+        "name": "Notification/Alert Badge",
+        "role": "In-product alerts, profile alerts overlaid on imagery",
+        "description": "White (#fefffa) rounded card with 18px radius, subtle border, internal layout: small label in #0e0f0a weight 500 at 10-12px caps, bold name at 16px, detail text at 14px #0e0f0a. Accent dot in #e7573d (coral) for alert state. Pinned to corner of a photographic image with a subtle drop connection."
+      },
+      {
+        "name": "Score Circle Component",
+        "role": "Data visualization — donor capacity scores, analytics gauges",
+        "description": "Circular progress indicator with thick stroke (6-8px) in #e1f079 (chartreuse) on a #e5e1d6 (warm sand) track. Center number in Times Now weight 300 at 40-50px #0e0f0a. Used in profile cards and analytics overlays."
+      },
+      {
+        "name": "Promotional Banner (Top Strip)",
+        "role": "Event announcement bar — KindCon registration",
+        "description": "Full-width strip with #faf5f1 background (slightly different cream tone or subtle warm tint), centered single-line text in Founders Grotesk 14px #0e0f0a, with a chartreuse #e1f079 filled pill button at the right end. Minimal height (~48px), sits above the main nav."
+      },
+      {
+        "name": "Section Title (Serif)",
+        "role": "Section-level headlines on cream/light sections",
+        "description": "Times Now weight 300, 50-60px, #0e0f0a, line-height 0.86-0.90, letter-spacing -0.049em. Centered or left-aligned depending on section. Occasionally features the same italic + chartreuse-underline emphasis as hero headlines for continuity."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs — search, email capture, data filters",
+        "description": "1px solid #24280f border (the deep olive), transparent or #fefffa fill, 10px border-radius, padding 12px 16px, Founders Grotesk 16px #24280f text. Placeholder in #0e0f0a at 40% opacity. No focus ring shadow — focus state is a 2px #e1f079 outline or border color shift."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines, hero copy, section titles. The signature choice: weights 200-300 with extreme negative tracking (up to -7.7px at 120px) create compressed, editorial-cover typography. One italic word per headline is underlined in chartreuse — this handwritten-style emphasis is the brand's most recognizable typographic gesture. Use only for display and hero copy.",
+        "sizes": "30px, 40px, 50px, 60px, 80px, 120px",
+        "family": "Times Now",
+        "weight": "200, 300",
+        "lineHeight": "0.78 – 1.00",
+        "substitute": "Playfair Display (closest free match for the compressed serif-display feel)",
+        "letterSpacing": "-0.064em at 120px, -0.050em at 80px, -0.049em at 60px, -0.040em at 50px, -0.034em at 40px, -0.017em at 30px"
+      },
+      {
+        "role": "Body text, UI controls, navigation, buttons, captions, supporting headlines. The workhorse: 16px at weight 400 for body, 14px for nav and secondary text, 12px for micro-labels, 10px for fine print. The slight negative tracking even at small sizes (e.g. -0.13px at 16px) gives text a crisp, considered quality. Weight 500 reserved for emphasis within UI.",
+        "sizes": "10px, 12px, 14px, 16px, 18px, 24px, 32px, 40px",
+        "family": "Founders Grotesk",
+        "weight": "200, 300, 400, 500",
+        "lineHeight": "1.04 – 2.00",
+        "substitute": "Inter or Söhne (geometric grotesks with similar x-height and tracking behavior)",
+        "letterSpacing": "-0.025em at 40px, -0.017em at 24px, -0.010em at 18px, -0.008em at 16px, normal at 14px and below"
+      }
+    ],
+    "description": "Kindsight operates in a warm, editorial register that reads more like a design magazine than a SaaS dashboard. A cream canvas (#faf5f1) holds the page, with a deep olive hero (#3d4128) creating an earthy, almost botanical atmosphere. Display type uses Times Now at whisper weights (200-300) with aggressive negative tracking, producing compressed, magazine-cover headlines. A single chartreuse accent (#e1f079) appears as decorative highlight — underlines beneath italic display words, badges, illustration fills — never as a utility color. Terracotta (#de7653) is the only CTA color, appearing as solid filled buttons or thick outlined pills. Components favor generous 24px card radii, thin hairline borders, and zero or very subtle elevation; the design relies on tonal contrast between cream, near-black with green undertones (#0e0f0a), and the dark olive hero block to create depth rather than shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kindsight design system\",\"item\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#style-reference\",\"name\":\"Kindsight design system reference\",\"headline\":\"Kindsight design system | Refero Styles\",\"description\":\"Explore Kindsight's light SaaS design system: Cream Paper #faf5f1, Soft Linen #fefffa colors, Times Now, Founders Grotesk typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kindsight\",\"url\":\"https://kindsight.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"caption\":\"Screenshot of Kindsight\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kindsight design system\",\"Kindsight website design\",\"Kindsight colors\",\"Kindsight typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Cream Paper\",\"Soft Linen\",\"Ink Black\",\"Midnight Black\",\"Times Now\",\"Founders Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kindsight design system\"},{\"@type\":\"Thing\",\"name\":\"Kindsight website design\"},{\"@type\":\"Thing\",\"name\":\"Kindsight colors\"},{\"@type\":\"Thing\",\"name\":\"Kindsight typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-10T18:12:51.575Z\",\"dateModified\":\"2026-05-10T18:12:51.575Z\"}]}19:T6f4,**Quick Color Reference**\n- text: #0e0f0a\n- background: #faf5f1\n- border: #0e0f0a (at 10-15% opacity for hairlines)\n- accent: #e1f079 (chartreuse — decorative only)\n- primary action: #de7653 (filled action)\n- dark surface: #3d4128 (olive hero)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #de7653 background, #0a0a0a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a feature section: #faf5f1 background, 80px vertical padding. Two-column layout (50/50). Left: product screenshot or photograph with 24px radius. Right: Times Now weight 300 at 50px, #0e0f0a, letter-spacing -0.040em, line-height 0.90. Body text in Founders Grotesk 16px weight 400, #0e0f0a, line-height 1.40, max-width 480px. Underline one italic display word in chartreuse.\n\n3. Build a logo trust bar: #faf5f1 background, centered, 60px vertical padding. Heading 'Driving these missions forward' in Times Now weight 300 at 40px, #0e0f0a, centered. Below: single row of 5-6 logos, all rendered in #0e0f0a monochrome, evenly spaced, 32px height each.\n\n4. Build a profile alert badge: #fefffa background, 18px radius, 1px border #0e0f0a at 10% opacity, padding 16px 20px. Label 'PROFILE ALERT' in Founders Grotesk weight 500 at 10px uppercase, #0e0f0a at 60% opacity. Name 'Rachel Lyons:' in Founders Grotesk weight 500 at 16px, #0e0f0a. Detail '4 new records matched' in Founders Grotesk 14px, #0e0f0a. Small #e7573d dot (8px circle) at top-right corner for alert state.\n\n5. Build a score circle: 120px diameter circle with 6px stroke. Track: #e5e1d6. Fill: #e1f079, 67% arc starting from top. Center number '67' in Times Now weight 300 at 40px, #0e0f0a. Below circle: label 'Potential prospects by capacity' in Founders Grotesk 14px, #0e0f0a."
+      },
+      {
+        "title": "Italic Emphasis System",
+        "content": "The single most distinctive typographic gesture in Kindsight's system is the italic + chartreuse-underline treatment applied to one word per display headline. Rules: exactly one word per headline receives this treatment, the word must be the conceptual climax of the sentence (not a random adjective), the underline should look hand-drawn rather than mechanical (slightly varying thickness, imperfect line), and the chartreuse (#e1f079) is used only for this decorative purpose — never for body text, links, or functional UI. On dark olive hero backgrounds, the same treatment uses chartreuse for both the text color and underline. On cream sections, the italic word is still #0e0f0a but the underline is chartreuse."
+      }
+    ],
+    "elevationPhilosophy": "Kindsight avoids shadows almost entirely. Depth is created through tonal contrast between cream (#faf5f1), linen (#fefffa), and the occasional olive hero panel — not through drop shadows. Cards sit on the canvas with a subtle brightness shift rather than floating on shadow. The only acceptable shadow is the faintest possible: 0 1px 2px rgba(14,15,10,0.04) for product dashboard mockups overlaid on the hero, never on standard content cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0e0f0a",
+          "oklch": {
+            "c": 0.010227956557113645,
+            "h": 116.72091535638027,
+            "l": 0.1652945937896388
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "button",
+            "heading",
+            "list",
+            "body",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1225,
+          "confidence": 1,
+          "prominence": 99406744.81958936,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 10,
+            "card/color": 19,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 6,
+            "list/color": 13,
+            "other/fill": 3,
+            "image/color": 39,
+            "other/color": 122,
+            "button/color": 1,
+            "footer/color": 2,
+            "other/stroke": 6,
+            "heading/color": 13,
+            "nav/borderColor": 48,
+            "body/borderColor": 40,
+            "card/borderColor": 76,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 24,
+            "list/borderColor": 52,
+            "image/borderColor": 156,
+            "other/borderColor": 488,
+            "footer/borderColor": 8,
+            "heading/borderColor": 52
+          }
+        },
+        {
+          "hex": "#faf5f1",
+          "oklch": {
+            "c": 0.0075723509252040985,
+            "h": 61.453800880419664,
+            "l": 0.9728979755898074
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading",
+            "input",
+            "nav",
+            "list",
+            "icon",
+            "card"
+          ],
+          "frequency": 596,
+          "confidence": 1,
+          "prominence": 8347666.531369661,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 72,
+            "body/color": 4,
+            "icon/color": 3,
+            "link/color": 4,
+            "list/color": 4,
+            "other/fill": 3,
+            "other/color": 26,
+            "heading/color": 5,
+            "nav/borderColor": 288,
+            "body/borderColor": 16,
+            "icon/borderColor": 12,
+            "link/borderColor": 16,
+            "list/borderColor": 16,
+            "other/borderColor": 104,
+            "heading/borderColor": 20,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3d4128",
+          "oklch": {
+            "c": 0.040539565694098716,
+            "h": 115.8575289958503,
+            "l": 0.3642642612042992
+          },
+          "contexts": [
+            "hero",
+            "card",
+            "footer",
+            "button"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 6384333.690243022,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 3,
+            "card/borderColor": 12,
+            "button/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e1f079",
+          "oklch": {
+            "c": 0.14467539031370122,
+            "h": 115.23828297076835,
+            "l": 0.9196878836416568
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 1340811.7071850677,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11,
+            "other/color": 1,
+            "heading/color": 1,
+            "other/borderColor": 4,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fefffa",
+          "oklch": {
+            "c": 0.0066383632163446666,
+            "h": 115.70051421441607,
+            "l": 0.997868572723997
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 797966.7765906575,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 4,
+            "button/borderColor": 4,
+            "card/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#e5e1d6",
+          "oklch": {
+            "c": 0.015387565875217094,
+            "h": 90.24257999813496,
+            "l": 0.9098508987364757
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 624718,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 233254.0167366661,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 3,
+            "body/borderColor": 4,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ecdfbd",
+          "oklch": {
+            "c": 0.04702084899102039,
+            "h": 89.5803248979813,
+            "l": 0.9053750824258642
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100318,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 72406.50396486674,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#de7653",
+          "oklch": {
+            "c": 0.13884661203158286,
+            "h": 39.166141909014875,
+            "l": 0.6768862539349009
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 42884,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 12,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#24280f",
+          "oklch": {
+            "c": 0.04182412344968655,
+            "h": 116.83923037006753,
+            "l": 0.2657951674640152
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 39575.28233624605,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e7573d",
+          "oklch": {
+            "c": 0.18374048511827307,
+            "h": 32.400018868779696,
+            "l": 0.6434357581688062
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 14894.553929155301,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 292.10076258149064,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03661677519978544,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.7,
+          "background": "#fefffa",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.24,
+          "background": "#ffffff",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.15,
+          "background": "#fefffa",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.29,
+          "background": "#faf5f1",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.77,
+          "background": "#faf5f1",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.97,
+          "background": "#e1f079",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#e1f079",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.16,
+          "background": "#ffffff",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#e5e1d6",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#fefffa",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.95,
+          "background": "#ecdfbd",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#e5e1d6",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#ecdfbd",
+          "foreground": "#0e0f0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14,
+          "background": "#faf5f1",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.23,
+          "background": "#e1f079",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.6,
+          "background": "#e5e1d6",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.45,
+          "background": "#ecdfbd",
+          "foreground": "#24280f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#ffffff",
+          "foreground": "#3d4128"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#fefffa",
+          "foreground": "#3d4128"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 3,
+          "corners": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "image",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingRight|other",
+            "marginTop|link",
+            "marginBottom|image",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "list",
+            "body",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingTop|button",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingLeft|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "marginBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "paddingTop|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|list",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 82,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 87,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 126,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Founders Grotesk",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400,
+            500
+          ],
+          "frequency": 357,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times Now",
+          "source": "custom",
+          "weights": [
+            200,
+            300
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 52,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "list",
+            "footer",
+            "link"
+          ],
+          "frequency": 182,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "list",
+            "other",
+            "image",
+            "card",
+            "link",
+            "icon"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Founders Grotesk",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Times Now",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Founders Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Times Now",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Founders Grotesk",
+          "weight": 200,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.064,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.86,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.84,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.049,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Times Now",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/df98235d-4d6d-47f0-9ede-b51499b5ad57.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kindsight design system\",\"item\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#style-reference\",\"name\":\"Kindsight design system reference\",\"headline\":\"Kindsight design system | Refero Styles\",\"description\":\"Explore Kindsight's light SaaS design system: Cream Paper #faf5f1, Soft Linen #fefffa colors, Times Now, Founders Grotesk typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kindsight\",\"url\":\"https://kindsight.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f22f1195-837d-4b1d-a48c-9123b122bf87#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"caption\":\"Screenshot of Kindsight\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa3bee6e-39bb-4084-8a68-785060443b56.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kindsight design system\",\"Kindsight website design\",\"Kindsight colors\",\"Kindsight typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Cream Paper\",\"Soft Linen\",\"Ink Black\",\"Midnight Black\",\"Times Now\",\"Founders Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kindsight design system\"},{\"@type\":\"Thing\",\"name\":\"Kindsight website design\"},{\"@type\":\"Thing\",\"name\":\"Kindsight colors\"},{\"@type\":\"Thing\",\"name\":\"Kindsight typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-10T18:12:51.575Z\",\"dateModified\":\"2026-05-10T18:12:51.575Z\"}]}19:T6f4,**Quick Color Reference**\n- text: #0e0f0a\n- background: #faf5f1\n- border: #0e0f0a (at 10-15% opacity for hairlines)\n- accent: #e1f079 (chartreuse — decorative only)\n- primary action: #de7653 (filled action)\n- dark surface: #3d4128 (olive hero)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #de7653 background, #0a0a0a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a feature section: #faf5f1 background, 80px vertical padding. Two-column layout (50/50). Left: product screenshot or photograph with 24px radius. Right: Times Now weight 300 at 50px, #0e0f0a, letter-spacing -0.040em, line-height 0.90. Body text in Founders Grotesk 16px weight 400, #0e0f0a, line-height 1.40, max-width 480px. Underline one italic display word in chartreuse.\n\n3. Build a logo trust bar: #faf5f1 background, centered, 60px vertical padding. Heading 'Driving these missions forward' in Times Now weight 300 at 40px, #0e0f0a, centered. Below: single row of 5-6 logos, all rendered in #0e0f0a monochrome, evenly spaced, 32px height each.\n\n4. Build a profile alert badge: #fefffa background, 18px radius, 1px border #0e0f0a at 10% opacity, padding 16px 20px. Label 'PROFILE ALERT' in Founders Grotesk weight 500 at 10px uppercase, #0e0f0a at 60% opacity. Name 'Rachel Lyons:' in Founders Grotesk weight 500 at 16px, #0e0f0a. Detail '4 new records matched' in Founders Grotesk 14px, #0e0f0a. Small #e7573d dot (8px circle) at top-right corner for alert state.\n\n5. Build a score circle: 120px diameter circle with 6px stroke. Track: #e5e1d6. Fill: #e1f079, 67% arc starting from top. Center number '67' in Times Now weight 300 at 40px, #0e0f0a. Below circle: label 'Potential prospects by capacity' in Founders Grotesk 14px, #0e0f0a."
+}

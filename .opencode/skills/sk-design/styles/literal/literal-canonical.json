@@ -1,0 +1,1143 @@
+{
+  "source": "https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38",
+  "uuid": "7e698bf6-6b31-40ed-a89a-40f4c37ade38",
+  "name": "Literal",
+  "northStar": "Library in soft daylight — a reading room where warm cream walls meet dark walnut shelves.",
+  "capturedAt": "2026-07-18T09:03:10.143Z",
+  "meta": {
+    "url": "https://literal.club",
+    "siteName": "Literal",
+    "extractedAt": "2026-06-03T20:56:31.318Z",
+    "durationMs": 51382,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 350,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #278458 green exclusively for the primary CTA and the brand star glyph — never as a decorative accent on text, icons, or borders",
+      "Set headings in Libre Baskerville 28–40px weight 500; never substitute Inter or a system serif for display type",
+      "Keep the page canvas at #f8f8f8 and card surfaces at #ffffff with a 1px #eeeeee border — avoid colored card backgrounds or drop shadows beyond rgba(0,0,0,0.04)",
+      "Use 4px radius for buttons and images, 8px for cards, 16px for large media blocks — never mix intermediate values like 6px or 12px",
+      "Center all section headings and keep the 3-column grid consistent across feature and testimonial sections",
+      "Default to Inter 15–16px weight 400 for body text with 1.45–1.50 line-height — this is the reading-optimized baseline",
+      "Maintain 80px vertical section gaps to preserve the airy, page-of-a-book feel"
+    ],
+    "donts": [
+      "Do not introduce a second chromatic color — the monochromatic system is the brand",
+      "Do not use Libre Baskerville for body text, captions, buttons, or any UI element — it is reserved for headings only",
+      "Do not use #000000 as a primary CTA fill — #278458 owns that role; #000000 is only for the dark App Store button and heading text",
+      "Do not apply heavy drop shadows, glows, or colored shadows — elevation is communicated through border and a 1–2% opacity shadow only",
+      "Do not use rounded pill buttons or radii above 16px — the system is crisp and bookish, not bubbly",
+      "Do not add gradients, glassmorphism, or background images to cards or sections — surfaces stay flat",
+      "Do not break the centered, symmetric layout with asymmetric or left-aligned hero compositions — the page reads like a printed page"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#278458",
+        "name": "Forest Green",
+        "role": "Primary CTA fill, brand accent, star glyph in wordmark, active states — a single chromatic note anchoring an otherwise achromatic interface",
+        "group": "brand"
+      },
+      {
+        "hex": "#444340",
+        "name": "Charcoal",
+        "role": "Primary body and UI text, icon strokes, default border outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Soft Gray",
+        "role": "Page canvas and section backgrounds — warm off-white that makes white cards feel layered rather than floating",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a988b",
+        "name": "Warm Gray",
+        "role": "Muted helper text, secondary metadata, list dividers, de-emphasized links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Hairline Gray",
+        "role": "Card and component borders, subtle dividers between sections and list items",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, button text, input fills — the elevated surface above the gray canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Heading text, dark secondary action fill (App Store button), heavy borders on featured headings",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page is max-width contained at ~1200px, centered, with a sticky white nav bar at the top. The hero is a centered vertical stack: serif headline, short subtext, two CTAs side by side, then the book-cover collage below. Feature sections alternate between the #f8f8f8 canvas and white card content arranged in a 3-column grid with generous 80px section gaps. Testimonials repeat the 3-column pattern. The rhythm is always: serif heading → optional CTA → grid of cards. Navigation is a single top bar with a full-width inline search; there is no sidebar, no mega-menu, no sticky in-page nav.",
+    "imagery": "Imagery is content-driven, not decorative. The hero uses a scattered collage of real book covers (4px-radius thumbnails, slight overlap, no framing) that supply all the color the page otherwise lacks. Feature sections insert clean product screenshots — phone-shaped reading tracker, library list, camera scanner UI — rendered without device bezels, sitting directly on white card surfaces. The social-proof section uses circular user avatars from Twitter. There is no stock photography, no abstract gradient art, no illustrations. Icons are line-based, single-stroke, #444340 or #9a988b.",
+    "similar": [
+      {
+        "why": "Same literary-editorial sensibility: monochromatic warm canvas, serif headlines against sans body, single accent-free palette that lets content carry the color",
+        "business": "Are.na"
+      },
+      {
+        "why": "Mirror-image visual system: near-white canvas, generous whitespace, serif display type, restrained single-accent approach, bookish/magazine-like cadence",
+        "business": "Read.cv"
+      },
+      {
+        "why": "Same serif-heading + clean-Inter-body pairing on a white canvas with minimal ornament, the same feeling of reading a printed page on screen",
+        "business": "Substack"
+      },
+      {
+        "why": "Same domain (book tracking) and same flat, content-led layout language — though Literal is far more restrained and monochromatic where Goodreads is denser and warmer",
+        "business": "Goodreads"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "other": "16px",
+        "images": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background and section bands"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Feature cards, testimonial cards, input fields"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Dark secondary action surface (App Store download)"
+      },
+      {
+        "hex": "#278458",
+        "name": "Brand",
+        "level": 3,
+        "purpose": "Primary action surface (Join for free, Sign up now)"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px #eeeeee",
+        "element": "Feature card"
+      },
+      {
+        "style": "0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px #eeeeee",
+        "element": "Testimonial card"
+      }
+    ],
+    "northStar": "Library in soft daylight — a reading room where warm cream walls meet dark walnut shelves.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.35
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action — appears once or twice per section, always green",
+        "description": "Filled #278458 background, white text, Inter 15px weight 500, 4px radius, 14px vertical × 28px horizontal padding, right-arrow glyph after label. 100% width on mobile, auto on desktop."
+      },
+      {
+        "name": "Dark App Store Button",
+        "role": "Secondary download CTA paired alongside the primary CTA",
+        "description": "Filled #000000 background, white text, Inter 15px weight 500, 4px radius, 14px × 28px padding. Apple glyph precedes the two-line label 'Download on the App Store'."
+      },
+      {
+        "name": "Ghost Nav Button (Sign in)",
+        "role": "Tertiary navigation action in the header",
+        "description": "Transparent background, #444340 text, Inter 15px weight 400, no border. Underline on hover."
+      },
+      {
+        "name": "Search Input",
+        "role": "Global search field in the navigation bar",
+        "description": "Borderless, transparent background, #444340 placeholder text, magnifying-glass icon at left. Sits flush in the nav bar with no visible container — the absence of a border is the design statement."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product capability card in the 3-column feature grid",
+        "description": "#ffffff background, 1px #eeeeee border, 8px radius, 20px padding. Contains a serif subheading (Inter 22px weight 700 or Libre Baskerville 28px weight 500) followed by bullet text or a product screenshot. Optional very faint shadow (rgba 0,0,0,0.04) reinforces elevation without weight."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Social-proof card in the 'Loved by everyone' grid",
+        "description": "#ffffff background, 1px #eeeeee border, 8px radius, 20px padding. Layout: avatar (circular, ~40px) + display name in Inter 15px weight 500 + verified check + platform glyph on one row, quote text in Inter 15px weight 400 below."
+      },
+      {
+        "name": "Section Heading (Serif)",
+        "role": "Editorial section title — the moment where the page breathes",
+        "description": "Libre Baskerville 28px weight 500, #000000, centered alignment, line-height 1.35. The only place the serif appears outside feature card subheadings."
+      },
+      {
+        "name": "Hero Headline (Serif)",
+        "role": "Page-level editorial title",
+        "description": "Libre Baskerville-style serif at 40px weight 500, #000000, centered, line-height 1.35. Two-line stack, roughly 8–12 words."
+      },
+      {
+        "name": "Book Cover Collage",
+        "role": "Decorative hero visual — books arranged in a scattered but balanced cluster",
+        "description": "Individual book covers rendered as 4px-radius rectangular thumbnails, no shadows, slight rotation variation, layered with subtle overlap. Covers provide all the color in the hero; no background tint or framing device."
+      },
+      {
+        "name": "Product Screenshot Tile",
+        "role": "In-feature visual showing the app interface (reading tracker, library list, scanner)",
+        "description": "Phone or interface mockup placed inside a feature card, contained with 4px radius, no device frame, sits on the white card background as a clean screenshot."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Sticky top header with brand, search, and actions",
+        "description": "White background, #ffffff, 1px #eeeeee bottom border. Left: wordmark 'Literal' in Inter 22px weight 700 + green asterisk glyph. Center: full-width search input. Right: 'Sign in' ghost link + green 'Join →' CTA button. Height roughly 60px."
+      },
+      {
+        "name": "Bullet List (Feature Points)",
+        "role": "Supporting list of capabilities inside feature cards",
+        "description": "Inter 15px weight 400, #444340, 10px vertical gap between items, no bullets or checkmarks — clean text stack only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All functional UI — body copy, buttons, navigation, inputs, captions, feature descriptions, hero subtext",
+        "sizes": "14, 15, 16, 22, 40",
+        "family": "Inter",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.35–1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI, Roboto"
+      },
+      {
+        "role": "Reserved exclusively for section and page headings — the serif is the editorial signal that separates display from interface",
+        "sizes": "28",
+        "family": "Libre Baskerville",
+        "weight": "500",
+        "lineHeight": "1.35",
+        "substitute": "Lora, Source Serif Pro, Crimson Text"
+      }
+    ],
+    "description": "Literal is a literary reading room rendered in soft daylight: a near-monochrome canvas where the only chromatic note is a single forest green that marks the primary action. Headlines speak in a warm bookish serif (Libre Baskerville) while every functional element stays in clean geometric Inter, creating a quiet tension between editorial and digital. Surfaces are paper-like — soft warm gray canvas beneath pure white cards with hairline borders and almost no shadow. The whole experience is calm, spacious, and content-led, with book covers and product screenshots doing the visual work that color and ornament don't.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Literal design system\",\"item\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#style-reference\",\"name\":\"Literal design system reference\",\"headline\":\"Literal design system | Refero Styles\",\"description\":\"Explore Literal's light Media design system: Forest Green #278458, Charcoal #444340 colors, Inter, Libre Baskerville typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Literal\",\"url\":\"https://literal.club\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"caption\":\"Screenshot of Literal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Literal design system\",\"Literal website design\",\"Literal colors\",\"Literal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Forest Green\",\"Charcoal\",\"Soft Gray\",\"Warm Gray\",\"Inter\",\"Libre Baskerville\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Literal design system\"},{\"@type\":\"Thing\",\"name\":\"Literal website design\"},{\"@type\":\"Thing\",\"name\":\"Literal colors\"},{\"@type\":\"Thing\",\"name\":\"Literal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-05-07T18:03:24.373Z\",\"dateModified\":\"2026-05-07T18:03:24.373Z\"}]}19:T5a5,**Quick Color Reference**\n- text: #444340\n- background: #f8f8f8\n- border: #eeeeee\n- card surface: #ffffff\n- accent: #278458\n- primary action: #278458 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #278458 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Create a feature card*: #ffffff background, 1px #eeeeee border, 8px radius, 20px padding, optional shadow 0 1px 3px rgba(0,0,0,0.04). Card contains a subheading in Inter 22px weight 700 #000000, followed by a bullet list in Inter 15px weight 400 #444340 with 10px row gap, then a product screenshot at 4px radius.\n\n3. *Create a testimonial card*: #ffffff background, 1px #eeeeee border, 8px radius, 20px padding. Top row: 40px circular avatar + display name in Inter 15px weight 500 #444340 + verified glyph. Body: quote text in Inter 15px weight 400 #444340, line-height 1.50.\n\n4. *Create the navigation bar*: #ffffff background, 1px #eeeeee bottom border, 60px height. Left: 'Literal' wordmark in Inter 22px weight 700 #000000 followed by a green #278458 asterisk glyph. Center: full-width search input with borderless transparent background and #9a988b placeholder text 'Search for books, authors, shelves, users…'. Right: 'Sign in' ghost link in Inter 15px weight 400 #444340, then green #278458 'Join →' button (4px radius, 14px 24px padding, Inter 15px weight 500, white text)."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#444340",
+          "oklch": {
+            "c": 0.005182949174036454,
+            "h": 91.52391516396945,
+            "l": 0.38281595237206484
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "input",
+            "button",
+            "image",
+            "hero",
+            "card",
+            "list",
+            "heading"
+          ],
+          "frequency": 1203,
+          "confidence": 1,
+          "prominence": 58840662.633872,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 24,
+            "hero/color": 1,
+            "icon/color": 31,
+            "link/color": 22,
+            "list/color": 11,
+            "image/color": 35,
+            "input/color": 1,
+            "other/color": 121,
+            "button/color": 1,
+            "heading/color": 15,
+            "body/borderColor": 12,
+            "card/borderColor": 36,
+            "hero/borderColor": 4,
+            "icon/borderColor": 124,
+            "link/borderColor": 87,
+            "list/borderColor": 44,
+            "image/borderColor": 140,
+            "input/borderColor": 4,
+            "other/borderColor": 423,
+            "button/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4621506.590811845,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 9,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9a988b",
+          "oklch": {
+            "c": 0.018809321703871413,
+            "h": 99.7345362792673,
+            "l": 0.6775908265627608
+          },
+          "contexts": [
+            "icon",
+            "link",
+            "other",
+            "footer",
+            "list"
+          ],
+          "frequency": 201,
+          "confidence": 1,
+          "prominence": 3437924.298836936,
+          "properties": [
+            "stroke",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 2,
+            "link/color": 13,
+            "list/color": 16,
+            "other/fill": 1,
+            "icon/stroke": 2,
+            "other/color": 7,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "icon/borderColor": 8,
+            "link/borderColor": 51,
+            "list/borderColor": 64,
+            "other/borderColor": 28,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 792778.3793841037,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 60,
+            "link/borderColor": 2,
+            "other/borderColor": 61
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "card"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 646656.4889847505,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 3,
+            "button/color": 3,
+            "other/stroke": 3,
+            "icon/borderColor": 12,
+            "button/borderColor": 12,
+            "card/backgroundColor": 15,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "other"
+          ],
+          "frequency": 101,
+          "confidence": 1,
+          "prominence": 432373.1621597529,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 15,
+            "other/color": 4,
+            "heading/color": 13,
+            "other/borderColor": 16,
+            "heading/borderColor": 52,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#278458",
+          "oklch": {
+            "c": 0.11069206605437017,
+            "h": 158.41983291287468,
+            "l": 0.547696018175269
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 18244,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01653881074209586,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#f8f8f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.89,
+          "background": "#ffffff",
+          "foreground": "#444340"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.32,
+          "background": "#f8f8f8",
+          "foreground": "#444340"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.53,
+          "background": "#eeeeee",
+          "foreground": "#444340"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.24,
+          "background": "#000000",
+          "foreground": "#9a988b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.64,
+          "background": "#278458",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.53,
+          "background": "#278458",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.9,
+          "background": "#ffffff",
+          "foreground": "#9a988b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#f8f8f8",
+          "foreground": "#9a988b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#278458",
+          "foreground": "#444340"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.12,
+          "background": "#000000",
+          "foreground": "#444340"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.6,
+          "background": "#278458",
+          "foreground": "#9a988b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.06,
+          "background": "#f8f8f8",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "corners": [
+            2,
+            4,
+            4,
+            2
+          ],
+          "contexts": [
+            "image",
+            "button",
+            "card"
+          ],
+          "frequency": 39,
+          "asymmetric": true
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 30,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "icon",
+            "card"
+          ],
+          "frequency": 37,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "input",
+            "heading",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 148,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|input",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card",
+            "marginLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "link",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 133,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|footer",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 324,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Libre Baskerville",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "image",
+            "hero",
+            "card",
+            "list"
+          ],
+          "frequency": 200,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Libre Baskerville",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2b30d39b-d619-4120-a573-9e1fdbcd2120.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Literal design system\",\"item\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#style-reference\",\"name\":\"Literal design system reference\",\"headline\":\"Literal design system | Refero Styles\",\"description\":\"Explore Literal's light Media design system: Forest Green #278458, Charcoal #444340 colors, Inter, Libre Baskerville typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Literal\",\"url\":\"https://literal.club\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7e698bf6-6b31-40ed-a89a-40f4c37ade38#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"caption\":\"Screenshot of Literal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5b7b4361-688f-4559-bd7d-a27a61968ed5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Literal design system\",\"Literal website design\",\"Literal colors\",\"Literal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Forest Green\",\"Charcoal\",\"Soft Gray\",\"Warm Gray\",\"Inter\",\"Libre Baskerville\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Literal design system\"},{\"@type\":\"Thing\",\"name\":\"Literal website design\"},{\"@type\":\"Thing\",\"name\":\"Literal colors\"},{\"@type\":\"Thing\",\"name\":\"Literal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-05-07T18:03:24.373Z\",\"dateModified\":\"2026-05-07T18:03:24.373Z\"}]}19:T5a5,**Quick Color Reference**\n- text: #444340\n- background: #f8f8f8\n- border: #eeeeee\n- card surface: #ffffff\n- accent: #278458\n- primary action: #278458 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #278458 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Create a feature card*: #ffffff background, 1px #eeeeee border, 8px radius, 20px padding, optional shadow 0 1px 3px rgba(0,0,0,0.04). Card contains a subheading in Inter 22px weight 700 #000000, followed by a bullet list in Inter 15px weight 400 #444340 with 10px row gap, then a product screenshot at 4px radius.\n\n3. *Create a testimonial card*: #ffffff background, 1px #eeeeee border, 8px radius, 20px padding. Top row: 40px circular avatar + display name in Inter 15px weight 500 #444340 + verified glyph. Body: quote text in Inter 15px weight 400 #444340, line-height 1.50.\n\n4. *Create the navigation bar*: #ffffff background, 1px #eeeeee bottom border, 60px height. Left: 'Literal' wordmark in Inter 22px weight 700 #000000 followed by a green #278458 asterisk glyph. Center: full-width search input with borderless transparent background and #9a988b placeholder text 'Search for books, authors, shelves, users…'. Right: 'Sign in' ghost link in Inter 15px weight 400 #444340, then green #278458 'Join →' button (4px radius, 14px 24px padding, Inter 15px weight 500, white text)."
+}

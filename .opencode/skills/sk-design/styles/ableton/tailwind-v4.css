@@ -1,0 +1,46 @@
+@theme {
+  /* Colors */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-fog: #eeeeee;
+  --color-signal-blue: #0000ff;
+  --color-coral: #ff8389;
+  --color-teal: #00d2be;
+
+  /* Typography */
+  --font-futura-pt: 'futura-pt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 21;
+  --text-body: 16px;
+  --leading-body: 24;
+  --text-subheading: 20px;
+  --leading-subheading: 30;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 33.6;
+  --text-heading: 30px;
+  --leading-heading: 36;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 48;
+  --text-display: 90px;
+  --leading-display: 90;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+  --spacing-203: 203px;
+}

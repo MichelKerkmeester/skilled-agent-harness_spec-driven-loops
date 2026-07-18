@@ -1,0 +1,464 @@
+{
+  "color": {
+    "hot-coral": {
+      "$value": "#ff4f40",
+      "$type": "color",
+      "$description": "Hot Coral — Brand signature — logo, links, headings, icons, card product. One vivid accent against the achromatic interface; every chromatic moment in the system draws from this single hue"
+    },
+    "midnight-ink": {
+      "$value": "#091723",
+      "$type": "color",
+      "$description": "Midnight Ink — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "deep-navy": {
+      "$value": "#112231",
+      "$type": "color",
+      "$description": "Deep Navy — Secondary surface tint and footer accents. Slightly lighter than Midnight Ink for layered dark elements"
+    },
+    "page-mist": {
+      "$value": "#f2f8f3",
+      "$type": "color",
+      "$description": "Page Mist — Page canvas — the dominant background behind all content sections. A barely-green off-white that gives the interface warmth without competing with white surfaces"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, elevated panels, button text on dark fills. Sits one layer above the mint canvas"
+    },
+    "soft-mint": {
+      "$value": "#e3ebe4",
+      "$type": "color",
+      "$description": "Soft Mint — Hover washes, subtle filled buttons, inset surface treatment. Sits between the page canvas and white cards"
+    },
+    "fog": {
+      "$value": "#b5b9bd",
+      "$type": "color",
+      "$description": "Fog — Tertiary text, placeholder, low-emphasis borders"
+    },
+    "steel": {
+      "$value": "#6b747b",
+      "$type": "color",
+      "$description": "Steel — Secondary body text, metadata, descriptive copy. The workhorse neutral for supporting information"
+    },
+    "ash": {
+      "$value": "#75817e",
+      "$type": "color",
+      "$description": "Ash — Icon strokes, decorative line work, subtle dividers"
+    },
+    "slate-button": {
+      "$value": "#3b4c54",
+      "$type": "color",
+      "$description": "Slate Button — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Maximum-contrast text, the darkest token in the system. Used sparingly for the highest-emphasis text on light surfaces"
+    }
+  },
+  "font": {
+    "monzosanstext": {
+      "$value": "MonzoSansText",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — navigation labels, button copy, descriptive paragraphs, card content, footer text. The custom -0.05em letter-spacing tightens running text for a dense, modern feel; the 400/600/700 spread lets the same family handle everything from captions to subheadings. Substitute with Inter or DM Sans if unavailable."
+    },
+    "monzosansdisplay": {
+      "$value": "MonzoSansDisplay",
+      "$type": "fontFamily",
+      "$description": "Headlines and display text — hero statements, section headings, large product titles. Bolder weights (up to 800) at large sizes (39-61px) create confident, blocky headlines that feel architectural. No custom letter-spacing, letting the weight do the work. Substitute with Inter or Manrope at heavy weights."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "31px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "31px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 31px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "MonzoSansText",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "39px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 39px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "44px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "49px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "49px",
+        "fontWeight": 800,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 49px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "MonzoSansDisplay",
+        "fontSize": "61px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 61px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f2f8f3",
+      "$type": "color",
+      "$description": "Surface level 0: Base background — the warm mint that fills the viewport and defines the system's light theme."
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated content surfaces — hero card, product cards, floating search bar. One step brighter than the canvas."
+    },
+    "soft-fill": {
+      "$value": "#e3ebe4",
+      "$type": "color",
+      "$description": "Surface level 2: Inset surfaces, hover washes, subtle filled states. Sits between canvas and card for intermediate layering."
+    },
+    "active-highlight": {
+      "$value": "#b5b9bd",
+      "$type": "color",
+      "$description": "Surface level 3: Low-emphasis borders, inactive state washes, placeholder surface tone."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://monzo.com",
+      "siteName": "Monzo",
+      "extractedAt": "2026-06-03T20:05:20.171Z",
+      "variant": "extended"
+    }
+  }
+}

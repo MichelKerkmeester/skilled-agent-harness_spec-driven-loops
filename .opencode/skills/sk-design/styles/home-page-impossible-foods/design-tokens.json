@@ -1,0 +1,492 @@
+{
+  "color": {
+    "velvet-wine": {
+      "$value": "#260212",
+      "$type": "color",
+      "$description": "Velvet Wine — Page canvas and deepest section background — the floor everything sits on"
+    },
+    "burgundy-stage": {
+      "$value": "#4f0423",
+      "$type": "color",
+      "$description": "Burgundy Stage — Section and card surfaces, slightly lifted from the canvas to separate bands of content"
+    },
+    "impossible-red": {
+      "$value": "#e10600",
+      "$type": "color",
+      "$description": "Impossible Red — Primary action buttons, active toggles, headline accents, icon emphasis — the single chromatic signal that commands attention"
+    },
+    "blush-highlight": {
+      "$value": "#ffc7c6",
+      "$type": "color",
+      "$description": "Blush Highlight — Soft secondary text, pill toggles in default state, link hover, tonal counterpoint to the aggressive red"
+    },
+    "butcher-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Butcher Black — Top navigation background, hairline borders, card outlines, deep contrast strokes"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Navigation and button text, body copy on dark surfaces, inverted toggle text"
+    }
+  },
+  "font": {
+    "sans-meat": {
+      "$value": "sans-meat",
+      "$type": "fontFamily",
+      "$description": "The only typeface on the site. Carries everything from 10px micro-labels to 231px hero statements. Weight 700 dominates display and CTAs; 400 and 500 handle body, nav, and secondary UI. The display sizes are anti-convention — most brands cap hero text around 64–80px; sans-meat's display reaches viewport-filling proportions because the brand is built on the stunt of oversized declarations like 'STEAK (FROM PLANTS)' and 'THE POTLUCK'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "103px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 103px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "126px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 126px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "149px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 149px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "150px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 150px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "153px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 153px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "160px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 160px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "161px",
+        "fontWeight": 700,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 161px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "185px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 185px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "189px",
+        "fontWeight": 700,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 189px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "204px",
+        "fontWeight": 700,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 204px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "226px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 226px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "228px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 228px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "sans-meat",
+        "fontSize": "231px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 231px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "148": {
+      "$value": "148px",
+      "$type": "dimension",
+      "$description": "Spacing 148px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "xl-2": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl-2"
+    },
+    "3xl": {
+      "$value": "37.8889px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "velvet-wine": {
+      "$value": "#260212",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the deepest floor"
+    },
+    "burgundy-stage": {
+      "$value": "#4f0423",
+      "$type": "color",
+      "$description": "Surface level 1: Section banding and card surfaces"
+    },
+    "impossible-red": {
+      "$value": "#e10600",
+      "$type": "color",
+      "$description": "Surface level 2: Accent wash and active-state surface"
+    },
+    "butcher-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Navigation bar and elevated framing"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://impossiblefoods.com",
+      "siteName": "Home page | Impossible Foods",
+      "extractedAt": "2026-06-03T17:58:21.464Z",
+      "variant": "extended"
+    }
+  }
+}

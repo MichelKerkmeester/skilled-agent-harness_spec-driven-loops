@@ -1,0 +1,217 @@
+{
+  "color": {
+    "champagne-gold": {
+      "$value": "#c8ad86",
+      "$type": "color",
+      "$description": "Champagne Gold — Accent headings, category tags, decorative borders — the only chromatic color in the system, used sparingly to mark emphasis and brand-bearing elements"
+    },
+    "candlelight-cream": {
+      "$value": "#fff7dd",
+      "$type": "color",
+      "$description": "Candlelight Cream — Primary text, hairline borders, icon strokes — warm off-white reads softer than pure white against the black canvas"
+    },
+    "obsidian-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Black — Page canvas, card surfaces, image backgrounds — absolute black dominates the visual field"
+    },
+    "ember-ash": {
+      "$value": "#66635f",
+      "$type": "color",
+      "$description": "Ember Ash — Muted surface variation, secondary backgrounds, low-emphasis fills"
+    }
+  },
+  "font": {
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all headings, body, and navigation — a geometric sans with unusually tight tracking on display sizes (-0.042em at 44px) that creates a precision-engineered feel. Weight 400 for body, 500 for labels and tags. The negative letter-spacing on the 44px headline tightens the word shapes into compact, machined forms."
+    },
+    "system-ui-sans-serif": {
+      "$value": "system-ui sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback / system rendering for micro-UI and link text"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background"
+    },
+    "card": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Company card surface — same as canvas, defined by 1px hairline border"
+    },
+    "muted-surface": {
+      "$value": "#66635f",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle background variation for nav or secondary zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atoms.co",
+      "siteName": "Atoms",
+      "extractedAt": "2026-06-03T18:52:37.323Z",
+      "variant": "extended"
+    }
+  }
+}

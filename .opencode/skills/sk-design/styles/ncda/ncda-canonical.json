@@ -1,0 +1,692 @@
+{
+  "source": "https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0",
+  "uuid": "f654d52c-42de-4f3b-a377-9287b1536ad0",
+  "name": "NCDA",
+  "northStar": "Architectural monograph in negative space. The NCDA wordmark at 62px is cropped by the viewport edge, turning a logo into a wall.",
+  "capturedAt": "2026-07-18T07:43:02.216Z",
+  "meta": {
+    "url": "https://ncda.biz",
+    "siteName": "NCDA",
+    "extractedAt": "2026-06-03T19:39:26.456Z",
+    "durationMs": 30903,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 158,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use TWK Everett Regular (400) at every size from 11px to 62px — never introduce bold or medium weights, the single-weight system is the signature",
+      "Set the wordmark or any display text at 62px with -0.05em letter-spacing and line-height 0.80 to create the continuous architectural band effect",
+      "Apply +0.04em letter-spacing to all text at 11px and below — the positive tracking is what makes captions read as technical annotations rather than body type",
+      "Crop type and imagery at the viewport edge — the bleed is structural, never add padding to prevent it",
+      "Use #191919 Onyx for all borders and dark surface bands; reserve #000000 Pure Black for text fills where maximum contrast is critical",
+      "Separate content sections with full-bleed #191919 bands — no gradients, no soft transitions between white and dark",
+      "Keep interactive elements text-only — no buttons, no icons, no filled rectangles; use 1px #808080 hairline rules to indicate links"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — the system is 0% colorfulness by design, any hue breaks the monograph language",
+      "Do not add border-radius to any element — all corners are sharp 0px, rounded shapes would undermine the architectural print language",
+      "Do not use drop shadows or elevation effects — depth comes from scale and negative space, not from shadow stacks",
+      "Do not set body or paragraph type at 62px — that size is reserved for the wordmark and display headlines that function as layout architecture",
+      "Do not use more than two type sizes on a single screen — the system relies on extreme size contrast (15px body vs 62px display), intermediate sizes dilute the rhythm",
+      "Do not add icons, arrows, or decorative glyphs to the Menu trigger or any navigation — the plain text label is the entire affordance",
+      "Do not center-align body text — left-align everything; centering is reserved for the wordmark, everything else hangs from a left edge"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#191919",
+        "name": "Onyx",
+        "role": "Primary text, hairline borders, full-bleed dark surface bands — the near-black ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Secondary text fills, deepest borders, and image overlays where maximum contrast against white is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, surface backgrounds, inverse text on dark bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Concrete",
+        "role": "Secondary descriptive text, muted link borders, subdued meta-information — the gray of footnotes and captions",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width container. The hero section is an asymmetric composition: the studio description block sits in the upper-right quadrant (approximately 59px from its left edge, aligned to roughly the 45% mark horizontally), while the cropped 'NCDA' wordmark dominates the lower 60% of the viewport, bleeding off the left and right edges. The top edge holds a thin utility row: dual-city clock at top-left, Menu trigger at top-right, with vast white space between. Section rhythm alternates between white canvas pages and full-bleed #191919 dark bands — each band likely a project showcase or image set. Content within white pages is left-aligned and column-based rather than centered. Navigation is minimal: a single Menu trigger, no visible nav bar, no breadcrumbs, no footer structure visible in the frames.",
+    "imagery": "The visual language is type-first and textural rather than photographic. The hero is pure typography — no image, no illustration, no decorative element. The dark band functions as a container for project photography or video, but the photography itself is not visible in the provided frames. The expected treatment, based on the architectural-studio genre and the monochrome system, is high-contrast interior photography: sharp geometric compositions of spaces, materials, and light, presented uncropped and full-bleed within the #191919 bands. No illustrations, no abstract graphics, no icons visible in the interface. The wordmark itself is the primary visual asset.",
+    "similar": [
+      {
+        "why": "Same architectural-monograph language: vast white space, monochrome type-driven layouts, full-bleed dark image bands, zero decorative color",
+        "business": "Vitra"
+      },
+      {
+        "why": "Extreme typographic scale, cropped wordmarks, and gallery-catalogue negative space applied to a creative studio site",
+        "business": "M/M Paris"
+      },
+      {
+        "why": "Editorial minimalism with a single weight type system, hairline rules, and a full-bleed image grid that breaks white pages",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Swiss-design influence: sharp corners, no shadows, single-weight neo-grotesque type, and information density through spacing rather than decoration",
+        "business": "Dieter Rams archive sites"
+      },
+      {
+        "why": "Architecture studio sites that lead with a massive cropped wordmark at display scale and let project photography carry the dark bands",
+        "business": "Schiattarella Associati"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "64-150px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Primary canvas — the page itself"
+      },
+      {
+        "hex": "#191919",
+        "name": "Onyx Black",
+        "level": 1,
+        "purpose": "Full-bleed dark bands for project showcases and section breaks — image or video containers, not decorative"
+      }
+    ],
+    "northStar": "Architectural monograph in negative space. The NCDA wordmark at 62px is cropped by the viewport edge, turning a logo into a wall.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.44,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.44,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.21
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 0.8,
+        "letterSpacing": -3.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Architectural Wordmark Display",
+        "role": "Brand identity rendered as a full-width layout device",
+        "description": "The 'NCDA' letterform set in TWK Everett Regular at 62px, line-height 0.80, letter-spacing -0.05em (#3.1px). The string is sized to overflow the viewport horizontally and is allowed to bleed off both edges — the crop is intentional. No margin, no padding, sits flush against the page boundaries. Color: #000000 on white, or #ffffff when placed on a #191919 band."
+      },
+      {
+        "name": "Dual-City Live Clock",
+        "role": "Persistent header utility — time stamps in two zones",
+        "description": "Two monospaced time displays in the top-left corner, formatted as 'HH:MM:SS CITY'. TWK Everett 11px, weight 400, letter-spacing +0.04em, color #000000. Separated by a horizontal gap of ~53px. The mono treatment and tabular spacing make the seconds tick without jitter."
+      },
+      {
+        "name": "Menu Trigger",
+        "role": "Sole navigation element — top-right anchor",
+        "description": "Plain text 'Menu' in TWK Everett 15px, weight 400, color #000000, no border, no background. Aligned flush to the right edge of the viewport. No icon, no chevron, no affordance decoration."
+      },
+      {
+        "name": "Studio Description Block",
+        "role": "Identity statement on the landing canvas",
+        "description": "Three-line paragraph set in TWK Everett 15px, line-height ~1.44, max-width approximately 400px. The studio name 'NC Design and Architecture Ltd.' is bolded or given a slight emphasis. Remainder in #808080 Concrete gray, with the brand name in #000000. Positioned in the upper-right quadrant, approximately 59px from the left edge of its column, creating a deliberate asymmetric counterweight to the cropped wordmark below."
+      },
+      {
+        "name": "Full-Bleed Dark Band",
+        "role": "Section break / project image container",
+        "description": "A 100vw × full-height band filled with #191919, no border, no radius, no shadow. Image or video content fills the band edge-to-edge. The transition from white to this band is abrupt — no gradient, no fade. Acts as a visual exhale between white pages."
+      },
+      {
+        "name": "Hairline Rule Link",
+        "role": "Inline link or navigation divider",
+        "description": "Text link in TWK Everett 15px, color #000000, with a 1px #808080 bottom border acting as underline. No hover state color change specified — the border is the link, not the text color."
+      },
+      {
+        "name": "Time-Indexed Label",
+        "role": "Metadata / project reference tag",
+        "description": "Small caption text at 11px in #808080, letter-spacing +0.04em, used for project numbers, dates, or category labels. No background, no border, no badge shape — just spaced gray type."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface and display type — a neo-grotesque with tall x-height and geometric openness. The sole weight (400) across the entire range from 11px captions to 62px display creates a monolithic typographic voice. At 62px it receives aggressive negative tracking (-0.05em) that pulls the letterforms into a continuous architectural band; at 11px it switches to slight positive tracking (+0.04em) for utilitarian legibility in timestamps and labels.",
+        "sizes": "11px, 15px, 21px, 32px, 62px",
+        "family": "TWK Everett",
+        "weight": "400",
+        "lineHeight": "0.80–1.44",
+        "substitute": "Neue Haas Grotesk Display, Inter, Helvetica Neue",
+        "letterSpacing": "-0.05em at 62px, -0.01em at 21–32px, +0.04em at 11px"
+      },
+      {
+        "role": "Monospaced companion for data and technical annotations — used sparingly in body contexts where tabular alignment or code-like precision is needed. Single size at 21px with -0.01em tracking.",
+        "sizes": "21px",
+        "family": "TWK Everett Mono",
+        "weight": "400",
+        "lineHeight": "0.80",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "-0.0100em"
+      }
+    ],
+    "description": "NCDA operates as a printed monograph translated to the web: paper-white canvas, a single near-black ink, zero chromatic noise, and type that does the structural work that color usually does. The signature move is the wordmark itself — rendered at architectural scale and cropped by the viewport edge, it turns the brand mark into a layout device rather than a logo. Navigation is reduced to essentials: a live dual-city clock in the corner, a single 'Menu' trigger, and a tight gray description block. The system alternates between vast white negative space and occasional full-bleed black bands, creating an exhibition-catalogue rhythm. Components are sparse and unornamented — no shadows, no rounded corners, no buttons — just hairline rules, generous margins, and type that whispers through tight negative tracking at display sizes and slightly positive tracking at caption sizes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"NCDA design system\",\"item\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#style-reference\",\"name\":\"NCDA design system reference\",\"headline\":\"NCDA design system | Refero Styles\",\"description\":\"Explore NCDA's mixed Agency design system: Onyx #191919, Pure Black #000000 colors, TWK Everett, TWK Everett Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"NCDA\",\"url\":\"https://ncda.biz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"caption\":\"Screenshot of NCDA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"NCDA design system\",\"NCDA website design\",\"NCDA colors\",\"NCDA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Onyx\",\"Pure Black\",\"Paper\",\"Concrete\",\"TWK Everett\",\"TWK Everett Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"NCDA design system\"},{\"@type\":\"Thing\",\"name\":\"NCDA website design\"},{\"@type\":\"Thing\",\"name\":\"NCDA colors\"},{\"@type\":\"Thing\",\"name\":\"NCDA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:58:41.015Z\",\"dateModified\":\"2026-04-30T01:58:41.015Z\"}]}19:T54d,**Quick Color Reference**\n- text: #000000 (primary), #808080 (secondary), #ffffff (inverse on dark)\n- background: #ffffff (canvas), #191919 (dark band)\n- border: #191919 (structural), #808080 (hairline/link)\n- accent: none — system is 0% chromatic\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the landing hero: white #ffffff canvas. Top-left: two monospaced timestamps '09:58:21 HK' and '21:58:21 NYC' in TWK Everett 11px, weight 400, letter-spacing +0.04em (0.44px), color #000000, separated by 53px gap. Top-right: 'Menu' in TWK Everett 15px, weight 400, #000000, flush right. Upper-right quadrant: description block ~400px wide, 'NC Design and Architecture Ltd.' in #000000, remainder in #808080, TWK Everett 15px, line-height 1.44, 59px left padding. Lower 60%: 'NCDA' in TWK Everett 62px, line-height 0.80, letter-spacing -3.1px (-0.05em), #000000, sized to overflow viewport horizontally and crop on both edges.\n\n2. Build a project section band: full-viewport-width rectangle, background #191919, height 100vh, no border, no radius, no shadow. Image inside fills the band edge-to-edge with no padding or margin.\n\n3. Build a time-indexed label: plain text in TWK Everett 11px, weight 400, color #808080, letter-spacing +0.04em, no background, no border, no badge shape — just spaced gray type inline with content."
+      },
+      {
+        "title": "Typographic Signature",
+        "content": "The single-weight (400 only) typographic system across a 5x size range is unusual and intentional. Most design systems use multiple weights to create hierarchy; NCDA uses scale alone. The result is a voice that never shouts — even the 62px display reads as calm authority rather than visual impact. The negative tracking at display sizes (-0.05em) tightens the wordmark into a near-continuous stroke, and the positive tracking at caption sizes (+0.04em) makes metadata feel technical and annotated. This dual-tracking polarity is a signature that should never be flattened to 'normal' letter-spacing."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids all shadow and elevation effects. Depth and hierarchy are achieved exclusively through scale contrast (62px display against 15px body), color inversion (white pages alternating with #191919 bands), and negative space. No box-shadows, no blurs, no z-axis layering. The only 'elevation' is the literal dark band that interrupts the white page sequence."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#191919",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.21342250711191385
+          },
+          "contexts": [
+            "other",
+            "list",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "icon",
+            "badge"
+          ],
+          "frequency": 509,
+          "confidence": 1,
+          "prominence": 83834992.24888559,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 1,
+            "link/color": 5,
+            "list/color": 10,
+            "badge/color": 1,
+            "image/color": 5,
+            "other/color": 58,
+            "heading/color": 16,
+            "body/borderColor": 20,
+            "icon/borderColor": 4,
+            "link/borderColor": 20,
+            "list/borderColor": 40,
+            "badge/borderColor": 4,
+            "image/borderColor": 20,
+            "other/borderColor": 232,
+            "heading/borderColor": 64,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "link"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 2967794.3040957307,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "link/color": 2,
+            "other/fill": 9,
+            "image/color": 1,
+            "other/color": 3,
+            "body/borderColor": 44,
+            "link/borderColor": 8,
+            "image/borderColor": 4,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 882908.8225832079,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 4,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 140,
+          "confidence": 1,
+          "prominence": 344633.28333164216,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "link/color": 13,
+            "other/color": 1,
+            "heading/color": 8,
+            "body/borderColor": 24,
+            "link/borderColor": 52,
+            "other/borderColor": 4,
+            "heading/borderColor": 32
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#ffffff",
+          "foreground": "#191919"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.45,
+          "background": "#191919",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#191919",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 188,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWK Everett Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 136,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Works Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TWK Everett Mono Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 32,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Suisse Works Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.44,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.44,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "TWK Everett Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 62,
+          "family": "TWK Everett Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f9fe88ba-1adb-4c11-8d06-71dd182c3856.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"NCDA design system\",\"item\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#style-reference\",\"name\":\"NCDA design system reference\",\"headline\":\"NCDA design system | Refero Styles\",\"description\":\"Explore NCDA's mixed Agency design system: Onyx #191919, Pure Black #000000 colors, TWK Everett, TWK Everett Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"NCDA\",\"url\":\"https://ncda.biz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f654d52c-42de-4f3b-a377-9287b1536ad0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"caption\":\"Screenshot of NCDA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/658a84ca-9aeb-41df-aa73-bd05085a1492.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"NCDA design system\",\"NCDA website design\",\"NCDA colors\",\"NCDA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Onyx\",\"Pure Black\",\"Paper\",\"Concrete\",\"TWK Everett\",\"TWK Everett Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"NCDA design system\"},{\"@type\":\"Thing\",\"name\":\"NCDA website design\"},{\"@type\":\"Thing\",\"name\":\"NCDA colors\"},{\"@type\":\"Thing\",\"name\":\"NCDA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:58:41.015Z\",\"dateModified\":\"2026-04-30T01:58:41.015Z\"}]}19:T54d,**Quick Color Reference**\n- text: #000000 (primary), #808080 (secondary), #ffffff (inverse on dark)\n- background: #ffffff (canvas), #191919 (dark band)\n- border: #191919 (structural), #808080 (hairline/link)\n- accent: none — system is 0% chromatic\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the landing hero: white #ffffff canvas. Top-left: two monospaced timestamps '09:58:21 HK' and '21:58:21 NYC' in TWK Everett 11px, weight 400, letter-spacing +0.04em (0.44px), color #000000, separated by 53px gap. Top-right: 'Menu' in TWK Everett 15px, weight 400, #000000, flush right. Upper-right quadrant: description block ~400px wide, 'NC Design and Architecture Ltd.' in #000000, remainder in #808080, TWK Everett 15px, line-height 1.44, 59px left padding. Lower 60%: 'NCDA' in TWK Everett 62px, line-height 0.80, letter-spacing -3.1px (-0.05em), #000000, sized to overflow viewport horizontally and crop on both edges.\n\n2. Build a project section band: full-viewport-width rectangle, background #191919, height 100vh, no border, no radius, no shadow. Image inside fills the band edge-to-edge with no padding or margin.\n\n3. Build a time-indexed label: plain text in TWK Everett 11px, weight 400, color #808080, letter-spacing +0.04em, no background, no border, no badge shape — just spaced gray type inline with content."
+}

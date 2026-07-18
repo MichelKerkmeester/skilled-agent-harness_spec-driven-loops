@@ -1,0 +1,449 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#faf9f7",
+      "$type": "color",
+      "$description": "Paper White — Page canvas — warm off-white that mimics uncoated paper stock; the default surface behind everything"
+    },
+    "ink": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon strokes, and dominant border color. Slightly softened from pure black to sit comfortably on the warm canvas"
+    },
+    "felt-gray": {
+      "$value": "#d3d3d3",
+      "$type": "color",
+      "$description": "Felt Gray — Hairline dividers, card borders, list separators — the structural neutral that holds the layout together without drawing attention"
+    },
+    "linen": {
+      "$value": "#edecea",
+      "$type": "color",
+      "$description": "Linen — Subtle surface elevation for nav backgrounds and hover states; slightly cooler than Paper White to create depth without contrast"
+    },
+    "parchment": {
+      "$value": "#e0ddd7",
+      "$type": "color",
+      "$description": "Parchment — Warm-toned surface for body sections and secondary cards; introduces a faint paper-fiber warmth against the cooler Linen"
+    },
+    "slate": {
+      "$value": "#727272",
+      "$type": "color",
+      "$description": "Slate — Muted secondary text and subdued borders for de-emphasized content like timestamps and helper labels"
+    },
+    "ash": {
+      "$value": "#8d9090",
+      "$type": "color",
+      "$description": "Ash — Tertiary text and disabled-state borders; sits between Slate and Felt Gray in the neutral ladder"
+    },
+    "charcoal": {
+      "$value": "#585a5a",
+      "$type": "color",
+      "$description": "Charcoal — Navigation borders and medium-emphasis UI structure; a bridge between the near-black Ink and the mid-grays"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Badge fills, icon backgrounds, and the highest surface elevation — used sparingly to lift elements above Linen and Parchment"
+    },
+    "mustard": {
+      "$value": "#f1ba35",
+      "$type": "color",
+      "$description": "Mustard — Primary action color — CTA buttons, nav accents, and badge highlights. A warm sunlit yellow that reads as a sticky-note moment against the monochrome layout"
+    },
+    "espresso": {
+      "$value": "#30250b",
+      "$type": "color",
+      "$description": "Espresso — Dark accent paired with Mustard on badges and nav — provides a near-black complement that makes the yellow pop without using pure black"
+    },
+    "terracotta": {
+      "$value": "#d26c46",
+      "$type": "color",
+      "$description": "Terracotta — Editorial accent — appears in the typographic art palette and decorative product imagery. Rust-orange warmth that belongs in illustrations, not buttons"
+    },
+    "sage": {
+      "$value": "#458e71",
+      "$type": "color",
+      "$description": "Sage — Editorial accent — a muted forest green used in the typographic art palette. Decorative, not functional"
+    },
+    "cobalt": {
+      "$value": "#3b59a3",
+      "$type": "color",
+      "$description": "Cobalt — Editorial accent — deep ultramarine from the typographic art palette. The strongest chromatic statement in the decorative system"
+    },
+    "rust": {
+      "$value": "#6c3c3c",
+      "$type": "color",
+      "$description": "Rust — Editorial accent — dark brick red from the typographic art palette, echoing the warmth of Terracotta but grounded"
+    },
+    "sky-dust": {
+      "$value": "#90abc8",
+      "$type": "color",
+      "$description": "Sky Dust — Editorial accent — a washed, chalky blue used in the typographic art palette. The lightest chromatic in the decorative system"
+    }
+  },
+  "font": {
+    "abcdiatype": {
+      "$value": "ABCDiatype",
+      "$type": "fontFamily",
+      "$description": "The only typeface. A neo-grotesque editorial sans used at every register — 19px body copy, 25px section headings, and dramatic 71–140px display treatments with tight tracking. The wide weight range (400–500) keeps the system monovariational; hierarchy comes from size, not weight contrast."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "71px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 71px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "82px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 82px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABCDiatype",
+        "fontSize": "140px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 140px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 24px 10px 0px, rgba(0, 0, 0, 0.05) 0px 13px 8px 0px, rgba(0, 0, 0, 0.09) 0px 6px 6px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#faf9f7",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — warm off-white base"
+    },
+    "linen": {
+      "$value": "#edecea",
+      "$type": "color",
+      "$description": "Surface level 1: Nav background, subtle elevation"
+    },
+    "parchment": {
+      "$value": "#e0ddd7",
+      "$type": "color",
+      "$description": "Surface level 2: Body section backgrounds, secondary cards"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Badge fills, icon surfaces, highest elevation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://kal-store.com",
+      "siteName": "Kalstore®",
+      "extractedAt": "2026-06-03T21:13:53.379Z",
+      "variant": "extended"
+    }
+  }
+}

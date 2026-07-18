@@ -1,0 +1,327 @@
+{
+  "color": {
+    "void-navy": {
+      "$value": "#03081a",
+      "$type": "color",
+      "$description": "Void Navy — Page canvas and primary dark surface — the base layer everything else floats on"
+    },
+    "deep-indigo": {
+      "$value": "#020626",
+      "$type": "color",
+      "$description": "Deep Indigo — Card surfaces, raised panels, and secondary structural fills"
+    },
+    "inkline-violet": {
+      "$value": "#292f66",
+      "$type": "color",
+      "$description": "Inkline Violet — Hairline dividers, card borders, icon strokes — the structural skeleton color"
+    },
+    "quartz-lavender": {
+      "$value": "#aab1f2",
+      "$type": "color",
+      "$description": "Quartz Lavender — Secondary text, outlined link borders, muted body copy, inactive navigation"
+    },
+    "mist-lilac": {
+      "$value": "#7a83cc",
+      "$type": "color",
+      "$description": "Mist Lilac — Tertiary text and supporting UI elements needing softer contrast"
+    },
+    "dusk-iris": {
+      "$value": "#4d5499",
+      "$type": "color",
+      "$description": "Dusk Iris — Muted borders, disabled states, low-priority card outlines"
+    },
+    "glacier-white": {
+      "$value": "#f5f6ff",
+      "$type": "color",
+      "$description": "Glacier White — Light-theme card surfaces, light section backgrounds, high-contrast text on dark"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headlines, primary text on dark, nav and button borders"
+    },
+    "pulse-cobalt": {
+      "$value": "#3d50fc",
+      "$type": "color",
+      "$description": "Pulse Cobalt — Primary action buttons, active states, key icons, brand signal — the single vivid accent that powers the entire interface"
+    },
+    "signal-teal": {
+      "$value": "#05e0e0",
+      "$type": "color",
+      "$description": "Signal Teal — Secondary accent for icons, tertiary links, gradient terminal, and data-viz highlights"
+    },
+    "cyan-teal": {
+      "$value": "#05cee0",
+      "$type": "color",
+      "$description": "Cyan Teal — Decorative gradient origin and atmospheric illustration accent"
+    },
+    "gradient-teal-blue": {
+      "$value": "#05a1c9",
+      "$type": "color",
+      "$description": "Gradient Teal-Blue — Hero gradient banner, brand transition washes — teal flowing into cobalt creates a continuous energy signal"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "plain": {
+      "$value": "Plain",
+      "$type": "fontFamily",
+      "$description": "Primary interface typeface. Weight 100 for large display and heading sizes (42–147px), weight 300 for body, weight 400 for emphasized inline text. The ultralthin weights are the defining signature — no other fintech brand runs 100-weight at this scale. Substitute: Inter (light/extra-light), Neue Haas Grotesk Display Thin, or Untitled Sans Light."
+    },
+    "plain-light": {
+      "$value": "Plain Light",
+      "$type": "fontFamily",
+      "$description": "Long-form body copy, description paragraphs, and card detail text. Weight 300 keeps long passages airy and scannable against the dark canvas. The 1.80 line-height variant is used for spacious paragraph blocks. Substitute: Inter Light, Untitled Sans Light."
+    },
+    "plain-ultralight": {
+      "$value": "Plain Ultralight",
+      "$type": "fontFamily",
+      "$description": "Subheadings, section headers within cards, and product category labels. Weight 100 at 28px stays in the same whisper register as the display sizes but at a scannable mid-scale. Substitute: Inter ExtraLight, Neue Haas Grotesk Display Thin."
+    },
+    "plain-ultrathin": {
+      "$value": "Plain Ultrathin",
+      "$type": "fontFamily",
+      "$description": "Hero headlines, display text, and section-leading titles. Weight 100 at 147px is the brand's most extreme typographic move — the characters nearly dissolve into hairlines, which is why the vivid blue accent and surrounding negative space carry so much of the visual weight. Substitute: Inter Thin, Neue Haas Grotesk Display Thin."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Plain Light",
+        "fontSize": "7px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Plain Light",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "13px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Plain Light",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Plain Ultralight",
+        "fontSize": "28px",
+        "fontWeight": 100,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plain Ultrathin",
+        "fontSize": "42px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Plain Ultrathin",
+        "fontSize": "56px",
+        "fontWeight": 100,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Plain Ultrathin",
+        "fontSize": "83px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 83px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Plain Ultrathin",
+        "fontSize": "147px",
+        "fontWeight": 100,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 147px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "0.864px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "17.352px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "34.704px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "47.7072px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "360px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#03081a",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background, the deep-space base layer"
+    },
+    "deep-indigo-card": {
+      "$value": "#020626",
+      "$type": "color",
+      "$description": "Surface level 1: Card and panel surfaces sitting on the void canvas"
+    },
+    "light-content-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Light-theme content cards, dashboard mockups, and section inversions"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.galileo-ft.com",
+      "siteName": "Galileo-ft",
+      "extractedAt": "2026-06-03T20:06:02.697Z",
+      "variant": "extended"
+    }
+  }
+}

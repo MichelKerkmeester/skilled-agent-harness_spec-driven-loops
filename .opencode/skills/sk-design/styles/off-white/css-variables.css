@@ -1,0 +1,70 @@
+:root {
+  /* Colors */
+  --color-voltage-green: #00fb34;
+  --color-alarm-red: #ff0000;
+  --color-caution-yellow: #fff500;
+  --color-absolute-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-ashen-gray: #aba4a4;
+
+  /* Typography — Font Families */
+  --font-offwhite: 'Offwhite', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --text-subheading: 18px;
+  --leading-subheading: 1.3;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.31;
+  --text-heading-sm: 36px;
+  --leading-heading-sm: 1.25;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.15;
+  --text-display: 72px;
+  --leading-display: 1.1;
+  --text-display-lg: 96px;
+  --leading-display-lg: 1;
+  --text-hero: 180px;
+  --leading-hero: 1;
+  --text-monumental: 500px;
+  --leading-monumental: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-90: 90px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --section-gap: 60-120px;
+  --card-padding: 40px;
+  --element-gap: 40px;
+
+  /* Border Radius */
+  --radius-3xl: 30px;
+
+  /* Named Radii */
+  --radius-links: 30px;
+  --radius-images: 0px;
+  --radius-buttons: 30px;
+  --radius-surfaces: 0px;
+  --radius-display-type: 0px;
+
+  /* Surfaces */
+  --surface-midnight-canvas: #000000;
+  --surface-inverse-panel: #ffffff;
+  --surface-alert-frame: #ff0000;
+  --surface-neon-type-field: #00fb34;
+  --surface-caution-highlight: #fff500;
+}

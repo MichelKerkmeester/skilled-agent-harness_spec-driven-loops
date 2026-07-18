@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
+  "spec_folder": "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
+  "parent_id": "sk-design/010-sk-design-styles-from-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refero extraction harness",
+      "styles capture script",
+      "sitemap style crawler",
+      "refero harness plan",
+      "styles capture plan",
+      "sitemap crawler plan",
+      "refero harness tasks",
+      "styles capture tasks",
+      "sitemap crawler tasks",
+      "refero harness checklist",
+      "styles capture gates",
+      "sitemap crawler verification"
+    ],
+    "key_topics": [
+      "refero",
+      "extraction",
+      "harness",
+      "styles",
+      "capture",
+      "script",
+      "sitemap",
+      "style",
+      "crawler",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+      ".opencode/skills/sk-design/styles/_harness/README.md",
+      ".opencode/skills/sk-design/styles/_manifest.json",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract-refero.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/_harness/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/_manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Tokens",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Host",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "chrome-devtools-mcp",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The styles.refero.design per-style tabs (DESIGN.md, Tailwind v4, CSS Variables, Design Tokens, each Extended) are client-rendered, so they cannot be read from raw HTML and cannot be reproduced through the Refero MCP (a different dataset)",
+    "created_at": "2026-07-18T06:28:09.083Z",
+    "last_save_at": "2026-07-18T10:25:47.094Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f436aefda12d7333c9de0c597844d721c1b5eb7cd6b05df7039cfde32eed9361",
+    "source_doc_hashes": {
+      "spec.md": "335037046b81c09d78edc1579155e6897f0681c2cb7342d8c71654891b24b10b",
+      "plan.md": "8e4f67f5b6b0487e08131d2285b68bc97ae8394a71ea2c06651e9ffd370d00a7",
+      "tasks.md": "5a47c0968d62260c8c509c773f975cba61f27b9f9aadd2c775617eecccaef733",
+      "checklist.md": "4a170983ef2affdb6cff2ac24911248055dde8186242b7fe5c671344fdfcbfe9",
+      "implementation-summary.md": "c1ffdd7fc8d2f27e3ef2d54dd3f1b5d28938858e346ceee93c9932a7ed2da571"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

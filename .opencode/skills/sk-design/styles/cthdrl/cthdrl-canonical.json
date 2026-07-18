@@ -1,0 +1,1006 @@
+{
+  "source": "https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef",
+  "uuid": "565bfc50-3a19-4224-9a4c-125edaeb7bef",
+  "name": "cthdrl",
+  "northStar": "gallery wall at midnight",
+  "capturedAt": "2026-07-18T08:33:02.849Z",
+  "meta": {
+    "url": "https://cthdrl.co",
+    "siteName": "cthdrl",
+    "extractedAt": "2026-06-03T16:25:20.533Z",
+    "durationMs": 31975,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 420,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #e7ded1 for all text, borders, icons, and interactive elements on a #000000 canvas",
+      "Set display headlines at 121px with line-height 0.85 and letter-spacing -0.016em in NB Akademie",
+      "Use NB Akademie Mono at 11px with -0.045em letter-spacing for all body, nav, and metadata text",
+      "Apply 0px border-radius to every element — no exceptions, no rounded corners anywhere",
+      "Use full-bleed gradient sections (maroon, violet, crimson) as the only chromatic moments, applied edge-to-edge with no padding or containment",
+      "Maintain 0px padding and no fill on all links and buttons — identify interactive elements by Bone borders or underlines only",
+      "Keep 50px between major sections and 10-11px between inline elements to preserve the editorial rhythm"
+    ],
+    "donts": [
+      "Never introduce a second text color — the system is monochrome in the UI layer; chromatic color exists only in full-bleed gradient sections",
+      "Never use rounded corners, box-shadows, or background fills on any component",
+      "Never set body or UI text above 11px in NB Akademie Mono — the face is reserved for technical/metadata scale",
+      "Never use a bright or saturated color for buttons, links, or interactive states — interactivity is signaled by borders, not fills",
+      "Never apply gradients to text, icons, or component surfaces — gradients are full-bleed backgrounds only",
+      "Never constrain the page to a max-width container — the layout bleeds to viewport edges, mimicking a printed sheet",
+      "Never use weight 600+ — every typeface runs at 400; scale and tracking create hierarchy, not weight"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#e7ded1",
+        "name": "Bone",
+        "role": "Primary text, hairline borders, navigation labels, link color, icon strokes — the sole chromatic element in the UI layer, a warm off-white that avoids clinical sterility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, section backgrounds, every surface — pure black, not a near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c0b02",
+        "name": "Maroon Gradient",
+        "role": "Full-bleed atmospheric section background — deep oxidized red creating a candlelit warmth against the surrounding void",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82))"
+      },
+      {
+        "hex": "#1e1594",
+        "name": "Violet Gradient",
+        "role": "Full-bleed atmospheric section background — deep indigo wash, a cold counterpoint to the maroon sections",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82))"
+      },
+      {
+        "hex": "#6e1815",
+        "name": "Crimson Gradient",
+        "role": "Full-bleed atmospheric section background — burnt blood red, the most aggressive gradient stop",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(152, 29, 38), rgb(76, 49, 48))"
+      },
+      {
+        "hex": "#6d0251",
+        "name": "Plum Gradient",
+        "role": "Full-bleed atmospheric section background — dark mulberry, a muted violet-red transition",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(182, 1, 34), rgb(83, 48, 59))"
+      },
+      {
+        "hex": "#a8b428",
+        "name": "Olive Gradient",
+        "role": "Full-bleed atmospheric section background — sickly yellow-green, the only non-red gradient, used sparingly for contrast",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(168, 180, 40), rgb(69, 68, 58))"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width constraint — the canvas extends to viewport edges on all sides. The hero is a massive editorial headline occupying the full viewport height, with a thin arc or circle line drawn at 800px+ diameter behind it as the only graphical element. Below the headline, a 3-4 column metadata row in 11px monospace provides supporting information. Navigation is a fixed thin top bar with no background fill. Section transitions happen through full-bleed gradient fields rather than borders or spacing. The grid is asymmetric: headline-left, counter-right, metadata columns unevenly weighted. The overall rhythm is that of a printed broadsheet or exhibition catalog — spacious vertical sections, generous breathing room, text-first composition.",
+    "imagery": "The site uses almost no photography or illustration. Visual interest comes entirely from typographic scale, the black void, thin geometric arc lines drawn at large scale behind content, and the occasional full-bleed gradient field. Where images appear (project showcases), they are likely product crops or editorial photography with no rounded corners, bleeding to viewport edges. The imagery strategy is anti-imagery: text and geometry are the visuals.",
+    "similar": [
+      {
+        "why": "Editorial typography-first layout with no decorative chrome, relying on typographic scale and generous negative space",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Dark canvas with large display headlines and sparse UI — content and typography as the entire visual system",
+        "business": "Resn"
+      },
+      {
+        "why": "Full-bleed gradient sections as chapter breaks with monochrome text overlay, broadsheet editorial rhythm",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Custom serif display type with monospaced metadata, gallery-like restraint and zero decorative elements",
+        "business": "Locomotive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px"
+      },
+      "elementGap": "10-11px",
+      "sectionGap": "50px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Primary canvas — every page, every section defaults to this"
+      },
+      {
+        "hex": "#4c0b02",
+        "name": "Gradient Fields",
+        "level": 2,
+        "purpose": "Full-bleed chromatic section backgrounds acting as chapter dividers — never cards, never elevated surfaces"
+      }
+    ],
+    "northStar": "gallery wall at midnight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.495
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "display",
+        "size": 121,
+        "lineHeight": 0.85,
+        "letterSpacing": -1.936
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero and section headlines",
+        "description": "NB Akademie at 121px, weight 400, line-height 0.85, letter-spacing -0.016em. Bone (#e7ded1) on Void (#000000). Occupies full viewport width, often broken across 3-4 lines. A thin horizontal rule or short em-dash prefix marks the opening line. No max-width constraint — text breathes to the edges."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "NB Akademie Mono at 11px, uppercase, weight 400, letter-spacing -0.045em. Bone text on Void. Fixed thin top bar with logo left, primary nav center, counter/indicator right. Navigation items separated by 30px horizontal padding. No background fill, no border — floats directly on the black canvas."
+      },
+      {
+        "name": "Section Counter",
+        "role": "Page position indicator (e.g. 0/14)",
+        "description": "NB Akademie Mono 11px, Bone. Positioned top-right. Italic-style format with slash separator. Serves as a pagination metaphor, treating the site as a 14-page document."
+      },
+      {
+        "name": "Outlined Link",
+        "role": "Inline and standalone links",
+        "description": "Bone text with a 1px Bone border on one or two sides, or underlined in Bone. No background fill, no pill shape. Links are identified by their border treatment alone — the outlined-action border (ACTION_BORDER=12) is the only visual signal. Padding 0px vertical, 0px horizontal within text flow."
+      },
+      {
+        "name": "Metadata Block",
+        "role": "Supporting information under headlines",
+        "description": "NB Akademie Mono 11px, uppercase, Bone. Arranged in 3-column or 4-column grid at the bottom of hero sections. Location, contact prompt, and studio description in tight monospace columns. 10px element gap, 30px column padding."
+      },
+      {
+        "name": "Arc Divider",
+        "role": "Section separator and decorative geometry",
+        "description": "Thin 1px Bone circle or arc line drawn at large scale (800px+ diameter) behind content. Creates a sense of orbital geometry against the black void. Partially visible, never fully rendered — the incompleteness is the point."
+      },
+      {
+        "name": "Gradient Section Background",
+        "role": "Full-bleed chromatic page break",
+        "description": "One of the six detected linear gradients (maroon→plum, crimson→earth, olive→charcoal, etc.) applied edge-to-edge as a section background. No borders, no radius. Text within these sections uses Bone or Void depending on the gradient's luminance. Functions as a 'chapter change' in a printed catalog."
+      },
+      {
+        "name": "Project Index Item",
+        "role": "List entry in a project gallery or case study index",
+        "description": "NB Akademie Mono 11px or NB Akademie 32px, Bone text. Minimal — project title and a 1px Bone top/bottom border creating a row. No thumbnail, no description. The index reads as a typeset table of contents."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading typeface. Custom serif used exclusively for monumental headlines at 121px with extremely tight leading (0.85) that makes characters nearly touch. The 400 weight at display size is deliberate restraint — the scale and tight tracking do the work that bold weight would do in other systems. Letter-spacing tightens further at larger sizes.",
+        "sizes": "32px, 35px, 121px",
+        "family": "NB Akademie",
+        "weight": "400",
+        "lineHeight": "0.85–1.20",
+        "substitute": "GT Sectra, Tiempos Headline, or any transitional serif with low contrast and geometric proportions",
+        "letterSpacing": "-0.016em to -0.01em"
+      },
+      {
+        "role": "UI and monospace workhorse — navigation, body text, metadata, links, icons, and the 32px mid-scale heading tier. At 11px the negative tracking (-0.045em) compresses characters into a dense data-stream aesthetic. The monospaced face contrasts with the display serif to create a document/blueprint duality: editorial headlines above, technical metadata below.",
+        "sizes": "11px, 32px",
+        "family": "NB Akademie Mono",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Berkeley Mono",
+        "letterSpacing": "-0.045em"
+      }
+    ],
+    "description": "Cthdrl operates in pure negative space: a pitch-black canvas where a single warm bone-white carries every word, line, and interface element. Typography is the architecture — oversized display weights compress into tight leading (0.85) to create monolithic headline slabs, while a monospaced face handles navigation, metadata, and body copy at intentionally small sizes. There are no fills, no shadows, no rounded surfaces, and no chromatic accents in the UI layer itself; color appears only as full-bleed gradient sections (deep maroons, violets, olive) that act as atmospheric chapter breaks. The system feels less like a website and more like a printed broadsheet or gallery wall: silence as the primary material, cream-on-black text as the only voice.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"cthdrl design system\",\"item\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#style-reference\",\"name\":\"cthdrl design system reference\",\"headline\":\"cthdrl design system | Refero Styles\",\"description\":\"Explore cthdrl's dark Agency design system: Bone #e7ded1, Void #000000 colors, NB Akademie, NB Akademie Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\",\"mainEntityOfPage\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"cthdrl\",\"url\":\"https://cthdrl.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"caption\":\"Screenshot of cthdrl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"cthdrl design system\",\"cthdrl website design\",\"cthdrl colors\",\"cthdrl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Void\",\"Maroon Gradient\",\"Violet Gradient\",\"NB Akademie\",\"NB Akademie Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"cthdrl design system\"},{\"@type\":\"Thing\",\"name\":\"cthdrl website design\"},{\"@type\":\"Thing\",\"name\":\"cthdrl colors\"},{\"@type\":\"Thing\",\"name\":\"cthdrl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:28:26.118Z\",\"dateModified\":\"2026-04-30T02:28:26.118Z\"}]}19:T65d,**Quick Color Reference**\n- Background: #000000\n- Text: #e7ded1\n- Border/divider: #e7ded1\n- Accent: no distinct UI accent — chromatic color appears only in full-bleed gradient sections\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display Headline**: Render at 121px in NB Akademie (substitute: GT Sectra), weight 400, line-height 0.85, letter-spacing -0.016em. Color #e7ded1 on #000000 background. Full-bleed, no max-width. A short em-dash or horizontal line may prefix the first line. Text should occupy 60-80% of viewport height.\n\n2. **Navigation Bar**: Fixed top bar, 0px background, 0px border-radius. Logo on left, 2-3 nav items center, counter (e.g. '0/14') right. All text in NB Akademie Mono 11px, weight 400, letter-spacing -0.045em, color #e7ded1. 30px horizontal padding between items.\n\n3. **Metadata Row**: 3-column grid below a hero headline. Each column contains 2-3 lines of NB Akademie Mono 11px, uppercase, #e7ded1. Column gap 30px. First column: location. Second column: contact prompt. Third column: studio description in 3-4 lines. No borders, no backgrounds.\n\n4. **Full-Bleed Gradient Section**: Background: linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82)). Edge-to-edge, 0px radius, no border. Min-height 100vh. Text overlay in #e7ded1 using the same type system. Functions as a chapter break.\n\n5. **Outlined Link**: Text in #e7ded1, NB Akademie Mono 11px, with a 1px #e7ded1 border-bottom (or border-left for vertical links). No background fill, no padding, 0px radius. Hover: border color remains #e7ded1, text may shift to uppercase or add underline — no color change."
+      },
+      {
+        "title": "Duality Principle",
+        "content": "The system operates on a two-register duality: the **editorial register** (NB Akademie serif at 121px, tight leading, monumental headlines) and the **technical register** (NB Akademie Mono at 11px, monospaced, metadata-dense). Every screen alternates between these two scales. Never let the monospaced face appear above 32px in body contexts, and never let the serif face appear below 32px. The gap between 11px and 121px — an 11× scale jump — is intentional: it creates a document/blueprint rhythm where the reader's eye leaps between headline and footnote, with nothing in between."
+      },
+      {
+        "title": "Negative Space as Material",
+        "content": "The #000000 canvas is not a background — it is the primary design surface. When planning layout, calculate the ratio of black space to text: it should always exceed 70%. Thin Bone lines (1px) and arc geometry are used sparingly to activate the void, not to fill it. Resist any impulse to add borders, backgrounds, or containers to group elements — grouping happens through proximity and alignment, not enclosure."
+      }
+    ],
+    "elevationPhilosophy": "The design uses zero elevation. There are no shadows, no z-axis surfaces, no floating panels. Spatial separation is achieved through generous negative space and the black void itself — elements exist on a single plane, distinguished only by their position and the thin Bone lines between them. This is a design that trusts emptiness as a structural material."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e7ded1",
+          "oklch": {
+            "c": 0.020068937641212894,
+            "h": 77.30815172548672,
+            "l": 0.9041914915328828
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "hero",
+            "heading",
+            "image",
+            "button"
+          ],
+          "frequency": 1907,
+          "confidence": 1,
+          "prominence": 41846026.487170026,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 57,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 3,
+            "image/color": 14,
+            "other/color": 206,
+            "button/color": 1,
+            "other/stroke": 45,
+            "heading/color": 86,
+            "nav/borderColor": 12,
+            "body/borderColor": 228,
+            "hero/borderColor": 3,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "image/borderColor": 56,
+            "other/borderColor": 824,
+            "button/borderColor": 4,
+            "heading/borderColor": 344
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 6041363.701313208,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 29
+          }
+        },
+        {
+          "hex": "#7d820e",
+          "oklch": {
+            "c": 0.12555150350246425,
+            "h": 112.4506141911094,
+            "l": 0.5831077820404743
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1642147.9477471753,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#b60122",
+          "oklch": {
+            "c": 0.19751262496423444,
+            "h": 23.506784079954855,
+            "l": 0.48992698597430473
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1642147.9477471753,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#4c0b02",
+          "oklch": {
+            "c": 0.0973043230452636,
+            "h": 32.50673364147465,
+            "l": 0.27240424298175686
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#981d26",
+          "oklch": {
+            "c": 0.15773201850511231,
+            "h": 23.209032987296812,
+            "l": 0.444667961009619
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a8b428",
+          "oklch": {
+            "c": 0.15439971419802978,
+            "h": 114.62837403480268,
+            "l": 0.7364707960843193
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1e1594",
+          "oklch": {
+            "c": 0.19037148389012257,
+            "h": 271.8336273453617,
+            "l": 0.3295169162070394
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#871a03",
+          "oklch": {
+            "c": 0.14709825930153678,
+            "h": 32.93851783012252,
+            "l": 0.4062684659085292
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6d0251",
+          "oklch": {
+            "c": 0.15206403840798638,
+            "h": 343.14302261202937,
+            "l": 0.3591969066300907
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6e1815",
+          "oklch": {
+            "c": 0.12030608690522361,
+            "h": 27.289837899844393,
+            "l": 0.3569866393656937
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1036080,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.05543784375543756,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.77,
+          "background": "#000000",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.63,
+          "background": "#4c0b02",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.92,
+          "background": "#1e1594",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#a8b428",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.87,
+          "background": "#6d0251",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.74,
+          "background": "#6e1815",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.24,
+          "background": "#871a03",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#a8b428",
+          "foreground": "#4c0b02"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.21,
+          "background": "#981d26",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.8,
+          "background": "#a8b428",
+          "foreground": "#1e1594"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#b60122",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.19,
+          "background": "#a8b428",
+          "foreground": "#6d0251"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.11,
+          "background": "#a8b428",
+          "foreground": "#6e1815"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#a8b428",
+          "foreground": "#871a03"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.63,
+          "background": "#a8b428",
+          "foreground": "#981d26"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.11,
+          "background": "#7d820e",
+          "foreground": "#e7ded1"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.06,
+          "background": "#a8b428",
+          "foreground": "#b60122"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#a8b428",
+          "foreground": "#e7ded1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 47,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingRight|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82))",
+        "colors": [
+          "rgb(76, 11, 2)",
+          "rgb(91, 48, 82)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(125, 130, 14), rgb(42, 67, 87))",
+        "colors": [
+          "rgb(125, 130, 14)",
+          "rgb(42, 67, 87)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 136, 24), rgb(48, 45, 80))",
+        "colors": [
+          "rgb(119, 136, 24)",
+          "rgb(48, 45, 80)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(152, 29, 38), rgb(76, 49, 48))",
+        "colors": [
+          "rgb(152, 29, 38)",
+          "rgb(76, 49, 48)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(182, 1, 34), rgb(83, 48, 59))",
+        "colors": [
+          "rgb(182, 1, 34)",
+          "rgb(83, 48, 59)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(168, 180, 40), rgb(69, 68, 58))",
+        "colors": [
+          "rgb(168, 180, 40)",
+          "rgb(69, 68, 58)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(180, 4, 28), rgb(73, 64, 64))",
+        "colors": [
+          "rgb(180, 4, 28)",
+          "rgb(73, 64, 64)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(30, 21, 148), rgb(42, 54, 79))",
+        "colors": [
+          "rgb(30, 21, 148)",
+          "rgb(42, 54, 79)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(135, 26, 3), rgb(48, 41, 37))",
+        "colors": [
+          "rgb(135, 26, 3)",
+          "rgb(48, 41, 37)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(109, 2, 81), rgb(4, 2, 4))",
+        "colors": [
+          "rgb(109, 2, 81)",
+          "rgb(4, 2, 4)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(110, 24, 21), rgb(88, 68, 50))",
+        "colors": [
+          "rgb(110, 24, 21)",
+          "rgb(88, 68, 50)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NB Akademie Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 323,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NB Akademie",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "NB Akademie Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "image"
+          ],
+          "frequency": 134,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "NB Akademie Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 116,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.045,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "NB Akademie Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "NB Akademie Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 42,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "NB Akademie",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "NB Akademie",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.016,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "NB Akademie Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "NB Akademie",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "NB Akademie",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "NB Akademie",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5d04161e-d637-4dcc-806e-dfa1a3f32966.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"cthdrl design system\",\"item\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#style-reference\",\"name\":\"cthdrl design system reference\",\"headline\":\"cthdrl design system | Refero Styles\",\"description\":\"Explore cthdrl's dark Agency design system: Bone #e7ded1, Void #000000 colors, NB Akademie, NB Akademie Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\",\"mainEntityOfPage\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"cthdrl\",\"url\":\"https://cthdrl.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/565bfc50-3a19-4224-9a4c-125edaeb7bef#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"caption\":\"Screenshot of cthdrl\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c28e4500-fd28-467d-831a-2d701916d2f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"cthdrl design system\",\"cthdrl website design\",\"cthdrl colors\",\"cthdrl typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Void\",\"Maroon Gradient\",\"Violet Gradient\",\"NB Akademie\",\"NB Akademie Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"cthdrl design system\"},{\"@type\":\"Thing\",\"name\":\"cthdrl website design\"},{\"@type\":\"Thing\",\"name\":\"cthdrl colors\"},{\"@type\":\"Thing\",\"name\":\"cthdrl typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:28:26.118Z\",\"dateModified\":\"2026-04-30T02:28:26.118Z\"}]}19:T65d,**Quick Color Reference**\n- Background: #000000\n- Text: #e7ded1\n- Border/divider: #e7ded1\n- Accent: no distinct UI accent — chromatic color appears only in full-bleed gradient sections\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display Headline**: Render at 121px in NB Akademie (substitute: GT Sectra), weight 400, line-height 0.85, letter-spacing -0.016em. Color #e7ded1 on #000000 background. Full-bleed, no max-width. A short em-dash or horizontal line may prefix the first line. Text should occupy 60-80% of viewport height.\n\n2. **Navigation Bar**: Fixed top bar, 0px background, 0px border-radius. Logo on left, 2-3 nav items center, counter (e.g. '0/14') right. All text in NB Akademie Mono 11px, weight 400, letter-spacing -0.045em, color #e7ded1. 30px horizontal padding between items.\n\n3. **Metadata Row**: 3-column grid below a hero headline. Each column contains 2-3 lines of NB Akademie Mono 11px, uppercase, #e7ded1. Column gap 30px. First column: location. Second column: contact prompt. Third column: studio description in 3-4 lines. No borders, no backgrounds.\n\n4. **Full-Bleed Gradient Section**: Background: linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82)). Edge-to-edge, 0px radius, no border. Min-height 100vh. Text overlay in #e7ded1 using the same type system. Functions as a chapter break.\n\n5. **Outlined Link**: Text in #e7ded1, NB Akademie Mono 11px, with a 1px #e7ded1 border-bottom (or border-left for vertical links). No background fill, no padding, 0px radius. Hover: border color remains #e7ded1, text may shift to uppercase or add underline — no color change."
+}

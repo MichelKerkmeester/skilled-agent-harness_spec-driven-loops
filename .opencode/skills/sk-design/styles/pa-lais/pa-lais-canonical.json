@@ -1,0 +1,1741 @@
+{
+  "source": "https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae",
+  "uuid": "5ef5e1ff-3cb3-4383-9f66-26474409d9ae",
+  "name": "Pa'lais",
+  "northStar": "Botanical sketchbook dipped in honey. The cream paper canvas, blue toile-style line illustrations, and warm color blobs recall a hand-bound recipe journal, while the bold condensed display type and generous whitespace give it modern editorial confidence.",
+  "capturedAt": "2026-07-18T08:09:32.563Z",
+  "meta": {
+    "url": "https://www.palais.bio",
+    "siteName": "Pa'lais",
+    "extractedAt": "2026-06-03T18:18:44.800Z",
+    "durationMs": 37528,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 433,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #234386 Deep Indigo as the only filled-button background color — it is the single saturated cool anchor in an otherwise warm palette.",
+      "Apply Axiforma or ITC Avant Garde with 0.13–0.27em letter-spacing for all labels, nav items, and UI text in uppercase — the aggressive tracking is the system's typographic signature.",
+      "Render all decorative organic shapes as SVG paths in solid accent fills (#ffc400, #ed7328, #a2d3a6) — never use CSS gradients or multiple colors in one blob.",
+      "Use 32px border-radius for all buttons and 8px for cards — the radius contrast between pill-buttons and soft-cornered cards is intentional and creates the system's tactile feel.",
+      "Layer Pure White (#ffffff) cards on the Cream Paper (#fbf9f6) canvas rather than using gray surfaces — the warm off-white base is what makes the system feel like a cookbook rather than a dashboard.",
+      "Combine bold condensed display type (hwt-artz / Bebas Neue substitute) in Deep Indigo all-caps with a handwritten script (Caveat substitute) for emotional subheadlines — this two-voice headline pattern is the brand's verbal-visual signature.",
+      "Use botanical line illustrations in #234386 or #6aa8dc with 1–1.5px stroke and no fills as decorative connective tissue between sections."
+    ],
+    "donts": [
+      "Don't introduce new blue or indigo shades — #234386 is the sole cool saturated color and any additional blue will dilute the warm/cool tension.",
+      "Don't use #ffc400 Honey Gold or #ed7328 Burnt Orange as filled button backgrounds — these accents are reserved for organic shapes and outlined secondary actions.",
+      "Don't apply letter-spacing tighter than 0.03em on display headlines or wider than 0.27em on labels — the tracking extremes are calibrated; flattening them kills the editorial cadence.",
+      "Don't use flat gray (#f5f5f5, #e0e0e0) for surface separation — the system achieves layering through cream → white → orange → indigo, not through neutral grays.",
+      "Don't add drop shadows to buttons or navigation — shadows appear only on recipe cards, and even there they are asymmetric and soft.",
+      "Don't set body text in the display fonts (hwt-artz, Delivery Note, Sandman) — those are reserved for headlines at 32px and above.",
+      "Don't place the script accent font (Caveat substitute) in UI chrome, labels, or buttons — it is an emotional headline voice only, used sparingly."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#234386",
+        "name": "Deep Indigo",
+        "role": "Primary brand color — headlines, navigation text, links, filled CTA buttons, and dark section backgrounds. The only cool saturated hue in the system, it gives every action weight and authority",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffc400",
+        "name": "Honey Gold",
+        "role": "Decorative accent — used exclusively in organic flowing blob shapes and illustration highlights, never as a fill or button. The warm burst of yellow is the system's signature punctuation against the cream canvas",
+        "group": "accent"
+      },
+      {
+        "hex": "#ed7328",
+        "name": "Burnt Orange",
+        "role": "Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#6aa8dc",
+        "name": "Sky Blue",
+        "role": "Soft illustration blue — used in botanical line-art washes and supporting decorative blobs. Lighter and more atmospheric than the primary indigo, it adds depth to the plant illustrations",
+        "group": "accent"
+      },
+      {
+        "hex": "#d2b68c",
+        "name": "Warm Sand",
+        "role": "Subtle warm accent — used sparingly in illustration details and supporting decorative shapes. Bridges the gap between the cream canvas and the more saturated orange and gold accents",
+        "group": "accent"
+      },
+      {
+        "hex": "#a2d3a6",
+        "name": "Mint Sage",
+        "role": "Botanical green — appears in organic blob shapes and plant illustration washes. Soft enough to read as a pastel, it reinforces the plant-based brand without competing with the indigo or orange",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, icon strokes, and neutral UI elements. The sheer frequency of black borders (503+ occurrences) signals the system relies on thin dividing lines rather than card elevation to separate content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, text on dark backgrounds, button text fills, and inset panels. Creates the layered surface effect — white cards resting on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbf9f6",
+        "name": "Cream Paper",
+        "role": "Page canvas and hero background. This warm off-white is the system's base surface, immediately distinguishing it from a stark white SaaS layout — it reads as paper, not screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Soft Shadow",
+        "role": "Card shadow base tone — used exclusively in box-shadow declarations at low opacity. The shadow is the only elevation mechanism; there are no borders on cards",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a full-bleed cream canvas with content max-widthed to ~1200px centered. The hero is a split layout: condensed display headline + script tagline on the left, product photography on the right, divided by a flowing organic SVG blob (gold over sage) that replaces a straight vertical line. Below the hero, sections alternate between white and full-bleed orange bands, each separated by organic wavy dividers rather than hard lines. Content sections are typically 2-column (text + image/illustration) or centered single-column stacks. The recipes section is a horizontal card carousel on an orange background. Navigation is a minimal top bar with logo left, nav center, CTA right. Density is spacious — 64px section gaps and generous breathing room around illustrations let the decorative elements (blobs, line-art) feel curated rather than cluttered. The overall rhythm is: quiet cream → bold orange → quiet cream → dark indigo footer.",
+    "imagery": "Imagery is split between two distinct modes: (1) hand-drawn botanical line illustrations in Deep Indigo or Sky Blue, rendered in a toile/engraving style with no fills, depicting plants, cashews, leaves, knives, and herbs — scattered around sections, overlapping content edges, and bleeding off the page; (2) warm natural-light food photography showing the Pa'lais product tub in context (on linen, wood, ceramic surfaces) and finished dishes (toast with spread, wraps, bowls) garnished with fresh herbs. Product shots are slightly angled, lifestyle food shots are close-up and slightly overhead with shallow depth of field. The illustrations carry the editorial/artisan mood; the photography carries the appetite appeal. Neither uses duotone or color treatment — illustrations are pure line, photography is natural color.",
+    "similar": [
+      {
+        "why": "Same warm editorial energy with bold condensed display headlines, playful script accents, and warm/cool color tension — though Oatly leans more into beige and Oatly's signature off-white rather than this system's cream + indigo contrast.",
+        "business": "Oatly"
+      },
+      {
+        "why": "Shares the hand-drawn botanical illustration language (leaves, plants) combined with a single saturated brand color, though Allbirds uses more photography and less organic blob shapes.",
+        "business": "Allbirds"
+      },
+      {
+        "why": "Same warm cream-canvas-plus-organic-illustrations approach with bold condensed display type and warm accent colors used in fluid shapes — the 'recipe-journal' visual language is nearly identical.",
+        "business": "Bumble Bee Foods (or any artisan food brand like Graza)"
+      },
+      {
+        "why": "Shares the system-level decision to use a single cool saturated color (indigo/blue) for all structure while pushing all warmth into organic decorative shapes and illustrations — the color-lanes separation is the same.",
+        "business": "Meow Mix (rebrand) or Wild One"
+      },
+      {
+        "why": "Same botanical line-art illustrations, same generous whitespace, same single-accent-color discipline, though Seed leans more clinical while Pa'lais leans more artisan/handcrafted.",
+        "business": "Seed (seed.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "16px",
+        "blobs": "organic (SVG paths, no fixed radius)",
+        "cards": "8px",
+        "inputs": "8px",
+        "buttons": "32px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fbf9f6",
+        "name": "Cream Paper Canvas",
+        "level": 1,
+        "purpose": "Base page background and hero section — warm off-white that sets the editorial, paper-like atmosphere"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 2,
+        "purpose": "Recipe cards, content panels, and inset surfaces that float above the cream canvas"
+      },
+      {
+        "hex": "#ed7328",
+        "name": "Burnt Orange Section",
+        "level": 3,
+        "purpose": "Full-bleed alternating section background (e.g. the recipes block) that breaks the cream rhythm with warm energy"
+      },
+      {
+        "hex": "#234386",
+        "name": "Deep Indigo Section",
+        "level": 4,
+        "purpose": "Dark or footer-level section for high-contrast moments, reinforcing the brand primary as a structural color"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.16) -14px 10px 49px 0px",
+        "element": "Recipe Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 20px 27px 0px",
+        "element": "Navigation Link / Hover Surface"
+      }
+    ],
+    "northStar": "Botanical sketchbook dipped in honey. The cream paper canvas, blue toile-style line illustrations, and warm color blobs recall a hand-bound recipe journal, while the bold condensed display type and generous whitespace give it modern editorial confidence.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.6,
+        "letterSpacing": 1.67
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.67,
+        "letterSpacing": 0.99
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1,
+        "letterSpacing": 6.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 0.9,
+        "letterSpacing": 1.38
+      },
+      {
+        "role": "heading",
+        "size": 46,
+        "lineHeight": 1.18,
+        "letterSpacing": 1.98
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.14,
+        "letterSpacing": 1.74
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 0.82,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Indigo CTA Button",
+        "role": "Primary call-to-action across the site — the only filled button variant in the system",
+        "description": "Deep Indigo (#234386) background, Pure White (#ffffff) text, 32px border-radius (pill-adjacent — wider than tall), padding 24px top/bottom × 48px left/right. Text in Axiforma or system sans, 13px, uppercase, letter-spacing ~0.1em. No border, no shadow. Examples: 'STORE LOCATOR' in the nav, 'CHECK OUT OUR RECIPES' in the recipes section."
+      },
+      {
+        "name": "Outlined Orange Secondary Button",
+        "role": "Secondary or informational call-to-action — 'learn more' style with an arrow icon",
+        "description": "Transparent background with 2px Burnt Orange (#ed7328) border, Burnt Orange text, 32px border-radius. Padding 24px × 48px. Always includes a right-arrow icon before or after the label. Used for 'MEET US' and similar exploration CTAs. This is the outlined-action variant — not filled."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "Horizontal bar, white or transparent background resting on the cream canvas. Logo (Pa'lais wordmark) left, nav items center (GET INSPIRED, OUR PRODUCTS, FOR A BETTER WORLD, CONTACT), filled indigo CTA button right. Nav items in Axiforma or ITC Avant Garde at 12–16px with 0.13–0.2em letter-spacing, all-caps, Deep Indigo color. 40px horizontal margin on nav items."
+      },
+      {
+        "name": "Recipe Card",
+        "role": "Content card for individual recipes in the carousel/section",
+        "description": "8px border-radius, soft box-shadow rgba(0,0,0,0.16) -14px 10px 49px 0px (asymmetric, drifting down-right). White background. Full-bleed food photography at the top with a semi-transparent overlay containing the recipe title in white all-caps condensed display type and a 30-min time badge. Padding 16px. Cards sit directly on the orange section background."
+      },
+      {
+        "name": "Hero Section with Organic Wavy Divider",
+        "role": "First-screen impact layout with split text and product image",
+        "description": "Full-bleed cream (#fbf9f6) background. Left side: large condensed display headline (56–58px, Deep Indigo) with a script tagline below (32–40px, Caveat-style). Right side: product photography of a Pa'lais tub. A flowing SVG blob shape (honey-gold on top, mint-sage on bottom) acts as a wavy vertical divider between the two halves — not a straight line, but an organic curve that bleeds across the section."
+      },
+      {
+        "name": "Organic Blob Shape",
+        "role": "Decorative SVG accent that defines the system's visual rhythm",
+        "description": "Free-form SVG path with no fixed dimensions, using a solid fill from the accent palette (Honey Gold, Burnt Orange, Mint Sage). Appears at section boundaries, behind product images, and as background washes. The blobs are not abstract — they evoke liquid, plant, or splash forms. They carry the warm color energy while the indigo type carries the structural weight."
+      },
+      {
+        "name": "Botanical Line Illustration",
+        "role": "Hand-drawn decorative element that establishes the botanical/editorial mood",
+        "description": "Detailed blue line-art (Deep Indigo #234386 or Sky Blue #6aa8dc, 1–1.5px stroke) of plants, cashews, leaves, knives, and herbs — rendered in a toile/engraving style. Scattered around sections, overlapping content edges, and bleeding off the page. They never have fills — only outlines — and act as the connective tissue between sections."
+      },
+      {
+        "name": "Eyebrow Label / Section Tag",
+        "role": "Small all-caps label above section headings (e.g. time badges, category tags)",
+        "description": "ITC Avant Garde or Axiforma, 12–16px, Deep Indigo or white text, letter-spacing 0.2–0.27em. Always uppercase. The aggressive tracking is the system's signature typographic device — it makes even tiny labels feel editorial and intentional. Often paired with a small icon (clock for time, leaf for plant-based)."
+      },
+      {
+        "name": "Product Tub Image",
+        "role": "Hero product photography — the Pa'lais spread/sauce container",
+        "description": "Photographed in soft natural light on a textured surface (wood, linen, ceramic). The tub itself is off-white/cream with a Deep Indigo label featuring the Pa'lais wordmark and a small botanical illustration. The product is the visual hero — always shot at an angle that shows both the label and a hint of the contents."
+      },
+      {
+        "name": "Food Photography Plate",
+        "role": "Lifestyle food imagery supporting recipes and product usage",
+        "description": "Close-up, slightly overhead shots of prepared dishes (toast with spread, wraps, bowls) on light ceramic or wooden surfaces. Warm, natural lighting, shallow depth of field. Garnished with fresh herbs, nuts (cashews), and crumbs to reinforce the artisan/handmade feel. The food is the product context."
+      },
+      {
+        "name": "Section Divider Curve",
+        "role": "Organic separator between major page sections",
+        "description": "A large SVG path (typically 200–400px tall) that creates a flowing wave boundary between two color fields (e.g. cream → orange, white → deep indigo). Filled with a single solid color matching the section below. Unlike a hard line, it creates a hand-painted, watercolor-edge effect — the signature transition device of the layout."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Small downward-arrow icon below the hero to prompt scrolling",
+        "description": "Simple circular outlined icon in Deep Indigo, ~48px diameter, 1.5px stroke, containing a downward-pointing chevron. Centered below the hero text. Minimal — the system doesn't rely on elaborate scroll animations."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "8px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary display headline font — bold condensed slab/sans used in all-caps for section headings like 'INCREDIBLE RECIPES'. The 0.043em letter-spacing tightens the character set into a confident, packed block of type. Substitute: Bebas Neue, Anton, or Oswald Bold for a similar condensed display voice.",
+        "sizes": "32px, 33px, 46px",
+        "family": "hwt-artz",
+        "weight": "400",
+        "lineHeight": "0.87–1.20",
+        "substitute": "Bebas Neue",
+        "letterSpacing": "0.043em (approx 1.38px at 32px, 1.98px at 46px)"
+      },
+      {
+        "role": "Secondary display font — used for large hero-level headlines at 56–58px. Slightly looser tracking (0.031em) than hwt-artz, it reads as the 'loud' voice while hwt-artz handles sub-display. Substitute: Oswald Bold or Roboto Condensed Black.",
+        "sizes": "16px, 28px, 32px, 56px, 58px",
+        "family": "Delivery Note DEMO",
+        "weight": "400",
+        "lineHeight": "0.86–1.20",
+        "substitute": "Oswald",
+        "letterSpacing": "0.031em (approx 0.5px at 16px, 1.74px at 56px)"
+      },
+      {
+        "role": "Mega display font reserved for the largest brand-level statements. At 86–88px with a 0.73–0.82 line-height, it creates an enormous visual anchor. The very tight line-height lets characters stack and fill space. Substitute: Playfair Display Black or DM Serif Display for a serif display alternative.",
+        "sizes": "86px, 88px",
+        "family": "Sandman_Fill",
+        "weight": "400",
+        "lineHeight": "0.73–0.82",
+        "substitute": "Playfair Display Black",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Primary body and UI font — geometric humanist sans used for paragraph text, form inputs, and small labels. Its signature is the dramatically wide letter-spacing (0.063em to 0.267em) on labels and navigation, creating a spaced-out, editorial cadence. At 16px in body copy, tracking relaxes. Substitute: Inter or DM Sans.",
+        "sizes": "12px, 14px, 15px, 16px",
+        "family": "Axiforma",
+        "weight": "400",
+        "lineHeight": "1.00–2.17",
+        "substitute": "Inter",
+        "letterSpacing": "0.063em at 12px, 0.071em at 14px, ~0.063em at 16px (labels); tighter in body paragraphs"
+      },
+      {
+        "role": "Geometric sans for navigation and labels — used at the widest tracking in the system (0.133em to 0.267em). The Avant Garde influence is unmistakable in the perfectly circular letterforms (O, C, G) when used in nav items. Substitute: Futura or Jost.",
+        "sizes": "12px, 16px, 24px",
+        "family": "ITC Avant Garde Std Bk",
+        "weight": "400",
+        "lineHeight": "1.00–1.67",
+        "substitute": "Futura",
+        "letterSpacing": "0.133em at 12px, 0.2em at 16px, 0.267em at 24px — the most aggressively tracked text in the system"
+      },
+      {
+        "role": "Handwritten italic script for emotional taglines and subheadlines (e.g. 'The future of cooking – today'). This is a brand voice layer — not a structural font — that adds the human, handwritten quality. Substitute: Caveat, Dancing Script, or Sacramento.",
+        "sizes": "",
+        "family": "Caveat (script accent)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Caveat",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Color Behavior Rules",
+        "content": "The warm/cool tension is structural: #234386 Deep Indigo is the only cool color and it owns all type, links, and filled actions. Everything else (Honey Gold, Burnt Orange, Warm Sand, Mint Sage, Sky Blue) is warm or pastel and appears almost exclusively in organic blob shapes, illustration washes, and outlined secondary actions. Never cross these lanes — don't put warm colors in body text or buttons, and don't put indigo in decorative blobs. The Cream Paper canvas (#fbf9f6) is what makes this rule work: it is warm enough that the indigo reads as the deliberate cool counterpoint, and saturated enough that the white cards pop without needing gray separators."
+      },
+      {
+        "title": "Illustration Integration",
+        "content": "Botanical line-art illustrations should never sit in a contained box — they should bleed off page edges, overlap section boundaries, and be partially hidden by other elements. This 'living illustration' approach is what makes the system feel hand-crafted rather than stock-decorated. Place illustrations at varying scales (some small accents, some filling 30–40% of a section) and always in #234386 or #6aa8dc with 1–1.5px stroke weight and no fills. Rotate them slightly (±5–10°) for a hand-placed feel."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids elevation as a primary structural tool. Cards sit on the cream canvas using the white-on-cream contrast rather than shadow, and the only prominent shadow is a single asymmetric drop on recipe cards. This restraint lets the organic blob shapes and botanical illustrations do the visual work that shadows typically do in product UIs."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "nav",
+            "hero",
+            "icon",
+            "button",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 925,
+          "confidence": 1,
+          "prominence": 91313170.481534,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "nav/color": 7,
+            "body/color": 10,
+            "card/color": 4,
+            "hero/color": 2,
+            "icon/color": 4,
+            "list/color": 16,
+            "other/fill": 10,
+            "image/color": 9,
+            "other/color": 126,
+            "button/color": 3,
+            "footer/color": 1,
+            "nav/borderColor": 28,
+            "body/borderColor": 40,
+            "card/borderColor": 16,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "list/borderColor": 64,
+            "image/borderColor": 36,
+            "other/borderColor": 503,
+            "button/borderColor": 12,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "input",
+            "icon"
+          ],
+          "frequency": 275,
+          "confidence": 1,
+          "prominence": 74434227.38210939,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 6,
+            "icon/color": 3,
+            "link/color": 16,
+            "other/fill": 4,
+            "button/color": 1,
+            "heading/color": 22,
+            "nav/borderColor": 4,
+            "body/borderColor": 24,
+            "icon/borderColor": 12,
+            "link/borderColor": 64,
+            "button/borderColor": 4,
+            "heading/borderColor": 88,
+            "card/backgroundColor": 3,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 16,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#a2d3a6",
+          "oklch": {
+            "c": 0.08076941668550797,
+            "h": 146.9176060135153,
+            "l": 0.8203828421118174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 14427843.905714652,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#234386",
+          "oklch": {
+            "c": 0.11864193966509987,
+            "h": 262.95010395681186,
+            "l": 0.39784818568039976
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "heading",
+            "body",
+            "button",
+            "other",
+            "input",
+            "footer"
+          ],
+          "frequency": 197,
+          "confidence": 1,
+          "prominence": 5800752.425378929,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 15,
+            "link/color": 3,
+            "input/color": 2,
+            "other/color": 1,
+            "button/color": 4,
+            "heading/color": 8,
+            "nav/borderColor": 16,
+            "body/borderColor": 60,
+            "link/borderColor": 12,
+            "input/borderColor": 8,
+            "other/borderColor": 4,
+            "button/borderColor": 16,
+            "heading/borderColor": 32,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 9,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fbf9f6",
+          "oklch": {
+            "c": 0.004516315917586152,
+            "h": 78.29823470901559,
+            "l": 0.9828145813648587
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2261804.8870291184,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffc400",
+          "oklch": {
+            "c": 0.17386501395248835,
+            "h": 86.5517076051487,
+            "l": 0.8497949584273852
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 637191.3794274214,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#6aa8dc",
+          "oklch": {
+            "c": 0.0998658622503958,
+            "h": 245.15507670844025,
+            "l": 0.7102336989338409
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 471240,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d2b68c",
+          "oklch": {
+            "c": 0.06467727387214332,
+            "h": 77.6589248073339,
+            "l": 0.7901776905173937
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 264195,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8767110099126372
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 216448,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#ed7328",
+          "oklch": {
+            "c": 0.17158287547918138,
+            "h": 47.50422514974939,
+            "l": 0.6885802257872592
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 40278.162335794055,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04943065706614195,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.98,
+          "background": "#fbf9f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d6d6d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.15,
+          "background": "#ffc400",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.4,
+          "background": "#a2d3a6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.81,
+          "background": "#d2b68c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#234386",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.01,
+          "background": "#fbf9f6",
+          "foreground": "#234386"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.25,
+          "background": "#6aa8dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.51,
+          "background": "#d6d6d6",
+          "foreground": "#234386"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#ffc400",
+          "foreground": "#234386"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.59,
+          "background": "#a2d3a6",
+          "foreground": "#234386"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#d2b68c",
+          "foreground": "#234386"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.72,
+          "background": "#6aa8dc",
+          "foreground": "#234386"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#234386",
+          "foreground": "#ed7328"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.96,
+          "background": "#ffffff",
+          "foreground": "#ed7328"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#fbf9f6",
+          "foreground": "#ed7328"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#6aa8dc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.22,
+          "background": "#234386",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.75,
+          "background": "#a2d3a6",
+          "foreground": "#ed7328"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 8,
+          "corners": [
+            8,
+            8,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "asymmetric": true
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 20px 27px 0px",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.16) -14px 10px 49px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "list",
+            "icon"
+          ],
+          "frequency": 131,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginRight|icon",
+            "marginBottom|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "heading",
+            "list",
+            "link"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "marginTop|heading",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "heading",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "marginRight|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|button",
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "marginTop|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "heading",
+            "other",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|body",
+            "marginRight|link",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|button",
+            "marginBottom|other",
+            "paddingBottom|footer",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 134,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 190,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 255,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 276,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 325,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sonder Sans Black Rough",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Delivery Note DEMO",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "hwt-artz",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Axiforma",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITC Avant Garde Std Bk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sandman_Fill",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "image",
+            "nav",
+            "hero",
+            "link",
+            "icon",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 322,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.16,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Sonder Sans Black Rough",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.133,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.133,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.267,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 2,
+          "letterSpacing": 0.267,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ITC Avant Garde Std Bk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.267,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.12,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.139,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.21,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Delivery Note DEMO",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Axiforma",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.75,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ITC Avant Garde Std Bk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.2,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sonder Sans Black Rough",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "ITC Avant Garde Std Bk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.133,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Delivery Note DEMO",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "hwt-artz",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Delivery Note DEMO",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.91,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "hwt-artz",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "hwt-artz",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.87,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "hwt-artz",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Delivery Note DEMO",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Delivery Note DEMO",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Sandman_Fill",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.73,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Sandman_Fill",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.82,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Sandman_Fill",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.66,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/60035a16-a2fd-4309-a58a-52c1b1c04763.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7623ca7b-350f-4091-aeed-5d02ea36d5c8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pa'lais design system\",\"item\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae#style-reference\",\"name\":\"Pa'lais design system reference\",\"headline\":\"Pa'lais design system | Refero Styles\",\"description\":\"Explore Pa'lais's light Other design system: Deep Indigo #234386, Honey Gold #ffc400 colors, Times, hwt-artz typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pa'lais\",\"url\":\"https://www.palais.bio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5ef5e1ff-3cb3-4383-9f66-26474409d9ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7623ca7b-350f-4091-aeed-5d02ea36d5c8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7623ca7b-350f-4091-aeed-5d02ea36d5c8.jpg\",\"caption\":\"Screenshot of Pa'lais\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7623ca7b-350f-4091-aeed-5d02ea36d5c8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pa'lais design system\",\"Pa'lais website design\",\"Pa'lais colors\",\"Pa'lais typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Indigo\",\"Honey Gold\",\"Burnt Orange\",\"Sky Blue\",\"Times\",\"hwt-artz\",\"Delivery Note DEMO\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pa'lais design system\"},{\"@type\":\"Thing\",\"name\":\"Pa'lais website design\"},{\"@type\":\"Thing\",\"name\":\"Pa'lais colors\"},{\"@type\":\"Thing\",\"name\":\"Pa'lais typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:45:59.421Z\",\"dateModified\":\"2026-04-30T03:45:59.421Z\"}]}19:T435,Pa'lais reads like a hand-illustrated artisan cookbook dropped into a modern food-magazine layout. The canvas is a warm cream paper (#fbf9f6) with pure white cards layered on top, anchored by a single deep-indigo brand voice (#234386) that owns every headline, link, and primary button. That indigo is intentionally the only saturated cool in the system; everything else is warm and edible — honey-gold (#ffc400), burnt orange (#ed7328), warm sand (#d2b68c), mint sage (#a2d3a6) — and those warms appear almost exclusively as organic flowing blob shapes and botanical line-art, never as flat fills. Typography splits into two loud voices: bold condensed display fonts in all-caps navy for headlines, and widely-tracked geometric sans (Axiforma / ITC Avant Garde) for labels and UI chrome with letter-spacing up to 0.27em. A handwritten script carries emotional taglines ('The future of cooking – today'). Components stay lightweight — soft 8px cards, generous 32px-radius pill buttons, hairline borders — letting the illustrations and photography do the storytelling.1a:T645,**Quick Color Reference**\n- Text: #000000 (body), #234386 (headings, links, nav)\n- Background: #fbf9f6 (page canvas), #ffffff (cards)\n- Border: #000000 (hairline, 1px)\n- Accent: #ffc400 (honey blobs), #ed7328 (orange blobs, secondary buttons)\n- primary action: #234386 (filled action)\n\n**Example Component Prompts**\n1. *Hero Headline*: Create a 56px headline in Bebas Neue (substitute for Delivery Note), weight 400, all-caps, color #234386, letter-spacing 1.74px. Below it, a 32px script tagline in Caveat, weight 400, italic, color #234386, normal letter-spacing. Background is cream #fbf9f6.\n\n2. *Primary Filled Button*: Render a pill button — 32px border-radius, background #234386, text #ffffff, font Axiforma 13px uppercase letter-spacing 0.1em, padding 24px top/bottom × 48px left/right. Label: 'STORE LOCATOR'.\n\n3. *Outlined Secondary Button*: Render a pill button — 32px border-radius, 2px border in #ed7328, transparent background, text #ed7328, font Axiforma 14px uppercase letter-spacing 0.15em, padding 24px × 48px. Include a right-arrow icon. Label: 'MEET US'.\n\n4. *Recipe Card*: White #ffffff background, 8px border-radius, box-shadow rgba(0,0,0,0.16) -14px 10px 49px 0px. Full-bleed food photo at top, overlay with title in Bebas Neue 24px white all-caps and a 12px time badge in ITC Avant Garde with 0.2em tracking. Padding 16px.\n\n5. *Section Divider*: Insert a 200px-tall organic SVG wave path, solid fill #ed7328, spanning the full viewport width between a white section and the next section. The wave should curve gently — not a straight line — to create a hand-painted edge."
+}

@@ -1,0 +1,1512 @@
+{
+  "source": "https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7",
+  "uuid": "1e93f444-0b01-4412-aa2b-877be5ef08d7",
+  "name": "Emmalewisham",
+  "northStar": "porcelain apothecary at golden hour. Warm linen surfaces cradle jewel-toned glass vessels; the brand violet traces hairlines through the room; serif labels float over clean sans-serif UI like engraved pharmacy signs.",
+  "capturedAt": "2026-07-18T07:46:18.117Z",
+  "meta": {
+    "url": "https://emmalewisham.co.uk",
+    "siteName": "Emmalewisham",
+    "extractedAt": "2026-06-03T19:36:36.578Z",
+    "durationMs": 41613,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 369,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Iris Violet (#49369e) exclusively for outlined action borders and link text — never fill a button or surface with it",
+      "Set the brand wordmark and all display headings in Regola Pro Book at 400 weight, never bold it",
+      "Keep all borders at 1px hairline weight; the system rejects thick borders and shadows",
+      "Use Stone Linen (#f2f1ef) as the default canvas beneath all content; let Blush Petal (#ec9bad) and other atmospheric colors serve as full-bleed product stages, not inline backgrounds",
+      "Use 30px radius on cards and 3px on buttons — the wide card / tight button ratio is the system's signature geometry",
+      "Let product photography occupy the full viewport in hero sections with zero padding around the object",
+      "Pair the sans-serif Martina Plantijn (UI) with the serif Regola Pro Book (display) — never use the serif for body copy or the sans for the wordmark"
+    ],
+    "donts": [
+      "Don't fill buttons with Iris Violet or any other brand color — the action style is always outlined, never filled",
+      "Don't apply box-shadows to cards, buttons, or nav — the system is shadow-free and uses hairline borders for definition",
+      "Don't use bold or heavy weights in the serif (Regola Pro Book is 400 only) — the display must stay quiet",
+      "Don't use Blush Petal (#ec9bad) as a text color or border — it's an atmospheric surface wash only",
+      "Don't crowd the canvas with cards or panels — the layout breathes; let sections flow directly on Stone Linen",
+      "Don't use more than one atmospheric color per section — the hero uses Blush Petal alone, never mixed with lavender or violet washes",
+      "Don't use the 50px nav radius on anything other than the cart badge — it is a single accent, not a system-wide pattern"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#49369e",
+        "name": "Iris Violet",
+        "role": "Outlined action borders, link color, heading accents, navigation emphasis — the singular brand hue, deployed as a fine outline or thin underline rather than a filled mass",
+        "group": "brand"
+      },
+      {
+        "hex": "#a9a7db",
+        "name": "Soft Lavender",
+        "role": "Muted secondary accent for list borders, decorative link borders, and subtle dividers — the diluted echo of Iris Violet used when the full intensity would overpower",
+        "group": "accent"
+      },
+      {
+        "hex": "#524eb7",
+        "name": "Iris Focus",
+        "role": "Input focus state text/border — a slightly lifted tonal variant of Iris Violet to signal active text fields",
+        "group": "accent"
+      },
+      {
+        "hex": "#ec9bad",
+        "name": "Blush Petal",
+        "role": "Atmospheric surface wash and decorative accent — warm pink used for full-bleed product stage backgrounds and occasional badge fills",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, product image cutouts, nav and button borders, inverted text on dark or violet fields",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f1ef",
+        "name": "Stone Linen",
+        "role": "Page canvas — the warm off-white that grounds every section, used as the base layer beneath product stages and text blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a09c97",
+        "name": "Warm Ash",
+        "role": "Muted background panels, announcement bar, low-emphasis surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Secondary text and low-emphasis fills — softer than pure black for body copy and metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Graphite",
+        "role": "Primary text, button outlines, icon strokes — used at hairline weights to stay quiet",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed product hero sections dominate the page, each using a different atmospheric color wash (blush, mauve, cream) with a single centered product vessel. The top stack is: gray announcement bar → thin transparent nav with centered wordmark → full-bleed colored hero with product. Below the hero, the site shifts to a max-width ~1440px contained grid for product cards and editorial text blocks on Stone Linen canvas. Content density is sparse — large vertical gaps between sections (48-80px), single-column text blocks, and 2-4 column product grids. Navigation is a flat horizontal text bar with no background fill, no border below, and no sticky behavior visible. The overall rhythm is: one full-bleed product stage, then a calm text or card section, then another full-bleed stage — like turning pages in a lookbook.",
+    "imagery": "Tight, centered product photography on full-bleed solid-color stages — glass bottles and jars float against warm pastel washes (blush pink, mauve, cream). No lifestyle context, no models, no environment: the product is the hero, presented as a still-life object. Background colors shift between sections to create visual rhythm without ever showing a real-world setting. All product images sit on pure white cutout zones within the card grid, with no shadows beneath the objects. Icon style is minimal — thin-line outlined icons at hairline weight in the nav utility cluster. The visual language is editorial-cosmetic: apothecary, laboratory, museum vitrine.",
+    "similar": [
+      {
+        "why": "Same apothecary sensibility — thin sans-serif nav, outlined actions, serif-free or minimal-serif headings, and full-bleed product photography on warm neutral backgrounds",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same editorial product-hero pattern with full-bleed colored stages and centered product vessels, paired with a quiet sans-serif UI and minimal card chrome",
+        "business": "Glossier"
+      },
+      {
+        "why": "Same luxury skincare visual language — large product silhouettes on pastel washes, hairline UI elements, and a single saturated accent color used sparingly for links and emphasis",
+        "business": "Hourglass Cosmetics"
+      },
+      {
+        "why": "Same refined serif-on-sans pairing for brand wordmark over clean UI, with warm off-white canvases and product-centric full-bleed hero sections",
+        "business": "Tatcha"
+      },
+      {
+        "why": "Same minimal outlined button style with a single brand hue, paired with sparse editorial layouts and product photography as the primary visual content",
+        "business": "Drunk Elephant"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "50px",
+        "cards": "30px",
+        "badges": "10px",
+        "buttons": "3px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "48-80px",
+      "cardPadding": "20-30px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f2f1ef",
+        "name": "Stone Linen Canvas",
+        "level": 1,
+        "purpose": "Base page background across all sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 2,
+        "purpose": "Product cards, content panels, image cutout zones"
+      },
+      {
+        "hex": "#a09c97",
+        "name": "Warm Ash Panel",
+        "level": 3,
+        "purpose": "Announcement bar, muted utility surfaces"
+      },
+      {
+        "hex": "#ec9bad",
+        "name": "Blush Stage",
+        "level": 4,
+        "purpose": "Full-bleed product photography backgrounds and atmospheric washes"
+      },
+      {
+        "hex": "#49369",
+        "name": "Iris Accent",
+        "level": 5,
+        "purpose": "Brand emphasis — links, outlined actions, heading underlines"
+      }
+    ],
+    "northStar": "porcelain apothecary at golden hour. Warm linen surfaces cradle jewel-toned glass vessels; the brand violet traces hairlines through the room; serif labels float over clean sans-serif UI like engraved pharmacy signs.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.69
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Wordmark",
+        "role": "Primary brand identity lockup",
+        "description": "EMMA LEWISHAM set in Regola Pro Book at 20px in the header, letter-spaced wide. White on warm backgrounds, Graphite on light. Always centered, always quiet — never bolded, never enlarged beyond 24px in the header context."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive element",
+        "description": "Transparent fill with a 1px Iris Violet (#49369e) border, 3px corner radius, 12px vertical × 5px horizontal internal padding (tight, jewel-like). Text in Martina Plantijn 14px weight 400 in Iris Violet. No fill on any state — hover deepens border to 1.5px or shifts text to Graphite. The minimal 3px radius is deliberate: the system rejects pill buttons."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary navigation and inline links",
+        "description": "Martina Plantijn 14px weight 400, Iris Violet text, no underline by default. 12px horizontal padding, 5px vertical padding. Inline links within body copy sit as plain colored text with no decoration. This is the primary 'action' style across the site."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page utility message",
+        "description": "Full-bleed Warm Ash (#a09c97) band, 3px vertical padding, centered Martina Plantijn 13px weight 400 white text. No close button visible, no shadow — sits as a flat strip above the main nav."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Martina Plantijn 13px weight 400, Graphite for inactive items, 12px horizontal spacing between links. Left-aligned secondary nav (Shop, Routines, Gifts, Skin Academy) and right-aligned utility cluster (About, Sustainability, Loyalty, search, wishlist, account, cart) with 50px radius on the cart badge. The nav is a thin horizontal line of text — no background bar, no shadow, no border below."
+      },
+      {
+        "name": "Full-Bleed Product Stage",
+        "role": "Hero and product showcase sections",
+        "description": "Edge-to-edge colored background (Blush Petal or other atmospheric wash) with a single product bottle centered, scaled to dominate the viewport. No card frame, no padding around the product — the object IS the layout. Product text overlays bottom-left as a small 'Shop now' ghost link."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid item for product listings",
+        "description": "Pure White (#ffffff) surface, 30px border radius, 20-30px internal padding. Product image fills the card with no border. Martina Plantijn 14px body text, 20px subheading for product name. Hairline Soft Lavender (#a9a7db) border for subtle definition — no shadow."
+      },
+      {
+        "name": "Badge",
+        "role": "Small status indicators and cart count",
+        "description": "Blush Petal (#ec9bad) or Iris Violet fill, 10px radius, tight 5px padding. Martina Plantijn 11px weight 700 white text. Used sparingly — cart counter dot, sale tags, certification marks."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form fields for email, search, checkout",
+        "description": "No visible border by default — just a bottom hairline in Soft Lavender. Focus state shifts the line to Iris Focus (#524eb7). Martina Plantijn 14px body, Charcoal placeholder text. 10px vertical padding, minimal footprint."
+      },
+      {
+        "name": "Body Copy Block",
+        "role": "Editorial text sections",
+        "description": "Martina Plantijn 14-16px weight 400, Charcoal (#333333) or Graphite (#000000), 1.63-1.82 line height for generous reading rhythm. No background, no card frame — text floats directly on Stone Linen canvas with 20-30px vertical margins between paragraphs."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Major section titles",
+        "description": "Regola Pro Book 30-80px weight 400, Graphite on light, white on dark/colored stages. Tight 1.20-1.25 line height. The serif choice at this size is the brand's signature moment — these are the only moments the serif appears at scale."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Footer navigation columns",
+        "description": "Martina Plantijn 13px weight 400, Graphite, 7-12px vertical spacing between items. Column headers in 14px weight 700. No dividers, no card wrapping — the footer is pure text on Stone Linen."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body sans-serif — used for navigation, buttons, body text, product copy, form fields, badges, and micro-labels. The weight 300 thin gives the system its airy, unforced feel; weight 700 is reserved for navigation emphasis and select labels. This is the workhorse — almost everything visible reads in this face.",
+        "sizes": "11px, 13px, 14px, 16px, 20px, 30px",
+        "family": "Martina Plantijn",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.20–1.86",
+        "substitute": "Inter, Söhne, or Untitled Sans"
+      },
+      {
+        "role": "Display and editorial serif — used for the brand wordmark and large hero/display copy. Its 80px presence carries the entire brand identity: the 'EMMA LEWISHAM' logotype and product-feature headlines float in Regola Pro Book, creating a distinctive serif-on-sans pairing. The single weight keeps the display quiet and editorial rather than decorative.",
+        "sizes": "16px, 20px, 24px, 80px",
+        "family": "Regola Pro Book",
+        "weight": "400",
+        "lineHeight": "1.20–1.63",
+        "substitute": "GT Sectra, Tiempos Headline, or Canela"
+      }
+    ],
+    "description": "Emma Lewisham is a porcelain apothecary rendered in editorial photography: warm stone-linen canvases, full-bleed pastel product vignettes, and a single deep iris-violet accent that whispers through thin outlines and links rather than shouting from filled buttons. The system feels calm, considered, and almost analog — serif wordmarks float over sans-serif UI text, products are presented as still-life objects on color-drenched stages, and surfaces stay nearly weightless with hairline borders instead of shadows. Color is used as atmosphere (peach, blush, mauve washes) and as restraint (violet for emphasis only); density is sparse, whitespace is generous, and the only interactive surface style is a thin outlined border in the brand violet.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Emmalewisham design system\",\"item\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#style-reference\",\"name\":\"Emmalewisham design system reference\",\"headline\":\"Emmalewisham design system | Refero Styles\",\"description\":\"Explore Emmalewisham's light E-commerce design system: Iris Violet #49369e, Soft Lavender #a9a7db colors, Martina Plantijn, Regola Pro Book typography, and...\",\"url\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Emmalewisham\",\"url\":\"https://emmalewisham.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"caption\":\"Screenshot of Emmalewisham\"},\"image\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Emmalewisham design system\",\"Emmalewisham website design\",\"Emmalewisham colors\",\"Emmalewisham typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Iris Violet\",\"Soft Lavender\",\"Iris Focus\",\"Blush Petal\",\"Martina Plantijn\",\"Regola Pro Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Emmalewisham design system\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham website design\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham colors\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:18:34.138Z\",\"dateModified\":\"2026-04-30T02:18:34.138Z\"}]}19:T576,**Quick Color Reference**\n- text: #000000 (primary), #333333 (secondary)\n- background: #f2f1ef (canvas), #ffffff (card)\n- border: #a9a7db (soft), #49369e (emphasis)\n- accent: #ec9bad (atmospheric)\n- primary action: #49369e (outlined action border)\n\n**Example Component Prompts**\n1. Build a hero stage: full-bleed Blush Petal (#ec9bad) background, a centered product bottle image at 60% viewport height, 'Shop now' ghost link in bottom-left as Martina Plantijn 14px Iris Violet text with 12px padding.\n2. Build a product card: 30px radius, 20px padding, Pure White (#ffffff) surface, 1px Soft Lavender (#a9a7db) hairline border, product image filling the top 70%, product name in Martina Plantijn 20px Graphite, price in 14px Charcoal below.\n3. Build the header nav: transparent background, no border, centered 'EMMA LEWISHAM' wordmark in Regola Pro Book 20px Graphite, left-aligned Shop/Routines/Gifts links and right-aligned utility icons all in Martina Plantijn 13px Graphite, 12px horizontal spacing.\n4. Build an outlined action button: transparent fill, 1px Iris Violet (#49369e) border, 3px corner radius, 12px vertical × 5px horizontal padding, 'Add to bag' in Martina Plantijn 14px weight 400 Iris Violet.\n5. Build a section heading: 'Our Routines' set in Regola Pro Book 30px weight 400 Graphite, 1.25 line height, 48px top margin from previous section, left-aligned on Stone Linen canvas."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#49369e",
+          "oklch": {
+            "c": 0.16060542671750286,
+            "h": 285.4955721439546,
+            "l": 0.41813532718542107
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "badge",
+            "image",
+            "link",
+            "icon",
+            "body",
+            "card",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 1533,
+          "confidence": 1,
+          "prominence": 94966880.47395964,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 27,
+            "body/color": 11,
+            "card/color": 11,
+            "icon/color": 8,
+            "link/color": 36,
+            "list/color": 10,
+            "badge/color": 7,
+            "image/color": 8,
+            "other/color": 156,
+            "button/color": 9,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 21,
+            "nav/borderColor": 108,
+            "body/borderColor": 44,
+            "card/borderColor": 44,
+            "icon/borderColor": 32,
+            "link/borderColor": 144,
+            "list/borderColor": 40,
+            "badge/borderColor": 28,
+            "image/borderColor": 32,
+            "input/borderColor": 4,
+            "other/borderColor": 624,
+            "button/borderColor": 36,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "button",
+            "other",
+            "image",
+            "body",
+            "heading"
+          ],
+          "frequency": 215,
+          "confidence": 1,
+          "prominence": 10050334.202803854,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 13,
+            "body/color": 1,
+            "link/color": 3,
+            "nav/stroke": 5,
+            "image/color": 7,
+            "other/color": 13,
+            "button/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 52,
+            "body/borderColor": 4,
+            "link/borderColor": 12,
+            "image/borderColor": 28,
+            "other/borderColor": 52,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "body/backgroundColor": 4,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2f1ef",
+          "oklch": {
+            "c": 0.0028753330540844005,
+            "h": 84.55903570092954,
+            "l": 0.9583550438996551
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1323914.3943693473,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 357187.1060848651,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "icon/color": 1,
+            "button/color": 2,
+            "nav/borderColor": 20,
+            "icon/borderColor": 4,
+            "button/borderColor": 8,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a09c97",
+          "oklch": {
+            "c": 0.008599947251330075,
+            "h": 73.71294692730676,
+            "l": 0.6946233412016971
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 66240,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a9a7db",
+          "oklch": {
+            "c": 0.07513364682876796,
+            "h": 286.17204231964524,
+            "l": 0.7470248653829737
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 51330.46125763782,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "list/color": 3,
+            "other/color": 4,
+            "link/borderColor": 8,
+            "list/borderColor": 12,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#524eb7",
+          "oklch": {
+            "c": 0.16109167629357485,
+            "h": 280.28472880667374,
+            "l": 0.48697101160143713
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16242,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7037,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ec9bad",
+          "oklch": {
+            "c": 0.0990241387792236,
+            "h": 5.1351570577430214,
+            "l": 0.7748621362239343
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 676,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.36642991845378564,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.6,
+          "background": "#f2f1ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.19,
+          "background": "#f2f1ef",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.86,
+          "background": "#ec9bad",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#000000",
+          "foreground": "#a9a7db"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.11,
+          "background": "#ffffff",
+          "foreground": "#49369e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.07,
+          "background": "#f2f1ef",
+          "foreground": "#49369e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#a09c97",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#ffffff",
+          "foreground": "#524eb7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.94,
+          "background": "#f2f1ef",
+          "foreground": "#524eb7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#ec9bad",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.56,
+          "background": "#333333",
+          "foreground": "#a9a7db"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.28,
+          "background": "#ec9bad",
+          "foreground": "#49369e"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.01,
+          "background": "#49369e",
+          "foreground": "#a9a7db"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.34,
+          "background": "#a09c97",
+          "foreground": "#49369e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#ec9bad",
+          "foreground": "#524eb7"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.13,
+          "background": "#000000",
+          "foreground": "#524eb7"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.95,
+          "background": "#a9a7db",
+          "foreground": "#524eb7"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#a09c97",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "nav",
+            "button",
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|nav",
+            "paddingLeft|nav",
+            "marginTop|button",
+            "marginBottom|button",
+            "marginLeft|button",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginRight|button",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingLeft|nav",
+            "marginLeft|nav",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "input",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "marginRight|other",
+            "marginRight|icon",
+            "paddingLeft|input",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|button",
+            "marginBottom|heading",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "link",
+            "list",
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginTop|link",
+            "marginBottom|list",
+            "marginRight|link",
+            "marginBottom|link",
+            "marginLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "badge",
+            "footer"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|footer",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 195,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Martina Plantijn",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 336,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Regola Pro Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.82,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "badge",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 205,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Regola Pro Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Regola Pro Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Regola Pro Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 20,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Regola Pro Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Martina Plantijn",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Martina Plantijn",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Regola Pro Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/76d7d82e-7912-4a2a-879c-ba49892fa267.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Emmalewisham design system\",\"item\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#style-reference\",\"name\":\"Emmalewisham design system reference\",\"headline\":\"Emmalewisham design system | Refero Styles\",\"description\":\"Explore Emmalewisham's light E-commerce design system: Iris Violet #49369e, Soft Lavender #a9a7db colors, Martina Plantijn, Regola Pro Book typography, and...\",\"url\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Emmalewisham\",\"url\":\"https://emmalewisham.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1e93f444-0b01-4412-aa2b-877be5ef08d7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"caption\":\"Screenshot of Emmalewisham\"},\"image\":\"https://images.refero.design/styles/refero.design/image/921113c9-d4ad-401e-b8bd-0f2e2a366754.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Emmalewisham design system\",\"Emmalewisham website design\",\"Emmalewisham colors\",\"Emmalewisham typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Iris Violet\",\"Soft Lavender\",\"Iris Focus\",\"Blush Petal\",\"Martina Plantijn\",\"Regola Pro Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Emmalewisham design system\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham website design\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham colors\"},{\"@type\":\"Thing\",\"name\":\"Emmalewisham typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:18:34.138Z\",\"dateModified\":\"2026-04-30T02:18:34.138Z\"}]}19:T576,**Quick Color Reference**\n- text: #000000 (primary), #333333 (secondary)\n- background: #f2f1ef (canvas), #ffffff (card)\n- border: #a9a7db (soft), #49369e (emphasis)\n- accent: #ec9bad (atmospheric)\n- primary action: #49369e (outlined action border)\n\n**Example Component Prompts**\n1. Build a hero stage: full-bleed Blush Petal (#ec9bad) background, a centered product bottle image at 60% viewport height, 'Shop now' ghost link in bottom-left as Martina Plantijn 14px Iris Violet text with 12px padding.\n2. Build a product card: 30px radius, 20px padding, Pure White (#ffffff) surface, 1px Soft Lavender (#a9a7db) hairline border, product image filling the top 70%, product name in Martina Plantijn 20px Graphite, price in 14px Charcoal below.\n3. Build the header nav: transparent background, no border, centered 'EMMA LEWISHAM' wordmark in Regola Pro Book 20px Graphite, left-aligned Shop/Routines/Gifts links and right-aligned utility icons all in Martina Plantijn 13px Graphite, 12px horizontal spacing.\n4. Build an outlined action button: transparent fill, 1px Iris Violet (#49369e) border, 3px corner radius, 12px vertical × 5px horizontal padding, 'Add to bag' in Martina Plantijn 14px weight 400 Iris Violet.\n5. Build a section heading: 'Our Routines' set in Regola Pro Book 30px weight 400 Graphite, 1.25 line height, 48px top margin from previous section, left-aligned on Stone Linen canvas."
+}

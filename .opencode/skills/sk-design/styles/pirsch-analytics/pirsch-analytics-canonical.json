@@ -1,0 +1,967 @@
+{
+  "source": "https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9",
+  "uuid": "e4b9d41a-8165-47dd-818a-5f6810046ea9",
+  "name": "Pirsch Analytics",
+  "northStar": "sunlit paper notebook with highlighter swatches",
+  "capturedAt": "2026-07-18T10:08:33.538Z",
+  "meta": {
+    "url": "https://pirsch.io",
+    "siteName": "Pirsch Analytics",
+    "extractedAt": "2026-06-03T15:32:35.765Z",
+    "durationMs": 33295,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 299,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffda6 (Sunshine Highlight) for the single primary CTA per view; never fill large surfaces or backgrounds with it.",
+      "Define cards and tiles with 1px #000000 hairline borders at 24px radius — never use drop shadows for elevation.",
+      "Set display headlines at 64px DM Sans 500 with -0.016em letter-spacing; this is the editorial anchor of every section.",
+      "Use uppercase DM Sans 500 with +0.286em letter-spacing for step badges and small labels only; leave body copy untracked.",
+      "Keep the cream (#f8f5ed) canvas unbroken across sections — alternate rhythm through spacing and border weight, not background color.",
+      "Activate DM Sans stylistic alternates 'ss03' and 'ss04' globally; they carry the humanist character that makes the system feel editorial.",
+      "Reserve #6ece9d (Mint Signal) for status dots and positive state chips; it is a signal, not a brand color."
+    ],
+    "donts": [
+      "Don't add drop shadows, blurs, or any form of box-shadow elevation — the system is intentionally flat and ink-on-paper.",
+      "Don't introduce a second body font or a serif — DM Sans at multiple weights is the entire typographic voice.",
+      "Don't use pure white (#ffffff) as a surface — the cream #f8f5ed is the canvas, and white would break the paper metaphor.",
+      "Don't use the yellow (#ffda6e) on body text at small sizes; its contrast against cream drops below readable thresholds.",
+      "Don't use the green (#6ece9d) as a CTA or button background — it is a status signal, not an action color.",
+      "Don't set body or caption text in #000000 when #707070 reads cleanly; reserve ink for headings and emphasis.",
+      "Don't add gradients, image overlays, or decorative fills — the system is flat color, 1px lines, and one accent swatch."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffda6e",
+        "name": "Sunshine Highlight",
+        "role": "Primary action fill, step badges, accent highlights, callout backgrounds",
+        "group": "brand"
+      },
+      {
+        "hex": "#6ece9d",
+        "name": "Mint Signal",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "accent"
+      },
+      {
+        "hex": "#f8f5ed",
+        "name": "Cream Paper",
+        "role": "Page canvas, card surfaces, pill interiors",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary headings, body text, 1px hairline borders on cards, images, and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Graphite",
+        "role": "Secondary body text, link text, muted borders and dividers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered, max-width 1200px container with generous 64px section gaps. The page reads as a vertical scroll of editorial bands: logo cloud → numbered step → display headline → centered subtext → two-up feature cards → logo cloud → CTA. All hero sections are centered stacks on the cream canvas — no split text/image compositions, no asymmetric layouts. Feature sections use a 2-column card grid at 32px column gap; logo clouds use a 4–8 column grid. Navigation is minimal: a small wordmark, no sticky header, no sidebar. Density is comfortable and breathy — each section gets full vertical room to settle before the next begins.",
+    "imagery": "Imagery is restrained and functional: monochrome product screenshots (dashboard tiles, filter chips, data tables) framed by 1px ink borders at 12px radius, never full-bleed. Customer logos appear as raw monochrome wordmarks on the cream canvas, no card wrappers or color treatments. The Pirsch brand mark is a single black glyph on cream. No photography, no illustrations, no decorative graphics — the only color in the visual system comes from the two accent swatches, and they appear as flat fills, never as gradients or tinted images.",
+    "similar": [
+      {
+        "why": "Same single-family sans (DM Sans / Inter lineage), generous whitespace, and a near-monochrome palette that lets a single accent color carry the hierarchy",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same hairline-border-on-light-surface logic with no drop shadows, and the discipline of rationing color to one vivid accent per view",
+        "business": "Linear"
+      },
+      {
+        "why": "Same warm off-white canvas, rounded 20–24px card radii, and a minimal two-tone accent system that reads as paper rather than screen",
+        "business": "Notion"
+      },
+      {
+        "why": "Direct competitor in the privacy-analytics space with the same editorial single-accent approach, cream canvas, and 64px-class display headlines",
+        "business": "Fathom Analytics"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "24px",
+        "images": "12px",
+        "inputs": "6px",
+        "buttons": "24px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f8f5ed",
+        "name": "Cream Page",
+        "level": 0,
+        "purpose": "Base canvas — warm paper background that carries the whole system"
+      },
+      {
+        "hex": "#f8f5ed",
+        "name": "Cream Card",
+        "level": 1,
+        "purpose": "Feature cards sit on the same cream but are defined by 1px ink hairline borders and 24px radius, not by color contrast"
+      },
+      {
+        "hex": "#ffda6",
+        "name": "Sunshine Callout",
+        "level": 2,
+        "purpose": "Yellow surface used for primary CTAs and step-number badges — the only chromatic surface in the stack"
+      }
+    ],
+    "elevation": [],
+    "northStar": "sunlit paper notebook with highlighter swatches",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Sunshine Filled Button",
+        "role": "Primary action",
+        "description": "24px radius, #ffda6 fill, #000000 text, 16px 24px padding, DM Sans 500. Centered text, used for the main 'Get Started For Free' conversion. Single instance per view — yellow is rationed."
+      },
+      {
+        "name": "Ghost Ink Button",
+        "role": "Secondary action",
+        "description": "24px radius, transparent fill, 1px #000000 border, #000000 text, 16px 24px padding, DM Sans 500. Pairs with the sunshine button or stands alone on neutral contexts."
+      },
+      {
+        "name": "Numbered Step Badge",
+        "role": "Section index marker",
+        "description": "Pill (9999px radius) split into two zones: a left 24x24 cream square with #000000 numeral at 14px 500, and a right zone with the step name in uppercase 14px 500 letterspaced +0.286em. 1px #000000 border surrounds the whole pill. Identifies '1 EASY START', '2 INSTANT OUTPUT', '6 GOOD COMPANY'."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Two-up feature content",
+        "description": "Cream (#f8f5ed) surface, 24px radius, 1px #000000 hairline border, 32px padding, no shadow. Heading in 24px DM Sans 500, body in 18px #707070. Cards define themselves through outline, not fill."
+      },
+      {
+        "name": "Filter Tag Pill",
+        "role": "Active filter chip",
+        "description": "24px radius, near-white (#f8f5ed) fill, 1px #000000 border, 14px DM Sans 500 with a leading icon. Used for the 'Pages / Entry Pages / Exit Pages / Referrers / Sources' tag set and the dark 'Country is Germany' variant."
+      },
+      {
+        "name": "Dark Filter Chip",
+        "role": "Applied filter state",
+        "description": "24px radius, #000000 fill, #f8f5ed text, 14px DM Sans 500, with a trailing × dismiss. Contrasts with the light filter tags to show applied state."
+      },
+      {
+        "name": "Logo Grid Cell",
+        "role": "Social proof / customer logos",
+        "description": "Transparent, no border, centered monochrome wordmark or mark in #000000. 8-column responsive grid with 32px gap. Logos are rendered as raw shapes on the cream canvas — no card wrappers."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Page section hero",
+        "description": "64px DM Sans 500, #000000, letter-spacing -0.016em (~-1.02px), line-height 1.25. Centered, sits below a step badge with 32px gap. Carries the editorial weight of the whole page."
+      },
+      {
+        "name": "Section Subhead",
+        "role": "Supporting paragraph",
+        "description": "18px DM Sans 400, #707070, max-width ~640px, centered. Voice is instructional and plain — sits 16px below the display headline."
+      },
+      {
+        "name": "Status Dot Badge",
+        "role": "Live / happy state indicator",
+        "description": "24px radius pill or 12px circle, #6ece9 fill with optional #000000 label. Used sparingly for the 'happy customer' indicator and the theme-toggle dot in the corner."
+      },
+      {
+        "name": "Bordered Avatar Tile",
+        "role": "Brand mark display",
+        "description": "48px (or similar) square with 12px radius, cream fill, 1px #000000 border, centered monochrome icon. Used for the Pirsch logo lockup in the CTA block."
+      },
+      {
+        "name": "CTA Block",
+        "role": "Final conversion section",
+        "description": "Centered stack: avatar tile (12px radius) → 64px display question → 18px #707070 subtext → sunshine button. 64px section padding top and bottom. The whole page resolves here."
+      },
+      {
+        "name": "Image Frame",
+        "role": "Inline image border",
+        "description": "12px radius, 1px #000000 border, no shadow. Gives every product screenshot a printed-on-paper feel."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system carrying everything from body copy to 64px display headlines. Weight 400 for prose, 500 for headings, step badges, and button labels. Activating ss03 and ss04 stylistic alternates gives DM Sans a more humanist, slightly editorial character that suits the paper-notebook metaphor.",
+        "sizes": "14, 16, 18, 20, 24, 28, 64",
+        "family": "DM Sans",
+        "weight": "400, 500",
+        "lineHeight": "1.25–2.22",
+        "substitute": "Inter, Nunito Sans",
+        "letterSpacing": "-0.016em on display headings, +0.286em on uppercase step badges",
+        "fontFeatureSettings": "\"ss03\", \"ss04\""
+      }
+    ],
+    "description": "Pirsch uses a warm paper-notebook language: a soft cream canvas (#f8f5ed) replaces the usual SaaS white, and the only chromatic punctuation is a sunshine yellow (#ffda6e) that reads as a highlighter, not a brand stamp. Almost the entire interface is achromatic — ink-black text and 1px hairline borders do the structural work that shadows and fills do elsewhere. Typography is a single family (DM Sans) running from a whisper at 14px to a commanding 64px display, with generous 8px-grid breathing room and unusually rounded 24px corners that make cards feel like sticky notes. Green (#6ece9d) appears sparingly as a status/availability signal (happy-customer badge, theme-toggle dot) and never competes with yellow. The overall feel is editorial and tactile — closer to a printed report than a dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pirsch Analytics design system\",\"item\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#style-reference\",\"name\":\"Pirsch Analytics design system reference\",\"headline\":\"Pirsch Analytics design system | Refero Styles\",\"description\":\"Explore Pirsch Analytics's light SaaS design system: Sunshine Highlight #ffda6e, Mint Signal #6ece9d colors, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pirsch Analytics\",\"url\":\"https://pirsch.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"caption\":\"Screenshot of Pirsch Analytics\"},\"image\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pirsch Analytics design system\",\"Pirsch Analytics website design\",\"Pirsch Analytics colors\",\"Pirsch Analytics typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Sunshine Highlight\",\"Mint Signal\",\"Cream Paper\",\"Ink\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics design system\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics website design\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics colors\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:01:08.250Z\",\"dateModified\":\"2026-05-07T22:01:08.250Z\"}]}19:T4b2,Quick Color Reference\n- background: #f8f5ed (Cream Paper)\n- text primary: #000000 (Ink)\n- text secondary: #707070 (Graphite)\n- border: 1px #000000 hairline\n- accent: #ffda6e (Sunshine Highlight)\n- status: #6ece9d (Mint Signal)\n- primary action: #ffda6e (filled action)\n\nExample Component Prompts\n1. Create a centered hero section on #f8f5ed: a pill step badge (24px radius, 1px #000000 border, 14px DM Sans 500 with +0.286em letter-spacing, left 24x24 cell with numeral) above a 64px DM Sans 500 headline in #000000 with -0.016em letter-spacing, then an 18px #707070 subtext capped at 640px wide.\n2. Build a feature card: #f8f5ed fill, 24px radius, 1px #000000 border, 32px padding, 24px DM Sans 500 heading in #000000, 18px #707070 body. No shadow.\n3. Create a sunshine CTA button: #ffda6e fill, #000000 text, 24px radius, 16px 24px padding, DM Sans 500. Center it below the subtext with 32px gap.\n4. Build a filter tag row: 24px radius pills, #f8f5ed fill, 1px #000000 border, 14px DM Sans 500 label, 8px gap between tags, 16px row padding.\n5. Create a logo cloud: 4-column grid, 32px gap, each cell contains a centered monochrome #000000 wordmark on transparent cream — no card wrapper, no border."
+      },
+      {
+        "title": "Stroke & Border System",
+        "content": "Hairline borders are the primary structural device. Default to 1px solid #000000 on every card, image, input, and grouped element. Use 1px #707070 for subtle dividers between text blocks. Border radius is bold and consistent: 24px for cards, buttons, and large tiles; 12px for images and smaller tiles; 9999px (pill) for tags and step badges; 6px for form inputs. The 24px card radius paired with 1px ink borders is the single most recognizable shape in the system — it gives every container a sticky-note, hand-drawn quality."
+      },
+      {
+        "title": "Two-Accent Discipline",
+        "content": "The system is 0% colorful at the structural level, so its two accent colors must be used with restraint. #ffda6e is rationed: one filled CTA per view, plus small callout fills. #6ece9d is rationed further: status dots, live indicators, and the occasional positive chip. Both colors function as highlighter swatches on a notebook page — if you find yourself using them for structural UI (nav, large backgrounds, multiple buttons), the section has lost the editorial calm that defines the system."
+      }
+    ],
+    "elevationPhilosophy": "The system has effectively zero shadow elevation. Cards, images, and tiles are defined entirely by 1px #000000 hairline borders on the cream surface — the visual logic of ink lines on paper, not of floating layers. No drop shadows, no inner glow, no blur. If a component needs to feel above the page, raise its border weight or switch to the yellow surface — never add a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "card",
+            "button",
+            "footer",
+            "list",
+            "input",
+            "icon"
+          ],
+          "frequency": 1082,
+          "confidence": 1,
+          "prominence": 22954213.045897186,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "card/color": 44,
+            "icon/color": 2,
+            "list/color": 6,
+            "icon/stroke": 4,
+            "image/color": 36,
+            "input/color": 1,
+            "other/color": 98,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 3,
+            "heading/color": 24,
+            "card/borderColor": 176,
+            "icon/borderColor": 8,
+            "list/borderColor": 24,
+            "image/borderColor": 144,
+            "input/borderColor": 4,
+            "other/borderColor": 392,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 96
+          }
+        },
+        {
+          "hex": "#f8f5ed",
+          "oklch": {
+            "c": 0.011065115846223252,
+            "h": 89.72183332121989,
+            "l": 0.9702639396861513
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 2307530.36258765,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 27
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 395,
+          "confidence": 1,
+          "prominence": 716849.2837866333,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 28,
+            "link/color": 38,
+            "other/color": 13,
+            "body/borderColor": 112,
+            "link/borderColor": 152,
+            "other/borderColor": 52
+          }
+        },
+        {
+          "hex": "#ffda6e",
+          "oklch": {
+            "c": 0.13317988636349937,
+            "h": 90.64967768143318,
+            "l": 0.8987312369511425
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 38378.2352802337,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6ece9d",
+          "oklch": {
+            "c": 0.11640504784396247,
+            "h": 159.7555087246442,
+            "l": 0.779086192502444
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 16821.20702015363,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003086588530563638,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.28,
+          "background": "#f8f5ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.51,
+          "background": "#ffda6e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.98,
+          "background": "#6ece9d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#f8f5ed",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#ffda6e",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.59,
+          "background": "#6ece9d",
+          "foreground": "#707070"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 74,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 96,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 109,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|input"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "list"
+          ],
+          "frequency": 74,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 294,
+          "fontFeatureSettings": [
+            "\"ss03\", \"ss04\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.286,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "card",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 202,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 2.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e7cc714b-180a-48fa-ac80-cba712fa71c6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pirsch Analytics design system\",\"item\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#style-reference\",\"name\":\"Pirsch Analytics design system reference\",\"headline\":\"Pirsch Analytics design system | Refero Styles\",\"description\":\"Explore Pirsch Analytics's light SaaS design system: Sunshine Highlight #ffda6e, Mint Signal #6ece9d colors, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pirsch Analytics\",\"url\":\"https://pirsch.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e4b9d41a-8165-47dd-818a-5f6810046ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"caption\":\"Screenshot of Pirsch Analytics\"},\"image\":\"https://images.refero.design/styles/refero.design/image/12604caf-5f38-4f1c-98f9-43d0f3699ffa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pirsch Analytics design system\",\"Pirsch Analytics website design\",\"Pirsch Analytics colors\",\"Pirsch Analytics typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Sunshine Highlight\",\"Mint Signal\",\"Cream Paper\",\"Ink\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics design system\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics website design\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics colors\"},{\"@type\":\"Thing\",\"name\":\"Pirsch Analytics typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:01:08.250Z\",\"dateModified\":\"2026-05-07T22:01:08.250Z\"}]}19:T4b2,Quick Color Reference\n- background: #f8f5ed (Cream Paper)\n- text primary: #000000 (Ink)\n- text secondary: #707070 (Graphite)\n- border: 1px #000000 hairline\n- accent: #ffda6e (Sunshine Highlight)\n- status: #6ece9d (Mint Signal)\n- primary action: #ffda6e (filled action)\n\nExample Component Prompts\n1. Create a centered hero section on #f8f5ed: a pill step badge (24px radius, 1px #000000 border, 14px DM Sans 500 with +0.286em letter-spacing, left 24x24 cell with numeral) above a 64px DM Sans 500 headline in #000000 with -0.016em letter-spacing, then an 18px #707070 subtext capped at 640px wide.\n2. Build a feature card: #f8f5ed fill, 24px radius, 1px #000000 border, 32px padding, 24px DM Sans 500 heading in #000000, 18px #707070 body. No shadow.\n3. Create a sunshine CTA button: #ffda6e fill, #000000 text, 24px radius, 16px 24px padding, DM Sans 500. Center it below the subtext with 32px gap.\n4. Build a filter tag row: 24px radius pills, #f8f5ed fill, 1px #000000 border, 14px DM Sans 500 label, 8px gap between tags, 16px row padding.\n5. Create a logo cloud: 4-column grid, 32px gap, each cell contains a centered monochrome #000000 wordmark on transparent cream — no card wrapper, no border."
+}

@@ -1,0 +1,2155 @@
+{
+  "source": "https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722",
+  "uuid": "14f6777e-1f6e-4b33-a7ed-d89c33f35722",
+  "name": "Acme Cups New Zealand",
+  "northStar": "editorial ceramics gallery. A stark white-walled room with a single massive black headline and quiet gray dividers, where handmade cups in terracotta, forest, and teal are the only vivid things visible.",
+  "capturedAt": "2026-07-18T09:28:55.731Z",
+  "meta": {
+    "url": "https://acmecups.nz",
+    "siteName": "Acme Cups New Zealand",
+    "extractedAt": "2026-06-03T19:30:05.260Z",
+    "durationMs": 43335,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1175,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every border-radius in the system to 3px — buttons, cards, inputs, tags, badges. This tight radius is a defining choice.",
+      "Use 1px solid #000000 for primary structural borders and 1px solid #c3c3c3 for secondary/decorative borders. Never use shadows for separation.",
+      "Apply uppercase letters with +0.015em to +0.020em tracking for all UI labels under 14px (nav, buttons, badges, tags).",
+      "Keep the entire interface achromatic — #000000, #fefefe, #e3e2e2, #c3c3c3, #aeaaaa, #666666. Product photography is the only color source.",
+      "Use the ACME wordmark at 148px weight 700 as the system's display moment — never set it below 48px or change the weight.",
+      "Use \"→\" appended to button labels (e.g. \"SHOP NOW →\") as the universal interactive cue. No separate arrow icons.",
+      "Place product images on #fefefe surfaces with generous whitespace, framed by a 1px border. The product is the hero, the card is just a frame."
+    ],
+    "donts": [
+      "Don't add drop shadows, inner shadows, glows, or any elevation effects — the design is intentionally flat.",
+      "Don't introduce accent colors, brand hues, or gradients. The single chromatic UI color is the #9b1b01 error border; everything else is grayscale.",
+      "Don't use border-radius larger than 3px. Rounded, pill, or large-radius shapes break the architectural system.",
+      "Don't use sentence case in navigation, buttons, badges, product names, or category labels — always uppercase.",
+      "Don't use anything other than Helvetica Neue (or system fallback) for the interface. No display fonts, no serif, no script.",
+      "Don't center-align body text or long-form copy — left alignment reinforces the editorial/monograph rhythm.",
+      "Don't use icons other than the \"→\" and \"←\" arrow glyphs. No social icons, no decorative iconography, no filled icon sets."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, all structural borders, logo wordmark, button outlines — the load-bearing color of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fefefe",
+        "name": "Gallery White",
+        "role": "Card surfaces, product photography backgrounds, badge fills, hero overlay text color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e2e2",
+        "name": "Concrete Canvas",
+        "role": "Dominant page background — the warm-tinted gray that sets the gallery-like stage for every section",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c3c3c3",
+        "name": "Ash Border",
+        "role": "Card borders, badge outlines, subtle dividers — secondary structure below the black hairline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aeaaaa",
+        "name": "Steel Mute",
+        "role": "Secondary text, muted button borders, caption-level borders where black feels too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Pewter Caption",
+        "role": "Badge and tag text — the only readable gray for small uppercase labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9b1b01",
+        "name": "Terracotta Alert",
+        "role": "Input validation error borders, error state signals — the single chromatic UI color, echoing the product terracotta",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Full-bleed hero with overlaid text; below the fold, content sits in a max-width ~1440px container on a #e3e2e2 canvas. The dominant pattern is a three-column layout: left sidebar (ACME wordmark stacked vertically + category list), center content (editorial text blocks, product range headers, carousels), right utility column (descriptive text or filter tags). Product grids are 4-column with consistent 3px gutters. Section rhythm is defined by 1px black or ash borders rather than background color changes — the page stays in one warm gray the entire time, with the only color shift being the dark photographic hero. Navigation is a single sticky top bar; no sidebar menus, no mega-menus, no modals visible in primary flows.",
+    "imagery": "Full-bleed product photography is the only source of color and visual warmth in the system. Hero images are dark, moody, editorial — hands clinking colorful ceramic cups, tight product crops on near-black stages. Collection-page product images sit on pure white, centered with generous negative space. No illustration, no iconography beyond a single \"→\" arrow glyph, no decorative graphics. Photography treatment: natural light, no color grading overlays, subject-isolated compositions. The ceramic product palette (terracotta, forest green, teal, matte white) is the only place chromatic color appears in the entire experience.",
+    "similar": [
+      {
+        "why": "Same monochrome product-first approach with achromatic UI and tight typographic hierarchy letting product photography carry color",
+        "business": "Sttoke"
+      },
+      {
+        "why": "Editorial product presentation with restrained gray UI, large uppercase headlines, and border-driven structure over shadows",
+        "business": "Fellow Products"
+      },
+      {
+        "why": "Gallery-like ceramics/homeware presentation with full-bleed photography, minimal chrome, and uppercase editorial typography",
+        "business": "Maison Balzac"
+      },
+      {
+        "why": "Achromatic product grid with bordered cards, sans-serif uppercase labels, and product color as the only chromatic element",
+        "business": "Mud Australia"
+      },
+      {
+        "why": "Same editorial restraint with typographic wordmark, hairline borders, and product imagery providing the only color narrative",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "3px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e3e2e2",
+        "name": "Concrete Canvas",
+        "level": 1,
+        "purpose": "Page background — the dominant warm gray field"
+      },
+      {
+        "hex": "#fefefe",
+        "name": "Gallery White",
+        "level": 2,
+        "purpose": "Card and product tile surface — the clean stage for product photography"
+      },
+      {
+        "hex": "#eceeee",
+        "name": "Soft Mist",
+        "level": 3,
+        "purpose": "Subtle surface variation for nested containers"
+      }
+    ],
+    "elevation": [],
+    "northStar": "editorial ceramics gallery. A stark white-walled room with a single massive black headline and quiet gray dividers, where handmade cups in terracotta, forest, and teal are the only vivid things visible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.23
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.27
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.04,
+        "letterSpacing": -0.43
+      },
+      {
+        "role": "wordmark",
+        "size": 148,
+        "lineHeight": 1,
+        "letterSpacing": -1.33
+      }
+    ],
+    "components": [
+      {
+        "name": "ACME Wordmark",
+        "role": "Brand identity anchor displayed in hero, sidebar, and footer",
+        "description": "Helvetica Neue weight 700, 148px, line-height 1.00, letter-spacing -0.009em (-1.33px), color #ffffff on dark hero, #000000 on light sections. Always uppercase, never altered."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width bar, #e3e2e2 background, 1px bottom border in #c3c3c3. Left cluster: SHOP, JOURNAL, ABOUT, CONTACT in 12-13px uppercase weight 500, letter-spacing +0.015em, #000000. Right cluster: NZD selector, SEARCH, ACCOUNT, CART [0] — same style. Vertical padding ~12-16px."
+      },
+      {
+        "name": "Ghost Button with Arrow",
+        "role": "Primary and secondary call-to-action",
+        "description": "Transparent or #fefefe fill, 1px solid #000000 border, 3px radius, padding 7-9px vertical × 12-16px horizontal. Label in 12-13px uppercase weight 500 with +0.015em tracking, followed by a \"→\" arrow character. No fill state, no shadow — the border IS the button."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product tile in range grids and collection pages",
+        "description": "1px border in #c3c3c3, 3px radius, no shadow. Product name (e.g. \"ROMAN CUP MINI\") at 13px weight 700 uppercase, #000000. Variant line (e.g. \"Kōkako 002\") at 12px weight 400. Volume (e.g. \"110ml\") at 11-12px weight 400. Product image fills the lower portion on #fefefe background."
+      },
+      {
+        "name": "Product Range Grid",
+        "role": "Container for grouped product variants within a collection",
+        "description": "4-column grid with 3px column-gap and row-gap. Each cell is a Product Card. 1px black border wraps the entire grid container. Section header sits above with range name in 26-30px weight 700 uppercase and item count in brackets."
+      },
+      {
+        "name": "Sidebar Category List",
+        "role": "Left-rail navigation for collection filtering",
+        "description": "Vertical stack of category names (ROMAN, UNION, BIBBY, BOBBY, TAJIMI) in 20-26px weight 700 uppercase #000000. Active category is not visually distinguished beyond default state — the structure relies on the ACME wordmark sitting above the list as the constant anchor."
+      },
+      {
+        "name": "Filter Tag / Pill",
+        "role": "Metadata tags for product attributes (e.g. \"Great for Espresso\")",
+        "description": "Inline rectangular tag with 1px border in #c3c3c3 or #aeaaaa, 3px radius, padding 2-4px × 8-10px. Label in 11-12px uppercase weight 400 #000000, letter-spacing +0.020em."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Horizontal scroll controls for product range and image carousels",
+        "description": "Square button ~32-40px, 1px solid #000000 border, 3px radius, transparent fill. Contains only a \"←\" or \"→\" glyph at 16-20px weight 400. Often paired with a text label button (e.g. \"SHOP COLLECTION\") in the same row."
+      },
+      {
+        "name": "Hero Text Overlay",
+        "role": "Tagline and CTA layered over the full-bleed dark product photograph",
+        "description": "Right-aligned text block, 20-26px weight 400 #fefefe, line-height 1.30, letter-spacing -0.009em. CTA below is a Ghost Button with white fill, #000000 border, #000000 text. Headline \"ACME\" at 148px sits left-aligned in #fefefe."
+      },
+      {
+        "name": "Section Header with Count",
+        "role": "Section title with item count and right-aligned carousel controls",
+        "description": "Left: range name in 26-30px weight 700 uppercase #000000, followed by item count in brackets at smaller size (e.g. \"[15]\"). Right: ghost button + carousel arrows. A 1px black border separates the header from the grid below."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Multi-column descriptive text on the About and collection pages",
+        "description": "Two-column body text layout. Left column: large 20-26px sentence-case headline (\"Born from a long-standing ambition…\"). Right column: smaller 14-16px body copy in two stacked paragraphs. Generous 40-64px vertical spacing between blocks."
+      },
+      {
+        "name": "Outlined Input",
+        "role": "Form fields for search, contact, and account",
+        "description": "1px solid #c3c3c3 border, 3px radius, padding 9-12px, 14px weight 400 text. On focus, border shifts to #000000. Error state border: 1px solid #9b1b01. No fill, no shadow."
+      },
+      {
+        "name": "Count Badge",
+        "role": "Cart count and small status indicators",
+        "description": "Inline text \"[0]\" or \"[15]\" in 11-12px weight 500, #000000 on #fefefe, with a 1px #c3c3c3 border, 3px radius. No filled badge variants — the count is typographic, not chromatically marked."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire interface. Weight 700 is reserved for the ACME wordmark and bold display headlines; 500 for product names and emphasis; 400 for all body, nav, and caption copy. The 148px wordmark is the system's signature — no other brand does this with a system font at this scale.",
+        "sizes": "10, 12, 13, 14, 15, 16, 20, 21, 26, 30, 48, 148px",
+        "family": "Helvetica Neue",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.04, 1.15, 1.20, 1.30, 1.40, 1.43",
+        "substitute": "Inter, Arial, Helvetica",
+        "letterSpacing": "-0.009em at display sizes (30px+), +0.015em to +0.020em at 10-13px uppercase UI labels",
+        "fontFeatureSettings": "\"kern\" 0, \"liga\" 0"
+      }
+    ],
+    "description": "Acme's interface is a deliberately austere stage: a near-monochrome gallery wall of concrete gray and hairline black, where the only color in the room comes from the ceramic products themselves. The 148px Helvetica Neue wordmark and all-caps uppercase labels behave like a magazine cover or museum catalog rather than a typical storefront. Structural separation is done with 1px borders rather than shadows, every corner sits at 3px, and product photography does the emotional work that color, gradients, and illustration would otherwise do. The result reads as editorial, architectural, and confident — restraint as a design statement.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acme Cups New Zealand design system\",\"item\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#style-reference\",\"name\":\"Acme Cups New Zealand design system reference\",\"headline\":\"Acme Cups New Zealand design system | Refero Styles\",\"description\":\"Explore Acme Cups New Zealand's light E-commerce design system: Ink Black #000000, Gallery White #fefefe colors, Helvetica Neue typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acme Cups New Zealand\",\"url\":\"https://acmecups.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"caption\":\"Screenshot of Acme Cups New Zealand\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acme Cups New Zealand design system\",\"Acme Cups New Zealand website design\",\"Acme Cups New Zealand colors\",\"Acme Cups New Zealand typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Gallery White\",\"Concrete Canvas\",\"Ash Border\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand design system\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand website design\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand colors\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-08T19:00:43.306Z\",\"dateModified\":\"2026-05-08T19:00:43.306Z\"}]}19:T714,**Quick Color Reference**\n- text: #000000\n- background (page canvas): #e3e2e2\n- background (card/surface): #fefefe\n- border (primary): #000000\n- border (secondary): #c3c3c3\n- muted text: #aeaaaa\n- error/input border: #9b1b01\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero section:** Full-bleed dark product photograph as background. Left-aligned ACME wordmark at 148px Helvetica Neue weight 700, color #fefefe, letter-spacing -1.33px, line-height 1.00. Right-aligned tagline block at 20px weight 400 #fefefe, line-height 1.30. Ghost button below: 3px radius, 1px #000000 border, #fefefe fill, 12px uppercase weight 500 label \"SHOP NOW →\", padding 9px 16px.\n\n2. **Product range section:** #e3e2e2 page background. Section header \"ROMAN RANGE [15]\" at 30px weight 700 uppercase #000000, letter-spacing -0.27px. Right-aligned ghost button \"SHOP COLLECTION →\" with carousel arrow controls. 1px #000000 border separates header from grid. 4-column product grid with 3px gaps.\n\n3. **Product card:** 1px #c3c3c3 border, 3px radius, no shadow. Product name \"ROMAN CUP MINI\" at 13px weight 700 uppercase #000000. Variant line \"Kōkako 002\" at 12px weight 400 #000000. Volume \"110ml\" at 11px weight 400 #aeaaaa. Product image fills lower 60% on #fefefe.\n\n4. **Filter tag:** Inline pill with 1px #c3c3c3 border, 3px radius, padding 2px 8px. Label \"Espresso\" in 11px uppercase weight 400 #000000, letter-spacing 0.22px. Multiple tags can sit inline with 4-6px gap.\n\n5. **Sidebar category nav:** Left column, vertical stack. ACME wordmark at 26-30px weight 700 #000000 at top. Below: category list (ROMAN, UNION, BIBBY, BOBBY, TAJIMI) in 20px weight 700 uppercase #000000, 8-12px vertical spacing between items. No active-state highlight — relies on page context to show current."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately shadowless. All structural separation is achieved through 1px hairline borders in #000000 or #c3c3c3. No drop shadows, no glows, no inner shadows. This flatness reinforces the editorial/museum-catalog feel — the product photography is the only thing that \"lifts\" off the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "input",
+            "body",
+            "image",
+            "button",
+            "icon",
+            "heading",
+            "card",
+            "badge"
+          ],
+          "frequency": 4790,
+          "confidence": 1,
+          "prominence": 157388011.90792355,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 69,
+            "card/color": 336,
+            "icon/color": 17,
+            "link/color": 118,
+            "list/color": 31,
+            "other/fill": 12,
+            "badge/color": 5,
+            "image/color": 65,
+            "input/color": 6,
+            "other/color": 306,
+            "button/color": 29,
+            "other/stroke": 20,
+            "heading/color": 38,
+            "body/borderColor": 276,
+            "card/borderColor": 1276,
+            "icon/borderColor": 68,
+            "link/borderColor": 472,
+            "list/borderColor": 124,
+            "badge/borderColor": 20,
+            "image/borderColor": 240,
+            "input/borderColor": 22,
+            "other/borderColor": 1056,
+            "button/borderColor": 28,
+            "heading/borderColor": 152,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c3c3c3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8171926909945806
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "badge"
+          ],
+          "frequency": 543,
+          "confidence": 1,
+          "prominence": 17165953.770699494,
+          "properties": [
+            "borderColor",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/stroke": 2,
+            "card/borderColor": 68,
+            "badge/borderColor": 240,
+            "other/borderColor": 168,
+            "button/borderColor": 64,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3e2e2",
+          "oklch": {
+            "c": 0.0010850963016777759,
+            "h": 17.177842178689403,
+            "l": 0.9135664138274652
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "heading",
+            "button",
+            "icon",
+            "input"
+          ],
+          "frequency": 213,
+          "confidence": 1,
+          "prominence": 9928431.41005947,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "link/color": 1,
+            "image/color": 1,
+            "other/color": 28,
+            "button/color": 2,
+            "other/stroke": 4,
+            "heading/color": 1,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 112,
+            "button/borderColor": 32,
+            "heading/borderColor": 4,
+            "input/backgroundColor": 2,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#fefefe",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9970251916618014
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "badge"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4810183.991292323,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ce5936",
+          "oklch": {
+            "c": 0.1568797571878344,
+            "h": 37.18238054213874,
+            "l": 0.6067207677255103
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 520660.1814868998,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#aeaaaa",
+          "oklch": {
+            "c": 0.00459139350679625,
+            "h": 17.260325439628005,
+            "l": 0.7413191749709308
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 56008.874992908095,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "button/color": 4,
+            "body/borderColor": 64,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#9b1b01",
+          "oklch": {
+            "c": 0.16590110953152615,
+            "h": 32.48236036689965,
+            "l": 0.44580293354329625
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 21059.396747082003,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 2
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 10527.058774174124,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 60
+          }
+        },
+        {
+          "hex": "#8cbfb5",
+          "oklch": {
+            "c": 0.055437353245422996,
+            "h": 181.31097025807728,
+            "l": 0.765922663441173
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#de6137",
+          "oklch": {
+            "c": 0.1665751078428895,
+            "h": 38.559080792290274,
+            "l": 0.6420507769891156
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ded9cb",
+          "oklch": {
+            "c": 0.019645878831553124,
+            "h": 90.5557574748506,
+            "l": 0.885420205098169
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#284c60",
+          "oklch": {
+            "c": 0.05356086239376646,
+            "h": 234.63416800893896,
+            "l": 0.39858047900363563
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#076436",
+          "oklch": {
+            "c": 0.10872092457441472,
+            "h": 154.02203812862385,
+            "l": 0.4427794050129014
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#70b3e6",
+          "oklch": {
+            "c": 0.10080280246901994,
+            "h": 242.62986347765633,
+            "l": 0.7419268510038187
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#89b2c4",
+          "oklch": {
+            "c": 0.05112786818222569,
+            "h": 226.6524346342426,
+            "l": 0.7400296133748194
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#af272f",
+          "oklch": {
+            "c": 0.17169828458235056,
+            "h": 23.37995595536426,
+            "l": 0.4967725119721425
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e1d1d2",
+          "oklch": {
+            "c": 0.017835286125800227,
+            "h": 13.143842163642375,
+            "l": 0.8739710508263571
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#24292a",
+          "oklch": {
+            "c": 0.007380181268263149,
+            "h": 211.05326399231888,
+            "l": 0.2763707790921224
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#eceeee",
+          "oklch": {
+            "c": 0.002144324988803576,
+            "h": 197.12146627543208,
+            "l": 0.9475911704608583
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#768289",
+          "oklch": {
+            "c": 0.017744040728284324,
+            "h": 233.22491030298738,
+            "l": 0.599086363411375
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#713f2a",
+          "oklch": {
+            "c": 0.07724744859106691,
+            "h": 43.098871272489724,
+            "l": 0.42401549765545715
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10143.760004615398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0014278639542541624,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.82,
+          "background": "#fefefe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#eceeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.24,
+          "background": "#e3e2e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#ded9cb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.61,
+          "background": "#24292a",
+          "foreground": "#fefefe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#e1d1d2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.65,
+          "background": "#eceeee",
+          "foreground": "#24292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.91,
+          "background": "#c3c3c3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#24292a",
+          "foreground": "#e3e2e2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.45,
+          "background": "#ded9cb",
+          "foreground": "#24292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.23,
+          "background": "#8cbfb5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10,
+          "background": "#e1d1d2",
+          "foreground": "#24292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.28,
+          "background": "#70b3e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#89b2c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.13,
+          "background": "#000000",
+          "foreground": "#aeaaaa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.08,
+          "background": "#284c60",
+          "foreground": "#fefefe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.51,
+          "background": "#713f2a",
+          "foreground": "#fefefe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.36,
+          "background": "#c3c3c3",
+          "foreground": "#24292a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.16,
+          "background": "#fefefe",
+          "foreground": "#9b1b01"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#eceeee",
+          "foreground": "#284c60"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "button",
+            "image",
+            "badge",
+            "input"
+          ],
+          "frequency": 94
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 120,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "badge",
+            "heading",
+            "link"
+          ],
+          "frequency": 178,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom",
+            "marginTop",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|other",
+            "marginBottom|card",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|badge",
+            "paddingTop|badge",
+            "marginBottom|heading",
+            "marginTop|heading",
+            "marginLeft|body",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "list",
+            "body"
+          ],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|badge",
+            "marginBottom|list",
+            "rowGap|list",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "heading",
+            "button"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|heading",
+            "columnGap|heading",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 139,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button",
+            "card",
+            "image",
+            "input"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginTop|card",
+            "marginBottom|image",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading",
+            "card",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "heading",
+            "input",
+            "other",
+            "body"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading",
+            "input",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|input",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "input",
+            "card"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginTop|card",
+            "marginBottom|card",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "list",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 104,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|button",
+            "marginLeft|button",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 66,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "marginTop|badge",
+            "marginRight|card",
+            "paddingTop|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "card",
+            "other"
+          ],
+          "frequency": 108,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|heading",
+            "columnGap|heading",
+            "paddingTop|card",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 97,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 124,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 142,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 148,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 158,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "heading",
+            "other",
+            "badge"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginLeft|badge"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 1136,
+          "fontFeatureSettings": [
+            "\"kern\" 0, \"liga\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "heading",
+            "badge"
+          ],
+          "frequency": 127,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "button",
+            "other",
+            "card",
+            "icon"
+          ],
+          "frequency": 135,
+          "lineHeight": 1,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list",
+            "image",
+            "card",
+            "link",
+            "body",
+            "badge",
+            "button",
+            "icon"
+          ],
+          "frequency": 709,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.04,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 148,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d7bc7275-07aa-4432-93b4-2a46c53f6eba.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acme Cups New Zealand design system\",\"item\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#style-reference\",\"name\":\"Acme Cups New Zealand design system reference\",\"headline\":\"Acme Cups New Zealand design system | Refero Styles\",\"description\":\"Explore Acme Cups New Zealand's light E-commerce design system: Ink Black #000000, Gallery White #fefefe colors, Helvetica Neue typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acme Cups New Zealand\",\"url\":\"https://acmecups.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14f6777e-1f6e-4b33-a7ed-d89c33f35722#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"caption\":\"Screenshot of Acme Cups New Zealand\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b0c33742-2f97-4303-bc64-f9b68d8c08e7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acme Cups New Zealand design system\",\"Acme Cups New Zealand website design\",\"Acme Cups New Zealand colors\",\"Acme Cups New Zealand typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Gallery White\",\"Concrete Canvas\",\"Ash Border\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand design system\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand website design\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand colors\"},{\"@type\":\"Thing\",\"name\":\"Acme Cups New Zealand typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-08T19:00:43.306Z\",\"dateModified\":\"2026-05-08T19:00:43.306Z\"}]}19:T714,**Quick Color Reference**\n- text: #000000\n- background (page canvas): #e3e2e2\n- background (card/surface): #fefefe\n- border (primary): #000000\n- border (secondary): #c3c3c3\n- muted text: #aeaaaa\n- error/input border: #9b1b01\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero section:** Full-bleed dark product photograph as background. Left-aligned ACME wordmark at 148px Helvetica Neue weight 700, color #fefefe, letter-spacing -1.33px, line-height 1.00. Right-aligned tagline block at 20px weight 400 #fefefe, line-height 1.30. Ghost button below: 3px radius, 1px #000000 border, #fefefe fill, 12px uppercase weight 500 label \"SHOP NOW →\", padding 9px 16px.\n\n2. **Product range section:** #e3e2e2 page background. Section header \"ROMAN RANGE [15]\" at 30px weight 700 uppercase #000000, letter-spacing -0.27px. Right-aligned ghost button \"SHOP COLLECTION →\" with carousel arrow controls. 1px #000000 border separates header from grid. 4-column product grid with 3px gaps.\n\n3. **Product card:** 1px #c3c3c3 border, 3px radius, no shadow. Product name \"ROMAN CUP MINI\" at 13px weight 700 uppercase #000000. Variant line \"Kōkako 002\" at 12px weight 400 #000000. Volume \"110ml\" at 11px weight 400 #aeaaaa. Product image fills lower 60% on #fefefe.\n\n4. **Filter tag:** Inline pill with 1px #c3c3c3 border, 3px radius, padding 2px 8px. Label \"Espresso\" in 11px uppercase weight 400 #000000, letter-spacing 0.22px. Multiple tags can sit inline with 4-6px gap.\n\n5. **Sidebar category nav:** Left column, vertical stack. ACME wordmark at 26-30px weight 700 #000000 at top. Below: category list (ROMAN, UNION, BIBBY, BOBBY, TAJIMI) in 20px weight 700 uppercase #000000, 8-12px vertical spacing between items. No active-state highlight — relies on page context to show current."
+}

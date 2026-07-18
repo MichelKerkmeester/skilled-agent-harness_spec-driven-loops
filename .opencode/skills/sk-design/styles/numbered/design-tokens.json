@@ -1,0 +1,220 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink Black — Primary canvas — full-page background, hero panels, footer. The dominant surface everything else floats over"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — All text, hairline borders, nav links, section labels. The only ink on the page; used at 100% opacity on dark surfaces and as a border-only accent on imagery"
+    },
+    "smoke": {
+      "$value": "#4f4f4f",
+      "$type": "color",
+      "$description": "Smoke — Subtle hairline borders on navigation elements — recedes against the ink black, visible only on close inspection"
+    },
+    "bronze-veil": {
+      "$value": "#bc9873",
+      "$type": "color",
+      "$description": "Bronze Veil — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "aktiv-web-custom-substitute-inter-tight-or-shne": {
+      "$value": "aktiv-web (custom) / substitute: Inter Tight or Söhne",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — nav labels at 12–13px (weight 400, tracked), body and section headings at 25px (weight 400, line-height 1.2), mid-page editorial statements at 54px (weight 400, line-height 1.2), and the 'CASES / STUDIES' two-line heading at ~74px. The signature choice: weight 400 for 54–74px display sizes — no bold display, no uppercase shouting. Headlines read as confident paragraphs, not banners."
+    },
+    "editorial-display-serif-not-captured-in-data-visible-in-hero-wordmark": {
+      "$value": "Editorial display serif (not captured in data — visible in hero wordmark)",
+      "$type": "fontFamily",
+      "$description": "The 'Numbered' wordmark uses a high-contrast transitional/old-style serif with sharp terminals — the only non-sans element in the system. This single serif mark is the brand's typographic signature; it appears once per page as a hero anchor and nowhere else. Suggested substitutes: PP Editorial New, GT Sectra, or Canela."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "1px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 1px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "1px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 1px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "aktiv-web",
+        "fontSize": "74px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 74px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "79": {
+      "$value": "79px",
+      "$type": "dimension",
+      "$description": "Spacing 79px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "178": {
+      "$value": "178px",
+      "$type": "dimension",
+      "$description": "Spacing 178px"
+    },
+    "238": {
+      "$value": "238px",
+      "$type": "dimension",
+      "$description": "Spacing 238px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "ink-black-canvas": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, all text panels, hero sections over flat color"
+    },
+    "bronze-accent-band": {
+      "$value": "#bc9873",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed warm surface for tonal break between black sections"
+    },
+    "photographic-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed editorial photography replaces the black canvas on hero and case study panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://numbered.studio",
+      "siteName": "Numbered",
+      "extractedAt": "2026-06-03T21:37:08.390Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --color-paper-cream: #f6f5f0;
+  --color-bone-white: #ffffff;
+  --color-ink-charcoal: #292a2c;
+  --color-pure-ink: #000000;
+
+  /* Typography — Font Families */
+  --font-editorial-serif-display-likely-bodonididone-family-or-custom: 'Editorial Serif (display — likely Bodoni/Didone family or custom)', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-neue-haas-grotesk-text: 'Neue Haas Grotesk Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-open-sans: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 18px;
+  --leading-body: 30;
+  --text-display: 180px;
+  --leading-display: 180;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-30: 30px;
+
+  /* Layout */
+  --section-gap: 80-120px;
+  --card-padding: 0px;
+  --element-gap: 30px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-paper-canvas: #f6f5f0;
+  --surface-plate-white: #ffffff;
+}

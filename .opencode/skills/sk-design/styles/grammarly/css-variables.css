@@ -1,0 +1,85 @@
+:root {
+  /* Colors */
+  --color-grammarly-teal: #027e6f;
+  --color-midnight-navy: #1f243c;
+  --color-ink-black: #0e101a;
+  --color-graphite: #545454;
+  --color-steel: #707070;
+  --color-silver: #b7b7b7;
+  --color-ash: #d9d9d9;
+  --color-fog: #ebebeb;
+  --color-cloud: #f5f5f5;
+  --color-carbon: #1c1c1c;
+  --color-slate: #4d536e;
+  --color-paper: #ffffff;
+
+  /* Typography — Font Families */
+  --font-glyph: 'Glyph', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-matter: 'matter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.45;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.45;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.25;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 36px;
+  --leading-heading: 1.12;
+  --tracking-heading: -0.36px;
+  --text-heading-lg: 46px;
+  --leading-heading-lg: 1.11;
+  --tracking-heading-lg: -0.46px;
+  --text-display: 52px;
+  --leading-display: 1.09;
+  --tracking-display: -0.52px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-w670: 670;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 32px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 20px;
+  --radius-3xl: 38px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-tags: 8px;
+  --radius-cards: 8px;
+  --radius-inputs: 8px;
+  --radius-buttons: 8px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-cloud: #f5f5f5;
+  --surface-card-white: #ffffff;
+  --surface-grammarly-teal-band: #027e6f;
+}

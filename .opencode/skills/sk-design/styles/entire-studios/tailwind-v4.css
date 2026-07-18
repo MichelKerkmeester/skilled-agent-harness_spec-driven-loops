@@ -1,0 +1,22 @@
+@theme {
+  /* Colors */
+  --color-bone: #e7ecea;
+  --color-ink: #000000;
+  --color-paper-white: #ffffff;
+
+  /* Typography */
+  --font-space-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --text-body: 16px;
+  --leading-body: 1.5;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+}

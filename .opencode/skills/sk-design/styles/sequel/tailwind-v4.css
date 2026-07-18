@@ -1,0 +1,55 @@
+@theme {
+  /* Colors */
+  --color-void-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-charcoal: #202020;
+  --color-graphite: #333333;
+  --color-lamp-cream: #f5f5f0;
+  --color-smoke: #999999;
+
+  /* Typography */
+  --font-visueltpro: 'VisueltPro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-bradford: 'Bradford', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-label-sm: 11px;
+  --leading-label-sm: 1.5;
+  --tracking-label-sm: 0.55px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 30px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.75px;
+  --text-heading: 54px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 57px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -2.85px;
+  --text-display: 128px;
+  --leading-display: 1;
+  --tracking-display: -3.2px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.35) 0px 10px 30px 0px, rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset;
+  --shadow-lg: rgba(0, 0, 0, 0.15) 0px 4px 20px 0px;
+}

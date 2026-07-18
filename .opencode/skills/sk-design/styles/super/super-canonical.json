@@ -1,0 +1,1362 @@
+{
+  "source": "https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98",
+  "uuid": "25863c92-a287-491e-bae7-4da37a1f9a98",
+  "name": "Super",
+  "northStar": "Sunlit paper desk with one amber marker",
+  "capturedAt": "2026-07-18T09:15:13.688Z",
+  "meta": {
+    "url": "https://super.so",
+    "siteName": "Super",
+    "extractedAt": "2026-06-03T20:19:44.960Z",
+    "durationMs": 28170,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 693,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f9f9f8 (Cream Paper) as the page background for every light-themed screen; reserve #ffffff (White Card) for elevated surfaces that need to read as on top of the canvas.",
+      "Set display headlines at 64px with weight 300 and letter-spacing -2.5px — the whisper-weight display is a signature choice; do not bump it to 500+ to 'add authority'.",
+      "Use the filled amber button (#ffbe3c background, #262a2 text, 8px radius) as the system's sole filled action control. Do not introduce a secondary filled button style.",
+      "Keep the palette monochrome except for the amber accent. If a screen needs warmth, use #787673 (Warm Taupe) or #f9f9f8 (Cream Paper) — never a second chromatic hue.",
+      "Use 1px #ebebeb (Hairline) borders for card edges and dividers. Avoid drop shadows on cards and buttons; rely on brightness contrast between cream and white instead.",
+      "Apply tight negative letter-spacing at all sizes: -2.5px at 64px, -1.18px at 38px, -0.75px at 26px, -0.52px at 20px. Body sizes (12–16px) can use proportionally equivalent em-based tracking.",
+      "Recolor third-party logos to #262a2 (Ink Charcoal) in social-proof rows. Consistent monochrome treatment unifies diverse brand marks under Super's visual system."
+    ],
+    "donts": [
+      "Do not introduce blue, green, red, or purple as accent or action colors. The amber is the only chromatic voice in the system; adding more dilutes brand identity.",
+      "Do not use heavy drop shadows on cards or buttons. The only acceptable shadow is the soft long-offset one (rgba(0,0,0,0.05) 0px 30px 22px -11px) on large hero mockups.",
+      "Do not set hero headlines at weight 500–700. The weight-300 display is the signature; heavier weights break the editorial restraint that defines the brand.",
+      "Do not add outlined or ghost button variants as the primary action. When the amber filled button is available, it must be the conversion path.",
+      "Do not use pure black (#000000) for text or backgrounds. The system's darkest text is #262a2 (Ink Charcoal) and darkest surface is #090909 — the slight warmth keeps the palette from feeling cold or generic.",
+      "Do not use letter-spacing of 0 or positive values at display sizes. The negative tracking (-0.026em to -0.039em) is essential to the Beausite type voice.",
+      "Do not place the amber accent on large decorative shapes or backgrounds. Reserve it for functional moments: the logo dot, the filled button, and small status indicators."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffbe3c",
+        "name": "Amber Pulse",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f9f9f8",
+        "name": "Cream Paper",
+        "role": "Page background and outer canvas. Borrowed from Notion's own workspace palette to position Super as its native publishing layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "role": "Card and elevated surface that sits on Cream Paper. Provides subtle separation through brightness contrast rather than shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262a2e",
+        "name": "Ink Charcoal",
+        "role": "Primary text, dominant foreground color, nav elements, and high-emphasis UI. The workhorse neutral of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#37352f",
+        "name": "Notion Charcoal",
+        "role": "Secondary text and borders within card contexts. Slightly warmer than Ink Charcoal, echoes Notion's native text color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#66707a",
+        "name": "Steel Body",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808c99",
+        "name": "Slate Mute",
+        "role": "Near-gray with a faint cool tint, used for very low-emphasis body content and subtle borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Heading emphasis, high-contrast dark surface for footer and dark feature sections, near-black for strong typographic moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#090909",
+        "name": "Black",
+        "role": "Footer background and deepest dark surface. The maximum darkness level in the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Hairline",
+        "role": "Hairline borders, dividers, and subtle structural lines. The lightest visible neutral that still reads as a defined edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ccd1d6",
+        "name": "Silver Divider",
+        "role": "Secondary borders and dividers where more visual weight is needed than Hairline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#787673",
+        "name": "Warm Taupe",
+        "role": "Subtle warm-toned text for tertiary content, gives body copy a slight paper-on-desk warmth without being obviously chromatic",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a max-width 1200px centered content column on a full-bleed Cream Paper canvas. The hero is a centered single-column stack: device mockup at top, 64px display headline, constrained-width subtext, filled amber button, and microtext — all vertically stacked with generous vertical rhythm (80px section gaps). Below the hero, content shifts to a two-column comparison split, then a centered social-proof logo row on a white card or direct on cream. Dark feature sections break the pattern: full-bleed #111111 background, centered section title, then a 3-column grid of dark feature cards with 16–24px gaps. Navigation is a sticky top bar (64px) with logo left, links center, sign-in and amber button right. The layout alternates between monochrome quiet sections and one or two dark dramatic sections to create rhythm without color variation.",
+    "imagery": "Imagery is sparse and functional. The page relies on device-frame mockups (browser windows, notional site previews) rather than photography or illustration. Mockups sit on Cream Paper with soft long-offset shadows, framed as if photographed on a desk. Product screenshots inside the mockups use Notion's native aesthetic — white cards, charcoal text, system fonts — to communicate the \"before\" state, and Super's own styled output — larger display type, amber accents, card layouts — to communicate the \"after.\" No lifestyle photography, no abstract gradients, no stock imagery. Iconography is minimal: a small amber circle for the logo, and tiny line-style icons (link, lightning bolt) used sparingly as decorative accents. The overall visual density is text-dominant with mockups serving as proof points rather than decoration.",
+    "similar": [
+      {
+        "why": "Inherits the identical #f9f9f8 canvas and #37352f text palette, creating direct visual continuity with the parent tool",
+        "business": "Notion"
+      },
+      {
+        "why": "Uses a near-monochrome canvas with a single bold accent color, tight custom display typography, and minimal-elevation card surfaces",
+        "business": "Framer"
+      },
+      {
+        "why": "Dark-section-light-section rhythm, max-width centered content, and a single vivid accent color against a mostly achromatic palette",
+        "business": "Webflow"
+      },
+      {
+        "why": "Editorial typographic confidence at the hero, cream/white surface treatment, and a single warm accent for the conversion action",
+        "business": "Substack"
+      },
+      {
+        "why": "Compact spacing density, hairline borders instead of shadows, and a restrained palette that lets one accent color carry the entire brand",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "9999px",
+        "subtle": "4px",
+        "buttons": "8px",
+        "largeSurfaces": "16px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f9f9f8",
+        "name": "Cream Paper Canvas",
+        "level": 0,
+        "purpose": "Page background, the base layer everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 1,
+        "purpose": "Elevated card surfaces and inner content blocks"
+      },
+      {
+        "hex": "#ffbe3c",
+        "name": "Amber Surface",
+        "level": 2,
+        "purpose": "Filled action button and brand accent surface"
+      },
+      {
+        "hex": "#37352f",
+        "name": "Notion Charcoal Surface",
+        "level": 3,
+        "purpose": "Card and panel backgrounds within dark feature sections"
+      },
+      {
+        "hex": "#262a2",
+        "name": "Ink Surface",
+        "level": 4,
+        "purpose": "Dark section backgrounds and high-contrast text containers"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon Surface",
+        "level": 5,
+        "purpose": "Footer and deepest dark surface for full-bleed dark sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 30px 22px -11px",
+        "element": "Hero device mockup"
+      }
+    ],
+    "northStar": "Sunlit paper desk with one amber marker",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.31
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.71,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.47
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.52
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "heading-lg",
+        "size": 38,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.18
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.07,
+        "letterSpacing": -2.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Amber Button",
+        "role": "The system's single filled action button. Used for the primary conversion: \"Get started for free\".",
+        "description": "Background #ffbe3c, text in #262a2 (Ink Charcoal), padding 12px 24px, border-radius 8px, font-weight 500, 16px size. No border, no shadow. The dark text on amber gives a high-contrast, high-affordance button that feels warm rather than corporate. Appears both in the header nav and centered in the hero."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Standard navigation and inline link treatment.",
+        "description": "No background, no border. Text in #66707a (Steel Body) at 14–16px, weight 400. On hover, shifts to #262a2 (Ink Charcoal). Undecorated by default; underlines only appear on inline text links within body copy."
+      },
+      {
+        "name": "Sign In Text Link",
+        "role": "Secondary header action, lower prominence than the filled amber button.",
+        "description": "Text only in #262a2 (Ink Charcoal) at 14–16px, weight 400 or 500. Sits in the header next to the filled amber button to provide a quieter account-access path."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity anchor in the header and on the \"Made with Super\" badge.",
+        "description": "Solid #ffbe3c (Amber Pulse) circle approximately 24px in diameter, paired with the lowercase wordmark \"super\" in #262a2 (Ink Charcoal), Beausite weight 600. The amber dot is the only color element in the entire header."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Primary page headline, sets the editorial tone.",
+        "description": "Beausite weight 300 at 64px, color #262a2 (Ink Charcoal), line-height 1.07, letter-spacing -2.5px. The weight-300 choice is the most opinionated decision in the system: display headlines whisper rather than shout, creating authority through restraint. The extremely tight tracking at 64px makes the type feel custom-typeset rather than templated."
+      },
+      {
+        "name": "Hero Subtext",
+        "role": "Supporting paragraph under the hero headline.",
+        "description": "Beausite weight 400 at 18px, color #66707a (Steel Body), line-height 1.5, max-width approximately 640px centered. Reads as muted helper prose, never competing with the headline."
+      },
+      {
+        "name": "White Card on Cream",
+        "role": "Standard content card, the workhorse surface for screenshots, feature blocks, and content containers.",
+        "description": "Background #ffffff, border 1px solid #ebebeb (Hairline), border-radius 8px, padding 24px. No drop shadow. The 1px hairline border does the work that shadow normally would — defining edges without weight."
+      },
+      {
+        "name": "Dark Feature Card",
+        "role": "Step or feature card used inside dark sections like \"How to use Notion as a website\".",
+        "description": "Background #37352f (Notion Charcoal) sitting on a #111111 (Carbon) section background. Rounded 8px. Contains simplified wireframe placeholders in #4d545c and the amber accent dot for active states. Provides a \"screen within a screen\" effect."
+      },
+      {
+        "name": "Social Proof Logo Row",
+        "role": "Trust signal — company logos under \"Trusted by teams at\".",
+        "description": "Logos displayed at uniform height (~24–32px) in monochrome #262a2 (Ink Charcoal), arranged in a single centered row with even spacing. No background card, no border. The logos are recolored to match the ink palette, creating visual unity across diverse brand marks."
+      },
+      {
+        "name": "\"Made with Super\" Floating Pill",
+        "role": "Self-promotional badge pinned to the bottom-left of the live site demo.",
+        "description": "White pill (#ffffff) with 9999px border-radius, padding 6px 12px, containing the amber logo dot + \"Made with Super\" text in #262a2 (Ink Charcoal) at 12–14px. Functions as a subtle watermark without interrupting the content above it."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal break between content bands.",
+        "description": "1px line in #ebebeb (Hairline) or #ccd1d6 (Silver Divider), full-width or constrained to content width. No other ornamentation — the system trusts whitespace and the cream-to-white surface shift to create section breaks."
+      },
+      {
+        "name": "Nav Header",
+        "role": "Top-level site navigation.",
+        "description": "Background #ffffff (or transparent over cream), height approximately 64px, padding 0 24px. Logo left, nav links center, \"Sign in\" + filled amber button right. Bottom border 1px #ebebeb on scroll, or borderless at page top. Sticky behavior expected."
+      },
+      {
+        "name": "Comparison Split",
+        "role": "Before/after visual showing Notion source vs Super output.",
+        "description": "Two side-by-side cards labeled \"From Notion Site\" and \"To Custom Super Site\" in caption text, each containing a device/screenshot mockup. The right-side card includes a small filled amber button to emphasize the output is a functional, styled website."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom display and body typeface used across every UI context — nav, headings, body, buttons, cards, badges. Beausite is a contemporary neo-grotesque with humanist proportions; its tight tracking at large sizes gives the hero editorial confidence, while its open counters at body sizes maintain readability. A close substitute would be Inter, Söhne, or General Sans.",
+        "sizes": "12, 14, 16, 18, 20, 26, 38, 64",
+        "family": "Beausite",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "1.00–1.71",
+        "substitute": "Inter",
+        "letterSpacing": "-0.039em at 64px → -0.026em at 20px and below; tracking tightens proportionally with size"
+      }
+    ],
+    "description": "Super runs on a near-monochrome warm-neutral canvas that borrows the tactile grammar of a notebook — cream paper backgrounds, charcoal ink text, hairline dividers — and punctuates it with a single saturated amber that acts as the page's only chromatic accent. The result reads like a well-typeset document that has been wired to one working button: quiet, considered, and immediately legible about where to click. Typography is custom (Beausite) set tight at display sizes and confident at body sizes, giving the page editorial weight without heaviness. Components are lightweight — soft white cards sitting on cream, no decorative gradients, minimal elevation, ghost nav links, and a bold amber filled button as the sole loud element on most screens. The visual system extends Notion's own canvas palette (#f9f9f8, #37352f) and adds a sunlit warm accent to distinguish the brand from its parent tool.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Super design system\",\"item\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#style-reference\",\"name\":\"Super design system reference\",\"headline\":\"Super design system | Refero Styles\",\"description\":\"Explore Super's mixed SaaS design system: Amber Pulse #ffbe3c, Cream Paper #f9f9f8 colors, Beausite typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Super\",\"url\":\"https://super.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"caption\":\"Screenshot of Super\"},\"image\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Super design system\",\"Super website design\",\"Super colors\",\"Super typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Amber Pulse\",\"Cream Paper\",\"White Card\",\"Ink Charcoal\",\"Beausite\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Super design system\"},{\"@type\":\"Thing\",\"name\":\"Super website design\"},{\"@type\":\"Thing\",\"name\":\"Super colors\"},{\"@type\":\"Thing\",\"name\":\"Super typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-18T15:20:10.000Z\",\"dateModified\":\"2026-02-18T15:20:10.000Z\"}]}19:T73d,**Quick Color Reference**\n- text (primary): #262a2e (Ink Charcoal)\n- text (muted): #66707a (Steel Body)\n- background (canvas): #f9f9f8 (Cream Paper)\n- surface (card): #ffffff (White Card)\n- border (hairline): #ebebeb (Hairline)\n- accent (brand): #ffbe3c (Amber Pulse)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero Section*: Full-width Cream Paper background (#f9f9f8). Centered stack: device mockup with soft shadow (rgba(0,0,0,0.05) 0px 30px 22px -11px), then headline at 64px Beausite weight 300, #262a2e, letter-spacing -2.5px, line-height 1.07. Subtext at 18px weight 400, #66707a, line-height 1.5, max-width 640px. Filled amber button (#ffbe3c background, #262a2e text, 8px radius, 12px 24px padding, weight 500, 16px). \"No credit card required\" microtext in 12px #66707a below.\n\n2. *White Card on Cream*: Background #ffffff, 1px border #ebebeb, 8px radius, 24px padding. No shadow. Contains a 20px Beausite weight 500 heading in #262a2e and 16px body text in #66707a.\n\n3. *Social Proof Logo Row*: Centered single row on Cream Paper, \"Trusted by teams at\" caption in 12px #66707a above. Six logos at 28px height, all recolored to #262a2e, evenly spaced with 48px gaps. No card or border around the row.\n\n4. *Dark Feature Section*: Full-bleed #111111 background, 80px vertical padding. Centered section title at 38px Beausite weight 300 in #ffffff, letter-spacing -1.18px. Three dark feature cards below in a 3-column grid with 24px gaps; each card has #37352f background, 8px radius, 24px padding, and contains simplified wireframe placeholders in #4d545c with a small 6px #ffbe3c accent dot.\n\n5. *Filled Amber Button (standalone)*: Background #ffbe3c, text #262a2e at 16px Beausite weight 500, padding 12px 24px, border-radius 8px, no border, no shadow. Text is \"Get started for free\" or similar conversion copy."
+      },
+      {
+        "title": "Notion DNA Inheritance",
+        "content": "Super deliberately inherits Notion's exact workspace palette — #f9f9f8 canvas and #37352f text — as a visual handshake with its parent tool. Users who publish from Notion should feel their content's aesthetic continuity preserved. The system extends this inherited palette with a sunlit amber accent and a more typographically confident display voice, signaling that Super is the publication layer, not just a wrapper. When designing new screens, preserve the Notion-paper feel in any context that shows source content or editor interfaces; introduce Super's editorial display type and amber accent only in the published-site framing."
+      },
+      {
+        "title": "Type Voice Rules",
+        "content": "Beausite is the only typeface. Do not introduce secondary type families. Weight usage follows a specific discipline: weight 300 is reserved exclusively for display headlines (38px+); weight 400 for body and UI text; weight 500 for button labels and emphasized inline text; weight 600 for the wordmark and the strongest heading emphasis. Tracking tightens proportionally with size: 64px gets -0.039em (-2.5px), 38px gets -0.031em (-1.18px), 26px gets -0.029em (-0.75px), and everything 20px and below shares -0.026em. Line-height is unusually tight for display (1.07 at 64px) and opens up at body sizes (1.5–1.71 at 14–16px)."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately restrained. The system relies on brightness contrast between Cream Paper canvas and White Card surfaces to create depth, not shadows. The only detected shadow is a soft, long-offset, low-opacity drop used on large hero mockups — never on cards, buttons, or small UI elements. When a surface needs to feel elevated, it gets whiter, not shadowier."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#262a2e",
+          "oklch": {
+            "c": 0.00931790035592838,
+            "h": 248.1574949095962,
+            "l": 0.28264945271660896
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 1196,
+          "confidence": 1,
+          "prominence": 181381897.3869171,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "card",
+            "link",
+            "button",
+            "footer",
+            "icon"
+          ],
+          "frequency": 889,
+          "confidence": 1,
+          "prominence": 22458630.846669126,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9f9f8",
+          "oklch": {
+            "c": 0.0013200146929102773,
+            "h": 106.42389256921611,
+            "l": 0.9818390294715618
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 10851768.59122989,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#37352f",
+          "oklch": {
+            "c": 0.010678375839622271,
+            "h": 91.65870014106616,
+            "l": 0.32894227310496776
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 781809.8334445432,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#66707a",
+          "oklch": {
+            "c": 0.019807389523886967,
+            "h": 248.19416299888235,
+            "l": 0.5401963353722078
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 460,
+          "confidence": 1,
+          "prominence": 760079.0133369993,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#090909",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13979123394671675
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 636263,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ccd1d6",
+          "oklch": {
+            "c": 0.008829341186688024,
+            "h": 247.92898786366968,
+            "l": 0.8582824967694541
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 320180.0532858824,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "card"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 318342.2946260334,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 254429.7023773179,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808c99",
+          "oklch": {
+            "c": 0.024038742099959952,
+            "h": 250.33791449277226,
+            "l": 0.6346938054229976
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 22224.118696278547,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffbe3c",
+          "oklch": {
+            "c": 0.15577614790829178,
+            "h": 80.26585435217642,
+            "l": 0.8403880652145934
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 18656,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d545c",
+          "oklch": {
+            "c": 0.01590858221980996,
+            "h": 251.72025370229585,
+            "l": 0.4425754850088214
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17174.653657814448,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#787673",
+          "oklch": {
+            "c": 0.005177005122828138,
+            "h": 78.28255658007937,
+            "l": 0.5666521079040816
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 17107.28182977261,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.022423485711682716,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.91,
+          "background": "#090909",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.9,
+          "background": "#f9f9f8",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.92,
+          "background": "#f9f9f8",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.7,
+          "background": "#ebebeb",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.84,
+          "background": "#ebebeb",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#ffffff",
+          "foreground": "#262a2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.72,
+          "background": "#f9f9f8",
+          "foreground": "#262a2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#090909",
+          "foreground": "#ccd1d6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#111111",
+          "foreground": "#ccd1d6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#37352f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#ebebeb",
+          "foreground": "#262a2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#ffbe3c",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.64,
+          "background": "#f9f9f8",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#ffbe3c",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.28,
+          "background": "#ebebeb",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.4,
+          "background": "#262a2e",
+          "foreground": "#ccd1d6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.73,
+          "background": "#ffbe3c",
+          "foreground": "#262a2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.97,
+          "background": "#37352f",
+          "foreground": "#ccd1d6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.67,
+          "background": "#ffffff",
+          "foreground": "#4d545c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 46
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 30px 22px -11px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 135,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 156,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 176,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 165,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 144,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 156,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Beausite",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 685,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Beausite",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.029,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "card",
+            "body",
+            "link",
+            "footer",
+            "badge",
+            "icon"
+          ],
+          "frequency": 321,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Beausite",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Beausite",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Beausite",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Beausite",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Beausite",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.039,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/255200d9-b89c-4310-83f3-07e84db85bef.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Super design system\",\"item\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#style-reference\",\"name\":\"Super design system reference\",\"headline\":\"Super design system | Refero Styles\",\"description\":\"Explore Super's mixed SaaS design system: Amber Pulse #ffbe3c, Cream Paper #f9f9f8 colors, Beausite typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Super\",\"url\":\"https://super.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/25863c92-a287-491e-bae7-4da37a1f9a98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"caption\":\"Screenshot of Super\"},\"image\":\"https://images.refero.design/styles/refero.design/image/27af19dd-870a-4465-bd25-e454f9dc8cbf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Super design system\",\"Super website design\",\"Super colors\",\"Super typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Amber Pulse\",\"Cream Paper\",\"White Card\",\"Ink Charcoal\",\"Beausite\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Super design system\"},{\"@type\":\"Thing\",\"name\":\"Super website design\"},{\"@type\":\"Thing\",\"name\":\"Super colors\"},{\"@type\":\"Thing\",\"name\":\"Super typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-18T15:20:10.000Z\",\"dateModified\":\"2026-02-18T15:20:10.000Z\"}]}19:T73d,**Quick Color Reference**\n- text (primary): #262a2e (Ink Charcoal)\n- text (muted): #66707a (Steel Body)\n- background (canvas): #f9f9f8 (Cream Paper)\n- surface (card): #ffffff (White Card)\n- border (hairline): #ebebeb (Hairline)\n- accent (brand): #ffbe3c (Amber Pulse)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero Section*: Full-width Cream Paper background (#f9f9f8). Centered stack: device mockup with soft shadow (rgba(0,0,0,0.05) 0px 30px 22px -11px), then headline at 64px Beausite weight 300, #262a2e, letter-spacing -2.5px, line-height 1.07. Subtext at 18px weight 400, #66707a, line-height 1.5, max-width 640px. Filled amber button (#ffbe3c background, #262a2e text, 8px radius, 12px 24px padding, weight 500, 16px). \"No credit card required\" microtext in 12px #66707a below.\n\n2. *White Card on Cream*: Background #ffffff, 1px border #ebebeb, 8px radius, 24px padding. No shadow. Contains a 20px Beausite weight 500 heading in #262a2e and 16px body text in #66707a.\n\n3. *Social Proof Logo Row*: Centered single row on Cream Paper, \"Trusted by teams at\" caption in 12px #66707a above. Six logos at 28px height, all recolored to #262a2e, evenly spaced with 48px gaps. No card or border around the row.\n\n4. *Dark Feature Section*: Full-bleed #111111 background, 80px vertical padding. Centered section title at 38px Beausite weight 300 in #ffffff, letter-spacing -1.18px. Three dark feature cards below in a 3-column grid with 24px gaps; each card has #37352f background, 8px radius, 24px padding, and contains simplified wireframe placeholders in #4d545c with a small 6px #ffbe3c accent dot.\n\n5. *Filled Amber Button (standalone)*: Background #ffbe3c, text #262a2e at 16px Beausite weight 500, padding 12px 24px, border-radius 8px, no border, no shadow. Text is \"Get started for free\" or similar conversion copy."
+}

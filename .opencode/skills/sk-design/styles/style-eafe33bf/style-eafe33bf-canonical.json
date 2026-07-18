@@ -1,0 +1,983 @@
+{
+  "source": "https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799",
+  "uuid": "eafe33bf-6f53-4619-b279-686ad5869799",
+  "name": "큰그림컴퍼니",
+  "northStar": "Concrete slab typographic manifesto. A black-on-white press kit where oversized Helvetica does the work of photography, and the only texture is a single sheet of crumpled paper under the body type.",
+  "capturedAt": "2026-07-18T07:32:30.925Z",
+  "meta": {
+    "url": "https://www.bpco.kr",
+    "siteName": "큰그림컴퍼니",
+    "extractedAt": "2026-06-03T20:39:14.244Z",
+    "durationMs": 47461,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 154,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines at 75–274px in Helvetica Neue 700 with -0.04em tracking — type size is the primary visual mass, not imagery",
+      "Use #121212 as the only foreground color; never introduce chromatic accents",
+      "Apply the 288px border-radius to all full-bleed images to soften architectural/outdoor photography",
+      "Wrap meta labels in square brackets using PPSupplyMono 16px: [SECTION NAME]",
+      "Use 40px radius for the navigation pill and 28px for individual nav items inside it",
+      "Maintain 72px between major sections and 50px between content blocks within a section",
+      "Place the four-pointed sparkle icon in a horizontal row of 4–5 as the standard section divider"
+    ],
+    "donts": [
+      "Do not add any color other than the five neutrals (#121212, #ffffff, #f1f1f1, #e1e1e1, #c5c5c5) — zero chroma is the brand",
+      "Do not use box-shadows; depth comes from hairline borders and the paper texture only",
+      "Do not break the all-caps convention on display headlines; mixed case is reserved for the Rock Salt annotation",
+      "Do not use 9999px pill radii on buttons or tags — the largest standard radius is 40px on the nav",
+      "Do not compress line-height below 1.0 on display type, and do not exceed 1.6 on body",
+      "Do not place body copy in a column wider than ~720px — the editorial measure must stay readable",
+      "Do not add hover-lift or transition effects to cards; the aesthetic is static print, not interactive UI"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Press Ink",
+        "role": "Primary text, hairlines, section borders, icon strokes, footer text — the singular dark tone that carries 95% of all foreground information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, nav pill background, heading-bordered surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Newsprint",
+        "role": "Subtle surface fills, soft borders, hairline dividers, the tone behind the crumpled-paper texture",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1e1e1",
+        "name": "Foil Gray",
+        "role": "Light borders, icon stroke accents, secondary dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c5c5c5",
+        "name": "Mute Gray",
+        "role": "Tertiary text, disabled state, low-contrast surface lines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1440px centered with 40–144px horizontal padding depending on section density. Hero is a full-bleed image with overlay type. Below the image, content alternates between centered text stacks and edge-to-edge display typography. The lower 60% of the page is a long scrolling manifesto where oversized display type fills the viewport width line by line, separated by sparkle divider rows. Navigation is a floating pill centered at the top of the viewport, not a full-width bar. Footer is a single hairline-bordered strip.",
+    "imagery": "Photography dominates the hero — large architectural and outdoor advertising shots (billboards, building wraps, street-level ad placements) presented full-bleed with 288px corner rounding. The crumpled paper texture overlays the lower page sections as a tactile surface treatment, giving the interface the feel of a print zine. A small line-drawn globe icon appears as the only illustrative element. No 3D, no abstract gradients, no product mockups — imagery is documentary, industrial, and rooted in the agency's outdoor advertising portfolio.",
+    "similar": [
+      {
+        "why": "Same monochrome neo-grotesque + monospace label pairing with oversized display headlines and generous editorial spacing",
+        "business": "Studio Daïdai"
+      },
+      {
+        "why": "Identical print-zine sensibility with white canvas, hairline rules, all-caps display type at 100–250px, and zero chromatic color",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same restrained editorial restraint, hand-annotated typography, and white-paper surface treatment with subtle grain",
+        "business": "Apartamento Magazine"
+      },
+      {
+        "why": "Shares the oversized Helvetica display + monospace caption structure and the press-kit atmosphere on a white canvas",
+        "business": "AnOther Magazine digital"
+      },
+      {
+        "why": "Same brutalist typographic-manifesto approach: one typeface family at extreme sizes, monospace metadata, no decorative imagery",
+        "business": "Werkplaats Typografie archive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20px",
+        "cards": "20px",
+        "images": "288px",
+        "nav-item": "28px",
+        "nav-pill": "40px"
+      },
+      "elementGap": "50px",
+      "sectionGap": "72px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full page background, base for all content"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Subtle fills behind body type and the crumpled texture layer"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Pill",
+        "level": 2,
+        "purpose": "Floating navigation container, isolated card blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Concrete slab typographic manifesto. A black-on-white press kit where oversized Helvetica does the work of photography, and the only texture is a single sheet of crumpled paper under the body type.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 75,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "display",
+        "size": 274,
+        "lineHeight": 1,
+        "letterSpacing": -10.96
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Pill",
+        "role": "Sticky top-center nav container",
+        "description": "Floating white pill with 40px outer radius, 28px inner item radius, 1px solid #121212 border, 20px horizontal padding, 10px vertical padding. Contains HOME (active state with subtle inset fill) + PROJECTS + CONTACT in Helvetica Neue 15px/500 #121212, separated by thin dividers."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Top-left brand identifier",
+        "description": "Three-line stack reading 'Bigpicture Company / We share / Our pleasure' in Helvetica Neue 15px/500 #121212, flush left, no mark — the text is the logo."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero-scale typographic block",
+        "description": "Helvetica Neue 700 at 274px, line-height 1.0, letter-spacing -0.04em (#121212). All-caps, multi-word lines that fill the viewport width — used for statements like 'PEOPLE BRAND' and 'PLEASURE'. No gradient, no shadow, no decoration — the size alone is the visual event."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page editorial headline",
+        "description": "Helvetica Neue 700 at 75px, line-height 1.05, letter-spacing -0.01em (#121212). All-caps, often followed by a sparkle divider."
+      },
+      {
+        "name": "Monospace Meta Tag",
+        "role": "Caption-style label",
+        "description": "PPSupplyMono 16px/400, uppercase, letter-spacing normal, #121212. Enclosed in square brackets like [01-N INTRODUCTION]. Used to number sections and tag categories (ADVERTISEMENTS / CREATIVE/AGENCY / OFFLINE MARKETING) — acts as a running header in a printed zine."
+      },
+      {
+        "name": "Body Manifesto Block",
+        "role": "Centered editorial paragraph",
+        "description": "Helvetica Neue 400 at 17px, line-height 1.6, max-width ~720px, centered. #121212 on white. Used for the company description at the top of the page — restrained, justified feel, no drop cap, no emphasis."
+      },
+      {
+        "name": "Sparkle Divider",
+        "role": "Section separator",
+        "description": "Four-pointed star/sparkle icon in #121212, ~20px, repeated horizontally with 72px gaps to create a visual band between major sections. The only recurring decoration on the page."
+      },
+      {
+        "name": "Rounded Image Block",
+        "role": "Full-bleed hero photography",
+        "description": "Architectural/outdoor advertising photo with 288px border-radius, full viewport width, no caption. The extreme rounding softens what would otherwise be a stark industrial image."
+      },
+      {
+        "name": "Address Block",
+        "role": "Contact / location caption",
+        "description": "Helvetica Neue 400 at 17px/1.2, #121212, three-line stack (floor/address/country) placed over the image — typeset directly on top of the hero photo, no background plate."
+      },
+      {
+        "name": "Handwritten Annotation",
+        "role": "Editorial stamp",
+        "description": "Rock Salt 17px #121212 circled around a word (e.g. 'pleasure') — a print-editor's red-pen mark translated to handwritten type. Use once per page maximum."
+      },
+      {
+        "name": "Footer Strip",
+        "role": "Bottom-of-page meta",
+        "description": "Top border 1px solid #121212, 30–40px vertical padding, three-column grid: logo wordmark left, '© Seoul, Korea' right, monospace tag center. #121212 text on white."
+      },
+      {
+        "name": "Nav Indicator Globe",
+        "role": "Inline iconographic accent",
+        "description": "Small line-drawn globe icon in #121212 stroke, used in the company descriptor text and in the manifesto line 'WHEN SOMEONE ELSE IS NEED THAT JOY COMES BACK TO' — the globe replaces the word 'need' as a visual metaphor."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal workhorse — body copy at 17px/1.29, display headlines at 75–274px with -0.04em tracking at the largest sizes, nav labels at 15px",
+        "sizes": "14, 15, 16, 17, 20, 75, 274",
+        "family": "Helvetica Neue",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Neue Haas Grotesk, or system-ui with tight optical tracking",
+        "letterSpacing": "-0.0400em, -0.0100em"
+      },
+      {
+        "role": "Meta labels and bracketed captions like [01-N INTRODUCTION] and section tags (ADVERTISEMENTS, CREATIVE/AGENCY, OFFLINE MARKETING) — these are the only typographic accents that break the Helvetica monotony",
+        "sizes": "13, 16, 17",
+        "family": "PPSupplyMono",
+        "weight": "400",
+        "lineHeight": "1.00–2.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono"
+      },
+      {
+        "role": "Secondary nav and footer micro-text where a different sans voice is needed",
+        "sizes": "17, 22",
+        "family": "PPSupplySans",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter, Söhne, ABC Diatype"
+      },
+      {
+        "role": "Rare handwritten signature accent for one or two words per page (e.g. the circled 'pleasure' annotation) — used like a stamp, never for content",
+        "sizes": "17",
+        "family": "Rock Salt",
+        "weight": "400",
+        "lineHeight": "1.47",
+        "substitute": "Caveat, Permanent Marker, or a custom handwritten font",
+        "letterSpacing": "-0.0200em"
+      }
+    ],
+    "description": "Bigpicture Company is a monochrome editorial system that treats the webpage as a printed press kit laid out on raw paper. The interface strips away all chromatic color and relies entirely on black ink, white space, hairline rules, and a single crumpled-paper texture to carry atmosphere. Typography is the product: display headlines reach 274px at Helvetica Neue 700 with aggressive negative tracking, making text the dominant visual mass on every screen. Monospace labels ([01-N INTRODUCTION], CREATIVE/AGENCY) act as print-style captions, while four-pointed sparkle icons serve as the only ornament between sections. Layout is generous and zine-like — 72px section gaps, 144-250px horizontal padding, and full-bleed image blocks with 288px corners let the page breathe like a gallery wall rather than a software product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"큰그림컴퍼니 design system\",\"item\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#style-reference\",\"name\":\"큰그림컴퍼니 design system reference\",\"headline\":\"큰그림컴퍼니 design system | Refero Styles\",\"description\":\"Explore 큰그림컴퍼니's light Agency design system: Press Ink #121212, Paper White #ffffff colors, Helvetica Neue, PPSupplyMono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\",\"mainEntityOfPage\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"큰그림컴퍼니\",\"url\":\"https://www.bpco.kr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"caption\":\"Screenshot of 큰그림컴퍼니\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"큰그림컴퍼니 design system\",\"큰그림컴퍼니 website design\",\"큰그림컴퍼니 colors\",\"큰그림컴퍼니 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Ink\",\"Paper White\",\"Newsprint\",\"Foil Gray\",\"Helvetica Neue\",\"PPSupplyMono\",\"PPSupplySans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 design system\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 website design\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 colors\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:20:07.374Z\",\"dateModified\":\"2026-04-30T01:20:07.374Z\"}]}19:T548,**Quick Color Reference**\n- text: #121212\n- background: #ffffff\n- surface/soft: #f1f1f1\n- border: #e1e1e1\n- muted: #c5c5c5\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Navigation Pill*: Centered floating container, 40px outer radius, 28px item radius, 1px solid #121212 border, white #ffffff background, 20px horizontal padding, 10px vertical padding. Three text items in Helvetica Neue 15px/500 #121212: HOME (active, with a subtle inset fill), PROJECTS, CONTACT.\n\n2. *Display Headline*: Full-width block, text 'PEOPLE BRAND' in Helvetica Neue 700 at 274px, line-height 1.0, letter-spacing -10.96px, color #121212, on #ffffff background. Two lines, each filling the viewport width.\n\n3. *Monospace Meta Tag*: Single line '[01-N INTRODUCTION]' in PPSupplyMono 16px/400, uppercase, letter-spacing normal, color #121212, centered above a section.\n\n4. *Full-Bleed Image Block*: Photographic image (architectural/outdoor ad) at 100% viewport width, 288px border-radius on all corners, no caption, no border. Place a three-line address caption in Helvetica Neue 17px/1.2 #121212 over the image, top-right area, no background plate.\n\n5. *Sparkle Divider Row*: Five four-pointed sparkle icons in #121212, 20px each, arranged horizontally with 72px gaps, centered on the page. Acts as a section break between major content blocks."
+      },
+      {
+        "title": "Texture & Surface Treatment",
+        "content": "The crumpled paper texture is a single low-opacity noise layer applied behind the lower 60% of the page (roughly from the PLEASURE section downward). It should read as a subtle tactile grain, not as a pattern — the goal is to make the digital surface feel like a physical print artifact. Do not tile it, do not animate it, do not apply it to cards or components. The texture is a page-level treatment, not a component-level one."
+      },
+      {
+        "title": "Typographic Voice",
+        "content": "Three voices coexist: Helvetica Neue (the workhorse, used for 95% of content including all display headlines), PPSupplyMono (the print caption, used for bracketed meta labels), and Rock Salt (the editor's pen, used once per page to circle a single word). The mono font carries editorial metadata; the handwritten font carries human annotation. Never substitute a serif for any of these — the system is strictly neo-grotesque + monospace + handwritten, with no Garamond or Times-style faces allowed."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system uses 1px hairline borders in #121212 and generous whitespace to establish structure. Depth comes from the crumpled-paper texture overlay and extreme type sizing, not from cast shadows or z-axis elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "footer",
+            "icon",
+            "image",
+            "link"
+          ],
+          "frequency": 565,
+          "confidence": 1,
+          "prominence": 234764592.7006178,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 8,
+            "icon/color": 2,
+            "link/color": 1,
+            "image/color": 2,
+            "other/color": 95,
+            "footer/color": 1,
+            "nav/borderColor": 16,
+            "body/borderColor": 32,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 380,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 8434101.85369751,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 18,
+            "other/borderColor": 72
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 7238111.400934618,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "other/color": 3,
+            "heading/color": 5,
+            "nav/borderColor": 4,
+            "other/borderColor": 12,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e1e1e1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9097468267956337
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 378886.07776659087,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/color": 7,
+            "icon/borderColor": 4,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#c5c5c5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8234420009538047
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 6480,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "other/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.59,
+          "background": "#f1f1f1",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#e1e1e1",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#c5c5c5",
+          "foreground": "#121212"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#ffffff",
+          "foreground": "#c5c5c5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#ffffff",
+          "foreground": "#e1e1e1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#ffffff",
+          "foreground": "#f1f1f1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 250,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 130,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PPSupplyMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PPSupplySans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Rock Salt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "PPSupplyMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PPSupplyMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "PPSupplyMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "PPSupplySans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Rock Salt",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.47,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "footer",
+            "icon"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "PPSupplySans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 274,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ec699d33-c08a-460b-9d3c-3f99f2630cd7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"큰그림컴퍼니 design system\",\"item\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#style-reference\",\"name\":\"큰그림컴퍼니 design system reference\",\"headline\":\"큰그림컴퍼니 design system | Refero Styles\",\"description\":\"Explore 큰그림컴퍼니's light Agency design system: Press Ink #121212, Paper White #ffffff colors, Helvetica Neue, PPSupplyMono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\",\"mainEntityOfPage\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"큰그림컴퍼니\",\"url\":\"https://www.bpco.kr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/eafe33bf-6f53-4619-b279-686ad5869799#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"caption\":\"Screenshot of 큰그림컴퍼니\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1e2a6a14-a571-4085-a4a8-e7db6a7f50c1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"큰그림컴퍼니 design system\",\"큰그림컴퍼니 website design\",\"큰그림컴퍼니 colors\",\"큰그림컴퍼니 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Ink\",\"Paper White\",\"Newsprint\",\"Foil Gray\",\"Helvetica Neue\",\"PPSupplyMono\",\"PPSupplySans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 design system\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 website design\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 colors\"},{\"@type\":\"Thing\",\"name\":\"큰그림컴퍼니 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:20:07.374Z\",\"dateModified\":\"2026-04-30T01:20:07.374Z\"}]}19:T548,**Quick Color Reference**\n- text: #121212\n- background: #ffffff\n- surface/soft: #f1f1f1\n- border: #e1e1e1\n- muted: #c5c5c5\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Navigation Pill*: Centered floating container, 40px outer radius, 28px item radius, 1px solid #121212 border, white #ffffff background, 20px horizontal padding, 10px vertical padding. Three text items in Helvetica Neue 15px/500 #121212: HOME (active, with a subtle inset fill), PROJECTS, CONTACT.\n\n2. *Display Headline*: Full-width block, text 'PEOPLE BRAND' in Helvetica Neue 700 at 274px, line-height 1.0, letter-spacing -10.96px, color #121212, on #ffffff background. Two lines, each filling the viewport width.\n\n3. *Monospace Meta Tag*: Single line '[01-N INTRODUCTION]' in PPSupplyMono 16px/400, uppercase, letter-spacing normal, color #121212, centered above a section.\n\n4. *Full-Bleed Image Block*: Photographic image (architectural/outdoor ad) at 100% viewport width, 288px border-radius on all corners, no caption, no border. Place a three-line address caption in Helvetica Neue 17px/1.2 #121212 over the image, top-right area, no background plate.\n\n5. *Sparkle Divider Row*: Five four-pointed sparkle icons in #121212, 20px each, arranged horizontally with 72px gaps, centered on the page. Acts as a section break between major content blocks."
+}

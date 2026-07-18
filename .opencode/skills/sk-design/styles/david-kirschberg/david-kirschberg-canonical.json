@@ -1,0 +1,567 @@
+{
+  "source": "https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b",
+  "uuid": "004f4856-4b01-4c23-a9fb-866303d5013b",
+  "name": "David Kirschberg",
+  "northStar": "midnight gallery wall — a darkened room where spotlit work is the only color, and the frame around it is intentionally invisible.",
+  "capturedAt": "2026-07-18T07:30:11.410Z",
+  "meta": {
+    "url": "https://kirschberg.co.nz",
+    "siteName": "David Kirschberg",
+    "extractedAt": "2026-06-03T20:58:21.817Z",
+    "durationMs": 25168,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1227,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #181818 as the sole page background — never introduce lighter or darker canvas variants",
+      "Use 24px border-radius for all card-shaped surfaces; use 16px for the navigation pill only",
+      "Use twkLausanne at exactly 32px with -1.28px letter-spacing for headlines; never use this typeface for body text",
+      "Use Inter weight 400 for all body, UI, and label text — never introduce weight 500, 600, or 700",
+      "Keep all spacing on the 4px grid; use 8px as the default element gap",
+      "Let project artwork and identity work provide all color on the page — the interface itself stays achromatic",
+      "Center the hero text block in the viewport and float the nav as a centered pill, not a full-width bar"
+    ],
+    "donts": [
+      "Never add drop shadows, inner shadows, or box-shadows to any element — depth comes from surface color contrast only",
+      "Never introduce accent colors, brand colors, or saturated hues into the UI chrome — the palette is locked to four neutrals",
+      "Never use font weights other than 400 — hierarchy is built through size and color (Bone vs Ash), not weight",
+      "Never use sharp corners on containers — all surfaces are rounded (16px or 24px)",
+      "Never stack project cards in a multi-row grid — the gallery is a single horizontal scroll row only",
+      "Never add gradients, textures, patterns, or decorative backgrounds to the interface",
+      "Never use letter-spacing wider than -0.009em on body text — the slight tightening is part of the voice"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#181818",
+        "name": "Obsidian",
+        "role": "Page canvas, primary background — the dominant surface that recedes so work thumbnails advance",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Graphite",
+        "role": "Elevated surface, card thumbnail backgrounds, and content containers that need to sit one level above the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Bone",
+        "role": "Primary text, hero headlines, card titles — near-white that reads as soft rather than clinical against the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Ash",
+        "role": "Muted secondary text, subtitles, card descriptions — one step quieter than primary text for hierarchy without color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-page horizontal-scroll layout with no vertical page sections. The nav pill floats centered at the top of the viewport. Below it, the hero text (headline + subtitle) is centered in a constrained text-width column (~560px) within the full viewport. The remainder of the page is a single full-bleed horizontal scroll row of project cards with 8px gaps. There is no footer, no sidebar, no secondary sections, no grid system, and no page-level navigation beyond the hamburger. The entire spatial structure is: floating pill → centered text → horizontal scroll gallery. Content density is generous — cards are large, the scroll track is the primary real estate, and the chrome occupies minimal vertical space.",
+    "imagery": "The site has no decorative imagery of its own — no photography, no abstract graphics, no textures, no patterns. The only visual content is the project work inside the card thumbnails: vibrant brand illustrations (SPSQ x Collectivo's green/pink/purple figures, Discord Nitro's astronaut), product UI screenshots (Nitro Value's green-gradient app), and black-and-white identity work (ScamSpotter). These are the ONLY color on the entire site. Icons are minimal: a single hamburger menu icon and ↗ arrow characters on card titles. The chrome itself is purely typographic and structural — the design system deliberately delegates all visual expression to the portfolio content.",
+    "similar": [
+      {
+        "why": "Same single-weight Inter on a near-black canvas with no accent color, where project work is the only chromatic element",
+        "business": "rauno.me"
+      },
+      {
+        "why": "Same dark, near-monochrome portfolio with a custom display typeface and flat, shadowless card surfaces",
+        "business": "tony.xyz"
+      },
+      {
+        "why": "Same restraint of four neutrals on a dark canvas, with content (screenshots) providing all visual color and no decorative chrome",
+        "business": "linear.app"
+      },
+      {
+        "why": "Same gallery-wall approach where a near-black background makes portfolio work thumbnails the visual focus",
+        "business": "cobe.io"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "navPill": "16px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "24px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#181818",
+        "name": "Obsidian",
+        "level": 0,
+        "purpose": "Full-bleed page canvas; everything floats on this"
+      },
+      {
+        "hex": "#262626",
+        "name": "Graphite",
+        "level": 1,
+        "purpose": "Elevated card thumbnails and content containers needing subtle separation from the canvas"
+      }
+    ],
+    "northStar": "midnight gallery wall — a darkened room where spotlit work is the only color, and the frame around it is intentionally invisible.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Pill",
+        "role": "Floating top navigation",
+        "description": "Centered floating bar with 16px border-radius, contains brand name in Inter 400 and a hamburger icon. Sits at the top of the viewport with generous margin, appearing as a detached object rather than a full-width header bar."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Page-level statement",
+        "description": "Centered, single block of text at 32px in twkLausanne weight 400 with -1.28px letter-spacing and 1.10 line-height. Color #fafafa. This is the only display-size text on the site and the only use of the custom typeface."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Contextual description below headline",
+        "description": "Centered paragraph in Inter 400 at 17px, color #a3a3a3, line-height 1.29. Constrained to a text-width column (approximately 500-600px) centered in the viewport. Separated from the headline by 24px vertical gap."
+      },
+      {
+        "name": "Project Card Thumbnail (Dark)",
+        "role": "Work preview for projects with dark or photographic content",
+        "description": "Large rounded container at 24px border-radius, filled with #181818 (same as canvas — the card shape is defined by its content, not a visible background). Contains project artwork, illustration, or product screenshot that fills the container edge-to-edge with the 24px radius masking the corners."
+      },
+      {
+        "name": "Project Card Thumbnail (Elevated)",
+        "role": "Work preview for app/UI projects needing visible surface separation",
+        "description": "Same 24px border-radius and dimensions as the dark variant, but filled with #262626 to create subtle contrast against the #181818 canvas. Used for project thumbnails that contain screenshots of digital products where the surface needs to be perceptible."
+      },
+      {
+        "name": "Card Title with Arrow Link",
+        "role": "Project name and navigation indicator",
+        "description": "Inter 400 at 16px in #fafafa, followed by a small ↗ arrow icon. The arrow is a typographic character or icon at the same baseline as the text. No underline, no color change — the arrow is the sole affordance signal."
+      },
+      {
+        "name": "Card Description",
+        "role": "One-line project summary",
+        "description": "Inter 400 at 16px in #a3a3a3, positioned directly below the card title with minimal vertical gap. Kept to one or two lines, using muted color to recede beneath the title."
+      },
+      {
+        "name": "Horizontal Scroll Gallery",
+        "role": "Full-bleed project showcase",
+        "description": "Single row of project cards scrolling horizontally. Full viewport width with no padding constraints. Cards are separated by 8px gaps. The scroll track is the only content section — there is no vertical stacking of project grids or multi-row arrangements."
+      },
+      {
+        "name": "Card Stack",
+        "role": "Thumbnail + meta group",
+        "description": "A single project card unit combining the thumbnail (24px radius) and the title + description block below it. The meta block has no visible container or background — it exists as a typographic stack on the dark canvas. Vertical rhythm: 8px between thumbnail and title, 4px between title and description."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All body text, subtitles, card titles, UI labels, navigation — single weight (400) across every context, relying on size and color contrast rather than weight shifts for hierarchy",
+        "sizes": "16px, 17px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.18 / 1.29 / 1.50",
+        "substitute": "DM Sans or General Sans",
+        "letterSpacing": "-0.009em"
+      },
+      {
+        "role": "Sole display face for the hero headline — a custom typeface with tight tracking and unusually compressed line-height that gives the 32px headline editorial gravitas without bold weight. The -0.04em letter-spacing is aggressive for body size but measured for display, pulling characters close enough to read as a unified mark rather than individual letters",
+        "sizes": "32px",
+        "family": "twkLausanne",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Söhne Breit or Editorial New (both share the tight, wide proportions)",
+        "letterSpacing": "-0.04em"
+      }
+    ],
+    "description": "Kirschberg operates as a darkened exhibition space: a near-black canvas (#181818) with a single elevated surface (#262626) hosts colorful project work as the only chromatic event on screen. The interface is deliberately austere — Inter at weight 400 handles all text at 16-17px, while a custom display face (twkLausanne) appears at exactly 32px with aggressive -0.04em tracking for the sole headline. The signature structural shape is the 24px rounded card; there are no shadows, no gradients, and no interface accent color. The portfolio reads as a single horizontal-scroll row where the frame is engineered to disappear so the work is remembered.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"David Kirschberg design system\",\"item\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#style-reference\",\"name\":\"David Kirschberg design system reference\",\"headline\":\"David Kirschberg design system | Refero Styles\",\"description\":\"Explore David Kirschberg's dark Agency design system: Obsidian #181818, Graphite #262626 colors, Inter, twkLausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"David Kirschberg\",\"url\":\"https://kirschberg.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"caption\":\"Screenshot of David Kirschberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"David Kirschberg design system\",\"David Kirschberg website design\",\"David Kirschberg colors\",\"David Kirschberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Graphite\",\"Bone\",\"Ash\",\"Inter\",\"twkLausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"David Kirschberg design system\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg website design\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg colors\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:00:06.909Z\",\"dateModified\":\"2026-04-30T02:00:06.909Z\"}]}19:T662,**Quick Color Reference**\n- text: #fafafa (primary), #a3a3a3 (muted)\n- background: #181818 (page), #262626 (elevated)\n- border: #fafafa (neutral action border) or #a3a3a3 (subtle)\n- accent: none observed\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build the hero section*: Dark canvas at #181818. Centered headline in twkLausanne weight 400 at 32px, color #fafafa, letter-spacing -1.28px, line-height 1.10. Below it, a subtitle in Inter weight 400 at 17px, color #a3a3a3, line-height 1.29, constrained to ~560px width and centered. 24px vertical gap between headline and subtitle.\n\n2. *Build the navigation pill*: A centered floating bar with 16px border-radius, dark background (#262626 or #181818 with subtle border), padding ~8px 16px. Contains the word \"Kirschberg\" in Inter weight 400 at 16px #fafafa, and a hamburger icon (three horizontal lines) on the right side. Positioned at top center with ~24px margin from viewport edge.\n\n3. *Build a project card*: 24px border-radius thumbnail filled with #262626 (elevated variant) or #181818 (flat variant), dimensions roughly 400x500px. Below the thumbnail, the project title in Inter 400 at 16px #fafafa followed by a ↗ arrow character. Below that, description text in Inter 400 at 16px #a3a3a3. 8px gap between thumbnail and title, 4px between title and description.\n\n4. *Build the horizontal gallery section*: Full-bleed row of project cards, no left/right page padding. Cards arranged in a single horizontal flex row with 8px column gap. The section scrolls horizontally on overflow. No section header, no background change from the page canvas."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is communicated exclusively through a two-level surface system (#181818 canvas → #262626 elevated cards). The absence of shadows is a deliberate editorial choice — shadows would introduce warmth and materiality that competes with the work thumbnails, while flat surfaces keep the frame weightless and gallery-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "hero",
+            "icon"
+          ],
+          "frequency": 4846,
+          "confidence": 1,
+          "prominence": 15979708.306334764,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 224,
+            "hero/color": 1,
+            "icon/color": 60,
+            "other/color": 499,
+            "button/color": 161,
+            "other/stroke": 120,
+            "heading/color": 1,
+            "body/borderColor": 896,
+            "hero/borderColor": 4,
+            "icon/borderColor": 240,
+            "other/borderColor": 1992,
+            "button/borderColor": 644,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2068732.6800037709,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 800,
+          "confidence": 1,
+          "prominence": 132415.59896010678,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 160,
+            "other/borderColor": 640
+          }
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.01,
+          "background": "#181818",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.5,
+          "background": "#262626",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.04,
+          "background": "#181818",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6,
+          "background": "#262626",
+          "foreground": "#a3a3a3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 480,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1106,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "twkLausanne",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "hero",
+            "icon"
+          ],
+          "frequency": 784,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 162,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 160,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "twkLausanne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7bcbaa71-1dcd-4dcc-bfd5-fc44f0f8a2ec.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"David Kirschberg design system\",\"item\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#style-reference\",\"name\":\"David Kirschberg design system reference\",\"headline\":\"David Kirschberg design system | Refero Styles\",\"description\":\"Explore David Kirschberg's dark Agency design system: Obsidian #181818, Graphite #262626 colors, Inter, twkLausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"David Kirschberg\",\"url\":\"https://kirschberg.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/004f4856-4b01-4c23-a9fb-866303d5013b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"caption\":\"Screenshot of David Kirschberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fc05d5b3-3618-435a-9d1e-ae61569891c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"David Kirschberg design system\",\"David Kirschberg website design\",\"David Kirschberg colors\",\"David Kirschberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Graphite\",\"Bone\",\"Ash\",\"Inter\",\"twkLausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"David Kirschberg design system\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg website design\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg colors\"},{\"@type\":\"Thing\",\"name\":\"David Kirschberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:00:06.909Z\",\"dateModified\":\"2026-04-30T02:00:06.909Z\"}]}19:T662,**Quick Color Reference**\n- text: #fafafa (primary), #a3a3a3 (muted)\n- background: #181818 (page), #262626 (elevated)\n- border: #fafafa (neutral action border) or #a3a3a3 (subtle)\n- accent: none observed\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build the hero section*: Dark canvas at #181818. Centered headline in twkLausanne weight 400 at 32px, color #fafafa, letter-spacing -1.28px, line-height 1.10. Below it, a subtitle in Inter weight 400 at 17px, color #a3a3a3, line-height 1.29, constrained to ~560px width and centered. 24px vertical gap between headline and subtitle.\n\n2. *Build the navigation pill*: A centered floating bar with 16px border-radius, dark background (#262626 or #181818 with subtle border), padding ~8px 16px. Contains the word \"Kirschberg\" in Inter weight 400 at 16px #fafafa, and a hamburger icon (three horizontal lines) on the right side. Positioned at top center with ~24px margin from viewport edge.\n\n3. *Build a project card*: 24px border-radius thumbnail filled with #262626 (elevated variant) or #181818 (flat variant), dimensions roughly 400x500px. Below the thumbnail, the project title in Inter 400 at 16px #fafafa followed by a ↗ arrow character. Below that, description text in Inter 400 at 16px #a3a3a3. 8px gap between thumbnail and title, 4px between title and description.\n\n4. *Build the horizontal gallery section*: Full-bleed row of project cards, no left/right page padding. Cards arranged in a single horizontal flex row with 8px column gap. The section scrolls horizontally on overflow. No section header, no background change from the page canvas."
+}

@@ -1,0 +1,334 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas for dark sections, hero backgrounds — the true black that swallows surrounding UI"
+    },
+    "bone": {
+      "$value": "#efece6",
+      "$type": "color",
+      "$description": "Bone — Primary text on dark sections, pill-badge fills, light-section canvas — warm off-white that softens the pure black without going clinical"
+    },
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Charcoal — Elevated surface above obsidian (card backgrounds, product mockup shells), heading borders on light sections"
+    },
+    "carbon": {
+      "$value": "#131413",
+      "$type": "color",
+      "$description": "Carbon — Intermediate dark surface — product UI panels, modals nested inside the black canvas"
+    },
+    "smoke": {
+      "$value": "#8e8c87",
+      "$type": "color",
+      "$description": "Smoke — Muted body text, secondary metadata, helper labels on both dark and light backgrounds"
+    },
+    "ash": {
+      "$value": "#bfbcb7",
+      "$type": "color",
+      "$description": "Ash — Muted borders, divider lines on cream sections, low-emphasis form fields"
+    },
+    "graphite": {
+      "$value": "#302f2f",
+      "$type": "color",
+      "$description": "Graphite — Button borders, link borders on dark sections — the visible edge of a ghost control against obsidian"
+    },
+    "ink": {
+      "$value": "#0d0d0c",
+      "$type": "color",
+      "$description": "Ink — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "ember": {
+      "$value": "#ed5145",
+      "$type": "color",
+      "$description": "Ember — Red action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "ember-glow": {
+      "$value": "#ff7a70",
+      "$type": "color",
+      "$description": "Ember Glow — Outer-glow halo on the ember button — lifts the red off pure black so it feels lit from within rather than pasted on"
+    },
+    "ember-deep": {
+      "$value": "#82403a",
+      "$type": "color",
+      "$description": "Ember Deep — Inner shadow / pressed state for the ember button — darkens the red when active"
+    }
+  },
+  "font": {
+    "muoto": {
+      "$value": "Muoto",
+      "$type": "fontFamily",
+      "$description": "Primary display and body. Weight 300 at 72–115px is the editorial signature — light enough to feel like print type rather than screen type. Weight 400 for body, 500 for emphasis. Sizes step aggressively from 32px body-large directly to 72px display, skipping 48–64px to keep the contrast between running text and headlines extreme."
+    },
+    "gt-america-mono": {
+      "$value": "GT America Mono",
+      "$type": "fontFamily",
+      "$description": "Uppercase section labels, pill badges, eyebrow tags above headlines. Always at 12px, always uppercase, always with 8% tracking — these act like magazine kickers sitting above the Muoto display type, labeling each section's topic."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT America Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT America Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "90px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Muoto",
+        "fontSize": "115px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 115px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(26, 26, 26, 0.4) 0px 8px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "lg-2": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 6px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg-2"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas for hero, dark editorial sections, footer"
+    },
+    "carbon-panel": {
+      "$value": "#131413",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI mockups, embedded device screens, nested dark surfaces"
+    },
+    "charcoal-card": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards and modals floating above the obsidian canvas"
+    },
+    "bone-section": {
+      "$value": "#efece6",
+      "$type": "color",
+      "$description": "Surface level 3: Light editorial section — magazine-page alternate that breaks the dark rhythm"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://capital.xyz",
+      "siteName": "Modern companies are built on Capital",
+      "extractedAt": "2026-06-03T18:36:48.159Z",
+      "variant": "extended"
+    }
+  }
+}

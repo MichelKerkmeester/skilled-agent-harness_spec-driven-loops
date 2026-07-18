@@ -1,0 +1,395 @@
+{
+  "color": {
+    "lime-pulse": {
+      "$value": "#7bd428",
+      "$type": "color",
+      "$description": "Lime Pulse — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "signal-blue": {
+      "$value": "#2484f2",
+      "$type": "color",
+      "$description": "Signal Blue — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-signal": {
+      "$value": "#2374c4",
+      "$type": "color",
+      "$description": "Deep Signal — Hover/pressed state for Signal Blue links and outlined actions, visited-link fallback — one step darker so the interactive state has a clear visual step"
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Headline text, dark section headers, strong emphasis"
+    },
+    "graphite": {
+      "$value": "#444444",
+      "$type": "color",
+      "$description": "Graphite — Body text, default copy, long-form paragraphs, footer text — the working text color for the entire interface"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Heavy borders, heading underlines, icon fills, structural dividers"
+    },
+    "mist": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, input outlines, ghost button borders, neutral chip backgrounds"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, floating information cards, content panels, price badge surface"
+    }
+  },
+  "font": {
+    "roboto": {
+      "$value": "roboto",
+      "$type": "fontFamily",
+      "$description": "Secondary body, footer copy, link runs, button labels, small print — the workhorse text family that fills in around Proxima without competing with it"
+    },
+    "proximacapsbold": {
+      "$value": "proximacapsbold",
+      "$type": "fontFamily",
+      "$description": "Display lockup for the domain name itself (e.g. RELATE.APP). The all-caps heavy treatment at 46px is the single loudest element on the page — it IS the product. Substitute: Montserrat 800 uppercase, or League Gothic."
+    },
+    "proxima": {
+      "$value": "proxima",
+      "$type": "fontFamily",
+      "$description": "Primary UI and content family — section headings (31–33px), subheadings (22px), and larger body copy (20–21px). The 300/400 spread lets a subhead whisper while a label shouts without changing family. Substitute: Montserrat or Gotham."
+    },
+    "georgia": {
+      "$value": "Georgia",
+      "$type": "fontFamily",
+      "$description": "Italic-feel body passages and editorial pull quotes — Georgia's serif forms give a small block of text a magazine tone amid the otherwise sans-serif chrome"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Fallback body for system-rendered blocks, older browser fallback, and any third-party widget copy that ships in Arial"
+    },
+    "sourcesanspro": {
+      "$value": "sourcesanspro",
+      "$type": "fontFamily",
+      "$description": "sourcesanspro — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Georgia",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "17px",
+        "fontWeight": 800,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "roboto",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "sourcesanspro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 31px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "proxima",
+        "fontSize": "33px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "proximacapsbold",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "photo-mosaic-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — white under the portrait grid; the portrait grid itself acts as the visual floor"
+    },
+    "floating-info-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White semi-translucent panel that holds the brand lockup, price, description, and trust badges over the mosaic"
+    },
+    "price-badge": {
+      "$value": "#2484f2",
+      "$type": "color",
+      "$description": "Surface level 2: Filled Signal Blue chip carrying the dollar amount — the most saturated surface in the UI"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://relate.app",
+      "siteName": "Relate dot App",
+      "extractedAt": "2026-06-03T22:09:31.766Z",
+      "variant": "extended"
+    }
+  }
+}

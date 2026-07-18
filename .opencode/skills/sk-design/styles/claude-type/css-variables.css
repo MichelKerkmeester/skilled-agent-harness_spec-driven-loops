@@ -1,0 +1,71 @@
+:root {
+  /* Colors */
+  --color-parchment-cream: #fcfbf7;
+  --color-pure-linen: #ffffff;
+  --color-warm-linen: #e7e4e0;
+  --color-ink-black: #0d0d0f;
+  --color-espresso: #2b1b1b;
+  --color-carbon: #000000;
+  --color-bitter-brown: #100401;
+  --color-acid-lime: #99ff66;
+
+  /* Typography — Font Families */
+  --font-magicuipro: 'MagicUIPro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.4;
+  --tracking-caption: -0.022px;
+  --text-body-lg: 15px;
+  --leading-body-lg: 1.67;
+  --tracking-body-lg: 0.15px;
+  --text-subheading: 18px;
+  --leading-subheading: 2;
+  --tracking-subheading: 0.36px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-32: 32px;
+  --spacing-80: 80px;
+  --spacing-128: 128px;
+  --spacing-180: 180px;
+  --spacing-208: 208px;
+
+  /* Layout */
+  --page-max-width: 1400px;
+  --section-gap: 64-96px;
+  --card-padding: 16px;
+  --element-gap: 8-16px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 32px;
+  --radius-3xl-2: 40px;
+  --radius-full: 50px;
+  --radius-full-2: 100px;
+  --radius-full-3: 900px;
+
+  /* Named Radii */
+  --radius-nav: 100px;
+  --radius-badges: 100px;
+  --radius-buttons: 100px;
+  --radius-herocard: 40px;
+  --radius-archedcards: 900px;
+  --radius-standardcards: 16-32px;
+
+  /* Surfaces */
+  --surface-cream-canvas: #fcfbf7;
+  --surface-linen-card: #ffffff;
+  --surface-stone-overlay: #e7e4e0;
+  --surface-bitter-card: #100401;
+}

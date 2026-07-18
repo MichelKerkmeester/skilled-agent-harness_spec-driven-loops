@@ -1,0 +1,60 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-charcoal: #1d1d1d;
+  --color-paper-white: #ffffff;
+  --color-ash: #d6d5d0;
+
+  /* Typography — Font Families */
+  --font-feature-deck: 'Feature Deck', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-shne: 'Söhne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-subheading: 22px;
+  --leading-subheading: 1.3;
+  --text-heading: 72px;
+  --leading-heading: 1.1;
+  --tracking-heading: -0.65px;
+  --text-heading-lg: 82px;
+  --leading-heading-lg: 1.05;
+  --tracking-heading-lg: -0.74px;
+  --text-display: 116px;
+  --leading-display: 1.05;
+  --tracking-display: -2.09px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-128: 128px;
+  --spacing-144: 144px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 128-144px;
+  --card-padding: 24px;
+  --element-gap: 24-32px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 8px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-obsidian-canvas: #000000;
+  --surface-charcoal-surface: #1d1d1d;
+  --surface-hairline-layer: #d6d5d0;
+}

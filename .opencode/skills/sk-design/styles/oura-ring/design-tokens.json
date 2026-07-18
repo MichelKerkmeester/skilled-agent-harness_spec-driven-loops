@@ -1,0 +1,452 @@
+{
+  "color": {
+    "cream": {
+      "$value": "#f7f1e8",
+      "$type": "color",
+      "$description": "Cream — Page canvas, hero backgrounds, card surfaces — the warm paper-white that makes every photograph feel tactile"
+    },
+    "soft-charcoal": {
+      "$value": "#4a4741",
+      "$type": "color",
+      "$description": "Soft Charcoal — Body copy, secondary headings, button borders, input borders — warm near-black that sits softer than pure #000"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "bone-white": {
+      "$value": "#fefaef",
+      "$type": "color",
+      "$description": "Bone White — Secondary card surface, button border tint, subtle elevated panels"
+    },
+    "stone-border": {
+      "$value": "#ececec",
+      "$type": "color",
+      "$description": "Stone Border — Hairline dividers, image borders, card outlines, input borders — the structural 1px that holds the system together"
+    },
+    "ash-mist": {
+      "$value": "#a8a5a0",
+      "$type": "color",
+      "$description": "Ash Mist — Muted helper text, secondary metadata, inactive nav, sub-labels"
+    },
+    "slate-stone": {
+      "$value": "#838280",
+      "$type": "color",
+      "$description": "Slate Stone — Tertiary text, icon secondary states, disabled button text"
+    },
+    "dusk": {
+      "$value": "#d3d1ce",
+      "$type": "color",
+      "$description": "Dusk — Subtle background fills for alternating sections, muted surface layer"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Text on dark fills, inverted button text, clean card highlights"
+    },
+    "onyx-pill": {
+      "$value": "#222428",
+      "$type": "color",
+      "$description": "Onyx Pill — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "sage-whisper": {
+      "$value": "#5b6550",
+      "$type": "color",
+      "$description": "Sage Whisper — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "akkuratll": {
+      "$value": "AkkuratLL",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — body text, navigation, buttons, labels, UI chrome. Weight 400 for body, 500 for labels, 700 for emphasis. Light weights (200/300) appear in large display sizes for an airy editorial feel. Custom alternative: Inter, Neue Haas Grotesk, or Söhne."
+    },
+    "editorial-new": {
+      "$value": "Editorial New",
+      "$type": "fontFamily",
+      "$description": "Display serif reserved for hero headlines and emotional section titles. Light weight (100/300) with negative tracking creates high-contrast elegance. Italic cuts deliver the poetic 'Made for you.' moments. Custom alternative: GT Super, Canela, or Domaine Display."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "30px",
+        "fontWeight": 100,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "48px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 80px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "AkkuratLL",
+        "fontSize": "96px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 96px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "96px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f7f1e8",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm paper-white that makes photography feel organic"
+    },
+    "bone-white": {
+      "$value": "#fefaef",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary card or panel surface, subtle differentiation from canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted card surfaces, input fields, dark-on-light contrast zones"
+    },
+    "dusk-layer": {
+      "$value": "#d3d1ce",
+      "$type": "color",
+      "$description": "Surface level 3: Alternating section bands, muted background fills for visual separation"
+    },
+    "onyx": {
+      "$value": "#222428",
+      "$type": "color",
+      "$description": "Surface level 4: Dark surfaces — footer, hero overlay cards, filled buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ouraring.com",
+      "siteName": "Oura Ring",
+      "extractedAt": "2026-06-03T17:08:52.901Z",
+      "variant": "extended"
+    }
+  }
+}

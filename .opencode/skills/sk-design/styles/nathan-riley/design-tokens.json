@@ -1,0 +1,165 @@
+{
+  "color": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Text, image grid gutter borders, hairline dividers, nav chip outlines — the structural ink that defines the grid structure and typography"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, nav chip backgrounds, card surface — the gallery wall behind everything"
+    },
+    "warm-charcoal": {
+      "$value": "#393939",
+      "$type": "color",
+      "$description": "Warm Charcoal — Central name card surface, secondary text, soft borders — the mid-tone that makes the pale-rose card read as a distinct layer without breaking the monochrome"
+    },
+    "blush-card": {
+      "$value": "#e8c4c0",
+      "$type": "color",
+      "$description": "Blush Card — Background of the central name card — the only chromatic accent, a dusty rose that warms the otherwise pure black-and-white system"
+    }
+  },
+  "font": {
+    "font1": {
+      "$value": "font1",
+      "$type": "fontFamily",
+      "$description": "font1 — detected in extracted data but not described by AI"
+    },
+    "custom-display-serif": {
+      "$value": "Custom Display Serif",
+      "$type": "fontFamily",
+      "$description": "Hero name display and small print. The 238px size with line-height 0.80 and -0.04em tracking creates a tightly cropped masthead that feels printed, not rendered. Weight 300 at display size is the signature — it whispers rather than shouts, giving the name editorial weight through restraint rather than boldness. The italic treatment in the screenshot adds a calligraphic warmth that contrasts the rigid grid around it."
+    },
+    "custom-body-serif": {
+      "$value": "Custom Body Serif",
+      "$type": "fontFamily",
+      "$description": "Body copy, bio description, nav chip text, and link labels. Tight line-height 1.10 at small sizes creates a dense, catalog-like feel. The -0.025em tracking tightens the letterforms for compact, refined small text that reads as label or caption rather than prose."
+    },
+    "font2": {
+      "$value": "font2",
+      "$type": "fontFamily",
+      "$description": "font2 — detected in extracted data but not described by AI"
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "font1",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "font2",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "font2",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "font2",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "font1",
+        "fontSize": "238px",
+        "fontWeight": 300,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 238px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Full-viewport page background behind the image mosaic"
+    },
+    "image-tile": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Image cells fill the grid; black serves as the gutter/border color between cells"
+    },
+    "blush-name-card": {
+      "$value": "#e8c4c0",
+      "$type": "color",
+      "$description": "Surface level 3: Central floating card with the artist's name — the single non-grayscale surface"
+    },
+    "nav-pill": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Small pill-shaped chips in the bottom nav row"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.nrly.co",
+      "siteName": "Nathan Riley",
+      "extractedAt": "2026-06-03T20:06:52.371Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary canvas for dark sections, product photography backgrounds, all body text on light surfaces, divider lines, and the dominant border color throughout the system"
+    },
+    "ivory-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Ivory White — Primary canvas for light sections, text on dark backgrounds, ghost-button fills and borders, the base surface against which all product photography is staged"
+    },
+    "charcoal-edge": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Charcoal Edge — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Secondary border tone for subtle UI structure, divider lines between content blocks, and depth separation on otherwise flat surfaces"
+    },
+    "stone-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Stone Gray — Muted helper text, secondary metadata, and the only step down in the type hierarchy where pure black would feel too heavy — the softest voice in the system"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Fallback system font for micro-text and edge-case rendering — appears so rarely it functions as a safety net rather than a design choice"
+    },
+    "raad-display-custom-geometric-sans-serif": {
+      "$value": "Raad Display (custom geometric sans-serif)",
+      "$type": "fontFamily",
+      "$description": "The sole brand typeface used for everything from uppercase product category labels to the massive hero display 'LIQUID LOVE'. The custom face is a clean geometric sans with tall x-height and wide letterforms that hold up at extreme scale. It is used at weight 400 only — no bold, no light variations. The 0.1em positive letter-spacing is applied uniformly across all sizes, creating a slightly aired-out feel even at body text. This single-font, single-weight discipline is the most opinionated choice in the system: Raad removes the typographic hierarchy tools (weight contrast, family contrast) that most sites rely on, forcing scale and letter-spacing to do all the structural work instead."
+    },
+    "wfont8b8bfecd7287b5071a4785a78bba57128a74e2": {
+      "$value": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+      "$type": "fontFamily",
+      "$description": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "ivory-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background for light sections — product category cards, body content areas"
+    },
+    "ink-backdrop": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark sections — hero banner, editorial story blocks, section dividers that create visual pauses"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.raad.cc",
+      "siteName": "Raad Cycling",
+      "extractedAt": "2026-06-03T21:15:08.063Z",
+      "variant": "extended"
+    }
+  }
+}

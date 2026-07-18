@@ -1,0 +1,187 @@
+{
+  "color": {
+    "press-ink": {
+      "$value": "#252422",
+      "$type": "color",
+      "$description": "Press Ink — Primary text, heading strokes, borders, dark surface for the navigation bar and any filled dark blocks — warm near-black with a brown undertone that sits softer than pure black on the cream canvas"
+    },
+    "bone-paper": {
+      "$value": "#e2e0d9",
+      "$type": "color",
+      "$description": "Bone Paper — Page canvas, card and container backgrounds, inverted text on dark surfaces — warm off-white with a slight olive/khaki cast that makes the dark ink feel printed rather than digital"
+    },
+    "pure-carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Carbon — Hairline borders and rare exact-black accents where maximum edge contrast is needed against the cream canvas"
+    }
+  },
+  "font": {
+    "eg-metaphor": {
+      "$value": "EG Metaphor",
+      "$type": "fontFamily",
+      "$description": "Signature display and wordmark face used across the full type scale from 12px captions to 399px page-filling headlines. The single weight (400) is intentional — the face carries all personality through its custom letterforms, not through weight contrast. Wide stylistic alternates (ss04–ss07) are active and likely swap letterforms for headline compositions."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Body copy only — system Times at a single 16px/1.2 size for all paragraph text. Chosen as a deliberate contrast to the custom display face: familiar, neutral, unbranded serif that lets the display type own the page."
+    },
+    "s85": {
+      "$value": "S85",
+      "$type": "fontFamily",
+      "$description": "Navigation micro-labels set at 12px with 0.1em tracking and a 3.0 line-height that creates generous vertical air around each nav item. Sits inside the dark pill nav bar as uppercase or small-caps category labels (EGSTAD, WORK, EMAIL)."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "S85",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "System85",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "System85",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "EG Metaphor",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "System85",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "EG Metaphor",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "EG Metaphor",
+        "fontSize": "59px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 59px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "EG Metaphor",
+        "fontSize": "399px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 399px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#e2e0d9",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm cream that all other elements sit on"
+    },
+    "ink-surface": {
+      "$value": "#252422",
+      "$type": "color",
+      "$description": "Surface level 1: Dark filled blocks (navigation bar pill, footer if present) — warm near-black with brown undertone"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://egstad.com",
+      "siteName": "Egstad",
+      "extractedAt": "2026-06-03T18:11:32.341Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Page background, footer base — the void everything else is measured against"
+    },
+    "carbon-lift": {
+      "$value": "#1d1a18",
+      "$type": "color",
+      "$description": "Carbon Lift — Raised dark surfaces, nav wells, button fills — one step up from canvas for interactive depth"
+    },
+    "ash-stroke": {
+      "$value": "#3d3a39",
+      "$type": "color",
+      "$description": "Ash Stroke — Hairline borders, ghost button outlines, separator lines"
+    },
+    "graphite-mid": {
+      "$value": "#4d4947",
+      "$type": "color",
+      "$description": "Graphite Mid — Mid-tone fills for chart bodies, secondary surfaces, neutral data visualization"
+    },
+    "warm-granite": {
+      "$value": "#8a8380",
+      "$type": "color",
+      "$description": "Warm Granite — Muted body text, secondary copy, inactive labels — warm gray to soften the black"
+    },
+    "pale-stone": {
+      "$value": "#b8b3b0",
+      "$type": "color",
+      "$description": "Pale Stone — Tertiary text, section eyebrows, subdued supporting copy"
+    },
+    "bone": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Bone — Primary text, light card surfaces, the single bright figure on dark ground"
+    },
+    "chalk": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Chalk — High-emphasis light button fill, log-in button, elevated neutral surface"
+    },
+    "signal-orange": {
+      "$value": "#ee6018",
+      "$type": "color",
+      "$description": "Signal Orange — Orange decorative accent for icons, marks, and small graphic details"
+    },
+    "metric-green": {
+      "$value": "#a0ca92",
+      "$type": "color",
+      "$description": "Metric Green — Green decorative accent for icons, marks, and small graphic details"
+    }
+  },
+  "font": {
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "All interface text — body, headings, buttons, nav, hero. Used at weight 400 almost universally; weight 500 is reserved for emphasis (e.g. footer heading). The flat 400-only treatment is a signature: authority is implied by size and tracking, not by bold weight."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Captions, labels, status tags, metric units — always uppercase 12px with tight tracking. Carries the 'terminal' voice that distinguishes engineering surfaces from marketing surfaces."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 0: Page base, hero, all non-card sections"
+    },
+    "carbon-lift": {
+      "$value": "#1d1a18",
+      "$type": "color",
+      "$description": "Surface level 1: Nav well, inline buttons, subtle panel elevation"
+    },
+    "bone-card": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Light cards on dark ground — the signature figure/ground move"
+    },
+    "chalk-elevated": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 3: Light button fill, top of the light surface stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://factory.ai",
+      "siteName": "Factory",
+      "extractedAt": "2026-07-03T03:18:23.580Z",
+      "variant": "extended"
+    }
+  }
+}

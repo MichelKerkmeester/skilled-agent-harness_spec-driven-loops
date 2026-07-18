@@ -1,0 +1,1212 @@
+{
+  "source": "https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3",
+  "uuid": "f63b4703-db8b-4bc9-8d8f-17262b12d4b3",
+  "name": "Acceptandproceed",
+  "northStar": "editorial broadsheet on warm paper",
+  "capturedAt": "2026-07-18T07:32:39.903Z",
+  "meta": {
+    "url": "https://www.acceptandproceed.com",
+    "siteName": "Acceptandproceed",
+    "extractedAt": "2026-06-03T20:39:21.828Z",
+    "durationMs": 35647,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 642,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 400 of Messina Sans for every piece of type — from 8px captions to 72px headlines. Never introduce a bold or medium weight; hierarchy comes from size alone.",
+      "Use only the warm cream palette: #f9f7f3 for canvas, #ecebe7 for raised interactive surfaces, #000000 for text and hairlines. No chromatic colors of any kind.",
+      "Use 100px border-radius for all primary action buttons and input fields. Pills are the dominant button shape.",
+      "Use 8px border-radius on project images and card containers. This subtle rounding keeps the print-like crispness while avoiding sharp corners.",
+      "Separate content sections with 1px #000000 hairline borders, not colored bands or background changes. The page reads as connected paper, not segmented panels.",
+      "Let photography fill the full viewport width in hero and feature sections. The image is the page; type and chrome step back.",
+      "Use the 3.4px border-radius on all badges and tag chips. This is a signature micro-radius — not fully rounded, not sharp — that reads as editorial label."
+    ],
+    "donts": [
+      "Don't introduce bold, semibold, or any non-400 weight. The single-weight system is the entire typographic voice; a bold headline would break the editorial whisper.",
+      "Don't add any color — no blue links, no red errors, no green success states. Every state change uses #000000 ↔ #8c8c8c opacity shifts, or #f9f7f3 ↔ #ecebe7 surface steps.",
+      "Don't apply drop shadows or box-shadows to any element. Depth is communicated by surface color and hairlines only.",
+      "Don't use a border-radius outside the four-tier system: 3.4px (badges), 8px (cards/images), 20px (secondary buttons), 100px (pills/inputs). No 4px, no 12px, no 16px.",
+      "Don't use uppercase tracking or letter-spacing increases for labels. The -0.01em tightening is consistent across the type scale — never widen it.",
+      "Don't add icons, illustrations, or decorative graphics. Photography is the only imagery; everything else is type and hairline structure.",
+      "Don't use colored hover states. Hover changes on links and buttons should toggle between #000000 and #8c8c8c text/border, or swap #ecebe7 → #f9f7f3 surface inversion."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, icon strokes, badge outlines, card outlines — the only structural line color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f7f3",
+        "name": "Paper Warm",
+        "role": "Page canvas, card surfaces, body backgrounds — the warm cream base layer for all content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ecebe7",
+        "name": "Bone",
+        "role": "Raised surfaces, pill button fills, input fills, link backgrounds — one step warmer/darker than the canvas for tactile depth without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Headline color on dark hero overlays, card highlight wash, inverted surface accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Graphite",
+        "role": "Secondary borders, muted metadata text, badge secondary text and borders — the warm mid-gray step in the neutral scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a2a1a1",
+        "name": "Ash",
+        "role": "Tertiary badge borders and subtle dividers — the lightest structural gray for the quietest separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Input text and form field copy — softer than pure black for longer reading inside form contexts",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero opens the page — a single image spanning the full viewport width with a centered or left-aligned headline overlaid in white. Below the fold, a 'Featured Projects' section uses a 2-column asymmetric grid (one large card left, one standard card right) with generous gutters. Project cards are image-on-top, type-below with no card chrome. The 'Endless Vital Activity' section uses a strictly tabular row layout — 4 columns separated by 1px horizontal rules, no vertical dividers, no card backgrounds. Section transitions are marked only by generous vertical whitespace and a 14px section title, never by background color changes. The top nav is a single horizontal row floating on the cream canvas with no background bar or border. The entire page is max-width-free, content extends to the full viewport with internal padding of ~24–48px on either side.",
+    "imagery": "Photography is the dominant visual medium and the primary expression of the brand. All imagery is documentary or editorial in nature: concert crowds, retail installations, product renderings of a globe graphic, exhibition spaces. Images are full-bleed (zero-radius corners in hero, 8px radius in cards), high-resolution, and treated honestly — no duotones, no color grading overlays, no decorative masks. The photography does the brand's emotional work; the type and chrome stay out of the way. There are no illustrations, no icon sets of any visual weight, and no 3D renders. The only graphical flourish is a globe/dot-pattern image used as a project visual. Image-to-text ratio is moderate: one large image per project card, then a tight block of editorial description below.",
+    "similar": [
+      {
+        "why": "Same achromatic editorial system: single-weight sans-serif, full-bleed project photography, hairline structure, and a near-zero color palette that lets work speak",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same restraint: weight 400 across all type sizes, warm off-white canvas, pill buttons, and project-grid portfolio layout with no decorative chrome",
+        "business": "Manual Studio"
+      },
+      {
+        "why": "Same single-weight editorial typography, full-bleed imagery, and the discipline of letting one typeface do all the work at every size",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same full-bleed cinematic hero, achromatic chrome, and a project-card portfolio layout where the imagery carries brand expression",
+        "business": "Buck (buck.co)"
+      },
+      {
+        "why": "Same experimental-but-restrained agency aesthetic: large-scale photography as the visual voice, minimal type hierarchy, and zero chromatic decoration",
+        "business": "Resn"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "pills": "100px",
+        "badges": "3.4px",
+        "buttons": "20px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f9f7f3",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "The warm cream base beneath everything — never pure white, always paper-toned"
+      },
+      {
+        "hex": "#ecebe7",
+        "name": "Raised Surface",
+        "level": 1,
+        "purpose": "One step darker for pill buttons, inputs, and subtle interactive surfaces"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inverted Overlay",
+        "level": 2,
+        "purpose": "Full-bleed dark sections (hero overlays) where white type reads against imagery"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — the design intentionally avoids drop shadows",
+        "element": "All components"
+      }
+    ],
+    "northStar": "editorial broadsheet on warm paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.41,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.34
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.28,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Primary)",
+        "role": "Primary action button for CTAs like 'See More' and 'Listen'",
+        "description": "Filled pill button: #ecebe7 background, 100px border-radius, 12–20px horizontal padding, 15px vertical padding. Text in Messina Sans weight 400 at 14px, color #000000. No border. No shadow. The high radius (100px) is a signature — buttons are full pills, never rectangles."
+      },
+      {
+        "name": "Medium Radius Button",
+        "role": "Secondary action button",
+        "description": "Slightly less rounded button at 20px border-radius. Same #ecebe7 background, same weight 400 text. Used when a pill is too soft and a medium radius provides more visual weight."
+      },
+      {
+        "name": "Project Card",
+        "role": "Featured project tile in a 2-column grid",
+        "description": "Image area with 8px border-radius on all corners. No background fill on the card itself — the image sits directly on the #f9f7f3 canvas. Below the image: project title at 14px weight 400, description at 14px weight 400 in #000000, followed by a row of outlined tag badges."
+      },
+      {
+        "name": "Outlined Tag Badge",
+        "role": "Category label for projects (Technology, Design, Digital, Climate, Space)",
+        "description": "Inline-flex badge: 1px border in #000000 or #8c8c8c, 3.4px border-radius, 4–8px vertical padding, 12px horizontal padding. Text in Messina Sans weight 400 at 10–14px, #000000. A small icon can appear inline before the label. The slight (3.4px) radius is distinctive — not fully rounded, not sharp."
+      },
+      {
+        "name": "Audio List Row",
+        "role": "Tabular row in the Endless Vital Activity podcast/audio catalogue",
+        "description": "Full-width row separated by a 1px #000000 hairline border-top. Four columns: episode title (14px, #000000), description (14px, #000000), season/episode code (14px, #000000 right-aligned), and a 'Listen' pill button at the far right. No row padding beyond the 1px divider — extremely tabular and editorial."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field for user input",
+        "description": "100px border-radius (full pill) on #ecebe7 background, text in #333333 at 14px Messina Sans. No visible border. 20px horizontal padding. The pill shape signals a search-bar or chat-field semantics."
+      },
+      {
+        "name": "Full-Bleed Hero",
+        "role": "Above-the-fold section image",
+        "description": "Full viewport-width image with no border-radius. Headline overlaid in white (Messina Sans 34–50px, weight 400) centered or left-aligned over the image. No gradient overlay — the text relies on image contrast or a subtle dark scrim. Bottom-left caption label at 10–14px in white."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Global site navigation",
+        "description": "Horizontal bar on #f9f7f3 background. Brand wordmark 'Accept & Proceed' far left in Messina Sans 14px weight 400. Center group of links: Work, Journal, About, Contact, all weight 400 at 14px. Far right: a contextual action link (e.g. 'Endless Vital Activity') at 14px. No background bar, no border-bottom — the nav floats on the page."
+      },
+      {
+        "name": "Section Header",
+        "role": "Label for content sections like 'Featured Projects'",
+        "description": "Messina Sans 14–17px weight 400 in #000000, left-aligned with 16–24px margin-bottom. No divider line, no uppercase tracking — the section title is just a quietly sized word, not a banner."
+      },
+      {
+        "name": "Project Description Block",
+        "role": "Long-form description under a project title",
+        "description": "Body text in Messina Sans 14–17px, weight 400, #000000, line-height ~1.43. Multi-line, wraps naturally. No drop cap, no first-line indent — straight left-aligned editorial copy."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only workhorse typeface — used for everything from micro-labels (8px) to display headlines (72px). Weight 400 is the sole weight; hierarchy is created entirely by size and line-height, never by weight contrast. This produces a quiet, editorial voice where the type whispers at every level rather than shouting with bold.",
+        "sizes": "8px, 10px, 14px, 17px, 20px, 24px, 34px, 50px, 72px",
+        "family": "Messina Sans",
+        "weight": "400",
+        "lineHeight": "1.00 (8–10px) to 1.71 (72px display)",
+        "substitute": "Inter, Söhne, GT America, or Untitled Sans (clean neo-grotesques with similar x-height and aperture)",
+        "letterSpacing": "-0.01em consistently across all sizes — slight tightening that becomes more perceptible at larger display sizes, tightening the headline silhouette"
+      },
+      {
+        "role": "Decorative display face used very sparingly for typographic moments — an experimental or contrast voice to break the Messina Sans monotony, reserved for editorial flourishes only",
+        "sizes": "34px",
+        "family": "Letterformvariations 04 Dmgx",
+        "weight": "400",
+        "lineHeight": "1.00"
+      }
+    ],
+    "description": "Accept & Proceed treats the browser as an editorial broadsheet: a single-weight sans-serif at nine sizes, a warm cream canvas, and an almost completely achromatic palette let photography and layout do the expressive work. Hierarchy is built from scale alone — weight 400 is used for everything from 8px captions to 72px display, so contrast comes from size jumps, not boldness. Surfaces are paper-warm: #f9f7f3 is the page, #ecebe7 the button fill, and the only structural chrome is a hairline 1px black border. Components are deliberately quiet — pill buttons at 100px radius, small badges with a 3.4px corner, 8px card radius — so the project imagery and long-form editorial content carry the page. The system feels like flipping through a thoughtfully typeset design annual rather than scrolling a SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acceptandproceed design system\",\"item\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#style-reference\",\"name\":\"Acceptandproceed design system reference\",\"headline\":\"Acceptandproceed design system | Refero Styles\",\"description\":\"Explore Acceptandproceed's light Agency design system: Ink #000000, Paper Warm #f9f7f3 colors, Messina Sans, Letterformvariations 04 Dmgx typography, and...\",\"url\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acceptandproceed\",\"url\":\"https://www.acceptandproceed.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"caption\":\"Screenshot of Acceptandproceed\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acceptandproceed design system\",\"Acceptandproceed website design\",\"Acceptandproceed colors\",\"Acceptandproceed typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper Warm\",\"Bone\",\"White\",\"Messina Sans\",\"Letterformvariations 04 Dmgx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acceptandproceed design system\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed website design\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed colors\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:41:30.031Z\",\"dateModified\":\"2026-04-30T02:41:30.031Z\"}]}19:T645,## Quick Color Reference\n- text: #000000\n- background: #f9f7f3\n- surface (raised): #ecebe7\n- border: #000000 (hairline) or #8c8c8c (muted)\n- muted text: #8c8c8c\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n1. **Create a project card**: #f9f7f3 canvas. Image fills the card top at 8px border-radius. Below: project title in Messina Sans weight 400, 14px, #000000, -0.14px letter-spacing. Description in same style. Row of outlined tag badges at the bottom: 1px #000000 border, 3.4px radius, 4px 12px padding, 10px Messina Sans weight 400.\n\n2. **Create a full-bleed hero**: Full-viewport-width image with no radius. Headline 'Design with community.' overlaid centered in white, Messina Sans weight 400, 50px, -0.5px letter-spacing, line-height 1.28. Bottom-left caption in Messina Sans 10px white.\n\n3. **Create a navigation row**: On #f9f7f3 canvas. Brand 'Accept & Proceed' left in Messina Sans 14px weight 400, #000000. Center links (Work, Journal, About, Contact) in same style, spaced 24px apart. Right action link in same style. No background, no border.\n\n4. **Create a pill button**: #ecebe7 background, 100px border-radius, 12px 20px padding. Text in Messina Sans weight 400, 14px, #000000, -0.14px letter-spacing. No border, no shadow. Full pill shape — never rectangular.\n\n5. **Create an audio list row**: Full-width on #f9f7f3. 1px #000000 border-top only. Four columns: title (14px #000000), description (14px #000000), season code (14px #000000 right-aligned), 'Listen' pill button (100px radius, #ecebe7 fill, 14px #000000 text). No vertical padding beyond ~16px."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, ever. Depth is communicated through three warm-neutral surface tones and 1px black or graphite hairlines. Cards sit on the page without lifting off it. The only 'elevation' is a color value stepping up to #ecebe7 for interactive surfaces like buttons and inputs. This flatness is essential to the editorial print metaphor — the interface should feel pressed onto paper, not floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "image",
+            "heading",
+            "badge",
+            "button",
+            "body",
+            "icon",
+            "footer",
+            "input"
+          ],
+          "frequency": 2589,
+          "confidence": 1,
+          "prominence": 106122249.90838705,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 51,
+            "card/color": 26,
+            "icon/color": 1,
+            "link/color": 29,
+            "badge/color": 118,
+            "image/color": 8,
+            "other/color": 271,
+            "button/color": 13,
+            "footer/color": 1,
+            "heading/color": 22,
+            "body/borderColor": 204,
+            "card/borderColor": 104,
+            "icon/borderColor": 4,
+            "link/borderColor": 105,
+            "badge/borderColor": 372,
+            "image/borderColor": 32,
+            "input/borderColor": 4,
+            "other/borderColor": 1080,
+            "button/borderColor": 52,
+            "footer/borderColor": 4,
+            "heading/borderColor": 88
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "body",
+            "link"
+          ],
+          "frequency": 296,
+          "confidence": 1,
+          "prominence": 34298659.48796822,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 11,
+            "link/color": 2,
+            "badge/color": 22,
+            "other/color": 3,
+            "body/borderColor": 4,
+            "card/borderColor": 44,
+            "link/borderColor": 19,
+            "badge/borderColor": 152,
+            "other/borderColor": 16,
+            "badge/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#ecebe7",
+          "oklch": {
+            "c": 0.005450602916399321,
+            "h": 95.10216470225696,
+            "l": 0.939724122437598
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 3489939.5495605837,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3328399.9955914957,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f9f7f3",
+          "oklch": {
+            "c": 0.005718519657310054,
+            "h": 84.56607352189523,
+            "l": 0.9765627366306106
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "badge"
+          ],
+          "frequency": 146,
+          "confidence": 1,
+          "prominence": 656610.1178490764,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 1,
+            "badge/color": 3,
+            "other/color": 23,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "badge/borderColor": 12,
+            "other/borderColor": 92,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a2a1a1",
+          "oklch": {
+            "c": 0.0012400067142295408,
+            "h": 84.55571276132625,
+            "l": 0.7103843438198575
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 14683.873272067678,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 24
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7924,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0008222560923067175,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.63,
+          "background": "#f9f7f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.6,
+          "background": "#ecebe7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.81,
+          "background": "#f9f7f3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#ecebe7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.15,
+          "background": "#a2a1a1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#8c8c8c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#a2a1a1",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.76,
+          "background": "#8c8c8c",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.36,
+          "background": "#ffffff",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.14,
+          "background": "#f9f7f3",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#ecebe7",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#ecebe7",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#ecebe7",
+          "foreground": "#f9f7f3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f9f7f3",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 33
+        },
+        {
+          "value": 3.4,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 54,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge",
+            "marginLeft|badge",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 61,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|badge",
+            "marginLeft|badge",
+            "marginBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "badge",
+            "button"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|link",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|badge",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 37,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Messina Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 639,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Letterformvariations 04 Dmgx",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card",
+            "badge",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 437,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "card",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.41,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.59,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Letterformvariations 04 Dmgx",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.28,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.28,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Messina Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.28,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/947b6b4e-47b3-4ebd-b1fe-f3c4e67784b5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acceptandproceed design system\",\"item\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#style-reference\",\"name\":\"Acceptandproceed design system reference\",\"headline\":\"Acceptandproceed design system | Refero Styles\",\"description\":\"Explore Acceptandproceed's light Agency design system: Ink #000000, Paper Warm #f9f7f3 colors, Messina Sans, Letterformvariations 04 Dmgx typography, and...\",\"url\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acceptandproceed\",\"url\":\"https://www.acceptandproceed.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f63b4703-db8b-4bc9-8d8f-17262b12d4b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"caption\":\"Screenshot of Acceptandproceed\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1e3f1ec-7650-49b8-867f-3031a2b3a8c1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acceptandproceed design system\",\"Acceptandproceed website design\",\"Acceptandproceed colors\",\"Acceptandproceed typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper Warm\",\"Bone\",\"White\",\"Messina Sans\",\"Letterformvariations 04 Dmgx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acceptandproceed design system\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed website design\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed colors\"},{\"@type\":\"Thing\",\"name\":\"Acceptandproceed typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:41:30.031Z\",\"dateModified\":\"2026-04-30T02:41:30.031Z\"}]}19:T645,## Quick Color Reference\n- text: #000000\n- background: #f9f7f3\n- surface (raised): #ecebe7\n- border: #000000 (hairline) or #8c8c8c (muted)\n- muted text: #8c8c8c\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n1. **Create a project card**: #f9f7f3 canvas. Image fills the card top at 8px border-radius. Below: project title in Messina Sans weight 400, 14px, #000000, -0.14px letter-spacing. Description in same style. Row of outlined tag badges at the bottom: 1px #000000 border, 3.4px radius, 4px 12px padding, 10px Messina Sans weight 400.\n\n2. **Create a full-bleed hero**: Full-viewport-width image with no radius. Headline 'Design with community.' overlaid centered in white, Messina Sans weight 400, 50px, -0.5px letter-spacing, line-height 1.28. Bottom-left caption in Messina Sans 10px white.\n\n3. **Create a navigation row**: On #f9f7f3 canvas. Brand 'Accept & Proceed' left in Messina Sans 14px weight 400, #000000. Center links (Work, Journal, About, Contact) in same style, spaced 24px apart. Right action link in same style. No background, no border.\n\n4. **Create a pill button**: #ecebe7 background, 100px border-radius, 12px 20px padding. Text in Messina Sans weight 400, 14px, #000000, -0.14px letter-spacing. No border, no shadow. Full pill shape — never rectangular.\n\n5. **Create an audio list row**: Full-width on #f9f7f3. 1px #000000 border-top only. Four columns: title (14px #000000), description (14px #000000), season code (14px #000000 right-aligned), 'Listen' pill button (100px radius, #ecebe7 fill, 14px #000000 text). No vertical padding beyond ~16px."
+}

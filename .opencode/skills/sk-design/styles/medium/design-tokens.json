@@ -1,0 +1,212 @@
+{
+  "color": {
+    "newsprint-cream": {
+      "$value": "#f7f4ed",
+      "$type": "color",
+      "$description": "Newsprint Cream — Page canvas, hero background, section backgrounds — the warm off-white that makes the entire interface feel printed rather than digital"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, form inputs, and any surface that needs to lift off the cream canvas"
+    },
+    "ink": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Ink — Primary text, body copy, links, heading text — slightly warmer than pure black, sits comfortably on cream"
+    },
+    "body-gray": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Body Gray — Secondary text and default body color where slightly lighter than Ink is needed without losing contrast"
+    },
+    "button-black": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Button Black — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "marginalia-gray": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Marginalia Gray — Supporting neutral for secondary UI, dividers, and muted labels."
+    }
+  },
+  "font": {
+    "medium-content-sans-serif-font": {
+      "$value": "medium-content-sans-serif-font",
+      "$type": "fontFamily",
+      "$description": "medium-content-sans-serif-font — detected in extracted data but not described by AI"
+    },
+    "gt-super": {
+      "$value": "GT Super",
+      "$type": "fontFamily",
+      "$description": "Display headlines and hero — a transitional book serif at extreme scale with tight tracking and 0.83 line-height. The choice to use weight 400 (not bold) at 120px is the signature: the letterforms do the work, not the weight. The negative tracking pulls the optical gaps closed, making 'Human stories & ideas' read as a single typographic block."
+    },
+    "shne": {
+      "$value": "Söhne",
+      "$type": "fontFamily",
+      "$description": "UI sans-serif for navigation, buttons, subheadings, and small headings. The 13–14px range handles nav and button labels; 20–22px covers subheadings and secondary hero text. Clean grotesque with humanist proportions — readable at small sizes, unobtrusive at large."
+    },
+    "charter-georgia-stack": {
+      "$value": "Charter / Georgia stack",
+      "$type": "fontFamily",
+      "$description": "Body content serif for reading view — the long-form article font. Set at 16px with tight 1.2 line-height, optimized for the column width of Medium's reader."
+    },
+    "shne-extended": {
+      "$value": "Söhne (extended)",
+      "$type": "fontFamily",
+      "$description": "Body sans-serif for non-reading contexts — descriptions, cards, inline content. Matches the content serif's metrics so the two can coexist at the same size."
+    },
+    "sohne": {
+      "$value": "sohne",
+      "$type": "fontFamily",
+      "$description": "sohne — detected in extracted data but not described by AI"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "sohne",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "sohne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "medium-content-sans-serif-font",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sohne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "sohne",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "gt-super",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "1386px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1980px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f7f4ed",
+      "$type": "color",
+      "$description": "Surface level 1: Page-level background, hero, section bands — the warm paper base"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Cards, modals, inputs — surfaces that need to read as distinct objects on the cream canvas"
+    },
+    "ink-surface": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 3: Filled buttons and the wordmark — the only dark surface, used sparingly as visual anchor"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://medium.com",
+      "siteName": "Medium",
+      "extractedAt": "2026-06-03T15:18:59.835Z",
+      "variant": "extended"
+    }
+  }
+}

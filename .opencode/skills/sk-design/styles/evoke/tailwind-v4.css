@@ -1,0 +1,22 @@
+@theme {
+  /* Colors */
+  --color-ember-coral: #ff5a46;
+  --color-electric-cyan: #00ffff;
+  --color-solar-yellow: #ffe100;
+  --color-lavender-mist: #ebebf5;
+  --color-void-black: #000000;
+  --color-pure-white: #ffffff;
+
+  /* Typography */
+  --font-ttnormsproextrablack: 'tt_norms_proextrablack', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tt-norms-pro: 'TT Norms Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-heading: 31px;
+  --leading-heading: 37.2;
+  --tracking-heading: -0.465px;
+
+  /* Spacing */
+  --spacing-20: 20px;
+  --spacing-21: 21px;
+}

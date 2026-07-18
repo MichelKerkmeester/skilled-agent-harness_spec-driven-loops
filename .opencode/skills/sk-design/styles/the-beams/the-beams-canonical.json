@@ -1,0 +1,543 @@
+{
+  "source": "https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd",
+  "uuid": "b321ca45-2971-4828-9165-82b77f676bfd",
+  "name": "The Beams",
+  "northStar": "overlapping ink on white paper",
+  "capturedAt": "2026-07-18T08:42:49.034Z",
+  "meta": {
+    "url": "https://thebeamslondon.com",
+    "siteName": "The Beams",
+    "extractedAt": "2026-06-03T21:58:53.103Z",
+    "durationMs": 29997,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 80,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff — no gray, no accent, no tint. Every element must commit to full black or full white.",
+      "Set every text element to weight 400; derive hierarchy from size and line-height compression, never from boldness.",
+      "Set letter-spacing to -0.03em on all text regardless of size.",
+      "Compress line-height at display sizes (0.90–1.00 at 95px and above) to let lines overlap and form typographic compositions.",
+      "Use 1px solid #000000 borders for all structural elements — dividers, button outlines, input underlines, list separators.",
+      "Set border-radius to 0 on every component — buttons, inputs, images, cards. Sharp corners only.",
+      "Bleed photographs and display text edge-to-edge. Never frame an image with a border, shadow, or margin."
+    ],
+    "donts": [
+      "Never introduce a chromatic color, gradient, or shadow — the system is strictly binary.",
+      "Never use font-weight above 400; no bold, no medium, no semibold variants.",
+      "Never round corners on any element — buttons, cards, inputs, and images stay perfectly square.",
+      "Never use a color or background highlight to indicate hover or active states — change nothing, or thicken the existing border.",
+      "Never stack display headlines with generous line-height; the overlap at 0.90 is the signature, not a bug.",
+      "Never add padding or margin to display text; let the 160px type bleed to its container edges.",
+      "Never add decorative elements — no icons beyond single glyphs, no illustrations, no patterns, no dividers beyond 1px rules."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, all borders, structural rules, button text and outlines — the only chromatic signal in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, surface backgrounds, button interiors, inverse text on dark photography",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge composition with no max-width container. The hero is a centered overlapping typographic block with no supporting visual; subsequent sections alternate between full-bleed photography and white-text-only blocks. Content below photography uses a two-column layout (split roughly 1:1) with no gutter rule — separation is whitespace alone. Navigation is a single thin top bar with three text elements left/center/right. No sidebar, no grid of cards, no pricing table. The page reads as a vertical sequence of full-width sections separated by 100–120px of white space. No sticky elements, no floating UI.",
+    "imagery": "Photography is the sole non-typographic visual element. Treatment is full-bleed, edge-to-edge, uncropped, no border-radius. Imagery carries dramatic, atmospheric content — long-exposure light trails, warm amber beams cutting through dark interiors — and acts as emotional punctuation between white typographic sections. No icons, no illustrations, no decorative graphics. Image-to-text ratio is low: one or two photographs per page, each large enough to dominate its section.",
+    "similar": [
+      {
+        "why": "Same editorial minimalism — near-zero UI chrome, photography as atmosphere, and typography-as-hero at extreme display scale.",
+        "business": "Vitra"
+      },
+      {
+        "why": "Full-bleed dark photography punctuated by stark white type, no borders or shadows, single-weight display type.",
+        "business": "Apple iPhone Pro (product page)"
+      },
+      {
+        "why": "Overlapping display headlines on white, binary black/white palette, and a magazine-spread approach to web layout.",
+        "business": "Magazine Antidote (creative agency)"
+      },
+      {
+        "why": "Cultural/gallery presentation with zero decorative UI, weight 400 display type at enormous scale, and full-bleed imagery.",
+        "business": "Galerie Kreo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "19px",
+      "sectionGap": "120px",
+      "cardPadding": "19px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page canvas, the only surface in the system"
+      }
+    ],
+    "northStar": "overlapping ink on white paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 19,
+        "lineHeight": 2.9,
+        "letterSpacing": -0.57
+      },
+      {
+        "role": "subheading",
+        "size": 29,
+        "lineHeight": 1.95,
+        "letterSpacing": -0.87
+      },
+      {
+        "role": "heading-sm",
+        "size": 38,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.14
+      },
+      {
+        "role": "display",
+        "size": 160,
+        "lineHeight": 0.9,
+        "letterSpacing": -4.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero typographic statement",
+        "description": "160px NeueHaas-web weight 400, line-height 0.90, letter-spacing -0.03em, color #000000 on #ffffff. Lines overlap intentionally — multiple phrases layered at the same position create a typographic texture rather than a stacked headline. No margin or padding around the composition; it bleeds to container edges."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary call-to-action (e.g. SIGN UP)",
+        "description": "1px solid #000000 border, transparent background, #000000 text. Padding 11px top/bottom, 19px left/right (matches base unit). Typography: 19px NeueHaas-web weight 400. No radius. No fill state changes. A trailing arrow glyph (↗) sits inside the button as part of the text label."
+      },
+      {
+        "name": "Minimal Top Navigation",
+        "role": "Site header",
+        "description": "White background, no border, no background fill. Brand mark \"BEAMS\" in 19px weight 400 left-aligned. Center title in same weight, sentence-case. Right-side single-character icon (\"+\") as the only interactive element. No sticky behavior implied; sits at the very top of the page."
+      },
+      {
+        "name": "Two-Column Body Block",
+        "role": "Narrative text pair",
+        "description": "Two equal columns separated by whitespace (no divider, no gutter rule). Each column: 29px NeueHaas-web weight 400, line-height 1.95, #000000, -0.03em tracking. Left column carries the lead statement in shorter form; right column expands with supporting prose. Generous vertical breathing room (120px+) above and below."
+      },
+      {
+        "name": "Full-Bleed Photographic Section",
+        "role": "Atmospheric content moment",
+        "description": "Edge-to-edge image (no border-radius, no margin, no frame). Overlays sit as text directly on the photograph. The button variant anchored to the top-right corner uses the Outlined Action Button style but in white outline + white text against the dark photographic area. A \"Sound on/off\" toggle in the bottom-left uses 19px body type, no background, no border — just text."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Standard running text",
+        "description": "19px NeueHaas-web weight 400, line-height 2.90 (extremely generous), color #000000, letter-spacing -0.03em. No first-line indent, no paragraph spacing beyond line-height. The 2.9 ratio on 19px produces ~55px line height — an editorial luxury-magazine measure."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Navigable text",
+        "description": "Inherits body typography. No underline by default, no color change — the only signal is the 1px bottom border in #000000 applied directly to the text. Border sits tight to the baseline rather than the descender."
+      },
+      {
+        "name": "List Item",
+        "role": "Navigation or content list",
+        "description": "19px body type, 1px solid #000000 bottom border per item. Vertical padding 11px. No bullets, no markers — the border itself provides structure. Stacked items read as a typographic index."
+      },
+      {
+        "name": "Form Input",
+        "role": "Text entry field",
+        "description": "Transparent or #ffffff background, 1px solid #000000 bottom border only (no full border box), 19px body type, no placeholder color treatment beyond a lighter opacity. Padding 6px vertical. No focus ring, no box-shadow on focus — the existing border thickens or color inverts."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Closing content area",
+        "description": "White background, no border. Body text and list items in 19px weight 400. 46px top margin separates footer from preceding content. 19px column gap between footer items. Structure: text columns rather than a framed panel."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across every role: 19px body, 29px subheading, 38px secondary heading, 95px hero display, 160px editorial display. Weight stays at 400 (regular) even at maximum scale — the system derives hierarchy from size and line-height compression, never from boldness. Tracking tightens to -0.03em universally. At display scale (160px), line-height drops to 0.90 so lines physically overlap, creating layered typographic compositions rather than stacked headlines.",
+        "sizes": "19px, 29px, 38px, 95px, 160px",
+        "family": "NeueHaas-web",
+        "weight": "400",
+        "lineHeight": "0.90, 1.00, 1.10, 1.95, 2.90",
+        "substitute": "Neue Haas Grotesk Display Pro, Inter (weight 400), Helvetica Neue",
+        "letterSpacing": "-0.03em at all sizes"
+      }
+    ],
+    "description": "The Beams is an editorial monolith: pure black ink on pure white paper, where typography does all the heavy lifting. A single weight 400 sans-serif scales from 19px body copy to 160px display, with line-heights that compress dramatically at large sizes (0.90 at display) to let letterforms overlap and collide — the signature visual. No shadows, no rounded corners, no gradients, no accent color: the design system strips UI to ink, paper, and an occasional full-bleed photograph. Density is generous and unhurried, sections separated by vast whitespace rather than dividers. The only interaction is text on text, cursor on canvas — a cultural venue that presents itself as a magazine spread rather than a website.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The Beams design system\",\"item\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#style-reference\",\"name\":\"The Beams design system reference\",\"headline\":\"The Beams design system | Refero Styles\",\"description\":\"Explore The Beams's light Agency design system: Ink #000000, Paper #ffffff colors, NeueHaas-web typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The Beams\",\"url\":\"https://thebeamslondon.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"caption\":\"Screenshot of The Beams\"},\"image\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The Beams design system\",\"The Beams website design\",\"The Beams colors\",\"The Beams typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"NeueHaas-web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The Beams design system\"},{\"@type\":\"Thing\",\"name\":\"The Beams website design\"},{\"@type\":\"Thing\",\"name\":\"The Beams colors\"},{\"@type\":\"Thing\",\"name\":\"The Beams typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:32:36.100Z\",\"dateModified\":\"2026-04-30T01:32:36.100Z\"}]}19:T7a4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Editorial hero headline:* Render \"Centre For New Culture\" at 160px NeueHaas-web weight 400, color #000000, line-height 0.90, letter-spacing -0.03em on a #ffffff background. Layer two additional instances of the same phrase at the same size and position with slight vertical offset to create an overlapping typographic composition. No padding, no margin — bleed to container edges.\n\n2. *Outlined action button:* Build a button with transparent background, 1px solid #000000 border, #000000 text reading \"SIGN UP ↗\" in 19px NeueHaas-web weight 400, letter-spacing -0.03em. Padding 11px vertical, 19px horizontal. Border-radius 0. Position top-right of a full-bleed dark photographic section; invert the border and text to #ffffff against the dark image.\n\n3. *Two-column narrative block:* Two equal-width columns of 29px NeueHaas-web weight 400 body text, line-height 1.95, color #000000, letter-spacing -0.03em on #ffffff. No visible divider between columns — 60–80px of whitespace separates them. Left column: 6–8 word lead statement. Right column: 2–3 sentences of supporting prose. 120px white space above and below the block.\n\n4. *Full-bleed atmospheric photograph:* Edge-to-edge image filling the full viewport width, no border, no border-radius, no margin. A short text overlay in 19px weight 400 sits in the bottom-left (\"Sound on/off\"); an outlined action button sits in the top-right. The photograph should carry dramatic directional light (beams, rays, shafts) in warm amber/orange tones against a dark interior.\n\n5. *Minimal top navigation:* A single horizontal bar, 19px NeueHaas-web weight 400, #000000 on #ffffff, no border, no background fill. Left: \"BEAMS\". Center: page title in sentence case. Right: a single \"+\" glyph. No hover states, no dropdowns, no sticky behavior."
+      },
+      {
+        "title": "Typographic Composition Rules",
+        "content": "The system produces visual interest through three typographic moves that should be used deliberately:\n\n1. **Overlap at display scale** — when text exceeds 95px, the 0.90–1.00 line-height causes lines to physically touch and overlap. Use this for hero and section-opening headlines, never for body or subheading.\n\n2. **Layered repetition** — a phrase repeated at the same position with slight offset creates texture and emphasis without adding a second visual element. This is the system's only form of typographic emphasis.\n\n3. **Uniform tracking** — -0.03em applies at all sizes. The visual tightness is consistent from 19px body to 160px display, which is what makes the system feel cohesive despite the extreme size range."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero elevation. No shadows, no glows, no z-axis depth. Dimensionality comes entirely from typographic overlap at display scale and from full-bleed photography replacing flat surface. Every element sits flush on the paper."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 317,
+          "confidence": 1,
+          "prominence": 25654795.419567857,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "hero/color": 1,
+            "link/color": 9,
+            "list/color": 9,
+            "other/fill": 12,
+            "input/color": 1,
+            "other/color": 33,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 36,
+            "list/borderColor": 36,
+            "input/borderColor": 4,
+            "other/borderColor": 132,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 6159250.552868316,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "button/color": 3,
+            "heading/color": 1,
+            "other/borderColor": 16,
+            "button/borderColor": 12,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|input",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "footer",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "columnGap|footer",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 257,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueHaas-web",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 69,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 19,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "link",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 48,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 95,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 160,
+          "family": "NeueHaas-web",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ef16ada0-4568-4b6e-922e-7ce0e7216963.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The Beams design system\",\"item\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#style-reference\",\"name\":\"The Beams design system reference\",\"headline\":\"The Beams design system | Refero Styles\",\"description\":\"Explore The Beams's light Agency design system: Ink #000000, Paper #ffffff colors, NeueHaas-web typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The Beams\",\"url\":\"https://thebeamslondon.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b321ca45-2971-4828-9165-82b77f676bfd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"caption\":\"Screenshot of The Beams\"},\"image\":\"https://images.refero.design/styles/refero.design/image/523e3810-1906-4d80-9bb1-a67cf1516e54.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The Beams design system\",\"The Beams website design\",\"The Beams colors\",\"The Beams typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"NeueHaas-web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The Beams design system\"},{\"@type\":\"Thing\",\"name\":\"The Beams website design\"},{\"@type\":\"Thing\",\"name\":\"The Beams colors\"},{\"@type\":\"Thing\",\"name\":\"The Beams typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:32:36.100Z\",\"dateModified\":\"2026-04-30T01:32:36.100Z\"}]}19:T7a4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Editorial hero headline:* Render \"Centre For New Culture\" at 160px NeueHaas-web weight 400, color #000000, line-height 0.90, letter-spacing -0.03em on a #ffffff background. Layer two additional instances of the same phrase at the same size and position with slight vertical offset to create an overlapping typographic composition. No padding, no margin — bleed to container edges.\n\n2. *Outlined action button:* Build a button with transparent background, 1px solid #000000 border, #000000 text reading \"SIGN UP ↗\" in 19px NeueHaas-web weight 400, letter-spacing -0.03em. Padding 11px vertical, 19px horizontal. Border-radius 0. Position top-right of a full-bleed dark photographic section; invert the border and text to #ffffff against the dark image.\n\n3. *Two-column narrative block:* Two equal-width columns of 29px NeueHaas-web weight 400 body text, line-height 1.95, color #000000, letter-spacing -0.03em on #ffffff. No visible divider between columns — 60–80px of whitespace separates them. Left column: 6–8 word lead statement. Right column: 2–3 sentences of supporting prose. 120px white space above and below the block.\n\n4. *Full-bleed atmospheric photograph:* Edge-to-edge image filling the full viewport width, no border, no border-radius, no margin. A short text overlay in 19px weight 400 sits in the bottom-left (\"Sound on/off\"); an outlined action button sits in the top-right. The photograph should carry dramatic directional light (beams, rays, shafts) in warm amber/orange tones against a dark interior.\n\n5. *Minimal top navigation:* A single horizontal bar, 19px NeueHaas-web weight 400, #000000 on #ffffff, no border, no background fill. Left: \"BEAMS\". Center: page title in sentence case. Right: a single \"+\" glyph. No hover states, no dropdowns, no sticky behavior."
+}

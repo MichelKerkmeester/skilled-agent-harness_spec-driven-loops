@@ -1,0 +1,65 @@
+@theme {
+  /* Colors */
+  --color-studio-cream: #f2f0e9;
+  --color-paper-white: #ffffff;
+  --color-ink-black: #141212;
+  --color-pencil-gray: #a1a0a0;
+  --color-sage-wash: #dde5d8;
+  --color-studio-ivory: #d7d7c8;
+  --color-cobalt-command: #3051a8;
+  --color-forest-ink: #3f593d;
+  --color-marigold: #f89c35;
+  --color-buttercup: #f6dc2e;
+  --color-cobalt-pop: #0159bd;
+  --color-terracotta: #863a29;
+  --color-rose-clay: #ed93af;
+  --color-rust: #a0674f;
+  --color-wheat: #b99572;
+  --color-saffron: #d8c660;
+  --color-olive-stone: #a9ab72;
+  --color-linen-blush: #dcc5bd;
+  --color-stone: #c7b8ab;
+
+  /* Typography */
+  --font-ui-sans-serif: 'ui-sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-esbuild: 'esbuild', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ppsupply: 'ppsupply', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ppsupplymonolight: 'PPSupplyMonoLight', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-mono-detail: 12px;
+  --leading-mono-detail: 1.2;
+  --text-body-sm: 15px;
+  --leading-body-sm: 1.22;
+  --tracking-body-sm: -0.6px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.25;
+  --tracking-subheading: 0.36px;
+  --text-display: 64px;
+  --leading-display: 0.94;
+  --tracking-display: -1.92px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-90: 90px;
+  --spacing-101: 101px;
+  --spacing-180: 180px;
+  --spacing-214: 214px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-xl: 12px;
+  --radius-full: 100px;
+  --radius-full-2: 1000px;
+}

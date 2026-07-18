@@ -1,0 +1,352 @@
+{
+  "color": {
+    "electric-cobalt": {
+      "$value": "#1673ff",
+      "$type": "color",
+      "$description": "Electric Cobalt — Full-bleed hero backgrounds, section anchors — the single saturated chord of the system, reserved for the opening band and any screen that needs to shout over the cream"
+    },
+    "coffee-bean": {
+      "$value": "#3d2800",
+      "$type": "color",
+      "$description": "Coffee Bean — Dark schedule bands, body text on cream, logo lockup wordmark — a warm near-black that reads as ink, not charcoal"
+    },
+    "tangerine-burn": {
+      "$value": "#ff7b02",
+      "$type": "color",
+      "$description": "Tangerine Burn — Sunburst illustration accent, flower petal rays — the warm counterweight to cobalt, appears only inside the hero graphic"
+    },
+    "eggshell-cream": {
+      "$value": "#fbf5e7",
+      "$type": "color",
+      "$description": "Eggshell Cream — Page canvas, card surfaces, sponsor grid background, section fills — the warm default that replaces white everywhere"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary body text, logo monogram strokes, illustration line work, hairline dividers, iconography"
+    },
+    "pale-ash": {
+      "$value": "#c4c4c4",
+      "$type": "color",
+      "$description": "Pale Ash — Secondary surface tint, disabled or inactive background fills, tertiary section background when cream needs a sibling"
+    },
+    "mocha": {
+      "$value": "#604106",
+      "$type": "color",
+      "$description": "Mocha — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "rst-reactor": {
+      "$value": "RST Reactor",
+      "$type": "fontFamily",
+      "$description": "Primary display and body face across the entire system. Drives the 172px hero headline, 64px section headings, 14-17px body, and 10-12px tracked eyebrows. Its brutal tracking swing — from -0.06em on display to +0.05em on micro text — IS the brand's typographic signature. Use for everything except rare utility contexts."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Long-form body fallback. Used for extended paragraphs where RST Reactor's geometric character would compete with readability. Quiet, neutral, disappears into the page."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Micro utility text — timestamps, badges, and any element too small for RST Reactor to retain character"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "RST Reactor Medium",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "RST Reactor Regular",
+        "fontSize": "172px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 172px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "57": {
+      "$value": "57px",
+      "$type": "dimension",
+      "$description": "Spacing 57px"
+    },
+    "78": {
+      "$value": "78px",
+      "$type": "dimension",
+      "$description": "Spacing 78px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "hero-cobalt": {
+      "$value": "#1673ff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed first screen, sets the brand's electric register"
+    },
+    "eggshell-canvas": {
+      "$value": "#fbf5e7",
+      "$type": "color",
+      "$description": "Surface level 1: Default body surface across all content sections"
+    },
+    "ash-tint": {
+      "$value": "#c4c4c4",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle alternation within cream content blocks"
+    },
+    "coffee-band": {
+      "$value": "#3d2800",
+      "$type": "color",
+      "$description": "Surface level 3: Dark schedule and footer band, inverted type surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superlocaldesign.com",
+      "siteName": "Superlocal",
+      "extractedAt": "2026-06-03T18:15:58.107Z",
+      "variant": "extended"
+    }
+  }
+}

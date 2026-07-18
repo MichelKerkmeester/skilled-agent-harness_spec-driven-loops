@@ -1,0 +1,1467 @@
+{
+  "source": "https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0",
+  "uuid": "b1e82907-d1cf-46cd-8ae7-3561c5b15fd0",
+  "name": "Dylanbrouwer",
+  "northStar": "Brutalist type foundry at dusk",
+  "capturedAt": "2026-07-18T06:24:24.679Z",
+  "meta": {
+    "url": "https://www.dylanbrouwer.design",
+    "siteName": "Dylanbrouwer",
+    "extractedAt": "2026-07-03T03:43:58.087Z",
+    "durationMs": 106704,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 578,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Die Grotesk B weight 500 for all body and mid-scale heading text — the uniform weight is the signature, never switch to 400 or 700 within this face",
+      "Reserve ABC Gravity Variable exclusively for display-scale (96px+) monument headings and section openers — never use it below 23px",
+      "Apply the black-to-light gradient fill only on display-scale ABC Gravity Variable text, never on body or small headings",
+      "Use Ember Orange (#ff6436) only as a small functional element: status dots, accent fills, live indicators — never as a background wash, button fill, or large surface",
+      "Use 9999px border-radius exclusively for interactive elements (nav buttons, tags) and 0px for all cards and panels — sharp corners define the editorial feel",
+      "Set IBM Plex Mono text to uppercase at all times — it functions as a system/data layer and the case signals that role",
+      "Maintain letter-spacing at -0.03em for all Die Grotesk B headings 36px and above — the tight tracking is what makes the grotesque feel condensed and confident"
+    ],
+    "donts": [
+      "Don't use multiple chromatic colors — the system is monochrome with orange as the sole accent; introducing additional hues breaks the discipline",
+      "Don't apply shadows or elevation to cards — the system uses flat surfaces with hairline borders, not depth",
+      "Don't use border-radius on cards or content panels — corners are sharp; pills are reserved for interactive elements only",
+      "Don't mix weight variants within Die Grotesk B — stay at 500 across all sizes and contexts",
+      "Don't use ABC Gravity Variable for body or small text — it is a display face only; using it below 23px destroys its monument character",
+      "Don't center-align body paragraphs or mid-scale headings — left-align with tight measure; center is reserved for display statements",
+      "Don't use bouncy or spring easings — motion uses custom cubic-bezier curves (0.32, 0.72, 0, 1) and (0.19, 1, 0.22, 1) for weighted, intentional movement"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff6436",
+        "name": "Ember Orange",
+        "role": "Status indicators, accent dots, live signals, decorative fills — the sole chromatic note in an otherwise monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#161616",
+        "name": "Onyx",
+        "role": "Dark hero background, deep badges, section dark-mode surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3c3a3e",
+        "name": "Graphite",
+        "role": "Primary text, nav links, body copy, filled button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7b7a7c",
+        "name": "Stone",
+        "role": "Secondary text, heading subtitles, supporting copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a2a2a2",
+        "name": "Ash",
+        "role": "Muted helper text, inactive nav state, subtle UI metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9c7cc",
+        "name": "Silver Mist",
+        "role": "Hairline dividers, grid lines, light borders, low-emphasis text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Fog",
+        "role": "Light body backgrounds, subtle section washes, nav inactive background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Paper",
+        "role": "Page canvas, base background surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, elevated panels, tag borders, card borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Display Fade Gradient",
+        "role": "Gradient fill on massive display type — black fading to mid-gray to light silver across the word",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(0, 0, 0), rgb(110, 108, 112) 25%, rgb(185, 183, 187) 50%, rgb(220, 214, 214) 75%, rgb(241, 241, 241))"
+      },
+      {
+        "hex": "#6e6c70",
+        "name": "Horizon Gradient",
+        "role": "Section transitions and hero vignette — horizontal black to silver fade",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(123, 122, 124), rgb(60, 58, 62))"
+      }
+    ],
+    "layout": "The page follows a dark-to-light rhythm: the hero is full-bleed dark (#161616) with centered monument-scale display type that fills 80% of viewport width, and a 3D monitor mockup anchored center-stage. Below the hero, content shifts to max-width 1200px centered on Paper (#f8f8f8) canvas, with 48–80px vertical section gaps creating generous breathing room. Mid-page sections use subtle hairline grid lines in Silver Mist to create an invisible structural grid. The brands/collaborators section is a horizontal white card strip with skewed dividers between logos. Section openers use ghosted (white-on-light-gray) 96px+ display text as visual watermarks. Navigation is a top bar with pill-shaped buttons prefixed with '+' or '•' glyphs, sitting directly on the dark hero with no background bar — it floats on the surface.",
+    "imagery": "Imagery is treated as product showcase, not decoration: 3D-rendered device mockups (monitors on stands) display interactive project previews at slight perspective angles, making portfolio pieces feel like physical products. No lifestyle photography, no people, no stock imagery. The only color in the imagery comes from the project content itself (e.g., the green/teal-lit 3D game environment inside the monitor). Media is always contained within frames with no rounded corners or shadows — the device frame IS the container.",
+    "similar": [
+      {
+        "why": "Same dark-to-light portfolio rhythm, massive condensed display type, monochrome palette with single accent, and emphasis on motion/expression as design system",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Brutalist type-first designer portfolio with oversized display headings, tight letter-spacing, and minimal chromatic palette",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Experimental creative agency portfolio with dramatic type, dark hero opener, and emphasis on interactive 3D product showcases over photography",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Immersive web portfolio using 3D device mockups as the primary visual device, dark dramatic hero, and tight technical grid systems",
+        "business": "Active Theory (activetheory.net)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "cards": "0px",
+        "badges": "9999px",
+        "inputs": "0px",
+        "panels": "14.4px",
+        "buttons": "9999px"
+      },
+      "elementGap": "6-12px",
+      "sectionGap": "48-80px",
+      "cardPadding": "12-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base page background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Elevated cards, logo strips, content panels"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Section Wash",
+        "level": 2,
+        "purpose": "Subtle section backgrounds, nav inactive states"
+      },
+      {
+        "hex": "#ff6436",
+        "name": "Accent Surface",
+        "level": 3,
+        "purpose": "Highlighted callouts, status surfaces"
+      },
+      {
+        "hex": "#161616",
+        "name": "Dark Hero",
+        "level": 4,
+        "purpose": "Dark hero section, dramatic inverted mode"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Brutalist type foundry at dusk",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 12,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "body-sm",
+        "size": 17,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "body",
+        "size": 21,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading-lg",
+        "size": 96,
+        "lineHeight": 0.74,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-xl",
+        "size": 274,
+        "lineHeight": 0.74,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 288,
+        "lineHeight": 0.74,
+        "letterSpacing": -0.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Nav Button",
+        "role": "Primary navigation interactive element",
+        "description": "Transparent background, 1px border in #3c3a3 at 15% alpha (#3c3a3e26), 9999px border-radius, 7px 12px padding. Text in IBM Plex Mono 14px weight 500 uppercase, Graphite (#3c3a3e). Optional '+' or '•' prefix glyph in 12px. Sits inline in horizontal nav row with 6px column-gap."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline editorial link or text-only call-to-action",
+        "description": "No background, no border, 0px radius. Text in Die Grotesk B 17–21px weight 500, Graphite (#3c3a3e). May include underline on hover via 1px solid #3c3a3e. Used for 'More about me', 'Discover more', and similar editorial navigation."
+      },
+      {
+        "name": "Project Card",
+        "role": "Work/showcase card displaying portfolio pieces",
+        "description": "Transparent background, 0px border-radius, no box-shadow, 12px horizontal padding. Content is a media element (image/video) with text overlay. Cards arrange in grid with 12px gaps. No visible card chrome — the image IS the card."
+      },
+      {
+        "name": "Brand Logo Card",
+        "role": "Client/collaborator logo display card",
+        "description": "Semi-transparent white background rgba(255, 255, 255, 0.5), 0px border-radius, 12px padding-top, 12px padding-right, 12px padding-left, 18px padding-bottom, no box-shadow. Logos rendered in monochrome gray. Cards arranged in horizontal strip with slanted/skewed dividers between them."
+      },
+      {
+        "name": "Pill Tag Badge",
+        "role": "Categorical tag or label",
+        "description": "Dark Onyx (#161616) background, Pure White (#f1f1f1) text, 0px border-radius (rectangular, not pill), 0px 6px padding, 6px row-gap between tags. Text in IBM Plex Mono 12–14px weight 500–600 uppercase. Used for skill tags, category labels, metadata."
+      },
+      {
+        "name": "Ghost Glass Tag",
+        "role": "Low-emphasis contextual label on dark backgrounds",
+        "description": "Ultra-subtle white background rgba(255, 255, 255, 0.05), white text at 70% opacity rgba(255, 255, 255, 0.7), 0px radius, 0px 6px padding. 1px white border at 15% alpha (#ffffff26) for edge definition. Text in IBM Plex Mono 12–14px uppercase. Disappears into dark surfaces — reads as a watermark label."
+      },
+      {
+        "name": "Ember Status Dot",
+        "role": "Live/active indicator or decorative accent",
+        "description": "Circular 50% border-radius in Ember Orange (#ff6436), text in Graphite (#3c3a3e), 0px padding. Small element (~8–12px diameter). Functions as a 'live now' dot, attention marker, or decorative accent on cards. The only place the orange accent appears as a standalone element."
+      },
+      {
+        "name": "Gradient Display Headline",
+        "role": "Hero-scale typographic statement",
+        "description": "ABC Gravity Variable at 274–288px weight 400 uppercase, line-height 0.74, letter-spacing -0.01 to -0.02em. Fill is a multi-stop linear-gradient from #000 through #6e6c70 (25%), #b9b7bb (50%), #dcd6d6 (75%) to #f1f1f1 — black to light across the word. The gradient maps to the visual metaphor of letters emerging from darkness into light. Sits on dark hero background (#161616) creating dramatic contrast."
+      },
+      {
+        "name": "Light Content Section",
+        "role": "Standard content area below the hero",
+        "description": "Paper (#f8f8f8) or Fog (#f1f1f1) background, max-width 1200px centered. Section headings in Die Grotesk B 60px weight 500 or ghosted ABC Gravity Variable 96px+ at 100% white. Vertical rhythm: 48–80px section gaps. Subtle hairline dividers in Silver Mist (#c9c7cc) at 1px."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator or grid line",
+        "description": "1px solid stroke in Silver Mist (#c9c7cc) or rgba(60, 58, 62, 0.15). Creates invisible-grid structure across light sections. No decorative weight — pure structural line."
+      },
+      {
+        "name": "Monitor Mockup Frame",
+        "role": "Device frame containing project media preview",
+        "description": "Thin-bezel display frame on stand, rendered as 3D product mockup. Contains a 3D scene or interactive project preview (e.g., game environment with green/teal lighting). Positioned at slight perspective angle. Functions as hero visual anchor — the portfolio piece is literally displayed on a screen within the screen."
+      },
+      {
+        "name": "Ghosted Section Title",
+        "role": "Ultra-large background label for section identification",
+        "description": "ABC Gravity Variable at 96px+ weight 400 uppercase, rendered in Pure White (#ffffff) at near-100% on a light gray (#f1f1f1) background. The text nearly vanishes into the surface — only edge/anti-aliasing makes it readable. Functions as a typographic watermark labeling the section while creating a quiet visual texture."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse grotesque used for body text, mid-scale headings, labels, captions, and links. Weight 500 across all sizes creates a uniform visual density — no weight contrast, hierarchy comes purely from size and color. Tighter letter-spacing at larger sizes (-0.03em at 60px) tightens the grotesque into near-condensed proportions.",
+        "sizes": "12px, 17px, 18px, 21px, 36px, 54px, 60px",
+        "family": "Die Grotesk B",
+        "weight": "500",
+        "lineHeight": "1.0–1.3",
+        "substitute": "Inter, Söhne, General Sans",
+        "letterSpacing": "-0.01em to -0.03em"
+      },
+      {
+        "role": "Monument-scale super-condensed display face. Used only for hero statements and section openers that fill the viewport. The extremely tight line-height (0.74) lets massive 288px letters stack with minimal vertical air — letters physically touch or nearly touch, creating a wall of type. Variable weight axis allows subtle weight shifts even at this scale.",
+        "sizes": "12px, 23px, 96px, 274px, 288px",
+        "family": "ABC Gravity Variable",
+        "weight": "400–500",
+        "lineHeight": "0.74",
+        "substitute": "Bebas Neue, Anton, Oswald",
+        "letterSpacing": "-0.005em to -0.02em"
+      },
+      {
+        "role": "Technical voice for metadata, timestamps, nav labels, status text, and icon-adjacent micro-copy. Always uppercase, always small (12–14px). The monospaced rhythm signals 'system data' and contrasts against the grotesque's proportional flow — it reads as a developer/designer interface layer over the editorial body.",
+        "sizes": "12px, 14px",
+        "family": "IBM Plex Mono",
+        "weight": "500–600",
+        "lineHeight": "1.0–1.3",
+        "substitute": "JetBrains Mono, Space Mono, Geist Mono",
+        "letterSpacing": "-0.01em to -0.02em"
+      }
+    ],
+    "description": "A designer's portfolio that treats the page as a typographic monument: a dark hero of massive condensed display letters fading from black into light, dropping into clean monochrome content sections where every secondary element — nav, tags, labels — is stripped to its barest form. The single chromatic note is a vivid ember orange that appears as small functional punctuation: status dots, accent fills, alive signals. Typography carries the entire system: a heavy grotesque (Die Grotesk B) for body and mid-scale headings, a monospaced voice (IBM Plex Mono) for technical metadata and nav, and a super-condensed variable display face (ABC Gravity Variable) for monument-scale statements that fill the viewport. Spacing is tight and grid-ruthless, borders are hairline, corners are mostly sharp with pill rounding reserved for interactive elements, and motion is expressive with custom cubic-bezier easings that make elements feel weighted and intentional rather than bouncy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dylanbrouwer design system\",\"item\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#style-reference\",\"name\":\"Dylanbrouwer design system reference\",\"headline\":\"Dylanbrouwer design system | Refero Styles\",\"description\":\"Explore Dylanbrouwer's mixed Agency design system: Ember Orange #ff6436, Onyx #161616 colors, Die Grotesk B, ABC Gravity Variable typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dylanbrouwer\",\"url\":\"https://www.dylanbrouwer.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"caption\":\"Screenshot of Dylanbrouwer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dylanbrouwer design system\",\"Dylanbrouwer website design\",\"Dylanbrouwer colors\",\"Dylanbrouwer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ember Orange\",\"Onyx\",\"Graphite\",\"Stone\",\"Die Grotesk B\",\"ABC Gravity Variable\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer design system\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer website design\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer colors\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:53:24.867Z\",\"dateModified\":\"2026-04-30T01:53:24.867Z\"}]}19:T817,## Quick Color Reference\n- Background: #f8f8f8 (canvas), #ffffff (card), #161616 (dark hero)\n- Text: #3c3a3e (primary), #7b7a7c (secondary), #a2a2a2 (muted)\n- Border: #c9c7cc (hairline), rgba(60, 58, 62, 0.15) (subtle)\n- Accent: #ff6436 (ember orange — dots, status, small highlights only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Create a hero section**: Dark background (#161616), full-bleed. Monument headline in ABC Gravity Variable 288px weight 400 uppercase, line-height 0.74, letter-spacing -0.01em, filled with gradient: linear-gradient(rgb(0,0,0), rgb(110,108,112) 25%, rgb(185,183,187) 50%, rgb(220,214,214) 75%, rgb(241,241,1)). Subtext in Die Grotesk B 21px weight 500, #7b7a7c, letter-spacing -0.02em. Top nav: 4 pill buttons with 9999px radius, 7px 12px padding, 1px border in #3c3a3e26, IBM Plex Mono 14px weight 500 uppercase in #3c3a3e.\n\n2. **Create a project card grid**: White (#ffffff) background, 0px radius, 12px horizontal padding, no shadow. Images fill the card edge-to-edge with no border. Section title ghosted in ABC Gravity Variable 96px weight 400 uppercase, #ffffff on #f1f1f1 surface. 12px gap between cards in a 3-column grid.\n\n3. **Create a metadata tag row**: Tags in IBM Plex Mono 12px weight 600 uppercase, #f1f1f1 text on #161616 background, 0px radius, 0px 6px padding, 6px row-gap between tags. For dark-surface variants: rgba(255,255,255,0.05) background with 1px #ffffff26 border and rgba(255,255,255,0.7) text.\n\n4. **Create a section opener with ghosted display text**: Background #f1f1f1. Ghosted label in ABC Gravity Variable 120px weight 400 uppercase, #ffffff, sitting at the bottom of the section. Content above it in Die Grotesk B 60px weight 500, #3c3a3e, letter-spacing -0.03em. 48px vertical gap between elements.\n\n5. **Create a brand logo strip**: Horizontal card with rgba(255,255,255,0.5) background, 0px radius, 12px top/side padding, 18px bottom padding. 6 logos in a row, each 12px apart, separated by thin 1px skewed dividers in #c9c7cc. Logos rendered in #7b7a7c monochrome."
+      },
+      {
+        "title": "Motion System",
+        "content": "Motion is expressive but weighted — not bouncy. Primary easings: cubic-bezier(0.32, 0.72, 0, 1) for entrance animations (fast start, gentle settle), and cubic-bezier(0.19, 1, 0.22, 1) for exit and morph transitions (slow start, decisive finish). Standard durations: 0.3s for micro-interactions (hover, focus), 0.5s for component-level transitions, 0.6–0.75s for page-level reveals. No spring physics, no overshoot. Properties animated: transform (translate, rotate, scale), opacity, and color — never animate width/height or layout properties. The dark hero elements animate in with staggered translate-y + opacity, creating a cinematic build-up before the light content sections."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Two gradient families serve distinct purposes:\n\n1. **Display Type Gradient** — Multi-stop black-to-light linear gradient (top to bottom): #000000 → #6e6c70 (25%) → #b9b7bb (50%) → #dcd6d6 (75%) → #f1f1f1. Applied exclusively as background-clip: text on ABC Gravity Variable display headlines. The gradient creates the illusion of letters emerging from shadow into light — the word is the light source.\n\n2. **Horizon Gradient** — 90deg horizontal fade from #7b7a7c to #3c3a3e. Used as subtle section transitions and decorative dividers. The horizontal direction signals spatial depth — as if looking at a horizon line.\n\nNever apply gradients to backgrounds, buttons, or body text. Gradients are a typographic and atmospheric device, not a surface treatment."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows and elevation. Depth is communicated through background contrast (dark hero vs. light sections), hairline borders, and backdrop blur (blur(5px) on overlapping elements) rather than drop shadows. Flatness is the signature — surfaces sit on the page like printed layers, not floating cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3c3a3e",
+          "oklch": {
+            "c": 0.007332632298607304,
+            "h": 308.22922895486903,
+            "l": 0.3519383046734542
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 7032439.122093919,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 6,
+            "other/fill": 18,
+            "other/color": 16,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 1338753.7247407855,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 6,
+            "card/borderColor": 12,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 34
+          }
+        },
+        {
+          "hex": "#201d1d",
+          "oklch": {
+            "c": 0.004639836075075804,
+            "h": 17.489116199034633,
+            "l": 0.23413376604308492
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1166400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c9c7cc",
+          "oklch": {
+            "c": 0.0072063231115133426,
+            "h": 304.22078462478515,
+            "l": 0.8327456988536818
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 469760,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 3
+          }
+        },
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 454318,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#161616",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20019308840256111
+          },
+          "contexts": [
+            "body",
+            "badge",
+            "other",
+            "heading"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 114779.00141324567,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "body/backgroundColor": 3,
+            "badge/backgroundColor": 3,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a2a2a2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7122383763594005
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 100350.54079815578,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 4,
+            "other/color": 42
+          }
+        },
+        {
+          "hex": "#7b7a7c",
+          "oklch": {
+            "c": 0.003232713548739253,
+            "h": 308.3985299841156,
+            "l": 0.5810219784423236
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 64512.28889925248,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 50,
+            "heading/color": 3
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 50520.62193401421,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "other/color": 22,
+            "other/stroke": 1,
+            "nav/backgroundColor": 3,
+            "body/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#ff6436",
+          "oklch": {
+            "c": 0.1983229246932328,
+            "h": 36.73804015200367,
+            "l": 0.6957222064046077
+          },
+          "contexts": [
+            "badge",
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 33587.513669256514,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 3,
+            "badge/backgroundColor": 5,
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02631331131668492,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#161616",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#f8f8f8",
+          "foreground": "#161616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#201d1d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.02,
+          "background": "#f1f1f1",
+          "foreground": "#161616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.76,
+          "background": "#f8f8f8",
+          "foreground": "#201d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#201d1d",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#ffffff",
+          "foreground": "#3c3a3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.79,
+          "background": "#161616",
+          "foreground": "#c9c7cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#f8f8f8",
+          "foreground": "#3c3a3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.98,
+          "background": "#201d1d",
+          "foreground": "#c9c7cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.96,
+          "background": "#f1f1f1",
+          "foreground": "#3c3a3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.09,
+          "background": "#161616",
+          "foreground": "#a2a2a2"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.71,
+          "background": "#c9c7cc",
+          "foreground": "#3c3a3e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#201d1d",
+          "foreground": "#a2a2a2"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.14,
+          "background": "#ff6436",
+          "foreground": "#161616"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.41,
+          "background": "#a2a2a2",
+          "foreground": "#3c3a3e"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.27,
+          "background": "#ffffff",
+          "foreground": "#7b7a7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#161616",
+          "foreground": "#7b7a7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#f8f8f8",
+          "foreground": "#7b7a7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#201d1d",
+          "foreground": "#7b7a7c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14.4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "badge",
+            "other"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "badge",
+            "other",
+            "link"
+          ],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|card",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "hero",
+            "footer"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|link",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 274,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0), rgb(110, 108, 112) 25%, rgb(185, 183, 187) 50%, rgb(220, 214, 214) 75%, rgb(241, 241, 241))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(110, 108, 112)",
+          "rgb(185, 183, 187)",
+          "rgb(220, 214, 214)",
+          "rgb(241, 241, 241)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(0, 0, 0), rgb(162, 162, 162))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(162, 162, 162)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(4, 3, 5), rgb(58, 56, 61) 25%, rgb(107, 107, 107) 38%, rgb(144, 143, 144) 54%, rgb(185, 183, 187) 70%, rgb(241, 241, 241) 102%)",
+        "colors": [
+          "rgb(4, 3, 5)",
+          "rgb(58, 56, 61)",
+          "rgb(107, 107, 107)",
+          "rgb(144, 143, 144)",
+          "rgb(185, 183, 187)",
+          "rgb(241, 241, 241)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(123, 122, 124), rgb(60, 58, 62))",
+        "colors": [
+          "rgb(123, 122, 124)",
+          "rgb(60, 58, 62)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(4, 3, 5), rgb(110, 108, 112) 25%, rgb(164, 163, 165) 50%, rgb(220, 214, 214) 75%, rgb(241, 241, 241))",
+        "colors": [
+          "rgb(4, 3, 5)",
+          "rgb(110, 108, 112)",
+          "rgb(164, 163, 165)",
+          "rgb(220, 214, 214)",
+          "rgb(241, 241, 241)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(241, 241, 241), rgb(173, 175, 174))",
+        "colors": [
+          "rgb(241, 241, 241)",
+          "rgb(173, 175, 174)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Die Grotesk B",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 433,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Mono",
+          "source": "google",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Gravity Variable",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "badge",
+            "button",
+            "icon",
+            "image",
+            "hero",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 297,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ABC Gravity Variable",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 52,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "ABC Gravity Variable",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Die Grotesk B",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 38,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "ABC Gravity Variable",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.74,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 274,
+          "family": "ABC Gravity Variable",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.74,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 288,
+          "family": "ABC Gravity Variable",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.74,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d8f02b48-e00c-4c90-bb58-cdbd4e90af4e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dylanbrouwer design system\",\"item\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#style-reference\",\"name\":\"Dylanbrouwer design system reference\",\"headline\":\"Dylanbrouwer design system | Refero Styles\",\"description\":\"Explore Dylanbrouwer's mixed Agency design system: Ember Orange #ff6436, Onyx #161616 colors, Die Grotesk B, ABC Gravity Variable typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dylanbrouwer\",\"url\":\"https://www.dylanbrouwer.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1e82907-d1cf-46cd-8ae7-3561c5b15fd0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"caption\":\"Screenshot of Dylanbrouwer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2cf1443e-7784-4e4b-b5cb-01951e7082de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dylanbrouwer design system\",\"Dylanbrouwer website design\",\"Dylanbrouwer colors\",\"Dylanbrouwer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ember Orange\",\"Onyx\",\"Graphite\",\"Stone\",\"Die Grotesk B\",\"ABC Gravity Variable\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer design system\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer website design\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer colors\"},{\"@type\":\"Thing\",\"name\":\"Dylanbrouwer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:53:24.867Z\",\"dateModified\":\"2026-04-30T01:53:24.867Z\"}]}19:T817,## Quick Color Reference\n- Background: #f8f8f8 (canvas), #ffffff (card), #161616 (dark hero)\n- Text: #3c3a3e (primary), #7b7a7c (secondary), #a2a2a2 (muted)\n- Border: #c9c7cc (hairline), rgba(60, 58, 62, 0.15) (subtle)\n- Accent: #ff6436 (ember orange — dots, status, small highlights only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Create a hero section**: Dark background (#161616), full-bleed. Monument headline in ABC Gravity Variable 288px weight 400 uppercase, line-height 0.74, letter-spacing -0.01em, filled with gradient: linear-gradient(rgb(0,0,0), rgb(110,108,112) 25%, rgb(185,183,187) 50%, rgb(220,214,214) 75%, rgb(241,241,1)). Subtext in Die Grotesk B 21px weight 500, #7b7a7c, letter-spacing -0.02em. Top nav: 4 pill buttons with 9999px radius, 7px 12px padding, 1px border in #3c3a3e26, IBM Plex Mono 14px weight 500 uppercase in #3c3a3e.\n\n2. **Create a project card grid**: White (#ffffff) background, 0px radius, 12px horizontal padding, no shadow. Images fill the card edge-to-edge with no border. Section title ghosted in ABC Gravity Variable 96px weight 400 uppercase, #ffffff on #f1f1f1 surface. 12px gap between cards in a 3-column grid.\n\n3. **Create a metadata tag row**: Tags in IBM Plex Mono 12px weight 600 uppercase, #f1f1f1 text on #161616 background, 0px radius, 0px 6px padding, 6px row-gap between tags. For dark-surface variants: rgba(255,255,255,0.05) background with 1px #ffffff26 border and rgba(255,255,255,0.7) text.\n\n4. **Create a section opener with ghosted display text**: Background #f1f1f1. Ghosted label in ABC Gravity Variable 120px weight 400 uppercase, #ffffff, sitting at the bottom of the section. Content above it in Die Grotesk B 60px weight 500, #3c3a3e, letter-spacing -0.03em. 48px vertical gap between elements.\n\n5. **Create a brand logo strip**: Horizontal card with rgba(255,255,255,0.5) background, 0px radius, 12px top/side padding, 18px bottom padding. 6 logos in a row, each 12px apart, separated by thin 1px skewed dividers in #c9c7cc. Logos rendered in #7b7a7c monochrome."
+}

@@ -1,0 +1,1025 @@
+{
+  "source": "https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee",
+  "uuid": "f352b093-1ba7-49c7-9ce3-ad73cf9a1aee",
+  "name": "Thisispam",
+  "northStar": "butter-yellow editorial broadsheet — a Swiss-press layout where a single warm cream stock, razor-sharp type, and a zero-chrome surface system turn each scroll into a printed page.",
+  "capturedAt": "2026-07-18T08:39:11.873Z",
+  "meta": {
+    "url": "https://thisispam.com",
+    "siteName": "Thisispam",
+    "extractedAt": "2026-06-03T22:11:49.010Z",
+    "durationMs": 35232,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 258,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fff3b8 as the dominant canvas for entire page sections, not as a small accent",
+      "Set border-radius to 0px on cards, buttons, and modals; reserve 2px for input fields only",
+      "Apply uppercase to all navigation, button, and label text at every size",
+      "Set display headlines to 58px OT Neue Montreal weight 700 with 0.90 line-height for the editorial poster voice",
+      "Alternate section backgrounds between #fff3b8, #ffffff, and #000000 to create the printed-page rhythm",
+      "Use #fff3b8 as inline emphasis text on dark photographic or black backgrounds",
+      "Use 1px #000000 hairlines for all borders; rely on color contrast and bands, not shadows, for layer separation"
+    ],
+    "donts": [
+      "Don't add box-shadows, drop-shadows, or any elevation beyond 1px borders",
+      "Don't introduce new chromatic colors — the system is black, white, cream, and a single red indicator",
+      "Don't use light gray neutrals — stay at full #000000 for text and borders or full #ffffff for surfaces",
+      "Don't use letter-spacing adjustments; keep tracking at normal across all sizes and weights",
+      "Don't center body copy — keep editorial text left-aligned even within centered compositional blocks",
+      "Don't mix more than two type families on a single screen",
+      "Don't fill interactive elements with #fff3b8 as a solid button background — yellow is a canvas and emphasis color, not a button fill"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fff3b8",
+        "name": "Butter Paper",
+        "role": "Dominant page canvas for entire sections, emphasis text on dark photographic backgrounds, hairline link borders, and the third band in the surface stack — a warm cream that replaces white as the design's atmospheric ground",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text color across all surfaces, hairlines and structural borders, the footer and dark-band background — every word, rule, and icon reads as solid ink on the cream or white ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "White section backgrounds and card surfaces that separate the yellow bands, inverse text on the black footer, and the language modal surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1e4a4",
+        "name": "Wheat",
+        "role": "Muted input-field fill used on the yellow canvas — a slightly darker cream that lets form fields recede into the warm ground without losing the surface hierarchy",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Signal Red",
+        "role": "Active-state and current-section indicator in the hamburger nav menu — a single red dash marks the present position in the menu, the only chromatic departure from the black-on-cream system",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a vertically scrolling editorial broadsheet with a strict three-band rhythm. The hero is a full-bleed photograph with a bottom-aligned uppercase display headline. The work section sits on #ffffff in a 3-column grid of full-width images with caption-level metadata beneath each tile. The brand list is a centered single column on the #fff3b8 canvas. The page closes with a #000000 dark footer in 3 columns. Section breaks are made by full-width color band switches, not by visible dividers. Content is left-aligned for editorial readability; only the brand list and the display headings are centered. Navigation is a minimal top bar with a left-aligned wordmark and a right-aligned hamburger trigger.",
+    "imagery": "High-quality editorial photography is the sole visual medium: warm-toned lifestyle and product shots (a phone on a ceramic tray with a cocktail glass, a tote bag with a printed brand mark, clothing on a figure). Treatment is full-bleed for the hero, contained within grid columns for the work section. No illustrations, no abstract graphics, no 3D renders. Icons are minimal — only the hamburger and a small arrow glyph, both 1px outlined. The photography is the atmosphere; type is the structure.",
+    "similar": [
+      {
+        "why": "Same Swiss-grid editorial system with uppercase geometric sans-serif display type and full-bleed project imagery",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared warm-cream canvas, hairline borders, and zero-shadow card surfaces with large editorial display headlines",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same agency-portfolio rhythm: alternating color bands, sharp-cornered grid cards, and a single brand-color emphasis technique",
+        "business": "Anagrama"
+      },
+      {
+        "why": "Identical restraint: a three-color palette, generous vertical breathing room, and display type set in tight uppercase clusters over photography",
+        "business": "Made Thought"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "inputs": "2px",
+        "modals": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fff3b8",
+        "name": "Yellow Paper",
+        "level": 1,
+        "purpose": "Dominant warm canvas for the brand-list and alternate sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 2,
+        "purpose": "White section bands and card surfaces, the lightest level above the yellow ground"
+      },
+      {
+        "hex": "#f1e4a4",
+        "name": "Wheat Fill",
+        "level": 3,
+        "purpose": "Input field surfaces on the yellow canvas"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 4,
+        "purpose": "Dark footer and inverse sections — the deepest band in the page rhythm"
+      }
+    ],
+    "northStar": "butter-yellow editorial broadsheet — a Swiss-press layout where a single warm cream stock, razor-sharp type, and a zero-chrome surface system turn each scroll into a printed page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 58,
+        "lineHeight": 0.9,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site header with logo and menu trigger",
+        "description": "Fixed top bar on a transparent or yellow background. Left: 'PAM' wordmark at 11px OT Neue Montreal weight 500, #000000, uppercase, with a 1px ink-black hairline beneath. Right: 24px hamburger icon (three 1px #000000 lines). Height ~56px, horizontal padding 24px."
+      },
+      {
+        "name": "Hamburger Menu Icon",
+        "role": "Menu trigger button in the nav",
+        "description": "Three stacked 1px #000000 horizontal lines, 24px wide, 2px gap between lines. No background, no border, no hover state other than a #ff0000 indicator line that appears beneath it when active."
+      },
+      {
+        "name": "Full-Bleed Hero Section",
+        "role": "Opening editorial image with overlaid display headline",
+        "description": "Edge-to-edge photograph (no border-radius) with a bottom-left or bottom-center display headline. Headline at 58px OT Neue Montreal weight 700, #ffffff, line-height 0.90, uppercase. A single emphasis phrase in #fff3b8 sits inline within the white text. Optional 11px caption above the headline at weight 500."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Portfolio project tile in the work grid",
+        "description": "White surface (#ffffff) with 0px radius and no shadow. Full-width contained image (not full-bleed, maintains column width). Below the image: project label at 11px OT Neue Montreal weight 500 uppercase, #000000, 4px top margin. Right-aligned stat counter at 32px weight 700, #000000. No border between image and caption."
+      },
+      {
+        "name": "Stat Counter",
+        "role": "Numeric badge paired with a project card or section",
+        "description": "Right-aligned number at 32px OT Neue Montreal weight 700, #000000 (e.g. '4K+', '16+', '300+'). Paired vertically with the project label caption at 11px weight 500. On yellow sections the stat stays #000000."
+      },
+      {
+        "name": "Brand Directory List",
+        "role": "Centered column of client or partner names on the yellow canvas",
+        "description": "Sits on #fff3b8 background. Centered single column, max-width ~360px. Each item at 13px ABC Diatype weight 400, #000000, uppercase, 8px row gap. No bullet, no link underline — names read as a flat typographic column."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Large opening headline for a new page section",
+        "description": "OT Neue Montreal weight 700 at 32–58px, line-height 0.90–1.00, uppercase, #000000 on white/yellow bands, #ffffff on the black footer. The 58px size appears only in the hero; 32px serves all subsequent section openers."
+      },
+      {
+        "name": "Dark Footer Block",
+        "role": "Contact and project block closing the page",
+        "description": "Full-width #000000 band with 24–48px vertical padding. Display heading at 32px weight 700, #ffffff, uppercase, left-aligned. Three-column contact block at 13px ABC Diatype weight 400, #ffffff, with column headers at weight 700. No dividers between columns."
+      },
+      {
+        "name": "Input Field (Yellow Context)",
+        "role": "Form input on the butter-yellow canvas",
+        "description": "Fill #f1e4a4, 1px #000000 border, 2px radius, 16px horizontal padding, 12px vertical padding. Placeholder and value text at 14px ABC Diatype weight 400, #000000. No focus ring — the border thickens or the fill darkens on focus."
+      },
+      {
+        "name": "Language Switcher Modal",
+        "role": "Centered overlay prompting the user to view the site in English",
+        "description": "#ffffff card, centered on viewport, 0px radius, 24px padding, no shadow, no border. Message at 14px ABC Diatype weight 400, #000000. Two action options ('Yes' / 'No') at 14px weight 700, #000000, separated by ~80px of space — no buttons, just text links."
+      },
+      {
+        "name": "Emphasis Inline Text",
+        "role": "Highlighted phrase within a display headline",
+        "description": "A substring of a #ffffff display headline recolored to #fff3b8 (e.g. 'VOTRE MARQUE' within 'DESIGN PRÉCIS ET EXIGEANT, AU SERVICE DE VOTRE MARQUE'). Same font, weight, and size as the surrounding text — color is the only differentiator."
+      },
+      {
+        "name": "Nav Active Indicator",
+        "role": "Marks the current item in the hamburger menu",
+        "description": "A 1px #ff0000 horizontal line beneath the active menu item. Appears only in the open menu state; no other red is used anywhere on the site."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse covering display headlines, navigation, buttons, and labels — the 58px weight-700 lockup with 0.90 leading is the signature editorial poster voice; uppercase treatment is consistent across all sizes.",
+        "sizes": "11px, 16px, 32px, 58px",
+        "family": "OT Neue Montreal",
+        "weight": "500, 700",
+        "lineHeight": "0.90–2.55 (0.90 at display, 1.00 at heading, 1.20 at subheading, 1.43 at body, 2.55 at airy list labels)",
+        "substitute": "Space Grotesk or Neue Haas Grotesk Display"
+      },
+      {
+        "role": "Secondary humanist sans for body copy, footer details, input fields, and the modal message — slightly warmer and more legible than the geometric Montreal, used where long-form reading or quieter hierarchy is required.",
+        "sizes": "13px, 14px",
+        "family": "ABC Diatype",
+        "weight": "400, 700",
+        "lineHeight": "1.20–2.15",
+        "substitute": "Inter or Söhne"
+      }
+    ],
+    "description": "Thisispam operates as a Swiss-influenced editorial design system: a warm butter-yellow canvas paired with stark black ink typography and almost zero chrome. The visual language borrows from print broadsheets — large, confident display headlines sit in tight uppercase clusters, while project images float in a strict grid with caption-level metadata beneath. Color is used with extreme discipline: #fff3b8 functions as both page ground and emphasis highlight, leaving black to carry all text and white to separate content blocks. No shadows, no rounding, no gradients — the system relies on typographic scale, generous whitespace, and the unusual warm background to create atmosphere. Sections alternate between yellow paper, pure white, and ink black, creating a rhythmic editorial flow.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thisispam design system\",\"item\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#style-reference\",\"name\":\"Thisispam design system reference\",\"headline\":\"Thisispam design system | Refero Styles\",\"description\":\"Explore Thisispam's light Agency design system: Butter Paper #fff3b8, Ink Black #000000 colors, OT Neue Montreal, ABC Diatype typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thisispam\",\"url\":\"https://thisispam.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"caption\":\"Screenshot of Thisispam\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thisispam design system\",\"Thisispam website design\",\"Thisispam colors\",\"Thisispam typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Butter Paper\",\"Ink Black\",\"Paper White\",\"Wheat\",\"OT Neue Montreal\",\"ABC Diatype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thisispam design system\"},{\"@type\":\"Thing\",\"name\":\"Thisispam website design\"},{\"@type\":\"Thing\",\"name\":\"Thisispam colors\"},{\"@type\":\"Thing\",\"name\":\"Thisispam typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:20:55.533Z\",\"dateModified\":\"2026-04-30T01:20:55.533Z\"}]}19:T61f,**Quick Color Reference**\n- Background: #fff3b8 (butter-yellow canvas)\n- Surface: #ffffff (white section)\n- Text: #000000 (ink black)\n- Inverse Text: #ffffff (on black band)\n- Accent (emphasis text, link border): #fff3b8\n- primary action: #fff3b8 (filled action)\n\n**Example Component Prompts**\n1. **Hero Section:** Full-bleed photograph background with no radius. Bottom-aligned display headline at 58px OT Neue Montreal weight 700, #ffffff, line-height 0.90, uppercase. One emphasis substring in #fff3b8 inline within the white text. Optional 11px caption above the headline at weight 500, #ffffff.\n2. **Project Grid Card:** #ffffff surface, 0px radius, no shadow. Full-column-width contained image. Project label at 11px OT Neue Montreal weight 500 uppercase, #000000, 4px gap above. Stat counter at 32px weight 700, #000000, right-aligned.\n3. **Brand Directory List:** #fff3b8 background, centered single column, max-width 360px. Each item at 13px ABC Diatype weight 400, #000000, uppercase, 8px row gap. No bullets, no underlines.\n4. **Dark Footer Block:** #000000 background, 48px vertical padding. Display heading at 32px OT Neue Montreal weight 700, #ffffff, uppercase, left-aligned. Three columns of contact details at 13px ABC Diatype weight 400, #ffffff, with column titles at weight 700.\n5. **Language Switcher Modal:** #ffffff card centered on viewport, 0px radius, 24px padding, no shadow, no border. Message at 14px ABC Diatype weight 400, #000000. Two text options at 14px weight 700, #000000 separated by 80px of space — no button chrome, just text."
+      },
+      {
+        "title": "Color Discipline Rule",
+        "content": "The system runs on exactly three surface tones (#fff3b8, #ffffff, #000000) plus a single 1px ink rule. The butter yellow is not a brand color in the conventional sense — it is the page stock. Every section is one of three backgrounds, and the design's identity comes from the rhythm of switching between them, not from decorative use of color. Any new surface must be one of these three, and any accent must already exist in the palette."
+      },
+      {
+        "title": "Typography Discipline Rule",
+        "content": "OT Neue Montreal at weight 700 is the display and heading voice at every size from 32px upward; weight 500 handles labels, captions, and nav. ABC Diatype is reserved for body copy, footer details, and form fields at 13–14px. Both are always set uppercase for UI chrome (nav, buttons, labels) and sentence case only for long-form body paragraphs. Letter-spacing is always normal — never tracked out or in. Line-height contracts as size increases: 1.43 at body, 1.20 at subheading, 1.00 at heading, 0.90 at display."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadow by design. The system rejects elevation entirely — separation between layers is achieved through alternating color bands (yellow → white → black) and hairline 1px ink-black borders, never through shadow depth. The only observed non-zero radius in the codebase is 2px on a single input field."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "icon",
+            "body",
+            "input",
+            "link",
+            "hero",
+            "image",
+            "card",
+            "heading",
+            "footer"
+          ],
+          "frequency": 971,
+          "confidence": 1,
+          "prominence": 82738705.60174727,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 13,
+            "body/color": 62,
+            "card/color": 4,
+            "hero/color": 2,
+            "icon/color": 3,
+            "link/color": 33,
+            "other/fill": 1,
+            "image/color": 12,
+            "input/color": 6,
+            "other/color": 50,
+            "button/color": 7,
+            "other/stroke": 2,
+            "heading/color": 1,
+            "nav/borderColor": 52,
+            "body/borderColor": 248,
+            "card/borderColor": 16,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 132,
+            "image/borderColor": 48,
+            "input/borderColor": 24,
+            "other/borderColor": 200,
+            "button/borderColor": 28,
+            "heading/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff3b8",
+          "oklch": {
+            "c": 0.07626753163358664,
+            "h": 97.95396443788623,
+            "l": 0.9596172954702744
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other",
+            "footer",
+            "body",
+            "link",
+            "image"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 9853085.97863193,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "link/color": 6,
+            "other/fill": 1,
+            "image/color": 1,
+            "other/color": 10,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 36,
+            "link/borderColor": 24,
+            "image/borderColor": 4,
+            "other/borderColor": 40,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "heading",
+            "body"
+          ],
+          "frequency": 114,
+          "confidence": 1,
+          "prominence": 1476017.719294575,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 1,
+            "link/color": 1,
+            "other/fill": 8,
+            "other/color": 8,
+            "button/color": 1,
+            "heading/color": 5,
+            "body/borderColor": 20,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 32,
+            "button/borderColor": 4,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f1e4a4",
+          "oklch": {
+            "c": 0.08293341655300747,
+            "h": 98.03835806229529,
+            "l": 0.9143395855744277
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 80492.48032523562,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 268.8361000750002,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.029820869469484756,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#fff3b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.37,
+          "background": "#f1e4a4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#000000",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#ffffff",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#fff3b8",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.12,
+          "background": "#f1e4a4",
+          "foreground": "#ff0000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#f1e4a4",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#f1e4a4",
+          "foreground": "#fff3b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#ffffff",
+          "foreground": "#fff3b8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 65,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "OT Neue Montreal",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 142,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Diatype",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 104,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 11,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link",
+            "heading",
+            "image"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.55,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "OT Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "input",
+            "hero",
+            "image",
+            "body",
+            "card"
+          ],
+          "frequency": 88,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ABC Diatype",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 10,
+          "lineHeight": 2.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "OT Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "OT Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 58,
+          "family": "OT Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ad760a59-38e5-460f-b08a-53eccf59eb8d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Thisispam design system\",\"item\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#style-reference\",\"name\":\"Thisispam design system reference\",\"headline\":\"Thisispam design system | Refero Styles\",\"description\":\"Explore Thisispam's light Agency design system: Butter Paper #fff3b8, Ink Black #000000 colors, OT Neue Montreal, ABC Diatype typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Thisispam\",\"url\":\"https://thisispam.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f352b093-1ba7-49c7-9ce3-ad73cf9a1aee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"caption\":\"Screenshot of Thisispam\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87d1043c-49aa-4be1-b6b4-4812c0d0c45d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Thisispam design system\",\"Thisispam website design\",\"Thisispam colors\",\"Thisispam typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Butter Paper\",\"Ink Black\",\"Paper White\",\"Wheat\",\"OT Neue Montreal\",\"ABC Diatype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Thisispam design system\"},{\"@type\":\"Thing\",\"name\":\"Thisispam website design\"},{\"@type\":\"Thing\",\"name\":\"Thisispam colors\"},{\"@type\":\"Thing\",\"name\":\"Thisispam typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:20:55.533Z\",\"dateModified\":\"2026-04-30T01:20:55.533Z\"}]}19:T61f,**Quick Color Reference**\n- Background: #fff3b8 (butter-yellow canvas)\n- Surface: #ffffff (white section)\n- Text: #000000 (ink black)\n- Inverse Text: #ffffff (on black band)\n- Accent (emphasis text, link border): #fff3b8\n- primary action: #fff3b8 (filled action)\n\n**Example Component Prompts**\n1. **Hero Section:** Full-bleed photograph background with no radius. Bottom-aligned display headline at 58px OT Neue Montreal weight 700, #ffffff, line-height 0.90, uppercase. One emphasis substring in #fff3b8 inline within the white text. Optional 11px caption above the headline at weight 500, #ffffff.\n2. **Project Grid Card:** #ffffff surface, 0px radius, no shadow. Full-column-width contained image. Project label at 11px OT Neue Montreal weight 500 uppercase, #000000, 4px gap above. Stat counter at 32px weight 700, #000000, right-aligned.\n3. **Brand Directory List:** #fff3b8 background, centered single column, max-width 360px. Each item at 13px ABC Diatype weight 400, #000000, uppercase, 8px row gap. No bullets, no underlines.\n4. **Dark Footer Block:** #000000 background, 48px vertical padding. Display heading at 32px OT Neue Montreal weight 700, #ffffff, uppercase, left-aligned. Three columns of contact details at 13px ABC Diatype weight 400, #ffffff, with column titles at weight 700.\n5. **Language Switcher Modal:** #ffffff card centered on viewport, 0px radius, 24px padding, no shadow, no border. Message at 14px ABC Diatype weight 400, #000000. Two text options at 14px weight 700, #000000 separated by 80px of space — no button chrome, just text."
+}

@@ -1,0 +1,342 @@
+{
+  "color": {
+    "wheat-cream": {
+      "$value": "#e5dccd",
+      "$type": "color",
+      "$description": "Wheat Cream — Page canvas, card surfaces, section backgrounds — the warm off-white that holds every screen"
+    },
+    "harvest-copper": {
+      "$value": "#ab5700",
+      "$type": "color",
+      "$description": "Harvest Copper — Primary text, body copy, list borders, card borders, decorative strokes — the default ink color across all editorial content"
+    },
+    "citron-beam": {
+      "$value": "#e8e359",
+      "$type": "color",
+      "$description": "Citron Beam — Logotype color, hero text overlays, accent borders, icon highlights — the electric chartreuse that makes the brand pop against forest greens and cream"
+    },
+    "morning-glory": {
+      "$value": "#7997ff",
+      "$type": "color",
+      "$description": "Morning Glory — Inline text highlights, links, secondary icon accents, input focus — a cool periwinkle that cools the otherwise warm palette when it enters body copy"
+    },
+    "amber-glow": {
+      "$value": "#d99623",
+      "$type": "color",
+      "$description": "Amber Glow — List borders, secondary heading accents, warm decorative strokes"
+    },
+    "forest-floor": {
+      "$value": "#214534",
+      "$type": "color",
+      "$description": "Forest Floor — Button borders, body text on light accents, deep decorative strokes — a grounded dark green for contrast moments"
+    },
+    "deep-moss": {
+      "$value": "#103d26",
+      "$type": "color",
+      "$description": "Deep Moss — Darkest accent, background fills for contrasted blocks, depth shadows"
+    },
+    "olive-branch": {
+      "$value": "#568037",
+      "$type": "color",
+      "$description": "Olive Branch — List borders, tag accents, organic decorative strokes"
+    },
+    "slate-bloom": {
+      "$value": "#3d549c",
+      "$type": "color",
+      "$description": "Slate Bloom — Heading borders, muted decorative strokes, cool-tone secondary"
+    },
+    "coral-petal": {
+      "$value": "#e99686",
+      "$type": "color",
+      "$description": "Coral Petal — Soft fill washes, list surface tints, warm secondary backgrounds"
+    }
+  },
+  "font": {
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Body text, UI labels, navigation, buttons, list items, footer copy, input fields — a neutral geometric sans that stays quiet and functional at 12–16px. The 1.4 line-height with weight 400/500 gives body copy a slightly airy, readable feel without competing with the display headlines."
+    },
+    "parafina": {
+      "$value": "Parafina",
+      "$type": "fontFamily",
+      "$description": "Display and headings — a custom rounded retro display sans used at extreme sizes (up to 173px) with crushed line-heights (0.80–0.90). The weight-500 single-weight treatment at oversized scales is signature: the type feels playful, warm, and printed-poster rather than corporate. Appears in hero, section headlines, and the logotype itself."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "exposuretrial": {
+      "$value": "ExposureTrial",
+      "$type": "fontFamily",
+      "$description": "ExposureTrial — detected in extracted data but not described by AI"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    },
+    "itcavantgardegothicmedium": {
+      "$value": "ITC_Avant_Garde_Gothic_Medium",
+      "$type": "fontFamily",
+      "$description": "ITC_Avant_Garde_Gothic_Medium — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ITC_Avant_Garde_Gothic_Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ExposureTrial",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "70px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 70px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "104px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 104px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Parafina",
+        "fontSize": "173px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 173px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "wheat-cream-canvas": {
+      "$value": "#e5dccd",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — warm off-white that receives all editorial content"
+    },
+    "photographic-full-bleed": {
+      "$value": "#1a3a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Hero and feature sections use full-bleed photography as the surface itself; type overlays directly"
+    },
+    "card-surface": {
+      "$value": "#e5dccd",
+      "$type": "color",
+      "$description": "Surface level 2: Cards sit on the same cream canvas, distinguished by 20px radius and hairline Harvest Copper borders"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.makearte.ca",
+      "siteName": "arte*",
+      "extractedAt": "2026-06-03T19:27:50.712Z",
+      "variant": "extended"
+    }
+  }
+}

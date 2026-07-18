@@ -1,0 +1,312 @@
+{
+  "color": {
+    "oat-cream": {
+      "$value": "#e9dfd2",
+      "$type": "color",
+      "$description": "Oat Cream — Secondary surface — feature card backgrounds, warm button fills, tag backgrounds"
+    },
+    "morning-fog": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Morning Fog — Page canvas, subtle borders, hairline dividers — the base everything sits on"
+    },
+    "ink-black": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dark filled buttons, dark icon fills"
+    },
+    "sticker-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Sticker Black — Heavy borders on cards, images, and the logo wordmark — the signature outline that makes elements feel cut from paper"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces above the cream canvas, text on dark buttons, input field fills"
+    },
+    "kofi-blue": {
+      "$value": "#aac9f7",
+      "$type": "color",
+      "$description": "Kofi Blue — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "cobalt-pop": {
+      "$value": "#72a4f2",
+      "$type": "color",
+      "$description": "Cobalt Pop — Primary action hover/pressed state, saturated Kofi Blue variant"
+    }
+  },
+  "font": {
+    "bogue-black": {
+      "$value": "bogue-black",
+      "$type": "fontFamily",
+      "$description": "Hero and section display headlines — a custom chunky rounded display face used only at 60px+ to stamp the page with a hand-set zine quality"
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "All UI text: nav links, body copy, button labels, subheadings, card titles, input fields, and footer text — clean geometric sans carrying all functional typography"
+    },
+    "font-awesome-6-pro": {
+      "$value": "Font Awesome 6 Pro",
+      "$type": "fontFamily",
+      "$description": "Solid icon glyphs for category tags and feature markers"
+    },
+    "font-awesome-6-brands": {
+      "$value": "Font Awesome 6 Brands",
+      "$type": "fontFamily",
+      "$description": "Brand/social icon glyphs"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Font Awesome 6 Pro",
+        "fontSize": "20px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Font Awesome 6 Brands",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "bogue-black",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "bogue-black",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — warm light gray that softens the whole experience"
+    },
+    "oat-surface": {
+      "$value": "#e9dfd2",
+      "$type": "color",
+      "$description": "Surface level 2: Feature card and section backgrounds with extra warmth"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated card surface sitting on the cream canvas"
+    },
+    "blue-wash": {
+      "$value": "#aac9f7",
+      "$type": "color",
+      "$description": "Surface level 4: Brand-tinted footer or highlight band — the warmest chromatic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ko-fi.com",
+      "siteName": "Ko-fi",
+      "extractedAt": "2026-06-03T19:13:56.054Z",
+      "variant": "extended"
+    }
+  }
+}

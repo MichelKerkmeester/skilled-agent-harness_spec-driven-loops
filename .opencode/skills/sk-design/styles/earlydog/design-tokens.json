@@ -1,0 +1,227 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fff9f0",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces, button fills — warm off-white gives the entire interface a paper-like, print-graphic feel that warms the cool blue accent"
+    },
+    "midnight-ink": {
+      "$value": "#000609",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, heading strokes, hairline borders, outlined button frames, logo mark — near-black with a barely-perceptible blue tint keeps it from feeling dead"
+    },
+    "signal-blue": {
+      "$value": "#0a65db",
+      "$type": "color",
+      "$description": "Signal Blue — Accent headings, icon strokes, active nav emphasis, illustration accent shapes — the single chromatic functional color, used sparingly to mark emphasis and brand voice"
+    },
+    "ember-red": {
+      "$value": "#ee4623",
+      "$type": "color",
+      "$description": "Ember Red — Illustration accent — primary-color punctuation in geometric compositions, starbursts, circular forms, and triangle fills"
+    },
+    "saffron-yellow": {
+      "$value": "#ffd23f",
+      "$type": "color",
+      "$description": "Saffron Yellow — Illustration accent — warm primary used in geometric blocks, semicircles, and composition fills alongside Ember Red and Signal Blue"
+    },
+    "blush-pink": {
+      "$value": "#f4c6c6",
+      "$type": "color",
+      "$description": "Blush Pink — Illustration accent — softens the primary-color palette in geometric compositions, used in rectangles and overlapping shapes"
+    }
+  },
+  "font": {
+    "degular-display": {
+      "$value": "degular-display",
+      "$type": "fontFamily",
+      "$description": "Display headlines for all section headings and the hero title. The single weight 700 and positive letter-spacing (0.009–0.019em) create a wide-set, geometric presence — letterspacing INCREASES with size, the opposite of conventional display type. This gives 116px headlines airy breathing room rather than dense visual mass, matching the Bauhaus illustration language of separated geometric forms."
+    },
+    "usual": {
+      "$value": "usual",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, buttons, links, footer, card descriptions. The 1.78–1.82 line-height is notably generous for sans-serif body text — typical SaaS body sits at 1.5–1.6, but Earlydog's open leading reinforces the spacious layout. Weight 700 is used sparingly for inline emphasis."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "usual",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "degular-display",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "degular-display",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "degular-display",
+        "fontSize": "116px",
+        "fontWeight": 700,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 116px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fff9f0",
+      "$type": "color",
+      "$description": "Surface level 1: Page background across all sections"
+    },
+    "signal-blue-panel": {
+      "$value": "#0a65db",
+      "$type": "color",
+      "$description": "Surface level 2: Accent surface for illustration blocks containing the blue base — appears inside artwork, not as page chrome"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.earlydog.com",
+      "siteName": "Earlydog",
+      "extractedAt": "2026-06-03T16:52:39.979Z",
+      "variant": "extended"
+    }
+  }
+}

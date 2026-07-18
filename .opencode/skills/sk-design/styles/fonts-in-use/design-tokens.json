@@ -1,0 +1,247 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, all borders, logo wordmark, nav links, search input border — the sole ink color in the entire system"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone — Alternate row striping, search input fill, subtle list separators — a barely-there warm gray for differentiation"
+    },
+    "mist": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Mist — Input borders, subtle dividers — the lightest functional border tone"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, secondary metadata, disabled nav — 7.4:1 contrast against white still passes AAA"
+    }
+  },
+  "font": {
+    "bentonsansre": {
+      "$value": "BentonSansRE",
+      "$type": "fontFamily",
+      "$description": "The sole UI typeface — navigation, body, buttons, input fields, table data, footer. At 9–10px it functions as fine print (image counts, sort labels); at 14–16px as body and nav. The condensed proportions and newspaper-grade x-height give the interface its specimen-sheet feel. Substitute: Franklin Gothic URW or a neutral grotesque like Source Sans 3."
+    },
+    "relaycond": {
+      "$value": "RelayCond",
+      "$type": "fontFamily",
+      "$description": "Reserved for editorial accents — the 'FONTS IN USE' wordmark at 36px (line-height 1.0, nearly square) and 'Staff Pick' ribbon badges at 18px. The condensed width makes the logo read as a masthead rather than UI. Substitute: Roboto Condensed or Oswald."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BentonSansRE",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "RelayCond",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "RelayCond",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "RelayCond",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "123": {
+      "$value": "123px",
+      "$type": "dimension",
+      "$description": "Spacing 123px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate list rows, input fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fontsinuse.com",
+      "siteName": "Fonts In Use",
+      "extractedAt": "2026-06-03T17:37:55.644Z",
+      "variant": "extended"
+    }
+  }
+}

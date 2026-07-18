@@ -1,0 +1,322 @@
+{
+  "color": {
+    "deep-iris": {
+      "$value": "#16165c",
+      "$type": "color",
+      "$description": "Deep Iris — Page canvas, hero background, primary surface — the brand-defining midnight violet that sets the entire dark mode identity"
+    },
+    "iris-shadow": {
+      "$value": "#232269",
+      "$type": "color",
+      "$description": "Iris Shadow — Elevated card surfaces on dark canvas, secondary card backgrounds — one step lighter than canvas for depth without breaking the violet atmosphere"
+    },
+    "iris-glow": {
+      "$value": "#403cd5",
+      "$type": "color",
+      "$description": "Iris Glow — Mid-tone accent surface, footer background, highlighted metric blocks — mid-violet for tertiary elevation and accent fills"
+    },
+    "iris-pulse": {
+      "$value": "#5350cc",
+      "$type": "color",
+      "$description": "Iris Pulse — Violet action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "iris-border": {
+      "$value": "#4846c6",
+      "$type": "color",
+      "$description": "Iris Border — Card border outlines, subtle surface edges on dark mode — keeps card perimeters defined without breaking the violet mood"
+    },
+    "iris-veil": {
+      "$value": "#524fe1",
+      "$type": "color",
+      "$description": "Iris Veil — Body and card border accent, secondary surface outline — lighter violet for hairline separators on dark surfaces"
+    },
+    "lilac-mist": {
+      "$value": "#b1a6f6",
+      "$type": "color",
+      "$description": "Lilac Mist — Line-art illustration stroke, decorative SVG fills, wireframe graphics — soft violet for technical/medical illustration overlay"
+    },
+    "clinical-cyan": {
+      "$value": "#00b1ff",
+      "$type": "color",
+      "$description": "Clinical Cyan — Data highlights, chart strokes, icon accents, inline links, interactive borders — the primary data-viz and link color across the UI"
+    },
+    "cyan-soft": {
+      "$value": "#59b4ff",
+      "$type": "color",
+      "$description": "Cyan Soft — Secondary cyan accent, softer data labels, gradient endpoints paired with Clinical Cyan"
+    },
+    "mint-vital": {
+      "$value": "#00ffaa",
+      "$type": "color",
+      "$description": "Mint Vital — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "teal-signal": {
+      "$value": "#2ee9ff",
+      "$type": "color",
+      "$description": "Teal Signal — Highlight accent for key data callouts and chart emphasis — brighter teal-cyan for moments that need to pop"
+    },
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud White — Primary text, button text on dark, button backgrounds in light section, high-contrast headings"
+    },
+    "pearl": {
+      "$value": "#f4f4f6",
+      "$type": "color",
+      "$description": "Pearl — Soft icon strokes, subtle dividers, and low-emphasis decorative details. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#d8d8e3",
+      "$type": "color",
+      "$description": "Ash — Muted text on light sections, secondary borders, low-emphasis labels"
+    },
+    "fog": {
+      "$value": "#9494a9",
+      "$type": "color",
+      "$description": "Fog — Hairline dividers, disabled borders, low-contrast separators"
+    }
+  },
+  "font": {
+    "gilroy": {
+      "$value": "Gilroy",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — weight 500 for body, links, buttons, cards; weight 600 for all headings and display. Gilroy's geometric humanism gives medical data a friendly, non-clinical warmth"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "46px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "66px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 66px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "92px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 92px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "124px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 124px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6.9984px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "15.9984px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24.0048px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "31.9968px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1425.6px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "deep-iris-canvas": {
+      "$value": "#16165c",
+      "$type": "color",
+      "$description": "Surface level 1: Page and hero background — the foundational dark surface"
+    },
+    "iris-shadow": {
+      "$value": "#232269",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards and panels on dark canvas"
+    },
+    "iris-glow": {
+      "$value": "#403cd5",
+      "$type": "color",
+      "$description": "Surface level 3: Highlighted metric blocks, footer, mid-elevation panels"
+    },
+    "pearl-inversion": {
+      "$value": "#f4f4f6",
+      "$type": "color",
+      "$description": "Surface level 4: Light-section backgrounds, inverted content blocks"
+    },
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 5: Top-elevation card surfaces in light sections, button fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://impilo.health",
+      "siteName": "Impilo",
+      "extractedAt": "2026-06-03T19:11:00.879Z",
+      "variant": "extended"
+    }
+  }
+}

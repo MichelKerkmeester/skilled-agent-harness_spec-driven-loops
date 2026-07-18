@@ -1,0 +1,302 @@
+{
+  "color": {
+    "carbon-black": {
+      "$value": "#2a2a2a",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, nav links, body copy, badge text, footer copy — the near-black that carries every word on the site"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone — Page canvas and primary surface — the warm off-white that fills every section background"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Maximum-contrast text and hard borders, reserved for the strongest emphasis moments"
+    },
+    "linen": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Linen — Subtle elevated surface and section dividers — one step lighter than the canvas for soft separation"
+    },
+    "ash": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Ash — Muted fills, hairline borders, and disabled/inactive surface treatments"
+    },
+    "parchment": {
+      "$value": "#f0edea",
+      "$type": "color",
+      "$description": "Parchment — Alternate warm section background — introduces a barely-perceptible cream tint to break the neutral flow"
+    },
+    "stone": {
+      "$value": "#bcbcb4",
+      "$type": "color",
+      "$description": "Stone — Deepest mid-gray — used for low-emphasis supporting text and the dimmest UI separators"
+    },
+    "clay": {
+      "$value": "#ccc4b9",
+      "$type": "color",
+      "$description": "Clay — Warm mid-gray for transitional surfaces between bone and parchment"
+    }
+  },
+  "font": {
+    "founders-grotesk": {
+      "$value": "Founders Grotesk",
+      "$type": "fontFamily",
+      "$description": "Sole brand typeface. Weight 300 at 70–101px for the monumental editorial hero and section titles; weight 400 at 12–22px for body, nav, meta labels, and case study descriptions. The extreme weight contrast (300 vs 400) and the 5× size jump from body to display are the core typographic moves — no other type system in the palette."
+    },
+    "editorial-neue": {
+      "$value": "Editorial Neue",
+      "$type": "fontFamily",
+      "$description": "Secondary editorial serif used sparingly as an accent counterpoint to Founders Grotesk — appears in specific body or pull-text moments to break the grotesque monotony with a classical note. Tight -0.0600em tracking and 0.90 line-height match the display discipline."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Editorial Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "101px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 101px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background"
+    },
+    "linen-sheet": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and section surface"
+    },
+    "parchment-block": {
+      "$value": "#f0edea",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate warm section band"
+    },
+    "ash-mat": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Surface level 3: Muted inactive or disabled fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dashdigital.studio",
+      "siteName": "Dash Digital Studio",
+      "extractedAt": "2026-06-03T17:43:17.802Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "color": {
+    "vermillion": {
+      "$value": "#ed2e38",
+      "$type": "color",
+      "$description": "Vermillion — Wordmark, link text, heading text, outlined-button borders — the single chromatic note in an otherwise neutral palette, used as outline and ink rather than flood fill to keep it editorial"
+    },
+    "blush-canvas": {
+      "$value": "#fcf0f3",
+      "$type": "color",
+      "$description": "Blush Canvas — Page background, input field fills — a barely-there warm pink that softens the white experience and gives the brand its sunlit, not sterile, identity"
+    },
+    "charcoal-ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal Ink — Body copy, paragraph text, default readable text — softer than pure black, lets the red feel like the only sharp edge on the page"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Button text and occasional thin button borders where a neutral-bordered variant is needed"
+    }
+  },
+  "font": {
+    "linotypehelveticaneueltstdlt": {
+      "$value": "LinotypeHelveticaNeueLTStdLt",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the face is set at 80–110px with line-height compressed to 0.88–0.91, which crops ascenders/descenders and turns product names into poster-sized editorial typography. The light weight against the tight leading is the signature move: a whisper at billboard scale."
+    },
+    "linotypehelveticaneueltstdroman": {
+      "$value": "LinotypeHelveticaNeueLTStdRoman",
+      "$type": "fontFamily",
+      "$description": "Everything else: body, links, buttons, nav, subheadings, footer, list items. Single Roman weight, no bold variants — hierarchy is achieved by size, color (red vs charcoal), and case (uppercase for nav, sentence case for body)."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Rare system-font fallback for narrow button labels where the custom face is unavailable"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdLt",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "LinotypeHelveticaNeueLTStdLt",
+        "fontSize": "110px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 110px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#fcf0f3",
+      "$type": "color",
+      "$description": "Surface level 1: Page-wide base background — warm pink, never pure white, sets the Mediterranean mood"
+    },
+    "verdant-overlay": {
+      "$value": "#0c1a0",
+      "$type": "color",
+      "$description": "Surface level 2: Dark treatment used as a full-bleed image/photography backdrop (pool, foliage, lifestyle scenes), not a UI surface token — text overlaid in white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.diablaoutdoor.com/en",
+      "siteName": "Diabla",
+      "extractedAt": "2026-06-03T18:33:25.015Z",
+      "variant": "extended"
+    }
+  }
+}

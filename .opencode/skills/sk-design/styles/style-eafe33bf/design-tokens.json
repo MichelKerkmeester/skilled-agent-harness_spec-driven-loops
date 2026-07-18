@@ -1,0 +1,312 @@
+{
+  "color": {
+    "press-ink": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Press Ink — Primary text, hairlines, section borders, icon strokes, footer text — the singular dark tone that carries 95% of all foreground information"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, nav pill background, heading-bordered surfaces"
+    },
+    "newsprint": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Newsprint — Subtle surface fills, soft borders, hairline dividers, the tone behind the crumpled-paper texture"
+    },
+    "foil-gray": {
+      "$value": "#e1e1e1",
+      "$type": "color",
+      "$description": "Foil Gray — Light borders, icon stroke accents, secondary dividers"
+    },
+    "mute-gray": {
+      "$value": "#c5c5c5",
+      "$type": "color",
+      "$description": "Mute Gray — Tertiary text, disabled state, low-contrast surface lines"
+    }
+  },
+  "font": {
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Universal workhorse — body copy at 17px/1.29, display headlines at 75–274px with -0.04em tracking at the largest sizes, nav labels at 15px"
+    },
+    "ppsupplymono": {
+      "$value": "PPSupplyMono",
+      "$type": "fontFamily",
+      "$description": "Meta labels and bracketed captions like [01-N INTRODUCTION] and section tags (ADVERTISEMENTS, CREATIVE/AGENCY, OFFLINE MARKETING) — these are the only typographic accents that break the Helvetica monotony"
+    },
+    "ppsupplysans": {
+      "$value": "PPSupplySans",
+      "$type": "fontFamily",
+      "$description": "Secondary nav and footer micro-text where a different sans voice is needed"
+    },
+    "rock-salt": {
+      "$value": "Rock Salt",
+      "$type": "fontFamily",
+      "$description": "Rare handwritten signature accent for one or two words per page (e.g. the circled 'pleasure' annotation) — used like a stamp, never for content"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "PPSupplyMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PPSupplyMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PPSupplyMono",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PPSupplySans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Rock Salt",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "PPSupplySans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "274px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 274px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "81": {
+      "$value": "81px",
+      "$type": "dimension",
+      "$description": "Spacing 81px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "288px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full page background, base for all content"
+    },
+    "paper": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle fills behind body type and the crumpled texture layer"
+    },
+    "elevated-pill": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Floating navigation container, isolated card blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.bpco.kr",
+      "siteName": "큰그림컴퍼니",
+      "extractedAt": "2026-06-03T20:39:14.244Z",
+      "variant": "extended"
+    }
+  }
+}

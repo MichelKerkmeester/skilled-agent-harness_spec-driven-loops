@@ -1,0 +1,382 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, icon strokes"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, text on dark"
+    },
+    "ink": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Ink — Filled button background, dark card surfaces, hero base"
+    },
+    "charcoal": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Charcoal — Dark feature card surfaces, elevated dark panels"
+    },
+    "graphite": {
+      "$value": "#515151",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, muted labels"
+    },
+    "slate": {
+      "$value": "#979797",
+      "$type": "color",
+      "$description": "Slate — Muted helper text, disabled labels, logo grayscale"
+    },
+    "ash": {
+      "$value": "#b9b9b9",
+      "$type": "color",
+      "$description": "Ash — Soft surface tint, placeholder backgrounds"
+    },
+    "fog": {
+      "$value": "#cfcfcf",
+      "$type": "color",
+      "$description": "Fog — Dividers, input borders, ghost button fills"
+    },
+    "mist": {
+      "$value": "#c5c5c5",
+      "$type": "color",
+      "$description": "Mist — Light borders on muted backgrounds"
+    }
+  },
+  "font": {
+    "switzer-variable": {
+      "$value": "Switzer Variable",
+      "$type": "fontFamily",
+      "$description": "Switzer Variable — detected in extracted data but not described by AI"
+    },
+    "kibitz-pro-light": {
+      "$value": "Kibitz Pro Light",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — used at all H1–H4 sizes. Weight 300 is anti-convention: most SaaS uses 600–700 for authority, this whisper-weight conveys authority through restraint. Tight line-heights (0.98–1.06) let large sizes feel carved from a single block rather than stacked lines."
+    },
+    "switzer": {
+      "$value": "Switzer",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans-serif. Weight 400 for body and 500 for nav labels and emphasis. Geometric humanist construction keeps it neutral so the serif can lead."
+    },
+    "space-mono": {
+      "$value": "Space Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace for labels, tags, metadata, and code-adjacent micro-copy. Adds technical credibility to the editorial voice."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback utility text — secondary nav micro-copy and fallbacks. Lowest in the hierarchy; should not appear on hero or feature content."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Space Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Switzer Variable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Space Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Switzer",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Kibitz Pro Light",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Kibitz Pro Light",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Kibitz Pro Light",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Kibitz Pro Light",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Kibitz Pro Light",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas for all content sections"
+    },
+    "fog": {
+      "$value": "#cfcfcf",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle dividers, input field backgrounds, ghost button surfaces"
+    },
+    "ash": {
+      "$value": "#b9b9b9",
+      "$type": "color",
+      "$description": "Surface level 2: Tertiary tinted backgrounds, placeholder zones"
+    },
+    "ink": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Surface level 3: Filled button surface, header on light pages, carousel arrow controls"
+    },
+    "charcoal": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 4: Feature card dark surface, elevated dark panels"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 5: Hero canvas base, deepest dark for atmospheric sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ankar.ai",
+      "siteName": "Ankar AI",
+      "extractedAt": "2026-06-03T15:45:45.699Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@theme {
+  /* Colors */
+  --color-aubergine: #240029;
+  --color-fuchsia-signal: #df37a7;
+  --color-heather: #6d526d;
+  --color-glowstick: #ffcc11;
+  --color-plum-tinted: #d4ccd4;
+  --color-ink: #222222;
+  --color-smoke: #bbadbb;
+  --color-charcoal: #333333;
+  --color-frost: #767676;
+  --color-forest: #15803d;
+  --color-mint: #bbf7d0;
+  --color-honeydew: #dcfce7;
+  --color-strawberry: #ef4444;
+  --color-mango: #22c55e;
+  --color-canvas: #ffffff;
+  --color-hero-glow: #ffbdd3;
+
+  /* Typography */
+  --font-inter-var: 'Inter Var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-kaio: 'Kaio', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-permanent-marker: 'Permanent Marker', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-phosphor: 'Phosphor', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-6-brands: 'Font Awesome 6 Brands', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-phosphor-bold: 'Phosphor-Bold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-phosphor-fill: 'Phosphor-Fill', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family: 'Family', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fraunces: 'Fraunces', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-chakra-petch: 'Chakra Petch', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 10px;
+  --leading-micro: 1.4;
+  --tracking-micro: -0.2px;
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.16px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.16px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.1px;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.14px;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -1.12px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -1.6px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-2xl-2: 22px;
+  --radius-3xl: 32px;
+  --radius-3xl-2: 46px;
+  --radius-full: 64px;
+  --radius-full-2: 999px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(41, 0, 41, 0.11) 0px 0px 0px 1px, rgba(32, 0, 36, 0.05) 0px 2px 2px 0px;
+  --shadow-subtle-2: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-3: rgba(255, 255, 255, 0.05) 0px 0px 0px 1px;
+  --shadow-subtle-4: rgba(41, 0, 41, 0.2) 0px 0px 0px 1px inset;
+  --shadow-subtle-5: rgba(32, 0, 36, 0.11) 0px 0px 0px 1px, rgba(32, 0, 36, 0.01) 0px 1px 1.5px 0px, rgba(32, 0, 36, 0.02) 0px 2px 3px 0px, rgba(32, 0, 36, 0.03) 0px 4px 6px 0px, rgba(32, 0, 36, 0.04) 0px 8px 12px 0px, rgba(32, 0, 36, 0.05) 0px 16px 24px 0px, rgba(32, 0, 36, 0.06) 0px 24px 36px 0px, rgba(32, 0, 36, 0.07) 0px 36px 54px 0px, rgba(32, 0, 36, 0.08) 0px 54px 81px 0px;
+  --shadow-subtle-6: rgba(32, 0, 36, 0.01) 0px 1px 1.5px 0px, rgba(32, 0, 36, 0.02) 0px 2px 3px 0px, rgba(32, 0, 36, 0.03) 0px 4px 6px 0px, rgba(32, 0, 36, 0.04) 0px 8px 12px 0px, rgba(32, 0, 36, 0.05) 0px 16px 24px 0px;
+  --shadow-subtle-7: rgba(32, 0, 36, 0.11) 0px 0px 0px 1px, rgba(32, 0, 36, 0.05) 0px 2px 2px 0px;
+  --shadow-subtle-8: rgba(32, 0, 36, 0.11) 0px 0px 0px 1px;
+  --shadow-subtle-9: rgba(41, 0, 41, 0.11) 0px 0px 0px 1px;
+  --shadow-subtle-10: rgba(255, 255, 255, 0.11) 0px 0px 0px 1px;
+  --shadow-subtle-11: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-12: rgba(32, 0, 36, 0.05) 0px 1px 2px 0px, rgba(255, 255, 255, 0.4) 0px 10px 24px -10px inset;
+}

@@ -1,0 +1,150 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, all borders, structural rules, button text and outlines — the only chromatic signal in the system"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, surface backgrounds, button interiors, inverse text on dark photography"
+    }
+  },
+  "font": {
+    "neuehaas-web": {
+      "$value": "NeueHaas-web",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every role: 19px body, 29px subheading, 38px secondary heading, 95px hero display, 160px editorial display. Weight stays at 400 (regular) even at maximum scale — the system derives hierarchy from size and line-height compression, never from boldness. Tracking tightens to -0.03em universally. At display scale (160px), line-height drops to 0.90 so lines physically overlap, creating layered typographic compositions rather than stacked headlines."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.95
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.95
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 2.9
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 95px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "NeueHaas-web",
+        "fontSize": "160px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 160px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, the only surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://thebeamslondon.com",
+      "siteName": "The Beams",
+      "extractedAt": "2026-06-03T21:58:53.103Z",
+      "variant": "extended"
+    }
+  }
+}

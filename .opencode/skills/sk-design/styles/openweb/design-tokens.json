@@ -1,0 +1,472 @@
+{
+  "color": {
+    "blush-paper": {
+      "$value": "#f1e9e7",
+      "$type": "color",
+      "$description": "Blush Paper — Page canvas, all section backgrounds — the warm rose-tinted ground that gives the entire site its editorial, printed-on-paper feel. Never a flat white, never a cool gray"
+    },
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, filled buttons, all iconography, form labels, footer rules. The dominant non-canvas color — drives every typographic and interactive element"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Text color inside filled black buttons, reverse-fill surfaces, and form input contrast. Used sparingly as the counter-tone to Carbon Ink"
+    },
+    "fossil-gray": {
+      "$value": "#7b7f83",
+      "$type": "color",
+      "$description": "Fossil Gray — Muted helper text, secondary metadata, subdued form placeholder tones. The only neutral that softens Carbon Ink for non-primary copy"
+    },
+    "signal-blue": {
+      "$value": "#0058fe",
+      "$type": "color",
+      "$description": "Signal Blue — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    }
+  },
+  "font": {
+    "copernicus": {
+      "$value": "Copernicus",
+      "$type": "fontFamily",
+      "$description": "Copernicus carries the entire voice — it is a high-contrast transitional serif whose terminals and sharp serifs make 70–90px display sizes feel literary rather than decorative. The signature move is its aggressive negative tracking: -0.092em at 90px tightens the headline into a near-solid mass of type, which against the warm blush ground reads as a printed editorial pull-quote, not a SaaS H1. Body sizes (15–18px) sit at near-normal tracking, so the tension between tight display and loose running text mirrors a magazine spread."
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "A vestigial system-font presence — appears only in minor utility spots (small labels, icons-in-text). Not a typographic voice; effectively a fallback safety net."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 25px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 25px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 25px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 48px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 60px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 60px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 60px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 70px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 80px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.84
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 90px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "188": {
+      "$value": "188px",
+      "$type": "dimension",
+      "$description": "Spacing 188px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "blush-paper": {
+      "$value": "#f1e9e7",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the single base surface for the entire site"
+    },
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Filled button surface and inverted text background"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Reverse-fill elements (button labels, form field text) on Carbon Ink"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.openweb.com",
+      "siteName": "OpenWeb",
+      "extractedAt": "2026-06-03T15:45:05.032Z",
+      "variant": "extended"
+    }
+  }
+}

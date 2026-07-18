@@ -1,0 +1,352 @@
+{
+  "color": {
+    "onyx-canvas": {
+      "$value": "#333438",
+      "$type": "color",
+      "$description": "Onyx Canvas — Page background — the primary dark surface that absorbs all surrounding chrome and lets photography and accent color carry visual weight"
+    },
+    "graphite-card": {
+      "$value": "#202124",
+      "$type": "color",
+      "$description": "Graphite Card — Card and product tile surfaces — one step lifted from the canvas, used for product listings, trending panels, and secondary groupings"
+    },
+    "charcoal-border": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Charcoal Border — Hairline borders on inputs, icons, and button edges — barely visible, defines boundaries without breaking the dark atmosphere"
+    },
+    "muted-iron": {
+      "$value": "#9e9e9e",
+      "$type": "color",
+      "$description": "Muted Iron — Muted helper text, secondary icon strokes, and low-emphasis metadata"
+    },
+    "fog": {
+      "$value": "#45474c",
+      "$type": "color",
+      "$description": "Fog — Subtle link borders and tertiary structural lines"
+    },
+    "snow": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Snow — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "ice-blue": {
+      "$value": "#99c3ff",
+      "$type": "color",
+      "$description": "Ice Blue — Outlined accent borders and decorative strokes on links, images, and card frames — the cool chromatic signature that brands links and featured borders without filling them"
+    },
+    "crimson-spotlight": {
+      "$value": "#980b0b",
+      "$type": "color",
+      "$description": "Crimson Spotlight — Red outline accent for tags, dividers, and focused UI edges."
+    },
+    "royal-blue": {
+      "$value": "#113979",
+      "$type": "color",
+      "$description": "Royal Blue — Category tile background for Electronics — a saturated mid-blue that gives gadgets a stage"
+    },
+    "powder-wash": {
+      "$value": "#d2e3fc",
+      "$type": "color",
+      "$description": "Powder Wash — Light blue category background for Accessories — a desaturated counterweight to the deeper Royal Blue"
+    },
+    "forest": {
+      "$value": "#073618",
+      "$type": "color",
+      "$description": "Forest — Category tile background for Toys & Games and Home & Garden — deep green anchors the more organic categories"
+    },
+    "mint": {
+      "$value": "#a8dab5",
+      "$type": "color",
+      "$description": "Mint — Light green category background for Health & Wellness — the fresh, airy counterpart to Forest"
+    },
+    "butter": {
+      "$value": "#ffedb8",
+      "$type": "color",
+      "$description": "Butter — Category tile background for Beauty — warm pale yellow that softens the cosmetic category"
+    },
+    "sky-tint": {
+      "$value": "#e8f0fe",
+      "$type": "color",
+      "$description": "Sky Tint — Lightest blue wash, used as a text/foreground pairing on dark accent backgrounds to guarantee AAA contrast"
+    },
+    "violet-whisper": {
+      "$value": "#c58af9",
+      "$type": "color",
+      "$description": "Violet Whisper — Rare accent — appears on a small number of links, probably AI-related or featured annotation links"
+    }
+  },
+  "font": {
+    "crimson-pro": {
+      "$value": "Crimson Pro",
+      "$type": "fontFamily",
+      "$description": "Display serif for the editorial headline moments. The 220px weight 200 'Holiday 100' wordmark is the single most identifiable element — a high-contrast serif at extreme size that signals 'curated annual feature' rather than a standard product page. Also used at 80px for section headers with italic emphasis on category names ('Beauty Maven' in italic)."
+    },
+    "google-sans": {
+      "$value": "Google Sans",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface. Used for subtitles, category labels, card titles, button text, and product metadata. The weight 200 light variant is a distinctive choice — it keeps body text from feeling heavy against the dark canvas and pairs naturally with the serif display weights. The consistent -0.02em tracking across all sizes tightens the type into a controlled grid."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for ancillary content; sparse usage means it serves as safety net for elements not styled in the custom fonts."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Google Sans",
+        "fontSize": "30px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Crimson Pro",
+        "fontSize": "48px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Crimson Pro",
+        "fontSize": "80px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Crimson Pro",
+        "fontSize": "220px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 220px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "57": {
+      "$value": "57px",
+      "$type": "dimension",
+      "$description": "Spacing 57px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "onyx-canvas": {
+      "$value": "#333438",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the consistent dark field across all sections."
+    },
+    "graphite-card": {
+      "$value": "#202124",
+      "$type": "color",
+      "$description": "Surface level 1: Product card and panel surfaces, slightly lifted from the canvas."
+    },
+    "category-tile": {
+      "$value": "#980b0b | #113979 | #073618 | #ffedb8 | #a8dab5 | #d2e3fc | #e8f0fe",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed colored backgrounds for category cards — each category gets its own color stage for product photography."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://shopping.google.com/m/bestthings",
+      "siteName": "Holiday 100",
+      "extractedAt": "2026-06-03T21:55:00.077Z",
+      "variant": "extended"
+    }
+  }
+}

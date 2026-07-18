@@ -1,0 +1,98 @@
+:root {
+  /* Colors */
+  --color-void-canvas: #1f232e;
+  --color-abyss: #0c0f19;
+  --color-singularity: #060913;
+  --color-carbon: #17191e;
+  --color-lunar-white: #f2f6fa;
+  --color-platinum: #e5e7eb;
+  --color-mist: #bfc1c9;
+  --color-steel: #858b98;
+  --color-gunmetal: #545864;
+  --color-nebula-gradient: #3245ff;
+  --gradient-nebula-gradient: linear-gradient(83.21deg, rgb(50, 69, 255), rgb(184, 69, 237));
+  --color-plasma-gradient: #d83333;
+  --gradient-plasma-gradient: linear-gradient(66.77deg, rgb(216, 51, 51), rgb(240, 65, 255));
+  --color-aurora-mint: #4bf3c8;
+  --color-plasma-blue: #54b9ff;
+  --color-ultraviolet: #acafff;
+  --color-electric-cyan: #00daef;
+  --color-amber: #ffd493;
+  --color-signal-blue: #61dafb;
+
+  /* Typography — Font Families */
+  --font-ui-sans-serif: 'ui-sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-obviously: 'Obviously', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace: 'ui-monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-mdio: 'MDIO', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.3px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.65;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 36px;
+  --leading-heading: 1.11;
+  --text-display: 48px;
+  --leading-display: 1.1;
+
+  /* Typography — Weights */
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-68: 68px;
+  --spacing-80: 80px;
+  --spacing-144: 144px;
+  --spacing-160: 160px;
+  --spacing-224: 224px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-cards: 16px;
+  --radius-chips: 9999px;
+  --radius-images: 12px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-void-canvas: #1f232;
+  --surface-carbon-card: #17191;
+  --surface-abyss-well: #0c0f19;
+  --surface-singularity: #060913;
+}

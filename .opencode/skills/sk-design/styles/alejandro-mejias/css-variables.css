@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-acid-lime: #ebff00;
+  --color-obsidian: #080707;
+  --color-pure-black: #000000;
+  --color-bone-white: #ffffff;
+  --color-fog: #c8c8c8;
+  --color-slate: #383838;
+
+  /* Typography — Font Families */
+  --font-fk-raster-grotesk-compact-trial-sharp: 'FK Raster Grotesk Compact Trial Sharp', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-be-vietnam-pro: 'Be Vietnam Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-medium: 'Inter Medium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-sans-serif: 'system sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1;
+  --tracking-caption: 0.86px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.9px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: 1.344px;
+  --text-heading: 48px;
+  --leading-heading: 1;
+  --tracking-heading: 2.016px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --section-gap: 48px;
+  --card-padding: 16px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 30px;
+  --radius-3xl-3: 40px;
+  --radius-full: 50px;
+  --radius-full-2: 60px;
+  --radius-full-3: 72px;
+  --radius-full-4: 84px;
+  --radius-full-5: 94px;
+  --radius-full-6: 120px;
+
+  /* Named Radii */
+  --radius-tags: 4px;
+  --radius-cards: 24px;
+  --radius-pills: 72-84px;
+  --radius-images: 24px;
+  --radius-buttons: 4px;
+  --radius-special: 30-40px;
+
+  /* Surfaces */
+  --surface-bone-canvas: #ffffff;
+  --surface-acid-highlight: #ebff00;
+  --surface-fog-plate: #c8c8c8;
+  --surface-slate-card: #383838;
+  --surface-obsidian-ground: #080707;
+}

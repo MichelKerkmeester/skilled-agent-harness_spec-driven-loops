@@ -1,0 +1,1318 @@
+{
+  "source": "https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47",
+  "uuid": "369ac603-c1e9-4231-9369-a198493f8e47",
+  "name": "Hyper Foundation",
+  "northStar": "Living emerald sanctuary — a deep forest vault where a single luminous mint glow breathes through organic, shadowed forms.",
+  "capturedAt": "2026-07-18T09:31:17.801Z",
+  "meta": {
+    "url": "https://hyperliquid.xyz",
+    "siteName": "Hyper Foundation",
+    "extractedAt": "2026-06-03T19:20:38.025Z",
+    "durationMs": 29896,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 371,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Mint Glow (#97fcd7) as the only fully saturated color on any screen — restrict it to one CTA, one brand mark, or one highlight per viewport.",
+      "Set display headlines in Teodor weight 400 at 90px with 0.75 line-height; this tight leading is the signature editorial gesture.",
+      "Set body and UI text in Inter weight 300 by default; reserve weight 400 for interactive controls and emphasis.",
+      "Use 60px border-radius for every button, tag, and pill element — sharp corners would feel off-system.",
+      "Express elevation with the mint outer-glow shadow on cards, never with gray drop-shadow stacks.",
+      "Build backgrounds from organic, softly-edged shapes in Abyss Green, Deep Lagoon, and Shadow Teal layered over Forest Depths — never flat solid fills for hero regions.",
+      "Keep paragraph text in Mist Gray (#b0c5c1), reserving Pure Light for headlines only — this is what makes the typography feel layered rather than uniformly white."
+    ],
+    "donts": [
+      "Do not introduce any new saturated hue — the entire chromatic vocabulary is mint; adding red, blue, or yellow breaks the rarified atmosphere.",
+      "Do not use box-shadow with gray or black tones; the only allowed shadow color is the mint glow rgba(151,252,215,0.4).",
+      "Do not set Teodor below 24px — its editorial detail collapses at small sizes and Inter should take over.",
+      "Do not use square or 4px corner radii on interactive elements; the system is defined by 60px pill geometry.",
+      "Do not place mint text directly on the Forest Depths canvas at small sizes without enough weight — mint on dark needs at least 16px / 400 weight to read.",
+      "Do not use the Charcoal Hairline (#2c2e33) as a visible decorative border — it is for near-invisible structural hairlines only.",
+      "Do not center-align body paragraphs; keep body text left-aligned to maintain the editorial reading rhythm."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#072724",
+        "name": "Forest Depths",
+        "role": "Page canvas, hero background, deep surface layer — the dominant dark field that everything else floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f3933",
+        "name": "Midnight Tide",
+        "role": "Primary text on canvas, strong borders, secondary surface tint — readable white-space-equivalent for dark mode",
+        "group": "neutral"
+      },
+      {
+        "hex": "#23524c",
+        "name": "Shadow Teal",
+        "role": "Elevated surface, card fills, subtle borders — one step lighter than the canvas for layer separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2e33",
+        "name": "Charcoal Hairline",
+        "role": "Subtle dividers and default 1px borders across cards, images, and icons — almost invisible on the dark canvas, used for structural quietness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#122d28",
+        "name": "Abyss Green",
+        "role": "Decorative background blob — deepest atmospheric tint behind organic hero shapes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c3f38",
+        "name": "Deep Lagoon",
+        "role": "Decorative mid-tone blob in the hero atmosphere, sits between canvas and surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0c5c1",
+        "name": "Mist Gray",
+        "role": "Muted body text, secondary descriptions, captions — desaturated enough to recede behind the mint accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Light",
+        "role": "Headline text on dark canvas, high-contrast text inside mint-filled buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#97fcd7",
+        "name": "Mint Glow",
+        "role": "Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#33998c",
+        "name": "Teal Pulse",
+        "role": "Mid-saturation teal for SVG strokes, secondary decorative accents, hover/transition states between dark surface and mint highlight",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no visible page container. The hero occupies the full viewport with a centered stack: brand mark, 90px Teodor headline (centered, two lines), 20px Inter body paragraph (centered, ~560px max width), then a two-button row. Navigation is a single thin bar flush to the top with no background panel, logo left and pill action right. Below the hero, sections use centered or left-aligned content with 80-100px vertical gaps, alternating between standard text-on-canvas blocks and card grids (likely 2-3 columns at 1200px max width). Content density is low — most sections breathe with significant negative space, and the dark canvas absorbs visual weight so layouts can be sparse without feeling empty.",
+    "imagery": "The site avoids photography entirely. Visual atmosphere is built from large, soft-edged organic blob shapes layered in Abyss Green, Deep Lagoon, and Shadow Teal over the Forest Depths canvas, with Teal Pulse rim lighting. These read as bioluminescent fluid forms rather than literal objects — abstract, dimensional, and brand-colored. The brand mark itself is the only repeated graphic motif (a two-lobed organic shape). Icons appear in a single mint stroke weight. No product screenshots, no illustrations of people or devices, no lifestyle photography. The system is image-free, relying on type, color, and shape to carry the visual weight.",
+    "similar": [
+      {
+        "why": "Same dark canvas with a single vivid accent color and minimal chrome — both rely on brand color as the lone signal of action.",
+        "business": "Uniswap"
+      },
+      {
+        "why": "Comparable near-monochromatic dark palette with pill-shaped controls and generous spacing, though Linear uses purple where Hyperliquid uses mint.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar editorial restraint — geometric sans body, oversized display headlines, and a luxury-tech atmosphere built from space rather than decoration.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark crypto-wallet surface treatment with a single saturated accent and pill UI controls, though Phantom leans purple/violet instead of mint.",
+        "business": "Phantom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "60px",
+        "cards": "12px",
+        "buttons": "60px",
+        "largePills": "37px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80-100px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#072724",
+        "name": "Forest Depths",
+        "level": 0,
+        "purpose": "Page canvas and hero background"
+      },
+      {
+        "hex": "#122d28",
+        "name": "Abyss / Deep Lagoon",
+        "level": 1,
+        "purpose": "Deepest atmospheric layer within hero organic shapes"
+      },
+      {
+        "hex": "#23524c",
+        "name": "Shadow Teal",
+        "level": 2,
+        "purpose": "Card surface, elevated panel"
+      },
+      {
+        "hex": "#97fcd7",
+        "name": "Mint Glow",
+        "level": 3,
+        "purpose": "Highlight surface for featured cards, glow rims, primary CTAs"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 20px 5px rgba(151, 252, 215, 0.4)",
+        "element": "Featured card with glow"
+      }
+    ],
+    "northStar": "Living emerald sanctuary — a deep forest vault where a single luminous mint glow breathes through organic, shadowed forms.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 55,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 0.75
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "Main call-to-action (e.g. Start Trading, Launch App)",
+        "description": "60px border-radius, Mint Glow (#97fcd7) fill, white (#ffffff) text at 16px Inter weight 400, 14px vertical and 28px horizontal padding. Sits as the single most luminous element on any screen."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Secondary action (e.g. Start Building)",
+        "description": "60px border-radius, 1px Mint Glow (#97fcd7) border, transparent fill, Mint Glow text at 16px Inter weight 400, 14px vertical and 28px horizontal padding. Pairs directly beside the primary button."
+      },
+      {
+        "name": "Navigation Pill",
+        "role": "Top-right primary nav action (Launch App)",
+        "description": "60px border-radius, Mint Glow (#97fcd7) fill, Midnight Tide (#0f3933) text at 14px Inter weight 400, 9px vertical and 20px horizontal padding. Compact variant of the primary button sized for the nav bar."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header",
+        "description": "Transparent background over hero, no visible border. Logo lockup left, nav links (Stats, Docs, Ecosystem) in Inter 16px weight 300 in Pure Light, action pill right. Minimal weight; the nav reads as a thin line, not a panel."
+      },
+      {
+        "name": "Brand Mark / Logo Glyph",
+        "role": "Standalone brand icon (butterfly/dumbbell shape)",
+        "description": "Two-lobed organic shape rendered in Mint Glow (#97fcd7), ~28px in nav context, scaled larger as hero centerpiece above the display headline."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand identifier in nav and footer",
+        "description": "Brand mark glyph + \"Hyperliquid\" wordmark set in Inter weight 400, white. Lockup sits flush-left, no background."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold brand statement",
+        "description": "Full-bleed Forest Depths (#072724) canvas overlaid with large organic blob shapes in Abyss Green (#122d28), Deep Lagoon (#1c3f38), and Shadow Teal (#23524c), with soft Teal Pulse (#33998c) rim lighting. Centered brand mark, 90px Teodor headline in Pure Light, 20px Inter body in Mist Gray, button row beneath."
+      },
+      {
+        "name": "Glow Card",
+        "role": "Featured content surface with elevated emphasis",
+        "description": "12px border-radius, Shadow Teal (#23524c) fill, 1px Midnight Tide (#0f3933) border, 20-24px internal padding, and the signature mint outer-glow shadow (rgba(151,252,215,0.4) 0px 0px 20px 5px). Used sparingly for one or two priority cards per page."
+      },
+      {
+        "name": "Standard Card",
+        "role": "Default content surface",
+        "description": "12px border-radius, Shadow Teal (#23524c) fill, 1px Charcoal Hairline (#2c2e33) or Midnight Tide border, 20-24px padding. No shadow; relies on tonal contrast and border for definition."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Section introduction",
+        "description": "Teodor 55-60px at line-height 1.0, Pure Light, left- or center-aligned. May include a small Mint Glow eyebrow tag or icon above."
+      },
+      {
+        "name": "Tag / Chip",
+        "role": "Inline labels, category markers, status indicators",
+        "description": "60px border-radius (full pill), transparent or Shadow Teal fill, Mint Glow border 1px, Mint Glow or Mist Gray text at 12-14px Inter weight 400, 6px vertical and 14px horizontal padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines, brand statements, section titles. Custom serif with sharp contrast between thick and thin strokes; at 90px with 0.75 leading it creates a magazine-cover authority that is the signature typographic gesture of the site. Subheading scale at 24px carries the same character into smaller contexts.",
+        "sizes": "24px, 55px, 60px, 90px",
+        "family": "Teodor",
+        "weight": "400",
+        "lineHeight": "0.75 at 90px, 1.00 at 55-60px, 1.50 at 24px",
+        "substitute": "GT Sectra, Tiempos Headline, Recoleta, Playfair Display",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\""
+      },
+      {
+        "role": "Body copy, UI labels, navigation, buttons, captions. The weight 300 default across most sizes keeps the interface quiet against the display serif — the contrast between Teodor's editorial presence and Inter's whisper-light functional text is a defining rhythm of the system.",
+        "sizes": "12px, 16px, 20px, 28px, 35px",
+        "family": "Inter",
+        "weight": "300, 400",
+        "lineHeight": "1.50 at 12-16px, 1.30 at 20-28px, 1.00 at 35px",
+        "substitute": "system-ui, -apple-system, 'Helvetica Neue', Roboto",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "Hyperliquid reads as a dark editorial cryptofinance environment: a deep forest-green canvas breathing with organic, softly glowing teal shapes that create depth without literal imagery. A single luminous mint accent provides all action, iconography, and typographic emphasis against the dark surface, producing a near-monochromatic palette where brightness is rationed as punctuation. Display headlines use a custom serif (Teodor) at 90px with tight 0.75 leading — an editorial, magazine-like gesture that contrasts with the lightweight Inter body text, which keeps a quiet conversational register. Pill-shaped controls at 60px radius are the primary interaction language, paired with generous negative space and a single signature mint-glow shadow that makes elevated surfaces feel like light sources rather than floating panels.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hyper Foundation design system\",\"item\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#style-reference\",\"name\":\"Hyper Foundation design system reference\",\"headline\":\"Hyper Foundation design system | Refero Styles\",\"description\":\"Explore Hyper Foundation's dark Crypto design system: Forest Depths #072724, Midnight Tide #0f3933 colors, Teodor, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\",\"mainEntityOfPage\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hyper Foundation\",\"url\":\"https://hyperliquid.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"caption\":\"Screenshot of Hyper Foundation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hyper Foundation design system\",\"Hyper Foundation website design\",\"Hyper Foundation colors\",\"Hyper Foundation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Forest Depths\",\"Midnight Tide\",\"Shadow Teal\",\"Charcoal Hairline\",\"Teodor\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hyper Foundation design system\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation website design\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation colors\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T12:16:40.461Z\",\"dateModified\":\"2026-05-07T12:16:40.461Z\"}]}19:T6c0,**Quick Color Reference**\n- canvas: #072724\n- surface: #23524c\n- border: #0f3933 (strong) / #2c2e33 (hairline)\n- text primary: #ffffff\n- text muted: #b0c5c1\n- accent: #97fcd7\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build a hero section*: Full-bleed #072724 canvas with a centered stack. Brand mark glyph in #97fcd7 (two-lobed organic shape, ~40px). Headline at 90px Teodor weight 400, #ffffff, line-height 0.75, centered. Body text at 20px Inter weight 300, #b0c5c1, centered, max-width 560px. Two buttons below: filled pill (#97fcd7 fill, #0f3933 text, 60px radius, 14px 28px padding) and ghost pill (1px #97fcd7 border, #97fcd7 text, transparent fill, 60px radius).\n\n2. *Build a glow feature card*: 12px radius, #23524c fill, 1px #0f3933 border, 24px internal padding, shadow `0px 0px 20px 5px rgba(151,252,215,0.4)`. Card title at 24px Teodor weight 400 #ffffff. Description at 16px Inter weight 300 #b0c5c1. Optional small #97fcd7 tag chip at top (60px radius, 1px #97fcd7 border, #97fcd7 text, 12px Inter).\n\n3. *Build a top navigation bar*: Transparent background, no border, 80px height. Left: logo lockup (#97fcd7 glyph + \"Hyperliquid\" wordmark in Inter 16px weight 400 #ffffff). Right: nav links Stats, Docs, Ecosystem in Inter 16px weight 300 #ffffff, followed by a pill button (#97fcd7 fill, #0f3933 text, 60px radius, 9px 20px padding).\n\n4. *Build a section headline block*: 55px Teodor weight 400 #ffffff, line-height 1.0, left-aligned, max-width 720px. Above it, a 12px Inter weight 400 #97fcd7 eyebrow label in uppercase tracking.\n\n5. *Build a category tag/chip*: 60px border-radius, transparent fill, 1px #97fcd7 border, 6px 14px padding, text in 12px Inter weight 400 #97fcd7."
+      },
+      {
+        "title": "Background Atmosphere System",
+        "content": "The hero and section backgrounds are built from 3-4 large, soft-edged organic blob shapes layered over the base #072724 canvas. The layering order from back to front: #072724 (base) → #122d28 (largest, darkest blob) → #1c3f38 (mid-tone) → #23524c (foreground highlight) → optional #33998c rim/edge accent. Each blob has heavily blurred edges (effectively a soft radial gradient between two of these colors). Blobs are oversized and partially off-screen so only their curved edges are visible, creating the impression of depth without a literal scene. This atmosphere is signature to the brand — sections that omit it feel flat and off-system."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed as colored light, not drop shadow. The only shadow in the system is a mint-tinted outer glow on highlighted cards, treating elevated surfaces as light sources rather than floating planes. Hairline borders (#2c2e33, #23524c) and tonal surface steps handle structural separation. No gray drop shadows are used anywhere."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2c2e33",
+          "oklch": {
+            "c": 0.009374623707460266,
+            "h": 271.0942721719208,
+            "l": 0.30086074776541966
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card",
+            "heading",
+            "icon"
+          ],
+          "frequency": 652,
+          "confidence": 1,
+          "prominence": 130668939.41398478,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4,
+            "icon/borderColor": 16,
+            "link/borderColor": 48,
+            "image/borderColor": 44,
+            "other/borderColor": 532,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card",
+            "icon"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 92840475.70859398,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "card/color": 1,
+            "icon/color": 4,
+            "link/color": 9,
+            "other/fill": 4,
+            "image/color": 11,
+            "other/color": 67,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#072724",
+          "oklch": {
+            "c": 0.03720384186680638,
+            "h": 186.30148090163485,
+            "l": 0.248632745343727
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 24414663.437694386,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "other/color": 3,
+            "heading/color": 2,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#dbfbf6",
+          "oklch": {
+            "c": 0.03378089362049704,
+            "h": 185.24312254222045,
+            "l": 0.9637908259873922
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4065428.8143497654,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f5fefd",
+          "oklch": {
+            "c": 0.00956233143818692,
+            "h": 189.07144620365932,
+            "l": 0.9900359017090334
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2032714.4071748827,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#97fcd7",
+          "oklch": {
+            "c": 0.10885299194195754,
+            "h": 168.43607052340337,
+            "l": 0.9189107030123175
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 1564741.1045876055,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/fill": 14,
+            "other/color": 5,
+            "card/boxShadow": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#23524c",
+          "oklch": {
+            "c": 0.052387189536023004,
+            "h": 184.30253818721607,
+            "l": 0.4039114176903542
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 685645.9587847516,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#b0c5c1",
+          "oklch": {
+            "c": 0.023527906365952055,
+            "h": 183.02273339400324,
+            "l": 0.8063681947232024
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 629562.2116722787,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 21,
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#0f3933",
+          "oklch": {
+            "c": 0.04707805241252861,
+            "h": 181.99716950112492,
+            "l": 0.31378706583970745
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 417792.6204241274,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 23,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#33998c",
+          "oklch": {
+            "c": 0.09450903035866949,
+            "h": 183.15068133746232,
+            "l": 0.6213550410657479
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 294465.3632144399,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 39,
+            "other/stroke": 4
+          }
+        },
+        {
+          "hex": "#122d28",
+          "oklch": {
+            "c": 0.03451682769687826,
+            "h": 179.99672995086257,
+            "l": 0.2740890808408351
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 255843,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1c3f38",
+          "oklch": {
+            "c": 0.04277573883667159,
+            "h": 178.8884756038709,
+            "l": 0.3390743007031941
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 218930.8702246133,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#cdcdce",
+          "oklch": {
+            "c": 0.001708357412116281,
+            "h": 271.3903351210369,
+            "l": 0.8489756973830016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 38994,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#92efd5",
+          "oklch": {
+            "c": 0.09668726693625414,
+            "h": 174.18955078717477,
+            "l": 0.886719203621657
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 12447.034963856995,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 5274.689636377548,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "other/fill": 101
+          }
+        },
+        {
+          "hex": "#a6ffe8",
+          "oklch": {
+            "c": 0.09159582392532513,
+            "h": 176.07248505888418,
+            "l": 0.9373415675766534
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 531.1496881499434,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 25
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.05140040208241922,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.48,
+          "background": "#f5fefd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.14,
+          "background": "#dbfbf6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.09,
+          "background": "#a6ffe8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#97fcd7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.85,
+          "background": "#072724",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.53,
+          "background": "#92efd5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#f5fefd",
+          "foreground": "#072724"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#ffffff",
+          "foreground": "#122d28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#dbfbf6",
+          "foreground": "#072724"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.3,
+          "background": "#f5fefd",
+          "foreground": "#122d28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.66,
+          "background": "#a6ffe8",
+          "foreground": "#072724"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#ffffff",
+          "foreground": "#2c2e33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.37,
+          "background": "#dbfbf6",
+          "foreground": "#122d28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.25,
+          "background": "#f5fefd",
+          "foreground": "#2c2e33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.22,
+          "background": "#cdcdce",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13,
+          "background": "#97fcd7",
+          "foreground": "#072724"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.7,
+          "background": "#ffffff",
+          "foreground": "#0f3933"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.64,
+          "background": "#a6ffe8",
+          "foreground": "#122d28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.39,
+          "background": "#f5fefd",
+          "foreground": "#0f3933"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(151, 252, 215) 0px 0px 20px 5px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 156,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "Teodor",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card",
+            "icon"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Teodor",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Teodor",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Teodor",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Teodor",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Teodor",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b689977d-636e-45af-a0cb-315c8260452f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hyper Foundation design system\",\"item\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#style-reference\",\"name\":\"Hyper Foundation design system reference\",\"headline\":\"Hyper Foundation design system | Refero Styles\",\"description\":\"Explore Hyper Foundation's dark Crypto design system: Forest Depths #072724, Midnight Tide #0f3933 colors, Teodor, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\",\"mainEntityOfPage\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hyper Foundation\",\"url\":\"https://hyperliquid.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/369ac603-c1e9-4231-9369-a198493f8e47#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"caption\":\"Screenshot of Hyper Foundation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8422260f-9965-4f5a-892a-b058cbace612.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hyper Foundation design system\",\"Hyper Foundation website design\",\"Hyper Foundation colors\",\"Hyper Foundation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Forest Depths\",\"Midnight Tide\",\"Shadow Teal\",\"Charcoal Hairline\",\"Teodor\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hyper Foundation design system\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation website design\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation colors\"},{\"@type\":\"Thing\",\"name\":\"Hyper Foundation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T12:16:40.461Z\",\"dateModified\":\"2026-05-07T12:16:40.461Z\"}]}19:T6c0,**Quick Color Reference**\n- canvas: #072724\n- surface: #23524c\n- border: #0f3933 (strong) / #2c2e33 (hairline)\n- text primary: #ffffff\n- text muted: #b0c5c1\n- accent: #97fcd7\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build a hero section*: Full-bleed #072724 canvas with a centered stack. Brand mark glyph in #97fcd7 (two-lobed organic shape, ~40px). Headline at 90px Teodor weight 400, #ffffff, line-height 0.75, centered. Body text at 20px Inter weight 300, #b0c5c1, centered, max-width 560px. Two buttons below: filled pill (#97fcd7 fill, #0f3933 text, 60px radius, 14px 28px padding) and ghost pill (1px #97fcd7 border, #97fcd7 text, transparent fill, 60px radius).\n\n2. *Build a glow feature card*: 12px radius, #23524c fill, 1px #0f3933 border, 24px internal padding, shadow `0px 0px 20px 5px rgba(151,252,215,0.4)`. Card title at 24px Teodor weight 400 #ffffff. Description at 16px Inter weight 300 #b0c5c1. Optional small #97fcd7 tag chip at top (60px radius, 1px #97fcd7 border, #97fcd7 text, 12px Inter).\n\n3. *Build a top navigation bar*: Transparent background, no border, 80px height. Left: logo lockup (#97fcd7 glyph + \"Hyperliquid\" wordmark in Inter 16px weight 400 #ffffff). Right: nav links Stats, Docs, Ecosystem in Inter 16px weight 300 #ffffff, followed by a pill button (#97fcd7 fill, #0f3933 text, 60px radius, 9px 20px padding).\n\n4. *Build a section headline block*: 55px Teodor weight 400 #ffffff, line-height 1.0, left-aligned, max-width 720px. Above it, a 12px Inter weight 400 #97fcd7 eyebrow label in uppercase tracking.\n\n5. *Build a category tag/chip*: 60px border-radius, transparent fill, 1px #97fcd7 border, 6px 14px padding, text in 12px Inter weight 400 #97fcd7."
+}

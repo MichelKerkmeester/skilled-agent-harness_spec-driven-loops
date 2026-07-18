@@ -1,0 +1,207 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#ff5000",
+      "$type": "color",
+      "$description": "Signal Orange — Full-bleed section surfaces, geometric illustration caps, partner section canvas — carries warmth and authority across an otherwise achromatic text system"
+    },
+    "seafoam-panel": {
+      "$value": "#a5d3d4",
+      "$type": "color",
+      "$description": "Seafoam Panel — Hero canvas and alternating section ground — a cool counterweight to the warm orange, used as full-bleed background, never as a text highlight"
+    },
+    "cream-stock": {
+      "$value": "#f9f8ea",
+      "$type": "color",
+      "$description": "Cream Stock — Soft band surfaces between content sections — a paper-like off-white warmer than pure #ffffff, signals a transition zone"
+    },
+    "charcoal": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Charcoal — Filled button background, dark illustration blocks, heading accents — the loaded weight of the palette, softer than pure black"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary body and heading text, hairline borders, icon strokes, link underlines — the dominant typographic color"
+    },
+    "pebble": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Pebble — Muted border and separator color for subtle structural lines that shouldn't compete with text"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Default page canvas, text on dark filled buttons, surface for content sections between color bands"
+    }
+  },
+  "font": {
+    "maax-mono": {
+      "$value": "Maax Mono",
+      "$type": "fontFamily",
+      "$description": "Primary text and body — monospaced at body size gives the whole site a code-readout, technical-manual cadence. This is the signature choice: a service company writing like a terminal"
+    },
+    "sofia-regular": {
+      "$value": "Sofia-Regular",
+      "$type": "fontFamily",
+      "$description": "Display headings — a softer humanist sans used sparingly for larger section titles, providing the only non-monospaced typographic moment in the system"
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Micro UI text — marquee strips, tiny labels, and small interface markers; falls back to system monospaced where available"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Maax Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Maax Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sofia-Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Sofia-Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default content canvas for text-heavy sections"
+    },
+    "cream-stock": {
+      "$value": "#f9f8ea",
+      "$type": "color",
+      "$description": "Surface level 2: Warm transition band between content blocks"
+    },
+    "seafoam-panel": {
+      "$value": "#a5d3d4",
+      "$type": "color",
+      "$description": "Surface level 3: Hero and alternate section canvas — the cool beat"
+    },
+    "signal-orange": {
+      "$value": "#ff5000",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed partner/spectacle section — the loud beat"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://enter-support.de",
+      "siteName": "Enter GmbH",
+      "extractedAt": "2026-06-03T19:39:24.742Z",
+      "variant": "extended"
+    }
+  }
+}

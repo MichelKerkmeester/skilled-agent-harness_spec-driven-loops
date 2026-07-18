@@ -1,0 +1,1884 @@
+{
+  "source": "https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08",
+  "uuid": "542453bb-1895-45fe-95c9-66dbacbf1b08",
+  "name": "Palette Supply",
+  "northStar": "art-supply shelf in a sunlit studio",
+  "capturedAt": "2026-07-18T08:36:41.023Z",
+  "meta": {
+    "url": "https://palette.supply",
+    "siteName": "Palette Supply",
+    "extractedAt": "2026-06-03T15:14:58.926Z",
+    "durationMs": 27431,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 487,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all page backgrounds to Studio Cream (#f2f0e9); never use pure white as a full-page background",
+      "Use esbuild at exactly 64px for display headings with -0.03em letter-spacing and 0.94 line-height — one word should command the page",
+      "Use ppsupply at weights 100 or 300 for body copy; reserve weight 400 for interactive elements and emphasis",
+      "Use 12px border-radius for all cards, swatches, and images; 5px for rectangular buttons; 100px for pill buttons, tags, and inputs",
+      "Wrap all interactive elements (buttons, inputs, cards) in a 1px solid Ink Black (#141212) border — this is the system's only structural line",
+      "Use Cobalt Command (#3051a8) exclusively for primary actions, active links, and icon accents — never as a background fill or large surface",
+      "Vary swatch rectangle dimensions deliberately — tall narrow strips, wide short bands, small squares — to create gallery rhythm rather than uniform grid tiles"
+    ],
+    "donts": [
+      "Don't add drop shadows, blurs, or frosted-glass effects — the design is intentionally flat and relies on color and borders for separation",
+      "Don't use system sans-serifs (Arial, Helvetica, SF Pro) for body text — always ppsupply; the custom font's light weights define the airy feel",
+      "Don't use multiple saturated colors as UI chrome — chromatic colors are swatch content, not interface elements",
+      "Don't center content in a max-width container for the whole page — let the swatches scatter full-bleed; the canvas is the layout",
+      "Don't use white card fills on the cream canvas unless elevation is needed — default to Studio Ivory (#d7d7c8) for palette cards",
+      "Don't set display text in all caps; esbuild's geometric character works in lowercase or sentence case where letterforms stay distinct",
+      "Don't use gradient fills, even subtle ones — every surface in this system is a single solid color"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f0e9",
+        "name": "Studio Cream",
+        "role": "Page canvas — warm off-white ground that warms every color placed on it, the single largest surface in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Elevated card and surface layer, used when a swatch or content block needs to sit above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141212",
+        "name": "Ink Black",
+        "role": "Primary text, heading strokes, and hairline borders — slightly warmer than pure black, pairs cleanly with the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a0a0",
+        "name": "Pencil Gray",
+        "role": "Muted secondary text and inactive borders, the only mid-gray in the neutral scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dde5d8",
+        "name": "Sage Wash",
+        "role": "Soft tinted surface for tags, list rows, and secondary buttons — a barely-green neutral that adds warmth without committing to color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7d7c8",
+        "name": "Studio Ivory",
+        "role": "Swatch surface — the neutral anchor card color used to display palette sets; warm, slightly green-tinged, reads as unpainted canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3051a8",
+        "name": "Cobalt Command",
+        "role": "Primary action fill, active link color, and icon accents — the only saturated chromatic in the UI, used sparingly to make clicks feel decisive",
+        "group": "brand"
+      },
+      {
+        "hex": "#3f593d",
+        "name": "Forest Ink",
+        "role": "Dark accent for premium swatches and select button variants — muted, almost black, recedes like aged leather",
+        "group": "brand"
+      },
+      {
+        "hex": "#f89c35",
+        "name": "Marigold",
+        "role": "Warm chromatic swatch accent — vivid orange that pops against the cream canvas, used as a featured palette member",
+        "group": "accent"
+      },
+      {
+        "hex": "#f6dc2e",
+        "name": "Buttercup",
+        "role": "Bright chromatic swatch — primary yellow, the most luminous accent in the palette set, draws the eye like a highlighter",
+        "group": "accent"
+      },
+      {
+        "hex": "#0159bd",
+        "name": "Cobalt Pop",
+        "role": "Secondary blue swatch — brighter and more cyan than Cobalt Command, used as a palette swatch rather than UI action",
+        "group": "accent"
+      },
+      {
+        "hex": "#863a29",
+        "name": "Terracotta",
+        "role": "Earth-red swatch accent — the deep burnt-orange that grounds warm palettes",
+        "group": "accent"
+      },
+      {
+        "hex": "#ed93af",
+        "name": "Rose Clay",
+        "role": "Soft pink swatch — dusty rose that reads as warm, not saccharine",
+        "group": "accent"
+      },
+      {
+        "hex": "#a0674f",
+        "name": "Rust",
+        "role": "Warm brown swatch — mid-tone earthy orange, a bridge between terracotta and tan",
+        "group": "accent"
+      },
+      {
+        "hex": "#b99572",
+        "name": "Wheat",
+        "role": "Muted tan swatch — soft warm neutral that sits between cream and brown",
+        "group": "accent"
+      },
+      {
+        "hex": "#d8c660",
+        "name": "Saffron",
+        "role": "Olive-yellow swatch — slightly green-shifted yellow, more sophisticated than pure butter",
+        "group": "accent"
+      },
+      {
+        "hex": "#a9ab72",
+        "name": "Olive Stone",
+        "role": "Muted yellow-green swatch — the sage-olive that ties natural palettes together",
+        "group": "accent"
+      },
+      {
+        "hex": "#dcc5bd",
+        "name": "Linen Blush",
+        "role": "Soft pink-beige swatch — the lightest warm neutral in the chromatic range, like raw silk",
+        "group": "accent"
+      },
+      {
+        "hex": "#c7b8ab",
+        "name": "Stone",
+        "role": "Warm gray swatch — taupe with pink undertones, the bridge between cream and brown",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed warm cream canvas with no hard container width; content floats as scattered elements rather than confined to a centered column. The hero is minimal: a single large display wordmark (esbuild 64px) centered or left-aligned on the open canvas, with color swatches distributed asymmetrically around it at varying scales. Below the hero, palette sets appear as loose groups of swatch rectangles rather than a rigid grid — positions feel curated, not algorithmic. Navigation is minimal: likely a top-right cluster of text links, no sticky header, no sidebar. The overall rhythm is gallery-like — generous 72px vertical gaps between sections, each section reading as one composed arrangement rather than stacked blocks. No alternating dark/light bands; the entire page lives in the light cream world.",
+    "imagery": "The site has essentially no traditional imagery — no photography, no illustration, no 3D renders. The visual content IS the color: flat rectangular swatches of varying sizes and aspect ratios scattered across the warm cream canvas like paint chips on a studio table. Swatches are sharply edge-defined (no shadows, no rounded content within), 12px-cornered, and presented as raw color blocks rather than styled cards. Icons (when present) are line-style with 1px strokes in Cobalt Command or Ink Black, monoline, geometric. The visual density is very low — most of the page is breathing cream space, with color appearing as deliberate, curated punctuation.",
+    "similar": [
+      {
+        "why": "Same scattered-block-on-cream-canvas aesthetic where user content (color swatches / image blocks) floats freely on a warm neutral ground with minimal UI chrome",
+        "business": "Are.na"
+      },
+      {
+        "why": "Color-focused product with a similar hand-curated, stationery-shop feel — muted earthy palette, oversized restrained typography, no decorative effects",
+        "business": "Pigment by Shape"
+      },
+      {
+        "why": "Editorial minimalism with a single warm canvas color, custom low-weight type, hairline borders, and zero shadows creating a printed-page feel",
+        "business": "Courier (read.cv)"
+      },
+      {
+        "why": "Same deliberate restraint — one accent color, generous whitespace, custom geometric typography, and an anti-decoration stance that lets the product breathe",
+        "business": "Things 3 (Cultured Code)"
+      },
+      {
+        "why": "Analog stationery influence — warm cream backgrounds, matte surfaces, tight typography, and the sense of a curated supply shelf rather than a digital app",
+        "business": "Kraft / Field Notes brand sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "12px",
+        "pills": "100px",
+        "images": "12px",
+        "inputs": "100px",
+        "buttons": "5px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "72px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f2f0e9",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "The full-bleed page background; warm cream ground"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "White cards and elevated content blocks"
+      },
+      {
+        "hex": "#d7d7c8",
+        "name": "Studio Ivory",
+        "level": 2,
+        "purpose": "Neutral swatch surface — the standard card body for palette displays"
+      },
+      {
+        "hex": "#dde5d8",
+        "name": "Sage Wash",
+        "level": 3,
+        "purpose": "Tinted surface for tags, list items, and secondary buttons"
+      }
+    ],
+    "elevation": [],
+    "northStar": "art-supply shelf in a sunlit studio",
+    "typeScale": [
+      {
+        "role": "mono-detail",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 0.94,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Color Swatch Card",
+        "role": "The primary product display — rectangular color samples shown at varying sizes and aspect ratios across the canvas",
+        "description": "Flat rectangle with no border, no shadow, no padding. Background is a single solid color from the palette (e.g. #3f593d, #d7d7c8, #c7b8ab). Border-radius is 12px. Sizes vary deliberately — some are tall narrow strips, some are wide short bands, some are small squares — creating a scattered gallery layout rather than a uniform grid. No text overlay on the swatch itself; metadata sits adjacent."
+      },
+      {
+        "name": "Rectangular Button",
+        "role": "Primary action control — used for 'Add to cart', 'Subscribe', and similar functional triggers",
+        "description": "5px border-radius, 14px vertical padding × 30px horizontal padding. Fill is Cobalt Command (#3051a8) with white text at 15px ppsupply weight 300. Border 1px solid Ink Black (#141212) wraps all buttons — even filled ones — creating a printed-sticker feel. No hover state with shadow; hover shifts fill slightly or inverts to white-fill + ink text."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Secondary action, tag toggle, or filter chip",
+        "description": "100px border-radius (full pill). 8px vertical padding × 20px horizontal padding. Fill is white or Sage Wash (#dde5d8). Text is ppsupply weight 300 at 15px in Ink Black. 1px Ink Black border. Compact, tactile, button-like — used for 'All', 'Warm', 'Cool' filter tags and similar."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation and editorial links within body copy",
+        "description": "No background, no border, no underline by default. Text color is Cobalt Command (#3051a8) at ppsupply weight 400, 15-16px. On hover, underline appears with 1px offset. Links feel inline and continuous with body text rather than chunky click targets."
+      },
+      {
+        "name": "Discount Badge",
+        "role": "Floating promotional indicator — anchored to a corner of the canvas or card",
+        "description": "Circular 1000px-radius badge (appears as a perfect circle ~40-48px diameter). Fill is Cobalt Command (#3051a8). Text is white ppsupply weight 300 at 12px, centered, two lines ('35%' / 'OFF'). No border, no shadow. Functions as a persistent floating element on the page corner."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input for email capture, search, and form fields",
+        "description": "100px border-radius (pill shape). 10-12px vertical padding × 20px horizontal padding. Fill is white. Border 1px solid Ink Black. Placeholder text is ppsupply weight 300 at 15px in Pencil Gray (#a1a0a0). Focus state thickens or darkens the border to 2px Ink Black; no glow or ring."
+      },
+      {
+        "name": "List Row",
+        "role": "Navigation menu items, palette member listings, or directory rows",
+        "description": "Full-width row with 8px vertical padding. Sage Wash (#dde5d8) or white fill. 1px Ink Black border separates rows. Text is ppsupply weight 300 at 15-18px. Tight rhythm with no extra vertical air — lists feel like notebook entries."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Hero text — the single 64px statement that names the page or section",
+        "description": "esbuild weight 400 at 64px. Line-height 0.94 (nearly touching). Letter-spacing -0.03em (-1.92px). Text color is Ink Black (#141212). No all-caps; set in lowercase or sentence case. Sits alone on the cream canvas, often centered, with no supporting decoration."
+      },
+      {
+        "name": "Swatch Set Card",
+        "role": "Curated palette container — a group of 4-6 related swatches presented as a unit",
+        "description": "White or Studio Ivory (#d7d7c8) fill, 12px border-radius, 20px padding. Contains 3-6 smaller swatch rectangles inside, each at ~60-80px with 8px gaps. Title in ppsupply weight 300 18px sits above. Functions as the purchasable/downloadable unit."
+      }
+    ],
+    "typography": [
+      {
+        "role": "ui-sans-serif — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "ui-sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2, 1.5",
+        "fontFeatureSettings": "\"ss02\""
+      },
+      {
+        "role": "Display and hero heading — used at a single oversized 64px size with negative tracking (-0.03em) and aggressive 0.94 line-height. The extremely tight leading and condensed letterforms make one word command the page. If unavailable, substitute with 'PP Editorial New' or 'Söhne Breit' for similar geometric presence.",
+        "sizes": "64px",
+        "family": "esbuild",
+        "weight": "400",
+        "lineHeight": "0.94",
+        "substitute": "PP Editorial New, Söhne Breit Halbfett, or system geometric sans at tightened tracking",
+        "letterSpacing": "-0.0300em",
+        "fontFeatureSettings": "\"ss02\""
+      },
+      {
+        "role": "Body, UI, buttons, links, list items, inputs — the workhorse typeface at four sizes. The whisper-light weight 100 and 300 are the signature: text doesn't shout, it sits lightly on the cream surface. Weight 400 appears in interactive elements and emphasis. The -0.04em tracking at smaller sizes tightens the airy feel. Substitute with 'Inter' or 'Söhne' at matching weights.",
+        "sizes": "13px, 15px, 16px, 18px",
+        "family": "ppsupply",
+        "weight": "100, 300, 400",
+        "lineHeight": "1.00, 1.20, 1.22, 1.25, 1.54",
+        "substitute": "Inter, Söhne, or Suisse Int'l at matching weights",
+        "letterSpacing": "-0.04em at 13-15px; -0.04em at 16px body; +0.02em at 18px for list/button contexts",
+        "fontFeatureSettings": "\"ss02\""
+      },
+      {
+        "role": "Monospaced annotation and metadata — for hex codes, technical labels, and codespell-grade detail. Reserved for moments that need machine-precise alignment.",
+        "sizes": "12px",
+        "family": "PPSupplyMonoLight",
+        "weight": "300",
+        "lineHeight": "1.20",
+        "substitute": "JetBrains Mono Light, IBM Plex Mono Light, or Berkeley Mono",
+        "fontFeatureSettings": "\"ss02\""
+      }
+    ],
+    "description": "Palette Supply operates on the principle that color IS the product — the interface recedes so that swatches can speak. A warm cream canvas (#f2f0e9) acts like a designer's worktable, with matte rectangular swatches scattered at varying sizes and aspect ratios, each one a distinct earthy hue from a curated palette. The UI chrome is deliberately quiet: a deep ink black (#141212) for text, a single saturated blue-violet (#3051a8) reserved exclusively for actions and links, and zero shadows — every boundary is a hairline border or a color edge. Typography is custom and confident: 'esbuild' stamps oversized 64px display titles with extremely tight tracking, while 'ppsupply' handles everything else at whisper-light weights (100 and 300) that make the page feel airy and unhurried. The result reads less like a web app and more like a well-organized stationery catalog — generous whitespace, tactile surfaces, no gradients, no glassmorphism, no decorative noise.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Palette Supply design system\",\"item\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#style-reference\",\"name\":\"Palette Supply design system reference\",\"headline\":\"Palette Supply design system | Refero Styles\",\"description\":\"Explore Palette Supply's light Design design system: Studio Cream #f2f0e9, Paper White #ffffff colors, ui-sans-serif, esbuild typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\",\"mainEntityOfPage\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Palette Supply\",\"url\":\"https://palette.supply\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"caption\":\"Screenshot of Palette Supply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Palette Supply design system\",\"Palette Supply website design\",\"Palette Supply colors\",\"Palette Supply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Studio Cream\",\"Paper White\",\"Ink Black\",\"Pencil Gray\",\"ui-sans-serif\",\"esbuild\",\"ppsupply\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Palette Supply design system\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply website design\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply colors\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:37:56.005Z\",\"dateModified\":\"2026-04-30T01:37:56.005Z\"}]}19:T543,**Quick Color Reference**\n- Canvas/background: #f2f0e9 (Studio Cream)\n- Card surface: #ffffff (Paper White) or #d7d7c8 (Studio Ivory)\n- Primary text: #141212 (Ink Black)\n- Muted text: #a1a0a0 (Pencil Gray)\n- Border/divider: #141212 at 1px\n- primary action: #3051a8 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Display heading**: Set text in esbuild, 64px, weight 400, color #141212, letter-spacing -0.03em, line-height 0.94. Set on #f2f0e9 canvas. No other elements on the line.\n\n2. Create a Primary Action Button: #3051a8 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Color swatch card**: A flat rectangle, 12px border-radius, no border, no shadow. Fill is a single solid color (e.g. #3f593d or #c7b8ab). Dimensions vary — use 180×240, 320×160, or 120×120, scattered across the cream canvas with 24-48px gaps between.\n\n4. **Pill filter tag**: Background #dde5d8, text #141212 in ppsupply weight 300 at 15px, padding 8px 20px, border-radius 100px, border 1px solid #141212. Group 3-5 tags horizontally with 8px gaps.\n\n5. **Email capture input**: White fill, border 1px solid #141212, border-radius 100px, padding 12px 20px. Placeholder in ppsupply weight 300 at 15px, color #a1a0a0. Adjacent submit button is the Cobalt Command rectangular button described above."
+      }
+    ],
+    "elevationPhilosophy": "This design is intentionally shadowless. Depth is communicated exclusively through color contrast and hairline 1px borders (most often Ink Black #141212). There are no drop shadows, no blurs, no frosted glass — the flatness is deliberate and reinforces the paper/stationery metaphor. Surfaces separate by tone, not by lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "image",
+            "card",
+            "list",
+            "icon",
+            "heading",
+            "input",
+            "footer"
+          ],
+          "frequency": 1501,
+          "confidence": 1,
+          "prominence": 130223450.7021356,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 3,
+            "icon/color": 8,
+            "link/color": 26,
+            "list/color": 27,
+            "other/fill": 1,
+            "image/color": 39,
+            "input/color": 1,
+            "other/color": 163,
+            "button/color": 29,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "card/borderColor": 12,
+            "icon/borderColor": 32,
+            "link/borderColor": 104,
+            "list/borderColor": 108,
+            "image/borderColor": 156,
+            "input/borderColor": 4,
+            "other/borderColor": 652,
+            "button/borderColor": 116,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f2f0e9",
+          "oklch": {
+            "c": 0.009545731278299985,
+            "h": 93.57017573458484,
+            "l": 0.9547486829134901
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17675316.36742975,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "card",
+            "body",
+            "icon",
+            "input",
+            "list",
+            "link"
+          ],
+          "frequency": 281,
+          "confidence": 1,
+          "prominence": 4891349.431505121,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "card/color": 1,
+            "icon/color": 1,
+            "link/color": 12,
+            "list/color": 15,
+            "other/fill": 17,
+            "other/color": 10,
+            "button/color": 5,
+            "other/stroke": 3,
+            "heading/color": 2,
+            "body/borderColor": 24,
+            "card/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 48,
+            "list/borderColor": 60,
+            "other/borderColor": 40,
+            "button/borderColor": 20,
+            "heading/borderColor": 8,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d7d7c8",
+          "oklch": {
+            "c": 0.020236101910539418,
+            "h": 106.81057692793769,
+            "l": 0.8750397964314282
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1395330.181629232,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#141212",
+          "oklch": {
+            "c": 0.003277922329627975,
+            "h": 17.454124746629915,
+            "l": 0.18458870854621476
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 243,
+          "confidence": 1,
+          "prominence": 697904.885705534,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 26,
+            "list/color": 6,
+            "other/fill": 8,
+            "other/color": 4,
+            "button/color": 4,
+            "heading/color": 7,
+            "body/borderColor": 104,
+            "list/borderColor": 24,
+            "other/borderColor": 16,
+            "button/borderColor": 16,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#3f593d",
+          "oklch": {
+            "c": 0.05502408556901636,
+            "h": 142.82720350495956,
+            "l": 0.4346556571490736
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 421792.1700048587,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3051a8",
+          "oklch": {
+            "c": 0.14523777095768745,
+            "h": 265.4065803785601,
+            "l": 0.4602867662759416
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link",
+            "button"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 179372.5788716428,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 3,
+            "icon/color": 5,
+            "link/color": 2,
+            "other/fill": 11,
+            "other/color": 3,
+            "button/color": 2,
+            "other/stroke": 7,
+            "body/borderColor": 12,
+            "icon/borderColor": 20,
+            "link/borderColor": 8,
+            "other/borderColor": 12,
+            "button/borderColor": 8,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#dde5d8",
+          "oklch": {
+            "c": 0.019390802262372976,
+            "h": 133.08575844494635,
+            "l": 0.9122144981965394
+          },
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 152608.43115507488,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "list/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c7b8ab",
+          "oklch": {
+            "c": 0.024919167002546403,
+            "h": 63.405563233857094,
+            "l": 0.7915274377283023
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 111963.33601344319,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#cbbca1",
+          "oklch": {
+            "c": 0.04052063179258222,
+            "h": 82.30404562872023,
+            "l": 0.8005976307956013
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 88811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f89c35",
+          "oklch": {
+            "c": 0.15564488201347415,
+            "h": 63.851701429033234,
+            "l": 0.7703806198071718
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 88811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a9ab72",
+          "oklch": {
+            "c": 0.07684266143183598,
+            "h": 109.87359560038342,
+            "l": 0.7257617480030252
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 88811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dcc5bd",
+          "oklch": {
+            "c": 0.028384967028872537,
+            "h": 40.17580982721975,
+            "l": 0.8404568513770858
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 65594,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0159bd",
+          "oklch": {
+            "c": 0.17325161092121633,
+            "h": 257.39483312678544,
+            "l": 0.4821507919417789
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 63580,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#863a29",
+          "oklch": {
+            "c": 0.10864462559848595,
+            "h": 34.02773035384159,
+            "l": 0.44730475707848555
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 59037,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ed93af",
+          "oklch": {
+            "c": 0.1130238545125699,
+            "h": 0.03495843717155254,
+            "l": 0.763253685621404
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54498,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a1a0a0",
+          "oklch": {
+            "c": 0.0011575001906081153,
+            "h": 17.18522961104121,
+            "l": 0.7065851742182873
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 45007.20535847124,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 24,
+            "body/borderColor": 96
+          }
+        },
+        {
+          "hex": "#a0674f",
+          "oklch": {
+            "c": 0.08201005775754612,
+            "h": 43.52819057661464,
+            "l": 0.569455241686623
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 44404,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b99572",
+          "oklch": {
+            "c": 0.06482834956002907,
+            "h": 65.62011984446337,
+            "l": 0.6944515385731501
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 41628,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebcbc0",
+          "oklch": {
+            "c": 0.03933671871820526,
+            "h": 39.896572260623046,
+            "l": 0.8661973941413365
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 33555,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#415a4a",
+          "oklch": {
+            "c": 0.04002727645883713,
+            "h": 156.3044797084683,
+            "l": 0.44220934638143716
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 31788,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8c660",
+          "oklch": {
+            "c": 0.12447772805901053,
+            "h": 99.4501330523052,
+            "l": 0.8212491859080672
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 24221,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5a5f75",
+          "oklch": {
+            "c": 0.03579487722602492,
+            "h": 274.9719006636796,
+            "l": 0.48945851120818634
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 22202,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e0b9b1",
+          "oklch": {
+            "c": 0.046603000025468265,
+            "h": 31.584945443729445,
+            "l": 0.8177622865942218
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19426,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e6bc9e",
+          "oklch": {
+            "c": 0.06319378867192457,
+            "h": 57.24566657330111,
+            "l": 0.8246890493376692
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 18718,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ba5906",
+          "oklch": {
+            "c": 0.14745114461787787,
+            "h": 50.974112319674546,
+            "l": 0.5735097604804735
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17659,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6dc2e",
+          "oklch": {
+            "c": 0.17502552102188368,
+            "h": 99.99778977283852,
+            "l": 0.8894832486548261
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17659,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e87a8",
+          "oklch": {
+            "c": 0.04937367665894463,
+            "h": 294.6920305895689,
+            "l": 0.6410575201160905
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17659,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4b357",
+          "oklch": {
+            "c": 0.12327233167202578,
+            "h": 81.08411458746723,
+            "l": 0.7935731779734901
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17659,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.022492505592809443,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.67,
+          "background": "#ffffff",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#f2f0e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.37,
+          "background": "#f2f0e9",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.27,
+          "background": "#dde5d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.2,
+          "background": "#f6dc2e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.47,
+          "background": "#dde5d8",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.44,
+          "background": "#d7d7c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#ebcbc0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.51,
+          "background": "#f6dc2e",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#d7d7c8",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.76,
+          "background": "#dcc5bd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#ebcbc0",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.17,
+          "background": "#d8c660",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#e6bc9e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.74,
+          "background": "#e0b9b1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.35,
+          "background": "#dcc5bd",
+          "foreground": "#141212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#cbbca1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.88,
+          "background": "#e4b357",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#c7b8ab",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 70
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "list"
+          ],
+          "frequency": 73,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|icon",
+            "paddingBottom|body",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "input"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|list",
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|list",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "marginRight|button",
+            "marginLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|other",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 101,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 157,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 214,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 261,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 313,
+          "fontFeatureSettings": [
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "ppsupply",
+          "source": "custom",
+          "weights": [
+            100,
+            300,
+            400
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": [
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "esbuild",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": [
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "PPSupplyMonoLight",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"ss02\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "PPSupplyMonoLight",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ppsupply",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "ppsupply",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "list",
+            "image",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 144,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ppsupply",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ppsupply",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ppsupply",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ppsupply",
+          "weight": 100,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ppsupply",
+          "weight": 100,
+          "contexts": [
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ppsupply",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "esbuild",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.94,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a589e719-c712-41f7-a85e-5836680ad004.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Palette Supply design system\",\"item\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#style-reference\",\"name\":\"Palette Supply design system reference\",\"headline\":\"Palette Supply design system | Refero Styles\",\"description\":\"Explore Palette Supply's light Design design system: Studio Cream #f2f0e9, Paper White #ffffff colors, ui-sans-serif, esbuild typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\",\"mainEntityOfPage\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Palette Supply\",\"url\":\"https://palette.supply\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/542453bb-1895-45fe-95c9-66dbacbf1b08#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"caption\":\"Screenshot of Palette Supply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/208ae2d4-3d26-4f00-8a1a-4d24544884de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Palette Supply design system\",\"Palette Supply website design\",\"Palette Supply colors\",\"Palette Supply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Studio Cream\",\"Paper White\",\"Ink Black\",\"Pencil Gray\",\"ui-sans-serif\",\"esbuild\",\"ppsupply\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Palette Supply design system\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply website design\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply colors\"},{\"@type\":\"Thing\",\"name\":\"Palette Supply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:37:56.005Z\",\"dateModified\":\"2026-04-30T01:37:56.005Z\"}]}19:T543,**Quick Color Reference**\n- Canvas/background: #f2f0e9 (Studio Cream)\n- Card surface: #ffffff (Paper White) or #d7d7c8 (Studio Ivory)\n- Primary text: #141212 (Ink Black)\n- Muted text: #a1a0a0 (Pencil Gray)\n- Border/divider: #141212 at 1px\n- primary action: #3051a8 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Display heading**: Set text in esbuild, 64px, weight 400, color #141212, letter-spacing -0.03em, line-height 0.94. Set on #f2f0e9 canvas. No other elements on the line.\n\n2. Create a Primary Action Button: #3051a8 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Color swatch card**: A flat rectangle, 12px border-radius, no border, no shadow. Fill is a single solid color (e.g. #3f593d or #c7b8ab). Dimensions vary — use 180×240, 320×160, or 120×120, scattered across the cream canvas with 24-48px gaps between.\n\n4. **Pill filter tag**: Background #dde5d8, text #141212 in ppsupply weight 300 at 15px, padding 8px 20px, border-radius 100px, border 1px solid #141212. Group 3-5 tags horizontally with 8px gaps.\n\n5. **Email capture input**: White fill, border 1px solid #141212, border-radius 100px, padding 12px 20px. Placeholder in ppsupply weight 300 at 15px, color #a1a0a0. Adjacent submit button is the Cobalt Command rectangular button described above."
+}

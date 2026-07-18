@@ -1,0 +1,744 @@
+{
+  "color": {
+    "aubergine": {
+      "$value": "#611f69",
+      "$type": "color",
+      "$description": "Aubergine — Filled CTA buttons, primary navigation fills, dark hero backgrounds — the brand's signature mid-plum, dense enough to ground without veering black"
+    },
+    "deep-plum": {
+      "$value": "#481a54",
+      "$type": "color",
+      "$description": "Deep Plum — Largest canvas inversion — full-bleed dark section backgrounds, decorative dark blocks, surface for headline text on white sections"
+    },
+    "purple-haze": {
+      "$value": "#f9f0ff",
+      "$type": "color",
+      "$description": "Purple Haze — Softest lilac wash for body backgrounds, pill fills, and card surfaces — the quiet brand tint that never competes with text"
+    },
+    "lavender-mist": {
+      "$value": "#eac8fe",
+      "$type": "color",
+      "$description": "Lavender Mist — Mid-saturation lavender for card borders, decorative outlines, and pill borders — bridges white and purple without harsh contrast"
+    },
+    "vivid-violet": {
+      "$value": "#9602c7",
+      "$type": "color",
+      "$description": "Vivid Violet — Headline accent text and gradient text fills on dark sections — the bright punch of color that makes key phrases feel switched on; Diagonal black-to-violet gradient for accent text and decorative text fills on dark sections"
+    },
+    "plum-shadow": {
+      "$value": "#3d0157",
+      "$type": "color",
+      "$description": "Plum Shadow — Darker plum for button text and shadow tones on aubergine surfaces — reads as near-black against purple fills"
+    },
+    "iris": {
+      "$value": "#730394",
+      "$type": "color",
+      "$description": "Iris — Secondary purple for background fills and link accents — sits between Aubergine and Vivid Violet on the purple ramp"
+    },
+    "iris-light": {
+      "$value": "#d17dfe",
+      "$type": "color",
+      "$description": "Iris Light — Decorative card text and bright accents inside feature cards — a lighter iris that adds lift without losing brand identity"
+    },
+    "channel-blue": {
+      "$value": "#1264a3",
+      "$type": "color",
+      "$description": "Channel Blue — Slack's channel-link blue for in-product references, sidebar highlights, and hyperlink color — appears inside product UI screenshots, not marketing chrome"
+    },
+    "mid-blue": {
+      "$value": "#0b4c8c",
+      "$type": "color",
+      "$description": "Mid Blue — Blue text accent for links, tags, and emphasized short phrases."
+    },
+    "sky-mist": {
+      "$value": "#2f8ab7",
+      "$type": "color",
+      "$description": "Sky Mist — Decorative illustration backgrounds — soft secondary blue used only inside graphic blocks"
+    },
+    "carbon": {
+      "$value": "#1d1c1d",
+      "$type": "color",
+      "$description": "Carbon — Primary body and nav text — Slack's near-black that reads warmer than pure #000 at small sizes"
+    },
+    "charcoal": {
+      "$value": "#454245",
+      "$type": "color",
+      "$description": "Charcoal — Secondary body text, icon fills, muted captions — the middle step between Carbon and Mid Gray"
+    },
+    "mid-gray": {
+      "$value": "#696969",
+      "$type": "color",
+      "$description": "Mid Gray — Navigation text, subdued labels, disabled-state text — the working neutral for chrome"
+    },
+    "steel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel — Placeholder card backgrounds and neutral fill swatches"
+    },
+    "fog": {
+      "$value": "#edeaed",
+      "$type": "color",
+      "$description": "Fog — Hairline borders, divider lines, subtle 1px separators — the structural neutral that holds cards together"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary surface — card backgrounds, text on dark, pill fills, button text on purple"
+    },
+    "soft-white": {
+      "$value": "#fefbff",
+      "$type": "color",
+      "$description": "Soft White — Page canvas — faintly lilac-tinted white that sets the page apart from harsh #fff"
+    },
+    "ice-blue": {
+      "$value": "#e8f5fa",
+      "$type": "color",
+      "$description": "Ice Blue — Cool-tinted surface wash for secondary panels and nav highlights"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Headline text on light sections, icon fills, deepest emphasis — used at display sizes where maximum weight is needed"
+    }
+  },
+  "font": {
+    "salesforce-avant-garde": {
+      "$value": "Salesforce-Avant-Garde",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — geometric, wide, compressed. Carries every headline from 21px subheads up to 96px hero display. The 400-weight at 76px is anti-convention: Slack trusts its letterforms enough to let headlines whisper rather than shout. Tracking tightens progressively from -0.004em at body sizes to -0.012em at 64px+"
+    },
+    "salesforce-sans": {
+      "$value": "Salesforce-Sans",
+      "$type": "fontFamily",
+      "$description": "Workhorse body and UI face — handles nav, body copy, buttons, captions, and labels. The 12px/700 with 0.057em tracking (uppercase) is the eyebrow-label pattern used for section tags. Body sits at 16px/1.5 — generous enough for reading, compact enough for dense product cards"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Sans",
+        "fontSize": "23px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 50px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 58px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 58px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 64px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "76px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 76px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Salesforce-Avant-Garde",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "98": {
+      "$value": "98px",
+      "$type": "dimension",
+      "$description": "Spacing 98px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "subtle": {
+      "$value": "rgb(97, 31, 105) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 5px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fefbff",
+      "$type": "color",
+      "$description": "Surface level 1: Page-level background — faintly lilac-tinted white that distinguishes Slack's surface from generic #fff"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Primary card and content surface"
+    },
+    "wash": {
+      "$value": "#f9f0ff",
+      "$type": "color",
+      "$description": "Surface level 3: Soft purple-tinted background for body sections and pill fills"
+    },
+    "cool-wash": {
+      "$value": "#e8f5fa",
+      "$type": "color",
+      "$description": "Surface level 4: Cool secondary panel surface"
+    },
+    "inverted": {
+      "$value": "#481a54",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed dark hero and feature band backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://slack.com",
+      "siteName": "Slack",
+      "extractedAt": "2026-07-03T03:28:46.188Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1121 @@
+{
+  "source": "https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2",
+  "uuid": "b619e1b9-86ee-4a10-b6e6-47b10927c3a2",
+  "name": "Zeus Jones",
+  "northStar": "risograph broadsheet on warm cream — a page that prints like a zine and loads like a gallery.",
+  "capturedAt": "2026-07-18T07:21:28.633Z",
+  "meta": {
+    "url": "https://zeusjones.com",
+    "siteName": "Zeus Jones",
+    "extractedAt": "2026-06-03T21:31:30.554Z",
+    "durationMs": 38198,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 503,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1a1c2c (Midnight Ink) for every filled button, heading, body paragraph, and hairline border — it is the system's only working color and the only legitimate action background.",
+      "Set display headlines at 60–90px in FeatureDeckLight weight 100 with -0.02em tracking and line-height 1.07 — the hairline weight is the brand's signature, never substitute with 600+.",
+      "Use 9999px radius for every button, tag, and nav element; use 20px for every card, image, and panel — these are the only two radii in the system.",
+      "Apply 1px solid #1a1c2c underlines to emphasized words inside headlines and links — this is the editorial emphasis device, not bold or color.",
+      "Keep the body of the page in Warm Parchment #fcfaf3 and reserve Soft Linen #ebe9e4 for the occasional elevated card or section band.",
+      "Use 12px ZJSansDisplay weight 500 with +0.05em tracking (0.6px) for all eyebrows, tags, and small labels — this is the only uppercase-tracked text style.",
+      "Maintain section gaps of 40px and element gaps of 16px; the page reads in 8px increments, never break the grid with arbitrary spacing."
+    ],
+    "donts": [
+      "Never use box-shadows or drop-shadows — the system is flat by design; use 1px borders and surface tonal steps for separation instead.",
+      "Never use a bold or 600+ weight for display headlines — weight 100 at 60–90px is the signature; a bold version would erase the brand voice.",
+      "Never introduce a new accent color for buttons, links, or interactive elements — the action is always filled Midnight Ink on Warm Parchment.",
+      "Never use pure white (#ffffff) as a background — the canvas is Warm Parchment #fcfaf3; pure white would break the printed-paper quality.",
+      "Never add a gradient to UI components, buttons, or cards — the system is solid-fill only; color gradients are reserved for the single full-bleed hero image.",
+      "Never use sharp corners (0–4px radius) on cards or buttons — the system is either 20px rounded or fully pill-shaped; no in-between.",
+      "Never use decorative dividers, background patterns, or ornamental graphics below the hero — the body of the site is typographic and photographic only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1a1c2c",
+        "name": "Midnight Ink",
+        "role": "Primary text, filled pill buttons, hairline borders, dark surfaces — the only chromatic color in the system; near-black with a barely-perceptible cool navy cast that softens the contrast against warm cream without losing the gravitas of pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfaf3",
+        "name": "Warm Parchment",
+        "role": "Page canvas and light surface base — a creamy off-white that replaces the default SaaS pure-white with paper warmth, making the page feel printed rather than rendered",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe9e4",
+        "name": "Soft Linen",
+        "role": "Elevated card and panel surface — one step darker than the canvas, used sparingly to lift a card or a section band without introducing a new color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "SVG icon fills and decorative monochrome marks — reserved for vector assets where true black reads cleaner than the navy-tinted Midnight Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fd9494",
+        "name": "Blush Coral",
+        "role": "Sporadic warm accent — emerges from the hero aurora and may surface in tag dots or decorative washes; the only warm hue that earns a place in an otherwise cool-neutral system",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is full-bleed with generous side padding (~40px at desktop). The hero is a full-viewport display headline over a colorful aurora background — no navigation chrome competes with the statement. Below the hero, a thin 1px-bordered announcement bar spans edge-to-edge. Content sections follow a single-column or wide-grid structure with a 1200px max-width reading area; project cards appear in a 4-column horizontal row with overflow scrolling (the row is intentionally wider than the viewport, showing partial cards at the edges as a 'more work' affordance). Section headings are left-aligned with a 24px gap below a small eyebrow label. Spacing is generous: 40px between major sections, 16px between elements within a section. The overall rhythm is editorial — long quiet sections separated by typographic anchors, no dense information blocks, no sidebar navigation, no mega-menu.",
+    "imagery": "The visual system is dominated by two image modes: a single full-bleed psychedelic aurora on the hero (pink, violet, yellow, and green diffused color fields — clearly a photographic or AI-generated abstract, not a gradient token), and rectangular project card thumbnails with 20px radius showing editorial photography, product renders, and campaign artwork. Below the hero, imagery is contained, never full-bleed except for the card images themselves. Icon style is minimal — line-based menu icon in Obsidian #000000, and small 8px filled dots in Blush Coral #fd9494 as bullet markers. The site carries no illustration, no 3D, no product screenshots, and no icon system beyond utility marks. Photography treatment varies per project card and is not normalized — the design system treats images as content, not as styled components.",
+    "similar": [
+      {
+        "why": "Same editorial restraint, custom display serif at large sizes, cream/near-black palette, pill-shaped tags, no shadows.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Daring typographic weight choices (including hairline display), warm-neutral canvas, single-color systems, flat layout without elevation.",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Weight-100 display type as a brand voice, near-black text on warm off-white, editorial project card grids, minimal navigation chrome.",
+        "business": "Collins"
+      },
+      {
+        "why": "Restrained monochrome interface with one chromatic hero break, pill-shaped controls, editorial body typography, flat surfaces.",
+        "business": "Instrument"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "tags": "9999px",
+        "cards": "20px",
+        "images": "20px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "40px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fcfaf3",
+        "name": "Warm Parchment",
+        "level": 1,
+        "purpose": "Page canvas and default body surface"
+      },
+      {
+        "hex": "#ebe9e4",
+        "name": "Soft Linen",
+        "level": 2,
+        "purpose": "Elevated card or panel — one tonal step up from the canvas"
+      },
+      {
+        "hex": "#1a1c2c",
+        "name": "Midnight Ink",
+        "level": 3,
+        "purpose": "Dark surface for filled buttons and inverted sections"
+      }
+    ],
+    "northStar": "risograph broadsheet on warm cream — a page that prints like a zine and loads like a gallery.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.07,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display-lg",
+        "size": 90,
+        "lineHeight": 1.07,
+        "letterSpacing": -1.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Pill Button (Primary Action)",
+        "role": "Primary call-to-action, used sparingly — contact, next-step, conversion.",
+        "description": "Fully rounded (radius 9999px) pill button. Background: Midnight Ink #1a1c2c. Text: Warm Parchment #fcfaf3, ZJSansDisplay 16px weight 400, tracking -0.32px. Padding: 16px vertical × 24px horizontal. No border, no shadow. The pill geometry and ink fill against cream is the only filled action in the system — when in doubt, this is the button."
+      },
+      {
+        "name": "Outlined Pill Tag (Project Label)",
+        "role": "Labels on project cards and section eyebrows.",
+        "description": "Fully rounded pill (radius 9999px). Border: 1px solid Midnight Ink #1a1c2c. Background: transparent / Warm Parchment. Text: ZJSansDisplay 12px weight 500, tracking +0.6px (uppercase by convention), color Midnight Ink. Padding: 8px vertical × 16px horizontal. These tags sit directly below project card images."
+      },
+      {
+        "name": "Project Card",
+        "role": "Portfolio grid item under the 'recent work' section.",
+        "description": "Radius 20px. Image fills the card top with 20px radius on the top corners only. Below the image: an outlined pill tag, then a 24–40px subheading in ZJSansDisplay weight 400, color Midnight Ink, with a short descriptor in 18px body weight 400. No card border, no shadow — separation comes from the Soft Linen #ebe9e4 background visible in the gap between cards."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Opening statement on the landing page.",
+        "description": "Set in FeatureDeckLight weight 100 at 90px (display-lg), line-height 1.07, letter-spacing -1.8px. Color: Midnight Ink #1a1c2c. Sits over a full-bleed colorful aurora background image. Specific words receive a 1px underline; the final clause switches to serif italic in the same weight 100. No max-width — the headline spans the viewport with generous side padding."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Thin strip below the hero promoting a publication or event.",
+        "description": "Full-width row, 1px bottom border in Midnight Ink. Left-aligned content: a small 8px filled dot in Blush Coral #fd9494, then ZJSansDisplay 16px weight 400 text in Midnight Ink, ending with an underlined link. Padding: 16px vertical × 40px horizontal. Background: Warm Parchment."
+      },
+      {
+        "name": "Sticky Top Navigation",
+        "role": "Persistent brand and menu bar.",
+        "description": "Full-bleed, transparent over the hero aurora, then Warm Parchment after scroll. Left: wordmark 'Zeus Jones' set in ZJSansDisplay 16px weight 500, two lines stacked. Right: a 3-line hamburger icon in Obsidian #000000. No background fill, no border, no shadow — the nav disappears into the page."
+      },
+      {
+        "name": "Section Eyebrow with Dash",
+        "role": "Small label introducing a content section, paired with a counter.",
+        "description": "ZJSansDisplay 16px weight 400, Midnight Ink. Format: 'How we partner —' (em dash separator), with '1 of 7' right-aligned in the same style. Tracking -0.32px. Sits above a section heading with 24px gap."
+      },
+      {
+        "name": "Section Heading (Serif Display)",
+        "role": "Headings for content sections below the hero.",
+        "description": "FeatureDeckLight weight 100 at 48–60px, line-height 1.11, tracking -0.96 to -1.2px. Color: Midnight Ink. Used for 'Brand Strategy & Architecture' and similar section titles. The ultra-light weight carries into the body sections, maintaining the hero's typographic voice."
+      },
+      {
+        "name": "Next/Previous Step Link",
+        "role": "Pagination between sequential content steps.",
+        "description": "ZJSansDisplay 16px weight 400, Midnight Ink, paired with a right-arrow (→) character. Right-aligned. Underline appears on hover. No button fill — this is a text affordance, not a button."
+      },
+      {
+        "name": "Underlined Emphasis Text",
+        "role": "Inline emphasis within body and headline copy.",
+        "description": "Default underline style: 1px solid Midnight Ink, offset 4px below baseline. Applied to key words in the hero ('grow', 'mean more') and in the announcement bar link. The underline is the system's only emphasis device — no bold, no color change, no italic on sans-serif text."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer (inferred from context frequency).",
+        "description": "Warm Parchment background, 1px top border in Midnight Ink. Content in ZJSansDisplay 16px weight 400, Midnight Ink. Generous padding (40px+ vertical). Minimal link list, no logo repetition, no social icon grid — the footer closes the editorial tone."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for body, navigation, subheadings, and the 40–48px heading range. The 12px eyebrow and tag text carries +0.05em tracking (letter-spacing: 0.6px at 12px) to read as a small caps eyebrow; everything at 16px and above sits at -0.02em (-0.32px at 16px) for tight, editorial density. This is the working sans that does 95% of the page's communicative labor.",
+        "sizes": "12, 16, 18, 24, 40, 48, 60, 90px",
+        "family": "ZJSansDisplay",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.60 (tight at display sizes, generous at body)",
+        "substitute": "Inter",
+        "letterSpacing": "-0.0200em, 0.0500em"
+      },
+      {
+        "role": "Hero display face used at 60–90px with line-height compressed to 1.07–1.11. Weight 100 is the anti-convention signature: while every agency site uses 600–800 for display, this hairline weight makes the largest text the lightest on the page — authority through restraint, not volume. The italic cut is used for poetic emphasis words inside the headline (e.g. 'the world').",
+        "sizes": "60, 90px",
+        "family": "FeatureDeckLight",
+        "weight": "100",
+        "lineHeight": "1.07–1.11",
+        "substitute": "GT Sectra Display Thin (commercial) or Playfair Display weight 400 for a free serif-italic fallback",
+        "letterSpacing": "-0.0200em"
+      }
+    ],
+    "description": "Zeus Jones operates on an editorial broadsheet language: a warm cream canvas carries the entire site while one near-black ink (#1a1c2c) does all the typographic and interactive work. The signature move is weight 100 display type at 60–90px — headline copy that whispers rather than shouts, a deliberate inversion of the agency-website reflex to use bold display sans. Interactive elements are fully rounded pills; cards, images, and tags share a 20px radius. Shadows are absent — the design uses border weight and type contrast for separation. The hero breaks the monochrome with a single full-bleed aurora of color, but every section below it returns to the quiet cream-and-ink discipline, with underlined sans-serif and serif italic used as editorial emphasis devices.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zeus Jones design system\",\"item\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#style-reference\",\"name\":\"Zeus Jones design system reference\",\"headline\":\"Zeus Jones design system | Refero Styles\",\"description\":\"Explore Zeus Jones's light Agency design system: Midnight Ink #1a1c2c, Warm Parchment #fcfaf3 colors, ZJSansDisplay, FeatureDeckLight typography, and...\",\"url\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zeus Jones\",\"url\":\"https://zeusjones.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"caption\":\"Screenshot of Zeus Jones\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zeus Jones design system\",\"Zeus Jones website design\",\"Zeus Jones colors\",\"Zeus Jones typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Midnight Ink\",\"Warm Parchment\",\"Soft Linen\",\"Obsidian\",\"ZJSansDisplay\",\"FeatureDeckLight\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zeus Jones design system\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones website design\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones colors\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:11:09.802Z\",\"dateModified\":\"2026-04-30T03:11:09.802Z\"}]}19:T6df,Quick Color Reference:\n- text: #1a1c2c (Midnight Ink)\n- background: #fcfaf3 (Warm Parchment)\n- card surface: #ebe9e4 (Soft Linen)\n- border: #1a1c2c 1px\n- accent: #fd9494 (Blush Coral — decorative only)\n- primary action: #1a1c2c (filled action)\n\nExample Component Prompts:\n\n1. Hero Display Headline — 'Zeus Jones: risograph on warm cream'. Set a 90px FeatureDeckLight weight 100 headline at #1a1c2c, line-height 1.07, letter-spacing -1.8px, over a full-bleed colorful aurora background. Underline the words 'risograph' and 'warm'. End the headline with 'cream.' in serif italic. No max-width; pad 80px left.\n\n2. Filled Pill Button — 'Interested? let's talk'. 9999px radius. Background #1a1c2c. Text #fcfaf3, ZJSansDisplay 16px weight 400, tracking -0.32px. Padding 16px vertical × 24px horizontal. No border, no shadow.\n\n3. Project Card — four cards in a horizontal row, each with a 20px-radius image filling the top, a pill tag below (1px #1a1c2c border, radius 9999px, 12px ZJSansDisplay weight 500 +0.6px tracking, #1a1c2c text, padding 8px × 16px), then a 24px ZJSansDisplay weight 400 title, then an 18px body descriptor. Background Warm Parchment #fcfaf3; cards separated by 16px gap.\n\n4. Section Heading + Eyebrow — eyebrow row: 'How we partner —' left-aligned, '1 of 7' right-aligned, ZJSansDisplay 16px weight 400 #1a1c2c, tracking -0.32px, 1px solid #1a1c2c bottom border across the row. Below, 24px gap, then a 48px FeatureDeckLight weight 100 heading at #1a1c2c, tracking -0.96px.\n\n5. Announcement Bar — full-width strip, 1px solid #1a1c2c bottom border, 16px vertical padding. Left content: 8px filled dot in #fd9494, then ZJSansDisplay 16px weight 400 #1a1c2c text, ending with an underlined 'Learn more' link. Background #fcfaf3."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadows. Hierarchy is established through type weight contrast (weight 100 display against weight 500 labels), hairline 1px borders in Midnight Ink, and surface tonal steps. A 1px solid border in #1a1c2c is the system's only structural separator — no soft drop shadows, no glow effects, no layered cards. This flatness is part of the editorial identity: the page should feel like ink on paper, not like a glass-morphism dashboard."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1c2c",
+          "oklch": {
+            "c": 0.031017605112894385,
+            "h": 278.2051831676639,
+            "l": 0.23241844370682016
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "icon",
+            "body",
+            "list",
+            "image",
+            "button",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 1991,
+          "confidence": 1,
+          "prominence": 61423653.94797996,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 10,
+            "nav/color": 30,
+            "body/color": 60,
+            "card/color": 1,
+            "icon/color": 7,
+            "link/color": 31,
+            "list/color": 29,
+            "other/fill": 60,
+            "image/color": 14,
+            "input/color": 1,
+            "other/color": 153,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 6,
+            "heading/color": 53,
+            "nav/borderColor": 116,
+            "body/borderColor": 240,
+            "card/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 124,
+            "list/borderColor": 116,
+            "image/borderColor": 56,
+            "input/borderColor": 4,
+            "other/borderColor": 612,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 212,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fcfaf3",
+          "oklch": {
+            "c": 0.009473615794223842,
+            "h": 93.56638627143911,
+            "l": 0.9847135775059059
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "heading"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 37628961.72419558,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 13,
+            "nav/color": 6,
+            "body/color": 1,
+            "other/fill": 6,
+            "other/color": 6,
+            "button/color": 3,
+            "heading/color": 1,
+            "nav/borderColor": 28,
+            "body/borderColor": 4,
+            "other/borderColor": 24,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ebe9e4",
+          "oklch": {
+            "c": 0.007033344892460033,
+            "h": 88.64449321261357,
+            "l": 0.9341795625053948
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 232587,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 30260.752504759632,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "icon/fill": 12,
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#fd9494",
+          "oklch": {
+            "c": 0.12677701357647864,
+            "h": 20.367185300725613,
+            "l": 0.7768333473695453
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08065127784794988,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.11,
+          "background": "#fcfaf3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.31,
+          "background": "#ebe9e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.13,
+          "background": "#fcfaf3",
+          "foreground": "#1a1c2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#ebe9e4",
+          "foreground": "#1a1c2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#fd9494",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.89,
+          "background": "#1a1c2c",
+          "foreground": "#fd9494"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.04,
+          "background": "#fcfaf3",
+          "foreground": "#fd9494"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.76,
+          "background": "#ebe9e4",
+          "foreground": "#fd9494"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#ebe9e4",
+          "foreground": "#fcfaf3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 57
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 1584,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1782,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "input"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginRight|other",
+            "marginRight|body",
+            "marginLeft|body",
+            "marginBottom|heading",
+            "paddingBottom|input",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "icon",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|icon",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 75,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading",
+            "marginRight|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginRight|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "image",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|image",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 126,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ZJSansDisplay",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 387,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FeatureDeckLight",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ZJSansDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "nav",
+            "heading",
+            "list",
+            "image",
+            "icon",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 241,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ZJSansDisplay",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "FeatureDeckLight",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "ZJSansDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "FeatureDeckLight",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/de424bae-450a-4754-97a2-66a174a1becf.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zeus Jones design system\",\"item\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#style-reference\",\"name\":\"Zeus Jones design system reference\",\"headline\":\"Zeus Jones design system | Refero Styles\",\"description\":\"Explore Zeus Jones's light Agency design system: Midnight Ink #1a1c2c, Warm Parchment #fcfaf3 colors, ZJSansDisplay, FeatureDeckLight typography, and...\",\"url\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zeus Jones\",\"url\":\"https://zeusjones.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b619e1b9-86ee-4a10-b6e6-47b10927c3a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"caption\":\"Screenshot of Zeus Jones\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c346ce86-bd96-4f9a-a970-54c1312dd88d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zeus Jones design system\",\"Zeus Jones website design\",\"Zeus Jones colors\",\"Zeus Jones typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Midnight Ink\",\"Warm Parchment\",\"Soft Linen\",\"Obsidian\",\"ZJSansDisplay\",\"FeatureDeckLight\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zeus Jones design system\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones website design\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones colors\"},{\"@type\":\"Thing\",\"name\":\"Zeus Jones typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:11:09.802Z\",\"dateModified\":\"2026-04-30T03:11:09.802Z\"}]}19:T6df,Quick Color Reference:\n- text: #1a1c2c (Midnight Ink)\n- background: #fcfaf3 (Warm Parchment)\n- card surface: #ebe9e4 (Soft Linen)\n- border: #1a1c2c 1px\n- accent: #fd9494 (Blush Coral — decorative only)\n- primary action: #1a1c2c (filled action)\n\nExample Component Prompts:\n\n1. Hero Display Headline — 'Zeus Jones: risograph on warm cream'. Set a 90px FeatureDeckLight weight 100 headline at #1a1c2c, line-height 1.07, letter-spacing -1.8px, over a full-bleed colorful aurora background. Underline the words 'risograph' and 'warm'. End the headline with 'cream.' in serif italic. No max-width; pad 80px left.\n\n2. Filled Pill Button — 'Interested? let's talk'. 9999px radius. Background #1a1c2c. Text #fcfaf3, ZJSansDisplay 16px weight 400, tracking -0.32px. Padding 16px vertical × 24px horizontal. No border, no shadow.\n\n3. Project Card — four cards in a horizontal row, each with a 20px-radius image filling the top, a pill tag below (1px #1a1c2c border, radius 9999px, 12px ZJSansDisplay weight 500 +0.6px tracking, #1a1c2c text, padding 8px × 16px), then a 24px ZJSansDisplay weight 400 title, then an 18px body descriptor. Background Warm Parchment #fcfaf3; cards separated by 16px gap.\n\n4. Section Heading + Eyebrow — eyebrow row: 'How we partner —' left-aligned, '1 of 7' right-aligned, ZJSansDisplay 16px weight 400 #1a1c2c, tracking -0.32px, 1px solid #1a1c2c bottom border across the row. Below, 24px gap, then a 48px FeatureDeckLight weight 100 heading at #1a1c2c, tracking -0.96px.\n\n5. Announcement Bar — full-width strip, 1px solid #1a1c2c bottom border, 16px vertical padding. Left content: 8px filled dot in #fd9494, then ZJSansDisplay 16px weight 400 #1a1c2c text, ending with an underlined 'Learn more' link. Background #fcfaf3."
+}

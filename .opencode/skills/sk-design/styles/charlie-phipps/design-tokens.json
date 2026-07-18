@@ -1,0 +1,195 @@
+{
+  "color": {
+    "canvas-black": {
+      "$value": "#101011",
+      "$type": "color",
+      "$description": "Canvas Black — Base page canvas beneath full-bleed photography and dark bands; primary text on light surfaces; link underlines in dark contexts"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text color on dark/photographic backgrounds; content section background; dominant border color (hairline rules and dividers across the layout)"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Heading and body text on light surfaces; second structural border color — used wherever a slightly harder edge than #101011 is needed"
+    },
+    "fog-gray": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Fog Gray — Subtle surface tint separating content blocks from white paper; soft borders on body text and cards where a pure white hairline would disappear"
+    },
+    "smoke-gray": {
+      "$value": "#bab7b2",
+      "$type": "color",
+      "$description": "Smoke Gray — Muted heading accent — used for secondary headings and borders where the hierarchy needs to recede below the primary type"
+    },
+    "ash-gray": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Ash Gray — Body text metadata, link underlines in light contexts, and mid-weight borders — the workhorse neutral for anything that should be seen but not foregrounded"
+    },
+    "charcoal": {
+      "$value": "#262627",
+      "$type": "color",
+      "$description": "Charcoal — Deepest secondary border and muted text on light sections — just one step lighter than canvas black, used to keep dark elements feeling part of the same family"
+    },
+    "void": {
+      "$value": "#080809",
+      "$type": "color",
+      "$description": "Void — Near-pure black for the darkest link borders and emphasis text — visually indistinguishable from #000000 but kept distinct in the scale for deepest emphasis"
+    }
+  },
+  "font": {
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "The entire typographic system. Weight 400 at 162px is the signature move — most portfolios would use 700-900 for a hero this large; Phipps uses regular, letting the sheer size and aggressive negative tracking carry authority instead of stroke weight. LineHeight of 0.90 on the display size means the two-line hero actually visually interlocks. All other text (body, labels, navigation, links) is the same family at the same weight — there is no secondary typeface voice."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Used only as 13px image captions or photo metadata — the serif appears as a deliberate editorial counterpoint to the Helvetica system, breaking the all-grotesque monotony at micro scale"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "162px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 162px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#101011",
+      "$type": "color",
+      "$description": "Surface level 0: Dark base layer — visible only at the very top and as a thin nav strip; sets the stage for full-bleed photography"
+    },
+    "photographic-surface": {
+      "$value": "#101011",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed images sit on the dark canvas, making saturated colors (the red tube train, billboard art) read as the only chromatic event on screen"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Content section background — flips the entire mood from cinematic to editorial, gives body type and case study imagery a clean reading surface"
+    },
+    "tinted-card": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle separation layer for metadata blocks, project tiles, or grouped secondary information on the white paper"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://phippscharlie.com",
+      "siteName": "Charlie Phipps",
+      "extractedAt": "2026-06-03T19:45:21.588Z",
+      "variant": "extended"
+    }
+  }
+}

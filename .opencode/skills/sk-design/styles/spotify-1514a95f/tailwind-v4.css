@@ -1,0 +1,56 @@
+@theme {
+  /* Colors */
+  --color-spotify-green: #1ed760;
+  --color-signal-red: #b85850;
+  --color-void-black: #000000;
+  --color-carbon: #121212;
+  --color-graphite: #1f1f1f;
+  --color-smoke: #292929;
+  --color-iron: #333333;
+  --color-steel: #535353;
+  --color-fog: #73777c;
+  --color-mist: #b3b3b3;
+  --color-bone: #c5c5c5;
+  --color-pure-white: #ffffff;
+  --color-promo-gradient: #509bf5;
+  --color-magenta-glow: #af2896;
+
+  /* Typography */
+  --font-spotifymixui: 'SpotifyMixUI', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-spotifymixuititle: 'SpotifyMixUITitle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --text-body-lg: 14px;
+  --leading-body-lg: 1.33;
+  --text-link: 16px;
+  --leading-link: 1.2;
+  --text-heading: 24px;
+  --leading-heading: 1.2;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-172: 172px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-2xl: 16px;
+  --radius-full: 500px;
+  --radius-full-2: 9999px;
+
+  /* Shadows */
+  --shadow-lg: rgba(0, 0, 0, 0.5) 0px 8px 24px 0px;
+  --shadow-subtle: rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset;
+}

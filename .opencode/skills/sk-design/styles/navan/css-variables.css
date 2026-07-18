@@ -1,0 +1,97 @@
+:root {
+  /* Colors */
+  --color-deep-iris: #15002c;
+  --color-vivid-iris: #6307f8;
+  --color-iris-mist: #e1e2fe;
+  --color-iris-glow: #7c51fa;
+  --gradient-iris-glow: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(124, 81, 250, 0.3) 35%, rgba(255, 181, 206, 0.3) 50%, rgba(124, 81, 250, 0.3) 65%, rgba(0, 0, 0, 0) 100%);
+  --color-cinder: #060000;
+  --color-graphite: #5a5a72;
+  --color-fog: #8d8da5;
+  --color-smoke: #70708f;
+  --color-mist-border: #c6c6d2;
+  --color-canvas-tint: #f1f1f9;
+  --color-surface-white: #f8f8fd;
+  --color-pure-white: #ffffff;
+  --color-jet: #000000;
+  --color-violet-twilight: #410566;
+  --gradient-violet-twilight: radial-gradient(197.36% 161.87% at 4.08% 0%, rgba(65, 5, 102, 0.75) 6.19%, rgba(124, 81, 250, 0.75) 52.28%, rgba(255, 181, 206, 0.75) 91.18%);
+
+  /* Typography — Font Families */
+  --font-neue-hass-grotesk-text: 'Neue Hass Grotesk Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-haas-grotesk-display-pro: 'Neue Haas Grotesk Display Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sanomat: 'Sanomat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-hass-grotesk-display: 'Neue Hass Grotesk Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-karla: 'Karla', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.36;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.31;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 42px;
+  --leading-heading-lg: 1.12;
+  --text-display: 45px;
+  --leading-display: 1;
+  --tracking-display: 0.04px;
+  --text-hero: 135px;
+  --leading-hero: 0.87;
+  --tracking-hero: 5.4px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-140: 140px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 14px;
+  --radius-pills: 9999px;
+  --radius-badges: 14px;
+  --radius-inputs: 14px;
+  --radius-buttons: 14px;
+
+  /* Surfaces */
+  --surface-canvas: #f1f1f9;
+  --surface-card-white: #ffffff;
+  --surface-surface-lift: #f8f8fd;
+  --surface-iris-mist: #e1e2fe;
+  --surface-footer-iris: #15002c;
+}

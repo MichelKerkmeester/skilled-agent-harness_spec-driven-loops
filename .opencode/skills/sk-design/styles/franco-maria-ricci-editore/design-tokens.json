@@ -1,0 +1,290 @@
+{
+  "color": {
+    "vellum-white": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Vellum White — Page canvas — the warm off-white that grounds every section, never pure #ffffff so type never feels clinical"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card and section surfaces — book spreads, product panels, inset blocks sitting one shade above the vellum canvas"
+    },
+    "gallery-ink": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Gallery Ink — Dark sections (FMR Magazine block, footer band) and deepest typographic emphasis — reads as letterpress black, not screen black"
+    },
+    "letterpress-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Letterpress Black — Body copy, navigation text, icons, all hairlines and borders, pagination marks — the structural ink of the system"
+    },
+    "silver-wash": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Silver Wash — Muted surface for secondary hero panels and quiet tonal breaks — used sparingly as a gallery-shadow gray"
+    },
+    "burnished-gold": {
+      "$value": "#bc9c5c",
+      "$type": "color",
+      "$description": "Burnished Gold — Section header underlines, link hover rules, decorative title borders — the only chromatic voice in the system, applied as 1px strokes and inline rules, never as fill"
+    }
+  },
+  "font": {
+    "bodonisvntytwoitcstd-book": {
+      "$value": "BodoniSvntytwoITCStd-Book",
+      "$type": "fontFamily",
+      "$description": "Primary voice — every editorial moment. 42px with line-height 0.95 for the cinematic display headline (the tight leading lets the tall Bodoni capitals lock together as a single typographic object). 22px for section openers. 18px and 16px for body and book metadata. 14px and 12px for navigation, captions, and the monogrammed fine print. Substitute: Bodoni Moda, Bodoni 72, or Playfair Display when the ITC cut is unavailable."
+    },
+    "bodonisvntytwoitcstd-bookit": {
+      "$value": "BodoniSvntytwoITCStd-BookIt",
+      "$type": "fontFamily",
+      "$description": "Editorial italics for the signature flourish — \"Editore\" wordmark, italic section titles like OUR SELECTION, and the quiet poetic asides. The italic is used as ornament, not emphasis: a single italic line beside a roman headline changes the register of the whole spread. Substitute: Bodoni Moda Italic, Playfair Display Italic."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System utility for pagination counters (2/5), shipping notices, form labels, and the rare inline metadata. Arial sits beside Bodoni as a quiet functional label — the contrast between high-contrast serif and neutral sans is the only typographic tension the system permits. No tracking adjustments; letterspacing inherits from the browser default."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-BookIt",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-BookIt",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-BookIt",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-Book",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "BodoniSvntytwoITCStd-BookIt",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "vellum": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — the warm off-white that all sections sit on"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and column surfaces, one shade above the canvas to delineate without weight"
+    },
+    "silver-wash": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Surface level 2: Muted hero panels and quiet tonal breaks, used sparingly"
+    },
+    "gallery-ink": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 3: Dark editorial blocks (FMR Magazine) and deepest typographic surfaces"
+    },
+    "letterpress-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Maximum-contrast surfaces reserved for the most dramatic dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.francomariaricci.com/en",
+      "siteName": "Franco Maria Ricci Editore",
+      "extractedAt": "2026-06-03T20:54:46.097Z",
+      "variant": "extended"
+    }
+  }
+}

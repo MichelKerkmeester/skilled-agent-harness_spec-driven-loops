@@ -1,0 +1,1464 @@
+{
+  "source": "https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647",
+  "uuid": "66e7b131-d68c-4751-954c-f5d0d8869647",
+  "name": "Le Puzz",
+  "northStar": "Sunny Sunday circular — a yellow tabloid stuffed with puzzles.",
+  "capturedAt": "2026-07-18T07:54:07.020Z",
+  "meta": {
+    "url": "https://lepuzz.com",
+    "siteName": "Le Puzz",
+    "extractedAt": "2026-06-03T19:09:34.873Z",
+    "durationMs": 87414,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1167,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Honeycomb Yellow (#ffd931) as the singular chromatic accent — it should appear on the header band, primary CTAs, and at most one element per viewport",
+      "Pair every yellow surface with a 1-2px Carbon Black (#000000) border to maintain the stamped/printed look",
+      "Set body copy in Times serif at 16px / 1.15 line-height — resist the urge to switch to sans-serif for 'readability'",
+      "Apply 0.0630–0.0910em letter-spacing to all 11px Helvetica text (nav, buttons, micro-copy) to create an editorial small-caps feel",
+      "Use 12px border-radius as the workhorse for cards, buttons, badges, and product images",
+      "Let product photography fill the visual role — keep UI surfaces flat and quiet so packaging art can carry the drama",
+      "Maintain the 15:1 minimum contrast between text and background — never soften black to gray for large text"
+    ],
+    "donts": [
+      "Don't introduce additional chromatic colors — the system is monochrome black/white with one yellow accent, any second hue breaks the identity",
+      "Don't use drop shadows, glows, or blur effects — depth comes from borders and color contrast, not elevation",
+      "Don't set body text in Helvetica or any sans-serif — the serif is the signature",
+      "Don't round corners above 12px on standard components — reserve 25px+ for pill buttons and hero images only",
+      "Don't use low-contrast gray text on the yellow background — black at 15.2:1 is the only acceptable combination",
+      "Don't center-align long-form paragraphs — left-align Times body copy to preserve editorial rhythm",
+      "Don't apply gradients to any surface — the system is entirely flat, gradients would break the printed-catalog metaphor"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffd931",
+        "name": "Honeycomb Yellow",
+        "role": "Primary brand color, header band, primary action buttons, nav active state, link underline color, accent fills — the one chromatic note everything else orbits around",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, heavy borders, button outlines, icon strokes, nav text — the structural ink of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#231f20",
+        "name": "Ink Black",
+        "role": "Secondary text, body copy, button borders, input borders — a slightly warmer near-black for softer reading",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8cbcd",
+        "name": "Pearl Gray",
+        "role": "Page canvas, product card backgrounds, the cool stage on which yellow and black perform",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a8aa",
+        "name": "Fog Gray",
+        "role": "Muted badge surfaces, secondary chip backgrounds, low-emphasis UI fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Smoke Line",
+        "role": "Hairline dividers, subtle table/card separators",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Classic e-commerce grid with a strong editorial frame. The header is a full-bleed Honeycomb Yellow band with a 1-2px black border below, containing centered logotype and a secondary outlined-button nav row. Below, a centered welcome headline in Times Now sits above a 3-column product grid on a Pearl Gray canvas. The hero is a centered photographic block with rounded corners (40-55px) flanked by two product cards. Section rhythm is consistent: large vertical breathing room (30-40px section gaps), alternating yellow and gray surfaces, and a max-width of ~1200px centered on the page. Product cards are uniform in size, arranged in a clean 3-column grid with 15px gaps. The layout is symmetrical and grid-locked — no asymmetric compositions, no overlapping elements.",
+    "imagery": "Product photography is the dominant visual element. Puzzle boxes are shot frontally on white/neutral backgrounds, then placed on a warm blue or natural studio backdrop. The hero features a person holding multiple puzzle boxes — a lifestyle product shot with candid energy. The packaging itself is dense, illustrative, and maximalist: crowds of toys, food items, and characters in bright primary colors with thick black outlines, designed to look like a children's book illustration exploded across a 500-piece jigsaw. No abstract graphics, no 3D renders, no iconography beyond a single search magnifier — the puzzles ARE the visual language.",
+    "similar": [
+      {
+        "why": "Same maximalist product-photography-forward e-commerce with flat color backgrounds and thick black borders on packaging art",
+        "business": "Areaware"
+      },
+      {
+        "why": "Same illustrated puzzle packaging aesthetic with dense character/object compositions on bright primary-color boxes",
+        "business": "Mudpuppy (puzzles)"
+      },
+      {
+        "why": "Same editorial catalog feel — Times serif body copy, generous letter-spacing on small caps, quiet canvas that lets product art dominate",
+        "business": "Chronicle Books"
+      },
+      {
+        "why": "Same flat-design product grid with a single brand color accent and serif-driven editorial voice",
+        "business": "MoMA Design Store"
+      },
+      {
+        "why": "Same playful product-first e-commerce with thick black borders, centered grid, and maximalist product photography as the visual hero",
+        "business": "Firebox"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "badges": "12px",
+        "buttons": "12px",
+        "heroImages": "40-55px",
+        "pillButtons": "25px",
+        "productImages": "12px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "30-40px",
+      "cardPadding": "15px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#c8cbcd",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Cool pearl background that lets the yellow pop"
+      },
+      {
+        "hex": "#ffd931",
+        "name": "Product Card",
+        "level": 1,
+        "purpose": "Yellow surfaces for featured/highlighted areas"
+      },
+      {
+        "hex": "#a6a8aa",
+        "name": "Elevated Section",
+        "level": 2,
+        "purpose": "Fog gray for badge/chip clusters and secondary groupings"
+      },
+      {
+        "hex": "#231f20",
+        "name": "Ink Surface",
+        "level": 3,
+        "purpose": "Near-black for inverted text or strong contrast zones"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat with 12px border-radius",
+        "element": "Product Cards"
+      },
+      {
+        "style": "none — flat fills with 1-2px black borders",
+        "element": "Buttons"
+      },
+      {
+        "style": "none — anchored by 1-2px black bottom border",
+        "element": "Header"
+      }
+    ],
+    "northStar": "Sunny Sunday circular — a yellow tabloid stuffed with puzzles.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.15,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1.15,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 0.9,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 0.9,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 47,
+        "lineHeight": 0.87,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Yellow Primary Button",
+        "role": "Primary call-to-action (Add to Cart, Quick Add, Shop All)",
+        "description": "Filled Honeycomb Yellow (#ffd931) background, Carbon Black (#000000) 1-2px border, black text in Helvetica 11px at 0.0730em letter-spacing, 12px border-radius, ~6px 14px padding, uppercase tracking. The 15.2:1 contrast against black text makes the label feel stamped on."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Navigation and secondary actions (Shop All, Merch, About, Sign in)",
+        "description": "Transparent or Pearl Gray fill, Carbon Black 1-2px solid border, black text at 11px Helvetica with 0.0630em tracking, 12px radius, ~10px vertical padding. Sits directly on the yellow header band as black-outlined cells."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline links, nav text, footer links",
+        "description": "No background, Carbon Black text, often with a black 1px underline (328 occurrences of black link border). 14px Helvetica with 0.0770em letter-spacing on small variants."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual puzzle listing in grid",
+        "description": "Pearl Gray (#c8cbcd) background, 12px border-radius, product image fills card with ~12px corner radius, product name in Times serif italic below, price in black bold, Honeycomb Yellow 'QUICK ADD' pill button at the bottom edge."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Site-wide top navigation",
+        "description": "Full-width Honeycomb Yellow (#ffd931) band, 1-2px Carbon Black bottom border, centered logotype in Times Now display weight, flanked by email signup (left) and shipping/cart (right). Nav row below with outlined buttons on the same yellow."
+      },
+      {
+        "name": "Quick Add Pill",
+        "role": "One-tap purchase on product cards",
+        "description": "Honeycomb Yellow fill, Carbon Black text, fully rounded ends (25px radius), 11px Helvetica uppercase, sits as a compact action chip at the base of each product card."
+      },
+      {
+        "name": "Hero Feature Block",
+        "role": "Featured collection showcase",
+        "description": "Large centered photographic hero (person holding puzzle boxes) with rounded corners (40-55px radius), 23-27px Times Now headline, body description in Times serif 16px, no gradient — the photography carries the drama."
+      },
+      {
+        "name": "Search Icon",
+        "role": "Header utility",
+        "description": "Carbon Black outlined magnifier, 16-20px size, sits inline with right-rail header text on yellow background."
+      },
+      {
+        "name": "Tag/Badge",
+        "role": "Labels, categories, status indicators",
+        "description": "Fog Gray (#a6a8aa) or Pearl Gray background, Carbon Black text, 12px radius, 11px Helvetica uppercase with 0.0730em letter-spacing, 2-5px padding."
+      },
+      {
+        "name": "Footer Section",
+        "role": "Site footer",
+        "description": "Light background with Carbon Black text, 1px black hairline borders, Times serif body copy, narrow column layout with generous 15px gaps."
+      },
+      {
+        "name": "Input Field",
+        "role": "Email signup, search, form fields",
+        "description": "Transparent or white fill, 1-2px Carbon Black border, black placeholder text, 11-14px serif or sans, minimal 1-2px vertical padding. Border-bottom emphasis style on some inputs."
+      },
+      {
+        "name": "Price Label",
+        "role": "Product price display",
+        "description": "Carbon Black, bold, 14-16px Helvetica or Times, sits directly under product title with no decoration — the price is a statement, not a highlight."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — used for hero headlines, product names, and section titles. The ultralight 100 weight at 47px creates a tall, almost compressed editorial feel; the condensed letterforms (lineHeight 0.87–0.90) let large headlines sit close to their supporting copy, mimicking a printed poster.",
+        "sizes": "16px, 23px, 27px, 47px",
+        "family": "Times Now",
+        "weight": "100, 400",
+        "lineHeight": "0.87, 0.90, 1.15, 1.56, 1.93",
+        "substitute": "Playfair Display, DM Serif Display, or GT Sectra"
+      },
+      {
+        "role": "Body copy serif — an unexpected choice for e-commerce that gives the whole site a literary, catalog-like voice. The tight 1.15 line-height keeps paragraph blocks compact and readable.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "substitute": "Times New Roman, Source Serif Pro, Lora"
+      },
+      {
+        "role": "Small UI labels, button text, micro-copy — set in 11px with generous letter-spacing (0.0730em) to create an all-caps editorial feel even at body temperature",
+        "sizes": "11px",
+        "family": "Helvetica Neue",
+        "weight": "100, 400",
+        "lineHeight": "1.15, 2.27",
+        "substitute": "Helvetica, Inter, Neue Haas Grotesk",
+        "letterSpacing": "0.0730em"
+      },
+      {
+        "role": "Navigation, links, utility text, large numbers — the utility sans that handles everything Times can't. Letter-spacing of 0.0630–0.0910em on small sizes gives all-caps nav items a wide, confident gait.",
+        "sizes": "11px, 13px, 14px, 16px, 40px",
+        "family": "Helvetica",
+        "weight": "100, 300, 400",
+        "lineHeight": "0.90, 1.15, 1.38, 1.56, 2.63",
+        "substitute": "Helvetica, Arial, Inter",
+        "letterSpacing": "0.0630em at 13px, 0.0730em at 11px, 0.0770em at 11px, 0.0910em at 11px"
+      }
+    ],
+    "description": "Le Puzz is a maximalist boutique e-commerce system built on a two-color foundation: an aggressively saturated honeycomb yellow paired with pure black, floated on a cool pearl-gray canvas. The personality is vintage-newspaper-meets-puzzle-box — Times serif for body copy and a custom display serif (Times Now) for headlines, deliberately bucking the sans-serif e-commerce convention. The interface itself stays quiet and grid-driven so the photographed product packaging (dense, illustrated, toy-stuffed compositions) can carry the visual drama. UI controls are weighty: black-bordered buttons on yellow fills, pill-shaped badges, 12px-radius cards, and generous letter-spacing on small caps that gives even a \"QUICK ADD\" button editorial swagger.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Le Puzz design system\",\"item\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#style-reference\",\"name\":\"Le Puzz design system reference\",\"headline\":\"Le Puzz design system | Refero Styles\",\"description\":\"Explore Le Puzz's light E-commerce design system: Honeycomb Yellow #ffd931, Carbon Black #000000 colors, Times Now, Times typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\",\"mainEntityOfPage\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Le Puzz\",\"url\":\"https://lepuzz.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"caption\":\"Screenshot of Le Puzz\"},\"image\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Le Puzz design system\",\"Le Puzz website design\",\"Le Puzz colors\",\"Le Puzz typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Honeycomb Yellow\",\"Carbon Black\",\"Ink Black\",\"Pearl Gray\",\"Times Now\",\"Times\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Le Puzz design system\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz website design\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz colors\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:50:48.759Z\",\"dateModified\":\"2026-04-30T02:50:48.759Z\"}]}19:T5b6,## Quick Color Reference\n- Background: #c8cbcd (Pearl Gray)\n- Text: #000000 (Carbon Black)\n- Border: #000000 (Carbon Black), 1-2px\n- Accent: #ffd931 (Honeycomb Yellow)\n- primary action: #ffd931 (filled action)\n\n## Example Component Prompts\n1. **Product Card**: Pearl Gray (#c8cbcd) background, 12px radius. Product image fills card with 12px corner radius. Product name in Times serif 16px italic, #000000. Price in Helvetica 14px bold, #000000. Honeycomb Yellow (#ffd931) 'QUICK ADD' pill button: 25px radius, 1px black border, 11px Helvetica uppercase at 0.0730em letter-spacing, black text.\n\n2. **Header Bar**: Full-width Honeycomb Yellow (#ffd931) band, 2px Carbon Black (#000000) bottom border. Centered logo in Times Now 47px weight 100. Below: row of outlined nav buttons — transparent fill, 1px black border, 12px radius, 11px Helvetica uppercase at 0.0630em letter-spacing.\n\n3. **Hero Headline**: Times Now 40px weight 100, #000000, line-height 0.90, centered on Pearl Gray canvas. Subtext in Times serif 16px, #231f20, centered, max-width 600px.\n\n4. **Outlined Nav Button**: Transparent fill, 1px Carbon Black border, 12px radius, 10px 14px padding, 11px Helvetica weight 400 at 0.0630em letter-spacing, uppercase, #000000 text.\n\n5. **Product Grid Section**: Pearl Gray (#c8cbcd) canvas, 3-column grid with 15px gaps, max-width 1200px centered. Each card: 12px radius, product image with 12px image radius, 15px padding, name and price stacked below."
+      }
+    ],
+    "elevationPhilosophy": "Le Puzz is a flat-design system with zero shadow elevation. Depth is created entirely through color contrast (15.2:1 black on yellow, 12.9:1 black on pearl) and thick 1-2px black borders that read like comic-book ink lines. The absence of drop shadows is a deliberate editorial choice — it keeps the interface feeling like a printed catalog or vintage puzzle box rather than a skeuomorphic app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "card",
+            "body",
+            "image",
+            "badge",
+            "heading",
+            "footer",
+            "button",
+            "input",
+            "icon",
+            "list"
+          ],
+          "frequency": 3380,
+          "confidence": 1,
+          "prominence": 226103499.46595588,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 17,
+            "body/color": 71,
+            "card/color": 64,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 82,
+            "list/color": 5,
+            "other/fill": 3,
+            "badge/color": 19,
+            "image/color": 22,
+            "input/color": 1,
+            "other/color": 383,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 4,
+            "nav/borderColor": 67,
+            "body/borderColor": 280,
+            "card/borderColor": 256,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 328,
+            "list/borderColor": 20,
+            "badge/borderColor": 76,
+            "image/borderColor": 88,
+            "input/borderColor": 4,
+            "other/borderColor": 1523,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#c8cbcd",
+          "oklch": {
+            "c": 0.004331074380930053,
+            "h": 236.509055639988,
+            "l": 0.8403513140243105
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 38573570,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffd931",
+          "oklch": {
+            "c": 0.17223554320093218,
+            "h": 95.12375214578607,
+            "l": 0.8919260176222265
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 4482968.93372197,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 70,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#231f20",
+          "oklch": {
+            "c": 0.006380422797871483,
+            "h": 0.5935423003805331,
+            "l": 0.24418954591201783
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "heading",
+            "input"
+          ],
+          "frequency": 2107,
+          "confidence": 1,
+          "prominence": 2039935.4866058237,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 294,
+            "icon/color": 1,
+            "link/color": 5,
+            "other/fill": 75,
+            "input/color": 1,
+            "other/color": 8,
+            "button/color": 70,
+            "other/stroke": 1,
+            "heading/color": 9,
+            "nav/borderColor": 65,
+            "body/borderColor": 1176,
+            "icon/borderColor": 4,
+            "link/borderColor": 20,
+            "input/borderColor": 4,
+            "other/borderColor": 41,
+            "button/borderColor": 280,
+            "heading/borderColor": 36,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a6a8aa",
+          "oklch": {
+            "c": 0.0036767149844310677,
+            "h": 247.87426323149896,
+            "l": 0.7305744619585793
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 51223.49178060502,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 19
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8760963267776515
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2684.148877689791,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42023714570450815
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1049.2451754774054,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.013835797157239232,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.22,
+          "background": "#ffd931",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d6d6d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.88,
+          "background": "#c8cbcd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#231f20",
+          "foreground": "#ffd931"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#d6d6d6",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10,
+          "background": "#c8cbcd",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.8,
+          "background": "#a6a8aa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.83,
+          "background": "#a6a8aa",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#ffd931",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.82,
+          "background": "#d6d6d6",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.18,
+          "background": "#c8cbcd",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#a6a8aa",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#a6a8aa",
+          "foreground": "#ffd931"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#231f20",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#c8cbcd",
+          "foreground": "#ffd931"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "image",
+            "badge",
+            "button",
+            "link"
+          ],
+          "frequency": 90
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "input",
+            "icon"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 83,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingBottom|body",
+            "marginRight|body",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|body",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "other",
+            "image",
+            "link",
+            "heading",
+            "list"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|image",
+            "marginRight|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "marginBottom|list",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 130,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 198,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 68,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "heading",
+            "other",
+            "image",
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|image",
+            "marginBottom|image",
+            "columnGap|other",
+            "marginBottom|link",
+            "paddingRight|nav",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingTop|footer",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 561,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            100,
+            400
+          ],
+          "frequency": 329,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            100,
+            300,
+            400
+          ],
+          "frequency": 98,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times Now",
+          "source": "custom",
+          "weights": [
+            100,
+            400
+          ],
+          "frequency": 95,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 215,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.073,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 109,
+          "lineHeight": 2.27,
+          "letterSpacing": 0.073,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.091,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Helvetica",
+          "weight": 100,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.077,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "link",
+            "image",
+            "footer",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "body"
+          ],
+          "frequency": 560,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 2.63,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times Now",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 100,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times Now",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Times Now",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.87,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Times Now",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Times Now",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Times Now",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.93,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Times Now",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Times Now",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/af2f0d44-1c22-4197-a256-571e51f8d57e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Le Puzz design system\",\"item\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#style-reference\",\"name\":\"Le Puzz design system reference\",\"headline\":\"Le Puzz design system | Refero Styles\",\"description\":\"Explore Le Puzz's light E-commerce design system: Honeycomb Yellow #ffd931, Carbon Black #000000 colors, Times Now, Times typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\",\"mainEntityOfPage\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Le Puzz\",\"url\":\"https://lepuzz.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/66e7b131-d68c-4751-954c-f5d0d8869647#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"caption\":\"Screenshot of Le Puzz\"},\"image\":\"https://images.refero.design/styles/refero.design/image/52fd3cf6-d581-4db6-ae44-85e689aa19ba.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Le Puzz design system\",\"Le Puzz website design\",\"Le Puzz colors\",\"Le Puzz typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Honeycomb Yellow\",\"Carbon Black\",\"Ink Black\",\"Pearl Gray\",\"Times Now\",\"Times\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Le Puzz design system\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz website design\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz colors\"},{\"@type\":\"Thing\",\"name\":\"Le Puzz typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:50:48.759Z\",\"dateModified\":\"2026-04-30T02:50:48.759Z\"}]}19:T5b6,## Quick Color Reference\n- Background: #c8cbcd (Pearl Gray)\n- Text: #000000 (Carbon Black)\n- Border: #000000 (Carbon Black), 1-2px\n- Accent: #ffd931 (Honeycomb Yellow)\n- primary action: #ffd931 (filled action)\n\n## Example Component Prompts\n1. **Product Card**: Pearl Gray (#c8cbcd) background, 12px radius. Product image fills card with 12px corner radius. Product name in Times serif 16px italic, #000000. Price in Helvetica 14px bold, #000000. Honeycomb Yellow (#ffd931) 'QUICK ADD' pill button: 25px radius, 1px black border, 11px Helvetica uppercase at 0.0730em letter-spacing, black text.\n\n2. **Header Bar**: Full-width Honeycomb Yellow (#ffd931) band, 2px Carbon Black (#000000) bottom border. Centered logo in Times Now 47px weight 100. Below: row of outlined nav buttons — transparent fill, 1px black border, 12px radius, 11px Helvetica uppercase at 0.0630em letter-spacing.\n\n3. **Hero Headline**: Times Now 40px weight 100, #000000, line-height 0.90, centered on Pearl Gray canvas. Subtext in Times serif 16px, #231f20, centered, max-width 600px.\n\n4. **Outlined Nav Button**: Transparent fill, 1px Carbon Black border, 12px radius, 10px 14px padding, 11px Helvetica weight 400 at 0.0630em letter-spacing, uppercase, #000000 text.\n\n5. **Product Grid Section**: Pearl Gray (#c8cbcd) canvas, 3-column grid with 15px gaps, max-width 1200px centered. Each card: 12px radius, product image with 12px image radius, 15px padding, name and price stacked below."
+}

@@ -1,0 +1,749 @@
+{
+  "color": {
+    "studio-violet": {
+      "$value": "#9671ff",
+      "$type": "color",
+      "$description": "Studio Violet — Primary CTA buttons, active nav indicators, selected states, accent icon strokes — the sole chromatic switch in an otherwise grayscale interface; one filled violet per screen creates a clear hierarchy of action"
+    },
+    "lavender-mist": {
+      "$value": "#f2eeff",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft accent surface washes behind feature tags, subtle highlighted regions, and selected nav backgrounds — a whisper of brand color that never competes with the primary violet"
+    },
+    "periwinkle-tint": {
+      "$value": "#eae3ff",
+      "$type": "color",
+      "$description": "Periwinkle Tint — Deeper lavender wash for highlighted tag backgrounds, soft brand-tinted card surfaces, and active state fills that need more presence than Lavender Mist"
+    },
+    "iris-light": {
+      "$value": "#ad98fa",
+      "$type": "color",
+      "$description": "Iris Light — Secondary violet for outlined buttons, hover strokes, and decorative icon tints where full Studio Violet would be too loud"
+    },
+    "carbon": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Carbon — Primary text, dark section backgrounds, hairline borders, icon strokes — the workhorse near-black that replaces pure #000 in body contexts"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Base canvas, card surfaces, text on dark sections, button fills on light backgrounds"
+    },
+    "fog": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Fog — First elevation step — subtle card backgrounds, section dividers, muted surface fills that break from pure white without introducing a different color"
+    },
+    "graphite": {
+      "$value": "#383838",
+      "$type": "color",
+      "$description": "Graphite — Secondary text on light backgrounds, dark hover states, and intermediate borders that need more weight than hairline but less than Carbon"
+    },
+    "ash": {
+      "$value": "#d2d2d2",
+      "$type": "color",
+      "$description": "Ash — Default borders, input outlines, dividers, and disabled state strokes — the neutral hairline layer"
+    },
+    "silver": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Silver — Muted helper text, placeholder copy, and tertiary informational elements"
+    },
+    "smoke": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Smoke — De-emphasized text, secondary metadata, timestamp labels, and subtitle copy on lighter sections"
+    },
+    "midnight": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Midnight — Full-bleed dark section backgrounds, inverted surface blocks — slightly deeper than Carbon for maximum contrast against violet accents"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Heading text on light backgrounds, logo lockups, and maximum-contrast borders where no warmth is desired"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Universal typeface for all UI text, body copy, headlines, and buttons. Weight 800 is reserved for hero display headlines; weight 600 for section headings; weight 500 for UI labels and nav; weight 400 for body; weight 300 appears in feature column labels for visual quietness"
+    },
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "Narrowly used for feature column labels (Record / Edit / Repurpose / Stream / Publish) in dark presentation sections — a geometric, industrial counterpoint to Inter's neutrality that signals functional categories"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "8px",
+        "fontWeight": 300,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 1.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "50px",
+        "fontWeight": 800,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Inter-custom-woff2",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16.128px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "29.952px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "33.984px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 4px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background across all light sections"
+    },
+    "fog-card": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevated card surfaces, inline highlight regions"
+    },
+    "lavender-mist": {
+      "$value": "#f2eeff",
+      "$type": "color",
+      "$description": "Surface level 2: Brand-tinted wash for selected tags, active nav backgrounds, soft accent blocks"
+    },
+    "periwinkle-tint": {
+      "$value": "#eae3ff",
+      "$type": "color",
+      "$description": "Surface level 3: Deeper brand wash for highlighted content blocks, callout regions"
+    },
+    "midnight-block": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed dark sections, hero backgrounds, feature presentation zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://riverside.fm",
+      "siteName": "Riverside",
+      "extractedAt": "2026-06-03T21:55:06.145Z",
+      "variant": "extended"
+    }
+  }
+}

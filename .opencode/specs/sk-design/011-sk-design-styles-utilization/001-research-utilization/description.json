@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
+  "description": "Deep-research (10 iters, GPT 5.6 SOL xhigh) into indexing, retrieving, and consuming the styles library across sk-design + its five modes.",
+  "keywords": [
+    "deep-research",
+    "iters",
+    "gpt",
+    "sol",
+    "xhigh",
+    "indexing",
+    "retrieving",
+    "consuming",
+    "styles",
+    "library",
+    "across",
+    "sk-design",
+    "five",
+    "modes"
+  ],
+  "lastUpdated": "2026-07-18T09:21:31.222Z",
+  "specId": "001",
+  "folderSlug": "research-utilization",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

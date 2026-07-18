@@ -1,0 +1,282 @@
+{
+  "color": {
+    "whatsapp-green": {
+      "$value": "#25d366",
+      "$type": "color",
+      "$description": "WhatsApp Green — Primary CTA buttons, active state highlights, and the singular chromatic accent across the entire system — used sparingly to make every action feel like a deliberate invitation rather than a recurring brand color"
+    },
+    "link-blue": {
+      "$value": "#0373e9",
+      "$type": "color",
+      "$description": "Link Blue — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "charcoal": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Charcoal — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "ink-black": {
+      "$value": "#111b21",
+      "$type": "color",
+      "$description": "Ink Black — Deepest text and icon color, input borders, icon strokes — slightly darker than Charcoal for elements that need maximum weight or definition"
+    },
+    "cream-canvas": {
+      "$value": "#fcf5eb",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background across all sections — warm off-white that gives the entire site its sunlit, approachable atmosphere instead of stark pure white"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, button fills for outlined variants, nav background, and chat-bubble fills — the elevated surface layer sitting on the cream canvas"
+    },
+    "warm-gray": {
+      "$value": "#5e5e5e",
+      "$type": "color",
+      "$description": "Warm Gray — Secondary/muted body text and subtle borders — used for helper text, disclaimers, and de-emphasized labels"
+    },
+    "pale-blue-wash": {
+      "$value": "#f0f4f9",
+      "$type": "color",
+      "$description": "Pale Blue Wash — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "whatsapp-sans-var": {
+      "$value": "WhatsApp Sans Var",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — body text and UI at 400, headlines and display at 700. The display sizes reaching 80px are uncommonly large for a product marketing site and create a magazine-like confidence. Custom font so no exact substitute, but Inter or Söhne are close fallback options"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "WhatsApp Sans Var",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fcf5eb",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background spanning the full viewport"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, chat bubbles, and elevated panels on top of the cream canvas"
+    },
+    "pale-blue": {
+      "$value": "#f0f4f9",
+      "$type": "color",
+      "$description": "Surface level 3: Input fields and interactive surface differentiation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.whatsapp.com",
+      "siteName": "WhatsApp.com",
+      "extractedAt": "2026-06-03T17:58:17.369Z",
+      "variant": "extended"
+    }
+  }
+}

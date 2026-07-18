@@ -1,0 +1,354 @@
+{
+  "color": {
+    "sticker-green": {
+      "$value": "#3cdd8c",
+      "$type": "color",
+      "$description": "Sticker Green — Decorative blob shapes, accent fills in hero and code-demo section"
+    },
+    "sticker-yellow": {
+      "$value": "#ffc435",
+      "$type": "color",
+      "$description": "Sticker Yellow — Decorative blob shapes, warm accent fill in hero"
+    },
+    "sticker-pink": {
+      "$value": "#e699d9",
+      "$type": "color",
+      "$description": "Sticker Pink — Decorative blob shapes, soft accent fill in hero"
+    },
+    "periwinkle-violet": {
+      "$value": "#7575f0",
+      "$type": "color",
+      "$description": "Periwinkle Violet — Full-bleed FAQ section background, section-level color band"
+    },
+    "soft-periwinkle": {
+      "$value": "#939eeb",
+      "$type": "color",
+      "$description": "Soft Periwinkle — Inline text accents, table text, light violet typography"
+    },
+    "deep-aubergine": {
+      "$value": "#3a2234",
+      "$type": "color",
+      "$description": "Deep Aubergine — Dark code-demo section background — the primary dark band"
+    },
+    "mint-cream": {
+      "$value": "#d4f7e6",
+      "$type": "color",
+      "$description": "Mint Cream — Tinted card surface — pale green card variant"
+    },
+    "cotton-candy": {
+      "$value": "#ffccf7",
+      "$type": "color",
+      "$description": "Cotton Candy — Tinted card surface — pale pink card variant"
+    },
+    "butter-cream": {
+      "$value": "#ffeecc",
+      "$type": "color",
+      "$description": "Butter Cream — Tinted card surface — pale yellow card variant"
+    },
+    "lavender-mist": {
+      "$value": "#e8e8fc",
+      "$type": "color",
+      "$description": "Lavender Mist — Tinted card surface — pale violet card variant, nav pill background"
+    },
+    "dusty-mauve": {
+      "$value": "#eddee9",
+      "$type": "color",
+      "$description": "Dusty Mauve — Tinted card surface — mauve card variant"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, filled button fill, hero headline color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light section canvas, card surface on dark/violet bands, button text on black"
+    },
+    "fog": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Fog — Light card surfaces on light sections, subtle fills"
+    },
+    "silver": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, dividers, table grid lines"
+    },
+    "ash": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text, placeholder labels"
+    },
+    "graphite": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Graphite — Disabled/inactive text, table muted cells"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Borders on dark sections, secondary dividers"
+    }
+  },
+  "font": {
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "All interface text — headlines, body, buttons, nav, cards. Geist is a geometric sans with hard-cut terminals; weight 400 carries body, weight 500 carries UI controls and subheads. Display sizes use tight negative tracking (up to -0.015em) to lock letters together at hero scale."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Code blocks, inline code, file labels, tabular data. Loose 1.80 line-height is deliberate — it creates breathing room around syntax tokens so colored keywords read as decoration, not noise."
+    },
+    "arial-black": {
+      "$value": "Arial Black",
+      "$type": "fontFamily",
+      "$description": "Arial Black — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Arial Black",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Arial Black",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.5) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(255, 255, 255, 0.1) 0px 2px 4px 0px inset, rgba(0, 0, 0, 0.5) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "light-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background, hero and content sections"
+    },
+    "card-on-light": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 1: Light card surface that lifts off the white canvas"
+    },
+    "tinted-card": {
+      "$value": "#e8e8fc",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel card variant — lavender/mint/butter/cotton candy tints used as colorful card surfaces"
+    },
+    "dark-band": {
+      "$value": "#3a2234",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed code-demo section background"
+    },
+    "colored-band": {
+      "$value": "#7575f0",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed periwinkle FAQ section"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fastht.ml",
+      "siteName": "fastht.ml",
+      "extractedAt": "2026-06-03T20:17:54.813Z",
+      "variant": "extended"
+    }
+  }
+}

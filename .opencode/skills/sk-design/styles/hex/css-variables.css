@@ -1,0 +1,105 @@
+:root {
+  /* Colors */
+  --color-ink-violet: #01011b;
+  --color-plum-charcoal: #31263b;
+  --color-storm-mauve: #43394c;
+  --color-slate-iris: #717a94;
+  --color-ash-lavender: #89828d;
+  --color-parchment: #fffcfc;
+  --color-bone-mist: #ecedf2;
+  --color-fog-border: #dbd7da;
+  --color-twilight-plum: #473982;
+  --color-amethyst: #6f63b7;
+  --color-wisteria: #9e91d6;
+  --color-indigo-plum: #544692;
+  --gradient-indigo-plum: linear-gradient(90deg, #31263b 0%, #01011b 100%);
+
+  /* Typography — Font Families */
+  --font-pp-editorial-new: 'PP Editorial New', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-formula-semiextended: 'PP Formula SemiExtended', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-formula: 'PP Formula', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-plex-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-cinetype: 'Cinetype', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-lato: 'Lato', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.4;
+  --tracking-caption: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.6;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.7px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 26px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.65px;
+  --text-heading-md: 28px;
+  --leading-heading-md: 1.3;
+  --tracking-heading-md: -0.7px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1.3;
+  --tracking-heading-lg: -1.86px;
+  --text-display: 78px;
+  --leading-display: 1.3;
+  --tracking-display: -1.87px;
+
+  /* Typography — Weights */
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-96: 96px;
+  --spacing-108: 108px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-3xl: 30px;
+  --radius-full: 99px;
+  --radius-full-2: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 6px;
+  --radius-pills: 9999px;
+  --radius-inputs: 6px;
+  --radius-buttons: 3px;
+  --radius-navitems: 3px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(71, 57, 130, 0.1) 0px 0px 0px 1px inset;
+  --shadow-subtle-2: rgba(49, 38, 59, 0.22) 0px 0px 0px 1px, rgba(49, 38, 59, 0.09) 0px 103px 103px 0px, rgba(49, 38, 59, 0.1) 0px 26px 57px 0px;
+  --shadow-subtle-3: rgb(255, 255, 255) 0px 0px 0px 1px inset;
+  --shadow-subtle-4: rgba(71, 57, 130, 0.15) 0px 0px 0px 4px;
+  --shadow-subtle-5: rgba(49, 38, 59, 0.22) 0px 0px 0px 1px, rgba(49, 38, 59, 0.1) 0px 26px 57px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.05) 0px 0px 11px 0px inset, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 16px 24px -8px, rgba(0, 0, 0, 0.05) 0px 8px 12px -4px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+  /* Surfaces */
+  --surface-parchment-canvas: #fffcfc;
+  --surface-bone-mist-card: #ecedf2;
+  --surface-plum-tinted-card: #fffcfc;
+  --surface-elevated-product-panel: #ffffff;
+}

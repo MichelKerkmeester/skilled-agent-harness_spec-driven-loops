@@ -1,0 +1,567 @@
+{
+  "color": {
+    "forest-depths": {
+      "$value": "#1c3a13",
+      "$type": "color",
+      "$description": "Forest Depths — Primary brand color — filled CTAs, dark section backgrounds, navigation surfaces, and primary body text. A near-black green that reads as ink on snow-white and as depth in dark sections"
+    },
+    "lime-pulse": {
+      "$value": "#d3fa99",
+      "$type": "color",
+      "$description": "Lime Pulse — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "sage-moss": {
+      "$value": "#757c5d",
+      "$type": "color",
+      "$description": "Sage Moss — Product variant accent — DM-02 Daily Multivitamin card and supporting elements. Muted green that harmonizes with Forest Depths without competing"
+    },
+    "olive-gold": {
+      "$value": "#9f995b",
+      "$type": "color",
+      "$description": "Olive Gold — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "eucalyptus": {
+      "$value": "#698e79",
+      "$type": "color",
+      "$description": "Eucalyptus — Product variant accent — PM-02 Sleep + Restore card and supporting elements. Cooler green-blue for the evening product"
+    },
+    "snow-white": {
+      "$value": "#fcfcf7",
+      "$type": "color",
+      "$description": "Snow White — Page canvas, card surfaces, button text, and primary inverse text. A warm off-white (not pure white) that softens the high-contrast dark green and reads organic rather than clinical-sterile"
+    },
+    "warm-stone": {
+      "$value": "#eeeee9",
+      "$type": "color",
+      "$description": "Warm Stone — Secondary surface — alternating section backgrounds, subtle panels, and muted separators. Sits between Snow White and the dark sections to create quiet rhythm"
+    },
+    "frosted-glass": {
+      "$value": "#c4c7c4",
+      "$type": "color",
+      "$description": "Frosted Glass — Translucent surface and frosted-glass overlay backgrounds (used with backdrop-filter: blur). Also serves as a muted neutral surface for content cards on white sections"
+    },
+    "ash": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Ash — Disabled button backgrounds, muted button states, and low-emphasis borders"
+    },
+    "pewter": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Pewter — Secondary body text, captions, and low-emphasis helper text. Provides one tier of text de-emphasis below primary Forest Depths"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary body text on light sections where maximum contrast is needed. Used sparingly — most text defaults to Forest Depths for tonal warmth"
+    }
+  },
+  "font": {
+    "seed-sans": {
+      "$value": "Seed Sans",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface — used for all UI, headings, body, navigation, and buttons. Weights 300–350 at display sizes (40–48px) is the signature choice: whisper-light headlines convey scientific confidence through restraint, not volume. Most CPG brands shout with 700-weight headlines; Seed whispers with 300."
+    },
+    "seed-sans-mono": {
+      "$value": "Seed Sans Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for product codes (DS-01®, DM-02™), ingredient lists, and data/specs. The slight positive letter-spacing (+0.015em) creates a measured, clinical tone."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Seed Sans Mono",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Seed Sans Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "24px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "24px",
+        "fontWeight": 350,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "40px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "48px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Seed Sans",
+        "fontSize": "48px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fcfcf7",
+      "$type": "color",
+      "$description": "Surface level 0: Default body and most content section background — warm off-white sets organic, non-clinical tone"
+    },
+    "card-surface": {
+      "$value": "#eeeee9",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevated panels and alternating section bands — one tier above canvas"
+    },
+    "dark-section": {
+      "$value": "#1c3a13",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark green bands for product showcases and feature callouts — flips the entire surface to deep brand green"
+    },
+    "accent-highlight": {
+      "$value": "#d3fa99",
+      "$type": "color",
+      "$description": "Surface level 3: Badge backgrounds and emphasis callouts — vivid lime as the rare chromatic punctuation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://seed.com",
+      "siteName": "Seed",
+      "extractedAt": "2026-07-03T03:34:14.607Z",
+      "variant": "extended"
+    }
+  }
+}

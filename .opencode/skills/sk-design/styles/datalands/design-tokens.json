@@ -1,0 +1,442 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Universal canvas, page background, default text, hairline borders, monogram fills. Pure black, no warm or cool bias — used at maximum density to let white type and color accents do all the work"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary headings, body copy on dark, inverse button labels, inverted card surfaces for case studies"
+    },
+    "charcoal": {
+      "$value": "#1d1a1a",
+      "$type": "color",
+      "$description": "Charcoal — Elevated card and button-fill surfaces sitting one step above the black canvas. Slightly warm-tinted dark gray"
+    },
+    "ink": {
+      "$value": "#111212",
+      "$type": "color",
+      "$description": "Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "graphite": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Graphite — Secondary button borders and button text — a mid-gray frame for outlined/ghost controls on dark"
+    },
+    "mist": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Mist — De-emphasized body text and subtle border work when pure white would overstate the hierarchy"
+    },
+    "parchment": {
+      "$value": "#f3f3ef",
+      "$type": "color",
+      "$description": "Parchment — Light input field background — a warm near-white that gives the rare form elements a paper-like quality against the black void"
+    },
+    "neon-magenta": {
+      "$value": "#fc74dd",
+      "$type": "color",
+      "$description": "Neon Magenta — Pink action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "ember-dot": {
+      "$value": "#ff4c33",
+      "$type": "color",
+      "$description": "Ember Dot — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "deep-violet": {
+      "$value": "#122d8b",
+      "$type": "color",
+      "$description": "Deep Violet — Decorative illustration fill used in data-visualization case study artwork. Not an interface token — appears inside graphics"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "ozik-black": {
+      "$value": "OZIK Black",
+      "$type": "fontFamily",
+      "$description": "Display wordmark only — the brand's signature act. 358px condensed ultra-black with distinctive cut-out apertures in the 'a' and 'd' forms. No substitute captures the same geometric density; treat as a logo asset, not a system font."
+    },
+    "basis-grotesque-pro": {
+      "$value": "Basis Grotesque Pro",
+      "$type": "fontFamily",
+      "$description": "Primary body and heading family for all running text and subheadings. Aggressive negative tracking at large sizes (–0.04em at 80px) tightens the geometric forms; at body sizes tracking relaxes to near-normal. The wide size range (14–80px) and tight leading (1.00–1.10 for display) let it carry both paragraph text and large editorial headlines."
+    },
+    "martian-mono": {
+      "$value": "Martian Mono",
+      "$type": "fontFamily",
+      "$description": "UI chrome — nav labels, button text, tags, case study categories, time stamps, and the 'CASE STUDIES' / 'MICROSOFT' / 'NIKE' labels. The tracked-out positive spacing (0.05–0.10em) on small sizes creates a typewriter/terminal feel that codes the meta-information as system, not content. All caps throughout."
+    },
+    "martian-mono-std-xlt-extra-light": {
+      "$value": "Martian Mono Std xLt Extra-light",
+      "$type": "fontFamily",
+      "$description": "Martian Mono Std xLt Extra-light — detected in extracted data but not described by AI"
+    },
+    "martian-mono-std-xlt": {
+      "$value": "Martian Mono Std xLt",
+      "$type": "fontFamily",
+      "$description": "Martian Mono Std xLt — detected in extracted data but not described by AI"
+    },
+    "martian-mono-nr-xlt": {
+      "$value": "Martian Mono Nr xLt",
+      "$type": "fontFamily",
+      "$description": "Martian Mono Nr xLt — detected in extracted data but not described by AI"
+    },
+    "martian-mono-extra-light": {
+      "$value": "Martian Mono Extra-light",
+      "$type": "fontFamily",
+      "$description": "Martian Mono Extra-light — detected in extracted data but not described by AI"
+    },
+    "martian-mono-extralight": {
+      "$value": "Martian Mono ExtraLight",
+      "$type": "fontFamily",
+      "$description": "Martian Mono ExtraLight — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Martian Mono Nr xLt",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Martian Mono Extra-light",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Martian Mono sWd Rg",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Martian Mono ExtraLight",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Martian Mono Std xLt",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Martian Mono sWd Rg",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Martian Mono Std xLt Extra-light",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Martian Mono Std xLt Extra-light",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro Regular",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "OZIK Black",
+        "fontSize": "358px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 358px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "OZIK Black",
+        "fontSize": "358px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 358px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "49px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas, page background, hero stage"
+    },
+    "charcoal": {
+      "$value": "#1d1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, dark filled button states"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted case study cards, light mode contrast blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://datalands.co",
+      "siteName": "Datalands",
+      "extractedAt": "2026-06-03T18:20:46.760Z",
+      "variant": "extended"
+    }
+  }
+}

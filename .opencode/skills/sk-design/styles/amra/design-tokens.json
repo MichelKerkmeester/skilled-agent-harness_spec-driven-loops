@@ -1,0 +1,242 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all heading and body color, dominant border color, nav text and structural dividers. The near-black (not pure black) keeps the monochrome system from feeling harsh against white"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, icon fills on dark backgrounds, nav pill surface when over light sections"
+    },
+    "mist-gray": {
+      "$value": "#a1a1a1",
+      "$type": "color",
+      "$description": "Mist Gray — Secondary text, subheadings, muted body copy, lighter hairline borders. The middle step in the achromatic scale"
+    },
+    "smoke-gray": {
+      "$value": "#8a8a8a",
+      "$type": "color",
+      "$description": "Smoke Gray — Nav link text at rest, medium-weight borders, tertiary text"
+    },
+    "veil-gray": {
+      "$value": "#d0d0d0",
+      "$type": "color",
+      "$description": "Veil Gray — Lightest border tone for link underlines, subtle dividers between content blocks"
+    },
+    "periwinkle-glow": {
+      "$value": "#acafff",
+      "$type": "color",
+      "$description": "Periwinkle Glow — The sole chromatic accent — fills the SIGN IN button and the floating nav container. Soft violet at moderate saturation; it reads as illuminated rather than branded, so the entire UI feels switched-on when it appears"
+    }
+  },
+  "font": {
+    "primary-font": {
+      "$value": "Primary Font",
+      "$type": "fontFamily",
+      "$description": "Primary Font — detected in extracted data but not described by AI"
+    },
+    "custom-geometric-sans-sphere-like-soft-terminals": {
+      "$value": "Custom geometric sans (sphere-like, soft terminals)",
+      "$type": "fontFamily",
+      "$description": "All headings and large body copy. Used at 20px (subheadings, feature labels), 30px (section headings), 50px (display). Weight stays at 400 across the scale — no bold weight exists in the system. Tight -0.01em tracking is the signature: letters almost touch, giving headings a dense, architectural quality rather than a light/airy one. The only distinguishing letter shape is in the lowercase wordmark 'amra' — a custom logotype, not a font."
+    },
+    "custom-uppercase-display-sans-tracked-out": {
+      "$value": "Custom uppercase display sans (tracked out)",
+      "$type": "fontFamily",
+      "$description": "All uppercase nav items, link labels, tag text, footer micro-copy, small body text in cards. Set at 14–16px with +0.029em tracking, the letters hold generous space — a deliberate counterpoint to the tight headline tracking. The wide tracking makes a 14px label read as a navigational mark, not as text. The very tall line-height (2.29 at 16px) is used only for stacked list items where breathing room matters more than density."
+    },
+    "secondary-font": {
+      "$value": "Secondary Font",
+      "$type": "fontFamily",
+      "$description": "Secondary Font — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Secondary Font",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Secondary Font",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Secondary Font",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base background for the entire site; all content sits on this surface"
+    },
+    "nav-pill-action-button": {
+      "$value": "#acafff",
+      "$type": "color",
+      "$description": "Surface level 2: Floating navigation container and the SIGN IN button — the only surface that introduces color"
+    },
+    "dark-overlay": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surfaces for video widgets, modal overlays, or dark content cards (not visible in the current page but available for the inverted variant)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.amra.com",
+      "siteName": "amra",
+      "extractedAt": "2026-06-03T20:27:09.470Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "source": "https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753",
+  "uuid": "bb63a015-b018-4bd9-be66-0973ac6be753",
+  "name": "Patrick Miller",
+  "northStar": "oversized masthead on chalky color fields — a portfolio that behaves like a printed poster",
+  "capturedAt": "2026-07-18T09:54:45.582Z",
+  "meta": {
+    "url": "https://patrickmiller.se",
+    "siteName": "Patrick Miller",
+    "extractedAt": "2026-06-03T17:31:27.274Z",
+    "durationMs": 31206,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 401,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero name at 331px in MlrStandard, lineHeight 0.80, letterSpacing -0.02em — this is the signature scale, not a guideline",
+      "Use 72px as the standard viewport edge gutter for all type and controls",
+      "Apply full-bleed color fields as sections, never contained cards or bordered panels",
+      "Use the four accent colors (#fd9b65, #e9d1c7, #f8f5d1, #9ac8ae) as the entire section system — no neutrals between them",
+      "Set the only solid interactive element to Inkwell Blue (#004b82) at 9999px radius — everything else stays flat or outlined",
+      "Anchor the rotated Contact badge to the top-right corner of the viewport with approximately -15° rotation",
+      "Keep all secondary type at 16px MlrStandard with tracking between +0.01em and +0.02em"
+    ],
+    "donts": [
+      "Don't introduce shadows, gradients, or blur effects anywhere — the system is entirely flat",
+      "Don't use border-radius on anything except the circle action button (9999px) — surfaces, badges, and fields stay at 0px",
+      "Don't add cards, panels, or containers around type — type sits directly on color fields",
+      "Don't mix system fonts into headings — MlrStandard is the sole display face, -apple-system weight 200 is only for one specific button label",
+      "Don't use a second saturated color for buttons or links — Inkwell Blue (#004b82) is the only chromatic interactive",
+      "Don't set the hero name smaller than 200px on desktop — the 331px scale is the identity",
+      "Don't use light grays for text — all type is Obsidian (#000000) at full opacity against every surface"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fd9b65",
+        "name": "Persimmon Wash",
+        "role": "Hero full-bleed section background — warm terracotta field that carries the massive name lockup",
+        "group": "accent"
+      },
+      {
+        "hex": "#e9d1c7",
+        "name": "Blush Linen",
+        "role": "Section background, split-screen left or right panel — dusty rose that softens adjacent fields",
+        "group": "accent"
+      },
+      {
+        "hex": "#f8f5d1",
+        "name": "Candlelight",
+        "role": "Section background, split-screen panel — off-white cream that recedes behind type",
+        "group": "accent"
+      },
+      {
+        "hex": "#9ac8ae",
+        "name": "Sage Whisper",
+        "role": "Accent full-bleed background for occasional sections — desaturated eucalyptus that cools the warm system",
+        "group": "accent"
+      },
+      {
+        "hex": "#004b82",
+        "name": "Inkwell Blue",
+        "role": "Solid circle action button, link underlines and text — the only dark saturated mark against the chalky fields, dense and editorial",
+        "group": "brand"
+      },
+      {
+        "hex": "#4c564b",
+        "name": "Slate Moss",
+        "role": "Alternate muted button or surface fill — warm-leaning gray-green for secondary controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a4b1b3",
+        "name": "Fossil",
+        "role": "Muted section background, quiet tonal step between cream and white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "All typography, hairline borders, icon strokes, arrow marks — the sole ink color across every surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Canvas background, inverse text on dark button, rotated Contact badge fill",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge at all breakpoints, no max-width container, no centered column. The hero is a single color field with the name lockup left-aligned at 72px gutter, wrapping freely. Subsequent sections are 50/50 viewport splits — each half a different color field, no gutter, no divider. The page reads as a sequence of full-viewport plates rather than a scrolled document. Navigation chrome is minimal: the rotated Contact badge persists top-right, pagination sits in a thin bottom strip, and the Inkwell Blue circle is the sole forward action. There is no top bar, no sidebar, no footer.",
+    "imagery": "No photography, no illustration, no product renders. Imagery is replaced by full-bleed chromatic color fields and the typographic masthead itself. The 'image' of the site is the oversized name lockup — the studio name is treated as the artwork. The split-screen gallery panels are colored planes rather than picture frames; project identity is conveyed by the section label, not by a photograph. Icons are absent except for the copyright circle and the arrow glyphs, both rendered as type.",
+    "similar": [
+      {
+        "why": "Same full-bleed color-block sections, oversized display type set flush left, and a near-total absence of UI chrome",
+        "business": "Bureau Cool / Studio Dumbar portfolios"
+      },
+      {
+        "why": "Editorial portfolio rhythm — one full-viewport color field per project, monumental masthead type, minimal navigation",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Flat color fields as page sections, custom display sans at extreme sizes, warm desaturated palette over neutral grays",
+        "business": "Locomotive MT portfolio"
+      },
+      {
+        "why": "Massive personalized name lockup as hero, single-rotated contact mark in the corner, split-screen project gallery below",
+        "business": "Pentagram partner sites (e.g. Paula Scher, Michael Bierut)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "badges": "0px",
+        "fields": "0px",
+        "buttons": "9999px",
+        "surfaces": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background and split-screen right panel"
+      },
+      {
+        "hex": "#f8f5d1",
+        "name": "Candlelight",
+        "level": 1,
+        "purpose": "Soft cream section — sits one step above white"
+      },
+      {
+        "hex": "#e9d1c7",
+        "name": "Blush Linen",
+        "level": 2,
+        "purpose": "Dusty rose section — introduces warmth without saturating"
+      },
+      {
+        "hex": "#9ac8ae",
+        "name": "Sage Whisper",
+        "level": 3,
+        "purpose": "Cool green section — palette counterweight"
+      },
+      {
+        "hex": "#fd9b65",
+        "name": "Persimmon",
+        "level": 4,
+        "purpose": "Hero color field — maximum warmth, carries the masthead"
+      }
+    ],
+    "northStar": "oversized masthead on chalky color fields — a portfolio that behaves like a printed poster",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 331,
+        "lineHeight": 0.8,
+        "letterSpacing": -6.62
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Masthead Lockup",
+        "role": "Full-bleed opener carrying the studio name",
+        "description": "Persimmon (#fd9b65) fills the viewport edge-to-edge. '© Patrick Miller' sets in MlrStandard 331px / 0.80 lineHeight / -0.02em, all in Obsidian (#000000), arranged as a single line that wraps so 'Miller' drops to a second line, followed by a separate down-arrow glyph of equivalent weight. No logo, no nav, no padding other than 72px left/right viewport margin. The copyright circle acts as a logomark — it is the brand mark."
+      },
+      {
+        "name": "Rotated Contact Badge",
+        "role": "Persistent call-to-action in the top-right corner",
+        "description": "A small white square (~80×80px) in Paper (#ffffff) with Obsidian (#000000) text reading 'Contact → Studio' in MlrStandard 16px, rotated approximately -15° to -20° clockwise, anchored to the top-right corner of the viewport. Sharp 0px corners. This is the only persistent nav element on the hero."
+      },
+      {
+        "name": "Split-Screen Gallery Section",
+        "role": "Project showcase, two equal panels side by side",
+        "description": "Viewport split exactly 50/50. Each panel is a flat color field — typically Blush Linen (#e9d1c7) on one side, Paper (#ffffff) or Candlelight (#f8f5d1) on the other. No images, no cards, no borders between panels. The project name ('Form Magazine', 'Flowers') sits as a tiny MlrStandard 16px label, top-right of the right panel in Obsidian, tracking +0.01em."
+      },
+      {
+        "name": "Section Pagination Strip",
+        "role": "Bottom-of-viewport wayfinding for gallery sequence",
+        "description": "A single horizontal row at the bottom of the viewport with three elements: a hairline Obsidian left-arrow on the left, a centered counter ('1/2', '1/10') in MlrStandard 16px Obsidian, and a solid Inkwell Blue (#004b82) circle button on the right. The circle is approximately 48–56px diameter, 9999px radius, with a white right-arrow centered. 72px left/right padding aligns it to the same gutter as the section label."
+      },
+      {
+        "name": "Solid Circle Action Button",
+        "role": "Primary forward-navigation control",
+        "description": "Inkwell Blue (#004b82) fill, 9999px radius, no border, no shadow. Contains a Paper (#ffffff) arrow glyph in MlrStandard at roughly 20–24px. The button is the only saturated solid object on the entire site — every other element is type or flat color field. Approximately 48–56px diameter."
+      },
+      {
+        "name": "Hairline Arrow Control",
+        "role": "Secondary backward-navigation",
+        "description": "Obsidian (#000000) 1px-stroke arrow, no fill, no border, no background. Sits in a hit area of roughly 48×48px centered on the 32px MlrStandard glyph. No button shape — just the mark and its click target."
+      },
+      {
+        "name": "Section Label",
+        "role": "Project or context identifier",
+        "description": "MlrStandard 16px / lineHeight 1.30, Obsidian (#000000), tracking +0.01em, set flush right at the top of a section panel. The only running text on the page besides pagination."
+      },
+      {
+        "name": "Full-Bleed Color Field Section",
+        "role": "Atomic building block for every section",
+        "description": "A single full-viewport-height rectangle in one of the four accent colors (Persimmon, Blush Linen, Candlelight, Sage Whisper). No padding inside, no internal structure, no border. Type sits directly on the color with no containers. Padding from viewport edge to content is 72px left/right and 32px top/bottom."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for all text — 331px for the hero name with lineHeight 0.80 and -0.02em tracking, 32px for section labels at lineHeight 1.20, 16px for pagination and UI chrome at lineHeight 1.30 with +0.01em to +0.02em tracking. The custom face has near-zero terminals and uniform stroke weight that holds up at 331px without distortion — a system font would look brittle at that size.",
+        "sizes": "16px, 32px, 331px",
+        "family": "MlrStandard",
+        "weight": "400, 500",
+        "lineHeight": "0.80, 0.90, 1.20, 1.30",
+        "substitute": "Inter Tight, or Suisse Int'l",
+        "letterSpacing": "-0.02em at 331px, 0 at 32px, +0.01em to +0.02em at 16px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Ultralight fallback reserved only for the secondary button label — used at 32px weight 200 to contrast with MlrStandard's heavier editorial presence",
+        "sizes": "32px",
+        "family": "-apple-system",
+        "weight": "200",
+        "lineHeight": "1.20",
+        "substitute": "SF Pro Display Ultralight, or Helvetica Neue UltraLight"
+      }
+    ],
+    "description": "Patrick Miller's site treats every viewport as a single editorial spread: full-bleed color fields carry one oversized typographic statement, then a split-screen gallery follows with almost no UI. The palette is warm and chalky — salmon, blush linen, candlelight cream, and a whisper of sage — never digital or saturated, more like pastel chalk dusted across a wall. MlrStandard, a custom sans, does the heavy lifting at extreme sizes (331px hero) with tight tracking, while a near-invisible secondary chrome handles wayfinding: tiny centered labels, hairline arrows, and one small dark circle as the only solid interactive element. There are no cards, no grids, no shadows — content is presented as flat color blocks and monumental type, the way a magazine cover treats a masthead.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Patrick Miller design system\",\"item\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#style-reference\",\"name\":\"Patrick Miller design system reference\",\"headline\":\"Patrick Miller design system | Refero Styles\",\"description\":\"Explore Patrick Miller's light Agency design system: Persimmon Wash #fd9b65, Blush Linen #e9d1c7 colors, MlrStandard, -apple-system typography, and...\",\"url\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Patrick Miller\",\"url\":\"https://patrickmiller.se\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"caption\":\"Screenshot of Patrick Miller\"},\"image\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Patrick Miller design system\",\"Patrick Miller website design\",\"Patrick Miller colors\",\"Patrick Miller typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Persimmon Wash\",\"Blush Linen\",\"Candlelight\",\"Sage Whisper\",\"MlrStandard\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Patrick Miller design system\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller website design\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller colors\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:30:00.315Z\",\"dateModified\":\"2026-04-30T03:30:00.315Z\"}]}19:T789,**Quick Color Reference**\n- text: #000000\n- background: #ffffff (or one of #fd9b65 / #e9d1c7 / #f8f5d1 / #9ac8ae for sections)\n- border / hairline: #000000\n- accent (section fields): #fd9b65 (persimmon), #e9d1c7 (blush), #f8f5d1 (cream), #9ac8ae (sage)\n- primary action: #004b82 (outlined action border)\n\n**3–5 Example Component Prompts**\n\n1. *Hero Masthead*: Full-viewport Persimmon (#fd9b65) field. Set '© Patrick Miller' in MlrStandard 331px, lineHeight 0.80, letterSpacing -0.02em, color #000000, flush left at 72px viewport gutter, wrapping freely. Add a downward arrow glyph of the same size and weight below the name, no padding between them.\n\n2. *Rotated Contact Badge*: A 80×80px white (#ffffff) square in the top-right corner of the viewport, containing the text 'Contact → Studio' in MlrStandard 16px / lineHeight 1.30 / letterSpacing 0.01em / color #000000, set on two lines and centered. Rotate the entire square -15° around its own center.\n\n3. *Split-Screen Gallery Section*: A full-viewport-height section split exactly 50/50. Left half is Blush Linen (#e9d1c7), right half is Candlelight (#f8f5d1). Right panel only: a single label 'Flowers' in MlrStandard 16px / lineHeight 1.30 / color #000000, flush right at the top with 72px right gutter and 32px top padding.\n\n4. *Pagination Strip*: A row anchored to the bottom of the viewport, 72px left/right gutter. Left: a hairline arrow (1px stroke, #000000, no fill, no border) showing ←. Center: a counter '1/10' in MlrStandard 16px / #000000 / letterSpacing 0.01em. Right: a solid 52px-diameter circle in Inkwell Blue (#004b82), radius 9999px, containing a white (→) arrow in MlrStandard at 20px.\n\n5. *Full-Bleed Sage Section*: A single full-viewport rectangle in Sage Whisper (#9ac8ae) with no internal structure. 72px gutter, 32px top padding. Place a single MlrStandard 32px / lineHeight 1.20 / letterSpacing 0 / #000000 label in the top-right corner."
+      },
+      {
+        "title": "Typographic Identity",
+        "content": "MlrStandard is the entire voice of the site. At 331px it functions as artwork — the studio name is literally the cover image. At 16px it functions as quiet wayfinding. Weight 400 carries the display; weight 500 is used sparingly for emphasis in labels. Letter-spacing is the most diagnostic typographic signal: negative (-0.02em) at display size pulls the massive letterforms into a single sculptural mass, while positive tracking (+0.01em to +0.02em) at body size lets small labels breathe against the warm color fields. The 0.80 lineHeight at display is unusually tight — it forces the name to register as a block of ink rather than a line of text."
+      },
+      {
+        "title": "Color-Field Section System",
+        "content": "Sections are not separated by whitespace, dividers, or shadows — they are separated by hard color edges. The page reads as a sequence of full-viewport plates: Persimmon → Split (Blush / Paper) → Split (Candlelight / Blush) → Sage, etc. When building new sections, pick one accent color and let it fill the entire viewport. Split-screen sections combine two accent colors (or an accent + Paper) at exactly 50/50. Never blend, never gradient, never inset — the edge between fields is the design."
+      }
+    ],
+    "elevationPhilosophy": "The design is strictly flat. No box-shadows, no inner shadows, no blurred glows. Depth is communicated only through adjacent color fields meeting at a hard edge — the eye registers Salmon meeting Cream as a spatial shift, not an elevation. This is a deliberate editorial-print choice: paper posters do not cast shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "heading",
+            "body",
+            "button",
+            "footer"
+          ],
+          "frequency": 1531,
+          "confidence": 1,
+          "prominence": 13713235.954174744,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 26,
+            "hero/color": 2,
+            "link/color": 1,
+            "other/color": 252,
+            "button/color": 16,
+            "footer/color": 1,
+            "heading/color": 7,
+            "body/borderColor": 104,
+            "hero/borderColor": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 1008,
+            "button/borderColor": 64,
+            "footer/borderColor": 4,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 464,
+          "confidence": 1,
+          "prominence": 11483968.63017003,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "other/color": 66,
+            "button/color": 17,
+            "heading/color": 1,
+            "body/borderColor": 32,
+            "other/borderColor": 264,
+            "button/borderColor": 68,
+            "heading/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#004b82",
+          "oklch": {
+            "c": 0.11187336602369383,
+            "h": 249.06479906045433,
+            "l": 0.4048708720686143
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 6018437.621948043,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 3,
+            "body/borderColor": 4,
+            "link/borderColor": 12,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#a4b1b3",
+          "oklch": {
+            "c": 0.014845641229037372,
+            "h": 207.8620449346321,
+            "l": 0.7508164180936832
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3009218.8109740214,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#fd9b65",
+          "oklch": {
+            "c": 0.13650528296568631,
+            "h": 48.71677478475562,
+            "l": 0.7796534490290993
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#6f2c30",
+          "oklch": {
+            "c": 0.09528555997679418,
+            "h": 19.03143550675049,
+            "l": 0.38947685240556995
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f8f5d1",
+          "oklch": {
+            "c": 0.04696598243298474,
+            "h": 103.32187984732154,
+            "l": 0.9632913638828127
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4c564b",
+          "oklch": {
+            "c": 0.02176974601116552,
+            "h": 142.68548881136664,
+            "l": 0.44078524252755774
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e9d1c7",
+          "oklch": {
+            "c": 0.030231418204476754,
+            "h": 44.022850485723424,
+            "l": 0.8778064789142056
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1027055.7004673091,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#9ac8ae",
+          "oklch": {
+            "c": 0.06091677974352233,
+            "h": 159.8604623661273,
+            "l": 0.7927373237460952
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 648000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004519632341942952,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.97,
+          "background": "#f8f5d1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.41,
+          "background": "#e9d1c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#9ac8ae",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.1,
+          "background": "#6f2c30",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#fd9b65",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.52,
+          "background": "#a4b1b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.13,
+          "background": "#f8f5d1",
+          "foreground": "#6f2c30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.02,
+          "background": "#004b82",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.15,
+          "background": "#f8f5d1",
+          "foreground": "#004b82"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.66,
+          "background": "#4c564b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.93,
+          "background": "#e9d1c7",
+          "foreground": "#6f2c30"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#f8f5d1",
+          "foreground": "#4c564b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.19,
+          "background": "#e9d1c7",
+          "foreground": "#004b82"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#9ac8ae",
+          "foreground": "#6f2c30"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.26,
+          "background": "#e9d1c7",
+          "foreground": "#4c564b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#fd9b65",
+          "foreground": "#6f2c30"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#9ac8ae",
+          "foreground": "#004b82"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.58,
+          "background": "#a4b1b3",
+          "foreground": "#6f2c30"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#fd9b65",
+          "foreground": "#004b82"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 116,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 103,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 118,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "MlrStandard",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 369,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            200
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "MlrStandard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "button",
+            "link",
+            "footer",
+            "heading"
+          ],
+          "frequency": 258,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MlrStandard",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MlrStandard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MlrStandard",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 103,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "-apple-system",
+          "weight": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "MlrStandard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 331,
+          "family": "MlrStandard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/055c3800-9b73-4bc7-943d-45d6763f9058.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Patrick Miller design system\",\"item\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#style-reference\",\"name\":\"Patrick Miller design system reference\",\"headline\":\"Patrick Miller design system | Refero Styles\",\"description\":\"Explore Patrick Miller's light Agency design system: Persimmon Wash #fd9b65, Blush Linen #e9d1c7 colors, MlrStandard, -apple-system typography, and...\",\"url\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Patrick Miller\",\"url\":\"https://patrickmiller.se\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb63a015-b018-4bd9-be66-0973ac6be753#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"caption\":\"Screenshot of Patrick Miller\"},\"image\":\"https://images.refero.design/styles/refero.design/image/68d351e5-a3db-47b2-bb07-fd957e12778c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Patrick Miller design system\",\"Patrick Miller website design\",\"Patrick Miller colors\",\"Patrick Miller typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Persimmon Wash\",\"Blush Linen\",\"Candlelight\",\"Sage Whisper\",\"MlrStandard\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Patrick Miller design system\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller website design\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller colors\"},{\"@type\":\"Thing\",\"name\":\"Patrick Miller typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:30:00.315Z\",\"dateModified\":\"2026-04-30T03:30:00.315Z\"}]}19:T789,**Quick Color Reference**\n- text: #000000\n- background: #ffffff (or one of #fd9b65 / #e9d1c7 / #f8f5d1 / #9ac8ae for sections)\n- border / hairline: #000000\n- accent (section fields): #fd9b65 (persimmon), #e9d1c7 (blush), #f8f5d1 (cream), #9ac8ae (sage)\n- primary action: #004b82 (outlined action border)\n\n**3–5 Example Component Prompts**\n\n1. *Hero Masthead*: Full-viewport Persimmon (#fd9b65) field. Set '© Patrick Miller' in MlrStandard 331px, lineHeight 0.80, letterSpacing -0.02em, color #000000, flush left at 72px viewport gutter, wrapping freely. Add a downward arrow glyph of the same size and weight below the name, no padding between them.\n\n2. *Rotated Contact Badge*: A 80×80px white (#ffffff) square in the top-right corner of the viewport, containing the text 'Contact → Studio' in MlrStandard 16px / lineHeight 1.30 / letterSpacing 0.01em / color #000000, set on two lines and centered. Rotate the entire square -15° around its own center.\n\n3. *Split-Screen Gallery Section*: A full-viewport-height section split exactly 50/50. Left half is Blush Linen (#e9d1c7), right half is Candlelight (#f8f5d1). Right panel only: a single label 'Flowers' in MlrStandard 16px / lineHeight 1.30 / color #000000, flush right at the top with 72px right gutter and 32px top padding.\n\n4. *Pagination Strip*: A row anchored to the bottom of the viewport, 72px left/right gutter. Left: a hairline arrow (1px stroke, #000000, no fill, no border) showing ←. Center: a counter '1/10' in MlrStandard 16px / #000000 / letterSpacing 0.01em. Right: a solid 52px-diameter circle in Inkwell Blue (#004b82), radius 9999px, containing a white (→) arrow in MlrStandard at 20px.\n\n5. *Full-Bleed Sage Section*: A single full-viewport rectangle in Sage Whisper (#9ac8ae) with no internal structure. 72px gutter, 32px top padding. Place a single MlrStandard 32px / lineHeight 1.20 / letterSpacing 0 / #000000 label in the top-right corner."
+}

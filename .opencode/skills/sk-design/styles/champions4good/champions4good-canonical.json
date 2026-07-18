@@ -1,0 +1,1142 @@
+{
+  "source": "https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e",
+  "uuid": "e02671e1-ba31-465f-bb7f-b124bf91ab5e",
+  "name": "Champions4good",
+  "northStar": "midnight sports broadside — a vintage club poster screaming from a plum-dark wall",
+  "capturedAt": "2026-07-18T09:23:32.820Z",
+  "meta": {
+    "url": "https://www.champions4good.club",
+    "siteName": "Champions4good",
+    "extractedAt": "2026-06-03T19:53:34.032Z",
+    "durationMs": 29184,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1054,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Druk Condensed for all display headings at 58px or larger — this font is the brand voice, not a decoration",
+      "Set display type to line-height 0.78-0.85 to create the poster-stacked overlap effect",
+      "Use Lavender Shock (#e894ff) as the ONLY chromatic color on Deep Plum (#23002b) sections — let the duotone do the work",
+      "Apply 9999px border-radius to every button, tag, and pill element — no sharp corners in the UI",
+      "Break the page rhythm with white (#ffffff) sections after dark plum sections — the contrast IS the layout",
+      "Use Mint Signal (#93ffe4) and Amber Pulse (#ffac47) only as small accents under 20% of viewport — they are punctuation, not surfaces",
+      "Keep Neue Montreal at 12-16px for all UI chrome — it must stay quiet enough that Druk dominates"
+    ],
+    "donts": [
+      "Don't use any font other than Druk Condensed for display type — system serifs or regular sans-serifs at 200px+ will collapse the poster energy",
+      "Don't place Lavender Shock (#e894ff) on white or light backgrounds — the contrast is designed for dark plum only",
+      "Don't add box-shadows to cards or buttons — the design uses flat color layering, not elevation",
+      "Don't use line-height above 1.0 for display type — the tight vertical compression is the signature",
+      "Don't mix the accent colors (mint, amber) into the dark plum sections — they belong in light/transition zones only",
+      "Don't use border-radius smaller than 6px on any interactive element — the system is built on pills and soft corners",
+      "Don't center-align display headlines — left-align pushes type to the viewport edge for the broadside effect"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#23002b",
+        "name": "Deep Plum",
+        "role": "Hero canvas, dark section backgrounds, page-level ground — sets the exclusive nighttime club mood",
+        "group": "brand"
+      },
+      {
+        "hex": "#e894ff",
+        "name": "Lavender Shock",
+        "role": "Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#291900",
+        "name": "Espresso Brown",
+        "role": "Warm near-black for card backgrounds, dark UI surfaces, warm-tinted borders — adds subtle warmth to the otherwise cool palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#002629",
+        "name": "Ink Teal",
+        "role": "Cool near-black for body text, deep card surfaces, cool borders — the teal undertone distinguishes dark text from the plum background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Slate",
+        "role": "Primary body text on light sections, icon strokes, dense UI text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Charcoal",
+        "role": "Headlines on light sections, heavy text blocks, near-black emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "role": "Maximum-contrast text on white sections, solid fills for condensed display type in light zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light section canvas, reverse text on dark plum, card surfaces in light zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#93ffe4",
+        "name": "Mint Signal",
+        "role": "Accent punctuation: highlight washes, badge backgrounds, small functional moments — cool contrast against lavender",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffac47",
+        "name": "Amber Pulse",
+        "role": "Accent punctuation: warm highlight moments, secondary badges, energy markers — warm contrast against the cool palette",
+        "group": "accent"
+      }
+    ],
+    "imagery": "Iconography is the primary visual language: simple line-art sport figures (tennis player, golfer) rendered as single-stroke outlines in white or lavender, used inside pill toggles. No photography, no illustrations, no 3D renders. The display type itself is the imagery — the huge condensed words function as visual art on the plum canvas. Any photographic content would need to be tightly cropped sports imagery with high contrast and minimal background.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + ultra-condensed display type approach for sports community branding",
+        "business": "The Players' Tribune"
+      },
+      {
+        "why": "Bold condensed type filling the viewport, single accent color against dark, poster-scale typography",
+        "business": "On Running"
+      },
+      {
+        "why": "Dark-first interface with a single saturated accent (lavender/electric) on deep neutral ground",
+        "business": "WHOOP"
+      },
+      {
+        "why": "High-contrast display type pushing to viewport edges, club/community energy through typographic scale",
+        "business": "Gymshark"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "6px",
+        "cards": "14px",
+        "pills": "9999px",
+        "buttons": "9999px",
+        "special": "24px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#23002b",
+        "name": "Deep Plum Ground",
+        "level": 0,
+        "purpose": "Hero and dark section canvas — the primary brand surface"
+      },
+      {
+        "hex": "#291900",
+        "name": "Espresso Card",
+        "level": 1,
+        "purpose": "Dark card surfaces, warm-tinted elevated elements on plum ground"
+      },
+      {
+        "hex": "#002629",
+        "name": "Ink Teal Card",
+        "level": 2,
+        "purpose": "Cool-tinted card surfaces and deep text on light sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 3,
+        "purpose": "Light section canvas, reverse text, high-contrast break sections"
+      }
+    ],
+    "northStar": "midnight sports broadside — a vintage club poster screaming from a plum-dark wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 0.85,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "display",
+        "size": 187,
+        "lineHeight": 0.85,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "display-xl",
+        "size": 317,
+        "lineHeight": 0.78,
+        "letterSpacing": 0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Display Headline",
+        "role": "Full-bleed poster-scale word stack",
+        "description": "Druk Condensed 317px at line-height 0.78, color Lavender Shock (#e894ff) on Deep Plum (#23002b) ground. Letters push to the edges of the viewport with near-zero padding. No line-wrap — each word is a separate element. Secondary connecting words ('YOUR', 'OF') sit in Neue Montreal 58px at 600 weight, breaking the display rhythm. The extreme vertical compression (line-height 0.78) causes descenders and ascenders to overlap adjacent lines, creating the poster-stacked effect."
+      },
+      {
+        "name": "Sport Toggle Pill",
+        "role": "Two-option selector for sport type (tennis/golf)",
+        "description": "Pill shape (9999px radius), 80×48px frame, Deep Plum (#23002b) background. Active state: Lavender Shock (#e894ff) fill with dark icon. Inactive: outlined with 1px Lavender Shock border on transparent. Icon is a simple white-line sport figure centered within."
+      },
+      {
+        "name": "Filled Lavender Button",
+        "role": "Primary action — Join, Sign Up, CTA",
+        "description": "Pill shape (9999px radius), 12px 20px padding, Lavender Shock (#e894ff) background, Deep Plum (#23002b) text, Neue Montreal 14px 500 weight. No border, no shadow. On hover: slight brightness shift to 100% saturation. Compact — this is a one-word button."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent over hero, 64px tall, horizontal: logo left, nav links center, action button right. Links in Neue Montreal 14px, Paper White (#ffffff) on dark sections, Slate (#333333) on light sections. Active link gets Lavender Shock underline or color shift. No background bar — the nav floats directly on the section canvas."
+      },
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity mark",
+        "description": "Stacked text logo: 'CHAMPIONS FOR GOOD CLUB' in three lines, Druk Condensed 400 weight at ~20px, Lavender Shock (#e894ff). Preceded by a small mark icon. No tagline, no subtext — the mark IS the identity."
+      },
+      {
+        "name": "Light Section Display Block",
+        "role": "Headline blocks on white canvas sections",
+        "description": "Druk Condensed 187px at line-height 0.85, Black (#000000) or Charcoal (#121212) fill, left-aligned. Words stack vertically with tight tracking. White space dominates right side of the layout. This is the 'poster' moment on light sections — same type treatment as hero, different color."
+      },
+      {
+        "name": "Card Surface",
+        "role": "Content card on either dark or light ground",
+        "description": "14px border-radius, 20px padding, no shadow. Dark variant: Espresso Brown (#291900) background with Paper White (#ffffff) text. Light variant: Paper White background with Slate (#333333) text and 1px hairline border in #e5e5e5."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Small status or category label",
+        "description": "6px border-radius, 3-5px vertical padding, 8-10px horizontal padding. Mint Signal (#93ffe4), Amber Pulse (#ffac47), or Lavender Shock (#e894ff) fills with dark text. Neue Montreal 12px 500 weight, uppercase optional."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Bottom-of-page navigation",
+        "description": "Neue Montreal 14px, Paper White on dark footer sections, Slate on light. 8px row-gap between links, left-aligned columns. No decoration — just dense, readable type."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section headings — extreme condensed bold that fills containers edge-to-edge; 151-317px for hero-scale words, 24-44px for subheadings",
+        "sizes": "24px, 29px, 32px, 43px, 44px, 151px, 187px, 317px",
+        "family": "Druk Condensed Super Desktop",
+        "weight": "400, 500",
+        "lineHeight": "0.78, 0.85, 1.00",
+        "substitute": "Oswald (700, condensed) or Bebas Neue for free alternatives; Anton as last resort",
+        "letterSpacing": "+0.005em to +0.008em — slightly positive tracking prevents the ultra-condensed letterforms from feeling claustrophobic at display sizes"
+      },
+      {
+        "role": "UI body, navigation, buttons, supporting copy — geometric sans-serif that stays quiet so Druk can shout; 58px is the bridge size between UI and display",
+        "sizes": "12px, 14px, 15px, 16px, 58px",
+        "family": "Neue Montreal",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00, 1.10, 1.20, 1.30, 1.40, 1.43",
+        "substitute": "Inter, Manrope, or DM Sans",
+        "letterSpacing": "-0.022em — negative tracking tightens the UI type into a compact, confident block that visually anchors against the sprawling display type"
+      },
+      {
+        "role": "System fallback for body text rendering",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "system-ui, sans-serif"
+      }
+    ],
+    "description": "Champions4good is a dark-first club poster: deep plum canvas, one screaming lavender accent, and ultra-condensed display type that fills the screen like a vintage sports broadside. The visual hierarchy is brutally simple — everything chromatic is lavender-pink (#e894ff) against the plum ground, and supporting accents (mint, amber) appear as small functional punctuation rather than competing for attention. Body sections break to white canvas with the same condensed display type rendered in dense black, creating a high-contrast section rhythm. The type attitude is anti-restraint: Druk Condensed at 200-300px with tight tracking and tight line-height pushes the display copy to the edges of its container, while Neue Montreal handles UI chrome at human sizes. Components are minimal — pill toggles, a single filled lavender button, sparse navigation — letting the typography and the plum-to-white contrast do the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Champions4good design system\",\"item\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#style-reference\",\"name\":\"Champions4good design system reference\",\"headline\":\"Champions4good design system | Refero Styles\",\"description\":\"Explore Champions4good's dark Other design system: Deep Plum #23002b, Lavender Shock #e894ff colors, Druk Condensed Super Desktop, Neue Montreal typography,...\",\"url\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Champions4good\",\"url\":\"https://www.champions4good.club\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"caption\":\"Screenshot of Champions4good\"},\"image\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Champions4good design system\",\"Champions4good website design\",\"Champions4good colors\",\"Champions4good typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Plum\",\"Lavender Shock\",\"Espresso Brown\",\"Ink Teal\",\"Druk Condensed Super Desktop\",\"Neue Montreal\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Champions4good design system\"},{\"@type\":\"Thing\",\"name\":\"Champions4good website design\"},{\"@type\":\"Thing\",\"name\":\"Champions4good colors\"},{\"@type\":\"Thing\",\"name\":\"Champions4good typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-01T11:11:30.000Z\",\"dateModified\":\"2026-04-01T11:11:30.000Z\"}]}19:T68e,**Quick Color Reference:**\n- text: #ffffff (on dark) / #333333 (on light)\n- background: #23002b (dark sections) / #ffffff (light sections)\n- border: rgba(255,255,255,0.2) on dark / #e5e5e5 on light\n- accent: #e894ff\n- signal: #93ffe4 (mint), #ffac47 (amber)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts:**\n\n1. *Create a hero section:* Deep Plum (#23002b) full-bleed background. Display headline in Druk Condensed 317px weight 500, line-height 0.78, color Lavender Shock (#e894ff), letter-spacing +0.008em. Secondary words in Neue Montreal 58px weight 600. Two pill toggles (9999px radius, 80×48px) centered above the headline, one filled Lavender Shock, one outlined with 1px Lavender Shock border.\n\n2. *Create a filled action button:* Pill shape (9999px radius), 12px 20px padding, Lavender Shock (#e894ff) background, Deep Plum (#23002b) text, Neue Montreal 14px weight 500, no border, no shadow.\n\n3. *Create a light-section display block:* White (#ffffff) background. Druk Condensed 187px weight 500, line-height 0.85, color Black (#000000), left-aligned, occupying 60% of viewport width. 64px top padding.\n\n4. *Create a card on dark ground:* 14px border-radius, 20px padding, Espresso Brown (#291900) background, Paper White (#ffffff) body text in Neue Montreal 15px weight 400. Optional Mint Signal (#93ffe4) badge tag (6px radius, 4px 10px padding) in top-left corner.\n\n5. *Create a navigation bar:* Transparent background, 64px height, 20px horizontal padding. Logo left (Druk Condensed 20px Lavender Shock), nav links center (Neue Montreal 14px Paper White with 32px gap), filled action button right (Lavender Shock pill, 12px 20px padding)."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 951,
+          "confidence": 1,
+          "prominence": 274851727.144262,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#291900",
+          "oklch": {
+            "c": 0.047872969994023705,
+            "h": 76.79294216396816,
+            "l": 0.22863786907971143
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 46042828.57764666,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "hero",
+            "card",
+            "image"
+          ],
+          "frequency": 996,
+          "confidence": 1,
+          "prominence": 37585924.37702222,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#23002b",
+          "oklch": {
+            "c": 0.08976966594131072,
+            "h": 319.7216482707156,
+            "l": 0.18679708314286653
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "heading",
+            "card"
+          ],
+          "frequency": 269,
+          "confidence": 1,
+          "prominence": 16083685.971031204,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 243,
+          "confidence": 1,
+          "prominence": 14436598.751372537,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#002629",
+          "oklch": {
+            "c": 0.04164934150675107,
+            "h": 202.68681636324212,
+            "l": 0.2446507677687105
+          },
+          "contexts": [
+            "card",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 14071341.929420998,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#93ffe4",
+          "oklch": {
+            "c": 0.10782037784641742,
+            "h": 175.8312580645415,
+            "l": 0.9273587860538984
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 127,
+          "confidence": 1,
+          "prominence": 10679256,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffac47",
+          "oklch": {
+            "c": 0.1489752583713522,
+            "h": 67.75083496433166,
+            "l": 0.8081884582456657
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 4861308.467910285,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e894ff",
+          "oklch": {
+            "c": 0.16980351935987895,
+            "h": 318.79059490768634,
+            "l": 0.7893010473702897
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "card"
+          ],
+          "frequency": 1102,
+          "confidence": 1,
+          "prominence": 4645125.359685666,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 237,
+          "confidence": 1,
+          "prominence": 3128708.384781175,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#db99f7",
+          "oklch": {
+            "c": 0.14655930513934076,
+            "h": 315.3864422603064,
+            "l": 0.7801883093150929
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 18942,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15989109917455455,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.98,
+          "background": "#23002b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.66,
+          "background": "#93ffe4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#ffffff",
+          "foreground": "#291900"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.04,
+          "background": "#002629",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.97,
+          "background": "#93ffe4",
+          "foreground": "#23002b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.76,
+          "background": "#93ffe4",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#93ffe4",
+          "foreground": "#291900"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.49,
+          "background": "#93ffe4",
+          "foreground": "#002629"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.24,
+          "background": "#ffac47",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.63,
+          "background": "#93ffe4",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#ffac47",
+          "foreground": "#23002b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.11,
+          "background": "#e894ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#ffac47",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.91,
+          "background": "#db99f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#e894ff",
+          "foreground": "#23002b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.12,
+          "background": "#ffac47",
+          "foreground": "#291900"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.02,
+          "background": "#e894ff",
+          "foreground": "#121212"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 97,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 192,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 398,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 274,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Druk Condensed Super Desktop",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 110,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.77
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "hero",
+            "card",
+            "icon"
+          ],
+          "frequency": 398,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 89,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0.008,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 29,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 43,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 3.68,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 151,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.78,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 187,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.78,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 317,
+          "family": "Druk Condensed Super Desktop",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 23,
+          "lineHeight": 0.51,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2cab2c66-7f83-426c-94e7-692be6f23fa7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Champions4good design system\",\"item\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#style-reference\",\"name\":\"Champions4good design system reference\",\"headline\":\"Champions4good design system | Refero Styles\",\"description\":\"Explore Champions4good's dark Other design system: Deep Plum #23002b, Lavender Shock #e894ff colors, Druk Condensed Super Desktop, Neue Montreal typography,...\",\"url\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Champions4good\",\"url\":\"https://www.champions4good.club\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e02671e1-ba31-465f-bb7f-b124bf91ab5e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"caption\":\"Screenshot of Champions4good\"},\"image\":\"https://images.refero.design/styles/refero.design/image/51af15d2-6af5-423b-ba95-25eaf060ec72.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Champions4good design system\",\"Champions4good website design\",\"Champions4good colors\",\"Champions4good typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Plum\",\"Lavender Shock\",\"Espresso Brown\",\"Ink Teal\",\"Druk Condensed Super Desktop\",\"Neue Montreal\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Champions4good design system\"},{\"@type\":\"Thing\",\"name\":\"Champions4good website design\"},{\"@type\":\"Thing\",\"name\":\"Champions4good colors\"},{\"@type\":\"Thing\",\"name\":\"Champions4good typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-01T11:11:30.000Z\",\"dateModified\":\"2026-04-01T11:11:30.000Z\"}]}19:T68e,**Quick Color Reference:**\n- text: #ffffff (on dark) / #333333 (on light)\n- background: #23002b (dark sections) / #ffffff (light sections)\n- border: rgba(255,255,255,0.2) on dark / #e5e5e5 on light\n- accent: #e894ff\n- signal: #93ffe4 (mint), #ffac47 (amber)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts:**\n\n1. *Create a hero section:* Deep Plum (#23002b) full-bleed background. Display headline in Druk Condensed 317px weight 500, line-height 0.78, color Lavender Shock (#e894ff), letter-spacing +0.008em. Secondary words in Neue Montreal 58px weight 600. Two pill toggles (9999px radius, 80×48px) centered above the headline, one filled Lavender Shock, one outlined with 1px Lavender Shock border.\n\n2. *Create a filled action button:* Pill shape (9999px radius), 12px 20px padding, Lavender Shock (#e894ff) background, Deep Plum (#23002b) text, Neue Montreal 14px weight 500, no border, no shadow.\n\n3. *Create a light-section display block:* White (#ffffff) background. Druk Condensed 187px weight 500, line-height 0.85, color Black (#000000), left-aligned, occupying 60% of viewport width. 64px top padding.\n\n4. *Create a card on dark ground:* 14px border-radius, 20px padding, Espresso Brown (#291900) background, Paper White (#ffffff) body text in Neue Montreal 15px weight 400. Optional Mint Signal (#93ffe4) badge tag (6px radius, 4px 10px padding) in top-left corner.\n\n5. *Create a navigation bar:* Transparent background, 64px height, 20px horizontal padding. Logo left (Druk Condensed 20px Lavender Shock), nav links center (Neue Montreal 14px Paper White with 32px gap), filled action button right (Lavender Shock pill, 12px 20px padding)."
+}

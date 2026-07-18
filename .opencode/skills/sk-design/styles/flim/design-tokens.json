@@ -1,0 +1,302 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav links, icon strokes, image card borders, filled button background, the dominant near-black that carries the entire UI"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Text on dark surfaces, surface highlights, card surfaces floating above the canvas, button text on filled actions"
+    },
+    "canvas": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Canvas — Page background, search bar fills, the warm light gray that is the base layer for everything"
+    },
+    "mist": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Mist — Secondary surface fills, card backgrounds, alternating bands below the canvas, muted blocks"
+    },
+    "hairline": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Hairline — Grid line strokes, subtle dividers, the near-invisible linework that creates the sketchpad texture"
+    },
+    "signal-green": {
+      "$value": "#30a81d",
+      "$type": "color",
+      "$description": "Signal Green — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "forest": {
+      "$value": "#21935b",
+      "$type": "color",
+      "$description": "Forest — Deeper green for icon borders, heading underlines, secondary green accents where Signal Green would be too bright"
+    },
+    "highlight-yellow": {
+      "$value": "#fecc33",
+      "$type": "color",
+      "$description": "Highlight Yellow — Heading background highlight wash, warm tag fills — used as a marker-pen underline behind words, not as surface color"
+    },
+    "ember": {
+      "$value": "#ff8400",
+      "$type": "color",
+      "$description": "Ember — Warm card accent backgrounds, orange UI moments — the rare heat in an otherwise cool palette"
+    }
+  },
+  "font": {
+    "swizzy": {
+      "$value": "Swizzy",
+      "$type": "fontFamily",
+      "$description": "The hero wordmark and large display moments. The signature choice: a 125px display at weight 500 (not 700-900), with aggressively tight -0.02em tracking and sub-1.0 line-height. The wordmark feels carved rather than printed — a confident mid-weight at enormous scale instead of a heavy slab. The slight 0.86 line-height at 125px is the signature optical correction that makes 'Flim' sit perfectly on its baseline."
+    },
+    "pp-neue-montreal-mono": {
+      "$value": "PP Neue Montreal Mono",
+      "$type": "fontFamily",
+      "$description": "The UI micro-voice: navigation labels, 'HOME', 'PRICING', 'LOG-IN', 'SIGN-UP', search bar placeholders, and the 'TRUSTED BY THE BRANDS SHAPING CULTURE' eyebrow. The wide 0.06em tracking transforms ordinary labels into engineered labels — every letter is spaced like a diagram annotation. This is the mono font's only role: small, uppercase, precisely tracked."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Body and secondary text. A system font is the deliberate anti-statement — body copy doesn't try to be distinctive, it just reads. 16px for body, 32px for larger sub-claims. Weight 700 for emphasis in body copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Swizzy",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Swizzy",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Swizzy",
+        "fontSize": "47px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Swizzy",
+        "fontSize": "125px",
+        "fontWeight": 500,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 125px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25.0353px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm light gray paper that everything sits on"
+    },
+    "surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, search bar fills, elevated white blocks above the canvas"
+    },
+    "raised": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface fills, muted blocks, alternating bands"
+    },
+    "accent": {
+      "$value": "#fecc33",
+      "$type": "color",
+      "$description": "Surface level 3: Highlight wash behind words — the marker-pen underline"
+    },
+    "ink": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 4: Darkest surface — filled button, image card borders, the near-black that grounds the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flim.ai",
+      "siteName": "Flim",
+      "extractedAt": "2026-06-03T18:54:21.982Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@theme {
+  /* Colors */
+  --color-deep-navy-void: #161e29;
+  --color-bone-white: #fefcfb;
+  --color-warm-card-stock: #eae5dd;
+  --color-ink-black: #1e1d1d;
+  --color-carbon-border: #000000;
+  --color-ash-gray: #b8b9bc;
+  --color-silver-gray: #d0d0d1;
+  --color-pewter: #a1a3a7;
+  --color-smoke: #8a8d92;
+  --color-violet-aura: #5f4dbd;
+  --color-lilac-wash: #e9b3f2;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-untitled-sans: 'Untitled Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: -0.28px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.32px;
+  --text-subheading: 19px;
+  --leading-subheading: 1.1;
+  --tracking-subheading: -0.38px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.48px;
+  --text-heading: 28px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.12px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -1.92px;
+  --text-display: 64px;
+  --leading-display: 0.9;
+  --tracking-display: -3.84px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-xl: 12px;
+  --radius-2xl: 19px;
+  --radius-3xl: 30px;
+  --radius-full: 100px;
+  --radius-full-2: 117px;
+  --radius-full-3: 180px;
+  --radius-full-4: 1000px;
+  --radius-full-5: 3000px;
+}

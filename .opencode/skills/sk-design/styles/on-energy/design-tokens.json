@@ -1,0 +1,232 @@
+{
+  "color": {
+    "caution-yellow": {
+      "$value": "#fff313",
+      "$type": "color",
+      "$description": "Caution Yellow — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "midnight-steel": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Steel — Page canvas, dark hero surfaces, nav background, text on yellow sections"
+    },
+    "industrial-white": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Industrial White — Light section backgrounds, text on dark surfaces, news card surfaces"
+    },
+    "carbon": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Carbon — Elevated dark surfaces, navigation pill buttons, card backgrounds on dark sections"
+    },
+    "gunmetal": {
+      "$value": "#4b4b4b",
+      "$type": "color",
+      "$description": "Gunmetal — Hairline borders, dividers, subtle structural lines on dark surfaces"
+    },
+    "aluminum": {
+      "$value": "#afafaf",
+      "$type": "color",
+      "$description": "Aluminum — Muted body text on dark backgrounds, secondary copy, footer text"
+    }
+  },
+  "font": {
+    "univers-next-pro": {
+      "$value": "Univers Next Pro",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Weight 300 for all display, headlines, and hero statements — the whisper-light choice creates industrial authority through restraint rather than weight. Weight 400 for body, UI, nav, and button text. The 300/400 pairing with no intermediate weights produces a binary, almost binary-code typographic feel."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Univers Next Pro",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas for dark sections, hero background, navigation bar"
+    },
+    "carbon": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated dark surface for nav pills and dark-section cards"
+    },
+    "industrial-white": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 3: Light section backgrounds, content cards on light sections"
+    },
+    "caution-yellow": {
+      "$value": "#fff313",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed dramatic accent section — the system's signature atmospheric surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.on.energy",
+      "siteName": "ON.energy",
+      "extractedAt": "2026-06-03T17:12:41.267Z",
+      "variant": "extended"
+    }
+  }
+}

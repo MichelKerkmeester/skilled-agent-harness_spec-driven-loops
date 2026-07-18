@@ -1,0 +1,339 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces on light theme, text on dark surfaces"
+    },
+    "slate": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Slate — Muted secondary text, subdued metadata, low-emphasis body copy"
+    },
+    "hairline": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Hairline — Hairline borders, table dividers, input outlines"
+    },
+    "midnight-ink": {
+      "$value": "#010120",
+      "$type": "color",
+      "$description": "Midnight Ink — Dark surface (research section background) — near-black navy that reads as deeper than pure black, giving the dark band a tinted, on-brand cast"
+    },
+    "periwinkle": {
+      "$value": "#bdbbff",
+      "$type": "color",
+      "$description": "Periwinkle — Accent dashes, active indicators, small UI punctuation — the system's only mid-saturation chromatic accent, used sparingly as underlines and section markers"
+    },
+    "mint-cyan": {
+      "$value": "#c8f6f9",
+      "$type": "color",
+      "$description": "Mint Cyan — Gray supporting accent for decorative details and low-frequency emphasis."
+    },
+    "sky": {
+      "$value": "#c1dff9",
+      "$type": "color",
+      "$description": "Sky — Gray supporting accent for decorative details and low-frequency emphasis."
+    },
+    "blush": {
+      "$value": "#fde3f6",
+      "$type": "color",
+      "$description": "Blush — Light supporting surface for subtle backgrounds and section separation."
+    },
+    "peach": {
+      "$value": "#ffdccd",
+      "$type": "color",
+      "$description": "Peach — Card background — used for the third stat tile, warm counterweight to the cool pinks and blues"
+    }
+  },
+  "font": {
+    "the-future": {
+      "$value": "The Future",
+      "$type": "fontFamily",
+      "$description": "Primary sans-serif for body, nav, headings, and hero — the sole display and text family. Aggressive negative tracking at display sizes (-0.03em at 64px) tightens headlines into compact, near-condensed blocks. Tight line-heights (1.10 at display) keep multi-line headlines visually dense rather than airy."
+    },
+    "pp-neue-montreal-mono": {
+      "$value": "PP Neue Montreal Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace for labels, category badges, button text, and technical metadata — the lab-notebook voice that signals research credibility. Slightly positive tracking (0.005–0.007em) keeps mono caps readable at small sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(1, 1, 32, 0.1) -10px 0px 75px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background across hero, stats, and platform sections"
+    },
+    "midnight-band": {
+      "$value": "#010120",
+      "$type": "color",
+      "$description": "Surface level 2: Dark research section — the single inverted surface that breaks the light theme"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://together.ai",
+      "siteName": "Together AI",
+      "extractedAt": "2026-06-03T16:03:15.890Z",
+      "variant": "extended"
+    }
+  }
+}

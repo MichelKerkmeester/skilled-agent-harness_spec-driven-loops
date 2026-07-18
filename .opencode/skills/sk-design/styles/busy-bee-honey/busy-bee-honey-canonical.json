@@ -1,0 +1,1379 @@
+{
+  "source": "https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59",
+  "uuid": "9836e7c2-ac8e-453d-bdef-2677eb078d59",
+  "name": "Busy Bee Honey",
+  "northStar": "painted barn-side honey label — dark cocoa, gold, and blue stacked like a vintage billboard. Two sentence grounding: massive condensed serif display type bleeds edge-to-edge against solid color bands, and the bear-bottle product sits centered and unframed like the hero of a roadside sign.",
+  "capturedAt": "2026-07-18T07:47:23.224Z",
+  "meta": {
+    "url": "https://www.busybeehoney.com",
+    "siteName": "Busy Bee Honey",
+    "extractedAt": "2026-06-03T19:30:10.367Z",
+    "durationMs": 36060,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 744,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set mega display at 90px or larger with line-height 0.80-0.82 and letter-spacing -0.01em — anything taller than body, anything less tight, and the headline stops sounding like billboard lettering",
+      "Let every primary action be a 1000px-radius pill; never round the corners partially",
+      "Use full-bleed color sections (Dark Cocoa, Honeycomb Gold, Cornflower Blue) with no inter-section gap — the seam between colors is the layout",
+      "Place the product photo centered and unframed; never wrap it in a card, never add a shadow, never constrain it to a column",
+      "Invert CTA fill against the section it's on: dark pill on gold, gold pill on dark — never a dark pill on dark",
+      "Use the blue (#6aacc2) only as a marquee band or thin strip — it is a divider color, not a surface",
+      "Reserve the barkmanhoney 65px subhead for the second-most-important line on a section; don't promote it above the TayMakawao display"
+    ],
+    "donts": [
+      "Don't introduce drop shadows, glows, or any z-axis elevation — the system is deliberately flat",
+      "Don't set display type with line-height ≥ 1.0; tight leading is the signature, not an accident",
+      "Don't put a card, border, or container around the hero product — the bottle sits on the canvas",
+      "Don't use white (#ffffff) for canvas; the cream (#f2ebd0) is warmer and intentional",
+      "Don't use a sans-serif display face — the system only works with the condensed serif 'painted sign' attitude",
+      "Don't use Sage Green (#6fa162) for text or buttons — it is a marquee-strip accent only",
+      "Don't break the full-bleed section into a max-width container with side gutters — bleed to the edge or it loses the billboard quality"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#3b2722",
+        "name": "Dark Cocoa",
+        "role": "Primary canvas for hero/header, body text on light surfaces, structural borders, dark CTA fills — the most-used chromatic color in the system, carrying 80%+ of text and border weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2ebd0",
+        "name": "Cream Parchment",
+        "role": "Light canvas for alternate sections, text on dark canvases, hairline borders, card surfaces — the warm off-white that makes the dark cocoa feel like printed kraft paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Hard-edge text and fine borders where absolute contrast is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffca50",
+        "name": "Honeycomb Gold",
+        "role": "Filled CTA buttons on dark sections, full-bleed section canvas, nav fill — the most chromatic and warmest surface, used as functional punctuation against the brown",
+        "group": "brand"
+      },
+      {
+        "hex": "#a0342a",
+        "name": "Barn Red",
+        "role": "Red outline accent for tags, dividers, and focused UI edges.",
+        "group": "brand"
+      },
+      {
+        "hex": "#6aacc2",
+        "name": "Cornflower Blue",
+        "role": "Marquee band background, secondary nav fill — the sky/honey-sky blue used as a thin chromatic strip between full-bleed color blocks",
+        "group": "accent"
+      },
+      {
+        "hex": "#6fa162",
+        "name": "Sage Green",
+        "role": "Subtle accent strip alongside the blue in marquee/decorative bands — an herb-garden green that keeps the blue from feeling isolated",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge: there is no page max-width and no centered gutter. Sections are solid color blocks that butt directly against each other, separated either by a 40-64px Cornflower Blue marquee band or by an immediate color change. Hero pattern: mega display headline at the very top of the viewport (90-238px) with a centered product photo filling the lower two-thirds. No split-screen, no sidebar, no asymmetric grid at the page level — content is center-aligned. Section rhythm alternates Dark Cocoa → Honeycomb Gold → Dark Cocoa → Blue marquee → Dark Cocoa, with a marquee strip inserted between roughly every two colored bands. Navigation is a thin horizontal bar across the top. Grids are minimal because there are no card grids — the few multi-column moments are 2- and 3-column text stacks within a section, separated by 28-36px gaps. Density is generous: a section rarely contains more than one headline + one paragraph + one CTA, with 40-64px of internal vertical padding.",
+    "imagery": "Product-only photography: the bear-shaped honey bottle, centered, on flat color, with no lifestyle context, no hands, no kitchen backdrop, no people. The bottle's own label (blue sky, red 'AMERICA'S TRULY TRACEABLE' wordmark, bee mascot) carries all secondary visual interest. Treatments are sharp and high-contrast — the amber honey against the dark cocoa reads as a single saturated object. Decorative motifs are line-art bee glyphs (~1.5px stroke) in Dark Cocoa or Cream Parchment, used sparingly as period marks. No illustration, no abstract graphics, no 3D renders beyond the product photo itself. Imagery density is low-to-moderate: the bottle occupies roughly the central third of the hero, with massive type and solid color providing the rest.",
+    "similar": [
+      {
+        "why": "Same vintage-heritage Americana language — warm earthy palette, condensed serif display type, full-bleed color blocks, and pill-shaped CTA buttons",
+        "business": "Beekman's 1802"
+      },
+      {
+        "why": "Product-foreground hero on flat color, oversized condensed display headline, and a 1970s health-food-store palette of brown, gold, and pastel blue",
+        "business": "Recess"
+      },
+      {
+        "why": "Single-color backgrounds, serif display type at extreme sizes, and a hand-stamped product-label mood without card chrome",
+        "business": "Burlap & Barrel"
+      },
+      {
+        "why": "Direct-to-consumer food brand using flat earth-toned color blocks, pill buttons, and condensed serif headlines as the primary visual device",
+        "business": "Wildway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "500px",
+        "cards": "0px",
+        "pills": "500px",
+        "buttons": "1000px",
+        "sections": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#3b2722",
+        "name": "Dark Cocoa Canvas",
+        "level": 0,
+        "purpose": "Primary hero and dark section background — the page's most prominent canvas"
+      },
+      {
+        "hex": "#ffca50",
+        "name": "Honeycomb Gold Section",
+        "level": 1,
+        "purpose": "Full-bleed alternate section background for feature/CTA areas"
+      },
+      {
+        "hex": "#6aacc2",
+        "name": "Cornflower Marquee",
+        "level": 2,
+        "purpose": "Thin horizontal band used as a sectional divider with scrolling text"
+      },
+      {
+        "hex": "#f2ebd0",
+        "name": "Cream Parchment",
+        "level": 3,
+        "purpose": "Light text and hairline borders, occasionally inverted as a small content surface"
+      }
+    ],
+    "northStar": "painted barn-side honey label — dark cocoa, gold, and blue stacked like a vintage billboard. Two sentence grounding: massive condensed serif display type bleeds edge-to-edge against solid color bands, and the bear-bottle product sits centered and unframed like the hero of a roadside sign.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 65,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 0.82,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display-lg",
+        "size": 135,
+        "lineHeight": 0.8,
+        "letterSpacing": -1.35
+      },
+      {
+        "role": "display-xl",
+        "size": 238,
+        "lineHeight": 0.8,
+        "letterSpacing": -2.38
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Horizontal bar with Dark Cocoa (#3b2722) background and Cream Parchment (#f2ebd0) TayBirdie 12-14px nav links, all-caps. Links separated by 28-36px horizontal padding. No drop shadow; the dark band is the divider from the hero canvas below."
+      },
+      {
+        "name": "Scrolling Marquee Band",
+        "role": "Section divider and emphasis strip",
+        "description": "Full-bleed horizontal band in Cornflower Blue (#6aacc2), 40-64px tall, containing repeating TayMakawao 28px caps text in Dark Cocoa with small bee/ornament glyphs between phrases. Used to separate full-bleed color blocks. The animation is a left-to-right infinite scroll."
+      },
+      {
+        "name": "Mega Display Headline",
+        "role": "Hero and feature section titles",
+        "description": "TayMakawao Regular at 90-238px, line-height 0.80, letter-spacing -0.01em. Cream Parchment (#f2ebd0) when set on Dark Cocoa, Dark Cocoa when set on Honeycomb Gold. The text is allowed to bleed past container edges — it should never be constrained to a column."
+      },
+      {
+        "name": "Section Subhead",
+        "role": "Supporting headline below mega display",
+        "description": "Barkman Honey at 65px, line-height 1.00, set in Barn Red (#a0342a) on dark canvases or Dark Cocoa on light canvases. Used as the 'Trace Your Money'-style secondary statement."
+      },
+      {
+        "name": "Pill CTA Button (Dark on Light)",
+        "role": "Primary action on gold/light sections",
+        "description": "1000px border-radius pill, Dark Cocoa (#3b2722) fill, Cream Parchment (#f2ebd0) Arial 13px all-caps text with 0.24px tracking, 16px vertical × 24px horizontal padding. Optional right-arrow icon in 14px. The dark-on-light inversion is reserved for the gold band."
+      },
+      {
+        "name": "Pill CTA Button (Yellow on Dark)",
+        "role": "Primary action on dark sections",
+        "description": "1000px border-radius pill, Honeycomb Gold (#ffca50) fill, Dark Cocoa text, identical sizing to the dark variant. Use this on Dark Cocoa or Cornflower Blue sections; the yellow fill reads as the warmest, most action-oriented moment in the system."
+      },
+      {
+        "name": "Product Hero Bottle",
+        "role": "Centered product showcase within a hero section",
+        "description": "The bear-shaped bottle is rendered at full product photo scale, centered horizontally, no container, no card. It sits in front of whatever full-bleed color the section is using. No drop shadow — the bottle IS the focal point, not a framed object."
+      },
+      {
+        "name": "Circular Badge / Trace Seal",
+        "role": "Decorative stamp element",
+        "description": "Small (~80-100px) circular Cornflower Blue badge with TayBirdie 12-14px caps text wrapping the circumference, mounted to the upper-left of a subhead like a wax seal. Functions as a heritage/authenticity mark."
+      },
+      {
+        "name": "Bee Glyph",
+        "role": "Decorative motif",
+        "description": "Small line-art bee icon (stroke ~1.5px) in Dark Cocoa, used as a visual period between marquee phrases and as a tiny inline accent next to short labels. Never colored — always Dark Cocoa or Cream Parchment on the parent surface."
+      },
+      {
+        "name": "Full-Bleed Color Section",
+        "role": "Page-level section container",
+        "description": "Each section extends edge-to-edge in a single solid color — Dark Cocoa, Honeycomb Gold, or Cornflower Blue. Sections abut with no gap, no divider, no border. Internal vertical padding 40-64px on the content block, which itself is centered and may be 8-12 columns wide."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-level footer",
+        "description": "Dark Cocoa (#3b2722) background, TayBirdie 12-14px Cream Parchment links in horizontal rows. Mirrors the nav's tone but at smaller type and lower contrast. Occasionally a Honeycomb Gold accent strip caps it."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Mega-display headlines — 'KNOW YOUR HONEY'-scale type that bleeds edge to edge, set tight (0.80 lh) with -0.01em tracking so letterforms lock together like wooden cutout letters",
+        "sizes": "28px, 90px, 135px, 209px, 238px",
+        "family": "TayMakawao",
+        "weight": "400",
+        "lineHeight": "0.80–1.00",
+        "substitute": "Playfair Display Black, Bodoni Moda 900, or DM Serif Display",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "Secondary display and large numerals — the 'honey drip' serif used for sub-headlines and hero subtext (e.g. 65px section titles), its warmer curves pair against TayMakawao's mechanical weight",
+        "sizes": "13px, 16px, 24px, 65px",
+        "family": "Barkman Honey",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "DM Serif Display, Recoleta, or Fraunces 900"
+      },
+      {
+        "role": "UI and small-body workhorse — nav links, footer text, micro-labels, and small caps. Normal tracking keeps it legible at small sizes; the tightest 1.00 lh is reserved for nav rows",
+        "sizes": "12px, 14px, 16px, 20px",
+        "family": "TayBirdie",
+        "weight": "400",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter, Sohne, or GT America"
+      },
+      {
+        "role": "Fallback body text inside the system, also pulls double duty for italic-as-brand-voice moments where a system serif feels more honest than a designed face",
+        "sizes": "16px",
+        "family": "Times New Roman",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman (system)"
+      },
+      {
+        "role": "Monospaced flavor for traceability codes, lot numbers, and any 'data' moment that should feel like a printed receipt — positive 0.031em tracking gives the text a stamped/inked feel",
+        "sizes": "16px",
+        "family": "Anonymous Pro",
+        "weight": "400",
+        "lineHeight": "1.61",
+        "substitute": "IBM Plex Mono or JetBrains Mono",
+        "letterSpacing": "0.031em"
+      },
+      {
+        "role": "Button and micro-copy fallback — the utilitarian text inside pill buttons where neutrality beats the warmer display faces",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Arial (system)"
+      }
+    ],
+    "description": "Busy Bee Honey speaks in a roadside-Americana voice: full-bleed bands of dark cocoa, honeycomb gold, and cornflower blue, each separated by a scrolling marquee strip. Display headlines are enormous — up to 238px — in a condensed display serif with aggressive 0.80 line-height and slight negative tracking, so words like 'KNOW YOUR HONEY' loom like painted barn-side lettering. The product (the bear-shaped bottle) is the visual anchor: centered, unframed, full-bleed, no card chrome around it. Color blocks are flat, unshadowed, and contiguous — the design relies on brutal color contrast and type scale to create rhythm, not on elevation or container surfaces. Pills are the only shape language; everything else is rectangular and sectioned. The feel is less 'ecommerce product page' and more 'printed honey label folded into a billboard'.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Busy Bee Honey design system\",\"item\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#style-reference\",\"name\":\"Busy Bee Honey design system reference\",\"headline\":\"Busy Bee Honey design system | Refero Styles\",\"description\":\"Explore Busy Bee Honey's mixed E-commerce design system: Dark Cocoa #3b2722, Cream Parchment #f2ebd0 colors, TayMakawao, Barkman Honey typography, and...\",\"url\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Busy Bee Honey\",\"url\":\"https://www.busybeehoney.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"caption\":\"Screenshot of Busy Bee Honey\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Busy Bee Honey design system\",\"Busy Bee Honey website design\",\"Busy Bee Honey colors\",\"Busy Bee Honey typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Dark Cocoa\",\"Cream Parchment\",\"Charcoal\",\"Honeycomb Gold\",\"TayMakawao\",\"Barkman Honey\",\"TayBirdie\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey design system\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey website design\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey colors\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:15:32.841Z\",\"dateModified\":\"2026-04-30T00:15:32.841Z\"}]}19:T689,**Quick Color Reference**\n- text: #3b2722 (on light) / #f2ebd0 (on dark)\n- background: #3b2722 (dark canvas) / #ffca50 (gold section) / #6aacc2 (marquee strip)\n- border: #3b2722\n- accent: #a0342a (barn red — subhead emphasis)\n- primary action: #ffca50 (filled action)\n\n**Example Component Prompts**\n1. *Hero section*: Full-bleed Dark Cocoa (#3b2722) canvas. Centered TayMakawao 209px / line-height 0.80 / letter-spacing -2.09px headline in Cream Parchment (#f2ebd0) that bleeds past the viewport. Centered product photo of the bear bottle at 50% viewport height, no border, no shadow, sitting on the cocoa canvas.\n2. *Gold feature section*: Full-bleed Honeycomb Gold (#ffca50) canvas, 40px internal top/bottom padding. Left-aligned Barkman Honey 65px / line-height 1.0 subhead in Barn Red (#a0342a), a small Cornflower Blue circular trace badge above it. Dark Cocoa pill CTA (1000px radius, 16px × 24px padding, Arial 13px caps in #f2ebd0) with a right-arrow icon.\n3. *Marquee band*: Full-bleed Cornflower Blue (#6aacc2) strip, 56px tall. Inline TayMakawao 28px / line-height 1.0 caps text in Dark Cocoa repeating 'MADE IN THE USA' separated by a 14px Dark Cocoa bee glyph, animated left-to-right infinite scroll.\n4. *Mega display headline*: TayMakawao 135px / line-height 0.82 / letter-spacing -1.35px, color Cream Parchment (#f2ebd0), set on a Dark Cocoa (#3b2722) full-bleed section. Text overflows its container horizontally — do not constrain.\n5. *Navigation bar*: Dark Cocoa (#3b2722) background, full-width, 20px vertical padding. TayBirdie 12px all-caps links in Cream Parchment (#f2ebd0), separated by 36px horizontal padding, distributed across a single row."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat. No drop shadows, no glow, no z-axis depth. Hierarchy is built from full-bleed color contrast and the 10x jump from body to display type. Where other systems would lift a card with a soft shadow, this design shifts the background from Dark Cocoa to Honeycomb Gold — the elevation is the color, not the shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3b2722",
+          "oklch": {
+            "c": 0.031809617848048324,
+            "h": 34.563047608838694,
+            "l": 0.2955216913160821
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "heading",
+            "button",
+            "link",
+            "body",
+            "card",
+            "footer",
+            "nav"
+          ],
+          "frequency": 2701,
+          "confidence": 1,
+          "prominence": 109388731.02543506,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 101,
+            "body/color": 27,
+            "card/color": 10,
+            "icon/color": 21,
+            "link/color": 8,
+            "image/color": 13,
+            "other/color": 325,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 21,
+            "nav/borderColor": 404,
+            "body/borderColor": 108,
+            "card/borderColor": 40,
+            "icon/borderColor": 84,
+            "link/borderColor": 32,
+            "image/borderColor": 52,
+            "other/borderColor": 1300,
+            "button/borderColor": 40,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84,
+            "nav/backgroundColor": 13,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#a0342a",
+          "oklch": {
+            "c": 0.14488353651308605,
+            "h": 28.8254815415004,
+            "l": 0.48256346112664356
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 17814495.116966635,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/color": 6,
+            "button/color": 1,
+            "body/borderColor": 12,
+            "other/borderColor": 24,
+            "other/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#ffca50",
+          "oklch": {
+            "c": 0.14785517617529675,
+            "h": 84.86868893022206,
+            "l": 0.8646698963611479
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "footer"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 16292658.529371887,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "nav/backgroundColor": 19,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6aacc2",
+          "oklch": {
+            "c": 0.07443425986060948,
+            "h": 221.28288547450768,
+            "l": 0.7084103040984485
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 15598477.928642727,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 19,
+            "other/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#f2ebd0",
+          "oklch": {
+            "c": 0.036337405619952586,
+            "h": 95.02242225613443,
+            "l": 0.9384981473865237
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "heading",
+            "image",
+            "button"
+          ],
+          "frequency": 954,
+          "confidence": 1,
+          "prominence": 12695925.25364889,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 49,
+            "body/color": 19,
+            "image/color": 2,
+            "other/color": 109,
+            "button/color": 2,
+            "heading/color": 9,
+            "nav/borderColor": 195,
+            "body/borderColor": 76,
+            "image/borderColor": 8,
+            "other/borderColor": 436,
+            "button/borderColor": 4,
+            "heading/borderColor": 36,
+            "nav/backgroundColor": 6,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 6756542.771823981,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 2,
+            "other/color": 4,
+            "button/color": 4,
+            "body/borderColor": 8,
+            "other/borderColor": 16,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#c2bca6",
+          "oklch": {
+            "c": 0.030319938070879182,
+            "h": 95.01782709231802,
+            "l": 0.7939059258296919
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eebd20",
+          "oklch": {
+            "c": 0.16131351697917717,
+            "h": 88.88639075208148,
+            "l": 0.8194498718437457
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 70251,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6fa162",
+          "oklch": {
+            "c": 0.1048396613547957,
+            "h": 139.3201738413657,
+            "l": 0.6574269840513393
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 19,
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09808111799908194,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.57,
+          "background": "#f2ebd0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.82,
+          "background": "#ffca50",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.94,
+          "background": "#eebd20",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.72,
+          "background": "#f2ebd0",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.04,
+          "background": "#c2bca6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#ffca50",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.29,
+          "background": "#6aacc2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.96,
+          "background": "#eebd20",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.36,
+          "background": "#c2bca6",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.95,
+          "background": "#6fa162",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.82,
+          "background": "#f2ebd0",
+          "foreground": "#a0342a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.53,
+          "background": "#6aacc2",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.64,
+          "background": "#6fa162",
+          "foreground": "#3b2722"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.58,
+          "background": "#ffca50",
+          "foreground": "#a0342a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#eebd20",
+          "foreground": "#a0342a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#c2bca6",
+          "foreground": "#a0342a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#a0342a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.75,
+          "background": "#6aacc2",
+          "foreground": "#a0342a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.53,
+          "background": "#6fa162",
+          "foreground": "#f2ebd0"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.3,
+          "background": "#6fa162",
+          "foreground": "#a0342a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 42.75,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 85,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading",
+            "nav"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading",
+            "columnGap|nav",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 298,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TayBirdie-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 305,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 196,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TayMakawao-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 160,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "barkmanhoney",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 30,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "AnonymousPro-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "TayBirdie-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "barkmanhoney",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TayBirdie-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "footer",
+            "other",
+            "link"
+          ],
+          "frequency": 153,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TayBirdie-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 133,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "button",
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 196,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AnonymousPro-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.61,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TayBirdie-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "barkmanhoney",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TayBirdie-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "barkmanhoney",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "TayMakawao-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "barkmanhoney",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "TayMakawao-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 73,
+          "lineHeight": 0.82,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "TayMakawao-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 75,
+          "lineHeight": 0.82,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 209,
+          "family": "TayMakawao-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 238,
+          "family": "TayMakawao-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d35e8666-c196-45f5-8c16-36b3e7b79b5f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Busy Bee Honey design system\",\"item\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#style-reference\",\"name\":\"Busy Bee Honey design system reference\",\"headline\":\"Busy Bee Honey design system | Refero Styles\",\"description\":\"Explore Busy Bee Honey's mixed E-commerce design system: Dark Cocoa #3b2722, Cream Parchment #f2ebd0 colors, TayMakawao, Barkman Honey typography, and...\",\"url\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Busy Bee Honey\",\"url\":\"https://www.busybeehoney.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9836e7c2-ac8e-453d-bdef-2677eb078d59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"caption\":\"Screenshot of Busy Bee Honey\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e18e3ba3-b638-4152-b0ce-9d7bff19fb76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Busy Bee Honey design system\",\"Busy Bee Honey website design\",\"Busy Bee Honey colors\",\"Busy Bee Honey typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Dark Cocoa\",\"Cream Parchment\",\"Charcoal\",\"Honeycomb Gold\",\"TayMakawao\",\"Barkman Honey\",\"TayBirdie\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey design system\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey website design\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey colors\"},{\"@type\":\"Thing\",\"name\":\"Busy Bee Honey typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:15:32.841Z\",\"dateModified\":\"2026-04-30T00:15:32.841Z\"}]}19:T689,**Quick Color Reference**\n- text: #3b2722 (on light) / #f2ebd0 (on dark)\n- background: #3b2722 (dark canvas) / #ffca50 (gold section) / #6aacc2 (marquee strip)\n- border: #3b2722\n- accent: #a0342a (barn red — subhead emphasis)\n- primary action: #ffca50 (filled action)\n\n**Example Component Prompts**\n1. *Hero section*: Full-bleed Dark Cocoa (#3b2722) canvas. Centered TayMakawao 209px / line-height 0.80 / letter-spacing -2.09px headline in Cream Parchment (#f2ebd0) that bleeds past the viewport. Centered product photo of the bear bottle at 50% viewport height, no border, no shadow, sitting on the cocoa canvas.\n2. *Gold feature section*: Full-bleed Honeycomb Gold (#ffca50) canvas, 40px internal top/bottom padding. Left-aligned Barkman Honey 65px / line-height 1.0 subhead in Barn Red (#a0342a), a small Cornflower Blue circular trace badge above it. Dark Cocoa pill CTA (1000px radius, 16px × 24px padding, Arial 13px caps in #f2ebd0) with a right-arrow icon.\n3. *Marquee band*: Full-bleed Cornflower Blue (#6aacc2) strip, 56px tall. Inline TayMakawao 28px / line-height 1.0 caps text in Dark Cocoa repeating 'MADE IN THE USA' separated by a 14px Dark Cocoa bee glyph, animated left-to-right infinite scroll.\n4. *Mega display headline*: TayMakawao 135px / line-height 0.82 / letter-spacing -1.35px, color Cream Parchment (#f2ebd0), set on a Dark Cocoa (#3b2722) full-bleed section. Text overflows its container horizontally — do not constrain.\n5. *Navigation bar*: Dark Cocoa (#3b2722) background, full-width, 20px vertical padding. TayBirdie 12px all-caps links in Cream Parchment (#f2ebd0), separated by 36px horizontal padding, distributed across a single row."
+}

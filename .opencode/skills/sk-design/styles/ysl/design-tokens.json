@@ -1,0 +1,125 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, nav labels on light photography, footer and legal copy, card inversions, and full-bleed section dividers — the absolute dark that frames everything"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, and inverse nav labels on dark photography — the negative space that lets imagery breathe"
+    }
+  },
+  "font": {
+    "saint-laurent-wordmark-custom": {
+      "$value": "Saint Laurent Wordmark (custom)",
+      "$type": "fontFamily",
+      "$description": "The YSL logotype is a proprietary custom mark — elongated wedges, condensed proportions, and a vertical stress that no system font replicates. Used only as the centered site identifier in the header. Do not substitute; this mark IS the brand. If a stand-in is needed, use Bodoni 175 condensed or Didot thin, tracked tightly."
+    },
+    "helvetica-neue-inter-system-sans": {
+      "$value": "Helvetica Neue / Inter / system sans",
+      "$type": "fontFamily",
+      "$description": "Editorial captions and collection labels floating near image edges (e.g. 'WOMEN'S SUMMER 25 / DESCUBRE LA SELECCIÓN DE BOLSO'). Centered, uppercase, wide letter-spacing — a film-credit feel rather than a product label."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica_Reg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica_Reg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica_Reg",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Helvetica_Reg",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the field photography floats on or replaces"
+    },
+    "inversion": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed dark sections and card surfaces that invert the canvas — no shadow needed, the value flip is the elevation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ysl.com",
+      "siteName": "Ysl",
+      "extractedAt": "2026-06-03T17:56:58.227Z",
+      "variant": "extended"
+    }
+  }
+}

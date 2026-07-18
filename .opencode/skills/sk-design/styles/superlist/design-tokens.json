@@ -1,0 +1,474 @@
+{
+  "color": {
+    "aubergine-canvas": {
+      "$value": "#181824",
+      "$type": "color",
+      "$description": "Aubergine Canvas — Page background, primary canvas — warm-tinted dark replaces pure black so the UI feels layered rather than flat"
+    },
+    "elevated-plum": {
+      "$value": "#26253b",
+      "$type": "color",
+      "$description": "Elevated Plum — Card surfaces, input fields, nav containers — one step lighter than canvas to create depth without a visible border"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headings, button text, icon strokes — maximum contrast on the dark canvas"
+    },
+    "fog-text": {
+      "$value": "#696f81",
+      "$type": "color",
+      "$description": "Fog Text — Body text, secondary headings, muted borders — sits at 7:1 contrast for comfortable reading on the aubergine canvas"
+    },
+    "ash-text": {
+      "$value": "#8e8da0",
+      "$type": "color",
+      "$description": "Ash Text — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "mist-highlight": {
+      "$value": "#a3a3a7",
+      "$type": "color",
+      "$description": "Mist Highlight — Subtle borders, dividers, inactive nav items — the faintest neutral that still reads against canvas"
+    },
+    "whisper-border": {
+      "$value": "#f7f7ff",
+      "$type": "color",
+      "$description": "Whisper Border — Hairline highlights on dark surfaces, inset strokes — a near-white that reads as a light edge in dark mode"
+    },
+    "coral-ember": {
+      "$value": "#ff4a36",
+      "$type": "color",
+      "$description": "Coral Ember — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "iris-accent": {
+      "$value": "#535676",
+      "$type": "color",
+      "$description": "Iris Accent — Secondary headings, decorative violet text — a muted blue-violet that harmonizes with the aubergine canvas without competing with coral"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "haffer-xh-semibold": {
+      "$value": "Haffer XH SemiBold",
+      "$type": "fontFamily",
+      "$description": "Primary display and heading font. Used at 70–88px for hero headlines with -0.02em tracking, weight 600. The tight tracking and high x-height give headlines an editorial weight that makes the dark interface feel like a magazine cover rather than a dashboard. Substitute with Inter Tight or General Sans at semibold weight."
+    },
+    "jersey-10": {
+      "$value": "Jersey 10",
+      "$type": "fontFamily",
+      "$description": "Oversized decorative display font for accent numerals and feature callouts. Used sparingly at very large sizes to create typographic moments. Substitute with Anybody or Cabinet Grotesk display weight."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, links, form inputs. Inter at weight 400 with negative tracking (-0.01em to -0.02em) keeps body copy compact and legible on the dark canvas. Weight 500 for emphasized inline text and button labels."
+    },
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Medium-weight accent for testimonial quotes and emphasized body segments. Sits between Inter 400 and Haffer 600 to create a three-tier type hierarchy without switching families mid-paragraph. Substitute with General Sans Medium."
+    },
+    "haffer-xh-semibold-italic": {
+      "$value": "Haffer XH SemiBold Italic",
+      "$type": "fontFamily",
+      "$description": "Italic emphasis for quoted phrases and inline highlights within body copy. Used to set apart key terms without changing font family. Substitute with Inter Tight SemiBold Italic."
+    },
+    "customblender-medium": {
+      "$value": "CUSTOM;Blender Medium",
+      "$type": "fontFamily",
+      "$description": "CUSTOM;Blender Medium — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "CUSTOM;Blender Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold Italic",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 70px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Jersey 10",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 70px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Haffer XH SemiBold",
+        "fontSize": "88px",
+        "fontWeight": 600,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 88px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 10px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 1px 0px, rgba(0, 0, 0, 0.05) 0px 2px 4px 0px, rgba(255, 255, 255, 0.45) 0px 0.5px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "aubergine-canvas": {
+      "$value": "#181824",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm dark base"
+    },
+    "elevated-plum": {
+      "$value": "#26253b",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, inputs, nav containers — first surface lift"
+    },
+    "shadow-plum": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Deepest recessed areas, footer, product screenshot frames"
+    },
+    "white-pop": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surfaces for product mockups, review cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superlist.com",
+      "siteName": "Superlist",
+      "extractedAt": "2026-06-03T18:33:31.556Z",
+      "variant": "extended"
+    }
+  }
+}

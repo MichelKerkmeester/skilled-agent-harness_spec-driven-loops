@@ -1,0 +1,918 @@
+{
+  "source": "https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d",
+  "uuid": "31e00a99-6946-4f07-829a-b0904a39a20d",
+  "name": "ON.energy",
+  "northStar": "High-voltage caution yellow on midnight steel",
+  "capturedAt": "2026-07-18T08:27:43.929Z",
+  "meta": {
+    "url": "https://www.on.energy",
+    "siteName": "ON.energy",
+    "extractedAt": "2026-06-03T17:12:41.267Z",
+    "durationMs": 25790,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 244,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 300 for all headlines and display text — it is the system's signature restraint and must not be substituted with medium/semibold weights",
+      "Use #fff313 only for CTA buttons, full-bleed section backgrounds, and small accent borders — never for body text, icons, or decorative fills",
+      "Apply -0.04em letter-spacing at 36px and above, -0.02em at 16-24px — the tight tracking reinforces the industrial precision feel",
+      "Let sections alternate full-bleed: dark image → pure yellow → light white — this three-mode rhythm is the page's structural backbone",
+      "Keep border-radius at 6px for interactive elements (nav, buttons) and 9px for cards — stay utilitarian, never approach full-pill rounding",
+      "Use #000000 text on yellow sections and #eeeeee text on dark sections — never invert, the high contrast is non-negotiable",
+      "Maintain 120px vertical gaps between major sections to let the full-bleed color blocks breathe as distinct visual acts"
+    ],
+    "donts": [
+      "Never add box-shadows — the system is deliberately flat, relying on color contrast and full-bleed section breaks for hierarchy",
+      "Never introduce gradients — the yellow sections ARE the color moments; gradients would dilute their impact",
+      "Never use weight 500, 600, or 700 — the binary 300/400 pairing is a design constraint, not an oversight",
+      "Never place yellow body text on yellow backgrounds, or black text on black — the contrast pairs are fixed",
+      "Never use large border-radius values (above 16px) on functional elements — the industrial feel depends on tight radii",
+      "Never add intermediate gray text colors on yellow sections — stick to #000000 or a single muted yellow tone",
+      "Never constrain full-bleed sections to a max-width container — the yellow and dark sections must span edge to edge"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#fff313",
+        "name": "Caution Yellow",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight Steel",
+        "role": "Page canvas, dark hero surfaces, nav background, text on yellow sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Industrial White",
+        "role": "Light section backgrounds, text on dark surfaces, news card surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Carbon",
+        "role": "Elevated dark surfaces, navigation pill buttons, card backgrounds on dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4b4b4b",
+        "name": "Gunmetal",
+        "role": "Hairline borders, dividers, subtle structural lines on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afafaf",
+        "name": "Aluminum",
+        "role": "Muted body text on dark backgrounds, secondary copy, footer text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no global max-width constraint. The page is structured as a sequence of three distinct full-viewport section types: (1) dark hero with overlaid white headline and small product discovery card anchored bottom-right, (2) pure yellow statement section with large ghosted text, (3) white content sections with generous internal padding. Navigation floats as a translucent bar over the hero, then sits solid over subsequent sections. Content within light sections uses a centered column with ~400-500px text width and 2-column image grids for editorial blocks. The 120px section gap creates deliberate breathing room between the full-bleed color acts, making each section feel like a discrete visual statement rather than a continuous scroll.",
+    "imagery": "Industrial product photography dominates: close-up shots of metal panels, rack hardware, and power equipment with dark, moody lighting. The hardware itself is the hero — no lifestyle context, no people operating equipment, no staged environments. The metallic surfaces catch light against black backgrounds, creating a high-contrast, almost forensic feel. Team photography uses the brand yellow as a backdrop. Infrastructure shots show real deployments in outdoor settings. Images are treated as full-bleed atmospheric elements, not thumbnails — they fill sections edge to edge with 16px corner radius as the only softening.",
+    "similar": [
+      {
+        "why": "Same industrial-grade photography of hardware against dark backgrounds, minimal component vocabulary, and singular accent color discipline",
+        "business": "Rivian"
+      },
+      {
+        "why": "Iconic caution-yellow + black-steel color system for industrial machinery, full-bleed product imagery as hero",
+        "business": "Caterpillar"
+      },
+      {
+        "why": "Dark-canvas product showcase with whisper-light weight typography and deliberate monochrome restraint punctuated by single accent moments",
+        "business": "Polestar"
+      },
+      {
+        "why": "Energy infrastructure brand using full-bleed industrial photography and minimal UI chrome to let hardware speak",
+        "business": "Form Energy"
+      },
+      {
+        "why": "Dark-mode tech brand with tight typographic tracking, pill-shaped navigation, and utilitarian radii for a hardware-adjacent feel",
+        "business": "Arc"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "cards": "9px",
+        "images": "16px",
+        "buttons": "6px",
+        "sections": "24px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 1,
+        "purpose": "Base canvas for dark sections, hero background, navigation bar"
+      },
+      {
+        "hex": "#333333",
+        "name": "Carbon",
+        "level": 2,
+        "purpose": "Elevated dark surface for nav pills and dark-section cards"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Industrial White",
+        "level": 3,
+        "purpose": "Light section backgrounds, content cards on light sections"
+      },
+      {
+        "hex": "#fff313",
+        "name": "Caution Yellow",
+        "level": 4,
+        "purpose": "Full-bleed dramatic accent section — the system's signature atmospheric surface"
+      }
+    ],
+    "northStar": "High-voltage caution yellow on midnight steel",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -2.56
+      }
+    ],
+    "components": [
+      {
+        "name": "Yellow CTA Button",
+        "role": "Primary conversion action — the only chromatic button in the system",
+        "description": "Filled #fff313 background, #000000 text, 6px border-radius, 7px vertical and 16px horizontal padding. Univers Next Pro 400 at 14px. No shadow, no gradient. The high-contrast yellow-on-black creates the system's one point of interactive urgency."
+      },
+      {
+        "name": "Dark Navigation Pill",
+        "role": "Top-bar nav item, floating over full-bleed sections",
+        "description": "#333333 background, #eeeeee text, 6px border-radius, 5px vertical and 14px horizontal padding. Univers Next Pro 400 at 14px. Appears as a horizontal row of dark pills on yellow or image sections, creating contrast without weight."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier in navigation",
+        "description": "Small yellow (#fff313) square with black 'ON' text inside, set against the dark nav bar. Sharp corners, no padding, functions as a compact signal mark."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Full-bleed section opening statement",
+        "description": "Univers Next Pro 300 at 64px, line-height 1.00, letter-spacing -0.04em (-2.56px). White (#eeeeee) on dark image backgrounds. Left-aligned, large negative space below. The whisper-weight at this size is the system's signature typographic move."
+      },
+      {
+        "name": "Product Highlight Card",
+        "role": "Floating discovery card anchored to hero",
+        "description": "Dark surface (#333333 or near-black) with #4b4b4b border or yellow accent, 9px border-radius, 24px padding. Contains a small product image thumbnail on the right, yellow label text on the left. Univers 300 for the label, 400 for supporting text."
+      },
+      {
+        "name": "Full-Bleed Yellow Statement Section",
+        "role": "Mission or value-proposition block",
+        "description": "#fff313 fills the entire viewport height. Large statement text in Univers 300 at 36-64px, rendered in a slightly desaturated yellow tone that creates a subtle ghosting effect against the saturated background. No card containers, no dividers — the text floats on the yellow field."
+      },
+      {
+        "name": "News Image Card",
+        "role": "Editorial content card on light sections",
+        "description": "#eeeeee background or transparent, 16px border-radius on the image. Image fills the card width. Title in Univers 300 at 24px, #000000. Arranged in a 2-column grid with 16px column gap."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Content section opener on light backgrounds",
+        "description": "Univers Next Pro 300 at 36px, line-height 1.13, letter-spacing -0.04em (-1.44px). #000000. Left-aligned with generous left margin. Sits at the top of light content sections with 120px gap above."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Supporting paragraph copy",
+        "description": "Univers Next Pro 400 at 16px, line-height 1.20. #000000 on light sections, #afafaf on dark sections. Constrained to approximately 400-500px max width for comfortable reading."
+      },
+      {
+        "name": "Nav Bar Container",
+        "role": "Top-of-page navigation strip",
+        "description": "Transparent or semi-transparent over hero images, solid #000000 or #333333 over yellow/light sections. Contains logo mark left, nav pills center, CTA button right. Full-width with 24px horizontal padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Weight 300 for all display, headlines, and hero statements — the whisper-light choice creates industrial authority through restraint rather than weight. Weight 400 for body, UI, nav, and button text. The 300/400 pairing with no intermediate weights produces a binary, almost binary-code typographic feel.",
+        "sizes": "10, 12, 14, 16, 24, 36, 64",
+        "family": "Univers Next Pro",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.13, 1.17, 1.20, 1.38",
+        "substitute": "Inter (weight 300/400), Neue Haas Grotesk, Helvetica Neue Light/Regular",
+        "letterSpacing": "-0.04em at 36px+, -0.02em at 16-24px, normal at 14px and below"
+      }
+    ],
+    "description": "ON.energy operates in a high-contrast industrial language: a single vivid yellow (#fff313) that functions as both full-bleed atmospheric section and functional accent against deep black surfaces, with no gradients or decorative effects in between. The type system uses Univers Next Pro at whisper-light weight 300 for all display and headline work — an anti-convention choice that creates authority through restraint rather than volume, paired with aggressively tight tracking (-0.04em at 36px+). Layout alternates between dramatic full-bleed color blocks (dark product photography, pure yellow statement sections, white content areas) rather than gentle cards-on-canvas, creating a rhythmic, almost industrial-signage quality. Radii stay small and utilitarian (6-9px), shadows are absent, and the component vocabulary is deliberately narrow: pill nav items, one yellow CTA, image cards, and a strong typographic hierarchy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ON.energy design system\",\"item\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#style-reference\",\"name\":\"ON.energy design system reference\",\"headline\":\"ON.energy design system | Refero Styles\",\"description\":\"Explore ON.energy's mixed Other design system: Caution Yellow #fff313, Midnight Steel #000000 colors, Univers Next Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ON.energy\",\"url\":\"https://www.on.energy\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"caption\":\"Screenshot of ON.energy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ON.energy design system\",\"ON.energy website design\",\"ON.energy colors\",\"ON.energy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Caution Yellow\",\"Midnight Steel\",\"Industrial White\",\"Carbon\",\"Univers Next Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ON.energy design system\"},{\"@type\":\"Thing\",\"name\":\"ON.energy website design\"},{\"@type\":\"Thing\",\"name\":\"ON.energy colors\"},{\"@type\":\"Thing\",\"name\":\"ON.energy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-16T09:39:41.000Z\",\"dateModified\":\"2026-03-16T09:39:41.000Z\"}]}19:T658,Quick Color Reference:\n- text: #000000 (on light/yellow) / #eeeeee (on dark)\n- background: #000000 (dark sections) / #eeeeee (light sections) / #fff313 (accent sections)\n- border: #4b4b4b (hairlines), #fff313 (accent highlights)\n- accent: #fff313\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. HERO SECTION: Full-bleed dark industrial photograph as background. Headline at 64px Univers Next Pro weight 300, #eeeeee, letter-spacing -0.04em (-2.56px), line-height 1.00, left-aligned at 40px from left edge. Body text at 14px weight 400, #afafaf. Small product highlight card anchored to bottom-right: #333333 background, 9px radius, 24px padding, yellow (#fff313) label text at 12px weight 400, thumbnail image on the right.\n\n2. YELLOW STATEMENT SECTION: Full-bleed #fff313 background spanning 100vw and 100vh. Large statement text at 36px Univers Next Pro weight 300, line-height 1.13, letter-spacing -0.04em (-1.44px), rendered in a desaturated/muted yellow that creates a ghosting effect against the saturated background. Text left-aligned with generous left margin, vertically centered.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. NEWS SECTION: White (#eeeeee) background. Section heading at 36px Univers 300, #000000, letter-spacing -0.04em, at top with 120px space above. Body intro paragraph at 16px weight 400, #000000, max-width 500px. Two-column image grid below with 16px column gap: each card has a 16px-radius image filling card width, 24px space below image for title text at 24px Univers 300."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadowless. Visual hierarchy is achieved through full-bleed color contrast (black vs yellow vs white), weight contrast (300 vs 400), and spatial separation (120px section gaps) — never through elevation. Any shadow would introduce depth that conflicts with the flat, industrial-signage language."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "image",
+            "hero"
+          ],
+          "frequency": 515,
+          "confidence": 1,
+          "prominence": 201806776.8118395,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "hero",
+            "other",
+            "link",
+            "footer",
+            "body",
+            "list",
+            "heading",
+            "icon"
+          ],
+          "frequency": 384,
+          "confidence": 1,
+          "prominence": 24080488.417508874,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff313",
+          "oklch": {
+            "c": 0.19895791682822206,
+            "h": 105.94997748876375,
+            "l": 0.9434575155759417
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 6289333.4175622845,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1708605,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4b4b4b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41283401549257187
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 630292.6713926598,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 114657.98972667666,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#afafaf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7540172565886749
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 230,
+          "confidence": 1,
+          "prominence": 88214.4004803094,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.013049371453168472,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#000000",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.08,
+          "background": "#fff313",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.04,
+          "background": "#202020",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#202020",
+          "foreground": "#fff313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.89,
+          "background": "#333333",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.88,
+          "background": "#333333",
+          "foreground": "#fff313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#000000",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.52,
+          "background": "#eeeeee",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.51,
+          "background": "#fff313",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.43,
+          "background": "#202020",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.76,
+          "background": "#333333",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#afafaf",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.41,
+          "background": "#000000",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.89,
+          "background": "#eeeeee",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.89,
+          "background": "#fff313",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.87,
+          "background": "#202020",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#333333",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#333333",
+          "foreground": "#4b4b4b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#202020",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "paddingLeft",
+            "columnGap",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Univers Next Pro",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 183,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Monument Grotesk Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 51,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "hero",
+            "footer",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 89,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Univers Next Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABC Monument Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ABC Monument Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "heading",
+            "icon",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Univers Next Pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/04db1b49-ffa6-44aa-8952-c11953264f76.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ON.energy design system\",\"item\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#style-reference\",\"name\":\"ON.energy design system reference\",\"headline\":\"ON.energy design system | Refero Styles\",\"description\":\"Explore ON.energy's mixed Other design system: Caution Yellow #fff313, Midnight Steel #000000 colors, Univers Next Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ON.energy\",\"url\":\"https://www.on.energy\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/31e00a99-6946-4f07-829a-b0904a39a20d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"caption\":\"Screenshot of ON.energy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2b2e24de-cbb7-45fb-88d5-6f719517269b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ON.energy design system\",\"ON.energy website design\",\"ON.energy colors\",\"ON.energy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Caution Yellow\",\"Midnight Steel\",\"Industrial White\",\"Carbon\",\"Univers Next Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ON.energy design system\"},{\"@type\":\"Thing\",\"name\":\"ON.energy website design\"},{\"@type\":\"Thing\",\"name\":\"ON.energy colors\"},{\"@type\":\"Thing\",\"name\":\"ON.energy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-16T09:39:41.000Z\",\"dateModified\":\"2026-03-16T09:39:41.000Z\"}]}19:T658,Quick Color Reference:\n- text: #000000 (on light/yellow) / #eeeeee (on dark)\n- background: #000000 (dark sections) / #eeeeee (light sections) / #fff313 (accent sections)\n- border: #4b4b4b (hairlines), #fff313 (accent highlights)\n- accent: #fff313\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. HERO SECTION: Full-bleed dark industrial photograph as background. Headline at 64px Univers Next Pro weight 300, #eeeeee, letter-spacing -0.04em (-2.56px), line-height 1.00, left-aligned at 40px from left edge. Body text at 14px weight 400, #afafaf. Small product highlight card anchored to bottom-right: #333333 background, 9px radius, 24px padding, yellow (#fff313) label text at 12px weight 400, thumbnail image on the right.\n\n2. YELLOW STATEMENT SECTION: Full-bleed #fff313 background spanning 100vw and 100vh. Large statement text at 36px Univers Next Pro weight 300, line-height 1.13, letter-spacing -0.04em (-1.44px), rendered in a desaturated/muted yellow that creates a ghosting effect against the saturated background. Text left-aligned with generous left margin, vertically centered.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. NEWS SECTION: White (#eeeeee) background. Section heading at 36px Univers 300, #000000, letter-spacing -0.04em, at top with 120px space above. Body intro paragraph at 16px weight 400, #000000, max-width 500px. Two-column image grid below with 16px column gap: each card has a 16px-radius image filling card width, 24px space below image for title text at 24px Univers 300."
+}

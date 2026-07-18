@@ -1,0 +1,1024 @@
+{
+  "color": {
+    "electric-ink": {
+      "$value": "#0000ff",
+      "$type": "color",
+      "$description": "Electric Ink — Primary CTA fill, active nav, product surface backgrounds, chromatic borders — the only saturated color that carries meaning"
+    },
+    "voltage-green": {
+      "$value": "#00d37c",
+      "$type": "color",
+      "$description": "Voltage Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Body text, headings, hairline borders, icon strokes — the dominant ink color"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure — Page canvas, card surface, button text, dark-section contrast text"
+    },
+    "carbon": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Carbon — Dark-section background, deep UI surfaces, high-contrast text on light"
+    },
+    "slate": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Slate — Elevated dark surface inside dark sections, card on near-black"
+    },
+    "fog": {
+      "$value": "#bcc1c7",
+      "$type": "color",
+      "$description": "Fog — Quiet borders, disabled text, secondary icon strokes"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, low-emphasis borders, placeholder color"
+    },
+    "smoke": {
+      "$value": "#cfcfcf",
+      "$type": "color",
+      "$description": "Smoke — Divider lines, subtle card borders, input resting state"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Bone — Section band, soft surface fill behind cards"
+    },
+    "chalk": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Chalk — Alternate section background, subtle grouping fill"
+    },
+    "hi-vis-yellow": {
+      "$value": "#fffc52",
+      "$type": "color",
+      "$description": "Hi-Vis Yellow — Accent panel surface, spotlight callout, tag fill — never text or border"
+    }
+  },
+  "font": {
+    "whyte-semi-mono": {
+      "$value": "Whyte Semi-Mono",
+      "$type": "fontFamily",
+      "$description": "UI chrome — monospace-flavored labels, nav links, small caps taglines, price text, code-adjacent captions. Its tabular geometry makes dense product UI legible without switching fonts"
+    },
+    "unica77": {
+      "$value": "Unica77",
+      "$type": "fontFamily",
+      "$description": "Primary voice — headings, body, nav, buttons, cards, hero. Engages stylistic alternates ss01–ss09 and 'salt' to differentiate product screenshots from marketing type"
+    },
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Geometric headline counterpoint — used when the page needs a rounder, friendlier display than Unica77 can provide"
+    },
+    "fraunces-72pt-soft-supersoft": {
+      "$value": "Fraunces 72pt Soft / SuperSoft",
+      "$type": "fontFamily",
+      "$description": "Serif accent at hairline weights — editorial pull quotes and contrast moments. Thinness creates softness that breaks the industrial rigour"
+    },
+    "druk-xxcondensed-super": {
+      "$value": "Druk XXCondensed Super",
+      "$type": "fontFamily",
+      "$description": "Hero-scale display — used once, for maximum typographic spectacle. Ultra-condensed verticals fill the viewport"
+    },
+    "tan-buster": {
+      "$value": "TAN-BUSTER",
+      "$type": "fontFamily",
+      "$description": "Single decorative display moment — out-of-system character that signals craft over platform"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "ui-monospace — detected in extracted data but not described by AI"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "fraunces-72pt-supersoft": {
+      "$value": "Fraunces 72pt SuperSoft",
+      "$type": "fontFamily",
+      "$description": "Fraunces 72pt SuperSoft — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "25px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 27px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "27px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 27px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.81
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 27px"
+    },
+    "2xl-9": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-9 at 27px"
+    },
+    "2xl-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-10 at 27px"
+    },
+    "2xl-11": {
+      "$value": {
+        "fontFamily": "Fraunces 72pt Soft",
+        "fontSize": "27px",
+        "fontWeight": 200,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-11 at 27px"
+    },
+    "2xl-12": {
+      "$value": {
+        "fontFamily": "Fraunces 72pt Soft",
+        "fontSize": "27px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-12 at 27px"
+    },
+    "2xl-13": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-13 at 27px"
+    },
+    "2xl-14": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-14 at 27px"
+    },
+    "2xl-15": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-15 at 27px"
+    },
+    "2xl-16": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-16 at 27px"
+    },
+    "2xl-17": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-17 at 27px"
+    },
+    "2xl-18": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-18 at 27px"
+    },
+    "2xl-19": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-19 at 28px"
+    },
+    "2xl-20": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-20 at 28px"
+    },
+    "2xl-21": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-21 at 28px"
+    },
+    "2xl-22": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-22 at 28px"
+    },
+    "2xl-23": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-23 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 31px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 32px"
+    },
+    "3xl-6": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-6 at 32px"
+    },
+    "3xl-7": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-7 at 32px"
+    },
+    "3xl-8": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-8 at 32px"
+    },
+    "3xl-9": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-9 at 34px"
+    },
+    "3xl-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "35px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-10 at 35px"
+    },
+    "3xl-11": {
+      "$value": {
+        "fontFamily": "Whyte Semi-Mono",
+        "fontSize": "35px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-11 at 35px"
+    },
+    "3xl-12": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "35px",
+        "fontWeight": 700,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-12 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Fraunces 72pt Soft",
+        "fontSize": "36px",
+        "fontWeight": 200,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "37px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 37px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 38px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "42px",
+        "fontWeight": 500,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 42px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "Fraunces 72pt SuperSoft",
+        "fontSize": "45px",
+        "fontWeight": 200,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 45px"
+    },
+    "4xl-7": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "47px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-7 at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "51px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "53px",
+        "fontWeight": 500,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 53px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "58px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 58px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Fraunces 72pt Soft",
+        "fontSize": "60px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 60px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 60px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 60px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "62px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 62px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "62px",
+        "fontWeight": 600,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 62px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "67px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 67px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "70px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 70px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "81px",
+        "fontWeight": 500,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 81px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "TAN-BUSTER",
+        "fontSize": "91px",
+        "fontWeight": 600,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 91px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "98px",
+        "fontWeight": 500,
+        "lineHeight": 0.84
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 98px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "100px",
+        "fontWeight": 700,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 100px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "Unica77",
+        "fontSize": "110px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 110px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "Druk XXCondensed Super",
+        "fontSize": "195px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 195px"
+    },
+    "5xl-18": {
+      "$value": {
+        "fontFamily": "Druk XXCondensed Super",
+        "fontSize": "248px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-18 at 248px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "148": {
+      "$value": "148px",
+      "$type": "dimension",
+      "$description": "Spacing 148px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24.1667px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30.4583px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "72.5px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "76.6667px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "83.3333px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "90.3833px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "106.333px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.3) 15px 20px 30px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background"
+    },
+    "bone-band": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 2: Quiet section separator"
+    },
+    "chalk": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 3: Soft grouped surface"
+    },
+    "hi-vis-accent": {
+      "$value": "#fffc52",
+      "$type": "color",
+      "$description": "Surface level 4: Spotlight / featured panel"
+    },
+    "carbon": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 5: Dark inverted section"
+    },
+    "slate": {
+      "$value": "#1e1e1",
+      "$type": "color",
+      "$description": "Surface level 6: Elevated dark card inside Carbon sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://movingparts.io",
+      "siteName": "Moving Parts",
+      "extractedAt": "2026-06-03T15:34:03.804Z",
+      "variant": "extended"
+    }
+  }
+}

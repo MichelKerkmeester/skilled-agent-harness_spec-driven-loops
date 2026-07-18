@@ -1,0 +1,1047 @@
+{
+  "source": "https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705",
+  "uuid": "3f6ef3c1-f98f-4cd9-bdf0-545059758705",
+  "name": "Atlas Card",
+  "northStar": "Midnight vault with a single sapphire light — pure black space where one deep electric blue is the only thing that matters.",
+  "capturedAt": "2026-07-18T10:06:29.763Z",
+  "meta": {
+    "url": "https://atlascard.com",
+    "siteName": "Atlas Card",
+    "extractedAt": "2026-06-03T15:45:55.597Z",
+    "durationMs": 26471,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 468,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #001391 exclusively for primary action buttons and the brand mark — it is the system's only chromatic voice and must remain rare",
+      "Set body text to #f8f8f8, not pure white — the off-white reads as premium and reduces visual fatigue on large black canvases",
+      "Apply pill radius (24px) to all buttons and tags; use 128px for the most extreme pill shapes on hero-level CTAs",
+      "Pair Sequel Sans for persuasive body copy with ApercuMono for all annotations, disclaimers, and metadata — the monospace shift signals 'this is not marketing'",
+      "Center-align body text in a max-width ~640px column to create the intimate, letter-like reading rhythm visible in the waitlist section",
+      "Transition from hero photography to black sections using the #141414 → #000000 gradient overlay — never hard-cut between image and canvas",
+      "Let photography carry atmospheric depth instead of adding box-shadows to cards or buttons"
+    ],
+    "donts": [
+      "Never add box-shadow or drop-shadow to cards, buttons, or panels — depth comes from color stepping and photography only",
+      "Never use a color other than #001391 for filled buttons; ghost/secondary buttons must use #f8f8f8 text on transparent or #1e1e1 fill",
+      "Never set body text to pure #ffffff when #f8f8f8 is available — the warmer off-white is part of the brand's restrained luxury",
+      "Never introduce a second accent color (no green for success, no red for error) — if states are needed, use Ash (#808080) for inactive and Frost (#cccccc) for active",
+      "Never use border-radius below 8px on cards or below 18px on buttons — the rounded geometry is a signature, not a default",
+      "Never left-align body copy in the narrative sections — centered text at 640px max-width is the editorial pattern that defines the voice",
+      "Never use ApercuMono for headlines or CTA labels — it is strictly for annotations, fine print, and metadata under 15px"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, section backgrounds, image masks — pure absorption that lets photography and the blue accent carry all visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1e",
+        "name": "Obsidian",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272727",
+        "name": "Graphite",
+        "role": "Hover states, tertiary surfaces, subtle panel backgrounds — the second elevation step, still achromatic",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Secondary text, muted metadata, helper copy, de-emphasized body — sits between the white text and the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Frost",
+        "role": "Tertiary text, icon strokes on dark, disabled foregrounds — lighter than Ash but never as bright as primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Paper",
+        "role": "Primary body and heading text, button text on filled controls — chosen over pure white for a softer, less clinical read on black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Logo badge background, icon fills on light photography, maximum-emphasis text — reserved for logo lockups and peak contrast moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#001391",
+        "name": "Sapphire Volt",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page follows a vertical scroll with two dominant sections: a full-bleed photographic hero occupying the full viewport height, followed by a solid black narrative section. The hero has a centered logo badge at the top and a scroll indicator at the bottom — no nav bar, no text overlay on the hero. The narrative section uses a single centered column (max-width ~640px) for body text, followed by a centered CTA button, followed by centered monospaced fine print. There is generous vertical breathing room between elements (88px section gaps, 32-48px between text blocks). The overall density is sparse and cinematic — large black voids, single focal points, and deliberate use of emptiness to communicate exclusivity. Navigation is minimal or absent on the landing page, reinforcing the 'invitation-only' positioning.",
+    "imagery": "Photography is cinematic and atmospheric: full-bleed cityscapes shrouded in fog, mist, or low cloud cover, shot in cool blue-gray tones that harmonize with the sapphire accent. The card product itself is photographed as a floating metallic silver object — isolated, not held or worn — suggesting preciousness and exclusivity. No lifestyle photography, no people, no hands, no warmth. Images are always full-bleed (no rounded corners on hero images), always desaturated toward blue-gray, and always treated as the entire visual field rather than contained illustrations. The only non-photographic visual element is the flat brand mark (cross icon). No 3D renders, no illustrations, no abstract graphics outside of the gradient overlays.",
+    "similar": [
+      {
+        "why": "Same dark-mode luxury positioning with a single premium product, full-bleed atmospheric photography, and extreme typographic restraint centered on a geometric sans-serif",
+        "business": "Apple Card"
+      },
+      {
+        "why": "Same invitation-only exclusivity communicated through near-black canvases, generous whitespace, and a single accent color reserved for the brand mark and primary action",
+        "business": "Amex Centurion (Black Card)"
+      },
+      {
+        "why": "Same dark-mode UI discipline with deep neutrals, centered narrative text blocks, and pill-shaped CTAs — though Linear uses a violet accent where Atlas uses electric indigo",
+        "business": "Linear"
+      },
+      {
+        "why": "Same full-bleed cinematic hero photography transitioning to dark content sections, with a single vivid accent color and clean geometric sans-serif typography",
+        "business": "Stripe Sessions"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "12px",
+        "pills": "128px",
+        "inputs": "8px",
+        "buttons": "24px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "88px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "640px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed section foundation"
+      },
+      {
+        "hex": "#1e1e1",
+        "name": "Obsidian Panel",
+        "level": 1,
+        "purpose": "Elevated buttons, first surface step"
+      },
+      {
+        "hex": "#272727",
+        "name": "Graphite Layer",
+        "level": 2,
+        "purpose": "Secondary panels, hover states, image overlays"
+      }
+    ],
+    "northStar": "Midnight vault with a single sapphire light — pure black space where one deep electric blue is the only thing that matters.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.24
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Atmospheric Image",
+        "role": "Full-bleed brand photography",
+        "description": "Full-viewport-width photographic image (cityscape, fog, mist) treated as the hero canvas. The Atlas card object floats centered, rendered in metallic silver. No border-radius — the image bleeds to all edges. The visual weight comes from the fog/haze and the singular floating object, not from any frame or container."
+      },
+      {
+        "name": "Logo Lockup Badge",
+        "role": "Brand mark, sticky header anchor",
+        "description": "White (#ffffff) rounded square (8-12px radius) containing the Atlas cross/flag icon in Sapphire Volt (#001391). Floats centered at the top of the viewport over the hero image. Functions as both brand identity and scroll-position anchor. Dimensions feel like a small chip — roughly 40-48px square."
+      },
+      {
+        "name": "Primary CTA Button (Pill)",
+        "role": "The only filled action button in the system",
+        "description": "Sapphire Volt (#001391) background, Paper (#f8f8f8) text, Sequel Sans Book 400 at 17px, line-height 1.24. Full pill radius (24px). Horizontal padding ~32px, vertical padding ~16px. The button is the sole place the brand blue lives in the interface; it is intentionally a rare, high-commitment moment. Hover/active states deepen to a darker indigo. No border, no shadow."
+      },
+      {
+        "name": "Secondary Ghost Button",
+        "role": "Low-emphasis actions, navigation",
+        "description": "Transparent background with Paper (#f8f8f8) text, Sequel Sans Book 400. Pill radius (24px). Used for 'Learn more', nav items, and any action that should not compete with the primary CTA. On photography backgrounds, no surface fill is needed; on solid black, the button is text-only with a subtle border in Ash (#808080)."
+      },
+      {
+        "name": "Centered Body Block",
+        "role": "Long-form description, product narrative",
+        "description": "Max-width ~640px, centered horizontally. Sequel Sans Headline Book 400 at 23-24px, line-height 1.30-1.40, color Paper (#f8f8f8). Text-align center. The narrow column width and centered alignment create an intimate, editorial reading experience — the text feels like a letter, not a web page."
+      },
+      {
+        "name": "Annotation Caption",
+        "role": "Fine print, disclaimers, metadata",
+        "description": "ApercuMono Pro 400 at 10-12px, line-height 1.50-1.67, color Ash (#808080). Centered below CTAs. Functions as the 'legalese' or 'waitlist explanation' voice. The monospace face immediately signals 'secondary annotation' and separates this text from the persuasive body copy above it."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Visual cue to scroll below the fold",
+        "description": "Thin horizontal line (~1px, 40-60px wide) in Frost (#cccccc) or Ash (#808080), positioned at the bottom-center of the hero image. No animation label needed — the line's placement and minimal weight do all the work."
+      },
+      {
+        "name": "Gradient Image Overlay",
+        "role": "Smooth transition from hero photography to solid black sections",
+        "description": "Linear gradient from #141414 to #000000 (oklab interpolation), used to fade photography into the void canvas below. Applied as a bottom-edge overlay on hero images. Prevents hard cuts between atmospheric photography and flat black sections."
+      },
+      {
+        "name": "Link Inline Emphasis",
+        "role": "Text links within body copy",
+        "description": "Inherits body text color (Paper) with a subtle underline or a shift to Sapphire Volt on hover. No boxed link styles — links should feel like editorial annotations, not UI controls. Underline offset ~2px, thickness 1px."
+      },
+      {
+        "name": "Icon Glyph (Atlas Cross)",
+        "role": "Brand identity, favicon, app icon",
+        "description": "The Atlas cross/flag mark: a plus-sign intersected by a vertical bar, rendered in Sapphire Volt (#001391) on white. Used as the favicon, the header badge icon, and the app icon. Stroke-based, not filled — the negative space within the cross is part of the mark's geometry."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and body headlines. The 700 weight carries section titles and hero text; 400 handles body copy and subheadings. Sequel Sans is a geometric sans with tall x-height and clean terminals — its near-equal weight across 400 and 700 means hierarchy is established by size and tracking, not by contrast in stroke weight. Letter-spacing sits between -0.0080em and +0.0080em, virtually neutral, so text reads as one confident voice rather than tight display or loose utility.",
+        "sizes": "16px, 23px, 24px, 28px",
+        "family": "Sequel Sans Headline Book",
+        "weight": "400, 700",
+        "lineHeight": "1.17, 1.30, 1.40",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.0080em to 0.0080em (near-zero tracking)"
+      },
+      {
+        "role": "Button labels, navigation links, footer text, inline emphasis — Sequel Sans in its single weight at 17px is the utility voice: controls, links, and micro-copy. Sharing DNA with the headline family creates a unified typographic system where buttons feel like a natural extension of the text, not a separate component.",
+        "sizes": "17px",
+        "family": "Sequel Sans Book",
+        "weight": "400",
+        "lineHeight": "1.24",
+        "substitute": "Inter, Satoshi"
+      },
+      {
+        "role": "Captions, fine print, disclaimers, metadata, eyebrow labels, monospaced tags. ApercuMono provides the system's secondary voice: a monospaced counterpoint that signals 'annotation' or 'footnote' the moment it appears. The 10px and 12px sizes are reserved for legal/qualifier text below buttons; 15px with generous 1.67 line-height handles inline annotations and small labels. This pairing of geometric sans + monospace is a signature choice — it evokes fintech precision and concierge paperwork simultaneously.",
+        "sizes": "10px, 12px, 15px",
+        "family": "ApercuMono Pro",
+        "weight": "400 (Medium and Regular)",
+        "lineHeight": "1.40, 1.50, 1.67",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Geist Mono"
+      }
+    ],
+    "description": "Atlas Card operates in a cinematic dark mode where near-black canvases dissolve into atmospheric photography, with one vivid sapphire blue doing all the communicative work. The system is built on extreme restraint: a single chromatic accent, two custom geometric sans-serifs, pill-shaped controls, and a monospaced voice for footnotes and metadata. The visual language borrows from luxury concierge services — sparse, intentional, invitation-only — where the interface itself communicates exclusivity through what it omits. Elevation is nonexistent; surfaces are distinguished only by subtle gray steps, and depth is created through photography and atmospheric haze rather than shadow. Every element earns its place: text is centered and confident, buttons are full-pill and singular, and color appears only where action is demanded.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atlas Card design system\",\"item\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#style-reference\",\"name\":\"Atlas Card design system reference\",\"headline\":\"Atlas Card design system | Refero Styles\",\"description\":\"Explore Atlas Card's dark Fintech design system: Void #000000, Obsidian #1e1e1e colors, Sequel Sans Headline Book, Sequel Sans Book typography, and...\",\"url\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atlas Card\",\"url\":\"https://atlascard.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"caption\":\"Screenshot of Atlas Card\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atlas Card design system\",\"Atlas Card website design\",\"Atlas Card colors\",\"Atlas Card typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Void\",\"Obsidian\",\"Graphite\",\"Ash\",\"Sequel Sans Headline Book\",\"Sequel Sans Book\",\"ApercuMono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atlas Card design system\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card website design\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card colors\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-15T15:21:55.000Z\",\"dateModified\":\"2026-02-15T15:21:55.000Z\"}]}19:T4a0,## Quick Color Reference\n- Background: #000000\n- Surface (elevated): #1e1e1e\n- Text primary: #f8f8f8\n- Text secondary: #808080\n- Border / muted: #272727\n- Accent / brand: #001391\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Photography Section**: Full-bleed atmospheric image (cityscape in fog, cool blue-gray tones) spanning 100vh. Centered white rounded-square logo badge (12px radius, 44px square) at top containing a blue cross icon in #001391. Thin #cccccc scroll indicator line at bottom-center. The metallic card product floats centered in the composition.\n\n2. **Narrative Body Block**: Black (#000000) background, centered text column max-width 640px. Body text in Sequel Sans Headline Book 400 at 23px, line-height 1.30, color #f8f8f8, text-align center. 32-48px vertical spacing between paragraphs.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n5. **Gradient Image-to-Void Transition**: Linear overlay from #141414 (top) to #000000 (bottom) applied to the lower 15-20% of a hero image. Creates a seamless fade into the black narrative section below."
+      }
+    ],
+    "elevationPhilosophy": "The design uses zero shadow-based elevation. Depth is communicated through surface color stepping (black → obsidian → graphite) and through atmospheric photography. This is a deliberate luxury choice: shadows would suggest skeuomorphic depth and casual materiality, while flat color stepping reinforces the vault-like, monolithic feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "icon",
+            "body",
+            "heading",
+            "footer",
+            "link"
+          ],
+          "frequency": 1476,
+          "confidence": 1,
+          "prominence": 69057288.64245844,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 20739320.84818506,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 350,
+          "confidence": 1,
+          "prominence": 4529349.6853727475,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#272727",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.27274100075141233
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 1924051.3126723298,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#001391",
+          "oklch": {
+            "c": 0.19531532492646533,
+            "h": 264.19811350834965,
+            "l": 0.3121219107739249
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "other",
+            "button"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 115809.7824149539,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 85290.83771129455,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 80214.98544110946,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 70897.55983003328,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1536,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.36079095815406936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 101.43760004615399,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.012155965241659322,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#000000",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#1e1e1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#1e1e1e",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#272727",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.07,
+          "background": "#272727",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#ffffff",
+          "foreground": "#001391"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#001391",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#000000",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.9,
+          "background": "#333333",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#3d3d3d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#1e1e1e",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.23,
+          "background": "#3d3d3d",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#272727",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.71,
+          "background": "#001391",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#333333",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.76,
+          "background": "#3d3d3d",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.22,
+          "background": "#1e1e1e",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1429,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 83,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 88,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 104,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 144,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 176,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(in oklab, rgb(20, 20, 20) 0%, rgb(0, 0, 0) 100%)",
+        "colors": [
+          "rgb(20, 20, 20)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 5
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(in oklab, rgb(55, 60, 89) 0%, rgb(156, 151, 184) 100%)",
+        "colors": [
+          "rgb(55, 60, 89)",
+          "rgb(156, 151, 184)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sequel Sans Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 197,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sequel Sans Headline Book",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 106,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ApercuMono Pro Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ApercuMono Pro Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ApercuMono Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ApercuMono Pro Medium",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "ApercuMono Pro Medium",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sequel Sans Headline Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sequel Sans Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 197,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Sequel Sans Headline Book",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Sequel Sans Headline Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Sequel Sans Headline Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Sequel Sans Headline Book",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/40c6449e-a783-4276-a34c-2facafd8aafe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atlas Card design system\",\"item\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#style-reference\",\"name\":\"Atlas Card design system reference\",\"headline\":\"Atlas Card design system | Refero Styles\",\"description\":\"Explore Atlas Card's dark Fintech design system: Void #000000, Obsidian #1e1e1e colors, Sequel Sans Headline Book, Sequel Sans Book typography, and...\",\"url\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atlas Card\",\"url\":\"https://atlascard.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3f6ef3c1-f98f-4cd9-bdf0-545059758705#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"caption\":\"Screenshot of Atlas Card\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed4df00b-8c2e-4c6c-9aa6-98ed4fdeac43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atlas Card design system\",\"Atlas Card website design\",\"Atlas Card colors\",\"Atlas Card typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Void\",\"Obsidian\",\"Graphite\",\"Ash\",\"Sequel Sans Headline Book\",\"Sequel Sans Book\",\"ApercuMono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atlas Card design system\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card website design\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card colors\"},{\"@type\":\"Thing\",\"name\":\"Atlas Card typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-15T15:21:55.000Z\",\"dateModified\":\"2026-02-15T15:21:55.000Z\"}]}19:T4a0,## Quick Color Reference\n- Background: #000000\n- Surface (elevated): #1e1e1e\n- Text primary: #f8f8f8\n- Text secondary: #808080\n- Border / muted: #272727\n- Accent / brand: #001391\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Photography Section**: Full-bleed atmospheric image (cityscape in fog, cool blue-gray tones) spanning 100vh. Centered white rounded-square logo badge (12px radius, 44px square) at top containing a blue cross icon in #001391. Thin #cccccc scroll indicator line at bottom-center. The metallic card product floats centered in the composition.\n\n2. **Narrative Body Block**: Black (#000000) background, centered text column max-width 640px. Body text in Sequel Sans Headline Book 400 at 23px, line-height 1.30, color #f8f8f8, text-align center. 32-48px vertical spacing between paragraphs.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n5. **Gradient Image-to-Void Transition**: Linear overlay from #141414 (top) to #000000 (bottom) applied to the lower 15-20% of a hero image. Creates a seamless fade into the black narrative section below."
+}

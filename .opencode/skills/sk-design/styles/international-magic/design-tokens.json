@@ -1,0 +1,234 @@
+{
+  "color": {
+    "void": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Void — Page background, primary canvas — the dark field that holds every piece of work"
+    },
+    "chalk": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Chalk — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "ivory": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Ivory — Button labels and button borders — marginally warmer than Chalk, used on neutral pill buttons to feel pressed but not clinical"
+    },
+    "ash": {
+      "$value": "#7c7c7c",
+      "$type": "color",
+      "$description": "Ash — Secondary link and body text, subdued dividers — mid-gray for de-emphasized type that still needs to read"
+    },
+    "graphite": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Graphite — Heading borders and low-emphasis heading text — darker mid-gray that recedes behind primary Chalk type"
+    },
+    "smoke": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Smoke — Badge text — sits between Ash and Charcoal, calm and unreadable as ornament"
+    },
+    "steel": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Steel — Badge borders — paired with Smoke text for outlined tag affordance"
+    },
+    "charcoal": {
+      "$value": "#585858",
+      "$type": "color",
+      "$description": "Charcoal — Elevated surface for the single neutral filled button — barely lighter than Void so the button whispers rather than shouts"
+    }
+  },
+  "font": {
+    "wand-ui-pro": {
+      "$value": "Wand UI Pro",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — used for everything from 96px display headlines down to 10px badge labels. The 475 and 550 weights are the workhorses; 650 is reserved for emphasis. The font is custom but has the personality of a contemporary geometric grotesk with subtle humanist warmth, tight apertures, and a tall x-height."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "10px",
+        "fontWeight": 550,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "32px",
+        "fontWeight": 475,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Wand UI Pro",
+        "fontSize": "96px",
+        "fontWeight": 650,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 64px 72px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas"
+    },
+    "charcoal": {
+      "$value": "#585858",
+      "$type": "color",
+      "$description": "Surface level 2: Raised neutral button surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://intmagic.com",
+      "siteName": "International Magic",
+      "extractedAt": "2026-06-03T21:16:36.868Z",
+      "variant": "extended"
+    }
+  }
+}

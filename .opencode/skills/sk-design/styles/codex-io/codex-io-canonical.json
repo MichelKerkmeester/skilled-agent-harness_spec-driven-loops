@@ -1,0 +1,1754 @@
+{
+  "source": "https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29",
+  "uuid": "c55d2f24-deb1-44c1-9846-66a3523beb29",
+  "name": "Codex.io",
+  "northStar": "Citrine beacon in void — a glowing lime cube anchoring a dark room, with thin white type and scattered node rings floating around it.",
+  "capturedAt": "2026-07-18T08:38:53.361Z",
+  "meta": {
+    "url": "https://www.codex.io",
+    "siteName": "Codex.io",
+    "extractedAt": "2026-06-03T22:38:16.616Z",
+    "durationMs": 34496,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1400,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #e5ff5d (Citrine Signal) for exactly one primary action per viewport and let the Citrine Cube carry the brand mark everywhere else",
+      "Set display headlines at 80px Neue Haas 400, line-height 0.90, uppercase — the whisper-weight on massive type is the system's signature voice",
+      "Use 4px radius for all interactive elements (buttons, nav items, tags) and 12px for cards — never round buttons into pills",
+      "Apply +0.027 to +0.032em letter-spacing to all 10–12px uppercase utility labels to read as terminal/UI marks rather than prose",
+      "Break the dark rhythm with exactly one cream (#eeeeee) reversal band per major page — the brightness reset is the page's dramatic beat",
+      "Connect nodes in constellation diagrams with thin dashed #565656 lines — the network topology IS the content, not decoration",
+      "Keep all imagery iconographic and monochrome (white or lime) — never introduce photography, gradients, or decorative illustrations"
+    ],
+    "donts": [
+      "Do not use a second chromatic accent — the system's power comes from single-color discipline; adding blue, red, or purple destroys the signal-to-noise ratio",
+      "Do not set display headlines in weight 700 or 600 — the 400 weight at 80px is the signature; bolding makes it generic",
+      "Do not use pill-shaped (9999px) buttons — the 4px radius is sharp and architectural, pills would feel consumer/cute",
+      "Do not place content on rounded card backgrounds with shadows — everything sits flat on the carbon canvas or the cream reversal, no nesting",
+      "Do not use multiple shades of lime for hover/active states — the green is binary (on/off); rely on opacity shifts and surface steps for state changes",
+      "Do not introduce more than one light band per page — stacking light sections dilutes the reversal's impact",
+      "Do not use photography, lifestyle imagery, or human faces — the system is abstract infrastructure, not a consumer product"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#e5ff5d",
+        "name": "Citrine Signal",
+        "role": "Primary action buttons, brand cube fills, accent icon strokes, decorative 3D cubes, featured logo marks — the single chromatic voice of the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon Black",
+        "role": "Page canvas, primary text on light sections, dominant border color, button fills on reversed (light) sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f9f9",
+        "name": "Bone White",
+        "role": "Primary text on dark canvas, nav and body text, light icon fills, ghost button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Graphite",
+        "role": "Elevated surface above carbon, secondary panels, darker card variants",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6e6e",
+        "name": "Ash",
+        "role": "Muted card surface, tertiary background layers behind content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9c9c9c",
+        "name": "Stone",
+        "role": "Muted body text, secondary link text, low-priority borders, helper labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#565656",
+        "name": "Smoke",
+        "role": "Dividers, subtle borders, decorative strokes in illustrations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Chalk",
+        "role": "Card borders on dark sections, hairline dividers between content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Cream Paper",
+        "role": "Light section background — the single warm reversal that breaks the dark rhythm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Maximum contrast text, logo silhouettes, hard-edge decorative fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b7b3a2",
+        "name": "Sand",
+        "role": "Warm-tinted decorative fills, illustration accents — the only chromatic neutral",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1280px, centered. The page is a vertical stack of full-width bands, most of them dark with 80px vertical section padding. The hero is a centered headline-over-cube composition with scattered node icons orbiting the cube — the cube sits above the headline text, not behind it. Below the hero, a centered logo cloud band with no background change. The second section is a 2-column split: text left (40%), constellation visual right (60%), both vertically centered. The third section is a centered reversal — cream background, large cubes at left/right edges, headline and CTA stacked in the center column. Navigation is a flat top bar with no background fill. The rhythm is: DARK HERO → DARK LOGO CLOUD → DARK FEATURE → LIGHT REVERSAL → (DARK CONTINUES). Grid usage is minimal — most content is centered stacks or 2-column splits, no card grids.",
+    "imagery": "No photography anywhere. The visual language is entirely constructed from: (1) the 3D Citrine Cube — the brand's hero object, rendered as a translucent isometric block with internal gradient highlights and soft outer glow, (2) blockchain node icons in circular frames, arranged in constellation/ring patterns, (3) thin dashed connector lines between nodes suggesting network topology. The aesthetic is abstract data-visualization rather than illustrative — icons feel like terminal glyphs, not friendly illustrations. All imagery lives on pure canvas (no card containers, no rounded masks) and uses the lime accent sparingly for emphasis. Color treatment is strictly limited: lime for the cube and accent icons, white for everything else. The single light section (cream reversal) introduces large cube clusters as the only compositional change.",
+    "similar": [
+      {
+        "why": "Same dark canvas blockchain API positioning with single vivid accent color and constellation-style multi-chain diagrams",
+        "business": "Helius"
+      },
+      {
+        "why": "Dark infrastructure API with restrained typography, monochrome surfaces, and minimal accent color discipline",
+        "business": "Alchemy"
+      },
+      {
+        "why": "Blockchain data API with similar dark-mode layout, single neon accent, and network-topology visualizations",
+        "business": "Chainbase"
+      },
+      {
+        "why": "Dark crypto-data platform with humanist sans typography, uppercase utility labels with positive tracking, and monochrome logo clouds",
+        "business": "Messari"
+      },
+      {
+        "why": "Crypto infrastructure brand using dark canvas, single saturated accent for CTAs, and minimal decorative imagery",
+        "business": "Privy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "12px",
+        "pills": "9999px",
+        "buttons": "4px",
+        "decorative": "20px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "80px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#111111",
+        "name": "Carbon Canvas",
+        "level": 1,
+        "purpose": "Page base — majority of the experience lives here"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Graphite Panel",
+        "level": 2,
+        "purpose": "Elevated cards and panels sitting on the carbon canvas"
+      },
+      {
+        "hex": "#6e6e6",
+        "name": "Ash Plate",
+        "level": 3,
+        "purpose": "Muted secondary surfaces, logo cloud backgrounds"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Cream Reversal",
+        "level": 4,
+        "purpose": "Light section — the single bright band that resets the eye"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — sits flat on canvas",
+        "element": "Nav container"
+      },
+      {
+        "style": "none — flat color, no shadow",
+        "element": "Citrine Primary Button"
+      },
+      {
+        "style": "none — relies on color step from canvas to surface",
+        "element": "Cards"
+      },
+      {
+        "style": "inner gradient + outer glow (rgba(229,255,93,0.15) 0 0 40px) to simulate light emission",
+        "element": "Citrine Cube"
+      }
+    ],
+    "northStar": "Citrine beacon in void — a glowing lime cube anchoring a dark room, with thin white type and scattered node rings floating around it.",
+    "typeScale": [
+      {
+        "role": "utility-label",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subhead",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Citrine Primary Button",
+        "role": "Main call-to-action across the site",
+        "description": "Filled #e5ff5d background, #111111 text, 4px radius, padding 12px 24px. Neue Haas Grotesk Text 500 at 16px. Includes a small left-side pixel icon. The lime against carbon creates the highest-attention signal in the system — use sparingly, never more than one per viewport."
+      },
+      {
+        "name": "Dark Primary Button",
+        "role": "Primary action on the cream/light reversal section",
+        "description": "Filled #111111 background, #f9f9f9 text, 4px radius, padding 12px 24px. Inverted counterpart to the Citrine Primary. The lime accent shifts to a small left-side pixel glyph (citrine or dark depending on section) so the action always carries a brand seed."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action, paired with primary",
+        "description": "Transparent background, #f9f9f9 1px border on dark sections / #111111 border on light, uppercase Neue Haas 500 at 12px with +0.032em tracking, 4px radius, 10px 20px padding. Reads as a utility chip rather than a competing CTA."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent on dark canvas. Left: CODEX wordmark in #f9f9f9 weight 500 at 20px, tracking 0.027em. Center-right: nav links (PRODUCT, PRICING, CUSTOMERS, COMPARE, AGENTS, DOCS) in Neue Haas 500 at 12px with +0.027em tracking, #f9f9f9, separated by 32px. Right: Citrine Primary Button. 8px radius on the nav container."
+      },
+      {
+        "name": "Citrine Cube",
+        "role": "Brand signature element — 3D glowing cube",
+        "description": "Translucent lime cube (#e5ff5d with internal gradient highlights suggesting volume) rendered as a 3D isometric block. Appears in hero (centered above headline), in the constellation diagram (as central node), and in the cream reversal (as large 3–4 cube cluster framing content). Cube edges glow — this is the only place gradients, light, and dimensionality live in the system."
+      },
+      {
+        "name": "Constellation Network Diagram",
+        "role": "Visual showing multi-chain coverage",
+        "description": "Central Citrine Cube with 12–16 blockchain node icons arranged in a radial ring around it. Each node is a 40px circle with a dark fill, lime or white chain-icon inside, connected to the center by thin dashed #565656 lines. Demonstrates the '80+ networks' positioning through visual geometry rather than a list."
+      },
+      {
+        "name": "Node Icon Ring",
+        "role": "Reusable container for chain/crypto icons",
+        "description": "40px circle with 1px #2b2b2b border on dark, or #d6d6d6 on light. Icon centered, 20px, in lime or white. Used scattered in the hero, in constellation diagrams, and in feature illustrations."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-level titles",
+        "description": "Neue Haas Grotesk Text 400 at 80px, line-height 0.90, letter-spacing -0.01em, #f9f9f9 on dark, #111111 on light. Text-transform: uppercase. The tight leading and large size make 4 lines of text fill the entire viewport. Weight 400 (not 700) is the signature choice — it whispers rather than shouts, letting the green cube do the shouting."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-level section titles",
+        "description": "Neue Haas 500 at 24px, line-height 1.20, #f9f9f9 on dark. Used to label secondary explanations and feature blocks."
+      },
+      {
+        "name": "Body Text",
+        "role": "Paragraph copy and descriptions",
+        "description": "Neue Haas 400 at 16px, line-height 1.50, #f9f9f9 for primary body, #9c9c9c for muted/helper. Comfortable reading width max 560px within content columns."
+      },
+      {
+        "name": "Feature Pill",
+        "role": "Small utility tags highlighting capabilities",
+        "description": "Compact label: uppercase Neue Haas 500 at 10–12px with +0.032em tracking, #e5ff5d text, optional 4px radius background. Used in rows like 'TRADING-READY · SUB-SECOND · ALL-IN-ONE' with a small lime dot/icon prefix."
+      },
+      {
+        "name": "Logo Cloud Row",
+        "role": "Social proof — customer brand marks",
+        "description": "Two centered rows of monochrome white logos on the carbon canvas. Logos at 60% opacity, #f9f9f9 fill, evenly spaced via flex with 48px column gap. No card backgrounds — logos float directly on the dark canvas."
+      },
+      {
+        "name": "Split Feature Block",
+        "role": "Two-column explanation with text left, visual right",
+        "description": "Text column (40% width) with heading + 2 body paragraphs left-aligned. Visual column (60%) centered, containing constellation or cube illustration. 80px column gap, vertically centered. Dark background, #f9f9f9 text."
+      },
+      {
+        "name": "Reversal Band",
+        "role": "Light section that breaks the dark rhythm",
+        "description": "Full-width #eeeeee background band with large 3D Citrine Cubes floating at far left and right edges (3–4 cubes each, slight rotation, overlapping). Centered content stack: display headline at 80px #111111, subheading at 16px #9c9c9c, CTA row (dark button + ghost button). 80px top/bottom padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire system. Weight 400 carries body, nav, and most UI; weight 500 reserved for emphasized labels and button text. Display headlines at 80px with 0.90 line-height create the signature monolithic rows. Small labels (10–12px) use positive tracking (+0.020 to +0.032em) to read as uppercase utility marks. The humanist geometry of Haas Grotesk — slightly humanist terminals, even stroke contrast — gives the dark interface a warm, editorial quality rather than feeling like a terminal.",
+        "sizes": "10, 12, 16, 20, 24, 80",
+        "family": "Neue Haas Grotesk Text",
+        "weight": "400, 500",
+        "lineHeight": "1.20–1.50 body, 0.90 display, 1.30 subhead",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk Display",
+        "letterSpacing": "-0.01em at 80px display, 0em at 16–24px body, +0.020 to +0.032em at 10–12px utility labels",
+        "fontFeatureSettings": "\"kern\" on, \"liga\" on"
+      }
+    ],
+    "description": "Codex.io speaks in a single dramatic gesture: a luminous citrine cube floating in deep carbon void, surrounded by orbiting blockchain nodes. The interface is almost entirely dark with one electric lime accent (#e5ff5d) that does all the chromatic work — primary actions, icon strokes, decorative cubes, brand marks. Typography is a single humanist sans (Neue Haas Grotesk) set with confident, slightly tight tracking, where 80px display headlines occupy entire rows and small labels earn positive tracking. The page oscillates between dense dark sections packed with constellation diagrams and one cream reversal where giant translucent cubes frame a centered message. Every screen should feel like looking into a server room through a viewport — dark, quiet, punctuated by one bright signal.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Codex.io design system\",\"item\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#style-reference\",\"name\":\"Codex.io design system reference\",\"headline\":\"Codex.io design system | Refero Styles\",\"description\":\"Explore Codex.io's mixed Crypto design system: Citrine Signal #e5ff5d, Carbon Black #111111 colors, Neue Haas Grotesk Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Codex.io\",\"url\":\"https://www.codex.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"caption\":\"Screenshot of Codex.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Codex.io design system\",\"Codex.io website design\",\"Codex.io colors\",\"Codex.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Citrine Signal\",\"Carbon Black\",\"Bone White\",\"Graphite\",\"Neue Haas Grotesk Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Codex.io design system\"},{\"@type\":\"Thing\",\"name\":\"Codex.io website design\"},{\"@type\":\"Thing\",\"name\":\"Codex.io colors\"},{\"@type\":\"Thing\",\"name\":\"Codex.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:57:45.410Z\",\"dateModified\":\"2026-05-07T18:57:45.410Z\"}]}19:T417,**Quick Color Reference**\n- canvas: #111111 (Carbon Black)\n- surface elevated: #2b2b2b (Graphite)\n- text primary: #f9f9f9 (Bone White)\n- text muted: #9c9c9c (Stone)\n- border: #d6d6d6 on dark cards, #9c9c9c for hairlines\n- brand accent / primary action: #e5ff5d (filled action)\n- reversal light section: #eeeeee (Cream Paper)\n\n**3 Example Component Prompts**\n\n1. Create a Primary Action Button: #e5ff5d background, #111111 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Build a constellation feature block:* Carbon Black canvas, two-column layout (40% / 60% split, 80px gap, vertically centered). Left column: heading \"Raw blockchain data is complex to parse\" in Neue Haas 500 at 24px, #f9f9f9, line-height 1.20. Two body paragraphs in Neue Haas 400 at 16px, #9c9c9c. Right column: centered Citrine Cube with 12–16 blockchain node circles (40px, #2b2b2b fill, 1px border, 20px chain icon in #e5ff5d or #f9f9f9) arranged in a radial ring, each connected to the cube center by 1px dashed #565656 lines."
+      },
+      {
+        "title": "The Citrine Cube Rule",
+        "content": "The 3D translucent lime cube is the only dimensional element in the system. It is not decoration — it is the brand's logo extended into space. Every screen should either: (a) contain at least one cube, (b) reference the cube's geometry in a flat icon, or (c) arrange node icons in a constellation pattern that implies the cube at its center. Screens without any cube presence feel incomplete. The cube's translucency and glow are achieved through inner gradient highlights (light lime → saturated lime → darker lime) and a soft outer rgba(229,255,93,0.15) glow at 40px blur. Never render the cube as a flat 2D square."
+      }
+    ],
+    "elevationPhilosophy": "Codex.io uses zero traditional drop shadows. Elevation is communicated entirely through surface color steps (Carbon → Graphite → Ash) and through the Citrine Cube's internal light emission. The flatness is a deliberate choice — the interface should feel like a dark room with one object glowing, not a stack of papers."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f9f9f9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9821176395629414
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "icon",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 2408,
+          "confidence": 1,
+          "prominence": 166047133.25511146,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 133,
+            "body/color": 111,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 21,
+            "link/color": 24,
+            "other/fill": 6,
+            "image/color": 16,
+            "input/color": 1,
+            "other/color": 168,
+            "footer/color": 1,
+            "heading/color": 5,
+            "nav/borderColor": 532,
+            "body/borderColor": 444,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 84,
+            "link/borderColor": 96,
+            "image/borderColor": 64,
+            "other/borderColor": 652,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e5ff5d",
+          "oklch": {
+            "c": 0.18444178114477514,
+            "h": 117.83970265099124,
+            "l": 0.9517333588603782
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 425,
+          "confidence": 1,
+          "prominence": 108103596.30583192,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 42,
+            "icon/color": 6,
+            "other/fill": 39,
+            "other/color": 17,
+            "button/color": 6,
+            "other/stroke": 8,
+            "body/borderColor": 168,
+            "icon/borderColor": 24,
+            "other/borderColor": 68,
+            "button/borderColor": 28,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 62964088.461274765,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 24,
+            "other/stroke": 8,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card",
+            "image",
+            "icon",
+            "link",
+            "heading",
+            "button"
+          ],
+          "frequency": 2567,
+          "confidence": 1,
+          "prominence": 38680776.077176504,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 29,
+            "body/color": 270,
+            "card/color": 36,
+            "icon/color": 4,
+            "link/color": 5,
+            "other/fill": 12,
+            "image/color": 17,
+            "other/color": 154,
+            "button/color": 1,
+            "heading/color": 3,
+            "nav/borderColor": 116,
+            "body/borderColor": 1080,
+            "card/borderColor": 84,
+            "icon/borderColor": 16,
+            "link/borderColor": 20,
+            "image/borderColor": 68,
+            "other/borderColor": 612,
+            "heading/borderColor": 12,
+            "nav/backgroundColor": 6,
+            "other/backgroundColor": 16,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 6830180,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 159,
+          "confidence": 1,
+          "prominence": 2170124.302259381,
+          "properties": [
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/fill": 155,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8760963267776515
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 1652183.7392521696,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "card/borderColor": 12,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5375423370169526
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 1452708,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#b7b3a2",
+          "oklch": {
+            "c": 0.024069898485123097,
+            "h": 96.04331920963581,
+            "l": 0.7652907077855413
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 812820.7802453118,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 12,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9c9c9c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6934013626959386
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 173746.88104124233,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 3,
+            "other/color": 5,
+            "body/borderColor": 16,
+            "link/borderColor": 12,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 26424.181615437024,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "button/color": 1,
+            "nav/borderColor": 12,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#565656",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4531612185952475
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 26150.139114754224,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 12,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#9cceed",
+          "oklch": {
+            "c": 0.06798417103117399,
+            "h": 235.89002237684088,
+            "l": 0.8270697525788585
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1878.18056335457,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1623.0016007384638,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#f0b90a",
+          "oklch": {
+            "c": 0.16502496077272927,
+            "h": 86.71028218663287,
+            "l": 0.8131898091566444
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 978,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1616b4",
+          "oklch": {
+            "c": 0.22784419638481215,
+            "h": 267.5504343036091,
+            "l": 0.36742924183905473
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 910.3081706627087,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 12
+          }
+        },
+        {
+          "hex": "#7c40e4",
+          "oklch": {
+            "c": 0.23101026745400252,
+            "h": 293.93090996607424,
+            "l": 0.5403427120590754
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 848,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#162e29",
+          "oklch": {
+            "c": 0.031721074102838615,
+            "h": 178.87771834724737,
+            "l": 0.27974872892072195
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 773,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f50db4",
+          "oklch": {
+            "c": 0.27243323400926467,
+            "h": 344.8729524008978,
+            "l": 0.6491637323326483
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 770,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#6e53ff",
+          "oklch": {
+            "c": 0.2416508003238859,
+            "h": 282.8670869321956,
+            "l": 0.5747768353513562
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 758,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#e74041",
+          "oklch": {
+            "c": 0.20382120939091503,
+            "h": 25.155103421388286,
+            "l": 0.6193134933369631
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 616,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f0cdc2",
+          "oklch": {
+            "c": 0.04247283564667292,
+            "h": 38.18315743832766,
+            "l": 0.875044478984963
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 571.1943113422911,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#ff0420",
+          "oklch": {
+            "c": 0.25548508107385975,
+            "h": 26.803066682770716,
+            "l": 0.6298323520678019
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 524.6225877387027,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#c9b3f5",
+          "oklch": {
+            "c": 0.0943626561099871,
+            "h": 299.5756698208781,
+            "l": 0.8082719653443856
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 480.639115641684,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#b8faf6",
+          "oklch": {
+            "c": 0.06591898891222107,
+            "h": 191.4002542852508,
+            "l": 0.9400885540028018
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 389.9007751774044,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#09abff",
+          "oklch": {
+            "c": 0.16647657651562595,
+            "h": 241.84168598556371,
+            "l": 0.709929337760504
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 380.7962075615274,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#88aaf1",
+          "oklch": {
+            "c": 0.11004024485850752,
+            "h": 264.2733367219174,
+            "l": 0.7408946362664068
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 245.6691876117792,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.03983128699737799,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#f9f9f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.79,
+          "background": "#e5ff5d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#b8faf6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#111111",
+          "foreground": "#f9f9f9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.9,
+          "background": "#111111",
+          "foreground": "#e5ff5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#eeeeee",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.22,
+          "background": "#b8faf6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.11,
+          "background": "#f9f9f9",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d6d6d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.24,
+          "background": "#e5ff5d",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#f0cdc2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#eeeeee",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#f9f9f9",
+          "foreground": "#162e29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.67,
+          "background": "#b8faf6",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#2b2b2b",
+          "foreground": "#f9f9f9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.99,
+          "background": "#d6d6d6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#e5ff5d",
+          "foreground": "#162e29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.78,
+          "background": "#f0cdc2",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#2b2b2b",
+          "foreground": "#e5ff5d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 44,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 47,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 30,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card",
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Grotesk Text",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1088,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 583,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 2.08,
+          "letterSpacing": 0.032,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.73,
+          "letterSpacing": 0.027,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "icon",
+            "link",
+            "image",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 385,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Neue Haas Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bdd019cc-4421-4b76-bbb5-2bfbc31212bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Codex.io design system\",\"item\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#style-reference\",\"name\":\"Codex.io design system reference\",\"headline\":\"Codex.io design system | Refero Styles\",\"description\":\"Explore Codex.io's mixed Crypto design system: Citrine Signal #e5ff5d, Carbon Black #111111 colors, Neue Haas Grotesk Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Codex.io\",\"url\":\"https://www.codex.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c55d2f24-deb1-44c1-9846-66a3523beb29#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"caption\":\"Screenshot of Codex.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ea10c92-fe7d-4f0a-a5eb-f842fd2d7474.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Codex.io design system\",\"Codex.io website design\",\"Codex.io colors\",\"Codex.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Citrine Signal\",\"Carbon Black\",\"Bone White\",\"Graphite\",\"Neue Haas Grotesk Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Codex.io design system\"},{\"@type\":\"Thing\",\"name\":\"Codex.io website design\"},{\"@type\":\"Thing\",\"name\":\"Codex.io colors\"},{\"@type\":\"Thing\",\"name\":\"Codex.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:57:45.410Z\",\"dateModified\":\"2026-05-07T18:57:45.410Z\"}]}19:T417,**Quick Color Reference**\n- canvas: #111111 (Carbon Black)\n- surface elevated: #2b2b2b (Graphite)\n- text primary: #f9f9f9 (Bone White)\n- text muted: #9c9c9c (Stone)\n- border: #d6d6d6 on dark cards, #9c9c9c for hairlines\n- brand accent / primary action: #e5ff5d (filled action)\n- reversal light section: #eeeeee (Cream Paper)\n\n**3 Example Component Prompts**\n\n1. Create a Primary Action Button: #e5ff5d background, #111111 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Build a constellation feature block:* Carbon Black canvas, two-column layout (40% / 60% split, 80px gap, vertically centered). Left column: heading \"Raw blockchain data is complex to parse\" in Neue Haas 500 at 24px, #f9f9f9, line-height 1.20. Two body paragraphs in Neue Haas 400 at 16px, #9c9c9c. Right column: centered Citrine Cube with 12–16 blockchain node circles (40px, #2b2b2b fill, 1px border, 20px chain icon in #e5ff5d or #f9f9f9) arranged in a radial ring, each connected to the cube center by 1px dashed #565656 lines."
+}

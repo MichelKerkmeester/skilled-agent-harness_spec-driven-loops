@@ -1,0 +1,49 @@
+:root {
+  /* Colors */
+  --color-paper-white: #ffffff;
+  --color-ink-black: #212529;
+  --color-pure-black: #000000;
+  --color-hairline-gray: #e4e4e4;
+
+  /* Typography — Font Families */
+  --font-whyte: 'Whyte', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --text-heading: 20px;
+  --leading-heading: 1.5;
+  --text-display: 95px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-78: 78px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --section-gap: 100px;
+  --card-padding: 40px;
+  --element-gap: 20px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-ink-panel: #212529;
+}

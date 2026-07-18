@@ -1,0 +1,370 @@
+{
+  "color": {
+    "coinbase-blue": {
+      "$value": "#0052ff",
+      "$type": "color",
+      "$description": "Coinbase Blue — Primary CTAs, logos, active states — the core brand identifier."
+    },
+    "interactive-blue": {
+      "$value": "#578bfa",
+      "$type": "color",
+      "$description": "Interactive Blue — Secondary links and interactive elements."
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary page background, text on dark surfaces."
+    },
+    "midnight": {
+      "$value": "#0a0b0d",
+      "$type": "color",
+      "$description": "Midnight — Dark section backgrounds, primary text."
+    },
+    "slate": {
+      "$value": "#5b616",
+      "$type": "color",
+      "$description": "Slate — Body text, secondary headings, footer links."
+    },
+    "ash": {
+      "$value": "#8a919",
+      "$type": "color",
+      "$description": "Ash — Helper text, disabled states, subtle UI text."
+    },
+    "frost": {
+      "$value": "#f7f8f9",
+      "$type": "color",
+      "$description": "Frost — Subtle light backgrounds, like the footer area."
+    },
+    "cloud": {
+      "$value": "#eef0f3",
+      "$type": "color",
+      "$description": "Cloud — Light background dividers or button hover states."
+    },
+    "pewter": {
+      "$value": "#dedfe2",
+      "$type": "color",
+      "$description": "Pewter — Borders between light sections."
+    },
+    "charcoal": {
+      "$value": "#141519",
+      "$type": "color",
+      "$description": "Charcoal — Alternative dark section background surface."
+    },
+    "positive-green": {
+      "$value": "#27ad75",
+      "$type": "color",
+      "$description": "Positive Green — Price increases, success messages."
+    },
+    "negative-red": {
+      "$value": "#f0616d",
+      "$type": "color",
+      "$description": "Negative Red — Price decreases, error messages."
+    }
+  },
+  "font": {
+    "coinbasedisplay": {
+      "$value": "CoinbaseDisplay",
+      "$type": "fontFamily",
+      "$description": "Used exclusively for large, impactful headlines (H1/H2). Its clean, slightly wide geometry gives headlines a declarative, confident presence."
+    },
+    "coinbasesans": {
+      "$value": "CoinbaseSans",
+      "$type": "fontFamily",
+      "$description": "The primary workhorse font for subheadings, buttons, and some body copy. The 600 weight is used for emphasis and smaller headings."
+    },
+    "coinbasetext": {
+      "$value": "CoinbaseText",
+      "$type": "fontFamily",
+      "$description": "Optimized for readability in dense UI and long-form text blocks. Its generous line-height makes paragraphs breathable."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "CoinbaseText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "CoinbaseDisplay",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "CoinbaseDisplay",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "CoinbaseDisplay",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "CoinbaseSans",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "CoinbaseDisplay",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://coinbase.com",
+      "siteName": "Coinbase Spain",
+      "extractedAt": "2026-04-11T17:43:55.835Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "color": {
+    "studio-charcoal": {
+      "$value": "#101c19",
+      "$type": "color",
+      "$description": "Studio Charcoal — Page canvas, primary background — a near-black with a green undertone that reads as neutral but feels warmer than pure black"
+    },
+    "gallery-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Gallery Black — Feature bands, specimen backgrounds, header bar — pure black for maximum type contrast"
+    },
+    "charcoal-surface": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Charcoal Surface — Elevated surface, input fields, secondary panel backgrounds — one step lighter than the canvas"
+    },
+    "slate-mist": {
+      "$value": "#3c585f",
+      "$type": "color",
+      "$description": "Slate Mist — Muted accent band, tertiary surface — desaturated blue-gray used as an alternate section background"
+    },
+    "graphite": {
+      "$value": "#555555",
+      "$type": "color",
+      "$description": "Graphite — Mid-tone borders, muted body text on light sections, card outlines"
+    },
+    "steel": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Steel — Secondary borders, subdued link text on dark backgrounds"
+    },
+    "fog": {
+      "$value": "#7f7f7f",
+      "$type": "color",
+      "$description": "Fog — Tertiary borders, inactive UI elements, secondary text"
+    },
+    "ash": {
+      "$value": "#939393",
+      "$type": "color",
+      "$description": "Ash — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    },
+    "marble": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Marble — Light-mode page canvas, pale gray that photographs cleanly for specimen presentations"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text on dark backgrounds, type specimen letterforms, button labels, high-contrast surfaces"
+    },
+    "flare-orange": {
+      "$value": "#d33c03",
+      "$type": "color",
+      "$description": "Flare Orange — Label tags, collection names, editorial annotations — a saturated vermilion that reads as the foundry's signature mark on light backgrounds"
+    },
+    "signal-red": {
+      "$value": "#e90702",
+      "$type": "color",
+      "$description": "Signal Red — Hot accent on dark surfaces, inline highlights, the reddest red in the palette for maximum voltage"
+    },
+    "electric-blue": {
+      "$value": "#24a7f2",
+      "$type": "color",
+      "$description": "Electric Blue — Interactive highlights, active states, link emphasis — a bright cyan-blue that pops against black"
+    },
+    "mint-pulse": {
+      "$value": "#93ffe6",
+      "$type": "color",
+      "$description": "Mint Pulse — Decorative text accent, special-occasion highlights — a pale mint used sparingly for emphasis"
+    },
+    "canary": {
+      "$value": "#ffff79",
+      "$type": "color",
+      "$description": "Canary — Rare chromatic accent, used for the highest-attention text moment on dark backgrounds"
+    },
+    "blush": {
+      "$value": "#ffe6d9",
+      "$type": "color",
+      "$description": "Blush — Soft warm accent, subtle text tint — a cream-pink that warms dark sections without competing with type"
+    }
+  },
+  "font": {
+    "soehne": {
+      "$value": "SOEHNE",
+      "$type": "fontFamily",
+      "$description": "SOEHNE — detected in extracted data but not described by AI"
+    },
+    "shne": {
+      "$value": "Söhne",
+      "$type": "fontFamily",
+      "$description": "Primary UI typeface — used for navigation, body text, buttons, form labels, and all functional interface text. Tight line-heights (0.98–1.20) at display sizes; generous (1.50) for body. Two weights only: regular for content, bold for emphasis. Tabular numerals via tnum for price alignment; ordinals via ordn."
+    },
+    "shne-ikon": {
+      "$value": "Söhne Ikon",
+      "$type": "fontFamily",
+      "$description": "Iconographic variant of Söhne for interface glyphs, special characters, and numeric UI elements. Same voice as Söhne but with alternate character forms via calt and tabular figures via tnum."
+    },
+    "soehneikon": {
+      "$value": "SOEHNE_IKON",
+      "$type": "fontFamily",
+      "$description": "SOEHNE_IKON — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "SOEHNE",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SOEHNE",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SOEHNE_IKON",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SOEHNE",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SOEHNE_IKON",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SOEHNE_IKON",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "SOEHNE",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SOEHNE",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "69": {
+      "$value": "69px",
+      "$type": "dimension",
+      "$description": "Spacing 69px"
+    },
+    "137": {
+      "$value": "137px",
+      "$type": "dimension",
+      "$description": "Spacing 137px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "gallery-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Feature band, specimen background"
+    },
+    "studio-charcoal": {
+      "$value": "#101c19",
+      "$type": "color",
+      "$description": "Surface level 2: Primary page canvas, page background"
+    },
+    "charcoal-surface": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated panel, input field"
+    },
+    "slate-mist": {
+      "$value": "#3c585f",
+      "$type": "color",
+      "$description": "Surface level 4: Alternate band background"
+    },
+    "marble": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 5: Light-mode page canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://klim.co.nz",
+      "siteName": "Klim",
+      "extractedAt": "2026-06-03T21:59:28.904Z",
+      "variant": "extended"
+    }
+  }
+}

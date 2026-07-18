@@ -1,0 +1,1451 @@
+{
+  "source": "https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8",
+  "uuid": "25246b10-83a4-4f51-a411-cf85503b94a8",
+  "name": "DrawHistory",
+  "northStar": "Warm gallery wall behind charcoal display panels",
+  "capturedAt": "2026-07-18T08:38:24.448Z",
+  "meta": {
+    "url": "https://drawhistory.com",
+    "siteName": "DrawHistory",
+    "extractedAt": "2026-06-03T22:40:36.175Z",
+    "durationMs": 43185,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 467,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set headlines in Eloquia Text weight 300 uppercase with negative tracking; the thin weight is the hierarchy, not font-size alone",
+      "Use 16px radius for all card-level surfaces and images, 8px for buttons, 9999px for pill tags — never mix these radius families",
+      "Build the page on Parchment (#faf6f3) canvas and let Olive Charcoal (#3d3b2f) and Obsidian (#1d1d1b) panels create depth through tonal contrast",
+      "Use Saffron Dot (#ff6714) only as a 6–8px indicator — never as a fill, button background, or large accent area",
+      "Set body copy at 16px Eloquia Text weight 400 with -0.29px tracking; sentence case, never uppercase",
+      "Use Roboto Mono for button labels and meta annotations to create a secondary technical voice distinct from Eloquia's editorial tone",
+      "Maintain 80px section gaps and 32px card padding as the structural rhythm — the spaciousness IS the design"
+    ],
+    "donts": [
+      "Do not use weight 500–700 for Eloquia Text headlines — the weight 300 whisper is the signature; heavier weights break the gallery tone",
+      "Do not add box-shadows to cards or panels — tonal contrast against Parchment canvas is the only elevation system",
+      "Do not use color for call-to-action buttons — stay with ghost outlined controls on both light and dark surfaces",
+      "Do not place the Saffron accent on large areas, fills, or text — it is a 6–8px dot, not a brand color",
+      "Do not use #0000ee or default browser blue for links — links should inherit the current text color and rely on underline or context",
+      "Do not use rounded corners larger than 16px on cards or images — the geometry is architectural, not playful",
+      "Do not mix the Olive Charcoal and Obsidian panel tones on the same card — one card, one panel tone, paired side by side"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#faf6f3",
+        "name": "Parchment",
+        "role": "Page canvas, body text on dark panels — a warm desaturated cream that makes the dark editorial cards feel inset rather than overlaid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash",
+        "role": "Hairline borders, dividers, subtle surface separators — the workhorse neutral that defines the 1px structural rhythm across the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Smoke",
+        "role": "Secondary borders and muted structural lines where Ash is too present",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Silver",
+        "role": "Input borders and disabled-state surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, icon strokes, and the darkest borders on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Reverse text on dark panels, card surfaces, and icon fills on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3b2f",
+        "name": "Olive Charcoal",
+        "role": "Warm editorial panel surface (left card) and primary action background — a dusty olive-black that distinguishes DrawHistory's signature dark from generic #111",
+        "group": "brand"
+      },
+      {
+        "hex": "#1d1d1b",
+        "name": "Obsidian",
+        "role": "Deep display panel surface (right card) and button background — the second editorial tone, slightly cooler and deeper than Olive Charcoal",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff6714",
+        "name": "Saffron Dot",
+        "role": "Sole chromatic accent — announcement indicators and small functional punctuation only. Never used for fills, buttons, or large areas",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a centered single-viewport announcement spread on Parchment canvas, max-width ~1200px. The hero is a two-column card grid: left Olive Charcoal panel (narrative + portrait photo + ghost button) and right Obsidian panel (logo + ghost button), each roughly 50% width with a small gap between them. A single-line announcement bar sits above the cards, centered. The blurred photo background extends full-bleed behind everything, visible as atmosphere at the viewport margins. Navigation is minimal or absent from the visible viewport — the announcement cards ARE the primary content. Section rhythm is generous: 80px between the announcement bar and cards, 32px internal card padding. No sidebar, no multi-section scroll structure visible — the design is a focused editorial moment.",
+    "imagery": "The site uses warm-toned portrait photography as the sole source of color in editorial panels. Photos are tightly cropped, environmental portraits of people in natural settings, presented at 16px radius within Olive Charcoal cards. The right panel uses a pure typographic logo mark in Bone on Obsidian — no imagery, just type as visual. The outer page background is a heavily blurred photographic wash visible at the viewport edges, creating an atmospheric gallery-wall effect. No illustrations, no 3D, no abstract graphics. Iconography is minimal and stroke-based in Eloquia Text's weight, using Ink or Parchment depending on surface.",
+    "similar": [
+      {
+        "why": "Same warm-cream canvas with deeply muted dark editorial panels, light-weight uppercase typography, and ghost outlined controls — both treat whitespace and surface tone as the primary structural system",
+        "business": "Aesop"
+      },
+      {
+        "why": "Editorial agency language with weight 300 uppercase display type on warm dark panels, minimal color, and the same gallery-installation restraint",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Architectural typography, generous whitespace, and the convention of letting a single piece of content occupy a full viewport moment with no competing UI chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Warm parchment background with editorial card layouts, thin sans-serif type, and the same anti-SaaS presentation ethos",
+        "business": "It's Nice That"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "pills": "9999px",
+        "images": "16px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#faf6f3",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Page background — warm cream that sets the editorial gallery tone"
+      },
+      {
+        "hex": "#3d3b2f",
+        "name": "Olive Charcoal Panel",
+        "level": 1,
+        "purpose": "Warm editorial display card surface"
+      },
+      {
+        "hex": "#1d1d1b",
+        "name": "Obsidian Panel",
+        "level": 2,
+        "purpose": "Deep editorial display card surface"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Layer",
+        "level": 3,
+        "purpose": "Border and divider surface on light canvas"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Warm gallery wall behind charcoal display panels",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.55
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.08
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.32
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 0.95,
+        "letterSpacing": -5
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Display Card — Olive",
+        "role": "Primary editorial panel for narrative content with imagery",
+        "description": "Warm dark surface (#3d3b2f), 16px radius, generous internal padding (~32px), uppercase Eloquia Text at weight 300 in Parchment (#faf6f3). Contains a rounded photo (16px radius), short body paragraph in weight 400, and a ghost outlined button at the bottom. No shadow — the card's tonal contrast against the Parchment canvas is the only elevation signal."
+      },
+      {
+        "name": "Editorial Display Card — Obsidian",
+        "role": "Deep display panel for logo or brand-identity content",
+        "description": "Near-black surface (#1d1d1b), 16px radius, same 32px internal padding, uppercase Eloquia Text at weight 300 in Bone (#ffffff). Center-anchored logo block with generous vertical breathing room. Pairs beside the Olive card as a tonal counterpoint — one warm-dark, one cool-deep."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Primary call-to-action across both light and dark surfaces",
+        "description": "Transparent fill, 1px border in current text color (Parchment on dark cards, Ink on light surfaces), 8px radius, 12px 24px padding. Label in Roboto Mono weight 400 at 14px, uppercase, letter-spacing normal. On hover: fill becomes a 10% opacity wash of the border color. Never filled — the system's restraint is the point."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide notification strip above main content",
+        "description": "Sits on Parchment canvas, centered text in Eloquia Text weight 400 at 14px, uppercase, tracked. Prefixed by a 6px Saffron Dot (#ff6714) acting as the sole chromatic punctuation in the system. No background fill, no border — just inline text and dot."
+      },
+      {
+        "name": "Rounded Photo Block",
+        "role": "Inset image within editorial cards",
+        "description": "16px border radius, no border, natural aspect ratio (roughly 1:1 or 4:3). Photos carry the only color in the editorial panels — the people and environments provide warmth against the Olive Charcoal background. No overlay, no treatment, no duotone."
+      },
+      {
+        "name": "Logo Display Block",
+        "role": "Brand mark container within Obsidian cards",
+        "description": "Centrally placed, 16px radius hairline border in a desaturated white (~20% opacity), generous internal padding (32–40px). The logo itself renders in solid Bone (#ffffff) at large scale. The bordered frame around the logo creates a second layer of inset within the panel."
+      },
+      {
+        "name": "Card Headline",
+        "role": "Section-level heading within editorial cards",
+        "description": "Eloquia Text weight 300, uppercase, ~35–36px, line-height 1.13, letter-spacing -1.08px. Color: Parchment on dark cards, Ink on light surfaces. Never bold — the thin weight IS the hierarchy. Wraps to 2 lines maximum."
+      },
+      {
+        "name": "Card Body Copy",
+        "role": "Supporting paragraph text within editorial cards",
+        "description": "Eloquia Text weight 400, sentence case, 16px, line-height 1.50, letter-spacing -0.29px. Color: Parchment (#faf6f3) on dark cards. Max width ~360px to maintain comfortable measure. Center-aligned within cards."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator between sections or within lists",
+        "description": "1px solid Ash (#e5e7eb), full-width within container. The workhorse divider — used 820+ times in raw data, forming the page's structural rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI text. Weight 300 in uppercase at display sizes (55–104px) creates the signature hushed editorial tone — the same approach as museum wall labels, where the label's weight is anti-authoritarian and confident. Body copy uses weight 400 at 16–18px. The negative tracking tightens as size increases, compressing display headlines while keeping body text optically normal.",
+        "sizes": "14, 16, 18, 20, 22, 35, 36, 40, 44, 55, 100, 104",
+        "family": "Eloquia Text",
+        "weight": "300, 400",
+        "lineHeight": "0.95–1.56",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk",
+        "letterSpacing": "-0.05em at 100–104px (-5 to -5.2px), -0.03em at 35–55px (-1.05 to -1.65px), -0.025em at 18–22px (-0.45 to -0.55px), -0.018em at 16px (-0.29px), -0.009em at 14px (-0.13px), normal for body",
+        "fontFeatureSettings": "\"case\" on for uppercase tracking, \"ss01\" if available for alternate letterforms"
+      },
+      {
+        "role": "Monospace label typeface for technical or meta annotations — small captions, metadata, button labels in outlined buttons. Its geometric monospaced rhythm contrasts with Eloquia's editorial proportions, providing a secondary voice for system-level information.",
+        "sizes": "14, 15, 16",
+        "family": "Roboto Mono",
+        "weight": "400",
+        "lineHeight": "1.25–1.50",
+        "substitute": "IBM Plex Mono, JetBrains Mono, Space Mono"
+      }
+    ],
+    "description": "DrawHistory presents a muted editorial language: warm parchment canvas framed by charcoal display panels, like an exhibition catalog spread open on a gallery table. The system is overwhelmingly achromatic — near-black, warm off-white, and a dusty olive-charcoal — with a single saffron dot used as the only chromatic punctuation. Typography carries the entire personality: Eloquia Text at weight 300 in uppercase, aggressively tracked negative, creates the hushed, architectural tone of a museum wall label. Components are flat, borderless except for hairline outlines on ghost controls, and rely on surface-tone shifts rather than shadows to establish hierarchy. Density is spacious; whitespace does the structural work that borders and elevation do in more conventional systems.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DrawHistory design system\",\"item\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#style-reference\",\"name\":\"DrawHistory design system reference\",\"headline\":\"DrawHistory design system | Refero Styles\",\"description\":\"Explore DrawHistory's mixed Agency design system: Parchment #faf6f3, Ash #e5e7eb colors, Eloquia Text, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DrawHistory\",\"url\":\"https://drawhistory.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"caption\":\"Screenshot of DrawHistory\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DrawHistory design system\",\"DrawHistory website design\",\"DrawHistory colors\",\"DrawHistory typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Parchment\",\"Ash\",\"Smoke\",\"Silver\",\"Eloquia Text\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DrawHistory design system\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory website design\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory colors\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:27:02.539Z\",\"dateModified\":\"2026-04-30T01:27:02.539Z\"}]}19:T661,**Quick Color Reference**\n- text: #000000 (on light) / #faf6f3 (on dark)\n- background: #faf6f3 (Parchment canvas)\n- border: #e5e7eb (Ash hairline)\n- accent: #ff6714 (Saffron Dot — 6–8px only)\n- primary action: no distinct CTA color\n- panel surface: #3d3b2f (warm) or #1d1d1b (deep)\n\n**Example Component Prompts**\n\n1. *Olive Editorial Card*: 16px radius, #3d3b2f background, 32px padding. Headline at 36px Eloquia Text weight 300, uppercase, #faf6f3, letter-spacing -1.08px, line-height 1.13. Body at 16px weight 400, #faf6f3, line-height 1.50, max-width 360px, centered. Rounded photo at 16px radius centered above body. Ghost button at bottom: transparent fill, 1px #faf6f3 border, 8px radius, 12px 24px padding, label in Roboto Mono 14px uppercase #faf6f3.\n\n2. *Obsidian Logo Card*: 16px radius, #1d1d1b background, 32px padding, centered content. Inner logo frame: 16px radius, 1px border in rgba(255,255,255,0.2), generous internal padding. Logo mark in #ffffff, large scale. Ghost button below: transparent fill, 1px #ffffff border, 8px radius, 12px 24px padding, Roboto Mono 14px uppercase label.\n\n3. *Announcement Bar*: Centered on #faf6f3 canvas. 6px #ff6714 dot, then 14px Eloquia Text weight 400, uppercase, #000000, letter-spacing -0.13px. No background, no border, no padding beyond vertical centering.\n\n4. *Card Headline*: 36px Eloquia Text weight 300, uppercase, #faf6f3 on dark / #000000 on light, letter-spacing -1.08px, line-height 1.13. Maximum 2 lines. Never bold.\n\n5. *Hairline Divider*: 1px solid #e5e7eb, full container width, no margins. The most-used structural element — use freely to establish rhythm."
+      },
+      {
+        "title": "Radius System",
+        "content": "Three radius values, strictly enforced: 16px for cards and images (the editorial scale), 8px for buttons and small interactive surfaces (the functional scale), 9999px for pill-shaped tags and avatars (the chip scale). Do not introduce intermediate values like 4px, 10px, or 12px — the binary simplicity is part of the geometric discipline."
+      },
+      {
+        "title": "Tonal Pairing Logic",
+        "content": "Dark editorial panels always come in pairs: one Olive Charcoal (#3d3b2f) and one Obsidian (#1d1d1b). The warm/cool tonal contrast between them creates visual rhythm without any border or shadow. A single panel alone feels incomplete; a triad or more feels redundant. This is a two-card system."
+      }
+    ],
+    "elevationPhilosophy": "DrawHistory deliberately avoids shadows as an elevation signal. The system uses tonal contrast — Parchment canvas against Olive Charcoal and Obsidian panels — to create depth. This is a flat editorial approach where surface-value shifts replace drop-shadow layering. Adding shadows would break the gallery-wall metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "list",
+            "heading",
+            "button",
+            "image",
+            "hero",
+            "card",
+            "footer"
+          ],
+          "frequency": 1552,
+          "confidence": 1,
+          "prominence": 123399950.69989453,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "image/color": 1,
+            "other/color": 17,
+            "heading/color": 4,
+            "body/borderColor": 220,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 196,
+            "list/borderColor": 84,
+            "image/borderColor": 60,
+            "other/borderColor": 820,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 88,
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "body",
+            "heading",
+            "input",
+            "button",
+            "footer",
+            "icon"
+          ],
+          "frequency": 292,
+          "confidence": 1,
+          "prominence": 95391722.74445054,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 44,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 7,
+            "list/color": 9,
+            "other/fill": 1,
+            "image/color": 15,
+            "input/color": 1,
+            "other/color": 163,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 15,
+            "link/borderColor": 16,
+            "other/borderColor": 8,
+            "button/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list",
+            "heading",
+            "button",
+            "icon",
+            "input"
+          ],
+          "frequency": 181,
+          "confidence": 1,
+          "prominence": 13715614.638446989,
+          "properties": [
+            "color",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 2,
+            "link/color": 46,
+            "list/color": 12,
+            "other/fill": 54,
+            "icon/stroke": 4,
+            "other/color": 45,
+            "button/color": 2,
+            "other/stroke": 2,
+            "heading/color": 3,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 10464051.48241878,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 52
+          }
+        },
+        {
+          "hex": "#3d3b2f",
+          "oklch": {
+            "c": 0.02018064906143166,
+            "h": 99.50124113483292,
+            "l": 0.35047459400362385
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 9491627.877031902,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "icon/stroke": 2,
+            "other/color": 1,
+            "other/stroke": 3,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#faf6f3",
+          "oklch": {
+            "c": 0.0057528344407924824,
+            "h": 64.45937194093517,
+            "l": 0.9756221064703048
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 1766224.7657424607,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#e1d3c7",
+          "oklch": {
+            "c": 0.02255722039782554,
+            "h": 63.16962064799154,
+            "l": 0.8749054165586913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1303986,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1d1d1b",
+          "oklch": {
+            "c": 0.0037772701954845184,
+            "h": 106.69295371437178,
+            "l": 0.22997171519438006
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 312559,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff6714",
+          "oklch": {
+            "c": 0.20179230919595736,
+            "h": 42.61653343069942,
+            "l": 0.697517338268918
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 158.4962500721156,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012520738165325472,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.54,
+          "background": "#000000",
+          "foreground": "#faf6f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#000000",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.88,
+          "background": "#1d1d1b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.71,
+          "background": "#1d1d1b",
+          "foreground": "#faf6f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.34,
+          "background": "#e1d3c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.64,
+          "background": "#1d1d1b",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.53,
+          "background": "#e1d3c7",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.26,
+          "background": "#3d3b2f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.48,
+          "background": "#3d3b2f",
+          "foreground": "#faf6f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.09,
+          "background": "#3d3b2f",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#b3b3b3",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#e1d3c7",
+          "foreground": "#3d3b2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.2,
+          "background": "#ff6714",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.37,
+          "background": "#b3b3b3",
+          "foreground": "#3d3b2f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.86,
+          "background": "#ff6714",
+          "foreground": "#3d3b2f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.92,
+          "background": "#ff6714",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#ff6714",
+          "foreground": "#faf6f3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.36,
+          "background": "#ff6714",
+          "foreground": "#e5e7eb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "image",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "link",
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 46,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginBottom|body",
+            "marginTop|body",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "link",
+            "heading",
+            "button",
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "columnGap|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 111,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "rowGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 224,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Eloquia Text",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 357,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "body",
+            "footer",
+            "button"
+          ],
+          "frequency": 279,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Eloquia Text",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 3.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 35,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 35,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "button",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 104,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 104,
+          "family": "Eloquia Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7c7c98c0-ae10-4962-bd45-760b769cc20c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DrawHistory design system\",\"item\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#style-reference\",\"name\":\"DrawHistory design system reference\",\"headline\":\"DrawHistory design system | Refero Styles\",\"description\":\"Explore DrawHistory's mixed Agency design system: Parchment #faf6f3, Ash #e5e7eb colors, Eloquia Text, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DrawHistory\",\"url\":\"https://drawhistory.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/25246b10-83a4-4f51-a411-cf85503b94a8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"caption\":\"Screenshot of DrawHistory\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b7ef6c00-a629-4bd1-8e55-102a52c75299.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DrawHistory design system\",\"DrawHistory website design\",\"DrawHistory colors\",\"DrawHistory typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Parchment\",\"Ash\",\"Smoke\",\"Silver\",\"Eloquia Text\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DrawHistory design system\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory website design\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory colors\"},{\"@type\":\"Thing\",\"name\":\"DrawHistory typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:27:02.539Z\",\"dateModified\":\"2026-04-30T01:27:02.539Z\"}]}19:T661,**Quick Color Reference**\n- text: #000000 (on light) / #faf6f3 (on dark)\n- background: #faf6f3 (Parchment canvas)\n- border: #e5e7eb (Ash hairline)\n- accent: #ff6714 (Saffron Dot — 6–8px only)\n- primary action: no distinct CTA color\n- panel surface: #3d3b2f (warm) or #1d1d1b (deep)\n\n**Example Component Prompts**\n\n1. *Olive Editorial Card*: 16px radius, #3d3b2f background, 32px padding. Headline at 36px Eloquia Text weight 300, uppercase, #faf6f3, letter-spacing -1.08px, line-height 1.13. Body at 16px weight 400, #faf6f3, line-height 1.50, max-width 360px, centered. Rounded photo at 16px radius centered above body. Ghost button at bottom: transparent fill, 1px #faf6f3 border, 8px radius, 12px 24px padding, label in Roboto Mono 14px uppercase #faf6f3.\n\n2. *Obsidian Logo Card*: 16px radius, #1d1d1b background, 32px padding, centered content. Inner logo frame: 16px radius, 1px border in rgba(255,255,255,0.2), generous internal padding. Logo mark in #ffffff, large scale. Ghost button below: transparent fill, 1px #ffffff border, 8px radius, 12px 24px padding, Roboto Mono 14px uppercase label.\n\n3. *Announcement Bar*: Centered on #faf6f3 canvas. 6px #ff6714 dot, then 14px Eloquia Text weight 400, uppercase, #000000, letter-spacing -0.13px. No background, no border, no padding beyond vertical centering.\n\n4. *Card Headline*: 36px Eloquia Text weight 300, uppercase, #faf6f3 on dark / #000000 on light, letter-spacing -1.08px, line-height 1.13. Maximum 2 lines. Never bold.\n\n5. *Hairline Divider*: 1px solid #e5e7eb, full container width, no margins. The most-used structural element — use freely to establish rhythm."
+}

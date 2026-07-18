@@ -1,0 +1,556 @@
+{
+  "source": "https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15",
+  "uuid": "701c8312-5e98-49a8-b2c4-25f1cb66de15",
+  "name": "PORTO ROCHA",
+  "northStar": "white-walled design library",
+  "capturedAt": "2026-07-18T09:08:30.226Z",
+  "meta": {
+    "url": "https://portorocha.com",
+    "siteName": "PORTO ROCHA",
+    "extractedAt": "2026-06-03T20:37:53.861Z",
+    "durationMs": 29069,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1683,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #007aff exclusively for interactive text and active states — never as a decorative fill or background",
+      "Apply 8px border-radius to all cards, buttons, and nav elements for a consistent subtle softness",
+      "Set 16px padding on all content cards with 1px Ash Gray (#808080) top borders for separation",
+      "Use SF Pro Text 14px weight 400 as the single body style — build hierarchy through size, not weight",
+      "Reserve SF Pro Display 23px with +0.02em letter-spacing for headlines and the wordmark",
+      "Let the two-column layout (sidebar + content) define the page structure — 25/75 split with no overlap",
+      "Use hairline borders (1px) and whitespace for card separation instead of shadows or background fills"
+    ],
+    "donts": [
+      "Do not introduce additional accent colors — the system is monochrome plus one blue",
+      "Do not use bold or semibold weights — the system runs on a single 400 weight",
+      "Do not apply shadows, glows, or blur effects — elevation is communicated by stacking alone",
+      "Do not use negative letter-spacing on display text — the +0.02em tracking is intentional and signature",
+      "Do not round buttons to pill shapes (38px) as a default — keep the 8px radius consistent with cards",
+      "Do not fill cards with gray or colored backgrounds — all surfaces are pure white",
+      "Do not add decorative elements, icons, or illustrations to the UI chrome — content photography carries the visual weight"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, headings, nav borders, card borders, button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash Gray",
+        "role": "Secondary text, card borders, nav dividers, muted metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, sidebar background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#007aff",
+        "name": "System Blue",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page uses a persistent two-column layout: a fixed left sidebar (~25% width) and a fluid content field (~75%). The sidebar contains the agency wordmark, live date/time, about copy, and a scrollable project index with circular brand icons. The content field is a three-column card grid for articles and a full-column-width hero image at the top. The sidebar has a 1px Ash Gray right border separating it from the content. There is no global max-width constraint — the layout fills the viewport. Vertical rhythm is 24-32px between card rows, with 16px padding inside each card. Navigation is sidebar-based, not top-bar. The grid is rigid: sidebar left, three equal columns right, no asymmetric or overlapping compositions.",
+    "imagery": "Photography is the primary visual content, not the UI. Hero images are large, full-column-width composites of printed brand collateral, book spreads, and packaging systems — these are project showcases, not lifestyle photography. Article thumbnails in the grid show architectural photography, event documentation, and product/brand artifacts. Images are presented with no masking, no rounded corners, and no overlay treatments; they sit flush in their grid cells. The image style itself is editorial: natural light, documentary tone, printed-material focus. No illustrations, no 3D renders, no abstract graphics appear in the interface itself — all visual richness comes from the project photography.",
+    "similar": [
+      {
+        "why": "Agency portfolio sites with large editorial photography, sidebar project index, and minimal typographic chrome",
+        "business": "Wieden+ Kennedy"
+      },
+      {
+        "why": "Design agency sites that function as monographs — monochrome palette, project-led grid, typographic restraint",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Minimal agency sites with hairline-bordered cards, flat surfaces, and content photography as the sole visual element",
+        "business": "Instrument"
+      },
+      {
+        "why": "Agency/brand sites using single-weight typography, no shadows, and border-based surface separation",
+        "business": "Ramotion"
+      },
+      {
+        "why": "Design studio portfolios with two-column sidebar+grid layouts and anti-decorative visual systems",
+        "business": "Manual (manualcreative.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "24-32px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full page background across sidebar and content area"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Article cards, project cards, and sidebar info blocks — same hex as canvas, separated by 1px borders"
+      }
+    ],
+    "northStar": "white-walled design library",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "heading",
+        "size": 23,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.46
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Index Card",
+        "role": "Sidebar list item showing a project name and brand icon",
+        "description": "White card with 8px radius, 16px padding, 1px Ash Gray bottom border, 40px circular brand icon on left, project name in SF Pro Text 14px weight 400 Ink Black on right, short gray description below in 12-13px."
+      },
+      {
+        "name": "Sidebar Info Block",
+        "role": "Static agency metadata panel",
+        "description": "Fixed left column, white background, no border, contains agency wordmark at top, current date/time in SF Pro Text 14px, 'About us' label in uppercase tracking, and project list. No background fill — sits directly on the page canvas."
+      },
+      {
+        "name": "Hero Image Panel",
+        "role": "Full-width dominant visual at the top of the content field",
+        "description": "Large photograph or composite, contained within the content column, no border, no radius, flush to the grid. Images bleed to the column edges without padding to maximize visual weight."
+      },
+      {
+        "name": "Article Card",
+        "role": "Content card in the three-column grid below the hero",
+        "description": "White surface, 8px border-radius, 16px padding, 1px Ash Gray border on top. Date label in SF Pro Text 14px weight 400 Ink Black at top. Title in SF Pro Display 23px weight 400 with 0.02em tracking. Body excerpt in SF Pro Text 14px Ash Gray. No shadow, no fill — relies on hairline border to separate from the canvas."
+      },
+      {
+        "name": "Date Label",
+        "role": "Timestamp displayed above article titles",
+        "description": "SF Pro Text 14px weight 400 Ink Black, left-aligned, no separator or bullet. The date is its own line, creating a clear typographic step before the headline."
+      },
+      {
+        "name": "Brand Mark Icon",
+        "role": "Circular logo thumbnail representing a project in the sidebar",
+        "description": "40-48px diameter, fully circular, contains the project's brand symbol or monogram. No border, sits directly on white. The circle is a hard mask — no rounding artifacts."
+      },
+      {
+        "name": "Toggle Switch",
+        "role": "'Show all projects' control at the top of the sidebar",
+        "description": "iOS-style toggle: 51x31px track, 27px circular thumb, white thumb with subtle shadow, Ash Gray track in off state, System Blue track in on state. Sits inline with its label text."
+      },
+      {
+        "name": "Wordmark",
+        "role": "Agency name display in the sidebar header",
+        "description": "'PORTO ROCHA' in SF Pro Display 23px weight 400 Ink Black with 0.02em tracking, all caps, centered or left-aligned. Functions as the only typographic logo element."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline interactive text for navigation and references",
+        "description": "SF Pro Text 14px weight 400 System Blue (#007aff), no underline by default, underline on hover. The System Blue is the sole chromatic element in an otherwise monochrome interface."
+      },
+      {
+        "name": "Nav Row",
+        "role": "Sidebar project listing with dividers",
+        "description": "Stacked rows separated by 1px Ash Gray horizontal borders, 16px vertical padding per row, 8px gap between icon and text. No background fill per row — white canvas shows through."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading weight — used for article titles, section headers, and the 'PORTO ROCHA' wordmark. The unusual +0.02em positive letter-spacing on display type (most sites use negative tracking on large sizes) creates a slightly more open, editorial cadence rather than a tight display feel.",
+        "sizes": "23px and up",
+        "family": "SF Pro Display",
+        "weight": "400",
+        "lineHeight": "1.17",
+        "substitute": "Inter, Helvetica Neue, system-ui",
+        "letterSpacing": "0.02em"
+      },
+      {
+        "role": "Body text, nav labels, button text, captions, project descriptions, dates. Single weight (400) across the entire system — no bold variants for emphasis; hierarchy is built through size and color alone, keeping the typographic voice flat and consistent.",
+        "sizes": "14px",
+        "family": "SF Pro Text",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "substitute": "Inter, -apple-system, BlinkMacSystemFont, Helvetica Neue"
+      }
+    ],
+    "description": "Porto Rocha is an editorial design system dressed in a gallery wall aesthetic: near-total monochrome, surgical use of one Apple-blue accent for links, and typography that behaves like a printed monograph. The interface is structurally two-column — a fixed left rail of agency metadata and project index, and a wide content field of image-led cards arranged in a three-column grid. Surfaces are flat white with hairline gray borders; elevation is communicated through stacking and whitespace, never shadows. The single blue accent (#007aff) is reserved for interactive text and active states, creating a restrained system where color only appears when something is actionable or linked. The design reads as anti-decorative: no gradients, no rounded buttons, no illustrations — content and photography carry every screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PORTO ROCHA design system\",\"item\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#style-reference\",\"name\":\"PORTO ROCHA design system reference\",\"headline\":\"PORTO ROCHA design system | Refero Styles\",\"description\":\"Explore PORTO ROCHA's light Agency design system: Ink Black #000000, Ash Gray #808080 colors, SF Pro Display, SF Pro Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\",\"mainEntityOfPage\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PORTO ROCHA\",\"url\":\"https://portorocha.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"caption\":\"Screenshot of PORTO ROCHA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PORTO ROCHA design system\",\"PORTO ROCHA website design\",\"PORTO ROCHA colors\",\"PORTO ROCHA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Ash Gray\",\"Paper White\",\"System Blue\",\"SF Pro Display\",\"SF Pro Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA design system\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA website design\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA colors\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:28:56.957Z\",\"dateModified\":\"2026-04-30T02:28:56.957Z\"}]}19:T454,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #808080 (Ash Gray) for hairlines, #000000 for emphasis borders\n- accent: #007aff (System Blue) — links and active states only\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Article Card*: White surface, 8px border-radius, 16px padding, 1px #808080 top border. Date label at top in SF Pro Text 14px #000000. Title in SF Pro Display 23px #000000, letter-spacing 0.02em. Body excerpt in SF Pro Text 14px #808080.\n2. *Sidebar Project Row*: 16px vertical padding, 1px #808080 bottom border, 40px circular brand icon on left, project name in SF Pro Text 14px #000000, short description in SF Pro Text 13px #808080 below.\n3. *Hero Image*: Full content-column width, no border, no radius, flush to grid edges. No overlay, no caption inside the image frame.\n4. *Inline Text Link*: SF Pro Text 14px #007aff, no underline at rest, underline on hover. Sits within body text copy.\n5. *Wordmark*: 'PORTO ROCHA' in SF Pro Display 23px #000000, +0.02em letter-spacing, all caps, weight 400."
+      }
+    ],
+    "elevationPhilosophy": "The design system intentionally avoids shadows entirely. Surface separation is achieved exclusively through 1px hairline borders in Ash Gray (#808080) and generous whitespace. This flat, border-driven approach gives the interface a printed/monograph quality — every element feels laid out on paper rather than floating in digital space."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "heading",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 4992,
+          "confidence": 1,
+          "prominence": 708003116.8249011,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 261,
+            "body/color": 2,
+            "card/color": 218,
+            "link/color": 1,
+            "other/fill": 20,
+            "image/color": 15,
+            "other/color": 20,
+            "button/color": 213,
+            "heading/color": 265,
+            "nav/borderColor": 1044,
+            "body/borderColor": 8,
+            "card/borderColor": 872,
+            "link/borderColor": 4,
+            "image/borderColor": 60,
+            "other/borderColor": 77,
+            "button/borderColor": 852,
+            "heading/borderColor": 1060
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "body",
+            "other"
+          ],
+          "frequency": 3340,
+          "confidence": 1,
+          "prominence": 1294526.823067505,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 52,
+            "body/color": 199,
+            "card/color": 411,
+            "other/color": 6,
+            "nav/borderColor": 208,
+            "body/borderColor": 796,
+            "card/borderColor": 1644,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#007aff",
+          "oklch": {
+            "c": 0.21771224104574957,
+            "h": 257.4238698955573,
+            "l": 0.6027647392623869
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 361,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00007061219996229566,
+      "contrastPairs": [
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#007aff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#007aff",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "button",
+            "nav"
+          ],
+          "frequency": 483
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "card",
+            "heading"
+          ],
+          "frequency": 633,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|button",
+            "rowGap|nav",
+            "paddingRight|other",
+            "marginTop|card",
+            "columnGap|card",
+            "marginBottom|button",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 878,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 212,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sf-pro-text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1449,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sf-pro-display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 214,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 14,
+          "family": "sf-pro-text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "heading",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 1449,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "sf-pro-display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 214,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/94c5056b-1135-487c-98d4-c1e6c62d0255.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PORTO ROCHA design system\",\"item\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#style-reference\",\"name\":\"PORTO ROCHA design system reference\",\"headline\":\"PORTO ROCHA design system | Refero Styles\",\"description\":\"Explore PORTO ROCHA's light Agency design system: Ink Black #000000, Ash Gray #808080 colors, SF Pro Display, SF Pro Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\",\"mainEntityOfPage\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PORTO ROCHA\",\"url\":\"https://portorocha.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/701c8312-5e98-49a8-b2c4-25f1cb66de15#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"caption\":\"Screenshot of PORTO ROCHA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4d2147bd-1244-4797-b278-4d354a65cf47.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PORTO ROCHA design system\",\"PORTO ROCHA website design\",\"PORTO ROCHA colors\",\"PORTO ROCHA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Ash Gray\",\"Paper White\",\"System Blue\",\"SF Pro Display\",\"SF Pro Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA design system\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA website design\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA colors\"},{\"@type\":\"Thing\",\"name\":\"PORTO ROCHA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:28:56.957Z\",\"dateModified\":\"2026-04-30T02:28:56.957Z\"}]}19:T454,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #808080 (Ash Gray) for hairlines, #000000 for emphasis borders\n- accent: #007aff (System Blue) — links and active states only\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Article Card*: White surface, 8px border-radius, 16px padding, 1px #808080 top border. Date label at top in SF Pro Text 14px #000000. Title in SF Pro Display 23px #000000, letter-spacing 0.02em. Body excerpt in SF Pro Text 14px #808080.\n2. *Sidebar Project Row*: 16px vertical padding, 1px #808080 bottom border, 40px circular brand icon on left, project name in SF Pro Text 14px #000000, short description in SF Pro Text 13px #808080 below.\n3. *Hero Image*: Full content-column width, no border, no radius, flush to grid edges. No overlay, no caption inside the image frame.\n4. *Inline Text Link*: SF Pro Text 14px #007aff, no underline at rest, underline on hover. Sits within body text copy.\n5. *Wordmark*: 'PORTO ROCHA' in SF Pro Display 23px #000000, +0.02em letter-spacing, all caps, weight 400."
+}

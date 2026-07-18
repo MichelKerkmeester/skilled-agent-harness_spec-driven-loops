@@ -1,0 +1,92 @@
+@theme {
+  /* Colors */
+  --color-snow-canvas: #fcfcfc;
+  --color-lavender-wash: #f0f4fe;
+  --color-midnight-ink: #020520;
+  --color-graphite-body: #14141e;
+  --color-slate-caption: #374151;
+  --color-ash-helper: #6b7280;
+  --color-stone-divider: #e2e8f0;
+  --color-fog-surface: #f1f5f9;
+  --color-royal-signal: #145aff;
+  --color-cobalt-glow: #3b82f6;
+  --color-mint-win: #16ca2e;
+  --color-coral-lost: #f26052;
+  --color-amber-pending: #ffa64d;
+  --color-azure-focus: #0099ff;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pretendard: 'Pretendard', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roboto-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-font-awesome-6-pro-light: 'Font Awesome 6 Pro Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-6-pro-solid: 'Font Awesome 6 Pro Solid', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-6-pro-regular: 'Font Awesome 6 Pro Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-6-brands-regular: 'Font Awesome 6 Brands Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.63;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.16px;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.4;
+  --tracking-heading-sm: -0.2px;
+  --text-heading: 40px;
+  --leading-heading: 1.05;
+  --tracking-heading: -1.48px;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1.05;
+  --tracking-heading-lg: -1.51px;
+  --text-display: 80px;
+  --leading-display: 1.05;
+  --tracking-display: -1.52px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-52: 52px;
+  --spacing-72: 72px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 28px;
+  --radius-3xl-3: 32px;
+  --radius-3xl-4: 40px;
+  --radius-3xl-5: 44px;
+  --radius-full: 50px;
+  --radius-full-2: 100px;
+  --radius-full-3: 300px;
+  --radius-full-4: 500px;
+  --radius-full-5: 9999px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 0px 4px -2px;
+  --shadow-sm-2: rgba(0, 0, 0, 0.25) 0px 0px 4px -2px;
+  --shadow-xl: rgba(20, 90, 255, 0.1) 0px 0px 100px -28px;
+  --shadow-sm-3: rgba(20, 90, 255, 0.3) 0px 0px 4px -2px;
+  --shadow-xl-2: rgba(20, 90, 255, 0.1) 0px 0px 50px -28px, rgba(0, 0, 0, 0.18) 0px 0px 3px -1px;
+}

@@ -1,0 +1,1366 @@
+{
+  "source": "https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13",
+  "uuid": "35ae81e1-273c-43d7-9bcd-ea186d062c13",
+  "name": "Ko-fi",
+  "northStar": "Warm café chalkboard on cream paper.",
+  "capturedAt": "2026-07-18T09:32:24.781Z",
+  "meta": {
+    "url": "https://ko-fi.com",
+    "siteName": "Ko-fi",
+    "extractedAt": "2026-06-03T19:13:56.054Z",
+    "durationMs": 30321,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 201,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px pill radius for every button, tag, input, and nav CTA — sharp corners break the tactile language",
+      "Use bogue-black (or Bowlby One substitute) only for display headings 48px and above — DM Sans for everything else",
+      "Wrap all card and image surfaces in a 2-3px solid #000000 border instead of adding drop shadows — the sticker outline is the elevation system",
+      "Reserve Kofi Blue (#aac9f7) exclusively for the single primary action per view; let it win attention by being the only color on screen",
+      "Maintain the cream canvas (#e5e7eb) as the universal page background — never introduce pure white or pure gray as the base",
+      "Keep all icon glyphs at 20px in the same family weight — consistent icon size preserves the sticker-book rhythm",
+      "Pair every category tag with a leading Font Awesome solid icon to reinforce the playful, labeled-sticker feel"
+    ],
+    "donts": [
+      "Don't use drop shadows on cards, buttons, or images — the black border replaces elevation and shadows would muddy the craft aesthetic",
+      "Don't introduce additional chromatic accents beyond Kofi Blue and its hover state — the warm-neutral-plus-one-blue palette is the identity",
+      "Don't use DM Sans at 40px+ for headings — it loses the chunky display quality; switch to bogue-black or its substitute",
+      "Don't place interactive elements on pure white #ffffff as the page background — the cream canvas is what makes the system feel warm",
+      "Don't use square or slightly-rounded (4-8px) corners on buttons, tags, or inputs — pill is the only acceptable radius for interactive elements",
+      "Don't apply the Sticker Black border to text or background blocks — reserve it for photo and card surfaces where the outline reads as a die-cut shape",
+      "Don't use the bogue-black display font for body, nav, button, or input text — its weight and personality overwhelm functional UI"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e9dfd2",
+        "name": "Oat Cream",
+        "role": "Secondary surface — feature card backgrounds, warm button fills, tag backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Morning Fog",
+        "role": "Page canvas, subtle borders, hairline dividers — the base everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202020",
+        "name": "Ink Black",
+        "role": "Primary text, dark filled buttons, dark icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Sticker Black",
+        "role": "Heavy borders on cards, images, and the logo wordmark — the signature outline that makes elements feel cut from paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces above the cream canvas, text on dark buttons, input field fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aac9f7",
+        "name": "Kofi Blue",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#72a4f2",
+        "name": "Cobalt Pop",
+        "role": "Primary action hover/pressed state, saturated Kofi Blue variant",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container on a full-bleed cream canvas. Hero is centered: large bogue-black display headline, DM Sans subtitle, single blue pill CTA, then illustration below. Sections alternate between centered text blocks and 3-column card grids. Category sections use wrapped rows of pill-shaped tags. Creator showcases are 3-up grids of sticker-bordered photo cards. Navigation is a minimal floating top bar with logo left, links center-right, dark pill CTA right. Section gaps of 40-80px create generous breathing room between rhythm blocks.",
+    "imagery": "Photography is creator-focused portraiture — direct, warm, eye-contact-with-camera shots at close crop, shown full-bleed inside 40px-radius sticker frames with a 2-3px black border. Illustrations are hand-drawn line art of rounded mascot characters (ghost, heart, bean) with selective flat color fills in Kofi Blue and warm cream. The coffee-cup-with-heart logo is a recurring illustration motif. No 3D renders, no stock photography, no abstract gradients — everything reads as either a friendly human portrait or a hand-drawn mascot.",
+    "similar": [
+      {
+        "why": "Same warm-cream canvas with a single playful color accent, and creator-portrait cards with rounded edges and friendly typography",
+        "business": "Gumroad"
+      },
+      {
+        "why": "Direct competitor with the same creator-tip focus, shared hand-drawn mascot illustration style, and rounded-everything button and card system",
+        "business": "Buy Me a Coffee"
+      },
+      {
+        "why": "Similar zine-quality custom display headlines, cream-and-black palette, and sticker-bordered editorial card layouts",
+        "business": "Substack"
+      },
+      {
+        "why": "Same pill-shaped buttons and capsule input fields, though Notion is colder and more utilitarian — the structural DNA of soft-rounded controls overlaps",
+        "business": "Notion"
+      },
+      {
+        "why": "Stripped-back warm aesthetic with one accent color, chunky display type, and an unapologetically craft, non-corporate personality",
+        "business": "Craigslist (reimagined)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "40px",
+        "inputs": "9999px",
+        "buttons": "9999px",
+        "feature-cards": "24px",
+        "small-elements": "16px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "64px",
+      "cardPadding": "28px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background — warm light gray that softens the whole experience"
+      },
+      {
+        "hex": "#e9dfd2",
+        "name": "Oat Surface",
+        "level": 2,
+        "purpose": "Feature card and section backgrounds with extra warmth"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 3,
+        "purpose": "Elevated card surface sitting on the cream canvas"
+      },
+      {
+        "hex": "#aac9f7",
+        "name": "Blue Wash",
+        "level": 4,
+        "purpose": "Brand-tinted footer or highlight band — the warmest chromatic surface"
+      }
+    ],
+    "northStar": "Warm café chalkboard on cream paper.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 72,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button (Kofi Blue)",
+        "role": "Primary call-to-action — the one button per view that drives conversion",
+        "description": "Filled Kofi Blue (#aac9f7) with #202020 text, 9999px pill radius, 20px vertical and 20-28px horizontal padding, DM Sans 16px weight 600. Sits on cream canvas where it reads as the single most important action. Hover/pressed shifts to Cobalt Pop (#72a4f2)."
+      },
+      {
+        "name": "Pill Dark Button",
+        "role": "Secondary action in nav and high-contrast contexts",
+        "description": "Filled Ink Black (#202020) with #ffffff text, 9999px pill radius, 20px padding all sides, DM Sans 14-16px weight 600. Used for 'Sign up free' in the nav — the always-visible account action."
+      },
+      {
+        "name": "Pill Outline Button (Learn More)",
+        "role": "Tertiary action on feature cards and content sections",
+        "description": "Ink Black (#202020) text on white card surface, 9999px pill radius, 20px padding, no border. Label appears as a standalone pill. Used for 'Learn how Ko-fi works' on feature blocks."
+      },
+      {
+        "name": "Sticker Card (Creator Profile)",
+        "role": "Profile showcase card for creator directory and testimonials",
+        "description": "White (#ffffff) fill, 40px radius, 2-3px solid #000000 border. No shadow — the black border IS the elevation. Contains a full-bleed photo (also 40px radius) above creator info. The sticker effect is the signature visual moment of the whole system."
+      },
+      {
+        "name": "Oat Feature Card",
+        "role": "Large feature block like 'Payday your way'",
+        "description": "Oat Cream (#e9dfd2) fill, 24px radius, generous 40-80px padding, contains a bogue-black display heading, DM Sans body copy, and a pill outline button. Sits inside a white card frame on the cream canvas."
+      },
+      {
+        "name": "Category Tag Pill",
+        "role": "Filter and creator-type chip — 'Streamers', 'Artists', 'Writers', etc.",
+        "description": "White fill, 9999px pill radius, 20px horizontal padding, DM Sans 16px weight 400 in Ink Black. Active state gets a 2px Ink Black border. Each tag leads with a 20px Font Awesome solid icon in its natural brand color."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "description": "Transparent over the cream canvas, 9999px pill for the dark 'Sign up free' button, nav links in DM Sans 16px weight 400. Logo is a chunky bogue-black 'Ko-fi' wordmark with a coffee-cup icon. No background bar — nav floats on the canvas. Padding 16-20px vertical."
+      },
+      {
+        "name": "Pill Input Field",
+        "role": "Email/name input for signup and search",
+        "description": "White (#ffffff) fill, 9999px pill radius, 28px horizontal padding, 2px Ink Black border, DM Sans 16px placeholder. Border thickens or shifts to Kofi Blue on focus. No sharp corners anywhere."
+      },
+      {
+        "name": "Logo Wordmark Lockup",
+        "role": "Brand identity mark in nav and footer",
+        "description": "bogue-black 'Ko-fi' text in Ink Black, paired with a rounded coffee-cup icon with a heart on the cup. The coffee cup fill is a warm orange-red (the brand's secondary signal). Surrounded by a 2px black sticker border when used as a standalone badge."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Section opener with display heading and subtitle",
+        "description": "Centered bogue-black heading at 60px line-height 1.0, followed by DM Sans 20px subheading in Ink Black. Generous 40-64px bottom margin before content. Creates the 'chapter title' rhythm that structures the page."
+      },
+      {
+        "name": "Creator Photo Tile",
+        "role": "Image-first card for creator directory",
+        "description": "Photo fills a 40px-radius tile with a 2-3px #000000 border, white frame around the photo. No caption inside the tile — info lives in adjacent text. Photos are not cropped to square; they keep natural aspect within the rounded frame."
+      },
+      {
+        "name": "Feature Illustration Block",
+        "role": "Decorative hero artwork like the three character mascots",
+        "description": "Hand-drawn line illustrations with selective Kofi Blue accent fills, no background container, sits directly on the cream canvas. Characters are outlined in black, flat colored, playful proportions. The illustration IS the emotional hook of the hero."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and section display headlines — a custom chunky rounded display face used only at 60px+ to stamp the page with a hand-set zine quality",
+        "sizes": "60px, 72px",
+        "family": "bogue-black",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Bowlby One, Lilita One, or Sniglet"
+      },
+      {
+        "role": "All UI text: nav links, body copy, button labels, subheadings, card titles, input fields, and footer text — clean geometric sans carrying all functional typography",
+        "sizes": "14px, 16px, 20px, 24px, 30px",
+        "family": "DM Sans",
+        "weight": "400, 600",
+        "lineHeight": "1.20-1.50"
+      },
+      {
+        "role": "Solid icon glyphs for category tags and feature markers",
+        "sizes": "20px",
+        "family": "Font Awesome 6 Pro",
+        "weight": "900",
+        "lineHeight": "1.00",
+        "substitute": "Font Awesome 5 Free Solid"
+      },
+      {
+        "role": "Brand/social icon glyphs",
+        "sizes": "20px",
+        "family": "Font Awesome 6 Brands",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Font Awesome 5 Brands"
+      }
+    ],
+    "description": "Ko-fi reads like a warm indie café menu printed on recycled card stock. A cream page canvas replaces the cold white typical of creator tools, and a custom chunky display font stamps hero headlines with a hand-set zine energy while DM Sans keeps everything readable. Every interactive element is aggressively rounded — pill buttons, pillow-soft cards, capsule inputs — giving the whole system a tactile, sticker-book quality. Black 2-3px borders wrap photo and card surfaces instead of shadows, reinforcing the cut-out-and-paste craft aesthetic. A single soft periwinkle blue punctuates the otherwise warm neutral palette as the one and only accent, reserved for primary actions so they always feel like the most important thing on screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ko-fi design system\",\"item\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#style-reference\",\"name\":\"Ko-fi design system reference\",\"headline\":\"Ko-fi design system | Refero Styles\",\"description\":\"Explore Ko-fi's light SaaS design system: Oat Cream #e9dfd2, Morning Fog #e5e7eb colors, bogue-black, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\",\"mainEntityOfPage\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ko-fi\",\"url\":\"https://ko-fi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"caption\":\"Screenshot of Ko-fi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ko-fi design system\",\"Ko-fi website design\",\"Ko-fi colors\",\"Ko-fi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Oat Cream\",\"Morning Fog\",\"Ink Black\",\"Sticker Black\",\"bogue-black\",\"DM Sans\",\"Font Awesome 6 Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ko-fi design system\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi website design\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi colors\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:59:30.434Z\",\"dateModified\":\"2026-05-07T22:59:30.434Z\"}]}19:T5b4,Quick Color Reference:\n- canvas/background: #e5e7eb (Morning Fog)\n- text/primary: #202020 (Ink Black)\n- text/on-dark: #ffffff (Paper White)\n- border/sticker: #000000 (Sticker Black)\n- card/surface: #ffffff (Paper White)\n- accent/feature: #e9dfd2 (Oat Cream)\n- primary action: #72a4f2 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #72a4f2 background, #202020 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a 3-column creator card grid: each card white (#ffffff) with 2px solid #000000 border, 40px radius, no shadow. Photo at top fills a 40px-radius area. Creator name in DM Sans 20px weight 600 #202020, handle in DM Sans 16px weight 400 #202020 below. 28px padding inside card.\n\n3. Create a category tag row: 6-8 pill tags in a wrapped flex layout. Each tag white fill, 9999px radius, 20px horizontal padding, DM Sans 16px weight 400 in #202020. Leading 20px Font Awesome solid icon. Active tag gets a 2px #202020 border.\n\n4. Create a feature block: outer card white (#ffffff) with 24px radius, 40-80px padding. Inner feature panel with #e9dfd2 fill, 24px radius. bogue-black heading at 60px, DM Sans body at 16px. Outline pill button: #202020 text on white, 9999px radius, 20px padding.\n\n5. Create a pill input field: #ffffff fill, 9999px radius, 28px horizontal padding, 2px solid #000000 border, DM Sans 16px placeholder in muted gray. On focus, border shifts to #aac9f7."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Ko-fi deliberately avoids drop shadows. The system uses a 2-3px solid #000000 border as its sole elevation mechanism on cards, images, and the logo lockup. This creates a flat sticker-book aesthetic where elements feel cut from paper and placed on a warm canvas, rather than floating above it. The black border must always be paired with a generous radius (24px or 40px) so it reads as a die-cut outline rather than a hard frame. No box-shadows, no glow effects, no layered ambient lighting — the cream canvas itself provides all the depth the design needs."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "heading",
+            "other",
+            "button",
+            "image",
+            "body",
+            "icon",
+            "link",
+            "card",
+            "input",
+            "footer",
+            "badge"
+          ],
+          "frequency": 702,
+          "confidence": 1,
+          "prominence": 9514257.567679277,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 64,
+            "body/borderColor": 12,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 136,
+            "badge/borderColor": 4,
+            "image/borderColor": 16,
+            "input/borderColor": 8,
+            "other/borderColor": 256,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 128,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "heading",
+            "other",
+            "button",
+            "image",
+            "card",
+            "icon",
+            "body",
+            "link",
+            "input",
+            "footer",
+            "badge"
+          ],
+          "frequency": 209,
+          "confidence": 1,
+          "prominence": 7760638.990209366,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "body/color": 2,
+            "card/color": 10,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 34,
+            "badge/color": 1,
+            "image/color": 7,
+            "input/color": 1,
+            "other/color": 67,
+            "button/color": 11,
+            "footer/color": 1,
+            "heading/color": 32,
+            "card/borderColor": 8,
+            "button/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "card",
+            "image",
+            "other"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 5867969.014709928,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 20,
+            "image/borderColor": 12,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "button",
+            "body",
+            "input"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 4024056,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "input/color": 1,
+            "button/color": 2,
+            "card/backgroundColor": 8,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#aac9f7",
+          "oklch": {
+            "c": 0.07315706892376145,
+            "h": 258.1150501666107,
+            "l": 0.8290632486904438
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 2240502.9910194264,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e9dfd2",
+          "oklch": {
+            "c": 0.02062222927902446,
+            "h": 74.64976225332158,
+            "l": 0.9080498619835403
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 101307.64983604167,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 36,
+            "button/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#72a4f2",
+          "oklch": {
+            "c": 0.12660522764358448,
+            "h": 259.0074191963258,
+            "l": 0.7161862098049976
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 11374,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff5a16",
+          "oklch": {
+            "c": 0.2118822391720054,
+            "h": 38.66839917094434,
+            "l": 0.6819636753179172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 800,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016535170406323445,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.95,
+          "background": "#e9dfd2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#e5e7eb",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.41,
+          "background": "#aac9f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.38,
+          "background": "#e9dfd2",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#aac9f7",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.31,
+          "background": "#72a4f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.45,
+          "background": "#72a4f2",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.22,
+          "background": "#202020",
+          "foreground": "#ff5a16"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.12,
+          "background": "#ffffff",
+          "foreground": "#ff5a16"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.53,
+          "background": "#72a4f2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.52,
+          "background": "#e5e7eb",
+          "foreground": "#ff5a16"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.37,
+          "background": "#e9dfd2",
+          "foreground": "#ff5a16"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#aac9f7",
+          "foreground": "#ff5a16"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.69,
+          "background": "#aac9f7",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#e9dfd2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e5e7eb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#72a4f2",
+          "foreground": "#ff5a16"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "input"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "card",
+            "footer",
+            "badge"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|footer",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "footer",
+            "card",
+            "link"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingLeft|body",
+            "paddingBottom|footer",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "input"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "hero",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 78,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "footer"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card",
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 142,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 190,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 285,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|hero",
+            "marginLeft|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 189,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "bogue-black",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 6 Pro",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 6 Brands",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "image",
+            "card",
+            "link",
+            "footer",
+            "icon"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DM Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "input",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Font Awesome 6 Pro",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Font Awesome 6 Brands",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DM Sans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "DM Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "heading"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "bogue-black",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "bogue-black",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/21a5172e-6194-472f-a7bb-be853dcde462.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ko-fi design system\",\"item\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#style-reference\",\"name\":\"Ko-fi design system reference\",\"headline\":\"Ko-fi design system | Refero Styles\",\"description\":\"Explore Ko-fi's light SaaS design system: Oat Cream #e9dfd2, Morning Fog #e5e7eb colors, bogue-black, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\",\"mainEntityOfPage\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ko-fi\",\"url\":\"https://ko-fi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/35ae81e1-273c-43d7-9bcd-ea186d062c13#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"caption\":\"Screenshot of Ko-fi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/69abaa31-acf6-4ebb-979f-c7470aa7778d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ko-fi design system\",\"Ko-fi website design\",\"Ko-fi colors\",\"Ko-fi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Oat Cream\",\"Morning Fog\",\"Ink Black\",\"Sticker Black\",\"bogue-black\",\"DM Sans\",\"Font Awesome 6 Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ko-fi design system\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi website design\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi colors\"},{\"@type\":\"Thing\",\"name\":\"Ko-fi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:59:30.434Z\",\"dateModified\":\"2026-05-07T22:59:30.434Z\"}]}19:T5b4,Quick Color Reference:\n- canvas/background: #e5e7eb (Morning Fog)\n- text/primary: #202020 (Ink Black)\n- text/on-dark: #ffffff (Paper White)\n- border/sticker: #000000 (Sticker Black)\n- card/surface: #ffffff (Paper White)\n- accent/feature: #e9dfd2 (Oat Cream)\n- primary action: #72a4f2 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #72a4f2 background, #202020 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a 3-column creator card grid: each card white (#ffffff) with 2px solid #000000 border, 40px radius, no shadow. Photo at top fills a 40px-radius area. Creator name in DM Sans 20px weight 600 #202020, handle in DM Sans 16px weight 400 #202020 below. 28px padding inside card.\n\n3. Create a category tag row: 6-8 pill tags in a wrapped flex layout. Each tag white fill, 9999px radius, 20px horizontal padding, DM Sans 16px weight 400 in #202020. Leading 20px Font Awesome solid icon. Active tag gets a 2px #202020 border.\n\n4. Create a feature block: outer card white (#ffffff) with 24px radius, 40-80px padding. Inner feature panel with #e9dfd2 fill, 24px radius. bogue-black heading at 60px, DM Sans body at 16px. Outline pill button: #202020 text on white, 9999px radius, 20px padding.\n\n5. Create a pill input field: #ffffff fill, 9999px radius, 28px horizontal padding, 2px solid #000000 border, DM Sans 16px placeholder in muted gray. On focus, border shifts to #aac9f7."
+}

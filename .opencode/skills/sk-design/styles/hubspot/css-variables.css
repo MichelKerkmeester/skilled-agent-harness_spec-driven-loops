@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --color-sprout-orange: #ff4800;
+  --color-canvas-cream: #fcfcfa;
+  --color-warm-parchment: #f8f5ee;
+  --color-ink: #1f1f1f;
+  --color-pure-black: #000000;
+  --color-graphite: #60605f;
+  --color-mist: #cacac8;
+  --color-peach-wash: #fcded2;
+  --color-deep-teal: #042729;
+  --color-sprocket-gradient: #ff4900;
+  --gradient-sprocket-gradient: linear-gradient(257deg, rgba(251, 221, 208, 0.3) -32.4%, rgba(255, 165, 129, 0.3) -3.42%, rgba(255, 73, 0, 0.3) 23.87%, rgba(251, 223, 233, 0.3) 50.46%, rgba(253, 191, 219, 0.3) 79.15%, rgba(249, 57, 166, 0.3) 103.64%);
+
+  /* Typography — Font Families */
+  --font-hubspot-sans: 'HubSpot Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hubspot-serif: 'HubSpot Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-hubspot-serif-page-header-human: 'HubSpot Serif Page Header Human', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.6;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.57;
+  --text-body: 16px;
+  --leading-body: 1.56;
+  --text-subheading: 18px;
+  --leading-subheading: 1.67;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.45;
+  --text-heading: 24px;
+  --leading-heading: 1.42;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.15;
+  --text-heading-xl: 48px;
+  --leading-heading-xl: 1.1;
+  --text-display: 80px;
+  --leading-display: 1.19;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64-80px;
+  --card-padding: 24-32px;
+  --element-gap: 16-24px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-cards: 16px;
+  --radius-badges: 4px;
+  --radius-images: 16px;
+  --radius-buttons: 8px;
+
+  /* Surfaces */
+  --surface-page-canvas: #fcfcfa;
+  --surface-parchment-band: #f8f5ee;
+  --surface-peach-wash: #fcded2;
+  --surface-card-surface: #fcfcfa;
+}

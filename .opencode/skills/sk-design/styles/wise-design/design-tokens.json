@@ -1,0 +1,370 @@
+{
+  "color": {
+    "lime-volt": {
+      "$value": "#87ea5c",
+      "$type": "color",
+      "$description": "Lime Volt — Hero backgrounds, pill button fill, category tag backgrounds — the single most identifiable brand signal; vivid green against dark ink creates energy no fintech blue could achieve"
+    },
+    "forest-ink": {
+      "$value": "#083400",
+      "$type": "color",
+      "$description": "Forest Ink — Primary text, dark headlines on lime, nav links, icon fills — deep forest green instead of black keeps everything on-brand even at body size"
+    },
+    "volt-yellow": {
+      "$value": "#ffea4b",
+      "$type": "color",
+      "$description": "Volt Yellow — Accent headlines, decorative text color on dark backgrounds — electric yellow that pairs with deep burgundy for maximum punch"
+    },
+    "papaya": {
+      "$value": "#ffbd89",
+      "$type": "color",
+      "$description": "Papaya — Warm accent card backgrounds, decorative section highlights"
+    },
+    "cotton-candy": {
+      "$value": "#ffd5f0",
+      "$type": "color",
+      "$description": "Cotton Candy — Soft accent backgrounds, section highlights in the mosaic grid"
+    },
+    "aubergine-night": {
+      "$value": "#2a0831",
+      "$type": "color",
+      "$description": "Aubergine Night — Dark card backgrounds, high-contrast panels in the content grid — deep purple-black that isn't neutral"
+    },
+    "crimson-depth": {
+      "$value": "#370305",
+      "$type": "color",
+      "$description": "Crimson Depth — Dark editorial backgrounds, heading color on light panels — near-black red that reads as richly dark without being neutral"
+    },
+    "fog": {
+      "$value": "#58717a",
+      "$type": "color",
+      "$description": "Fog — Secondary body text, border colors, UI chrome"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Page backgrounds, card surfaces, section backgrounds between color blocks"
+    },
+    "positive": {
+      "$value": "#008026",
+      "$type": "color",
+      "$description": "Positive — Success states, positive transaction indicators"
+    },
+    "negative": {
+      "$value": "#cf2929",
+      "$type": "color",
+      "$description": "Negative — Error states, negative transaction indicators"
+    },
+    "accent-blue": {
+      "$value": "#0097c7",
+      "$type": "color",
+      "$description": "Accent Blue — Interactive accent links, focus states"
+    },
+    "warning": {
+      "$value": "#9a6500",
+      "$type": "color",
+      "$description": "Warning — Warning states, attention-needed transaction labels"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All UI text: nav links, body copy, subheadings, and medium display text. Weight 400 for body, 600 for subheadings and labels. The 'ss01' feature setting and negative letter-spacing at large sizes (-0.03em at 72px down to -0.005em at 22px) keep it tight without feeling condensed."
+    },
+    "wise-sans": {
+      "$value": "Wise Sans",
+      "$type": "fontFamily",
+      "$description": "Hero and section display headlines exclusively. Weight 900 at 0.85 line-height is the defining typographic move — lines of text stack so tightly the cap-height of one line nearly touches the descender zone of the line above, creating billboard-compressed stacked type. This is the visual signature of the design system."
+    },
+    "zen-kaku-gothic-new": {
+      "$value": "Zen Kaku Gothic New",
+      "$type": "fontFamily",
+      "$description": "Single-use mega-display for CJK character showcase — demonstrates multilingual typographic range of the system"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "45px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 0.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Wise Sans",
+        "fontSize": "187px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 187px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Wise Sans",
+        "fontSize": "288px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 288px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Wise Sans",
+        "fontSize": "306px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 306px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Wise Sans",
+        "fontSize": "374px",
+        "fontWeight": 400,
+        "lineHeight": 0.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 374px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "432px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 432px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Zen Kaku Gothic New",
+        "fontSize": "432px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 432px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Wise Sans",
+        "fontSize": "562px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 562px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "101": {
+      "$value": "101px",
+      "$type": "dimension",
+      "$description": "Spacing 101px"
+    },
+    "202": {
+      "$value": "202px",
+      "$type": "dimension",
+      "$description": "Spacing 202px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "86.4px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1152px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wise.design",
+      "siteName": "Wise Design",
+      "extractedAt": "2026-04-11T21:48:17.504Z",
+      "variant": "extended"
+    }
+  }
+}

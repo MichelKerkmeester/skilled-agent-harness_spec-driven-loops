@@ -1,0 +1,1420 @@
+{
+  "source": "https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352",
+  "uuid": "896f0ea9-6f1a-40a6-aba7-fdaa579c7352",
+  "name": "Foundry",
+  "northStar": "orange-lit type cathedral — a black room where enormous illuminated letterforms hang as exhibits and the only guide rails are pale wireframe borders and one neon marker color.",
+  "capturedAt": "2026-07-18T08:14:06.494Z",
+  "meta": {
+    "url": "https://foundry.basement.studio",
+    "siteName": "Foundry",
+    "extractedAt": "2026-06-03T17:52:01.302Z",
+    "durationMs": 38900,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 450,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use JetBrains Mono 400 for all UI chrome — nav, labels, metadata, buttons, section headers. It is the operating-system font.",
+      "Set sidebar items and button text in uppercase with 0.04em letter-spacing; reserve tight tracking (-0.02em) for running body text only.",
+      "Use the orange #ff4d00 only as a 1px outlined border or as a text accent — never as a filled background. The outlined-buy-now button is the canonical use.",
+      "Keep all corners sharp: 2.8px for nav, tags, and buttons; 8px only for larger card containers. Nothing round.",
+      "Build depth through color inversion (bone-white panel on near-black canvas) and hairline #e2e8f0 borders — never through drop shadows.",
+      "Let one display typeface fill the full width of its section at 90–234px; treat the specimen area as an exhibition, not a constrained content card.",
+      "Pair every action button with a ghost companion (e.g. outlined orange BUY NEXT to ghost white EXPLORE) in the same row."
+    ],
+    "donts": [
+      "Don't fill buttons or surfaces with #ff4d00 — it is exclusively a stroke and text accent.",
+      "Don't introduce new accent colors; the palette is monochromatic neutrals plus exactly one chromatic voice.",
+      "Don't apply drop shadows or heavy elevation to any component; the system is flat by design.",
+      "Don't set body copy or metadata in the display typefaces — those are specimen content, not UI fonts.",
+      "Don't use radii larger than 8px anywhere; the 2.8px tag radius is a signature and any rounding larger breaks the blueprint feel.",
+      "Don't use Inter for labels, buttons, or metadata — reserve it for paragraph-length supporting copy only.",
+      "Don't center the page layout: the sidebar is fixed-left, content is left-aligned within its column, and the canvas extends right."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ff4d00",
+        "name": "Ember Orange",
+        "role": "Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#121212",
+        "name": "Foundry Black",
+        "role": "Page background, section canvas, main surface — the dominant ground that lets white type and orange accents read as luminous",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Chalk White",
+        "role": "Hairline borders, nav rules, link underlines, tag outlines — the wireframe color that constructs the entire UI scaffold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone White",
+        "role": "Primary body and UI text, icon strokes, button text, secondary surface fills — the readable text color and the inverse fill used for emphasized controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a3a3a",
+        "name": "Soot",
+        "role": "Low-contrast structural borders, subtle dividers between stacked sections — the quietest rule line, only visible against the bone-white inverted surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#747474",
+        "name": "Ash",
+        "role": "Muted helper text, inactive labels, secondary metadata — recedes so the monospace chrome can carry hierarchy without competing with display type",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Fixed-left sidebar (≈200px) holding all primary navigation as labeled tags grouped by section, with a persistent logo at the top and a small footer block (legal, social, support links). The main content area extends right to a max-width of ~1440px, starting with a full-bleed ticker bar, then a hero section that occupies the full content width with a massive specimen and a quiet body-copy footnote, then a vertical stack of full-width specimen cards separated by 1px hairline rules. No centered hero, no alternating light/dark bands — the canvas stays near-black throughout and emphasis comes from occasional inverted bone-white surfaces and the orange accent. Spacing is compact: ~64px between major sections, ~8–10px between chrome elements.",
+    "imagery": "Imagery is entirely typographic. The hero is a large 3D graffiti-style rendering of a display face in orange-on-black that fills the viewport; subsequent sections are full-bleed type specimens at 90–234px. No photography, no illustration, no icons beyond small geometric monospace markers (L-bracket section leaders, triangle separators in the ticker, Aa glyph-toggle icons). The visual language is type-as-image, with the only texture coming from the layered 3D extrusion of the hero specimen.",
+    "similar": [
+      {
+        "why": "Same product-as-interface logic — the homepage is a wall of massive type specimens, dark canvas, monospaced chrome",
+        "business": "Dinamo Font Gauntlet (ABC Dinamo)"
+      },
+      {
+        "why": "Type foundry site with fixed left sidebar, dark background, and oversized display specimens filling the viewport with minimal UI decoration",
+        "business": "OH no Type"
+      },
+      {
+        "why": "Dark-mode catalog site that treats specimen type as hero content and keeps UI chrome tight and monospaced",
+        "business": "Grilli Type"
+      },
+      {
+        "why": "Bold display-first type foundry with sharp corners, dark canvas, and minimal-color UI letting the typefaces do all the visual work",
+        "business": "Pangram Pangram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "2.8px",
+        "tags": "2.8px",
+        "cards": "8px",
+        "buttons": "2.8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "15px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#121212",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — the dark room the type hangs in"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Inverted Surface",
+        "level": 1,
+        "purpose": "Bone-white panels used for featured inversions and emphasized controls; rare but high-contrast"
+      }
+    ],
+    "northStar": "orange-lit type cathedral — a black room where enormous illuminated letterforms hang as exhibits and the only guide rails are pale wireframe borders and one neon marker color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.04
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.32,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.95,
+        "letterSpacing": 0.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Nav Item (Tag)",
+        "role": "Navigation entry styled as a labeled tag, the primary wayfinding element",
+        "description": "Inverted surface fill (#efefef) with #121212 text; 2.8px radius; ~10px vertical padding and 6–10px horizontal padding; 12–14px JetBrains Mono 400, uppercase, letter-spacing 0.04em. When a count badge appears (e.g. \"10\"), the number is a separate inline pill in the same color, no border separator."
+      },
+      {
+        "name": "Sidebar Section Header",
+        "role": "Group label above nav tag clusters",
+        "description": "No background; 12–14px JetBrains Mono 700 (or 400 with +0.06em tracking), uppercase, #efefef; preceded by a small geometric marker (L-shaped bracket in #efefef)."
+      },
+      {
+        "name": "Outlined Action Button (BUY NOW)",
+        "role": "Primary commercial action",
+        "description": "Transparent fill; 1px solid #ff4d00 border; 2.8px radius; 10px 15px padding; 12–14px JetBrains Mono 400, uppercase, letter-spacing 0.04em, #ff4d00 text. The orange outline is the entire signal — no fill, no shadow."
+      },
+      {
+        "name": "Ghost Action Button (EXPLORE)",
+        "role": "Secondary action paired with the outlined CTA",
+        "description": "Transparent fill; 1px solid #efefef border; 2.8px radius; 10px 15px padding; 12–14px JetBrains Mono 400, uppercase, #efefef text and border."
+      },
+      {
+        "name": "Font Specimen Card",
+        "role": "Showcase block for a single typeface in the catalog grid",
+        "description": "Full-width band on #121212 canvas, separated by a 1px #e2e8f0 hairline at the top. Interior: a top metadata strip (font name on the left, \"N STYLES / N HEIGHTS\" plus a glyph-size toggle and mode toggle in the center, action buttons on the right), then a generous vertical gap to the display specimen set at 90–234px. No card background, no shadow — the hairline border IS the card chrome."
+      },
+      {
+        "name": "Metadata Strip",
+        "role": "Top utility bar of each specimen section",
+        "description": "Single horizontal row, 12–14px JetBrains Mono 400 uppercase, #efefef text; 1px #e2e8f0 bottom border. Houses: section name (left), type stats and toggles (center), action buttons (right). 10–15px vertical padding."
+      },
+      {
+        "name": "Ticker / Announcement Bar",
+        "role": "Scrolling top-of-page notification",
+        "description": "1px tall hairline border in #e2e8f0, dark fill; inline monospaced text scrolling horizontally; small geometric triangle markers as separators between phrases."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier, top-left, persistent across screens",
+        "description": "Two-line stacked wordmark in Basement Grotesque (or equivalent heavy display face) set in #ff4d00 — \"BASEMENT\" over \"FOUNDRY.\" The period is part of the mark. Orange against black is the loudest single element on any screen."
+      },
+      {
+        "name": "Body Copy Block",
+        "role": "Long-form descriptive paragraph",
+        "description": "Inter 400, 14–16px, line-height 1.5, #efefef; sits below a specimen as a quiet explanatory footnote. Constrained to roughly 40–50ch column width."
+      },
+      {
+        "name": "Glyph Toggle / Mode Pill",
+        "role": "Small control switching the displayed character set or display mode",
+        "description": "Inline JetBrains Mono 12–14px, uppercase; current state shown with a small icon glyph (Aa, ¶, etc.) rather than a colored fill; sits inside the metadata strip."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The operating-system font: drives the sidebar navigation, font-spec labels, button text, metadata strips, and body copy. Treated as a UI element itself — uppercase, tracked-out (0.04–0.06em) for labels, tight (-0.02em) for body. Its monospaced geometry is the visual signature of every chrome component.",
+        "sizes": "12px, 14px, 18px",
+        "family": "JetBrains Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.14, 1.29, 1.30, 1.32, 1.40, 1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "-0.02em, 0.01em, 0.04em, 0.06em"
+      },
+      {
+        "role": "Secondary text voice for longer-form copy blocks and supporting paragraphs that need a less technical rhythm than the monospace. Appears sparingly so the monospace remains the dominant signal.",
+        "sizes": "14px, 16px, 18px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.29, 1.30, 1.50",
+        "substitute": "Inter, system-ui, -apple-system, Segoe UI",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Display specimens — the products. Each fills a full-width section at monumental size, set tight (0.95–1.10 leading) with a hair of positive tracking. An AI agent should treat these as content blocks to be authored, not as system fonts to be re-created; substitute with the user's own display typefaces at proportional sizes.",
+        "sizes": "90px (FFFLAUTA) → 120px (Basement Grotesque, B-Mecha) → 156–234px (the rest)",
+        "family": "Basement Grotesque, FFFLAUTA, B-Mecha, Bunker, Caniche, Carpenter, Curia, Adhesion, Trovador, XER0, Blob",
+        "weight": "400 (each is a single-weight specimen)",
+        "lineHeight": "0.95–1.20",
+        "letterSpacing": "0.01em"
+      },
+      {
+        "role": "FFFLAUTA 400 — detected in extracted data but not described by AI",
+        "sizes": "90px",
+        "family": "FFFLAUTA 400",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Basement Grotesque Black Expanded — detected in extracted data but not described by AI",
+        "sizes": "120px",
+        "family": "Basement Grotesque Black Expanded",
+        "weight": "400",
+        "lineHeight": "0.95",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Mecha Regular — detected in extracted data but not described by AI",
+        "sizes": "120px",
+        "family": "Mecha Regular",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Curia Regular — detected in extracted data but not described by AI",
+        "sizes": "156px",
+        "family": "Curia Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Adhesion Regular — detected in extracted data but not described by AI",
+        "sizes": "164px",
+        "family": "Adhesion Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Carpenter Regular — detected in extracted data but not described by AI",
+        "sizes": "169px",
+        "family": "Carpenter Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Bunker Regular — detected in extracted data but not described by AI",
+        "sizes": "185px",
+        "family": "Bunker Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Trovador Regular — detected in extracted data but not described by AI",
+        "sizes": "198px",
+        "family": "Trovador Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "XER0 Regular — detected in extracted data but not described by AI",
+        "sizes": "198px",
+        "family": "XER0 Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Caniche Regular — detected in extracted data but not described by AI",
+        "sizes": "203px",
+        "family": "Caniche Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      },
+      {
+        "role": "Blob Regular — detected in extracted data but not described by AI",
+        "sizes": "234px",
+        "family": "Blob Regular",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "0.01"
+      }
+    ],
+    "description": "Foundry is a type foundry presented as a dark workbench where the products are also the interface. A near-black canvas (#121212) hosts sharp-cornered UI chrome built almost entirely from monospaced text and hairline borders, giving the whole site the feel of a developer's terminal crossed with a gallery wall. The only chromatic voice is a vivid orange (#ff4d00) used as a structural accent on the logo, outlined action borders, and selective highlights — never as a filled button background, which keeps the accent feeling like a warning lamp or marker stroke rather than a brand paint job. Every screen is a specimen: massive custom display faces (90–234px) dominate the viewport, the UI recedes around them, and even sidebar items are styled as labeled tags. Compact spacing, near-zero radii (2.8px), and uppercase monospace metadata reinforce a precise, industrial, no-decoration sensibility — decoration lives entirely inside the typefaces themselves.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Foundry design system\",\"item\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#style-reference\",\"name\":\"Foundry design system reference\",\"headline\":\"Foundry design system | Refero Styles\",\"description\":\"Explore Foundry's dark Design design system: Ember Orange #ff4d00, Foundry Black #121212 colors, JetBrains Mono, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\",\"mainEntityOfPage\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Foundry\",\"url\":\"https://foundry.basement.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"caption\":\"Screenshot of Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Foundry design system\",\"Foundry website design\",\"Foundry colors\",\"Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Orange\",\"Foundry Black\",\"Chalk White\",\"Bone White\",\"JetBrains Mono\",\"Inter\",\"Basement Grotesque, FFFLAUTA, B-Mecha, Bunker, Caniche, Carpenter, Curia, Adhesion, Trovador, XER0, Blob\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:22:51.397Z\",\"dateModified\":\"2026-04-30T01:22:51.397Z\"}]}19:T5a4,Quick Color Reference\n- text (primary): #efefef\n- text (muted/helper): #747474\n- background (canvas): #121212\n- border (hairline): #e2e8f0\n- accent: #ff4d00\n- primary action: #efefef (filled action)\n\n3–5 Example Component Prompts\n1. **Sidebar tag nav item**: Inverted #efefef fill, #121212 text, 2.8px radius, 10px 10px padding. Label in JetBrains Mono 14px, weight 400, uppercase, letter-spacing 0.04em. If a count follows (e.g. \"BUNKER 4\"), render the number as inline text on the same line, no separator.\n\n2. Create a Primary Action Button: #efefef background, #747474 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Ghost secondary action button**: Transparent fill, 1px solid #efefef border, 2.8px radius, 10px 15px padding. Text in JetBrains Mono 12px, weight 400, uppercase, letter-spacing 0.04em, color #efefef. Label \"EXPLORE\".\n\n4. **Font specimen card**: Full-width band on #121212 canvas with a 1px #e2e8f0 top border. Top metadata strip: font name in JetBrains Mono 12px uppercase #efefef on the left, \"N STYLES / N HEIGHTS\" + glyph/mode toggles centered, action buttons on the right. Below, a 60–80px vertical gap, then a single display specimen set full-width at 120–200px in #efefef.\n\n5. **Top ticker bar**: Full-bleed, 1px tall, #121212 background, 1px #e2e8f0 bottom border. Scrolling inline text in JetBrains Mono 12px uppercase, #efefef, separated by small triangle markers."
+      },
+      {
+        "title": "Typeface-as-Content Rule",
+        "content": "Every display face in the catalog (Basement Grotesque, Bunker, Curia, Adhesion, Trovador, XER0, etc.) is content, not system typography. An AI agent reproducing a page should pick one of these custom families to fill the hero/specimen area, but the rest of the UI must always fall back to JetBrains Mono (UI) and Inter (long body copy). Never use a specimen face for nav, buttons, labels, or metadata."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids drop shadows. Depth is communicated through color inversion (dark canvas vs bone-white panels) and hairline borders, not through shadow stacks — a flat, blueprint-like surface treatment that keeps focus on the type itself."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.01261877443265105,
+            "h": 255.5078854448309,
+            "l": 0.928761267190067
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "link",
+            "icon",
+            "button",
+            "list"
+          ],
+          "frequency": 1382,
+          "confidence": 1,
+          "prominence": 99795512.76942125,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 224,
+            "body/borderColor": 148,
+            "icon/borderColor": 56,
+            "link/borderColor": 164,
+            "list/borderColor": 84,
+            "other/borderColor": 558,
+            "button/borderColor": 148
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "list"
+          ],
+          "frequency": 544,
+          "confidence": 1,
+          "prominence": 86945416.33542725,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 64,
+            "body/color": 43,
+            "icon/color": 3,
+            "link/color": 41,
+            "list/color": 21,
+            "other/fill": 14,
+            "other/color": 126,
+            "button/color": 22,
+            "other/stroke": 11,
+            "nav/borderColor": 44,
+            "body/borderColor": 116,
+            "other/borderColor": 29,
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#3a3a3a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3484596543608461
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 2384399.5918685966,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 61
+          }
+        },
+        {
+          "hex": "#747474",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5589685559522224
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 325834.20702043234,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "icon/color": 11,
+            "other/color": 35,
+            "button/color": 19
+          }
+        },
+        {
+          "hex": "#ff4d00",
+          "oklch": {
+            "c": 0.2235449978075073,
+            "h": 36.986225243783736,
+            "l": 0.6676621690663676
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 74,
+          "confidence": 1,
+          "prominence": 208428.73102137315,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 3,
+            "body/color": 15,
+            "other/color": 1,
+            "body/borderColor": 44,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 142609.8082786876,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 11
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.042598250142505255,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#121212",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.2,
+          "background": "#e2e8f0",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.89,
+          "background": "#efefef",
+          "foreground": "#3a3a3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#e2e8f0",
+          "foreground": "#3a3a3a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.63,
+          "background": "#121212",
+          "foreground": "#ff4d00"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.06,
+          "background": "#efefef",
+          "foreground": "#747474"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.01,
+          "background": "#121212",
+          "foreground": "#747474"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.89,
+          "background": "#efefef",
+          "foreground": "#ff4d00"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2.8,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 47
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingTop|icon"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 88,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "marginRight|button",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 69,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginRight|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "list"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|button",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginBottom|nav",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|body",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 142,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 271,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "JetBrains Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 252,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 138,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Basement Grotesque Black Expanded",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Adhesion Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Mecha Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Blob Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Bunker Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Caniche Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Carpenter Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Curia Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FFFLAUTA 400",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Trovador Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "XER0 Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.69
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "JetBrains Mono",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "button",
+            "link"
+          ],
+          "frequency": 107,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.32,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 129,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "JetBrains Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "FFFLAUTA 400",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "Basement Grotesque Black Expanded",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.95,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "Mecha Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 156,
+          "family": "Curia Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 164,
+          "family": "Adhesion Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 169,
+          "family": "Carpenter Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 185,
+          "family": "Bunker Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 198,
+          "family": "Trovador Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 198,
+          "family": "XER0 Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 203,
+          "family": "Caniche Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 234,
+          "family": "Blob Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/15d4c71b-0564-4731-8393-5058093b7dd2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Foundry design system\",\"item\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#style-reference\",\"name\":\"Foundry design system reference\",\"headline\":\"Foundry design system | Refero Styles\",\"description\":\"Explore Foundry's dark Design design system: Ember Orange #ff4d00, Foundry Black #121212 colors, JetBrains Mono, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\",\"mainEntityOfPage\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Foundry\",\"url\":\"https://foundry.basement.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/896f0ea9-6f1a-40a6-aba7-fdaa579c7352#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"caption\":\"Screenshot of Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c65cf3db-2be2-4200-87a1-2be1f4cbf676.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Foundry design system\",\"Foundry website design\",\"Foundry colors\",\"Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Orange\",\"Foundry Black\",\"Chalk White\",\"Bone White\",\"JetBrains Mono\",\"Inter\",\"Basement Grotesque, FFFLAUTA, B-Mecha, Bunker, Caniche, Carpenter, Curia, Adhesion, Trovador, XER0, Blob\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:22:51.397Z\",\"dateModified\":\"2026-04-30T01:22:51.397Z\"}]}19:T5a4,Quick Color Reference\n- text (primary): #efefef\n- text (muted/helper): #747474\n- background (canvas): #121212\n- border (hairline): #e2e8f0\n- accent: #ff4d00\n- primary action: #efefef (filled action)\n\n3–5 Example Component Prompts\n1. **Sidebar tag nav item**: Inverted #efefef fill, #121212 text, 2.8px radius, 10px 10px padding. Label in JetBrains Mono 14px, weight 400, uppercase, letter-spacing 0.04em. If a count follows (e.g. \"BUNKER 4\"), render the number as inline text on the same line, no separator.\n\n2. Create a Primary Action Button: #efefef background, #747474 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Ghost secondary action button**: Transparent fill, 1px solid #efefef border, 2.8px radius, 10px 15px padding. Text in JetBrains Mono 12px, weight 400, uppercase, letter-spacing 0.04em, color #efefef. Label \"EXPLORE\".\n\n4. **Font specimen card**: Full-width band on #121212 canvas with a 1px #e2e8f0 top border. Top metadata strip: font name in JetBrains Mono 12px uppercase #efefef on the left, \"N STYLES / N HEIGHTS\" + glyph/mode toggles centered, action buttons on the right. Below, a 60–80px vertical gap, then a single display specimen set full-width at 120–200px in #efefef.\n\n5. **Top ticker bar**: Full-bleed, 1px tall, #121212 background, 1px #e2e8f0 bottom border. Scrolling inline text in JetBrains Mono 12px uppercase, #efefef, separated by small triangle markers."
+}

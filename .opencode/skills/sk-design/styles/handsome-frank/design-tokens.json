@@ -1,0 +1,452 @@
+{
+  "color": {
+    "indigo-frame": {
+      "$value": "#160572",
+      "$type": "color",
+      "$description": "Indigo Frame — Navigation strokes, display headlines, footer band — the deepest anchor in the system, commanding authority without shouting"
+    },
+    "cream-paper": {
+      "$value": "#f2ebe6",
+      "$type": "color",
+      "$description": "Cream Paper — Primary page canvas for content sections — warm eggshell that softens black text and lets illustration breathe"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, reversed text on dark bands, and the clean counterpoint to cream — the gallery wall"
+    },
+    "obsidian-hairline": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Hairline — Dominant border, text, and icon stroke — used as a 1-2px frame line across nav, cards, and decorative elements"
+    },
+    "slate-ink": {
+      "$value": "#2c2c2c",
+      "$type": "color",
+      "$description": "Slate Ink — Secondary text and softer borders where pure black feels too severe"
+    },
+    "fog-wash": {
+      "$value": "#eef4fb",
+      "$type": "color",
+      "$description": "Fog Wash — Pale blue-tinted background for muted emphasis blocks"
+    },
+    "buttermilk": {
+      "$value": "#fef9ee",
+      "$type": "color",
+      "$description": "Buttermilk — Subtle warm wash for highlighted text or callout backgrounds"
+    },
+    "crimson-spotlight": {
+      "$value": "#ea0706",
+      "$type": "color",
+      "$description": "Crimson Spotlight — Editorial accent for critical announcements and bold display statements — the marquee marker"
+    },
+    "vermillion": {
+      "$value": "#d64e2e",
+      "$type": "color",
+      "$description": "Vermillion — Warm secondary accent on project card titles, links, and illustrative borders"
+    },
+    "apricot-whisper": {
+      "$value": "#e29675",
+      "$type": "color",
+      "$description": "Apricot Whisper — Soft warm accent for icon strokes and decorative borders"
+    },
+    "peach-blush": {
+      "$value": "#eea883",
+      "$type": "color",
+      "$description": "Peach Blush — Mid-warmth accent on icon outlines and link underlines"
+    },
+    "tangerine-pop": {
+      "$value": "#ff7701",
+      "$type": "color",
+      "$description": "Tangerine Pop — Filled action button background — the only true filled CTA, used for the play/forward action in the footer"
+    },
+    "cobalt-stage": {
+      "$value": "#2544a0",
+      "$type": "color",
+      "$description": "Cobalt Stage — Filled action button background for primary browse/enter actions"
+    },
+    "plum-velvet": {
+      "$value": "#4b0f4d",
+      "$type": "color",
+      "$description": "Plum Velvet — Filled action button background for dark editorial CTAs"
+    },
+    "rose-petal": {
+      "$value": "#d98199",
+      "$type": "color",
+      "$description": "Rose Petal — Filled action button background for soft secondary entries"
+    },
+    "electric-teal": {
+      "$value": "#24e3dc",
+      "$type": "color",
+      "$description": "Electric Teal — Interactive link and menu accent — the only cool chromatic in the system, reserved for navigation affordances"
+    },
+    "acid-green": {
+      "$value": "#24e34c",
+      "$type": "color",
+      "$description": "Acid Green — Secondary interactive link accent for hover/active states"
+    },
+    "daffodil": {
+      "$value": "#f9e44d",
+      "$type": "color",
+      "$description": "Daffodil — Decorative icon and link accent — cheerful punctuation"
+    },
+    "highlighter-yellow": {
+      "$value": "#ffff00",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Badge background for editorial tags and callout labels"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "millik": {
+      "$value": "Millik",
+      "$type": "fontFamily",
+      "$description": "Display serif for hero headlines, artist names, and editorial display copy. The extreme negative letter-spacing (-0.05em at 88px down to -0.018em at 20px) and tight line-height (0.95–1.00 at large sizes) is the signature: the type sits dense and confident, not airy. Use weight 400 for editorial body, 700 for display headlines."
+    },
+    "klarheit-grotesk": {
+      "$value": "Klarheit Grotesk",
+      "$type": "fontFamily",
+      "$description": "Workhorse grotesque for navigation, body text, buttons, badges, and supporting labels. Regular (400) is the default; Semibold (600) appears at 22px for subheadings; Bold (700) at 24px for nav emphasis. The grotesque is intentionally quiet — it holds the structure while the serif does the talking."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Regular",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Regular",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Regular",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Regular",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Semibold",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Klarheit Grotesk Bold",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "54px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "70px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Millik Regular",
+        "fontSize": "88px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 88px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "215": {
+      "$value": "215px",
+      "$type": "dimension",
+      "$description": "Spacing 215px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f2ebe6",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card and project tile surfaces"
+    },
+    "indigo-band": {
+      "$value": "#160572",
+      "$type": "color",
+      "$description": "Surface level 3: Footer/closing bar"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed hero illustration base"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.handsomefrank.com",
+      "siteName": "Handsome Frank",
+      "extractedAt": "2026-06-03T19:33:14.670Z",
+      "variant": "extended"
+    }
+  }
+}

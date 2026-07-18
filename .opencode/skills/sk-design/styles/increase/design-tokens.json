@@ -1,0 +1,344 @@
+{
+  "color": {
+    "inkwell-navy": {
+      "$value": "#1a2b3b",
+      "$type": "color",
+      "$description": "Inkwell Navy — Primary text, nav text, icon strokes, hairline borders — the structural graphite of every screen. Used as filled button background for primary actions to project institutional weight rather than enthusiasm"
+    },
+    "slate-600": {
+      "$value": "#314352",
+      "$type": "color",
+      "$description": "Slate 600 — Secondary borders and supporting text where Inkwell Navy is too heavy — outlines on cards, tertiary headings, subdued dividers"
+    },
+    "abyss": {
+      "$value": "#0d1726",
+      "$type": "color",
+      "$description": "Abyss — Dark code-block and terminal surfaces — deeper than Inkwell Navy so syntax highlighting reads with high voltage against the near-black"
+    },
+    "graphite": {
+      "$value": "#687887",
+      "$type": "color",
+      "$description": "Graphite — Muted helper text, inactive nav links, secondary button outlines — recedes so the navy headlines and mint accents can carry the hierarchy"
+    },
+    "steel": {
+      "$value": "#8995a1",
+      "$type": "color",
+      "$description": "Steel — Tertiary text and disabled-state borders — the quietest navy in the scale, used where information is supplementary"
+    },
+    "fog": {
+      "$value": "#edf0f2",
+      "$type": "color",
+      "$description": "Fog — Page canvas — the warm off-white that holds all content; section bands alternate with pure white to create quiet vertical rhythm"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, form inputs, nav background — the elevated layer that floats above Fog with minimal shadow"
+    },
+    "silver": {
+      "$value": "#caced2",
+      "$type": "color",
+      "$description": "Silver — Hairline dividers, input borders at rest, table separators — the thread that separates without announcing itself"
+    },
+    "mist": {
+      "$value": "#e1e5e9",
+      "$type": "color",
+      "$description": "Mist — Card edges and subtle surface tints where a second neutral step is needed between white and Fog"
+    },
+    "pewter": {
+      "$value": "#bdc2c8",
+      "$type": "color",
+      "$description": "Pewter — Body-level borders, subtle rule lines, the quietest non-white neutral"
+    },
+    "voltage": {
+      "$value": "#e4ff33",
+      "$type": "color",
+      "$description": "Voltage — Announcement bar, high-attention data highlights, occasional feature accent — the single chromatic punctuation that earns the eye's attention by being used sparingly. Never decorates, always signals"
+    },
+    "mint-signal": {
+      "$value": "#31f2bf",
+      "$type": "color",
+      "$description": "Mint Signal — Green outline accent for tags, dividers, and focused UI edges"
+    }
+  },
+  "font": {
+    "untitled-sans": {
+      "$value": "Untitled Sans",
+      "$type": "fontFamily",
+      "$description": "Primary interface and display typeface — custom geometric grotesque. Weight 400 runs the body and UI; weight 500 lifts subheadings; weight 700 anchors the wordmark. Negative letter-spacing (-0.04em at display sizes, -0.01em at body) tightens the grotesque into a dense, architectural feel — the closer the eye gets to a heading, the more the letters close ranks, producing a precise, financial-document quality."
+    },
+    "input-mono": {
+      "$value": "Input Mono",
+      "$type": "fontFamily",
+      "$description": "Code, API identifiers, numerical data, and inline technical labels. Alternates and stylistic sets ss01/ss02/ss12 are active — these micro-detailed glyph variants give the monospace a humanist, designed quality rather than a default-terminal feel, reinforcing that the product is engineered with intention."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Input Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Input Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Input Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Input Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "90px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 90px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(12, 25, 39, 0.05) 0px 6px 8px 0px, rgba(12, 25, 39, 0.06) 0px 16px 20px 0px, rgba(12, 25, 39, 0.1) 0px 50px 60px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(12, 25, 39, 0.03) 0px 6px 8px 0px, rgba(12, 25, 39, 0.09) 0px 18px 22px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#edf0f2",
+      "$type": "color",
+      "$description": "Surface level 0: Warm off-white field that holds all content sections; provides the neutral backdrop against which white cards and the chartreuse announcement bar gain their contrast."
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Pure white for product cards, feature panels, nav, and inputs — the layer that floats above canvas with subtle tinted shadow."
+    },
+    "code-surface": {
+      "$value": "#0d1726",
+      "$type": "color",
+      "$description": "Surface level 2: Deepest surface in the system, used exclusively for code blocks and terminal demos; syntax colors (mint, blue, chartreuse) pop against it."
+    },
+    "announcement-surface": {
+      "$value": "#e4ff33",
+      "$type": "color",
+      "$description": "Surface level 3: Single-purpose full-bleed strip for time-sensitive messaging; the only surface in the system with native chromatic energy."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://increase.com",
+      "siteName": "Increase",
+      "extractedAt": "2026-06-03T21:11:54.277Z",
+      "variant": "extended"
+    }
+  }
+}

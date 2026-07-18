@@ -1,0 +1,90 @@
+:root {
+  /* Colors */
+  --color-obsidian-shell: #132322;
+  --color-pure-white: #ffffff;
+  --color-mint-frost: #edf7f5;
+  --color-deep-abyss: #0e1a19;
+  --color-charcoal: #070f0f;
+  --color-fog-border: #d0d3d3;
+  --color-stone-border: #b2b6b4;
+  --color-slate-text: #828786;
+  --color-graphite-fill: #424f4f;
+  --color-pure-black: #000000;
+  --color-neon-pulse: #3ddc91;
+  --color-mint-whisper: #97ddbc;
+  --color-signal-yellow: #ffcd48;
+
+  /* Typography — Font Families */
+  --font-aeonik: 'Aeonik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-aeonikfono: 'AeonikFono', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.45;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.08px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.45;
+  --text-subheading: 24px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: 0.96px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.22;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.12;
+  --text-display: 64px;
+  --leading-display: 1.1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 32px;
+  --radius-full: 50px;
+  --radius-full-2: 56px;
+  --radius-full-3: 60px;
+  --radius-full-4: 80px;
+
+  /* Named Radii */
+  --radius-tabs: 56px;
+  --radius-cards: 20px;
+  --radius-buttons: 56px;
+  --radius-largecards: 60px;
+  --radius-smallelements: 10px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.04) 1px 0px 9px 2px;
+
+  /* Surfaces */
+  --surface-obsidian-canvas: #132322;
+  --surface-deep-card: #0e1a19;
+  --surface-mint-card: #edf7f5;
+  --surface-white-panel: #ffffff;
+}

@@ -1,0 +1,1271 @@
+{
+  "source": "https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863",
+  "uuid": "7fdd9506-0a85-41a5-b2a7-c5ce1f31d863",
+  "name": "HOUSEPLANT",
+  "northStar": "walnut bookstore on linen paper",
+  "capturedAt": "2026-07-18T09:25:34.517Z",
+  "meta": {
+    "url": "https://www.houseplant.com",
+    "siteName": "HOUSEPLANT",
+    "extractedAt": "2026-06-03T19:46:52.215Z",
+    "durationMs": 35836,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 208,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #321e1 as the single primary action color — solid fill for buttons, no gradients, no hover color shifts",
+      "Set page canvas to #f4f1e0 (Linen) — never pure white. The warm cream is the system's identity",
+      "Apply -0.05em letter-spacing at 45px+ and -0.02em at body sizes. Tracking is non-negotiable for the custom typeface's character",
+      "Use 4px radius for all buttons and 8px for all cards. Do not introduce larger radii — the system stays sharp",
+      "Let product photography supply all chromatic color. The UI stays monochromatic brown/cream; images bring terracotta, green, and warm wood tones",
+      "Maintain generous vertical rhythm: 80-120px between major sections, 20px between elements, 20px card padding",
+      "Anchor every page with the oversized footer wordmark at 60-70px — the brand name as graphic closure"
+    ],
+    "donts": [
+      "Never use pure white (#FFFFFF) for backgrounds — Linen #f4f1e0 is the canonical canvas",
+      "Do not introduce accent colors (blue, green, red) for buttons or interactive states — the brown/cream system is intentionally narrow",
+      "Do not use sans-serif system fonts for headlines — the custom Houseplant typeface at 30px+ is the brand's signature",
+      "Avoid drop shadows beyond the single rgba(0,0,0,0.1) 0px 2px 8px on cards. No glow effects, no colored shadows",
+      "Do not center body text or product descriptions — left-align everything except the nav wordmark and hero headlines",
+      "Never use border-radius above 8px. Pills, circles, and large rounded shapes break the vintage-catalog geometry",
+      "Do not add gradients, glassmorphism, or decorative overlays. The system is flat surfaces, hairline rules, and soft shadows only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#321e1e",
+        "name": "Walnut",
+        "role": "Primary text color, filled action buttons, dark hero sections, footer wordmark. Deep warm brown that reads as near-black while carrying the brand's earthy warmth — used as both foreground and background surface",
+        "group": "brand"
+      },
+      {
+        "hex": "#f4f1e0",
+        "name": "Linen",
+        "role": "Page canvas, card surfaces, light text on dark backgrounds. Warm aged-cream that gives the entire system its paper-like, vintage quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#464545",
+        "name": "Graphite",
+        "role": "Secondary borders, muted helper text, subtle dividers. Neutral medium gray providing quiet separation without competing with the Walnut/Linen pair",
+        "group": "neutral"
+      },
+      {
+        "hex": "#463938",
+        "name": "Espresso",
+        "role": "Button text on light surfaces, alternate dark fill. Slightly lighter brown variant for typographic contrast within the dark family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Icon strokes, true-black accents on borders. Used sparingly where absolute contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Soft Sand",
+        "role": "Alternate light surface, hover-state wash. Neutral off-white for slight tonal shifts away from the cream canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-width sections stacked vertically. Navigation is a fixed top bar on Walnut, full viewport width. Hero is a full-bleed image with overlaid graphic blocks (terracotta and green geometric shapes) for a vintage poster effect. Product grid below uses 5 equal columns with ~20px gap. Dark feature sections use two-column split (image left, text right) at full viewport width. Footer is utility links above a full-bleed oversized wordmark that fills the viewport width. Max content width ~1200px for grids and text blocks, but hero/footer extend edge-to-edge.",
+    "imagery": "Warm, editorial product photography on natural surfaces — wood tables, marble countertops, terracotta tiles. Lifestyle-adjacent but product-focused, with Italian tableware, pasta, and home goods shot in natural light. Full-bleed hero images with no gradient overlays. Color palette within photography: terracotta, olive green, deep blue ceramic patterns, warm wood grain. Icons are line-style, 1.5px stroke, monochrome Walnut.",
+    "similar": [
+      {
+        "why": "Same warm-cream-and-walnut palette, editorial product photography, custom serif-adjacent display type, and full-bleed dark hero sections",
+        "business": "Soho House"
+      },
+      {
+        "why": "Monochromatic earthy palette, warm off-white canvas, no accent colors, product photography carrying all the warmth, tight custom typography",
+        "business": "Aesop"
+      },
+      {
+        "why": "Vintage-catalog aesthetic, warm cream backgrounds, dark brown text, editorial food and home product photography, restrained UI chrome",
+        "business": "Toast"
+      },
+      {
+        "why": "Dark brown feature sections against cream, editorial product grid, oversized brand wordmark as footer element, warm lifestyle photography",
+        "business": "Goop"
+      },
+      {
+        "why": "Warm earth-tone palette, product-forward grid layouts, lifestyle food and home photography, comfortable spacing rhythm",
+        "business": "Food52"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f4f1e0",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Primary page background — aged cream paper feel"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Product card surface, slight tonal lift from canvas"
+      },
+      {
+        "hex": "#321e1",
+        "name": "Dark Feature",
+        "level": 3,
+        "purpose": "Promotional sections, filled button backgrounds"
+      },
+      {
+        "hex": "#321e1",
+        "name": "Footer Mark",
+        "level": 4,
+        "purpose": "Full-bleed footer wordmark surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 2px 8px 0px",
+        "element": "Product Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.15) 0px 2px 8px 0px",
+        "element": "Primary Button"
+      }
+    ],
+    "northStar": "walnut bookstore on linen paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.71,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.44,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.021
+      },
+      {
+        "role": "heading-lg",
+        "size": 45,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.047
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1,
+        "letterSpacing": -0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Main action button — Shop Now, Explore Now, Submit",
+        "description": "Solid Walnut (#321e1e) background, Linen (#f4f1e0) text at 16px weight 500, 4px radius, 12px vertical × 30px horizontal padding, uppercase tracking. Shadow rgba(0,0,0,0.15) 0px 2px 8px. Letter-spacing -0.02em for a tight, confident feel"
+      },
+      {
+        "name": "Outlined / Ghost Button",
+        "role": "Secondary action on dark backgrounds — Explore Now on dark hero",
+        "description": "Transparent background, 1px Linen (#f4f1e0) border, Linen text, 4px radius, 12px vertical × 20-30px horizontal padding. Used when the primary filled button would be lost against a dark surface"
+      },
+      {
+        "name": "Product Card",
+        "role": "E-commerce product tile in grid layouts",
+        "description": "Linen (#f4f1e0) background, 8px radius, 20px padding, shadow rgba(0,0,0,0.1) 0px 2px 8px. Product image on top half, product name in 16px Walnut, price in 14px, filled Shop Now button below. Card has no border — the shadow does the separation work"
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Solid Walnut (#321e1e) background, full-width, ~60px tall. Brand wordmark centered in Linen with house icon, nav links in 16px Linen uppercase with -0.02em tracking spaced horizontally. Account/cart icons on far right. Underline appears on active/hover state"
+      },
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed promotional section — Italian Collection, New Arrivals",
+        "description": "Edge-to-edge image with text overlay, no gradient. Bold display headline (30-45px) in warm color. Diagonal geometric shapes in solid blocks (terracotta, green) frame the composition for a vintage poster aesthetic"
+      },
+      {
+        "name": "Dark Feature Section",
+        "role": "Promotional block on Walnut background — Houseplant + Carbone",
+        "description": "Full-width Walnut background, two-column layout: product image left, headline + body + ghost button right. Headline at 32-45px Linen weight 500, body at 16-18px Linen. Generous vertical padding (~80-100px) for breathing room"
+      },
+      {
+        "name": "Section Header",
+        "role": "Category section title — New & Featured",
+        "description": "Left-aligned, 21-28px Walnut weight 500, 8-10px margin-bottom. Uppercase tracking, hairline border or no decoration. Sits flush left at content edge"
+      },
+      {
+        "name": "Footer Wordmark",
+        "role": "Brand identity anchor at page bottom",
+        "description": "Full-bleed Walnut (#321e1e) text 'HOUSEPLANT' at 60-70px weight 600, -0.05em letter-spacing, filling the viewport width. Functions as both branding and visual closing — the text IS the graphic element, no logo or icon accompanies it"
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Site utility links — Contact, FAQ, Privacy, Terms",
+        "description": "Stacked text links in 16-18px Walnut on Linen background, no bullet markers, generous line-height (~2.5). Separated by hairline Graphite (#464545) horizontal rules"
+      },
+      {
+        "name": "Social Icon Link",
+        "role": "Footer social media icons — Instagram, Twitter, Facebook",
+        "description": "Walnut line icons, ~24px, no fill, 1.5px stroke weight. Spaced 20-30px apart in a horizontal row. Minimal — icons are recognizable at small sizes without color coding"
+      },
+      {
+        "name": "Price Label",
+        "role": "Product pricing display under product name",
+        "description": "14-16px Walnut weight 400, $XX.XX format, left-aligned. No sale/strike-through treatment detected — pricing stays simple"
+      },
+      {
+        "name": "Product Image Container",
+        "role": "Image holder within product card",
+        "description": "Full card-width image, no border or radius at top (inherits card's 8px radius only at corners), object-fit cover. Photography is warm-lit, lifestyle-context, often on wood or marble surfaces"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom display and body typeface used for all UI text — headlines at 30-70px with tight negative tracking, body at 16-20px, captions at 14px. The custom font carries geometric warmth that off-the-shelf alternatives cannot replicate",
+        "sizes": "14px, 16px, 18px, 20px, 21px, 28px, 30px, 32px, 45px, 60px, 70px",
+        "family": "Houseplant",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–2.79",
+        "substitute": "Archivo, Inter Tight, or DM Sans",
+        "letterSpacing": "-0.05em at 60-70px, -0.047em at 45px, -0.02em at 14-32px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Fallback body text — minimal usage, system-safe default",
+        "sizes": "16px",
+        "family": "Roboto",
+        "weight": "400",
+        "lineHeight": "2.00",
+        "substitute": "system-ui, sans-serif"
+      },
+      {
+        "role": "NeueHelvetica55Roman — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "NeueHelvetica55Roman",
+        "weight": "400",
+        "lineHeight": "1.15, 1.63"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Houseplant operates in a warm, earthy monochrome — deep walnut brown on aged cream, with the product photography doing all the chromatic work. The system reads like a vintage housewares catalog: tight custom typography, generous breathing room, no decorative gradients, and almost no accent color. The dark brown #321e1 is both text and surface, flipping between background and foreground depending on context, while the cream #f4f1e1 plays canvas. Components are minimal — solid filled buttons, hairline dividers, soft cards with a single subtle shadow. The signature move is the oversized custom wordmark that anchors the page footer, treating the brand name as a graphic element rather than a logo.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HOUSEPLANT design system\",\"item\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#style-reference\",\"name\":\"HOUSEPLANT design system reference\",\"headline\":\"HOUSEPLANT design system | Refero Styles\",\"description\":\"Explore HOUSEPLANT's light E-commerce design system: Walnut #321e1e, Linen #f4f1e0 colors, Houseplant, Roboto typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HOUSEPLANT\",\"url\":\"https://www.houseplant.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"caption\":\"Screenshot of HOUSEPLANT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HOUSEPLANT design system\",\"HOUSEPLANT website design\",\"HOUSEPLANT colors\",\"HOUSEPLANT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Walnut\",\"Linen\",\"Graphite\",\"Espresso\",\"Houseplant\",\"Roboto\",\"NeueHelvetica55Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT design system\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT website design\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT colors\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:50:19.352Z\",\"dateModified\":\"2026-04-30T01:50:19.352Z\"}]}19:T612,Quick Color Reference:\n- text: #321e1e (Walnut)\n- background: #f4f1e0 (Linen)\n- border: #464545 (Graphite)\n- accent: none — system is monochromatic\n- primary action: #321e1e (filled action)\n\nExample Component Prompts:\n\n1. Create a product card: Linen (#f4f1e0) background, 8px radius, 20px padding, shadow rgba(0,0,0,0.1) 0px 2px 8px. Product image fills top half. Below: product name at 16px Houseplant weight 500 in Walnut, price at 14px weight 400. Filled Shop Now button: #321e1e background, #f4f1e0 text, 4px radius, 12px×30px padding, weight 500.\n\n2. Create a navigation bar: Full-width #321e1e background, 60px height. Brand wordmark centered at 18px Houseplant weight 600 in #f4f1e0. Nav links (SHOP ALL, NEW ARRIVALS, ITALIAN COLLECTION, SCENT, COLLABORATIONS, EXPLORE) in 14px uppercase #f4f1e0 with -0.02em tracking, spaced horizontally.\n\n3. Create a dark feature section: Full-width #321e1e background, two-column 50/50 split. Left: product image with no border. Right: headline at 32px Houseplant weight 500 in #f4f1e0, body text at 16px weight 400 in #f4f1e0, ghost button with 1px #f4f1e0 border, #f4f1e0 text, 4px radius.\n\n4. Create a section header: Left-aligned 'NEW & FEATURED' at 21px Houseplant weight 500 in #321e1e, uppercase, -0.02em letter-spacing, 8px margin-bottom. No decoration, no border.\n\n5. Create a footer wordmark: Full-width #321e1e block, 'HOUSEPLANT' text filling the viewport at 60-70px Houseplant weight 600, -0.05em letter-spacing, #321e1e color, line-height 1.0. Functions as the page's visual closing element."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#321e1e",
+          "oklch": {
+            "c": 0.031504183395110553,
+            "h": 19.411959533000115,
+            "l": 0.26088675084293184
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "card",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 522,
+          "confidence": 1,
+          "prominence": 38807675.528603844,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 7,
+            "hero/color": 1,
+            "link/color": 13,
+            "list/color": 16,
+            "image/color": 2,
+            "other/color": 56,
+            "footer/color": 1,
+            "heading/color": 8,
+            "body/borderColor": 4,
+            "card/borderColor": 28,
+            "hero/borderColor": 4,
+            "link/borderColor": 52,
+            "list/borderColor": 51,
+            "image/borderColor": 8,
+            "other/borderColor": 221,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#f4f1e0",
+          "oklch": {
+            "c": 0.022665690292536872,
+            "h": 98.64020921360769,
+            "l": 0.9558995134911702
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "button",
+            "list",
+            "card",
+            "heading",
+            "footer"
+          ],
+          "frequency": 298,
+          "confidence": 1,
+          "prominence": 35341175.09856667,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 2,
+            "icon/color": 2,
+            "link/color": 4,
+            "list/color": 7,
+            "other/fill": 9,
+            "other/color": 23,
+            "button/color": 9,
+            "other/stroke": 2,
+            "heading/color": 7,
+            "body/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 16,
+            "list/borderColor": 28,
+            "other/borderColor": 92,
+            "button/borderColor": 36,
+            "heading/borderColor": 28,
+            "card/backgroundColor": 7,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#464545",
+          "oklch": {
+            "c": 0.0013436578478704044,
+            "h": 17.21473662230986,
+            "l": 0.3913839746304401
+          },
+          "contexts": [
+            "link",
+            "image",
+            "badge",
+            "body",
+            "other"
+          ],
+          "frequency": 140,
+          "confidence": 1,
+          "prominence": 6690109.455213937,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 15,
+            "badge/color": 1,
+            "image/color": 7,
+            "other/color": 2,
+            "body/borderColor": 12,
+            "link/borderColor": 60,
+            "badge/borderColor": 4,
+            "image/borderColor": 28,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#bdb498",
+          "oklch": {
+            "c": 0.03977576265527969,
+            "h": 92.2935964863995,
+            "l": 0.769945184110821
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 1961369.0443739751,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/borderColor": 13,
+            "other/borderColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 1660678.2393965558,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "icon/stroke": 4,
+            "button/color": 2,
+            "other/stroke": 2,
+            "icon/borderColor": 8,
+            "button/borderColor": 8,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#463938",
+          "oklch": {
+            "c": 0.018548782421737426,
+            "h": 23.230105895362453,
+            "l": 0.35815684688975385
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 510857.15635276475,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "heading/color": 1,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 235200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 7
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06400919486208856,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.51,
+          "background": "#000000",
+          "foreground": "#f4f1e0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#f4f4f4",
+          "foreground": "#321e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.81,
+          "background": "#f4f1e0",
+          "foreground": "#321e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#bdb498",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#f4f4f4",
+          "foreground": "#463938"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.73,
+          "background": "#463938",
+          "foreground": "#f4f1e0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#f4f4f4",
+          "foreground": "#464545"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.42,
+          "background": "#f4f1e0",
+          "foreground": "#464545"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.57,
+          "background": "#bdb498",
+          "foreground": "#321e1e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#bdb498",
+          "foreground": "#463938"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#bdb498",
+          "foreground": "#464545"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.2,
+          "background": "#000000",
+          "foreground": "#464545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.9,
+          "background": "#463938",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.64,
+          "background": "#321e1e",
+          "foreground": "#464545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#463938",
+          "foreground": "#321e1e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.34,
+          "background": "#000000",
+          "foreground": "#321e1e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#463938",
+          "foreground": "#464545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.03,
+          "background": "#f4f4f4",
+          "foreground": "#f4f1e0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 2px 8px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.15) 0px 2px 8px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 93,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 302,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Houseplant",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 187,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NeueHelvetica55Roman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Houseplant",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NeueHelvetica55Roman",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "hero",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "card",
+            "footer",
+            "badge"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "NeueHelvetica55Roman",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Houseplant",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Houseplant",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 60,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 70,
+          "family": "Houseplant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.021,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c462a391-07b7-49a0-a26b-b915abe1e18e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HOUSEPLANT design system\",\"item\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#style-reference\",\"name\":\"HOUSEPLANT design system reference\",\"headline\":\"HOUSEPLANT design system | Refero Styles\",\"description\":\"Explore HOUSEPLANT's light E-commerce design system: Walnut #321e1e, Linen #f4f1e0 colors, Houseplant, Roboto typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HOUSEPLANT\",\"url\":\"https://www.houseplant.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7fdd9506-0a85-41a5-b2a7-c5ce1f31d863#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"caption\":\"Screenshot of HOUSEPLANT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0503f645-8b0b-4f65-8929-1117fa5239de.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HOUSEPLANT design system\",\"HOUSEPLANT website design\",\"HOUSEPLANT colors\",\"HOUSEPLANT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Walnut\",\"Linen\",\"Graphite\",\"Espresso\",\"Houseplant\",\"Roboto\",\"NeueHelvetica55Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT design system\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT website design\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT colors\"},{\"@type\":\"Thing\",\"name\":\"HOUSEPLANT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:50:19.352Z\",\"dateModified\":\"2026-04-30T01:50:19.352Z\"}]}19:T612,Quick Color Reference:\n- text: #321e1e (Walnut)\n- background: #f4f1e0 (Linen)\n- border: #464545 (Graphite)\n- accent: none — system is monochromatic\n- primary action: #321e1e (filled action)\n\nExample Component Prompts:\n\n1. Create a product card: Linen (#f4f1e0) background, 8px radius, 20px padding, shadow rgba(0,0,0,0.1) 0px 2px 8px. Product image fills top half. Below: product name at 16px Houseplant weight 500 in Walnut, price at 14px weight 400. Filled Shop Now button: #321e1e background, #f4f1e0 text, 4px radius, 12px×30px padding, weight 500.\n\n2. Create a navigation bar: Full-width #321e1e background, 60px height. Brand wordmark centered at 18px Houseplant weight 600 in #f4f1e0. Nav links (SHOP ALL, NEW ARRIVALS, ITALIAN COLLECTION, SCENT, COLLABORATIONS, EXPLORE) in 14px uppercase #f4f1e0 with -0.02em tracking, spaced horizontally.\n\n3. Create a dark feature section: Full-width #321e1e background, two-column 50/50 split. Left: product image with no border. Right: headline at 32px Houseplant weight 500 in #f4f1e0, body text at 16px weight 400 in #f4f1e0, ghost button with 1px #f4f1e0 border, #f4f1e0 text, 4px radius.\n\n4. Create a section header: Left-aligned 'NEW & FEATURED' at 21px Houseplant weight 500 in #321e1e, uppercase, -0.02em letter-spacing, 8px margin-bottom. No decoration, no border.\n\n5. Create a footer wordmark: Full-width #321e1e block, 'HOUSEPLANT' text filling the viewport at 60-70px Houseplant weight 600, -0.05em letter-spacing, #321e1e color, line-height 1.0. Functions as the page's visual closing element."
+}

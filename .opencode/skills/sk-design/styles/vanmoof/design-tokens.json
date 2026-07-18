@@ -1,0 +1,267 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Navigation bar, dark surface panels, primary text on light, logo wordmark fill — the near-black anchor of the system, softer than pure #000 for reduced eye strain on large surfaces"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Body text, headline text on light surfaces, footer text — reserved for highest-emphasis type where absolute black is needed for maximum contrast (21:1 on white)"
+    },
+    "graphite": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, link text on light, button labels on light surfaces — the mid-dark step between Carbon and Obsidian for hierarchy without a hue shift"
+    },
+    "frost": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Frost — Page canvas for content sections, card surfaces, icon fills on dark hero, button text on dark fills"
+    },
+    "paper": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Paper — Subtle surface tint alternating with pure white for section banding, elevated card backgrounds when pure white feels too sharp"
+    },
+    "mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, dividers, nav separator lines, input borders, card outlines — the most-used color in the system by frequency (1231 occurrences), defining structural edges without visual weight"
+    },
+    "ash": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Ash — Secondary surface fills, muted background panels, subtle hover states — one step deeper than Mist for surfaces that need slightly more presence"
+    }
+  },
+  "font": {
+    "unica77llweb": {
+      "$value": "Unica77LLWeb",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI and editorial text. Weight 400 for body and navigation, weight 600 for subheadings and button labels, weight 700 for product-name hero displays (S6, A5 at 280px) and section headings. The geometric humanist character with its tall x-height carries authority at massive sizes while remaining legible at 12px. The 280px step is the signature — product names function as graphic objects, not text."
+    },
+    "unica77mono": {
+      "$value": "Unica77Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for technical metadata, spec labels, navigation micro-text, and any data-adjacent content (dimensions, weights, delivery estimates) where tabular alignment matters"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Unica77Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Unica77LLWeb",
+        "fontSize": "280px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 280px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "hero-panel": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed dark photographic background for product heroes — the darkest surface in the system"
+    },
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background for content sections, feature grids, editorial blocks"
+    },
+    "section-band": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating section tint to create visual rhythm between white content blocks"
+    },
+    "muted-surface": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle background for inactive states, placeholder fills, or tertiary panels"
+    },
+    "structural-line": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 4: Hairline border and divider color — defines edges without surface weight"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.vanmoof.com",
+      "siteName": "Vanmoof",
+      "extractedAt": "2026-06-03T20:12:56.987Z",
+      "variant": "extended"
+    }
+  }
+}

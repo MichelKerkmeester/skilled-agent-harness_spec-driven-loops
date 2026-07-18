@@ -1,0 +1,745 @@
+{
+  "source": "https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf",
+  "uuid": "aecf9dda-5cba-4dc7-9e73-59b65d895cdf",
+  "name": "teenage engineering",
+  "northStar": "industrial catalogue under studio light — the product is the only rich object on the page and everything else is whispered around it",
+  "capturedAt": "2026-07-18T10:09:30.726Z",
+  "meta": {
+    "url": "https://teenage.engineering",
+    "siteName": "teenage engineering",
+    "extractedAt": "2026-06-03T15:14:09.088Z",
+    "durationMs": 24924,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 515,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use te-20 weight 100 as the default for all body copy, labels, links, and meta — it is the voice of the system; reserving weight 300 for sizes 19px+ and headings",
+      "Photograph products on seamless white/gray studio backdrops and let them fill the grid cell edge-to-edge with zero padding, zero border, zero radius — the product is the card",
+      "Set section gaps at 66px on the horizontal axis and use 15px as the universal element gap inside rows — these two values create the catalogue's breathing rhythm",
+      "Use #0f0e12 (not pure #000000) for dark hero bands, footer blocks, and any inverted section — the slight violet cast keeps the near-black from feeling like a void",
+      "Keep the palette to five neutrals: #f6f8f7 canvas, #000000 text, #0f0e12 dark surfaces, #e5e5e5 hairlines, #b2b2b2 muted text — never introduce a sixth color unless it serves a state (warning, error)",
+      "Use 0px border-radius on every component — cards, buttons, inputs, tags — sharp edges are non-negotiable, they are what makes the system feel industrial rather than soft",
+      "Anchor the page with hairline #e5e5e5 or #000000 rules at 1px to organize content into ruled bands rather than using background fills or shadows"
+    ],
+    "donts": [
+      "Never use border-radius above 0px — the system is built on straight cuts, and any rounding breaks the industrial register",
+      "Never use drop shadows, glows, or inset shadows — elevation is communicated through the #0f0e12 dark band, not through shadow stacks",
+      "Never use weights above 300 in te-20 or above 300 in te-40 — the hairline quality is the system's most distinctive trait and bold weights would destroy it",
+      "Never introduce gradients — the only tonal transition is the hard cut between #f6f8f7 and #0f0e12 section bands",
+      "Never set body text below 13px or above 19px for running copy — the scale is deliberately compressed and the 13px floor is already daringly small",
+      "Never use color as decoration — the only chromatic note (amber warning triangle) earns its presence by being the sole exception; adding a second accent dilutes the rationing",
+      "Never center body paragraphs — text alignment is always left, even on light backgrounds, maintaining the technical-document reading rhythm",
+      "Never add padding inside product image cells — let the photograph run to the grid edge, the seamlessness is what makes the catalogue feel like a gallery wall"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f8f7",
+        "name": "Canvas Mist",
+        "role": "Page background, product photography backdrop, the dominant surface — everything else sits on this almost-white field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary body text, dominant hairline borders, footer rules — the most-used color in the system at ~1017 occurrences, functioning as the typographic anchor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0e12",
+        "name": "Carbon",
+        "role": "Near-black with a barely-perceptible violet cast — used for dark hero bands, inverted text, and footer/divider blocks where pure black would feel too clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Steel Gray",
+        "role": "Light border hairlines, nav icon fills, list dividers — the structural gray that organizes the page into ruled sections without ever calling attention to itself",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b2b2",
+        "name": "Graphite",
+        "role": "Muted secondary borders and subdued helper text — the quietest neutral, used only when a rule needs to be present but not assertive",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is a max-width 1200px centered column on a #f6f8f7 canvas. The top of the page is a thin nav bar (~66px) with the wordmark left and icon+label sections right, separated by a 1px #e5e5e5 bottom border. The hero is a full-bleed dark band in #0f0e12 that breaks the max-width container and spans the viewport, containing a single large product photo and a small inverted label. Below the hero, the layout returns to the 1200px column and switches to a 3-column product grid on a light background, with vertical 1px #e5e5e5 rules between columns and a small product name + buy link beneath each image. Vertical rhythm is established by 66px horizontal padding on outer sections and 33px on footer blocks. The navigation is a simple top bar, not sticky, with no sidebar and no mega-menu — section icons are the only navigation surface. The overall feel is a paginated technical catalogue, not a scrollable marketing site.",
+    "imagery": "Photography is the dominant visual content and the only 'rich' element on the page. Products are shot on seamless studio backdrops (white or neutral gray gradient) at 3/4 perspective angles that show depth and material — the EP-133 K.O. II appears as a flat top-down product shot in the dark hero, while smaller grid items appear front-on. Images are edge-to-edge inside grid cells with no padding, no rounded corners, and no border. The photography is high-key, product-focused (no lifestyle, no models, no context), and the objects themselves carry all the visual interest. There is no illustration, no icon-driven decorative graphics, and no abstract backgrounds — the only non-product visual is the small set of hairline te-20 icons in the top nav. The product IS the design system.",
+    "similar": [
+      {
+        "why": "Same monochrome-first industrial aesthetic with hairline-thin type, zero shadows, and a single accent color used sparingly — though Nothing leans darker and more aggressive",
+        "business": "Nothing (nothing.tech)"
+      },
+      {
+        "why": "Shares the Swiss-minimal industrial design language with hairline typography, restrained palette, and product-as-hero photography on clean backdrops",
+        "business": "Punkt. (punkt.shop)"
+      },
+      {
+        "why": "Both descend from Dieter Rams' design philosophy — functional purity, no ornament, straight edges, and the confidence to let the product carry the page",
+        "business": "Braun (braun-design)"
+      },
+      {
+        "why": "Similar product-catalog sensibility with monochrome layouts, minimal type, and full-bleed product photography on white backgrounds",
+        "business": "Areaware"
+      },
+      {
+        "why": "Shares the utilitarian product design language with muted palettes, weight-100-style thin type, and engineering-manual layout discipline",
+        "business": "HOTO Tools"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "global": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "66px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f6f8f7",
+        "name": "Canvas Mist",
+        "level": 1,
+        "purpose": "Page background, default product photography backdrop — the base plane that almost everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White (implicit)",
+        "level": 2,
+        "purpose": "Product image cards appear on white within the canvas — the photographic bleed creates an even brighter island inside the near-white field"
+      },
+      {
+        "hex": "#0f0e12",
+        "name": "Carbon",
+        "level": 3,
+        "purpose": "Dark hero bands and footer — the only elevation device in the system, used to frame products like display cases"
+      }
+    ],
+    "northStar": "industrial catalogue under studio light — the product is the only rich object on the page and everything else is whispered around it",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.11
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "A single horizontal rule on a white canvas, ~66px tall. Left side holds the lowercase 'teenage engineering' wordmark in te-20 weight 300 at ~24px. Right side holds a row of section entries (products, store, latest, finder) each with a small square te-20 icon above the label, separated by equal 15px gaps. No background fill, no shadow — just type and hairline rules at #000000 on #f6f8f7. Top and bottom borders are 1px #e5e5e5."
+      },
+      {
+        "name": "Product Grid Card",
+        "role": "E-commerce product listing tile",
+        "description": "Three columns on a #f6f8f7 background. Each card is a vertical stack: product image fills the cell edge-to-edge (no padding, no border, no radius), below it a product name in te-20 weight 100 at 13px, then a 'buy now' link in te-20 weight 100 at 13px in the blue link color. No card container, no background plate — the product photography IS the card. Separated by 22px gutters with #e5e5e5 vertical rules between columns."
+      },
+      {
+        "name": "Dark Hero Band",
+        "role": "Full-width product showcase section",
+        "description": "A full-bleed horizontal band in #0f0e12 (not pure black — the slight violet tint differentiates it from text). Holds a single product photographed at 3/4 perspective, floating against the dark field with generous margin on all sides. Small uppercase te-20 weight 100 label ('EP-133 K.O. II') in #f6f8f7 sits in the bottom-left corner at 13px. No overlay UI, no gradient — the product sits on the dark plane like a sculpture in a vitrine."
+      },
+      {
+        "name": "Inverted Section Label",
+        "role": "Caption-level text on dark sections",
+        "description": "Small te-20 weight 100 at 13px in #b2b2b2 (graphite), positioned bottom-left of dark hero bands. Pairs with the dark Carbon #0f0e12 background to create a subtle 'engraved on metal plate' effect — the type is always quieter than the product it labels."
+      },
+      {
+        "name": "Cookie Consent Triangle",
+        "role": "Privacy/cookie consent overlay",
+        "description": "A large amber-yellow warning triangle (roughly #f0a000–#f5b800) anchored bottom-left, containing a black hand-stop icon and a short paragraph in te-20 weight 100 at 13px in black. Two inline buttons: 'settings' (text-only, weight 100) and 'accept all' (solid black fill, white text, 0px radius). This is the only chromatic element on the page and its presence is structural — it signals that color is rationed and reserved for warning states."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation and action link",
+        "description": "te-20 weight 100 at 13px, rendered in the standard blue link color (#0071bb). No underline by default, no arrow, no icon. Underlines appear only on hover. The visual weight stays in the hairline register — links whisper rather than announce."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Page footer with metadata",
+        "description": "A dark band in #0f0e12 spanning full width, ~33px vertical padding. Contains te-20 weight 100 at 13px in #f6f8f7, arranged in a quiet row or column of legal/support links. No background image, no logo — just reversed type on the Carbon near-black surface."
+      },
+      {
+        "name": "Icon Glyph",
+        "role": "Navigation and section icons",
+        "description": "Small square icons (~20×20px) in te-20 weight 100, rendered as line drawings in #000000. Stroke weight matches the type weight — hairline-thin, geometric, no fills, no rounded terminals. Sit directly above their nav labels in the top bar and are interchangeable with text-only entries."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The signature voice — a custom industrial sans used for nearly everything. Weight 100 (ultra-thin) at 13px is the body default and it is an anti-convention: most sites use 400-500 for body copy, this one uses a hairline that lets the photography do the talking. Weight 300 takes over at 19px and up for nav items, labels, and mid-size UI. Substitute: Inter at weight 100, or Suisse Int'l Thin — both preserve the wire-like quality that makes teenage engineering's type feel engineered rather than designed",
+        "sizes": "13px, 19px, 24px, 26px",
+        "family": "te-20",
+        "weight": "100, 300",
+        "lineHeight": "1.11 (headings), 1.15 (subheads), 1.50 (body)",
+        "substitute": "Inter (weight 100/300) or Suisse Int'l Thin",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Reserved for primary page headings at exactly 40px in light weight 300 — the lightest possible headline voice paired with tight 1.11 leading keeps the type block compact and poster-like against the generous canvas",
+        "sizes": "40px",
+        "family": "te-40",
+        "weight": "300",
+        "lineHeight": "1.11",
+        "substitute": "Inter (weight 300)"
+      }
+    ],
+    "description": "teenage engineering reads as an industrial product catalogue rendered in typographic whispers: a near-white canvas of #f6f8f7 hosts photographed products on seamless studio backdrops, while everything else — nav items, body copy, borders, labels — sits in ultra-thin weight 100 type that almost disappears into the page. The contrast comes not from ornament but from material: products are the only dense visual objects; the UI around them is mostly negative space, hairline rules, and one occasional dark band of #0f0e12 that acts like a display case wall. Zero rounded corners, zero drop shadows, zero gradients — every edge is a straight cut, every surface is flat. Color is deliberately rationed: pure black text, gray hairlines, a slightly purplish near-black for inverted sections, and a single chromatic note (the amber warning triangle) that earns its presence by being the only non-neutral element on the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"teenage engineering design system\",\"item\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#style-reference\",\"name\":\"teenage engineering design system reference\",\"headline\":\"teenage engineering design system | Refero Styles\",\"description\":\"Explore teenage engineering's light E-commerce design system: Canvas Mist #f6f8f7, Ink Black #000000 colors, te-20, te-40 typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\",\"mainEntityOfPage\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"teenage engineering\",\"url\":\"https://teenage.engineering\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"caption\":\"Screenshot of teenage engineering\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"teenage engineering design system\",\"teenage engineering website design\",\"teenage engineering colors\",\"teenage engineering typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas Mist\",\"Ink Black\",\"Carbon\",\"Steel Gray\",\"te-20\",\"te-40\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"teenage engineering design system\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering website design\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering colors\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-01T16:17:54.000Z\",\"dateModified\":\"2026-04-01T16:17:54.000Z\"}]}19:T631,Quick Color Reference:\n- text: #000000\n- background: #f6f8f7\n- border: #e5e5e5\n- dark surface: #0f0e12\n- muted text: #b2b2b2\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a product grid card: #f6f8f7 background, product image fills the cell edge-to-edge with 0px padding and 0px radius. Below the image, product name in te-20 weight 100, 13px, #000000, 1.5 line-height. Below that, a 'buy now' link in te-20 weight 100, 13px, #0071bb, no underline. Vertical 1px #e5e5e5 rule on the right edge of the card. 22px gap to the next card.\n\n2. Create a dark hero band: full-bleed #0f0e12 background (not pure black), product image centered with 66px top/bottom padding, product label 'EP-133 K.O. II' in te-20 weight 100, 13px, #b2b2b2, positioned bottom-left with 66px left padding.\n\n3. Create a top nav bar: #f6f8f7 background, 66px tall, wordmark 'teenage engineering' in te-20 weight 300, 24px, #000000 on the left, row of icon+label pairs on the right in te-20 weight 100, 13px, #000000, separated by 15px gaps. 1px #e5e5e5 bottom border.\n\n4. Create a warning/cookie consent overlay: large amber triangle (#f0a800) anchored bottom-left, black hand-stop icon centered inside, body text in te-20 weight 100, 13px, #000000. Two buttons: 'settings' as text-only in te-20 weight 100, and 'accept all' as solid #000000 fill with #f6f8f7 text, both 0px radius, inline padding 8px 16px.\n\n5. Create a footer block: full-bleed #0f0e12 background, 33px vertical padding, single row of links in te-20 weight 100, 13px, #f6f8f7, left-aligned, 66px horizontal padding."
+      },
+      {
+        "title": "Gradient System",
+        "content": "There is no gradient system. The only tonal transition in the interface is the hard cut between #f6f8f7 (light canvas) and #0f0e12 (dark band). Any product photography may contain internal gradient backdrops, but the UI itself is strictly flat with sharp boundaries."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero drop shadows. Elevation is communicated exclusively through the tonal jump from #f6f8f7 canvas to #0f0e12 dark band — when a product needs to feel important, it is placed on the dark plane, not given a shadow. This is a deliberate industrial choice: shadows would suggest soft, organic materials; flat dark planes suggest machined metal and display vitrines. Borders serve the same organizational function that shadows serve in other systems — 1px hairlines in #e5e5e5 or #000000 divide content into ruled sections, just as lines divide a technical drawing."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "body",
+            "link"
+          ],
+          "frequency": 1017,
+          "confidence": 1,
+          "prominence": 132575714.89316796,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 58,
+            "body/color": 22,
+            "link/color": 1,
+            "other/fill": 2,
+            "image/color": 26,
+            "other/color": 142,
+            "body/borderColor": 88,
+            "link/borderColor": 4,
+            "image/borderColor": 104,
+            "other/borderColor": 568,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f6f8f7",
+          "oklch": {
+            "c": 0.0024914817576951334,
+            "h": 165.07696238382118,
+            "l": 0.9773332605234124
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 8910250.873334864,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 30
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "heading",
+            "footer",
+            "other",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 325,
+          "confidence": 1,
+          "prominence": 1398445.3607463224,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 154,
+            "nav/color": 2,
+            "body/color": 10,
+            "icon/color": 1,
+            "link/color": 6,
+            "list/color": 7,
+            "other/color": 5,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "nav/borderColor": 8,
+            "body/borderColor": 40,
+            "icon/borderColor": 4,
+            "link/borderColor": 24,
+            "list/borderColor": 28,
+            "other/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#0f0e12",
+          "oklch": {
+            "c": 0.008410744564096278,
+            "h": 296.9239243095669,
+            "l": 0.1668474729216542
+          },
+          "contexts": [
+            "body",
+            "other",
+            "footer"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 635225.5250947146,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b2b2b2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7635757140646726
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 14209.42926794052,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20
+          }
+        },
+        {
+          "hex": "#0071bb",
+          "oklch": {
+            "c": 0.14315191184732853,
+            "h": 247.73510943444407,
+            "l": 0.5351526597514948
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 210,
+          "confidence": 1,
+          "prominence": 6277.253640418941,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 42,
+            "body/borderColor": 168
+          }
+        },
+        {
+          "hex": "#006837",
+          "oklch": {
+            "c": 0.11464760000629523,
+            "h": 153.9250142957487,
+            "l": 0.4539130546497409
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3921,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.050551810724766374,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.69,
+          "background": "#f6f8f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#f6f8f7",
+          "foreground": "#0f0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#000000",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.27,
+          "background": "#0f0e12",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#000000",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.07,
+          "background": "#0f0e12",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.49,
+          "background": "#f6f8f7",
+          "foreground": "#006837"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#e5e5e5",
+          "foreground": "#006837"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#f6f8f7",
+          "foreground": "#0071bb"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.08,
+          "background": "#000000",
+          "foreground": "#0071bb"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.74,
+          "background": "#0f0e12",
+          "foreground": "#0071bb"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.26,
+          "background": "#b2b2b2",
+          "foreground": "#006837"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#f6f8f7",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#f6f8f7",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#0f0e12",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "te-20",
+          "source": "custom",
+          "weights": [
+            100,
+            300
+          ],
+          "frequency": 299,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "te-40",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "te-20",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "te-20",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 19,
+          "family": "te-20",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "te-20",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "footer",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 187,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "te-20",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "te-20",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 26,
+          "family": "te-20",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "te-40",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ced22f54-921e-4cf3-bce5-fc54269fbed9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"teenage engineering design system\",\"item\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#style-reference\",\"name\":\"teenage engineering design system reference\",\"headline\":\"teenage engineering design system | Refero Styles\",\"description\":\"Explore teenage engineering's light E-commerce design system: Canvas Mist #f6f8f7, Ink Black #000000 colors, te-20, te-40 typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\",\"mainEntityOfPage\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"teenage engineering\",\"url\":\"https://teenage.engineering\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/aecf9dda-5cba-4dc7-9e73-59b65d895cdf#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"caption\":\"Screenshot of teenage engineering\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e05502e7-3079-4e75-8258-c02d2461e8eb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"teenage engineering design system\",\"teenage engineering website design\",\"teenage engineering colors\",\"teenage engineering typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas Mist\",\"Ink Black\",\"Carbon\",\"Steel Gray\",\"te-20\",\"te-40\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"teenage engineering design system\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering website design\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering colors\"},{\"@type\":\"Thing\",\"name\":\"teenage engineering typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-01T16:17:54.000Z\",\"dateModified\":\"2026-04-01T16:17:54.000Z\"}]}19:T631,Quick Color Reference:\n- text: #000000\n- background: #f6f8f7\n- border: #e5e5e5\n- dark surface: #0f0e12\n- muted text: #b2b2b2\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a product grid card: #f6f8f7 background, product image fills the cell edge-to-edge with 0px padding and 0px radius. Below the image, product name in te-20 weight 100, 13px, #000000, 1.5 line-height. Below that, a 'buy now' link in te-20 weight 100, 13px, #0071bb, no underline. Vertical 1px #e5e5e5 rule on the right edge of the card. 22px gap to the next card.\n\n2. Create a dark hero band: full-bleed #0f0e12 background (not pure black), product image centered with 66px top/bottom padding, product label 'EP-133 K.O. II' in te-20 weight 100, 13px, #b2b2b2, positioned bottom-left with 66px left padding.\n\n3. Create a top nav bar: #f6f8f7 background, 66px tall, wordmark 'teenage engineering' in te-20 weight 300, 24px, #000000 on the left, row of icon+label pairs on the right in te-20 weight 100, 13px, #000000, separated by 15px gaps. 1px #e5e5e5 bottom border.\n\n4. Create a warning/cookie consent overlay: large amber triangle (#f0a800) anchored bottom-left, black hand-stop icon centered inside, body text in te-20 weight 100, 13px, #000000. Two buttons: 'settings' as text-only in te-20 weight 100, and 'accept all' as solid #000000 fill with #f6f8f7 text, both 0px radius, inline padding 8px 16px.\n\n5. Create a footer block: full-bleed #0f0e12 background, 33px vertical padding, single row of links in te-20 weight 100, 13px, #f6f8f7, left-aligned, 66px horizontal padding."
+}

@@ -1,0 +1,140 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Ink — Body text, headings, project titles, hairline borders, and the bottom edge of links — a soft near-black that reads as flat black at body sizes but never goes dead 000"
+    },
+    "bone": {
+      "$value": "#dfdcdc",
+      "$type": "color",
+      "$description": "Bone — Page canvas and the implicit surface for every project card — a warm off-white with just enough gray to feel like paper, not a screen"
+    },
+    "ash": {
+      "$value": "#cdcecf",
+      "$type": "color",
+      "$description": "Ash — Hairline divider tone that sits one step darker than the canvas to register as a visible rule without becoming a hard line"
+    }
+  },
+  "font": {
+    "nb-akademie-pro": {
+      "$value": "NB Akademie Pro",
+      "$type": "fontFamily",
+      "$description": "The only font in the system, used at a single weight across every role. 58px at 0.93 line-height carries the hero — lines overlap slightly, creating editorial density. 43px at 1.10 serves medium section heads. 21px at 1.33 is the body, nav, labels, and project metadata — a single typographic voice at conversational size. The 'tnum' feature is active sitewide, forcing tabular figures in any year label or date."
+    }
+  },
+  "typography": {
+    "xl": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Nb akademie pro book webfont",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    }
+  },
+  "surface": {
+    "bone": {
+      "$value": "#dfdcdc",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — every project card, image, and text block sits directly on this warm off-white surface; there is no card surface above it"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://erno.works",
+      "siteName": "Erno Forsström",
+      "extractedAt": "2026-06-03T21:50:34.144Z",
+      "variant": "extended"
+    }
+  }
+}

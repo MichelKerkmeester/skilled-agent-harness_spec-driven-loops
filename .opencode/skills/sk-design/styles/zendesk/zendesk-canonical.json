@@ -1,0 +1,1345 @@
+{
+  "source": "https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425",
+  "uuid": "240234ba-9cf5-4a91-b618-76963551d425",
+  "name": "Zendesk",
+  "northStar": "Lime signal in a forest clearing — precision SaaS dressed in warm organic ink, where the single electric-green accent cuts through like a backlit leaf.",
+  "capturedAt": "2026-07-18T10:18:06.786Z",
+  "meta": {
+    "url": "https://zendesk.com",
+    "siteName": "Zendesk",
+    "extractedAt": "2026-04-11T19:21:37.090Z",
+    "durationMs": 113232,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 831,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #d1f470 exclusively for interactive CTAs and key data highlights — its scarcity on the page is the source of its stopping power",
+      "Apply 0px borderRadius to all content cards; elevation comes from the #f5f5f2 surface against a white background, not from shadows or rounded corners",
+      "Use Vanilla Sans weight 300 at 48px and above — the lightweight headline at large scale is the primary typographic signature",
+      "Set global letter-spacing to 0.054em across all Vanilla Sans usage to maintain the airy spacing that distinguishes it from default Inter or DM Sans",
+      "Pair the lime CTA (#d1f470) button with a transparent/ghost secondary button at equal visual weight — never stack two filled buttons",
+      "Use #11110d (near-black with warm undertone) instead of pure #000000 for all body text and UI labels",
+      "Reserve #203524 Forest Canopy for event/announcement surfaces only — it signals 'special context', not general UI"
+    ],
+    "tags": [
+      "organic-warmth",
+      "single-accent",
+      "flat-cards",
+      "lime-green",
+      "custom-typeface",
+      "no-shadows",
+      "warm-neutrals",
+      "enterprise-SaaS",
+      "light-theme",
+      "restrained-color"
+    ],
+    "donts": [
+      "Never add box-shadow to cards — the design intentionally uses surface color contrast (#f5f5f2 vs #ffffff) for elevation, not shadows",
+      "Never use borderRadius above 16px on buttons or 40px on event cards — no full-pill (9999px) shapes appear in this system",
+      "Never introduce secondary accent colors — #d1f470 is the sole chromatic accent; adding blue, orange, or purple breaks the one-color system",
+      "Never use Vanilla Sans at weight 700 for headlines — heavy weight at display sizes contradicts the restraint-authority balance of this system",
+      "Never use pure #000000 for body text on light backgrounds — #11110d is the correct near-black that preserves the warm organic undertone",
+      "Never apply border-radius to flat content cards (the 0px radius is intentional, not an omission)",
+      "Never place two lime-background elements adjacent to each other — the accent works through isolation"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#d1f470",
+        "name": "Electric Lime",
+        "role": "Primary CTA buttons, active indicators, accent highlights — the only saturated color on the page, so it carries 100% of the interactive signaling weight",
+        "group": "brand"
+      },
+      {
+        "hex": "#203524",
+        "name": "Forest Canopy",
+        "role": "Event/announcement banner backgrounds — deep forest green that creates visual separation from page content without using darkness alone",
+        "group": "brand"
+      },
+      {
+        "hex": "#2d4c33",
+        "name": "Deep Grove",
+        "role": "Secondary dark-green surfaces, card backgrounds in dark sections",
+        "group": "brand"
+      },
+      {
+        "hex": "#d1f470",
+        "name": "Lime Fade",
+        "role": "Decorative fade effects, scroll-indicator overlays in lime-to-transparent direction",
+        "group": "accent",
+        "gradient": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(209, 244, 112))"
+      },
+      {
+        "hex": "#11110d",
+        "name": "Near-Black Ink",
+        "role": "Primary text, nav labels, body copy, button labels — warm near-black with green undertone instead of pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f2",
+        "name": "Warm White",
+        "role": "Page backgrounds, card surfaces, section fills — one step off pure white, giving the page an organic warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Hero section background, button text on dark surfaces, icon fills on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight",
+        "role": "Icon fills, SVG strokes, high-contrast borders in dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#90918c",
+        "name": "Stone Divider",
+        "role": "Subtle borders and divider lines between sections",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1200px centered on all sections. Hero is full-viewport white with centered headline stack (Vanilla Sans weight 300 at 68–74px), a single email input + lime CTA row below, and a product UI screenshot that bleeds downward past the fold — the screenshot extends vertically to create scroll anticipation. Beneath the hero: a full-width logo trust bar on white, then alternating content bands at #f5f5f2 and white. The Zendesk Relate event promo occupies a full-width card with 40px radius set into the #f5f5f2 band. Testimonial section uses a centered single-column layout with flanking arrow navigation. Overall rhythm: spacious — section gaps 80-120px, content never feels compressed. Navigation is a sticky top bar with two rows: a global announcement bar above, then the primary nav with logo left, items center-right, and the lime CTA button far right.",
+    "imagery": "Mixed photography and product UI. Photography appears as lifestyle portrait strips — real customers and agents in warm, candid moments (smiling, mid-conversation, casual workplace contexts). Images are cropped tightly and appear as vertical strips flanking the central product UI embed, or as full bleeds within the event promo card. The product UI screenshot is the true hero visual: a detailed, realistic rendering of the Zendesk agent interface shown at natural scale, white background, 16px rounded card. Lifestyle photos sit adjacent with visible rounded corners matching the card system. No illustration. Icons are minimal outlined mono-weight in #11110d. Customer/partner logos are monochrome, displayed at reduced opacity on light backgrounds. Image density is moderate — photography is purposeful punctuation around the product screenshot, not wallpaper.",
+    "similar": [
+      {
+        "why": "Single bold accent color on white/warm-neutral backgrounds with product UI screenshots as hero visuals",
+        "business": "Intercom"
+      },
+      {
+        "why": "Warm near-black (#11110d equivalent) text on warm off-white surfaces, no shadows, flat card approach",
+        "business": "Notion"
+      },
+      {
+        "why": "Custom typeface with weight-300 display headlines and a restrained single-accent-on-neutral palette",
+        "business": "Linear"
+      },
+      {
+        "why": "Enterprise CX SaaS using lifestyle photography strips alongside centered product UI embed in hero",
+        "business": "Freshdesk"
+      },
+      {
+        "why": "Custom sans-serif at whisper weight for large headlines, lime/electric accent as the sole chromatic signal",
+        "business": "Webflow"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "0px",
+        "inputs": "12px",
+        "buttons": "16px",
+        "iconButtons": "100%",
+        "eventBannerCards": "40px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Hero sections and primary page background"
+      },
+      {
+        "hex": "#f5f5f2",
+        "name": "Warm Surface",
+        "level": 1,
+        "purpose": "Content cards, feature sections, testimonial backgrounds"
+      },
+      {
+        "hex": "#203524",
+        "name": "Forest Canopy",
+        "level": 2,
+        "purpose": "Event promo cards, announcement banners — signals special/featured context"
+      },
+      {
+        "hex": "#2d4c33",
+        "name": "Deep Grove",
+        "level": 3,
+        "purpose": "Secondary dark surfaces within event or feature blocks"
+      }
+    ],
+    "northStar": "Lime signal in a forest clearing — precision SaaS dressed in warm organic ink, where the single electric-green accent cuts through like a backlit leaf.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.44
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Email Signup CTA with Input",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Zendesk Relate Event Promo Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Testimonial Carousel Block",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Lime CTA Button",
+        "role": "Main conversion action — email signup, trial start",
+        "description": "backgroundColor #d1f470, color #11110d, borderRadius 16px, padding 10px 20px, Vanilla Sans weight 600, font-size 16px. On dark backgrounds the color switches to #ffffff text but keeps the same #d1f470 background. Border matches background color (invisible border pattern)."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary actions — 'Ver en línea', 'Más información'",
+        "description": "backgroundColor transparent, color #11110d, borderTopColor rgba(17,17,13,0.11) — the near-invisible bottom border at 11% opacity creates an underline-style affordance without a full visible border. borderRadius 0px, paddingTop 12px, paddingRight 12px, paddingBottom 0px, paddingLeft 12px. No fill, no background on hover state implied."
+      },
+      {
+        "name": "Circular Icon Button",
+        "role": "Navigation arrows in testimonial carousels",
+        "description": "backgroundColor transparent, color #11110d, border 1px solid #11110d, borderRadius 100% (perfect circle), padding 16px all sides. Used in pairs (← →) flanking carousel content."
+      },
+      {
+        "name": "Flat Content Card",
+        "role": "Feature and content grouping blocks",
+        "description": "backgroundColor #f5f5f2, borderRadius 0px, boxShadow none, padding 32px 24px. Zero border radius is the signature — cards are flush-cornered rectangles, distinguished from page background by the warm off-white surface, not by elevation or shadow."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Primary lead capture — email collection in hero",
+        "description": "backgroundColor rgba(17,17,13,0.05) — a 5% tint of near-black over the white hero, creating a barely-there warm gray fill. borderRadius 12px, padding 12px all sides, color #11110d, border 1px solid #11110d. Placeholder text in body-sm Vanilla Sans weight 400."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page event or promotional strip",
+        "description": "Full-width bar, backgroundColor #000000 (top global bar) or #203524 (event section). Text in Vanilla Sans 14px weight 400, white (#ffffff). Contains a 'Regístrate gratis' link in #d1f470 with underline. Dismiss X icon right-aligned. Separate from main nav by visual weight contrast."
+      },
+      {
+        "name": "Event Promo Card",
+        "role": "Zendesk Relate event block — image + text + CTA",
+        "description": "backgroundColor #203524 (Forest Canopy), borderRadius 40px, contains logotype in white, body text at 15px weight 400 white, two stacked CTAs: a lime-fill button (16px radius) and an outlined ghost button. Right side contains a full-bleed photo of a speaker cropped into the rounded card. Padding approximately 32px 40px on text side."
+      },
+      {
+        "name": "Logo Trust Bar",
+        "role": "Social proof — partner/customer logo strip",
+        "description": "White or #f5f5f2 background, logos rendered in #11110d (monochrome). No borders, no cards. Overline label in 14px weight 600 Vanilla Sans, letter-spacing 0.054em, uppercase. Logos arranged in single horizontal row with 24-32px gaps."
+      },
+      {
+        "name": "Testimonial Carousel Block",
+        "role": "Customer quote with photo and attribution",
+        "description": "backgroundColor #f5f5f2 page background, quote in Vanilla Sans 26-32px weight 300, color #11110d. Attribution in 15px weight 500. Customer photo in a square with 16px border-radius. Arrow navigation using Circular Icon Buttons. Customer logos displayed below in a horizontal row at 50% opacity."
+      },
+      {
+        "name": "Product UI Screenshot Embed",
+        "role": "Hero visual — showing product interface in context",
+        "description": "White card surface, borderRadius 16px, contains a realistic representation of the Zendesk agent interface. Displayed as a floating panel over the hero section, partially overlapping the fold. Accompanied by lifestyle photography strips on left and right edges with rounded corners."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface for the entire system — custom humanist sans with slightly organic curves. Used at weight 300 for large hero headlines (anti-convention whisper-weight at 68–74px), weight 400–500 for body and subheadings, weight 600–700 for UI labels and nav items. The 0.054em letter-spacing appears as a global tracking value applied broadly, giving the UI a slightly airy, premium feel at smaller sizes.",
+        "sizes": "14px, 15px, 16px, 18px, 26px, 32px, 42px, 48px, 68px, 74px",
+        "family": "Vanilla Sans",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "1.00–1.68 (tight 1.00–1.05 at display sizes, 1.39–1.56 at body sizes)",
+        "substitute": "Inter, DM Sans",
+        "letterSpacing": "0.054em (applied globally across sizes)",
+        "fontFeatureSettings": "normal"
+      }
+    ],
+    "description": "Zendesk's homepage projects warmth and authority through an unusual pairing: near-black almost-green ink (#11110d) on warm off-white (#f5f5f2), punctuated by a single electric lime (#d1f470) that reads as both verdant and technological. The dark forest-green event banner (#203524) at the top immediately signals brand confidence — deep, earthy, not the expected corporate blue. Body text lives in near-black #11110d rather than pure black, giving the page a slightly warm, organic undertone that softens what could otherwise feel austere. The signature move is the lime CTA: vivid enough to stop the eye, yet grounded enough to feel like a product choice rather than a marketing trick. Card surfaces use #f5f5f2 — a shade away from white — so card lifts happen through warm contrast rather than shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Gradient System",
+        "content": "Two lime gradients used for decorative scroll/fade effects only — never as button fills or section backgrounds.\n1. Fade-in: linear-gradient(to right, rgba(0,0,0,0), #d1f470) — used as a right-edge overlay on scrolling logo strips to indicate more content.\n2. Dashed highlight: linear-gradient(90deg, #d1f470 0%, #d1f470 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, #d1f470 60%, #d1f470 100%) — used for animated underline or segmented indicator patterns. Both gradients terminate in #d1f470 — they are extensions of the single accent, not additional colors."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows throughout. Depth is created by surface color stepping: pure white (#ffffff) hero → warm off-white (#f5f5f2) cards → Forest Canopy (#203524) event blocks. No card has a box-shadow; the visual stack reads as nested paper sheets rather than floating panels. This keeps the UI grounded and material-feeling — elevation through pigment, not light simulation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "nav",
+            "hero",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1741,
+          "confidence": 1,
+          "prominence": 141707750.7449803,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "button",
+            "link",
+            "heading",
+            "icon",
+            "list",
+            "nav"
+          ],
+          "frequency": 839,
+          "confidence": 1,
+          "prominence": 106029901.82982776,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#11110d",
+          "oklch": {
+            "c": 0.007982919414505628,
+            "h": 107.19222570990266,
+            "l": 0.1760639885248479
+          },
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "heading",
+            "other",
+            "input",
+            "image",
+            "card"
+          ],
+          "frequency": 922,
+          "confidence": 1,
+          "prominence": 21334302.967546552,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "boxShadow",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f5f5f2",
+          "oklch": {
+            "c": 0.003969652664891418,
+            "h": 106.47342714492575,
+            "l": 0.9693165009002761
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 7432432.279800257,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#203524",
+          "oklch": {
+            "c": 0.040690760479169454,
+            "h": 149.48702275826346,
+            "l": 0.30551705562220016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2315735.5126582975,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#2d4c33",
+          "oklch": {
+            "c": 0.05623892894761082,
+            "h": 149.32666418182282,
+            "l": 0.38450503431650584
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 258310,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d1f470",
+          "oklch": {
+            "c": 0.1630457723700722,
+            "h": 122.0464731812647,
+            "l": 0.9155879832548923
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 62766.36026099518,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#90918c",
+          "oklch": {
+            "c": 0.007369897942002272,
+            "h": 115.78506642502292,
+            "l": 0.6543007769777794
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 928.7712379549449,
+          "properties": [
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00885363481291614,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.23,
+          "background": "#f5f5f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.92,
+          "background": "#11110d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.32,
+          "background": "#f5f5f2",
+          "foreground": "#11110d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.89,
+          "background": "#d1f470",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#d1f470",
+          "foreground": "#11110d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#203524",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#203524",
+          "foreground": "#f5f5f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#203524",
+          "foreground": "#d1f470"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.58,
+          "background": "#2d4c33",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.77,
+          "background": "#2d4c33",
+          "foreground": "#f5f5f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#2d4c33",
+          "foreground": "#d1f470"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#2d4c33",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.98,
+          "background": "#2d4c33",
+          "foreground": "#11110d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.6,
+          "background": "#203524",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#203524",
+          "foreground": "#11110d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#d1f470",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#d1f470",
+          "foreground": "#f5f5f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#11110d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 76
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 134,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 37,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 102,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 187,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 24,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 55,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 29,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft",
+            "paddingRight",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 88,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 92,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 94,
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 127,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 138,
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgba(0, 0, 0, 0), rgb(209, 244, 112))",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(209, 244, 112)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(209, 244, 112) 0%, rgb(209, 244, 112) 40%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgb(209, 244, 112) 60%, rgb(209, 244, 112) 100%)",
+        "colors": [
+          "rgb(209, 244, 112)",
+          "rgb(209, 244, 112)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgb(209, 244, 112)",
+          "rgb(209, 244, 112)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Vanilla Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 763,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.68,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 115,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.054,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.054,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 290,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Vanilla Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Vanilla Sans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Vanilla Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Vanilla Sans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.39,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Vanilla Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "Vanilla Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6fa757d7-2b00-4309-9c26-0da30d09cc5c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3cfe6a0d-0241-4b4e-a231-bcd18c006090.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zendesk design system\",\"item\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425#style-reference\",\"name\":\"Zendesk design system reference\",\"headline\":\"Zendesk design system | Refero Styles\",\"description\":\"Explore Zendesk's light SaaS design system: Electric Lime #d1f470, Forest Canopy #203524 colors, Vanilla Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425\",\"mainEntityOfPage\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zendesk\",\"url\":\"https://zendesk.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/240234ba-9cf5-4a91-b618-76963551d425#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3cfe6a0d-0241-4b4e-a231-bcd18c006090.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3cfe6a0d-0241-4b4e-a231-bcd18c006090.jpg\",\"caption\":\"Screenshot of Zendesk\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3cfe6a0d-0241-4b4e-a231-bcd18c006090.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zendesk design system\",\"Zendesk website design\",\"Zendesk colors\",\"Zendesk typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Electric Lime\",\"Forest Canopy\",\"Deep Grove\",\"Lime Fade\",\"Vanilla Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zendesk design system\"},{\"@type\":\"Thing\",\"name\":\"Zendesk website design\"},{\"@type\":\"Thing\",\"name\":\"Zendesk colors\"},{\"@type\":\"Thing\",\"name\":\"Zendesk typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-11T15:36:08.000Z\",\"dateModified\":\"2026-03-11T15:36:08.000Z\"}]}19:T71c,<div style=\"--color-electric-lime: #d1f470; --color-forest-canopy: #203524; --color-near-black-ink: #11110d; --color-warm-white: #f5f5f2; --color-pure-white: #ffffff; --color-stone-divider: #90918c; --font-vanilla-sans: 'DM Sans', 'Inter', sans-serif; box-sizing: border-box; font-family: var(--font-vanilla-sans); background: var(--color-pure-white); padding: 64px 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; width: 600px;\">\n  <p style=\"font-family: var(--font-vanilla-sans); font-size: 18px; font-weight: 400; color: var(--color-near-black-ink); letter-spacing: 0.054em; margin: 0 0 8px 0; text-align: center;\">Con más de 20 000 clientes de IA, y seguimos creciendo</p>\n  <div style=\"display: flex; gap: 12px; width: 100%; max-width: 520px; align-items: center;\">\n    <input\n      type=\"email\"\n      placeholder=\"Introduce tu correo electrónico profesional\"\n      style=\"flex: 1; font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 400; color: var(--color-near-black-ink); background: rgba(17,17,13,0.05); border: 1px solid var(--color-near-black-ink); border-radius: 12px; padding: 14px 16px; outline: none; letter-spacing: 0.054em; box-sizing: border-box;\"\n    />\n    <button style=\"font-family: var(--font-vanilla-sans); font-size: 16px; font-weight: 600; color: var(--color-near-black-ink); background: var(--color-electric-lime); border: 2px solid var(--color-electric-lime); border-radius: 16px; padding: 14px 24px; cursor: pointer; white-space: nowrap; letter-spacing: 0.054em;\">Pruébalo gratis</button>\n  </div>\n  <p style=\"font-family: var(--font-vanilla-sans); font-size: 14px; font-weight: 400; color: var(--color-stone-divider); letter-spacing: 0.054em; margin: 4px 0 0 0; text-align: center;\">Sin tarjeta de crédito. Cancela cuando quieras.</p>\n</div>1a:Td5b,<div style=\"--color-electric-lime: #d1f470; --color-forest-canopy: #203524; --color-deep-grove: #2d4c33; --color-near-black-ink: #11110d; --color-warm-white: #f5f5f2; --color-pure-white: #ffffff; --font-vanilla-sans: 'DM Sans', 'Inter', sans-serif; font-family: var(--font-vanilla-sans); background: var(--color-warm-white); padding: 32px; width: 600px; box-sizing: border-box;\">\n  <div style=\"background: var(--color-forest-canopy); border-radius: 40px; padding: 40px 40px 40px 40px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden;\">\n    <!-- Logo -->\n    <div style=\"display: flex; align-items: baseline; gap: 0px;\">\n      <span style=\"font-family: var(--font-vanilla-sans); font-size: 32px; font-weight: 700; color: var(--color-pure-white); letter-spacing: -0.5px;\">zendesk</span>\n      <span style=\"font-family: var(--font-vanilla-sans); font-size: 32px; font-weight: 300; color: var(--color-pure-white); letter-spacing: -0.5px;\">&nbsp;relate</span>\n    </div>\n    <!-- Description -->\n    <p style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 400; color: var(--color-pure-white); line-height: 1.56; margin: 0; max-width: 400px; letter-spacing: 0.054em;\">Sumérgete en el futuro del servicio con IA. Accede a historias de éxito inéditas, conoce a más de 2000 líderes del sector servicios y llévate un plan de acción para transformar tu organización.</p>\n    <!-- Event dates row -->\n    <div style=\"display: flex; gap: 40px; flex-wrap: wrap;\">\n      <div style=\"display: flex; flex-direction: column; gap: 4px;\">\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 13px; font-weight: 600; color: var(--color-electric-lime); letter-spacing: 0.08em; text-transform: uppercase;\">Únete a nosotros en persona</span>\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 600; color: var(--color-pure-white); letter-spacing: 0.054em;\">18-20 DE MAYO DE 2026</span>\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 600; color: var(--color-pure-white); letter-spacing: 0.054em;\">DENVER, CO</span>\n      </div>\n      <div style=\"display: flex; flex-direction: column; gap: 4px;\">\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 13px; font-weight: 600; color: var(--color-electric-lime); letter-spacing: 0.08em; text-transform: uppercase;\">Accede al evento digital</span>\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 600; color: var(--color-pure-white); letter-spacing: 0.054em;\">21 DE MAYO DE 2026</span>\n      </div>\n    </div>\n    <!-- CTA buttons -->\n    <div style=\"display: flex; gap: 16px; align-items: center; flex-wrap: wrap;\">\n      <button style=\"font-family: var(--font-vanilla-sans); font-size: 16px; font-weight: 600; color: var(--color-near-black-ink); background: var(--color-electric-lime); border: 2px solid var(--color-electric-lime); border-radius: 16px; padding: 14px 28px; cursor: pointer; letter-spacing: 0.054em;\">Regístrate ya</button>\n      <button style=\"font-family: var(--font-vanilla-sans); font-size: 16px; font-weight: 500; color: var(--color-pure-white); background: transparent; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 16px; padding: 14px 28px; cursor: pointer; letter-spacing: 0.054em;\">Ver en línea</button>\n    </div>\n  </div>\n</div>1b:T112c,<div style=\"--color-electric-lime: #d1f470; --color-near-black-ink: #11110d; --color-warm-white: #f5f5f2; --color-pure-white: #ffffff; --color-stone-divider: #90918c; --font-vanilla-sans: 'DM Sans', 'Inter', sans-serif; font-family: var(--font-vanilla-sans); background: var(--color-warm-white); padding: 56px 32px 48px 32px; width: 600px; box-sizing: border-box;\">\n  <!-- Section label -->\n  <p style=\"font-family: var(--font-vanilla-sans); font-size: 13px; font-weight: 600; color: var(--color-near-black-ink); letter-spacing: 0.12em; text-transform: uppercase; text-align: center; margin: 0 0 40px 0;\">Una experiencia del cliente perfecta</p>\n  <!-- Main testimonial row -->\n  <div style=\"display: flex; gap: 32px; align-items: flex-start; margin-bottom: 40px;\">\n    <!-- Left arrow -->\n    <button style=\"background: transparent; border: 1px solid var(--color-near-black-ink); border-radius: 100%; width: 48px; height: 48px; min-width: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 16px;\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M11 4L6 9L11 14\" stroke=\"#11110d\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </button>\n    <!-- Image placeholder -->\n    <div style=\"width: 160px; min-width: 160px; height: 180px; background: #c8c4bc; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center;\">\n      <div style=\"width: 100%; height: 100%; background: linear-gradient(160deg, #b0aba2 0%, #8a8580 100%);\"></div>\n    </div>\n    <!-- Quote and attribution -->\n    <div style=\"flex: 1; display: flex; flex-direction: column; gap: 20px;\">\n      <p style=\"font-family: var(--font-vanilla-sans); font-size: 19px; font-weight: 300; color: var(--color-near-black-ink); line-height: 1.45; letter-spacing: 0.02em; margin: 0;\">&ldquo;La IA de Zendesk representa una excelente oportunidad de optimización y eficiencia. Gracias a ella, nuestro equipo tendrá más tiempo para trabajar en proyectos importantes para la empresa, ya sea generando ingresos o nuevos canales de venta&rdquo;.</p>\n      <div style=\"display: flex; flex-direction: column; gap: 2px;\">\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 600; color: var(--color-near-black-ink); letter-spacing: 0.054em;\">Ian Hunt</span>\n        <span style=\"font-family: var(--font-vanilla-sans); font-size: 14px; font-weight: 400; color: var(--color-near-black-ink); letter-spacing: 0.054em;\">Responsable de CX en Liberty London</span>\n      </div>\n      <a href=\"#\" style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 500; color: var(--color-near-black-ink); text-decoration: underline; text-underline-offset: 3px; letter-spacing: 0.054em; width: fit-content;\">Leer testimonio del cliente</a>\n    </div>\n    <!-- Right arrow -->\n    <button style=\"background: transparent; border: 1px solid var(--color-near-black-ink); border-radius: 100%; width: 48px; height: 48px; min-width: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-top: 16px;\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 4L12 9L7 14\" stroke=\"#11110d\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </button>\n  </div>\n  <!-- Divider -->\n  <div style=\"height: 1px; background: rgba(17,17,13,0.12); margin-bottom: 28px;\"></div>\n  <!-- Logo strip -->\n  <div style=\"display: flex; gap: 0; align-items: center; justify-content: space-around;\">\n    <span style=\"font-family: var(--font-vanilla-sans); font-size: 17px; font-weight: 700; color: var(--color-near-black-ink); letter-spacing: 0.04em; opacity: 0.5;\">LIBERTY.</span>\n    <span style=\"font-family: var(--font-vanilla-sans); font-size: 14px; font-weight: 600; color: var(--color-near-black-ink); letter-spacing: 0.054em; opacity: 0.5;\">Khan Academy</span>\n    <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 700; color: var(--color-near-black-ink); letter-spacing: 0.12em; opacity: 0.5;\">ZEROFOX</span>\n    <span style=\"font-family: var(--font-vanilla-sans); font-size: 15px; font-weight: 700; color: var(--color-near-black-ink); letter-spacing: 0.1em; opacity: 0.5;\">THRASIO</span>\n  </div>\n</div>1c:T93a,**Quick Color Reference**\n- Text (primary): #11110d\n- Background (page): #ffffff\n- Background (cards/sections): #f5f5f2\n- CTA / accent: #d1f470\n- Event/dark surface: #203524\n- Subtle border: rgba(17,17,13,0.11)\n\n**Example Component Prompts**\n\n1. **Hero Section**: White (#ffffff) background. Centered headline in Vanilla Sans (substitute: Inter) weight 300, 68px, color #11110d, line-height 1.05, letter-spacing 0.054em. Below: a row with a 12px-radius input (background rgba(17,17,13,0.05), border 1px solid #11110d, padding 12px, placeholder in #11110d at 16px weight 400) and a lime button (background #d1f470, color #11110d, border-radius 16px, padding 10px 20px, weight 600). Below the row, a product UI screenshot card with 16px radius bleeding downward.\n\n2. **Flat Feature Card**: backgroundColor #f5f5f2, borderRadius 0px, no box-shadow, padding 32px 24px. Overline label in Vanilla Sans 14px weight 600, #11110d, letter-spacing 0.054em. Body text 16px weight 400, color #11110d, line-height 1.56. No CTA in card body — link is plain text with bottom border.\n\n3. **Event Promo Card**: backgroundColor #203524, borderRadius 40px, padding 32px 40px on text side. Logo in white SVG top-left. Headline in Vanilla Sans 32px weight 600, white. Body text 15px weight 400, white. Two CTAs: primary (background #d1f470, color #11110d, borderRadius 16px, padding 10px 20px) and ghost (background transparent, color #ffffff, border 1px solid #ffffff, borderRadius 16px, padding 10px 20px). Right half: lifestyle portrait photo flush-cropped into the rounded card.\n\n4. **Testimonial Block**: Background #f5f5f2. Quote text in Vanilla Sans 26px weight 300, color #11110d, line-height 1.3. Attribution: 15px weight 500. Customer photo: 160px square, borderRadius 16px. Flanked by circular arrow buttons (40px diameter, transparent background, border 1px solid #11110d, borderRadius 100%). Customer logos below in a single row, monochrome #11110d, 60% opacity.\n\n5. **Navigation Bar**: White background, max-width 1200px centered. Logo left. Nav items center in Vanilla Sans 16px weight 500, #11110d, no underline, 0.054em letter-spacing. Far right: lime button (background #d1f470, color #11110d, borderRadius 16px, padding 10px 20px, weight 600). Above it: a full-width announcement strip in #000000 background, 14px white text, with #d1f470 linked text for the CTA."
+}

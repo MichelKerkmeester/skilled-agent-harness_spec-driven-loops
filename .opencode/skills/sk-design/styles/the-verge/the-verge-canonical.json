@@ -1,0 +1,1681 @@
+{
+  "source": "https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f",
+  "uuid": "e8c4206d-9a2a-4c08-9524-6f14a25e792f",
+  "name": "The Verge",
+  "northStar": "Midnight control room, mint alerts",
+  "capturedAt": "2026-07-18T08:03:14.187Z",
+  "meta": {
+    "url": "https://theverge.com",
+    "siteName": "The Verge",
+    "extractedAt": "2026-06-03T18:39:56.188Z",
+    "durationMs": 33759,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2324,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Mint #3cffd0 for all section labels, author bylines, active states, and the subscribe button — it is the only chromatic voice and must stay consistent",
+      "Set display headlines in Manuka weight 900 at 60–107px with line-height 0.80 for editorial impact — never substitute a regular weight at this scale",
+      "Use Fk Roman Standard for article body and Poly Sans for all UI chrome — the serif/sans split is the system's mode-switch",
+      "Apply 0.10–0.15em letter-spacing on Poly Sans Mono 11–12px for all uppercase metadata, timestamps, and category labels",
+      "Pin the vertical Verge wordmark to the left margin as a persistent typographic frame — it defines the page's structural identity",
+      "Use the inset teal top border (rgb(60,255,208) 0px -1px 0px 0px inset) on interactive link rows to signal hover/active without changing layout",
+      "Reserve #5200ff and #ff3d00 exclusively for Most Popular and Podcasts section cards — never apply them to text or UI controls"
+    ],
+    "donts": [
+      "Do not use Signal Mint on body text or large areas — it is a punctuation color, not a fill",
+      "Do not set display headlines below 56px — Manuka 900 only earns its weight at scale",
+      "Do not use Fk Roman Standard for navigation, buttons, or labels — it is reading-mode only",
+      "Do not add drop shadows to cards — the system uses inset top borders and color blocks, not elevation",
+      "Do not round card corners above 20px or button corners above 24px — these values define the system's geometric vocabulary",
+      "Do not use the violet or red-orange fills outside their assigned sections — they are category markers, not generic accents",
+      "Do not use the Forest green #309875 as a primary accent — it is a secondary signal for specific category labels only"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#131313",
+        "name": "Charcoal",
+        "role": "Page canvas, primary background, inverted sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Deepest darks, shadows, text on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Primary text, inverted surfaces, light icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#313131",
+        "name": "Iron",
+        "role": "Elevated card surface, image-adjacent panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272727",
+        "name": "Graphite",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Fog",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Mist",
+        "role": "Light hairline borders, high-contrast meta text on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9c9c9",
+        "name": "Silver",
+        "role": "Tertiary text, subdued metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3cffd0",
+        "name": "Signal Mint",
+        "role": "Teal supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#5200ff",
+        "name": "Ultraviolet",
+        "role": "Most Popular section card background, ranked-list emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff3d00",
+        "name": "Heat Red",
+        "role": "Podcasts section card background, audio content emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#309875",
+        "name": "Forest",
+        "role": "Secondary green accent for category labels and subdued highlights",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with a persistent vertical 'Verge' wordmark on the far left serving as a typographic left margin. Top horizontal nav bar with logo, category links, subscribe button, and account actions. Hero occupies the upper-left content area at large scale, with a 'Top Stories' numbered list stacked in the right column. Below: alternating content sections — 'Free to Read' dark card, a teal pill toggle, then a 2-column layout pairing article stream (left) with colored section cards (Most Popular in violet, Podcasts in red-orange) on the right. Section rhythm is dictated by color block transitions, not dividers. Content density is comfortable — generous vertical breathing room between sections, compact within list rows.",
+    "imagery": "Editorial news photography dominates: spacecraft interiors, product shots, political figures, event coverage. Full-bleed images in the hero, 60×60px square crops in numbered lists, landscape thumbnails in article cards. Treatment is natural and unfiltered — high contrast, no duotone or color grading. No illustrations, no 3D renders, no abstract graphics. Photography is the visual product; the UI recedes around it.",
+    "similar": [
+      {
+        "why": "Same dark-canvas editorial layout with massive display headlines and a single accent color for interactive elements",
+        "business": "Wired"
+      },
+      {
+        "why": "Dark tech-news aesthetic with compact dense list items and serif article bodies alongside sans-serif UI chrome",
+        "business": "Ars Technica"
+      },
+      {
+        "why": "Near-identical dark mode treatment with teal/cyan accent for links and section labels, numbered story lists with right-side thumbnails",
+        "business": "Engadget"
+      },
+      {
+        "why": "Dark editorial news layout with bold display type and monochrome chrome punctuated by a single chromatic accent",
+        "business": "The Intercept"
+      },
+      {
+        "why": "Sister publication sharing the dark canvas + colored section card pattern (violet and red blocks) and vertical brand wordmark on the left margin",
+        "business": "Vox"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "pills": "9999px",
+        "images": "3px",
+        "inputs": "4px",
+        "buttons": "24px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "48-64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#131313",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, primary dark surface"
+      },
+      {
+        "hex": "#272727",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Elevated panels, button surfaces"
+      },
+      {
+        "hex": "#313131",
+        "name": "Image Card",
+        "level": 3,
+        "purpose": "Image-adjacent panels, list-item dividers"
+      },
+      {
+        "hex": "#5200ff",
+        "name": "Colored Section",
+        "level": 4,
+        "purpose": "Most Popular section card fill"
+      },
+      {
+        "hex": "#ff3d00",
+        "name": "Colored Section",
+        "level": 5,
+        "purpose": "Podcasts section card fill"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(60, 255, 208) 0px -1px 0px 0px inset",
+        "element": "Link rows, list items"
+      },
+      {
+        "style": "rgb(0, 0, 0) 0px -1px 0px 0px inset",
+        "element": "Inactive link states"
+      }
+    ],
+    "northStar": "Midnight control room, mint alerts",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 34,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.68
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 0.8,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "display-xl",
+        "size": 107,
+        "lineHeight": 0.8,
+        "letterSpacing": 1.07
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header with logo, section links, and account actions",
+        "description": "Horizontal bar at #131313 canvas. Verge wordmark left, horizontal nav links (Tech, Reviews, Science, Entertainment, AI, Policy) in Poly Sans 16px weight 400 white. A filled teal subscribe button (#3cffd0 fill, #000000 text, Poly Sans Mono 11px weight 600, 0.10em tracking, 10px 20px padding, 4px radius) on the right. A 'SIGN IN' text link in Poly Sans 11px weight 500 white and a hamburger menu icon. Top edge carries a 1px teal inset border on hover-active nav items."
+      },
+      {
+        "name": "Vertical Verge Wordmark",
+        "role": "Persistent left-margin brand frame",
+        "description": "The word 'Verge' rotated 90° and pinned to the left edge of the page. Set in Manuka weight 900 at a very large size (60–107px), white #ffffff. Serves as a constant typographic column rather than a traditional header logo — a signature structural element that defines the page's left margin."
+      },
+      {
+        "name": "Hero Story Card",
+        "role": "Lead story with full-bleed image and overlay headline",
+        "description": "Large editorial photograph filling the left content column. Overlay headline at the lower-left in Manuka weight 900, 60–90px, #ffffff, line-height 0.80. Subhead in Fk Roman Standard 20px weight 400 #949494. Author byline in Poly Sans 11px weight 500 #3cffd0 (teal) with a date and comment count in Poly Sans 11px weight 400 #949494. No border or background — the image is the surface."
+      },
+      {
+        "name": "Teal Section Label",
+        "role": "Uppercase header for content sections (Top Stories, Free to read)",
+        "description": "Set in Poly Sans 20px weight 500 #3cffd0, 0.02em letter-spacing. A short two- or three-word label — no underline, no icon, no border. The teal color is the entire signal; it reads as a quiet editorial flag, not a heading."
+      },
+      {
+        "name": "Numbered Story List Item",
+        "role": "Ranked story in a list (Top Stories, Most Popular, Podcasts)",
+        "description": "Row layout: number on the far left in Poly Sans 16px weight 700 #3cffd0 (teal), title in Poly Sans 18px weight 700 #ffffff, author byline in Poly Sans 11px weight 500 #3cffd0 (teal), date in Poly Sans 11px weight 400 #949494, and a chat-bubble icon with comment count. A 60×60px thumbnail at 3px radius on the right. Each row separated by a 1px hairline divider in #313131 or section-card color."
+      },
+      {
+        "name": "Teal Pill Toggle",
+        "role": "Switch between 'Today's Stream' and 'Following' content views",
+        "description": "A pill-shaped toggle with 24px radius (fully rounded). Active state: #3cffd0 background, #000000 text in Poly Sans Mono 12px weight 700, 0.10em tracking. Inactive state: #131313 background, #ffffff text with a 1px #e9e9e9 border. The teal active state is the system's only filled-color moment in the navigation surface."
+      },
+      {
+        "name": "Most Popular Card (Violet)",
+        "role": "Ranked list section with violet background fill",
+        "description": "Full section card at #5200ff background, 20px corner radius, 20px internal padding. Section label 'MOST POPULAR' in Poly Sans Mono 11px weight 600 #ffffff at 0.10em tracking. Numbered list items with white titles, teal numbers (#3cffd0), and meta in #ffffff at reduced opacity. The violet fill is the second-strongest color moment after teal."
+      },
+      {
+        "name": "Podcasts Card (Red)",
+        "role": "Audio content section with red-orange background fill",
+        "description": "Full section card at #ff3d00 background, 20px corner radius, 20px internal padding. Section label 'PODCASTS' in Poly Sans Mono 11px weight 600 #ffffff. A 'SEE ALL PODCASTS →' link top-right in white. Numbered list items with white titles, teal numbers, and author/date meta. Functions as a color-coded content category, not a generic panel."
+      },
+      {
+        "name": "Free to Read Card",
+        "role": "Daily-refresh editorial newsletter section",
+        "description": "Dark elevated card at #1f1f1f or #272727 surface (subtly lighter than the #131313 canvas), 20px corner radius, 20px internal padding. Teal 'Free to read' label at top, white 'REFRESHES DAILY AT 1PM EDT' subtitle in Poly Sans Mono 11px. List items with square thumbnail on left (3px radius), title in Poly Sans 18px weight 700 white, and author in teal."
+      },
+      {
+        "name": "Article Story Card",
+        "role": "Standard editorial card with image and text",
+        "description": "Horizontal layout: square or landscape thumbnail on the right (3px radius), text block on the left. Headline in Poly Sans 18–20px weight 700 #ffffff. Author and date meta in Poly Sans 11px — author in teal #3cffd0, date in #949494. Comment count with chat icon. No card background or border — sits directly on the #131313 canvas."
+      },
+      {
+        "name": "Author Byline + Avatar",
+        "role": "Byline with circular avatar and author name",
+        "description": "Small circular avatar (24–32px) followed by author name in Poly Sans 11px weight 500 #3cffd0. Date and time stamp in Poly Sans 11px weight 400 #949494. The teal author name is one of the most repeated teal moments on the page."
+      },
+      {
+        "name": "Subscribe Button (Teal)",
+        "role": "Filled teal call-to-action in top nav",
+        "description": "Small filled button: #3cffd0 background, #000000 text, Poly Sans Mono 11px weight 700 at 0.10em tracking, label 'SUBSCRIBE', 4px corner radius, 10px 20px padding. The single filled-color interactive element against the #131313 nav bar."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines for hero and feature stories — ultra-heavy, near-zero leading creates editorial impact at the largest scale",
+        "sizes": "60px, 90px, 107px",
+        "family": "Manuka",
+        "weight": "900",
+        "lineHeight": "0.80",
+        "substitute": "Druk Wide Bold, Knockout 90, GT America Compressed Black",
+        "letterSpacing": "0.01em"
+      },
+      {
+        "role": "Primary UI font — nav, section headers, list items, card titles; tracks wide at small sizes (0.06–0.15em) for ALL-CAPS labels and tight at body sizes",
+        "sizes": "9px, 10px, 11px, 12px, 13px, 15px, 16px, 18px, 19px, 20px, 24px, 34px",
+        "family": "Poly Sans",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Untitled Sans, Söhne",
+        "letterSpacing": "0.02em at 16px, 0.06em at 13px, 0.10em at 11px, 0.15em at 9–10px"
+      },
+      {
+        "role": "Article body text — serif distinguishes reading mode from navigation; slight negative tracking tightens running text",
+        "sizes": "16px, 20px, 24px",
+        "family": "Fk Roman Standard",
+        "weight": "400",
+        "lineHeight": "1.20, 1.30",
+        "substitute": "Source Serif Pro, Tiempos Text, Lora",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "Metadata, category tags, timestamps — monospaced feel with wide letter-spacing (0.10–0.125em) for technical/journalistic texture",
+        "sizes": "11px, 12px",
+        "family": "Poly Sans Mono",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.18, 1.20, 1.30, 2.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Geist Mono",
+        "letterSpacing": "0.10em at 11px, 0.125em at 12px"
+      },
+      {
+        "role": "System fallback for non-critical UI copy",
+        "sizes": "16px",
+        "family": "ui-sans-serif",
+        "weight": "400",
+        "lineHeight": "1.10–1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "The Verge reads as a late-night newsroom: a near-black canvas where type carries the weight and teal appears only as functional punctuation. The Signal Mint accent (#3cffd0) marks everything that is alive — section labels, author bylines, active states, the subscribe button — while the rest of the page stays achromatic. Display headlines run at Manuka weight 900, 60–107px, creating editorial impact at near-zero line-height, then article bodies switch to Fk Roman Standard serif to separate reading mode from chrome. The vertical 'Verge' wordmark pinned to the left margin is the page's most distinctive structural element — a constant typographic frame, not a logo. Violet (#5200ff) and red-orange (#ff3d00) appear only as section-card fills (Most Popular, Podcasts), giving the monochrome feed two moments of color without breaking the dark mood.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The Verge design system\",\"item\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#style-reference\",\"name\":\"The Verge design system reference\",\"headline\":\"The Verge design system | Refero Styles\",\"description\":\"Explore The Verge's dark Media design system: Charcoal #131313, Onyx #000000 colors, Manuka, Poly Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The Verge\",\"url\":\"https://theverge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"caption\":\"Screenshot of The Verge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The Verge design system\",\"The Verge website design\",\"The Verge colors\",\"The Verge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Charcoal\",\"Onyx\",\"Paper\",\"Iron\",\"Manuka\",\"Poly Sans\",\"Fk Roman Standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The Verge design system\"},{\"@type\":\"Thing\",\"name\":\"The Verge website design\"},{\"@type\":\"Thing\",\"name\":\"The Verge colors\"},{\"@type\":\"Thing\",\"name\":\"The Verge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-01-17T15:51:02.000Z\",\"dateModified\":\"2026-01-17T15:51:02.000Z\"}]}19:T666,## Quick Color Reference\n- Text: #ffffff\n- Background: #131313\n- Border: #e9e9e9 (light hairline) or #313131 (dark divider)\n- Accent: #3cffd0 (Signal Mint)\n- Surface elevated: #313131\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Top navigation bar**: #131313 background. Horizontal nav links in Poly Sans 16px weight 400 #ffffff. Filled teal button (#3cffd0 background, #000000 text, Poly Sans Mono 11px weight 700, 0.10em letter-spacing, 10px 20px padding, 4px radius) labeled 'SUBSCRIBE' on the right.\n\n2. **Hero story**: large full-bleed editorial image. Overlaid headline in Manuka weight 900, 60–90px, #ffffff, line-height 0.80. Subhead in Fk Roman Standard 20px weight 400 #949494. Author byline in Poly Sans 11px weight 500 #3cffd0, date in Poly Sans 11px weight 400 #949494.\n\n3. **Numbered story list item**: row layout. Number in Poly Sans 16px weight 700 #3cffd0 on the far left. Title in Poly Sans 18px weight 700 #ffffff. Author in Poly Sans 11px weight 500 #3cffd0. Date in Poly Sans 11px weight 400 #949494 with a comment-count icon. 60×60px thumbnail at 3px radius on the right. Inset teal top border (1px) on the row.\n\n4. **Most Popular section card**: #5200ff background, 20px corner radius, 20px padding. Section label 'MOST POPULAR' in Poly Sans Mono 11px weight 600 #ffffff, 0.10em letter-spacing. Numbered list items with white titles and teal #3cffd0 numbers.\n\n5. **Stream/Following pill toggle**: 24px radius (fully rounded). Active state: #3cffd0 background, #000000 text in Poly Sans Mono 12px weight 700. Inactive state: #131313 background, #ffffff text with 1px #e9e9e9 border."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows entirely. Instead, interactivity is signaled by inset top borders — a 1px teal edge that appears above links and list items, functioning as a colored underline without shifting layout. Elevation is communicated through surface lightness (#131313 canvas → #272727 card → #313131 image-adjacent) and through full-color section fills (violet, red-orange), not through shadow stacks."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "button",
+            "link",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 4729,
+          "confidence": 1,
+          "prominence": 245813080.3133236,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#131313",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18674120159806412
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1194,
+          "confidence": 1,
+          "prominence": 198872319.9321596,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "list",
+            "card"
+          ],
+          "frequency": 1599,
+          "confidence": 1,
+          "prominence": 2914287.8247603197,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313131",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.31316712939792546
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "list"
+          ],
+          "frequency": 187,
+          "confidence": 1,
+          "prominence": 2883163.50770966,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3cffd0",
+          "oklch": {
+            "c": 0.1626334470738075,
+            "h": 171.79041011056972,
+            "l": 0.8962767750194808
+          },
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 865,
+          "confidence": 1,
+          "prominence": 2125341.0161674805,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5200ff",
+          "oklch": {
+            "c": 0.2965050828642631,
+            "h": 279.01447538654634,
+            "l": 0.4865733719290871
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 1823018.3039774413,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#272727",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.27274100075141233
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1310849.9938907025,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#309875",
+          "oklch": {
+            "c": 0.10885932314924822,
+            "h": 166.5315961501392,
+            "l": 0.6111122591704776
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 162,
+          "confidence": 1,
+          "prominence": 550934.1497227038,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d6f31f",
+          "oklch": {
+            "c": 0.20738101488706723,
+            "h": 118.24907217301629,
+            "l": 0.9114983426240122
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 447910.4027037987,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc2e7",
+          "oklch": {
+            "c": 0.08388121618166328,
+            "h": 341.95474276283477,
+            "l": 0.8795890887467926
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 417479.1226899525,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 2007,
+          "confidence": 1,
+          "prominence": 345000.18705398205,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 242976.3779826139,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff3d00",
+          "oklch": {
+            "c": 0.2347923192885132,
+            "h": 34.03696061309605,
+            "l": 0.6535272182230092
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 225800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c9c9c9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.835905250269194
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 29778.768008307718,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.04673189504484882,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#ffffff",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e9e9e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.7,
+          "background": "#d6f31f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#3cffd0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#131313",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#272727",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#d6f31f",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.52,
+          "background": "#3cffd0",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.12,
+          "background": "#ffc2e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#313131",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#c9c9c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#ffc2e7",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#272727",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.88,
+          "background": "#d6f31f",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.67,
+          "background": "#272727",
+          "foreground": "#3cffd0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#131313",
+          "foreground": "#c9c9c9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.72,
+          "background": "#313131",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#d6f31f",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#313131",
+          "foreground": "#3cffd0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 39
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(60, 255, 208) 0px -1px 0px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 42
+        },
+        {
+          "value": "rgb(0, 0, 0) 0px -1px 0px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 122,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 85,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 152,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 76,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 49,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginRight",
+            "marginLeft",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 150,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 155,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 163,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1124,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poly Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 913,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fk Roman Standard",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 69,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poly Sans Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Manuka",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Poly Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.15,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans Mono",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.18,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 654,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Poly Sans Mono",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Poly Sans Mono",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 2,
+          "letterSpacing": 0.125,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.15,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "link",
+            "icon",
+            "list",
+            "body",
+            "footer"
+          ],
+          "frequency": 862,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 123,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fk Roman Standard",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poly Sans",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poly Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Poly Sans",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 56,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poly Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Fk Roman Standard",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Fk Roman Standard",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 46,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Poly Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Manuka",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Manuka",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 107,
+          "family": "Manuka",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.8,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e00eae7c-b2fb-4683-93ff-c092aa07e13f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"The Verge design system\",\"item\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#style-reference\",\"name\":\"The Verge design system reference\",\"headline\":\"The Verge design system | Refero Styles\",\"description\":\"Explore The Verge's dark Media design system: Charcoal #131313, Onyx #000000 colors, Manuka, Poly Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"The Verge\",\"url\":\"https://theverge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e8c4206d-9a2a-4c08-9524-6f14a25e792f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"caption\":\"Screenshot of The Verge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e3a71e5b-7fa7-4dcc-9a7e-1d9957347ab7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"The Verge design system\",\"The Verge website design\",\"The Verge colors\",\"The Verge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Charcoal\",\"Onyx\",\"Paper\",\"Iron\",\"Manuka\",\"Poly Sans\",\"Fk Roman Standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"The Verge design system\"},{\"@type\":\"Thing\",\"name\":\"The Verge website design\"},{\"@type\":\"Thing\",\"name\":\"The Verge colors\"},{\"@type\":\"Thing\",\"name\":\"The Verge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-01-17T15:51:02.000Z\",\"dateModified\":\"2026-01-17T15:51:02.000Z\"}]}19:T666,## Quick Color Reference\n- Text: #ffffff\n- Background: #131313\n- Border: #e9e9e9 (light hairline) or #313131 (dark divider)\n- Accent: #3cffd0 (Signal Mint)\n- Surface elevated: #313131\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Top navigation bar**: #131313 background. Horizontal nav links in Poly Sans 16px weight 400 #ffffff. Filled teal button (#3cffd0 background, #000000 text, Poly Sans Mono 11px weight 700, 0.10em letter-spacing, 10px 20px padding, 4px radius) labeled 'SUBSCRIBE' on the right.\n\n2. **Hero story**: large full-bleed editorial image. Overlaid headline in Manuka weight 900, 60–90px, #ffffff, line-height 0.80. Subhead in Fk Roman Standard 20px weight 400 #949494. Author byline in Poly Sans 11px weight 500 #3cffd0, date in Poly Sans 11px weight 400 #949494.\n\n3. **Numbered story list item**: row layout. Number in Poly Sans 16px weight 700 #3cffd0 on the far left. Title in Poly Sans 18px weight 700 #ffffff. Author in Poly Sans 11px weight 500 #3cffd0. Date in Poly Sans 11px weight 400 #949494 with a comment-count icon. 60×60px thumbnail at 3px radius on the right. Inset teal top border (1px) on the row.\n\n4. **Most Popular section card**: #5200ff background, 20px corner radius, 20px padding. Section label 'MOST POPULAR' in Poly Sans Mono 11px weight 600 #ffffff, 0.10em letter-spacing. Numbered list items with white titles and teal #3cffd0 numbers.\n\n5. **Stream/Following pill toggle**: 24px radius (fully rounded). Active state: #3cffd0 background, #000000 text in Poly Sans Mono 12px weight 700. Inactive state: #131313 background, #ffffff text with 1px #e9e9e9 border."
+}

@@ -1,0 +1,1601 @@
+{
+  "source": "https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237",
+  "uuid": "dae5e893-ca18-44c3-8f83-358cb52af237",
+  "name": "Promova",
+  "northStar": "midnight magazine with one yellow highlighter — a black page, white type, and a vivid lemon swatch that says 'press here'.",
+  "capturedAt": "2026-07-18T09:36:59.604Z",
+  "meta": {
+    "url": "https://promova.com",
+    "siteName": "Promova",
+    "extractedAt": "2026-06-03T18:53:59.710Z",
+    "durationMs": 25054,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1083,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fff050 exclusively for the single primary CTA on any page — never for decorative fills, secondary buttons, or status indicators",
+      "Set all display headings in Nekst at 40px or larger; never use Nekst for body, nav, or button text",
+      "Apply 30px border-radius to all cards, modals, and major content containers — this radius IS the brand",
+      "Keep the page canvas #000000 across all sections; use white or Smoke (#f5f5f5) cards as the only way to create surface separation",
+      "Use Manrope weight 200 for light/secondary text and weight 700 for emphasized UI labels; weight 500 is the default for body and nav",
+      "Let headlines sit at line-height 1.0 with no extra tracking adjustments — the geometric Nekst at scale carries its own density",
+      "Place icons only as small functional elements or as yellow accent glyphs — never as large decorative illustrations"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — blue, green, red, or purple as UI tokens. The system is one-color-on-black",
+      "Don't use Nekst below 40px or for button labels, nav items, or form fields — it loses its editorial power at small sizes",
+      "Don't apply box-shadows to cards or buttons — the flat paper-on-table aesthetic is intentional",
+      "Don't use borders thicker than 1px on dark surfaces — use Fog (#dddddd) for hairlines, never a chromatic border",
+      "Don't alternate section backgrounds between black and light gray — keep the canvas black throughout, with white card inserts for content blocks",
+      "Don't use fully rounded (9999px) pill buttons — the system's button radius is 10–20px, never circular",
+      "Don't place body text below 14px or above 20px — the type scale jumps from body to display via Nekst at 40px+"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Jet Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text on dark canvas, inverted button surface, logo, nav foreground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595959",
+        "name": "Ash",
+        "role": "Muted helper text, secondary captions, subdued metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Fog",
+        "role": "Hairline borders, low-emphasis dividers, card outlines on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Smoke",
+        "role": "Light surface variant for inverted sections, light card fills against the dark page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff050",
+        "name": "Highlighter Yellow",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#dfe3ff",
+        "name": "Periwinkle Wash",
+        "role": "Soft accent surface, tinted card backgrounds, decorative wash behind phone mockups",
+        "group": "accent"
+      },
+      {
+        "hex": "#bec8ff",
+        "name": "Iris Veil",
+        "role": "Decorative illustration tint, secondary surface accent, cool shadow for hero imagery",
+        "group": "accent"
+      }
+    ],
+    "layout": "Promova uses a max-width 1200px centered column with generous side padding. The hero is an asymmetric split: oversized Nekst headline left, product visual right. Below the hero, content flows in a 2-column card grid for method/feature blocks, then a full-width FAQ accordion list, then a 3-column article grid. Section gaps are large (80px+) to let the black canvas breathe. The header is a simple horizontal bar, not a mega-menu. Sticky behavior is not visually indicated — the nav stays quiet. All sections share the same black background; visual separation comes from white card inserts, not from alternating background colors.",
+    "imagery": "Imagery is minimal and product-led: phone mockups showing the app interface sit against soft purple-blue tints (Periwinkle #dfe3ff, Iris Veil #bec8ff), never against photographic backgrounds. Portrait photography of people (Oleksandr Usyk in the campaign modal) is presented in circular crops, small, and subordinate to type — the typography leads, imagery supports. No full-bleed hero photography. Icons are flat, yellow-filled or white-outlined, geometric. The overall effect is a printed page with sparse illustration, not a screen-first product.",
+    "similar": [
+      {
+        "why": "Same language-learning category and similar use of a single bold accent color (green for Duolingo, yellow for Promova) against a brand-dominant canvas",
+        "business": "Duolingo"
+      },
+      {
+        "why": "Dark-mode UI with oversized display type, generous corner radii, and a single accent color for interactive elements",
+        "business": "Linear"
+      },
+      {
+        "why": "Monochrome-on-black interface with flat cards, minimal shadows, and typography-led hierarchy",
+        "business": "Notion"
+      },
+      {
+        "why": "Language-learning competitor with a similar dark-canvas editorial layout and oversized display headlines",
+        "business": "Babbel"
+      },
+      {
+        "why": "Near-black canvas with one chromatic accent, geometric sans-serif display type, and the same flat-paper card aesthetic",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "30px",
+        "buttons": "20px",
+        "buttons-sm": "10px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page canvas — the dominant background across all sections"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Ash Layer",
+        "level": 1,
+        "purpose": "Elevated light surface for inverted cards, feature blocks, FAQ items"
+      },
+      {
+        "hex": "#dfe3ff",
+        "name": "Periwinkle Mist",
+        "level": 2,
+        "purpose": "Tinted accent surface for decorative and product showcase areas"
+      },
+      {
+        "hex": "#bec8ff",
+        "name": "Iris Glow",
+        "level": 3,
+        "purpose": "Highest-elevation accent wash for hero visual containers and phone mockup backgrounds"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 0 100vmax rgba(0,0,0,0.7)",
+        "element": "Modal/Overlay"
+      },
+      {
+        "style": "none — flat surfaces, no shadow",
+        "element": "Cards on dark canvas"
+      }
+    ],
+    "northStar": "midnight magazine with one yellow highlighter — a black page, white type, and a vivid lemon swatch that says 'press here'.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading-lg",
+        "size": 20,
+        "lineHeight": 1.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.42
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-xl",
+        "size": 140,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Promova Logo Lockup",
+        "role": "Brand identity",
+        "description": "Lowercase wordmark 'promova' set in Manrope weight 700, white on the black header. The wordmark sits flush-left in the nav bar with no icon glyph or padding buffer — the word IS the mark."
+      },
+      {
+        "name": "Header Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width black bar with Manrope 15px / 500 weight nav items (Languages, Courses, For business, Why Promova, Resources), each with a chevron-down caret. White text, no background fill on items, 30px corner radius on the overall container. Pairs with two right-aligned CTAs."
+      },
+      {
+        "name": "Ghost Button (Sign Up)",
+        "role": "Secondary action in nav",
+        "description": "Transparent background, 1px white border (or Fog #dddddd), white Manrope 14px / 700 uppercase text, 10px corner radius, 10px 15px padding. Inverts to filled-white on hover."
+      },
+      {
+        "name": "Filled Dark Button (Get Started)",
+        "role": "Primary action in nav",
+        "description": "Black background (#000000), white Manrope 14px / 700 uppercase text, 10px corner radius, 10px 15px padding. On the dark canvas this button reads as a subtle outlined ghost rather than a filled block — the brand relies on the yellow for real action emphasis."
+      },
+      {
+        "name": "Yellow CTA Button (Try Promova)",
+        "role": "Primary conversion action",
+        "description": "Highlighter Yellow (#fff050) background, black Manrope 14–16px / 700 uppercase text, 20px corner radius, 20px 30px padding. The single chromatic element on the page — this is where Promova spends its only color budget. Feels like a highlighter mark over a printed page."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Above-the-fold editorial statement",
+        "description": "Nekst weight 400 at 100–140px, white text, line-height 1.0. Sits left-aligned on the black canvas, occupying the full left half of the hero. The size and the custom face's geometric sharpness make it read as a magazine cover, not a SaaS headline."
+      },
+      {
+        "name": "Content Card",
+        "role": "Feature, method, and article containers",
+        "description": "White or Smoke (#f5f5f5) background, 30px corner radius (the signature radius of the entire system), 30px padding on all sides, no shadow or border. On the dark page, white cards read as paper inserts laid on a black table."
+      },
+      {
+        "name": "Method/Feature Card",
+        "role": "Two-column explanation blocks",
+        "description": "White card with 30px radius, contains a Nekst 40–60px heading (black), Manrope 16px body text in Ash #595959, and optional small icon. Arranged in a 2-column grid with 40px gap between cards."
+      },
+      {
+        "name": "FAQ Accordion Row",
+        "role": "Expandable question/answer item",
+        "description": "Transparent or dark surface, no background, 1px Fog (#dddddd) bottom border. Question text in Manrope 18–20px / 500, white. Chevron icon right-aligned. No card container — the list feels like editorial copy, not a widget."
+      },
+      {
+        "name": "Promo Modal (Usyk Campaign)",
+        "role": "Overlay marketing card",
+        "description": "Periwinkle (#dfe3ff) background, 30px corner radius, centered on the page with a dark backdrop. Contains Nekst 50–60px heading, Manrope 16px body, a yellow CTA button, and a phone mockup illustration to the right. Functions as a single-color editorial insert."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Product screenshot container",
+        "description": "Iris Veil (#bec8ff) or Periwinkle (#dfe3ff) rounded background, phone device frame rendered at slight angle, app UI visible inside. The cool purple-blue tints differentiate product visuals from the achromatic UI without breaking the monochrome rule."
+      },
+      {
+        "name": "Language Pill",
+        "role": "Language selector tags",
+        "description": "White or Smoke background, 4–10px corner radius, Manrope 14px / 500 text, minimal padding (5–10px). Small, functional, no decoration."
+      },
+      {
+        "name": "Icon Set",
+        "role": "Interface iconography",
+        "description": "Yellow (#fff050) filled icons for highlighted or interactive glyphs, white outlined icons for secondary UI. Consistent stroke weight, geometric and flat — no skeuomorphism. The yellow icons are the most visible brand mark after the wordmark."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and headline face — used exclusively at 40px and above for hero text, section headers, and oversized editorial statements. Single weight (400) with no bold variant, forcing the size itself to carry emphasis. Custom geometric grotesque with tight apertures that give headlines a sharp, print-poster quality on the black canvas.",
+        "sizes": "14px, 15px, 16px, 18px, 19px, 24px, 40px, 50px, 60px, 70px, 100px, 120px",
+        "family": "Nekst",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Bricolage Grotesque, Space Grotesk, or General Sans at the same weights"
+      },
+      {
+        "role": "Interface and body workhorse — navigation, body copy, buttons, captions, form labels, and footers. Weight 200 handles light/secondary text, 400–500 for body, 700 for emphasized UI labels. Carries every functional element that isn't editorial display.",
+        "sizes": "10px, 14px, 15px, 16px, 18px, 20px, 24px, 25px, 140px",
+        "family": "Manrope",
+        "weight": "200, 400, 500, 700",
+        "lineHeight": "1.40–1.67",
+        "substitute": "Inter, Plus Jakarta Sans, or DM Sans"
+      }
+    ],
+    "description": "Promova is a midnight-magazine language learning surface: near-black canvas, white type, a single electric yellow (#fff050) used as functional punctuation for the primary action and icon highlights. Headlines are set in Nekst, a custom display face used exclusively at oversized scales (40–140px) — never as UI text — giving every screen a confident editorial weight. Body and interface type run on Manrope from 200 to 700, with weight 200 doing the work most sites assign to 300. The system is ruthlessly monochromatic (1% colorfulness) and the visual rhythm comes from oversized type, generous 30px corner radii, and the yellow accent appearing only where action or attention is required. Components feel like magazine spreads rather than dashboard widgets: flat, rounded, low-elevation, with cards that read as paper inserts against the black page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Promova design system\",\"item\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#style-reference\",\"name\":\"Promova design system reference\",\"headline\":\"Promova design system | Refero Styles\",\"description\":\"Explore Promova's dark Other design system: Jet Black #000000, Paper White #ffffff colors, Nekst, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Promova\",\"url\":\"https://promova.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"caption\":\"Screenshot of Promova\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Promova design system\",\"Promova website design\",\"Promova colors\",\"Promova typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Jet Black\",\"Paper White\",\"Ash\",\"Fog\",\"Nekst\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Promova design system\"},{\"@type\":\"Thing\",\"name\":\"Promova website design\"},{\"@type\":\"Thing\",\"name\":\"Promova colors\"},{\"@type\":\"Thing\",\"name\":\"Promova typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-01T14:42:31.000Z\",\"dateModified\":\"2026-03-01T14:42:31.000Z\"}]}19:T4e5,**Quick Color Reference**\n- background: #000000\n- text: #ffffff\n- muted text: #595959\n- border: #dddddd\n- accent / icon highlight: #fff050\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Method/Feature card**: White #ffffff background, 30px border-radius, 30px padding. Nekst 50px weight 400 black heading, Manrope 16px weight 400 #595959 body text below, optional yellow #fff050 icon (24px) top-left of the card.\n\n3. **FAQ accordion row**: Transparent background (sits on #000000), 1px bottom border in #dddddd. Question text in Manrope 20px weight 500, #ffffff. Right-aligned chevron icon, white outline. No card container, no background fill.\n\n\n5. **Navigation bar**: Black #000000 background, 30px border-radius on the bar container. 'promova' wordmark in Manrope 700 white, 15px, flush-left. Nav items (Languages, Courses, For business, Why Promova, Resources) in Manrope 15px weight 500, white, with 20px horizontal spacing. Right side: outlined ghost button (Sign Up, 1px white border, 10px radius) and filled dark button (Get Started, #000000 background, 10px radius, white text)."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "Promova is a 1% colorfulness system. The yellow #fff050 is rationed like a scarce resource — it appears only where the user must act, and nowhere else. No blue links, no green success states, no red error states in the visual language; the system relies on text labels and icon shapes to communicate state. The periwinkle and iris tints (#dfe3ff, #bec8ff) exist only as backgrounds for product mockups, never as UI accents. If a new screen needs a third color, it is a design failure — restructure the component to use the existing palette."
+      }
+    ],
+    "elevationPhilosophy": "Promova rejects shadow-based elevation entirely. Cards on the black canvas are distinguished only by their white fill and 30px radius — the contrast of paper-on-table is the elevation system. The single shadow-like effect is the modal backdrop, which uses a dark overlay rather than a box-shadow on the modal itself. This flat, print-inspired approach keeps the visual language editorial and prevents the dark mode from feeling like a typical product UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "card",
+            "icon",
+            "list",
+            "badge",
+            "link",
+            "footer"
+          ],
+          "frequency": 4584,
+          "confidence": 1,
+          "prominence": 207897778.59733894,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 157,
+          "confidence": 1,
+          "prominence": 19530324.32818707,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 4709079.605098802,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4034158,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff050",
+          "oklch": {
+            "c": 0.17274922820678043,
+            "h": 103.90992864664993,
+            "l": 0.9398944122522067
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 3543211.9930522805,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eceeff",
+          "oklch": {
+            "c": 0.022898345141534607,
+            "h": 280.59473252293765,
+            "l": 0.9525982150758536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2654135.4097201284,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f9e7",
+          "oklch": {
+            "c": 0.024230189364355083,
+            "h": 119.48922691377349,
+            "l": 0.973505025636972
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1966909.9340699418,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#595959",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.464002143159062
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 75,
+          "confidence": 1,
+          "prominence": 1868086.591027038,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dfe3ff",
+          "oklch": {
+            "c": 0.03826772277399552,
+            "h": 279.16880946919747,
+            "l": 0.9213535761043606
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1545000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1261735,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bec8ff",
+          "oklch": {
+            "c": 0.07770766975398805,
+            "h": 276.578959694039,
+            "l": 0.8439495203150205
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 972801.960418294,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8df87",
+          "oklch": {
+            "c": 0.11551146846412749,
+            "h": 120.81141060077017,
+            "l": 0.8666421300894598
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 707032,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 618809,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8bde0",
+          "oklch": {
+            "c": 0.08097052320586139,
+            "h": 342.5870655204362,
+            "l": 0.8617606073649963
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 563695,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebe0d3",
+          "oklch": {
+            "c": 0.021217879362530834,
+            "h": 72.1380057786564,
+            "l": 0.911907034673088
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 454848,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bcf0d0",
+          "oklch": {
+            "c": 0.06881678027054615,
+            "h": 157.70776932112636,
+            "l": 0.9104957570120428
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 418963,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5f9ff",
+          "oklch": {
+            "c": 0.02249494119675147,
+            "h": 217.62768296919066,
+            "l": 0.969218534532583
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 332400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.006437390534080208,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.55,
+          "background": "#f4f9e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.33,
+          "background": "#e5f9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.24,
+          "background": "#eceeff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.83,
+          "background": "#fff050",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#dfe3ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.51,
+          "background": "#bcf0d0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.14,
+          "background": "#ebe0d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#dddddd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.36,
+          "background": "#c8df87",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.35,
+          "background": "#f8bde0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#bec8ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7,
+          "background": "#ffffff",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.52,
+          "background": "#f4f9e7",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.45,
+          "background": "#e5f9ff",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.42,
+          "background": "#f5f5f5",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.08,
+          "background": "#eceeff",
+          "foreground": "#595959"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "footer"
+          ],
+          "frequency": 45
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 191,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 131,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 27,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 125,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 110,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 203,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "manrope",
+          "source": "google",
+          "weights": [
+            200,
+            400,
+            500,
+            700
+          ],
+          "frequency": 825,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "nekst",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 151,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "manrope",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "manrope",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 87,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "nav",
+            "hero",
+            "body",
+            "card",
+            "icon",
+            "link",
+            "footer"
+          ],
+          "frequency": 528,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "list",
+            "nav"
+          ],
+          "frequency": 87,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav",
+            "link"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "manrope",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "card",
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "nekst",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "manrope",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "manrope",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "image",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6917d405-c33f-4ad4-9cd1-0737b2d2f3e9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Promova design system\",\"item\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#style-reference\",\"name\":\"Promova design system reference\",\"headline\":\"Promova design system | Refero Styles\",\"description\":\"Explore Promova's dark Other design system: Jet Black #000000, Paper White #ffffff colors, Nekst, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Promova\",\"url\":\"https://promova.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dae5e893-ca18-44c3-8f83-358cb52af237#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"caption\":\"Screenshot of Promova\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4586b6bb-d299-4baa-85a0-b0cf0fc94ef3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Promova design system\",\"Promova website design\",\"Promova colors\",\"Promova typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Jet Black\",\"Paper White\",\"Ash\",\"Fog\",\"Nekst\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Promova design system\"},{\"@type\":\"Thing\",\"name\":\"Promova website design\"},{\"@type\":\"Thing\",\"name\":\"Promova colors\"},{\"@type\":\"Thing\",\"name\":\"Promova typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-01T14:42:31.000Z\",\"dateModified\":\"2026-03-01T14:42:31.000Z\"}]}19:T4e5,**Quick Color Reference**\n- background: #000000\n- text: #ffffff\n- muted text: #595959\n- border: #dddddd\n- accent / icon highlight: #fff050\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Method/Feature card**: White #ffffff background, 30px border-radius, 30px padding. Nekst 50px weight 400 black heading, Manrope 16px weight 400 #595959 body text below, optional yellow #fff050 icon (24px) top-left of the card.\n\n3. **FAQ accordion row**: Transparent background (sits on #000000), 1px bottom border in #dddddd. Question text in Manrope 20px weight 500, #ffffff. Right-aligned chevron icon, white outline. No card container, no background fill.\n\n\n5. **Navigation bar**: Black #000000 background, 30px border-radius on the bar container. 'promova' wordmark in Manrope 700 white, 15px, flush-left. Nav items (Languages, Courses, For business, Why Promova, Resources) in Manrope 15px weight 500, white, with 20px horizontal spacing. Right side: outlined ghost button (Sign Up, 1px white border, 10px radius) and filled dark button (Get Started, #000000 background, 10px radius, white text)."
+}

@@ -1,0 +1,464 @@
+{
+  "color": {
+    "obsidian-plum": {
+      "$value": "#130f18",
+      "$type": "color",
+      "$description": "Obsidian Plum — Page canvas, deepest background — the negative space headlines float on"
+    },
+    "graphite-plum": {
+      "$value": "#21192a",
+      "$type": "color",
+      "$description": "Graphite Plum — Card and list surface — one step lifted from the canvas, carries testimonial cards and feature lists"
+    },
+    "smoke-plum": {
+      "$value": "#2e2d36",
+      "$type": "color",
+      "$description": "Smoke Plum — Inner card surface and hairline border on cards — a second elevation step"
+    },
+    "ink-border": {
+      "$value": "#252542",
+      "$type": "color",
+      "$description": "Ink Border — Subtle violet-tinted borders and dividers between elements"
+    },
+    "carbon": {
+      "$value": "#25292e",
+      "$type": "color",
+      "$description": "Carbon — Navigation fills and tonal mid-ground blocks"
+    },
+    "mist-gray": {
+      "$value": "#8b94a3",
+      "$type": "color",
+      "$description": "Mist Gray — Body text, nav links, secondary icons — the dominant cool-gray voice for readable but non-emphatic text"
+    },
+    "soft-mist": {
+      "$value": "#d0cfd1",
+      "$type": "color",
+      "$description": "Soft Mist — Lighter body text variant for de-emphasized content"
+    },
+    "bone": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Bone — Hairline borders across the entire system — the connective tissue between every section, card, and list"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light text on dark surfaces, inverse labels, and high-contrast captions. Do not promote it to the primary CTA color"
+    },
+    "signal-mint": {
+      "$value": "#73e5bf",
+      "$type": "color",
+      "$description": "Signal Mint — Green text accent for links, tags, and emphasized short phrases"
+    },
+    "mint-halo": {
+      "$value": "#c5ffe7",
+      "$type": "color",
+      "$description": "Mint Halo — Soft mint highlight wash, inset glow on hero elements, gradient terminator fading to white"
+    },
+    "electric-violet": {
+      "$value": "#a37af5",
+      "$type": "color",
+      "$description": "Electric Violet — Feature pill icons, secondary accents, gradient terminator — the cool counterpart to mint, carries the decorative gradient text"
+    },
+    "deep-violet": {
+      "$value": "#744ec2",
+      "$type": "color",
+      "$description": "Deep Violet — Decorative card fill, gradient start — a deeper violet used sparingly for tonal richness"
+    },
+    "lilac": {
+      "$value": "#b89fd4",
+      "$type": "color",
+      "$description": "Lilac — Light accent text and headings — soft violet for non-body highlights"
+    },
+    "mauve": {
+      "$value": "#947fac",
+      "$type": "color",
+      "$description": "Mauve — Muted violet for body text accents and secondary icon strokes"
+    },
+    "jam-pink": {
+      "$value": "#ff4070",
+      "$type": "color",
+      "$description": "Jam Pink — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "oldschool-grotesk": {
+      "$value": "Oldschool Grotesk",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — the signature font. Weight 900 at 66–116px for hero headlines, weight 400 for small caps and labels. This custom geometric grotesk gives Jam its voice: the 900-weight is not just bold, it is architectural, and the compressed letterforms make even short words feel like monuments. At 8–16px it functions as an uppercase micro-label for trust badges and nav accents."
+    },
+    "sf-pro-text": {
+      "$value": "SF Pro Text",
+      "$type": "fontFamily",
+      "$description": "UI body and interface text — the workhorse. Sizes 14–16px at weight 400–500 for body and nav, 600–700 for button labels. The -0.025em letter-spacing tightens the default SF Pro into a denser, more deliberate reading rhythm that matches the display font's compressed character."
+    },
+    "sf-mono": {
+      "$value": "SF Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced code fragments and technical micro-labels — sparingly used for inline technical annotations"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SF Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "66px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 66px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "66px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 66px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "88px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 88px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "116px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 116px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(19, 15, 24, 0.1) 0px 0px 0px 2px, rgba(115, 229, 191, 0.2) 0px 20px 25px -5px, rgba(115, 229, 191, 0.2) 0px 8px 10px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(197, 255, 231) 0px 1px 1px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#130f18",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero section, footer — the base dark void"
+    },
+    "card": {
+      "$value": "#21192a",
+      "$type": "color",
+      "$description": "Surface level 1: Testimonial cards, feature lists, nested content blocks"
+    },
+    "elevated": {
+      "$value": "#2e2d36",
+      "$type": "color",
+      "$description": "Surface level 2: Inner card surfaces, slightly lifted containers"
+    },
+    "product-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Floating product screenshot mockup — the only light surface, designed to pop against the dark canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://jam.dev",
+      "siteName": "Jam",
+      "extractedAt": "2026-06-03T21:37:47.042Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — All text, hairline borders, nav dividers, the structural skeleton of the page"
+    },
+    "ash": {
+      "$value": "#737373",
+      "$type": "color",
+      "$description": "Ash — Email link, secondary metadata text"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, card surfaces — the unbroken gallery wall"
+    },
+    "crimson-pop": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Crimson Pop — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "bubblegum": {
+      "$value": "#ffbbff",
+      "$type": "color",
+      "$description": "Bubblegum — Illustration surface — flat shapes and product packaging accents"
+    },
+    "cotton-candy": {
+      "$value": "#f7b2de",
+      "$type": "color",
+      "$description": "Cotton Candy — Illustration surface — character skin, hair, soft fills"
+    },
+    "sour-grape": {
+      "$value": "#ffa3fe",
+      "$type": "color",
+      "$description": "Sour Grape — Illustration surface and link hover highlight — bright magenta accent within artwork"
+    },
+    "pool-blue": {
+      "$value": "#72c2f2",
+      "$type": "color",
+      "$description": "Pool Blue — Illustration surface — ice, sky, cooling tones in product photography context"
+    },
+    "ice-blue": {
+      "$value": "#96d6ff",
+      "$type": "color",
+      "$description": "Ice Blue — Illustration surface — soft blue fills, atmospheric tones"
+    },
+    "acid-green": {
+      "$value": "#32c24d",
+      "$type": "color",
+      "$description": "Acid Green — Illustration accent — rare punctuation green in character and product art"
+    }
+  },
+  "font": {
+    "helvetica-now": {
+      "$value": "Helvetica Now",
+      "$type": "fontFamily",
+      "$description": "The single typeface for everything: nav links, body, project titles, labels. The 600 weight appears only for project section headers; everything else stays at 400. The uppercase letter-spacing (0.0420em) is reserved for the smallest caption-like text — it reads as a label tag, not body copy"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "159": {
+      "$value": "159px",
+      "$type": "dimension",
+      "$description": "Spacing 159px"
+    },
+    "188": {
+      "$value": "188px",
+      "$type": "dimension",
+      "$description": "Spacing 188px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Unbroken page background — the gallery wall"
+    },
+    "ink-rule": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: 1px hairline dividers between every section, acting as the only structural border"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://maryloufaure.com",
+      "siteName": "Marylou Faure",
+      "extractedAt": "2026-06-03T19:55:07.092Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+:root {
+  /* Colors */
+  --color-ink: #121212;
+  --color-paper: #ffffff;
+  --color-atelier-white: #f7f7f2;
+  --color-linen: #eaeae6;
+  --color-stone: #898989;
+  --color-graphite: #484847;
+  --color-pebble: #bababa;
+  --color-smoke: #818181;
+  --color-charcoal: #333333;
+  --color-pure-black: #000000;
+
+  /* Typography — Font Families */
+  --font-margiela-sans: 'Margiela Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-margiela-serif: 'Margiela Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Typography — Scale */
+  --text-caption-xs: 10px;
+  --leading-caption-xs: 1.2;
+  --tracking-caption-xs: 0.91px;
+  --text-eyebrow: 12px;
+  --leading-eyebrow: 1.4;
+  --tracking-eyebrow: 0.8px;
+  --text-serif-body: 14px;
+  --leading-serif-body: 1.4;
+  --tracking-serif-body: -0.06px;
+  --text-serif-heading-sm: 18px;
+  --leading-serif-heading-sm: 1.3;
+  --tracking-serif-heading-sm: -0.07px;
+  --text-serif-heading: 20px;
+  --leading-serif-heading: 1.3;
+  --tracking-serif-heading: -0.08px;
+
+  /* Typography — Weights */
+  --font-weight-w375: 375;
+  --font-weight-regular: 400;
+  --font-weight-w475: 475;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-156: 156px;
+
+  /* Layout */
+  --section-gap: 80-120px;
+  --card-padding: 16-24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-inputs: 9999px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-atelier-white: #f7f7f2;
+  --surface-linen: #eaeae6;
+}

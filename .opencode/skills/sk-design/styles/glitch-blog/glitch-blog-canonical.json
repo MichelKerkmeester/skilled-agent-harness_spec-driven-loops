@@ -1,0 +1,839 @@
+{
+  "source": "https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76",
+  "uuid": "8472cc85-e4fa-4011-b742-1b9fc7966d76",
+  "name": "Glitch Blog",
+  "northStar": "Neon zine on white paper",
+  "capturedAt": "2026-07-18T09:22:55.513Z",
+  "meta": {
+    "url": "https://glitch.com",
+    "siteName": "Glitch Blog",
+    "extractedAt": "2026-06-03T19:55:05.942Z",
+    "durationMs": 29467,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 164,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ff00bc only as ink (borders, link underlines, logo mark, small CTAs) — never as large background fills",
+      "Keep all card and image corners at 0px — the sharp edges reinforce the editorial/zine feel",
+      "Use the 20px gap between date meta and post title on every card — it is the page's structural rhythm",
+      "Let blog post images carry visual variety — the UI chrome stays monochrome so artwork stands out",
+      "Use Inter at 600/700 for titles and nav, 400 for body and meta — never mix more than three weights per page",
+      "Separate sections with 48px of whitespace, not with borders or background bands",
+      "Use #000000 for all body, heading, nav, and border text — keep the palette to ink, paper, and one magenta"
+    ],
+    "donts": [
+      "Don't apply box-shadows or borders to blog cards — the grid spacing alone should define each post",
+      "Don't use #ff00bc as a button fill or large surface — it loses its spark when used as paint rather than ink",
+      "Don't introduce a second accent color — the system is monochrome plus one magenta",
+      "Don't add border-radius to images, buttons, or cards — sharp corners are a signature choice",
+      "Don't use a serif font anywhere — Inter Variable covers the full hierarchy and mixing would break the system",
+      "Don't use dividers, rules, or background tints to separate grid rows — whitespace does the work",
+      "Don't use blue for links — the magenta underline is the brand's link convention and replacing it flattens the identity"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Page White",
+        "role": "Page canvas, card surfaces, input fills — the base everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, headings, nav links, border lines, icon strokes — the dominant structural color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e4e4",
+        "name": "Hairline Gray",
+        "role": "Footer divider border — barely-there separator",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b4",
+        "name": "Input Border",
+        "role": "Search input and form field borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff00bc",
+        "name": "Glitch Magenta",
+        "role": "Pink accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered max-width container (~1200px) with generous side padding. The page reads top-to-bottom in three bands: header (logo left, nav center-left, search right), featured hero post (full-width image + meta + display title), and a 3-column grid of standard blog cards filling the remaining viewport. Below the grid: a thin hairline divider and a right-aligned 'All Stories' archive link. Navigation is a single horizontal text-only row — no sticky header, no sidebar, no mega-menu. Section rhythm is whitespace-driven: no alternating background bands, no colored sections, no visual dividers other than the one hairline before the footer link. The grid columns are equal-width with ~20px gaps between cards. Vertical spacing between the hero and grid is ~48px; between cards within the grid is ~20px. The page is content-first and completely unornamented — the layout's job is to disappear so the posts can speak.",
+    "imagery": "Imagery is the primary content layer and the reason the page exists. The blog features a mix of full-color digital illustrations (a rainbow-gradient scene with a writer and color swatches), abstract graphic art, product screenshots, editorial photography, and collage-style compositions. Treatment: every image fills its card edge-to-edge with zero padding, zero border-radius, and no overlaid text. Images are displayed at their natural aspect ratios (roughly 4:3 for grid cards, 16:7 for the hero) without cropping masks or vignettes. Color treatment varies wildly by post — some images are saturated rainbow, others are near-monochrome duotone — which is intentional: the UI stays neutral so each post's art can be its own color statement. There are no decorative stock photos, no abstract gradient backgrounds in the chrome, and no icon-heavy illustrations. Density is image-heavy: roughly 50% of every screen is visual content, the other 50% is type.",
+    "similar": [
+      {
+        "why": "Same editorial-blog-on-white-canvas model with stripped-down cards (image, date, title) and zero UI chrome",
+        "business": "Substack Blog"
+      },
+      {
+        "why": "Same minimal monochrome system with a single strong brand accent and zero shadows or borders on content cards",
+        "business": "Vercel Blog"
+      },
+      {
+        "why": "Same content-first blog grid with featured hero above a multi-column card layout and clean Inter-style type",
+        "business": "Notion Blog"
+      },
+      {
+        "why": "Same zine-like editorial sensibility where the interface recedes and the imagery carries the page",
+        "business": "Are.na Blog"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "48px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base page background — the paper"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Blog post cards and featured post — no elevation, no border, just implicit separation by spacing"
+      }
+    ],
+    "northStar": "Neon zine on white paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Featured Blog Post (Hero)",
+        "role": "Top-of-page editorial lead with full-width image and oversized title",
+        "description": "Full-bleed wide aspect image (roughly 16:7), no border, no radius, no shadow. Below the image: date meta at 14px/400 in Ink Black, then a 40px/600 display title. Sits directly on the white canvas — spacing between hero and grid below is 48px."
+      },
+      {
+        "name": "Blog Post Card (Grid Item)",
+        "role": "3-column grid entry for standard blog posts",
+        "description": "Rectangular image (roughly 4:3) at full card width, sharp 0px corners, no border. Below: date at 14px/400 Ink Black, 20px gap to title at 18–20px/600. No card background, no shadow, no border — the image and typography alone define the card."
+      },
+      {
+        "name": "Primary Navigation Link",
+        "role": "Top-bar category links",
+        "description": "16px/600 Ink Black text, no underline by default. Spaced horizontally with ~20px gaps. On hover, the Glitch Magenta (#ff00bc) appears as a 2px bottom border — the link 'lights up' rather than recolors."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark in the top-left",
+        "description": "Glitch bug icon in Glitch Magenta (#ff00bc) at ~32px, paired with 'Glitch' in 20px/700 Ink Black and 'Blog' in 20px/400 Ink Black. The pink mark is the only chromatic element in the header."
+      },
+      {
+        "name": "Search Trigger",
+        "role": "Utility action in top-right",
+        "description": "'Search' text label at 16px/600 Ink Black with a small magnifying-glass icon stroke. No button chrome — sits as a plain interactive text element."
+      },
+      {
+        "name": "Footer Divider",
+        "role": "Thin separator above the 'All Stories' link",
+        "description": "1px Hairline Gray (#e4e4e4) horizontal line, full container width. The only visible border in the entire page chrome."
+      },
+      {
+        "name": "All Stories Link",
+        "role": "Archive navigation, bottom-right of grid",
+        "description": "16px/600 Glitch Magenta (#ff00bc) text with a trailing right-arrow chevron. Right-aligned. The magenta-on-white inversion is the page's strongest color moment and the only 'CTA-like' element."
+      },
+      {
+        "name": "Date Meta Line",
+        "role": "Publication date beneath each post image",
+        "description": "14px/400 Ink Black, full weekday + month + day + year format (e.g. 'Wednesday, July 23, 2025'). Spacing 20px between date and title — this gap is the structural rhythm of every card."
+      },
+      {
+        "name": "Inline Link",
+        "role": "In-body or list links within content",
+        "description": "Ink Black text with a 2px Glitch Magenta (#ff00bc) bottom border. The magenta underline replaces the default blue link — Glitch's signature link treatment is black text with an electric-pink rule."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text across the site — navigation, body, headings, dates, links. Inter Variable provides a neutral editorial voice that lets the artwork speak. Weight 400 carries body and meta, weight 600–700 carries titles and nav for confident hierarchy without serifs.",
+        "sizes": "14px, 16px, 18px, 20px, 40px",
+        "family": "InterVariable",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20 (display, headings), 1.38 (body, meta)"
+      }
+    ],
+    "description": "Glitch Blog reads as a digital zine: white paper canvas, confident sans-serif type, and almost no UI chrome between the reader and the work. The signature choice is a single electric magenta (#ff00bc) that appears sparingly — in the logo mark, link underlines, and the 'All Stories' call — giving the page a spark of personality without ever overwhelming the editorial content. Blog cards are stripped to essentials: a wide image, a small date meta line, and a medium-weight title — no shadows, no borders, no tag pills. The visual system trusts that the artwork in each post carries the page, so the interface recedes. Density is comfortable with generous 20px gaps and 48px section spacing, creating a magazine-like reading rhythm rather than a dashboard grid.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Glitch Blog design system\",\"item\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#style-reference\",\"name\":\"Glitch Blog design system reference\",\"headline\":\"Glitch Blog design system | Refero Styles\",\"description\":\"Explore Glitch Blog's light SaaS design system: Page White #ffffff, Ink Black #000000 colors, InterVariable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Glitch Blog\",\"url\":\"https://glitch.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"caption\":\"Screenshot of Glitch Blog\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Glitch Blog design system\",\"Glitch Blog website design\",\"Glitch Blog colors\",\"Glitch Blog typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Page White\",\"Ink Black\",\"Hairline Gray\",\"Input Border\",\"InterVariable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Glitch Blog design system\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog website design\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog colors\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:39:34.920Z\",\"dateModified\":\"2026-05-07T17:39:34.920Z\"}]}19:T52b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e4e4e4 (footer hairline) / #b4b4b4 (inputs)\n- accent: #ff00bc (Glitch Magenta — link underlines, logo, 'All Stories')\n- primary action: #ff00bc (outlined action border)\n\n**Example Component Prompts**\n1. *Featured blog post hero*: Full-width image at 16:7 aspect, 0px radius, no border, no shadow, directly on the #ffffff canvas. Below image, 48px gap, then a date meta at 14px/400 in #000000, then 20px gap, then a title at 40px/600 in #000000 with 1.20 line-height.\n\n2. *Grid blog card (3-column)*: 4:3 image at full card width, 0px radius, no border. 20px gap to date meta at 14px/400 #000000. 20px gap to title at 18px/600 #000000 with 1.38 line-height. No card background, no shadow, no padding around the image.\n\n3. *Navigation link with magenta hover*: 16px/600 #000000 text, no default underline. On hover, a 2px solid #ff00bc border-bottom appears. Links spaced ~20px apart in a single horizontal row.\n\n4. *Inline link in body copy*: 16px/400 #000000 text with a 2px solid #ff00bc border-bottom. Black text, pink rule — the signature Glitch link treatment.\n\n5. *All Stories archive link*: 16px/600 #ff00bc text, right-aligned, with a trailing '›' chevron. No background, no border, no padding — colored text is the entire treatment."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no borders, no elevation. Cards and surfaces are defined entirely by whitespace and the image's own edge. The page sits flat on the white canvas at z-index zero — the only depth is the image-to-text vertical stacking within each card. This is a deliberate editorial choice: shadows would imply a dashboard or product UI, which this is not."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "heading",
+            "footer",
+            "body",
+            "input"
+          ],
+          "frequency": 460,
+          "confidence": 1,
+          "prominence": 14339016.502506934,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 2,
+            "link/color": 16,
+            "list/color": 19,
+            "other/fill": 17,
+            "icon/stroke": 2,
+            "input/color": 1,
+            "other/color": 39,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 10,
+            "body/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 64,
+            "list/borderColor": 76,
+            "other/borderColor": 156,
+            "footer/borderColor": 3,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#ff00bc",
+          "oklch": {
+            "c": 0.2841347101076102,
+            "h": 344.62641377664806,
+            "l": 0.6671622375421637
+          },
+          "contexts": [
+            "link",
+            "image",
+            "other"
+          ],
+          "frequency": 205,
+          "confidence": 1,
+          "prominence": 3494713.5836870135,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 11,
+            "image/color": 20,
+            "other/color": 10,
+            "link/borderColor": 44,
+            "image/borderColor": 80,
+            "other/borderColor": 40
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "input"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 1858389.5055515142,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4e4e4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.918869996650694
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 340842,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "footer/borderColor": 1
+          }
+        },
+        {
+          "hex": "#b4b4b4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7699314175046421
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4107.490799855744,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff7698",
+          "oklch": {
+            "c": 0.16912532249206716,
+            "h": 6.617728984624158,
+            "l": 0.7362000918225141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1346,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#2800ff",
+          "oklch": {
+            "c": 0.306691328070225,
+            "h": 268.4240831005802,
+            "l": 0.461408916094641
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1102,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#5a78ff",
+          "oklch": {
+            "c": 0.2026305509159353,
+            "h": 270.0982950058057,
+            "l": 0.6228113273294003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 996,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#fec1ee",
+          "oklch": {
+            "c": 0.09021828227430931,
+            "h": 336.03802831277477,
+            "l": 0.8791461429465874
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 668,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.23446763735505963,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#e4e4e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.08,
+          "background": "#fec1ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#b4b4b4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.3,
+          "background": "#ff7698",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.29,
+          "background": "#ffffff",
+          "foreground": "#2800ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.52,
+          "background": "#e4e4e4",
+          "foreground": "#2800ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.55,
+          "background": "#fec1ee",
+          "foreground": "#2800ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#b4b4b4",
+          "foreground": "#2800ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#ffffff",
+          "foreground": "#ff00bc"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#ff7698",
+          "foreground": "#2800ff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "icon",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 201,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "InterVariable",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 129,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "InterVariable",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "InterVariable",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "InterVariable",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "InterVariable",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "list"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "InterVariable",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "footer",
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "InterVariable",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "InterVariable",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "InterVariable",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/753d5de0-c2f8-4139-aae1-3cbf190df1be.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Glitch Blog design system\",\"item\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#style-reference\",\"name\":\"Glitch Blog design system reference\",\"headline\":\"Glitch Blog design system | Refero Styles\",\"description\":\"Explore Glitch Blog's light SaaS design system: Page White #ffffff, Ink Black #000000 colors, InterVariable typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Glitch Blog\",\"url\":\"https://glitch.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8472cc85-e4fa-4011-b742-1b9fc7966d76#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"caption\":\"Screenshot of Glitch Blog\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1b1d8027-57c0-46ec-a09b-62a21e28105f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Glitch Blog design system\",\"Glitch Blog website design\",\"Glitch Blog colors\",\"Glitch Blog typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Page White\",\"Ink Black\",\"Hairline Gray\",\"Input Border\",\"InterVariable\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Glitch Blog design system\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog website design\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog colors\"},{\"@type\":\"Thing\",\"name\":\"Glitch Blog typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:39:34.920Z\",\"dateModified\":\"2026-05-07T17:39:34.920Z\"}]}19:T52b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e4e4e4 (footer hairline) / #b4b4b4 (inputs)\n- accent: #ff00bc (Glitch Magenta — link underlines, logo, 'All Stories')\n- primary action: #ff00bc (outlined action border)\n\n**Example Component Prompts**\n1. *Featured blog post hero*: Full-width image at 16:7 aspect, 0px radius, no border, no shadow, directly on the #ffffff canvas. Below image, 48px gap, then a date meta at 14px/400 in #000000, then 20px gap, then a title at 40px/600 in #000000 with 1.20 line-height.\n\n2. *Grid blog card (3-column)*: 4:3 image at full card width, 0px radius, no border. 20px gap to date meta at 14px/400 #000000. 20px gap to title at 18px/600 #000000 with 1.38 line-height. No card background, no shadow, no padding around the image.\n\n3. *Navigation link with magenta hover*: 16px/600 #000000 text, no default underline. On hover, a 2px solid #ff00bc border-bottom appears. Links spaced ~20px apart in a single horizontal row.\n\n4. *Inline link in body copy*: 16px/400 #000000 text with a 2px solid #ff00bc border-bottom. Black text, pink rule — the signature Glitch link treatment.\n\n5. *All Stories archive link*: 16px/600 #ff00bc text, right-aligned, with a trailing '›' chevron. No background, no border, no padding — colored text is the entire treatment."
+}

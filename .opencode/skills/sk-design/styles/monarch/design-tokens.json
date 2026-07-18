@@ -1,0 +1,324 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff692d",
+      "$type": "color",
+      "$description": "Ember Orange — Primary action buttons, active nav indicators, key UI accents — the only chromatic color in the system, reserved so it reads as decisive when it appears"
+    },
+    "linen": {
+      "$value": "#efecea",
+      "$type": "color",
+      "$description": "Linen — Page canvas and section backgrounds — the warm cream that separates the site from sterile white SaaS"
+    },
+    "ink": {
+      "$value": "#22201d",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon strokes, heading color, footer text — near-black with a warm brown undertone that harmonizes with the cream canvas"
+    },
+    "graphite": {
+      "$value": "#777573",
+      "$type": "color",
+      "$description": "Graphite — Muted body text, secondary helper text, captions — warm mid-gray that sits between Ink and Paper"
+    },
+    "stone": {
+      "$value": "#dcd9d6",
+      "$type": "color",
+      "$description": "Stone — Hairline borders, dividers, table separators, icon outlines — the warm neutral that stitches cards and sections together"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated product panels, input fields — pure white that floats above the Linen canvas"
+    },
+    "smoke": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Smoke — Light text on dark surfaces, inverse labels, and high-contrast captions. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "abc-oracle": {
+      "$value": "ABC Oracle",
+      "$type": "fontFamily",
+      "$description": "All UI text — body, buttons, nav, links, cards, labels. The weight 350 default is unusually light; most fintech systems default to 400-500, but Monarch's lighter body weight lets the orange accent carry more visual weight. Letter-spacing sits at -0.010 to -0.012em across all sizes."
+    },
+    "copernicus": {
+      "$value": "Copernicus",
+      "$type": "fontFamily",
+      "$description": "All display and section headings. The signature choice: a single weight 350 used at every heading size, paired with aggressive negative tracking (-0.050em to -0.067em). The tight tracking compresses wide headings into compact, editorial blocks rather than airy marketing copy. At 48px the -0.067em tracking is extreme — it pulls letters almost touching, creating a dense, premium feel."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "32px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "40px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Copernicus",
+        "fontSize": "48px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(34, 32, 29, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "md": {
+      "$value": "rgba(34, 32, 29, 0.1) 0px 10px 15px -3px, rgba(34, 32, 29, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "linen-canvas": {
+      "$value": "#efecea",
+      "$type": "color",
+      "$description": "Surface level 0: Full page background, section bands, hero backdrop behind photography"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI screenshots, feature cards, elevated content blocks sitting on the canvas"
+    },
+    "ember-accent": {
+      "$value": "#ff692d",
+      "$type": "color",
+      "$description": "Surface level 2: Pill button fills, notification badges, active state highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.monarchmoney.com",
+      "siteName": "Monarch",
+      "extractedAt": "2026-06-03T19:18:40.533Z",
+      "variant": "extended"
+    }
+  }
+}

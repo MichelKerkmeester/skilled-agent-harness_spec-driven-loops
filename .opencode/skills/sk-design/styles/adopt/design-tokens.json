@@ -1,0 +1,160 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f4f1ec",
+      "$type": "color",
+      "$description": "Bone — Page canvas — warm off-white that makes the black ink read like printed type rather than screen pixels"
+    },
+    "carbon": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Carbon — Primary text, body copy, headlines, section rules — the single ink that carries the whole page"
+    },
+    "ash": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, timestamps, secondary metadata — desaturated enough to recede behind Carbon"
+    },
+    "lampblack": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Lampblack — Hard borders on outlined controls, maximum-emphasis rules — used sparingly where Carbon is not black enough"
+    }
+  },
+  "font": {
+    "itcgaramondstdlightnarrow": {
+      "$value": "ITCGaramondStdLightNarrow",
+      "$type": "fontFamily",
+      "$description": "All statement and display headlines. The Light Narrow cut is the signature — its condensed proportions let massive sizes (up to 130px) fit on a line while the 0.90 line-height stacks lines into a dense editorial block. Substituting Cormorant Garamond Light or EB Garamond with a tight tracking and line-height override will read close enough."
+    },
+    "ppneuemontreal": {
+      "$value": "PPNeueMontreal",
+      "$type": "fontFamily",
+      "$description": "Everything non-headline: body text, section labels, timestamps, nav, column headings, footer. Weight 500 for body, 600 for small bold labels (section titles, column headings). The 0.01em tracking opens the grotesque just enough to feel print-set rather than digital. Substituting Inter or Neue Haas Grotesk at the same weight/track will read close enough."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ITCGaramondStdLightNarrow",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ITCGaramondStdLightNarrow",
+        "fontSize": "130px",
+        "fontWeight": 300,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 130px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    }
+  },
+  "surface": {
+    "bone": {
+      "$value": "#f4f1ec",
+      "$type": "color",
+      "$description": "Surface level 1: The only surface — the entire page is one flat warm-white field with no elevated tiers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://weareadopt.com",
+      "siteName": "Adopt",
+      "extractedAt": "2026-06-03T21:28:47.155Z",
+      "variant": "extended"
+    }
+  }
+}

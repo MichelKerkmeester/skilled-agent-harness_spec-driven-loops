@@ -1,0 +1,642 @@
+{
+  "source": "https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132",
+  "uuid": "4f76756b-0f06-47a3-baad-d3846b23e132",
+  "name": "PostNew",
+  "northStar": "After-hours gallery with daylight spreads",
+  "capturedAt": "2026-07-18T07:27:01.410Z",
+  "meta": {
+    "url": "https://www.postnew.xyz",
+    "siteName": "PostNew",
+    "extractedAt": "2026-06-03T21:15:08.557Z",
+    "durationMs": 26215,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 192,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the canvas at #1a1a1a — do not shift to pure #000 or lighter grays; the near-black is the gallery floor.",
+      "Use ABC Diatype Medium at 18px or 22px only — these are the only two editorial sizes. Never scale beyond or interpolate.",
+      "Set letter-spacing to -0.025em on all ABC Diatype text — tighter tracking at this weight is signature.",
+      "Keep all UI radius at 0px — sharp corners are non-negotiable; this is a gallery, not a friendly SaaS app.",
+      "Reserve #fafafa for text and light surface elements against the dark canvas — never use it as a page background.",
+      "Let imagery carry all color — the five neutrals are the entire UI palette; do not introduce brand color tokens.",
+      "Maintain 10px element gaps and 50px section gaps — the compact gallery rhythm depends on tight clustering with deliberate breathing room."
+    ],
+    "donts": [
+      "Do not introduce saturated brand colors, accent hues, or semantic states (success/error/warning) — they break the achromatic gallery frame.",
+      "Do not round corners on cards, buttons, images, or frames — 0px radius is structural to the system.",
+      "Do not add shadows or elevation effects — depth comes from #1a1a1a → #242424 → #5d5d5d surface steps, not from box-shadows.",
+      "Do not use more than two type sizes from ABC Diatype — 18px and 22px are the complete editorial scale.",
+      "Do not use the system sans above 12px — it is chrome-only typography, not editorial.",
+      "Do not center-align editorial body text — the design uses flush-left or full-bleed compositions, not centered paragraphs.",
+      "Do not add gradients — the system is flat; any gradient breaks the gallery wall metaphor."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1a1a1a",
+        "name": "Canvas Black",
+        "role": "Page background, gallery vitrine, frame around content — a near-black not-quite-pure-black that lets imagery breathe without the harshness of #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Bone White",
+        "role": "Primary text, nav labels, icon strokes, light surface fill — the only light token, reserved for foreground against Canvas Black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242424",
+        "name": "Slate Surface",
+        "role": "Elevated cards, button backgrounds, secondary surface panels — one step lighter than canvas to create depth without contrast drama",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5d5d5d",
+        "name": "Ash",
+        "role": "Muted UI elements, inactive dots, decorative fills — the 6.3:1 ratio against white keeps it legible but clearly secondary",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute Black",
+        "role": "Hairline borders, high-contrast text, deepest shadow line — used sparingly where maximum definition is needed against the canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width constraint. The page oscillates between two section types: (1) the vitrine — a centered content block (roughly 400px wide for the niche image, or full-viewport for the sculpture) suspended in the dark canvas with generous negative space on all sides; (2) the editorial spread — edge-to-edge two-column compositions where imagery and type compete for the full viewport. Navigation is a single centered text bar at the top. A left-edge scroll indicator provides orientation. A bottom-center view toggle switches between grid and list modes. Vertical rhythm uses 50px section gaps. The overall grid is implicit — content defines its own structure rather than conforming to a column system.",
+    "imagery": "The site alternates between two visual registers: the dark gallery vitrine (centered 3D render or sculpture on #1a1a1a, often a single object in an alcove with dramatic lighting) and the full-bleed editorial spread (split-screen with raw product photography of sneakers/legs on one side, oversized bold display type with 3D blob decorations on the other). Photography is product-focused, high-saturation, lifestyle-adjacent. The 3D elements are glossy, candy-colored, organic blobs — playful counterpoint to the severe type. Images bleed to all four edges with no rounding, no borders, no padding. The site is image-dominant in the editorial sections and image-singular in the gallery sections.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + image-centric + minimal text-chrome philosophy; both treat the page as a curated wall rather than a structured app",
+        "business": "Are.na"
+      },
+      {
+        "why": "Full-bleed editorial spreads with bold display type, dark gallery frames, and zero border-radius on all content",
+        "business": "Cargo Portfolio"
+      },
+      {
+        "why": "Near-identical dark vitrine approach — a single object or image centered on near-black with zero chrome",
+        "business": "Aether Films"
+      },
+      {
+        "why": "Same editorial portfolio DNA: achromatic UI shell, all color lives inside the content, ABC Diatype as display face",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Monochrome UI with maximalist editorial spreads; the structural restraint makes the content feel louder by contrast",
+        "business": "Manual Creative"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "50px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#1a1a1a",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, the gallery floor"
+      },
+      {
+        "hex": "#242424",
+        "name": "Slate Surface",
+        "level": 1,
+        "purpose": "Elevated panels, button fills, toggle backgrounds"
+      },
+      {
+        "hex": "#5d5d5d",
+        "name": "Ash",
+        "level": 2,
+        "purpose": "Muted indicators, inactive dots, decorative fills"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Bone White",
+        "level": 3,
+        "purpose": "Highest-contrast foreground — light text, active indicators, content surfaces"
+      }
+    ],
+    "northStar": "After-hours gallery with daylight spreads",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading",
+        "size": 22,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.55
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Nav Bar",
+        "role": "Minimalist site navigation — three labels centered on a dark canvas",
+        "description": "Centered horizontal row of three text links (Index, Feed, Profile). System sans-serif at 12px, #fafafa color, letter-spacing normal. 10px row-gap between items. No background, no border — floats on the canvas with no visual weight. Active state not visually distinct in the data; treat as ghost navigation."
+      },
+      {
+        "name": "Scroll Position Indicator",
+        "role": "Vertical dot column tracking scroll progress",
+        "description": "Thin vertical strip of 10-12 small dots positioned at the left edge of the viewport, ~120px from the left. 5px row-gap between dots. Filled dots in #5d5d5d, active dot in #fafafa. This is the only persistent left-side UI element."
+      },
+      {
+        "name": "View Toggle",
+        "role": "Switch between grid and list layout modes for content",
+        "description": "Bottom-center floating control with two icon buttons side by side. Slate Surface (#242424) background, 12px horizontal padding, 8px vertical padding. Icons in #fafafa at 12px. 13px gap between the two toggle buttons."
+      },
+      {
+        "name": "Vitrine Frame",
+        "role": "Dark container that presents a single work or art object in isolation",
+        "description": "Full-viewport or large-centered dark panel with #1a1a1a background, 0px radius (sharp edges), no border. The object sits centered within, surrounded by generous negative space. This is the 'gallery wall' component — it frames content with the discipline of a museum vitrine."
+      },
+      {
+        "name": "Editorial Spread",
+        "role": "Full-bleed two-page-style layout combining imagery and bold type",
+        "description": "Edge-to-edge layout with no padding from viewport edges. Left half: photography or 3D render bleeding off all sides. Right half: oversized display type overlapping the image, often in #000000 with chromatic abstract shapes layered on top. The type uses ABC Diatype Medium at 22px but visually appears much larger due to the 100vh scale. No border, no radius — the spread IS the page."
+      },
+      {
+        "name": "Abstract Shape Decoration",
+        "role": "Sculptural 3D blob/bead elements that punctuate editorial spreads",
+        "description": "Glossy 3D-rendered organic shapes in saturated colors (magenta, lime, blue, yellow, pink) placed over the spread. Not part of the design system palette — they belong to the content layer. When recreating, generate them as content, not as tokens."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary interactive element — minimal, no fill",
+        "description": "12px horizontal padding, 8px vertical padding, 0px radius. Background #242424 (Slate Surface). Text in #fafafa at 12px system sans. No border, no shadow. Used for the view toggle and any low-emphasis interaction."
+      },
+      {
+        "name": "Brand Mark Lockup",
+        "role": "Logo + product name combination for sponsored or featured content",
+        "description": "Centered or right-aligned lockup: brand wordmark (e.g. NIKE) in bold black sans, with product line label (e.g. AIR MAX) below in tracked-out caps at 12px. Appears within editorial spreads as a content element, not as persistent UI."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Editorial display and body — the only display face, used at just two sizes (18px / 22px) with -0.025em tracking. The single weight (500) is deliberate: no bold, no light. The OpenType features (blwf, cv03-cv11, ss09-ss10) activate specific character alternates that give it a subtly editorial personality. Substitute with Inter Tight Medium or Söhne Medium if ABC Diatype is unavailable.",
+        "sizes": "18px, 22px",
+        "family": "ABC Diatype Medium",
+        "weight": "500",
+        "lineHeight": "1.13, 1.15",
+        "substitute": "Inter Tight",
+        "letterSpacing": "-0.45px at 18px, -0.55px at 22px",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"ss09\", \"ss10\""
+      },
+      {
+        "role": "UI chrome only — nav labels (Index, Feed, Profile), view toggle icons, scroll dots. At 12px it is intentionally small and quiet, the typographic equivalent of architectural labeling. Do not promote to editorial content.",
+        "sizes": "12px",
+        "family": "System Sans-Serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "PostNew operates as an after-hours gallery: a near-black canvas (#1a1a1a) acts as a quiet vitrine frame, while full-bleed editorial spreads detonate with color, photography, and bold display type when content opens. The system is ruthlessly achromatic on the structural layer — only five near-grayscale tokens carry the entire UI — and delegates all chromatic expression to the content itself. Typography is intentionally scarce: ABC Diatype Medium at two sizes for editorial moments, system sans at 12px for chrome. The feeling is curated rather than designed: a portfolio shell that disappears so the work can perform.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PostNew design system\",\"item\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#style-reference\",\"name\":\"PostNew design system reference\",\"headline\":\"PostNew design system | Refero Styles\",\"description\":\"Explore PostNew's dark Design design system: Canvas Black #1a1a1a, Bone White #fafafa colors, ABC Diatype Medium, System Sans-Serif typography, and...\",\"url\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PostNew\",\"url\":\"https://www.postnew.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"caption\":\"Screenshot of PostNew\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PostNew design system\",\"PostNew website design\",\"PostNew colors\",\"PostNew typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas Black\",\"Bone White\",\"Slate Surface\",\"Ash\",\"ABC Diatype Medium\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PostNew design system\"},{\"@type\":\"Thing\",\"name\":\"PostNew website design\"},{\"@type\":\"Thing\",\"name\":\"PostNew colors\"},{\"@type\":\"Thing\",\"name\":\"PostNew typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:26:59.852Z\",\"dateModified\":\"2026-04-30T03:26:59.852Z\"}]}19:T5de,**Quick Color Reference**\n- text: #fafafa\n- background: #1a1a1a\n- border: #000000\n- muted: #5d5d5d\n- surface: #242424\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a top nav bar:* Three centered text links (Index, Feed, Profile) on #1a1a1a canvas. System sans-serif 12px, weight 400, color #fafafa, letter-spacing normal. 10px gap between items. No background, no border, no shadow.\n\n2. *Create a gallery vitrine:* Centered dark panel, full-viewport height, #1a1a1a background. A single hero object (rendered as an img) centered horizontally, occupying ~400px wide. No border, no radius, no shadow. The object floats in the dark with no frame or label.\n\n3. *Create an editorial spread:* Full-bleed split layout. Left half: product photograph bleeding to left and bottom edges. Right half: oversized headline in ABC Diatype Medium, 22px, color #000000, letter-spacing -0.55px, set tight and overlapping the left image. 3D blob decorations in saturated colors layered on top. No padding from viewport edges.\n\n4. *Create a view toggle:* Bottom-center floating control. Two ghost icon buttons side by side. Background #242424, 12px horizontal padding, 8px vertical padding, 0px radius. Icons in #fafafa at 12px. 13px gap between buttons. No border, no shadow.\n\n5. *Create a scroll indicator:* Left edge of viewport, vertically centered. Column of 10 small dots, 4px diameter each, 5px row-gap. Filled dots in #5d5d5d, one active dot in #fafafa. No background container."
+      },
+      {
+        "title": "OpenType Feature Set",
+        "content": "ABC Diatype Medium is activated with these OpenType features: \"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"ss09\", \"ss10\". These toggle specific character alternates and stylistic sets that give the face its editorial personality. When substituting with Inter Tight, enable similar alternates if available, but accept that the character-level design language will shift. The features are non-negotiable for brand fidelity when using ABC Diatype itself."
+      }
+    ],
+    "elevationPhilosophy": "No shadows are used. Depth is achieved purely through the four-step surface stack (#1a1a1a → #242424 → #5d5d5d → #fafafa), where each step increases luminance rather than adding cast shadow. This creates the flat, lit-from-within quality of a gallery wall under spotlights."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 746,
+          "confidence": 1,
+          "prominence": 98962191.23915881,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "link/color": 1,
+            "other/fill": 2,
+            "other/color": 146,
+            "button/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 584,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10368000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 83,
+          "confidence": 1,
+          "prominence": 53382.24279762543,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "other/fill": 1,
+            "body/borderColor": 64,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2611571041578474
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 9003.424390011787,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5d5d5d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4790741435491748
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 900,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "link/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#1a1a1a",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#242424",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.31,
+          "background": "#5d5d5d",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#5d5d5d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#242424",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#1a1a1a",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 66,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 170,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Diatype Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"ss09\", \"ss10\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 170,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Diatype Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "ABC Diatype Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c0360103-b983-49d2-a687-984e976043d0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PostNew design system\",\"item\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#style-reference\",\"name\":\"PostNew design system reference\",\"headline\":\"PostNew design system | Refero Styles\",\"description\":\"Explore PostNew's dark Design design system: Canvas Black #1a1a1a, Bone White #fafafa colors, ABC Diatype Medium, System Sans-Serif typography, and...\",\"url\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PostNew\",\"url\":\"https://www.postnew.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4f76756b-0f06-47a3-baad-d3846b23e132#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"caption\":\"Screenshot of PostNew\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cd938c2a-e8bf-453a-973b-40fd2af9537f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PostNew design system\",\"PostNew website design\",\"PostNew colors\",\"PostNew typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas Black\",\"Bone White\",\"Slate Surface\",\"Ash\",\"ABC Diatype Medium\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PostNew design system\"},{\"@type\":\"Thing\",\"name\":\"PostNew website design\"},{\"@type\":\"Thing\",\"name\":\"PostNew colors\"},{\"@type\":\"Thing\",\"name\":\"PostNew typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:26:59.852Z\",\"dateModified\":\"2026-04-30T03:26:59.852Z\"}]}19:T5de,**Quick Color Reference**\n- text: #fafafa\n- background: #1a1a1a\n- border: #000000\n- muted: #5d5d5d\n- surface: #242424\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a top nav bar:* Three centered text links (Index, Feed, Profile) on #1a1a1a canvas. System sans-serif 12px, weight 400, color #fafafa, letter-spacing normal. 10px gap between items. No background, no border, no shadow.\n\n2. *Create a gallery vitrine:* Centered dark panel, full-viewport height, #1a1a1a background. A single hero object (rendered as an img) centered horizontally, occupying ~400px wide. No border, no radius, no shadow. The object floats in the dark with no frame or label.\n\n3. *Create an editorial spread:* Full-bleed split layout. Left half: product photograph bleeding to left and bottom edges. Right half: oversized headline in ABC Diatype Medium, 22px, color #000000, letter-spacing -0.55px, set tight and overlapping the left image. 3D blob decorations in saturated colors layered on top. No padding from viewport edges.\n\n4. *Create a view toggle:* Bottom-center floating control. Two ghost icon buttons side by side. Background #242424, 12px horizontal padding, 8px vertical padding, 0px radius. Icons in #fafafa at 12px. 13px gap between buttons. No border, no shadow.\n\n5. *Create a scroll indicator:* Left edge of viewport, vertically centered. Column of 10 small dots, 4px diameter each, 5px row-gap. Filled dots in #5d5d5d, one active dot in #fafafa. No background container."
+}

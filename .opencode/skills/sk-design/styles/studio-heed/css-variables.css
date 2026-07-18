@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --color-void: #000000;
+  --color-white: #ffffff;
+  --color-midnight-navy: #00174f;
+  --color-cement: #c2c1bf;
+
+  /* Typography — Font Families */
+  --font-suisse-intl: 'Suisse Intl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+
+  /* Typography — Weights */
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-10: 10px;
+  --spacing-14: 14px;
+  --spacing-20: 20px;
+
+  /* Layout */
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 14px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+
+  /* Named Radii */
+  --radius-all: 5px;
+  --radius-cards: 5px;
+  --radius-images: 5px;
+  --radius-buttons: 5px;
+
+  /* Surfaces */
+  --surface-void-canvas: #000000;
+  --surface-midnight-panel: #00174f;
+  --surface-cement-tile: #c2c1bf;
+  --surface-white-inset: #ffffff;
+}

@@ -1,0 +1,222 @@
+{
+  "color": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Page canvas, full-bleed photography backgrounds, nav bar surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text, navigation borders, pill button borders and labels, icon strokes"
+    },
+    "iron-gray": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Iron Gray — Muted secondary text and low-emphasis nav borders — the only intermediate neutral permitted in the scale"
+    },
+    "spark-lime": {
+      "$value": "#d3fd50",
+      "$type": "color",
+      "$description": "Spark Lime — Sole accent — appears exclusively as a hand-drawn stroke or ring marking a single word in a headline; never as fill, never as background"
+    }
+  },
+  "font": {
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "Exclusive typeface for all UI. Weight 300 for display and large headings to create a whisper-light monumental effect against dark photography; weight 400 for body, buttons, and small UI. The dramatic size range (11px meta text up to 137px display) with matching line-height compression (0.70 at 137px) turns the single family into both signage and paragraph text. Substitute: Inter or Neue Haas Grotesk for closest geometric neutrality."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "94px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 94px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "115px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 115px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "137px",
+        "fontWeight": 300,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 137px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "34965px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "93506.4px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed canvas — either solid black or dark photographic imagery covering the entire viewport"
+    },
+    "nav-bar": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Transparent-to-black nav strip at the top of the page, sitting over photography with thin white hairline border"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://k72.ca",
+      "siteName": "Agence K72",
+      "extractedAt": "2026-06-03T20:36:00.675Z",
+      "variant": "extended"
+    }
+  }
+}

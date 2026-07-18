@@ -1,0 +1,367 @@
+{
+  "color": {
+    "solder-orange": {
+      "$value": "#ff6c2f",
+      "$type": "color",
+      "$description": "Solder Orange — Primary action background, call-to-action pills, featured product highlight — the single chromatic accent that makes interactive elements feel switched on against the otherwise neutral canvas"
+    },
+    "bone": {
+      "$value": "#d7cdb8",
+      "$type": "color",
+      "$description": "Bone — Warm beige wash — soft highlight surfaces and muted decorative fills that keep the palette from feeling clinical"
+    },
+    "signal-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Signal White — Card surfaces, content backgrounds, reversed text on dark fills — the clean base layer where product photography sits"
+    },
+    "linen-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Linen Gray — Page canvas, hairline borders, nav separators, input borders — the dominant neutral providing the structural baseline across the entire interface"
+    },
+    "fog": {
+      "$value": "#c2c2c2",
+      "$type": "color",
+      "$description": "Fog — Muted surface fills, secondary panel backgrounds, disabled states"
+    },
+    "soft-mist": {
+      "$value": "#dddee2",
+      "$type": "color",
+      "$description": "Soft Mist — Tertiary surface tint — subtle elevation step between canvas and card"
+    },
+    "ash": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, secondary nav labels, icon strokes at rest, footer meta — the quiet voice for non-primary content"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, filled button backgrounds, high-contrast borders, icon fills — the authority tone for headlines and structural elements"
+    },
+    "deep-charcoal": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Deep Charcoal — Near-black surface for the floating nav pill, dark overlay panels, and any near-pure-black surface that needs slightly less harshness than pure black"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all display, heading, body, and UI text. The 100px display size paired with -0.0300em tracking and 0.85 line-height creates headlines that read as tightly engineered display specimens — a grotesque with neo-grotesque calm. Weight 500 is used sparingly for emphasis in nav and labels; weight 400 carries body and most headings. Substitute with Inter or Neue Haas Grotesk if Suisse Intl is unavailable."
+    },
+    "suisse-intl-mono": {
+      "$value": "Suisse Intl Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for technical labels, button text, nav items, tag captions, and any interface element that needs to read as instrument-grade or technical. Letter-spacing stays normal — the mono face provides the engineering voice while the grotesk provides the editorial voice. Substitute with JetBrains Mono or IBM Plex Mono."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "100px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 0: The dominant background — a near-gray linen that recedes behind all content"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Clean white product cards and content panels sitting on the linen canvas"
+    },
+    "soft-tint": {
+      "$value": "#dddee2",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevation step for nested or secondary panels"
+    },
+    "muted-fill": {
+      "$value": "#c2c2c2",
+      "$type": "color",
+      "$description": "Surface level 3: Disabled or inactive surface state"
+    },
+    "featured-wash": {
+      "$value": "#ff6c2f",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed warm gradient background for hero product cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://telepathicinstruments.com",
+      "siteName": "Telepathic Instruments",
+      "extractedAt": "2026-06-03T16:57:35.355Z",
+      "variant": "extended"
+    }
+  }
+}

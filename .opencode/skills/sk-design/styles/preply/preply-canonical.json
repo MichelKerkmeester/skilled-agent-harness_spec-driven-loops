@@ -1,0 +1,1316 @@
+{
+  "source": "https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4",
+  "uuid": "476fea7c-d578-4625-b9e6-36e95faa6ca4",
+  "name": "Preply",
+  "northStar": "Pink billboard with human stickers",
+  "capturedAt": "2026-07-18T09:51:08.166Z",
+  "meta": {
+    "url": "https://preply.com",
+    "siteName": "Preply",
+    "extractedAt": "2026-06-03T17:54:14.567Z",
+    "durationMs": 28616,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1133,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Platform weight 700 for every heading from 32px upward; never go below weight 600 for headlines.",
+      "Reserve #ff7aac for full-bleed section backgrounds and brand moments — never paint a single component pink.",
+      "Set filled action buttons to #121117 with white text, 4px radius, 14px 24px padding, and a trailing → icon.",
+      "Layer real, slightly rotated photos with black text stickers on pink backgrounds; keep the collage energy in hero zones.",
+      "Keep borders at 1px #dcdce5 or 1px #6a697c — the catalog grid is defined by hairlines, not shadows.",
+      "Anchor all body copy in Figtree weight 400 with line-height 1.43–1.71; let the comfortable air do the work.",
+      "Use 4px and 8px as the only two corner radii in the system; 16px is reserved for one-off decorative surfaces."
+    ],
+    "donts": [
+      "Don't apply #ff7aac to buttons, links, or interactive surfaces — it is a canvas, not a control.",
+      "Don't introduce drop shadows or multi-layer elevations; the system is flat and hairline-driven.",
+      "Don't use rounded radii above 8px on functional components (cards, inputs, buttons).",
+      "Don't set headline line-height above 1.2 — Platform is designed to sit tight at scale.",
+      "Don't mix the pink with heavy gradients or filters; the pink is always solid and unmodulated.",
+      "Don't use Figtree for display sizes above 32px — let Platform carry anything that big.",
+      "Don't crowd the white catalog with color; keep tutor cards monochrome and let the pink sections do the talking."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff7aac",
+        "name": "Preply Pink",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#121117",
+        "name": "Midnight Ink",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Soft White",
+        "role": "Page canvas above the pink hero, card surfaces, tutor catalog backgrounds, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f8",
+        "name": "Mist Gray",
+        "role": "Subtle page background for content sections that need separation from pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dcdce5",
+        "name": "Smoke",
+        "role": "Card borders, input outlines, dividers — structural hairlines that define the catalog grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a697c",
+        "name": "Pewter",
+        "role": "Card border accent and tertiary text, slightly cooler than Midnight Ink for layered hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4c5c",
+        "name": "Graphite",
+        "role": "Body copy, icon strokes, secondary text — the readable neutral that lives between Midnight Ink headings and lighter helper text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Icon fills, decorative sticker text, and any place where the absolute black is needed for photographic overlay",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffdf3d",
+        "name": "Signal Yellow",
+        "role": "Accent highlights, announcement bar background, decorative stickers — used sparingly as a callout color over pink",
+        "group": "accent"
+      },
+      {
+        "hex": "#99c5ff",
+        "name": "Sky Pop",
+        "role": "Secondary accent, tag chips, and decorative illustration — the cool counterpoint to pink in multicolor compositions",
+        "group": "accent"
+      }
+    ],
+    "imagery": "Photography is the signature visual asset. Real tutor and learner portraits are cropped to head-and-shoulders, placed on the pink hero, and slightly rotated (±3°) to create a scrapbook composition. Black rectangular text stickers are layered directly on the photos. On content sections below the fold, photography is largely absent — the catalog relies on simple black line illustrations of landmarks (Eiffel Tower, Brandenburg Gate, torii gates) at 32px next to tutor subject titles. No lifestyle or stock photography appears; every portrait is specific, present, and personal.",
+    "similar": [
+      {
+        "why": "Equally loud brand color treatment and bold display typography, though Duolingo leans more illustrative where Preply uses real photography.",
+        "business": "Duolingo"
+      },
+      {
+        "why": "Same language-learning market and similar use of real tutor portraits as the emotional center of the hero.",
+        "business": "Cambly"
+      },
+      {
+        "why": "Confident display-type-at-scale paired with a single saturated brand color and flat, shadow-free components.",
+        "business": "Headspace"
+      },
+      {
+        "why": "Catalog of tutor subjects rendered in a clean white grid with hairline borders, sitting below a personality-driven hero.",
+        "business": "Italki"
+      },
+      {
+        "why": "Black-and-white product UI that lets a single brand color carry the entire top-fold personality.",
+        "business": "Babbel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "inputs": "4px",
+        "buttons": "4px",
+        "stickers": "4px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ff7aac",
+        "name": "Pink Hero Canvas",
+        "level": 0,
+        "purpose": "Full-bleed top fold and occasional brand sections"
+      },
+      {
+        "hex": "#f4f4f8",
+        "name": "Mist Page",
+        "level": 1,
+        "purpose": "Default body section background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 2,
+        "purpose": "Cards, tutor catalog rows, elevated content surfaces"
+      },
+      {
+        "hex": "#121117",
+        "name": "Midnight Footer",
+        "level": 3,
+        "purpose": "Inverted footer and rare dark UI zones"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — defined only by 1px #dcdce5 border on #ffffff",
+        "element": "Language Tutor Card"
+      },
+      {
+        "style": "none — flat, relies on rotation to read as layered",
+        "element": "Sticker Label"
+      }
+    ],
+    "northStar": "Pink billboard with human stickers",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.13,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.08,
+        "letterSpacing": 0.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Dark Action Button",
+        "role": "Primary conversion button (Find your tutor, Get started)",
+        "description": "Background #121117, text #ffffff, Figtree 16px weight 600, border-radius 4px, padding 14px 24px, inline arrow icon (→) at 16px. No border, no shadow. Hover lightens to #2a2935 or lifts text color slightly."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary actions in the nav and inline CTAs",
+        "description": "Transparent background, 1px border #121117, text #121117, Figtree 14px weight 600, border-radius 4px, padding 8px 16px. Becomes filled dark on hover."
+      },
+      {
+        "name": "Language Tutor Card",
+        "role": "Catalog entry in the subject grid (English tutors, Spanish tutors, etc.)",
+        "description": "White #ffffff background, 1px border #dcdce5, border-radius 8px, padding 16px 20px. Left-aligned icon at 32px (line illustration in #121117), Platform 20px weight 700 title, Figtree 13px weight 400 teacher count in #4d4c5c, right chevron (›) at 20px in #121117. Hover adds subtle background tint #f4f4f8."
+      },
+      {
+        "name": "Sticker Text Label",
+        "role": "Decorative rotated text tags layered on hero photography",
+        "description": "Background #121117, text #ffffff, Figtree 14px weight 600, border-radius 4px, padding 4px 10px. Sits at slight rotation (-5° to +5°) on top of photo tiles. Examples: 'Miki C. / Tutor', 'Roberto / Learner'."
+      },
+      {
+        "name": "Top Utility Bar",
+        "role": "Announcement strip above the main nav",
+        "description": "Background #121117, text #ffffff, Figtree 13px weight 400, centered content with optional inline flag emoji. 40px tall, single line, includes a right-side close (×) icon."
+      },
+      {
+        "name": "Main Navigation",
+        "role": "Site-wide primary nav",
+        "description": "White #ffffff background, 64px tall. Left: logo (Preply wordmark in #121117). Center: nav links in Figtree 14px weight 400 #121117, 24px horizontal spacing. Right: language/currency selector, help icon, and outlined 'Log in' button with 1px #121117 border, 4px radius."
+      },
+      {
+        "name": "Stat Strip",
+        "role": "Social proof bar below the hero (100,000+ tutors, 4.8 stars, etc.)",
+        "description": "White background, 5-column flex row, 48px vertical padding. Each stat: Platform 32px weight 700 #121117 for the number, Figtree 13px weight 400 #4d4c5c for the caption below. No dividers, generous horizontal spacing of ~57px between columns."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Primary fold headline on pink background",
+        "description": "Platform weight 700 at 64–96px, line-height 1.06–1.08, color #121117, max-width ~560px, left-aligned on the pink #ff7aac canvas. Subhead in Figtree 18px weight 400 #121117 at 24px top margin."
+      },
+      {
+        "name": "Hero Photo Collage",
+        "role": "Right-side hero visual on pink background",
+        "description": "Two overlapping portrait photos with 4px radius, slight rotation (-3° and +3°), black text stickers layered on top, large rotated black 'Progress Takes Two' wordmark with white text filling the middle. Photos extend off the right edge."
+      },
+      {
+        "name": "Footer Column",
+        "role": "Site link directory in dark footer",
+        "description": "Background #121117, 4-column grid. Column headings in Figtree 14px weight 600 uppercase #ffffff. Links in Figtree 14px weight 400 #dcdce5, 8px row gap, 32px top gap between heading and first link."
+      },
+      {
+        "name": "Subject Grid Section",
+        "role": "3×3 catalog of language subjects",
+        "description": "3-column grid, 16px row and column gap, white background. Each cell is a Language Tutor Card. Section has 64px vertical padding."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section titles (Progress starts with the right tutor)",
+        "description": "Center-aligned, Platform 48px weight 700 #121117, line-height 1.13, max-width ~800px. Subhead below in Figtree 18px weight 400 #4d4c5c, 16px top margin."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All headlines, section titles, hero copy, and the largest display text. Weight 700 dominates from 32px upward, creating dense, confident type blocks. The 1.00–1.08 line-heights at 48–96px make headlines read as solid slabs. Tracking tightens with size: -0.005em at body, -0.017em at display.",
+        "sizes": "14, 16, 20, 24, 32, 48, 64, 96",
+        "family": "Platform",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Mulish, Inter, or Manrope at matching weights",
+        "letterSpacing": "-0.07px at 14px, -0.08px at 16px, -0.20px at 20px, -0.24px at 24px, -0.16px at 32px, -0.24px at 48px, -0.32px at 64px, -0.48px at 96px (progression from -0.005em at small to -0.005em tightening; dominant -0.005em across stack)"
+      },
+      {
+        "role": "Body copy, UI labels, button text, card content, nav, links, footer text, and form fields. Weight 400 for paragraphs, weight 600 for emphasis and button labels. Line-height 1.43–1.71 at 14–18px gives body copy comfortable air. Letter-spacing stays near zero to slightly positive (+0.01 to +0.012em) for legible small sizes.",
+        "sizes": "12, 13, 14, 16, 18, 20",
+        "family": "Figtree",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.71",
+        "substitute": "DM Sans, Plus Jakarta Sans, or Nunito Sans",
+        "letterSpacing": "-0.06px at 12px, +0.065px at 13px, +0.14px at 14px, +0.16px at 16px, +0.18px at 18px, +0.20px at 20px"
+      }
+    ],
+    "description": "Preply projects a warm, confident energy built on saturated pink hero canvases, near-black typography, and white product surfaces. The visual system is deliberately loud in the top fold to express brand personality, then quiets down into a calm black-and-white catalog of tutors and content once the user moves into functional areas. Platform (a chunky, high-contrast display face) carries all headings at weight 700 with very tight tracking and line-heights, making 48–96px headlines read as solid blocks of voice rather than delicate type. Figtree handles all UI and body text at moderate weights with slightly looser tracking. Components are flat and rectangular — 4px and 8px corners are the only soft edge in the system, and shadows are nearly absent. Photography is integral: real tutor/learner portraits are cropped, slightly rotated, and layered with black text stickers, giving the brand a handmade, scrapbook-like quality that contrasts the structured grid below.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Preply design system\",\"item\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#style-reference\",\"name\":\"Preply design system reference\",\"headline\":\"Preply design system | Refero Styles\",\"description\":\"Explore Preply's light SaaS design system: Preply Pink #ff7aac, Midnight Ink #121117 colors, Platform, Figtree typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Preply\",\"url\":\"https://preply.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"caption\":\"Screenshot of Preply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Preply design system\",\"Preply website design\",\"Preply colors\",\"Preply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Preply Pink\",\"Midnight Ink\",\"Soft White\",\"Mist Gray\",\"Platform\",\"Figtree\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Preply design system\"},{\"@type\":\"Thing\",\"name\":\"Preply website design\"},{\"@type\":\"Thing\",\"name\":\"Preply colors\"},{\"@type\":\"Thing\",\"name\":\"Preply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-31T14:35:50.000Z\",\"dateModified\":\"2026-03-31T14:35:50.000Z\"}]}19:T6f6,**Quick Color Reference**\n- text: #121117\n- background: #ffffff (content) / #ff7aac (hero canvas)\n- border: #dcdce5\n- accent: #ff7aac (brand canvas only), #ffdf3d (highlight)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section: #ff7aac full-bleed background, left-aligned headline in Platform 64px weight 700 #121117 with line-height 1.08, subhead in Figtree 18px weight 400 #121117, filled action button #121117 with #ffffff text, 4px radius, 14px 24px padding, trailing → icon. On the right, two overlapping portrait photos with 4px radius and ±3° rotation, each with a black #121117 text sticker (4px radius, Figtree 14px weight 600 #ffffff).\n2. Build a language subject card: #ffffff background, 1px #dcdce5 border, 8px radius, 16px 20px padding. Left-aligned line icon at 32px in #121117, title in Platform 20px weight 700 #121117, caption in Figtree 13px weight 400 #4d4c5c, right chevron › at 20px in #121117.\n3. Build the main navigation: #ffffff background, 64px tall. Left wordmark 'Preply' in Figtree 18px weight 600 #121117. Center links in Figtree 14px weight 400 #121117 with 24px horizontal gap. Right outlined 'Log in' button — transparent background, 1px #121117 border, 4px radius, 8px 16px padding, Figtree 14px weight 600 #121117.\n4. Build the stat strip: #ffffff background, 48px vertical padding, 5-column row with ~57px horizontal gap. Each stat uses Platform 32px weight 700 #121117 for the number and Figtree 13px weight 400 #4d4c5c for the caption directly below.\n5. Build the footer column block: #121117 background, 4-column grid with 32px column gap. Column heading in Figtree 14px weight 600 uppercase #ffffff, links in Figtree 14px weight 400 #dcdce5 with 8px row gap, 32px top gap before first link."
+      },
+      {
+        "title": "Layout",
+        "content": "Page model: max-width 1200px centered for content sections, with the hero going full-bleed on pink. Hero pattern: left-aligned headline + subhead + single dark filled CTA on the left half, photo collage with stickers on the right half. Below the hero, a white stat strip spans the full content width with 5 evenly spaced columns. Content sections alternate between white and mist backgrounds separated by 64px vertical padding. The language catalog is a 3-column grid of hairline-bordered cards with 16px gaps. Headings center-align from 48px and up; body content left-aligns. Navigation is a flat white bar, not sticky. The footer is dark, full-bleed #121117, with 4 equal columns of links plus a second tier of SEO-style link blocks. No sidebar, no mega-menu."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows. Depth is communicated through three mechanisms only: (1) background color contrast between the pink hero, mist body, and white card surfaces; (2) 1px hairline borders in #dcdce5; (3) the slight rotation of photo stickers on the hero. This flatness keeps the brand feeling handmade and direct rather than glossy product UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121117",
+          "oklch": {
+            "c": 0.012257322396117194,
+            "h": 292.7797235610992,
+            "l": 0.18166837779410966
+          },
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "button",
+            "link",
+            "icon",
+            "heading",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 3409,
+          "confidence": 1,
+          "prominence": 120946781.20910457,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "icon",
+            "card",
+            "other",
+            "heading"
+          ],
+          "frequency": 638,
+          "confidence": 1,
+          "prominence": 4621625.404777615,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff7aac",
+          "oklch": {
+            "c": 0.16910873477350333,
+            "h": 358.30310459715673,
+            "l": 0.7473163956797827
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1835941.5788431526,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4c5c",
+          "oklch": {
+            "c": 0.026341364877818987,
+            "h": 288.0835945230673,
+            "l": 0.4236170498778496
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 188,
+          "confidence": 1,
+          "prominence": 493300.19781678903,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3ddabe",
+          "oklch": {
+            "c": 0.13362994715096896,
+            "h": 177.8479276956078,
+            "l": 0.8017685734506451
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 419184,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f4f8",
+          "oklch": {
+            "c": 0.005308163012313689,
+            "h": 286.30008289939155,
+            "l": 0.9682856780079828
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 363520,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dcdce5",
+          "oklch": {
+            "c": 0.012197519890729291,
+            "h": 286.1512556402848,
+            "l": 0.8971257399106525
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 269184.48574511573,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6a697c",
+          "oklch": {
+            "c": 0.029580227326872988,
+            "h": 287.75441396045574,
+            "l": 0.5285221066188326
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 159607.3659228616,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 85,
+          "confidence": 1,
+          "prominence": 20833.9503347442,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#99c5ff",
+          "oklch": {
+            "c": 0.09492477982815617,
+            "h": 255.54093410982767,
+            "l": 0.8134055917504115
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 13944,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffdf3d",
+          "oklch": {
+            "c": 0.1705510892526045,
+            "h": 97.3425210846298,
+            "l": 0.9044534402633999
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 8380.448427337988,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2885fd",
+          "oklch": {
+            "c": 0.19799747839371096,
+            "h": 257.0951608076334,
+            "l": 0.6290559956919722
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2535.9400011538496,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7bead6",
+          "oklch": {
+            "c": 0.10676598623176031,
+            "h": 180.49419653328368,
+            "l": 0.8655558234761789
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bd3d44",
+          "oklch": {
+            "c": 0.16368004728843186,
+            "h": 21.39336919505541,
+            "l": 0.5462315465127896
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 147,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#192f5d",
+          "oklch": {
+            "c": 0.08683054684537064,
+            "h": 263.1067912824346,
+            "l": 0.3146839418557121
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 45,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#384047",
+          "oklch": {
+            "c": 0.016098770608692574,
+            "h": 244.63716142429806,
+            "l": 0.36685967078921305
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 27,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.030852341258191515,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.14,
+          "background": "#f4f4f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.78,
+          "background": "#ffffff",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.12,
+          "background": "#f4f4f8",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.87,
+          "background": "#ffdf3d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.41,
+          "background": "#dcdce5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.58,
+          "background": "#7bead6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#ffdf3d",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.78,
+          "background": "#dcdce5",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#ffffff",
+          "foreground": "#192f5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.04,
+          "background": "#7bead6",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#3ddabe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#f4f4f8",
+          "foreground": "#192f5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#99c5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.7,
+          "background": "#3ddabe",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#99c5ff",
+          "foreground": "#121117"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#ffffff",
+          "foreground": "#384047"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.88,
+          "background": "#ffdf3d",
+          "foreground": "#192f5d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.61,
+          "background": "#f4f4f8",
+          "foreground": "#384047"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.6,
+          "background": "#dcdce5",
+          "foreground": "#192f5d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "image",
+            "card",
+            "other"
+          ],
+          "frequency": 150
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 87,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 74,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 66,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 37,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Figtree",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 797,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Platform",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 70,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 366,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 93,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Platform",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body",
+            "link",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 239,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figtree",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Platform",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Figtree",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.13,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Platform",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/295e98cc-95e7-45c3-8d7c-1affcb743084.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Preply design system\",\"item\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#style-reference\",\"name\":\"Preply design system reference\",\"headline\":\"Preply design system | Refero Styles\",\"description\":\"Explore Preply's light SaaS design system: Preply Pink #ff7aac, Midnight Ink #121117 colors, Platform, Figtree typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Preply\",\"url\":\"https://preply.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/476fea7c-d578-4625-b9e6-36e95faa6ca4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"caption\":\"Screenshot of Preply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/07b2e05b-3825-4971-aab7-e91666e95c2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Preply design system\",\"Preply website design\",\"Preply colors\",\"Preply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Preply Pink\",\"Midnight Ink\",\"Soft White\",\"Mist Gray\",\"Platform\",\"Figtree\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Preply design system\"},{\"@type\":\"Thing\",\"name\":\"Preply website design\"},{\"@type\":\"Thing\",\"name\":\"Preply colors\"},{\"@type\":\"Thing\",\"name\":\"Preply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-31T14:35:50.000Z\",\"dateModified\":\"2026-03-31T14:35:50.000Z\"}]}19:T6f6,**Quick Color Reference**\n- text: #121117\n- background: #ffffff (content) / #ff7aac (hero canvas)\n- border: #dcdce5\n- accent: #ff7aac (brand canvas only), #ffdf3d (highlight)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section: #ff7aac full-bleed background, left-aligned headline in Platform 64px weight 700 #121117 with line-height 1.08, subhead in Figtree 18px weight 400 #121117, filled action button #121117 with #ffffff text, 4px radius, 14px 24px padding, trailing → icon. On the right, two overlapping portrait photos with 4px radius and ±3° rotation, each with a black #121117 text sticker (4px radius, Figtree 14px weight 600 #ffffff).\n2. Build a language subject card: #ffffff background, 1px #dcdce5 border, 8px radius, 16px 20px padding. Left-aligned line icon at 32px in #121117, title in Platform 20px weight 700 #121117, caption in Figtree 13px weight 400 #4d4c5c, right chevron › at 20px in #121117.\n3. Build the main navigation: #ffffff background, 64px tall. Left wordmark 'Preply' in Figtree 18px weight 600 #121117. Center links in Figtree 14px weight 400 #121117 with 24px horizontal gap. Right outlined 'Log in' button — transparent background, 1px #121117 border, 4px radius, 8px 16px padding, Figtree 14px weight 600 #121117.\n4. Build the stat strip: #ffffff background, 48px vertical padding, 5-column row with ~57px horizontal gap. Each stat uses Platform 32px weight 700 #121117 for the number and Figtree 13px weight 400 #4d4c5c for the caption directly below.\n5. Build the footer column block: #121117 background, 4-column grid with 32px column gap. Column heading in Figtree 14px weight 600 uppercase #ffffff, links in Figtree 14px weight 400 #dcdce5 with 8px row gap, 32px top gap before first link."
+}

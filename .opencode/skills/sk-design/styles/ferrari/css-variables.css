@@ -1,0 +1,71 @@
+:root {
+  /* Colors */
+  --color-rosso-corsa: #da291c;
+  --color-rosso-scuro: #9d2211;
+  --color-bianco-ferrari: #ffffff;
+  --color-carbone-nero: #000000;
+  --color-notte-profonda: #181818;
+  --color-grafite: #303030;
+  --color-fumo: #8f8f8f;
+  --color-piombo: #666666;
+  --color-argento-chiaro: #d2d2d2;
+  --color-velo-di-luce: #f7f7f7;
+  --color-cemento: #ebebeb;
+
+  /* Typography — Font Families */
+  --font-body-font: 'Body-Font', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ferrarisans: 'FerrariSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.78;
+  --text-body-sm: 12px;
+  --leading-body-sm: 1.78;
+  --text-body: 13px;
+  --leading-body: 1.78;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-44: 44px;
+  --spacing-50: 50px;
+  --spacing-54: 54px;
+  --spacing-60: 60px;
+  --spacing-123: 123px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 64-96px;
+  --card-padding: 24-32px;
+  --element-gap: 10-16px;
+
+  /* Border Radius */
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-full: 9999px;
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-void-black: #000000;
+  --surface-night-surface: #181818;
+  --surface-graphite-edge: #303030;
+  --surface-canvas-white: #ffffff;
+  --surface-smoke-wash: #f7f7f7;
+  --surface-concrete: #ebebeb;
+}

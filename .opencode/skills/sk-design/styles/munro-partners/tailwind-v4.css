@@ -1,0 +1,57 @@
+@theme {
+  /* Colors */
+  --color-cream-parchment: #fff9ee;
+  --color-paper-white: #ffffff;
+  --color-bark-brown: #3f322a;
+  --color-warm-gray: #9f968c;
+  --color-stone: #c5bdb3;
+  --color-driftwood: #b3aea7;
+  --color-earth: #796e65;
+  --color-light-stone: #e5e5e5;
+  --color-ink: #000000;
+  --color-deep-teal: #004e4e;
+  --color-aubergine: #560e4b;
+  --color-iris: #a56eff;
+  --color-cobalt: #3074f9;
+  --color-ice-blue: #bfebfe;
+  --color-saffron: #feed5a;
+  --color-amber: #c67700;
+
+  /* Typography */
+  --font-neue-haas-grotesk-display: 'Neue Haas Grotesk Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-haas-grotesk-text: 'Neue Haas Grotesk Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-5-brands: 'Font Awesome 5 Brands', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.8;
+  --tracking-caption: 0.18px;
+  --text-body: 14px;
+  --leading-body: 1.43;
+  --tracking-body: 0.24px;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: 0.33px;
+  --text-heading: 30px;
+  --leading-heading: 1.13;
+  --tracking-heading: 0.39px;
+  --text-heading-lg: 43px;
+  --leading-heading-lg: 1.09;
+  --tracking-heading-lg: 0.39px;
+  --text-display: 68px;
+  --leading-display: 1.05;
+  --tracking-display: 0.54px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-xl: 15px;
+  --radius-2xl: 20px;
+}

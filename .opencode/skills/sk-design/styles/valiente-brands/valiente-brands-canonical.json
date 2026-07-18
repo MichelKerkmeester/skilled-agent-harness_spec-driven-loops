@@ -1,0 +1,827 @@
+{
+  "source": "https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b",
+  "uuid": "f63bf016-5b53-4ddf-9f8c-da43f75a9e2b",
+  "name": "VALIENTE BRANDS",
+  "northStar": "Signal flare on sun-baked clay. A single urgent red-orange screaming across a warm matte peach field, held together by a monolithic neo-grotesque and almost nothing else.",
+  "capturedAt": "2026-07-18T07:59:11.170Z",
+  "meta": {
+    "url": "https://valientebrands.com",
+    "siteName": "VALIENTE BRANDS",
+    "extractedAt": "2026-06-03T18:54:48.683Z",
+    "durationMs": 34709,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1885,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GT Pressura at weight 400 for all UI text — never introduce bold or light weights, hierarchy comes from size alone",
+      "Apply #ff1a00 as the single chromatic color for every text, border, and icon element; let the warm #e7a196 canvas carry the atmosphere",
+      "Push display headlines to 128px or larger with letter-spacing between -0.040em and -0.050em — the near-contact tracking is the signature",
+      "Pin navigation and metadata to the four corners of the viewport (top-left links, top-right badge, bottom-left label, bottom-right copyright) rather than building a traditional header bar",
+      "Use full-bleed edge-to-edge media (video, photography) with no rounding and no overlay chrome — let the canvas be the only frame",
+      "Maintain line-height at 0.80-0.82 for display sizes and 1.0-1.2 for body text — never set a looser line-height than 1.2",
+      "Keep all text uppercase; the system has no mixed-case or sentence-case type"
+    ],
+    "donts": [
+      "Do not introduce shadows, gradients, borders with radius, or any container-based elevation — the page is flat print, not stacked surfaces",
+      "Do not use a CTA button fill color; the system has no filled buttons, only text links and outlined play controls",
+      "Do not add secondary or tertiary text colors — #ff1a00 against #e7a196 is the only contrast pair in the system",
+      "Do not use card padding, gutters, or rounded corners on any media or content block",
+      "Do not mix multiple type families; GT Pressura handles everything except the single Monument Grotesk hero headline",
+      "Do not use weight 600 or 700 to create emphasis — increase size instead",
+      "Do not set display letter-spacing looser than -0.025em; the compressed tracking is what makes the type feel broadcast-loud"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff1a00",
+        "name": "Signal Flare",
+        "role": "The only chromatic color in the system — used for logo, all navigation, body text, headings, icons, borders, and the video play affordance. Functions as both brand mark and foreground text color simultaneously",
+        "group": "brand"
+      },
+      {
+        "hex": "#e7a196",
+        "name": "Sun-Baked Canvas",
+        "role": "Page background — a warm, muted clay-peach that softens the intensity of the red and gives the whole site its heat-shimmer atmosphere. Every default surface sits on this tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Midnight Frame",
+        "role": "Reserved for full-bleed video and photography sections only — appears as the dark frame around embedded media, never as a UI surface or text color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a vertical scroll with no horizontal constraints beyond a ~1440px max-width on text content. The first screen is a near-empty warm canvas with only four corner elements (nav, logo, badge, footer) and one centered statement — then a full-bleed dark video section, then a metadata band, then a block of large monospace-feeling display text, then a three-column portrait grid. The rhythm is: empty warm canvas → dark full-bleed media → warm text block → dark media → warm text block → photography grid. There is no alternating light/dark band system — instead, the warm canvas is the default and full-bleed media punctures it. Section gaps are very large (120-160px), with text left-aligned in blocks and centered for hero statements. The grid is strict: three columns for portraits, full-width for video, max-width centered for text blocks. Navigation is minimal — just a vertical text stack in the top-left corner with no background container.",
+    "imagery": "Photography and video carry the entire emotional weight — there are no illustrations, no product mockups, no abstract graphics, and almost no iconography. Imagery is cinematic and dark: moody full-bleed video stills (a boxer in a ring, shot through a teal-green color grade), and tight square portrait crops of individuals against varied backgrounds (warm interiors, daylight windows). Treatment is always full-bleed, edge-to-edge, with no rounded corners, no masks, and no overlay text. The dark photographic sections are the only departure from the warm peach canvas — they read as windows cut into a printed page. The color contrast between the warm clay background and the cool-dark media is itself a design device. Icons are restricted to three marks total: a hamburger bar in the top-left, a circular badge with a glyph in the top-right, and a downward scroll arrow — all stroke-only outlines in #ff1a00.",
+    "similar": [
+      {
+        "why": "Same single-color brutalist agency aesthetic — one vivid chromatic color (often red) screaming across a minimal canvas, with oversized uppercase type and almost no UI chrome",
+        "business": "STUDIO BRAD"
+      },
+      {
+        "why": "Brand consultancy with a portfolio site that uses one display family aggressively tracked-negative, corner-pinned navigation, and flat full-bleed media with no card containers",
+        "business": "&Walsh"
+      },
+      {
+        "why": "Brand identity studio whose site treats type as the entire interface — large monospace-feeling grotesque at display sizes, minimal color, and full-bleed photography as the only visual counterpoint",
+        "business": "COLLINS"
+      },
+      {
+        "why": "Canadian agency that uses a warm off-white canvas, oversized uppercase neo-grotesque type, and bold red-orange as a singular chromatic accent for everything interactive and textual",
+        "business": "Locomotive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "media": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "120-160px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e7a196",
+        "name": "Sun-Baked Canvas",
+        "level": 1,
+        "purpose": "Default page background — every text section, navigation layer, and content block sits on this warm clay-peach field"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Midnight Frame",
+        "level": 2,
+        "purpose": "Full-bleed video and photography sections only — the only departure from the warm canvas, used to frame embedded media"
+      }
+    ],
+    "northStar": "Signal flare on sun-baked clay. A single urgent red-orange screaming across a warm matte peach field, held together by a monolithic neo-grotesque and almost nothing else.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.09
+      },
+      {
+        "role": "subheading-lg",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "heading-lg",
+        "size": 95,
+        "lineHeight": 0.82,
+        "letterSpacing": -3.52
+      },
+      {
+        "role": "display-sm",
+        "size": 128,
+        "lineHeight": 0.82,
+        "letterSpacing": -5.12
+      },
+      {
+        "role": "display",
+        "size": 190,
+        "lineHeight": 0.8,
+        "letterSpacing": -8.17
+      },
+      {
+        "role": "display-xl",
+        "size": 245,
+        "lineHeight": 0.8,
+        "letterSpacing": -12.25
+      }
+    ],
+    "components": [
+      {
+        "name": "Corner Navigation",
+        "role": "Primary site navigation",
+        "description": "Vertical text stack pinned to the top-left edge of the viewport. 12px GT Pressura, uppercase, color #ff1a00, letter-spacing -0.005em. Items separated by 5px vertical gap. No background, no border, no hover indicator beyond the existing red — the position and color are the entire affordance."
+      },
+      {
+        "name": "Corner Badge (Top-Right)",
+        "role": "Location / establishment marker",
+        "description": "Two lines stacked in the top-right corner: \"EST. IN TN\" in 12px uppercase #ff1a00, paired with a 40px circular outlined icon (also #ff1a00, 1px stroke) below. Functions as a permanent site signature in the corner, mirroring the nav block on the opposite side."
+      },
+      {
+        "name": "Centered Logo Lockup",
+        "role": "Brand identity at the top of the page",
+        "description": "Wordmark \"VALIENTE\" in Monument Grotesk or GT Pressura at ~48px, color #ff1a00, centered horizontally in the header. The final E is replaced with a geometric mark — a modified B-glyph that breaks the wordmark's rhythm. Sits alone with no tagline or supporting text."
+      },
+      {
+        "name": "Statement Headline",
+        "role": "Hero-level messaging",
+        "description": "48px GT Pressura (or Monument Grotesk for the single hero statement), weight 400, color #ff1a00, line-height 1.0, letter-spacing -1.92px (Monument) or -1.44px (GT Pressura). Centered horizontally, flanked by a long em-dash on the left to suggest a continuation or broadcast signal."
+      },
+      {
+        "name": "Display Type Block",
+        "role": "Oversized section markers and alphanumeric strings",
+        "description": "GT Pressura at 128-245px, weight 400, line-height 0.80-0.82, color #ff1a00, uppercase, tracked to near-contact (-0.040em to -0.050em). Used for monospace-feeling alphanumeric strings (\"WFBCGLZU\", \"DJCTUVOCI...\") that act as visual texture rather than readable content. The negative tracking at this size is the signature — letters compress until they almost merge."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Page-bottom metadata strip",
+        "description": "Three-column row at the bottom of the first screen: left label (e.g. \"BRAVERY IN PRACTICE\"), center scroll prompt (\"SCROLL TO VIEW MORE ↓\"), right copyright (\"©2026\"). All 12px GT Pressura, uppercase, #ff1a00, separated by the full viewport width. No background, no border — the warmth of the canvas holds the whole strip."
+      },
+      {
+        "name": "Full-Bleed Video Frame",
+        "role": "Cinematic media sections",
+        "description": "Edge-to-edge video or still image filling the full viewport width and ~40% of the viewport height. The play control is a 64px circle outlined in #ff1a00 (1.5px stroke) with a centered triangle play glyph, positioned over the center of the media. No rounded corners, no overlay chrome."
+      },
+      {
+        "name": "Section Label Pair",
+        "role": "Metadata flanking media blocks",
+        "description": "Two small 12px uppercase GT Pressura labels in #ff1a00, pinned to the left and right edges of a thin band directly below a full-bleed media section. Left label describes scope (\"WORLDWIDE BASED\"), right label describes date or status (\"EST (2025)\"). No divider, no background — the canvas color is the only separator from the media above."
+      },
+      {
+        "name": "Portrait Grid",
+        "role": "Team or contributor showcase",
+        "description": "Three-column grid of square or near-square portrait photographs, edge-to-edge with no gutter and no border. Portraits are full-bleed, no captions inside the image, no overlays. The grid sits directly on the warm canvas — the photographs provide the only tonal contrast in the section."
+      },
+      {
+        "name": "Scroll Prompt",
+        "role": "Vertical wayfinding cue",
+        "description": "A short text indicator (\"SCROLL TO VIEW MORE ↓\") in 12px GT Pressura uppercase, #ff1a00, with a downward arrow glyph. Centered in the footer bar or directly below content blocks. The arrow is the only iconography in the system besides the play control and the corner badge circle."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single workhorse typeface — carries everything from 12px footer labels to 245px display headlines. Its neo-grotesque character with slight mechanical tension makes it read almost monospace at small sizes and almost posterized at display sizes. Weight stays at 400 across the entire system; hierarchy is built through size, never weight.",
+        "sizes": "12, 14, 16, 18, 20, 24, 48, 95, 128, 190, 245",
+        "family": "GT Pressura",
+        "weight": "400",
+        "lineHeight": "0.80, 0.82, 1.00, 1.20",
+        "substitute": "Space Grotesk, IBM Plex Mono, JetBrains Mono",
+        "letterSpacing": "Tracking tightens dramatically with size: -0.005em at 12-18px (nearly closed), -0.025em at 20-24px, -0.030em at 48px, -0.037em at 95px, -0.040em at 128px, -0.043em at 190px, and -0.050em at 245px — display sizes squeeze letters until they almost touch",
+        "fontFeatureSettings": "\"tnum\" on, \"ss01\" on"
+      },
+      {
+        "role": "Reserved for one purpose: the primary 48px statement headline (\"IMPACT-LED BRAND CONSULTANCY\"). A wider, more humanist grotesque that contrasts GT Pressura's mechanical quality with a slightly warmer proportion. Only appears once per page at this exact size.",
+        "sizes": "48",
+        "family": "Monument Grotesk",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Inter, Manrope, General Sans",
+        "letterSpacing": "-0.0400em"
+      }
+    ],
+    "description": "Valiente Brands is a brutalist broadcast — a single chromatic signal (vivid red-orange) fired across a sun-warmed clay canvas, with almost no UI surface treatment at all. The page is a vertical scroll of oversized monospace-feeling type, corner-pinned navigation labels, full-bleed cinematic video stills, and portrait grids. The aesthetic borrows from emergency signage and typesetter's proof sheets: everything is uppercase, aggressively tracked-negative at display sizes, and stripped of decoration. There are no cards, no shadows, no gradients, no rounded corners — the whole interface reads like a single printed broadside where one color does all the work. White space and type scale do the hierarchy, not containers or elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VALIENTE BRANDS design system\",\"item\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#style-reference\",\"name\":\"VALIENTE BRANDS design system reference\",\"headline\":\"VALIENTE BRANDS design system | Refero Styles\",\"description\":\"Explore VALIENTE BRANDS's light Agency design system: Signal Flare #ff1a00, Sun-Baked Canvas #e7a196 colors, GT Pressura, Monument Grotesk typography, and...\",\"url\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VALIENTE BRANDS\",\"url\":\"https://valientebrands.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"caption\":\"Screenshot of VALIENTE BRANDS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VALIENTE BRANDS design system\",\"VALIENTE BRANDS website design\",\"VALIENTE BRANDS colors\",\"VALIENTE BRANDS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Flare\",\"Sun-Baked Canvas\",\"Midnight Frame\",\"GT Pressura\",\"Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS design system\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS website design\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS colors\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-13T10:15:04.000Z\",\"dateModified\":\"2026-04-13T10:15:04.000Z\"}]}19:T56f,**Quick Color Reference**\n- text: #ff1a00\n- background: #e7a196\n- border / icon stroke: #ff1a00\n- accent (play control, badge circle): #ff1a00\n- media frame: #0a0a0a\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero statement headline: 48px Monument Grotesk weight 400, #ff1a00, line-height 1.0, letter-spacing -1.92px, centered on a #e7a196 canvas, with a long em-dash (—) preceding the text to the left.\n2. Build a corner navigation block: vertical stack of uppercase GT Pressura links (ABOUT, SERVICES, WORK, VALUES, TEAM, CONTACT, ESTIMATION) at 12px weight 400, #ff1a00, letter-spacing -0.005em, separated by 5px row-gap, pinned to the top-left of the viewport with no background.\n3. Build the full-bleed video frame: edge-to-edge media block with a 64px circle centered on the image, 1.5px stroke in #ff1a00, containing a filled play triangle in #ff1a00.\n4. Build a display type block: GT Pressura 190px weight 400, #ff1a00, line-height 0.80, letter-spacing -8.17px, uppercase, left-aligned, used for monospace-feeling alphanumeric strings.\n5. Build the footer bar: single row at the bottom of the first screen, three items spread across the full width (left: \"BRAVERY IN PRACTICE\", center: \"SCROLL TO VIEW MORE ↓\", right: \"©2026\"), all 12px GT Pressura uppercase #ff1a00, sitting directly on the #e7a196 canvas with no border or background."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation system, no z-depth. Hierarchy is built entirely through type scale, color contrast, and whitespace. Elements sit flat on the canvas like print on paper — the page behaves as a single surface that scrolls vertically rather than a stack of cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ff1a00",
+          "oklch": {
+            "c": 0.2521581150045932,
+            "h": 30.274753194002013,
+            "l": 0.633810733321627
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "body",
+            "hero",
+            "card",
+            "link",
+            "footer"
+          ],
+          "frequency": 9293,
+          "confidence": 1,
+          "prominence": 212055952.72509766,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7a196",
+          "oklch": {
+            "c": 0.08573903069711258,
+            "h": 29.34355496666008,
+            "l": 0.7741804205816454
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1280,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.6814600241272722,
+      "contrastPairs": [
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#e7a196",
+          "foreground": "#ff1a00"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 846,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 79,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 98,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 118,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 138,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 150,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 170,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 177,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 220,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT Pressura",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1745,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Monument Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 101,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.82
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "hero",
+            "card",
+            "link",
+            "footer"
+          ],
+          "frequency": 1532,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.82,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 101,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 44,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 95,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 60,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 128,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 190,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 49,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 245,
+          "family": "GT Pressura",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.65,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/92683cac-104e-4aaa-babc-60b557b6b871.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VALIENTE BRANDS design system\",\"item\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#style-reference\",\"name\":\"VALIENTE BRANDS design system reference\",\"headline\":\"VALIENTE BRANDS design system | Refero Styles\",\"description\":\"Explore VALIENTE BRANDS's light Agency design system: Signal Flare #ff1a00, Sun-Baked Canvas #e7a196 colors, GT Pressura, Monument Grotesk typography, and...\",\"url\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VALIENTE BRANDS\",\"url\":\"https://valientebrands.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f63bf016-5b53-4ddf-9f8c-da43f75a9e2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"caption\":\"Screenshot of VALIENTE BRANDS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1bb1f979-f80c-4363-aa6b-dd665dfbcc64.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VALIENTE BRANDS design system\",\"VALIENTE BRANDS website design\",\"VALIENTE BRANDS colors\",\"VALIENTE BRANDS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Flare\",\"Sun-Baked Canvas\",\"Midnight Frame\",\"GT Pressura\",\"Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS design system\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS website design\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS colors\"},{\"@type\":\"Thing\",\"name\":\"VALIENTE BRANDS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-13T10:15:04.000Z\",\"dateModified\":\"2026-04-13T10:15:04.000Z\"}]}19:T56f,**Quick Color Reference**\n- text: #ff1a00\n- background: #e7a196\n- border / icon stroke: #ff1a00\n- accent (play control, badge circle): #ff1a00\n- media frame: #0a0a0a\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero statement headline: 48px Monument Grotesk weight 400, #ff1a00, line-height 1.0, letter-spacing -1.92px, centered on a #e7a196 canvas, with a long em-dash (—) preceding the text to the left.\n2. Build a corner navigation block: vertical stack of uppercase GT Pressura links (ABOUT, SERVICES, WORK, VALUES, TEAM, CONTACT, ESTIMATION) at 12px weight 400, #ff1a00, letter-spacing -0.005em, separated by 5px row-gap, pinned to the top-left of the viewport with no background.\n3. Build the full-bleed video frame: edge-to-edge media block with a 64px circle centered on the image, 1.5px stroke in #ff1a00, containing a filled play triangle in #ff1a00.\n4. Build a display type block: GT Pressura 190px weight 400, #ff1a00, line-height 0.80, letter-spacing -8.17px, uppercase, left-aligned, used for monospace-feeling alphanumeric strings.\n5. Build the footer bar: single row at the bottom of the first screen, three items spread across the full width (left: \"BRAVERY IN PRACTICE\", center: \"SCROLL TO VIEW MORE ↓\", right: \"©2026\"), all 12px GT Pressura uppercase #ff1a00, sitting directly on the #e7a196 canvas with no border or background."
+}

@@ -1,0 +1,828 @@
+{
+  "source": "https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c",
+  "uuid": "f4e1b510-6085-4fb8-8597-05d479d3c00c",
+  "name": "Cup of Couple",
+  "northStar": "printed fashion magazine on cream paper",
+  "capturedAt": "2026-07-18T09:09:46.513Z",
+  "meta": {
+    "url": "https://www.cupofcouple.com",
+    "siteName": "Cup of Couple",
+    "extractedAt": "2026-06-03T20:34:52.239Z",
+    "durationMs": 24773,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 466,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 400 for every typographic element — the system has no bold weights; hierarchy comes from font family and size only.",
+      "Set body and metadata at 10–17px in ITCFranklinGothicStdBook; reserve Garamond (17–28px) for card titles and PerpetuaTitlingMT (25–48px) for major headings.",
+      "Separate UI elements with 1px #303030 or #808080 hairline rules; never use shadows, fills, or borders thicker than 1px.",
+      "Keep all corners at 0px radius — images, cards, and containers are always flush and rectangular to preserve the print/collage feel.",
+      "Let photography carry all color and warmth; the UI chrome must remain achromatic (whites, #f0f0f0, grays, #303030).",
+      "Use uppercase pipe-separated category tags (e.g. 'FASHION | STUDIO') at 10px in ITCFranklinGothicStdBook below every card title.",
+      "Apply consistent 12px vertical rhythm between title, tag row, and date row inside cards; 36px between major sections."
+    ],
+    "donts": [
+      "Do not introduce bold, semibold, or any weight above 400 — the system's restraint depends on this.",
+      "Do not add any chromatic color (blue, red, green) to UI chrome; if a state needs emphasis, use a thicker or darker gray rule.",
+      "Do not round corners, add box-shadows, or apply background fills to cards — let images and whitespace separate content.",
+      "Do not use DisplaceKC outside the wordmark; it is the brand's single typographic spectacle.",
+      "Do not stack more than two font families on a single line of content; the rhythm is title serif + meta sans, nothing else.",
+      "Do not use decorative gradients, colored overlays on images, or tinted UI surfaces — only the warm tones in photography provide chroma.",
+      "Do not use line-height above 1.20 for headings or 1.05 for captions; tight vertical metrics are part of the editorial signature."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#303030",
+        "name": "Ink Charcoal",
+        "role": "Primary text, all UI borders, nav rules, image borders — the only non-white structural color in the system. The brand's deliberate refusal to go pure black gives headlines a softer, printed feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Dust Gray",
+        "role": "Secondary borders, card dividers, footer rules, tertiary UI separators — a mid-gray that recedes behind content and never competes with photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "role": "Card surfaces, subtle elevation against the white page, light shadow tints — warms the page away from clinical white and echoes paper stock",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Faded Pencil",
+        "role": "Rare nav underline / accent rule — used sparingly where a separator needs slightly more presence than Dust Gray",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered on a white canvas. The page opens with a full-width horizontal 'FEATURED PROJECTS' strip of 3 wide image+text cards, separated from the masthead by a 1px #303030 rule. Below sits the centered 72px DisplaceKC wordmark, then a single horizontal nav row of uppercase sans-serif items divided by vertical rules. The main content area is a 3-column responsive grid of project cards — image on top, serif title below, sans metadata row at the bottom. Sections are separated by 36px of vertical whitespace and 1px hairline rules. No sidebar, no floating elements, no overlapping components. The rhythm is strictly horizontal bands stacked vertically, like a magazine spread.",
+    "imagery": "Photography does all the chromatic and emotional work. Imagery is warm, lifestyle-driven, and editorial: hotel interiors, café scenes, fashion retail, travel vignettes, and people in candid-but-styled moments. Treatments favor natural warm light, earthy palettes (terracotta, amber, cream, deep brown), and tight object-focused crops rather than wide scenic shots. Images sit at full-bleed with sharp corners, no overlays, no duotones, and no rounded masking — they read as printed plates laid on the page. Icons are essentially absent from the UI; when present, they are line-only monochrome glyphs in #303030. The only non-photographic visual element is the DisplaceKC wordmark.",
+    "similar": [
+      {
+        "why": "Editorial fashion/journalism layout with serif headlines, sans-serif metadata, and a monochrome UI letting warm product photography dominate",
+        "business": "Garmentory"
+      },
+      {
+        "why": "Magazine-grid content with weight-400 serif titles, hairline gray rules, zero UI color, and lifestyle photography as the sole source of warmth",
+        "business": "Cereal Magazine"
+      },
+      {
+        "why": "Generous whitespace, restrained typography limited to two or three serif/sans families at weight 400, and editorial card grids with image-first hierarchy",
+        "business": "Kinfolk"
+      },
+      {
+        "why": "Travel/lifestyle editorial grid with uppercase sans metadata tags below serif project titles, sharp image edges, and no decorative chrome",
+        "business": "Mr. & Mrs. Smith (hotel journal)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12-18px",
+      "sectionGap": "36px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Implicit page background — pure white beneath all content"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Subtle card lift, image matte borders, soft fill blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "printed fashion magazine on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity header",
+        "description": "DisplaceKC 72px weight 400, #303030, centered, letter-spacing normal, line-height 1.20. Sits alone on its own row with generous top/bottom padding (21–33px) acting as the only horizontal divider between featured-project carousel and primary nav."
+      },
+      {
+        "name": "Primary Nav Row",
+        "role": "Top-level navigation",
+        "description": "Single horizontal bar: VISUAL DIARY | CREATIVE STUDIO | ABOUT | WORKSHOPS | STORE, plus italic 'Search…' affordance. ITCFranklinGothicStdBook 16px weight 400, #303030, uppercase tracking. Each item separated by a 1px vertical #303030 rule (18px paddingRight/Left). No background fill, no hover background — only a 1px #303030 bottom underline on active."
+      },
+      {
+        "name": "Featured Project Carousel Card",
+        "role": "Hero editorial unit",
+        "description": "Wide horizontal strip with image on one side and text block on the other. Image: full-bleed, 0px radius, no border. Title in PerpetuaTitlingMT 25–32px weight 400, #303030, uppercase. Category tag (e.g. 'BARCELONA | HOTELS') in ITCFranklinGothicStdBook 10–12px, #808080, separated from title by a thin #303030 rule."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Diary entry thumbnail",
+        "description": "Three-column grid item. Image on top, 0px radius, flush edges, no border. Below: Garamond 28px weight 400 title at line-height 1.00, #303030, often truncated with ellipsis. Bottom row: 10px ITCFranklinGothicStdBook category label left-aligned in #303030, date right-aligned in #303030, separated from title by 12px gap. No card background, no shadow — the image IS the card."
+      },
+      {
+        "name": "Editorial Title (Large)",
+        "role": "Section/page heading",
+        "description": "PerpetuaTitlingMT 40–48px weight 400, #303030, line-height 1.20, centered or left-aligned. Used for main page titles like 'CUP OF COUPLE' identity and section openers. No underline, no decorative element."
+      },
+      {
+        "name": "Category Tag (Metadata)",
+        "role": "Content classification label",
+        "description": "ITCFranklinGothicStdBook 10px weight 400, #303030 or #808080, uppercase, no background, no border, no padding. Pipe-separated: 'CAFÉS | MADRID', 'FASHION | PARTY | STUDIO'. Sits below card titles with 12px top padding."
+      },
+      {
+        "name": "Date Stamp",
+        "role": "Publication date",
+        "description": "ITCFranklinGothicStdBook 10–12px weight 400, #303030, format DD.MM.YYYY (e.g. '07.11.2022'). Right-aligned in card footers, left-aligned in list rows."
+      },
+      {
+        "name": "Search Affordance",
+        "role": "Inline search trigger",
+        "description": "Italic 'Search…' placeholder set in Garamond 16–17px weight 400, #303030, right-aligned in nav row. No input field visible by default — the text itself is the control."
+      },
+      {
+        "name": "Footer Rule",
+        "role": "Page footer",
+        "description": "Single hairline 1px #808080 horizontal rule above footer content. Footer text in ITCFranklinGothicStdBook 10–12px, #303030, with 18px horizontal padding. ACCESS | BAG: 0 utility links right-aligned in the same row."
+      },
+      {
+        "name": "Featured Carousel Header Label",
+        "role": "Section eyebrow",
+        "description": "Small uppercase 'FEATURED PROJECTS' label in ITCFranklinGothicStdBook 10–12px, #303030, sitting flush-left above the carousel strip. Functions as the only section divider besides the wordmark."
+      },
+      {
+        "name": "Border Separator",
+        "role": "Structural divider",
+        "description": "1px solid #303030 horizontal line, used to separate nav from content and to underline section breaks. No vertical dividers except the 1px rules between nav items."
+      }
+    ],
+    "typography": [
+      {
+        "role": "UI sans — nav items, category labels (CAFÉS | MADRID), dates, footer micro-copy, tag metadata. The single weight 400 acts as a quiet utilitarian voice that stays out of the way of imagery and serif titles.",
+        "sizes": "10px, 16px",
+        "family": "ITCFranklinGothicStdBook",
+        "weight": "400",
+        "lineHeight": "1.05 / 1.20",
+        "substitute": "Source Sans Pro, IBM Plex Sans, Inter (300/400)"
+      },
+      {
+        "role": "Project card titles, section labels, and secondary prose. The 28px Garamond with line-height 1.00 sits tight and dense like editorial captions, while 17px handles body-level text in lists and inputs. Its classical proportions give the grid a literary tone.",
+        "sizes": "17px, 28px",
+        "family": "Garamond",
+        "weight": "400",
+        "lineHeight": "1.00 / 1.20",
+        "substitute": "EB Garamond, Cormorant Garamond, Lora"
+      },
+      {
+        "role": "Major section and page titles — the 48px tier anchors featured-project headers while 25–40px handles sub-section and card-stack headlines. Perpetua's titling proportions (narrow caps, tall x-height) give the layout a stately, museum-label quality.",
+        "sizes": "25px, 32px, 40px, 48px",
+        "family": "PerpetuaTitlingMT",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Cardo, Cormorant SC, Playfair Display SC"
+      },
+      {
+        "role": "The wordmark only — the 'CUP OF COUPLE' logo at 72px. This is the system's single moment of typographic spectacle: the custom face's distorted, slightly retro character sets the entire editorial mood and is never reused elsewhere.",
+        "sizes": "72px",
+        "family": "DisplaceKC",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "No substitute — treat as protected brand mark"
+      }
+    ],
+    "description": "Cup of Couple operates as an editorial visual diary: a near-monochrome canvas with warm photography doing all the chromatic work. Every interface element is weight 400 — no bold weights exist in the system, so hierarchy is built through typeface choice (a humanist sans, a classical serif, a titling serif) rather than through thickness. The result reads like a printed magazine spread that happens to scroll: large serif titles, hairline gray rules, generous whitespace, and a gridded portfolio of lifestyle imagery. Brand identity lives almost entirely in one custom display face for the wordmark and the discipline of never adding color to chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cup of Couple design system\",\"item\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#style-reference\",\"name\":\"Cup of Couple design system reference\",\"headline\":\"Cup of Couple design system | Refero Styles\",\"description\":\"Explore Cup of Couple's light Media design system: Ink Charcoal #303030, Dust Gray #808080 colors, ITCFranklinGothicStdBook, Garamond typography, and...\",\"url\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cup of Couple\",\"url\":\"https://www.cupofcouple.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"caption\":\"Screenshot of Cup of Couple\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cup of Couple design system\",\"Cup of Couple website design\",\"Cup of Couple colors\",\"Cup of Couple typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Charcoal\",\"Dust Gray\",\"Bone\",\"Faded Pencil\",\"ITCFranklinGothicStdBook\",\"Garamond\",\"PerpetuaTitlingMT\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cup of Couple design system\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple website design\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple colors\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:25:15.618Z\",\"dateModified\":\"2026-04-30T03:25:15.618Z\"}]}19:T84b,QUICK COLOR REFERENCE\n• text: #303030\n• background: #ffffff (page) / #f0f0f0 (card surface)\n• border: #303030 (primary) / #808080 (secondary)\n• accent: #767676 (rare nav rule)\n• primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Editorial project card: Three-column grid item. Image flush to edges, 0px radius, no border. Below image, Garamond 28px weight 400 title in #303030 at line-height 1.00, truncated with ellipsis if long. Then a 12px gap, then a row with 'FASHION | STUDIO' in ITCFranklinGothicStdBook 10px uppercase #303030 on the left and '20.09.2022' in the same font on the right, separated from the title by a 1px #303030 rule. No card background, no shadow, 12px padding around text block.\n\n2. Section heading: PerpetuaTitlingMT 40px weight 400 #303030, line-height 1.20, left-aligned with 36px top margin. Above it, a 1px #808080 hairline rule spans the full content width. No subtitle, no decoration.\n\n3. Navigation bar: Single horizontal row, ITCFranklinGothicStdBook 16px weight 400 #303030 uppercase, items: VISUAL DIARY | CREATIVE STUDIO | ABOUT | WORKSHOPS | STORE. Each item separated by a 1px solid #303030 vertical rule with 18px paddingLeft and paddingRight. Italic 'Search…' in Garamond 17px sits flush-right. No background fill, no hover state beyond a 1px #303030 bottom underline on the active item.\n\n4. Featured project carousel card: Wide horizontal card, image taking ~60% width on the left (0px radius, flush), title block on the right in PerpetuaTitlingMT 32px weight 400 #303030 uppercase, line-height 1.20. Below title, 12px gap, then a category label 'BARCELONA | HOTELS' in ITCFranklinGothicStdBook 10px uppercase #808080, separated from the title by a 1px #303030 rule. No card border, no shadow.\n\n5. Footer bar: 1px solid #808080 horizontal rule above. Footer text in ITCFranklinGothicStdBook 10–12px weight 400 #303030, 18px paddingLeft. Left side: 'CUP OF COUPLE Creative Studio & Visual Diary' with the brand name in Garamond. Right side: 'ACCESS | BAG: 0' separated by a 1px #303030 vertical rule between items. 12px paddingTop and paddingBottom."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no rounding — the layout relies on hairline borders (#303030 at 1px) and whitespace to separate surfaces. Elevation is implied by image overlap and section padding, never by box-shadow. Corners are universally square; even card images sit flush against the page. This produces a print-collage effect where photos and text feel laid out on a flat sheet rather than stacked in a UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#303030",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.309185633745967
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "card",
+            "link",
+            "image",
+            "body",
+            "footer",
+            "hero",
+            "input",
+            "list"
+          ],
+          "frequency": 2026,
+          "confidence": 1,
+          "prominence": 34206586.4848082,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 38,
+            "body/color": 30,
+            "card/color": 27,
+            "hero/color": 1,
+            "link/color": 106,
+            "list/color": 5,
+            "image/color": 23,
+            "input/color": 1,
+            "other/color": 161,
+            "button/color": 1,
+            "footer/color": 27,
+            "heading/color": 46,
+            "nav/borderColor": 112,
+            "body/borderColor": 108,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 424,
+            "list/borderColor": 20,
+            "image/borderColor": 92,
+            "other/borderColor": 604,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 184
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "footer",
+            "input",
+            "body"
+          ],
+          "frequency": 296,
+          "confidence": 1,
+          "prominence": 3308366.3118172335,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 36,
+            "body/borderColor": 12,
+            "card/borderColor": 104,
+            "input/borderColor": 4,
+            "other/borderColor": 36,
+            "footer/borderColor": 104
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "other",
+            "card",
+            "nav"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 2082218.3138809,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 26,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 8335.72186064563,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.58,
+          "background": "#f0f0f0",
+          "foreground": "#303030"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "footer",
+            "body",
+            "list"
+          ],
+          "frequency": 81,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingLeft|heading",
+            "paddingLeft|footer",
+            "paddingBottom|heading",
+            "paddingBottom|footer",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "card",
+            "footer",
+            "heading"
+          ],
+          "frequency": 76,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|footer",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "hero",
+            "card",
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginTop|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ITCFranklinGothicStdBook",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 242,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Garamond",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 168,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PerpetuaTitlingMT",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 52,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DisplaceKC",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ITCFranklinGothicStdBook",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "link"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ITCFranklinGothicStdBook",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "footer",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 172,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ITCFranklinGothicStdBook",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ITCFranklinGothicStdBook",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Garamond",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 17,
+          "family": "Garamond",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Garamond",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "card",
+            "other",
+            "input",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Garamond",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "PerpetuaTitlingMT",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Garamond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "image",
+            "hero"
+          ],
+          "frequency": 134,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PerpetuaTitlingMT",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "PerpetuaTitlingMT",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PerpetuaTitlingMT",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "DisplaceKC",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f17b8cc8-d9b5-4031-bc93-c66ca98a9e5d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cup of Couple design system\",\"item\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#style-reference\",\"name\":\"Cup of Couple design system reference\",\"headline\":\"Cup of Couple design system | Refero Styles\",\"description\":\"Explore Cup of Couple's light Media design system: Ink Charcoal #303030, Dust Gray #808080 colors, ITCFranklinGothicStdBook, Garamond typography, and...\",\"url\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cup of Couple\",\"url\":\"https://www.cupofcouple.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f4e1b510-6085-4fb8-8597-05d479d3c00c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"caption\":\"Screenshot of Cup of Couple\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3eb27279-f702-410f-954a-3d9f35b221a5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cup of Couple design system\",\"Cup of Couple website design\",\"Cup of Couple colors\",\"Cup of Couple typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Charcoal\",\"Dust Gray\",\"Bone\",\"Faded Pencil\",\"ITCFranklinGothicStdBook\",\"Garamond\",\"PerpetuaTitlingMT\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cup of Couple design system\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple website design\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple colors\"},{\"@type\":\"Thing\",\"name\":\"Cup of Couple typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:25:15.618Z\",\"dateModified\":\"2026-04-30T03:25:15.618Z\"}]}19:T84b,QUICK COLOR REFERENCE\n• text: #303030\n• background: #ffffff (page) / #f0f0f0 (card surface)\n• border: #303030 (primary) / #808080 (secondary)\n• accent: #767676 (rare nav rule)\n• primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Editorial project card: Three-column grid item. Image flush to edges, 0px radius, no border. Below image, Garamond 28px weight 400 title in #303030 at line-height 1.00, truncated with ellipsis if long. Then a 12px gap, then a row with 'FASHION | STUDIO' in ITCFranklinGothicStdBook 10px uppercase #303030 on the left and '20.09.2022' in the same font on the right, separated from the title by a 1px #303030 rule. No card background, no shadow, 12px padding around text block.\n\n2. Section heading: PerpetuaTitlingMT 40px weight 400 #303030, line-height 1.20, left-aligned with 36px top margin. Above it, a 1px #808080 hairline rule spans the full content width. No subtitle, no decoration.\n\n3. Navigation bar: Single horizontal row, ITCFranklinGothicStdBook 16px weight 400 #303030 uppercase, items: VISUAL DIARY | CREATIVE STUDIO | ABOUT | WORKSHOPS | STORE. Each item separated by a 1px solid #303030 vertical rule with 18px paddingLeft and paddingRight. Italic 'Search…' in Garamond 17px sits flush-right. No background fill, no hover state beyond a 1px #303030 bottom underline on the active item.\n\n4. Featured project carousel card: Wide horizontal card, image taking ~60% width on the left (0px radius, flush), title block on the right in PerpetuaTitlingMT 32px weight 400 #303030 uppercase, line-height 1.20. Below title, 12px gap, then a category label 'BARCELONA | HOTELS' in ITCFranklinGothicStdBook 10px uppercase #808080, separated from the title by a 1px #303030 rule. No card border, no shadow.\n\n5. Footer bar: 1px solid #808080 horizontal rule above. Footer text in ITCFranklinGothicStdBook 10–12px weight 400 #303030, 18px paddingLeft. Left side: 'CUP OF COUPLE Creative Studio & Visual Diary' with the brand name in Garamond. Right side: 'ACCESS | BAG: 0' separated by a 1px #303030 vertical rule between items. 12px paddingTop and paddingBottom."
+}

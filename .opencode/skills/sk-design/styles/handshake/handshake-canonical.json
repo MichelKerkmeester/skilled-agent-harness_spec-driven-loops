@@ -1,0 +1,1252 @@
+{
+  "source": "https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729",
+  "uuid": "dba3eb4f-c1c2-437f-beb2-708e9d074729",
+  "name": "Handshake",
+  "northStar": "neon highlighter on white paper",
+  "capturedAt": "2026-07-18T08:31:19.216Z",
+  "meta": {
+    "url": "https://joinhandshake.com",
+    "siteName": "Handshake",
+    "extractedAt": "2026-06-03T16:38:04.247Z",
+    "durationMs": 57368,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 529,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #d3fb52 Voltage Lime only for the single most important action per view — CTAs, active nav pills, and the hero gradient endpoint",
+      "Set font-feature-settings to 'ss03' on, 'ss06' on, 'ss12' on for all NoiGrotesk usage — the stylistic sets are part of the brand identity",
+      "Apply 24px radius to all cards, inputs, and large containers; 8px to buttons and nav items; 9999px to tags and chips",
+      "Use the radial cyan-to-lime gradient only in the hero and atmospheric section backgrounds — never on content cards or UI surfaces",
+      "Anchor all spacing to the 8px base unit: 8, 16, 24, 32, 40, 80, 120px",
+      "Keep the canvas #ffffff for 90% of the page — dark surfaces are limited to the hero gradient and the #052326 footer",
+      "Set letter-spacing to -0.025em at 40px and tighten further as size increases — the system relies on dense tracking"
+    ],
+    "donts": [
+      "Don't use #d3fb52 for body text, borders, icons, or non-action surfaces — it is an action color, not a decoration",
+      "Don't use multiple chromatic colors — the system is monochrome with one accent; adding a second hue breaks the binary",
+      "Don't apply drop shadows to cards or panels — depth comes from the 24px radius and hairline borders only",
+      "Don't use system fonts as a substitute for NoiGrotesk at UI sizes — the custom letterforms and feature settings carry the identity",
+      "Don't use display type (201px SansPlomb) more than once per page — its scale is meant to be a singular declaration",
+      "Don't reduce the 24px input/card radius to match the 8px button radius — the soft/pillow vs compact contrast is intentional",
+      "Don't use #000000 for large backgrounds — the system prefers #ffffff canvas with #052326 for the only dark surface"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#d3fb52",
+        "name": "Voltage Lime",
+        "role": "Primary action fill, nav pill, active state, hero gradient endpoint — the single chromatic ignition point against an otherwise monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#7af3ff",
+        "name": "Cyan Spark",
+        "role": "Hero gradient start point, secondary glow tone — pairs with Voltage Lime to create the aurora-like radial background",
+        "group": "brand",
+        "gradient": "radial-gradient(at 55% 45%, rgb(122, 243, 255) 0%, rgb(211, 251, 82) 70%, rgba(0, 0, 0, 0) 76%)"
+      },
+      {
+        "hex": "#052326",
+        "name": "Mid Abyss",
+        "role": "Footer surface, dark section backgrounds — a near-black with a subtle teal undertone that keeps the dark mode on-brand",
+        "group": "neutral"
+      },
+      {
+        "hex": "#14151c",
+        "name": "Carbon Ink",
+        "role": "Primary text, icon strokes, input borders — the slightly cool near-black used for the majority of foreground content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, button text on lime fills, input interiors — the dominant surface tone (1590+ appearances)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Nav borders, strong text emphasis, icon fills — used sparingly where maximum contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Ash",
+        "role": "Body helper text, muted body borders — the secondary text level for de-emphasized copy",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container. Hero is full-bleed with a centered radial gradient and left-aligned 201px headline that dominates the viewport. Below the hero, content shifts to white-background sections with 80px vertical gaps. Search bar spans the container width within the hero. Suggestion chips sit below the search in a horizontal row. The page uses a single-column flow for the hero, transitioning to multi-column card grids (2–3 columns) in content sections. Navigation is a simple top bar with logo left, links center, and Log In / Sign Up right — no sticky behavior, no mega-menu.",
+    "imagery": "Minimal photography or illustration. The hero is a pure gradient aurora with no photographic content. Product UI relies on typography, the gradient, and the lime accent to create atmosphere. When imagery appears (job listings, company logos), it is contained within 24px-radius cards and treated as functional data, not decoration. The visual language is: gradient atmosphere + massive type + monochrome surface + one chromatic spark.",
+    "similar": [
+      {
+        "why": "Both use a near-monochrome interface with a single vivid accent color and custom geometric sans-serif typography with tight tracking",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar binary palette approach — white/black canvas with a single high-saturation accent (lime for Handshake, green for Spotify) and oversized display headlines",
+        "business": "Spotify Design"
+      },
+      {
+        "why": "Shared philosophy of one explosive accent color against a neutral system, with custom typography and gradient hero treatments",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Both rely on massive display type as the primary visual element, monochrome layouts, and a single accent color for interactive elements",
+        "business": "Substack"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "24px",
+        "inputs": "24px",
+        "buttons": "8px",
+        "navPills": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background — the white paper the entire system sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated content blocks with 24px radius and hairline borders"
+      },
+      {
+        "hex": "#d3fb52",
+        "name": "Accent Surface",
+        "level": 2,
+        "purpose": "Voltage Lime fills for CTAs, nav pills, and accent panels"
+      },
+      {
+        "hex": "#7af3ff",
+        "name": "Hero Glow",
+        "level": 3,
+        "purpose": "Radial gradient origin — cyan-to-lime aurora on the hero"
+      },
+      {
+        "hex": "#052326",
+        "name": "Dark Surface",
+        "level": 4,
+        "purpose": "Footer and dark section background — near-black with teal undertone"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 1px 0 rgba(0,0,0,0.04)",
+        "element": "Search Input"
+      }
+    ],
+    "northStar": "neon highlighter on white paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.015
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.015
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.015
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 0.85,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display",
+        "size": 201,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Voltage CTA Button",
+        "role": "Primary action trigger",
+        "description": "Filled with #d3fb52 Voltage Lime, #000000 text, 8px radius, 12px vertical / 16px horizontal padding. NoiGrotesk 16px weight 500. The lime fill is the only chromatic action surface in the system — it glows against the monochrome canvas."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action trigger",
+        "description": "Transparent fill, 1px #000000 border, #000000 text, 8px radius, 12px/16px padding. NoiGrotesk 16px weight 500. Used when a primary CTA is present and the secondary needs to recede."
+      },
+      {
+        "name": "Sign Up Nav Pill",
+        "role": "Top-right primary action in header",
+        "description": "#d3fb52 fill, #000000 text, 8px radius, 8px/16px padding, NoiGrotesk 14px weight 500. Distinct from the ghost Log In button beside it — the lime marks the desired action."
+      },
+      {
+        "name": "Search Input",
+        "role": "Hero search bar for job queries",
+        "description": "White fill, 1px #e5e5e5 border, 24px radius, 16px vertical / 24px horizontal padding. Placeholder text in #666666, 16px NoiGrotesk. A magnifier icon sits left, an arrow submit button sits right. The 24px radius is the softest radius in the system — this input is the user's main tool."
+      },
+      {
+        "name": "Suggestion Chip",
+        "role": "Quick-select filter tags below search",
+        "description": "Transparent fill, 1px #ffffff border on dark background (or #000000 on light), 9999px radius, 8px/16px padding. NoiGrotesk 14px. Fully pill-shaped — the 9999px radius makes these feel like removable labels."
+      },
+      {
+        "name": "Job Card",
+        "role": "Individual job listing in results grid",
+        "description": "White surface, 1px #e5e5e5 border, 24px radius, 24px internal padding. Company logo top-left, title in NoiGrotesk 20px weight 500, metadata in 14px #666666. No drop shadow — the border and radius provide structure."
+      },
+      {
+        "name": "Hero Gradient Banner",
+        "role": "Page-opening atmospheric section",
+        "description": "Full-bleed radial gradient from #7af3ff to #d3fb52 fading to transparent at ~76%, centered at ~50% 50%. 201px SansPlomb 600 headline in #ffffff. The gradient is the brand's signature — no other section uses this treatment."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide bottom navigation",
+        "description": "#052326 Mid Abyss background, white text, 24px radius on outer container. Links in NoiGrotesk 14px. The dark footer is the only dark surface besides the hero, creating a bookend structure."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Header navigation items",
+        "description": "NoiGrotesk 14px weight 500, #ffffff text on the dark hero header. No underline, no background — just the word in space, relying on the 8px padding and spacing to create hit areas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body typeface — handles all navigation, buttons, inputs, cards, and headings up to 40px. Custom grotesque with active stylistic sets ss03, ss06, and ss12 that subtly shape letterforms across the entire system",
+        "sizes": "12, 14, 16, 20, 22, 28, 40",
+        "family": "NoiGrotesk",
+        "weight": "400, 500",
+        "lineHeight": "0.85, 1.10, 1.40, 1.50",
+        "substitute": "Inter, Söhne, or General Sans",
+        "letterSpacing": "-0.025em at 40px, -0.020em at 22–28px, -0.015em at 14–20px, normal at 12–16px",
+        "fontFeatureSettings": "\"ss03\" on, \"ss06\" on, \"ss12\" on"
+      },
+      {
+        "role": "Display-only typeface for hero and section-defining headlines. Used at 201px with ultra-tight 0.80 line-height and -0.020em tracking — the sheer scale makes the headline feel architectural, not typographic",
+        "sizes": "201",
+        "family": "SansPlomb",
+        "weight": "600",
+        "lineHeight": "0.80",
+        "substitute": "Druk Wide, Obviously, or Knockout",
+        "letterSpacing": "-0.020em at 201px"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "fontFeatureSettings": "\"ss03\", \"ss06\", \"ss12\""
+      }
+    ],
+    "description": "Handshake runs on a monochrome canvas punched open by one radioactive lime (#d3fb52) that acts less like a brand color and more like a highlighter dragged across white paper. The system is deliberately binary: almost everything is black text on white surfaces, and then the accent ignites — on nav pills, primary actions, and the hero's cyan-to-lime radial glow. Custom NoiGrotesk carries the UI with tight tracking and three stylistic sets (ss03, ss06, ss12) active everywhere, while SansPlomb at 201px declares the page in display headlines so large they feel architectural rather than typographic. Surfaces are pillow-soft (24px on cards and inputs), buttons are compact (8px), and the overall density is comfortable — the page breathes because the typography and gradient do the heavy emotional work, not ornament.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Handshake design system\",\"item\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#style-reference\",\"name\":\"Handshake design system reference\",\"headline\":\"Handshake design system | Refero Styles\",\"description\":\"Explore Handshake's light SaaS design system: Voltage Lime #d3fb52, Cyan Spark #7af3ff colors, NoiGrotesk, SansPlomb typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Handshake\",\"url\":\"https://joinhandshake.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"caption\":\"Screenshot of Handshake\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Handshake design system\",\"Handshake website design\",\"Handshake colors\",\"Handshake typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Voltage Lime\",\"Cyan Spark\",\"Mid Abyss\",\"Carbon Ink\",\"NoiGrotesk\",\"SansPlomb\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Handshake design system\"},{\"@type\":\"Thing\",\"name\":\"Handshake website design\"},{\"@type\":\"Thing\",\"name\":\"Handshake colors\"},{\"@type\":\"Thing\",\"name\":\"Handshake typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:40:58.295Z\",\"dateModified\":\"2026-04-30T00:40:58.295Z\"}]}19:T69c,**Quick Color Reference**\n- text: #14151c (primary), #666666 (muted)\n- background: #ffffff (canvas), #052326 (dark surface)\n- border: #000000 (emphasis), #e5e5e5 (hairline)\n- accent: #d3fb52 (Voltage Lime — action fills, nav pills)\n- gradient: #7af3ff → #d3fb52 (hero radial)\n- primary action: #d3fb52 (filled action)\n\n**3-5 Example Component Prompts**\n1. Create a hero section: full-bleed radial gradient from #7af3ff to #d3fb52 fading to transparent at 76%, centered. Headline in SansPlomb 201px weight 600, #ffffff, letter-spacing -0.02em, line-height 0.80. Below the headline, a white search input at 24px radius, 16px/24px padding, 1px #e5e5e5 border, placeholder text at 16px NoiGrotesk #666666.\n\n2. Create a Voltage Lime CTA button: #d3fb52 background, #000000 text, 8px border-radius, 12px padding-top/bottom, 16px padding-left/right. Font: NoiGrotesk 16px weight 500, letter-spacing -0.015em, font-feature-settings 'ss03' on, 'ss06' on, 'ss12' on. No border, no shadow.\n\n3. Create a job listing card: white background, 1px #e5e5e5 border, 24px border-radius, 24px internal padding. Title in NoiGrotesk 20px weight 500 #14151c. Company name in NoiGrotesk 14px #666666. Location and salary in NoiGrotesk 14px #666666. No drop shadow.\n\n4. Create a suggestion chip: transparent background, 1px #ffffff border, 9999px border-radius, 8px padding-top/bottom, 16px padding-left/right. Text: NoiGrotesk 14px weight 500 #ffffff. On hover: background #d3fb52, text #000000.\n\n5. Create a footer: #052326 background, full-width, 120px padding-top/bottom, 24px radius on outer container. Links in NoiGrotesk 14px #ffffff, arranged in a 4-column grid with 24px gap. Logo in #d3fb52 at top-left."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids decorative shadows entirely. Depth is created through the 24px radius, hairline borders, and the chromatic glow of the hero gradient — never through drop shadows. When a component needs separation, it uses a 1px border in #000000 or #e5e5e5, not elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "input",
+            "icon",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 1590,
+          "confidence": 1,
+          "prominence": 63993988.54391116,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 23,
+            "card/color": 36,
+            "hero/color": 1,
+            "icon/color": 4,
+            "link/color": 27,
+            "list/color": 37,
+            "other/fill": 150,
+            "other/color": 130,
+            "button/color": 11,
+            "footer/color": 1,
+            "other/stroke": 28,
+            "heading/color": 10,
+            "nav/borderColor": 8,
+            "body/borderColor": 92,
+            "card/borderColor": 144,
+            "hero/borderColor": 4,
+            "icon/borderColor": 16,
+            "link/borderColor": 108,
+            "list/borderColor": 148,
+            "other/borderColor": 520,
+            "button/borderColor": 44,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40,
+            "link/backgroundColor": 1,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 177,
+          "confidence": 1,
+          "prominence": 53228664.84503293,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "nav/color": 19,
+            "body/color": 1,
+            "link/color": 1,
+            "other/fill": 10,
+            "other/color": 10,
+            "button/color": 1,
+            "nav/borderColor": 76,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 40,
+            "button/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#14151c",
+          "oklch": {
+            "c": 0.014114227300789418,
+            "h": 278.6436528607538,
+            "l": 0.197940389998504
+          },
+          "contexts": [
+            "other",
+            "input",
+            "icon"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 22908450.986398865,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "input/color": 1,
+            "icon/borderColor": 4,
+            "input/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d3fb52",
+          "oklch": {
+            "c": 0.1938968532762027,
+            "h": 121.82018036340514,
+            "l": 0.9294976954303162
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 1798324.0217778825,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 9,
+            "nav/color": 1,
+            "other/fill": 3,
+            "other/color": 1,
+            "nav/borderColor": 4,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#052326",
+          "oklch": {
+            "c": 0.03525796516536585,
+            "h": 204.46941385534427,
+            "l": 0.23579539992273607
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1103299,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 49576.37956903367,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "body/borderColor": 72
+          }
+        },
+        {
+          "hex": "#7b7b85",
+          "oklch": {
+            "c": 0.015112605473411297,
+            "h": 285.9243650270897,
+            "l": 0.5862438610318358
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 729.9122797349771,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "icon/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007055949260765974,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.2,
+          "background": "#14151c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.69,
+          "background": "#d3fb52",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.47,
+          "background": "#052326",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#d3fb52",
+          "foreground": "#14151c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#052326",
+          "foreground": "#d3fb52"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.01,
+          "background": "#000000",
+          "foreground": "#7b7b85"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#d3fb52",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#14151c",
+          "foreground": "#7b7b85"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.19,
+          "background": "#ffffff",
+          "foreground": "#7b7b85"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.93,
+          "background": "#052326",
+          "foreground": "#7b7b85"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#d3fb52",
+          "foreground": "#7b7b85"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.17,
+          "background": "#14151c",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.87,
+          "background": "#052326",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#052326",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#d3fb52",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#14151c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#052326",
+          "foreground": "#14151c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "input",
+            "card",
+            "footer"
+          ],
+          "frequency": 38
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "columnGap|other",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 94,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|other",
+            "rowGap|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "list"
+          ],
+          "frequency": 118,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "hero",
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 177,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(at 55% 45%, rgb(122, 243, 255) 0%, rgb(211, 251, 82) 70%, rgba(0, 0, 0, 0) 76%)",
+        "colors": [
+          "rgb(122, 243, 255)",
+          "rgb(211, 251, 82)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(rgb(211, 251, 82) 0%, rgb(122, 243, 255) 52%, rgba(0, 0, 0, 0) 78%)",
+        "colors": [
+          "rgb(211, 251, 82)",
+          "rgb(122, 243, 255)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(at 48% 55%, rgb(122, 243, 255) 0%, rgb(211, 251, 82) 48%, rgba(0, 0, 0, 0) 76%)",
+        "colors": [
+          "rgb(122, 243, 255)",
+          "rgb(211, 251, 82)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(at 52% 48%, rgb(211, 251, 82) 0%, rgb(122, 243, 255) 78%, rgba(0, 0, 0, 0) 80%)",
+        "colors": [
+          "rgb(211, 251, 82)",
+          "rgb(122, 243, 255)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(rgb(122, 243, 255) 0%, rgb(211, 251, 82) 70%, rgba(0, 0, 0, 0) 78%)",
+        "colors": [
+          "rgb(122, 243, 255)",
+          "rgb(211, 251, 82)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NoiGrotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 331,
+          "fontFeatureSettings": [
+            "\"ss03\", \"ss06\", \"ss12\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": [
+            "\"ss03\", \"ss06\", \"ss12\""
+          ]
+        },
+        {
+          "family": "SansPlomb",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NoiGrotesk",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "NoiGrotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "icon",
+            "button",
+            "link",
+            "card",
+            "image",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 229,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NoiGrotesk",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NoiGrotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "input"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "NoiGrotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 201,
+          "family": "SansPlomb",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ccd157b3-c8ce-48f5-aafc-bc02b7b589b9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Handshake design system\",\"item\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#style-reference\",\"name\":\"Handshake design system reference\",\"headline\":\"Handshake design system | Refero Styles\",\"description\":\"Explore Handshake's light SaaS design system: Voltage Lime #d3fb52, Cyan Spark #7af3ff colors, NoiGrotesk, SansPlomb typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Handshake\",\"url\":\"https://joinhandshake.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dba3eb4f-c1c2-437f-beb2-708e9d074729#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"caption\":\"Screenshot of Handshake\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e5adf376-7d3b-4dbd-bba4-e6236f185644.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Handshake design system\",\"Handshake website design\",\"Handshake colors\",\"Handshake typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Voltage Lime\",\"Cyan Spark\",\"Mid Abyss\",\"Carbon Ink\",\"NoiGrotesk\",\"SansPlomb\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Handshake design system\"},{\"@type\":\"Thing\",\"name\":\"Handshake website design\"},{\"@type\":\"Thing\",\"name\":\"Handshake colors\"},{\"@type\":\"Thing\",\"name\":\"Handshake typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:40:58.295Z\",\"dateModified\":\"2026-04-30T00:40:58.295Z\"}]}19:T69c,**Quick Color Reference**\n- text: #14151c (primary), #666666 (muted)\n- background: #ffffff (canvas), #052326 (dark surface)\n- border: #000000 (emphasis), #e5e5e5 (hairline)\n- accent: #d3fb52 (Voltage Lime — action fills, nav pills)\n- gradient: #7af3ff → #d3fb52 (hero radial)\n- primary action: #d3fb52 (filled action)\n\n**3-5 Example Component Prompts**\n1. Create a hero section: full-bleed radial gradient from #7af3ff to #d3fb52 fading to transparent at 76%, centered. Headline in SansPlomb 201px weight 600, #ffffff, letter-spacing -0.02em, line-height 0.80. Below the headline, a white search input at 24px radius, 16px/24px padding, 1px #e5e5e5 border, placeholder text at 16px NoiGrotesk #666666.\n\n2. Create a Voltage Lime CTA button: #d3fb52 background, #000000 text, 8px border-radius, 12px padding-top/bottom, 16px padding-left/right. Font: NoiGrotesk 16px weight 500, letter-spacing -0.015em, font-feature-settings 'ss03' on, 'ss06' on, 'ss12' on. No border, no shadow.\n\n3. Create a job listing card: white background, 1px #e5e5e5 border, 24px border-radius, 24px internal padding. Title in NoiGrotesk 20px weight 500 #14151c. Company name in NoiGrotesk 14px #666666. Location and salary in NoiGrotesk 14px #666666. No drop shadow.\n\n4. Create a suggestion chip: transparent background, 1px #ffffff border, 9999px border-radius, 8px padding-top/bottom, 16px padding-left/right. Text: NoiGrotesk 14px weight 500 #ffffff. On hover: background #d3fb52, text #000000.\n\n5. Create a footer: #052326 background, full-width, 120px padding-top/bottom, 24px radius on outer container. Links in NoiGrotesk 14px #ffffff, arranged in a 4-column grid with 24px gap. Logo in #d3fb52 at top-left."
+}

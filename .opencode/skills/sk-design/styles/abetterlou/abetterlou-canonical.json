@@ -1,0 +1,1922 @@
+{
+  "source": "https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff",
+  "uuid": "6a5f9438-7ae6-4743-a0bd-f9087d467eff",
+  "name": "Abetterlou",
+  "northStar": "Embers on saddle leather — warm cream typography glowing against deep coffee-black, with amber-gold buttons that feel pressed into the page like heated metalwork.",
+  "capturedAt": "2026-07-18T09:38:42.063Z",
+  "meta": {
+    "url": "https://abetterlou.com",
+    "siteName": "Abetterlou",
+    "extractedAt": "2026-06-03T18:44:46.882Z",
+    "durationMs": 36486,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 866,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Amber Forge (#ffb442) exclusively for primary actions and one-per-section accent moments — never as a background fill for large surfaces",
+      "Set every button, input, and inline link to a 9999px pill radius; reserve 6px radius for cards, nav, and structural surfaces",
+      "Anchor type with PP Neue Montreal weight 400 for body and weight 500 for headings/emphasis only — no weight 600 or above anywhere in the system",
+      "Apply tight negative letter-spacing on any type at 27px or larger, scaling from -0.05px at 22px to -1.13px at 81px",
+      "Keep section vertical spacing at 52px and element gaps at 12px to preserve the system's compact-premium rhythm",
+      "Place Cream Outlined Pill Buttons adjacent to Amber Filled Pills to establish primary/secondary hierarchy without adding new colors",
+      "Communicate elevation through Amber-on-Espresso color contrast and 1px Walnut hairlines, never through box-shadows or blur"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic accent — the system's restraint lives in having exactly one warm signal color",
+      "Don't use pure black (#000000) or pure white (#ffffff); stay within the Espresso (#140b00) → Warm Cream (#fff1e0) warmth band",
+      "Don't apply box-shadows, blurs, or glows to any component — depth is built through border tone and color contrast only",
+      "Don't break the pill-vs-card radius convention: never put a pill button inside a 6px card frame, and never give a card a 9999px radius",
+      "Don't set body text below 14px or above 18px — the system's voice lives in the 14–18px range, not in tiny micro-copy",
+      "Don't use amber text on light sections — Amber Forge is a dark-canvas signal only; on Cream surfaces use Espresso for primary text",
+      "Don't stack more than two font weights on a single screen; the system reads as 400-and-500-only, never 700+"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#140b00",
+        "name": "Espresso",
+        "role": "Page canvas and primary surface — warm coffee-black rather than pure black, the entire site sits on this",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0b0600",
+        "name": "Midnight Cocoa",
+        "role": "Deepest surface for footers and recessed bands — almost-black brown for slight layering below Espresso",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff1e0",
+        "name": "Warm Cream",
+        "role": "Primary text and icon strokes — the only ink color across the system, reads as off-white parchment in dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Soft Cream",
+        "role": "Occasional light surface tint where near-white is needed (rare, secondary to Warm Cream)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#43392d",
+        "name": "Walnut",
+        "role": "Subtle hairline borders on dark surfaces — warm taupe that holds edges without competing with content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f4538",
+        "name": "Cedar",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#85796c",
+        "name": "Driftwood",
+        "role": "Muted helper text and secondary labels — warm gray that recedes against Espresso without disappearing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181109",
+        "name": "Burnt Edge",
+        "role": "Faint internal border on cards and panels — barely-visible depth line on the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffb442",
+        "name": "Amber Forge",
+        "role": "Primary action fill, accent highlights, and the system signal color — the only chromatic accent; appears on filled CTAs, icon hover states, and section dividers. Pairs against Espresso for a heated-metal contrast that feels pressed-in and intentional",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered content rail with hero that goes full-bleed for the background photograph. Hero is a split composition: left rail holds the headline + subtext + CTA row, right side is occupied by the photograph of the subject. Below the hero, a 3-up feature card grid sits on the same Espresso canvas with no card fills — just hairline bottom borders. Section rhythm alternates between full-bleed Espresso bands and occasional light Cream bands (the FAQ section flips to Cream-on-Espresso). Headlines left-align by default, section transitions use 52px vertical breath. Navigation is a transparent top bar that becomes solid Espresso on scroll. Overall density is comfortable but not airy — the system reads as confident and compact rather than spacious.",
+    "imagery": "Imagery is cinematic and masculine: high-resolution lifestyle photography of confident older men (60s+) in outdoor golden-hour settings — desert roads, mountain vistas, luxury vehicle interiors. Photography is full-bleed in the hero, color-graded warm to match the Espresso/Amber palette, with a subtle Espresso scrim to keep text legible. No illustrations, no product shots, no abstract graphics in the main flow — the brand leans entirely on human portraiture to carry trust. The one exception is the clock-dial data visualization, which is pure dot-and-line graphic art in Warm Cream. Icons throughout are monochrome line icons in Warm Cream at consistent ~16–20px stroke weight, sitting inside small Walnut-bordered circular containers when paired with feature text.",
+    "similar": [
+      {
+        "why": "Same warm dark canvas with a single saturated accent for CTAs, pill-shaped buttons, and lifestyle portrait photography of confident older men",
+        "business": "Hims"
+      },
+      {
+        "why": "Dark-mode men's health interface with a restrained two-color palette (one accent + cream), pill controls, and editorial negative-tracked headlines",
+        "business": "Ro (Roman)"
+      },
+      {
+        "why": "Warm coffee-black backgrounds with cream typography, masculine/premium product photography, and zero decorative noise",
+        "business": "Saddleback Leather"
+      },
+      {
+        "why": "Same warm dark hero with golden-hour portrait photography, full-bleed imagery, and a single bright accent color on action elements",
+        "business": "Oliver Cabell"
+      },
+      {
+        "why": "Dark earthy backgrounds (brown-black, not blue-black), single warm amber accent, and editorial negative-tracked display type",
+        "business": "MUDWTR"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "cards": "6px",
+        "icons": "9999px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "52px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#140b00",
+        "name": "Espresso Canvas",
+        "level": 0,
+        "purpose": "Base page background, dominant canvas"
+      },
+      {
+        "hex": "#0b0600",
+        "name": "Midnight Cocoa",
+        "level": 1,
+        "purpose": "Footer and recessed dark bands, one step deeper than canvas"
+      },
+      {
+        "hex": "#43392d",
+        "name": "Walnut Outline",
+        "level": 2,
+        "purpose": "Card and panel borders on the Espresso canvas"
+      },
+      {
+        "hex": "#ffb442",
+        "name": "Amber Signal",
+        "level": 3,
+        "purpose": "Action fill, the only elevated chromatic surface"
+      },
+      {
+        "hex": "#fff1e0",
+        "name": "Warm Cream",
+        "level": 4,
+        "purpose": "Inverse text surface (light bands, e.g. FAQ section) that flips the system"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — buttons sit flat against the dark canvas, depth implied only by color contrast between Amber Forge fill and Espresso",
+        "element": "Pill buttons and icon controls"
+      },
+      {
+        "style": "none — cards rely on a 1px Walnut border (#43392d) rather than shadow to read as raised",
+        "element": "Cards and panels"
+      },
+      {
+        "style": "none — separators are 1px Warm Cream at reduced opacity, no shadow",
+        "element": "FAQ accordion items"
+      }
+    ],
+    "northStar": "Embers on saddle leather — warm cream typography glowing against deep coffee-black, with amber-gold buttons that feel pressed into the page like heated metalwork.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "heading-lg",
+        "size": 35,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.21
+      },
+      {
+        "role": "display",
+        "size": 43,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "display-lg",
+        "size": 55,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "hero",
+        "size": 73,
+        "lineHeight": 1,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "hero-xl",
+        "size": 81,
+        "lineHeight": 0.8,
+        "letterSpacing": -1.13
+      }
+    ],
+    "components": [
+      {
+        "name": "Amber Filled Pill Button",
+        "role": "Primary CTA",
+        "description": "Solid #ffb442 fill, Warm Cream (#fff1e0) text at 14px weight 500, full pill radius (9999px), 12px vertical padding × 15px horizontal padding. No border, no shadow. Text sits dead-center with optical adjustment. The amber glows against Espresso like a heated brand."
+      },
+      {
+        "name": "Cream Outlined Pill Button",
+        "role": "Secondary action / Patient Portal",
+        "description": "Transparent fill, 1px Warm Cream (#fff1e0) border, Warm Cream text at 14px weight 500, 9999px radius, 10–12px vertical padding. Pairs beside the amber primary to create a clear hierarchy without introducing new colors."
+      },
+      {
+        "name": "Arrow Icon Circle",
+        "role": "Inline action accent (sits beside CTAs and card headers)",
+        "description": "Filled Amber Forge circle, ~36–40px diameter, 9999px radius, centered diagonal-arrow icon in Espresso (#140b00) at ~16px. Functions as a secondary 'go' signal and visual companion to the pill button — a recurring motif."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent over hero, becomes Espresso (#140b00) on scroll. Left: ABL monogram in Warm Cream weight 500. Center: nav links in Warm Cream at 14px weight 400. Right: outlined Cream pill 'Patient Portal' + Amber Forge filled 'Join the list' pill. Nav container itself has a 6px radius on inner elements, no pill radius on the bar."
+      },
+      {
+        "name": "Feature Card (Icon + Title + Body)",
+        "role": "3-up feature grid in the hero band",
+        "description": "Transparent surface — no card fill. 1px Walnut (#43392d) bottom border as a hairline divider. Circular icon container ~40px diameter with Walnut border, monochrome icon inside. Title in Warm Cream 14px weight 500, body in Driftwood (#85796c) 14px weight 400. Tight 12px padding inside, no rounded corners on the card itself."
+      },
+      {
+        "name": "FAQ Accordion Row",
+        "role": "Frequently asked questions list",
+        "description": "Full-width row on a light Cream (#fff1e0) surface band. 1px Walnut hairline separator between items. Question text in Espresso (#140b00) at 17px weight 500, left-aligned, with a + icon in Espresso at the right. Compact 14px vertical padding, no card radius — the items are a vertical list, not boxes."
+      },
+      {
+        "name": "Pill Input Field",
+        "role": "Form input",
+        "description": "Transparent fill, 1px Cedar (#4f4538) border, full pill radius (9999px), 12px vertical padding. Placeholder text in Driftwood (#85796c), entered text in Warm Cream. Focus state intensifies border to Amber Forge (#ffb442) — no glow, just a color shift."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Small inline label",
+        "description": "Filled Walnut (#43392d) or outlined Warm Cream, 9999px radius, 4–10px vertical padding, caption-size (12px) text in Warm Cream. Used sparingly for category tags."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Section title with optional CTA",
+        "description": "Left-aligned or centered heading at 43–73px, weight 400, Warm Cream on dark, tight negative tracking. Optional Amber Forge filled 'Explore All' pill button + Arrow Icon Circle beneath, stacked vertically. No subtitle unless paired with subheading-sm."
+      },
+      {
+        "name": "Clock Dial Visualization",
+        "role": "Signature data graphic (biological age widget)",
+        "description": "Midnight Cocoa (#0b0600) deep dark band, centered circular dot-clock made of 60 small Warm Cream dots arranged in a ring, with a vertical pendulum line from top center. Large numeric readout in Warm Cream at 69px weight 500, label beneath in Driftwood 13px. Pure data-art, no chrome or shadow."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary above-the-fold statement",
+        "description": "Two-line statement at 73–81px weight 400, Warm Cream (#fff1e0), line-height 0.80–1.00, letter-spacing -0.80 to -1.13px. Sits over full-bleed hero image with a subtle Espresso gradient scrim. Below: body subtext in Driftwood at 16px weight 400, max-width ~440px, followed by Amber Filled Pill Button + Arrow Icon Circle row."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer band",
+        "description": "Midnight Cocoa (#0b0600) surface, one step deeper than the page. Content in Warm Cream and Driftwood, compact rows, no heavy decoration. Legal text in caption 12px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire system. PP Neue Montreal is a geometric humanist sans with a soft, slightly rounded terminal — more editorial than Inter, more clinical than GT America. Used at weight 400 for body and 500 for emphasis; no weight 600+ anywhere, which keeps the voice restrained and high-end. Display sizes (43–81px) use tight negative tracking (down to -1.13px) to lock letters into compact editorial blocks. Substitute with Inter (close) or Manrope (slightly warmer).",
+        "sizes": "10, 12, 13, 14, 16, 17, 19, 20, 22, 23, 27, 29, 30, 33, 35, 43, 55, 59, 69, 73, 81px",
+        "family": "PP Neue Montreal",
+        "weight": "400, 500",
+        "lineHeight": "0.80, 1.00, 1.10, 1.20, 1.40, 1.43, 1.50",
+        "substitute": "Inter (close), Manrope (warmer alternative), or Space Grotesk (geometric alternative)",
+        "letterSpacing": "-1.13px at 81px, -0.80px at 73px, -0.69px at 69px, -0.53px at 59px, -0.44px at 55px, -0.30px at 43px, -0.21px at 35px, -0.17px at 33px, -0.12px at 29-30px, -0.08px at 27px, -0.05px at 22-23px, normal at 16px and below, +0.01em on small labels",
+        "fontFeatureSettings": "\"ss01\" on, \"kern\" on, \"liga\" on"
+      }
+    ],
+    "description": "A warm dark 'private clinic at dusk' system: coffee-black canvas (#140b00), cream typography (#fff1e0), and a single amber accent (#ffb442) that fires only on action. PP Neue Montreal carries the entire voice at weights 400 and 500 — geometric and clinical, but the cream ink and tight negative tracking on the 43–81px range give it editorial weight rather than generic SaaS feel. The defining rhythm is a shape contrast: full-pill controls (buttons, inputs, links at ~1296px radius) sit on gently squared 6px surfaces, so action elements feel pressed-in and tactile while content cards stay quiet. Restraint is the system: one chromatic accent, two font weights, compact 12px gaps, and 52px section breath that reads premium without becoming airy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Abetterlou design system\",\"item\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#style-reference\",\"name\":\"Abetterlou design system reference\",\"headline\":\"Abetterlou design system | Refero Styles\",\"description\":\"Explore Abetterlou's dark Other design system: Espresso #140b00, Midnight Cocoa #0b0600 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Abetterlou\",\"url\":\"https://abetterlou.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"caption\":\"Screenshot of Abetterlou\"},\"image\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Abetterlou design system\",\"Abetterlou website design\",\"Abetterlou colors\",\"Abetterlou typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Espresso\",\"Midnight Cocoa\",\"Warm Cream\",\"Soft Cream\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Abetterlou design system\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou website design\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou colors\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:57:53.000Z\",\"dateModified\":\"2026-05-08T18:57:53.000Z\"}]}19:T6b5,Quick Color Reference:\n- text: #fff1e0 (Warm Cream) on #140b00 (Espresso) canvas\n- Create a Primary Action Button: #ffb442 background, #140b00 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- border: #43392d (Walnut) for hairlines, #4f4538 (Cedar) for input outlines\n- accent: #ffb442 (Amber Forge) for highlights and signal moments\n- muted text: #85796c (Driftwood)\n- primary action: #ffb442 (filled action)\n\nExample Component Prompts:\n1. Build a hero section: full-bleed photograph with Espresso (#140b00) scrim. Headline at 73px PP Neue Montreal weight 400, #fff1e0, letter-spacing -0.80px, line-height 1.0. Subtext at 16px weight 400, #85796c, max-width 440px. Amber Filled Pill Button (#ffb442 fill, #fff1e0 text, 9999px radius, 12px 15px padding) paired with a 36px Amber Forge Arrow Icon Circle.\n2. Build a 3-up feature card grid: transparent surfaces, 1px #43392d bottom border, 12px padding. Each card has a 40px circular Walnut-bordered icon container, 14px weight 500 #fff1e0 title, 14px weight 400 #85796c body. 12px gap between icon container and text.\n3. Build a FAQ accordion on a #fff1e0 surface: full-width rows, 1px #43392d separator, question text at 17px weight 500 #140b00, + icon at the right in #140b00, 14px vertical padding per row.\n4. Build a pill input field: transparent fill, 1px #4f4538 border, 9999px radius, 12px vertical padding, 14px #85796c placeholder that becomes #fff1e0 on input. Focus shifts border to #ffb442.\n5. Build the clock-dial data graphic: centered on #0b0600 band, 60 small #fff1e0 dots in a circle, vertical pendulum line in #fff1e0 from top, numeric readout at 69px weight 500 #fff1e0 centered, label at 13px #85796c beneath."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadows. Elevation is communicated through two channels only: (1) color contrast, with Amber Forge (#ffb442) reading as 'hot' against Espresso (#140b00), and (2) hairline borders in Walnut (#43392d) or Burnt Edge (#181109) that gently define card edges without lifting them. This keeps the UI feeling like printed leather and pressed metal rather than floating glass — the warmth and flatness are the signature."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#140b00",
+          "oklch": {
+            "c": 0.032712402601940076,
+            "h": 80.44396840837294,
+            "l": 0.15813735649931715
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "icon",
+            "image",
+            "hero",
+            "heading",
+            "card",
+            "footer",
+            "button"
+          ],
+          "frequency": 3068,
+          "confidence": 1,
+          "prominence": 60049138.39153826,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "card/color": 2,
+            "hero/color": 2,
+            "icon/color": 24,
+            "link/color": 9,
+            "image/color": 6,
+            "other/color": 555,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 7,
+            "nav/borderColor": 71,
+            "card/borderColor": 8,
+            "hero/borderColor": 8,
+            "icon/borderColor": 96,
+            "link/borderColor": 36,
+            "image/borderColor": 24,
+            "other/borderColor": 2152,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 28,
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#fff1e0",
+          "oklch": {
+            "c": 0.027088887367532743,
+            "h": 72.81481009866746,
+            "l": 0.9646555215148752
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "hero",
+            "link",
+            "badge",
+            "image",
+            "input",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 1146,
+          "confidence": 1,
+          "prominence": 19419685.435963437,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 40,
+            "body/color": 1,
+            "icon/color": 5,
+            "link/color": 20,
+            "badge/color": 3,
+            "image/color": 4,
+            "input/color": 3,
+            "other/color": 134,
+            "button/color": 5,
+            "heading/color": 6,
+            "nav/borderColor": 160,
+            "body/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 80,
+            "badge/borderColor": 12,
+            "image/borderColor": 16,
+            "other/borderColor": 536,
+            "button/borderColor": 20,
+            "heading/borderColor": 24,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 52
+          }
+        },
+        {
+          "hex": "#ffb442",
+          "oklch": {
+            "c": 0.15134614854899978,
+            "h": 73.54607901048057,
+            "l": 0.8222625454293279
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 2266628.573081318,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 10,
+            "heading/color": 3,
+            "link/borderColor": 4,
+            "other/borderColor": 40,
+            "heading/borderColor": 12,
+            "nav/backgroundColor": 4,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 22,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#0b0600",
+          "oklch": {
+            "c": 0.02598174114812015,
+            "h": 86.29621081029597,
+            "l": 0.12696087903340106
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#43392d",
+          "oklch": {
+            "c": 0.024645133686832563,
+            "h": 72.41591723740571,
+            "l": 0.3513725531659123
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 1366117.0868648728,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 23
+          }
+        },
+        {
+          "hex": "#181109",
+          "oklch": {
+            "c": 0.01925217653302601,
+            "h": 71.87837578699909,
+            "l": 0.1847031461024224
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 192162.29624326623,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#4f4538",
+          "oklch": {
+            "c": 0.024602749970040454,
+            "h": 72.52480399193996,
+            "l": 0.39514117906681806
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 150590,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 12,
+            "other/borderColor": 17,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 146195.1391907857,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#85796c",
+          "oklch": {
+            "c": 0.0249576286926962,
+            "h": 72.73222644205019,
+            "l": 0.583746699248057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 21087.515946760832,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ada192",
+          "oklch": {
+            "c": 0.025537239462881164,
+            "h": 72.78187312952797,
+            "l": 0.7136645927119497
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4213.488876175485,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0912850656620758,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.18,
+          "background": "#0b0600",
+          "foreground": "#fff1e0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.87,
+          "background": "#0b0600",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.55,
+          "background": "#fff1e0",
+          "foreground": "#140b00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.25,
+          "background": "#140b00",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#fff1e0",
+          "foreground": "#181109"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.56,
+          "background": "#f1f1f1",
+          "foreground": "#181109"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#0b0600",
+          "foreground": "#ffb442"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.01,
+          "background": "#ffb442",
+          "foreground": "#140b00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.56,
+          "background": "#ffb442",
+          "foreground": "#181109"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#fff1e0",
+          "foreground": "#43392d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.99,
+          "background": "#f1f1f1",
+          "foreground": "#43392d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.44,
+          "background": "#4f4538",
+          "foreground": "#fff1e0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.3,
+          "background": "#4f4538",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.97,
+          "background": "#0b0600",
+          "foreground": "#ada192"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#140b00",
+          "foreground": "#ada192"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.38,
+          "background": "#ada192",
+          "foreground": "#181109"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#ffb442",
+          "foreground": "#43392d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#4f4538",
+          "foreground": "#ffb442"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.76,
+          "background": "#0b0600",
+          "foreground": "#85796c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#140b00",
+          "foreground": "#85796c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 35
+        },
+        {
+          "value": 1296,
+          "contexts": [
+            "other",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 1162.8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "badge"
+          ],
+          "frequency": 74,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|badge",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 49,
+          "properties": [
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "marginRight|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "marginLeft|nav",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "columnGap|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginBottom|nav",
+            "marginLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 97,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 107,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginBottom",
+            "columnGap",
+            "rowGap",
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "marginBottom|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 64,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 51,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "marginTop",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 34,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "paddingTop|other",
+            "marginTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 152,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 261,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(315deg, rgba(255, 180, 66, 0), rgb(255, 180, 66) 49%, rgb(255, 241, 224))",
+        "colors": [
+          "rgba(255, 180, 66, 0)",
+          "rgb(255, 180, 66)",
+          "rgb(255, 241, 224)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 866,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.95
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 48,
+          "lineHeight": 1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "image",
+            "hero",
+            "card",
+            "link",
+            "badge",
+            "footer",
+            "button"
+          ],
+          "frequency": 506,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 69,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 46,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 73,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 81,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7c15df3d-bf9e-4088-b1ba-23fde131f19a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Abetterlou design system\",\"item\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#style-reference\",\"name\":\"Abetterlou design system reference\",\"headline\":\"Abetterlou design system | Refero Styles\",\"description\":\"Explore Abetterlou's dark Other design system: Espresso #140b00, Midnight Cocoa #0b0600 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Abetterlou\",\"url\":\"https://abetterlou.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6a5f9438-7ae6-4743-a0bd-f9087d467eff#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"caption\":\"Screenshot of Abetterlou\"},\"image\":\"https://images.refero.design/styles/refero.design/image/73db07cb-56b1-42df-821f-31e2302f310b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Abetterlou design system\",\"Abetterlou website design\",\"Abetterlou colors\",\"Abetterlou typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Espresso\",\"Midnight Cocoa\",\"Warm Cream\",\"Soft Cream\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Abetterlou design system\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou website design\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou colors\"},{\"@type\":\"Thing\",\"name\":\"Abetterlou typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:57:53.000Z\",\"dateModified\":\"2026-05-08T18:57:53.000Z\"}]}19:T6b5,Quick Color Reference:\n- text: #fff1e0 (Warm Cream) on #140b00 (Espresso) canvas\n- Create a Primary Action Button: #ffb442 background, #140b00 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- border: #43392d (Walnut) for hairlines, #4f4538 (Cedar) for input outlines\n- accent: #ffb442 (Amber Forge) for highlights and signal moments\n- muted text: #85796c (Driftwood)\n- primary action: #ffb442 (filled action)\n\nExample Component Prompts:\n1. Build a hero section: full-bleed photograph with Espresso (#140b00) scrim. Headline at 73px PP Neue Montreal weight 400, #fff1e0, letter-spacing -0.80px, line-height 1.0. Subtext at 16px weight 400, #85796c, max-width 440px. Amber Filled Pill Button (#ffb442 fill, #fff1e0 text, 9999px radius, 12px 15px padding) paired with a 36px Amber Forge Arrow Icon Circle.\n2. Build a 3-up feature card grid: transparent surfaces, 1px #43392d bottom border, 12px padding. Each card has a 40px circular Walnut-bordered icon container, 14px weight 500 #fff1e0 title, 14px weight 400 #85796c body. 12px gap between icon container and text.\n3. Build a FAQ accordion on a #fff1e0 surface: full-width rows, 1px #43392d separator, question text at 17px weight 500 #140b00, + icon at the right in #140b00, 14px vertical padding per row.\n4. Build a pill input field: transparent fill, 1px #4f4538 border, 9999px radius, 12px vertical padding, 14px #85796c placeholder that becomes #fff1e0 on input. Focus shifts border to #ffb442.\n5. Build the clock-dial data graphic: centered on #0b0600 band, 60 small #fff1e0 dots in a circle, vertical pendulum line in #fff1e0 from top, numeric readout at 69px weight 500 #fff1e0 centered, label at 13px #85796c beneath."
+}

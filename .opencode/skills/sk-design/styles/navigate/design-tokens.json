@@ -1,0 +1,477 @@
+{
+  "color": {
+    "pitch-black": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Pitch Black — Page canvas for dark sections, dark text on cream sections, FAQ pill backgrounds, navigation shell"
+    },
+    "warm-cream": {
+      "$value": "#fdf9f0",
+      "$type": "color",
+      "$description": "Warm Cream — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "charcoal-900": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Charcoal 900 — Secondary dark surface, subtle elevation above #141414, heavier heading text"
+    },
+    "bone-gray": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Bone Gray — Hairline dividers on cream, low-contrast borders, muted separators"
+    },
+    "acid-lime": {
+      "$value": "#c7ff69",
+      "$type": "color",
+      "$description": "Acid Lime — Sole primary action color — filled CTA backgrounds, outlined CTA borders, active nav highlights. The single chromatic button in the system against black/cream creates instant focus"
+    },
+    "ember-orange": {
+      "$value": "#ff6d38",
+      "$type": "color",
+      "$description": "Ember Orange — Full-bleed section background (FAQ wall), brand icon tile fill, the loudest brand color used to break visual rhythm between dark and cream bands"
+    },
+    "iris-violet": {
+      "$value": "#7a78ff",
+      "$type": "color",
+      "$description": "Iris Violet — Brand icon tile (music/note), card background accent — soft cool counterweight to the warm orange and lime"
+    },
+    "toxic-green": {
+      "$value": "#00a652",
+      "$type": "color",
+      "$description": "Toxic Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "cobalt-blue": {
+      "$value": "#478bff",
+      "$type": "color",
+      "$description": "Cobalt Blue — Brand icon tile (t-shirt) — the cool blue anchor in the icon quintet, prevents the warm colors from overwhelming"
+    },
+    "schoolbus-yellow": {
+      "$value": "#ffc412",
+      "$type": "color",
+      "$description": "Schoolbus Yellow — Brand icon tile (weight/lock) — high-saturation yellow that sits between the cream and orange for tonal continuity"
+    },
+    "lilac-mist": {
+      "$value": "#ccccff",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft decorative card background, pale violet wash for muted content panels"
+    }
+  },
+  "font": {
+    "oldschoolgrotesk": {
+      "$value": "OldschoolGrotesk",
+      "$type": "fontFamily",
+      "$description": "Display and headline face. The 800/900 weight at 80–165px is the site's signature — extra-condensed grotesque, tight tracking, near-zero leading. Negative letter-spacing tightens the letterforms as size increases: -0.04em at the largest sizes (-6.6px at 165px), scaling back to -0.02em on mid-size headings. The compressed line-height (0.8–0.9) lets multi-line headlines stack into a poster-like block."
+    },
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Body, UI, and navigation face. Restrained weights and tight size range (11–18px) keep it as a quiet utility layer beneath the display face. Positive letter-spacing on 11–14px (+0.01em to +0.015em) improves legibility at small sizes; the inverse applies at 18px. Weight 500 is the workhorse for buttons and nav; 700 for emphasized labels."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "32px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "36px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "54px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "83px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 83px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "108px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 108px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "117px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 117px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "135px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 135px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "OldschoolGrotesk",
+        "fontSize": "165px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 165px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "66": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Spacing 66px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.7px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "20.7px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25.146px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28.8px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "43.2px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "62.208px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "64.8px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "82.2857px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    }
+  },
+  "surface": {
+    "pitch-black": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 0: Dark section canvas (hero, alternating bands)"
+    },
+    "warm-cream": {
+      "$value": "#fdf9f0",
+      "$type": "color",
+      "$description": "Surface level 1: Light section canvas (content/feature bands)"
+    },
+    "ember-orange": {
+      "$value": "#ff6d38",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed accent section (FAQ, call-to-action walls)"
+    },
+    "charcoal-900": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated dark surface (nav pill, FAQ question pills, dark cards on black)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://nvg8.io",
+      "siteName": "Navigate",
+      "extractedAt": "2026-06-03T14:44:11.238Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@theme {
+  /* Colors */
+  --color-signal-blue: #0050b7;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-carbon: #10151c;
+  --color-fog: #f4f4f4;
+  --color-ash: #eaeaea;
+  --color-graphite: #86868b;
+  --color-graphite-smoke: #3e3e3e;
+  --color-stone: #a6a6a6;
+
+  /* Typography */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twkeverett: 'TWKEverett', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.4;
+  --text-subheading: 22px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 40px;
+  --leading-heading: 1.25;
+  --text-heading-lg: 55px;
+  --leading-heading-lg: 1.1;
+  --text-display: 77px;
+  --leading-display: 1;
+  --text-display-xl: 110px;
+  --leading-display-xl: 1;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-80: 80px;
+  --spacing-140: 140px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+  --radius-2xl: 18px;
+  --radius-full: 100px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.01) 0px 90px 40px 0px, rgba(0, 0, 0, 0.05) 0px 50px 30px 0px, rgba(0, 0, 0, 0.09) 0px 20px 20px 0px, rgba(0, 0, 0, 0.1) 0px 6px 10px 0px;
+  --shadow-xl-2: rgba(0, 0, 0, 0.01) 0px 550px 220px 0px, rgba(0, 0, 0, 0.05) 0px 310px 190px 0px, rgba(0, 0, 0, 0.09) 0px 140px 140px 0px, rgba(0, 0, 0, 0.1) 0px 35px 75px 0px;
+}

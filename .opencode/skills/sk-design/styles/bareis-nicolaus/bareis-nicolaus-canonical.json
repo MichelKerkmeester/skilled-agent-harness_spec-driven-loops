@@ -1,0 +1,612 @@
+{
+  "source": "https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db",
+  "uuid": "e80c5b4a-fd03-460e-a577-49928a4ab5db",
+  "name": "Bareis + Nicolaus",
+  "northStar": "White chalk on black slate. A typographic control panel and a full-bleed visual index share one strict monochrome stage, with pill-shaped outlines as the only punctuation.",
+  "capturedAt": "2026-07-18T07:57:08.971Z",
+  "meta": {
+    "url": "https://www.bareis-nicolaus.com",
+    "siteName": "Bareis + Nicolaus",
+    "extractedAt": "2026-06-03T18:58:13.400Z",
+    "durationMs": 64614,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 861,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 120px border-radius on every button, tag, and nav element — the pill is the system's only shape",
+      "Use exactly 1px Bone (#ffffff) strokes for all outlined controls; never go thicker",
+      "Set display text to 72px Lausanne weight 400 at line-height 1.0 — the light weight at large size is the signature",
+      "Keep all spacing between tags at 7-13px; the tight cluster density is deliberate",
+      "Use Bone (#ffffff) and Obsidian (#000000) only — Ash (#a9a9a9) is reserved for metadata, never for primary controls",
+      "Use the split-screen layout: typographic control column left, visual index right, full-bleed both sides",
+      "Separate sections with a 1px Bone line and generous vertical air — no cards, no panels, no backgrounds"
+    ],
+    "donts": [
+      "Never add a fill color, gradient, or brand accent — the system is strictly monochrome",
+      "Never apply a border-radius other than 120px (or 0px for images/dividers) — mixed radii break the geometric language",
+      "Never use bold or semibold weights on Lausanne — weight 400 at all sizes is the rule",
+      "Never add drop shadows, glows, or any elevation effect to any element",
+      "Never add internal padding to project images — they must sit flush against the page edge",
+      "Never use Ash (#a9a9a9) for active states or primary text — it is metadata-only",
+      "Never introduce a second font for body or navigation — Victor Serif and Black Tie are accents, not workhorses"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page background, card surface, filled button fill — the flat black ground that all white typography and outlines sit on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text, pill button borders, link text, section dividers, card hover overlays — every outlined and typographic element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9a9a9",
+        "name": "Ash",
+        "role": "Muted borders and secondary structural strokes where pure white would compete with primary controls",
+        "group": "neutral"
+      }
+    ],
+    "layout": "A rigid split-screen full-bleed layout. Left column (~40% width) contains the entire typographic interface: brand wordmark at top, two-pill top nav, section heading 'Work', a dense filter tag grid (8+ rows of outlined pills), then 'Info' and 'Contact' section headers further down. Right column (~60% width) is a full-bleed vertical stack of project thumbnails, each filling its row edge-to-edge. No max-width container — both columns run to the viewport edges. A single 1px Bone horizontal line separates the top brand area from the Work grid; another separates the last filter row from the Info/Contact area. The bottom 40-60px is a horizontal footer info bar with inline pipe-separated metadata. There are no cards, no gutters between sections, no centered content — the layout is a strict two-column editor.",
+    "imagery": "Photography is the right column's sole content. Project thumbnails are full-bleed, no border-radius, no padding, no overlay effects beyond the pill-shaped label in the top-left. The images span from product photography (the phone in a painted blur) to editorial portraiture (the basketball player with tattooed arm), spanning cultural, commercial, and identity work. There is no consistent photographic treatment — the work itself is the diversity. The label overlay is the only consistent graphic element tying images to the typographic system. No illustrations, no abstract graphics, no icons beyond the minus-glyph toggle.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial portfolio structure with split-screen navigation and full-bleed project thumbnails, typographic-first identity",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Restrained geometric typography, strict 2-column layouts, and a refusal of decorative color or shadow",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Dense pill-based navigation systems, split-screen index/control layouts, and editorial discipline",
+        "business": "Manual Studio"
+      },
+      {
+        "why": "Dark-mode studio portfolio with white outline controls and large light-weight display type",
+        "business": "Violaine & Jérémy"
+      },
+      {
+        "why": "Typographic monolith landing pages with filter-pill navigation and full-bleed image grids",
+        "business": "Kasper-Florio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "120px",
+        "tags": "120px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "120px"
+      },
+      "elementGap": "10-13px",
+      "sectionGap": "48-80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Field",
+        "level": 0,
+        "purpose": "Full-bleed page background — the single flat stage"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone Plate",
+        "level": 1,
+        "purpose": "Inverse surface for image fills and right-column content; also the text/border color on the dark side"
+      }
+    ],
+    "elevation": [],
+    "northStar": "White chalk on black slate. A typographic control panel and a full-bleed visual index share one strict monochrome stage, with pill-shaped outlines as the only punctuation.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Tag (Outlined)",
+        "role": "Category filter and navigation control — the signature element of the system",
+        "description": "Fully rounded pill at 120px border-radius, 1px Bone (#ffffff) stroke, transparent fill on Obsidian (#000000) background. Internal padding 10px vertical × 13px horizontal, with 7px margin-right for inline tag flow. Label in Lausanne 400/24px Bone. No fill on any state — the outline IS the element."
+      },
+      {
+        "name": "Pill Tag (Filled Black)",
+        "role": "Active/selected state for category tags",
+        "description": "Same 120px pill geometry, but filled with Obsidian (#000000) and bordered with 1px Bone (#ffffff). Used only for the 'Selected' filter — the active state is signaled by inversion, not by color."
+      },
+      {
+        "name": "Pill Tag (Muted)",
+        "role": "Secondary or inactive labels (e.g., footer 'Imprint')",
+        "description": "120px pill, 1px Ash (#a9a9a9) stroke, transparent fill, Lausanne 400/24px in Ash. Sits quieter than Bone-outlined tags to indicate metadata rather than control."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Brand name, section headers ('Work', 'Info', 'Contact')",
+        "description": "Lausanne 400/72px at line-height 1.0, Bone (#ffffff) on Obsidian. No margin tricks — the tight line-height and weight 400 create the architectural block. Used left-aligned against the split-screen gutter."
+      },
+      {
+        "name": "Project Thumbnail with Overlay Label",
+        "role": "Right-column portfolio index items",
+        "description": "Full-bleed image (no border-radius — images sit sharp against the page), with a pill-shaped overlay label in the top-left corner. Label uses the outlined Pill Tag style with 1px Bone stroke over the image. No captions, no shadows, no padding around the image itself."
+      },
+      {
+        "name": "Top Nav Pill",
+        "role": "Persistent header navigation (Archive, Research)",
+        "description": "Two Pill Tags anchored to the top-right of the left column, same 120px geometry. Functions as a sticky secondary nav, separated from the Work filter grid below by a 1px Bone divider line."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule separating nav from content sections",
+        "description": "1px Bone (#ffffff) full-width line, no padding above/below. Used to separate brand area, Work filter grid, Info header, Contact header. The only structural separator in the system."
+      },
+      {
+        "name": "Footer Info Bar",
+        "role": "Bottom strip with location, weather, email, discipline",
+        "description": "Full-width band at the very bottom. Inline text in Lausanne 400/24px Bone, separated by pipe characters (|). 1px Bone top border. Content reads as a single quiet line: city · temperature · city · temperature · brand · discipline · email."
+      },
+      {
+        "name": "Collapse Toggle",
+        "role": "Minus-sign control next to the 'Work' header",
+        "description": "A small circular control (120px radius) containing a minus glyph, used to collapse/expand the Work filter grid. Same outlined-pill construction as tags, scaled down to icon size."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single voice — used for display headings (72px/1.00), section labels, body text, pill labels, and navigation. Weight 400 at 72px is a deliberate anti-convention: headlines whisper into the dark rather than shout, gaining authority through geometric restraint instead of boldness. The tight 1.0 line-height at display size creates blocky architectural headlines.",
+        "sizes": "24px, 72px",
+        "family": "Lausanne",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Rare editorial accent — appears as italic or contrast voice at body size. A serif breaking the sans-only system signals 'this text is different' (timestamps, quotes, personal notes). Used sparingly enough that each appearance is noticed.",
+        "sizes": "24px",
+        "family": "Victor Serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "GT Sectra, Lyon Text, or Source Serif Pro"
+      },
+      {
+        "role": "Decorative display face for one-off moments — a monospaced or display serif/script that breaks rhythm. The system is nearly all Lausanne, so a single Black Tie appearance acts as typographic spice.",
+        "sizes": "24px",
+        "family": "Black Tie",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Editorial New, Migra, or Tobias"
+      }
+    ],
+    "description": "Bareis + Nicolaus operates as a monochrome editorial grid: pitch-black canvas, bone-white outlines, and a single typeface carrying the entire voice. The interface is a split workspace — a typographic control column on the left filters and indexes, a full-bleed visual index on the right showcases the work. Every interactive element is a pill: 120px radius, 1px white stroke, no fill, no shadow, no hover fill — the geometry does the work. Typography is the protagonist: 72px display at weight 400 with a 1.0 line-height gives headlines architectural presence without weight, while 24px body text reads as quiet annotation. The system refuses decoration — no gradients, no brand color, no elevation, no rounded cards — and that absence is the identity. Every element earns its pixel by being typographic, structural, or navigational.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bareis + Nicolaus design system\",\"item\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#style-reference\",\"name\":\"Bareis + Nicolaus design system reference\",\"headline\":\"Bareis + Nicolaus design system | Refero Styles\",\"description\":\"Explore Bareis + Nicolaus's dark Agency design system: Obsidian #000000, Bone #ffffff colors, Lausanne, Victor Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bareis + Nicolaus\",\"url\":\"https://www.bareis-nicolaus.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"caption\":\"Screenshot of Bareis + Nicolaus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bareis + Nicolaus design system\",\"Bareis + Nicolaus website design\",\"Bareis + Nicolaus colors\",\"Bareis + Nicolaus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone\",\"Ash\",\"Lausanne\",\"Victor Serif\",\"Black Tie\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus design system\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus website design\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus colors\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:36:13.911Z\",\"dateModified\":\"2026-04-30T01:36:13.911Z\"}]}19:T620,Quick Color Reference:\n- text: #ffffff (Bone)\n- background: #000000 (Obsidian)\n- border: #ffffff (Bone) for primary, #a9a9a9 (Ash) for metadata\n- accent: none — system is strictly monochrome\n- primary action: #000000 (filled action)\n\nExample Component Prompts:\n\n1. **Filter Tag Grid**: Create a dense grid of outlined pill buttons on #000000. Each pill has 120px border-radius, 1px #ffffff border, transparent fill, padding 10px vertical × 13px horizontal, 7px margin-right. Label text in Lausanne 400/24px #ffffff. Pack 6–8 pills per row. One pill in the grid is the 'active' state: filled #000000 with 1px #ffffff border (inversion, not color).\n\n2. **Display Heading Block**: Place a 72px Lausanne weight 400 heading in #ffffff on #000000, line-height exactly 1.0, left-aligned. Below it, a 1px #ffffff horizontal divider line spanning the column width with 48px vertical air above and below.\n\n3. **Project Thumbnail Row**: Full-bleed image, 0px border-radius, no padding, no shadow. Overlay a pill-shaped label in the top-left corner: 120px radius, 1px #ffffff stroke, transparent fill, containing 24px Lausanne #ffffff text.\n\n4. **Footer Info Bar**: Full-width band at page bottom, 1px #ffffff top border, 24px Lausanne #ffffff text, inline items separated by ' | ' characters on a single line. No background change — sits on the same #000000 field.\n\n5. **Section Collapse Control**: Small circular button (120px radius), 1px #ffffff stroke, transparent fill, containing a single minus glyph in #ffffff at 24px. Placed flush right of a 72px display heading."
+      },
+      {
+        "title": "Typographic Restraint",
+        "content": "Lausanne carries 99% of the system at weight 400. The contrast between 72px display and 24px body is the only hierarchy tool — there are no weights, no italics in Lausanne, no color shifts, no size intermediates. Victor Serif appears in body-size slots only when the content type warrants a different voice (dates, quotes, attribution). Black Tie is a single-flavor spice: one appearance per page maximum. This scarcity makes the serif and display faces feel like editorial interjections rather than system fonts."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. No drop shadows, no glows, no inner shadows. Depth is communicated exclusively through 1px Bone strokes on an Obsidian field — the system treats light and dark as the only spatial language. Adding a shadow would break the flat editorial stage."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 4025,
+          "confidence": 1,
+          "prominence": 167535969.02492157,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 13,
+            "card/color": 51,
+            "link/color": 56,
+            "other/fill": 18,
+            "image/color": 35,
+            "other/color": 543,
+            "button/color": 40,
+            "heading/color": 53,
+            "nav/borderColor": 40,
+            "body/borderColor": 52,
+            "card/borderColor": 204,
+            "link/borderColor": 224,
+            "image/borderColor": 140,
+            "other/borderColor": 2172,
+            "button/borderColor": 160,
+            "heading/borderColor": 212,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 511006.6012835038,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "footer",
+            "link"
+          ],
+          "frequency": 237,
+          "confidence": 1,
+          "prominence": 443372.9655873741,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "other/color": 35,
+            "footer/color": 1,
+            "link/borderColor": 12,
+            "other/borderColor": 140,
+            "footer/borderColor": 4,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 39
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#000000",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#ffffff",
+          "foreground": "#a9a9a9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 120,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 94
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 93,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 123,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingTop|button",
+            "paddingTop|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 228,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 243,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Lausanne",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 823,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Victor Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Black Tie",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 24,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 447,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 373,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Black Tie",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Victor Serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/089c1591-e148-489d-921d-57c122130df9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bareis + Nicolaus design system\",\"item\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#style-reference\",\"name\":\"Bareis + Nicolaus design system reference\",\"headline\":\"Bareis + Nicolaus design system | Refero Styles\",\"description\":\"Explore Bareis + Nicolaus's dark Agency design system: Obsidian #000000, Bone #ffffff colors, Lausanne, Victor Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bareis + Nicolaus\",\"url\":\"https://www.bareis-nicolaus.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e80c5b4a-fd03-460e-a577-49928a4ab5db#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"caption\":\"Screenshot of Bareis + Nicolaus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54fb1515-0373-4456-9d37-007a11e932df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bareis + Nicolaus design system\",\"Bareis + Nicolaus website design\",\"Bareis + Nicolaus colors\",\"Bareis + Nicolaus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone\",\"Ash\",\"Lausanne\",\"Victor Serif\",\"Black Tie\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus design system\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus website design\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus colors\"},{\"@type\":\"Thing\",\"name\":\"Bareis + Nicolaus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:36:13.911Z\",\"dateModified\":\"2026-04-30T01:36:13.911Z\"}]}19:T620,Quick Color Reference:\n- text: #ffffff (Bone)\n- background: #000000 (Obsidian)\n- border: #ffffff (Bone) for primary, #a9a9a9 (Ash) for metadata\n- accent: none — system is strictly monochrome\n- primary action: #000000 (filled action)\n\nExample Component Prompts:\n\n1. **Filter Tag Grid**: Create a dense grid of outlined pill buttons on #000000. Each pill has 120px border-radius, 1px #ffffff border, transparent fill, padding 10px vertical × 13px horizontal, 7px margin-right. Label text in Lausanne 400/24px #ffffff. Pack 6–8 pills per row. One pill in the grid is the 'active' state: filled #000000 with 1px #ffffff border (inversion, not color).\n\n2. **Display Heading Block**: Place a 72px Lausanne weight 400 heading in #ffffff on #000000, line-height exactly 1.0, left-aligned. Below it, a 1px #ffffff horizontal divider line spanning the column width with 48px vertical air above and below.\n\n3. **Project Thumbnail Row**: Full-bleed image, 0px border-radius, no padding, no shadow. Overlay a pill-shaped label in the top-left corner: 120px radius, 1px #ffffff stroke, transparent fill, containing 24px Lausanne #ffffff text.\n\n4. **Footer Info Bar**: Full-width band at page bottom, 1px #ffffff top border, 24px Lausanne #ffffff text, inline items separated by ' | ' characters on a single line. No background change — sits on the same #000000 field.\n\n5. **Section Collapse Control**: Small circular button (120px radius), 1px #ffffff stroke, transparent fill, containing a single minus glyph in #ffffff at 24px. Placed flush right of a 72px display heading."
+}

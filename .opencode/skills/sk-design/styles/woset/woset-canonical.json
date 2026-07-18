@@ -1,0 +1,1000 @@
+{
+  "source": "https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734",
+  "uuid": "430813c0-f0c7-434f-92ef-d3a0780ba734",
+  "name": "Woset",
+  "northStar": "paper gallery in morning light — a quiet, warm-gray room where one golden accent is the only color allowed on the walls.",
+  "capturedAt": "2026-07-18T08:17:26.466Z",
+  "meta": {
+    "url": "https://www.woset.world",
+    "siteName": "Woset",
+    "extractedAt": "2026-06-03T17:43:16.733Z",
+    "durationMs": 32396,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 239,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sunlit Marigold (#ecca53) as the only chromatic surface — one accent per viewport, never as a full-bleed background.",
+      "Apply 30px border-radius to all interactive controls (buttons, inputs, filter pills) — the pill is the system's only shape language.",
+      "Set hero text at 95px Macan Medium with -0.04em tracking (-3.8px) — this tight setting is what makes the headline feel custom.",
+      "Keep all product cards borderless with 0px radius — let the hand-drawn illustration define the edge.",
+      "Maintain 60px vertical gaps between major sections and 22px between sibling elements.",
+      "Use Stone (#8d8c8a) at 15px for all prices and secondary metadata; Carbon Ink (#000) is reserved for primary text and labels.",
+      "Center the hero zone (headline + filters); left-align product card metadata below each image."
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — the system is monochrome chrome plus one warm yellow. The violet/green/red tones in product art are illustration-only.",
+      "Don't apply drop shadows to product cards, buttons, or any UI surface — the design is flat by intent.",
+      "Don't use font weights above 500 — Macan caps at Medium, and heavier weights would break the quiet, geometric feel.",
+      "Don't add card backgrounds or borders to product tiles — the Soft Pebble canvas is the only surface.",
+      "Don't use letter-spacing looser than -0.02em for body text or -0.04em for display — the system is deliberately tight-tracked.",
+      "Don't add a secondary CTA color, gradient, or filled black button — the only filled accent is Sunlit Marigold.",
+      "Don't left-align the hero headline or add a hero image — the centered text-only hero is a signature."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Soft Pebble",
+        "role": "Page canvas, card surfaces, and the dominant background tone — a warm-leaning gray that reads as handmade paper rather than digital white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Ink",
+        "role": "Primary text, nav labels, icons, and the default state of unselected interactive controls. Carries all typographic and chrome weight in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bbbab7",
+        "name": "Ash",
+        "role": "Hairline borders and dividers on buttons and structural elements — just visible enough to define edges without ever competing with text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8c8a",
+        "name": "Stone",
+        "role": "Muted helper text — product prices, secondary metadata, and any label that should recede behind the primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ecca53",
+        "name": "Sunlit Marigold",
+        "role": "The sole chromatic accent — active filter pills, selected nav states, and the only place a UI element may be filled with color. The warmth against Soft Pebble creates an almost-handmade yellow, not a digital primary",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered max-width 1200px container on a full-bleed Soft Pebble canvas. Hero is a single centered 95px headline with no supporting visual, followed by a centered row of filter pills — no sidebars, no asymmetric hero. Product grid is a clean 3-column layout with generous gutters, no card chrome (no border, no shadow, no background fill). Vertical rhythm uses 60px section gaps and 22px element gaps. Navigation is a single top bar with three zones (left nav, centered wordmark, right utilities) — no sticky behavior, no mega-menu. The page reads as a single editorial column with a product gallery below the headline.",
+    "imagery": "Imagery is the brand identity: every product is presented as a hand-drawn or hand-lettered illustration, not a photograph. The illustration style is intentionally imperfect — visible pencil texture, slightly wobbly line work, childlike charm, and integrated hand-set title typography within the artwork. Color appears inside the illustrations (crayon multi-color, marker scribbles, watercolor washes) but is never used as a UI surface. Product images are full-bleed within their card with sharp 0px corners. There is no lifestyle photography, no staged scenes, no human models — the artwork IS the product, and the page is a gallery wall for it.",
+    "similar": [
+      {
+        "why": "Same gallery-wall approach to commerce — products as curated objects on a neutral canvas, illustrated or designerly rather than photographic, with minimal chrome and no shadow.",
+        "business": "Areaware"
+      },
+      {
+        "why": "Same soft warm-gray canvas with monochrome type and a single restrained palette; both treat the product grid as a quiet editorial spread rather than a busy marketplace.",
+        "business": "Schoolhouse"
+      },
+      {
+        "why": "Same centered max-width layout, generous 60px section gaps, and typographic-first hero with no hero image — craft brand with editorial restraint.",
+        "business": "The Citizenry"
+      },
+      {
+        "why": "Same single warm accent against a neutral background, tight geometric sans at large display sizes, and a product-first grid that lets the imagery carry the page.",
+        "business": "Toast"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "30px",
+        "buttons": "30px"
+      },
+      "elementGap": "22px",
+      "sectionGap": "60px",
+      "cardPadding": "22px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "The single background for the entire site — full-bleed Soft Pebble with no variation between hero, grid, or footer."
+      },
+      {
+        "hex": "#ecca53",
+        "name": "Active Filter Surface",
+        "level": 2,
+        "purpose": "Sunlit Marigold fill used exclusively for the selected filter pill — the only elevated color surface in the system."
+      }
+    ],
+    "northStar": "paper gallery in morning light — a quiet, warm-gray room where one golden accent is the only color allowed on the walls.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 20.25,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "product-title",
+        "size": 24,
+        "lineHeight": 32.4,
+        "letterSpacing": 1.6
+      },
+      {
+        "role": "display",
+        "size": 95,
+        "lineHeight": 95,
+        "letterSpacing": -3.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header with three-zone layout: left nav links, centered wordmark, right utility links.",
+        "description": "Full-bleed Soft Pebble (#e5e7eb) background, no border, no shadow. Three groups: left cluster ('Shop', 'World', 'Information' in 15px Macan weight 400 Carbon Ink), centered 'Woset' wordmark in 15px Macan weight 500, right cluster (language flag + 'En', 'Account', 'Cart (0)') in same 15px Macan. All items 22px apart, vertically centered. No hover states visible — typography does the work."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero-level statement that anchors the page top.",
+        "description": "Centered, 95px Macan Medium (weight 500), Carbon Ink (#000000), line-height 1.0, letter-spacing -0.04em (-3.8px). Occupies the upper third of the viewport on its own. The tight tracking is the signature: at 95px the headline reads as a single confident breath, not a shout."
+      },
+      {
+        "name": "Filter Pill — Default",
+        "role": "Unselected category filter button.",
+        "description": "30px border-radius (full pill), 1px Ash (#bbbab7) border, Soft Pebble (#e5e7eb) fill, Carbon Ink text at 15px Macan weight 400. Padding 11px top / 9px bottom / 14px left/right. No shadow, no fill change on hover implied."
+      },
+      {
+        "name": "Filter Pill — Active",
+        "role": "Selected category filter — the only filled accent on the page.",
+        "description": "30px border-radius, no visible border (or border matches fill), Sunlit Marigold (#ecca53) fill, Carbon Ink text at 15px Macan weight 400. Same 11/9/14px padding as default. The yellow fill against the Soft Pebble canvas is the system's only color punctuation in the hero zone."
+      },
+      {
+        "name": "Product Card",
+        "role": "Single product tile in the 3-column grid.",
+        "description": "No border, no shadow, no background — the product image sits directly on the Soft Pebble canvas with 0px corner radius. Below the image: 22px gap, then product title in 15px Macan weight 400 Carbon Ink, followed by 4px gap, then price in 15px Macan weight 400 Stone (#8d8c8a). The image is a hand-drawn illustration (not a photo) at roughly 3:2 aspect ratio."
+      },
+      {
+        "name": "Product Image",
+        "role": "Hero visual for each product card.",
+        "description": "Hand-drawn or hand-lettered illustration, full-bleed within the card, 0px corner radius, no caption overlay. The illustration style is the brand — raw line work, imperfect strokes, childlike charm, occasional hand-set title lettering integrated into the artwork. Color is used inside the illustration (crayon textures, marker scribbles) but never as a UI surface."
+      },
+      {
+        "name": "Language/Region Selector",
+        "role": "Utility control in the top nav right cluster.",
+        "description": "15px Macan weight 400 Carbon Ink, inline flag emoji + 'En' label, no border, no background, no dropdown chrome visible at rest. Sits inline with Account and Cart links at the same baseline."
+      },
+      {
+        "name": "Account/Cart Link",
+        "role": "Utility nav items in the top nav right cluster.",
+        "description": "15px Macan weight 400 Carbon Ink, plain text, no underline, no icon. Cart includes a parenthetical count: 'Cart (0)'. Sits inline with the language selector, separated by the same 22px gap used throughout the nav."
+      }
+    ],
+    "typography": [
+      {
+        "role": "ts-unused — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "ts-unused",
+        "weight": "500",
+        "lineHeight": "1",
+        "letterSpacing": "-0.02"
+      },
+      {
+        "role": "Single-family type system used for display, heading, body, nav, and UI. The signature choice is weight 500 at 95px with -0.04em tracking for the hero headline — a tight, modern geometric sans that feels like a custom craft brand, not a tech platform. Substitute with Inter (free) or Söhne (commercial) for the closest matching grotesque feel.",
+        "sizes": "15px, 24px, 25px, 95px",
+        "family": "Macan",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.35",
+        "substitute": "Inter",
+        "letterSpacing": "-3.8px at 95px, -1.0px at 25px, +1.6px at 24px, -0.3px at 15px"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "-0.02"
+      },
+      {
+        "role": "A1 Gothic M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "A1 Gothic M",
+        "weight": "400",
+        "lineHeight": "1",
+        "letterSpacing": "-0.019"
+      }
+    ],
+    "description": "Woset reads as a curated art-supply shop rendered as a gallery wall: soft warm-gray canvas (#e5e7eb), monochrome black-on-gray chrome, and a single golden-yellow accent (#ecca53) that activates filter pills and key actions. Typography anchors on Macan, a geometric sans used at a whisper-tight -0.04em tracking — the 95px display headline is the loudest element on the page, then everything collapses to a quiet 15px body. The product grid trades glossy photography for hand-drawn illustrations in a generous 3-column layout with no card borders, no drop shadows, and 30px pill-radius controls. The system is intentionally restrained: one warm color, one typeface, zero elevation — every screen should feel like a well-lit page in a stationery boutique.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Woset design system\",\"item\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#style-reference\",\"name\":\"Woset design system reference\",\"headline\":\"Woset design system | Refero Styles\",\"description\":\"Explore Woset's light E-commerce design system: Soft Pebble #e5e7eb, Carbon Ink #000000 colors, ts-unused, Macan typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Woset\",\"url\":\"https://www.woset.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"caption\":\"Screenshot of Woset\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Woset design system\",\"Woset website design\",\"Woset colors\",\"Woset typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Soft Pebble\",\"Carbon Ink\",\"Ash\",\"Stone\",\"ts-unused\",\"Macan\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Woset design system\"},{\"@type\":\"Thing\",\"name\":\"Woset website design\"},{\"@type\":\"Thing\",\"name\":\"Woset colors\"},{\"@type\":\"Thing\",\"name\":\"Woset typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:53:53.294Z\",\"dateModified\":\"2026-04-30T02:53:53.294Z\"}]}19:T484,Quick Color Reference:\n- text: #000000 (Carbon Ink)\n- background: #e5e7eb (Soft Pebble)\n- border: #bbbab7 (Ash)\n- muted text: #8d8c8a (Stone)\n- accent: #ecca53 (Sunlit Marigold)\n- primary action: #ecca53 (filled action)\n\nExample Component Prompts:\n1. Hero headline — Centered 95px Macan Medium (#000), line-height 1.0, letter-spacing -3.8px. Sits on #e5e7eb canvas, 60px above the filter row.\n2. Active filter pill — 30px radius, #ecca53 fill, #000 text at 15px Macan weight 400, padding 11px top / 9px bottom / 14px sides, no border.\n3. Default filter pill — 30px radius, #e5e7eb fill, 1px #bbbab7 border, #000 text at 15px Macan weight 400, same 11/9/14px padding.\n4. Product card — 0px radius, no border, no shadow, no background. Image fills the tile at 3:2 aspect. 22px below: product title in 15px Macan weight 400 #000, then price in 15px Macan weight 400 #8d8c8a.\n5. Top nav bar — Full-bleed #e5e7eb, no border. Left: 'Shop · World · Information' in 15px Macan weight 400 #000, 22px apart. Center: 'Woset' wordmark in 15px Macan weight 500. Right: language selector, 'Account', 'Cart (0)' — all 15px Macan weight 400 #000, 22px apart."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat. No drop shadows, no glow effects, no elevation tokens. Separation is achieved through the warm-gray canvas color and 1px Ash borders on interactive controls. Product cards rely on the hand-drawn illustration itself to define their edge, not on shadow or border."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "list",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 845,
+          "confidence": 1,
+          "prominence": 80815679.34600572,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 152,
+            "body/borderColor": 100,
+            "link/borderColor": 44,
+            "list/borderColor": 72,
+            "image/borderColor": 72,
+            "other/borderColor": 304,
+            "footer/borderColor": 3,
+            "heading/borderColor": 96,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "list",
+            "image",
+            "footer",
+            "body",
+            "input"
+          ],
+          "frequency": 237,
+          "confidence": 1,
+          "prominence": 65609969.864966065,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "nav/color": 40,
+            "body/color": 7,
+            "link/color": 11,
+            "list/color": 18,
+            "nav/stroke": 2,
+            "other/fill": 6,
+            "image/color": 18,
+            "input/color": 1,
+            "other/color": 77,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 24,
+            "nav/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 2,
+            "button/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bbbab7",
+          "oklch": {
+            "c": 0.004554051573416885,
+            "h": 95.10176137673032,
+            "l": 0.7898933380501237
+          },
+          "contexts": [
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 5130000,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2,
+            "button/borderColor": 12,
+            "footer/borderColor": 1
+          }
+        },
+        {
+          "hex": "#ecca53",
+          "oklch": {
+            "c": 0.14072423064138148,
+            "h": 93.12770417659571,
+            "l": 0.8464408638219563
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1731450,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#2d5193",
+          "oklch": {
+            "c": 0.11624667388094165,
+            "h": 261.4033729869141,
+            "l": 0.44373858621636225
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1491911.1072912153,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#054331",
+          "oklch": {
+            "c": 0.06686259127151699,
+            "h": 167.2957461136011,
+            "l": 0.3411777035360092
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1340100.799964241,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#a5001b",
+          "oklch": {
+            "c": 0.18416039990620287,
+            "h": 24.24765479263324,
+            "l": 0.45506615738940354
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1340061.327186628,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#8d8c8a",
+          "oklch": {
+            "c": 0.003178358708448923,
+            "h": 84.56395410542294,
+            "l": 0.6403206842155055
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 58451.482584983736,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 18
+          }
+        },
+        {
+          "hex": "#1d1d1b",
+          "oklch": {
+            "c": 0.0037772701954845184,
+            "h": 106.69295371437178,
+            "l": 0.22997171519438006
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1404.5292371667426,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.018048228927929635,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.64,
+          "background": "#e5e7eb",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#ecca53",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#bbbab7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.56,
+          "background": "#ecca53",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#e5e7eb",
+          "foreground": "#054331"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.7,
+          "background": "#bbbab7",
+          "foreground": "#1d1d1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.09,
+          "background": "#ecca53",
+          "foreground": "#054331"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.48,
+          "background": "#e5e7eb",
+          "foreground": "#a5001b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.26,
+          "background": "#e5e7eb",
+          "foreground": "#2d5193"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#000000",
+          "foreground": "#8d8c8a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.84,
+          "background": "#bbbab7",
+          "foreground": "#054331"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.02,
+          "background": "#ecca53",
+          "foreground": "#a5001b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#ecca53",
+          "foreground": "#2d5193"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.14,
+          "background": "#bbbab7",
+          "foreground": "#a5001b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#bbbab7",
+          "foreground": "#2d5193"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#054331",
+          "foreground": "#8d8c8a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#2d5193",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#e5e7eb",
+          "foreground": "#8d8c8a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#a5001b",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "nav",
+            "footer"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Macan Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 111,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Macan Medium",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ts-unused",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "A1 Gothic M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "Macan Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "list",
+            "image",
+            "footer",
+            "body"
+          ],
+          "frequency": 110,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Macan Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "heading",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Macan Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 15,
+          "family": "Macan Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "ts-unused",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Macan Medium",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "A1 Gothic M",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Macan Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Macan Medium",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 95,
+          "family": "Macan Medium",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4af597d9-cb86-4478-8f76-97ff5ff0d59f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Woset design system\",\"item\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#style-reference\",\"name\":\"Woset design system reference\",\"headline\":\"Woset design system | Refero Styles\",\"description\":\"Explore Woset's light E-commerce design system: Soft Pebble #e5e7eb, Carbon Ink #000000 colors, ts-unused, Macan typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\",\"mainEntityOfPage\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Woset\",\"url\":\"https://www.woset.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/430813c0-f0c7-434f-92ef-d3a0780ba734#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"caption\":\"Screenshot of Woset\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aacb68c1-a6f7-4a67-8a55-9cde41afa910.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Woset design system\",\"Woset website design\",\"Woset colors\",\"Woset typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Soft Pebble\",\"Carbon Ink\",\"Ash\",\"Stone\",\"ts-unused\",\"Macan\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Woset design system\"},{\"@type\":\"Thing\",\"name\":\"Woset website design\"},{\"@type\":\"Thing\",\"name\":\"Woset colors\"},{\"@type\":\"Thing\",\"name\":\"Woset typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:53:53.294Z\",\"dateModified\":\"2026-04-30T02:53:53.294Z\"}]}19:T484,Quick Color Reference:\n- text: #000000 (Carbon Ink)\n- background: #e5e7eb (Soft Pebble)\n- border: #bbbab7 (Ash)\n- muted text: #8d8c8a (Stone)\n- accent: #ecca53 (Sunlit Marigold)\n- primary action: #ecca53 (filled action)\n\nExample Component Prompts:\n1. Hero headline — Centered 95px Macan Medium (#000), line-height 1.0, letter-spacing -3.8px. Sits on #e5e7eb canvas, 60px above the filter row.\n2. Active filter pill — 30px radius, #ecca53 fill, #000 text at 15px Macan weight 400, padding 11px top / 9px bottom / 14px sides, no border.\n3. Default filter pill — 30px radius, #e5e7eb fill, 1px #bbbab7 border, #000 text at 15px Macan weight 400, same 11/9/14px padding.\n4. Product card — 0px radius, no border, no shadow, no background. Image fills the tile at 3:2 aspect. 22px below: product title in 15px Macan weight 400 #000, then price in 15px Macan weight 400 #8d8c8a.\n5. Top nav bar — Full-bleed #e5e7eb, no border. Left: 'Shop · World · Information' in 15px Macan weight 400 #000, 22px apart. Center: 'Woset' wordmark in 15px Macan weight 500. Right: language selector, 'Account', 'Cart (0)' — all 15px Macan weight 400 #000, 22px apart."
+}

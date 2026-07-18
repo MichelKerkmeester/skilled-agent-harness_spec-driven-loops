@@ -1,0 +1,45 @@
+@theme {
+  /* Colors */
+  --color-slate-ink: #333333;
+  --color-pure-white: #ffffff;
+  --color-onyx-black: #000000;
+  --color-warm-bone: #faf7ef;
+  --color-ash-gray: #707070;
+  --color-cobalt-signal: #0048ff;
+  --color-stone-gray: #999999;
+
+  /* Typography */
+  --font-sigma-sans: 'Sigma Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sigma-serif-head: 'Sigma Serif Head', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sigma-serif: 'Sigma Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-metropolis: 'Metropolis', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --text-heading: 48px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.3px;
+  --text-display: 88px;
+  --leading-display: 1.1;
+  --tracking-display: -0.5px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-184: 184px;
+
+  /* Border Radius */
+  --radius-sm: 1px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.5) -2px 0px 5px 0px;
+}

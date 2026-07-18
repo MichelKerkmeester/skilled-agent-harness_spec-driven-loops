@@ -1,0 +1,347 @@
+{
+  "color": {
+    "obsidian-ink": {
+      "$value": "#181f1f",
+      "$type": "color",
+      "$description": "Obsidian Ink — Primary text, hairline borders, filled action buttons — the dominant near-black that carries 90% of the interface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Canvas background, inverted text on dark blocks, nav/button borders"
+    },
+    "fog": {
+      "$value": "#d1d2d2",
+      "$type": "color",
+      "$description": "Fog — Subtle dividers and secondary borders where Obsidian would be too heavy"
+    },
+    "ash": {
+      "$value": "#a3a5a5",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, inactive button borders, secondary metadata"
+    },
+    "graphite": {
+      "$value": "#374151",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text and subtle icon strokes where a lighter black is needed"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Navigation dividers and surface backing for select blocks"
+    },
+    "mint-wash": {
+      "$value": "#eaf7f3",
+      "$type": "color",
+      "$description": "Mint Wash — Soft tinted surface for nav backgrounds and breathing sections — barely-there green to warm the white canvas"
+    },
+    "deep-teal": {
+      "$value": "#1f3233",
+      "$type": "color",
+      "$description": "Deep Teal — Dark surface blocks for case study framing and image-overlay panels"
+    },
+    "iris-voltage": {
+      "$value": "#516fea",
+      "$type": "color",
+      "$description": "Iris Voltage — Outlined action border only — the sole chromatic accent; appears as a violet ring around secondary call-to-action buttons against monochrome surroundings"
+    },
+    "solar-bloom": {
+      "$value": "#ffc240",
+      "$type": "color",
+      "$description": "Solar Bloom — Hero gradient stop — warm yellow anchoring the top of the full-bleed gradient wash"
+    }
+  },
+  "font": {
+    "abcdiatypeexpanded-bold": {
+      "$value": "ABCDiatypeExpanded-Bold",
+      "$type": "fontFamily",
+      "$description": "Display, brand logo, section headings, project titles, and nav labels. The extremely wide expanded letterforms (letter-spacing -0.02em at 78–82px) are the signature element — uppercase, never set small under 10px, and reserved for moments that demand visual weight. The 78–82px sizes fill the full width of the hero canvas. Weight stays at 400 because the expansion provides all the weight needed; going bolder would distort the geometric proportions."
+    },
+    "grit-regular": {
+      "$value": "Grit-Regular",
+      "$type": "fontFamily",
+      "$description": "All body copy, paragraph text, descriptions, and mid-weight headings. A contemporary serif with subtle texture — provides editorial gravitas against the expanded display sans. Weight 400 for running text, 500 for emphasized phrases and sub-headings. The 56px size with 1.25 line-height creates dramatic editorial pull-quotes. Pairs with ABCDiatypeExpanded by contrasting serif warmth against geometric coldness."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Grit-Regular",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "78px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 78px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABCDiatypeExpanded-Bold",
+        "fontSize": "82px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 82px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas and most content sections"
+    },
+    "mint-wash": {
+      "$value": "#eaf7f3",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted section background, nav pill bases — adds subtle warmth"
+    },
+    "deep-teal": {
+      "$value": "#1f3233",
+      "$type": "color",
+      "$description": "Surface level 3: Dark image/panel framing for case study blocks"
+    },
+    "obsidian-ink": {
+      "$value": "#181f1f",
+      "$type": "color",
+      "$description": "Surface level 4: Highest-elevation dark surface — hero overlay, footer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://raggededge.com",
+      "siteName": "Ragged Edge",
+      "extractedAt": "2026-06-03T20:21:15.980Z",
+      "variant": "extended"
+    }
+  }
+}

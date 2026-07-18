@@ -1,0 +1,599 @@
+{
+  "color": {
+    "canvas-charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Canvas Charcoal — Page background, dark section bands, card surfaces on dark — the structural ground for 90% of the interface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text on dark, light section backgrounds, pill button fill, card backgrounds in light sections"
+    },
+    "border-stone": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Border Stone — Hairline dividers, card borders on dark surfaces, subtle structural lines"
+    },
+    "muted-graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Muted Graphite — Secondary text, helper copy, muted metadata on light backgrounds"
+    },
+    "whisper-gray": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Whisper Gray — Tertiary text, icon fills, disabled states, low-emphasis borders"
+    },
+    "fog-line": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Fog Line — Light-mode section dividers, ghost button borders, soft borders on white surfaces"
+    },
+    "ifttt-signal-blue": {
+      "$value": "#0099ff",
+      "$type": "color",
+      "$description": "IFTTT Signal Blue — Brand accent — primary highlights, featured service tiles, active indicators"
+    },
+    "applet-green": {
+      "$value": "#2cbe60",
+      "$type": "color",
+      "$description": "Applet Green — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "automate-violet": {
+      "$value": "#2c6efc",
+      "$type": "color",
+      "$description": "Automate Violet — Brand accent — Google service tiles, link emphasis, interactive hover on dark"
+    },
+    "deep-navy": {
+      "$value": "#23448b",
+      "$type": "color",
+      "$description": "Deep Navy — Brand accent — secondary blue for service tile variants, subtle elevated surfaces"
+    },
+    "alert-red": {
+      "$value": "#e44332",
+      "$type": "color",
+      "$description": "Alert Red — Red action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "forest-green": {
+      "$value": "#1d9a59",
+      "$type": "color",
+      "$description": "Forest Green — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "ember-orange": {
+      "$value": "#ec7505",
+      "$type": "color",
+      "$description": "Ember Orange — Brand accent — RSS Feed tile, warm decorative accent"
+    },
+    "pure-red": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Pure Red — Brand accent — YouTube tile, high-saturation red service representation"
+    },
+    "slack-plum": {
+      "$value": "#4a154b",
+      "$type": "color",
+      "$description": "Slack Plum — Brand accent — Slack tile, purple-pink service representation"
+    },
+    "lime-pulse": {
+      "$value": "#8cc251",
+      "$type": "color",
+      "$description": "Lime Pulse — Brand accent — secondary green for Android Device-adjacent tiles"
+    },
+    "coral-warning": {
+      "$value": "#e8655c",
+      "$type": "color",
+      "$description": "Coral Warning — Red action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "magenta-pop": {
+      "$value": "#e4405f",
+      "$type": "color",
+      "$description": "Magenta Pop — Brand accent — Instagram tile, vivid pink-red service representation"
+    }
+  },
+  "font": {
+    "avenir-next": {
+      "$value": "Avenir Next",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all surfaces. Geometric humanist sans with strong weight range from 400 (body) to 900 (display). The italic display treatment at 68px is the signature moment — confident, slightly editorial. Body holds 400–500, UI controls jump to 600, headings claim 700–800, display goes 800–900."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 2.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 25px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "28px",
+        "fontWeight": 900,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 28px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "29px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "32px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "43px",
+        "fontWeight": 900,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Avenir Next",
+        "fontSize": "68px",
+        "fontWeight": 800,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.24) 0px 1.5px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas-charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background, hero band, dark service-grid section"
+    },
+    "border-stone": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline card edges and structural dividers on dark canvas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Light content sections, light-mode card surfaces, pill button fill"
+    },
+    "fog-line": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 4: Subtle elevated card background within white sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ifttt.com",
+      "siteName": "IFTTT",
+      "extractedAt": "2026-06-03T22:04:39.318Z",
+      "variant": "extended"
+    }
+  }
+}

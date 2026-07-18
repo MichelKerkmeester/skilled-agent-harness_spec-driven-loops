@@ -1,0 +1,299 @@
+{
+  "color": {
+    "page-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Page Canvas — Page background, card-on-canvas, light text on dark surfaces — the warm white that carries the entire monochrome system"
+    },
+    "hairline-border": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Border — Dividers, card borders, image frames, icon outlines — the most-used stroke in the system, defines spatial structure"
+    },
+    "card-surface": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Card Surface — Elevated card backgrounds, secondary surface — sits one step above canvas to create grouping without shadow"
+    },
+    "divider-mid": {
+      "$value": "#dadada",
+      "$type": "color",
+      "$description": "Divider Mid — Mid-tone dividers and section transitions"
+    },
+    "graphite": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Graphite — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "ink-black": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Ink Black — Primary body text, headings, icon strokes — slightly cooler than Graphite, reserved for typography not surfaces"
+    },
+    "pencil": {
+      "$value": "#5c5c5c",
+      "$type": "color",
+      "$description": "Pencil — Secondary body text, descriptions, subhead copy"
+    },
+    "faint-graphite": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Faint Graphite — Muted helper text, tertiary metadata, inactive nav items"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "System UI sans — nav, body, button, subhead, section headings. Weight 500 for body and controls, 600 for subheadings and nav emphasis, 700 for section headlines. Heavy negative tracking tightens the geometric forms at every size, giving the UI a compressed, technical feel."
+    },
+    "instrument-serif": {
+      "$value": "Instrument Serif",
+      "$type": "fontFamily",
+      "$description": "Display-only serif for hero and editorial moments. Weight 400 with -0.025em tracking creates an italic-leaning elegance that contrasts Inter's industrial geometry — the signature move: a single serif word or phrase inside an otherwise sans-serif page, acting as visual punctuation rather than a heading style."
+    },
+    "fragment-mono": {
+      "$value": "Fragment Mono",
+      "$type": "fontFamily",
+      "$description": "Accent mono for inline code-like elements, tag labels, and technical callouts. Used sparingly — appears in feature lists and inline annotations where the design tool wants to signal 'this is machine output'."
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, keyboard shortcuts, and small technical annotations. System monospace fallback keeps it neutral."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "128px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 128px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(255, 255, 255, 0.25) 0px 4px 4px -2px inset, rgba(0, 0, 0, 0.25) 0px -4px 4px -2px inset, rgba(255, 255, 255, 0.1) -2px 0px 2px -2px inset, rgba(255, 255, 255, 0.1) -2px 0px 2px -2px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — warm off-white that carries the entire monochrome system"
+    },
+    "card": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 2: First elevation step — grouped content, feature tiles, subtle containers"
+    },
+    "dark-surface": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for primary actions, active nav pills, segmented controls — the only high-contrast element"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.subframe.com",
+      "siteName": "Subframe",
+      "extractedAt": "2026-06-03T17:55:49.754Z",
+      "variant": "extended"
+    }
+  }
+}

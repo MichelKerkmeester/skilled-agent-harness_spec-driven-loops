@@ -1,0 +1,70 @@
+@theme {
+  /* Colors */
+  --color-electric-cobalt: #0000ff;
+  --color-press-orange: #ff3500;
+  --color-stock-white: #ffffff;
+  --color-press-black: #000000;
+
+  /* Typography */
+  --font-gt-america-intl: 'GT America Intl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-intl-mono: 'GT America Intl Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-gt-america-japanese: 'GT America Japanese', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-thai-looped: 'GT America Thai Looped', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-thai-loopless: 'GT America Thai Loopless', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-contrast: 'GT America Contrast', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-tradchinese: 'GT America TradChinese', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-intl-italic: 'GT America Intl Italic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-simpchinese: 'GT America SimpChinese', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-america-intl-latin-subset: 'GT America Intl Latin Subset', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.17;
+  --tracking-caption: 0.42px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.45;
+  --tracking-body-sm: 0.42px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.08px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.6;
+  --tracking-body-lg: 0.09px;
+  --text-subheading: 22px;
+  --leading-subheading: 1.22;
+  --tracking-subheading: -0.55px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.15;
+  --tracking-heading-sm: -0.8px;
+  --text-heading: 54px;
+  --leading-heading: 1.11;
+  --tracking-heading: -1.35px;
+  --text-heading-lg: 88px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -2.2px;
+  --text-display: 346px;
+  --leading-display: 0.8;
+  --tracking-display: -13.84px;
+  --text-display-xl: 900px;
+  --leading-display-xl: 0.74;
+  --tracking-display-xl: -36px;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-96: 96px;
+  --spacing-132: 132px;
+  --spacing-144: 144px;
+  --spacing-192: 192px;
+
+  /* Border Radius */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(255, 255, 255) 1px 0px 0px 0px, rgb(255, 255, 255) 0px 1px 0px 0px, rgb(255, 255, 255) 1px 1px 0px 0px, rgb(255, 255, 255) 1px 0px 0px 0px inset, rgb(255, 255, 255) 0px 1px 0px 0px inset;
+}

@@ -1,0 +1,65 @@
+:root {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-paper-white: #fafafa;
+  --color-mist-gray: #efefef;
+  --color-cloud-gray: #d5d5d5;
+  --color-ash-gray: #969696;
+  --color-graphite: #424242;
+  --color-meta-blue: #385898;
+
+  /* Typography — Font Families */
+  --font-system-ui: 'system-ui', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --text-body: 15px;
+  --leading-body: 1.4;
+  --text-heading: 20px;
+  --leading-heading: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+
+  /* Layout */
+  --page-max-width: 640px;
+  --card-padding: 16px;
+  --element-gap: 12px;
+
+  /* Border Radius */
+  --radius-sm: 1px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 18px;
+  --radius-3xl: 24px;
+  --radius-full: 1000px;
+
+  /* Named Radii */
+  --radius-badge: 1000px;
+  --radius-avatar: 1000px;
+  --radius-button: 1000px;
+  --radius-linkcard: 8px;
+  --radius-postcard: 0px;
+  --radius-feedcolumn: 18px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.04) 0px 0px 12px 0px, rgb(250, 250, 250) 0px 0px 0px 48px;
+  --shadow-md-2: rgba(0, 0, 0, 0.04) 0px 0px 12px 0px;
+
+  /* Surfaces */
+  --surface-page-canvas: #fafafa;
+  --surface-backdrop-tint: #efefef;
+  --surface-feed-column: #fafafa;
+  --surface-post-surface: #fafafa;
+}

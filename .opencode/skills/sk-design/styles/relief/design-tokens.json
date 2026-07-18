@@ -1,0 +1,494 @@
+{
+  "color": {
+    "warm-cream": {
+      "$value": "#f9f7f0",
+      "$type": "color",
+      "$description": "Warm Cream — Page canvas — the entire site rests on this off-white, never pure #ffffff. Removes clinical SaaS sterility; reads as approachable, paper-like"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Elevated card surfaces, input fields, and light-bordered elements"
+    },
+    "ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink — Primary body and UI text — the dominant neutral for readable copy across cards, paragraphs, and labels"
+    },
+    "charcoal": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Charcoal — Heavier text instances, emphasis copy"
+    },
+    "fog": {
+      "$value": "#d0d5dd",
+      "$type": "color",
+      "$description": "Fog — Hairline borders and dividers between sections and cards"
+    },
+    "slate": {
+      "$value": "#616c8a",
+      "$type": "color",
+      "$description": "Slate — Muted secondary text, body copy in lighter contexts, de-emphasized metadata"
+    },
+    "slate-border": {
+      "$value": "#40444e",
+      "$type": "color",
+      "$description": "Slate Border — Stronger borders and link outlines where extra weight is needed"
+    },
+    "deep-harbor": {
+      "$value": "#13426f",
+      "$type": "color",
+      "$description": "Deep Harbor — Feature card fills, testimonial card fills, heading text — the dominant dark surface that anchors content blocks against the cream"
+    },
+    "sky-pop": {
+      "$value": "#2e96ff",
+      "$type": "color",
+      "$description": "Sky Pop — Primary action buttons, active states, key emphasis text — the single chromatic accent that drives every interaction"
+    },
+    "deep-wave": {
+      "$value": "#0254a5",
+      "$type": "color",
+      "$description": "Deep Wave — Outlined link and action border — a darker navy for ghost-style interactive elements that need to read on cream"
+    },
+    "sky-tint": {
+      "$value": "#bde1f9",
+      "$type": "color",
+      "$description": "Sky Tint — Badge and trust-pill backgrounds, soft highlight washes behind icons and social proof"
+    },
+    "sky-wash": {
+      "$value": "#cde7fb",
+      "$type": "color",
+      "$description": "Sky Wash — Button shadow tone — the same hue family used for the chunky pop shadow under sky-blue buttons"
+    },
+    "info-mist": {
+      "$value": "#73b9ff",
+      "$type": "color",
+      "$description": "Info Mist — Blue decorative accent for icons, marks, and small graphic details"
+    },
+    "sky-mid": {
+      "$value": "#50a7ff",
+      "$type": "color",
+      "$description": "Sky Mid — Decorative illustration fills, mid-tone in 3D hero artwork"
+    }
+  },
+  "font": {
+    "gilroy": {
+      "$value": "Gilroy",
+      "$type": "fontFamily",
+      "$description": "Single-family type system — Gilroy runs at every size from 12px captions to 58px hero headlines. Rounded geometric forms give the brand its friendly financial tone without the stiffness of a grotesque. Weight 700 is the working default for headings and buttons; weight 500 carries UI labels."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "49px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "53px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gilroy",
+        "fontSize": "58px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 58px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "49px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(154, 207, 246, 0.5) 0px 7px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 3px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(154, 207, 246, 0.5) 0px 5px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "warm-cream": {
+      "$value": "#f9f7f0",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the base layer every section sits on"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards and input fields floating above cream"
+    },
+    "deep-harbor": {
+      "$value": "#13426f",
+      "$type": "color",
+      "$description": "Surface level 3: Dark content blocks — feature cards, testimonial cards, dark hero panels"
+    },
+    "sky-pop": {
+      "$value": "#2e96ff",
+      "$type": "color",
+      "$description": "Surface level 4: Interactive accent — CTA buttons, active indicators"
+    },
+    "sky-tint": {
+      "$value": "#bde1f9",
+      "$type": "color",
+      "$description": "Surface level 5: Highlight washes — badge backgrounds, soft icon halos"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.relief.app",
+      "siteName": "Relief",
+      "extractedAt": "2026-06-03T18:02:30.634Z",
+      "variant": "extended"
+    }
+  }
+}

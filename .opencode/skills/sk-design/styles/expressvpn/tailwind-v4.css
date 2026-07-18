@@ -1,0 +1,77 @@
+@theme {
+  /* Colors */
+  --color-midnight-navy: #001d2f;
+  --color-soft-canvas: #f7f8f9;
+  --color-pure-white: #ffffff;
+  --color-hairline-gray: #ccd2d5;
+  --color-silver-edge: #dcdcdc;
+  --color-steel-caption: #adadad;
+  --color-slate-body: #667782;
+  --color-ink-black: #000000;
+  --color-forest-teal: #0f866c;
+  --color-deep-teal: #00695c;
+  --color-peach-cream: #ffe4d4;
+  --color-warm-sand: #f0eacf;
+  --color-pale-mint: #c3ece8;
+  --color-sea-mist: #b7d1d0;
+  --color-brand-red: #da3940;
+  --color-deep-red: #b0272d;
+  --color-twilight-navy: #0c3956;
+
+  /* Typography */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fs-kim: 'FS Kim', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.8;
+  --tracking-caption: 1.4px;
+  --text-badge: 12px;
+  --leading-badge: 1.2;
+  --tracking-badge: 1.32px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.72;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.44;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --text-heading: 32px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.51px;
+  --text-display: 64px;
+  --leading-display: 1.09;
+  --tracking-display: -1.02px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-100: 100px;
+  --spacing-104: 104px;
+  --spacing-196: 196px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 34px;
+  --radius-full: 1132.2px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.12) 0px 0px 32px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 0px 15px 0px;
+  --shadow-md-2: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+}

@@ -1,0 +1,469 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, deepest background layer"
+    },
+    "ground-iron": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Ground Iron — Primary button fill, card surfaces on dark sections, base UI surface"
+    },
+    "carbon-veil": {
+      "$value": "#212525",
+      "$type": "color",
+      "$description": "Carbon Veil — Elevated surfaces, nav background, subtly lighter than ground"
+    },
+    "circuit-border": {
+      "$value": "#485346",
+      "$type": "color",
+      "$description": "Circuit Border — Outlined/ghost action border, primary interactive hairline — muted green-tinted gray"
+    },
+    "phosphor-blue-black": {
+      "$value": "#1f2a33",
+      "$type": "color",
+      "$description": "Phosphor Blue-Black — Secondary hairline borders, separator strokes between dark bands"
+    },
+    "charcoal-rust": {
+      "$value": "#231c1c",
+      "$type": "color",
+      "$description": "Charcoal Rust — Subtle warm-tinted dark accent for code-window inner panels"
+    },
+    "lime-pulse": {
+      "$value": "#7fee64",
+      "$type": "color",
+      "$description": "Lime Pulse — Primary brand accent — logo mark, hero CTA pill, tag fills, active states, illustration base color"
+    },
+    "phosphor-white": {
+      "$value": "#ddffdc",
+      "$type": "color",
+      "$description": "Phosphor White — Primary text, heading color, icon strokes, filled button text — the dominant readable surface"
+    },
+    "mint-frost": {
+      "$value": "#def0dd",
+      "$type": "color",
+      "$description": "Mint Frost — Card surface tint on light sections, secondary text on dark, soft highlight wash"
+    },
+    "sage-60": {
+      "$value": "#8cab87",
+      "$type": "color",
+      "$description": "Sage 60 — Body copy default — readable muted green-gray for paragraphs on dark canvas"
+    },
+    "sage-40": {
+      "$value": "#677d64",
+      "$type": "color",
+      "$description": "Sage 40 — Muted helper text, secondary descriptions, low-priority body content"
+    },
+    "moss-70": {
+      "$value": "#9cbf93",
+      "$type": "color",
+      "$description": "Moss 70 — Eyebrow labels, category tags above section headings"
+    },
+    "moss-80": {
+      "$value": "#aed2a4",
+      "$type": "color",
+      "$description": "Moss 80 — Lead paragraph text, hero subhead — the brightest muted green for lead copy"
+    },
+    "fern-link": {
+      "$value": "#859984",
+      "$type": "color",
+      "$description": "Fern Link — Inline link text, tertiary navigation links on dark"
+    },
+    "deep-fern": {
+      "$value": "#697368",
+      "$type": "color",
+      "$description": "Deep Fern — Small uppercase labels, micro-copy, footer text"
+    },
+    "pine-15": {
+      "$value": "#3e4a3c",
+      "$type": "color",
+      "$description": "Pine 15 — Secondary outlined action border, low-emphasis interactive hairline"
+    }
+  },
+  "font": {
+    "goga": {
+      "$value": "Goga",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — used for all H1–H4 and card titles. Goga is a custom geometric sans with tight apertures and slightly squared terminals. The medium weight (500) is reserved for emphasis on card-level titles; the regular weight (400) handles hero and section headings. Its 'ss01' stylistic set should be enabled to access alternate glyph forms that define Modal's identity. Negative tracking tightens progressively from -0.007em at 48px to -0.017em at 21px."
+    },
+    "inter-variable": {
+      "$value": "Inter Variable",
+      "$type": "fontFamily",
+      "$description": "UI and body face — nav, buttons, body copy, labels, footer. Medium weight (500) is the default for interactive elements and nav; regular (400) for paragraphs. Tracking is notably tight even at small sizes (-0.026em at 14px, -0.022em at 16px) giving the UI a compressed, terminal-like density. The 'cv11' character variant should be enabled for alternate punctuation. Uppercase eyebrow labels at 12px use +0.05em tracking as a counter-rhythm to the body tightness."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "42px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Goga",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest page canvas, hero background, full-bleed dark sections"
+    },
+    "ground": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 1: Primary UI surface, filled button background, standard card surface on dark"
+    },
+    "carbon": {
+      "$value": "#212525",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated surface for nav bar, code window interiors, selected states"
+    },
+    "mint-frost": {
+      "$value": "#def0dd",
+      "$type": "color",
+      "$description": "Surface level 3: Light section canvas (alternate surface), soft card tint"
+    },
+    "lime-pulse": {
+      "$value": "#7fee64",
+      "$type": "color",
+      "$description": "Surface level 4: Highest-emphasis accent surface — active CTA pill, tag fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://modal.com",
+      "siteName": "Modal",
+      "extractedAt": "2026-07-03T03:37:14.735Z",
+      "variant": "extended"
+    }
+  }
+}

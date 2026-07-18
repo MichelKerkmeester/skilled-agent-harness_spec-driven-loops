@@ -1,0 +1,1159 @@
+{
+  "source": "https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5",
+  "uuid": "27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5",
+  "name": "Bang & Olufsen",
+  "northStar": "Scandinavian gallery on porcelain. When a B&O page goes dark, the product is lit like a sculpture in a midnight alcove; when it goes light, the product floats on white silk with nothing else competing for attention.",
+  "capturedAt": "2026-07-18T10:11:15.405Z",
+  "meta": {
+    "url": "https://bang-olufsen.com",
+    "siteName": "Bang & Olufsen",
+    "extractedAt": "2026-06-03T15:06:20.007Z",
+    "durationMs": 30037,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 489,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use BeoSupreme at all sizes; never introduce a second typeface",
+      "Use 40px border-radius for all buttons and interactive pills",
+      "Use #060daa only as a full-bleed background plane — never as a text color, icon, or small accent",
+      "Use 0px border-radius for all cards, inputs, and containers; cards should be invisible",
+      "Apply tight letter-spacing (-0.056em) at 36px display and loosen tracking (+0.143em) at 9px micro-labels — the inverting tracking is signature",
+      "Place product photography on pure #ffffff or #060daa grounds; never composite on busy backgrounds",
+      "Maintain 60-80px vertical rhythm between sections; let products breathe"
+    ],
+    "donts": [
+      "Don't use drop shadows on cards, buttons, or popovers — the system is shadow-free",
+      "Don't use #060daa as a CTA fill or link color — it is a plane, not a button",
+      "Don't use any chromatic color for text other than as a full background",
+      "Don't introduce gradients on UI elements — only on hero photography if at all",
+      "Don't fill buttons with solid color in default state — outline/ghost is the only treatment",
+      "Don't use 2px or small radii on buttons; pills (40px) are the only button shape",
+      "Don't crowd product cells with badges, ratings, or sale tags — the price and name are enough"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Porcelain Canvas",
+        "role": "Page backgrounds, product card surfaces, navigation bar — the dominant ground against which every product floats",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfaee",
+        "name": "Bone",
+        "role": "Secondary surface for warm-neutral blocks, button text on dark backgrounds, alternative canvas when white would feel sterile",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191817",
+        "name": "Obsidian",
+        "role": "Primary text and product bodies — a warm near-black that reads softer than pure #000000 against white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Icon strokes, micro-labels, fine borders, and the harshest text contrast moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#555555",
+        "name": "Graphite",
+        "role": "Secondary body copy, metadata, price labels, muted helper text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Mist",
+        "role": "Hairline input borders and the only structural divider in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#060daa",
+        "name": "Ultramarine Velvet",
+        "role": "Hero backgrounds, dramatic full-bleed section chambers, footer washes — saturated, almost black-blue violet used to swallow entire frames and make a single product feel theatrical",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1440px centered container with 25px horizontal padding at the edges. Hero is full-bleed (breaks the container) with the ultramarine chamber extending edge to edge. Product grids are 4-5 column even layouts with 25px gutters, scrollable horizontally on mobile. Sections alternate between white ground and full-bleed colored chambers — the rhythm is: white product grid → ultramarine hero → white product grid → saturated red editorial banner → white product grid → ultramarine footer. Navigation is a minimal top bar that floats over both white and colored sections (text inverts to white on dark). The page breathes — section gaps are 60-80px, individual products get their own breathing room within cells, no information density.",
+    "imagery": "Product photography is the sole visual asset — no lifestyle, no models, no environmental context. Products are shot on pure neutral grounds (white, black, gradient navy) with controlled studio lighting that emphasizes material: brushed aluminum, leather grain, anodized copper, silicone matte. Treatment is tight-crop, centered, hero-isolated. Color treatment is desaturated and true-to-material — the copper reads as copper, not as 'golden hour'. A secondary visual motif: rare full-bleed product silhouettes against saturated single-color planes (ultramarine, terracotta-red) for editorial moments. Iconography: hairline 1px stroke, monochrome black on white or white on dark, geometric, no fills, no multicolor.",
+    "similar": [
+      {
+        "why": "Same zero-chrome product cards on white, oversized centered product photography as hero, no shadows, whisper-tight display type, single-typeface system",
+        "business": "Apple"
+      },
+      {
+        "why": "Similar premium audio ecommerce with full-bleed dark hero chambers breaking up white product grids, but B&O is more austere and gallery-like",
+        "business": "Bose"
+      },
+      {
+        "why": "Comparable European luxury electronics with editorial product-as-sculpture photography on saturated color planes and minimal type",
+        "business": "Loewe (loewe.tv)"
+      },
+      {
+        "why": "Same Scandinavian design restraint, product floating on pure grounds, single neo-grotesque typeface carrying the entire system",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Identical gallery-museum treatment of objects, generous negative space, invisible card chrome, no decorative shadows",
+        "business": "Vitra"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "2px",
+        "inputs": "0px",
+        "buttons": "40px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "60-80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Porcelain",
+        "level": 1,
+        "purpose": "Default page and product listing canvas"
+      },
+      {
+        "hex": "#fcfaee",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Warm secondary surface for editorial sections"
+      },
+      {
+        "hex": "#060daa",
+        "name": "Ultramarine Chamber",
+        "level": 3,
+        "purpose": "Full-bleed dramatic hero and showcase moments"
+      },
+      {
+        "hex": "#191817",
+        "name": "Obsidian",
+        "level": 4,
+        "purpose": "Dark contrast surface, product photography grounds"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Scandinavian gallery on porcelain. When a B&O page goes dark, the product is lit like a sculpture in a midnight alcove; when it goes light, the product floats on white silk with nothing else competing for attention.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.67,
+        "letterSpacing": 0.288
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.196
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.224
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.336
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.15,
+        "letterSpacing": -2.016
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary interactive control in light sections",
+        "description": "40px border-radius, 1px hairline border in #000000, transparent fill, 14px BeoSupreme weight 500, #000000 text, 12px 28px padding. Hover: fill inverts to #000000 with #ffffff text. No drop shadow, no fill in default state — the outline IS the affordance."
+      },
+      {
+        "name": "Inverted Pill Button (Dark Chamber)",
+        "role": "Primary interactive control over ultramarine or obsidian backgrounds",
+        "description": "40px border-radius, 1px border in #ffffff, transparent fill, 14px BeoSupreme weight 500, #ffffff text. The ghost treatment persists even on dark surfaces — buttons never become filled blocks, preserving the gallery wall aesthetic."
+      },
+      {
+        "name": "Product Card (White Surface)",
+        "role": "Product grid item in listing and category pages",
+        "description": "Zero padding, zero border, zero shadow. Pure #ffffff ground. Product image floats centered with 25px left/right gutter at top, then 16px vertical gap to product name (16px weight 500, #191817), then 8px gap to price (14px weight 400, #555555). The card is invisible — only the product and its label exist."
+      },
+      {
+        "name": "Product Showcase Card (Dramatic Chamber)",
+        "role": "Hero product spotlight on ultramarine background",
+        "description": "#060daa full-bleed surface, product image centered and oversized, product name and micro-description in #ffffff at lower-left, 16px weight 400 body and 24px weight 500 headline, generous 80px+ padding on all sides. No card chrome — the colored plane IS the card."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header",
+        "description": "Fixed/sticky top bar, #ffffff background, 1px bottom hairline in #e5e5e5 (optional, often invisible). Three-zone layout: left cluster (hamburger 'Menú' + search 'Buscar' icons with 9–12px micro-labels), center wordmark ('BANG & OLUFSEN' in 16px weight 500 with 'Est. 1925' subtitle in 9px tracked), right cluster (account, location pin, cart icons). 64px tall, 25px horizontal padding."
+      },
+      {
+        "name": "Search Input",
+        "role": "Inline search field",
+        "description": "1px bottom border in #e5e5e5 (or #000000 on emphasis), no side borders, 14px BeoSupreme weight 400, #000000 text, #555555 placeholder, 12px vertical padding. Underline-only, no boxed input."
+      },
+      {
+        "name": "Micro-Label Annotation",
+        "role": "Tags, category labels, 'New' badges, metadata",
+        "description": "2px border-radius, uppercase, 9–12px BeoSupreme weight 500, letter-spacing +0.025em to +0.143em, #000000 or #ffffff text. Background is transparent or a flat #191817 block. Functions as architectural captioning, not decoration."
+      },
+      {
+        "name": "Footer Wash",
+        "role": "Global footer",
+        "description": "#060daa background (matches hero chamber), #ffffff text, multi-column link grid with 9–14px BeoSupreme. Same ultramarine plane repeats from hero to footer, creating bookend rhythm across the page."
+      },
+      {
+        "name": "Price Tag",
+        "role": "Product price display",
+        "description": "14px BeoSupreme weight 400, #555555. Currency symbol separated by 4px, no decorative formatting, no strikethrough, no sale badge treatment. A price is a fact, not a marketing event."
+      },
+      {
+        "name": "Color Variant Swatch",
+        "role": "Product color option selector",
+        "description": "Small circular swatch (no visible border in extraction, but typical pattern: 16-20px circle filled with product color, optional 1px #000000 ring on selected). No text label — the color speaks."
+      },
+      {
+        "name": "Section Heading",
+        "role": "In-page editorial section title (e.g. 'Explore nuestros superventas')",
+        "description": "36px BeoSupreme weight 500, #191817, letter-spacing -0.056em, centered or left-aligned with 60-80px top margin. Tight tracking on a large size produces compressed, confident display text — the whisper of luxury, not a shout."
+      },
+      {
+        "name": "Product Grid Row",
+        "role": "Horizontal product carousel or grid row",
+        "description": "4-5 column grid on desktop, even 25px gutters, no dividers between cards, no card background. Each cell is 25% of max-width container. Images sized to ~200px square, centered in cell with text below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface carrying the entire brand voice. Display and headings: weight 500–700 at 24–36px with tight tracking (-0.056em → -0.014em) for confident, compressed headlines. Body and UI: weight 400 at 14–16px, normal tracking, line-height 1.5–1.7. Micro-labels (nav, badges, 'Est. 1925' tagline): weight 500 at 9–12px with wide tracking up to +0.143em, rendered uppercase to function as quiet architectural annotations. No second typeface competes.",
+        "sizes": "9, 12, 14, 16, 24, 36",
+        "family": "BeoSupreme",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.15–2.19",
+        "substitute": "Neue Haas Grotesk Display Pro (closest), with Inter or Söhne as free alternatives",
+        "letterSpacing": "-2.0px at 36px display → -0.2px at 14px body → +1.3px at 9px micro-label (upright tracking inverts: tighter as size grows)",
+        "fontFeatureSettings": "\"kern\" 1, \"liga\" 1"
+      },
+      {
+        "role": "object-fit: cover; object-position: center; — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "object-fit: cover; object-position: center;",
+        "weight": "400",
+        "lineHeight": "1.15"
+      }
+    ],
+    "description": "Bang & Olufsen runs on a gallery-museum logic: near-pure white porcelain canvases with products floating as sculptural objects, interrupted by rare full-bleed chromatic chambers — a deep ultramarine violet that swallows the screen, occasionally a saturated terracotta-red moment — for emotional punctuation. Typography is a single custom neo-grotesque (BeoSupreme) that does all the talking: whisper-tight at display sizes, generously tracked uppercase at micro-labels, no other typeface needed. Components are stripped to their bones: pill-shaped ghost controls, hairline borders, no decorative shadows, no gradient buttons, no icon flourishes. The grid is generous, the negative space is the luxury. Every product gets its own floating pedestal; the surrounding white is the room. Color is rationed like a precious material — when it appears, it owns the entire frame.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bang & Olufsen design system\",\"item\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#style-reference\",\"name\":\"Bang & Olufsen design system reference\",\"headline\":\"Bang & Olufsen design system | Refero Styles\",\"description\":\"Explore Bang & Olufsen's light E-commerce design system: Porcelain Canvas #ffffff, Bone #fcfaee colors, BeoSupreme, object-fit: cover; object-position:...\",\"url\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bang & Olufsen\",\"url\":\"https://bang-olufsen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"caption\":\"Screenshot of Bang & Olufsen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bang & Olufsen design system\",\"Bang & Olufsen website design\",\"Bang & Olufsen colors\",\"Bang & Olufsen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Porcelain Canvas\",\"Bone\",\"Obsidian\",\"Pure Ink\",\"BeoSupreme\",\"object-fit: cover; object-position: center;\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen design system\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen website design\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen colors\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-22T18:03:41.000Z\",\"dateModified\":\"2026-01-22T18:03:41.000Z\"}]}19:T72d,**Quick Color Reference**\n- text primary: #191817 (Obsidian)\n- text secondary: #555555 (Graphite)\n- text on dark: #ffffff (Porcelain)\n- background canvas: #ffffff (Porcelain)\n- background warm alternative: #fcfaee (Bone)\n- background dramatic chamber: #060daa (Ultramarine Velvet)\n- border hairline: #e5e5e5 (Mist)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Ghost Pill Button*: 40px border-radius, 1px solid #000000 border, transparent fill, 14px BeoSupreme weight 500 text in #000000, 12px 28px padding, no shadow. Hover: fill becomes #000000, text becomes #ffffff.\n\n2. *Product Card on White*: #ffffff background, zero padding, zero border, zero shadow. Center product image (200px square) with 25px horizontal gutter. Below: 16px gap, product name in 16px BeoSupreme weight 500 #191817. 8px gap, price in 14px BeoSupreme weight 400 #555555.\n\n3. *Ultramarine Hero Chamber*: Full-bleed #060daa background, 80px padding all sides, oversized product image centered (60% viewport height), product name in 36px BeoSupreme weight 500 #ffffff at lower-left with letter-spacing -0.056em, micro-description in 16px BeoSupreme weight 400 #ffffff below.\n\n4. *Top Navigation*: 64px tall, #ffffff background, 25px horizontal padding. Left: hamburger + 'Menú' in 12px BeoSupreme weight 500 #000000 tracked +0.025em, then 16px gap, search icon + 'Buscar' in same style. Center: 'BANG & OLUFSEN' in 16px BeoSupreme weight 500 #000000 with 'Est. 1925' subtitle in 9px tracked +0.143em below. Right: account/location/cart icons, 16px gap each, in #000000.\n\n5. *Section Heading*: 36px BeoSupreme weight 500 #191817, letter-spacing -0.056em, line-height 1.15, 60-80px top margin, centered or left-aligned on #ffffff canvas. Tight tracking creates compressed, confident display — authority through restraint, not volume."
+      },
+      {
+        "title": "Tracking Inversion Principle",
+        "content": "The signature type behavior is tracking that inverts with size: -0.056em at 36px display, -0.014em at 24px, normal at 16px, +0.025em at 12px, +0.143em at 9px. Large text tightens; small text opens. This produces headlines that feel compressed and confident while micro-labels feel airy and architectural. Any new size added to the system must follow this curve — never apply display tracking to body, never apply micro-label tracking to headlines."
+      },
+      {
+        "title": "Color Rationing",
+        "content": "Color is treated as a precious material. The page is ~99% achromatic at any given moment. When #060daa appears, it occupies an entire frame. When terracotta-red appears in editorial banners, it likewise owns the full bleed. Never use chromatic color for small UI elements, icons, or text accents — that would be spending pennies in a system that deals in full canvas blocks. If a small functional color is needed, use Obsidian #191817 or Pure Ink #000000."
+      }
+    ],
+    "elevationPhilosophy": "Bang & Olufsen deliberately uses no drop shadows. Depth is created through color contrast (white card on white page → no card, colored plane → product floats), scale (oversized product images dominate text), and generous negative space. Elevation is communicated by the absence of a border, not by a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "card",
+            "body",
+            "image",
+            "badge",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 1224,
+          "confidence": 1,
+          "prominence": 93604603.79177575,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "badge",
+            "heading",
+            "input"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 49714639.4872711,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#191817",
+          "oklch": {
+            "c": 0.002509606184566654,
+            "h": 67.68931705298198,
+            "l": 0.20976927170120027
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "image",
+            "heading",
+            "badge",
+            "card",
+            "other",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 362,
+          "confidence": 1,
+          "prominence": 13300587.225852752,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "image",
+            "card",
+            "badge"
+          ],
+          "frequency": 580,
+          "confidence": 1,
+          "prominence": 10009957.644505112,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#060daa",
+          "oklch": {
+            "c": 0.22481342372062088,
+            "h": 265.1006078410451,
+            "l": 0.3427438964278317
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1368000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fcfaee",
+          "oklch": {
+            "c": 0.015917458382004927,
+            "h": 98.98883852543958,
+            "l": 0.9833854641733203
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 216,
+          "confidence": 1,
+          "prominence": 237503.46771280107,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 32350,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005002146704285823,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.05,
+          "background": "#fcfaee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.73,
+          "background": "#191817",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.93,
+          "background": "#191817",
+          "foreground": "#fcfaee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.08,
+          "background": "#e5e5e5",
+          "foreground": "#191817"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.76,
+          "background": "#060daa",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#060daa",
+          "foreground": "#fcfaee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#e5e5e5",
+          "foreground": "#060daa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#ffffff",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.12,
+          "background": "#fcfaee",
+          "foreground": "#555555"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#e5e5e5",
+          "foreground": "#555555"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.38,
+          "background": "#191817",
+          "foreground": "#555555"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#060daa",
+          "foreground": "#555555"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.65,
+          "background": "#060daa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#060daa",
+          "foreground": "#191817"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#191817",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#ffffff",
+          "foreground": "#fcfaee"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 65,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 59,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 33,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 61,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 86,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 97,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 115,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 236,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BeoSupreme",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 488,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "object-fit: cover; object-position: center;",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BeoSupreme",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BeoSupreme",
+          "weight": 700,
+          "contexts": [
+            "card",
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.143,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "link",
+            "body",
+            "card",
+            "badge",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 337,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "object-fit: cover; object-position: center;",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 14,
+          "lineHeight": 2.19,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "BeoSupreme",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6b79e9ec-4c19-4987-9fc9-6e523f667ee9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bang & Olufsen design system\",\"item\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#style-reference\",\"name\":\"Bang & Olufsen design system reference\",\"headline\":\"Bang & Olufsen design system | Refero Styles\",\"description\":\"Explore Bang & Olufsen's light E-commerce design system: Porcelain Canvas #ffffff, Bone #fcfaee colors, BeoSupreme, object-fit: cover; object-position:...\",\"url\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bang & Olufsen\",\"url\":\"https://bang-olufsen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/27a4a4fa-4b1a-4e7e-b2c3-3e5bf57f00e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"caption\":\"Screenshot of Bang & Olufsen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0d551b86-dfea-45d1-8fa8-095f49a57fc3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bang & Olufsen design system\",\"Bang & Olufsen website design\",\"Bang & Olufsen colors\",\"Bang & Olufsen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Porcelain Canvas\",\"Bone\",\"Obsidian\",\"Pure Ink\",\"BeoSupreme\",\"object-fit: cover; object-position: center;\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen design system\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen website design\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen colors\"},{\"@type\":\"Thing\",\"name\":\"Bang & Olufsen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-22T18:03:41.000Z\",\"dateModified\":\"2026-01-22T18:03:41.000Z\"}]}19:T72d,**Quick Color Reference**\n- text primary: #191817 (Obsidian)\n- text secondary: #555555 (Graphite)\n- text on dark: #ffffff (Porcelain)\n- background canvas: #ffffff (Porcelain)\n- background warm alternative: #fcfaee (Bone)\n- background dramatic chamber: #060daa (Ultramarine Velvet)\n- border hairline: #e5e5e5 (Mist)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Ghost Pill Button*: 40px border-radius, 1px solid #000000 border, transparent fill, 14px BeoSupreme weight 500 text in #000000, 12px 28px padding, no shadow. Hover: fill becomes #000000, text becomes #ffffff.\n\n2. *Product Card on White*: #ffffff background, zero padding, zero border, zero shadow. Center product image (200px square) with 25px horizontal gutter. Below: 16px gap, product name in 16px BeoSupreme weight 500 #191817. 8px gap, price in 14px BeoSupreme weight 400 #555555.\n\n3. *Ultramarine Hero Chamber*: Full-bleed #060daa background, 80px padding all sides, oversized product image centered (60% viewport height), product name in 36px BeoSupreme weight 500 #ffffff at lower-left with letter-spacing -0.056em, micro-description in 16px BeoSupreme weight 400 #ffffff below.\n\n4. *Top Navigation*: 64px tall, #ffffff background, 25px horizontal padding. Left: hamburger + 'Menú' in 12px BeoSupreme weight 500 #000000 tracked +0.025em, then 16px gap, search icon + 'Buscar' in same style. Center: 'BANG & OLUFSEN' in 16px BeoSupreme weight 500 #000000 with 'Est. 1925' subtitle in 9px tracked +0.143em below. Right: account/location/cart icons, 16px gap each, in #000000.\n\n5. *Section Heading*: 36px BeoSupreme weight 500 #191817, letter-spacing -0.056em, line-height 1.15, 60-80px top margin, centered or left-aligned on #ffffff canvas. Tight tracking creates compressed, confident display — authority through restraint, not volume."
+}

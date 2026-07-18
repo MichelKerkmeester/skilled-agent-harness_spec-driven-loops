@@ -1,0 +1,224 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon strokes, hairline borders, Log in button — the structural black that carries almost all interface weight"
+    },
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surface background — the off-white that makes the whole feed feel like printed paper"
+    },
+    "concrete": {
+      "$value": "#d5d5d5",
+      "$type": "color",
+      "$description": "Concrete — Dividers and separator borders between feed sections"
+    },
+    "graphite": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Graphite — Muted helper text, inactive icons, disabled state borders, timestamp labels"
+    },
+    "charcoal": {
+      "$value": "#424242",
+      "$type": "color",
+      "$description": "Charcoal — Secondary body text, icon detail strokes, post metadata"
+    },
+    "hover-mist": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Hover Mist — Soft section background, alternate surface, and quiet card fill. Do not promote it to the primary CTA color"
+    },
+    "verified-indigo": {
+      "$value": "#385898",
+      "$type": "color",
+      "$description": "Verified Indigo — Verified badges, inline links, outlined hover state on action buttons — the only chromatic brand color, used as a quiet signature rather than a loud accent"
+    },
+    "signal-blue": {
+      "$value": "#0095f6",
+      "$type": "color",
+      "$description": "Signal Blue — Follow button, primary outlined action color, clickable link emphasis — vivid blue reserved for moments that must demand a tap"
+    }
+  },
+  "font": {
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "All text rendering — post bodies at 15px/400, usernames and timestamps at 13px/600, caption-sized metadata at 12px/700. System font stack keeps the feed platform-native and weight-driven hierarchy rather than size-driven hierarchy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px, rgb(250, 250, 250) 0px 0px 0px 48px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, feed container"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Post card surface, sidebar background"
+    },
+    "hover-wash": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle hover and pressed state on interactive rows"
+    },
+    "inverse": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Log in button, dark icons, text on light"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://threads.net",
+      "siteName": "Threads",
+      "extractedAt": "2026-06-03T18:55:01.524Z",
+      "variant": "extended"
+    }
+  }
+}

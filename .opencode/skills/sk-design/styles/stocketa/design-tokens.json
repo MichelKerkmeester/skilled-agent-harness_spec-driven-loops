@@ -1,0 +1,324 @@
+{
+  "color": {
+    "aurora-magenta": {
+      "$value": "#995bb9",
+      "$type": "color",
+      "$description": "Aurora Magenta — Headline gradient start, icon fills, decorative brand strokes — the single chromatic voice of the system, used as gradient text on display headings and as fill on small icon badges"
+    },
+    "deep-iris": {
+      "$value": "#5b638c",
+      "$type": "color",
+      "$description": "Deep Iris — Muted violet used for decorative SVG strokes and secondary graphic outlines — sits behind the magenta as the system-wide line color"
+    },
+    "midnight-ink": {
+      "$value": "#1d2630",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary body and heading text on light surfaces — slightly warmer than pure black, reads softer at large sizes while keeping AAA contrast"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Highest-weight text and the densest border color — used where maximum contrast is required against the near-white canvas"
+    },
+    "lavender-mist": {
+      "$value": "#e0dde2",
+      "$type": "color",
+      "$description": "Lavender Mist — Page canvas and subtle surface tint — the entire site reads on this near-white, giving the aurora gradient something warm to land on"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card and elevated surface fill — floats above Lavender Mist as the base for product cards, phone screen, and feature panels"
+    },
+    "frost-shadow": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Frost Shadow — Shadow tone used in the multi-layer card elevation — too light to be a border, present only as the ambient outer blur"
+    },
+    "pebble": {
+      "$value": "#9aa1b2",
+      "$type": "color",
+      "$description": "Pebble — Mid-neutral for muted body text and link borders — the default text color for descriptions and the border for inline link affordances"
+    },
+    "silver-lining": {
+      "$value": "#a5afcb",
+      "$type": "color",
+      "$description": "Silver Lining — Light hairline border and secondary muted text — used on card edges and quiet metadata rows"
+    },
+    "cloud-veil": {
+      "$value": "#abbdcf",
+      "$type": "color",
+      "$description": "Cloud Veil — Softest neutral for decorative SVG fills and ambient accents — supports the aurora without competing with the magenta"
+    },
+    "tidewater-navy": {
+      "$value": "#3a4766",
+      "$type": "color",
+      "$description": "Tidewater Navy — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "aurora-green": {
+      "$value": "#69c966",
+      "$type": "color",
+      "$description": "Aurora Green — Gradient stop in the page-level aurora and accent on positive chart lines inside the phone mockup"
+    }
+  },
+  "font": {
+    "averta-standard": {
+      "$value": "averta standard",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the system. Custom geometric sans with humanist warmth — the slightly rounded terminals soften what would otherwise be a cold fintech voice."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "50px",
+        "fontWeight": 800,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "53px",
+        "fontWeight": 800,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "62px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "averta standard",
+        "fontSize": "98px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 98px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(97, 110, 124, 0.114) 0px 4px 15px 0px, rgba(255, 255, 255, 0.39) 0px 1px 1px 0px inset, rgba(34, 50, 94, 0.08) 0px 1px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#e0dde2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, washed with the aurora radial gradient near the top"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Feature panels, in-phone UI, and product screenshots"
+    },
+    "elevated": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Floating stock ticker cards and phone mockup, lifted with the three-layer shadow stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://stocketa.com",
+      "siteName": "Stocketa",
+      "extractedAt": "2026-06-03T17:43:29.910Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,971 @@
+{
+  "source": "https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed",
+  "uuid": "d9a60077-619a-4cb7-95ed-0c428c2b51ed",
+  "name": "Incident",
+  "northStar": "Technical broadsheet on concrete. Times-serif headlines float on a warm-gray page with hairline black rules and a single orange flare that breaks the calm like a signal beacon.",
+  "capturedAt": "2026-07-18T07:34:53.514Z",
+  "meta": {
+    "url": "https://incident.io",
+    "siteName": "Incident",
+    "extractedAt": "2026-06-03T20:44:32.574Z",
+    "durationMs": 33127,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1096,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Times (or Source Serif Pro as substitute) for all body copy, headings, nav items, and hero text — the serif face is the brand voice",
+      "Set the page canvas to #efefef (Concrete) and let cards sit in #ffffff (Paper) above it — never invert to a white page with gray cards",
+      "Use #000000 for all structural borders and hairline rules — borderColor is the dominant role of pure black in this system",
+      "Use Signal Orange (#f25533) only for brand marks, logo elements, decorative fills, and file-type illustrations — never for action buttons or functional UI",
+      "Set button background to #efefef with a 1px black border, 4px radius, and 1px/6px padding — buttons should feel like labeled frames, not filled actions",
+      "Keep the type scale tight: 13px (Arial micro-labels), 16px (Times body), 19px (Times body-lg), 24px (Times heading-sm), 32px (Times heading) — do not introduce sizes outside this range",
+      "Use status-tinted card borders (red for critical, amber for warning) to communicate severity — the border color does the semantic work, not a colored background fill"
+    ],
+    "donts": [
+      "Do not use sans-serif (Inter, system-ui) for body copy or headings — replacing Times breaks the editorial identity",
+      "Do not add colored button fills (blue, orange, green) for primary actions — the system uses neutral concrete buttons with black borders",
+      "Do not use gradients — no gradient was detected in the source and the flat editorial aesthetic rejects them",
+      "Do not use heavy drop-shadows for elevation — shadows are reserved for image containers at 2-4% opacity only",
+      "Do not introduce blue or green as brand or accent colors — the chromatic palette is exclusively warm (orange family and amber)",
+      "Do not round buttons beyond 4px or use pill shapes — the slightly squared button geometry reinforces the broadsheet feel",
+      "Do not use color to indicate active or selected states — rely on weight (400→700) and underline affordances within the serif system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f25533",
+        "name": "Signal Orange",
+        "role": "Brand accent, logo mark, decorative SVG fills, nav emphasis — the single warm chromatic note that cuts through the monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Concrete",
+        "role": "Page canvas, button background — the dominant surface tone that gives the system its paper-like warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, hairline borders (920+ uses), button outlines — pure black carries all structural line work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, nav fills — the white layer that sits on top of the concrete canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161618",
+        "name": "Carbon",
+        "role": "Near-black for nav strokes, emphasis text, and the tinted shadow base — softer than pure ink for layered elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dadada",
+        "name": "Mist",
+        "role": "Subtle drop-shadow tone, decorative image edge tint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Fog",
+        "role": "Secondary shadow tone, decorative image edge tint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4d9c8",
+        "name": "Parchment",
+        "role": "Warm cream decorative surface — near-gray but carries a beige cast that ties to the orange family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff492c",
+        "name": "Alert Red",
+        "role": "Orange decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#f1641e",
+        "name": "Ember",
+        "role": "Orange outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width ~1200px centered on a concrete canvas. Pages are text-first: serif headlines, single-column body blocks, generous vertical breathing room (64px section gaps). No hero image — the top of each page is a centered or left-aligned serif headline over empty canvas. Sections flow as flat bands separated by hairline black rules rather than alternating background colors. Navigation is a simple top bar, not sticky or floating. Product feature sections use a asymmetric two-column layout (text-left, illustration-right) with no card containers — text sits directly on the canvas. The status page section uses full-width alert banners with chromatic-tinted borders. Overall density is low: whitespace is the primary structural element, with hairlines and serif hierarchy doing the organization work.",
+    "imagery": "Visual language is overwhelmingly text-dominant with sparse iconography. Imagery falls into three categories: (1) file-type illustrations — flat document shapes in Signal Orange with a folded corner and white format label (e.g. 'PNG'), used to anchor feature sections about file handling; (2) line-art directional arrows in saturated blue, used as decorative flow indicators on product pages; (3) product screenshots or UI captures with the signature soft carbon-tinted shadow (rgba(22,22,24,0.02–0.04)). No photography, no lifestyle imagery, no 3D renders. The page reads as editorial — images are functional illustrations, not atmospheric decoration.",
+    "similar": [
+      {
+        "why": "Same editorial restraint with hairline rules and high-contrast monochrome surfaces, though Stripe uses a sans-serif body face",
+        "business": "Stripe"
+      },
+      {
+        "why": "Shared minimal colorfulness and flat surface treatment, but Linear is dark-mode-first and sans-serif-driven",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar warm-cream accent tones and a willingness to use typographic personality over color volume to build brand",
+        "business": "The Browser Company / Arc"
+      },
+      {
+        "why": "Same text-dominant, low-color-density editorial approach with flat surfaces and functional rather than decorative UI",
+        "business": "Basecamp"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "12px",
+        "buttons": "4px",
+        "alertBanners": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#efefef",
+        "name": "Concrete",
+        "level": 1,
+        "purpose": "Page canvas — the warm light-gray base everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Card surfaces and nav containers — white layer above the concrete"
+      },
+      {
+        "hex": "#e4d9c8",
+        "name": "Parchment",
+        "level": 3,
+        "purpose": "Decorative warm tint for file-type illustrations and graphic elements"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(22, 22, 24, 0.02) 0px 8px 15px -3px, rgba(22, 22, 24, 0.04) 0px 4px 6px -2px",
+        "element": "Image cards and decorative graphics"
+      }
+    ],
+    "northStar": "Technical broadsheet on concrete. Times-serif headlines float on a warm-gray page with hairline black rules and a single orange flare that breaks the calm like a signal beacon.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 19,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "White (#ffffff) background, sits on the concrete canvas. Uses Times for nav labels at 16px weight 400. The brand mark in Signal Orange (#f25533) anchors the left. Hairline black (#000000) bottom border separates it from page content. Carbon (#161618) used for stroked logo elements."
+      },
+      {
+        "name": "Neutral Button",
+        "role": "Primary interactive action",
+        "description": "Concrete (#efefef) background — the same as the page canvas, making the button feel like a raised card rather than a filled action. Black (#000000) 1px border, 4px radius, padding 1px top/bottom and 6px left/right (deliberately compact). Label in Arial 13px weight 400, Ink (#000000). No color fill, no shadow — the button is a labeled rectangle with a hairline frame."
+      },
+      {
+        "name": "Critical Alert Banner",
+        "role": "Outage or incident status display",
+        "description": "Soft red/pink wash background (tinted toward Alert Red #ff492c at low opacity), left-aligned warning triangle icon in Alert Red. Headline in Times 16px weight 700, body text in Times 16px weight 400. Full-width card with 8px radius and a saturated red border on the container card below."
+      },
+      {
+        "name": "Warning Alert Banner",
+        "role": "Degraded service or maintenance notice",
+        "description": "Amber/yellow icon (Ember #f1641e) with warning triangle. Headline in Times 16px weight 700, descriptive body in Times 16px weight 400. Sits inside a white card with a light amber-tinted border."
+      },
+      {
+        "name": "Status Tag / Pill",
+        "role": "Component-level status indicator (e.g. Website, App)",
+        "description": "Small rounded-corner tag, 4px radius. Tinted background matching the status color: soft red wash for outages, soft amber wash for degraded. Label in Arial or Times at 13px, color matching the status hue. Inline, sits adjacent to other tags."
+      },
+      {
+        "name": "Status Card",
+        "role": "Container for a single incident report",
+        "description": "White (#ffffff) background on the concrete canvas. 12px radius. Border is chromatic and status-dependent: red-pink for active incidents, amber for warnings, subtle gray for resolved. Internal padding 24px. Contains icon, headline, body, and metadata line in muted gray."
+      },
+      {
+        "name": "Section Heading (Serif)",
+        "role": "Page and section titles",
+        "description": "Times weight 400 or 700, 24–32px scale. Color is Ink (#000000) for primary, Carbon (#161618) for secondary. No underline, no decoration — the serif face does the hierarchy work. Often paired with a 16px body paragraph below in the same family at 16px."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation to subpages or external resources",
+        "description": "Underlined text in a saturated blue (appears as ~#0000ff in rendered links), Arial or Times depending on context. No arrow, no icon — the underline is the affordance. Sits within serif body text blocks."
+      },
+      {
+        "name": "File-Type Illustration",
+        "role": "Decorative graphic for file format references",
+        "description": "Document-shape icon with a folded corner, filled in Signal Orange (#f25533), with white label text (e.g. 'PNG') in Arial bold. No shadow, no border — flat brand-colored fill on the concrete canvas."
+      },
+      {
+        "name": "Product Feature Card",
+        "role": "Text-first card describing a product capability",
+        "description": "No visible card container — text sits directly on the concrete canvas. Serif headline (Times 24–32px), sans-serif body description (Arial 13px or Times 16px), underlined text link. Accompanied optionally by a line-art illustration in blue or orange. Maximum text density without card chrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, headings, nav items, hero copy, card content, list items, footer — Times carries 770+ uses and is the signature typographic choice. A serif body face on a B2B incident-management product is anti-convention: it borrows the authority of a legal broadsheet or technical manual, replacing the usual Inter/system-ui with something that reads as deliberately editorial. Weight 400 for body, 700 for emphasis and headings.",
+        "sizes": "16px, 19px, 24px, 32px",
+        "family": "Times (system serif)",
+        "weight": "400, 700",
+        "lineHeight": "1.20",
+        "substitute": "Source Serif Pro, Lora, or Crimson Text — freely available serifs that preserve the editorial broadsheet feel"
+      },
+      {
+        "role": "Small UI micro-text: button labels, nav utility text, icon-adjacent labels. Arial at 13px handles the functional labels while Times carries the voice — a deliberate serif/sans split where Times says something and Arial just tags it.",
+        "sizes": "13px",
+        "family": "Arial (system sans)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter or system-ui at 13px"
+      }
+    ],
+    "description": "Incident treats the status page like an editorial publication: a Times-serif typeface on a concrete-gray canvas, hairlines of pure black, and one warm signal-orange that acts as a flare against the monochrome. The discipline is extreme — chromatic color is rationed, appearing only as brand accent fills, logo marks, and decorative file-type illustrations, never as button backgrounds or action fills. Surfaces are flat and paper-like; depth comes from soft 2-layer shadows on imagery rather than elevation stacking. The result reads as a trusted technical broadsheet rather than a typical dashboard — authority through typographic restraint, not color volume.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Incident design system\",\"item\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#style-reference\",\"name\":\"Incident design system reference\",\"headline\":\"Incident design system | Refero Styles\",\"description\":\"Explore Incident's light Dev Tools design system: Signal Orange #f25533, Concrete #efefef colors, Times (system serif), Arial (system sans) typography, and...\",\"url\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Incident\",\"url\":\"https://incident.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"caption\":\"Screenshot of Incident\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Incident design system\",\"Incident website design\",\"Incident colors\",\"Incident typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Signal Orange\",\"Concrete\",\"Ink\",\"Paper\",\"Times (system serif)\",\"Arial (system sans)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Incident design system\"},{\"@type\":\"Thing\",\"name\":\"Incident website design\"},{\"@type\":\"Thing\",\"name\":\"Incident colors\"},{\"@type\":\"Thing\",\"name\":\"Incident typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-30T00:21:46.602Z\",\"dateModified\":\"2026-04-30T00:21:46.602Z\"}]}19:T6ec,Quick Color Reference:\n- Text: #000000 (Ink) for body, #161618 (Carbon) for emphasis\n- Background: #efefef (Concrete) page canvas, #ffffff (Paper) cards\n- Border: #000000 (Ink) for all structural hairlines\n- Accent: #f25533 (Signal Orange) for brand marks and decorative fills only\n- Status critical: #ff492c (Alert Red)\n- Status warning: #f1641e (Ember)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Create a critical alert banner: soft red-pink wash background, Alert Red (#ff492c) warning triangle icon on the left. Headline 'Service disruption detected' in Times 16px weight 700, #000000. Body text in Times 16px weight 400, #000000. Full-width with 8px border-radius, sitting on a white card with a light red border.\n\n2. Create a neutral button: #efefef background, 1px solid #000000 border, 4px border-radius, padding 1px top/bottom and 6px left/right. Label 'Get started' in Arial 13px weight 400, #000000. No shadow, no fill change on hover.\n\n3. Create a page section heading: 'On-call gets the right people in the room' in Times 32px weight 700, #000000, on a #efefef page canvas. Below it, a body paragraph in Times 16px weight 400 at 19px line-height. No decorative elements, no underline, no accent color.\n\n4. Create a status card: white (#ffffff) background, 12px border-radius, light amber-tinted (#f1641e at low opacity) 1px border. 24px internal padding. Contains a warning triangle icon in Ember (#f1641e), a Times 16px weight 700 headline, and a Times 16px weight 400 description.\n\n5. Create a file-type illustration: a document shape with a folded top-right corner, filled in Signal Orange (#f25533), with 'PNG' in white Arial bold 32px centered. Flat — no shadow, no border, no gradient. Sits on the #efefef page canvas."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is near-absent. The system stays flat — hairline black borders and card background contrast do the structural work. Shadows are reserved for image containers only, and they are whisper-light (2-4% opacity, carbon-tinted) so they read as paper-lift rather than digital elevation. No raised buttons, no floating panels, no drop-shadow hierarchy."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "card",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2604,
+          "confidence": 1,
+          "prominence": 2075695314.418611,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 15,
+            "nav/color": 81,
+            "body/color": 66,
+            "card/color": 10,
+            "hero/color": 2,
+            "icon/color": 8,
+            "list/color": 32,
+            "nav/stroke": 6,
+            "other/fill": 63,
+            "other/color": 230,
+            "button/color": 47,
+            "footer/color": 1,
+            "heading/color": 27,
+            "nav/borderColor": 324,
+            "body/borderColor": 264,
+            "card/borderColor": 40,
+            "hero/borderColor": 8,
+            "icon/borderColor": 32,
+            "list/borderColor": 128,
+            "other/borderColor": 920,
+            "button/borderColor": 188,
+            "footer/borderColor": 4,
+            "heading/borderColor": 108
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "image",
+            "other",
+            "nav"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 7184434.18765865,
+          "properties": [
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 14,
+            "other/fill": 5,
+            "image/boxShadow": 2,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#161618",
+          "oklch": {
+            "c": 0.003944766683969932,
+            "h": 286.0395788543618,
+            "l": 0.20105346196783083
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 5692386.480488759,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/stroke": 8,
+            "other/fill": 2,
+            "other/stroke": 4
+          }
+        },
+        {
+          "hex": "#ff492c",
+          "oklch": {
+            "c": 0.22244731451443875,
+            "h": 31.82880898664511,
+            "l": 0.6656601653910652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3146595.9383941973,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#dadada",
+          "oklch": {
+            "c": 0.00043341586101431766,
+            "h": 286.3907773135042,
+            "l": 0.8876036439693985
+          },
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2684222,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "image/boxShadow": 2,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2684222,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "image/boxShadow": 2,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#f25533",
+          "oklch": {
+            "c": 0.19880542879181218,
+            "h": 33.802023243633684,
+            "l": 0.6574254698595311
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 2602020.3768638205,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "other/fill": 15
+          }
+        },
+        {
+          "hex": "#e4d9c8",
+          "oklch": {
+            "c": 0.025873924363350377,
+            "h": 78.9062236999407,
+            "l": 0.8895211592806075
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2333253,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 7
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 250066.69596978975,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 47
+          }
+        },
+        {
+          "hex": "#0770e3",
+          "oklch": {
+            "c": 0.19391518043722045,
+            "h": 256.7473057591547,
+            "l": 0.5613945536586027
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 13649,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f1641e",
+          "oklch": {
+            "c": 0.18917994158640675,
+            "h": 42.38035972004609,
+            "l": 0.672824010817692
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2658.5651111885513,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff66f4",
+          "oklch": {
+            "c": 0.24257297582805734,
+            "h": 330.6054677815632,
+            "l": 0.751209413736719
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 626,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#4b73ff",
+          "oklch": {
+            "c": 0.2126858455986348,
+            "h": 267.5281222968226,
+            "l": 0.6060511559726226
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 489,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ff0105",
+          "oklch": {
+            "c": 0.2573329133538916,
+            "h": 28.98812580507054,
+            "l": 0.6282536857812699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 429,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fe7b02",
+          "oklch": {
+            "c": 0.18792761664867091,
+            "h": 51.04762658299487,
+            "l": 0.723099731310532
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 177,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007005839643670222,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.07,
+          "background": "#ffffff",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#efefef",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.06,
+          "background": "#e4d9c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#dadada",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.96,
+          "background": "#e4d9c8",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.93,
+          "background": "#dadada",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#cccccc",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.46,
+          "background": "#ff66f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#fe7b02",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.28,
+          "background": "#ff66f4",
+          "foreground": "#161618"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.93,
+          "background": "#fe7b02",
+          "foreground": "#161618"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.77,
+          "background": "#efefef",
+          "foreground": "#f1641e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgba(22, 22, 24, 0.02) 0px 8px 15px -3px, rgba(22, 22, 24, 0.04) 0px 4px 6px -2px",
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 94,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 94,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 155,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "marginRight|other",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "list",
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|list",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 770,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 94,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 94,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 734,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Times",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Times",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Times",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fc20d285-8b3b-4ec2-8058-e2fc054becc5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Incident design system\",\"item\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#style-reference\",\"name\":\"Incident design system reference\",\"headline\":\"Incident design system | Refero Styles\",\"description\":\"Explore Incident's light Dev Tools design system: Signal Orange #f25533, Concrete #efefef colors, Times (system serif), Arial (system sans) typography, and...\",\"url\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Incident\",\"url\":\"https://incident.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d9a60077-619a-4cb7-95ed-0c428c2b51ed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"caption\":\"Screenshot of Incident\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d9e9da97-c9b1-4503-9cc7-53b7628d2dcf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Incident design system\",\"Incident website design\",\"Incident colors\",\"Incident typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Signal Orange\",\"Concrete\",\"Ink\",\"Paper\",\"Times (system serif)\",\"Arial (system sans)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Incident design system\"},{\"@type\":\"Thing\",\"name\":\"Incident website design\"},{\"@type\":\"Thing\",\"name\":\"Incident colors\"},{\"@type\":\"Thing\",\"name\":\"Incident typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-30T00:21:46.602Z\",\"dateModified\":\"2026-04-30T00:21:46.602Z\"}]}19:T6ec,Quick Color Reference:\n- Text: #000000 (Ink) for body, #161618 (Carbon) for emphasis\n- Background: #efefef (Concrete) page canvas, #ffffff (Paper) cards\n- Border: #000000 (Ink) for all structural hairlines\n- Accent: #f25533 (Signal Orange) for brand marks and decorative fills only\n- Status critical: #ff492c (Alert Red)\n- Status warning: #f1641e (Ember)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Create a critical alert banner: soft red-pink wash background, Alert Red (#ff492c) warning triangle icon on the left. Headline 'Service disruption detected' in Times 16px weight 700, #000000. Body text in Times 16px weight 400, #000000. Full-width with 8px border-radius, sitting on a white card with a light red border.\n\n2. Create a neutral button: #efefef background, 1px solid #000000 border, 4px border-radius, padding 1px top/bottom and 6px left/right. Label 'Get started' in Arial 13px weight 400, #000000. No shadow, no fill change on hover.\n\n3. Create a page section heading: 'On-call gets the right people in the room' in Times 32px weight 700, #000000, on a #efefef page canvas. Below it, a body paragraph in Times 16px weight 400 at 19px line-height. No decorative elements, no underline, no accent color.\n\n4. Create a status card: white (#ffffff) background, 12px border-radius, light amber-tinted (#f1641e at low opacity) 1px border. 24px internal padding. Contains a warning triangle icon in Ember (#f1641e), a Times 16px weight 700 headline, and a Times 16px weight 400 description.\n\n5. Create a file-type illustration: a document shape with a folded top-right corner, filled in Signal Orange (#f25533), with 'PNG' in white Arial bold 32px centered. Flat — no shadow, no border, no gradient. Sits on the #efefef page canvas."
+}

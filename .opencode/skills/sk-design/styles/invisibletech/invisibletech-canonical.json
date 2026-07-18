@@ -1,0 +1,2098 @@
+{
+  "source": "https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f",
+  "uuid": "c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f",
+  "name": "Invisibletech",
+  "northStar": "Editorial sketchbook on graph paper",
+  "capturedAt": "2026-07-18T07:56:49.630Z",
+  "meta": {
+    "url": "https://invisibletech.ai",
+    "siteName": "Invisibletech",
+    "extractedAt": "2026-06-03T19:08:50.418Z",
+    "durationMs": 34598,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 802,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Apk Galeria for everything human — body, headlines, quotes, button labels when not using the categorical face",
+      "Use Apkpraktikal in uppercase with 0.12–0.14em tracking for all section eyebrows, tab labels, and categorical metadata",
+      "Apply negative letter-spacing to Apk Galeria at every size above 18px, scaling from -0.009em at 22px to -0.030em at 64px",
+      "Reserve #dcf58f exclusively for the single primary CTA per viewport — never as a background, icon, or decoration",
+      "Use the two-tone headline pattern: one phrase in #0f0f0f, the following phrase in #898989 or #4c4c4c at the same weight and size",
+      "Place a 6px #0c76fe dot before every section eyebrow label",
+      "Use 9999px radius for all buttons, badges, and navigation pills; 12px radius for all cards and panels"
+    ],
+    "donts": [
+      "Don't introduce box-shadows or drop-shadows — the design system uses color contrast and 1px borders for all elevation, not depth effects",
+      "Don't use #dcf58f as a decorative element, card background, or hover state — it signals conversion only",
+      "Don't apply Apkpraktikal to body copy or headlines longer than four words — the wide tracking breaks readability at length",
+      "Don't use #0c76fe as a button fill or large surface — it is a wayfinding accent (dots, icons, link text) only",
+      "Don't add gradients — the brand is committed to flat, matte surfaces with no color transitions",
+      "Don't use fully black #000000 — always use #0f0f0f for the deepest tone to maintain the slightly soft contrast profile",
+      "Don't combine the lime CTA and black CTA in the same row — pick one per action group, never both"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0f0f0f",
+        "name": "Carbon Ink",
+        "role": "Primary text, hero CTA button fill, logo mark — the dominant non-white color carrying 1000+ borders and all body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Graphite",
+        "role": "Secondary surface fill, dark card backgrounds, button borders — one step lighter than Carbon for layered elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c4c4c",
+        "name": "Iron",
+        "role": "Body text, input borders, button borders, card borders — the working neutral for readable secondary copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Steel",
+        "role": "Muted headings, subhead text, supporting borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Slate",
+        "role": "Subtle heading text, dividers, light borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9d9d9d",
+        "name": "Fog",
+        "role": "Image borders, icon borders, tertiary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b2b2",
+        "name": "Silver",
+        "role": "Link borders, decorative dividers, lightest structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c6c6c6",
+        "name": "Pewter",
+        "role": "Hairline borders, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdbdb",
+        "name": "Ash",
+        "role": "Subtle borders, card outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Mist",
+        "role": "Soft surface fills, secondary button backgrounds, subtle wash backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surface, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6f1ff",
+        "name": "Ice Blue",
+        "role": "Feature card surfaces, soft highlight panels — the only tinted neutral, used to frame product previews and walkthrough banners",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c76fe",
+        "name": "Cobalt Spark",
+        "role": "Wayfinding dots beside section eyebrows, icon accents, link color — the navigation accent, never used as a fill",
+        "group": "brand"
+      },
+      {
+        "hex": "#dcf58f",
+        "name": "Lime Glow",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      }
+    ],
+    "layout": "Page model is a centered max-width container (1280px) with generous side padding, sitting on a pure white canvas. The hero breaks the container slightly — decorative illustrations float outside the max-width into the page margins, anchored by a subtle full-bleed dot grid background. Content sections follow a consistent rhythm: eyebrow dot + uppercase label, large left-aligned heading, then a two-column arrangement (heading/intro on left at ~40% width, supporting body on right at ~50%) with ~80–120px vertical gaps between sections. The platform section introduces a 2-column split with a left sidebar (icon + uppercase label list) and a right feature panel. Card grids appear in 2-column layouts rather than 3- or 4-column; the brand favors fewer, larger modules over dense matrices. Navigation is a single top bar, sticky, with no sidebar or mega-menu.",
+    "imagery": "The site blends three imagery modes: (1) hand-drawn editorial illustrations — loose, almost childlike line drawings of people, basketball hoops, overhead cars, a globe, a US map, and a suitcase — scattered asymmetrically around the hero like pinned-up concept sketches, rendered in a limited palette of #0c76fe blue, #dcf58f green, and warm peach/skin tones with a single ink-color outline; (2) product UI mockups — nested card frames with traffic-light headers, rendered as flat screenshots embedded in content sections; (3) partner/client logo strips — grayscale, evenly spaced, no color or styling. The illustrations never use realistic photography; the product shots never use 3D perspective. Everything is flat, drawn, or printed.",
+    "similar": [
+      {
+        "why": "Same near-monochrome palette with a single vivid accent color and tight typographic system, though Linear skews darker",
+        "business": "Linear"
+      },
+      {
+        "why": "Same pattern of two-tone headlines (one phrase dark, one phrase muted gray) and editorial spacing rhythm on a white canvas",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same use of a single saturated accent color (Arc uses blue) against a near-white canvas with custom display type",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Same pill-shaped buttons, generous white space, and the same instinct to use one small saturated color as punctuation rather than a dominant brand color",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "cards": "12px",
+        "pills": "9999px",
+        "badges": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, hero canvas with dot grid overlay"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Soft Card",
+        "level": 1,
+        "purpose": "Secondary buttons, subtle surface lifts"
+      },
+      {
+        "hex": "#e6f1ff",
+        "name": "Tinted Card",
+        "level": 2,
+        "purpose": "Feature panels, product preview cards, walkthrough banners"
+      },
+      {
+        "hex": "#222222",
+        "name": "Dark Surface",
+        "level": 3,
+        "purpose": "Dark mode sections or inverted cards"
+      },
+      {
+        "hex": "#dcf58f",
+        "name": "Accent Fill",
+        "level": 4,
+        "purpose": "Primary CTA pill button only"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial sketchbook on graph paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.86
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Lime CTA",
+        "role": "The single high-intent conversion action on any page",
+        "description": "Filled pill button, 9999px radius, #dcf58f background, #0f0f0f text. Uses Apkpraktikal at 13px weight 700 with 0.05em tracking, uppercase. Padding 10px 20px. No border. This is the only lime element on the page and should appear at most once per viewport."
+      },
+      {
+        "name": "Secondary Black CTA",
+        "role": "Hero call-to-action, navigation confirmations",
+        "description": "Filled pill button, 9999px radius, #0f0f0f background, #ffffff text. Apkpraktikal 13px weight 700, uppercase, 0.05em tracking. Padding 10px 20px. No border. Used when a stronger visual weight is needed than the lime CTA, typically as the primary in-page action."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation, section links, card CTAs",
+        "description": "No background, no border. Text in #0c76fe (links) or #0f0f0f (section actions), Apk Galeria 14–16px weight 400. Often paired with a small ↗ or → glyph in #0c76fe. The right-arrow or up-right-arrow is a signature element."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section category indicator above every major heading",
+        "description": "A 6px colored dot (#0c76fe or matching accent) followed by Apkpraktikal 12–13px weight 400 in uppercase with 0.12–0.14em tracking, color #0f0f0f. Always sits above a left-aligned section heading with ~16px gap below. The dot color encodes section category."
+      },
+      {
+        "name": "Two-Tone Headline",
+        "role": "Primary page or section heading",
+        "description": "Apk Galeria 36–64px weight 500, line-height 1.0–1.2, tracking -0.5 to -1.9px. The signature: one phrase in #0f0f0f, the following phrase in a lighter weight or lighter gray (#898989 or #4c4c4c), creating a call-and-response rhythm. No drop cap, no underline, no decoration — the tonal shift IS the emphasis."
+      },
+      {
+        "name": "Ice Blue Feature Panel",
+        "role": "Product preview, walkthrough banner, soft container",
+        "description": "Full-bleed or contained card with #e6f1ff background, 12px border-radius, 24px padding. Contains a heading in Apk Galeria 18–22px #0f0f0f and an inline text link in #0c76fe. No border, no shadow — color alone defines the surface lift."
+      },
+      {
+        "name": "Product Card",
+        "role": "Feature or platform component showcase",
+        "description": "White or #e6f1ff card with 12px radius, 1px #dbdbdb border, 24px padding. Title in Apk Galeria 20–24px weight 500, body in 14–16px #4c4c4c. Includes a mock window or interface preview rendered as a nested card with a 3-dot traffic light header."
+      },
+      {
+        "name": "Side Navigation Item",
+        "role": "Category selector in platform/feature sections",
+        "description": "Horizontal row: 20px line-icon (outlined, 1.5px stroke) + Apkpraktikal 14px uppercase label in #0f0f0f or #b2b2b2 (inactive state). Active state darkens text to #0f0f0f and adds a → arrow on the right. 16px vertical padding between items."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Tag, status indicator, meta-label",
+        "description": "9999px radius, 4–8px vertical padding, 12–16px horizontal padding. Background #efefef or #ffffff with 1px #dbdbdb border. Text in Apkpraktikal 12px uppercase, 0.12em tracking, #0f0f0f."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Sticky white bar, ~64px tall, full-width. Left: logo mark (12px square + wordmark in Apk Galeria 18px). Center: 5–6 text links in Apk Galeria 14px #0f0f0f, each with a small ↗ icon. Right: 'Meridal Expert Marketplace' text link + Lime Glow CTA button."
+      },
+      {
+        "name": "Client Logo Strip",
+        "role": "Social proof footer band",
+        "description": "Horizontal row of grayscale partner/client logos on white background, 40–60px tall, evenly spaced with ~80px gaps. Logos rendered in #0f0f0f or #4c4c4c only — no color."
+      },
+      {
+        "name": "Mock Window Frame",
+        "role": "Product UI screenshot container",
+        "description": "Card-within-a-card: outer #ffffff card with 12px radius and 1px #dbdbdb border, 24px padding. Inner mock window has its own 8px radius, 1px #e0e0e0 border, and a header strip with three small circles (traffic lights) in #dbdbdb."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and body typeface. Carries headlines, body copy, buttons, and quotes with a serif-influenced rhythm. Custom font with no direct open substitute; the signature is its slightly elongated proportions and progressively tighter negative tracking as size scales up (-0.030em at 64px down to -0.009em at 18px). The two-tone headline pattern (one phrase in #0f0f0f, the next phrase in #898989 or #4c4c4c) creates a call-and-response rhythm that defines the brand voice.",
+        "sizes": "12, 14, 16, 18, 20, 22, 24, 28, 36, 48, 52, 64",
+        "family": "Apk Galeria",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.50",
+        "substitute": "GT Sectra, Tiempos Text, or Newsreader as close editorial alternatives; otherwise system serif",
+        "letterSpacing": "-0.030em at 64px, -0.024em at 52px, -0.018em at 48px, -0.014em at 36px, -0.011em at 28px, -0.010em at 24px, -0.009em at 18–22px, normal at 12–16px",
+        "fontFeatureSettings": "\"liga\" on, \"kern\" on"
+      },
+      {
+        "role": "Categorical label typeface. Used exclusively for section eyebrows (OUR PLATFORM, FEATURED SOLUTIONS), navigation items, tab labels, and badge text. The wide tracking (0.12–0.14em at 14–16px) transforms short labels into uppercase spatial signatures that read more like architectural annotations than headlines. Weight 700 for emphasized CTAs in small caps form.",
+        "sizes": "12, 13, 14, 16, 20",
+        "family": "Apkpraktikal",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.40",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "0.14em at 16px, 0.12em at 14px, 0.05em at 13px, 0.04em at 12px",
+        "fontFeatureSettings": "\"tnum\" on"
+      },
+      {
+        "role": "Karla — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Karla",
+        "weight": "400",
+        "lineHeight": "1.4"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Typographic Duet",
+        "content": "The two-font pairing is the brand's most distinctive choice and must be preserved: Apk Galeria for the human voice (narrative, body, headlines, quotes) and Apkpraktikal for the system voice (labels, categories, navigation, metadata). Never use Apkpraktikal for sentences longer than four words — the wide 0.12–0.14em tracking destroys readability at length. Never set Apk Galeria in uppercase; the letterforms are designed for mixed case and lose their character when cased."
+      }
+    ],
+    "elevationPhilosophy": "The design system intentionally avoids box-shadows and drop-shadows entirely. All visual hierarchy is achieved through three mechanisms: (1) tonal contrast between #ffffff canvas and #e6f1ff or #efefef surfaces, (2) 1px hairline borders in #dbdbdb or #b2b2b2, and (3) typographic weight and color shifts in headings. Components feel like they are printed on the same sheet of paper, not floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0f0f0f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16841612499987832
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "button",
+            "image",
+            "icon",
+            "link",
+            "card",
+            "badge"
+          ],
+          "frequency": 1589,
+          "confidence": 1,
+          "prominence": 126917696.16468307,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 16,
+            "icon/fill": 2,
+            "nav/color": 32,
+            "card/color": 12,
+            "hero/color": 1,
+            "icon/color": 10,
+            "link/color": 4,
+            "other/fill": 18,
+            "badge/color": 1,
+            "image/color": 32,
+            "other/color": 208,
+            "button/color": 3,
+            "heading/color": 12,
+            "nav/borderColor": 128,
+            "card/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 40,
+            "link/borderColor": 16,
+            "badge/borderColor": 4,
+            "image/borderColor": 128,
+            "other/borderColor": 800,
+            "button/borderColor": 12,
+            "heading/borderColor": 48,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "card",
+            "heading",
+            "link"
+          ],
+          "frequency": 392,
+          "confidence": 1,
+          "prominence": 12465227.726348242,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "card/color": 4,
+            "icon/color": 10,
+            "link/color": 1,
+            "other/fill": 36,
+            "other/color": 50,
+            "button/color": 2,
+            "heading/color": 2,
+            "card/borderColor": 16,
+            "icon/borderColor": 40,
+            "link/borderColor": 4,
+            "other/borderColor": 198,
+            "button/borderColor": 8,
+            "heading/borderColor": 8,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 304,
+          "confidence": 1,
+          "prominence": 11936267.406220714,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 12,
+            "link/color": 7,
+            "other/fill": 12,
+            "other/color": 24,
+            "button/color": 5,
+            "other/stroke": 51,
+            "icon/borderColor": 48,
+            "link/borderColor": 28,
+            "other/borderColor": 96,
+            "button/borderColor": 20,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 5495251.312474959,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 12,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4890564485258221
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 4170542.4998283,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "heading/color": 1,
+            "other/borderColor": 26,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4c4c4c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41653969239784205
+          },
+          "contexts": [
+            "body",
+            "input",
+            "button",
+            "other",
+            "link",
+            "icon",
+            "card",
+            "badge"
+          ],
+          "frequency": 254,
+          "confidence": 1,
+          "prominence": 1427399.800504586,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 3,
+            "icon/color": 1,
+            "link/color": 4,
+            "other/fill": 1,
+            "badge/color": 3,
+            "input/color": 1,
+            "other/color": 30,
+            "button/color": 8,
+            "body/borderColor": 4,
+            "card/borderColor": 12,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "badge/borderColor": 12,
+            "other/borderColor": 126,
+            "button/borderColor": 32
+          }
+        },
+        {
+          "hex": "#b2b2b2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7635757140646726
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 318,
+          "confidence": 1,
+          "prominence": 741963.1096235089,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 1,
+            "link/color": 32,
+            "other/color": 25,
+            "other/stroke": 2,
+            "body/borderColor": 20,
+            "icon/borderColor": 4,
+            "link/borderColor": 128,
+            "other/borderColor": 101
+          }
+        },
+        {
+          "hex": "#dbdbdb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8914313457035393
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 419307.4254964942,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6300934477406146
+          },
+          "contexts": [
+            "heading",
+            "input",
+            "other"
+          ],
+          "frequency": 155,
+          "confidence": 1,
+          "prominence": 362528.89981280436,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 7,
+            "other/stroke": 4,
+            "heading/color": 23,
+            "input/borderColor": 1,
+            "other/borderColor": 28,
+            "heading/borderColor": 92
+          }
+        },
+        {
+          "hex": "#9d9d9d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6960069354631117
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 234,
+          "confidence": 1,
+          "prominence": 272921.3121984772,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 5,
+            "other/fill": 5,
+            "image/color": 10,
+            "other/color": 31,
+            "icon/borderColor": 20,
+            "image/borderColor": 40,
+            "other/borderColor": 123
+          }
+        },
+        {
+          "hex": "#0c76fe",
+          "oklch": {
+            "c": 0.2202529326271449,
+            "h": 258.59800265120873,
+            "l": 0.5947877834707427
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 113805.01059457404,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 1,
+            "other/fill": 1,
+            "other/color": 1,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e6f1ff",
+          "oklch": {
+            "c": 0.022239146701048693,
+            "h": 254.3922965889056,
+            "l": 0.9540413495112322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 79596,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c6c6c6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8265622095662102
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 75196.68782357969,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 4,
+            "other/stroke": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 17
+          }
+        },
+        {
+          "hex": "#dcf58f",
+          "oklch": {
+            "c": 0.13021210354227528,
+            "h": 120.258490127473,
+            "l": 0.92961772376642
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 9283.12536672381,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6d6dd4",
+          "oklch": {
+            "c": 0.154137654182335,
+            "h": 280.5259905233031,
+            "l": 0.5850436514810687
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1992.6326123350832,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/stroke": 5,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b09e7c",
+          "oklch": {
+            "c": 0.05152177667115578,
+            "h": 83.21620724184218,
+            "l": 0.7062052805967769
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1728,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/stroke": 2,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e37de1",
+          "oklch": {
+            "c": 0.17569328857256405,
+            "h": 327.88988472608656,
+            "l": 0.7361110352865397
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#8e8ef6",
+          "oklch": {
+            "c": 0.1505175500798684,
+            "h": 281.7330524862059,
+            "l": 0.692062681996847
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005570343830688533,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.17,
+          "background": "#ffffff",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.79,
+          "background": "#e6f1ff",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#efefef",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.97,
+          "background": "#dcf58f",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.93,
+          "background": "#e6f1ff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#efefef",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.84,
+          "background": "#0f0f0f",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.26,
+          "background": "#dcf58f",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#222222",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#0f0f0f",
+          "foreground": "#c6c6c6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#222222",
+          "foreground": "#c6c6c6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#0f0f0f",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffffff",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.56,
+          "background": "#e37de1",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.52,
+          "background": "#e6f1ff",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#222222",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#efefef",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#0f0f0f",
+          "foreground": "#b09e7c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.16,
+          "background": "#dcf58f",
+          "foreground": "#4c4c4c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "card",
+            "input",
+            "body"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "input",
+            "badge"
+          ],
+          "frequency": 82,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|input",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 98,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 47,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 308,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Apk Galeria",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 527,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apkpraktikal",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 112,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Karla",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.14,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "badge"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.034,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Apkpraktikal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.12,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "icon",
+            "link",
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 279,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Karla",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Apkpraktikal",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Apkpraktikal",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Apk Galeria",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Apk Galeria",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 64,
+          "family": "Apk Galeria",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4f6c2899-286f-49f7-aa60-8a6f9dda315d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b1cd69b1-01be-4e0f-92a8-d9039a7634e3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Invisibletech design system\",\"item\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f#style-reference\",\"name\":\"Invisibletech design system reference\",\"headline\":\"Invisibletech design system | Refero Styles\",\"description\":\"Explore Invisibletech's light AI design system: Carbon Ink #0f0f0f, Graphite #222222 colors, Apk Galeria, Apkpraktikal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Invisibletech\",\"url\":\"https://invisibletech.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c6136c4a-9e89-4dc5-93d3-e1adf58dbc2f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b1cd69b1-01be-4e0f-92a8-d9039a7634e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b1cd69b1-01be-4e0f-92a8-d9039a7634e3.jpg\",\"caption\":\"Screenshot of Invisibletech\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b1cd69b1-01be-4e0f-92a8-d9039a7634e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Invisibletech design system\",\"Invisibletech website design\",\"Invisibletech colors\",\"Invisibletech typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Carbon Ink\",\"Graphite\",\"Iron\",\"Steel\",\"Apk Galeria\",\"Apkpraktikal\",\"Karla\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Invisibletech design system\"},{\"@type\":\"Thing\",\"name\":\"Invisibletech website design\"},{\"@type\":\"Thing\",\"name\":\"Invisibletech colors\"},{\"@type\":\"Thing\",\"name\":\"Invisibletech typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-10T22:05:30.480Z\",\"dateModified\":\"2026-05-10T22:05:30.480Z\"}]}19:T47c,Invisible Tech reads as an editorial sketchbook laid over graph paper: a near-pure white canvas dotted with a faint grid, scattered with loose hand-drawn vignettes (basketball players, overhead cars, a globe), and anchored by a tight two-column content rhythm. The typographic system is a deliberate duet between two custom faces — Apk Galeria carries everything human (body, headlines, quotes) with a serif-influenced rhythm and progressively tighter tracking as type scales up, while Apkpraktikal handles everything categorical as wide-tracked small caps (section eyebrows, navigation labels, tab names). The color system is almost entirely achromatic — black, graphite, and a stack of grays do 98% of the work — with exactly two chromatic accents that carry meaning: a vivid cobalt blue for wayfinding dots and a lime-chartreuse green reserved exclusively for the primary conversion action. Components are pill-shaped, borders are 1px hairlines, and the page never raises its voice with shadows or gradients — it whispers, then lets the two-tone headline (one phrase in near-black, the following phrase in mid-gray) do the dramatic work.1a:T5f8,**Quick Color Reference**\n- text: #0f0f0f (primary), #4c4c4c (body), #898989 (muted)\n- background: #ffffff (canvas), #e6f1ff (feature card), #efefef (soft surface)\n- border: #dbdbdb (default), #b2b2b2 (decorative)\n- accent: #0c76fe (wayfinding dots, links, icons)\n- primary action: #dcf58f (filled action)\n\n**3-5 Example Component Prompts**\n\n1. *Hero headline*: Apk Galeria 64px weight 500, #0f0f0f for the first phrase, #898989 for the second phrase at the same weight, line-height 1.0, letter-spacing -1.92px. Max-width 900px, left-aligned on white canvas with a faint dot-grid background.\n\n2. *Section eyebrow + heading*: 6px #0c76fe dot, then Apkpraktikal 13px weight 400 uppercase with 0.12em tracking in #0f0f0f. Below at 16px gap: Apk Galeria 48px weight 500, #0f0f0f, letter-spacing -0.86px, line-height 1.1. Left-aligned, max-width 800px.\n\n3. *Primary lime CTA button*: 9999px radius pill, #dcf58f background, Apkpraktikal 13px weight 700 uppercase with 0.05em tracking in #0f0f0f. Padding 10px 20px. No border, no shadow. Place once per viewport at the highest-intent action.\n\n4. *Ice blue feature panel*: #e6f1ff background, 12px radius, 24px padding. Heading in Apk Galeria 22px weight 500 #0f0f0f, inline link in Apk Galeria 14px #0c76fe with a ↗ arrow. No border, no shadow.\n\n5. *Side navigation item*: 20px outlined line-icon (1.5px stroke, #0f0f0f) + Apkpraktikal 14px uppercase label with 0.12em tracking in #0f0f0f. Active state adds a → arrow on the right at 16px gap. 16px vertical padding between items."
+}

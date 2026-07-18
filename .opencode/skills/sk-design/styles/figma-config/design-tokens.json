@@ -1,0 +1,195 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, all surface backgrounds"
+    },
+    "chalk": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Chalk — Primary text, nav links, ghost-button borders, hairline rules, footer text — the only foreground color in the system"
+    },
+    "graphite": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Graphite — Subtle button borders and secondary dividers that recede against the canvas"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Inverted button surface (ghost buttons flipped to filled) and rare high-contrast accents"
+    }
+  },
+  "font": {
+    "figmasans": {
+      "$value": "figmaSans",
+      "$type": "fontFamily",
+      "$description": "The single typeface carrying every UI surface — body, nav, button, hero, footer. Only weight 400 is used; hierarchy is built through size alone, not weight contrast. The 80px display weight uses line-height 0.95, letting lines nearly touch — this near-zero leading is the signature move and only works because figmaSans is a custom geometric sans with no visible ascender/descender collision. Tight letter-spacing (-0.03em at display, -0.02em at body) tightens optical color across the page."
+    },
+    "figmamono": {
+      "$value": "figmaMono",
+      "$type": "fontFamily",
+      "$description": "Sparingly used for inline button labels and icon-adjacent text where a monospaced voice is needed. Letter-spacing is normal — monospaced faces should not be artificially tracked."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "figmaMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "157": {
+      "$value": "157px",
+      "$type": "dimension",
+      "$description": "Spacing 157px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant surface across all screens"
+    },
+    "inverted-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Rare inverted surface for the cookie consent dialog; functions as a sheet lifted off the black canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://config.figma.com/events/figma-config-2022",
+      "siteName": "Figma Config",
+      "extractedAt": "2026-06-03T18:01:59.688Z",
+      "variant": "extended"
+    }
+  }
+}

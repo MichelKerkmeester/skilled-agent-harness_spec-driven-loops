@@ -1,0 +1,1162 @@
+{
+  "source": "https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed",
+  "uuid": "d531f0ec-ea94-4a40-b568-3073ff2bd8ed",
+  "name": "Atelier Deux-Cé",
+  "northStar": "Sunlit editorial gallery",
+  "capturedAt": "2026-07-18T09:13:50.715Z",
+  "meta": {
+    "url": "https://deux-ce.com",
+    "siteName": "Atelier Deux-Cé",
+    "extractedAt": "2026-06-03T20:25:01.824Z",
+    "durationMs": 41522,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 477,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Let full-bleed photography drive every primary screen — type and chrome are captions, not the subject",
+      "Stack sections using the warm neutral scale (Canvas White → Warm Linen → Pale Sage → Driftwood → Olive Stone) to create rhythm without shadows",
+      "Use the two type families in deliberate contrast: Helvetica for functional UI and metadata, minion-3 for editorial body paragraphs and book-page moments",
+      "Apply letter-spacing 0.02em to body and 0.04em to navigation, labels, and uppercase tags across both type families — this slightly positive tracking is the system's quiet signature",
+      "Keep all component radii at 0px — the design is print-flat, not card-lifted",
+      "Reserve Garden Green (#259558) exclusively for the footer — do not introduce it as a button, link, or accent elsewhere",
+      "Set the type scale at 16 / 17 / 20 / 24px only — a compressed scale is a discipline, not a limitation"
+    ],
+    "donts": [
+      "Do not add box-shadows, drop shadows, glows, or gradient overlays — hierarchy comes from color and image, never from elevation",
+      "Do not introduce saturated colors beyond the single footer green — the palette is warm earth tones, period",
+      "Do not round corners on cards, buttons, images, or tags — 0px radius is non-negotiable",
+      "Do not use filled buttons, ghost buttons, or pill buttons — the system has no button component, only text links and the footer band",
+      "Do not use icons beyond a single minimal hamburger — the site is image-led, not icon-led",
+      "Do not set type in negative letter-spacing — the positive 0.02–0.04em tracking is a defining choice and must not be tightened",
+      "Do not add decorative borders thicker than 1px hairlines, and never use border colors outside the neutral scale"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, headings, nav links, hairline borders, and link underlines — the single type color across the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, card surfaces, reverse text on dark photographic regions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eee5da",
+        "name": "Warm Linen",
+        "role": "Soft section background, the first step off pure white — gives a page the warmth of unbleached paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8ddc6",
+        "name": "Pale Sage",
+        "role": "Tinted section panels, the dominant non-white canvas tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d0c5",
+        "name": "Driftwood",
+        "role": "Deeper warm section background, used when a panel needs to recede from Pale Sage",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afb371",
+        "name": "Olive Stone",
+        "role": "Saturated warm section background — the deepest neutral step before any chromatic color enters",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9c978a",
+        "name": "Weathered Taupe",
+        "role": "Muted section background, used sparingly as a quieter alternative to Olive Stone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaa4",
+        "name": "Soft Pebble",
+        "role": "Light warm-gray section background, the coolest of the earth-tone neutrals",
+        "group": "neutral"
+      },
+      {
+        "hex": "#259558",
+        "name": "Garden Green",
+        "role": "Footer background only — the single chromatic accent in the system, used as a deliberate closing beat rather than a brand color spread across the UI",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page is a max-width-agnostic, full-bleed layout that reads top-to-bottom like a printed magazine. The hero is a split-screen: two full-viewport-height images meeting at a hard vertical center seam, with floating type and a small white mark. Below the hero, content sections alternate between narrow reading columns (roughly 480–600px) of editorial body text and full-bleed 2-column image grids for project showcases. Section rhythm is created by shifting the warm neutral background tone between sections — there is no light/dark alternation, only warm-pale to warm-saturated tonal shifts. A flat inline list of categories with parenthetical counts acts as a table of contents, sitting on a Pale Sage band. Navigation is minimal: wordmark left, hamburger right, no sticky bar, no sidebar, no mega-menu. The footer is a single full-bleed Garden Green band.",
+    "imagery": "Editorial photography is the dominant content type and the primary visual subject of every page. Images are full-bleed, edge-to-edge, rectangular with no radius, and often paired in split-screen compositions where two photographs meet at a hard vertical seam. The photography style is warm, naturally lit, and lifestyle-adjacent — fashion models, hotel exteriors, packaging close-ups, Mediterranean landscapes, and product-in-context shots (champagne in rapeseed fields, chocolate on linen). No illustration, no 3D renders, no abstract graphics, no product UI screenshots. The only icon present on the site is a single minimal white mark in the hero. Photography is the hero; the interface is the frame around it.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine reading flow, warm naturally lit photography as primary content, compressed type scale, and earth-toned neutral palette",
+        "business": "Cereal Magazine"
+      },
+      {
+        "why": "Warm cream-and-taupe surface stack, photography-led product presentation, restrained Helvetica type, and absence of shadows or decorative chrome",
+        "business": "Aesop"
+      },
+      {
+        "why": "Luxury agency feel with warm earth-tone palette, photography as the hero, and minimal type-driven UI",
+        "business": "Hermès corporate site"
+      },
+      {
+        "why": "Editorial fashion-agency sensibility, compressed sans-serif type scale, and print-flat layout with 0px radii throughout",
+        "business": "Acne Studios"
+      },
+      {
+        "why": "Editorial restraint, type used as quiet captioning over imagery, and a single saturated accent reserved for a closing beat",
+        "business": "Maison Martin Margiela"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "48px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 1,
+        "purpose": "Base page background and any reverse-text surface"
+      },
+      {
+        "hex": "#eee5da",
+        "name": "Warm Linen",
+        "level": 2,
+        "purpose": "First tinted step — section bands, project card surfaces"
+      },
+      {
+        "hex": "#d8ddc6",
+        "name": "Pale Sage",
+        "level": 3,
+        "purpose": "Dominant warm panel tone, used for content sections and category list backgrounds"
+      },
+      {
+        "hex": "#d8d0c5",
+        "name": "Driftwood",
+        "level": 4,
+        "purpose": "Deeper warm panel, used to create gentle tonal rhythm between Sage sections"
+      },
+      {
+        "hex": "#afb371",
+        "name": "Olive Stone",
+        "level": 5,
+        "purpose": "Saturated warm panel — the deepest neutral surface before chromatic color"
+      }
+    ],
+    "northStar": "Sunlit editorial gallery",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Split-Screen Hero",
+        "role": "Full-bleed opening composition that pairs two photographs meeting at a hard vertical center seam",
+        "description": "Two edge-to-edge images, no gap, no border, no radius. Each half is a full-bleed photograph treated as equal weight. Type and a small white mark float over one or both halves. Background of the photographic regions is implicit; surrounding canvas uses Canvas White."
+      },
+      {
+        "name": "Hero Caption Label",
+        "role": "Small editorial caption floating over a hero image — project credit, model, location",
+        "description": "White text, Helvetica 16px weight 400, letter-spacing 0.04em, line-height 1.2. Multi-line stack with project name in weight 600, supporting lines in weight 400. No background plate — the text sits directly on the photograph."
+      },
+      {
+        "name": "Wordmark + Hamburger Navigation",
+        "role": "Minimal global navigation — brand wordmark on the left, single hamburger icon on the right",
+        "description": "Wordmark is Helvetica weight 600, 20px, letter-spacing 0.04em, color Ink Black. Hamburger is a thin black stroke icon. The entire nav is hairline-thin and floats over the page without a background fill or border."
+      },
+      {
+        "name": "Editorial Body Text Block",
+        "role": "Long-form descriptive paragraph used for the 'What we do' and similar sections",
+        "description": "minion-3 or Helvetica at 17px, line-height 1.2, color Ink Black. Set in a narrow reading column (roughly 480–600px wide) with generous surrounding whitespace. No drop cap, no pull quote, no decorative rule — the text is the design."
+      },
+      {
+        "name": "Category Filter List",
+        "role": "Inline multi-row list of project categories with item counts, acting as a navigation index",
+        "description": "Helvetica 16px weight 400, letter-spacing 0.04em, color Ink Black. Items flow inline with normal word spacing, counts in parentheses right after each label. No chips, no pills, no background fills — the list reads as a printed table of contents."
+      },
+      {
+        "name": "Project Card",
+        "role": "Image-forward project entry in the 2-column portfolio grid",
+        "description": "Image fills the card edge-to-edge with 0px radius. No border, no shadow, no padding around the image. Caption sits below the image: project name in Helvetica weight 600 at 16px, discipline label and date in Helvetica weight 400 at 16px, both color Ink Black, letter-spacing 0.04em. Column gap of 48px between cards."
+      },
+      {
+        "name": "Read More Link",
+        "role": "Text link ending an editorial paragraph",
+        "description": "Helvetica 16px weight 600, color Ink Black, letter-spacing 0.04em, rendered in all caps. No underline at rest; a 1px black underline appears on hover. No background, no border, no padding."
+      },
+      {
+        "name": "Footer Banner",
+        "role": "Full-bleed closing band of the page",
+        "description": "Background color Garden Green (#259558), full viewport width, no radius, no border. Contains navigation links and credits in reverse type (Canvas White) at the same Helvetica sizes and letter-spacing used throughout."
+      },
+      {
+        "name": "Inline Section Label",
+        "role": "Small uppercase tag identifying a section ('WHAT WE DO')",
+        "description": "Helvetica 16px weight 600, all caps, color Ink Black, letter-spacing 0.04em. Sits at the start of a section, left-aligned, with 24px gap to the body text below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and editorial type — body copy, navigation, links, project captions, category filters, and all functional text. Weight 400 for body and metadata, weight 600 reserved for the wordmark and the few moments that need emphasis. The system stack ensures identical rendering across platforms without depending on a webfont.",
+        "sizes": "16, 17, 20, 24",
+        "family": "Helvetica",
+        "weight": "400, 600",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica Neue, Arial, sans-serif",
+        "letterSpacing": "0.02em on body and UI text (0.32–0.48px), 0.04em on navigation and labels (0.64–0.96px) — the slightly positive tracking gives the type a refined, typeset-in-metal quality rare in modern web UI"
+      },
+      {
+        "role": "Editorial accent serif — used for body paragraphs and select headings where a literary, book-page quality is desired. The contrast between this transitional serif and the geometric Helvetica mirrors the brand's positioning: strategy + craft, editorial + commercial.",
+        "sizes": "16, 17, 24",
+        "family": "minion-3",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Cormorant Garamond, EB Garamond, serif"
+      }
+    ],
+    "description": "Atelier Deux-Cé presents itself as a sunlit editorial gallery — a Paris-based creative agency whose site reads like a curated magazine spread rather than a software product. The system is photography-first: full-bleed images dominate every screen, with type acting as quiet captions and labels rather than interface chrome. A palette of warm, sun-bleached earth tones (cream, linen, sage, taupe, olive stone) replaces the typical white/gray SaaS canvas, giving every page the warmth of a Provençal villa. Black type sits at near-maximum contrast against these warm surfaces, and a single saturated green is reserved for the footer like a garden border at the end of a path. Components are deliberately few and weightless — no shadows, no gradients, no borders thicker than hairlines, no rounded corners fighting the editorial print sensibility.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atelier Deux-Cé design system\",\"item\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#style-reference\",\"name\":\"Atelier Deux-Cé design system reference\",\"headline\":\"Atelier Deux-Cé design system | Refero Styles\",\"description\":\"Explore Atelier Deux-Cé's light Agency design system: Ink Black #000000, Canvas White #ffffff colors, Helvetica, minion-3 typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atelier Deux-Cé\",\"url\":\"https://deux-ce.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"caption\":\"Screenshot of Atelier Deux-Cé\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atelier Deux-Cé design system\",\"Atelier Deux-Cé website design\",\"Atelier Deux-Cé colors\",\"Atelier Deux-Cé typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Canvas White\",\"Warm Linen\",\"Pale Sage\",\"Helvetica\",\"minion-3\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé design system\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé website design\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé colors\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-11T00:08:45.904Z\",\"dateModified\":\"2026-05-11T00:08:45.904Z\"}]}19:T939,## Quick Color Reference\n\n- text: #000000\n- background: #ffffff\n- surface (warm): #eee5da\n- surface (tinted): #d8ddc6\n- border: #000000 (hairline, 1px max)\n- accent: #259558 (footer only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Split-Screen Hero:** Full-bleed composition, two edge-to-edge photographs meeting at a hard vertical center seam with no gap, no border, 0px radius. Left half: editorial portrait photograph. Right half: lifestyle/location photograph. Floating caption on the left half — project name in Helvetica weight 600 16px #ffffff letter-spacing 0.64px, supporting lines in weight 400 16px #ffffff. Small white mark (single glyph, ~32px) above the caption. Wordmark top-left in Helvetica weight 600 20px #000000 letter-spacing 0.8px. Hamburger icon top-right as a 1px black stroke. No nav background fill.\n\n**2. Category Filter Index:** Pale Sage (#d8ddc6) full-bleed section band, 48px vertical padding. Two-row inline list of category names in Helvetica weight 400 16px #000000 letter-spacing 0.64px, counts in parentheses after each label, 24px gap between items. No chips, no pills, no background fills. Functions as a printed table of contents.\n\n**3. Project Card (Portfolio Grid):** Full-bleed rectangular image with 0px radius, no border, no padding around the image. 48px column gap between cards in a 2-column grid. Below the image, project name in Helvetica weight 600 16px #000000 letter-spacing 0.64px, then discipline and date in Helvetica weight 400 16px #000000 letter-spacing 0.64px on the line below. No card background, no shadow — the image is the card.\n\n**4. Editorial Body Section:** Canvas White (#ffffff) background. Section label at the top — 'WHAT WE DO' — in Helvetica weight 600 16px #000000 letter-spacing 0.64px, all caps. 24px gap below, then a narrow reading column (max ~560px) of body text in minion-3 or Helvetica 17px #000000 line-height 1.2 letter-spacing 0.34px. Ends with a 'READ MORE' text link in Helvetica weight 600 16px #000000 letter-spacing 0.64px, all caps, 1px black underline on hover only.\n\n**5. Footer Banner:** Full-viewport-width band, background #259558, no radius, no border, 40–48px vertical padding. Footer links in Helvetica weight 400 16px #ffffff letter-spacing 0.64px. The single chromatic color in the system lives here and nowhere else."
+      }
+    ],
+    "elevationPhilosophy": "No box-shadows, no glows, no drop filters. The system creates hierarchy exclusively through full-bleed photography and warm color shifts between adjacent sections. Components are weightless — they sit on the page like prints pinned to a wall, not cards lifted off a surface. Any visible separation comes from a hairline black rule or a tonal step in the neutral scale."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 2352,
+          "confidence": 1,
+          "prominence": 128659461.59262274,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 43,
+            "body/color": 16,
+            "card/color": 21,
+            "hero/color": 1,
+            "link/color": 81,
+            "list/color": 107,
+            "image/color": 7,
+            "other/color": 188,
+            "footer/color": 1,
+            "heading/color": 8,
+            "nav/borderColor": 172,
+            "body/borderColor": 50,
+            "card/borderColor": 84,
+            "hero/borderColor": 4,
+            "link/borderColor": 324,
+            "list/borderColor": 428,
+            "image/borderColor": 28,
+            "other/borderColor": 752,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 5083752.045246519,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 3,
+            "link/borderColor": 4,
+            "other/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8ddc6",
+          "oklch": {
+            "c": 0.03129560933066948,
+            "h": 117.00374255746914,
+            "l": 0.8874831765978782
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1626171.5257399061,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#9c978a",
+          "oklch": {
+            "c": 0.019576798754402058,
+            "h": 89.40855927921652,
+            "l": 0.6768935483452657
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1220406,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#aaaaa4",
+          "oklch": {
+            "c": 0.008485146355743038,
+            "h": 106.60619116930314,
+            "l": 0.7362559253366829
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1220406,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#259558",
+          "oklch": {
+            "c": 0.1351040899622867,
+            "h": 154.23482185987203,
+            "l": 0.5936535566944032
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1140000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8d0c5",
+          "oklch": {
+            "c": 0.017420094373518394,
+            "h": 76.09609167802408,
+            "l": 0.8609692521114262
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#afb371",
+          "oklch": {
+            "c": 0.08761464649042709,
+            "h": 111.2989641603178,
+            "l": 0.7480113513209349
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#683e28",
+          "oklch": {
+            "c": 0.06815838459723221,
+            "h": 47.7985103529704,
+            "l": 0.40889609273792143
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8b8c7d",
+          "oklch": {
+            "c": 0.021869560430283923,
+            "h": 110.1121552277604,
+            "l": 0.634856046190915
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eee5da",
+          "oklch": {
+            "c": 0.017706447822610667,
+            "h": 73.06930656305451,
+            "l": 0.9259915939035566
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b2a895",
+          "oklch": {
+            "c": 0.02901586699028538,
+            "h": 83.51828570305211,
+            "l": 0.7347692813636884
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#697263",
+          "oklch": {
+            "c": 0.025309903430660956,
+            "h": 132.71945949777992,
+            "l": 0.5398444622097974
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#96956f",
+          "oklch": {
+            "c": 0.0533500976783958,
+            "h": 106.51256751898035,
+            "l": 0.660733476777865
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 610203,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#60a7a4",
+          "oklch": {
+            "c": 0.07185762684062583,
+            "h": 192.09144957096467,
+            "l": 0.6810539184528254
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#afa078",
+          "oklch": {
+            "c": 0.05753022735282266,
+            "h": 89.8988733400956,
+            "l": 0.7086157445791861
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#727959",
+          "oklch": {
+            "c": 0.04786976707620442,
+            "h": 117.99174201865303,
+            "l": 0.5613042260208894
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a8967b",
+          "oklch": {
+            "c": 0.04358245132691642,
+            "h": 77.89752111381902,
+            "l": 0.6818209181079027
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d64724",
+          "oklch": {
+            "c": 0.1854116208312108,
+            "h": 34.63896368958244,
+            "l": 0.5949644038471666
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8ea09b",
+          "oklch": {
+            "c": 0.021597417204153858,
+            "h": 177.13595722459422,
+            "l": 0.6900952598365548
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bf8249",
+          "oklch": {
+            "c": 0.10521088192321892,
+            "h": 62.31523214867434,
+            "l": 0.6570461401801754
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 261664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0012801882288926791,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#eee5da",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#d8ddc6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#d8d0c5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#afb371",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.1,
+          "background": "#683e28",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#aaaaa4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.93,
+          "background": "#b2a895",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.12,
+          "background": "#afa078",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.65,
+          "background": "#8ea09b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.56,
+          "background": "#60a7a4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.31,
+          "background": "#a8967b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.3,
+          "background": "#eee5da",
+          "foreground": "#683e28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.21,
+          "background": "#9c978a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.83,
+          "background": "#96956f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.53,
+          "background": "#d8ddc6",
+          "foreground": "#683e28"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.5,
+          "background": "#bf8249",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.15,
+          "background": "#8b8c7d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.96,
+          "background": "#d8d0c5",
+          "foreground": "#683e28"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.52,
+          "background": "#259558",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "list",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "rowGap|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "rowGap|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingBottom|list",
+            "columnGap|list",
+            "marginTop|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 383,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "minion-3",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 94,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "image",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "minion-3",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "minion-3",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 165,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "minion-3",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 57,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "minion-3",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9eb5ab67-ef2c-4687-8e58-585112f7ec58.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atelier Deux-Cé design system\",\"item\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#style-reference\",\"name\":\"Atelier Deux-Cé design system reference\",\"headline\":\"Atelier Deux-Cé design system | Refero Styles\",\"description\":\"Explore Atelier Deux-Cé's light Agency design system: Ink Black #000000, Canvas White #ffffff colors, Helvetica, minion-3 typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atelier Deux-Cé\",\"url\":\"https://deux-ce.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d531f0ec-ea94-4a40-b568-3073ff2bd8ed#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"caption\":\"Screenshot of Atelier Deux-Cé\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c0140cfb-92da-4b70-a3f7-a50f6f137fcc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atelier Deux-Cé design system\",\"Atelier Deux-Cé website design\",\"Atelier Deux-Cé colors\",\"Atelier Deux-Cé typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Canvas White\",\"Warm Linen\",\"Pale Sage\",\"Helvetica\",\"minion-3\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé design system\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé website design\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé colors\"},{\"@type\":\"Thing\",\"name\":\"Atelier Deux-Cé typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-11T00:08:45.904Z\",\"dateModified\":\"2026-05-11T00:08:45.904Z\"}]}19:T939,## Quick Color Reference\n\n- text: #000000\n- background: #ffffff\n- surface (warm): #eee5da\n- surface (tinted): #d8ddc6\n- border: #000000 (hairline, 1px max)\n- accent: #259558 (footer only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Split-Screen Hero:** Full-bleed composition, two edge-to-edge photographs meeting at a hard vertical center seam with no gap, no border, 0px radius. Left half: editorial portrait photograph. Right half: lifestyle/location photograph. Floating caption on the left half — project name in Helvetica weight 600 16px #ffffff letter-spacing 0.64px, supporting lines in weight 400 16px #ffffff. Small white mark (single glyph, ~32px) above the caption. Wordmark top-left in Helvetica weight 600 20px #000000 letter-spacing 0.8px. Hamburger icon top-right as a 1px black stroke. No nav background fill.\n\n**2. Category Filter Index:** Pale Sage (#d8ddc6) full-bleed section band, 48px vertical padding. Two-row inline list of category names in Helvetica weight 400 16px #000000 letter-spacing 0.64px, counts in parentheses after each label, 24px gap between items. No chips, no pills, no background fills. Functions as a printed table of contents.\n\n**3. Project Card (Portfolio Grid):** Full-bleed rectangular image with 0px radius, no border, no padding around the image. 48px column gap between cards in a 2-column grid. Below the image, project name in Helvetica weight 600 16px #000000 letter-spacing 0.64px, then discipline and date in Helvetica weight 400 16px #000000 letter-spacing 0.64px on the line below. No card background, no shadow — the image is the card.\n\n**4. Editorial Body Section:** Canvas White (#ffffff) background. Section label at the top — 'WHAT WE DO' — in Helvetica weight 600 16px #000000 letter-spacing 0.64px, all caps. 24px gap below, then a narrow reading column (max ~560px) of body text in minion-3 or Helvetica 17px #000000 line-height 1.2 letter-spacing 0.34px. Ends with a 'READ MORE' text link in Helvetica weight 600 16px #000000 letter-spacing 0.64px, all caps, 1px black underline on hover only.\n\n**5. Footer Banner:** Full-viewport-width band, background #259558, no radius, no border, 40–48px vertical padding. Footer links in Helvetica weight 400 16px #ffffff letter-spacing 0.64px. The single chromatic color in the system lives here and nowhere else."
+}

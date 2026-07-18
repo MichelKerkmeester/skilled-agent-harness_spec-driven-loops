@@ -1,0 +1,1442 @@
+{
+  "source": "https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0",
+  "uuid": "573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0",
+  "name": "Tableland",
+  "northStar": "alpine dusk at the terminal — soft coral peaks rising over a deep green-black void with one mint-green signal light glowing on the horizon.",
+  "capturedAt": "2026-07-18T08:42:01.585Z",
+  "meta": {
+    "url": "https://tableland.xyz",
+    "siteName": "Tableland",
+    "extractedAt": "2026-06-03T22:01:16.268Z",
+    "durationMs": 71888,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 442,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Poppins 300 for all display and section headings — the whisper-weight is the signature voice",
+      "Reserve #0be291 (mint) exclusively for emphasized section headings; never apply it to body, links, or backgrounds",
+      "Use #75b6b5 (teal) for all interactive voice — nav links, icon strokes, learn-more affordances",
+      "Layer surfaces using the four-step scale: #101e1 (page) → #162929 (mid) → #3b4949 (elevated card) → #1a1a1a (terminal)",
+      "Use 4px radius for buttons and code blocks, 8px for content cards, 16px for elevated testimonial cards, 9999px only for tags and icon containers",
+      "Center-align section headings and give each section at least 128px vertical breathing room",
+      "Keep the lavender hero as the single painted moment — do not introduce gradients or illustrations into the dark interior"
+    ],
+    "donts": [
+      "Do not use weight 600+ on display headings — the light-weight restraint IS the brand voice",
+      "Do not apply #0be291 to links, icons, or backgrounds — it loses hierarchy when scattered",
+      "Do not use pill radius (9999px) on buttons or cards — pills are reserved for tags and icon containers only",
+      "Do not introduce shadows or elevation effects — the design relies on surface color steps, not depth",
+      "Do not use pure black (#000000) — all darks are slightly green-tinted (#101e1, #1a1a1a, #162929)",
+      "Do not add accent colors beyond the existing four (teal, mint, coral, lavender) — the palette is intentionally narrow",
+      "Do not use more than one chromatic color per UI region — teal for interaction, mint for emphasis, coral only in the hero illustration"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#75b6b5",
+        "name": "Abyss Teal",
+        "role": "Teal text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#0be291",
+        "name": "Mint Beacon",
+        "role": "Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#f4706b",
+        "name": "Coral Ember",
+        "role": "Decorative icon accent — used sparingly in nav icons and the hero illustration's mountain highlights. Warm counterpoint to the cool teal/mint palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#e4cbf2",
+        "name": "Lavender Mist",
+        "role": "Hero atmosphere — the soft lavender backdrop of the hero section and mountain illustration sky. Only used in the hero band; never in component surfaces or UI chrome",
+        "group": "accent"
+      },
+      {
+        "hex": "#101e1e",
+        "name": "Void",
+        "role": "Page canvas and primary action background — the base layer of the dark theme and the fill of filled CTA buttons (Enter Studio, Discord). Slightly green-tinted black rather than pure neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon",
+        "role": "Deep surface — code block backgrounds, terminal interiors, darkest elevated layers. One step below void for maximum contrast terminal aesthetic",
+        "group": "neutral"
+      },
+      {
+        "hex": "#162929",
+        "name": "Slate",
+        "role": "Mid surface and hairline borders — card backgrounds, button borders, dividers. Bridges between void and the lighter elevated steps",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b4949",
+        "name": "Graphite",
+        "role": "Elevated card surface and hover-state fills — the topmost card tier, used for testimonial cards and hover backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#718b8b",
+        "name": "Fog",
+        "role": "Muted text and inactive nav icons — body helper text, inactive nav glyphs, secondary metadata. The de-emphasized reading layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash",
+        "role": "Hairline borders and dividers — the universal 1px border color used across nav, cards, icons, and structural separators. Primary border token",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Primary text and icon fill — all high-emphasis body copy, headings, and filled icon shapes. The top of the text contrast scale",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page is max-width 1200px centered with generous horizontal padding (80px on desktop). The hero is split-layout: left column holds eyebrow label, display headline, body copy, and CTA; right column is dominated by the mountain illustration bleeding off the right edge. Below the hero, the page alternates into full-width dark bands with centered headings and either 2-column or 4-column content grids. The 'Build on decentralized data' section uses a 4-column equal grid for feature cards (SQLite, On-chain security, Portable, Multi-chain), then drops to a single-column full-width block for Pricing. The 'Join the community' section breaks the grid with a horizontally scrolling testimonial card carousel that peeks cards at the edges. Section gaps are 128px, giving each dark band room to breathe. Navigation is a minimal top bar: logo left, 4 text links plus 1 ghost pill button right, 64px height, 1px bottom border in #e5e7eb.",
+    "imagery": "The site has exactly one illustrative element: a painted mountain landscape in the hero section, rendered in flat geometric facets of coral (#f4706b) with soft gradient sky (#e4cbf2 to #f5d4e8). No photography, no 3D renders, no decorative graphics anywhere in the dark interior. Icons throughout are simple line-drawn strokes in 1.5px weight, using teal (#75b6b5) as the standard color. The visual language is deliberately sparse: the hero illustration is the only emotional moment, and the rest of the page communicates through type, surface color, and code. This restraint signals developer credibility — the product is the content, not the decoration.",
+    "similar": [
+      {
+        "why": "Same dark-mode developer infrastructure aesthetic with a single hero illustration and quiet, weight-300 display headlines",
+        "business": "The Graph"
+      },
+      {
+        "why": "Dark canvas with an illustrated landscape hero, mint-green accent for emphasized headings, and terminal-style code blocks",
+        "business": "Filecoin"
+      },
+      {
+        "why": "Near-black surface stack with a four-step elevation scale, teal interactive voice, and flat geometric illustration in the hero",
+        "business": "Ceramic Network"
+      },
+      {
+        "why": "Developer-facing dark surface with a single brand-color moment in the hero, monospace code examples, and whisper-light Poppins-style headlines",
+        "business": "IPFS"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "buttons": "4px",
+        "code-blocks": "4px",
+        "elevated-cards": "16px",
+        "icon-containers": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#101e1",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the base dark layer across all interior sections"
+      },
+      {
+        "hex": "#162929",
+        "name": "Mid Surface",
+        "level": 1,
+        "purpose": "Subtle card backgrounds and structural borders — bridges void and elevated"
+      },
+      {
+        "hex": "#3b4949",
+        "name": "Elevated Card",
+        "level": 2,
+        "purpose": "Testimonial and elevated content cards"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Terminal",
+        "level": 3,
+        "purpose": "Code blocks and deepest UI elements — the darkest tier for maximum contrast"
+      }
+    ],
+    "northStar": "alpine dusk at the terminal — soft coral peaks rising over a deep green-black void with one mint-green signal light glowing on the horizon.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (filled)",
+        "role": "Main conversion action — 'Enter Studio', 'Discord'",
+        "description": "Filled dark button on dark surface: #101e1 background, #ffffff text, 4px radius, 12px vertical × 24px horizontal padding. Poppins 500 at 14px. Arrow glyph (→) follows label, rendered in the same white. No border. Hover lifts to #1a1a1a or adds subtle 1px #e5e7eb outline."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary action in nav bar — 'Enter Studio' in header",
+        "description": "Outlined button: transparent or #101e1 background, 1px #e5e7eb border, #ffffff text, 9999px radius (pill). Poppins 500 at 14px. 8px vertical × 20px horizontal padding. Inverts on hover (background becomes #e5e7eb, text becomes #101e1e)."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Primary navigation — GitHub, Docs, Blog, Rigs",
+        "description": "Text-only nav item, no underline. Poppins 400 at 14px, #75b6b5 (teal). 8px vertical padding. Hover: opacity 0.7 or shifts to #0be291. No background, no border."
+      },
+      {
+        "name": "Code Terminal Block",
+        "role": "SQL example, command preview, developer-facing syntax",
+        "description": "Dark terminal panel: #1a1a1a background, 4px radius, 1px #162929 border. Monospace 12px text, #ffffff on dark. 24px internal padding. Optional top bar with traffic-light dots (#f4706b, #0be291, #75b6b5). The terminal is always full-width within its container."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product feature blocks — SQLite, On-chain security, Portable, Multi-chain, Pricing",
+        "description": "Flat dark card with no background fill (sits directly on #101e1 canvas). Icon container is 32px circle with 1px #75b6b5 border, icon stroke in #75b6b5 or #0be291. Heading Poppins 500 at 18px, #ffffff. Body Poppins 400 at 14px, #718b8b. 'Learn more' link in #75b6b5 with underline. No card border or background — the negative space IS the card."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Community quotes — Twitter-style cards in 'Join the community' section",
+        "description": "Elevated card: #3b4949 background, 1px #e5e7eb border, 16px radius, 24px padding. Avatar 32px rounded square with 1px #e5e7eb border, placed top-left. Display name Poppins 500 at 14px #ffffff beside @handle in #718b8b. Quote body Poppins 400 at 14px #ffffff with natural line wrapping. Cards may overflow horizontally with peek effect on the section edges."
+      },
+      {
+        "name": "Section Heading (mint)",
+        "role": "Emphasized section titles — 'Join the community', key feature headers",
+        "description": "Poppins 300 at 30px, #0be291. Centered alignment. The mint green is the only chromatic heading color; it signals the most important reading on the page. No underline, no decoration."
+      },
+      {
+        "name": "Section Heading (white)",
+        "role": "Standard section titles — 'Build on decentralized data without the headache'",
+        "description": "Poppins 300 at 30px, #ffffff. Centered. The default heading voice — quiet, engineered, not marketing-loud."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero headline — 'The decentralized cloud database.'",
+        "description": "Poppins 300 at 48px, line-height 1.0, #1a1a1a on the lavender hero. The word 'decentralized' is bolded (weight 700) in the same color for contrast within the whisper-weight line. Small eyebrow label above in Poppins 500 at 12px uppercase #718b8b with 'ANYWHERE' bolded in #1a1a1a."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Standard explanatory copy",
+        "description": "Poppins 400 at 16px, line-height 1.56, #ffffff. Max-width ~640px for readable line length. No drop cap, no first-line indent."
+      },
+      {
+        "name": "Helper / Metadata Text",
+        "role": "Captions, timestamps, secondary metadata",
+        "description": "Poppins 400 at 12px, #718b8b. Used for @handles, section subtitles, footnotes, and de-emphasized metadata."
+      },
+      {
+        "name": "Icon Container (circular)",
+        "role": "Wrapping small feature/inline icons",
+        "description": "32px–40px circle, 1px #75b6b5 or #e5e7eb border, transparent or #101e1 fill. Icon inside is 1.5px stroke, #75b6b5 or matching border color. Used for feature card headers and inline section markers."
+      },
+      {
+        "name": "Hero Landscape Illustration",
+        "role": "Brand identity artwork — the mountain peaks in the hero",
+        "description": "Illustrated mountain ridge in #f4706b (coral) with darker shadow planes, sitting on a soft #e4cbf2 to #f5d4e8 gradient sky. Flat illustration style, no outlines, geometric facets. Anchored to the right side of the hero, bleeding off the right edge. The illustration is the brand signature — no other decorative graphics are used in the dark interior."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI and display copy. Weight 300 dominates display and hero headings, creating an unusually quiet headline voice — the database speaks softly. Weight 400 for body and nav, 500 for button labels and emphasized metadata, 700 reserved for rare structural emphasis.",
+        "sizes": "12, 14, 16, 18, 22, 24, 30, 48",
+        "family": "Poppins",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.00–1.78",
+        "substitute": "Nunito Sans or DM Sans as system-friendly alternatives; for the same light-weight display feel, Manrope (300) is the closest match.",
+        "letterSpacing": "normal at all sizes; no tightening observed on large display"
+      },
+      {
+        "role": "Code snippets, terminal output, SQL examples, and inline technical tokens. System monospace at a single small size — functional, not decorative.",
+        "sizes": "12px",
+        "family": "monospace",
+        "weight": "300",
+        "lineHeight": "1.33",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Fira Code"
+      }
+    ],
+    "description": "Tableland operates as a dark-mode developer surface punctuated by a single painted moment: a lavender-coral hero landscape that gives way to a calm, infrastructure-feeling interior. Typography is geometric humanist (Poppins) with weight 300 doing the heavy lifting on display copy, giving headlines a quiet, engineered feel rather than a marketing punch. A muted teal (#75b6b5) carries all interactive voice — nav, icons, links, learn-more affordances — while a single vivid mint green (#0be291) is reserved exclusively for emphasized headings, creating a clear hierarchy where teal navigates and green signals the primary read. Surfaces are layered in near-black steps (page → card → elevated), with cards and buttons rounded modestly (8–16px) and never pill-shaped except for tags and icon containers. The visual signature is the contrast between the soft painterly hero and the hard-edged terminal aesthetic below it — a database that feels both approachable and uncompromising.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tableland design system\",\"item\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#style-reference\",\"name\":\"Tableland design system reference\",\"headline\":\"Tableland design system | Refero Styles\",\"description\":\"Explore Tableland's dark Crypto design system: Abyss Teal #75b6b5, Mint Beacon #0be291 colors, Poppins, monospace typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tableland\",\"url\":\"https://tableland.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"caption\":\"Screenshot of Tableland\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tableland design system\",\"Tableland website design\",\"Tableland colors\",\"Tableland typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Abyss Teal\",\"Mint Beacon\",\"Coral Ember\",\"Lavender Mist\",\"Poppins\",\"monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tableland design system\"},{\"@type\":\"Thing\",\"name\":\"Tableland website design\"},{\"@type\":\"Thing\",\"name\":\"Tableland colors\"},{\"@type\":\"Thing\",\"name\":\"Tableland typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:07:14.632Z\",\"dateModified\":\"2026-05-07T18:07:14.632Z\"}]}19:T7de,Quick Color Reference:\n- text: #ffffff (primary), #718b8b (muted)\n- background: #101e1e (canvas), #3b4949 (elevated card), #1a1a1a (terminal)\n- border: #e5e7eb (hairline), #162929 (structural)\n- accent: #75b6b5 (teal — interactive voice), #0be291 (mint — heading emphasis only)\n- primary action: #101e1e (filled action)\n\n3-5 Example Component Prompts:\n\n1. Hero section: lavender (#e4cbf2) background, split layout. Left column: eyebrow 'READ+WRITE FROM ANYWHERE' at Poppins 500 12px uppercase #718b8b (with 'ANYWHERE' bold in #1a1a1a). Headline 'The decentralized cloud database.' at Poppins 300 48px #1a1a1a, line-height 1.0, with 'decentralized' at weight 700. Body 16px Poppins 400 #1a1a1a. Primary button: #101e1e fill, white text, 4px radius, 12px 24px padding, Poppins 500 14px, with → arrow. Right column: coral (#f4706b) geometric mountain illustration bleeding off right edge.\n\n2. Feature card row: 4-column grid on #101e1e canvas, 40px column gap. Each card has no background fill. Icon container: 32px circle, 1px #75b6b5 border, teal icon stroke inside. Heading Poppins 500 18px #ffffff. Body Poppins 400 14px #718b8b. 'Learn more' link in #75b6b5 with underline, Poppins 400 14px.\n\n3. Testimonial card carousel: section background #101e1e, section heading 'Join the community' at Poppins 300 30px #0be291 centered. Cards: #3b4949 background, 1px #e5e7eb border, 16px radius, 24px padding. Avatar 32px square with 1px #e5e7eb border. Display name Poppins 500 14px #ffffff, @handle in #718b8b. Quote Poppins 400 14px #ffffff. Cards overflow horizontally with edge peek effect.\n\n4. Code terminal block: #1a1a1a background, 4px radius, 1px #162929 border, 24px padding. Monospace 12px white text on dark. Top bar optional with three 8px circles: #f4706b, #0be291, #75b6b5. Full-width within its parent container.\n\n5. Ghost nav button: transparent background, 1px #e5e7eb border, 9999px pill radius, #ffffff text Poppins 500 14px, 8px 20px padding. Inverts on hover to #e5e7eb fill with #101e1e text."
+      }
+    ],
+    "elevationPhilosophy": "The design uses no shadows or blur effects. Depth is communicated entirely through a four-step surface color scale (#101e1 → #162929 → #3b4949 → #1a1a1a) and 1px #e5e7eb hairline borders. This flat, hard-edged approach reinforces the infrastructure/database identity — nothing floats, everything sits precisely on a surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "card",
+            "heading",
+            "body",
+            "button",
+            "icon",
+            "link",
+            "footer"
+          ],
+          "frequency": 1500,
+          "confidence": 1,
+          "prominence": 62905285.5583514,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 364,
+            "body/borderColor": 180,
+            "card/borderColor": 40,
+            "hero/borderColor": 8,
+            "icon/borderColor": 156,
+            "link/borderColor": 152,
+            "other/borderColor": 436,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 152
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 35356808.257098995,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 10,
+            "nav/color": 14,
+            "body/color": 2,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 5,
+            "other/fill": 5,
+            "icon/stroke": 10,
+            "other/color": 4,
+            "other/stroke": 5,
+            "heading/color": 2,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "button",
+            "icon",
+            "hero",
+            "heading",
+            "link"
+          ],
+          "frequency": 350,
+          "confidence": 1,
+          "prominence": 13309073.989811514,
+          "properties": [
+            "color",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 38,
+            "body/color": 35,
+            "card/color": 10,
+            "hero/color": 1,
+            "icon/color": 21,
+            "link/color": 26,
+            "other/fill": 19,
+            "icon/stroke": 38,
+            "other/color": 108,
+            "button/color": 4,
+            "other/stroke": 19,
+            "heading/color": 22,
+            "body/backgroundColor": 5,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#101e1e",
+          "oklch": {
+            "c": 0.01938813721675344,
+            "h": 195.84586033896636,
+            "l": 0.22229230837065345
+          },
+          "contexts": [
+            "card",
+            "button",
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 6149625.514455207,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#75b6b5",
+          "oklch": {
+            "c": 0.06642403824440224,
+            "h": 194.55751491959052,
+            "l": 0.7324618100988302
+          },
+          "contexts": [
+            "link",
+            "footer",
+            "nav",
+            "other"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 2658934.719581102,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 70,
+            "link/color": 6,
+            "other/color": 1,
+            "footer/color": 1
+          }
+        },
+        {
+          "hex": "#162929",
+          "oklch": {
+            "c": 0.02486390869910074,
+            "h": 195.75338677495256,
+            "l": 0.26470119210951354
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 2610875.57427593,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4,
+            "other/borderColor": 24,
+            "button/borderColor": 8,
+            "link/backgroundColor": 6,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#e4cbf2",
+          "oklch": {
+            "c": 0.05923284027980481,
+            "h": 313.4948146590193,
+            "l": 0.8749690795694111
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2159194.414732431,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3b4949",
+          "oklch": {
+            "c": 0.017899810705284333,
+            "h": 196.44623172866912,
+            "l": 0.3931745755916135
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1798244.0688937108,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "card/backgroundColor": 9,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0be291",
+          "oklch": {
+            "c": 0.18545542652987534,
+            "h": 158.47961513592182,
+            "l": 0.8048604234202328
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1592289.888268282,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 6
+          }
+        },
+        {
+          "hex": "#718b8b",
+          "oklch": {
+            "c": 0.029614294278644752,
+            "h": 196.4088607206914,
+            "l": 0.6165858720086554
+          },
+          "contexts": [
+            "body",
+            "link",
+            "heading",
+            "nav"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 198873.0226785607,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "nav/color": 4,
+            "body/color": 8,
+            "link/color": 6,
+            "nav/stroke": 12,
+            "heading/color": 6
+          }
+        },
+        {
+          "hex": "#5d657f",
+          "oklch": {
+            "c": 0.042521688912211565,
+            "h": 271.4802115816403,
+            "l": 0.5098518758214682
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41123.437043711114,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 2
+          }
+        },
+        {
+          "hex": "#f4706b",
+          "oklch": {
+            "c": 0.16355499772252388,
+            "h": 24.359250877048154,
+            "l": 0.7024438386365633
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4717,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1
+          }
+        },
+        {
+          "hex": "#1da1f2",
+          "oklch": {
+            "c": 0.15843268617303977,
+            "h": 243.35403362654012,
+            "l": 0.6817971071432886
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1328.7712379549448,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 9
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.026212441369021417,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.12,
+          "background": "#101e1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.18,
+          "background": "#162929",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.06,
+          "background": "#e5e7eb",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.83,
+          "background": "#e5e7eb",
+          "foreground": "#101e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#e5e7eb",
+          "foreground": "#162929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.71,
+          "background": "#e4cbf2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#e4cbf2",
+          "foreground": "#101e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#e4cbf2",
+          "foreground": "#162929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.2,
+          "background": "#1a1a1a",
+          "foreground": "#0be291"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#101e1e",
+          "foreground": "#0be291"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.4,
+          "background": "#3b4949",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.89,
+          "background": "#162929",
+          "foreground": "#0be291"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#e5e7eb",
+          "foreground": "#3b4949"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.55,
+          "background": "#1a1a1a",
+          "foreground": "#75b6b5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.43,
+          "background": "#101e1e",
+          "foreground": "#75b6b5"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.59,
+          "background": "#162929",
+          "foreground": "#75b6b5"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.32,
+          "background": "#e4cbf2",
+          "foreground": "#3b4949"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.16,
+          "background": "#1da1f2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.11,
+          "background": "#1a1a1a",
+          "foreground": "#f4706b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 4,
+          "corners": [
+            0,
+            0,
+            4,
+            4
+          ],
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "asymmetric": true
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "icon",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|icon",
+            "paddingLeft|icon",
+            "paddingRight|other",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginTop|heading",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other",
+            "button",
+            "icon",
+            "nav"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginLeft",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|icon",
+            "paddingLeft|other",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 80,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginRight|body",
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "footer",
+            "nav"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "marginBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 380,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "monospace",
+          "source": "system",
+          "weights": [
+            300
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "monospace",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "card",
+            "link",
+            "icon"
+          ],
+          "frequency": 169,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "footer",
+            "nav",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/17fe0b6c-b4e6-4e5e-988f-d34f60f38bd4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tableland design system\",\"item\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#style-reference\",\"name\":\"Tableland design system reference\",\"headline\":\"Tableland design system | Refero Styles\",\"description\":\"Explore Tableland's dark Crypto design system: Abyss Teal #75b6b5, Mint Beacon #0be291 colors, Poppins, monospace typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tableland\",\"url\":\"https://tableland.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/573fe0d5-8f0b-4c59-bae3-3f2e67cc63f0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"caption\":\"Screenshot of Tableland\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c836092c-b995-43e8-b91c-ebca6543b1c5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tableland design system\",\"Tableland website design\",\"Tableland colors\",\"Tableland typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Abyss Teal\",\"Mint Beacon\",\"Coral Ember\",\"Lavender Mist\",\"Poppins\",\"monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tableland design system\"},{\"@type\":\"Thing\",\"name\":\"Tableland website design\"},{\"@type\":\"Thing\",\"name\":\"Tableland colors\"},{\"@type\":\"Thing\",\"name\":\"Tableland typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:07:14.632Z\",\"dateModified\":\"2026-05-07T18:07:14.632Z\"}]}19:T7de,Quick Color Reference:\n- text: #ffffff (primary), #718b8b (muted)\n- background: #101e1e (canvas), #3b4949 (elevated card), #1a1a1a (terminal)\n- border: #e5e7eb (hairline), #162929 (structural)\n- accent: #75b6b5 (teal — interactive voice), #0be291 (mint — heading emphasis only)\n- primary action: #101e1e (filled action)\n\n3-5 Example Component Prompts:\n\n1. Hero section: lavender (#e4cbf2) background, split layout. Left column: eyebrow 'READ+WRITE FROM ANYWHERE' at Poppins 500 12px uppercase #718b8b (with 'ANYWHERE' bold in #1a1a1a). Headline 'The decentralized cloud database.' at Poppins 300 48px #1a1a1a, line-height 1.0, with 'decentralized' at weight 700. Body 16px Poppins 400 #1a1a1a. Primary button: #101e1e fill, white text, 4px radius, 12px 24px padding, Poppins 500 14px, with → arrow. Right column: coral (#f4706b) geometric mountain illustration bleeding off right edge.\n\n2. Feature card row: 4-column grid on #101e1e canvas, 40px column gap. Each card has no background fill. Icon container: 32px circle, 1px #75b6b5 border, teal icon stroke inside. Heading Poppins 500 18px #ffffff. Body Poppins 400 14px #718b8b. 'Learn more' link in #75b6b5 with underline, Poppins 400 14px.\n\n3. Testimonial card carousel: section background #101e1e, section heading 'Join the community' at Poppins 300 30px #0be291 centered. Cards: #3b4949 background, 1px #e5e7eb border, 16px radius, 24px padding. Avatar 32px square with 1px #e5e7eb border. Display name Poppins 500 14px #ffffff, @handle in #718b8b. Quote Poppins 400 14px #ffffff. Cards overflow horizontally with edge peek effect.\n\n4. Code terminal block: #1a1a1a background, 4px radius, 1px #162929 border, 24px padding. Monospace 12px white text on dark. Top bar optional with three 8px circles: #f4706b, #0be291, #75b6b5. Full-width within its parent container.\n\n5. Ghost nav button: transparent background, 1px #e5e7eb border, 9999px pill radius, #ffffff text Poppins 500 14px, 8px 20px padding. Inverts on hover to #e5e7eb fill with #101e1e text."
+}

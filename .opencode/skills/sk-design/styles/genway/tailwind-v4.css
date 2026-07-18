@@ -1,0 +1,87 @@
+@theme {
+  /* Colors */
+  --color-deep-indigo: #0a0449;
+  --color-vivid-violet: #6b5ee0;
+  --color-midnight-iris: #0a0163;
+  --color-slate-lavender: #706e87;
+  --color-soft-mauve: #a89fc7;
+  --color-dusty-rose: #a085a6;
+  --color-blush-petal: #efb9fd;
+  --color-lavender-mist: #f7f6fd;
+  --color-pure-white: #ffffff;
+  --color-ink-black: #000000;
+  --color-pale-wisteria: #e2e0f9;
+  --color-morning-lilac: #cfccf5;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist: 'Geist', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-regular: 'Geist Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-semibold: 'Geist SemiBold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-bold: 'Geist Bold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.24px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.32px;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.3;
+  --tracking-body-lg: -0.4px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.48px;
+  --text-heading-sm: 36px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.72px;
+  --text-heading: 56px;
+  --leading-heading: 1;
+  --tracking-heading: -2.24px;
+  --text-heading-lg: 68px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -2.72px;
+  --text-display: 88px;
+  --leading-display: 0.9;
+  --tracking-display: -3.52px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-124: 124px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-full: 50px;
+  --radius-full-2: 120px;
+  --radius-full-3: 200px;
+  --radius-full-4: 2000px;
+
+  /* Shadows */
+  --shadow-md: rgba(10, 1, 99, 0.4) 0px 8px 16px -10px;
+  --shadow-subtle: rgba(10, 1, 99, 0.08) 0px 0px 0px 4px;
+  --shadow-sm: rgba(4, 0, 41, 0.1) 0px 1px 8px 0px inset;
+  --shadow-sm-2: rgba(11, 1, 101, 0.14) 1px 0px 8px 0px inset;
+}

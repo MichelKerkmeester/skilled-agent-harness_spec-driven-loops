@@ -1,0 +1,587 @@
+{
+  "color": {
+    "plum": {
+      "$value": "#2c1338",
+      "$type": "color",
+      "$description": "Plum — Hero, header, and footer canvases; brand mark background. Near-black aubergine that reads as the brand's signature dark"
+    },
+    "heather": {
+      "$value": "#412a4c",
+      "$type": "color",
+      "$description": "Heather — Primary headings and UI text on light surfaces; secondary dark surface when Plum is too heavy. The workhorse purple"
+    },
+    "magenta": {
+      "$value": "#e57cd8",
+      "$type": "color",
+      "$description": "Magenta — Filled CTA buttons, emphasis words inside headlines, selected nav state, star ratings, and decorative dots. The only vivid hue — rationed to one word or one control per screen"
+    },
+    "lavender-smoke": {
+      "$value": "#564260",
+      "$type": "color",
+      "$description": "Lavender Smoke — Body copy and link text on warm-white surfaces where Heather would feel too heavy. Carries the brand tint into running text"
+    },
+    "dusty-mauve": {
+      "$value": "#6b5a74",
+      "$type": "color",
+      "$description": "Dusty Mauve — Secondary body text, descriptions, helper text, and muted icon strokes on light surfaces. Desaturated enough to recede behind headings"
+    },
+    "stone-violet": {
+      "$value": "#817187",
+      "$type": "color",
+      "$description": "Stone Violet — Borders and dividers on light surfaces; button borders for outlined variants; disabled or placeholder text"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text and high-contrast borders on light surfaces; footer text on dark Plum"
+    },
+    "bone": {
+      "$value": "#fefbfa",
+      "$type": "color",
+      "$description": "Bone — Page background for all content sections, card surfaces, and text color on dark Plum headers"
+    },
+    "silver": {
+      "$value": "#d5d0d7",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, list separators, and input outlines across cards and tables. The structural neutral grid"
+    },
+    "fog": {
+      "$value": "#c0b8c3",
+      "$type": "color",
+      "$description": "Fog — Subtle borders and dividers where Silver reads too dark; secondary placeholder text on inputs"
+    },
+    "blush": {
+      "$value": "#fdeae2",
+      "$type": "color",
+      "$description": "Blush — Soft warm wash for icon fills, decorative card backgrounds, and nav hover states. The warmest surface tint"
+    },
+    "petal": {
+      "$value": "#fcf1f8",
+      "$type": "color",
+      "$description": "Petal — Elevated card and modal surfaces above Bone. Carries a pink whisper without competing with Magenta"
+    },
+    "orchid-mist": {
+      "$value": "#fae5f7",
+      "$type": "color",
+      "$description": "Orchid Mist — Highlighted card background for featured or selected content blocks"
+    },
+    "bubblegum-wash": {
+      "$value": "#f7d8f3",
+      "$type": "color",
+      "$description": "Bubblegum Wash — Pale pink surface for secondary buttons, tag backgrounds, and the softest brand-tinted fill"
+    },
+    "amber": {
+      "$value": "#ffde91",
+      "$type": "color",
+      "$description": "Amber — Yellow action color for filled buttons, selected navigation states, and focused conversion moments."
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All body copy, navigation links, UI labels, table data, and secondary headings. Inter's neutrality keeps the content calm while GT Haptik performs on the headlines. Weight 500 for nav and buttons, 700 for subheadings, 800 for compact stat callouts."
+    },
+    "gt-haptik": {
+      "$value": "GT Haptik",
+      "$type": "fontFamily",
+      "$description": "Display headlines and large section titles. GT Haptik's geometric warmth with rounded terminals gives the brand a friendly, non-corporate voice; weight 700 at 43–69px with tight 1.1 line-height creates dense, confident heroes. Substitute: Inter Tight, Manrope, or Outfit."
+    },
+    "gt-haptik-rotalic": {
+      "$value": "GT Haptik Rotalic",
+      "$type": "fontFamily",
+      "$description": "The single highlighted word inside every hero and section headline — rendered in Magenta (#e57cd8) with a right-leaning italic slant. This is the brand's theatrical signature: one word per headline gets the spotlight. Substitute: Inter Tight Italic with manual skew, or Manrope Italic."
+    },
+    "gt-haptik-medium-rotalic": {
+      "$value": "GT Haptik Medium Rotalic",
+      "$type": "fontFamily",
+      "$description": "GT Haptik Medium Rotalic — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium Rotalic",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "43px",
+        "fontWeight": 800,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium Rotalic",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium",
+        "fontSize": "69px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 69px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "GT Haptik Medium Rotalic",
+        "fontSize": "69px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 69px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "75": {
+      "$value": "75px",
+      "$type": "dimension",
+      "$description": "Spacing 75px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    },
+    "170": {
+      "$value": "170px",
+      "$type": "dimension",
+      "$description": "Spacing 170px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "bone": {
+      "$value": "#fefbfa",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas for all content sections"
+    },
+    "petal": {
+      "$value": "#fcf1f8",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and modal surfaces"
+    },
+    "blush": {
+      "$value": "#fdeae2",
+      "$type": "color",
+      "$description": "Surface level 2: Warm decorative card backgrounds and icon fills"
+    },
+    "orchid-mist": {
+      "$value": "#fae5f7",
+      "$type": "color",
+      "$description": "Surface level 3: Featured/selected content highlights"
+    },
+    "heather": {
+      "$value": "#412a4c",
+      "$type": "color",
+      "$description": "Surface level 4: Dark surface above light content"
+    },
+    "plum": {
+      "$value": "#2c1338",
+      "$type": "color",
+      "$description": "Surface level 5: Hero, header, and footer dark stage"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://toggl.com",
+      "siteName": "Toggl Track",
+      "extractedAt": "2026-06-03T20:34:31.164Z",
+      "variant": "extended"
+    }
+  }
+}

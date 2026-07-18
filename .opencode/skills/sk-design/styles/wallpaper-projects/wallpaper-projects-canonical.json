@@ -1,0 +1,1161 @@
+{
+  "source": "https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776",
+  "uuid": "0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776",
+  "name": "Wallpaper Projects",
+  "northStar": "Editorial gallery on warm paper — a spread from a 12×16 art monograph where cream stock, near-black ink, and one enormous serif do all the talking.",
+  "capturedAt": "2026-07-18T07:21:18.781Z",
+  "meta": {
+    "url": "https://wallpaperprojects.com",
+    "siteName": "Wallpaper Projects",
+    "extractedAt": "2026-06-03T21:29:17.654Z",
+    "durationMs": 59828,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 352,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cardinal Fruit at 48-180px for all display headlines; never below 36px",
+      "Set all buttons to 20px border-radius with 7-8px vertical and 16px horizontal padding in Soehne Mono 12px",
+      "Alternate section backgrounds between #ffffff and #fbf9f3 to create editorial rhythm",
+      "Prefix every content section with a Soehne Breit 10px uppercase kicker label at 1.0px letter-spacing",
+      "Use 100px section gaps and 20px element gaps as the standard rhythm",
+      "Let images fill their containers edge-to-edge with zero border-radius",
+      "Reserve #1e1e1 for text, borders, and button fills only — never as a decorative wash"
+    ],
+    "donts": [
+      "Never introduce chromatic colors — the 0% colorfulness is the entire brand",
+      "Never use box-shadow for elevation; let surface color contrast do the work",
+      "Never use a border-radius other than 20px for interactive elements or 0px for images/cards",
+      "Never set body text below 14px or above 18px; the editorial scale is fixed",
+      "Never use the display serif (Cardinal Fruit) at sizes below 36px — it loses its character",
+      "Never add visible dividers, rules, or borders between sections — whitespace is the only separator",
+      "Never darken or overlay hero photography; let the type sit directly on the raw image"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1e1e1e",
+        "name": "Ink Black",
+        "role": "Primary text, dark pill button fills, borders, heading strokes — the only ink in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary canvas, image backgrounds, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbf9f3",
+        "name": "Warm Cream",
+        "role": "Alternate surface — the signature cream stock that gives the system its editorial warmth, used for secondary sections and cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Maximum contrast moments, occasional true-black text where #1e1e1 isn't dark enough",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model: full-bleed sections that alternate between atmospheric image backgrounds and cream/white editorial blocks, all max-width ~1440px centered for content. Hero pattern: full-viewport atmospheric image with massive overlaid serif headline in light cream, no nav, no CTAs — just title and a thin scroll indicator. Section rhythm: alternating bands of #ffffff and #fbf9f3, each separated by 100px of vertical breathing room, no visible dividers or rules. Content arrangement: consistently asymmetric — text occupies a narrow left column (35-40%) while photography takes the dominant right column (60-65%), creating a gallery-catalog reading rhythm. Grid usage: 2-column image grids for visual proof, 2-column text+image splits for editorial content, no 3+ column grids. Navigation: minimal sticky header with stacked wordmark and single hamburger, no mega-menu, no visible nav links until interaction. The overall feel is a printed monograph digitized — each screen is a spread.",
+    "imagery": "Imagery is the content, not decoration. The site uses large-format, uncropped architectural and interior photography — retail spaces, living rooms, and art installations where custom wallpaper is the protagonist. The hero is an abstract painted wallpaper texture (warm peach, pink, and blue atmospheric wash) that functions as a mood board rather than a product shot. All images have zero border-radius and fill their containers edge-to-edge. No image overlays, no darkened scrims, no duotone treatments. The color is allowed to live in the photography because the UI itself is strictly monochrome — this is a deliberate handoff: the interface is the frame, the imagery is the art. Density is image-heavy in content sections but text-dominant in the hero, where the 180px serif headline occupies the full viewport.",
+    "similar": [
+      {
+        "why": "Same editorial agency aesthetic — monochrome palette, massive serif display type, generous whitespace, and the sense that every screen is a printed spread",
+        "business": "Other Means"
+      },
+      {
+        "why": "Creative studio with the same typographic confidence — serif display headlines at extreme sizes against atmospheric full-bleed imagery",
+        "business": "Resn"
+      },
+      {
+        "why": "Shared warm-tone minimalism, asymmetric text+image splits, and the same gallery-pacing whitespace rhythm",
+        "business": "&Walsh"
+      },
+      {
+        "why": "Both treat the portfolio page as an editorial publication — large serif type, warm neutral surfaces, and a single dark ink color",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Same warm cream stock, serif-driven hierarchy, and the conviction that photography should be uncropped and edge-to-edge without chrome",
+        "business": "Cereal Magazine (digital)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "20px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "100px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Primary page canvas"
+      },
+      {
+        "hex": "#fbf9f3",
+        "name": "Warm Cream",
+        "level": 1,
+        "purpose": "Alternate section surface, card backgrounds, editorial warmth"
+      },
+      {
+        "hex": "#1e1e1",
+        "name": "Ink Black",
+        "level": 2,
+        "purpose": "Dark mode sections, button fills, footer"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial gallery on warm paper — a spread from a 12×16 art monograph where cream stock, near-black ink, and one enormous serif do all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 132,
+        "lineHeight": 1,
+        "letterSpacing": -6.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Dark Pill Button (Primary Action)",
+        "role": "The only button style that matters — the system's single interactive punctuation mark",
+        "description": "Filled with #1e1e1, white text in Soehne Mono 12px, 20px border-radius (distinctive squircle-pill, not full pill), 7px top padding + 8px bottom padding + 16px horizontal padding. Tracks tight at 0.3px letter-spacing. Label is always uppercase. No hover state changes color — it just feels like ink on paper."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action for less critical interactions",
+        "description": "Transparent fill, 1px #1e1e1 border, #1e1e1 text in Soehne Mono 12px, 20px radius, 7-8px vertical padding, 16px horizontal padding. Shares the pill geometry with the dark variant."
+      },
+      {
+        "name": "Section Kicker Label",
+        "role": "Tiny uppercase label that opens every content section like a magazine department header",
+        "description": "Soehne Breit Buch 10px, weight 400, #1e1e1, letter-spacing 1.0px (0.1em), uppercase. Sits above headings with 10-12px gap. No punctuation. Examples of the pattern: 'TRANSFORMING SPACES', 'PROJECTS'."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "The hero/cover headline that defines the page",
+        "description": "Cardinal Fruit 132-180px, weight 500 at the largest sizes, #1e1e1 or #fbf9f3 (white-cream) when overlaid on photography. Letter-spacing -0.05em at 132-180px. Line-height 1.0 to 1.2. This is the only element allowed to be this large."
+      },
+      {
+        "name": "Asymmetric Section Header",
+        "role": "Left-column header for split text+image sections",
+        "description": "Cardinal Fruit 48px weight 500, #1e1e1, letter-spacing -0.025em. Sits above a body text block (Soehne Breit 14px, 1.5 line-height) with 20px gap. No horizontal rule — whitespace is the divider."
+      },
+      {
+        "name": "Full-Bleed Hero with Overlay Type",
+        "role": "The page-opening canvas — atmospheric photography as backdrop, type as subject",
+        "description": "Image fills 100vw × ~85vh, no border-radius, type overlays in light cream (#fbf9f3 or white) with a thin vertical divider line and downward arrow in #1e1e1e. No darkening overlay — the type sits on the raw image."
+      },
+      {
+        "name": "Two-Column Image Grid",
+        "role": "Quick visual proof beneath introductory text",
+        "description": "Two equal-width images side by side, 12-16px gap between them, zero radius, full-bleed within their column. Images are uncropped architectural/interior photography."
+      },
+      {
+        "name": "Split Content Section (Text Left / Image Right)",
+        "role": "The primary content arrangement for project showcases and about sections",
+        "description": "Two-column grid at roughly 40/60 or 35/65 ratio. Left column: kicker label, Cardinal Fruit heading, body text, pill button. Right column: large uncropped photography, zero radius. Background alternates between #ffffff and #fbf9f3. 100px vertical section padding."
+      },
+      {
+        "name": "Minimal Navigation Header",
+        "role": "Persistent top bar — almost invisible by design",
+        "description": "Sticky, white or transparent background, #1e1e1 elements. Left: small two-line wordmark logo (Soehne Breit 12-14px, stacked). Right: single hamburger icon. No nav links visible, no background bar — just floats on the page."
+      },
+      {
+        "name": "Footer Single-Line",
+        "role": "Minimal page closure",
+        "description": "Single line of metadata in Soehne Mono 12px, #1e1e1, tracking 0.6px. Left: project identifier or studio name. Right: small action link or credit. 32px bottom padding separates it from page edge."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Vertical guide suggesting 'there's more below'",
+        "description": "Thin 1px vertical line in #1e1e1, ~120px tall, centered, terminating in a small downward arrow (SVG). Centered in the hero, the only graphical element competing with the display type."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The signature display serif — exclusively used for hero headlines, section openers, and any moment that needs to feel like a magazine cover. The medium weight (500) is reserved for the most massive treatments (132–180px) where hairline strokes would disappear. Negative letter-spacing tightens the massive forms into a cohesive block of ink.",
+        "sizes": "36px, 48px, 132px, 180px",
+        "family": "Cardinal Fruit",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.24",
+        "substitute": "Playfair Display, Tiempos Headline, GT Sectra",
+        "letterSpacing": "-9px at 180px, -6.6px at 132px, -1.2px at 48px, -0.72px at 36px"
+      },
+      {
+        "role": "The workhorse grotesque with widened proportions. At small sizes (10–14px) the 0.1em tracking creates the editorial 'kicker' label aesthetic. At 72–80px it serves as a secondary display face for contexts where serif would feel too precious. The 600 weight is used sparingly for emphasis.",
+        "sizes": "10px, 12px, 14px, 72px, 80px",
+        "family": "Soehne Breit Buch",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.50",
+        "letterSpacing": "1.0px at 10px, 1.2px at 12px, 1.4px at 14px, tighter at larger sizes",
+        "subsubstitute": "Inter, Söhne, GT America"
+      },
+      {
+        "role": "Monospaced UI face for technical labels, metadata, button text, and small data displays. Its presence signals 'system metadata' versus 'editorial content' — the mono is the interface voice, the serif is the gallery voice.",
+        "sizes": "12px, 14px",
+        "family": "Soehne Mono Buch",
+        "weight": "400",
+        "lineHeight": "1.00–1.60",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Berkeley Mono",
+        "letterSpacing": "0.3px at 12px, 0.7px at 14px"
+      }
+    ],
+    "description": "Wallpaper Projects reads like a high-end art book spread printed on warm cream stock: massive editorial serif type (Cardinal Fruit) set against quiet, paper-warm surfaces, with a single near-black ink doing all the work. The palette is rigorously monochrome — no chromatic accents, no decorative gradients, no shadows — letting the photography and the typographic scale do the heavy lifting. Layout is asymmetric and gallery-paced: full-bleed atmospheric heroes give way to split text+image compositions on cream, with generous negative space acting as the primary structural device. Every interactive element is reduced to a dark pill on warm paper, and the entire system whispers 'considered, expensive, restrained' rather than shouting.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wallpaper Projects design system\",\"item\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#style-reference\",\"name\":\"Wallpaper Projects design system reference\",\"headline\":\"Wallpaper Projects design system | Refero Styles\",\"description\":\"Explore Wallpaper Projects's light Agency design system: Ink Black #1e1e1e, Paper White #ffffff colors, Cardinal Fruit, Soehne Breit Buch typography, and...\",\"url\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wallpaper Projects\",\"url\":\"https://wallpaperprojects.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"caption\":\"Screenshot of Wallpaper Projects\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wallpaper Projects design system\",\"Wallpaper Projects website design\",\"Wallpaper Projects colors\",\"Wallpaper Projects typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Warm Cream\",\"Pure Black\",\"Cardinal Fruit\",\"Soehne Breit Buch\",\"Soehne Mono Buch\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects design system\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects website design\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects colors\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:08:17.397Z\",\"dateModified\":\"2026-04-30T02:08:17.397Z\"}]}19:T698,**Quick Color Reference:**\n- text: #1e1e1e\n- background: #ffffff\n- alternate surface: #fbf9f3\n- border: #1e1e1e\n- primary action: #1e1e1e (filled action)\n- accent: none — the system has no chromatic accent\n\n**Example Component Prompts:**\n\n1. *Create a dark pill CTA button:* Fill #1e1e1e, text #ffffff in Soehne Mono 12px with 0.3px letter-spacing, 20px border-radius, 8px top padding, 7px bottom padding, 16px left/right padding. Label in uppercase.\n\n2. *Create a section opener:* Warm cream background (#fbf9f3). Top: Soehne Breit 10px uppercase kicker in #1e1e1e with 1.0px letter-spacing, 10px bottom margin. Below: Cardinal Fruit 48px weight 500 in #1e1e1e, letter-spacing -1.2px. Below: Soehne Breit 14px body text in #1e1e1e, line-height 1.6. No card, no border — content sits directly on the cream surface.\n\n3. *Create a split content section:* Two-column grid at 35/65 ratio. Left column on #ffffff: kicker label (Soehne Breit 10px tracked), Cardinal Fruit 48px heading, 14px body text, dark pill button (20px radius). Right column: full-bleed interior photography, zero radius, no overlay. 100px vertical section padding.\n\n4. *Create a full-bleed hero:* Background image fills 100vw × 85vh, no border-radius. Overlaid text: Cardinal Fruit 180px weight 500 in #fbf9f3, letter-spacing -9px, centered. A thin 1px vertical scroll indicator in #fbf9f3, ~120px tall, centered below the headline, ending in a small downward arrow.\n\n5. *Create a minimal nav header:* Transparent background, position sticky. Left: two-line wordmark in Soehne Breit 12px #1e1e1e (first line, second line below). Right: single hamburger icon in #1e1e1e, 24px. No background bar, no visible nav links."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero shadows. All depth and separation comes from the contrast between #ffffff, #fbf9f3, and #1e1e1 surfaces, plus generous whitespace. The cream-on-white tonal shift IS the elevation system — there is no z-axis, only surface levels. This is a deliberate editorial choice: shadows would cheapen the gallery aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "icon",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "footer"
+          ],
+          "frequency": 1072,
+          "confidence": 1,
+          "prominence": 140456776.95779324,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "icon/color": 14,
+            "link/color": 8,
+            "other/fill": 4,
+            "image/color": 18,
+            "other/color": 109,
+            "button/color": 3,
+            "heading/color": 36,
+            "body/borderColor": 100,
+            "icon/borderColor": 56,
+            "link/borderColor": 32,
+            "image/borderColor": 72,
+            "other/borderColor": 436,
+            "button/borderColor": 8,
+            "heading/borderColor": 144,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "body",
+            "button",
+            "footer",
+            "heading",
+            "icon",
+            "input",
+            "list",
+            "image"
+          ],
+          "frequency": 465,
+          "confidence": 1,
+          "prominence": 11368318.730519114,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 21,
+            "icon/color": 1,
+            "link/color": 6,
+            "list/color": 5,
+            "other/fill": 21,
+            "image/color": 1,
+            "input/color": 1,
+            "other/color": 27,
+            "button/color": 7,
+            "footer/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 64,
+            "body/borderColor": 84,
+            "icon/borderColor": 4,
+            "link/borderColor": 24,
+            "list/borderColor": 20,
+            "image/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 108,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fbf9f3",
+          "oklch": {
+            "c": 0.008206924323175345,
+            "h": 91.48151993372629,
+            "l": 0.9819972171580547
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 158976,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 6480.31443493365,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/stroke": 25
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000014173084056947319,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#fbf9f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#ffffff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.83,
+          "background": "#fbf9f3",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#fbf9f3",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading",
+            "paddingBottom|body",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "heading",
+            "image"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|heading",
+            "paddingBottom|image"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|button",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 193,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Soehne Breit Buch",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 213,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cardinal Fruit",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Soehne Mono Buch",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 41,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button",
+            "body",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 187,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Breit Buch",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne Mono Buch",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Soehne Breit Buch",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 132,
+          "family": "Cardinal Fruit",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 180,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 180,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/49369dda-09cb-4b88-9328-b27d1648267a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wallpaper Projects design system\",\"item\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#style-reference\",\"name\":\"Wallpaper Projects design system reference\",\"headline\":\"Wallpaper Projects design system | Refero Styles\",\"description\":\"Explore Wallpaper Projects's light Agency design system: Ink Black #1e1e1e, Paper White #ffffff colors, Cardinal Fruit, Soehne Breit Buch typography, and...\",\"url\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wallpaper Projects\",\"url\":\"https://wallpaperprojects.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0a2bcda6-b5b9-463d-bc8d-2c7ccaa2b776#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"caption\":\"Screenshot of Wallpaper Projects\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3df2b8d4-3c6d-456d-8ee7-cd5b28526612.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wallpaper Projects design system\",\"Wallpaper Projects website design\",\"Wallpaper Projects colors\",\"Wallpaper Projects typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Warm Cream\",\"Pure Black\",\"Cardinal Fruit\",\"Soehne Breit Buch\",\"Soehne Mono Buch\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects design system\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects website design\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects colors\"},{\"@type\":\"Thing\",\"name\":\"Wallpaper Projects typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:08:17.397Z\",\"dateModified\":\"2026-04-30T02:08:17.397Z\"}]}19:T698,**Quick Color Reference:**\n- text: #1e1e1e\n- background: #ffffff\n- alternate surface: #fbf9f3\n- border: #1e1e1e\n- primary action: #1e1e1e (filled action)\n- accent: none — the system has no chromatic accent\n\n**Example Component Prompts:**\n\n1. *Create a dark pill CTA button:* Fill #1e1e1e, text #ffffff in Soehne Mono 12px with 0.3px letter-spacing, 20px border-radius, 8px top padding, 7px bottom padding, 16px left/right padding. Label in uppercase.\n\n2. *Create a section opener:* Warm cream background (#fbf9f3). Top: Soehne Breit 10px uppercase kicker in #1e1e1e with 1.0px letter-spacing, 10px bottom margin. Below: Cardinal Fruit 48px weight 500 in #1e1e1e, letter-spacing -1.2px. Below: Soehne Breit 14px body text in #1e1e1e, line-height 1.6. No card, no border — content sits directly on the cream surface.\n\n3. *Create a split content section:* Two-column grid at 35/65 ratio. Left column on #ffffff: kicker label (Soehne Breit 10px tracked), Cardinal Fruit 48px heading, 14px body text, dark pill button (20px radius). Right column: full-bleed interior photography, zero radius, no overlay. 100px vertical section padding.\n\n4. *Create a full-bleed hero:* Background image fills 100vw × 85vh, no border-radius. Overlaid text: Cardinal Fruit 180px weight 500 in #fbf9f3, letter-spacing -9px, centered. A thin 1px vertical scroll indicator in #fbf9f3, ~120px tall, centered below the headline, ending in a small downward arrow.\n\n5. *Create a minimal nav header:* Transparent background, position sticky. Left: two-line wordmark in Soehne Breit 12px #1e1e1e (first line, second line below). Right: single hamburger icon in #1e1e1e, 24px. No background bar, no visible nav links."
+}

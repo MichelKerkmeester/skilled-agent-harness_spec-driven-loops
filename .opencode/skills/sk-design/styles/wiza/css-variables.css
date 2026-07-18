@@ -1,0 +1,99 @@
+:root {
+  /* Colors */
+  --color-deep-iris: #26114a;
+  --color-plum-velvet: #312749;
+  --color-royal-amethyst: #3e0079;
+  --color-mist-violet: #edecff;
+  --color-lavender-wash: #b99aff;
+  --gradient-lavender-wash: linear-gradient(90deg, rgb(185, 154, 255), rgb(125, 67, 255) 10%, rgba(125, 67, 255, 0));
+  --color-twilight-beam: #cf8aff;
+  --gradient-twilight-beam: linear-gradient(to right, rgb(207, 138, 255), rgb(255, 102, 193), rgb(255, 173, 116), rgb(170, 129, 255));
+  --color-canvas: #ffffff;
+  --color-paper: #f6f7fa;
+  --color-mist: #e6e2e3;
+  --color-smoke: #c1c7cf;
+  --color-ash: #9491a1;
+  --color-slate: #615e6e;
+  --color-charcoal: #333333;
+  --color-carbon: #222222;
+  --color-ink: #000000;
+
+  /* Typography — Font Families */
+  --font-britti-sans: 'Britti Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.3;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1;
+  --text-heading: 40px;
+  --leading-heading: 1;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1;
+  --text-display: 64px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-104: 104px;
+  --spacing-216: 216px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64-80px;
+  --card-padding: 16-24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 28px;
+  --radius-3xl-3: 40px;
+  --radius-full: 56px;
+  --radius-full-2: 1440px;
+
+  /* Named Radii */
+  --radius-cards: 8px;
+  --radius-icons: 8px;
+  --radius-large: 24px;
+  --radius-pills: 1440px;
+  --radius-inputs: 8px;
+  --radius-buttons: 8px;
+
+  /* Shadows */
+  --shadow-sm: rgba(18, 55, 105, 0.08) 0px 2px 4px 0px, rgba(18, 55, 105, 0.04) 0px 1px 1px 0px, rgba(18, 55, 105, 0.08) 0px 0px 0px 1px;
+  --shadow-lg: rgba(14, 59, 101, 0.06) 0px 32px 24px -12px, rgba(14, 59, 101, 0.01) 0px 11px 4px 0px, rgba(14, 59, 101, 0.02) 0px 6px 4px 0px, rgba(14, 59, 101, 0.03) 0px 3px 3px 0px, rgba(14, 59, 101, 0.04) 0px 1px 1px 0px;
+  --shadow-lg-2: rgba(114, 49, 255, 0.32) 0px -6px 20px 0px inset, rgba(47, 1, 151, 0.12) 0px 11px 12px 0px, rgba(47, 1, 151, 0.12) 0px 3px 3px 0px, rgba(47, 1, 151, 0.12) 0px 1px 1px 0px, rgba(47, 1, 151, 0.08) 0px 0px 0px 1px;
+  --shadow-sm-2: rgba(18, 55, 105, 0.08) 0px 2px 4px 0px, rgba(18, 55, 105, 0.04) 0px 1px 1px 0px;
+  --shadow-sm-3: rgba(47, 1, 151, 0.01) 0px 11px 4px 0px, rgba(47, 1, 151, 0.04) 0px 6px 4px 0px, rgba(47, 1, 151, 0.06) 0px 3px 3px 0px, rgba(47, 1, 151, 0.08) 0px 1px 1px 0px, rgba(47, 1, 151, 0.08) 0px 0px 0px 1px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-paper: #f6f7fa;
+  --surface-mist-violet: #edecff;
+  --surface-lavender-glow: #b99aff;
+}

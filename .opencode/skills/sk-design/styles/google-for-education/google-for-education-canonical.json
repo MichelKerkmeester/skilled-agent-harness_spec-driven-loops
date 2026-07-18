@@ -1,0 +1,1463 @@
+{
+  "source": "https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759",
+  "uuid": "c57ba3f8-1d76-4660-8ba4-48ddce26e759",
+  "name": "Google for Education",
+  "northStar": "Open notebook in morning light — a digital classroom where whitespace, type, and one blue accent do all the work.",
+  "capturedAt": "2026-07-18T09:53:29.620Z",
+  "meta": {
+    "url": "https://classroom.google.com",
+    "siteName": "Google for Education",
+    "extractedAt": "2026-06-03T17:37:16.469Z",
+    "durationMs": 31608,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1177,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 200px border-radius on all filled and ghost buttons to maintain the pill shape that defines the system",
+      "Set display headlines at 80px with -0.8px letter-spacing and 1.09 line-height — tight tracking at scale is the signature",
+      "Apply positive letter-spacing to body text: 0.272px at 16px, 0.432px at 12px — tracking opens as size shrinks",
+      "Use #1a73e8 for all interactive blue — links, icons, filled buttons, tab indicators, and active nav underlines",
+      "Separate sections with 64–80px of whitespace, not divider lines — the canvas is uniform, rhythm comes from spacing",
+      "Set card radii to 24–28px for feature panels and 8px for modals — the gap between these two radii is intentional",
+      "Default to weight 400 for body and weight 500 for emphasis — never use 700 in body copy"
+    ],
+    "donts": [
+      "Do not introduce shadows on cards or panels — elevation comes from surface color shifts, not box-shadow",
+      "Do not use more than one filled button per viewport — pair with a ghost pill for secondary actions",
+      "Do not use green (#188038) outside the Classroom brand mark and explicit success states — it is not a generic accent",
+      "Do not use #1a73e8 for decorative backgrounds or large surface fills — it is an interactive color, reserve it for state",
+      "Do not set display headlines above 80px or use weight 700 in headlines — the 80px weight-400 display is the ceiling",
+      "Do not add gradients — the system is flat; the only color variation is the soft #e8f0fe tint behind product screenshots",
+      "Do not use letter-spacing below 0 on body text — negative tracking is reserved for 22px and above"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f8f9fa",
+        "name": "Canvas White",
+        "role": "Page background, card surfaces, section bands — the off-white ground that prevents harshness against pure white product screenshots",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202124",
+        "name": "Charcoal Ink",
+        "role": "Primary text, display headlines, active icon strokes — the deepest readable black-blue for maximum hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3c4043",
+        "name": "Graphite",
+        "role": "Secondary headings, nav text, strong body — one step lighter than charcoal for sub-headings and navigation labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5f6368",
+        "name": "Slate",
+        "role": "Muted body text, helper copy, icon glyphs, breadcrumb separators, footer micro-copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dadce0",
+        "name": "Mist",
+        "role": "Hairline borders, card outlines, input strokes, dividers between sections — the only structural separator in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c4c6c7",
+        "name": "Cloud Shadow",
+        "role": "Soft elevation on focused inputs and floating chips",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a73e8",
+        "name": "Google Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#1967d2",
+        "name": "Google Blue Deep",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#188038",
+        "name": "Classroom Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with 24px horizontal padding. Hero is a centered single-column stack (brand mark → display headline → description → action pair) with generous vertical breathing room (80px top, 64px bottom). Feature sections use a two-column equal grid with 24px gap, each card stacking a product screenshot over a text block. A horizontal tab switcher separates feature blocks. No sidebar, no asymmetric hero, no full-bleed imagery — everything sits inside the centered container against a uniform canvas. Navigation is a single sticky top bar; no mega-menu, no secondary nav row. The overall rhythm is: hero → feature pair → tab switcher → feature pair → repeating — each band separated by 64–80px of whitespace rather than dividers.",
+    "imagery": "Imagery is product-screenshot-first: full-bleed captures of the actual Classroom interface rendered as the hero of each feature card, with a soft blue tint behind them to integrate with the page. No lifestyle photography, no stock illustrations, no decorative abstract graphics. Icons are flat, monochromatic, and geometric — Google Material outlined style at 1.5px stroke weight. The visual language is 'show the product' rather than 'illustrate the concept': every image is a literal screen of the software doing its job.",
+    "similar": [
+      {
+        "why": "Same restrained single-accent approach — near-white canvas, one chromatic voice (blue for Notion, Google blue here), generous whitespace, and pill-shaped controls",
+        "business": "Notion"
+      },
+      {
+        "why": "Both center on large tightly-tracked display headlines, use product screenshots as feature heroes, and keep the chrome almost invisible with a single-color nav bar",
+        "business": "Apple Education"
+      },
+      {
+        "why": "Share the 'product-as-hero' visual logic — no decorative imagery, embedded UI screenshots carry the visual weight, and color is purely functional",
+        "business": "Figma"
+      },
+      {
+        "why": "Both rely on tight typographic hierarchy and a narrow gray scale, with one brand color that appears only on interactive elements and icons",
+        "business": "Linear"
+      },
+      {
+        "why": "Same light-canvas, large-headline hero pattern and product-screenshot feature cards, though Microsoft uses a broader accent palette",
+        "business": "Microsoft Education"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24-28px",
+        "chips": "9999px",
+        "links": "4px",
+        "inputs": "4px",
+        "buttons": "200px (pill)",
+        "navItems": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-80px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#f8f9fa",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the soft off-white that prevents glare against white product screenshots"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Feature cards, modal dialogs, embedded UI containers — true white to lift content off the canvas"
+      },
+      {
+        "hex": "#e8f0fe",
+        "name": "Feature Panel Tint",
+        "level": 2,
+        "purpose": "Soft blue wash behind product screenshots in feature cards — ties the product UI to the brand accent"
+      },
+      {
+        "hex": "#20212480",
+        "name": "Scrim",
+        "level": 3,
+        "purpose": "Modal overlay background — dims the page to focus attention"
+      }
+    ],
+    "northStar": "Open notebook in morning light — a digital classroom where whitespace, type, and one blue accent do all the work.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.432
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.238
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.56,
+        "letterSpacing": 0.272
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.67,
+        "letterSpacing": 0.108
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.132
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.168
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.288
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.09,
+        "letterSpacing": -0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Announcement Bar",
+        "role": "Slim sticky banner above nav for product news, promos, and data-protection notices",
+        "description": "Full-width band at 48px height, #f8f9fa background (same as canvas — no visual weight, just a divider line at the bottom in #dadce0). Body text 14px Google Sans Text weight 400 in #3c4043, centered. Inline link in #1a73e8 underlined. Close icon (X) at far right in #5f6368."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Sticky global header with brand, primary links, search, account, and contact action",
+        "description": "64px height, white background, 1px #dadce0 bottom border. Left: Google for Education wordmark (Google Sans Display, 18px, #202124). Center: nav links (Our values, Products, AI, Resources) at 14px weight 400 in #3c4043, underline indicator at 2px #1a73e8 on active. Right: search icon, account avatar (32px circle, #f8f9fa with #5f6368 glyph), 'Sign in' text link, and the filled pill button. Padding 0 24px."
+      },
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary interactive element — used for the highest-priority action per screen",
+        "description": "Height 40px, padding 0 24px, border-radius 200px (fully pill). Background #1a73e8, text white, Google Sans Text 14px weight 500. No border. Hover/pressed: background shifts to #1967d2. One per viewport maximum — pair with a ghost button for secondary actions."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary interactive element — pairs with the filled button to offer an alternative path",
+        "description": "Same dimensions as the filled pill (40px height, 200px radius, 0 24px padding) but background is transparent, border 1px solid #dadce0, text #1a73e8. Hover: background #f8f9fa, border #1a73e8."
+      },
+      {
+        "name": "Breadcrumb Trail",
+        "role": "Path indicator below nav showing page hierarchy",
+        "description": "Left-aligned, 12px Google Sans Text weight 400 in #5f6368. Segments separated by '›' glyph in #5f6368. Current page segment in #202124 weight 500. Vertical padding 16px above and below."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Page-level introduction with brand mark, headline, description, and action pair",
+        "description": "Centered, max-width 800px for the text block. Vertical padding 80px top, 64px bottom. Brand mark (small product icon + name) sits 32px above headline. Display headline: 80px Google Sans Display weight 400, #202124, letter-spacing -0.8px, two lines max. Description: 18px Google Sans Text weight 400, #5f6368, max-width 640px, 24px margin-top. Action pair: filled pill + ghost pill, 16px gap, 32px margin-top from description."
+      },
+      {
+        "name": "Feature Showcase Card",
+        "role": "Two-column side-by-side panels showing product capabilities with embedded UI screenshots",
+        "description": "Equal-width columns, 24px gap. Each card: border-radius 24px, padding 0 (the product screenshot bleeds to the card edge with a 8px inset for the inner caption). Top half: product UI screenshot with a soft blue-to-transparent gradient background (#1a73e8 at 8% opacity fading down). Bottom half: white background with 32px padding, heading 22px weight 500 #202124, body 16px #5f6368, and a text link with arrow at the bottom in #1a73e8."
+      },
+      {
+        "name": "Tab Switcher",
+        "role": "Horizontal filter control to switch between feature categories",
+        "description": "Inline row of three text labels (Personalize learning, Simplify everyday tasks, Gain insights and visibility) in a single pill container. Container: border-radius 9999px, border 1px #dadce0, background white, padding 4px. Active tab: background #f8f9fa, border-radius 9999px inset, text #202124 weight 500. Inactive: #5f6368 weight 400. No background fill on the active state — just a subtle gray pill within a gray pill."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Hyperlink within body copy and as standalone call-to-action labels",
+        "description": "Google Sans Text, inherits size from surrounding text. Color #1a73e8. Underline 1px, underline-offset 2px. Hover: color #1967d2. Used for 'Try now', 'Learn more', breadcrumb links, and in-body references."
+      },
+      {
+        "name": "Product Brand Mark",
+        "role": "Small icon-and-label combination identifying a Google product within the Education ecosystem",
+        "description": "32×32px rounded square icon (border-radius 8px) paired with product name in 18px Google Sans Display weight 500 #202124. 12px gap between icon and label. Vertically centered as a group."
+      },
+      {
+        "name": "Modal Dialog",
+        "role": "Overlay for region selection, confirmations, and focused tasks",
+        "description": "Centered on scrim background (rgba(32, 33, 36, 0.5)). Card: 480px max-width, background white, border-radius 8px, no shadow — separation comes from the scrim alone. Header: product name with 32px icon at left, close (X) at right in #5f6368. Body: 16px #3c4043, 24px padding. Footer: right-aligned action pair (text link 'Stay here' + filled pill 'Go'), 16px gap, 24px padding."
+      },
+      {
+        "name": "Search Icon Button",
+        "role": "Compact utility trigger in the nav for site search",
+        "description": "40×40px, border-radius 50%. Transparent background, 24px magnifying-glass glyph in #5f6368. Hover: background #f8f9fa, glyph #202124. No border."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual break between page bands without adding a hard line",
+        "description": "Whitespace-only divider. 64–80px vertical gap between content blocks. If a line is needed, use 1px #dadce0 spanning the full container width."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and section titles. The 80px display weight is the page's signature — tightly tracked and stacked to two lines in the hero. At 48px and below, tracking relaxes toward 0. Substituting with Inter (closest free analog) or Product Sans preserves the geometric warmth; system sans-serif will feel colder.",
+        "sizes": "16px, 18px, 20px, 22px, 28px, 48px, 80px",
+        "family": "Google Sans Display",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.09, 1.15, 1.17, 1.20, 1.29, 1.40, 1.50, 1.56, 1.75",
+        "substitute": "Inter, Product Sans, or DM Sans",
+        "letterSpacing": "-0.0100em at 80px, -0.0060em at 48px and below, 0.0010em at 20px, 0.0310em at 16px"
+      },
+      {
+        "role": "Body copy, navigation, buttons, form inputs, helper text, breadcrumbs. Weight 400 is the default; 500 marks emphasis and nav-active states. The positive tracking at small sizes (0.036em at 12px) is anti-convention — it adds air to prevent the dense, gray-on-gray feel that typical SaaS body copy produces.",
+        "sizes": "12px, 14px, 16px, 18px",
+        "family": "Google Sans Text",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.00, 1.44, 1.50, 1.56, 1.63, 1.67, 1.71",
+        "substitute": "Inter, Roboto, or Noto Sans",
+        "letterSpacing": "0.0060em at 18px, 0.0170em at 16px, 0.0360em at 12px — tracking opens as size shrinks, the opposite of most systems"
+      }
+    ],
+    "description": "Google for Education operates as a restrained utility surface: a near-white canvas anchored by two type families (Google Sans Text for body and UI, Google Sans Display for headlines) and a single brand blue that functions as the system's only chromatic voice. Hierarchy comes from scale jumps and tracking — the 80px display headline is tightly tracked, while 12–16px body text opens up with positive letter-spacing for small-size legibility. Surfaces avoid decorative gradients and heavy shadows, relying on generous whitespace, 24–28px card radii, and pill-shaped controls to feel approachable rather than corporate. Color is functional punctuation, not atmosphere: green identifies the Classroom brand mark, blue marks links and active states, and everything else stays in a narrow gray scale (#202124 → #3c4043 → #5f6368 → #dadce0).",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Google for Education design system\",\"item\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#style-reference\",\"name\":\"Google for Education design system reference\",\"headline\":\"Google for Education design system | Refero Styles\",\"description\":\"Explore Google for Education's light Productivity design system: Canvas White #f8f9fa, Charcoal Ink #202124 colors, Google Sans Display, Google Sans Text...\",\"url\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Google for Education\",\"url\":\"https://classroom.google.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"caption\":\"Screenshot of Google for Education\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Google for Education design system\",\"Google for Education website design\",\"Google for Education colors\",\"Google for Education typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Canvas White\",\"Charcoal Ink\",\"Graphite\",\"Slate\",\"Google Sans Display\",\"Google Sans Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Google for Education design system\"},{\"@type\":\"Thing\",\"name\":\"Google for Education website design\"},{\"@type\":\"Thing\",\"name\":\"Google for Education colors\"},{\"@type\":\"Thing\",\"name\":\"Google for Education typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-19T17:02:30.000Z\",\"dateModified\":\"2026-03-19T17:02:30.000Z\"}]}19:T9b5,Quick Color Reference:\n- text primary: #202124\n- text secondary: #3c4043\n- text muted: #5f6368\n- background: #f8f9fa\n- border: #dadce0\n- accent: #1a73e8\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Build a hero section. Background #f8f9fa, centered text block max-width 800px, padding 80px top / 64px bottom. Small product brand mark (32px icon + 18px Google Sans Display weight 500 #202124 label) at top. Display headline 80px Google Sans Display weight 400 #202124 letter-spacing -0.8px, two lines. Description 18px Google Sans Text weight 400 #5f6368, max-width 640px, 24px margin-top. Below: a filled pill (height 40px, radius 200px, background #1a73e8, white 14px weight 500 text) paired with a ghost pill (same size, transparent background, 1px #dadce0 border, #1a73e8 text), 16px gap, 32px margin-top from description.\n\n2. Build a feature showcase card. Two equal-width columns side by side, 24px gap. Each card: border-radius 24px, no border, no shadow. Top half: product UI screenshot image, full-bleed to the card edges, set against a #e8f0fe background tint. Bottom half: white background, 32px padding all sides. Heading 22px Google Sans Display weight 500 #202124, 8px margin-bottom. Body 16px Google Sans Text weight 400 #5f6368. Bottom-left: inline text link in #1a73e8 with right-arrow glyph.\n\n3. Build a tab switcher. Inline row inside a pill container (border-radius 9999px, 1px #dadce0 border, white background, 4px padding). Three tab labels in 14px Google Sans Text. Active tab: background #f8f9fa, text #202124 weight 500, border-radius 9999px. Inactive: #5f6368 weight 400, no background. Tabs separated only by the container padding, no internal dividers.\n\n4. Build a breadcrumb trail. 12px Google Sans Text weight 400 #5f6368. Segments separated by '›' glyph in #5f6368 with 8px horizontal margin. Current (last) segment in #202124 weight 500. Clickable segments colored #1a73e8. Container padding 16px vertical.\n\n5. Build a modal dialog. Centered on a scrim (rgba(32, 33, 36, 0.5)). Card: max-width 480px, white background, border-radius 8px, no shadow. Header: 32px product icon left-aligned with 18px product name in Google Sans Display weight 500 #202124, 24px padding, close X icon at right in #5f6368. Body: 16px #3c4043 text, 24px padding. Footer: right-aligned text link 'Stay here' in #1a73e8 paired with filled pill 'Go' (background #1a73e8, white text, 200px radius, 0 24px padding, 40px height), 16px gap, 24px padding."
+      }
+    ],
+    "elevationPhilosophy": "The system uses almost no shadow. Elevation is communicated through surface color shifts (canvas #f8f9fa → card white) and the scrim layer behind modals. The one shadow value detected (#c4c6c7) appears only on focused input fields, where a soft outer ring communicates active state without adding visual weight to the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#5f6368",
+          "oklch": {
+            "c": 0.009388640685799315,
+            "h": 253.91440396968414,
+            "l": 0.49787747998321896
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "heading",
+            "link",
+            "footer",
+            "input"
+          ],
+          "frequency": 3942,
+          "confidence": 1,
+          "prominence": 167219278.24937227,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8f9fa",
+          "oklch": {
+            "c": 0.0017073720058911246,
+            "h": 247.83945362134128,
+            "l": 0.9816389499051614
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 5842888.180708507,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202124",
+          "oklch": {
+            "c": 0.005846014094497756,
+            "h": 271.17641877652403,
+            "l": 0.24793626336059765
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "link",
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 492,
+          "confidence": 1,
+          "prominence": 2967883.574258118,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6f4ea",
+          "oklch": {
+            "c": 0.019851905960006386,
+            "h": 154.89854199124545,
+            "l": 0.9539550430498616
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 552096,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dadce0",
+          "oklch": {
+            "c": 0.005867699508114078,
+            "h": 264.53032345449856,
+            "l": 0.8940995729731471
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "button"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 492943.58978894196,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1a73e8",
+          "oklch": {
+            "c": 0.19460294885266421,
+            "h": 257.8577611261114,
+            "l": 0.5736974681286588
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "card",
+            "image"
+          ],
+          "frequency": 265,
+          "confidence": 1,
+          "prominence": 386379.67730125005,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3c4043",
+          "oklch": {
+            "c": 0.007448923861073662,
+            "h": 240.01883806698993,
+            "l": 0.3688276225275958
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 436,
+          "confidence": 1,
+          "prominence": 251040.02861710713,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#188038",
+          "oklch": {
+            "c": 0.14101405238613254,
+            "h": 148.3850355617165,
+            "l": 0.5270302448241799
+          },
+          "contexts": [
+            "icon",
+            "heading",
+            "other"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 219593.39705124235,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1967d2",
+          "oklch": {
+            "c": 0.1806790087125974,
+            "h": 258.2635658981151,
+            "l": 0.531750234564677
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "link",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 329,
+          "confidence": 1,
+          "prominence": 92155.03918991766,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e8f0fe",
+          "oklch": {
+            "c": 0.020714474221549862,
+            "h": 261.7717598416526,
+            "l": 0.9532290718444993
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 81360,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c4c6c7",
+          "oklch": {
+            "c": 0.001833863841500827,
+            "h": 239.7662855899864,
+            "l": 0.8249398276011674
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4096,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ceead6",
+          "oklch": {
+            "c": 0.03995182404361253,
+            "h": 154.45182434630985,
+            "l": 0.9111054417062986
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 3792,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1e8e3e",
+          "oklch": {
+            "c": 0.15224906373159547,
+            "h": 147.97974941352334,
+            "l": 0.568480444524142
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 2338.67790186517,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9aa0a6",
+          "oklch": {
+            "c": 0.011137769388828257,
+            "h": 247.98598228987674,
+            "l": 0.7027673365777688
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 718.6828600467467,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07883717318287041,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.27,
+          "background": "#f8f9fa",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.18,
+          "background": "#e6f4ea",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.05,
+          "background": "#e8f0fe",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#ceead6",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.73,
+          "background": "#dadce0",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.93,
+          "background": "#f8f9fa",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.39,
+          "background": "#c4c6c7",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#e6f4ea",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.13,
+          "background": "#e8f0fe",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.16,
+          "background": "#ceead6",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.62,
+          "background": "#dadce0",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.1,
+          "background": "#9aa0a6",
+          "foreground": "#202124"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.1,
+          "background": "#c4c6c7",
+          "foreground": "#3c4043"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#f8f9fa",
+          "foreground": "#5f6368"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#e6f4ea",
+          "foreground": "#5f6368"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#e8f0fe",
+          "foreground": "#5f6368"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.09,
+          "background": "#f8f9fa",
+          "foreground": "#1967d2"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.76,
+          "background": "#f8f9fa",
+          "foreground": "#188038"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#e6f4ea",
+          "foreground": "#1967d2"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.71,
+          "background": "#ceead6",
+          "foreground": "#5f6368"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 39
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image",
+            "nav"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 279,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 169,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "paddingTop",
+            "paddingLeft",
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 57,
+          "properties": [
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 115,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 52,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 65,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 88,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 108,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 216,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Google Sans Text",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 729,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Google Sans Display",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 378,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Google Sans Text",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.036,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list",
+            "other",
+            "card",
+            "link",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 276,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "heading",
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 79,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.001,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 179,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Text",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Google Sans Text",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "image",
+            "list",
+            "hero",
+            "nav",
+            "footer",
+            "link"
+          ],
+          "frequency": 355,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "icon",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Google Sans Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Google Sans Text",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Google Sans Display",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Google Sans Display",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Google Sans Display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Google Sans Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Google Sans Display",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Google Sans Display",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/edf290fb-ea16-42fb-853c-4b59693a8725.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Google for Education design system\",\"item\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#style-reference\",\"name\":\"Google for Education design system reference\",\"headline\":\"Google for Education design system | Refero Styles\",\"description\":\"Explore Google for Education's light Productivity design system: Canvas White #f8f9fa, Charcoal Ink #202124 colors, Google Sans Display, Google Sans Text...\",\"url\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Google for Education\",\"url\":\"https://classroom.google.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c57ba3f8-1d76-4660-8ba4-48ddce26e759#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"caption\":\"Screenshot of Google for Education\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf6b684d-5a2e-4e64-81a4-251da855047f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Google for Education design system\",\"Google for Education website design\",\"Google for Education colors\",\"Google for Education typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Canvas White\",\"Charcoal Ink\",\"Graphite\",\"Slate\",\"Google Sans Display\",\"Google Sans Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Google for Education design system\"},{\"@type\":\"Thing\",\"name\":\"Google for Education website design\"},{\"@type\":\"Thing\",\"name\":\"Google for Education colors\"},{\"@type\":\"Thing\",\"name\":\"Google for Education typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-19T17:02:30.000Z\",\"dateModified\":\"2026-03-19T17:02:30.000Z\"}]}19:T9b5,Quick Color Reference:\n- text primary: #202124\n- text secondary: #3c4043\n- text muted: #5f6368\n- background: #f8f9fa\n- border: #dadce0\n- accent: #1a73e8\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Build a hero section. Background #f8f9fa, centered text block max-width 800px, padding 80px top / 64px bottom. Small product brand mark (32px icon + 18px Google Sans Display weight 500 #202124 label) at top. Display headline 80px Google Sans Display weight 400 #202124 letter-spacing -0.8px, two lines. Description 18px Google Sans Text weight 400 #5f6368, max-width 640px, 24px margin-top. Below: a filled pill (height 40px, radius 200px, background #1a73e8, white 14px weight 500 text) paired with a ghost pill (same size, transparent background, 1px #dadce0 border, #1a73e8 text), 16px gap, 32px margin-top from description.\n\n2. Build a feature showcase card. Two equal-width columns side by side, 24px gap. Each card: border-radius 24px, no border, no shadow. Top half: product UI screenshot image, full-bleed to the card edges, set against a #e8f0fe background tint. Bottom half: white background, 32px padding all sides. Heading 22px Google Sans Display weight 500 #202124, 8px margin-bottom. Body 16px Google Sans Text weight 400 #5f6368. Bottom-left: inline text link in #1a73e8 with right-arrow glyph.\n\n3. Build a tab switcher. Inline row inside a pill container (border-radius 9999px, 1px #dadce0 border, white background, 4px padding). Three tab labels in 14px Google Sans Text. Active tab: background #f8f9fa, text #202124 weight 500, border-radius 9999px. Inactive: #5f6368 weight 400, no background. Tabs separated only by the container padding, no internal dividers.\n\n4. Build a breadcrumb trail. 12px Google Sans Text weight 400 #5f6368. Segments separated by '›' glyph in #5f6368 with 8px horizontal margin. Current (last) segment in #202124 weight 500. Clickable segments colored #1a73e8. Container padding 16px vertical.\n\n5. Build a modal dialog. Centered on a scrim (rgba(32, 33, 36, 0.5)). Card: max-width 480px, white background, border-radius 8px, no shadow. Header: 32px product icon left-aligned with 18px product name in Google Sans Display weight 500 #202124, 24px padding, close X icon at right in #5f6368. Body: 16px #3c4043 text, 24px padding. Footer: right-aligned text link 'Stay here' in #1a73e8 paired with filled pill 'Go' (background #1a73e8, white text, 200px radius, 0 24px padding, 40px height), 16px gap, 24px padding."
+}

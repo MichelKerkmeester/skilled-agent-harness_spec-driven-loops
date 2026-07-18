@@ -1,0 +1,1380 @@
+{
+  "source": "https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b",
+  "uuid": "632249f1-fd78-4c77-9b34-7bae37ff3e9b",
+  "name": "Supabase",
+  "northStar": "Midnight code editor with phosphor green caret — a single chromatic pulse on a sea of charcoal.",
+  "capturedAt": "2026-07-18T10:10:56.971Z",
+  "meta": {
+    "url": "https://supabase.com",
+    "siteName": "Supabase",
+    "extractedAt": "2026-06-03T15:08:05.355Z",
+    "durationMs": 30363,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2149,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #3ecf8 (Phosphor Green) exclusively for primary CTAs, emphasized headline keywords, the logo, and active nav indicators — ration the green to one element per visual region",
+      "Set all button radius to 9999px (pill) and all card radius to 16px — the pill/card duality defines the system",
+      "Use Circular weight 400 for headlines and weight 500 for emphasis and button labels — never bold weight; the 500 is the loudest voice available",
+      "Separate surfaces with 1px solid #2e2e2 borders on #121212 backgrounds — never rely on shadow to define elevation",
+      "Keep letter-spacing at -0.007em uniformly across all sizes — the negative tracking is what makes Circular feel custom and tight",
+      "Use #3ecf8 as the focus border color on inputs (1px, no glow ring) — the chromatic border replaces the conventional focus shadow",
+      "Maintain page canvas at #121212 with no alternative — the single dark surface is the system's anchor"
+    ],
+    "donts": [
+      "Don't introduce any chromatic color beyond the four greens — the monochrome discipline is the brand",
+      "Don't use weight 600 or 700 in Circular — the type system tops out at 500; if you need more emphasis, increase size or use Phosphor Green",
+      "Don't add box-shadows to cards, popovers, or modals — the design is deliberately flat; use #2e2e2 borders instead",
+      "Don't use radius values other than 9999px (buttons/tags), 16px (cards), or 8px (inputs) — the limited radius vocabulary is intentional",
+      "Don't place Phosphor Green on large background areas — it should appear as small functional punctuation, not as a section background",
+      "Don't use light text on light backgrounds or any non-#121212 canvas — Snow (#fafafa) is the only text color",
+      "Don't add gradients — the system is strictly flat, terminal-native, and gradient-free"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#3ecf8e",
+        "name": "Phosphor Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#00c573",
+        "name": "Mint Pulse",
+        "role": "Link text and inline accent — a slightly cooler green variant for textual references that shouldn't compete with primary CTAs",
+        "group": "brand"
+      },
+      {
+        "hex": "#1f4b37",
+        "name": "Forest Depth",
+        "role": "Hover and pressed borders on green CTAs — keeps the button identifiable when the fill darkens on interaction",
+        "group": "brand"
+      },
+      {
+        "hex": "#006239",
+        "name": "Midnight Emerald",
+        "role": "Deepest green surface — for low-key brand-tinted backgrounds, subtle section washes, and disabled-brand states",
+        "group": "brand"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Snow",
+        "role": "Primary text, icon strokes, button labels — the dominant foreground across the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b4",
+        "name": "Silver Mist",
+        "role": "Secondary headings, nav items, body emphasis — readable but never competing with Snow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Smoke",
+        "role": "Tertiary text, captions, helper text, muted icon fills — the voice of metadata and annotations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "role": "Icon outlines, low-emphasis borders, divider lines, and stroke color for illustrative line work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#393939",
+        "name": "Slate",
+        "role": "Input borders, subtle dividers, hairline separators between nav and content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e2e2e",
+        "name": "Charcoal",
+        "role": "Card and component borders — the most-used border color, giving surfaces their defined edge without a visible shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242424",
+        "name": "Ash",
+        "role": "Elevated surface tier for nested cards, hover states, and popover backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Obsidian",
+        "role": "Page canvas — the deep near-black foundation behind every section and card",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-width dark canvas at 1200px max-width centered. Hero is centered text with a 72px display headline (two lines, second line in Phosphor Green), 16px subtitle, and two side-by-side pill buttons. Below hero, a horizontal logo cloud strip. Feature sections alternate between centered text blocks and 2x2 card grids (4 columns at full width). Cards are uniform 16px radius with equal padding. Vertical rhythm uses 64-96px section gaps with seamless flow — no visible dividers between sections, just generous breathing room. Testimonials appear in a 4-column masonry grid. Footer is a single dark band. The navigation is a fixed 64px top bar with transparent background that may darken on scroll.",
+    "imagery": "Line-art and wireframe illustrations dominate — 3D geometric shapes (cubes, grids, network nodes) rendered in #4d4d4d stroke on #0d0d0d backgrounds with occasional Phosphor Green dot accents. Product screenshots appear in dark frames within cards. No photography, no lifestyle imagery. Icons are thin-stroke outlined (1.5px), monochrome in #fafafa or #b4b4b4, with Phosphor Green reserved for active/brand-icon contexts. The visual language is diagrammatic and technical — the aesthetic of a developer tool schematic, not a marketing site.",
+    "similar": [
+      {
+        "why": "Same monochrome dark canvas, single accent color strategy, and pill-button primary actions — Vercel uses white/blue, Supabase uses phosphor green",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark developer-tool aesthetic with tight geometric typography and minimal surface treatment — similar card grid patterns and code-editor visual language",
+        "business": "Railway"
+      },
+      {
+        "why": "Dark-mode product UI with rationed color usage, hairline borders instead of shadows, and pill-shaped interactive elements",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark database-platform marketing site with centered hero, monochrome palette, and a single vivid accent for emphasis",
+        "business": "PlanetScale"
+      },
+      {
+        "why": "Similar dark devtools aesthetic with phosphor-toned accent color and terminal-inspired UI — the green-on-black visual heritage is shared",
+        "business": "Neon"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#121212",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page background — the base layer every surface sits on"
+      },
+      {
+        "hex": "#242424",
+        "name": "Ash Card",
+        "level": 1,
+        "purpose": "Nested or elevated card surfaces one tier above the canvas"
+      },
+      {
+        "hex": "#2e2e2",
+        "name": "Charcoal Border",
+        "level": 2,
+        "purpose": "Card and component outline — defines edges without shadow"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Midnight code editor with phosphor green caret — a single chromatic pulse on a sea of charcoal.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.084
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.098
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.112
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.126
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.168
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.252
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.504
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "Main call-to-action — green fill, white text, fully rounded",
+        "description": "Background #3ecf8, text #fafafa, border 1px solid #3ecf8 (on hover border shifts to #1f4b37). Padding 8px 16px. Radius 9999px. Circular 500 weight, 14px, line-height 1.43. The green is the only filled chromatic surface in the system — every green button should feel like a deliberate decision."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Secondary action — transparent fill, subtle border, monochrome",
+        "description": "Background transparent, border 1px solid #393939, text #fafafa. Padding 8px 16px. Radius 9999px. Circular 400 weight, 14px. On hover border shifts to #4d4d4d and background fills with rgba(255,255,255,0.04)."
+      },
+      {
+        "name": "Pill GitHub Stars",
+        "role": "Social proof pill in nav — shows repo star count",
+        "description": "Background #242424, border 1px solid #2e2e2, text #fafafa, small GitHub icon in #fafafa. Padding 6px 10px. Radius 9999px. Circular 400, 12px. Compact, unobtrusive — it's a status indicator, not a CTA."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Primary product capability card in 2x2 or 4-column grid",
+        "description": "Background #121212 (same as canvas, defined only by border). Border 1px solid #2e2e2e. Radius 16px. Padding 24px. Each card has a small icon in #3ecf8, a heading in #fafafa (Circular 500, 18px), body text in #b4b4b4 (Circular 400, 14px), and a dark illustration area in the lower half with line-art or wireframe graphics in #4d4d4d on #0d0d0d backgrounds."
+      },
+      {
+        "name": "Product Showcase Card",
+        "role": "Larger feature card with embedded visual — used for headline product capabilities like Database, Auth, Realtime",
+        "description": "Same surface as Feature Card: background #121212, border 1px solid #2e2e2, radius 16px, padding 24px. The visual area fills the card with a 3D geometric or wireframe illustration in #4d4d4d line work on #0d0d0d. Phosphor green dots or highlights appear as accent within the illustration — not as UI chrome."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Social proof card with avatar, handle, and quote",
+        "description": "Background #121212, border 1px solid #2e2e2, radius 16px, padding 20px. Circular avatar 40px, handle in #fafafa (Circular 500, 14px), quote body in #b4b4b4 (Circular 400, 14px, line-height 1.5). Cards vary in height — masonry-style layout."
+      },
+      {
+        "name": "Announcement Pill",
+        "role": "Compact announcement banner above the hero",
+        "description": "Background #242424, border 1px solid #2e2e2, radius 9999px, padding 6px 16px. Circular 400, 12px, text #b4b4b4. Small chevron icon in #b4b4b4 on the right."
+      },
+      {
+        "name": "Logo Cloud Item",
+        "role": "Company logos in the trust strip",
+        "description": "Logos rendered in #898989 (monochrome) at uniform height ~24px. No backgrounds or borders — just floating marks on the canvas."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky site-wide navigation",
+        "description": "Full-width, background transparent or #121212 on scroll. Height ~64px. Left: green Supabase logo (mark + wordmark in #fafafa). Center: nav links in #b4b4b4 (Circular 400, 14px). Right: GitHub stars pill, Sign in ghost button, Start your project green pill. 1px bottom border #2e2e2 for separation."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input — used in demo request forms",
+        "description": "Background #121212, border 1px solid #393939, radius 8px, padding 8px 12px. Text in #fafafa, placeholder in #898989 (Circular 400, 14px). Focus: border shifts to #3ecf8 with no glow ring — the green border IS the focus indicator."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI typography — nav, body, buttons, headings, display. Circular is a geometric humanist sans with rounded terminals; its regular 400 weight carries headlines (a deliberate anti-bold choice) and the 500 weight is reserved for emphasis and button labels.",
+        "sizes": "12px, 14px, 16px, 18px, 24px, 36px, 72px",
+        "family": "Circular",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.56 (tight: 1.0 at 72px display, 1.5–1.56 at body sizes)",
+        "substitute": "Inter or Manrope — both share Circular's geometric warmth and humanist proportions",
+        "letterSpacing": "-0.007em across all sizes (≈ -0.5px at 72px display, near 0 at body sizes) — the uniform negative tracking is a signature; it tightens the geometric forms into a single cohesive voice"
+      },
+      {
+        "role": "Inline code and terminal snippets — only for code-style UI fragments, never body copy",
+        "sizes": "12px",
+        "family": "Source Code Pro",
+        "weight": "400",
+        "lineHeight": "1.33",
+        "substitute": "JetBrains Mono or IBM Plex Mono",
+        "letterSpacing": "0.100em — wide tracking on mono to match the airy terminal aesthetic"
+      }
+    ],
+    "description": "Supabase is a midnight IDE with phosphor green punctuation: a near-black canvas, monochrome UI surfaces, and a single vivid green that marks emphasis, headings, and primary actions. The interface borrows its rhythm from code editors — hairline borders, pill controls, generous vertical breathing room, and tight geometric typography (Circular) that whispers in regular weight rather than shouting in bold. Color is rationed: the page is 99% grayscale, and every green pixel earns its place by being a CTA, a highlighted keyword, or a logo. Cards float one elevation level above the canvas using subtle border contrast rather than shadow. The overall feel is fast, terminal-native, and quietly confident — designed to disappear so the product and its developer audience can take the spotlight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Supabase design system\",\"item\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#style-reference\",\"name\":\"Supabase design system reference\",\"headline\":\"Supabase design system | Refero Styles\",\"description\":\"Explore Supabase's dark Dev Tools design system: Phosphor Green #3ecf8e, Mint Pulse #00c573 colors, Circular, Source Code Pro typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Supabase\",\"url\":\"https://supabase.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"caption\":\"Screenshot of Supabase\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Supabase design system\",\"Supabase website design\",\"Supabase colors\",\"Supabase typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Phosphor Green\",\"Mint Pulse\",\"Forest Depth\",\"Midnight Emerald\",\"Circular\",\"Source Code Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Supabase design system\"},{\"@type\":\"Thing\",\"name\":\"Supabase website design\"},{\"@type\":\"Thing\",\"name\":\"Supabase colors\"},{\"@type\":\"Thing\",\"name\":\"Supabase typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-30T09:26:47.000Z\",\"dateModified\":\"2026-03-30T09:26:47.000Z\"}]}19:T6c5,## Quick Color Reference\n- text: #fafafa\n- background: #121212\n- card surface: #121212 (with #2e2e2e border)\n- border: #2e2e2e (cards), #393939 (inputs), #4d4d4d (icons)\n- accent: #3ecf8e (Phosphor Green)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Section**: Centered on #121212 canvas. Display headline at 72px Circular weight 400, #fafafa, letter-spacing -0.5px. Second line in #3ecf8e. Subtitle at 16px Circular 400, #b4b4b4, line-height 1.5. Two pill buttons side by side: green primary (#3ecf8e fill, #fafafa text, 9999px radius, 8px 16px padding) and ghost secondary (transparent, 1px #393939 border, #fafafa text, 9999px radius).\n\n2. **Feature Card Grid**: 2x2 grid on #121212. Each card: 16px radius, 1px solid #2e2e2e border, 24px padding. Icon in #3ecf8e at 24px stroke. Heading in #fafafa Circular 500 18px. Body in #b4b4b4 Circular 400 14px line-height 1.5. Lower half of card has dark illustration area (#0d0d0d background) with #4d4d4d line-art.\n\n3. **Top Navigation**: 64px height, full-width, #121212 background. Left: Supabase logo (green mark + #fafafa wordmark). Center: nav links in #b4b4b4 Circular 400 14px. Right: GitHub stars pill (#242424 bg, #2e2e2e border, 9999px radius), Sign in ghost button, green Start your project pill.\n\n4. **Testimonial Card**: 16px radius, 1px solid #2e2e2e border, 20px padding. 40px circular avatar, handle in #fafafa Circular 500 14px, quote in #b4b4b4 Circular 400 14px line-height 1.5. Masonry layout in 4-column grid.\n\n5. **Input Field**: Background #121212, border 1px solid #393939, radius 8px, padding 8px 12px. Text in #fafafa Circular 400 14px, placeholder in #898989. On focus: border changes to #3ecf8e — no glow ring or shadow."
+      }
+    ],
+    "elevationPhilosophy": "Supabase deliberately avoids shadows. The interface relies on hairline #2e2e2 borders to separate surfaces from the #121212 canvas. This terminal-native approach keeps the UI flat and code-editor-like — shadows would feel out of place against the otherwise geometric, line-driven aesthetic. A single shadow detection (rgba(0,0,0,0.1) on one button) is an exception, not a pattern."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2e2e2e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3011838100535464
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "icon",
+            "heading",
+            "image",
+            "link",
+            "list",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 6319,
+          "confidence": 1,
+          "prominence": 137534800.8433705,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "image",
+            "link",
+            "list",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 1220,
+          "confidence": 1,
+          "prominence": 111697560.05427927,
+          "properties": [
+            "color",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 197,
+          "confidence": 1,
+          "prominence": 10241266.858963864,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6300934477406146
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon",
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 369,
+          "confidence": 1,
+          "prominence": 1874310.3813495918,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b4b4b4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7699314175046421
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "heading",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 267,
+          "confidence": 1,
+          "prominence": 1076855.1712828744,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 284050.65421428415,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3ecf8e",
+          "oklch": {
+            "c": 0.15437618453183874,
+            "h": 159.35507835055026,
+            "l": 0.7623945011333757
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "nav"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 160946.92510082867,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#393939",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.34458382051778663
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 256,
+          "confidence": 1,
+          "prominence": 71145.985368686,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42023714570450815
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 384,
+          "confidence": 1,
+          "prominence": 33015.01905917822,
+          "properties": [
+            "color",
+            "stroke",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f4b37",
+          "oklch": {
+            "c": 0.05946675435507773,
+            "h": 162.1359917682564,
+            "l": 0.3745005664218209
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 24179.707412397078,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#006239",
+          "oklch": {
+            "c": 0.10439782020507615,
+            "h": 156.75560823829173,
+            "l": 0.4365144607590509
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 14230.218566469965,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#656565",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5078139868314343
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5163.968083029494,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 2312.543885409864,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00c573",
+          "oklch": {
+            "c": 0.1775012677012777,
+            "h": 155.3982633704386,
+            "l": 0.7235504731671704
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2177,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#002918",
+          "oklch": {
+            "c": 0.055527533560652334,
+            "h": 160.65219963477887,
+            "l": 0.24802003045430313
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 960,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0011221217335631432,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#000000",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.95,
+          "background": "#121212",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#002918",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#242424",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#2e2e2e",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#fafafa",
+          "foreground": "#393939"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.52,
+          "background": "#000000",
+          "foreground": "#3ecf8e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#000000",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.49,
+          "background": "#fafafa",
+          "foreground": "#1f4b37"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.39,
+          "background": "#121212",
+          "foreground": "#3ecf8e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#000000",
+          "foreground": "#00c573"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#121212",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.24,
+          "background": "#121212",
+          "foreground": "#00c573"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.1,
+          "background": "#fafafa",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.91,
+          "background": "#002918",
+          "foreground": "#3ecf8e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.78,
+          "background": "#242424",
+          "foreground": "#3ecf8e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.61,
+          "background": "#002918",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.49,
+          "background": "#242424",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#006239",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.94,
+          "background": "#002918",
+          "foreground": "#00c573"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 128
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "input"
+          ],
+          "frequency": 98
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 70
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 55
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 140,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "body",
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "body",
+            "other",
+            "list",
+            "link",
+            "input"
+          ],
+          "frequency": 390,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 70,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 192,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 65,
+          "properties": [
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 244,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "button",
+            "list"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 224,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Circular",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1678,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Source Code Pro",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Source Code Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Circular",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Circular",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Circular",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other",
+            "list",
+            "link",
+            "input"
+          ],
+          "frequency": 147,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "icon",
+            "heading",
+            "body",
+            "list",
+            "card",
+            "footer",
+            "button"
+          ],
+          "frequency": 1368,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Circular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bbf3fc9a-1f49-4c4a-b202-bf866fd21922.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Supabase design system\",\"item\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#style-reference\",\"name\":\"Supabase design system reference\",\"headline\":\"Supabase design system | Refero Styles\",\"description\":\"Explore Supabase's dark Dev Tools design system: Phosphor Green #3ecf8e, Mint Pulse #00c573 colors, Circular, Source Code Pro typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Supabase\",\"url\":\"https://supabase.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/632249f1-fd78-4c77-9b34-7bae37ff3e9b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"caption\":\"Screenshot of Supabase\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d0170a8e-96f4-40be-aff2-4eb200635449.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Supabase design system\",\"Supabase website design\",\"Supabase colors\",\"Supabase typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Phosphor Green\",\"Mint Pulse\",\"Forest Depth\",\"Midnight Emerald\",\"Circular\",\"Source Code Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Supabase design system\"},{\"@type\":\"Thing\",\"name\":\"Supabase website design\"},{\"@type\":\"Thing\",\"name\":\"Supabase colors\"},{\"@type\":\"Thing\",\"name\":\"Supabase typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-30T09:26:47.000Z\",\"dateModified\":\"2026-03-30T09:26:47.000Z\"}]}19:T6c5,## Quick Color Reference\n- text: #fafafa\n- background: #121212\n- card surface: #121212 (with #2e2e2e border)\n- border: #2e2e2e (cards), #393939 (inputs), #4d4d4d (icons)\n- accent: #3ecf8e (Phosphor Green)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Section**: Centered on #121212 canvas. Display headline at 72px Circular weight 400, #fafafa, letter-spacing -0.5px. Second line in #3ecf8e. Subtitle at 16px Circular 400, #b4b4b4, line-height 1.5. Two pill buttons side by side: green primary (#3ecf8e fill, #fafafa text, 9999px radius, 8px 16px padding) and ghost secondary (transparent, 1px #393939 border, #fafafa text, 9999px radius).\n\n2. **Feature Card Grid**: 2x2 grid on #121212. Each card: 16px radius, 1px solid #2e2e2e border, 24px padding. Icon in #3ecf8e at 24px stroke. Heading in #fafafa Circular 500 18px. Body in #b4b4b4 Circular 400 14px line-height 1.5. Lower half of card has dark illustration area (#0d0d0d background) with #4d4d4d line-art.\n\n3. **Top Navigation**: 64px height, full-width, #121212 background. Left: Supabase logo (green mark + #fafafa wordmark). Center: nav links in #b4b4b4 Circular 400 14px. Right: GitHub stars pill (#242424 bg, #2e2e2e border, 9999px radius), Sign in ghost button, green Start your project pill.\n\n4. **Testimonial Card**: 16px radius, 1px solid #2e2e2e border, 20px padding. 40px circular avatar, handle in #fafafa Circular 500 14px, quote in #b4b4b4 Circular 400 14px line-height 1.5. Masonry layout in 4-column grid.\n\n5. **Input Field**: Background #121212, border 1px solid #393939, radius 8px, padding 8px 12px. Text in #fafafa Circular 400 14px, placeholder in #898989. On focus: border changes to #3ecf8e — no glow ring or shadow."
+}

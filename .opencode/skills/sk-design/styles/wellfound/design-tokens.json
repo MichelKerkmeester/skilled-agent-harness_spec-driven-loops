@@ -1,0 +1,394 @@
+{
+  "color": {
+    "wellfound-ink": {
+      "$value": "#051316",
+      "$type": "color",
+      "$description": "Wellfound Ink — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Canvas, card surface, button fill, nav surface — the dominant background across nearly every screen"
+    },
+    "blush-mist": {
+      "$value": "#fff4f6",
+      "$type": "color",
+      "$description": "Blush Mist — Soft warm card surface for feature blocks, gentle wash on two-column benefit sections"
+    },
+    "ash-gray": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Ash Gray — Ghost-button borders, hairline dividers, muted tag outlines — present without demanding attention"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text on images, subdued link color — slightly lighter than Ink for hierarchy"
+    },
+    "slate-depth": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Slate Depth — Nav text in dark sections, alternative ink tone for darker surface contexts"
+    },
+    "signal-red": {
+      "$value": "#ec2e3a",
+      "$type": "color",
+      "$description": "Signal Red — Brand accent — the colon in the wordmark, dot ornaments beside display headlines, card highlight borders, feature icon strokes. Carries the entire chromatic identity of the system"
+    },
+    "aubergine-depth": {
+      "$value": "#210d25",
+      "$type": "color",
+      "$description": "Aubergine Depth — Dark hero/stat-band background, inverse-mode surface — turns the stats counter into a velvet authority moment against the otherwise light page"
+    },
+    "plum-shadow": {
+      "$value": "#541142",
+      "$type": "color",
+      "$description": "Plum Shadow — Deeper purple link background, secondary dark accent for hover or emphasis on the aubergine family"
+    },
+    "ember-red": {
+      "$value": "#e32e19",
+      "$type": "color",
+      "$description": "Ember Red — Warmer secondary red for text and border accents where Signal Red reads too cool"
+    }
+  },
+  "font": {
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — used for everything from 14px nav links to 100px hero stats. Weight 400 for body and tags, 500 for buttons and medium emphasis, 600 for headlines and display. Negative letter-spacing (-0.013em to -0.020em) tightens display sizes into compact, confident shapes that read more like editorial typography than UI text. The very tight leading on 72px+ (0.82–1.0) is signature — display numbers feel sculpted rather than typeset."
+    },
+    "aeonik-fono": {
+      "$value": "Aeonik Fono",
+      "$type": "fontFamily",
+      "$description": "Secondary typeface used sparingly for small-caps-style labels and select 40px display moments. Brings a slightly geometric counter-form to Graphik's humanist shapes, creating contrast when both fonts appear on the same surface."
+    },
+    "aeonikfono": {
+      "$value": "Aeonikfono",
+      "$type": "fontFamily",
+      "$description": "Aeonikfono — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Aeonik Fono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Aeonikfono",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Aeonikfono",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "100px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 9px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas — nav, page body, most card surfaces"
+    },
+    "blush-mist": {
+      "$value": "#fff4f6",
+      "$type": "color",
+      "$description": "Surface level 1: Warm secondary surface for two-column benefit sections, soft card washes"
+    },
+    "aubergine-depth": {
+      "$value": "#210d25",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inverse surface for stats band, CTA banners, authority moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wellfound.com",
+      "siteName": "Wellfound",
+      "extractedAt": "2026-06-03T20:55:50.841Z",
+      "variant": "extended"
+    }
+  }
+}

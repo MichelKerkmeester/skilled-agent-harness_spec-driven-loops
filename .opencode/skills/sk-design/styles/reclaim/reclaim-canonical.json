@@ -1,0 +1,2103 @@
+{
+  "source": "https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4",
+  "uuid": "71c7b9ad-44cc-483f-9c53-3cf73e0522a4",
+  "name": "Reclaim",
+  "northStar": "lavender productivity workshop with violet ink",
+  "capturedAt": "2026-07-18T07:40:18.296Z",
+  "meta": {
+    "url": "https://reclaim.ai",
+    "siteName": "Reclaim",
+    "extractedAt": "2026-06-03T20:01:32.538Z",
+    "durationMs": 24957,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1256,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Poppins exclusively for all text; never substitute Inter, Roboto, or system fonts in production UI",
+      "Set border-radius to 100px for all buttons, tags, and avatars to maintain the pill-shaped identity",
+      "Use Iris Violet (#5562eb) as the single primary action color — never introduce a second blue or accent for CTAs",
+      "Keep headlines at weight 300 or 400 — never bold (600+) display text, the whisper-weight is the signature",
+      "Apply the violet-to-green gradient (linear-gradient(120deg, #5562eb 40%, #7ac17b 61%)) only to hero headline words, not to buttons or backgrounds",
+      "Use the lavender canvas (#ebefff) as the page base — white-only pages break the brand atmosphere",
+      "Reserve Focus Green (#7ac17b) for calendar time blocks and positive stat numbers, not for success toasts or status badges"
+    ],
+    "donts": [
+      "Do not use drop shadows on cards — Reclaim uses border-radius and surface contrast instead of elevation",
+      "Do not introduce a new accent color (orange, pink, teal) — the system is two-color: Iris Violet + Focus Green",
+      "Do not use weight 700 or 800 for any text — Poppins tops out at 600 and most display text is 300-400",
+      "Do not use 0px border-radius on any container — minimum 3px, standard 10px for cards",
+      "Do not apply the violet-green gradient to buttons, backgrounds, or full headlines — only individual words in hero text",
+      "Do not use pure white (#ffffff) as the page background — the lavender canvas is the brand base",
+      "Do not use box-shadow for hover or focus states — use color shift to Sapphire Violet (#3451e8) instead"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ebefff",
+        "name": "Lavender Canvas",
+        "role": "Page background, hero section wash, footer background — the base atmosphere that distinguishes Reclaim from generic white SaaS",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Surface",
+        "role": "Card surfaces, product mockup containers, button text on dark fills — pure white provides the resting layer above the lavender canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181d25",
+        "name": "Midnight Ink",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Graphite",
+        "role": "Body copy and card text on light surfaces — sits just above pure black for slightly softer reading weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#474747",
+        "name": "Slate",
+        "role": "Muted helper text, secondary descriptions, footer text — the workhorse for non-headline copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Charcoal",
+        "role": "Subheadings and emphasized body — bridges Midnight Ink headings and Slate body text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Stone",
+        "role": "Tertiary text, breadcrumb-style labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ececec",
+        "name": "Mist",
+        "role": "Hairline dividers, decorative strokes, subtle separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5562eb",
+        "name": "Iris Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#3451e8",
+        "name": "Sapphire Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#c2caf9",
+        "name": "Lavender Mist",
+        "role": "Soft tints for product card highlights, decorative violet washes, outlined button borders — the muted cousin of Iris Violet",
+        "group": "brand"
+      },
+      {
+        "hex": "#96a0f3",
+        "name": "Periwinkle",
+        "role": "Disabled or secondary violet state, ghost button text on violet themes",
+        "group": "brand"
+      },
+      {
+        "hex": "#151f8b",
+        "name": "Indigo Depth",
+        "role": "Dark mode gradient anchor, deep accent for special promotional sections",
+        "group": "brand"
+      },
+      {
+        "hex": "#7ac17b",
+        "name": "Focus Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#daf0db",
+        "name": "Mint Whisper",
+        "role": "Light supporting surface for subtle backgrounds and section separation",
+        "group": "accent"
+      },
+      {
+        "hex": "#14532d",
+        "name": "Forest Edge",
+        "role": "Dark green gradient stop for special promotional banners",
+        "group": "accent"
+      },
+      {
+        "hex": "#5a1a1a",
+        "name": "Brick",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered container, but the lavender canvas extends full-bleed. Hero is a two-column split: massive left-aligned headline (50% width) with product mockup card on the right (50% width), generous vertical breathing room. Sections alternate between lavender canvas bands and white card blocks without harsh dividers. The stats section uses a 4-column equal grid with thin vertical separators. Feature sections follow a consistent left-text / right-visual alternating pattern. Navigation is a clean top bar with logo left, menu center-left, action buttons right — no sticky behavior evident. Page density is comfortable, not compact — large vertical gaps (80px+) between sections, never tight stacking.",
+    "imagery": "Product mockups dominate — specifically the calendar UI itself rendered as a clean flat illustration on a white card against the lavender canvas. The calendar uses solid green blocks with no shadows or gradients on the time blocks themselves. Photography is absent from the hero. Decorative visuals are limited to: a subtle dotted/grid texture visible on the lavender background, the gradient text treatment, and small flat icons in line with the rounded Poppins aesthetic. The product visualization IS the hero imagery — no lifestyle photos, no abstract 3D renders.",
+    "similar": [
+      {
+        "why": "Same calendar-scheduling product category, identical lavender-canvas atmosphere, same pill-shaped buttons, and the same violet-to-green gradient text treatment in the hero",
+        "business": "Clockwise"
+      },
+      {
+        "why": "Lavender-tinted canvas with white card surfaces, same avoidance of heavy shadows, and a similarly friendly single-accent-color approach",
+        "business": "Notion"
+      },
+      {
+        "why": "Clean pill buttons, single vivid accent color against a light tinted canvas, and whisper-weight large headlines",
+        "business": "Linear"
+      },
+      {
+        "why": "Open-source scheduling tool with comparable lavender page atmosphere and minimalist calendar-illustration hero treatment",
+        "business": "Cal.com"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "10px",
+        "inputs": "10px",
+        "avatars": "100px",
+        "buttons": "100px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ebefff",
+        "name": "Lavender Canvas",
+        "level": 0,
+        "purpose": "Page-level background, hero wash, section bands — the atmospheric base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 1,
+        "purpose": "Product mockup containers, pricing cards, feature blocks — clean resting layer"
+      },
+      {
+        "hex": "#daf0db",
+        "name": "Mint Wash",
+        "level": 2,
+        "purpose": "Green-tinted callout sections, stat highlights, success panels"
+      },
+      {
+        "hex": "#c2caf9",
+        "name": "Lavender Mist",
+        "level": 3,
+        "purpose": "Subtle violet-tinted panels, decorative bands, soft section dividers"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — relies on lavender canvas contrast for separation",
+        "element": "Product Mockup Card"
+      },
+      {
+        "style": "0 1px 2px rgba(0,0,0,0.04) maximum, often zero",
+        "element": "Feature Card"
+      }
+    ],
+    "northStar": "lavender productivity workshop with violet ink",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.7
+      },
+      {
+        "role": "display-xl",
+        "size": 90,
+        "lineHeight": 1,
+        "letterSpacing": -0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button (Violet)",
+        "role": "Main call-to-action — 'Get started free', primary conversion actions",
+        "description": "100px border-radius (full pill), Iris Violet (#5562eb) fill, white text, Poppins 14px weight 500, 16px vertical × 24px horizontal padding. No shadow. On hover shifts to Sapphire Violet (#3451e8)."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Secondary CTA — 'Book a demo' on lavender canvas",
+        "description": "100px border-radius, transparent fill, Iris Violet (#5562eb) 1.5px border, Iris Violet text, Poppins 14px weight 500, 14px vertical × 22px horizontal padding. Becomes filled violet on hover with white text."
+      },
+      {
+        "name": "Dark Pill Button (Nav)",
+        "role": "High-contrast nav action — 'Get Started' in the top right",
+        "description": "100px border-radius, Midnight Ink (#181d25) fill, white text, Poppins 14px weight 500, 8px vertical × 16px horizontal padding. Compact sizing for nav density."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Secondary nav action — 'Book a Demo' in top right",
+        "description": "100px border-radius, white fill, Midnight Ink (#181d25) 1px border, Midnight Ink text, Poppins 14px weight 500, 8px vertical × 16px horizontal padding."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width, Lavender Mist (#c2caf9) background, Midnight Ink text, Poppins 12px weight 500, centered, 8px vertical padding. Often contains a subtle arrow link in Iris Violet."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "White or transparent background over lavender canvas, Poppins 14px weight 500 for menu items in Midnight Ink, logo on left, action buttons right. No drop shadow — uses white-to-lavender contrast for separation."
+      },
+      {
+        "name": "Product Mockup Card",
+        "role": "Hero product screenshot container",
+        "description": "White (#ffffff) surface, 10px border-radius, no visible shadow, contains the calendar UI mockup. Often placed against the lavender canvas with generous padding (40px+)."
+      },
+      {
+        "name": "Calendar Time Block",
+        "role": "Functional UI element inside the product — represents scheduled focus time",
+        "description": "Focus Green (#7ac17b) fill, 3px border-radius, white text, Poppins 11-12px. The specific color-coding makes the product visualization itself part of the brand system."
+      },
+      {
+        "name": "Stat Number Block",
+        "role": "Large metric display in the social-proof band",
+        "description": "Focus Green (#7ac17b) at 90px Poppins weight 300, with a Slate (#474747) label below at 14px Poppins weight 400. Vertically separated by thin Mist (#ececec) dividers between stats."
+      },
+      {
+        "name": "Trust Badge Row",
+        "role": "Social proof microcopy under hero CTAs",
+        "description": "Horizontal row of small checkmark + text items, Poppins 12px weight 400 in Slate, with Iris Violet checkmark icons. 20px gap between items."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Mid-page feature highlights",
+        "description": "White surface, 10px border-radius, no shadow or extremely subtle 0 1px 2px rgba(0,0,0,0.04), 32px padding, contains a small Poppins heading-sm and Slate body text."
+      },
+      {
+        "name": "Gradient Hero Text",
+        "role": "Signature hero headline treatment",
+        "description": "Words in the hero headline receive a linear-gradient(120deg, #5562eb 40%, #7ac17b 61%) text fill, Poppins 70-90px weight 300. This violet-to-green gradient on select words is the most recognizable visual signature of the brand."
+      },
+      {
+        "name": "Section Header",
+        "role": "Reusable section title block",
+        "description": "Poppins 40-48px weight 400 in Midnight Ink, left-aligned, with 16-20px margin to optional Slate subtitle. No eyebrow text or label above."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive brand typeface used for every text element. The 300-weight whisper at 70–90px for hero headlines is the signature move — most productivity apps use bold display weights, but Reclaim's thin Poppins headlines float above the page rather than punch through it. Letter-spacing is consistently tightened at -0.01em across all sizes, giving the rounded Poppins letterforms a slightly more compact, intentional feel rather than the default airy spacing.",
+        "sizes": "10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 40, 44, 46, 48, 70, 90",
+        "family": "Poppins",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "1.00–2.29",
+        "substitute": "Plus Jakarta Sans, DM Sans",
+        "letterSpacing": "-0.01em across all sizes"
+      },
+      {
+        "role": "Secondary fallback used only in 24 specific UI spots — effectively negligible. Treat as legacy or data-table context, not a design system font.",
+        "sizes": "12, 13, 18",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.00–2.46",
+        "substitute": "system-ui, -apple-system"
+      }
+    ],
+    "description": "Reclaim reads as a productivity tool that wants to feel friendly, not corporate. The canvas is a very pale lavender (#ebefff) that softens what could otherwise be a stark productivity app, with product surfaces staying pure white for contrast. A single vivid violet (#5562eb) drives every interactive moment — links, primary CTAs, focus states — while a matching vivid green (#7ac17b) appears as functional punctuation on the calendar visualization itself, not on controls. Typography is exclusively Poppins, used at extreme scale: 90px hero headlines with weight 300/400 whisper against the page, and tiny 11-12px body text that never feels utilitarian. Buttons are pill-shaped (100px radius) with stark black or pure violet fills — no gradients on controls. The overall feeling is \"calm scheduling app, not enterprise software.\"",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Reclaim design system\",\"item\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#style-reference\",\"name\":\"Reclaim design system reference\",\"headline\":\"Reclaim design system | Refero Styles\",\"description\":\"Explore Reclaim's light Productivity design system: Lavender Canvas #ebefff, White Surface #ffffff colors, Poppins, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Reclaim\",\"url\":\"https://reclaim.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"caption\":\"Screenshot of Reclaim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Reclaim design system\",\"Reclaim website design\",\"Reclaim colors\",\"Reclaim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Lavender Canvas\",\"White Surface\",\"Midnight Ink\",\"Pure Black\",\"Poppins\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Reclaim design system\"},{\"@type\":\"Thing\",\"name\":\"Reclaim website design\"},{\"@type\":\"Thing\",\"name\":\"Reclaim colors\"},{\"@type\":\"Thing\",\"name\":\"Reclaim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-01-31T14:54:30.000Z\",\"dateModified\":\"2026-01-31T14:54:30.000Z\"}]}19:T596,**Quick Color Reference**\n- text: #181d25 (primary), #474747 (muted)\n- background: #ebefff (canvas), #ffffff (cards)\n- border: #ececec (hairline), #5562eb (interactive)\n- accent (text/gradient word): #5562eb → #7ac17b gradient\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Hero headline with gradient accent word*: Render a headline at 90px Poppins weight 300, #181d25, letter-spacing -0.9px. The second word in the headline uses a linear-gradient(120deg, #5562eb 40%, #7ac17b 61%) text fill. Below: Poppins 16px weight 400, #474747 subtitle. CTAs: Iris Violet (#5562eb) pill button (100px radius, white text, Poppins 14px weight 500, 16px/24px padding) and a ghost pill button (100px radius, transparent fill, 1.5px #5562eb border, #5562eb text). Canvas: #ebefff.\n\n2. *Product mockup card*: White (#ffffff) surface, 10px border-radius, no shadow, 32px internal padding, placed on a #ebefff lavender canvas. Inside: a simplified calendar grid with day headers (MON/TUE/WED) in Poppins 11px weight 500, #474747, and Focus Green (#7ac17b) 3px-radius time blocks with white Poppins 12px text.\n\n3. *Stat number band*: Four columns separated by 1px #ececec vertical dividers. Each column: Focus Green (#7ac17b) at 90px Poppins weight 300 for the number, with a Slate (#474747) Poppins 14px weight 400 label below. Background: white or lavender canvas. Section sits inside a max-width 1200px container."
+      }
+    ],
+    "elevationPhilosophy": "Reclaim deliberately avoids elevation. The lavender canvas (#ebefff) provides enough tonal separation from white cards that shadows become redundant. Cards rely on surface contrast and 10px border-radius alone, creating a flat, printed-poster quality rather than a skeuomorphic layered UI. Any shadow added should be barely visible (under 4% opacity)."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#181d25",
+          "oklch": {
+            "c": 0.017284774594646758,
+            "h": 259.749407314153,
+            "l": 0.2293354588757231
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "image",
+            "badge",
+            "card"
+          ],
+          "frequency": 1316,
+          "confidence": 1,
+          "prominence": 33753041.85812328,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 1146,
+          "confidence": 1,
+          "prominence": 12136922.260614296,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebefff",
+          "oklch": {
+            "c": 0.021913080852120615,
+            "h": 274.7431561995438,
+            "l": 0.953799327150027
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 12052554.188368626,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "link",
+            "card"
+          ],
+          "frequency": 334,
+          "confidence": 1,
+          "prominence": 11642148.59119478,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c2caf9",
+          "oklch": {
+            "c": 0.06612982751532148,
+            "h": 277.33279129412676,
+            "l": 0.8485279392433629
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "card",
+            "body"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 6564786.6193843605,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "card",
+            "other",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 181,
+          "confidence": 1,
+          "prominence": 4190430.531659061,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#474747",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3994237437306341
+          },
+          "contexts": [
+            "body",
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 400,
+          "confidence": 1,
+          "prominence": 813552.8887608788,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 547018.7460023934,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7ac17b",
+          "oklch": {
+            "c": 0.12211780216136826,
+            "h": 144.53987913081167,
+            "l": 0.7461736715585736
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 382131.61578175216,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#daf0db",
+          "oklch": {
+            "c": 0.03638055974820215,
+            "h": 146.53861599187178,
+            "l": 0.9332227010890842
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 331239.8782190116,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5562eb",
+          "oklch": {
+            "c": 0.20438118948417663,
+            "h": 273.7554578180718,
+            "l": 0.564901135275244
+          },
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 86,
+          "confidence": 1,
+          "prominence": 255346.73662747678,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ececec",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9430889073732058
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 241812.6528435451,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3451e8",
+          "oklch": {
+            "c": 0.2285417781440057,
+            "h": 268.23283274100316,
+            "l": 0.5159407388525511
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 240591.58787138428,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 233341.79942238744,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c2c4d0",
+          "oklch": {
+            "c": 0.016302098438176437,
+            "h": 275.2588287557272,
+            "l": 0.8224183998901913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 95126.62002653854,
+          "properties": [
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fafaef",
+          "oklch": {
+            "c": 0.014459927546678372,
+            "h": 106.66289608654894,
+            "l": 0.9821145800853358
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 72653.32249018348,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000033",
+          "oklch": {
+            "c": 0.10057079457922864,
+            "h": 264.05202261636987,
+            "l": 0.14513821984903622
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 59729.31183967677,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5a1a1a",
+          "oklch": {
+            "c": 0.09421032408363393,
+            "h": 24.094327649947843,
+            "l": 0.32158735283710543
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 52243.38213496565,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#14532d",
+          "oklch": {
+            "c": 0.0896192343374252,
+            "h": 152.5352816941364,
+            "l": 0.3925324282568997
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 40696,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d7d7d7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.879168666349154
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 37384,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#96a0f3",
+          "oklch": {
+            "c": 0.12062281573042397,
+            "h": 277.72444828066557,
+            "l": 0.7309913016857552
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 24169.39938174281,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#85c885",
+          "oklch": {
+            "c": 0.11604352031337559,
+            "h": 144.34738594856958,
+            "l": 0.770787013428616
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 22362.51059373872,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#151f8b",
+          "oklch": {
+            "c": 0.17345162480581608,
+            "h": 268.51145654299575,
+            "l": 0.32653898968185185
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 165.437600046154,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.042396034530277564,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.04,
+          "background": "#ffffff",
+          "foreground": "#000033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.99,
+          "background": "#000000",
+          "foreground": "#fafaef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.07,
+          "background": "#fafaef",
+          "foreground": "#000033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.32,
+          "background": "#ebefff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.97,
+          "background": "#fafaef",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.78,
+          "background": "#ececec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.49,
+          "background": "#ebefff",
+          "foreground": "#000033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.47,
+          "background": "#daf0db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#ececec",
+          "foreground": "#000033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.92,
+          "background": "#ffffff",
+          "foreground": "#181d25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#daf0db",
+          "foreground": "#000033"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#ebefff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#181d25",
+          "foreground": "#fafaef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.98,
+          "background": "#ececec",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.71,
+          "background": "#daf0db",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.76,
+          "background": "#ebefff",
+          "foreground": "#181d25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#d7d7d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#ececec",
+          "foreground": "#181d25"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 103,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 122,
+          "properties": [
+            "marginRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 154,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 102,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(120deg, rgb(85, 98, 235) 40%, rgb(122, 193, 123) 61%)",
+        "colors": [
+          "rgb(85, 98, 235)",
+          "rgb(122, 193, 123)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(122, 193, 123), rgb(85, 98, 235))",
+        "colors": [
+          "rgb(122, 193, 123)",
+          "rgb(85, 98, 235)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(220, 237, 191), rgb(132, 203, 135))",
+        "colors": [
+          "rgb(220, 237, 191)",
+          "rgb(132, 203, 135)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(21, 31, 139), rgb(20, 83, 45) 0%, rgb(122, 193, 127) 0%, rgb(0, 0, 0) 0%)",
+        "colors": [
+          "rgb(21, 31, 139)",
+          "rgb(20, 83, 45)",
+          "rgb(122, 193, 127)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(140deg, rgb(21, 31, 139), rgb(112, 123, 246) 80%)",
+        "colors": [
+          "rgb(21, 31, 139)",
+          "rgb(112, 123, 246)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(140deg, rgb(21, 31, 139), rgb(20, 83, 45) 65%)",
+        "colors": [
+          "rgb(21, 31, 139)",
+          "rgb(20, 83, 45)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 663,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 24,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.46,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 2.46,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 3.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 46,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "badge",
+            "button",
+            "card"
+          ],
+          "frequency": 394,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Poppins",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/86fca257-ffbb-4acc-87ac-07bda199ccef.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Reclaim design system\",\"item\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#style-reference\",\"name\":\"Reclaim design system reference\",\"headline\":\"Reclaim design system | Refero Styles\",\"description\":\"Explore Reclaim's light Productivity design system: Lavender Canvas #ebefff, White Surface #ffffff colors, Poppins, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Reclaim\",\"url\":\"https://reclaim.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71c7b9ad-44cc-483f-9c53-3cf73e0522a4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"caption\":\"Screenshot of Reclaim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28fac4c9-f14b-4b74-9d43-8638e3fb4b2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Reclaim design system\",\"Reclaim website design\",\"Reclaim colors\",\"Reclaim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Lavender Canvas\",\"White Surface\",\"Midnight Ink\",\"Pure Black\",\"Poppins\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Reclaim design system\"},{\"@type\":\"Thing\",\"name\":\"Reclaim website design\"},{\"@type\":\"Thing\",\"name\":\"Reclaim colors\"},{\"@type\":\"Thing\",\"name\":\"Reclaim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-01-31T14:54:30.000Z\",\"dateModified\":\"2026-01-31T14:54:30.000Z\"}]}19:T596,**Quick Color Reference**\n- text: #181d25 (primary), #474747 (muted)\n- background: #ebefff (canvas), #ffffff (cards)\n- border: #ececec (hairline), #5562eb (interactive)\n- accent (text/gradient word): #5562eb → #7ac17b gradient\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Hero headline with gradient accent word*: Render a headline at 90px Poppins weight 300, #181d25, letter-spacing -0.9px. The second word in the headline uses a linear-gradient(120deg, #5562eb 40%, #7ac17b 61%) text fill. Below: Poppins 16px weight 400, #474747 subtitle. CTAs: Iris Violet (#5562eb) pill button (100px radius, white text, Poppins 14px weight 500, 16px/24px padding) and a ghost pill button (100px radius, transparent fill, 1.5px #5562eb border, #5562eb text). Canvas: #ebefff.\n\n2. *Product mockup card*: White (#ffffff) surface, 10px border-radius, no shadow, 32px internal padding, placed on a #ebefff lavender canvas. Inside: a simplified calendar grid with day headers (MON/TUE/WED) in Poppins 11px weight 500, #474747, and Focus Green (#7ac17b) 3px-radius time blocks with white Poppins 12px text.\n\n3. *Stat number band*: Four columns separated by 1px #ececec vertical dividers. Each column: Focus Green (#7ac17b) at 90px Poppins weight 300 for the number, with a Slate (#474747) Poppins 14px weight 400 label below. Background: white or lavender canvas. Section sits inside a max-width 1200px container."
+}

@@ -1,0 +1,249 @@
+{
+  "color": {
+    "cobalt-voltage": {
+      "$value": "#0033e5",
+      "$type": "color",
+      "$description": "Cobalt Voltage — Primary surface, page background, filled action buttons, heading text, link color, and active borders. The structural anchor of the system — every dark panel lives here"
+    },
+    "ice-white": {
+      "$value": "#f0f7ff",
+      "$type": "color",
+      "$description": "Ice White — Light surface, card backgrounds on blue sections, heading and body text on blue panels, hairline borders, ghost button outlines. Counter-surface to Cobalt Voltage"
+    },
+    "cobalt-mist": {
+      "$value": "#527ceb",
+      "$type": "color",
+      "$description": "Cobalt Mist — Soft blue tint used sparingly for secondary button fills and tonal accents where Cobalt Voltage would be too heavy. Falls below WCAG on Ice White"
+    },
+    "pitch": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch — SVG icon fills, nav element fills, and decorative graphic anchors. Used as the dark accent inside light panels"
+    }
+  },
+  "font": {
+    "haas-grot-disp-web": {
+      "$value": "Haas Grot Disp Web",
+      "$type": "fontFamily",
+      "$description": "Single neo-grotesque display face used at all scales — from 16px body to 85px hero. The radical choice is weight 400 only: no bold, no light. The system relies on size and the blue/white contrast to create hierarchy, not weight. This flattens typographic texture into a single confident voice that reads as declarative rather than persuasive."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 3.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp Web",
+        "fontSize": "85px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 85px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.4px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 51, 229) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(240, 247, 255) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "cobalt-voltage": {
+      "$value": "#0033e5",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant page background, hero panels, content panels"
+    },
+    "ice-white": {
+      "$value": "#f0f7ff",
+      "$type": "color",
+      "$description": "Surface level 1: Counter-surface panel, card backgrounds on cobalt sections"
+    },
+    "cobalt-mist": {
+      "$value": "#527ceb",
+      "$type": "color",
+      "$description": "Surface level 2: Tonal blue tint for secondary fills and soft accents"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superhi.plus",
+      "siteName": "SuperHi Plus",
+      "extractedAt": "2026-06-03T21:13:55.418Z",
+      "variant": "extended"
+    }
+  }
+}

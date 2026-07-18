@@ -1,0 +1,1094 @@
+{
+  "source": "https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac",
+  "uuid": "6323a42b-3b47-4774-92e4-15651a9ba2ac",
+  "name": "Rive",
+  "northStar": "Precision Night Vision. The interface is a specialized lens, cutting through darkness to focus on technical details with absolute clarity.",
+  "capturedAt": "2026-07-18T10:15:13.688Z",
+  "meta": {
+    "url": "https://rive.app",
+    "siteName": "Rive",
+    "extractedAt": "2026-04-11T17:42:27.457Z",
+    "durationMs": 75975,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 856,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the 'Tomorrow' font for all headings, subheadings, and nav items.",
+      "Reserve 'Ignition Orange' (#ffa41c) exclusively for a single primary CTA per view.",
+      "Build all layouts on a pure 'Obsidian' (#000000) background.",
+      "Differentiate interactive surfaces using the neutral palette progression: #111111, #1d1d1d, #262626.",
+      "Maintain an 8px border-radius on all primary interactive components like buttons and cards.",
+      "Apply specific letter-spacing rules for the 'Tomorrow' font: negative for large sizes, positive for small.",
+      "Use 'Stark White' (#ffffff) for headlines and 'Ash' (#aaaaaa) or 'Dusk Gray' (#999999) for body copy."
+    ],
+    "tags": [
+      "dark-mode",
+      "tech",
+      "futuristic",
+      "monochromatic",
+      "single-accent",
+      "developer-tool",
+      "animation",
+      "minimalist",
+      "sharp"
+    ],
+    "donts": [
+      "Don't use drop shadows. Use colored surfaces for elevation.",
+      "Don't introduce any new saturated colors. The palette is strictly monochromatic plus one orange accent.",
+      "Don't use 'Ignition Orange' for text, borders, or non-interactive decorations.",
+      "Don't use pill-shaped or fully-rounded buttons. Stick to the 8px radius.",
+      "Don't use light backgrounds. The entire brand experience is dark.",
+      "Don't use 'Tomorrow' for long paragraphs of body text; use 'Inter'.",
+      "Don't use gradients. The aesthetic is solid color blocks."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffa41c",
+        "name": "Ignition Orange",
+        "role": "Primary CTAs and eyebrow labels — the sole warm accent, providing a clear, unmissable call to action.",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary page background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Charcoal",
+        "role": "Secondary surfaces, like contained button backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Graphite",
+        "role": "Tertiary surfaces, small button backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Tarmac",
+        "role": "Interactive element backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Stark White",
+        "role": "Headline text, icon fills.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Cloud",
+        "role": "High-emphasis body text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Standard body text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Dusk Gray",
+        "role": "Secondary text, navigation links.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The layout is full-bleed and centered, creating an immersive, focused environment. The hero section occupies the entire viewport with a large, centered headline stack. Subsequent content is presented in simple, centered text blocks or contained grid-like structures for tags and categories. Vertical rhythm is spacious, allowing each piece of information to stand alone in the expansive dark space.",
+    "imagery": "Imagery is minimal to non-existent, placing full emphasis on the product's UI and capabilities. The visual language is defined by typography and stark color contrasts, not photography or illustration. Dark, empty containers act as placeholders, suggesting potential for embedded animations or product demos, but the core identity remains text- and UI-centric.",
+    "similar": [
+      {
+        "why": "Shares the developer-tool aesthetic with a dark-mode UI, sharp typography, and minimal accent colors.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar use of a pitch-black background, sharp sans-serif typography, and a minimalist, tech-focused identity.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Evokes a similar command-line utility feel with a dark UI, focus on function, and sparse use of color.",
+        "business": "Raycast"
+      },
+      {
+        "why": "Also uses a dark, code-editor-inspired theme that prioritizes text and function over decorative elements.",
+        "business": "GitHub Codespaces"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4-8px",
+        "cards": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "category": "dev-tools",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Base",
+        "level": 0,
+        "purpose": "Page background"
+      },
+      {
+        "hex": "#111111",
+        "name": "Raised",
+        "level": 1,
+        "purpose": "Secondary interactive surfaces"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Overlay",
+        "level": 2,
+        "purpose": "Tertiary buttons and interactive tags"
+      }
+    ],
+    "northStar": "Precision Night Vision. The interface is a specialized lens, cutting through darkness to focus on technical details with absolute clarity.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.1,
+        "letterSpacing": 1.1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.19
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -1.32
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Rive Editor Feature Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Category Tag Cards Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main call to action in a view.",
+        "description": "Background: Ignition Orange (#ffa41c). Text: Stark White (#ffffff). Padding: 12px 24px. Radius: 8px. Font: Inter Bold."
+      },
+      {
+        "name": "Secondary CTA Button",
+        "role": "Secondary action, like downloads or alternative options.",
+        "description": "Background: Charcoal (#111111) or Graphite (#1d1d1d). Text: Stark White (#ffffff). Padding: 12px 24px. Radius: 8px. Font: Inter."
+      },
+      {
+        "name": "Tertiary Button",
+        "role": "Small, supplemental actions like 'Learn More' or 'Features'.",
+        "description": "Background: Graphite (#1d1d1d). Text: Stark White (#ffffff) or Ash (#aaaaaa). Padding: 8px 10px. Radius: 8px. Font: Tomorrow or Inter, often with an icon."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Header and footer navigation items.",
+        "description": "Text-only button. Text color: Dusk Gray (#999999). Hover/Active color: Stark White (#ffffff). Font: Tomorrow 500."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "A small label preceding a major headline.",
+        "description": "Text color: Ignition Orange (#ffa41c). Font: Tomorrow 500, all-caps. Often paired with a small icon."
+      },
+      {
+        "name": "Category Tag Card",
+        "role": "Interactive tags for filtering or navigation, seen in a grid.",
+        "description": "Background: Graphite (#1d1d1d). Border: 1px solid Tarmac (#262626). Text: Dusk Gray (#999999). Radius: 8px. On hover, background lightens and text turns white."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "The main H1 on the page.",
+        "description": "Font: Tomorrow 500 at a large size (e.g., 40px+). Color: Stark White (#ffffff). Tightly tracked letter-spacing."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All headings, subheadings, and prominent UI labels. Its technical, semi-monospace structure and distinctive letter-spacing define the brand's futuristic, tool-like identity.",
+        "sizes": "11px, 12px, 14px, 20px, 24px, 40px",
+        "family": "Tomorrow",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.30, 1.40, 1.60",
+        "substitute": "Share Tech Mono, Roboto Mono",
+        "letterSpacing": "Negative at large sizes (-1.32px at 40px) for tight headlines, positive at small sizes (+1.1px at 11px) for legible UI labels."
+      },
+      {
+        "role": "All body copy and long-form text. Its neutrality provides a readable foundation that complements the stylized 'Tomorrow' headlines.",
+        "sizes": "13px, 16px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.20, 1.60, 1.70",
+        "substitute": "Inter, Roboto, sans-serif"
+      },
+      {
+        "role": "Fallback and utilitarian text in less prominent contexts.",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "System UI"
+      }
+    ],
+    "description": "The design feels like a high-end piece of creative software, a focused digital workshop cloaked in darkness. A pure black #000000 canvas eliminates all distraction, forcing attention onto the content and UI. The technical, wide-set 'Tomorrow' typeface is the defining visual signature, establishing a futuristic, blueprint-like quality for all headings. A single, warm 'Ignition Orange' accent appears only on primary CTAs, acting as a functional guidance point in the monochromatic environment. Elevation is conveyed not by shadows but by subtle shifts in dark gray surfaces, creating depth like nested panels on a piece of precision hardware.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved through layered, near-black surfaces (#111111, #1d1d1d) on a pure black (#000000) base, not box shadows. This creates a subtle, self-contained depth reminiscent of physical hardware panels rather than floating UI cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "button",
+            "image",
+            "input",
+            "footer"
+          ],
+          "frequency": 1418,
+          "confidence": 1,
+          "prominence": 79529837.12463255,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 10874029.49735142,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 1263700.4644119926,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 315,
+          "confidence": 1,
+          "prominence": 931144.4541968394,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 312,
+          "confidence": 1,
+          "prominence": 315584.43746503093,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 189555.86095046267,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 21391.120982333116,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#1d1d1d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23075046833254287
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 17024.563029749534,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffa41c",
+          "oklch": {
+            "c": 0.16696671889663517,
+            "h": 68.85389074765968,
+            "l": 0.791505805939775
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6265.030661352145,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.001888123022691792,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#1d1d1d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.72,
+          "background": "#111111",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#262626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.92,
+          "background": "#1d1d1d",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#262626",
+          "foreground": "#f1f1f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#000000",
+          "foreground": "#ffa41c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#111111",
+          "foreground": "#ffa41c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#000000",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.49,
+          "background": "#1d1d1d",
+          "foreground": "#ffa41c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#111111",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.62,
+          "background": "#262626",
+          "foreground": "#ffa41c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.26,
+          "background": "#1d1d1d",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#111111",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.51,
+          "background": "#262626",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#1d1d1d",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#262626",
+          "foreground": "#999999"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 90
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 36,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 182,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 108,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 27,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 29,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 39,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 645,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 91,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Tomorrow",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 67,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Tomorrow",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button",
+            "list",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 645,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter Display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Regular",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter Regular",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.008,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Tomorrow",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9fdc4048-68a8-4284-b8ee-c7078194f7c3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/51f63830-fbf1-41f0-a07e-9a7c6b234d32.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Rive design system\",\"item\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac#style-reference\",\"name\":\"Rive design system reference\",\"headline\":\"Rive design system | Refero Styles\",\"description\":\"Explore Rive's dark Design design system: Ignition Orange #ffa41c, Obsidian #000000 colors, Tomorrow, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Rive\",\"url\":\"https://rive.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6323a42b-3b47-4774-92e4-15651a9ba2ac#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/51f63830-fbf1-41f0-a07e-9a7c6b234d32.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/51f63830-fbf1-41f0-a07e-9a7c6b234d32.jpg\",\"caption\":\"Screenshot of Rive\"},\"image\":\"https://images.refero.design/styles/refero.design/image/51f63830-fbf1-41f0-a07e-9a7c6b234d32.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Rive design system\",\"Rive website design\",\"Rive colors\",\"Rive typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ignition Orange\",\"Obsidian\",\"Charcoal\",\"Graphite\",\"Tomorrow\",\"Inter\",\"sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Rive design system\"},{\"@type\":\"Thing\",\"name\":\"Rive website design\"},{\"@type\":\"Thing\",\"name\":\"Rive colors\"},{\"@type\":\"Thing\",\"name\":\"Rive typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-29T09:03:30.000Z\",\"dateModified\":\"2026-03-29T09:03:30.000Z\"}]}19:Tc15,<style>:root{--color-ignition-orange:#ffa41c;--color-obsidian:#000000;--color-charcoal:#111111;--color-graphite:#1d1d1d;--color-tarmac:#262626;--color-stark-white:#ffffff;--color-cloud:#f1f1f1;--color-ash:#aaaaaa;--color-dusk-gray:#999999;--font-tomorrow:'Tomorrow',sans-serif;--font-inter:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');</style><div style=\"background:var(--color-obsidian);padding:48px 40px;display:flex;flex-direction:column;align-items:center;gap:20px;width:600px;box-sizing:border-box;font-family:var(--font-inter);\"><div style=\"font-family:var(--font-tomorrow);font-size:11px;font-weight:500;letter-spacing:1.1px;color:var(--color-ignition-orange);text-transform:uppercase;margin-bottom:8px;\">AGENT NOW AVAILABLE</div><div style=\"display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:10px;background:var(--color-ignition-orange);color:var(--color-stark-white);font-family:var(--font-inter);font-size:13px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;padding:14px 28px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;\">GET STARTED</a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:10px;background:var(--color-charcoal);color:var(--color-stark-white);font-family:var(--font-tomorrow);font-size:13px;font-weight:500;letter-spacing:1.1px;text-transform:uppercase;padding:14px 28px;border-radius:8px;text-decoration:none;border:1px solid var(--color-tarmac);cursor:pointer;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"18\" height=\"18\" rx=\"3\" fill=\"#333\"/><path d=\"M9 3L13 9H10.5V15H7.5V9H5L9 3Z\" fill=\"white\"/></svg>DOWNLOADS</a></div><div style=\"display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap;justify-content:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-graphite);color:var(--color-stark-white);font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-decoration:none;border:1px solid var(--color-tarmac);cursor:pointer;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><circle cx=\"7\" cy=\"7\" r=\"6\" stroke=\"#aaa\" stroke-width=\"1.5\"/><path d=\"M5.5 7l1.5 1.5L9 5.5\" stroke=\"#aaa\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>LEARN MORE</a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-graphite);color:var(--color-stark-white);font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-decoration:none;border:1px solid var(--color-tarmac);cursor:pointer;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z\" fill=\"#aaa\"/></svg>FEATURES</a></div></div>1a:Tbc6,<style>:root{--color-ignition-orange:#ffa41c;--color-obsidian:#000000;--color-charcoal:#111111;--color-graphite:#1d1d1d;--color-tarmac:#262626;--color-stark-white:#ffffff;--color-cloud:#f1f1f1;--color-ash:#aaaaaa;--color-dusk-gray:#999999;--font-tomorrow:'Tomorrow',sans-serif;--font-inter:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');</style><div style=\"background:var(--color-obsidian);padding:48px 40px;width:600px;box-sizing:border-box;\"><div style=\"max-width:440px;\"><div style=\"display:flex;align-items:center;gap:8px;margin-bottom:16px;\"><svg width=\"18\" height=\"14\" viewBox=\"0 0 18 14\" fill=\"none\"><rect x=\"0\" y=\"0\" width=\"18\" height=\"14\" rx=\"2\" stroke=\"#ffa41c\" stroke-width=\"1.5\" fill=\"none\"/><line x1=\"3\" y1=\"4\" x2=\"15\" y2=\"4\" stroke=\"#ffa41c\" stroke-width=\"1.2\"/><line x1=\"3\" y1=\"7\" x2=\"12\" y2=\"7\" stroke=\"#ffa41c\" stroke-width=\"1.2\"/><line x1=\"3\" y1=\"10\" x2=\"9\" y2=\"10\" stroke=\"#ffa41c\" stroke-width=\"1.2\"/></svg><span style=\"font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:1.1px;color:var(--color-ignition-orange);text-transform:uppercase;\">RIVE EDITOR</span></div><h2 style=\"font-family:var(--font-tomorrow);font-size:28px;font-weight:500;letter-spacing:-0.5px;color:var(--color-stark-white);margin:0 0 20px 0;line-height:1.2;text-transform:uppercase;\">DESIGN, CODE, AND ANIMATE</h2><p style=\"font-family:var(--font-inter);font-size:16px;font-weight:400;line-height:1.7;color:var(--color-ash);margin:0 0 32px 0;\">Rive is where designers, animators, and developers build interactive experiences. Design, animate, and code in one place. What you build in the editor is what ships in your app, game, or website. No mockups, no prototypes, no handoff. The real thing.</p><div style=\"display:flex;gap:10px;flex-wrap:wrap;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-graphite);color:var(--color-stark-white);font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:12px 18px;border-radius:8px;text-decoration:none;border:1px solid var(--color-tarmac);cursor:pointer;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><circle cx=\"7\" cy=\"7\" r=\"6\" stroke=\"#aaa\" stroke-width=\"1.4\"/><path d=\"M5.5 7.2l1.5 1.3L9.5 5\" stroke=\"#aaa\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>LEARN MORE</a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-graphite);color:var(--color-stark-white);font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;padding:12px 18px;border-radius:8px;text-decoration:none;border:1px solid var(--color-tarmac);cursor:pointer;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M7 1.2l1.6 4.2H13l-3.6 2.6 1.4 4.4L7 10l-3.8 2.4 1.4-4.4L1 5.4h4.4L7 1.2z\" fill=\"#aaa\"/></svg>FEATURES</a></div></div></div>1b:T85f,<style>:root{--color-ignition-orange:#ffa41c;--color-obsidian:#000000;--color-charcoal:#111111;--color-graphite:#1d1d1d;--color-tarmac:#262626;--color-stark-white:#ffffff;--color-cloud:#f1f1f1;--color-ash:#aaaaaa;--color-dusk-gray:#999999;--font-tomorrow:'Tomorrow',sans-serif;--font-inter:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');.cat-card{background:var(--color-graphite);border:1px solid var(--color-tarmac);border-radius:8px;padding:0;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;transition:background 0.2s;}.cat-card:hover{background:var(--color-tarmac);}.cat-card:hover .cat-label{color:var(--color-stark-white);}.cat-label{font-family:var(--font-tomorrow);font-size:12px;font-weight:500;letter-spacing:1.1px;text-transform:uppercase;color:var(--color-dusk-gray);padding:14px 16px 12px;transition:color 0.2s;}.cat-img{width:100%;height:100px;background:var(--color-charcoal);border-radius:0 0 6px 6px;}</style><div style=\"background:var(--color-obsidian);padding:40px;width:600px;box-sizing:border-box;\"><div style=\"font-family:var(--font-tomorrow);font-size:11px;font-weight:500;letter-spacing:1.1px;color:var(--color-dusk-gray);text-transform:uppercase;margin-bottom:20px;\">EXPLORE BY CATEGORY</div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:8px;\"><div class=\"cat-card\"><div class=\"cat-label\">AUTOMOTIVE</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div><div class=\"cat-card\"><div class=\"cat-label\">PRODUCT UI</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div><div class=\"cat-card\"><div class=\"cat-label\">GAME UI</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div><div class=\"cat-card\"><div class=\"cat-label\">MOBILE APPS</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div><div class=\"cat-card\"><div class=\"cat-label\">FILM + TV</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div><div class=\"cat-card\"><div class=\"cat-label\">WEARABLES</div><div class=\"cat-img\" style=\"background:#151515;\"></div></div></div></div>1c:T554,### Quick Color Reference:\n- **Background:** `Obsidian (#000000)`\n- **Text (Headlines):** `Stark White (#ffffff)`\n- **Text (Body):** `Ash (#aaaaaa)`\n- **Primary CTA:** `Ignition Orange (#ffa41c)`\n- **Secondary Button BG:** `Charcoal (#111111)`\n- **Borders/Dividers:** `Tarmac (#262626)`\n\n### Example Component Prompts:\n1.  **Hero Section:** \"Create a hero section with a full-screen `Obsidian (#000000)` background. Add a headline 'DESIGN, CODE, ANIMATE' set in `Tomorrow` font at `40px` with `-1.32px` letter-spacing, color `Stark White (#ffffff)`. Below it, add a primary CTA button: 'Get Started', background `Ignition Orange (#ffa41c)`, text `Stark White (#ffffff)`, `8px` radius, `12px 24px` padding.\"\n2.  **Eyebrow + Heading Block:** \"Create a text block. Start with an eyebrow label 'RIVE EDITOR' in all-caps, `Tomorrow` font, `12px`, `Ignition Orange (#ffa41c)` color, `+0.84px` letter-spacing. Below it, add the main heading 'The Real Thing' in `Tomorrow` font, `24px`, `Stark White (#ffffff)`, `+0.19px` letter-spacing. Finally, add paragraph text in `Inter`, `16px`, `Ash (#aaaaaa)` color.\"\n3.  **Tertiary Button Group:** \"Create a horizontal group of two small buttons with 16px spacing between them. Button style: `Graphite (#1d1d1d)` background, `Stark White (#ffffff)` text, `8px 10px` padding, `8px` radius. Label them 'Learn More' and 'Features'.\""
+}

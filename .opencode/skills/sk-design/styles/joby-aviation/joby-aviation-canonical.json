@@ -1,0 +1,1511 @@
+{
+  "source": "https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166",
+  "uuid": "c1052d8d-3663-46a4-a882-e50d9b8a1166",
+  "name": "Joby Aviation",
+  "northStar": "Golden hour cockpit over a sleeping city — every screen is a window seat.",
+  "capturedAt": "2026-07-18T09:35:43.838Z",
+  "meta": {
+    "url": "https://www.jobyaviation.com",
+    "siteName": "Joby Aviation",
+    "extractedAt": "2026-06-03T18:57:55.678Z",
+    "durationMs": 43924,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 444,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use jobyDisplay at 48-207px with tracking between -0.01em and -0.03em for all headlines — the compressed, large-scale typography is the brand's primary signature",
+      "Default all content surfaces to Parchment Cream (#f5f4df) with Carbon Ink (#0e1620) text — the warm/cool duotone is the structural backbone",
+      "Reserve Electric Blue (#007ae5) for floating cards, the bottom banner strip, and single-color accent moments — never tile it across large areas",
+      "Use outlined actions with Outlined Action (#083e6f) borders at 8px radius instead of filled buttons — the ghost control pattern keeps the interface quiet against photography",
+      "Apply 16px radius to standard cards and 160px radius to featured/promotional containers — the radius itself signals content importance",
+      "Float body text directly over photography with a 2-4px left-border accent in cream rather than wrapping it in a card or scrim",
+      "Maintain generous spacing: 40px card padding, 32px vertical rhythm, 8-32px element gaps — the spacious density lets the photography breathe"
+    ],
+    "donts": [
+      "Do not use filled rectangular CTA buttons — the system uses outlined actions, floating cards, or text links instead",
+      "Do not apply standard gray or blue-tinted drop shadows — the only shadow is the warm khaki glow on cream cards",
+      "Do not use bold (700+) weight for headlines — jobyDisplay's signature is weight 500-550 at extreme sizes, not heavy weight at moderate sizes",
+      "Do not add dark scrims or background plates behind text on photography — the contrast is built into the image itself",
+      "Do not use multiple saturated colors in one composition — Electric Blue, Cobalt, and Sunset Orange each appear in isolated moments, never together",
+      "Do not apply system fonts (Arial, Helvetica) to headlines or body — they are fallback only for 13px button text",
+      "Do not add gradients, patterns, or decorative backgrounds — every surface is either solid cream, solid blue, or a photograph"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f5f4df",
+        "name": "Parchment Cream",
+        "role": "Page canvas, card surfaces, text color on dark imagery — the warm off-white that keeps photography from feeling cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e1620",
+        "name": "Carbon Ink",
+        "role": "Body text, headings, hairline borders, icon strokes — near-black with a cool blue undertone that pairs with the cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1dfef",
+        "name": "Pale Sky",
+        "role": "Soft secondary surface wash, subtle section backgrounds when cream needs contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#abab9c",
+        "name": "Shadow Khaki",
+        "role": "Warm gray used in card box-shadow tinting — gives elevation a warm cast rather than a cold blue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#007ae5",
+        "name": "Electric Blue",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#1c3f99",
+        "name": "Deep Cobalt",
+        "role": "Secondary brand surface for navigation bars and accent fills — darker register of the blue for layering",
+        "group": "brand"
+      },
+      {
+        "hex": "#083e6f",
+        "name": "Outlined Action",
+        "role": "Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#eb6110",
+        "name": "Sunset Orange",
+        "role": "Warm accent fill for decorative highlights and select illustration elements — echoes the golden-hour photography palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffd9c9",
+        "name": "Peach Glow",
+        "role": "Soft warm surface accent, peachy wash that harmonizes with the sunset photography",
+        "group": "accent"
+      },
+      {
+        "hex": "#319fff",
+        "name": "Signal Blue",
+        "role": "Brighter blue accent for small icon and illustration highlights — lighter pop than the primary Electric Blue",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a full-bleed single-column experience with no visible grid or sidebar. The hero occupies the full viewport with centered text overlaid on the photograph. Below the hero, a saturated Electric Blue banner strip spans the full width. Content sections alternate between full-bleed photography (with text overlays) and the warm cream canvas. A centered logomark navigation sits at the top with a hamburger left and a single text link right — no horizontal nav bar, no mega-menu. Text blocks are left-aligned with a thin vertical accent border, max-width ~320px, positioned lower-left of the frame. The layout rhythm is: full-bleed photo → cream text section → full-bleed photo → cream text section, with no visible card containers or boxed layouts. The generous section gap (113px) and the spacious density make the page feel like flipping through a premium print magazine rather than navigating a website.",
+    "imagery": "Photography is the primary visual asset and dominates the page. All imagery is cinematic, golden-hour aerial photography shot from inside an eVTOL cockpit looking out over a sleeping city skyline. The treatment is full-bleed, no rounded corners, no masks — images extend to all edges of the viewport. The lighting is consistently warm sunset/dawn with deep amber highlights and cool blue-grey city silhouettes, giving every image a built-in duotone that matches the Parchment Cream and Carbon Ink palette. Product illustrations appear only inside the floating Electric Skies promo card (small eVTOL render in white/blue line art). No lifestyle photography, no people in staged settings — the single human figure is a silhouetted passenger in the cockpit, visible only as a dark shape against the window. The photography is documentary in feel, not aspirational: the viewer is a passenger, not a spectator.",
+    "similar": [
+      {
+        "why": "Same eVTOL aviation category with full-bleed cinematic photography and minimal UI overlay",
+        "business": "Lilium"
+      },
+      {
+        "why": "Same warm/cool duotone palette (cream + deep ink) with single electric blue accent and oversized display headlines",
+        "business": "Archer Aviation"
+      },
+      {
+        "why": "Same ghost-button + minimal-chrome approach with full-bleed product photography as the primary visual",
+        "business": "Tesla"
+      },
+      {
+        "why": "Same spacious editorial layout with photography-first composition and quiet, restrained UI chrome",
+        "business": "Rivian"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "buttons": "8px",
+        "asymmetric": "147.6px",
+        "promoCards": "160px"
+      },
+      "elementGap": "8-32px",
+      "sectionGap": "113px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#0e1620",
+        "name": "Imagery Layer",
+        "level": 0,
+        "purpose": "Full-bleed photography and dark cinematic backgrounds — the dominant first impression"
+      },
+      {
+        "hex": "#f5f4df",
+        "name": "Parchment Canvas",
+        "level": 1,
+        "purpose": "Default content surface for all editorial text sections, cards, and structural blocks"
+      },
+      {
+        "hex": "#c1dfef",
+        "name": "Pale Sky Wash",
+        "level": 2,
+        "purpose": "Subtle alternative surface for section contrast against the cream"
+      },
+      {
+        "hex": "#007ae5",
+        "name": "Electric Blue Band",
+        "level": 3,
+        "purpose": "Saturated accent surface for the bottom tour strip and floating promo card"
+      },
+      {
+        "hex": "#1c3f99",
+        "name": "Cobalt Depth",
+        "level": 4,
+        "purpose": "Darker blue layer for navigation chrome and stacked accent surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 40px 0px rgba(171, 171, 156, 0.4)",
+        "element": "Warm Card Surface"
+      }
+    ],
+    "northStar": "Golden hour cockpit over a sleeping city — every screen is a window seat.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading",
+        "size": 64,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "display",
+        "size": 207,
+        "lineHeight": 1,
+        "letterSpacing": -6.21
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Promo Card",
+        "role": "Promotional overlay card for campaign announcements (e.g. 'Electric Skies Tour')",
+        "description": "Electric Blue (#007ae5) solid background, white text, 16px corner radius, ~32px padding. Positioned floating top-right of hero. Contains a small kicker label, a display-size headline, a thin white close-button circle, and a miniature product illustration. The card reads as a single bold chromatic moment against the dark photographic hero."
+      },
+      {
+        "name": "Cinematic Full-Bleed Hero",
+        "role": "First-viewport hero using full-bleed photography",
+        "description": "Edge-to-edge photographic image with no visible container. White or cream headline text overlaid at the lower-center in jobyDisplay at 64-80px, weight 500, tracking -0.03em. The text floats directly on the image with no card or background plate — the photography provides the contrast."
+      },
+      {
+        "name": "Bordered Caption Block",
+        "role": "Short editorial text overlay on photography",
+        "description": "Body text at 16px in Parchment Cream (#f5f4df) over dark imagery. Marked by a 2-4px vertical left-border accent line in cream. No background fill, no padding box — just the text and a thin guide line. Max width ~320px, positioned lower-left. The left border is the only structural element."
+      },
+      {
+        "name": "Centered Logomark Navigation",
+        "role": "Minimal top navigation bar",
+        "description": "Transparent bar over hero photography. Joby wordmark and aviation mark centered in white. Hamburger icon (two horizontal lines) at far left in white. A single 'Investors ↗' text link at far right in white, jobyText 16px weight 500. No background fill, no shadow, no border — the bar dissolves into the photograph."
+      },
+      {
+        "name": "Saturated Banner Strip",
+        "role": "Full-width tour/event announcement band",
+        "description": "Full-bleed Electric Blue (#007ae5) horizontal band, ~60-80px tall. Centered white text in jobyText 16px weight 500, tracking -0.01em. Single line of copy. No border, no rounded corners — sits as a sharp color transition at the page base."
+      },
+      {
+        "name": "Outlined Icon Button",
+        "role": "Ghost/secondary action control",
+        "description": "No background fill. Outlined Action (#083e6f) border at 1-2px, 8px radius. Icon centered in Outlined Action color. Sized approximately 40-48px square. This is the preferred action pattern: a chromatic border replaces a filled background so the control stays visually quiet against the cream canvas or photography."
+      },
+      {
+        "name": "Warm Card Surface",
+        "role": "Content card on the cream canvas",
+        "description": "Parchment Cream (#f5f4df) background with box-shadow in Shadow Khaki (#abab9c) at low opacity, giving the elevation a warm cast rather than a cold blue. 16px corner radius. 40px internal padding. Hairline border in Carbon Ink (#0e1620) at low opacity sometimes replaces the shadow for flatter compositions."
+      },
+      {
+        "name": "Asymmetric Rounded Container",
+        "role": "Editorial content block with extreme corner curvature",
+        "description": "Uses 160px or 147.6px corner radii — the intentionally asymmetric, near-circular rounding that signals a featured/promotional treatment. Always used for premium or hero-adjacent content. Carbon Ink text on Parchment Cream or Electric Blue fill."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Footer navigation columns",
+        "description": "jobyText 14px weight 450 in Carbon Ink, 15-26px horizontal padding between items, 32px vertical rhythm. Underlined link state in Outlined Action (#083e6f) at 14px. No visible dividers or backgrounds — the footer reads as a clean text grid."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px horizontal line in Carbon Ink (#0e1620) at ~10-20% opacity, or in Parchment Cream at similar opacity when over dark imagery. Used to separate content sections without adding visual weight."
+      },
+      {
+        "name": "Dark Image Overlay",
+        "role": "Text contrast layer on photography",
+        "description": "No actual overlay — text uses pure Parchment Cream (#f5f4df) at 16.4:1 contrast against the darkest parts of the photograph. The contrast ratio is designed into the photography, not achieved with a scrim."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and hero text. Sizes scale dramatically from 40px to 207px with tight tracking (-0.03em at the largest sizes) — the near-200px display weight is the signature: whisper-light at colossal scale, the opposite of typical bold-hero convention. Used for hero copy ('Skip traffic. Time to fly.') and section display headlines.",
+        "sizes": "10px, 18px, 24px, 28px, 40px, 48px, 64px, 80px, 141px, 207px",
+        "family": "jobyDisplay",
+        "weight": "500, 550",
+        "lineHeight": "1.00, 1.05, 1.20",
+        "substitute": "Inter Display or a geometric grotesque with low contrast and generous x-height",
+        "letterSpacing": "-0.0300em, -0.0200em, -0.0100em"
+      },
+      {
+        "role": "All body copy, navigation, badges, footer, and inline links. The 450 weight is distinctive — a custom intermediate weight between Regular and Medium that gives body text a subtly heavier presence than a standard 400. Tight letter-spacing (-0.01 to -0.02em) even at body sizes reinforces the display font's compressed character.",
+        "sizes": "12px, 14px, 16px, 18px",
+        "family": "jobyText",
+        "weight": "400, 450, 500, 550",
+        "lineHeight": "0.89, 1.00, 1.20, 1.30, 1.40",
+        "substitute": "Inter or a humanist sans with similar weight gradations",
+        "letterSpacing": "-0.0200em, -0.0100em"
+      },
+      {
+        "role": "Micro-display usage at 12px for labels and tags that need display-type personality at small scale — -0.03em tracking gives these tiny labels the same compressed character as the 200px headlines",
+        "sizes": "12px",
+        "family": "Joby Sans Display",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Same family as jobyDisplay at 12px",
+        "letterSpacing": "-0.0300em"
+      },
+      {
+        "role": "System fallback for button text and icon-adjacent micro-copy where system font rendering is preferred",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Arial"
+      }
+    ],
+    "description": "Joby Aviation's design language is cinematic aviation editorial: full-bleed golden-hour photography carries the narrative, with a warm parchment canvas (#f5f4df) and near-black ink (#0e1620) doing all the structural work. The interface stays minimal and almost invisible so the imagery does the persuading — text overlays float over photographs with thin left-border accents rather than boxed containers. Vivid electric blue (#007ae5) appears only as functional punctuation on floating cards, the bottom tour strip, and select icon strokes, while the custom Joby Display type at near-200px sizes whispers the headline rather than shouts it. Components are light, floating, and round; even the tour card and small chips use generous 16px radii, and the navigation is reduced to a centered logomark with a hamburger and a single text link. The system never decorates — every surface is either a photograph, the warm cream canvas, or a single solid blue band.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Joby Aviation design system\",\"item\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#style-reference\",\"name\":\"Joby Aviation design system reference\",\"headline\":\"Joby Aviation design system | Refero Styles\",\"description\":\"Explore Joby Aviation's light Other design system: Parchment Cream #f5f4df, Carbon Ink #0e1620 colors, jobyDisplay, jobyText typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Joby Aviation\",\"url\":\"https://www.jobyaviation.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"caption\":\"Screenshot of Joby Aviation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Joby Aviation design system\",\"Joby Aviation website design\",\"Joby Aviation colors\",\"Joby Aviation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment Cream\",\"Carbon Ink\",\"Pale Sky\",\"Shadow Khaki\",\"jobyDisplay\",\"jobyText\",\"Joby Sans Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Joby Aviation design system\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation website design\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation colors\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:15:55.481Z\",\"dateModified\":\"2026-04-30T00:15:55.481Z\"}]}19:T70a,primary action: #083e6f (outlined action border)\nCreate an Outlined Primary Action: Transparent background, #083e6f border and text, 9999px radius, compact pill padding. Use it for the main CTA instead of a filled button.\nQUICK COLOR REFERENCE:\n- text: #0e1620 (Carbon Ink)\n- background: #f5f4df (Parchment Cream)\n- border: #0e1620 (Carbon Ink, hairline at low opacity)\n- accent: #007ae5 (Electric Blue)\n- floating card / banner surface: #007ae5 (Electric Blue)\n- outlined action border: #083e6f (Outlined Action)\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create a floating promo card: 16px corner radius, 32px padding, Electric Blue (#007ae5) background, white kicker label in jobyText 12px weight 500, white display headline in jobyDisplay 28px weight 500, tracking -0.56px, small white close-button circle (24px, 1px white border, no fill).\n\n2. Create a hero section: full-bleed photographic background (no overlay), white headline in jobyDisplay at 80px weight 500, tracking -2.4px, positioned lower-center. No card, no background plate, no scrim — text floats directly on the image.\n\n3. Create a bordered caption block: Parchment Cream (#f5f4df) text in jobyText 16px weight 450, tracking -0.16px, max-width 320px, positioned lower-left over dark imagery, with a 3px vertical left-border accent line in Parchment Cream. No background fill.\n\n4. Create a content card: Parchment Cream (#f5f4df) background, 16px corner radius, 40px internal padding, box-shadow 0px 0px 40px 0px rgba(171,171,156,0.4). Carbon Ink (#0e1620) body text in jobyText 16px weight 450.\n\n5. Create a ghost icon button: no background fill, 8px corner radius, 1.5px border in Outlined Action (#083e6f), 44px square, centered icon in Outlined Action color. This is the preferred action pattern — never use a filled rectangular button."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The Joby type system runs on two custom families: jobyDisplay for headlines and jobyText for everything else. The signature is contrast through scale, not weight. jobyDisplay is used at weights 500-550 even at 207px — the same weight as body text, just enormous. This is anti-convention: most brands use weight 700-900 to make large headlines feel authoritative, but Joby uses medium weight at extreme scale, which makes the type feel like it's floating rather than planted. The tight tracking (-0.03em at the largest sizes, -0.01em at body) compresses the letterforms and gives the headlines a condensed, aviation-instrument feel. The jobyText 450 weight is a custom intermediate step that gives body copy a subtly heavier presence than standard 400 without crossing into medium territory — this is the weight that makes 16px body text feel intentional rather than default."
+      }
+    ],
+    "elevationPhilosophy": "The design avoids traditional drop shadows almost entirely. The single card shadow uses a warm khaki (#abab9c) tint rather than a neutral gray, and it is a soft glow rather than a directional drop — the intention is warmth and separation from the cream canvas, not lifted elevation. Most structural separation is achieved through hairline borders, color contrast, or photographic context rather than shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0e1620",
+          "oklch": {
+            "c": 0.023601753223596412,
+            "h": 254.3627245355982,
+            "l": 0.1974024491174991
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "icon",
+            "body",
+            "image",
+            "heading",
+            "link",
+            "card"
+          ],
+          "frequency": 1052,
+          "confidence": 1,
+          "prominence": 430939837.37236917,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 35,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 1,
+            "image/color": 22,
+            "other/color": 144,
+            "other/stroke": 2,
+            "heading/color": 4,
+            "body/borderColor": 140,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 88,
+            "other/borderColor": 576,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#f5f4df",
+          "oklch": {
+            "c": 0.027625336955523893,
+            "h": 104.6860082139034,
+            "l": 0.9623411614087063
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "link",
+            "body",
+            "card",
+            "image",
+            "badge",
+            "footer",
+            "list",
+            "input"
+          ],
+          "frequency": 1050,
+          "confidence": 1,
+          "prominence": 81284687.59864381,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 21,
+            "body/color": 49,
+            "card/color": 1,
+            "link/color": 25,
+            "list/color": 25,
+            "nav/stroke": 2,
+            "other/fill": 5,
+            "badge/color": 1,
+            "image/color": 4,
+            "input/color": 1,
+            "other/color": 66,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 12,
+            "nav/borderColor": 84,
+            "body/borderColor": 196,
+            "card/borderColor": 4,
+            "link/borderColor": 100,
+            "list/borderColor": 100,
+            "badge/borderColor": 4,
+            "image/borderColor": 16,
+            "input/borderColor": 3,
+            "other/borderColor": 264,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#007ae5",
+          "oklch": {
+            "c": 0.1854623931877786,
+            "h": 253.9382351555479,
+            "l": 0.5837820436990763
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 53240652.610828005,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/backgroundColor": 2,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#1c3f99",
+          "oklch": {
+            "c": 0.15294469716458098,
+            "h": 264.35450536943506,
+            "l": 0.40181384573997436
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1633779.0192557937,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eb6110",
+          "oklch": {
+            "c": 0.18773320279575256,
+            "h": 43.68788333449277,
+            "l": 0.6591947590255471
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 366100.9782665755,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#319fff",
+          "oklch": {
+            "c": 0.17100025201816144,
+            "h": 249.67036304889797,
+            "l": 0.6881569159032702
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 195976,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffd9c9",
+          "oklch": {
+            "c": 0.04781147079804883,
+            "h": 44.130641049972475,
+            "l": 0.913075295740659
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 114657.77226466915,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#abab9c",
+          "oklch": {
+            "c": 0.020677126789668706,
+            "h": 104.67537412658419,
+            "l": 0.7369779821758468
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64668,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#083e6f",
+          "oklch": {
+            "c": 0.09953650732181342,
+            "h": 251.61274017515896,
+            "l": 0.35998103711073115
+          },
+          "contexts": [
+            "input",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 37886.98882939522,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "button/color": 1,
+            "other/stroke": 2,
+            "icon/borderColor": 4,
+            "input/borderColor": 1,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#c1dfef",
+          "oklch": {
+            "c": 0.0386848027410072,
+            "h": 231.0802701684315,
+            "l": 0.8867858880674602
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07392330968665878,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#f5f4df",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#ffd9c9",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.05,
+          "background": "#c1dfef",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.79,
+          "background": "#f5f4df",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.51,
+          "background": "#1c3f99",
+          "foreground": "#f5f4df"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.31,
+          "background": "#ffd9c9",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.83,
+          "background": "#abab9c",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#c1dfef",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.22,
+          "background": "#ffd9c9",
+          "foreground": "#1c3f99"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.79,
+          "background": "#c1dfef",
+          "foreground": "#1c3f99"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#eb6110",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.68,
+          "background": "#abab9c",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.26,
+          "background": "#007ae5",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.07,
+          "background": "#abab9c",
+          "foreground": "#1c3f99"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#007ae5",
+          "foreground": "#f5f4df"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.24,
+          "background": "#eb6110",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#eb6110",
+          "foreground": "#f5f4df"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#007ae5",
+          "foreground": "#083e6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#1c3f99",
+          "foreground": "#0e1620"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#ffd9c9",
+          "foreground": "#f5f4df"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 160,
+          "corners": [
+            160,
+            160,
+            0,
+            0
+          ],
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3,
+          "asymmetric": true
+        },
+        {
+          "value": 147.6,
+          "corners": [
+            0,
+            0,
+            147.6,
+            147.6
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "columnGap|card",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "marginTop|link",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|heading",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 188,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "jobyText",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500,
+            550
+          ],
+          "frequency": 339,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "jobyDisplay",
+          "source": "custom",
+          "weights": [
+            500,
+            550
+          ],
+          "frequency": 60,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Joby Sans Display",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "jobyDisplay",
+          "weight": 550,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Joby Sans Display",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "jobyText",
+          "weight": 450,
+          "contexts": [
+            "body",
+            "badge",
+            "link"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "jobyText",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "jobyText",
+          "weight": 550,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "jobyText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "card",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 255,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "jobyText",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.89,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "jobyText",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "jobyText",
+          "weight": 450,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "jobyDisplay",
+          "weight": 550,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "jobyDisplay",
+          "weight": 550,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "jobyDisplay",
+          "weight": 550,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 141,
+          "family": "jobyDisplay",
+          "weight": 550,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 207,
+          "family": "jobyDisplay",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e0c1e9c3-ebfd-4dcb-92d5-cd40dd43e3e6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Joby Aviation design system\",\"item\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#style-reference\",\"name\":\"Joby Aviation design system reference\",\"headline\":\"Joby Aviation design system | Refero Styles\",\"description\":\"Explore Joby Aviation's light Other design system: Parchment Cream #f5f4df, Carbon Ink #0e1620 colors, jobyDisplay, jobyText typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Joby Aviation\",\"url\":\"https://www.jobyaviation.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1052d8d-3663-46a4-a882-e50d9b8a1166#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"caption\":\"Screenshot of Joby Aviation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a335874-a617-4788-87e4-67ff675db502.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Joby Aviation design system\",\"Joby Aviation website design\",\"Joby Aviation colors\",\"Joby Aviation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment Cream\",\"Carbon Ink\",\"Pale Sky\",\"Shadow Khaki\",\"jobyDisplay\",\"jobyText\",\"Joby Sans Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Joby Aviation design system\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation website design\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation colors\"},{\"@type\":\"Thing\",\"name\":\"Joby Aviation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:15:55.481Z\",\"dateModified\":\"2026-04-30T00:15:55.481Z\"}]}19:T70a,primary action: #083e6f (outlined action border)\nCreate an Outlined Primary Action: Transparent background, #083e6f border and text, 9999px radius, compact pill padding. Use it for the main CTA instead of a filled button.\nQUICK COLOR REFERENCE:\n- text: #0e1620 (Carbon Ink)\n- background: #f5f4df (Parchment Cream)\n- border: #0e1620 (Carbon Ink, hairline at low opacity)\n- accent: #007ae5 (Electric Blue)\n- floating card / banner surface: #007ae5 (Electric Blue)\n- outlined action border: #083e6f (Outlined Action)\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. Create a floating promo card: 16px corner radius, 32px padding, Electric Blue (#007ae5) background, white kicker label in jobyText 12px weight 500, white display headline in jobyDisplay 28px weight 500, tracking -0.56px, small white close-button circle (24px, 1px white border, no fill).\n\n2. Create a hero section: full-bleed photographic background (no overlay), white headline in jobyDisplay at 80px weight 500, tracking -2.4px, positioned lower-center. No card, no background plate, no scrim — text floats directly on the image.\n\n3. Create a bordered caption block: Parchment Cream (#f5f4df) text in jobyText 16px weight 450, tracking -0.16px, max-width 320px, positioned lower-left over dark imagery, with a 3px vertical left-border accent line in Parchment Cream. No background fill.\n\n4. Create a content card: Parchment Cream (#f5f4df) background, 16px corner radius, 40px internal padding, box-shadow 0px 0px 40px 0px rgba(171,171,156,0.4). Carbon Ink (#0e1620) body text in jobyText 16px weight 450.\n\n5. Create a ghost icon button: no background fill, 8px corner radius, 1.5px border in Outlined Action (#083e6f), 44px square, centered icon in Outlined Action color. This is the preferred action pattern — never use a filled rectangular button."
+}

@@ -1,0 +1,1562 @@
+{
+  "source": "https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312",
+  "uuid": "a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312",
+  "name": "Nuri",
+  "northStar": "Lavender art-deco bank lobby — pill-soft, serif-meets-stencil, cool violet bleeding into warm cream.",
+  "capturedAt": "2026-07-18T09:07:23.283Z",
+  "meta": {
+    "url": "https://nuri.com",
+    "siteName": "Nuri",
+    "extractedAt": "2026-06-03T20:42:32.900Z",
+    "durationMs": 37869,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 192,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px radius for every button, input, and interactive pill — the pill shape is the signature",
+      "Pair Sharp Grotesk Bold 900 with Harriet Display 300 in the same headline for the signature mixed-weight effect",
+      "Set page background to #f7f2ff and hero background to #beaaff — never pure white as the dominant canvas",
+      "Apply the 48px radius to cards and large containers, reserving 9999px for interactive elements",
+      "Use #2c232 for primary text and filled buttons — its violet undertone keeps it on-palette against lavender",
+      "Break sections into full-bleed color bands that transition from cool violet to warm cream toward the footer",
+      "Anchor the color story with #f97316 only on the Bitcoin currency icon — it is the sole warm accent"
+    ],
+    "donts": [
+      "Do not use standard banking blue, green, or neutral gray as a brand color — it breaks the lavender identity",
+      "Do not apply heavy drop shadows — the system relies on surface color contrast, not elevation, for depth",
+      "Do not mix the Sharp Grotesk 900 and Harriet 300 at the same size — the contrast is in their weight difference at different sizes",
+      "Do not use border-radius values between 8px and 48px on primary surfaces — the system jumps from pill to soft-card",
+      "Do not place more than one filled chromatic button per section — the dark pill is the only primary action",
+      "Do not use stock photography or 3D renders — the visual language is flat editorial illustration on lavender",
+      "Do not set body type below 16px in Inter — the 14–16px floor preserves the spacious, magazine-like feel"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#beaaff",
+        "name": "Hero Violet",
+        "role": "Hero section background, full-bleed brand wash — saturated lavender makes the page unmistakable from a thumbnail",
+        "group": "brand"
+      },
+      {
+        "hex": "#e2d9ff",
+        "name": "Card Lilac",
+        "role": "Card and panel surfaces — desaturated companion to Hero Violet, used for elevated content blocks on the lighter canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#f97316",
+        "name": "Bitcoin Orange",
+        "role": "Accent for the Bitcoin currency icon and selective callouts — the only warm chromatic note in a cool palette, anchoring the crypto identity",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff7ed",
+        "name": "Warm Cream",
+        "role": "Footer band and warm transitions — breaks the lavender monotony with a peach-tinged neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f2ff",
+        "name": "Lavender Mist",
+        "role": "Page canvas — the dominant background across most sections, a barely-there violet tint instead of pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9fafb",
+        "name": "Off-White",
+        "role": "Footer base surface, light secondary backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Button text, inverse surfaces, card highlights on colored backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c232e",
+        "name": "Ink Plum",
+        "role": "Primary text, filled button backgrounds, dark borders — near-black with a violet undertone that keeps it on-palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4b5563",
+        "name": "Graphite",
+        "role": "Secondary headings, link text, subdued body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b7280",
+        "name": "Slate",
+        "role": "Muted helper text, captions, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#374151",
+        "name": "Steel",
+        "role": "Icon strokes, button text on light surfaces, mid-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Mist",
+        "role": "Hairline borders, dividers, input outlines — the universal 1px rule throughout the UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d5db",
+        "name": "Fog",
+        "role": "Button borders, disabled-state surfaces, secondary dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Jet",
+        "role": "Maximum-contrast text, logo marks, hard-edge elements where Ink Plum feels too soft",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections stacked vertically with alternating surface colors: Hero Violet band → Lavender Mist band → Warm Cream band → large illustration band. Hero is a two-column split with left-aligned headline and phone-input stack on the left, illustrative photograph (hand holding card near cactus) on the right. Mid-page sections use a centered three-column pattern: serif text left, device mockup center, serif text right — a classic editorial spread. The page max-width is approximately 1200px for content containers, but hero sections break to full-bleed. Navigation is a minimal top bar with logo left and language switcher right. Vertical rhythm uses 64px section gaps with 48px internal spacing. The overall density is spacious — single headlines and single CTAs per section, with generous breathing room around each block.",
+    "imagery": "Editorial illustration is the dominant visual asset — flat, hand-drawn character portraits and object compositions (a woman with a cactus, a close-cropped face filling the viewport) rendered in warm earth tones (browns, peach, sage green) that deliberately contrast with the cool lavender UI. The illustrations occupy full viewport-width bands near the footer, functioning as a magazine-cover climax. Device mockups (iPhone frames) are used as product showcases in mid-page sections. No photography appears; the brand avoids lifestyle imagery entirely in favor of illustrated narrative. Icons are simple, monocolor, and small (32px cryptocurrency marks, small UI icons in #374151). The hero gradient is a soft radial wash of violet fading to transparent — atmospheric rather than structural.",
+    "similar": [
+      {
+        "why": "Same pill-shaped buttons and spacious section rhythm, though Nuri swaps Revolut's black-and-white for a violet editorial palette",
+        "business": "Revolut"
+      },
+      {
+        "why": "Same editorial serif headlines mixed with bold sans wordmarks, though Nuri's color story is warmer-cool lavender rather than black-and-coral",
+        "business": "Plaid"
+      },
+      {
+        "why": "Same oversized, ultra-bold display type and pill buttons, though Nuri uses serif companions and a lavender canvas instead of Cash App's neon green",
+        "business": "Cash App"
+      },
+      {
+        "why": "Same spacious light-mode fintech layout with generous section gaps, though Nuri leans editorial-illustration where Stripe is flat-product",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "48px",
+        "icons": "9999px",
+        "badges": "9999px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f7f2ff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Default page background — barely-tinted lavender"
+      },
+      {
+        "hex": "#e2d9ff",
+        "name": "Card Lilac",
+        "level": 1,
+        "purpose": "Elevated content panels and feature cards"
+      },
+      {
+        "hex": "#beaaff",
+        "name": "Hero Violet",
+        "level": 2,
+        "purpose": "Full-bleed hero band and brand-wash sections"
+      },
+      {
+        "hex": "#fff7ed",
+        "name": "Warm Cream",
+        "level": 3,
+        "purpose": "Footer band — warm counterpoint to cool violet"
+      },
+      {
+        "hex": "#f9fafb",
+        "name": "Off-White",
+        "level": 4,
+        "purpose": "Footer base and neutral light sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+        "element": "Dark Pill Button"
+      },
+      {
+        "style": "rgba(44, 35, 46, 0.16) 0px 0px 0px 1px",
+        "element": "Phone Number Input (focused state)"
+      }
+    ],
+    "northStar": "Lavender art-deco bank lobby — pill-soft, serif-meets-stencil, cool violet bleeding into warm cream.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.32
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display-xl",
+        "size": 112,
+        "lineHeight": 0.9,
+        "letterSpacing": 2.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Dark Pill Button",
+        "role": "Primary form submission (Get App, Submit)",
+        "description": "Filled background #2c232, white text in Inter weight 600, 9999px radius, 12px 24px padding, 8px vertical internal padding on text rows. Sits inside the phone-number input on a lavender-tinted shell."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action (Sign In with Passkey)",
+        "description": "Transparent background, 1px border in #2c232, Inter weight 600 text in #2c232, 9999px radius, 14px 24px padding. Renders as a thin dark ring on a light card surface."
+      },
+      {
+        "name": "Phone Number Input",
+        "role": "Hero lead-capture field",
+        "description": "Outer pill shell: 9999px radius, #ffffff background, 1px hairline border in #e2e8f0, 8px vertical padding. Inner: country flag prefix, Inter 16px #2c232 for number, Dark Pill Button docked inside the right edge."
+      },
+      {
+        "name": "App Store Badge",
+        "role": "Download CTA pair",
+        "description": "Black (#000000) rounded rectangle, Apple/Google logo + label in white, 8px corner radius, approximately 40px tall. Paired horizontally with consistent gap."
+      },
+      {
+        "name": "Cryptocurrency Icon Row",
+        "role": "Trust signal — accepted currencies",
+        "description": "Small circular icons at ~32px diameter on a single row, including Bitcoin (orange #f97316 fill), Ethereum, and others. The Bitcoin circle anchors the color story; the rest are muted."
+      },
+      {
+        "name": "Mixed-Weight Headline",
+        "role": "Hero display text",
+        "description": "A single line combining Sharp Grotesk Bold 900 at 112–118px for the brand-anchor word ('NURI', 'BACK.') with Harriet Display 300 at 50–62px for the connecting words ('BANK IS'). Tight 0.90–1.00 line-height stacks them as a single optical block."
+      },
+      {
+        "name": "Section Headline (Serif)",
+        "role": "Feature section titles",
+        "description": "Harriet Display 300–400 at 50–55px, #2c232, line-height 1.20. Used standalone on white or lavender-mist backgrounds, often centered or left-aligned beside a device mockup."
+      },
+      {
+        "name": "Device Mockup Frame",
+        "role": "Phone/app showcase",
+        "description": "iPhone-style bezel with thin dark border, displayed centered on Lavender Mist or Hero Violet. The interior shows the app's own UI — illustrations on a lavender card with its own CTA pills stacked vertically."
+      },
+      {
+        "name": "Editorial Body Text",
+        "role": "Hero subhead and section descriptions",
+        "description": "Harriet Display 300 at 20–24px, #2c232 or #4b5563, generous line-height 1.33–1.50. Feels like a magazine pull-quote rather than a SaaS subtitle."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header",
+        "description": "Transparent or Lavender Mist background, no visible border. Left: small square NURI logo mark (#2c232 on lavender tile). Right: language switcher pill (#ffffff background, country flag + 'English', 9999px radius, 12px padding)."
+      },
+      {
+        "name": "Illustration Panel",
+        "role": "Decorative editorial art",
+        "description": "Large-scale character or object illustrations rendered in flat warm tones (browns, greens, peach) on lavender or cream backgrounds. Occupies significant vertical space near the footer — the visual equivalent of a magazine cover."
+      },
+      {
+        "name": "Footer Band",
+        "role": "Site footer with legal and download links",
+        "description": "Warm Cream (#fff7ed) or Off-White (#f9fafb) background, Inter 14px #4b5563 for legal copy, centered layout with Privacy/Terms links and a centered '© 2026 Nuri' copyright. App store badges and Visa/Gnosis Pay logos in a single row."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines for brand words ('NURI', 'BACK.') — extreme weight 900 with tight tracking creates a stencil/spray-paint impact that contrasts deliberately with the serif body of the same headline. At 118px it fills the hero column; the 0.018em positive tracking at that size is unusual and prevents the slabs from merging at extreme scale.",
+        "sizes": "72px, 118px",
+        "family": "Sharp Grotesk Bold",
+        "weight": "900",
+        "lineHeight": "0.90, 1.00",
+        "substitute": "Druk Wide Bold, Knockout 90, Antonio Black",
+        "letterSpacing": "-0.0200em at 72px, 0.0180em at 118px"
+      },
+      {
+        "role": "Editorial serif used for headline companions ('BANK IS', 'One Tap. You're In.'), feature section headings, and the hero subhead — weight 300 at 50–62px is a restrained, magazine-display choice that creates tension with the 900-weight sans beside it. The 0.90 line-height at display sizes keeps stacked lines touching like fine print.",
+        "sizes": "24px, 30px, 50px, 55px, 62px, 112px",
+        "family": "Harriet Display",
+        "weight": "300, 400",
+        "lineHeight": "0.90, 0.94, 1.20, 1.33",
+        "substitute": "Source Serif Pro, PT Serif, Lora"
+      },
+      {
+        "role": "Workhorse for body, navigation, buttons, inputs, footer copy, card text — weight 400 for body, 500 for nav/links, 600 for subheadings and button labels. The tight 1.20–1.33 range for 20–32px sizes keeps mid-scale text compact and confident.",
+        "sizes": "12px, 14px, 15px, 16px, 17px, 20px, 24px, 28px, 32px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.20, 1.32, 1.33, 1.40, 1.43, 1.50, 1.63",
+        "substitute": "Inter (same), IBM Plex Sans, system-ui"
+      }
+    ],
+    "description": "Nuri operates on a soft lavender canvas with a single bold typographic gesture: enormous Sharp Grotesk black-slab headlines colliding with whisper-weight Harriet Display serifs in the same line, like a financial publication cut by a graffiti stencil. The palette stays in cool violet territory across canvas, card, and hero surfaces, with a warm cream band cutting in near the footer — a deliberate cool-to-warm color temperature arc that signals a human, editorial fintech rather than a blue-and-white banking clone. Surfaces are pill-soft (9999px and 48px radii dominate), shadows are nearly absent, and accents appear as small illustrated characters and one Bitcoin-orange punctuation mark rather than as saturated UI chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nuri design system\",\"item\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#style-reference\",\"name\":\"Nuri design system reference\",\"headline\":\"Nuri design system | Refero Styles\",\"description\":\"Explore Nuri's light Fintech design system: Hero Violet #beaaff, Card Lilac #e2d9ff colors, Sharp Grotesk Bold, Harriet Display typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nuri\",\"url\":\"https://nuri.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"caption\":\"Screenshot of Nuri\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nuri design system\",\"Nuri website design\",\"Nuri colors\",\"Nuri typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Hero Violet\",\"Card Lilac\",\"Bitcoin Orange\",\"Warm Cream\",\"Sharp Grotesk Bold\",\"Harriet Display\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nuri design system\"},{\"@type\":\"Thing\",\"name\":\"Nuri website design\"},{\"@type\":\"Thing\",\"name\":\"Nuri colors\"},{\"@type\":\"Thing\",\"name\":\"Nuri typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T03:22:41.074Z\",\"dateModified\":\"2026-04-30T03:22:41.074Z\"}]}19:T603,**Quick Color Reference**\n- text: #2c232e\n- background: #f7f2ff\n- border: #e2e8f0\n- accent: #beaaff\n- primary action: #f97316 (filled action)\n\n**Example Component Prompts**\n1. **Hero Mixed-Weight Headline**: Render 'NURI BANK IS BACK.' on a #beaaff full-bleed background. 'NURI' and 'BACK.' in Sharp Grotesk Bold at 118px weight 900, letter-spacing 0.018em, color #2c232e, line-height 0.90. 'BANK IS' in Harriet Display at 50px weight 300, color #2c232e, positioned between the two display lines as a single stacked block.\n\n2. **Phone Number Input with Dark Pill**: Outer pill on #f7f2ff background, 9999px radius, 1px border #e2e8f0, 8px vertical padding. Country flag + Inter 16px #2c232e placeholder 'Mobile number' on the left. Dark Pill Button (#2c232e fill, white Inter 600 'Get App' text, 9999px radius, 12px 24px padding) docked to the right inside the shell.\n\n3. **Ghost Outline Secondary Button**: Transparent background, 1px border #2c232e, Inter 600 16px 'Sign In with Passkey' in #2c232e, 9999px radius, 14px 24px padding. Place on a #e2d9ff card surface.\n\n4. **Serif Section Title**: Harriet Display 300 at 55px, color #2c232e, line-height 1.20, centered or left-aligned on Lavender Mist (#f7f2ff) background beside a centered iPhone mockup frame.\n\n5. **Cryptocurrency Trust Row**: Horizontal row of 32px circular icons on #f7f2ff. Bitcoin circle filled #f97316 with white 'B' mark; other currency circles in #4b5563 outline style. 12px gap between icons, 8px gap to a 'VISA' and 'SEPA' text lockup in Inter 500 14px #4b5563."
+      },
+      {
+        "title": "Gradient System",
+        "content": "One signature gradient defines the hero atmosphere: radial-gradient(circle at 50% 0%, rgba(190, 170, 255, 0.45), rgba(0, 0, 0, 0) 48%). It bleeds from the top-center as a soft violet glow over the Hero Violet (#beaaff) background, creating a sense of overhead light source. Do not introduce additional gradients — the system relies on flat color blocks and this single atmospheric wash."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.01261877443265105,
+            "h": 255.5078854448309,
+            "l": 0.928761267190067
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "image",
+            "heading",
+            "button",
+            "body",
+            "input",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 752,
+          "confidence": 1,
+          "prominence": 135183544.14962113,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 52,
+            "card/borderColor": 32,
+            "hero/borderColor": 8,
+            "icon/borderColor": 24,
+            "link/borderColor": 16,
+            "image/borderColor": 76,
+            "input/borderColor": 4,
+            "other/borderColor": 448,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 117,
+          "confidence": 1,
+          "prominence": 97359858.8445022,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "card/color": 8,
+            "hero/color": 2,
+            "link/color": 2,
+            "other/color": 102,
+            "button/color": 2,
+            "footer/color": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 36566124.726151265,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f7f2ff",
+          "oklch": {
+            "c": 0.017992246295526988,
+            "h": 303.4198022482595,
+            "l": 0.9687484819901706
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 34082982.25354434,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#beaaff",
+          "oklch": {
+            "c": 0.12034460171754553,
+            "h": 294.2700795991384,
+            "l": 0.78666278464848
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2c232e",
+          "oklch": {
+            "c": 0.023763711017679042,
+            "h": 320.1195929436336,
+            "l": 0.2710852247577367
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "body",
+            "input"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 1029110.7343590693,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "input/color": 1,
+            "other/color": 8,
+            "button/color": 1,
+            "heading/color": 15,
+            "other/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff7ed",
+          "oklch": {
+            "c": 0.015771583455842005,
+            "h": 73.68404080080244,
+            "l": 0.9796223225182471
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 367650,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f9fafb",
+          "oklch": {
+            "c": 0.001706075627243846,
+            "h": 247.83938351399394,
+            "l": 0.9846253159451991
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 318488,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4b5563",
+          "oklch": {
+            "c": 0.026312495555395273,
+            "h": 256.80175894935667,
+            "l": 0.4461120044082754
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 166761.10084652322,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "other/color": 2,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#6b7280",
+          "oklch": {
+            "c": 0.02336091733217706,
+            "h": 264.36374727266286,
+            "l": 0.5510191075146065
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 152576,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#111827",
+          "oklch": {
+            "c": 0.03176261291165215,
+            "h": 264.66452749147317,
+            "l": 0.2100844908199934
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 129024,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#e2d9ff",
+          "oklch": {
+            "c": 0.05264062634209494,
+            "h": 296.1098995817264,
+            "l": 0.9036235278362958
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 119290.61765427708,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#374151",
+          "oklch": {
+            "c": 0.03062045960968168,
+            "h": 259.7328541134383,
+            "l": 0.37292705693325034
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 80492.48032523562,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "icon/stroke": 2,
+            "button/color": 1,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#d1d5db",
+          "oklch": {
+            "c": 0.00933868254914443,
+            "h": 258.3382673756329,
+            "l": 0.8716813342237643
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 11347.985378165875,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f97316",
+          "oklch": {
+            "c": 0.18672106768094693,
+            "h": 47.60441481059277,
+            "l": 0.7048712574475993
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10613,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dddcde",
+          "oklch": {
+            "c": 0.0028318902456289825,
+            "h": 320.0436832136108,
+            "l": 0.8955076118954687
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3637,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.033399641731520505,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.1,
+          "background": "#f9fafb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.78,
+          "background": "#fff7ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.1,
+          "background": "#f7f2ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.74,
+          "background": "#ffffff",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#e2e8f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#f9fafb",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.71,
+          "background": "#fff7ed",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.13,
+          "background": "#f7f2ff",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.6,
+          "background": "#e2d9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.37,
+          "background": "#dddcde",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.14,
+          "background": "#2c232e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.49,
+          "background": "#f9fafb",
+          "foreground": "#2c232e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.39,
+          "background": "#e2e8f0",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#fff7ed",
+          "foreground": "#2c232e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#d1d5db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#f7f2ff",
+          "foreground": "#2c232e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.18,
+          "background": "#e2d9ff",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.98,
+          "background": "#dddcde",
+          "foreground": "#111827"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#e2e8f0",
+          "foreground": "#2c232e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "card"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(44, 35, 46, 0.16) 0px 0px 0px 1px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "heading",
+            "input"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|heading",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "input",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading",
+            "footer",
+            "body"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 241,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 50% 0%, rgba(190, 170, 255, 0.45), rgba(0, 0, 0, 0) 48%)",
+        "colors": [
+          "rgba(190, 170, 255, 0.45)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 8
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 167,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Harriet Display",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sharp Grotesk Bold",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "image",
+            "input",
+            "link",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 142,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Harriet Display",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Harriet Display",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Harriet Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Harriet Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Harriet Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Sharp Grotesk Bold",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 112,
+          "family": "Harriet Display",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 118,
+          "family": "Sharp Grotesk Bold",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4bf70ba3-6438-4105-a24f-a8b30a7f58c6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nuri design system\",\"item\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#style-reference\",\"name\":\"Nuri design system reference\",\"headline\":\"Nuri design system | Refero Styles\",\"description\":\"Explore Nuri's light Fintech design system: Hero Violet #beaaff, Card Lilac #e2d9ff colors, Sharp Grotesk Bold, Harriet Display typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nuri\",\"url\":\"https://nuri.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a0cb71ee-c2f2-4c37-a527-9e8ff0a0b312#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"caption\":\"Screenshot of Nuri\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6db7b5e9-b769-417e-93bf-f2f1b9bed31c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nuri design system\",\"Nuri website design\",\"Nuri colors\",\"Nuri typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Hero Violet\",\"Card Lilac\",\"Bitcoin Orange\",\"Warm Cream\",\"Sharp Grotesk Bold\",\"Harriet Display\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nuri design system\"},{\"@type\":\"Thing\",\"name\":\"Nuri website design\"},{\"@type\":\"Thing\",\"name\":\"Nuri colors\"},{\"@type\":\"Thing\",\"name\":\"Nuri typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T03:22:41.074Z\",\"dateModified\":\"2026-04-30T03:22:41.074Z\"}]}19:T603,**Quick Color Reference**\n- text: #2c232e\n- background: #f7f2ff\n- border: #e2e8f0\n- accent: #beaaff\n- primary action: #f97316 (filled action)\n\n**Example Component Prompts**\n1. **Hero Mixed-Weight Headline**: Render 'NURI BANK IS BACK.' on a #beaaff full-bleed background. 'NURI' and 'BACK.' in Sharp Grotesk Bold at 118px weight 900, letter-spacing 0.018em, color #2c232e, line-height 0.90. 'BANK IS' in Harriet Display at 50px weight 300, color #2c232e, positioned between the two display lines as a single stacked block.\n\n2. **Phone Number Input with Dark Pill**: Outer pill on #f7f2ff background, 9999px radius, 1px border #e2e8f0, 8px vertical padding. Country flag + Inter 16px #2c232e placeholder 'Mobile number' on the left. Dark Pill Button (#2c232e fill, white Inter 600 'Get App' text, 9999px radius, 12px 24px padding) docked to the right inside the shell.\n\n3. **Ghost Outline Secondary Button**: Transparent background, 1px border #2c232e, Inter 600 16px 'Sign In with Passkey' in #2c232e, 9999px radius, 14px 24px padding. Place on a #e2d9ff card surface.\n\n4. **Serif Section Title**: Harriet Display 300 at 55px, color #2c232e, line-height 1.20, centered or left-aligned on Lavender Mist (#f7f2ff) background beside a centered iPhone mockup frame.\n\n5. **Cryptocurrency Trust Row**: Horizontal row of 32px circular icons on #f7f2ff. Bitcoin circle filled #f97316 with white 'B' mark; other currency circles in #4b5563 outline style. 12px gap between icons, 8px gap to a 'VISA' and 'SEPA' text lockup in Inter 500 14px #4b5563."
+}

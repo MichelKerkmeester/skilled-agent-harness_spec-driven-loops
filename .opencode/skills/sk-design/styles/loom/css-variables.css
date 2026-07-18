@@ -1,0 +1,95 @@
+:root {
+  /* Colors */
+  --color-signal-blue: #1868db;
+  --color-pale-wash: #e9f2fe;
+  --color-paper-white: #ffffff;
+  --color-ink-black: #101214;
+  --color-graphite: #292a2e;
+  --color-charcoal: #000000;
+  --color-ash-border: #cccccc;
+  --color-steel: #7d818a;
+  --color-deep-plum: #48245d;
+  --color-orchid: #bf63f3;
+  --color-ember: #ff613d;
+  --color-leaf: #82b536;
+  --color-butter: #fff5d4;
+  --color-mint: #efffd6;
+  --color-navy-field: #123263;
+
+  /* Typography — Font Families */
+  --font-charlie-display: 'Charlie Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-charlie-text: 'Charlie Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.45;
+  --text-body-sm: 15px;
+  --leading-body-sm: 1.5;
+  --text-subheading: 19px;
+  --leading-subheading: 1.5;
+  --text-heading-sm: 25px;
+  --leading-heading-sm: 1.27;
+  --text-heading: 27px;
+  --leading-heading: 1.45;
+  --text-heading-lg: 33px;
+  --leading-heading-lg: 1.14;
+  --text-display: 44px;
+  --leading-display: 1.14;
+  --text-display-lg: 63px;
+  --leading-display-lg: 1.03;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-216: 216px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 41.6923px;
+  --radius-full: 50px;
+  --radius-full-2: 68.9231px;
+  --radius-full-3: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 9999px;
+  --radius-tags: 9999px;
+  --radius-cards: 68px;
+  --radius-images: 42px;
+  --radius-medium: 12px;
+  --radius-buttons: 9999px;
+  --radius-smallelements: 6px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.06) 0px 5px 18px 0px, rgba(0, 0, 0, 0.1) 0px 24px 83px 0px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-pale-wash: #e9f2fe;
+  --surface-butter: #fff5d4;
+  --surface-mint: #efffd6;
+  --surface-signal-blue: #1868db;
+}

@@ -1,0 +1,2162 @@
+{
+  "source": "https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c",
+  "uuid": "abdac0a6-64f7-46f7-98af-82ce921fe78c",
+  "name": "Gt-america",
+  "northStar": "type foundry press sheet",
+  "capturedAt": "2026-07-18T09:04:34.707Z",
+  "meta": {
+    "url": "https://www.gt-america.com",
+    "siteName": "Gt-america",
+    "extractedAt": "2026-06-03T20:51:16.004Z",
+    "durationMs": 50474,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 3364,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GT America Intl at weight 400 only — the system refuses bold/black; visual weight comes from size alone",
+      "Scale display type to 338px, 346px, or 900px for section heroes; the extreme size IS the design",
+      "Apply -0.04em letter-spacing to any display type above 60px; apply 0.03em tracking to micro-labels below 14px",
+      "Use Electric Cobalt (#0000ff) and Press Orange (#ff3500) as a strict duotone — never introduce a third chromatic color",
+      "Set all buttons and inputs to 9999px pill radius; keep cards and images at 0px (sharp corners)",
+      "Let display type bleed to the viewport edges — set pageMaxWidth to null; the type specimen is full-bleed",
+      "Use 96px as the canonical section gap; 12px 18px for button padding; 6px as the base spacing unit"
+    ],
+    "donts": [
+      "Don't introduce bold (600/700) or black (800/900) weights of GT America Intl — weight 400 scaled to extreme size is the signature",
+      "Don't add box-shadows, drop-shadows, or elevation — the system is flat, pressed onto the page like a print sheet",
+      "Don't use neutral grays for backgrounds or borders — the palette is binary: pure white, pure black, plus the two brand colors",
+      "Don't add border-radius to cards or images — only buttons and inputs receive the 9999px pill",
+      "Don't set display type in any color other than Electric Cobalt, Press Orange, or Press Black — never a muted/tinted variant",
+      "Don't use line-height above 1.60 for body or below 0.74 for display — the compression is deliberate",
+      "Don't wrap the page in a max-width container — the type specimen demands edge-to-edge presentation"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0000ff",
+        "name": "Electric Cobalt",
+        "role": "Primary brand color — display headings, section rules, outlined action borders, form field borders, large-type stamps. The dominant chromatic voice on the page, used wherever the brand needs to announce itself",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff3500",
+        "name": "Press Orange",
+        "role": "Secondary brand color — the duotone partner to Electric Cobalt, used in the product mockup illustrations and as a filled action accent. Reads as warm against the cool blue, creating a two-color print-poster tension",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Stock White",
+        "role": "Page background, card surfaces, input fills, text on dark/colored fills. The entire canvas — there is no off-white or gray alternative",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Navigation text, footer text, fine metadata labels, small caps, SVG fill in the specimen imagery. Used sparingly — only for utility type under ~16px where the massive display type doesn't dominate",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container. The page is a vertical scroll through type specimens, each section structured around a single massive display heading (338-900px) that bleeds to viewport edges. Sections alternate between white-background type announcements (with the heading in cobalt or orange) and full-bleed duotone illustration bands (the product mockup collages). The top navigation is a single sticky line with left-aligned brand mark and right-aligned utility link. The footer is a typographic list — no grid, no columns, just labeled groups of links. The only internal grid is the specimen table, which is a single-column stack of character rows. Vertical rhythm is aggressive: 96px between sections, but the display type often spans the full viewport height, so rhythm is created by type size rather than padding.",
+    "imagery": "Imagery is exclusively type-driven product mockups — overlapping candy boxes, popcorn bags, hot dog wrappers, and snack packages rendered as flat duotone illustrations in Electric Cobalt and Press Orange. No photography, no 3D renders, no abstract graphics. The illustrations are sharp-cornered (0px radius), edge-to-edge, and arranged as dense piles that fill the viewport. Typography itself functions as imagery: the 338-900px display headings are the hero images, not photographs. Iconography is minimal — small black dots and arrows used as list markers and navigation cues. The entire visual language is the type specimen; everything else is in service of demonstrating the letterforms.",
+    "similar": [
+      {
+        "why": "Type foundry site that lets display type at extreme scale (200-400px) dominate the layout with minimal chrome and a duotone accent palette",
+        "business": "Dinamo (dinamo.org)"
+      },
+      {
+        "why": "Specimen site with pure-white canvas, single-weight type as the hero, and pill-shaped UI controls at 9999px radius",
+        "business": "Grilli Type (grillitype.com)"
+      },
+      {
+        "why": "Full-bleed type specimen with massive display headings bleeding to viewport edges and flat zero-elevation surfaces",
+        "business": "Klim Type Foundry (klim.co.nz)"
+      },
+      {
+        "why": "Type foundry presentation using tight letter-spacing at large display sizes and a two-color brand palette on white",
+        "business": "Production Type (productiontype.com)"
+      },
+      {
+        "why": "Editorial-style specimen layout with oversized type as the primary visual, sharp corners, and pill navigation elements",
+        "business": "Commercial Type (commercialtype.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12-18px",
+      "sectionGap": "96px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Press White",
+        "level": 0,
+        "purpose": "Primary page canvas — the paper stock the type is printed on"
+      },
+      {
+        "hex": "#0000ff",
+        "name": "Cobalt Band",
+        "level": 1,
+        "purpose": "Full-bleed section bands for duotone type announcements; the only 'elevated' surface, and it uses color not depth"
+      },
+      {
+        "hex": "#ff3500",
+        "name": "Press Orange",
+        "level": 2,
+        "purpose": "Accent band for illustration collages and filled action buttons; the warm counterweight to cobalt"
+      }
+    ],
+    "northStar": "type foundry press sheet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.08
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.09
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.55
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading",
+        "size": 54,
+        "lineHeight": 1.11,
+        "letterSpacing": -1.35
+      },
+      {
+        "role": "heading-lg",
+        "size": 88,
+        "lineHeight": 1,
+        "letterSpacing": -2.2
+      },
+      {
+        "role": "display",
+        "size": 346,
+        "lineHeight": 0.8,
+        "letterSpacing": -13.84
+      },
+      {
+        "role": "display-xl",
+        "size": 900,
+        "lineHeight": 0.74,
+        "letterSpacing": -36
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button — Filled",
+        "role": "Primary action (e.g. Buy, Download)",
+        "description": "Pill shape at 9999px radius, Press Orange (#ff3500) fill, white text at 12-14px GT America Intl weight 400 with 0.03em tracking. Padding 12px 18px. No border, no shadow. The filled chromatic action is the only 'loud' button in the system — everything else recedes"
+      },
+      {
+        "name": "Pill Button — Outlined",
+        "role": "Secondary action",
+        "description": "Pill shape at 9999px radius, transparent fill, 1px Electric Cobalt (#0000ff) border, Electric Cobalt text. Same 12-14px size and 12px 18px padding. Used for secondary CTAs that shouldn't compete with the filled orange button"
+      },
+      {
+        "name": "Pill Input",
+        "role": "Text input field",
+        "description": "9999px radius, white fill, 1px Electric Cobalt (#0000ff) border, black placeholder text at 12-14px. Padding 12px 18px. No focus ring — the border color stays constant. The cobalt border is the only visual treatment"
+      },
+      {
+        "name": "Display Heading",
+        "role": "Page-level type specimen hero",
+        "description": "GT America Intl at 338-900px, weight 400, line-height 0.74-0.80, letter-spacing -0.04em. Color alternates between Electric Cobalt and Press Orange depending on section. Renders as the dominant visual element, often bleeding to the edges of the viewport"
+      },
+      {
+        "name": "Specimen Table",
+        "role": "Character set / weight display grid",
+        "description": "White background, no visible borders or dividers between cells. GT America Intl Mono at 18-65px showing character variants. Clean rows separated only by whitespace. No zebra striping, no card chrome — the type samples are the content"
+      },
+      {
+        "name": "Product Mockup Collage",
+        "role": "Brand illustration / lifestyle specimen",
+        "description": "Overlapping product package illustrations (candy boxes, popcorn bags, hot dog wrappers) rendered in the two-color duotone palette: Press Orange (#ff3500) fills and line work on Electric Cobalt (#0000ff) backgrounds, with white type stamped on top. Sharp 0px corners. Arranged as a dense pile, edge-to-edge, filling the viewport width"
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "Single line, white background, no border or shadow. Left: brand mark 'GT America Intl' in GT America Intl 12-14px black with 0.03em tracking. Right: utility links (e.g. 'Type Tester') in same micro-style. Padding 12px 18px. Sticky to viewport top"
+      },
+      {
+        "name": "Footer Link Stack",
+        "role": "Site footer metadata",
+        "description": "White background, no background card. Links grouped under small-caps-style labels (Credits, Languages, Design, Information, Trials, Buy) in GT America Intl 12px black. Labels preceded by a small dot marker. No dividers, no grid lines — pure typographic list"
+      },
+      {
+        "name": "Language/Region Badge",
+        "role": "Specimen selector (script/language variant)",
+        "description": "Text-only label, no background or border. GT America Intl 12-14px black with 0.03em tracking. Used in a row to list available language subsets (Japanese, Thai Looped, Thai Loopless, Traditional Chinese, etc.). No pill shape — just typographic items separated by spaces"
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual break between specimen sections",
+        "description": "Either a full-width band of solid Electric Cobalt (#0000ff) or Press Orange (#ff3500) with large display type in white, or simply a generous 96px vertical whitespace gap. No rules, no hairlines"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for everything — display, headings, body, nav, buttons, inputs. The signature choice: a single weight (400) scaled across an enormous range (12px to 900px). The site refuses to use bold/black weights; visual weight comes purely from size. Tight tracking (-0.04em) at large sizes creates headline compression; positive tracking (0.03em) at small sizes aids legibility for micro-labels",
+        "sizes": "12, 14, 16, 18, 21, 22, 24, 32, 36, 39, 54, 58, 60, 65, 79, 88, 101, 108, 115, 130, 135, 144, 158, 171, 230, 287, 338, 346, 900",
+        "family": "GT America Intl",
+        "weight": "400",
+        "lineHeight": "0.74–1.60 (tight 0.74–0.95 for display, relaxed 1.35–1.60 for body)",
+        "substitute": "Inter, Helvetica Neue, Arial",
+        "letterSpacing": "-4px at 900px, -0.5px at 20px, 0.42px at 14px (scales linearly: -0.04em for display >60px, -0.025em for 24-60px, 0 for body, 0.03em for micro)",
+        "fontFeatureSettings": "\"kern\", \"ss03\" for body; \"kern\", \"onum\", \"pnum\" for prose; \"kern\", \"ss01\", \"ss02\", \"ss03\", \"ss04\", \"ss05\" for display specimens"
+      },
+      {
+        "role": "Monospaced companion — used for specimen data tables, test strips showing character sets, and technical metadata. Wider tracking (0.06em) at display sizes to compensate for mono's denser rhythm",
+        "sizes": "12, 18, 60, 65, 101, 255, 338, 346",
+        "family": "GT America Intl Mono",
+        "weight": "400",
+        "lineHeight": "0.95–1.35",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Roboto Mono",
+        "letterSpacing": "0.02em at small sizes, 0.06em at display sizes",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Japanese — detected in extracted data but not described by AI",
+        "sizes": "16px, 32px, 65px, 108px, 130px, 900px",
+        "family": "GT America Japanese",
+        "weight": "400",
+        "lineHeight": "0.8, 1.11, 1.22, 1.5",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Thai Looped — detected in extracted data but not described by AI",
+        "sizes": "18px, 36px, 101px, 108px, 115px, 346px",
+        "family": "GT America Thai Looped",
+        "weight": "400",
+        "lineHeight": "0.8, 1, 1.11, 1.2, 1.45",
+        "letterSpacing": "-0.025",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Thai Loopless — detected in extracted data but not described by AI",
+        "sizes": "16px, 108px, 121px, 346px",
+        "family": "GT America Thai Loopless",
+        "weight": "400",
+        "lineHeight": "0.8, 1.1, 1.2",
+        "letterSpacing": "-0.025",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Contrast — detected in extracted data but not described by AI",
+        "sizes": "16px, 195px",
+        "family": "GT America Contrast",
+        "weight": "400",
+        "lineHeight": "1",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America TradChinese — detected in extracted data but not described by AI",
+        "sizes": "32px, 108px, 130px",
+        "family": "GT America TradChinese",
+        "weight": "400",
+        "lineHeight": "0.8, 1.11, 1.22",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Intl Italic — detected in extracted data but not described by AI",
+        "sizes": "32px, 86px",
+        "family": "GT America Intl Italic",
+        "weight": "400",
+        "lineHeight": "1",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America SimpChinese — detected in extracted data but not described by AI",
+        "sizes": "65px, 108px",
+        "family": "GT America SimpChinese",
+        "weight": "400",
+        "lineHeight": "0.8, 1.11",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      },
+      {
+        "role": "GT America Intl Latin Subset — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "GT America Intl Latin Subset",
+        "weight": "400",
+        "lineHeight": "1.17",
+        "letterSpacing": "0.03",
+        "fontFeatureSettings": "\"kern\", \"ss03\""
+      }
+    ],
+    "description": "GT-America is a type specimen for its own typeface — a site that treats the letterform as the primary interface. The canvas is pure white; the navigation is a single line of black micro-type. The whole page is structured around display-size typography (up to 900px) that swallows the viewport, with the brand's signature duotone — electric blue (#0000ff) and hot orange-red (#ff3500) — used to create product illustrations, test strips, and section dividers. Everything else (spacing, components, shadows) is suppressed in favor of the type. Components are functional minimums: pill buttons, hairline inputs, no card elevation. The system feels like a type foundry press sheet printed on white stock — the letters are loud, the chrome is invisible.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gt-america design system\",\"item\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#style-reference\",\"name\":\"Gt-america design system reference\",\"headline\":\"Gt-america design system | Refero Styles\",\"description\":\"Explore Gt-america's light Design design system: Electric Cobalt #0000ff, Press Orange #ff3500 colors, GT America Intl, GT America Intl Mono typography, and...\",\"url\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gt-america\",\"url\":\"https://www.gt-america.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"caption\":\"Screenshot of Gt-america\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gt-america design system\",\"Gt-america website design\",\"Gt-america colors\",\"Gt-america typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Electric Cobalt\",\"Press Orange\",\"Stock White\",\"Press Black\",\"GT America Intl\",\"GT America Intl Mono\",\"GT America Japanese\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gt-america design system\"},{\"@type\":\"Thing\",\"name\":\"Gt-america website design\"},{\"@type\":\"Thing\",\"name\":\"Gt-america colors\"},{\"@type\":\"Thing\",\"name\":\"Gt-america typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:54:13.930Z\",\"dateModified\":\"2026-04-30T03:54:13.930Z\"}]}19:T63f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #0000ff (input/button borders) or #ffffff (structural)\n- accent: #0000ff (Electric Cobalt — headings, display type, outlined actions)\n- secondary accent: #ff3500 (Press Orange — illustrations, filled actions)\n- primary action: #ff3500 (filled action)\n\n**Example Component Prompts**\n\n1. **Display Hero Heading**: Render 'GT America Intl' in GT America Intl at 346px, weight 400, line-height 0.80, letter-spacing -13.84px, color #0000ff. No background, no border, no padding. Full-bleed, left-aligned to viewport edge.\n\n2. **Pill Filled Action Button**: 9999px border-radius, background #ff3500, text 'Buy' in GT America Intl 14px weight 400, color #ffffff, letter-spacing 0.42px. Padding 12px 18px. No border, no shadow.\n\n3. **Pill Input Field**: 9999px border-radius, background #ffffff, 1px solid #0000ff border, placeholder text in GT America Intl 14px weight 400 color #000000, letter-spacing 0.42px. Padding 12px 18px. No focus ring.\n\n4. **Duotone Illustration Band**: Full-bleed section, background #0000ff. Overlapping product package shapes (rectangles, circles) filled with #ff3500, outlined in #ffffff. White type stamps on the packages at 18-32px GT America Intl. Sharp 0px corners on all shapes. Arrange as a dense pile, edge-to-edge.\n\n5. **Specimen Table Row**: Single row, white background, no borders. Left-aligned character sample in GT America Intl Mono at 18px, followed by right-aligned variant label in GT America Intl 12px weight 400, color #000000, letter-spacing 0.36px. Row height 1.35 line-height."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. The only 'shadow' detected is a white 1px hairline (rgb(255,255,255)) used as a 1px inset border treatment — this is not elevation, it's a print-press registration mark. No drop shadows, no card lift, no modal overlay dim. Surfaces are distinguished by color (white canvas vs cobalt/orange bands) not by depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body",
+            "nav",
+            "input",
+            "table",
+            "icon",
+            "image"
+          ],
+          "frequency": 5143,
+          "confidence": 1,
+          "prominence": 186492093.0511621,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "body/color": 86,
+            "icon/color": 23,
+            "other/fill": 65,
+            "image/color": 8,
+            "input/color": 151,
+            "other/color": 632,
+            "table/color": 24,
+            "button/color": 6,
+            "other/stroke": 57,
+            "heading/color": 12,
+            "nav/borderColor": 60,
+            "body/borderColor": 344,
+            "icon/borderColor": 92,
+            "image/borderColor": 32,
+            "input/borderColor": 604,
+            "other/borderColor": 2528,
+            "table/borderColor": 264,
+            "button/borderColor": 24,
+            "heading/borderColor": 48,
+            "input/backgroundColor": 67,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "input",
+            "heading",
+            "list",
+            "body",
+            "icon",
+            "image",
+            "link"
+          ],
+          "frequency": 7633,
+          "confidence": 1,
+          "prominence": 163735917.4352897,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 64,
+            "icon/color": 15,
+            "link/color": 21,
+            "list/color": 31,
+            "other/fill": 132,
+            "image/color": 22,
+            "input/color": 19,
+            "other/color": 849,
+            "button/color": 2,
+            "other/stroke": 3,
+            "heading/color": 40,
+            "other/boxShadow": 2115,
+            "body/borderColor": 256,
+            "icon/borderColor": 60,
+            "link/borderColor": 84,
+            "list/borderColor": 124,
+            "image/borderColor": 88,
+            "input/borderColor": 76,
+            "other/borderColor": 3396,
+            "button/borderColor": 12,
+            "heading/borderColor": 160,
+            "input/backgroundColor": 58,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ff3500",
+          "oklch": {
+            "c": 0.23975762080603258,
+            "h": 32.87528658596617,
+            "l": 0.64766065389136
+          },
+          "contexts": [
+            "other",
+            "table",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 1966,
+          "confidence": 1,
+          "prominence": 107333457.80503745,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 64,
+            "other/fill": 89,
+            "other/color": 240,
+            "table/color": 42,
+            "button/color": 5,
+            "other/stroke": 11,
+            "heading/color": 56,
+            "body/borderColor": 256,
+            "other/borderColor": 960,
+            "button/borderColor": 16,
+            "heading/borderColor": 224,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 705,
+          "confidence": 1,
+          "prominence": 3310312.435197139,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "other/fill": 685,
+            "nav/borderColor": 16
+          }
+        },
+        {
+          "hex": "#0028ff",
+          "oklch": {
+            "c": 0.298593182955405,
+            "h": 264.20386234621424,
+            "l": 0.47359952326613763
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 743853.497219432,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 7,
+            "other/stroke": 43
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.365747292396538,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffffff",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.64,
+          "background": "#ffffff",
+          "foreground": "#0028ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.76,
+          "background": "#ff3500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.65,
+          "background": "#ff3500",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#0000ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.36,
+          "background": "#ff3500",
+          "foreground": "#0000ff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 78
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(255, 255, 255) 1px 0px 0px 0px, rgb(255, 255, 255) 0px 1px 0px 0px, rgb(255, 255, 255) 1px 1px 0px 0px, rgb(255, 255, 255) 1px 0px 0px 0px inset, rgb(255, 255, 255) 0px 1px 0px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 423
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "table"
+          ],
+          "frequency": 291,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|table",
+            "paddingRight|table",
+            "paddingBottom|table",
+            "paddingLeft|table"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body",
+            "nav",
+            "other",
+            "list",
+            "button",
+            "heading",
+            "image"
+          ],
+          "frequency": 100,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginRight|nav",
+            "paddingTop|other",
+            "paddingTop|list",
+            "paddingTop|button",
+            "paddingTop|heading",
+            "paddingBottom|image"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|heading",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|image"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "input",
+            "body"
+          ],
+          "frequency": 277,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingLeft|button",
+            "marginRight|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingLeft|heading",
+            "marginLeft|other",
+            "paddingLeft|input",
+            "marginRight|other",
+            "paddingBottom|heading",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 165,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 245,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "paddingBottom|image",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 67,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|image"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 132,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT America Intl",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2066,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\"",
+            "\"kern\", \"lnum\", \"zero\"",
+            "\"kern\", \"lnum\", \"tnum\"",
+            "\"kern\", \"lnum\", \"tnum\", \"zero\"",
+            "\"kern\", \"onum\", \"pnum\"",
+            "\"kern\", \"onum\", \"zero\"",
+            "\"kern\", \"ss01\", \"ss02\", \"ss03\", \"ss04\", \"ss05\""
+          ]
+        },
+        {
+          "family": "GT America Intl Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 338,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Thai Looped",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Japanese",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Thai Loopless",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America TradChinese",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Contrast",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Intl Italic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America SimpChinese",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        },
+        {
+          "family": "GT America Intl Latin Subset",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"kern\", \"ss03\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.64
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl Latin Subset",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "table",
+            "list",
+            "button",
+            "body"
+          ],
+          "frequency": 873,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "table",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.33,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 244,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 427,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "body",
+            "heading"
+          ],
+          "frequency": 493,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Thai Loopless",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Contrast",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GT America Intl Italic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GT America TradChinese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.12,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 60,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button",
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "table",
+            "heading"
+          ],
+          "frequency": 70,
+          "lineHeight": 0.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "table",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 0.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "GT America SimpChinese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 79,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "GT America Intl Italic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America Thai Loopless",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America SimpChinese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America TradChinese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 108,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "GT America Thai Loopless",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "GT America TradChinese",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 171,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 171,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 195,
+          "family": "GT America Contrast",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 230,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 255,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 287,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 338,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 338,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 338,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.74,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Thai Looped",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Thai Loopless",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 346,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 900,
+          "family": "GT America Japanese",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 900,
+          "family": "GT America Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a59700c2-61b0-47d6-ba2c-6755eef6dcff.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gt-america design system\",\"item\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#style-reference\",\"name\":\"Gt-america design system reference\",\"headline\":\"Gt-america design system | Refero Styles\",\"description\":\"Explore Gt-america's light Design design system: Electric Cobalt #0000ff, Press Orange #ff3500 colors, GT America Intl, GT America Intl Mono typography, and...\",\"url\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gt-america\",\"url\":\"https://www.gt-america.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/abdac0a6-64f7-46f7-98af-82ce921fe78c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"caption\":\"Screenshot of Gt-america\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ebe44024-c205-4a61-a441-34cf304c43b9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gt-america design system\",\"Gt-america website design\",\"Gt-america colors\",\"Gt-america typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Electric Cobalt\",\"Press Orange\",\"Stock White\",\"Press Black\",\"GT America Intl\",\"GT America Intl Mono\",\"GT America Japanese\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gt-america design system\"},{\"@type\":\"Thing\",\"name\":\"Gt-america website design\"},{\"@type\":\"Thing\",\"name\":\"Gt-america colors\"},{\"@type\":\"Thing\",\"name\":\"Gt-america typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:54:13.930Z\",\"dateModified\":\"2026-04-30T03:54:13.930Z\"}]}19:T63f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #0000ff (input/button borders) or #ffffff (structural)\n- accent: #0000ff (Electric Cobalt — headings, display type, outlined actions)\n- secondary accent: #ff3500 (Press Orange — illustrations, filled actions)\n- primary action: #ff3500 (filled action)\n\n**Example Component Prompts**\n\n1. **Display Hero Heading**: Render 'GT America Intl' in GT America Intl at 346px, weight 400, line-height 0.80, letter-spacing -13.84px, color #0000ff. No background, no border, no padding. Full-bleed, left-aligned to viewport edge.\n\n2. **Pill Filled Action Button**: 9999px border-radius, background #ff3500, text 'Buy' in GT America Intl 14px weight 400, color #ffffff, letter-spacing 0.42px. Padding 12px 18px. No border, no shadow.\n\n3. **Pill Input Field**: 9999px border-radius, background #ffffff, 1px solid #0000ff border, placeholder text in GT America Intl 14px weight 400 color #000000, letter-spacing 0.42px. Padding 12px 18px. No focus ring.\n\n4. **Duotone Illustration Band**: Full-bleed section, background #0000ff. Overlapping product package shapes (rectangles, circles) filled with #ff3500, outlined in #ffffff. White type stamps on the packages at 18-32px GT America Intl. Sharp 0px corners on all shapes. Arrange as a dense pile, edge-to-edge.\n\n5. **Specimen Table Row**: Single row, white background, no borders. Left-aligned character sample in GT America Intl Mono at 18px, followed by right-aligned variant label in GT America Intl 12px weight 400, color #000000, letter-spacing 0.36px. Row height 1.35 line-height."
+}

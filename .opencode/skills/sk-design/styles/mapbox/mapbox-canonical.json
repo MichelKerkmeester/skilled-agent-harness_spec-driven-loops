@@ -1,0 +1,1520 @@
+{
+  "source": "https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c",
+  "uuid": "be34bbe8-9a50-4f36-b379-840328f6350c",
+  "name": "Mapbox",
+  "northStar": "Satellite console at midnight — a dark control room where glowing map tiles are the only light source, surrounded by near-black instrument panels.",
+  "capturedAt": "2026-07-18T10:14:16.247Z",
+  "meta": {
+    "url": "https://mapbox.com",
+    "siteName": "Mapbox",
+    "extractedAt": "2026-04-11T19:10:46.520Z",
+    "durationMs": 110993,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 566,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #007afc exclusively for primary interactive elements (CTA buttons, active tabs, text links needing high emphasis) — never as a decorative fill or background wash.",
+      "Apply 100px borderRadius to all pill buttons and filter tabs; reserve 4–6px radius for badge and utility elements only.",
+      "Set hero and display headlines in Cera Pro weight 700 with -0.02em letter-spacing (-1.36px at 68px, -0.88px at 44px) — no weight below 700 at display sizes.",
+      "Use all-caps Cera Pro at 10–12px with +0.70em to +1.00em letter-spacing for section labels, badge text, and category markers.",
+      "Layer surfaces using the four-step dark scale (#0e1012 → #15171b → #1c1f24 → #23262d); never use drop shadows to imply depth between content layers.",
+      "Apply inset shadow rgb(14,16,18) 0px -175px 175px -75px on bottom edge of map tiles, video embeds, and image blocks to dissolve them into the #0e1012 page background.",
+      "Render partner/brand logos at #a0aaba on #0e1012 — no color, no individual treatment — keeping the partner rail visually subordinate to the product."
+    ],
+    "tags": [
+      "dark-mode",
+      "developer-platform",
+      "maps",
+      "geo-tech",
+      "pill-buttons",
+      "single-accent",
+      "deep-black",
+      "technical-sans",
+      "data-dense",
+      "api-product"
+    ],
+    "donts": [
+      "Never use a radius between 6px and 12px on buttons — the system uses either pill (100px), card (24px), chip (12px), or sharp utility (4–6px). Intermediate values break the rhythm.",
+      "Never introduce a second chromatic accent color — orange, purple, teal, or any additional hue violates the single-signal-in-darkness principle of Signal Blue (#007afc).",
+      "Never set body copy or subheadings in white (#ffffff) — use #a0aaba for body and #8b96aa for captions; full white is reserved for headings and interactive labels.",
+      "Never place cards or sections on white or light backgrounds — all content lives within the #0e1012–#15171b dark range; light surfaces appear only inside embedded map tiles.",
+      "Never use Cera Pro weight 400 for headings larger than 24px — weight 500 minimum at subheading scale, 700 at heading-lg and display.",
+      "Never apply colored drop shadows — the only allowed shadows are monochromatic #0e1012 inset vignettes on media blocks.",
+      "Never add decorative borders or dividers between sections — vertical rhythm is created by spacing and surface color change, not ruled lines."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0e1012",
+        "name": "Void Black",
+        "role": "Page background, nav background, footer — the base layer everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#15171b",
+        "name": "Deep Charcoal",
+        "role": "Card surfaces, elevated sections sitting one level above Void Black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1f24",
+        "name": "Gunmetal",
+        "role": "Dividers, secondary borders, subtle panel edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#23262d",
+        "name": "Graphite",
+        "role": "Tertiary surface, hover states on dark cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333943",
+        "name": "Steel",
+        "role": "Inactive icons, secondary UI strokes, muted borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#444d5a",
+        "name": "Pewter",
+        "role": "Ghost button borders, subtle rule lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#566171",
+        "name": "Slate",
+        "role": "Tertiary text, nav dropdown labels, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8b96aa",
+        "name": "Ash",
+        "role": "Secondary body text, caption-level descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a0aaba",
+        "name": "Fog",
+        "role": "Footer text, body copy, icon fills — the primary readable text color on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bbc2ce",
+        "name": "Silver",
+        "role": "Outlined button borders, slightly elevated muted text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5dae2",
+        "name": "Cloud",
+        "role": "Divider lines in lighter contexts, high-contrast borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Primary headings, button text, nav labels, high-emphasis body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#007afc",
+        "name": "Signal Blue",
+        "role": "Primary CTA buttons, active nav indicators, links — single chromatic anchor in an achromatic field, impossible to miss",
+        "group": "brand"
+      },
+      {
+        "hex": "#0062ca",
+        "name": "Deep Signal",
+        "role": "Info/announcement badges — darker blue variant for label-scale elements",
+        "group": "brand"
+      },
+      {
+        "hex": "#228a56",
+        "name": "Map Green",
+        "role": "Success and 'Product Update' badge backgrounds — cartographic green signals new features",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Max-width 1344px centered on an always-dark #0e1012 full-bleed background. Hero is full-viewport centered text stack (headline + subtext + dual CTA buttons) with a large rounded map-tile video embed below it, fading at its bottom edge. Second section is a no-frame logo grid (two rows, ~6 logos each) labeled with a tight all-caps eyebrow. Below that, alternating asymmetric 2-column sections: text left + map visual right, then reversed. Customer stories use a 2-column layout: large image card left (~55%), text + logo + body right (~45%). A horizontal filter tab row (pill tabs) controls the visible story. Navigation is a fixed top bar, full-bleed at the background color, with center-aligned dropdown links and right-side auth buttons. Vertical section gaps are approximately 96px. The layout avoids visual dividers entirely — section transitions happen through background color and content spacing only.",
+    "imagery": "The dominant visual is product screenshots of Mapbox map tiles — dark-mode 3D city renders, automotive circular navigation interfaces, satellite-toned street maps. These are always contained within rounded-24px frames and treated with an inset bottom shadow that dissolves the lower edge into the page background, making map content feel embedded in the surface rather than placed on it. Photography appears in customer story cards: tight editorial product shots (BMW instrument cluster, in-vehicle navigation screens) cropped dark and moody, no lifestyle context. Icons are minimal outlined mono-stroke in #a0aaba to #566171. Logo grid partners are desaturated to near-gray. The overall imagery density is medium — one or two large map/product visuals per section, with text-dominant supporting sections. No abstract illustration or decorative graphics; every image is either a real map tile or a real customer device.",
+    "similar": [
+      {
+        "why": "Same dark developer platform aesthetic — black field, single vivid accent on CTAs, Cera-like geometric sans, technical badge labeling",
+        "business": "Twilio"
+      },
+      {
+        "why": "Single saturated blue CTA against dark page background; pill-button shape; type scale with tight negative tracking at large sizes",
+        "business": "Stripe"
+      },
+      {
+        "why": "Deep black (#000) base with pure white headlines, desaturated secondary text, and near-zero decorative color — monochromatic field with one accent",
+        "business": "Vercel"
+      },
+      {
+        "why": "Map tile embeds as hero visuals, dark UI wrapping geographic product content, same cartographic green for feature badges",
+        "business": "Maptiler"
+      },
+      {
+        "why": "Dark dev-tools UI, geometric sans at display scale, badge-and-card system for product updates, single blue primary action color",
+        "business": "AWS Amplify"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "chips": "12px",
+        "badges": "4px",
+        "inputs": "6px",
+        "buttons": "100px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1344px"
+    },
+    "category": "dev-tools",
+    "surfaces": [
+      {
+        "hex": "#0e1012",
+        "name": "Void Floor",
+        "level": 0,
+        "purpose": "Page background, nav, footer — base canvas"
+      },
+      {
+        "hex": "#15171b",
+        "name": "Deep Panel",
+        "level": 1,
+        "purpose": "Card backgrounds, content sections elevated from page"
+      },
+      {
+        "hex": "#1c1f24",
+        "name": "Raised Surface",
+        "level": 2,
+        "purpose": "Nested panels, modal backgrounds, secondary cards"
+      },
+      {
+        "hex": "#23262d",
+        "name": "Overlay",
+        "level": 3,
+        "purpose": "Dropdown menus, tooltips, hover overlays"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(14, 16, 18) 0px -175px 175px -75px inset",
+        "element": "Media Card / Video Embed"
+      },
+      {
+        "style": "rgb(14, 16, 18) 0px 0px 100px 50px",
+        "element": "Section Fade Overlay"
+      }
+    ],
+    "northStar": "Satellite console at midnight — a dark control room where glowing map tiles are the only light source, surrounded by near-black instrument panels.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.88
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": -1.36
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Category Filter Tab Bar",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Customer Story Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Main call-to-action, 'Get started for free', 'Sign up'",
+        "description": "backgroundColor #007afc, color #ffffff, borderRadius 100px, padding 12px 24px. No border visible (border matches background). The only filled blue element on the page — stands alone against the black field."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary actions like 'Contact us', nav secondary links",
+        "description": "backgroundColor transparent, color #ffffff, border 1px solid #bbc2ce, borderRadius 100px, padding 12px 24px. On hover, likely shifts border to #ffffff. Maintains pill geometry to match primary CTA."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Inline text links, 'Learn more →', 'Read more →', footer links",
+        "description": "backgroundColor transparent, color #ffffff or #007afc for links, borderRadius 0px, no padding. Used for narrative-flow links where a button frame would over-formalize the action."
+      },
+      {
+        "name": "Icon Frame Button",
+        "role": "Utility buttons like language selector 'EN', compact controls",
+        "description": "backgroundColor transparent, color #ffffff, border 1px solid #444d5a, borderRadius 6px, padding 8px 10px. Sharp radius breaks from the pill system — signals 'tool', not 'action'."
+      },
+      {
+        "name": "Product Update Badge",
+        "role": "Labels marking new features, product announcements",
+        "description": "backgroundColor #228a56, color #ffffff, borderRadius 4px, padding 5.6px 7.7px. All-caps Cera Pro at 10px with +1.00em letter-spacing. Green signals 'new/live', echoing map layer status indicators."
+      },
+      {
+        "name": "Info Badge",
+        "role": "Announcement or info-type labels",
+        "description": "backgroundColor #0062ca, color #ffffff, borderRadius 3px, padding 3px 6px. Slightly tighter radius and padding than Product Update badge — distinguishes tier."
+      },
+      {
+        "name": "Category Tab / Filter Pill",
+        "role": "Section filters like 'Automotive', 'Weather', 'Fleets'",
+        "description": "Active state: backgroundColor #007afc, color #ffffff, borderRadius 100px. Inactive: backgroundColor transparent, color #a0aaba, borderRadius 100px with visible border. Cera Pro 500 at 15–16px."
+      },
+      {
+        "name": "News / Product Carousel Card",
+        "role": "Homepage feature cards for recent updates and partnerships",
+        "description": "borderRadius 24px, dark surface #15171b, badge at top-left, headline Cera Pro 700, directional arrow link in #007afc. Card edges use inset shadow rgb(14,16,18) to bleed into page background."
+      },
+      {
+        "name": "Logo Grid (Social Proof Rail)",
+        "role": "Partner/customer logo display — GM, CNN, BMW, Strava etc.",
+        "description": "Logos rendered in #a0aaba (desaturated) against #0e1012 background. No card frames. Two rows, roughly 6 logos per row. Tight letter-spaced all-caps Cera Pro label above in #566171 at 12px."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky site nav with logo, dropdown menus, CTA",
+        "description": "backgroundColor #0e1012, height 62px, boxShadow rgb(14,16,18) 0px 0px 100px 50px on scroll. Left: Mapbox wordmark in #ffffff. Center: dropdown nav links in Cera Pro 400/500 at 15px color #ffffff. Right: 'Log in' ghost text + 'Sign up' primary pill (#007afc)."
+      },
+      {
+        "name": "Video / Map Embed Block",
+        "role": "Full-width media with inset shadow fade at bottom edge",
+        "description": "borderRadius 24px, inset shadow rgb(14,16,18) 0px -175px 175px -75px at bottom — the map tile or video appears to dissolve into the page background. Plays on the 'emerging from darkness' surface philosophy."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text on the site — nav, headings, body, badges, buttons. Weight 700 at 44–68px for hero headlines with -0.02em tracking that compresses letterforms into coordinate-grid density. Weight 500 for subheadings and UI labels. Weight 400 for body copy and captions. The geometric construction of Cera Pro — circular O, monoline strokes — echoes the precision circles of map pin iconography.",
+        "sizes": "10px, 14px, 15px, 16px, 18px, 20px, 24px, 32px, 44px, 56px, 68px",
+        "family": "Cera Pro",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.60 (tighter at large sizes: 1.00–1.14 at 44–68px; looser at small: 1.40–1.60 at 14–18px)",
+        "substitute": "DM Sans, Plus Jakarta Sans",
+        "letterSpacing": "-1.36px at 68px (-0.02em), -0.56px at 56px (-0.01em), wide tracking at badge/caption sizes (+0.70em to +1.00em for all-caps labels)",
+        "fontFeatureSettings": "\"lnum\""
+      }
+    ],
+    "description": "Mapbox operates in near-total darkness — a #0e1012 void that makes embedded map tiles glow like illuminated instruments. The entire neutral scale runs from #0e1012 through #333943 to #a0aaba, creating depth through layered darkness rather than shadows. A single vivid blue (#007afc) punctuates the black field exclusively on CTAs and active states, like a GPS pin dropped into night sky. Pill-form buttons (100px radius) coexist with sharp 4px badges, creating deliberate tension between cartographic curves and data-table precision. Cera Pro's geometric weight-700 at 68px and tight -0.02em tracking gives headlines a technical density — coordinates on a map, not marketing copy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved through background color stepping (#0e1012 → #15171b → #1c1f24) rather than drop shadows. The only shadows present are inward-fading vignettes on media embeds — black bleeds in from edges of map tiles and video frames, dissolving them into the page background as if the content is emerging from darkness rather than floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333943",
+          "oklch": {
+            "c": 0.019367681179296752,
+            "h": 260.65882854474887,
+            "l": 0.34297215329226377
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "icon",
+            "list"
+          ],
+          "frequency": 967,
+          "confidence": 1,
+          "prominence": 95331751.83497438,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#a0aaba",
+          "oklch": {
+            "c": 0.025740786236951134,
+            "h": 259.8183018808068,
+            "l": 0.7352304869868478
+          },
+          "contexts": [
+            "body",
+            "footer",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 588,
+          "confidence": 1,
+          "prominence": 9474571.103882609,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#1c1f24",
+          "oklch": {
+            "c": 0.010592217580030117,
+            "h": 260.68851914628556,
+            "l": 0.23832920257188187
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 4210180.607176803,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0e1012",
+          "oklch": {
+            "c": 0.005277991263142606,
+            "h": 248.1354119785551,
+            "l": 0.17169125377514516
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 3691102.4854800072,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "badge",
+            "body",
+            "link"
+          ],
+          "frequency": 625,
+          "confidence": 1,
+          "prominence": 3403574.9149318566,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d5dae2",
+          "oklch": {
+            "c": 0.01223652872454204,
+            "h": 259.8233609900901,
+            "l": 0.8868710533804267
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 3389472.2934447597,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#15171b",
+          "oklch": {
+            "c": 0.008553488228561548,
+            "h": 264.3666987591153,
+            "l": 0.2042356496031603
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2912700,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#007afc",
+          "oklch": {
+            "c": 0.21401456501555305,
+            "h": 257.0995521159505,
+            "l": 0.6005002828802051
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 106209.29343292811,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#bbc2ce",
+          "oklch": {
+            "c": 0.018551270939580276,
+            "h": 261.33161591135723,
+            "l": 0.8122611767942286
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 62655.01424185403,
+          "properties": [
+            "borderColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#566171",
+          "oklch": {
+            "c": 0.02913715592533565,
+            "h": 257.67809677924345,
+            "l": 0.4891517718907397
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 49796.34239430188,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#8b96aa",
+          "oklch": {
+            "c": 0.0322448369383822,
+            "h": 262.47721411382065,
+            "l": 0.6710018461732993
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 45876.87782324127,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#228a56",
+          "oklch": {
+            "c": 0.12288779573653023,
+            "h": 156.26834235790605,
+            "l": 0.5625032012554647
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 11878.01116774254,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#444d5a",
+          "oklch": {
+            "c": 0.02467087662664939,
+            "h": 257.519531282358,
+            "l": 0.4172532788236421
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 6429.418894743106,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0062ca",
+          "oklch": {
+            "c": 0.17929710861505857,
+            "h": 256.67299129084574,
+            "l": 0.5117453207582163
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2016.0723009173105,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0166b1",
+          "oklch": {
+            "c": 0.1423592260431814,
+            "h": 250.12647520503052,
+            "l": 0.5027647097003685
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 347.1067876579332,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.05885215365935649,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.06,
+          "background": "#0e1012",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#15171b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#ffffff",
+          "foreground": "#1c1f24"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.58,
+          "background": "#d5dae2",
+          "foreground": "#0e1012"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.78,
+          "background": "#d5dae2",
+          "foreground": "#15171b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.77,
+          "background": "#d5dae2",
+          "foreground": "#1c1f24"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#ffffff",
+          "foreground": "#333943"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#0e1012",
+          "foreground": "#bbc2ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#15171b",
+          "foreground": "#bbc2ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#bbc2ce",
+          "foreground": "#1c1f24"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.55,
+          "background": "#ffffff",
+          "foreground": "#444d5a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.28,
+          "background": "#d5dae2",
+          "foreground": "#333943"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#0e1012",
+          "foreground": "#a0aaba"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.65,
+          "background": "#15171b",
+          "foreground": "#a0aaba"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.05,
+          "background": "#a0aaba",
+          "foreground": "#1c1f24"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.49,
+          "background": "#bbc2ce",
+          "foreground": "#333943"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.39,
+          "background": "#0e1012",
+          "foreground": "#8b96aa"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#ffffff",
+          "foreground": "#566171"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.09,
+          "background": "#d5dae2",
+          "foreground": "#444d5a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#15171b",
+          "foreground": "#8b96aa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(14, 16, 18) 0px -175px 175px -75px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": "rgb(14, 16, 18) 0px 0px 100px 50px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 17,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 23,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 32,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 15,
+          "properties": [
+            "columnGap",
+            "marginBottom",
+            "rowGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 33,
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 34,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 43,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 54,
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 70,
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 90,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 140,
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 160,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Cera pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 498,
+          "fontFeatureSettings": [
+            "\"lnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.07,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "link",
+            "image",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 325,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cera pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cera pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Cera pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6f4c44d4-d245-463c-9744-0e25ef94b29f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/53197fb9-7e7b-46c0-b321-f5a211966bd9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mapbox design system\",\"item\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c#style-reference\",\"name\":\"Mapbox design system reference\",\"headline\":\"Mapbox design system | Refero Styles\",\"description\":\"Explore Mapbox's dark Dev Tools design system: Void Black #0e1012, Deep Charcoal #15171b colors, Cera Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mapbox\",\"url\":\"https://mapbox.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/be34bbe8-9a50-4f36-b379-840328f6350c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/53197fb9-7e7b-46c0-b321-f5a211966bd9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/53197fb9-7e7b-46c0-b321-f5a211966bd9.jpg\",\"caption\":\"Screenshot of Mapbox\"},\"image\":\"https://images.refero.design/styles/refero.design/image/53197fb9-7e7b-46c0-b321-f5a211966bd9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mapbox design system\",\"Mapbox website design\",\"Mapbox colors\",\"Mapbox typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void Black\",\"Deep Charcoal\",\"Gunmetal\",\"Graphite\",\"Cera Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mapbox design system\"},{\"@type\":\"Thing\",\"name\":\"Mapbox website design\"},{\"@type\":\"Thing\",\"name\":\"Mapbox colors\"},{\"@type\":\"Thing\",\"name\":\"Mapbox typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-05T11:58:41.000Z\",\"dateModified\":\"2026-04-05T11:58:41.000Z\"}]}19:T507,<div style=\"--color-void-black:#0e1012;--color-deep-charcoal:#15171b;--color-gunmetal:#1c1f24;--color-graphite:#23262d;--color-steel:#333943;--color-pewter:#444d5a;--color-slate:#566171;--color-ash:#8b96aa;--color-fog:#a0aaba;--color-silver:#bbc2ce;--color-cloud:#d5dae2;--color-white:#ffffff;--color-signal-blue:#007afc;--color-deep-signal:#0062ca;--color-map-green:#228a56;--font-cera-pro:'DM Sans',sans-serif; display:flex; align-items:center; justify-content:center; gap:16px; background:var(--color-void-black); padding:48px 32px; border-radius:0; flex-wrap:wrap;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:16px;font-weight:700;color:var(--color-white);background:var(--color-signal-blue);border:2px solid var(--color-signal-blue);border-radius:100px;padding:13px 28px;text-decoration:none;letter-spacing:-0.01em;transition:opacity 0.15s;\">Get started for free</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:16px;font-weight:700;color:var(--color-white);background:transparent;border:1.5px solid var(--color-silver);border-radius:100px;padding:13px 28px;text-decoration:none;letter-spacing:-0.01em;\">Contact us</a></div>1a:Ta90,<div style=\"--color-void-black:#0e1012;--color-deep-charcoal:#15171b;--color-gunmetal:#1c1f24;--color-graphite:#23262d;--color-steel:#333943;--color-pewter:#444d5a;--color-slate:#566171;--color-ash:#8b96aa;--color-fog:#a0aaba;--color-silver:#bbc2ce;--color-cloud:#d5dae2;--color-white:#ffffff;--color-signal-blue:#007afc;--color-deep-signal:#0062ca;--color-map-green:#228a56;--font-cera-pro:'DM Sans',sans-serif; background:var(--color-void-black); padding:48px 32px; display:flex; flex-direction:column; align-items:center; gap:32px;\"><div style=\"text-align:center;\"><h2 style=\"font-family:var(--font-cera-pro);font-size:44px;font-weight:700;color:var(--color-white);letter-spacing:-0.88px;line-height:1.14;margin:0 0 12px 0;\">Customer stories</h2><p style=\"font-family:var(--font-cera-pro);font-size:18px;font-weight:400;color:var(--color-fog);line-height:1.5;margin:0;max-width:480px;\">The world's leading businesses, from startups to global enterprises, build with Mapbox</p></div><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-white);background:var(--color-signal-blue);border:1.5px solid var(--color-signal-blue);border-radius:100px;padding:10px 20px;text-decoration:none;cursor:pointer;\">Automotive</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-fog);background:transparent;border:1.5px solid var(--color-steel);border-radius:100px;padding:10px 20px;text-decoration:none;cursor:pointer;\">Weather</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-fog);background:transparent;border:1.5px solid var(--color-steel);border-radius:100px;padding:10px 20px;text-decoration:none;cursor:pointer;\">Fleets</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-fog);background:transparent;border:1.5px solid var(--color-steel);border-radius:100px;padding:10px 20px;text-decoration:none;cursor:pointer;\">Telecom</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-fog);background:transparent;border:1.5px solid var(--color-steel);border-radius:100px;padding:10px 20px;text-decoration:none;cursor:pointer;\">On-Demand Logistics</a></div></div>1b:Td37,<div style=\"--color-void-black:#0e1012;--color-deep-charcoal:#15171b;--color-gunmetal:#1c1f24;--color-graphite:#23262d;--color-steel:#333943;--color-pewter:#444d5a;--color-slate:#566171;--color-ash:#8b96aa;--color-fog:#a0aaba;--color-silver:#bbc2ce;--color-cloud:#d5dae2;--color-white:#ffffff;--color-signal-blue:#007afc;--color-deep-signal:#0062ca;--color-map-green:#228a56;--font-cera-pro:'DM Sans',sans-serif; background:var(--color-void-black); padding:40px 24px; display:flex; justify-content:center;\"><div style=\"width:100%;max-width:560px;background:var(--color-deep-charcoal);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;\"><div style=\"width:100%;height:220px;background:linear-gradient(135deg,#0d2133 0%,#0a1a2e 40%,#111a24 70%,#1a2030 100%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;\"><div style=\"position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,#1a3a4a 0%,#0a1520 60%,#050c12 100%);\"></div><div style=\"position:relative;z-index:1;width:140px;height:140px;border-radius:50%;border:3px solid rgba(255,255,255,0.08);background:radial-gradient(circle at 50% 40%,#1c3a50 0%,#0d1f2e 60%,#050e18 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(0,0,0,0.8);\"><div style=\"width:100px;height:100px;border-radius:50%;background:linear-gradient(160deg,#162d3d 0%,#0d2030 50%,#091520 100%);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;\"><span style=\"font-family:var(--font-cera-pro);font-size:11px;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-align:center;line-height:1.4;\">MAP<br>VIEW</span></div></div><div style=\"position:absolute;top:16px;left:16px;\"><span style=\"display:inline-block;font-family:var(--font-cera-pro);font-size:10px;font-weight:700;color:var(--color-white);background:var(--color-map-green);border-radius:4px;padding:4px 8px;letter-spacing:0.08em;text-transform:uppercase;\">Product Update</span></div></div><div style=\"padding:28px 28px 32px;\"><div style=\"width:48px;height:48px;border-radius:50%;background:var(--color-gunmetal);border:1px solid var(--color-steel);display:flex;align-items:center;justify-content:center;margin-bottom:18px;\"><div style=\"width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1a5fc8 0%,#ffffff 50%,#1a5fc8 100%);opacity:0.9;\"></div></div><h3 style=\"font-family:var(--font-cera-pro);font-size:22px;font-weight:700;color:var(--color-white);line-height:1.25;margin:0 0 14px 0;letter-spacing:-0.02em;\">The Operating System 9 delivers all-new navigation built with Mapbox</h3><p style=\"font-family:var(--font-cera-pro);font-size:15px;font-weight:400;color:var(--color-fog);line-height:1.55;margin:0 0 24px 0;\">BMW and MINI set a new standard for in-vehicle navigation with an immersive 3D map style and sophisticated EV features.</p><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;font-family:var(--font-cera-pro);font-size:15px;font-weight:500;color:var(--color-signal-blue);text-decoration:none;letter-spacing:-0.01em;\">Discover Mapbox for Automotive <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"#007afc\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div></div></div>1c:T838,**Quick Color Reference**\n- Text (body): #a0aaba\n- Text (headings): #ffffff\n- Background (page): #0e1012\n- Background (card): #15171b\n- CTA / Primary action: #007afc\n- Border (subtle): #1c1f24\n- Border (pill button): #bbc2ce\n- Badge (product update): #228a56\n\n**Example Component Prompts**\n\n1. Hero Section: Background #0e1012. Centered layout max-width 1344px. Headline 'Maps that do more' in Cera Pro weight 700, 68px, #ffffff, letter-spacing -1.36px. Subtext 18px weight 400 #a0aaba, centered, max-width 560px. Two buttons side by side: primary pill (#007afc, #ffffff text, 100px radius, 12px 24px padding) + outlined pill (transparent bg, #ffffff text, 1px solid #bbc2ce, 100px radius, 12px 24px padding). Below: map tile image in a 24px radius container with inset shadow rgb(14,16,18) 0px -175px 175px -75px at bottom edge.\n\n2. Partner Logo Rail: Background #0e1012. All-caps eyebrow label 'TRUSTED BY THE INDUSTRY LEADERS' in Cera Pro 500, 12px, #566171, letter-spacing +0.84px, centered. Below: two rows of partner logos rendered in #a0aaba, evenly spaced, no card frames. Vertical gap 32px between eyebrow and logos.\n\n3. Customer Story Card: Background #15171b, borderRadius 24px, padding 24px. Two columns: left column 55% — image with borderRadius 24px. Right column 45% — brand logo 32px, headline Cera Pro 700 24px #ffffff, body text 16px weight 400 #a0aaba, link text in #007afc 'Discover → ' at 15px weight 500.\n\n4. Product Update Badge + Card: Badge backgroundColor #228a56, #ffffff text, borderRadius 4px, padding 5.6px 7.7px, Cera Pro 700 10px all-caps letter-spacing +1.0em. Card background #15171b, borderRadius 24px. Headline Cera Pro 700 20px #ffffff. Arrow link '#007afc'. Inset vignette shadow on card image area.\n\n5. Navigation Bar: backgroundColor #0e1012, height 62px, horizontal padding 24px. Left: Mapbox logo in #ffffff. Center: nav links 'Products Solutions Developers Company Resources Pricing' in Cera Pro 400 15px #ffffff with dropdown chevrons. Right: 'Log in' ghost text in #ffffff 15px, then 'Sign up' pill button #007afc #ffffff 100px radius 12px 24px padding."
+}

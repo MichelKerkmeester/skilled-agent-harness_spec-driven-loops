@@ -1,0 +1,182 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, all section backgrounds, negative space — the floor everything sits on"
+    },
+    "spotlight-blue": {
+      "$value": "#4490ff",
+      "$type": "color",
+      "$description": "Spotlight Blue — Primary action, interactive links, roster name listings, focal dot indicator, highlighted borders — the only chromatic voice in an otherwise monochrome system"
+    },
+    "carbon-slate": {
+      "$value": "#1f2937",
+      "$type": "color",
+      "$description": "Carbon Slate — Headings, heavy borders, structural borders on dark surfaces — near-black with a slight cool cast for separation from the pure black canvas"
+    },
+    "bone-white": {
+      "$value": "#f4efe9",
+      "$type": "color",
+      "$description": "Bone White — Warm off-white for text and subtle borders — softer than pure white, evoking film stock and gallery walls against the black canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Maximum-contrast text and dividers when absolute clarity is needed over photography or dark media"
+    },
+    "ash-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Ash Gray — Light-mode surfaces, neutral borders on cards or panels, secondary dividers — provides a paper-like counterpoint when a section lifts off the black canvas"
+    }
+  },
+  "font": {
+    "neue-haas-unica-pro": {
+      "$value": "Neue Haas Unica Pro",
+      "$type": "fontFamily",
+      "$description": "All UI and content type — nav labels at 14px, body at 16px, section headings at 32px, display at 48px"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica Pro",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — every section, every gap, every margin is this color"
+    },
+    "media-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Photographic and video content replaces the void — no surface transition, the canvas IS the background behind media"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.chelsea.com",
+      "siteName": "CHELSEA",
+      "extractedAt": "2026-06-03T20:53:54.607Z",
+      "variant": "extended"
+    }
+  }
+}

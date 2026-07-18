@@ -1,0 +1,1708 @@
+{
+  "source": "https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625",
+  "uuid": "371df039-a090-402b-b2e4-21ab38e07625",
+  "name": "Ameba",
+  "northStar": "Midnight control room — electric blue pulse inside frosted glass panels.",
+  "capturedAt": "2026-07-18T09:55:23.009Z",
+  "meta": {
+    "url": "https://www.ameba.ai",
+    "siteName": "Ameba",
+    "extractedAt": "2026-06-03T17:28:13.420Z",
+    "durationMs": 42895,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 313,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Midnight Ink (#00052e) as the canvas for all hero, feature, and atmospheric sections — the dark stage is what makes Signal Blue read as electricity",
+      "Reserve Signal Blue (#0428cb) exclusively for the single filled CTA, active timeline bars, and the particle visualization — if it appears on more than three element types per screen, it loses authority",
+      "Set all display headlines in F37 Bolton weight 300 with negative tracking (-0.019em at 54px+) — the whisper weight with tight spacing is the brand's typographic signature",
+      "Use 8px radius for all cards and buttons, 4px for tags and images — the modest radii are deliberate; never round to 12px or higher",
+      "Use IBM Plex Mono with 0.077–0.091em letter-spacing for any data, status, or system metadata — the monospaced tracked type is the visual language of machine-readable information",
+      "Keep product surfaces white (#ffffff) with 1px #dbdcdf hairlines — the product UI should feel like a clean document inserted into the dark atmospheric shell",
+      "Pair the dark hero with a single radial gradient (#06105a → #00052e) centered behind the focal element to create depth without adding UI chrome"
+    ],
+    "donts": [
+      "Don't add drop shadows to cards or panels — the system uses hairline borders and the radial background glow for separation, never elevation",
+      "Don't use Arc Cyan (#34fcff) for text, buttons, or borders — it is atmospheric only, used for the particle glow and nothing else",
+      "Don't set body text below 14px in Open Sauce Sans or below 11px in IBM Plex Mono — the system values legibility over density",
+      "Don't use warm hues (red, orange, yellow) for brand identity — the palette is strictly cold (navy, blue, violet) and warm color would break the signal",
+      "Don't round corners above 8px — pill buttons and large radii would undermine the precise, industrial feel",
+      "Don't fill cards with semi-transparent white on dark backgrounds — floating cards use solid #00052 with a hairline border, not glassmorphism",
+      "Don't use gradient fills on UI elements — gradients are reserved for the hero atmosphere and section transitions, never for buttons, cards, or text"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#00052e",
+        "name": "Midnight Ink",
+        "role": "Primary canvas, hero backgrounds, deep surface — the foundational dark that absorbs the electric blue glow and makes it feel like signal emerging from noise",
+        "group": "brand"
+      },
+      {
+        "hex": "#0428cb",
+        "name": "Signal Blue",
+        "role": "Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#34fcff",
+        "name": "Arc Cyan",
+        "role": "Atmospheric accent and glow halos around the particle sphere, rare decorative energy that reads as electricity rather than UI",
+        "group": "accent"
+      },
+      {
+        "hex": "#afb4db",
+        "name": "Halo Violet",
+        "role": "Soft gradient midtone that bridges Signal Blue into Midnight Ink, used in the radial background wash and ambient surface tinting",
+        "group": "accent"
+      },
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Dark mode text on light surfaces, button text fallback — an almost-black that stays warmer than pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f5166",
+        "name": "Slate Body",
+        "role": "Body text on light product sections, secondary metadata, paragraph copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b6b83",
+        "name": "Fog",
+        "role": "Muted text, helper copy, de-emphasized labels, ghost-bordered links on light backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8185a0",
+        "name": "Mist",
+        "role": "Tertiary text and disabled labels — one step quieter than Fog",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdcdf",
+        "name": "Silver Border",
+        "role": "Hairline dividers on light product surfaces, card outlines, table separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Product surface fills, dashboard canvas, light section backgrounds, button text on dark",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is full-bleed dark hero → dark feature section with gradient transition → light product showcase. The hero is centered: headline + subtext stacked in the middle of the viewport with the particle sphere behind, and floating product cards scattered at the edges. Navigation is a single top bar, fixed, minimal, with a 20px vertical breathing room. Section rhythm alternates: dark atmospheric bands (80px vertical gap, centered content) and light product bands (max-width 1200px contained, 2-column or 3-column grids). The dashboard preview uses a full product chrome mockup with a left sidebar (icon-only nav), a main content area, and a right event activity panel — essentially a 3-zone application layout. Content arrangement is consistently centered on dark sections and left-aligned on light sections, creating a visual rhythm: atmospheric/centered → functional/structured.",
+    "imagery": "The visual language is overwhelmingly UI-driven and abstract. The hero features a particle sphere — thousands of tiny cyan/blue dots forming a 3D globe shape with a glow halo, suggesting data points orbiting a central intelligence. Floating product cards (notification toasts, order summaries, shipment details) appear around the sphere, positioning the product as the intelligence layer over the data. Below the hero, the imagery shifts to full product UI screenshots: a dashboard with Gantt-style order timelines, a browser-chrome mockup, and clean white product surfaces. There is no photography, no illustration of people, no lifestyle imagery. The visual storytelling is entirely through product UI and abstract data graphics. Icon style is minimal: small filled or outlined glyphs in #4f5166 or #6b6b83, used sparingly in nav and dashboard sidebar.",
+    "similar": [
+      {
+        "why": "Same dark-mode command center aesthetic with a single vivid accent color, restrained typography, and floating product cards over abstract data visualizations",
+        "business": "Linear"
+      },
+      {
+        "why": "Near-identical dark navy canvas (#000) with electric blue accents, hairline borders on floating panels, and ultra-minimal nav — the same 'precision instrument' visual language",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark hero with centered editorial headline, humanist sans-serif at whisper weight, and a single saturated brand color used only for the primary action",
+        "business": "Resend"
+      },
+      {
+        "why": "Same two-register page model: dark atmospheric intro sections transitioning to clean white product surfaces with gradient dividers between them",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "images": "4px",
+        "buttons": "8px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#00052",
+        "name": "Midnight Canvas",
+        "level": 0,
+        "purpose": "Hero and feature section backgrounds — the dominant dark stage"
+      },
+      {
+        "hex": "#06105a",
+        "name": "Violet Wash",
+        "level": 1,
+        "purpose": "Radial gradient center, creates a soft glow hotspot around focal elements"
+      },
+      {
+        "hex": "#00052",
+        "name": "Frosted Panel",
+        "level": 2,
+        "purpose": "Floating product cards sitting on the dark canvas with hairline borders, not fills"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Product Paper",
+        "level": 3,
+        "purpose": "Dashboard previews and light product section surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — separation achieved via 1px hairline border #6b6b83 or #4f5166 on #00052 fill",
+        "element": "Floating notification cards"
+      },
+      {
+        "style": "none — flat white surface, separated from dark background by container chrome only",
+        "element": "Product dashboard surface"
+      }
+    ],
+    "northStar": "Midnight control room — electric blue pulse inside frosted glass panels.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 11,
+        "lineHeight": 1.82,
+        "letterSpacing": 1
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.54
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "subheading",
+        "size": 27,
+        "lineHeight": 1.41,
+        "letterSpacing": -0.41
+      },
+      {
+        "role": "heading-sm",
+        "size": 35,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.49
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 54,
+        "lineHeight": 1.3,
+        "letterSpacing": -1.03
+      },
+      {
+        "role": "display",
+        "size": 59,
+        "lineHeight": 1.26,
+        "letterSpacing": -1.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled blue action — the only filled button in the system",
+        "description": "Background #0428cb, text #ffffff at 14px F37 Bolton weight 400, 8px radius, 20px vertical / 20px horizontal padding, no border. Used for 'Schedule a Demo' and any conversion action. Sits on dark or light surfaces with no variant change."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Top navigation text links",
+        "description": "Text only, no fill, no border. Uppercase F37 Bolton Medium at 13-14px, letter-spacing 0.05em, color #6b6b83 with hover shifting to #ffffff on dark backgrounds. 20px horizontal padding for tap target."
+      },
+      {
+        "name": "Sign In Link",
+        "role": "Secondary navigation action",
+        "description": "Text link 'SIGN IN' in uppercase F37 Bolton Medium, color #ffffff, sits adjacent to the primary CTA. No button chrome — relies on positional hierarchy and type weight to signal action."
+      },
+      {
+        "name": "Floating Notification Card",
+        "role": "Ambient product cards floating in the hero around the particle sphere",
+        "description": "Dark panel #00052 with 1px #6b6b83 or #4f5166 hairline border, 8px radius, 20px padding. Contains a small colored status dot (#34fcff for success, amber for delay), a label in IBM Plex Mono 11-13px with 0.08em tracking, and body in Open Sauce Sans 13-14px. The card has no shadow — it relies on the hairline border and the radial gradient glow behind it to feel like it's floating."
+      },
+      {
+        "name": "Event Summary Panel",
+        "role": "Chronological event list with diamond markers",
+        "description": "Dark frosted panel matching the floating card system. Header 'EVENT SUMMARY' in IBM Plex Mono at 11-13px with 0.08em tracking and #6b6b83 color. List items: diamond-shaped markers in #0428cb or #34fcff, timestamps in IBM Plex Mono 11px, event text in Open Sauce Sans 13-14px. 15px row gap, 20px panel padding."
+      },
+      {
+        "name": "Dashboard Product Surface",
+        "role": "Full product UI preview shown in feature sections",
+        "description": "White (#ffffff) surface representing the actual product, typically displayed inside a browser chrome mockup (dark title bar with traffic-light dots, URL bar showing 'app.ameba.ai'). Contains a left sidebar nav (icon-only, #4f5166), a main content area with stat cards ('Alerted Orders', 'Stale Orders', 'Active Orders' with large numbers), a horizontal Gantt-style timeline in #0428cb, and a right-side event activity feed. The product surface uses 8px radii and 1px #dbdcdf borders, maintaining the design system's restraint."
+      },
+      {
+        "name": "Status Pill / Order Tag",
+        "role": "Inline status indicators on order rows",
+        "description": "Small tag with 4px radius, 4-5px vertical padding, uppercase IBM Plex Mono at 11px with 0.08em tracking. Color states: green-tinted background for 'COMPLETE', red-tinted for 'OVER LIMIT', neutral gray for 'CONFIRMED'. The small radius and tight tracking distinguish these from the larger 8px-radius cards."
+      },
+      {
+        "name": "Stat Card",
+        "role": "Large metric display inside the dashboard",
+        "description": "Three-column stat row showing a label ('Alerted Orders') in Open Sauce Sans 14-16px weight 400, and a large number below in F37 Bolton weight 300 at 40-54px in #00052e. No background, no border — the numbers are the hero, breathing against white space."
+      },
+      {
+        "name": "Hero Particle Sphere",
+        "role": "Atmospheric visual — the brand's signature graphic element",
+        "description": "A radial composition of small blue particles forming a sphere shape, centered behind the hero headline. Particles cluster densely at the edges and dissipate toward the center, creating a vignette of #34fcff cyan dots against the #00052 void. A soft radial gradient (#06105a → #00052e) sits behind it, providing atmospheric depth. This is not a UI component but a brand element — it appears once on the hero and is not reused."
+      },
+      {
+        "name": "Section Gradient Transition",
+        "role": "Visual break between dark feature bands and light product bands",
+        "description": "A horizontal gradient band that transitions from the dark navy (#00052e) at the top, through violet/magenta, into white. Used once where the dark hero gives way to the light product showcase section. The gradient is smooth and atmospheric, not a hard divider."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "Fixed at top, background #00052 (transparent over hero), 20px vertical padding. Left: Ameba wordmark in white. Center: nav links (PRODUCT, CUSTOMER TYPES, COMPANY, RESOURCES, SECURITY) in uppercase F37 Bolton Medium 13-14px, #6b6b83. Right: LANGUAGE selector (with chevron), SIGN IN, and the primary CTA. The nav is minimal — no logo container, no heavy border — it floats over the dark canvas."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section preamble text above headlines",
+        "description": "F37 Bolton Medium at 14-16px, letter-spacing 0.05em, uppercase, color #0428cb on light backgrounds or #34fcff on dark. Sits 10-20px above the section headline, giving each band a two-tier entry: technical label then editorial headline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Open Suace Sans Regular — detected in extracted data but not described by AI",
+        "sizes": "13px, 14px, 16px, 18px",
+        "family": "Open Suace Sans Regular",
+        "weight": "300, 400",
+        "lineHeight": "1.43, 1.44, 1.5, 1.54, 1.57"
+      },
+      {
+        "role": "Display and editorial headlines — the humanist geometry of F37 Bolton at weight 300 with negative tracking makes even 59px headlines feel measured rather than shouty, which is the brand's signature typographic stance",
+        "sizes": "27, 33, 35, 40, 54, 59px",
+        "family": "F37 Bolton",
+        "weight": "300, 400",
+        "lineHeight": "1.20–1.54",
+        "substitute": "GT America, Söhne, or Inter at weight 300",
+        "letterSpacing": "-0.019em at 54–59px, -0.014em at 35px, -0.012 to -0.015em at 27–33px"
+      },
+      {
+        "role": "Body copy, subheadings, nav links, card content — the workhorse sans, comfortable line-height (1.5+) at 16-18px keeps long product copy readable without losing the editorial pacing set by Bolton",
+        "sizes": "13, 14, 16, 18, 20px",
+        "family": "Open Sauce Sans",
+        "weight": "300, 400",
+        "lineHeight": "1.43–1.86",
+        "substitute": "Inter, Söhne, or Untitled Sans"
+      },
+      {
+        "role": "Small-caps labels and eyebrow text, slightly tracked for a technical/industrial feel that contrasts with the body sans",
+        "sizes": "14, 16px",
+        "family": "F37 Bolton",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.30",
+        "substitute": "Inter or GT America at 500 with +50 tracking",
+        "letterSpacing": "0.050em"
+      },
+      {
+        "role": "Micro-labels, data tags, order IDs, status badges — the monospaced faces with wide tracking are reserved for data/system chrome, creating a visual distinction between human-readable copy and machine-generated metadata",
+        "sizes": "11, 13px",
+        "family": "IBM Plex Mono",
+        "weight": "400",
+        "lineHeight": "1.38, 1.82",
+        "substitute": "IBM Plex Mono, JetBrains Mono, or Space Mono",
+        "letterSpacing": "0.077–0.091em"
+      },
+      {
+        "role": "Open Suace Sans Light — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px, 20px",
+        "family": "Open Suace Sans Light",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.56, 1.63, 1.65, 1.86"
+      },
+      {
+        "role": "F37 Bolton Book — detected in extracted data but not described by AI",
+        "sizes": "13px, 27px, 35px, 54px, 59px",
+        "family": "F37 Bolton Book",
+        "weight": "300, 400",
+        "lineHeight": "1.26, 1.3, 1.38, 1.41, 1.48, 1.54",
+        "letterSpacing": "-0.019, -0.014, -0.009, -0.008, 0.086"
+      },
+      {
+        "role": "F37 Bolton Medium — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px",
+        "family": "F37 Bolton Medium",
+        "weight": "400, 700",
+        "lineHeight": "0.81, 1.43",
+        "letterSpacing": "0.05"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "This system deliberately avoids shadows. Elevation is communicated through contrast: dark panels with hairline borders float over darker canvases, and white product surfaces insert into the dark shell. The radial gradient glow behind focal elements provides the only sense of depth. This creates a flat, diagrammatic quality — the UI reads as a control panel, not a layered application."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#00052e",
+          "oklch": {
+            "c": 0.0837126492111176,
+            "h": 263.7248442984255,
+            "l": 0.1520262072558272
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "body",
+            "heading",
+            "card",
+            "icon"
+          ],
+          "frequency": 780,
+          "confidence": 1,
+          "prominence": 28876033.739517342,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 2,
+            "card/color": 1,
+            "icon/color": 6,
+            "image/color": 7,
+            "other/color": 136,
+            "heading/color": 2,
+            "nav/borderColor": 8,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "icon/borderColor": 24,
+            "image/borderColor": 28,
+            "other/borderColor": 537,
+            "heading/borderColor": 8,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#6b6b83",
+          "oklch": {
+            "c": 0.03729955502168239,
+            "h": 285.07448532869535,
+            "l": 0.5365993267221366
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 284,
+          "confidence": 1,
+          "prominence": 6321614.998137192,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 10,
+            "image/color": 1,
+            "other/color": 46,
+            "link/borderColor": 40,
+            "image/borderColor": 4,
+            "other/borderColor": 183
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 1172859.347668157,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 2,
+            "other/color": 18,
+            "button/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 20,
+            "body/borderColor": 8,
+            "other/borderColor": 72,
+            "button/borderColor": 4,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#dbdcdf",
+          "oklch": {
+            "c": 0.00421906259769307,
+            "h": 271.365242866713,
+            "l": 0.8945795872412962
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 851382,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 7
+          }
+        },
+        {
+          "hex": "#4f5166",
+          "oklch": {
+            "c": 0.03450391354463926,
+            "h": 280.6151142339217,
+            "l": 0.44135138306777055
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 393591.41983921715,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "other/color": 6,
+            "body/borderColor": 48,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#afb4db",
+          "oklch": {
+            "c": 0.05573886437236521,
+            "h": 279.2830198179967,
+            "l": 0.7791014486728213
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 74461.53828387991,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#e9e9f3",
+          "oklch": {
+            "c": 0.01340871535140179,
+            "h": 286.13805075989256,
+            "l": 0.9369255019510799
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 51168,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#0428cb",
+          "oklch": {
+            "c": 0.24336336330690256,
+            "h": 264.4615983687602,
+            "l": 0.4108451924875338
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 42555.44420651403,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 6,
+            "other/borderColor": 24,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#8185a0",
+          "oklch": {
+            "c": 0.040872446548631695,
+            "h": 278.514346909701,
+            "l": 0.6228782226720907
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 21431.178877458056,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 19694.829292994487,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#34fcff",
+          "oklch": {
+            "c": 0.1459501885119472,
+            "h": 196.4948427173636,
+            "l": 0.9020333157472595
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 5252.389751006685,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "other/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.17726216259427227,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.79,
+          "background": "#ffffff",
+          "foreground": "#00052e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#e9e9f3",
+          "foreground": "#00052e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.56,
+          "background": "#34fcff",
+          "foreground": "#00052e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#dbdcdf",
+          "foreground": "#00052e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#e9e9f3",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.51,
+          "background": "#34fcff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.6,
+          "background": "#dbdcdf",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#afb4db",
+          "foreground": "#00052e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.67,
+          "background": "#0428cb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#e9e9f3",
+          "foreground": "#0428cb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#afb4db",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#ffffff",
+          "foreground": "#4f5166"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.61,
+          "background": "#34fcff",
+          "foreground": "#0428cb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.05,
+          "background": "#dbdcdf",
+          "foreground": "#0428cb"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.45,
+          "background": "#e9e9f3",
+          "foreground": "#4f5166"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.11,
+          "background": "#34fcff",
+          "foreground": "#4f5166"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.67,
+          "background": "#dbdcdf",
+          "foreground": "#4f5166"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#00052e",
+          "foreground": "#8185a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.18,
+          "background": "#ffffff",
+          "foreground": "#6b6b83"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 12
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|image",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 74,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|heading",
+            "marginTop|heading",
+            "paddingBottom|other",
+            "paddingTop|image",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingRight|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 196,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 225,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle, rgb(6, 16, 90), rgb(0, 5, 46) 79%)",
+        "colors": [
+          "rgb(6, 16, 90)",
+          "rgb(0, 5, 46)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Suace Sans Regular",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 262,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Mono Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Open Suace Sans Light",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "F37 Bolton Book",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "F37 Bolton Medium",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "F37 Bolton",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Open Sauce Sans Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "IBM Plex Mono Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.82,
+          "letterSpacing": 0.091,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "IBM Plex Mono Medium",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.086,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "IBM Plex Mono Medium",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.077,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "IBM Plex Mono Medium",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "F37 Bolton Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.086,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Open Suace Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "F37 Bolton Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Open Suace Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "icon",
+            "card"
+          ],
+          "frequency": 180,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "F37 Bolton Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Open Suace Sans Regular",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Open Suace Sans Light",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Open Suace Sans Light",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Suace Sans Light",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "F37 Bolton Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.81,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Suace Sans Regular",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "F37 Bolton Medium",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.81,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Suace Sans Light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Sauce Sans Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Suace Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Open Suace Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Open Suace Sans Light",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "F37 Bolton",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "F37 Bolton Book",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.48,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "F37 Bolton",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "F37 Bolton Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.26,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "F37 Bolton",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "F37 Bolton Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "F37 Bolton Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.41,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8ca45d3f-0f78-4592-8d85-1ea521b9232d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/dee95962-eeb4-45cc-bbc8-0780de998ce8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ameba design system\",\"item\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625#style-reference\",\"name\":\"Ameba design system reference\",\"headline\":\"Ameba design system | Refero Styles\",\"description\":\"Explore Ameba's dark SaaS design system: Midnight Ink #00052e, Signal Blue #0428cb colors, Open Suace Sans Regular, F37 Bolton typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625\",\"mainEntityOfPage\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ameba\",\"url\":\"https://www.ameba.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/371df039-a090-402b-b2e4-21ab38e07625#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dee95962-eeb4-45cc-bbc8-0780de998ce8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dee95962-eeb4-45cc-bbc8-0780de998ce8.jpg\",\"caption\":\"Screenshot of Ameba\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dee95962-eeb4-45cc-bbc8-0780de998ce8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ameba design system\",\"Ameba website design\",\"Ameba colors\",\"Ameba typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Midnight Ink\",\"Signal Blue\",\"Arc Cyan\",\"Halo Violet\",\"Open Suace Sans Regular\",\"F37 Bolton\",\"Open Sauce Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ameba design system\"},{\"@type\":\"Thing\",\"name\":\"Ameba website design\"},{\"@type\":\"Thing\",\"name\":\"Ameba colors\"},{\"@type\":\"Thing\",\"name\":\"Ameba typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-10T23:15:25.586Z\",\"dateModified\":\"2026-05-10T23:15:25.586Z\"}]}19:T40f,Ameba operates as a nocturnal command center for supply chain intelligence — deep midnight navy canvases host glowing data visualizations and floating product cards, with a single electric blue (#0428cb) acting as the only warm element in an otherwise cold, precise palette. Typography is distinctly editorial: the humanist F37 Bolton at weight 300 carries oversized headlines with tight tracking (-0.019em at 54px+), giving even product copy a magazine-cover cadence rather than typical SaaS density. The interface lives in two registers: dark hero/feature bands that feel like mission control, and light product showcase bands that reveal the actual dashboard. Surfaces are flat and minimal — no heavy shadows, no gradients on UI chrome — but a single radial gradient and a glow halo around the central particle sphere add atmospheric depth. The visual signature is restraint meeting precision: small radii (4-8px), hairline borders, and a cyan accent (#34fcff) used so sparingly it feels like electricity arcing across the screen.1a:T6be,**Quick Color Reference**\n- text (dark canvas): #ffffff\n- text (light canvas): #00052e\n- text (secondary): #6b6b83\n- background (hero/feature): #00052e\n- background (product surface): #ffffff\n- border (hairline): #dbdcdf\n- accent: #34fcff\n- brand action: #0428cb\n\n**Example Component Prompts**\n1. Hero headline: 59px F37 Bolton weight 300, #ffffff, letter-spacing -1.12px, centered over #00052e background. Subtext at 18px Open Sauce Sans weight 400, #6b6b83. primary action: no distinct CTA color\n2. Floating notification card: 8px radius, #00052e fill, 1px #6b6b83 border, 20px padding. Status dot 8px #34fcff. Label 'ORDER UPDATE' in IBM Plex Mono 11px, letter-spacing 0.08em, #6b6b83. Body text 14px Open Sauce Sans, #ffffff. No shadow.\n3. Dashboard product surface: white #ffffff background inside a dark browser chrome (title bar #2a2a2a with three traffic-light dots, URL 'app.ameba.ai'). Inside: left sidebar 48px wide with 4–5 #4f5166 icons. Main area: three stat columns with labels in 14px Open Sauce Sans #4f5166 and large numbers in 54px F37 Bolton weight 300 #00052e. Below: a Gantt timeline with horizontal bars in #0428cb, diamond markers, and a date axis in IBM Plex Mono 11px.\n4. Section eyebrow + headline: eyebrow 'REACTIVE TO PROACTIVE' in F37 Bolton Medium 14px, letter-spacing 0.05em, #0428cb, 10px above. Headline below at 40px F37 Bolton weight 300, #ffffff (on dark) or #00052e (on light), letter-spacing -0.6px, max-width 700px.\n5. Product status tag: 4px radius, 4px vertical padding, 8px horizontal. Background a desaturated tint of the status color. Text in IBM Plex Mono 11px, letter-spacing 0.08em, uppercase. 'COMPLETE' in muted green, 'OVER LIMIT' in muted red, 'CONFIRMED' in neutral gray."
+}

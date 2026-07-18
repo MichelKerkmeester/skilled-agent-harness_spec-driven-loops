@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-design/010-sk-design-styles-from-refero",
+  "description": "Phase parent: extract styles.refero.design per-style references into the sk-design token library via a resumable real-browser harness; piloted on ~50 ",
+  "keywords": [
+    "phase",
+    "parent",
+    "extract",
+    "styles",
+    "refero",
+    "design",
+    "per-style",
+    "references",
+    "sk-design",
+    "token",
+    "library",
+    "via",
+    "resumable",
+    "real-browser",
+    "harness",
+    "piloted",
+    "full"
+  ],
+  "lastUpdated": "2026-07-18T06:04:54.458Z",
+  "specId": "010",
+  "folderSlug": "sk-design-styles-from-refero",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

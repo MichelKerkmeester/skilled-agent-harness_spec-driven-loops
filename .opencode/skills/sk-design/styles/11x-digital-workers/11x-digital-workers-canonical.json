@@ -1,0 +1,1767 @@
+{
+  "source": "https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c",
+  "uuid": "850ee61c-4ecd-4558-9c0c-fab99721b34c",
+  "name": "11x– Digital workers",
+  "northStar": "Cinematic editorial desert — full-bleed terrain photography against monumental serif headlines, where the page reads like a luxury magazine spread.",
+  "capturedAt": "2026-07-18T10:05:32.999Z",
+  "meta": {
+    "url": "https://www.11x.ai",
+    "siteName": "11x– Digital workers",
+    "extractedAt": "2026-06-03T15:53:42.543Z",
+    "durationMs": 44236,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1084,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the ES Allianz serif at 74px+ weight 700 for hero and section headlines — the oversized serif is the brand's primary visual signature",
+      "Set pill buttons to exactly 999px border-radius with 12px 24px padding, in either black-on-white or white-on-black",
+      "Use the four pastel card tints (Dusty Sky, Mist Mint, Wisteria, Desert Clay) as the only color punctuation on light sections — never introduce new chromatic UI colors",
+      "Alternate between white editorial spreads and Deep Teal (#0b252a) full-bleed bands to maintain the magazine-spread rhythm",
+      "Use full-bleed landscape photography as section backgrounds — the imagery must be warm-toned, cinematic, and high-resolution",
+      "Set letter-spacing to -0.045em at display sizes (74px+) and -0.02em at body sizes for the modern editorial stance",
+      "Use the Slate Teal (#406e7a) feature tag pills exclusively on the Deep Teal dark sections — never on light backgrounds"
+    ],
+    "donts": [
+      "Do not use sans-serif typefaces anywhere — the serif is non-negotiable and defines the editorial identity",
+      "Do not use blue, red, green, or yellow as functional UI colors — the palette is restricted to neutrals, deep teal, and the four muted pastels",
+      "Do not add drop shadows to cards or buttons — elevation is communicated through tonal contrast and 1px hairline borders only",
+      "Do not use sharp corners (under 8px radius) on interactive elements — pills, rounded cards, and soft radii are the norm",
+      "Do not center-align body paragraphs longer than two lines — left-align running text for editorial readability",
+      "Do not introduce gradients on UI components — the only gradient is a subtle warm fade (#f8f9f7 → #d7cecd) used minimally",
+      "Do not stack more than one pastel card tint adjacent to another — alternate pastel cards with white space to preserve the airy feel"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary action buttons on light surfaces, body text, headlines, card borders — the universal ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas on light sections, card surfaces, text on dark backgrounds, button text on filled buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0b252a",
+        "name": "Deep Teal",
+        "role": "Dark section backgrounds — the only large chromatic surface, used for narrative bands between editorial spreads",
+        "group": "accent"
+      },
+      {
+        "hex": "#f6f5f5",
+        "name": "Bone",
+        "role": "Card surfaces and hairline borders on light sections — the warm off-white that prevents starkness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5ece5",
+        "name": "Sandstone",
+        "role": "Warm card surface tint, section backgrounds in cream/peach areas — desert-hour warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ede2d7",
+        "name": "Ash Blush",
+        "role": "Soft warm card surface, secondary peach accent on portrait cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7cecc",
+        "name": "Stone",
+        "role": "Muted neutral footer and section dividers — warm mid-gray grounding color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1dad9",
+        "name": "Iron",
+        "role": "Button and link background tint, card surface for outlined controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afaeae",
+        "name": "Pewter",
+        "role": "Disabled or tertiary button fills, secondary surface fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Near-black for dark button fills on light surfaces where pure black feels too harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c5d5e8",
+        "name": "Dusty Sky",
+        "role": "Soft blue pastel — feature card background, decorative portrait card tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#d4e6eb",
+        "name": "Mist Mint",
+        "role": "Pale mint-teal pastel — feature card background variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#efe5f9",
+        "name": "Wisteria",
+        "role": "Lavender pastel — feature card background variant",
+        "group": "accent"
+      },
+      {
+        "hex": "#e7d3bf",
+        "name": "Desert Clay",
+        "role": "Warm peach/tan pastel — feature card background variant, ties to hero photography palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#406e7a",
+        "name": "Slate Teal",
+        "role": "Muted blue-teal for feature tag pills on dark sections, badge backgrounds — the only repetitive chromatic UI element",
+        "group": "accent"
+      },
+      {
+        "hex": "#4c312b",
+        "name": "Saddle Brown",
+        "role": "Warm brown for badge borders and occasional accent text — echoes the terrain photography",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page follows an editorial magazine model: full-bleed dramatic hero with centered text overlay, followed by white content sections with centered headings and 2-column card grids, then a Deep Teal dark narrative band, then alternating cream and white feature sections. Max content width is approximately 1200px, centered. Hero sections break to full viewport width. Card grids use 2-column layouts for feature highlights and worker profiles. Vertical rhythm is generous (48–80px section gaps) despite the compact base spacing unit, giving each section room to breathe like a magazine spread. The nav is a fixed white top bar; no sidebar. A floating chat widget anchors the bottom-right corner across all sections.",
+    "imagery": "Full-bleed landscape photography is the primary visual language — warm-toned, cinematic terrain shots (desert rock formations, geological textures) serve as hero and section backgrounds. Portrait photography appears in contained cards with 32px border-radius, tightly cropped to face and shoulders, natural lighting, warm color grading. The photography is always editorial in treatment: no overlays, no duotone effects, no artificial color grading. Decorative illustration is absent. The photography occupies 50–70% of the viewport in hero and dark-band sections, then contracts to 40–50% width in card layouts. Icons are not present in the visible design system — navigation and status communication rely on typography and small text labels.",
+    "similar": [
+      {
+        "why": "Shares the pill-button + monochrome-with-one-accent approach, though Linear uses sans-serif — 11x.ai takes the same minimalism into serif editorial territory",
+        "business": "Linear"
+      },
+      {
+        "why": "Both use full-bleed photography as section backgrounds with centered serif/sans headlines and pill CTAs, targeting a premium AI audience with magazine-spread pacing",
+        "business": "Clay"
+      },
+      {
+        "why": "Both reject typical SaaS aesthetics in favor of editorial design — oversized display type, warm neutrals, and dramatic full-bleed imagery over flat UI",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Dark hero sections with dramatic imagery, oversized editorial type, and the same restraint with color — letting the work speak through atmosphere rather than chromatic UI",
+        "business": "Runway"
+      },
+      {
+        "why": "Shares the gradient-free, hairline-bordered card system and the alternating white/dark band rhythm, though 11x.ai pushes further into serif and full-bleed photography",
+        "business": "Stripe (editorial sections)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "8px",
+        "buttons": "999px",
+        "smallBadges": "2px",
+        "portraitCards": "32px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "48-80px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Primary page canvas on light editorial sections"
+      },
+      {
+        "hex": "#f6f5f5",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Card surfaces, warm off-white panels on cream sections"
+      },
+      {
+        "hex": "#f5ece5",
+        "name": "Sandstone",
+        "level": 2,
+        "purpose": "Warm card tint for peach/cream feature areas"
+      },
+      {
+        "hex": "#efe5f9",
+        "name": "Pastel Card",
+        "level": 3,
+        "purpose": "Colored card surface (lavender/blue/mint/peach variants)"
+      },
+      {
+        "hex": "#0b252a",
+        "name": "Deep Teal",
+        "level": 4,
+        "purpose": "Dark narrative band background — highest contrast surface"
+      }
+    ],
+    "northStar": "Cinematic editorial desert — full-bleed terrain photography against monumental serif headlines, where the page reads like a luxury magazine spread.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading",
+        "size": 46,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.84
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.56
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1,
+        "letterSpacing": -3.33
+      },
+      {
+        "role": "display-xl",
+        "size": 152,
+        "lineHeight": 0.85,
+        "letterSpacing": -6.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button (Light)",
+        "role": "Filled CTA on white/light surfaces",
+        "description": "Black (#000000) fill, white text, 999px border-radius, padding 12px 24px, ES Allianz weight 500 at 16px, letter-spacing -0.32px. White hairline border (1px) to define the edge against photography."
+      },
+      {
+        "name": "Primary Pill Button (Dark)",
+        "role": "Filled CTA on dark teal sections",
+        "description": "White (#ffffff) fill, black text, 999px border-radius, padding 12px 24px, ES Allianz weight 500 at 16px. Used on the #0b252a narrative bands."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "White background (#ffffff), 8px vertical padding, horizontal layout with logo left, nav links center (ES Allianz 16px weight 500), CTA button right. Nav text in black. No drop shadow — sits flush against content with 1px bottom hairline in #e1dad9."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-most notification strip",
+        "description": "Black (#000000) background, white text at 14px ES Allianz weight 500, centered, full-width, ~40px height. Contains a short message with an arrow icon linking to more detail."
+      },
+      {
+        "name": "Hero Section (Full-Bleed)",
+        "role": "Cinematic landing hero",
+        "description": "Full-bleed photographic background (terrain/desert imagery at warm color temperature), overlay-free with white text. Display headline at 74–152px ES Allianz weight 700, white, letter-spacing -0.045em. Subheadline at 18–19px weight 400, white, 1.4 line-height. White pill CTA below."
+      },
+      {
+        "name": "Portrait Worker Card",
+        "role": "Featured digital worker profile",
+        "description": "Large portrait photograph filling the card, 32px border-radius, subtle 1px border in #e1dad9. Overlaid status badge in top-left corner: 8px radius, semi-transparent dark background, white text at 14px. Card sits on white canvas with 24px gap between siblings."
+      },
+      {
+        "name": "Status Badge",
+        "role": "Worker status indicator on cards",
+        "description": "Pill shape, 8px border-radius, small (under 32px height), white or semi-transparent black background, 14px ES Allianz weight 500 text. Shows worker name and status (e.g. 'Alice the SDR', 'Autopilot activated')."
+      },
+      {
+        "name": "Feature Tag Pill",
+        "role": "Platform capability tag on dark sections",
+        "description": "Muted slate-teal (#406e7a) background, white text, 8px border-radius, padding 4px 12px, ES Allianz 14px weight 500. Arranged in a horizontal marquee/row pattern. The only repeated chromatic UI element on the site."
+      },
+      {
+        "name": "Section Card (Pastel Variant)",
+        "role": "Feature or content card with soft colored background",
+        "description": "One of four pastel tints — Dusty Sky (#c5d5e8), Mist Mint (#d4e6eb), Wisteria (#efe5f9), or Desert Clay (#e7d3bf). 16px border-radius, 24px internal padding, no shadow. Black text at 18px body or 32–46px heading. These pastel cards are the site's only color punctuation on light sections."
+      },
+      {
+        "name": "Dark Narrative Band",
+        "role": "Full-width dark section between editorial spreads",
+        "description": "Deep teal (#0b252a) background, full-bleed, white centered text. Display headline 46–74px, body text 18px, white pill CTA. Followed by a row of slate-teal feature tag pills, then a cream/peach card surface (Bone #f6f5f5) breaking into the next section."
+      },
+      {
+        "name": "Chat Widget (Ask Julian)",
+        "role": "Floating conversational entry point",
+        "description": "Fixed bottom-right, pill shape, dark (#0b252a) background, small circular avatar portrait, white text 'Ask Julian' at 14px ES Allianz weight 500. ~48px height, subtle shadow for lift."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Stone (#d7cecc) or white background, multi-column link grid, ES Allianz 14–16px, black text. Logo and legal line at bottom."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all UI text — a high-contrast didone-influenced serif used at dramatic display sizes (74–152px) for headlines, and at body sizes (16–19px) for running text. The tight letter-spacing (-0.045em at display, -0.02em at body) tightens the serifs into a modern editorial stance. Weight 400 carries most copy; 700 for hero impact; 500 for navigation and subheadings. This serif does the heavy lifting that a sans-serif system would spread across three families.",
+        "sizes": "8, 14, 16, 18, 19, 28, 32, 46, 56, 64, 74, 152",
+        "family": "ES Allianz",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.85, 1.00, 1.10, 1.20, 1.40",
+        "substitute": "GT Sectra, Editorial New, or Tiempos Headline — any high-contrast modern serif with tight tracking. For free alternatives: Bodoni Moda or Playfair Display at tightened tracking.",
+        "letterSpacing": "-0.045em at 74–152px, -0.04em at 46–64px, -0.02em at 14–32px"
+      }
+    ],
+    "description": "11x.ai operates as a cinematic editorial platform: dramatic full-bleed landscape photography meets oversized custom serif typography, creating the feel of a luxury magazine spread repurposed for enterprise software. The interface is almost entirely monochrome — black on white surfaces, white on deep teal sections — with color appearing only as muted, sun-bleached pastels on feature cards (dusty blue, mint, lavender, peach). The single recurring accent on dark sections is a muted slate-teal used for feature tag pills. Components are deliberately minimal: pill-shaped buttons with 999px radius, soft-bordered portrait cards, and small status badges — nothing competes with the photography or the serif headlines. The rhythm alternates between white editorial spreads and full-bleed dark narrative bands, giving the entire site the cadence of a print campaign rather than a typical SaaS landing page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"11x– Digital workers design system\",\"item\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#style-reference\",\"name\":\"11x– Digital workers design system reference\",\"headline\":\"11x– Digital workers design system | Refero Styles\",\"description\":\"Explore 11x– Digital workers's mixed AI design system: Obsidian #000000, Paper White #ffffff colors, ES Allianz typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"11x– Digital workers\",\"url\":\"https://www.11x.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"caption\":\"Screenshot of 11x– Digital workers\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"11x– Digital workers design system\",\"11x– Digital workers website design\",\"11x– Digital workers colors\",\"11x– Digital workers typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Paper White\",\"Deep Teal\",\"Bone\",\"ES Allianz\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"11x– Digital workers design system\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers website design\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers colors\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-08T18:56:28.795Z\",\"dateModified\":\"2026-05-08T18:56:28.795Z\"}]}19:T4b1,**Quick Color Reference**\n- Text: #000000\n- Background: #ffffff\n- Dark section background: #0b252a\n- Border: #e1dad9 (hairline) / #f6f5f5 (soft)\n- Accent pastels: #c5d5e8, #d4e6eb, #efe5f9, #e7d3bf\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. **Pastel Feature Card**: Dusty Sky (#c5d5e8) or Wisteria (#efe5f9) background, 16px border-radius, 24px padding. Heading at 32px ES Allianz weight 700, black, letter-spacing -0.64px. Body at 18px weight 400, black. No shadow, no border.\n\n4. **Worker Portrait Card**: 32px border-radius, full-bleed portrait photograph (warm-toned, tight crop to face), 1px border in #e1dad9. Overlaid status badge top-left: semi-transparent black background, 8px radius, white 14px ES Allianz weight 500 text.\n\n5. **Navigation Bar**: White (#ffffff) background, full-width, 8px vertical padding. Logo left ('11x' in ES Allianz weight 700, 24px). Nav links center in ES Allianz 16px weight 500, black. Black pill CTA right: #000000 background, white text, 999px radius, 12px 24px padding."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "ES Allianz is a high-contrast didone-influenced serif. Its signature role at 74–152px creates a magazine-cover feel that no sans-serif system can replicate. The tight letter-spacing (-0.045em at display) compresses the serifs into a modern editorial stance rather than a traditional book typeface. Line-heights are aggressively tight at display sizes (0.85–1.0) to allow headlines to stack into monumental blocks, then open up to 1.2–1.4 at body sizes. This compression-then-opening ratio is a signature rhythm: monumental at the top, breathable at the body level. The serif is used for everything — there is no sans-serif companion. This is unusual and deliberate: the site rejects the typical serif-headline + sans-body split in favor of a unified editorial voice."
+      }
+    ],
+    "elevationPhilosophy": "The design system deliberately avoids drop shadows as a means of elevation. Hierarchy and separation are achieved through tonal contrast (white card on white canvas distinguished only by a 1px #e1dad9 hairline border), full-bleed dark bands that create natural section breaks, and the layering of warm neutrals. The floating chat widget is the only element that uses shadow, and even then it is minimal. This shadowless approach reinforces the flat, editorial, print-magazine aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 3816,
+          "confidence": 1,
+          "prominence": 159570358.8821499,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "body/color": 14,
+            "card/color": 44,
+            "icon/color": 18,
+            "link/color": 36,
+            "other/fill": 13,
+            "badge/color": 274,
+            "image/color": 16,
+            "other/color": 317,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 17,
+            "nav/borderColor": 60,
+            "body/borderColor": 56,
+            "card/borderColor": 168,
+            "icon/borderColor": 72,
+            "link/borderColor": 141,
+            "badge/borderColor": 1096,
+            "image/borderColor": 64,
+            "other/borderColor": 1256,
+            "button/borderColor": 48,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "badge",
+            "card"
+          ],
+          "frequency": 1503,
+          "confidence": 1,
+          "prominence": 27072520.40455314,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 10,
+            "other/fill": 9,
+            "badge/color": 129,
+            "image/color": 40,
+            "other/color": 106,
+            "button/color": 13,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "icon/borderColor": 40,
+            "badge/borderColor": 516,
+            "image/borderColor": 160,
+            "other/borderColor": 424,
+            "button/borderColor": 28,
+            "heading/borderColor": 8,
+            "card/backgroundColor": 5,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d7cecc",
+          "oklch": {
+            "c": 0.010405754725928057,
+            "h": 32.51733116148981,
+            "l": 0.8580818961368367
+          },
+          "contexts": [
+            "other",
+            "badge",
+            "card",
+            "footer"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 4947276,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0b252a",
+          "oklch": {
+            "c": 0.032827547973086006,
+            "h": 212.14160410627284,
+            "l": 0.24682134634487146
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2233632,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6f5f5",
+          "oklch": {
+            "c": 0.00106862964685867,
+            "h": 17.176414078566065,
+            "l": 0.9709149277462504
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 1619266.6172132338,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 8,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f5ece5",
+          "oklch": {
+            "c": 0.013541779416391276,
+            "h": 60.56741567899241,
+            "l": 0.9482065812754837
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 602430,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e1dad9",
+          "oklch": {
+            "c": 0.007705693395888935,
+            "h": 32.514467042138726,
+            "l": 0.8940466299289365
+          },
+          "contexts": [
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 413552,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 8,
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#afaeae",
+          "oklch": {
+            "c": 0.0018248550284293394,
+            "h": 17.19820572915633,
+            "l": 0.7514920959719211
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 117213,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ede2d7",
+          "oklch": {
+            "c": 0.019070119136980344,
+            "h": 67.58728896058828,
+            "l": 0.9185084481741282
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 92160,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c5d5e8",
+          "oklch": {
+            "c": 0.03156406491740957,
+            "h": 252.70840967019885,
+            "l": 0.8668228162771187
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 90562,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d4e6eb",
+          "oklch": {
+            "c": 0.020369503366806214,
+            "h": 216.20392949935177,
+            "l": 0.9130176868132757
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 82365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efe5f9",
+          "oklch": {
+            "c": 0.02871483100452306,
+            "h": 308.1203370188884,
+            "l": 0.9356563934250595
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 82365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e7d3bf",
+          "oklch": {
+            "c": 0.03498154342351123,
+            "h": 67.34552115232879,
+            "l": 0.8779503263864578
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 74168,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4c312b",
+          "oklch": {
+            "c": 0.04115481664145829,
+            "h": 33.03974613462926,
+            "l": 0.3436608643549547
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 15754.251591274253,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 2,
+            "badge/borderColor": 8
+          }
+        },
+        {
+          "hex": "#8c663c",
+          "oklch": {
+            "c": 0.07587593598794368,
+            "h": 67.80579527384191,
+            "l": 0.5398639193575518
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4096,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d2b596",
+          "oklch": {
+            "c": 0.05378538123185997,
+            "h": 68.79579729133341,
+            "l": 0.7903210179605841
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 1261.412276799542,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 94
+          }
+        },
+        {
+          "hex": "#406e7a",
+          "oklch": {
+            "c": 0.0538069566213243,
+            "h": 216.36439083562752,
+            "l": 0.5100348469146204
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 691.8863237274595,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 120
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0059902702303141885,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.3,
+          "background": "#f6f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.01,
+          "background": "#f5ece5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.25,
+          "background": "#efe5f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#ede2d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.32,
+          "background": "#d4e6eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16,
+          "background": "#0b252a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#e1dad9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#f6f5f5",
+          "foreground": "#0b252a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#f6f5f5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.47,
+          "background": "#e7d3bf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.06,
+          "background": "#c5d5e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.73,
+          "background": "#f5ece5",
+          "foreground": "#0b252a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.65,
+          "background": "#f5ece5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#d7cecc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#efe5f9",
+          "foreground": "#0b252a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#efe5f9",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#ede2d7",
+          "foreground": "#0b252a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.47,
+          "background": "#ede2d7",
+          "foreground": "#222222"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 120
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 120
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 94
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image",
+            "card",
+            "link"
+          ],
+          "frequency": 52
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "badge",
+            "other"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 188,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "badge",
+            "link",
+            "other"
+          ],
+          "frequency": 61,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|button",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingLeft|badge",
+            "marginBottom|button",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "card",
+            "link",
+            "badge"
+          ],
+          "frequency": 601,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|link",
+            "columnGap|link",
+            "marginBottom|other",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginRight|badge",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "badge"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "badge"
+          ],
+          "frequency": 453,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginLeft",
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|link",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|other",
+            "rowGap|badge",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 125,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card",
+            "paddingRight|link",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 129,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 136,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 193,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 263,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(248, 249, 247), rgb(215, 206, 204))",
+        "colors": [
+          "rgb(248, 249, 247)",
+          "rgb(215, 206, 204)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ES Allianz",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 1058,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "other",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 961,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ES Allianz",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "ES Allianz",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 152,
+          "family": "ES Allianz",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/23125314-fa1e-43e2-9f82-c4363f05dfd2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"11x– Digital workers design system\",\"item\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#style-reference\",\"name\":\"11x– Digital workers design system reference\",\"headline\":\"11x– Digital workers design system | Refero Styles\",\"description\":\"Explore 11x– Digital workers's mixed AI design system: Obsidian #000000, Paper White #ffffff colors, ES Allianz typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"11x– Digital workers\",\"url\":\"https://www.11x.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/850ee61c-4ecd-4558-9c0c-fab99721b34c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"caption\":\"Screenshot of 11x– Digital workers\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d7c7c3c0-b0ef-49ff-9b4a-8a31c6c635cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"11x– Digital workers design system\",\"11x– Digital workers website design\",\"11x– Digital workers colors\",\"11x– Digital workers typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian\",\"Paper White\",\"Deep Teal\",\"Bone\",\"ES Allianz\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"11x– Digital workers design system\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers website design\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers colors\"},{\"@type\":\"Thing\",\"name\":\"11x– Digital workers typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-08T18:56:28.795Z\",\"dateModified\":\"2026-05-08T18:56:28.795Z\"}]}19:T4b1,**Quick Color Reference**\n- Text: #000000\n- Background: #ffffff\n- Dark section background: #0b252a\n- Border: #e1dad9 (hairline) / #f6f5f5 (soft)\n- Accent pastels: #c5d5e8, #d4e6eb, #efe5f9, #e7d3bf\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #000000 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. **Pastel Feature Card**: Dusty Sky (#c5d5e8) or Wisteria (#efe5f9) background, 16px border-radius, 24px padding. Heading at 32px ES Allianz weight 700, black, letter-spacing -0.64px. Body at 18px weight 400, black. No shadow, no border.\n\n4. **Worker Portrait Card**: 32px border-radius, full-bleed portrait photograph (warm-toned, tight crop to face), 1px border in #e1dad9. Overlaid status badge top-left: semi-transparent black background, 8px radius, white 14px ES Allianz weight 500 text.\n\n5. **Navigation Bar**: White (#ffffff) background, full-width, 8px vertical padding. Logo left ('11x' in ES Allianz weight 700, 24px). Nav links center in ES Allianz 16px weight 500, black. Black pill CTA right: #000000 background, white text, 999px radius, 12px 24px padding."
+}

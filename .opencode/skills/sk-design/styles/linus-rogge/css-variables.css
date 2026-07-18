@@ -1,0 +1,47 @@
+:root {
+  /* Colors */
+  --color-paper-white: #ffffff;
+  --color-ink-black: #000000;
+  --color-gallery-gray: #e5e5e5;
+  --color-plinth-gray: #d4d4d4;
+  --color-carbon-black: #0a0a0a;
+  --color-slate-black: #171717;
+  --color-concrete: #a3a3a3;
+  --color-stone: #737373;
+  --color-graphite: #525252;
+
+  /* Typography — Font Families */
+  --font-abc-oracle: 'ABC Oracle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-sm: 14px;
+  --leading-sm: 1.43;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-48: 48px;
+
+  /* Layout */
+  --section-gap: 48-96px;
+  --card-padding: 12px;
+  --element-gap: 12px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-section-band: #e5e5e5;
+  --surface-plinth: #d4d4d4;
+  --surface-dark-block: #0a0a0a;
+}

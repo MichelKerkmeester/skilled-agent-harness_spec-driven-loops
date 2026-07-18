@@ -1,0 +1,107 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, dominant card surface — the near-black that absorbs the eye and lets project imagery carry all visual weight"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Hairline borders, text, link borders, and the 124 link borders form the white wireframe structure of every tile and section"
+    },
+    "midnight-navy": {
+      "$value": "#00174f",
+      "$type": "color",
+      "$description": "Midnight Navy — Accent card surface and decorative panels — the only chromatic hue in the system, used sparingly as a deep tonal interruption against the void"
+    },
+    "cement": {
+      "$value": "#c2c1bf",
+      "$type": "color",
+      "$description": "Cement — Alternate card surface — a warm desaturated gray that breaks the black/navy rhythm when a tile needs to feel physical or grounded"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Exclusive display and body font — the studio's signature is deploying a weight 600 grotesque at a whisper-small 12–14px for absolutely everything, from navigation to project labels to body copy. This uniform micro-size is anti-convention; most agencies use a dramatic type scale, but HEED treats 12–14px weight 600 as a single visual register, like a single monospace that carries every function."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the dark room that holds the exhibition"
+    },
+    "midnight-panel": {
+      "$value": "#00174f",
+      "$type": "color",
+      "$description": "Surface level 1: Accent project tiles and decorative breaks"
+    },
+    "cement-tile": {
+      "$value": "#c2c1bf",
+      "$type": "color",
+      "$description": "Surface level 2: Warm alternate surface for project cards that need physical presence"
+    },
+    "white-inset": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted project tiles (white photography backgrounds) and image surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.studioheed.com",
+      "siteName": "Studio HEED",
+      "extractedAt": "2026-06-03T21:57:54.117Z",
+      "variant": "extended"
+    }
+  }
+}

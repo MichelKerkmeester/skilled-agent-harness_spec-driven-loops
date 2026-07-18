@@ -1,0 +1,849 @@
+{
+  "source": "https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d",
+  "uuid": "e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d",
+  "name": "Duties.xyz",
+  "northStar": "Monochrome broadside manifesto — a cream-paper zine where the only ink is black and the only type that matters is shouting.",
+  "capturedAt": "2026-07-18T08:00:33.828Z",
+  "meta": {
+    "url": "https://duties.xyz",
+    "siteName": "Duties.xyz",
+    "extractedAt": "2026-06-03T18:47:38.049Z",
+    "durationMs": 36191,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 715,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [],
+    "donts": [],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f1f0ee",
+        "name": "Cream Paper",
+        "role": "Page canvas and large surface fills; warm off-white sets the editorial paper tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Primary text, nav links, icon strokes, footer metadata, logo marks — maximum contrast against cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Charcoal Press",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdad9",
+        "name": "Bone Gray",
+        "role": "Quiet divider tone, subtle background blocks, low-emphasis surfaces — barely visible, only there for separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Inverse text on dark blocks, occasional clean card surfaces when maximum contrast is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Photography is full-bleed and editorial — project case study images are tightly cropped product renders (the EVS phone case with floating asteroids is a 3D render), packaging shots, and brand compositions that fill the entire card surface with no padding. Imagery is treated as flat content, not as decorative atmosphere: no rounded masks, no overlays, no color filters. Project thumbnails in the lower grid mix product photography, illustration (the hand-drawn pizza slice characters), and brand identity work. The only consistent rule is that imagery lives inside 8px-radius cards and never bleeds beyond them. No lifestyle photography, no people, no abstract decorative imagery — the work IS the imagery.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial portfolio language — massive display type, zero accent color, project images carry the visual weight, minimal UI chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same condensed grotesque display headlines at extreme sizes, same warm-paper / black-ink monochrome palette, same confidence-through-restraint typographic voice",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same cream-canvas + black-type editorial broadsheet aesthetic, oversized condensed headlines, project grid built on typographic rhythm rather than color",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same manifesto-style hero where the type itself is the first product, monochrome palette, studio-as-publisher attitude",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "",
+        "business": ""
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "pill": "32px",
+        "cards": "8px",
+        "media": "8px",
+        "small": "4px",
+        "buttons": "32px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f1f0ee",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Base page canvas"
+      },
+      {
+        "hex": "#dbdad9",
+        "name": "Bone Gray",
+        "level": 1,
+        "purpose": "Subtle secondary surface for cards, dividers, or quiet blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 2,
+        "purpose": "Elevated or inverse card surface"
+      },
+      {
+        "hex": "#252525",
+        "name": "Charcoal Press",
+        "level": 3,
+        "purpose": "Dark surface for button fills, inverted text blocks, or rare dark sections"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Monochrome broadside manifesto — a cream-paper zine where the only ink is black and the only type that matters is shouting.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 0.8,
+        "letterSpacing": -6.43
+      },
+      {
+        "role": "display-lg",
+        "size": 128,
+        "lineHeight": 0.8,
+        "letterSpacing": -8.58
+      },
+      {
+        "role": "display-xl",
+        "size": 180,
+        "lineHeight": 0.8,
+        "letterSpacing": -10.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Display Headline",
+        "role": "The signature screaming headline that anchors the page",
+        "description": "AS Therma Bold Condensed at 96-180px, weight 400, line-height 0.80, letter-spacing -0.067em to -0.06em. Pure black (#000000) on cream canvas. No padding, no margin-top — the text starts at the absolute top of the viewport. Set in all-caps naturally via the font, no transform needed. Occupies up to the full viewport width with no max-width constraint."
+      },
+      {
+        "name": "Pill Navigation Button",
+        "role": "Floating menu trigger, sticky at bottom center",
+        "description": "32px border-radius (full pill). Charcoal Press (#252525) fill, Cream Paper (#f1f0ee) text. PP Neue Montreal Mono Medium 14px weight 500, uppercase, letter-spacing normal. Padding approximately 10px 20px. Two icon dots (loader-style, ●●) sit to the left of the word \\\"MENU\\\". Floats centered at the bottom of the viewport with no shadow — relies on tonal contrast against the cream canvas."
+      },
+      {
+        "name": "View Services CTA",
+        "role": "Primary call-to-action pill in the About block",
+        "description": "32px border-radius. Cream Paper (#f1f0ee) fill, Pure Ink (#000000) text. PP Neue Montreal Mono Medium 14px weight 500, uppercase. Padding approximately 10px 20px. Trailing arrow (→) in the same color. No border, no shadow — the inverted tonal pair (cream on cream-bg with black text) is the only differentiator."
+      },
+      {
+        "name": "Project Showcase Card",
+        "role": "Large project image with logo overlay",
+        "description": "8px border-radius. Full-bleed photographic content (no padding around the image). Logo or project mark overlaid in white or black, positioned top-left or center-left, set in AS Therma Bold Condensed or a project-specific mark. No border, no shadow, no caption inside the card. Aspect ratio varies (roughly 3:2 or 4:3). Used in a horizontal row of 2-3 large images."
+      },
+      {
+        "name": "Project Ticker Marquee",
+        "role": "Continuous horizontal booking-status banner",
+        "description": "Single line of mono text (PP Neue Montreal Mono Medium 14px weight 500) repeating \\\"CURRENTLY BOOKING PROJECTS FOR SPRING / SUMMER 2026\\\" separated by a bullet (●). Pure Ink (#000000) on cream canvas. No background fill, no border. Should scroll continuously left or right. Height approximately 40px, vertically centered text."
+      },
+      {
+        "name": "Project Grid Card",
+        "role": "Thumbnail card in the lower project grid",
+        "description": "8px border-radius. Mixed visual content: brand work, packaging, illustration, etc. No caption inside the card — project name appears in mono small text below. Approximately 280-320px wide, aspect ratio roughly 4:5. Cream background between cards (gutters via 20px column gap)."
+      },
+      {
+        "name": "Project Caption Strip",
+        "role": "Meta-information row beneath project cards",
+        "description": "Two short mono labels left-aligned: project name (uppercase, weight 500) followed by a bullet (●) and scope text (uppercase, weight 400). PP Neue Montreal Mono Medium 14px, Pure Ink (#000000). No background. Sits 10-20px below the card."
+      },
+      {
+        "name": "Status Pill",
+        "role": "\\\"OFF-DUTY\\\" status indicator in the footer/header",
+        "description": "Charcoal Press (#252525) circle (≈8px) followed by uppercase mono text \\\"OFF-DUTY\\\" in PP Neue Montreal Mono Medium 14px weight 500, Pure Ink on cream. No background fill, no border. Sits inline with surrounding footer text. The dot is the only color-coded state indicator in the system and uses charcoal (not a semantic green/red) because the palette is monochrome."
+      },
+      {
+        "name": "About Section Text Block",
+        "role": "Long-form editorial copy",
+        "description": "PP Neue Montreal SemiBold 18px weight 400, line-height 1.20, Pure Ink (#000000) on cream canvas. Max-width approximately 480-560px. No pull-quotes, no bold within body, no links colored differently. Appears in a single column on the left side of a 2-column about block (left column may be empty/labeled, right column holds this text)."
+      },
+      {
+        "name": "Footer Meta Row",
+        "role": "Bottom-of-page metadata strip",
+        "description": "Three-column flex row: left = \\\"VERSION 6.0\\\" mono 12px, center = \\\"INSTAGRAM\\\" link, right = current status block. PP Neue Montreal Mono Medium 12-14px, Pure Ink (#000000), uppercase. No dividers, no background, sits directly on cream canvas with 40-60px of vertical breathing room above."
+      },
+      {
+        "name": "Section Header",
+        "role": "Monochrome section title between major page blocks",
+        "description": "AS Therma Bold Condensed 64-96px weight 400, line-height 0.80, letter-spacing -0.067em, Pure Ink (#000000) on cream. Left-aligned, flush to the page edge. No eyebrow text, no rule above. The scale is smaller than the hero but the same voice."
+      },
+      {
+        "name": "Page Frame",
+        "role": "The full-bleed editorial canvas itself",
+        "description": "Background: Cream Paper (#f1f0ee). No border, no card wrapping the page, no max-width container — content is placed directly on the canvas with 20-40px page-edge padding. Sections separated by 60-80px vertical gaps and tonal shifts (cream → bone-gray → cream), never by dividers or shadows."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and section display headlines; the screaming condensed grotesque that defines the brand voice. Set tight (lh 0.80) with aggressive negative tracking so letters nearly collide — the type itself is the decoration",
+        "sizes": "96px, 128px, 180px",
+        "family": "AS Therma Bold Condensed",
+        "weight": "400",
+        "lineHeight": "0.80",
+        "substitute": "Bebas Neue Bold, Anton, Oswald Bold",
+        "letterSpacing": "-0.0670em at 96-128px, -0.0600em at 180px"
+      },
+      {
+        "role": "Labels, metadata, nav items, project tags, marquee text, footer technical copy. The mono voice carries all secondary information and is the only text in the system with stylized alternates (ss04, ss07, ss08, zero) plus case and discretionary ligatures — it reads as editorial chrome",
+        "sizes": "14px",
+        "family": "PP Neue Montreal Mono Medium",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.15",
+        "substitute": "JetBrains Mono Medium, IBM Plex Mono Medium, Space Mono Medium",
+        "fontFeatureSettings": "\"case\", \"dlig\", \"ss04\", \"ss07\", \"ss08\", \"zero\", \"ss07\", \"ss08\""
+      },
+      {
+        "role": "Body paragraphs and longer-form copy in the About section; SemiBold weight at 18px reads as confident editorial prose, not corporate body text",
+        "sizes": "18px",
+        "family": "PP Neue Montreal SemiBold",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter SemiBold, Söhne SemiBold, Manrope SemiBold",
+        "fontFeatureSettings": "\"zero\""
+      },
+      {
+        "role": "Smallest utility text and legacy fallback. Used sparingly where the mono voice is not appropriate; rarely the primary choice",
+        "sizes": "12px",
+        "family": "sans-serif (system)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, sans-serif"
+      }
+    ],
+    "description": "Duties.xyz operates as a monochrome editorial broadsheet for an Oslo design studio and venture partner. A warm cream canvas (#f1f0ee) carries massive condensed display type — AS Therma Bold Condensed at 96-180px with negative tracking — that dominates the viewport like protest typography shouting \\\"BRANDS AND WEBSITES FOR BRAVE COMPANIES\\\". The palette is deliberately limited to pure black, warm off-white, and a single dark charcoal; there is no accent color, no decoration, no color punctuation of any kind. All interface rhythm comes from typographic scale, generous breathing room, and tight 8px-radius cards holding large project photography in full-bleed grids. The micro-typography uses a custom monospace (PP Neue Montreal Mono) with stylistic sets enabled (ss04, ss07, ss08, dlig, case, zero) for labels, metadata, and nav — a technical editorial voice paired with the screaming display type. The result is confident, restrained, brutally simple, and unmistakably a design studio's portfolio.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\\n- text (primary): #000000\\n- background (canvas): #f1f0ee\\n- border / hairline: #dbdad9\\n- surface elevated (inverted): #252525\\n- surface quiet: #dbdad9\\n- primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no glow, no depth tricks. The design is flatly printed like a broadsheet — separation between layers is achieved through the warm-cream/bone-gray/black/charcoal tonal steps, not through blur or offset. Any element that needs to feel elevated gets a 1px hairline border in #dbdad9 or sits on a slightly different cream tone. This is a deliberate print-design decision: the page should feel like ink on paper, not like glass on a screen."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 2726,
+          "confidence": 1,
+          "prominence": 168836803.73239976,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f0ee",
+          "oklch": {
+            "c": 0.002877582163909533,
+            "h": 84.55906628188716,
+            "l": 0.9553483906129323
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "heading",
+            "icon",
+            "footer"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 74622973.2174112,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 321,
+          "confidence": 1,
+          "prominence": 5614829.7029273,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dbdad9",
+          "oklch": {
+            "c": 0.0016123043932335056,
+            "h": 84.55590027067386,
+            "l": 0.8883320548746594
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15360,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 11881.218628616547,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a7beb1",
+          "oklch": {
+            "c": 0.03108018022371968,
+            "h": 160.8789448751218,
+            "l": 0.7803104551248986
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 63.39850002884624,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0002976941592995374,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.44,
+          "background": "#f1f0ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#dbdad9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.46,
+          "background": "#252525",
+          "foreground": "#f1f0ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.98,
+          "background": "#dbdad9",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#a7beb1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#a7beb1",
+          "foreground": "#252525"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.97,
+          "background": "#a7beb1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#a7beb1",
+          "foreground": "#f1f0ee"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#dbdad9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#252525",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#dbdad9",
+          "foreground": "#f1f0ee"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f1f0ee",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 97
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 109,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 240,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 634,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Montreal Mono Medium",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": [
+            "\"case\", \"dlig\", \"ss04\", \"ss07\", \"ss08\", \"zero\"",
+            "\"ss07\", \"ss08\""
+          ]
+        },
+        {
+          "family": "AS Therma Bold Condensed",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Montreal SemiBold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"zero\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 634,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal Mono Medium",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal Mono Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal SemiBold",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "AS Therma Bold Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 128,
+          "family": "AS Therma Bold Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 180,
+          "family": "AS Therma Bold Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.067,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4f588353-1d30-46d2-8547-d04edd6c93fa.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1f06f8cc-21cb-4973-bba7-1fc3450aa324.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Duties.xyz design system\",\"item\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d#style-reference\",\"name\":\"Duties.xyz design system reference\",\"headline\":\"Duties.xyz design system | Refero Styles\",\"description\":\"Explore Duties.xyz's light Agency design system: Cream Paper #f1f0ee, Pure Ink #000000 colors, AS Therma Bold Condensed, PP Neue Montreal Mono Medium...\",\"url\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Duties.xyz\",\"url\":\"https://duties.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e75b3106-fc5b-4bb8-8d7d-a7ab224fd27d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1f06f8cc-21cb-4973-bba7-1fc3450aa324.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1f06f8cc-21cb-4973-bba7-1fc3450aa324.jpg\",\"caption\":\"Screenshot of Duties.xyz\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1f06f8cc-21cb-4973-bba7-1fc3450aa324.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Duties.xyz design system\",\"Duties.xyz website design\",\"Duties.xyz colors\",\"Duties.xyz typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Cream Paper\",\"Pure Ink\",\"Charcoal Press\",\"Bone Gray\",\"AS Therma Bold Condensed\",\"PP Neue Montreal Mono Medium\",\"PP Neue Montreal SemiBold\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Duties.xyz design system\"},{\"@type\":\"Thing\",\"name\":\"Duties.xyz website design\"},{\"@type\":\"Thing\",\"name\":\"Duties.xyz colors\"},{\"@type\":\"Thing\",\"name\":\"Duties.xyz typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-25T13:28:37.000Z\",\"dateModified\":\"2026-03-25T13:28:37.000Z\"}]}19:T409,The page is a single editorial scroll with no fixed sidebar or persistent top nav. Top of page: a massive display headline flush to the upper-left corner, no logo lockup, no top bar — the hero IS the identity. Below the hero, a thin meta-data strip (studio role, services offered, current status, location/time) sits across the full width at 12-14px mono. Project showcase follows as a horizontal row of 2-3 large image cards with logos overlaid. An about block is split into a left empty/label column and a right body-text column. A project grid (3-4 columns) showcases thumbnail work. A continuous marquee/ticker separates the major sections. Navigation is a single floating pill button anchored bottom-center, sticky. The footer is a 3-column meta row. Vertical rhythm is generous (60-80px section gaps) and horizontal rhythm is left-aligned, flush to a 20-40px page edge, with no centered content. The grid is asymmetric: sometimes 2-col, sometimes 3-col, sometimes 6-col — dictated by content, not by a strict column system."
+}

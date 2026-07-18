@@ -1,0 +1,1105 @@
+{
+  "source": "https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c",
+  "uuid": "a6729614-4079-4275-ad22-cee04d90ba0c",
+  "name": "Spécialiste Belge",
+  "northStar": "Linen-bound brand cookbook. Warm cream paper, black ink, single whispered serif, no decoration beyond the page edge.",
+  "capturedAt": "2026-07-18T07:53:04.185Z",
+  "meta": {
+    "url": "https://misuko.be",
+    "siteName": "Spécialiste Belge",
+    "extractedAt": "2026-06-03T19:17:01.327Z",
+    "durationMs": 31348,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 432,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use beausite at every typographic level — never introduce a second family",
+      "Set all display text weight 400 with letter-spacing -0.036em at 48px; tighter tracking is what makes beausite read as editorial",
+      "Build buttons as 1px black-outlined ghosts on transparent or Linen backgrounds — never fill a button with saturated color",
+      "Reserve the entire warm-cream palette (Bone White → Linen → Pebble → Bark) for structure; let photography supply the only chromatic moments",
+      "Maintain 17px element gap and 17–34px card padding as the spatial unit across all cards, inputs, and sections",
+      "Use 0px radius on cards, inputs, and section blocks; reserve the 20px pill exclusively for inline text links and tags",
+      "Set icon backgrounds to soft pastels (mint, pink, peach) inside a 40px circle — keep the card itself colorless"
+    ],
+    "donts": [
+      "Don't introduce a chromatic brand color, a gradient, or a colored button fill — the system is monochromatic by design",
+      "Don't add box-shadows, drop-shadows, or glows — elevation comes from tonal layering, not blur",
+      "Don't use system fonts (Inter, Roboto, Arial) as a substitute for beausite in a mockup without applying -0.022em to -0.036em tracking — the negative tracking is load-bearing",
+      "Don't round card or input corners — sharp 0px edges are part of the editorial signal",
+      "Don't mix icon styles — all icons should be the same stroke weight and 40px circular pastel background",
+      "Don't place body text below 14px or above 21px in content areas; the 14–21px band is the readable register",
+      "Don't separate sections with full-width rules — let whitespace and the Bone White/Linen tonal shift create the rhythm"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcf9ee",
+        "name": "Bone White",
+        "role": "Page canvas, hero left panel, newsletter input background — the warmest near-white, slightly yellowed like aged paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2efe3",
+        "name": "Linen",
+        "role": "Card surfaces, section backgrounds, one decorative button fill — a half-shade deeper than Bone White, reads as the same material under indirect light",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bcbab2",
+        "name": "Pebble",
+        "role": "Hairline borders, input outlines, list dividers — warm gray that disappears against the cream, only visible at the exact edge it frames",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a6965",
+        "name": "Bark",
+        "role": "Secondary text, muted body copy, card meta lines — warm dark gray, 5.2:1 on Bone White, carries metadata without competing with primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered, with a two-panel hero that breaks full-bleed (Bone White text panel on the left, gray-toned photo panel on the right — no divider, the tonal shift separates them). Below the hero, content flows in single-column bands: section heading (left-aligned 30–34px) followed by either a 3-column card grid (services, case studies) or a 2-column split (text-left / feature-cards-right with pastel icons). Section rhythm is quiet: generous 48–80px vertical gaps between bands, no alternating dark/light sections, no visual dividers. Navigation is a single transparent top bar with text-only links. Footer is a 4-column link grid plus a newsletter input. Density stays low throughout — this is an editorial spread, not a dashboard.",
+    "imagery": "Photography is product-only and occupies roughly 40% of the hero and case-study cards. Treatment: full-bleed within its column, sharp corners (no rounding), no overlay text, no lifestyle context — the cardboard box, the beverage can, the jar is the entire subject. Color treatment is natural and slightly desaturated, leaning into the warm cardboard and kraft-paper palette that matches the cream canvas. No illustration, no 3D, no abstract graphics. Icons are the only non-photographic visual element: simple line glyphs inside 40px pastel circles (mint, pink, peach) that inject the system's only chromatic punctuation.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas, black serif-leaning type, and full restraint from chromatic UI chrome — the product photography does the only color work",
+        "business": "Aesop"
+      },
+      {
+        "why": "Editorial single-typeface discipline with tight negative tracking and a beige/cream monochromatic palette, no shadows or colored buttons",
+        "business": "Maude"
+      },
+      {
+        "why": "Soft cream backgrounds, hairline borders, and ghost-outline buttons that let type hierarchy do all the work",
+        "business": "Glossier (early)"
+      },
+      {
+        "why": "Magazine-spread feel: large display type, generous whitespace, three-column service grids, and zero saturated UI color",
+        "business": "Toast (tablerestaurant.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px (rectangular ghost) or 20px (pill links)"
+      },
+      "elementGap": "17px",
+      "sectionGap": "48-80px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fcf9ee",
+        "name": "Bone White",
+        "level": 1,
+        "purpose": "Page canvas, hero left half, footer background"
+      },
+      {
+        "hex": "#f2efe3",
+        "name": "Linen",
+        "level": 2,
+        "purpose": "Card surface, secondary section background, one decorative button fill"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Text and hairline borders — used as a 'surface' only for the rare filled marker"
+      }
+    ],
+    "northStar": "Linen-bound brand cookbook. Warm cream paper, black ink, single whispered serif, no decoration beyond the page edge.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.79,
+        "letterSpacing": -0.022
+      },
+      {
+        "role": "body",
+        "size": 21,
+        "lineHeight": 1.36,
+        "letterSpacing": -0.022
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.024
+      },
+      {
+        "role": "heading-sm",
+        "size": 34,
+        "lineHeight": 1.08,
+        "letterSpacing": -0.024
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 0.97,
+        "letterSpacing": -0.036
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Outline Button",
+        "role": "Primary action trigger (e.g. 'Let's get in touch')",
+        "description": "Rectangular ghost button — transparent background, 1px solid #000000 border, 9px 20px padding, beausite 14px weight 400, #000000 text, leading arrow glyph. No fill, no shadow, no radius. The 1px black outline IS the button."
+      },
+      {
+        "name": "Pill Link",
+        "role": "In-text link or tertiary action",
+        "description": "beausite 14px weight 400 text, #000000 color, 20px border-radius, 16px vertical padding. Sits inline with body copy. Underline appears on hover only."
+      },
+      {
+        "name": "Hero Split Panel",
+        "role": "Landing hero with copy + product visual",
+        "description": "Full-width two-column hero. Left half: Bone White (#fcf9ee) background carrying a 48px weight 400 headline, 21px body paragraph, and ghost button. Right half: warm gray photo panel (~#d4d2cc) containing full-bleed product photography (cardboard boxes, no crop framing). 0px divider between panels — the tonal shift is the divider."
+      },
+      {
+        "name": "Service Tier Card",
+        "role": "Three-column offering (Tailored Advisory, Holistic, Blueprint)",
+        "description": "Transparent background, no border, 11px top margin between cards. Headline at 34px weight 400, #000000. Body at 14–21px weight 400, #000000. Bullet lists use small dot glyphs with 15px gap. Pricing/footer metadata at 14px weight 400, #6a6965. Cards sit on the canvas directly — no surface lift, no background card."
+      },
+      {
+        "name": "Feature Card with Pastel Icon",
+        "role": "Capability highlight (Food ERP, Food Traceability, Digital HACCP)",
+        "description": "Compact card with a 40px circular icon chip at the top (pastel backgrounds: mint #d6f0e0, pink #f8d6cc, or peach — colors appear only inside the icon circle, never on the card itself). Title in 21px beausite weight 500, #000000. Description in 14px weight 400, #6a6965. 'Learn more' link with right arrow at bottom. No card background, no border, no shadow."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Inspiring stories grid item",
+        "description": "Vertical card in a 3-column grid. Top: 16:9 cover image with sharp corners. Below image: 21px weight 400 title in #000000, date prefix in #6a6965, body excerpt in 14px weight 400 #6a6965. 17px horizontal padding. No border, no shadow — the image edge is the only visual break."
+      },
+      {
+        "name": "Newsletter Input",
+        "role": "Footer email capture",
+        "description": "Full-width single-line input on #fcf9ee canvas, 1px solid #bcbab2 bottom border (no top/side borders), 17px horizontal padding, beausite 14px. Placeholder text in #6a6965. Subscribe button text-link sits to the right, no button chrome."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header",
+        "description": "Transparent over Bone White canvas. Left: wordmark 'misuko' at 21px weight 500 #000000, followed by 3 text links (Our story, Corporate, Private label) at 14px weight 400 with 20px gaps. Right: language toggle (EN), Login, Cart — same 14px. No underline, no icon, no border. Sits at 17px vertical padding."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Opens a content band (e.g. 'From Concept to Success', 'Inspiring stories')",
+        "description": "Full-width band on Bone White. Heading 30–34px beausite weight 400 #000000, left-aligned with 17px left padding. Optional right-aligned text link 'View all →' at 14px. No rule line below — whitespace separates from content below."
+      },
+      {
+        "name": "Footer Link Column",
+        "role": "Footer sitemap",
+        "description": "Four-column grid on Bone White. Column title in 14px weight 500 #000000 (Orders & Support, About the Services, Social). Links below at 14px weight 400 #6a6965, 11px vertical gap. Newsletter input spans the leftmost column with a 'Stay up to date' subhead in 14px weight 500."
+      },
+      {
+        "name": "Pricing Meta Line",
+        "role": "Service card footer (Monthly Rate, Pricing, Hourly Rate)",
+        "description": "Bottom-of-card label group, 14px weight 400. Label text in #000000, value in #6a6965. Tight vertical stack with 5px gap between rows. Sits below a 1px solid #bcbab2 hairline separator."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — covers display headlines, section titles, body, nav, buttons, and footer. beausite is a contemporary humanist sans with calligraphic DNA; its soft terminals and slightly flared apertures give the warm-cream palette a hand-set quality that no system font can replicate.",
+        "sizes": "14, 21, 30, 34, 48px",
+        "family": "beausite",
+        "weight": "400, 500",
+        "lineHeight": "0.97 (display) / 1.08–1.20 (headings) / 1.36–1.79 (body) / 2.86 (hero lead)",
+        "substitute": "Söhne, Inter, GT America",
+        "letterSpacing": "-0.036em (display) / -0.024em (headings) / -0.022em (body) — consistent negative tracking tightens the page into a unified block of type",
+        "fontFeatureSettings": "\"ss02\", \"ss04\", \"ss05\""
+      }
+    ],
+    "description": "Misuko operates as an editorial atelier for beverage branding: a warm cream canvas (#fcf9ee) carries a single custom serif-influenced sans (beausite) set in tight tracking, producing a magazine-spread calm. Every element speaks the same warm-monochrome dialect — black ink, warm-gray dividers, and beige paper — so color is reserved for product photography (cardboard tan) and the occasional pastel icon, never for chrome or decoration. The interface is almost entirely flat: no shadows, no gradients, no rounded corners beyond a single 20px pill on links, and no chromatic button fills — actions are ghost-outlined in black. Information density stays low; breathing room is generous and rhythm is dictated by large display headlines followed by narrow body columns, with three-column service grids and case-study cards doing the structural work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spécialiste Belge design system\",\"item\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#style-reference\",\"name\":\"Spécialiste Belge design system reference\",\"headline\":\"Spécialiste Belge design system | Refero Styles\",\"description\":\"Explore Spécialiste Belge's light Other design system: Bone White #fcf9ee, Linen #f2efe3 colors, beausite typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spécialiste Belge\",\"url\":\"https://misuko.be\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"caption\":\"Screenshot of Spécialiste Belge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spécialiste Belge design system\",\"Spécialiste Belge website design\",\"Spécialiste Belge colors\",\"Spécialiste Belge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bone White\",\"Linen\",\"Pebble\",\"Bark\",\"beausite\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge design system\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge website design\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge colors\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:58:04.472Z\",\"dateModified\":\"2026-04-30T01:58:04.472Z\"}]}19:T68c,**Quick Color Reference**\n- text: #000000 (primary), #6a6965 (secondary/muted)\n- background: #fcf9ee (canvas), #f2efe3 (card surface)\n- border: #bcbab2 (hairline), #000000 (interactive outline)\n- accent: pastel circles only inside icons (mint, pink, peach) — not used on UI chrome\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Hero Split Section*: full-bleed two-column. Left half on #fcf9ee, right half on a warm gray photo background. Headline at 48px beausite weight 400, #000000, letter-spacing -0.036em, line-height 0.97. Body paragraph at 21px weight 400, #000000, line-height 1.36. Ghost button below: 1px #000000 border, 9px 20px padding, 14px beausite weight 400 #000000 text + arrow glyph.\n2. *Service Tier Card* (3-column grid): no background, no border. 34px beausite weight 400 #000000 title, 21px body #000000, bullet list with 5px gap, 14px meta lines in #6a6965 separated from body by 1px #bcbab2 hairline. 11px top margin between cards.\n3. *Feature Card with Icon*: 40px circular icon background in pastel mint or pink, line-icon glyph centered inside. 21px beausite weight 500 #000000 title, 14px weight 400 #6a6965 description, 'Learn more →' text link at bottom. No card surface, no border.\n4. *Case Study Card*: 16:9 cover image at top with 0px radius. Below: 21px beausite weight 400 #000000 title, 14px weight 400 #6a6965 date prefix, 14px weight 400 #6a6965 excerpt. 17px horizontal padding. No border, no shadow.\n5. *Newsletter Input*: full-width on #fcf9ee, 1px #bcbab2 bottom border only, 17px horizontal padding, beausite 14px. Placeholder #6a6965. Right-aligned 'Subscribe' as 14px text link, no button chrome."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat: no box-shadows, no drop-shadows, no glows. Elevation is communicated through the warm-cream tonal stack (Bone White → Linen) and through 1px Pebble or Ink Black hairlines. Cards and inputs sit directly on the canvas with no lift — the page reads as a printed sheet, not a stacked UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "body",
+            "list",
+            "image",
+            "hero",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 2005,
+          "confidence": 1,
+          "prominence": 74509485.77412069,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 49,
+            "body/color": 74,
+            "card/color": 72,
+            "hero/color": 1,
+            "link/color": 27,
+            "list/color": 37,
+            "other/fill": 4,
+            "image/color": 2,
+            "input/color": 2,
+            "other/color": 99,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 36,
+            "nav/borderColor": 196,
+            "body/borderColor": 288,
+            "card/borderColor": 288,
+            "hero/borderColor": 3,
+            "link/borderColor": 104,
+            "list/borderColor": 145,
+            "image/borderColor": 8,
+            "other/borderColor": 394,
+            "button/borderColor": 20,
+            "footer/borderColor": 3,
+            "heading/borderColor": 144,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bcbab2",
+          "oklch": {
+            "c": 0.011354013976272026,
+            "h": 95.19930991983016,
+            "l": 0.7882430692378463
+          },
+          "contexts": [
+            "hero",
+            "list",
+            "body",
+            "other",
+            "footer",
+            "input"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 4696739.301526237,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 8,
+            "hero/borderColor": 1,
+            "list/borderColor": 3,
+            "input/borderColor": 8,
+            "other/borderColor": 2,
+            "footer/borderColor": 1
+          }
+        },
+        {
+          "hex": "#f2efe3",
+          "oklch": {
+            "c": 0.016232129854085123,
+            "h": 95.22830348613638,
+            "l": 0.951181324437873
+          },
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 4167887.1302463836,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 18,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcf9ee",
+          "oklch": {
+            "c": 0.01483275709427962,
+            "h": 94.19522400110408,
+            "l": 0.9814333162825805
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 432000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6a6965",
+          "oklch": {
+            "c": 0.006303535518430854,
+            "h": 95.1739333766834,
+            "l": 0.520423991875473
+          },
+          "contexts": [
+            "list",
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 114,
+          "confidence": 1,
+          "prominence": 53004.6294644623,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 18,
+            "list/color": 2,
+            "body/borderColor": 8,
+            "card/borderColor": 72,
+            "link/borderColor": 4,
+            "list/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0017651844838895328,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.92,
+          "background": "#fcf9ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.23,
+          "background": "#f2efe3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.8,
+          "background": "#bcbab2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#fcf9ee",
+          "foreground": "#6a6965"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.77,
+          "background": "#f2efe3",
+          "foreground": "#6a6965"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.82,
+          "background": "#000000",
+          "foreground": "#6a6965"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "card",
+            "input"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|card",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|nav",
+            "marginLeft|button",
+            "marginTop|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "list",
+            "card"
+          ],
+          "frequency": 73,
+          "properties": [
+            "paddingRight",
+            "marginLeft",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginLeft|link",
+            "marginLeft|nav",
+            "paddingLeft|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginTop|list",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 61,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 151,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "beausite",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 427,
+          "fontFeatureSettings": [
+            "\"ss02\", \"ss04\", \"ss05\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "list",
+            "body",
+            "card",
+            "footer",
+            "input",
+            "link"
+          ],
+          "frequency": 286,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "beausite",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6baddc0a-1be1-45e5-bd1f-675ffd8ae822.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spécialiste Belge design system\",\"item\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#style-reference\",\"name\":\"Spécialiste Belge design system reference\",\"headline\":\"Spécialiste Belge design system | Refero Styles\",\"description\":\"Explore Spécialiste Belge's light Other design system: Bone White #fcf9ee, Linen #f2efe3 colors, beausite typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spécialiste Belge\",\"url\":\"https://misuko.be\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6729614-4079-4275-ad22-cee04d90ba0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"caption\":\"Screenshot of Spécialiste Belge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9fa4ab9b-2d88-4a0c-9e5f-6e53e5e91e02.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spécialiste Belge design system\",\"Spécialiste Belge website design\",\"Spécialiste Belge colors\",\"Spécialiste Belge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bone White\",\"Linen\",\"Pebble\",\"Bark\",\"beausite\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge design system\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge website design\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge colors\"},{\"@type\":\"Thing\",\"name\":\"Spécialiste Belge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:58:04.472Z\",\"dateModified\":\"2026-04-30T01:58:04.472Z\"}]}19:T68c,**Quick Color Reference**\n- text: #000000 (primary), #6a6965 (secondary/muted)\n- background: #fcf9ee (canvas), #f2efe3 (card surface)\n- border: #bcbab2 (hairline), #000000 (interactive outline)\n- accent: pastel circles only inside icons (mint, pink, peach) — not used on UI chrome\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Hero Split Section*: full-bleed two-column. Left half on #fcf9ee, right half on a warm gray photo background. Headline at 48px beausite weight 400, #000000, letter-spacing -0.036em, line-height 0.97. Body paragraph at 21px weight 400, #000000, line-height 1.36. Ghost button below: 1px #000000 border, 9px 20px padding, 14px beausite weight 400 #000000 text + arrow glyph.\n2. *Service Tier Card* (3-column grid): no background, no border. 34px beausite weight 400 #000000 title, 21px body #000000, bullet list with 5px gap, 14px meta lines in #6a6965 separated from body by 1px #bcbab2 hairline. 11px top margin between cards.\n3. *Feature Card with Icon*: 40px circular icon background in pastel mint or pink, line-icon glyph centered inside. 21px beausite weight 500 #000000 title, 14px weight 400 #6a6965 description, 'Learn more →' text link at bottom. No card surface, no border.\n4. *Case Study Card*: 16:9 cover image at top with 0px radius. Below: 21px beausite weight 400 #000000 title, 14px weight 400 #6a6965 date prefix, 14px weight 400 #6a6965 excerpt. 17px horizontal padding. No border, no shadow.\n5. *Newsletter Input*: full-width on #fcf9ee, 1px #bcbab2 bottom border only, 17px horizontal padding, beausite 14px. Placeholder #6a6965. Right-aligned 'Subscribe' as 14px text link, no button chrome."
+}

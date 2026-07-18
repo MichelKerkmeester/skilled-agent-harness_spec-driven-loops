@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-the-green: #027b49;
+  --color-the-pink: #f19ec8;
+  --color-the-red: #fa4d43;
+  --color-the-yellow: #fbb833;
+  --color-concrete: #d9d9d9;
+  --color-iron: #1f1f1f;
+  --color-carbon: #000000;
+
+  /* Typography — Font Families */
+  --font-kh-teka: 'KH Teka', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-sans-serif: 'System sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body: 15px;
+  --leading-body: 1.2;
+  --text-body-sm: 18px;
+  --leading-body-sm: 1.1;
+  --tracking-body-sm: -0.03px;
+  --text-subheading: 26px;
+  --leading-subheading: 1;
+  --tracking-subheading: -0.03px;
+  --text-heading: 60px;
+  --leading-heading: 0.8;
+  --tracking-heading: -0.03px;
+  --text-display: 215px;
+  --leading-display: 0.7;
+  --tracking-display: -0.06px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-100: 100px;
+  --spacing-130: 130px;
+  --spacing-170: 170px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 40px;
+  --card-padding: 0px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-3xl: 30px;
+  --radius-full: 100px;
+  --radius-full-2: 200px;
+  --radius-full-3: 5000px;
+
+  /* Named Radii */
+  --radius-tags: 100px;
+  --radius-cards: 0px;
+  --radius-buttons: 100px;
+  --radius-menubutton: 100px;
+
+  /* Surfaces */
+  --surface-concrete-canvas: #d9d9d9;
+  --surface-paint-block: #fbb833;
+  --surface-paint-block: #f19ec8;
+  --surface-paint-block: #fa4d43;
+  --surface-paint-block: #027b49;
+  --surface-iron-surface: #1f1f1f;
+}

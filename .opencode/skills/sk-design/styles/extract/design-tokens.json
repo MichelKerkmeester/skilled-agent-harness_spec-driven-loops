@@ -1,0 +1,252 @@
+{
+  "color": {
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, filled buttons, nav text — the structural linework of the entire system; Dark surface for project cards and editorial spreads — the inverse of the canvas, used to make featured work feel like a framed plate"
+    },
+    "spearmint-wash": {
+      "$value": "#e7feda",
+      "$type": "color",
+      "$description": "Spearmint Wash — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "feature-deck": {
+      "$value": "Feature Deck",
+      "$type": "fontFamily",
+      "$description": "Display and section-heading face used exclusively for monumental wordmark treatments. The 104px 'Extract' lockup and 44px subheadings carry the entire brand voice through scale alone — no other display serif or grotesque is needed."
+    },
+    "abc-diatype": {
+      "$value": "ABC Diatype",
+      "$type": "fontFamily",
+      "$description": "Universal workhorse — body copy (18-19px), nav and meta (19px), subheadings (21px), and card titles (34px). Weight 700 is used sparingly for emphasis within body contexts. The tight 1.25 line-height on larger sizes keeps the editorial density."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Feature Deck",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Feature Deck",
+        "fontSize": "104px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 104px"
+    }
+  },
+  "spacing": {
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "74": {
+      "$value": "74px",
+      "$type": "dimension",
+      "$description": "Spacing 74px"
+    },
+    "93": {
+      "$value": "93px",
+      "$type": "dimension",
+      "$description": "Spacing 93px"
+    },
+    "111": {
+      "$value": "111px",
+      "$type": "dimension",
+      "$description": "Spacing 111px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.63636px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.27273px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background, card surfaces on light sections, button fills inside dark panels"
+    },
+    "mint-zone": {
+      "$value": "#e7feda",
+      "$type": "color",
+      "$description": "Surface level 1: Atmospheric section background (newsworthy blocks, footer) — marks editorial content zones"
+    },
+    "ink-panel": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted surface for featured project cards — makes editorial spreads feel framed and elevated without using shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://extract.studio",
+      "siteName": "Extract",
+      "extractedAt": "2026-06-03T21:53:12.837Z",
+      "variant": "extended"
+    }
+  }
+}

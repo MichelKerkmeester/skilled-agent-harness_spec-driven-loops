@@ -1,0 +1,1278 @@
+{
+  "source": "https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7",
+  "uuid": "530eb4cf-7e75-4833-95c9-746818050db7",
+  "name": "Base",
+  "northStar": "Blueprint globe, blue pulse.",
+  "capturedAt": "2026-07-18T08:07:11.037Z",
+  "meta": {
+    "url": "https://www.base.org",
+    "siteName": "Base",
+    "extractedAt": "2026-06-03T18:26:44.810Z",
+    "durationMs": 48309,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 312,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "processing",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines at 80px, 110px, or 115px with tight negative tracking (-0.025em to -0.05em) — the extreme scale and tight tracking are the system's signature.",
+      "Use Coinbase Mono 12px with 0.073em letter-spacing in uppercase for all category labels, section tags, and metadata.",
+      "Reserve #0000ff for exactly three contexts: the logo block, the primary filled button, and map data points. Never use it for body text, icons, or decoration.",
+      "Maintain a 4px-based spacing grid: 4, 8, 12, 16, 24, 32, 48px for gaps and padding.",
+      "Use 8px border-radius for all cards, buttons, and panels — consistency across the surface system.",
+      "Pair every section with a Coinbase Mono category label sitting 16px above the content block.",
+      "Keep the background #ffffff across all sections; use #f2f2f2 only for elevated panels and ghost button fills."
+    ],
+    "donts": [
+      "Don't use #0000ff for anything other than the logo, primary action button, or map data points — overuse breaks the rationed-accent system.",
+      "Don't use box-shadow or drop-shadow for elevation — structure comes from spacing and border, not shadow.",
+      "Don't set body text below 14px or above 18px — the type scale jumps from 18px to 32px.",
+      "Don't add gradients, photographic backgrounds, or 3D renders — the system is flat and schematic.",
+      "Don't use border-radius values other than 8px (cards/buttons/panels) or 2px (small tags) — mixed radii fragment the surface system.",
+      "Don't break the sidebar + fluid-content layout — the fixed left rail is structural, not optional.",
+      "Don't use color to convey information hierarchy — use type weight, scale, and the Slate/Carbon contrast instead."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0000ff",
+        "name": "Electric Blue",
+        "role": "Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#098551",
+        "name": "Wireframe Green",
+        "role": "Data point accent on the world map visualization — marks growth/gas nodes against the neutral wireframe",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, headlines, structural lines, iconography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, button text on dark or chromatic fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#323232",
+        "name": "Graphite",
+        "role": "Sidebar borders, strong secondary structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#717886",
+        "name": "Slate",
+        "role": "Body text, subhead descriptions, secondary labels — the working gray for prose",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Fog",
+        "role": "Tertiary text, disabled states, low-priority metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b1b7c3",
+        "name": "Mist",
+        "role": "Hairline borders, sidebar dividers, subtle icon outlines, nav separators",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Fixed left sidebar (~200px wide) with logo block, stacked nav items with right-chevrons, and a bottom-anchored 'Start Here' CTA panel. Main content fills the remaining viewport width with generous vertical rhythm. Sections stack vertically full-width, each opening with a two-column header (title left, description right at 2/3 width), followed by full-width visualizations or 4-column card rows. Section gap is 48px. Content is left-aligned with no centered max-width container. The layout reads as a vertical scroll through discrete sections separated by whitespace rather than visible dividers.",
+    "imagery": "Abstract line-art illustrations dominate. Product cards contain vertical-bar geometric patterns in distinct color treatments (green, pink, blue, dark blue). The signature visual is a world map rendered as hundreds of thin vertical bars forming continent silhouettes on the white canvas, with occasional #0000ff and #098551 dots marking data points. Phone mockups appear as rounded device frames showing app interfaces. No photography, no gradients, no 3D renders. Icons are minimal geometric glyphs (circle, link, layers, clock) at 16px in #000000.",
+    "similar": [
+      {
+        "why": "Same monochrome white-canvas approach with a single brand accent, massive tight-tracked display headlines, and flat borderless surfaces",
+        "business": "Stripe"
+      },
+      {
+        "why": "Minimal sidebar-plus-content layout, oversized geometric type with negative tracking, and near-zero decorative color",
+        "business": "Vercel"
+      },
+      {
+        "why": "Fellow L2 blockchain brand using a white-atlas visual language with abstract data visualizations and a single chromatic accent",
+        "business": "Optimism"
+      },
+      {
+        "why": "Shared typeface family (Coinbase Sans, Coinbase Mono, Coinbase Display) and the same flat, system-token-driven design language",
+        "business": "Coinbase"
+      },
+      {
+        "why": "Compact information density, 8px-radius surfaces, and typographic hierarchy that relies on scale and tracking rather than color",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "cards": "8px",
+        "panels": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base background for all content"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Panel Fill",
+        "level": 1,
+        "purpose": "Secondary panel backgrounds, ghost button fills, subtle surface elevation"
+      },
+      {
+        "hex": "#0000ff",
+        "name": "Brand Surface",
+        "level": 2,
+        "purpose": "Logo block, primary action fill — only chromatic surface"
+      }
+    ],
+    "northStar": "Blueprint globe, blue pulse.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.876
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.252
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 110,
+        "lineHeight": 0.7,
+        "letterSpacing": -5.5
+      },
+      {
+        "role": "display",
+        "size": 115,
+        "lineHeight": 0.7,
+        "letterSpacing": -2.875
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Navigation",
+        "role": "Fixed left rail with logo, stacked nav items, and bottom CTA panel",
+        "description": "~200px fixed left sidebar on white canvas. Blue logo block (40×40px, #0000ff, no radius) at top, followed by 6 nav items stacked vertically with 10px row gap. Bottom-anchored 'Start Here' panel separated by a #b1b7c3 hairline divider."
+      },
+      {
+        "name": "Sidebar Nav Item",
+        "role": "Text label with chevron indicator",
+        "description": "Label in Coinbase Display 16px #000000, chevron-right icon in #000000 to the right. No background, no border. 4px vertical padding. Hover state: text color shifts to #0000ff."
+      },
+      {
+        "name": "Logo Block",
+        "role": "Brand mark at top of sidebar",
+        "description": "Solid #0000ff square, ~40×40px, no border-radius. The only place blue appears at scale before a user-initiated action."
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Primary action — used for 'Get Base App →' and similar CTAs",
+        "description": "#0000ff background, white text in Coinbase Sans 16px weight 500, 8px border-radius, 12px 16px padding. No border, no shadow. Arrow or chevron icon follows the label."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action in the Start Here panel",
+        "description": "White or #f2f2f2 background, #000000 text in Coinbase Display 16px weight 400, 1px #b1b7c3 border, 8px border-radius, 12px 16px padding. Full-width within the sidebar panel."
+      },
+      {
+        "name": "Product Card",
+        "role": "Showcases a Base product (App, Build, Chain, Pay)",
+        "description": "White surface, no visible border, 8px border-radius (subtle), 24px padding. Contains a uppercase monospace category label (Coinbase Mono 12px, 0.073em tracking, #717886) at top-left, followed by an abstract vertical-line illustration. Illustrations vary in color per product (green, pink, blue, dark blue)."
+      },
+      {
+        "name": "Section Header",
+        "role": "Opening text for each content section",
+        "description": "Two-column layout: left column has section title in Coinbase Sans 32px weight 400 #000000 with a secondary subhead in Coinbase Sans 18px #717886; right column has body description in Coinbase Display 16px #717886. ~48px row gap between title and subhead."
+      },
+      {
+        "name": "Stat Metric Row",
+        "role": "Data point with icon, label, and value",
+        "description": "Small geometric icon (16px) + label text in Coinbase Display 14px #717886 on the same line. Large value below in Coinbase Sans 32px weight 400 #000000 (e.g. '$12B', '2.6B+', '200 MS'). 16px gap between icon and label, 8px between label and value."
+      },
+      {
+        "name": "Category Mono Label",
+        "role": "Pins section identity above content blocks and product cards",
+        "description": "Uppercase text in Coinbase Mono 12px weight 400, letter-spacing 0.073em (0.876px), color #717886. Always sits flush-left, ~16px above the content it labels."
+      },
+      {
+        "name": "World Map Visualization",
+        "role": "Signature decorative + data element",
+        "description": "Full-width or large container filled with hundreds of thin vertical bars (1-2px wide, variable height 4-40px) in #f2f2f2 to #b1b7c3, arranged to form a world map silhouette. Occasional colored dots (#0000ff, #098551) mark data points. No background fill — bars sit directly on the white canvas."
+      },
+      {
+        "name": "Phone Mockup",
+        "role": "Product screenshot within the Base App section",
+        "description": "Rounded device frame (~16px border-radius on the device body), centered in its section, showing the app interface with status bar and content. Sits on the white canvas with generous padding around it."
+      },
+      {
+        "name": "Start Here Panel",
+        "role": "Bottom-anchored CTA group in the sidebar",
+        "description": "Sidebar-width panel at the bottom of the left rail. Contains a 6px #0000ff dot indicator, 'START HERE' label in Coinbase Mono 12px 0.073em tracking #717886, and two stacked ghost buttons (Get Base App, Build on Base). Separated from nav items by a 1px #b1b7c3 top border."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headline face — used at 115px with -0.025em tracking for the hero and section openers. Its geometric, rounded character is distinct from typical sans-serifs; the extremely tight line-height (0.70) lets massive type lock to a single line. Substitute: Space Grotesk or Outfit.",
+        "sizes": "16px, 115px",
+        "family": "Doto",
+        "weight": "400, 700",
+        "lineHeight": "0.70, 1.50",
+        "letterSpacing": "-0.025em at 115px, normal at 16px"
+      },
+      {
+        "role": "Primary workhorse for headings, subheadings, and UI text. Weight 400 at 32-110px with aggressive negative tracking (-0.03em to -0.05em) creates tight, architectural headlines. Weight 500 for emphasis. Substitute: Inter at matching weights and tracking.",
+        "sizes": "12px, 14px, 15px, 16px, 32px, 80px, 110px",
+        "family": "Coinbase Sans",
+        "weight": "400, 500",
+        "lineHeight": "0.70, 1.00, 1.13, 1.14, 1.30, 1.33, 1.50",
+        "letterSpacing": "-0.05em at 110px, -0.03em at 80px, -0.01em at 16px, +0.01em at 12px"
+      },
+      {
+        "role": "Body and navigation text. The default reading face at 14-16px with normal tracking. Calm, neutral, and built for long-form scanning. Substitute: Inter or system-ui.",
+        "sizes": "14px, 16px",
+        "family": "Coinbase Display",
+        "weight": "400",
+        "lineHeight": "1.14, 1.43, 1.50",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Category labels and metadata — always uppercase with 0.073em tracking. Pins section labels like 'BASE APP', 'BASE CHAIN' above content blocks. The monospaced geometry with wide tracking creates a technical, indexical feel. Substitute: JetBrains Mono or IBM Plex Mono.",
+        "sizes": "12px, 14px",
+        "family": "Coinbase Mono",
+        "weight": "350, 400",
+        "lineHeight": "0.90, 1.43",
+        "letterSpacing": "0.073em"
+      },
+      {
+        "role": "Subhead and lead body text at 18px with -0.014em tracking. Slightly tighter than body for emphasis without weight change. Substitute: Inter at 18px with -0.25px tracking.",
+        "sizes": "18px",
+        "family": "Base Sans",
+        "weight": "400",
+        "lineHeight": "1.30",
+        "letterSpacing": "-0.014em at 18px"
+      }
+    ],
+    "description": "Base reads as a wireframe atlas on white paper: hairline vertical bars form continents across the canvas, and one electric blue marks every point of action — the logo block, filled buttons, and map data points. Typography carries the visual weight: a massive geometric display face (Doto at 115px, -0.025em tracking) headlines, while a wide-tracked monospaced label font (0.073em) pins section categories in uppercase. Surfaces stay flat and nearly borderless; structure comes from generous whitespace, a 4px-based spacing grid, and the occasional 8px-radius card. The system is overwhelmingly monochrome; blue is rationed as sharp punctuation, never used as decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Base design system\",\"item\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#style-reference\",\"name\":\"Base design system reference\",\"headline\":\"Base design system | Refero Styles\",\"description\":\"Explore Base's light Crypto design system: Electric Blue #0000ff, Wireframe Green #098551 colors, Doto, Coinbase Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Base\",\"url\":\"https://www.base.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"caption\":\"Screenshot of Base\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Base design system\",\"Base website design\",\"Base colors\",\"Base typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Blue\",\"Wireframe Green\",\"Carbon\",\"Pure White\",\"Doto\",\"Coinbase Sans\",\"Coinbase Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Base design system\"},{\"@type\":\"Thing\",\"name\":\"Base website design\"},{\"@type\":\"Thing\",\"name\":\"Base colors\"},{\"@type\":\"Thing\",\"name\":\"Base typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:35:34.371Z\",\"dateModified\":\"2026-04-30T00:35:34.371Z\"}]}19:T501,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- body text (muted): #717886\n- border / divider: #b1b7c3\n- accent: #0000ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero headline**: 'A global economy, built by all of us' in Doto 115px weight 400, #000000, letter-spacing -2.875px, line-height 0.70. White (#ffffff) background.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Product card**: White card surface, 8px radius, 24px padding. Top-left label 'BASE APP' in Coinbase Mono 12px uppercase, letter-spacing 0.876px, #717886. Below: abstract vertical-line illustration in #098551 (green bars, 2px wide, varied heights 8-60px).\n\n4. **Section header**: Two-column layout. Left column: 'Base Chain' in Coinbase Sans 32px weight 400 #000000, with subhead 'An open network for the global economy' in Coinbase Sans 18px #717886 below (8px gap). Right column at 2/3 width: body description in Coinbase Display 16px #717886.\n\n5. **Stat metric row**: Small 16px geometric icon in #000000 + label 'Assets on Platform' in Coinbase Display 14px #717886 on one line (8px gap). Below at 8px gap: value '$12B' in Coinbase Sans 32px weight 400 #000000."
+      }
+    ],
+    "elevationPhilosophy": "No shadows are used. Elevation is communicated through three surface levels only: white canvas (#ffffff) → panel fill (#f2f2f2) → brand surface (#0000ff). Structure comes from spacing, borders, and type scale, never from box-shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "link",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 713,
+          "confidence": 1,
+          "prominence": 43905763.44911526,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 28,
+            "body/color": 1,
+            "link/color": 1,
+            "list/color": 22,
+            "other/color": 76,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 10,
+            "nav/borderColor": 100,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "list/borderColor": 88,
+            "other/borderColor": 304,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 23363197.118508708,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 4,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 16,
+            "button/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 667,
+          "confidence": 1,
+          "prominence": 3482170.6747813183,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 110,
+            "other/fill": 8,
+            "other/color": 1,
+            "nav/borderColor": 440,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 102,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#717886",
+          "oklch": {
+            "c": 0.023140190177920888,
+            "h": 264.3746326949144,
+            "l": 0.5716069202086295
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 251879.88597793703,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 17,
+            "heading/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 68,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 22905.208809067994,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "nav/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#323232",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3171360098393996
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 22709.342710332723,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 8
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 5147.796019496707,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#b1b7c3",
+          "oklch": {
+            "c": 0.0183000915762098,
+            "h": 264.46201287181657,
+            "l": 0.7784064467636008
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 750.1612846505689,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "nav/color": 6,
+            "nav/borderColor": 24
+          }
+        },
+        {
+          "hex": "#098551",
+          "oklch": {
+            "c": 0.12675838323914262,
+            "h": 157.16941809041097,
+            "l": 0.5437665121340496
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 344.156400069231,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.36091882200767367,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.82,
+          "background": "#ffffff",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.45,
+          "background": "#f2f2f2",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.43,
+          "background": "#b1b7c3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#0000ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.68,
+          "background": "#f2f2f2",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#b1b7c3",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.68,
+          "background": "#ffffff",
+          "foreground": "#098551"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.44,
+          "background": "#ffffff",
+          "foreground": "#717886"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.27,
+          "background": "#0000ff",
+          "foreground": "#b1b7c3"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.18,
+          "background": "#f2f2f2",
+          "foreground": "#098551"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#f2f2f2",
+          "foreground": "#717886"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#0000ff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.54,
+          "background": "#f2f2f2",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#0000ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.01,
+          "background": "#ffffff",
+          "foreground": "#b1b7c3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.94,
+          "background": "#0000ff",
+          "foreground": "#717886"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#0000ff",
+          "foreground": "#098551"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 51,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginRight|icon",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "columnGap",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "coinbaseDisplay",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 140,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "doto",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 106,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "coinbaseSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "coinbaseMono",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "baseSans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "coinbaseMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.073,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "coinbaseMono",
+          "weight": 350,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "coinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "coinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "footer",
+            "list",
+            "body",
+            "icon"
+          ],
+          "frequency": 127,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "coinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "doto",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "baseSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "coinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "coinbaseSans",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "doto",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "doto",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 104,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c4f13a7d-a007-4543-a4fe-f0fbb9fcde11.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Base design system\",\"item\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#style-reference\",\"name\":\"Base design system reference\",\"headline\":\"Base design system | Refero Styles\",\"description\":\"Explore Base's light Crypto design system: Electric Blue #0000ff, Wireframe Green #098551 colors, Doto, Coinbase Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Base\",\"url\":\"https://www.base.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/530eb4cf-7e75-4833-95c9-746818050db7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"caption\":\"Screenshot of Base\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b77180f9-5628-4709-93b8-f9c296e1addb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Base design system\",\"Base website design\",\"Base colors\",\"Base typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Blue\",\"Wireframe Green\",\"Carbon\",\"Pure White\",\"Doto\",\"Coinbase Sans\",\"Coinbase Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Base design system\"},{\"@type\":\"Thing\",\"name\":\"Base website design\"},{\"@type\":\"Thing\",\"name\":\"Base colors\"},{\"@type\":\"Thing\",\"name\":\"Base typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:35:34.371Z\",\"dateModified\":\"2026-04-30T00:35:34.371Z\"}]}19:T501,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- body text (muted): #717886\n- border / divider: #b1b7c3\n- accent: #0000ff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero headline**: 'A global economy, built by all of us' in Doto 115px weight 400, #000000, letter-spacing -2.875px, line-height 0.70. White (#ffffff) background.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Product card**: White card surface, 8px radius, 24px padding. Top-left label 'BASE APP' in Coinbase Mono 12px uppercase, letter-spacing 0.876px, #717886. Below: abstract vertical-line illustration in #098551 (green bars, 2px wide, varied heights 8-60px).\n\n4. **Section header**: Two-column layout. Left column: 'Base Chain' in Coinbase Sans 32px weight 400 #000000, with subhead 'An open network for the global economy' in Coinbase Sans 18px #717886 below (8px gap). Right column at 2/3 width: body description in Coinbase Display 16px #717886.\n\n5. **Stat metric row**: Small 16px geometric icon in #000000 + label 'Assets on Platform' in Coinbase Display 14px #717886 on one line (8px gap). Below at 8px gap: value '$12B' in Coinbase Sans 32px weight 400 #000000."
+}

@@ -1,0 +1,1554 @@
+{
+  "source": "https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc",
+  "uuid": "94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc",
+  "name": "Flim",
+  "northStar": "Scattered polaroids on a sketchpad grid",
+  "capturedAt": "2026-07-18T09:36:50.637Z",
+  "meta": {
+    "url": "https://flim.ai",
+    "siteName": "Flim",
+    "extractedAt": "2026-06-03T18:54:21.982Z",
+    "durationMs": 33302,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1633,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Swizzy at 125px with -2.5px letter-spacing and 0.86 line-height for the hero wordmark — never substitute a heavier weight to compensate for size.",
+      "Apply 0.06em letter-spacing to all PP Neue Montreal Mono labels — the wide tracking IS the visual identity of navigation, eyebrows, and search placeholders.",
+      "Use 16px border-radius for all image cards and thumbnails. 160px for all pill-shaped search bars and lozenge inputs. 8px for buttons. These three radii define the system.",
+      "Set the page background to #f5f5f5 (Canvas) with a #d9d9d9 1px grid line pattern — the paper texture is the surface, not a background image.",
+      "Use Signal Green (#30a81d) only for the status indicator dot and small accent borders. Never as a button fill, never as a large surface.",
+      "Keep the layout loose and asymmetric. Scatter image cards at varying sizes and positions on the grid — do not force a rigid card grid.",
+      "Default text color to #141414, never pure #000000 for body or headings. The near-black is warmer and sits better on #f5f5f5."
+    ],
+    "donts": [
+      "Don't add drop shadows to any component. Elevation comes from border weight and surface color contrast, never from box-shadow.",
+      "Don't use #000000 as a design color. Reserve it for SVG fills and input borders. The system's near-black is #141414.",
+      "Don't use a font other than Swizzy for the hero wordmark, or PP Neue Montreal Mono for labels/nav. Arial is acceptable for body. No other typefaces.",
+      "Don't create filled buttons in color. The only filled button is the #141414 SIGN-UP action. All other CTAs should be ghost or text links.",
+      "Don't use Highlight Yellow (#fecc33) as a surface fill. It is a text-highlight marker, not a background — it should sit behind specific words, not fill containers.",
+      "Don't center-align body text. Headings and body copy are left-aligned (or right-aligned in the hero block). Only eyebrows and section labels are center-aligned.",
+      "Don't force image cards into a uniform grid. The scattered polaroid layout is the visual signature — equal-width equal-spaced grids break the metaphor."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#141414",
+        "name": "Ink",
+        "role": "Primary text, nav links, icon strokes, image card borders, filled button background, the dominant near-black that carries the entire UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Text on dark surfaces, surface highlights, card surfaces floating above the canvas, button text on filled actions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Canvas",
+        "role": "Page background, search bar fills, the warm light gray that is the base layer for everything",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Mist",
+        "role": "Secondary surface fills, card backgrounds, alternating bands below the canvas, muted blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Hairline",
+        "role": "Grid line strokes, subtle dividers, the near-invisible linework that creates the sketchpad texture",
+        "group": "neutral"
+      },
+      {
+        "hex": "#30a81d",
+        "name": "Signal Green",
+        "role": "Green outline accent for tags, dividers, and focused UI edges",
+        "group": "brand"
+      },
+      {
+        "hex": "#21935b",
+        "name": "Forest",
+        "role": "Deeper green for icon borders, heading underlines, secondary green accents where Signal Green would be too bright",
+        "group": "brand"
+      },
+      {
+        "hex": "#fecc33",
+        "name": "Highlight Yellow",
+        "role": "Heading background highlight wash, warm tag fills — used as a marker-pen underline behind words, not as surface color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff8400",
+        "name": "Ember",
+        "role": "Warm card accent backgrounds, orange UI moments — the rare heat in an otherwise cool palette",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is full-bleed with no max-width container — content stretches edge to edge within the grid pattern. The hero is a split layout: oversized wordmark on the left (Swizzy 125px), right-aligned tagline block on the right, both on the #f5f5f5 canvas with the grid pattern visible. Below the hero, the layout shifts to a loose scattered image grid — image thumbnails float at different positions and sizes on the grid, with a centered pill search bar cutting through the middle. Further down, a brand logo strip runs full-width with generous vertical padding. The section rhythm is defined by vertical breathing room (80px+ gaps between major sections) and the consistent grid background, not by alternating light/dark bands. Navigation is a minimal top bar with ghost links left-aligned and the SIGN-UP action right-aligned, with no sticky behavior implied. The overall feel is a single continuous page that flows like a lightbox — each image card is a work-in-progress pinned to a shared surface.",
+    "imagery": "Photography is the primary content medium. Images are real photographs of cinematic subjects — knights on horseback, dramatic lighting, film-still quality — cropped tightly and displayed as rounded thumbnails. Images are never full-bleed, never overlapping, never masked into custom shapes. Each image sits in its own rounded card with a faint #d9d9d9 hairline border, placed at varying sizes (150-350px wide) in an asymmetric scattered arrangement on the grid canvas. The treatment is 'polaroid pinned to a sketchpad' — each photo is an object, not a backdrop. No illustrations, no 3D renders, no abstract graphics. Icons (when present) are simple and thin-stroke in #141414. The visual density is image-heavy: photo thumbnails occupy more visual space than text across the page.",
+    "similar": [
+      {
+        "why": "Same light canvas with content-as-objects approach, scattered image-grid hero layouts, and minimal top-bar navigation with a single filled CTA",
+        "business": "Figma"
+      },
+      {
+        "why": "Same near-black #141414-on-light-gray typographic confidence, with a single hero wordmark and generous whitespace",
+        "business": "Linear"
+      },
+      {
+        "why": "Same creative-tool metaphor of scattered image thumbnails on a neutral surface, with film-still photography as the primary content",
+        "business": "Runway"
+      },
+      {
+        "why": "Same polaroid-pinned-to-board visual language — asymmetric scattered images on a textured light background, no rigid grid",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same minimal navigation, single oversized wordmark hero, and monochrome canvas with tiny color accents",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "links": "4px",
+        "pills": "160px",
+        "images": "16px",
+        "buttons": "8px",
+        "headings": "25px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f5f5f5",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the warm light gray paper that everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Surface",
+        "level": 1,
+        "purpose": "Card surfaces, search bar fills, elevated white blocks above the canvas"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Raised",
+        "level": 2,
+        "purpose": "Secondary surface fills, muted blocks, alternating bands"
+      },
+      {
+        "hex": "#fecc33",
+        "name": "Accent",
+        "level": 3,
+        "purpose": "Highlight wash behind words — the marker-pen underline"
+      },
+      {
+        "hex": "#141414",
+        "name": "Ink",
+        "level": 4,
+        "purpose": "Darkest surface — filled button, image card borders, the near-black that grounds the system"
+      }
+    ],
+    "northStar": "Scattered polaroids on a sketchpad grid",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 12,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 15,
+        "letterSpacing": 0.9
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 21
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 27
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 36
+      },
+      {
+        "role": "heading-lg",
+        "size": 47,
+        "lineHeight": 47
+      },
+      {
+        "role": "display",
+        "size": 125,
+        "lineHeight": 108,
+        "letterSpacing": -2.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark",
+        "role": "The defining element — oversized brand display",
+        "description": "125px Swizzy weight 500, #141414, letter-spacing -2.5px (-0.02em), line-height 0.86. Occupies the left half of the hero. The wordmark IS the hero — no background art, no illustration, no decoration around it. The slightly tightened line-height (0.86) is the optical correction that makes the letters sit perfectly."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top bar navigation items",
+        "description": "PP Neue Montreal Mono 12px, #141414, letter-spacing 0.72px (0.06em), uppercase. No background, no border — just tracked-out type. Used for HOME, PRICING, LOG-IN, SIGN-UP. Padding: 6px 0 vertically. Weight 400."
+      },
+      {
+        "name": "Filled Action Button",
+        "role": "The only filled button in the system",
+        "description": "SIGN-UP button: #141414 background, #ffffff text, 8px border-radius, ~20px horizontal padding, ~8px vertical padding. PP Neue Montreal Mono 12px, weight 400, letter-spacing 0.72px. The button is a solid black rectangle with rounded corners — no gradient, no shadow, no hover state complexity."
+      },
+      {
+        "name": "Avatar Badge with Status Dot",
+        "role": "User identity indicator on the sign-up button",
+        "description": "Small circular avatar image (~24-32px) placed adjacent to or on the SIGN-UP button. Accompanied by a #30a81d Signal Green dot (~8px) to the right, indicating live/online status. The green dot is the only place Signal Green appears at significant prominence."
+      },
+      {
+        "name": "Pill Search Bar",
+        "role": "The signature input — floating search that looks like a lozenge",
+        "description": "Full-width pill shape with 160px border-radius (effectively fully rounded). Fill: #f5f5f5 (Canvas), no visible border. Placeholder text in PP Neue Montreal Mono 15px, letter-spacing 0.9px (0.06em), #141414, uppercase. A small filled action button ('SEARCH ⌘/') sits at the right end of the pill, #141414 background, #ffffff text, same 8px radius as the main button. Padding: ~16-20px vertical."
+      },
+      {
+        "name": "Image Thumbnail Card",
+        "role": "The core content unit — photo/video stills scattered across the canvas",
+        "description": "Rounded image with 16px border-radius. Floating on the #f5f5f5 canvas with a 1-2px #d9d9d9 hairline border. No shadow, no padding, no overlay text. The border is barely visible — the card feels pinned to the page rather than contained. Various sizes from ~150px to ~350px wide, placed in an asymmetric scattered grid."
+      },
+      {
+        "name": "Grid Background Pattern",
+        "role": "The structural texture of the entire page",
+        "description": "A repeating #d9d9d9 grid line pattern on the #f5f5f5 canvas. Lines are 1px, creating a subtle engineering-paper / sketchpad texture. The grid is visible enough to feel intentional but quiet enough to not compete with content. This pattern defines the entire page surface — it is the brand's surface, not a decorative overlay."
+      },
+      {
+        "name": "Hero Tagline Block",
+        "role": "Right-aligned hero copy",
+        "description": "Arial 32px, weight 400 (or 700), #141414, line-height 1.13. Right-aligned in the hero area, sitting opposite the wordmark. Three lines: a bold claim, a supporting line, a qualifier. No special treatment — just confident body text at heading scale."
+      },
+      {
+        "name": "Brand Logo Strip",
+        "role": "Social proof band",
+        "description": "A horizontal row of partner/brand logos (Zalando, BETC, etc.) in #141414, displayed in a single line with generous spacing. Above the row: PP Neue Montreal Mono 12px uppercase eyebrow text 'TRUSTED BY THE BRANDS SHAPING CULTURE' in #141414, letter-spacing 0.72px. The logos are monochrome — no color versions, no brand color bleed."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small uppercase section markers",
+        "description": "PP Neue Montreal Mono 12px, weight 400, #141414, letter-spacing 0.72px (0.06em), uppercase. Used for section headers like 'TRUSTED BY THE BRANDS SHAPING CULTURE'. Center-aligned. The wide tracking is the signature — these labels feel like technical annotations on a blueprint."
+      },
+      {
+        "name": "Highlighted Heading",
+        "role": "Text with a marker-pen highlight background",
+        "description": "Heading text (#141414) with a #fecc33 background highlight behind specific words, creating a hand-marked effect. The highlight extends slightly beyond the text bounds with ~25px border-radius on the highlight block. The highlight is solid yellow — not a gradient, not translucent."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The hero wordmark and large display moments. The signature choice: a 125px display at weight 500 (not 700-900), with aggressively tight -0.02em tracking and sub-1.0 line-height. The wordmark feels carved rather than printed — a confident mid-weight at enormous scale instead of a heavy slab. The slight 0.86 line-height at 125px is the signature optical correction that makes 'Flim' sit perfectly on its baseline.",
+        "sizes": "21px, 27px, 47px, 125px",
+        "family": "Swizzy",
+        "weight": "500",
+        "lineHeight": "0.86, 1.00, 1.10",
+        "substitute": "Druk Wide, Migra, or Schibsted Grotesk at weight 500",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "The UI micro-voice: navigation labels, 'HOME', 'PRICING', 'LOG-IN', 'SIGN-UP', search bar placeholders, and the 'TRUSTED BY THE BRANDS SHAPING CULTURE' eyebrow. The wide 0.06em tracking transforms ordinary labels into engineered labels — every letter is spaced like a diagram annotation. This is the mono font's only role: small, uppercase, precisely tracked.",
+        "sizes": "12px, 15px",
+        "family": "PP Neue Montreal Mono",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono at 400 with letter-spacing: 0.06em",
+        "letterSpacing": "0.06em"
+      },
+      {
+        "role": "Body and secondary text. A system font is the deliberate anti-statement — body copy doesn't try to be distinctive, it just reads. 16px for body, 32px for larger sub-claims. Weight 700 for emphasis in body copy.",
+        "sizes": "16px, 32px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.13",
+        "substitute": "Inter, system-ui, or Helvetica"
+      }
+    ],
+    "description": "Flim's design language is a creative-tool's analog workspace: a vast light-gray canvas etched with a subtle grid, scattered with rounded polaroid-like image cards, and anchored by a single oversized custom wordmark. The system is 99% monochrome — near-black ink on warm light gray paper — with tiny, deliberate splashes of signal green, ember orange, and highlight yellow used as functional punctuation rather than decoration. Typography splits into three voices: a heavy custom display face (Swizzy) for the hero wordmark, a mono micro-typeface (PP Neue Montreal Mono) for navigation, labels, and search placeholders, and system Arial for body. Components feel loose and handmade rather than gridded: pill-shaped search bars, image thumbnails with a 16px radius floating asymmetrically, ghost navigation, and a single hard-edged black button. The grid pattern and scattered image layout evoke a corkboard or lightbox — the visual metaphor of a creative agency's working surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flim design system\",\"item\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#style-reference\",\"name\":\"Flim design system reference\",\"headline\":\"Flim design system | Refero Styles\",\"description\":\"Explore Flim's light AI design system: Ink #141414, Paper #ffffff colors, Swizzy, PP Neue Montreal Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flim\",\"url\":\"https://flim.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"caption\":\"Screenshot of Flim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flim design system\",\"Flim website design\",\"Flim colors\",\"Flim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink\",\"Paper\",\"Canvas\",\"Mist\",\"Swizzy\",\"PP Neue Montreal Mono\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flim design system\"},{\"@type\":\"Thing\",\"name\":\"Flim website design\"},{\"@type\":\"Thing\",\"name\":\"Flim colors\"},{\"@type\":\"Thing\",\"name\":\"Flim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T17:43:59.494Z\",\"dateModified\":\"2026-05-07T17:43:59.494Z\"}]}19:T629,## Quick Color Reference\n- Primary text: #141414\n- Page background: #f5f5f5\n- Card/surface: #ffffff\n- Secondary surface: #e9e9e9\n- Hairline borders: #d9d9d9\n- Status/accent green: #30a81d\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Wordmark**: Render 'Flim' in Swizzy (or Druk Wide substitute) at 125px, weight 500, color #141414, letter-spacing -2.5px, line-height 0.86. No background, no decoration. Place on #f5f5f5 canvas with #d9d9d9 1px grid line pattern.\n\n2. **Pill Search Bar**: A full-width pill input with 160px border-radius, fill #f5f5f5, no visible border. Placeholder text 'SEARCH ANYTHING' in PP Neue Montreal Mono 15px, letter-spacing 0.9px, uppercase, #141414. Append a small filled button at the right end: #141414 background, #ffffff text 'SEARCH ⌘/', PP Neue Montreal Mono 12px, 8px border-radius, 8px 20px padding.\n\n3. **Image Thumbnail Card**: A photograph inside a rounded container with 16px border-radius, 1px solid #d9d9d9 border, no shadow, no padding around the image. Float on the #f5f5f5 grid canvas at varying widths (150-350px) in an asymmetric scattered arrangement.\n\n4. **Ghost Navigation Link**: PP Neue Montreal Mono 12px, weight 400, #141414, letter-spacing 0.72px, uppercase. No background, no border, no underline. Padding 6px 0. Used for nav items like HOME, PRICING, LOG-IN.\n\n5. **Eyebrow Label**: PP Neue Montreal Mono 12px, weight 400, #141414, letter-spacing 0.72px, uppercase, center-aligned. Example: 'TRUSTED BY THE BRANDS SHAPING CULTURE'. The wide tracking is essential — do not tighten."
+      },
+      {
+        "title": "Grid System",
+        "content": "The page surface is defined by a #d9d9d9 1px grid line pattern on the #f5f5f5 canvas. This grid is not a layout grid for content alignment — it is a visual texture, like graph paper or engineering paper. Content (image cards, search bars, text blocks) sits on top of this grid and does not snap to it strictly. The grid creates the 'creative workspace' metaphor: the entire page IS the sketchpad, and content elements are objects placed on it. The grid should be subtle enough to not compete with content but visible enough to feel intentional. Use a repeating linear gradient or SVG pattern with 1px lines at ~32-40px intervals."
+      },
+      {
+        "title": "Radii System",
+        "content": "Three radii define the entire system: 8px for buttons (slight rounding, almost square), 16px for image cards and thumbnails (clearly rounded, friendly), and 160px for pill-shaped inputs and lozenges (fully rounded). A secondary 4px radius applies to small links and inline elements. The jump from 16px to 160px is intentional — there is no 24px, 32px, or 48px middle ground. This creates a clear visual language: containers are either 'rounded cards' or 'pills', with no ambiguous in-between."
+      }
+    ],
+    "elevationPhilosophy": "This system deliberately avoids drop shadows. Elevation is created by border weight (1-2px hairlines in #d9d9d9 or #e9e9e9), by the subtle canvas-to-surface contrast (#f5f5f5 vs #ffffff), and by the 16px border-radius that makes cards feel placed rather than floating. Shadows would break the analog paper metaphor — these surfaces are printed on, not hovering in 3D space."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "input",
+            "image",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 4353,
+          "confidence": 1,
+          "prominence": 196042974.0845296,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 23,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 20,
+            "link/color": 10,
+            "list/color": 14,
+            "other/fill": 71,
+            "image/color": 79,
+            "input/color": 3,
+            "other/color": 675,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 13,
+            "nav/borderColor": 16,
+            "body/borderColor": 92,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 80,
+            "link/borderColor": 40,
+            "list/borderColor": 56,
+            "image/borderColor": 316,
+            "other/borderColor": 2700,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 37,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "button",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 660,
+          "confidence": 1,
+          "prominence": 12015109.536883615,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 19,
+            "body/color": 2,
+            "card/color": 3,
+            "link/color": 1,
+            "other/fill": 17,
+            "other/color": 99,
+            "button/color": 1,
+            "other/stroke": 2,
+            "heading/color": 2,
+            "nav/borderColor": 76,
+            "body/borderColor": 8,
+            "card/borderColor": 12,
+            "link/borderColor": 4,
+            "other/borderColor": 396,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 544,
+          "confidence": 1,
+          "prominence": 9685851.117311828,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 532,
+            "input/borderColor": 12
+          }
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 4512253.051166871,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 13,
+            "heading/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#30a81d",
+          "oklch": {
+            "c": 0.19948308342327034,
+            "h": 141.34951066070036,
+            "l": 0.6411162208079665
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 2977872.781693042,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/color": 3,
+            "other/borderColor": 12,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ff8400",
+          "oklch": {
+            "c": 0.18340518478468826,
+            "h": 54.691333982859206,
+            "l": 0.7379843653788893
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1657607.2035874412,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 169691.1490305582,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 9,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 112454.53743889628,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 17
+          }
+        },
+        {
+          "hex": "#21935b",
+          "oklch": {
+            "c": 0.13076368211444606,
+            "h": 156.24237490214946,
+            "l": 0.5880013230511917
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 77402.45048796611,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 9,
+            "other/color": 5,
+            "heading/color": 2,
+            "icon/borderColor": 8,
+            "other/borderColor": 20,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fecc33",
+          "oklch": {
+            "c": 0.16441760042359818,
+            "h": 89.08489363672233,
+            "l": 0.8655793882812007
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 62873.70537511983,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "other/color": 2,
+            "heading/color": 2,
+            "other/borderColor": 8,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00846387244619282,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e9e9e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.9,
+          "background": "#f5f5f5",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#e9e9e9",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.9,
+          "background": "#fecc33",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.05,
+          "background": "#d9d9d9",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.19,
+          "background": "#fecc33",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.55,
+          "background": "#ff8400",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#ff8400",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#30a81d",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#21935b",
+          "foreground": "#141414"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.9,
+          "background": "#21935b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#f5f5f5",
+          "foreground": "#21935b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.21,
+          "background": "#e9e9e9",
+          "foreground": "#21935b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.11,
+          "background": "#30a81d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.86,
+          "background": "#f5f5f5",
+          "foreground": "#30a81d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#fecc33",
+          "foreground": "#21935b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "image",
+            "icon",
+            "card",
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 25.0353,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|icon",
+            "marginLeft|icon",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginBottom|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 70,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 98,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 87,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 101,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 109,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 124,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 138,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 529,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Swizzy",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 289,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Montreal Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 177,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "PP Neue Montreal Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 136,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "PP Neue Montreal Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "PP Neue Montreal Mono",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "other",
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list",
+            "icon",
+            "button",
+            "hero",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 525,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Swizzy",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 141,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Swizzy",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Arial",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Swizzy",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 125,
+          "family": "Swizzy",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 60,
+          "lineHeight": 0.86,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4242e4ff-9e9c-4997-982e-0e1cbdaa3b48.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flim design system\",\"item\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#style-reference\",\"name\":\"Flim design system reference\",\"headline\":\"Flim design system | Refero Styles\",\"description\":\"Explore Flim's light AI design system: Ink #141414, Paper #ffffff colors, Swizzy, PP Neue Montreal Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flim\",\"url\":\"https://flim.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/94ed6ce8-c2e5-45bf-83bd-e5d1daf63efc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"caption\":\"Screenshot of Flim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9f5fe032-b2f9-4e33-b2b2-fc24ad6bb48d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flim design system\",\"Flim website design\",\"Flim colors\",\"Flim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink\",\"Paper\",\"Canvas\",\"Mist\",\"Swizzy\",\"PP Neue Montreal Mono\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flim design system\"},{\"@type\":\"Thing\",\"name\":\"Flim website design\"},{\"@type\":\"Thing\",\"name\":\"Flim colors\"},{\"@type\":\"Thing\",\"name\":\"Flim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T17:43:59.494Z\",\"dateModified\":\"2026-05-07T17:43:59.494Z\"}]}19:T629,## Quick Color Reference\n- Primary text: #141414\n- Page background: #f5f5f5\n- Card/surface: #ffffff\n- Secondary surface: #e9e9e9\n- Hairline borders: #d9d9d9\n- Status/accent green: #30a81d\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Wordmark**: Render 'Flim' in Swizzy (or Druk Wide substitute) at 125px, weight 500, color #141414, letter-spacing -2.5px, line-height 0.86. No background, no decoration. Place on #f5f5f5 canvas with #d9d9d9 1px grid line pattern.\n\n2. **Pill Search Bar**: A full-width pill input with 160px border-radius, fill #f5f5f5, no visible border. Placeholder text 'SEARCH ANYTHING' in PP Neue Montreal Mono 15px, letter-spacing 0.9px, uppercase, #141414. Append a small filled button at the right end: #141414 background, #ffffff text 'SEARCH ⌘/', PP Neue Montreal Mono 12px, 8px border-radius, 8px 20px padding.\n\n3. **Image Thumbnail Card**: A photograph inside a rounded container with 16px border-radius, 1px solid #d9d9d9 border, no shadow, no padding around the image. Float on the #f5f5f5 grid canvas at varying widths (150-350px) in an asymmetric scattered arrangement.\n\n4. **Ghost Navigation Link**: PP Neue Montreal Mono 12px, weight 400, #141414, letter-spacing 0.72px, uppercase. No background, no border, no underline. Padding 6px 0. Used for nav items like HOME, PRICING, LOG-IN.\n\n5. **Eyebrow Label**: PP Neue Montreal Mono 12px, weight 400, #141414, letter-spacing 0.72px, uppercase, center-aligned. Example: 'TRUSTED BY THE BRANDS SHAPING CULTURE'. The wide tracking is essential — do not tighten."
+}

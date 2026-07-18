@@ -1,0 +1,763 @@
+{
+  "source": "https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419",
+  "uuid": "5090ce54-9097-4d29-a741-2847dbacc419",
+  "name": "Chantlings",
+  "northStar": "Candlelit cave, ember in the void",
+  "capturedAt": "2026-07-18T09:14:46.126Z",
+  "meta": {
+    "url": "https://www.iorama.studio/chantlings",
+    "siteName": "Chantlings",
+    "extractedAt": "2026-06-03T20:21:38.774Z",
+    "durationMs": 45430,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 76,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Mija weight 100 for any display or wordmark-sized text — its hairline strokes are the brand's voice, not a stylistic choice you can substitute.",
+      "Set the page background to #222222 and let the surface stack be nearly invisible; use 1px #333333 hairline borders to delineate cards, never background-color shifts.",
+      "Reserve #ffaa20 and #ff8800 for signals of life in the dark — the App Store badge, the creature's eyes, one filled button. Never use them for large fills, backgrounds, or decoration.",
+      "Use 100–108px horizontal page padding at desktop and let sections breathe with 65–100px vertical gaps. Density must feel ceremonial, not efficient.",
+      "Use 50px radius for pill buttons and 0px radius for everything else — the geometry should read as a single rounded action against a sea of sharp rectangular surfaces.",
+      "Let the hamburger menu be two white lines on the dark canvas with no chrome. The top bar is a whisper, not a banner.",
+      "Let the phone mockup be an empty outline with no screen content. The product is implied, never demonstrated."
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, or any elevation effects — the system defines itself through the absence of lift. A shadow here would break the flatness that makes the amber accents glow.",
+      "Do not use any font other than Mija for the wordmark or headlines. System fonts at any weight will read as a different product.",
+      "Do not introduce additional accent colors. The warm amber is the only chromatic note; adding blue, green, or red would shatter the candlelit palette.",
+      "Do not use light-theme variants or white backgrounds. The void is the brand — a white page would feel like a different product entirely.",
+      "Do not add icons with fills or multicolor treatments. Icons in this system are 1px graphite (#333333) or white (#ffffff) strokes only.",
+      "Do not tighten horizontal padding below 80px at desktop. The 100–196px breathing room is what makes the design feel intimate rather than crowded.",
+      "Do not use the App Store badge's amber border for anything other than that one element. It is the only outlined-chromatic element in the system by design."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Obsidian",
+        "role": "Page background, deep surface layer — the cavern floor of the design",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Dominant structural neutral — card borders, icon strokes, dividers, link underlines. Far more present than its visual weight suggests; carries 90% of the UI scaffolding",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text, card border highlights, inverse surface moments — the only luminance in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffaa20",
+        "name": "Ember",
+        "role": "Accent signal color — App Store badge border, link underlines, the creature's eyes and highlights. Warm amber against graphite creates a firelight-in-darkness effect, not a CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff8800",
+        "name": "Amber Glow",
+        "role": "Filled button background — the single chromatic fill in the system. Deeper, more saturated than Ember; used sparingly to mark the one real interactive surface (App Store download)",
+        "group": "brand"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Two modes coexist: abstract atmospheric geometry and a single illustrated character. The background uses large, faceted dark polygons — shard-like forms in near-black tones that overlap the page edges to create an infinite-cave feeling. No photography, no product screenshots, no gradients. The hero pairs this void with a ghost-outline phone frame. The second section centers a single illustrated creature: a small bulb-shaped figure with glowing amber eyes and a warm brown-orange body, floating alone in darkness. The illustration style is flat with soft gradient transitions, no outlines, no texture — it reads as a digital painting of a living candle. Icons throughout the UI are absent or minimal; the hamburger is two white strokes, the logo is two overlapping circles. The overall visual density is very low — the page is mostly negative space with two focal points: the wordmark and the creature.",
+    "similar": [
+      {
+        "why": "Same whisper-thin serif treatment against dark backgrounds, with a single warm accent used as functional punctuation rather than decoration",
+        "business": "Things 3 (Cultured Code)"
+      },
+      {
+        "why": "Same generous negative space, near-total darkness, and hairline-only surface treatment — content floats in a void rather than sitting on a card",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same product-as-artifact presentation: a single illustrated object or product is the page, surrounded by vast dark breathing room with minimal type",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Same hairline serif on near-black with extreme horizontal padding and a single warm accent color for signals rather than decoration",
+        "business": "Kallaway (personal site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "icons": "0px",
+        "buttons": "50px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "100px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#222222",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page canvas — the full dark stage on which everything floats"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Hollow",
+        "level": 1,
+        "purpose": "Implicit card surface — barely distinguishable from the canvas; the system relies on hairline graphite borders rather than tonal steps to define cards"
+      },
+      {
+        "hex": "#333333",
+        "name": "Edge",
+        "level": 2,
+        "purpose": "Hairline borders and icon strokes — the only visible 'lift' cue in the entire system"
+      }
+    ],
+    "northStar": "Candlelit cave, ember in the void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.42,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.06,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 0.83,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "App Store Badge (Outlined)",
+        "role": "Primary download entry — the only filled chromatic surface in the system",
+        "description": "Black background with white Apple logo and 'Download on the App Store' text. Wrapped in an Ember (#ffaa20) border, ~1px, giving the badge a candlelit outline against the void. Rounded with 4–8px radius. The chromatic border is what makes this the singular action element on the page."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand headline — the 'Chantlings' hero title",
+        "description": "Mija weight 100, ~56px, line-height 0.83, white (#ffffff). Extremely tight leading causes the glyphs to nearly touch. This near-touching is a signature — the wordmark reads as a single drawn shape rather than discrete letters. No tracking adjustment; Mija's default spacing at this weight creates the effect."
+      },
+      {
+        "name": "Hero Subhead",
+        "role": "Supporting description beneath the wordmark",
+        "description": "Mija weight 300, ~20px, line-height 1.42, white. Max-width ~280px so the copy stays as a compact whisper column aligned left. Generous vertical gap (24–40px) between wordmark and subhead."
+      },
+      {
+        "name": "Phone Frame Mockup",
+        "role": "Product device outline in the hero composition",
+        "description": "Pure outline (no fill, no screen content) rendered in Graphite (#333333) at ~1px stroke. The phone is a ghost — a suggestion of hardware rather than a screenshot. ~340px wide, positioned right of the wordmark, roughly vertically centered with the headline."
+      },
+      {
+        "name": "Hamburger Menu",
+        "role": "Top-right navigation trigger",
+        "description": "Two thin white (#ffffff) horizontal lines, 1px stroke, ~24px wide total. Sits at top-right with 100–108px from the right edge. No background, no border — just two marks."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Top-left logo — a small paired-circle glyph",
+        "description": "Two overlapping circles in white (#ffffff), ~32px, positioned 100–108px from the left edge. Functions as a wordmark substitute; no type accompanies it."
+      },
+      {
+        "name": "Abstract Background Polygons",
+        "role": "Atmospheric depth — large dark geometric shapes",
+        "description": "Faceted, shard-like polygons in shades slightly darker or lighter than the #222222 canvas (near-black with the faintest warm tint). Positioned around the page edges (left, right, bottom) as a decorative void-within-void. No stroke, flat fill, overlap the page edge to feel infinite."
+      },
+      {
+        "name": "Creature Illustration",
+        "role": "Product character — the Chantling mascot",
+        "description": "A small bulb-shaped character with two round Ember (#ffaa20) eyes. Body is a warm brown-orange gradient (deep amber to near-black at edges). Centered on its own dark section, floating in the void. Functions as the emotional anchor — the only living form in an otherwise still composition."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Text link in body copy",
+        "description": "No underline by default; on hover or active, receives a 1px Ember (#ffaa20) bottom border. Text remains white. The chromatic border is the only state change — no fill, no color shift on the text itself."
+      },
+      {
+        "name": "App Store Filled Button",
+        "role": "Alternative primary action — solid variant",
+        "description": "Amber Glow (#ff8800) background, dark text, 50px radius (full pill), 18px vertical / 23px horizontal padding. This is the only filled chromatic button in the system; used only when the outlined App Store badge is insufficient."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface. Display and body both drawn from this single family. Weight 100 is the brand's signature — used for the 'Chantlings' wordmark and headlines, creating an almost handwritten, incense-thin quality. Weight 300 handles body and UI text. The custom nature means no system-font fallback can match the optical contrast between its hairlines and thicker strokes.",
+        "sizes": "14, 20, 24, 25, 32",
+        "family": "Mija",
+        "weight": "100, 300",
+        "lineHeight": "0.80–1.50 (display uses 0.80–1.06 tight leading; body uses 1.33–1.50)",
+        "substitute": "Cormorant Garamond (weight 300) or Italiana for display; for body, pair with Cormorant at 300 or use a humanist sans like Lora at 300",
+        "letterSpacing": "normal across all sizes — Mija's own spacing is designed for its hairline weights"
+      }
+    ],
+    "description": "Chantlings lives in near-total darkness — a cinematic, candlelit void where warm amber punctuations glow against deep charcoal. The entire interface is built from three near-black neutrals and one whisper-quiet serif (Mija) used exclusively at weights 100 and 300, which gives every word the quality of breath or breath-of-sound. Color appears only as a single warm flicker: the App Store badge border, the creature's eyes, the faintest hint of a button fill — never decoration, always a tiny signal of life. Layout breathes with extreme generosity (100–196px horizontal padding, 65–100px section gaps), and surfaces are essentially flat with hairline borders, never elevated by shadow. The result is an intimate, almost ceremonial product page that treats negative space as a primary material.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. Surfaces are distinguished only by hairline 1px borders in #333333 and by their position in an extremely compressed value range (#222222 → #1a1a1a → #333333). Elevation is communicated through outline, not depth — a card next to the canvas is the same color as the canvas with a 1px graphite line drawn around it. This flatness is what allows the single warm amber accent to feel luminous; in a shadow-heavy system, that same amber would compete with subtle drop shadows and lose its candlelight quality."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 255,
+          "confidence": 1,
+          "prominence": 66816000,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 5,
+            "link/color": 5,
+            "image/color": 4,
+            "other/color": 36,
+            "button/color": 1,
+            "icon/borderColor": 20,
+            "link/borderColor": 20,
+            "image/borderColor": 16,
+            "other/borderColor": 144,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 1606384.028986646,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 9,
+            "other/color": 7,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "card/borderColor": 36,
+            "other/borderColor": 28,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 48992.04731341581,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 5,
+            "image/color": 1,
+            "link/borderColor": 20,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffaa20",
+          "oklch": {
+            "c": 0.16519501132451878,
+            "h": 71.78246520060405,
+            "l": 0.8022761114829602
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 11042.95980308078,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff8800",
+          "oklch": {
+            "c": 0.1811707894398384,
+            "h": 56.45845482278364,
+            "l": 0.7442024724636972
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8226,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.007144398425639727,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.35,
+          "background": "#ffaa20",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.65,
+          "background": "#ff8800",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#ffaa20",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#ff8800",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.39,
+          "background": "#ff8800",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#ff8800",
+          "foreground": "#ffaa20"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 196,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Mija webfont",
+          "source": "custom",
+          "weights": [
+            100,
+            300
+          ],
+          "frequency": 76,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Mija webfont",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Mija webfont",
+          "weight": 100,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/84e74e77-c018-4dd7-af0e-a65adbcd582b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/72863f06-093e-47a1-b4af-46959ee7b2d5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Chantlings design system\",\"item\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419#style-reference\",\"name\":\"Chantlings design system reference\",\"headline\":\"Chantlings design system | Refero Styles\",\"description\":\"Explore Chantlings's dark Other design system: Obsidian #222222, Graphite #333333 colors, Mija typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Chantlings\",\"url\":\"https://www.iorama.studio/chantlings\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5090ce54-9097-4d29-a741-2847dbacc419#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/72863f06-093e-47a1-b4af-46959ee7b2d5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/72863f06-093e-47a1-b4af-46959ee7b2d5.jpg\",\"caption\":\"Screenshot of Chantlings\"},\"image\":\"https://images.refero.design/styles/refero.design/image/72863f06-093e-47a1-b4af-46959ee7b2d5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Chantlings design system\",\"Chantlings website design\",\"Chantlings colors\",\"Chantlings typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Obsidian\",\"Graphite\",\"Bone\",\"Ember\",\"Mija\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Chantlings design system\"},{\"@type\":\"Thing\",\"name\":\"Chantlings website design\"},{\"@type\":\"Thing\",\"name\":\"Chantlings colors\"},{\"@type\":\"Thing\",\"name\":\"Chantlings typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:51:59.215Z\",\"dateModified\":\"2026-04-30T01:51:59.215Z\"}]}19:T410,Full-bleed dark sections stacked vertically, no visible section dividers. The hero is a two-column composition at desktop: left column holds the wordmark, subhead, and App Store badge (roughly 40% width, left-aligned with 100–196px page padding), right column holds the ghost-outline phone mockup. The second section is a single centered composition: the creature illustration floats in the middle of the void with vast empty space above and below. The top bar is minimal — small brand mark at top-left, hamburger at top-right, both positioned 100–108px from their respective edges. No sticky header, no sidebar, no navigation rail. The page model is max-width 1440px with extremely generous horizontal padding that makes the content column feel narrow and contemplative. Section rhythm is one hero + one centered illustration + (presumably) additional content sections, all sharing the same dark canvas. There are no card grids, no pricing tables, no feature matrices — the layout vocabulary is wordmark, illustration, and silence.1a:T73f,**Quick Color Reference**\n- text: #ffffff\n- background: #222222\n- border: #333333\n- accent: #ffaa20\n- primary action: #ff8800 (filled action)\n\n**Example Component Prompts**\n1. Create a hero section: #222222 background. Display wordmark 'Chantlings' in Mija weight 100 at 56px, line-height 0.83, color #ffffff, aligned left. Subhead in Mija weight 300 at 20px, line-height 1.42, color #ffffff, max-width 280px, 32px gap below wordmark. App Store outlined badge below subhead with 24px gap, #ffaa20 1px border, 6px radius, 8px 12px padding. Right column: phone mockup outline 1px #333333, ~340px wide, no fill, no screen content. 100px page padding both sides.\n\n2. Create a centered illustration section: full-bleed #222222, no text. A single bulb-shaped creature illustration ~200px tall, centered horizontally and vertically. Body is a warm brown-to-amber gradient with two round #ffaa20 eyes. The creature sits alone with no other elements — the void is the composition.\n\n3. Create a ghost link button: no background, no border, Mija weight 300 at 18px, color #ffffff. On hover, a 1px #ffaa20 bottom border appears. Padding 8px 0. Used inline within body copy, never as a standalone button.\n\n4. Create the top bar: full-bleed transparent over #222222, 100–108px horizontal padding, ~32px vertical padding. Left: two overlapping white circles ~16px each forming the brand mark. Right: two horizontal white lines, 1px stroke, 24px wide total, functioning as a hamburger menu. No background, no border, no shadow.\n\n5. Create an outlined App Store badge: black background, white Apple logo on the left, 'Download on the App Store' in two lines of Mija weight 300 white text on the right. Badge wrapped in a 1px #ffaa20 border with 6px corner radius. Total height ~52px, horizontal padding ~16px. This is the only bordered-chromatic element in the system."
+}

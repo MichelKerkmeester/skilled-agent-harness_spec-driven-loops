@@ -1,0 +1,76 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-paper: #ffffff;
+  --color-inkstone: #181818;
+  --color-felt-gray: #6d6d6d;
+  --color-slate-pill: #636363;
+  --color-ash-mist: #9a9a9a;
+  --color-pewter: #808080;
+  --color-iridescent-fade: #a02d25;
+  --gradient-iridescent-fade: linear-gradient(90deg, rgb(160, 224, 171), rgb(255, 172, 46) 50%, rgb(165, 45, 37));
+
+  /* Typography — Font Families */
+  --font-roobert: 'Roobert', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-raleway: 'Raleway', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-ui: 'system-ui', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.19;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.15;
+  --text-body: 18px;
+  --leading-body: 1.21;
+  --text-subheading: 39px;
+  --leading-subheading: 1.19;
+  --text-subheading-lg: 45px;
+  --leading-subheading-lg: 1.15;
+  --text-heading-sm: 54px;
+  --leading-heading-sm: 1.39;
+  --text-heading: 78px;
+  --leading-heading: 1.1;
+  --text-heading-lg: 94px;
+  --leading-heading-lg: 0.76;
+  --text-display: 225px;
+  --leading-display: 1.25;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-28: 28px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-68: 68px;
+  --spacing-152: 152px;
+
+  /* Layout */
+  --page-max-width: 1078px;
+  --section-gap: 46px;
+  --card-padding: 34px;
+  --element-gap: 14px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-full: 75.024px;
+
+  /* Named Radii */
+  --radius-tags: 75px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 75px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-slate-pill: #636363;
+  --surface-obsidian: #000000;
+  --surface-ash-mist: #9a9a9a;
+}

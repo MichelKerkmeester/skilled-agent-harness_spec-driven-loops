@@ -1,0 +1,51 @@
+:root {
+  /* Colors */
+  --color-ink-carbon: #2e2a2b;
+  --color-paper-white: #ffffff;
+  --color-whisper-taupe: #afa697;
+  --color-bone-cream: #e6dcd4;
+  --color-lampblack: #212121;
+  --color-signal-orange: #fe5431;
+  --color-amber-pulse: #ff8000;
+
+  /* Typography — Font Families */
+  --font-good-sans: 'Good Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 18px;
+  --leading-body: 1.6;
+  --text-body-lg: 22px;
+  --leading-body-lg: 1.31;
+  --text-subheading: 27px;
+  --leading-subheading: 1.25;
+  --text-display: 60px;
+  --leading-display: 1.09;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --section-gap: 160px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-full: 100px;
+
+  /* Named Radii */
+  --radius-nav: 100px;
+
+  /* Surfaces */
+  --surface-paper-canvas: #ffffff;
+  --surface-bone-panel: #e6dcd4;
+  --surface-lampblack-overlay: #212121;
+}

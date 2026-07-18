@@ -1,0 +1,889 @@
+{
+  "source": "https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10",
+  "uuid": "d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10",
+  "name": "amra",
+  "northStar": "iridescent sphere on white void — the lavender accent is the only chromatic pulse against an almost perfectly achromatic page, and a single gradient orb does the work that a hero illustration usually does.",
+  "capturedAt": "2026-07-18T09:12:43.673Z",
+  "meta": {
+    "url": "https://www.amra.com",
+    "siteName": "amra",
+    "extractedAt": "2026-06-03T20:27:09.470Z",
+    "durationMs": 29033,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 315,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #acafff only for the SIGN IN button and the floating nav pill — it is the only chromatic color in the entire system",
+      "Set all headings at weight 400 in the geometric sans; never escalate to 600 or 700",
+      "Apply -0.01em letter-spacing to every size of the headline font, and +0.029em to every size of the uppercase label font",
+      "Use 44px border-radius on all image cards and 8px on all buttons — these two radii define the system's softness",
+      "Reserve 100–160px of vertical space between major sections; let white space do the work of dividers",
+      "Treat all photography by silhouetting subjects and placing them on the teal-to-violet gradient — never use raw, unprocessed photos",
+      "Center-align the hero headline; left-align all subsequent body copy"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic color — the system is intentionally monochromatic apart from #acafff",
+      "Don't use bold or semibold weights; the design relies on size and tracking, not weight, to create hierarchy",
+      "Don't add box-shadows to cards — the system has no elevation vocabulary; radius alone defines surface",
+      "Don't add visible dividers or hairlines between sections — 100px+ of whitespace is the only separator",
+      "Don't use the teal-to-violet gradient as a CSS background — it lives only inside the hero sphere asset and inside feature image treatments",
+      "Don't left-align the hero headline or center-align body paragraphs — center the first screen, left-align everything after",
+      "Don't add icon fills in any color other than #141414, #ffffff, or #acafff"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#141414",
+        "name": "Ink Black",
+        "role": "Primary text, all heading and body color, dominant border color, nav text and structural dividers. The near-black (not pure black) keeps the monochrome system from feeling harsh against white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, icon fills on dark backgrounds, nav pill surface when over light sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a1a1",
+        "name": "Mist Gray",
+        "role": "Secondary text, subheadings, muted body copy, lighter hairline borders. The middle step in the achromatic scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a8a8a",
+        "name": "Smoke Gray",
+        "role": "Nav link text at rest, medium-weight borders, tertiary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0d0d0",
+        "name": "Veil Gray",
+        "role": "Lightest border tone for link underlines, subtle dividers between content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#acafff",
+        "name": "Periwinkle Glow",
+        "role": "The sole chromatic accent — fills the SIGN IN button and the floating nav container. Soft violet at moderate saturation; it reads as illuminated rather than branded, so the entire UI feels switched-on when it appears",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered, max-width 1200px layout with generous breathing room. The hero is a centered headline stack over white space, with the gradient sphere rising from the bottom of the viewport like a planet. Below the fold, content moves into a left-aligned two-column pattern: image card on the left, text block on the right, repeating down the page. Vertical rhythm is defined by 100–160px section gaps with no visible dividers. Navigation is a sticky pill that starts transparent and gains a soft background as the user scrolls, floating over content rather than pinning to the top edge. No sidebar, no mega-menu — the four nav items (PLATFORM, COMPANY, INSIGHTS, CONTACT) are the entire information architecture.",
+    "imagery": "Imagery is built from two ingredients: a 3D-rendered gradient sphere (the brand's signature visual — white-lavender to soft blue to deep teal) and silhouetted photography placed on the same teal-to-violet gradient. Subjects are always dark silhouettes of musicians (DJs, performers) read against the gradient, never raw editorial photos. The treatment makes every image feel like part of the same substance as the hero sphere. Icons are minimal — line-based, monochrome in #141414 — and rarely appear. The page is text-dominant with imagery as punctuation, not atmosphere.",
+    "similar": [
+      {
+        "why": "Same near-monochrome interface with a single soft chromatic accent (Linear's purple, amra's lavender) and weight-400-only typography",
+        "business": "Linear"
+      },
+      {
+        "why": "Same generous white-space rhythm, centered hero headlines, and the discipline of using one accent color against pure white",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same large-radius cards (40–44px), gradient-as-hero-asset treatment, and custom geometric sans typography with tight headline tracking",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same dot-matrix minimalism, uppercase tracked nav text, and the feeling of a single illuminated element on a vast white field",
+        "business": "Nothing (nothing.tech)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "44px",
+        "buttons": "8px",
+        "navPill": "16px",
+        "featureImage": "40px",
+        "linkUnderline": "24px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "100-160px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Base background for the entire site; all content sits on this surface"
+      },
+      {
+        "hex": "#acafff",
+        "name": "Nav Pill / Action Button",
+        "level": 2,
+        "purpose": "Floating navigation container and the SIGN IN button — the only surface that introduces color"
+      },
+      {
+        "hex": "#141414",
+        "name": "Dark Overlay",
+        "level": 3,
+        "purpose": "Inverted surfaces for video widgets, modal overlays, or dark content cards (not visible in the current page but available for the inverted variant)"
+      }
+    ],
+    "northStar": "iridescent sphere on white void — the lavender accent is the only chromatic pulse against an almost perfectly achromatic page, and a single gradient orb does the work that a hero illustration usually does.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.41
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 1,
+        "letterSpacing": -0.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Sticky Navigation Bar",
+        "role": "Persistent top-of-page navigation that floats over content with a slight gap from the viewport edge.",
+        "description": "Transparent at the very top of the page, then a pill-shaped container fades in with a soft white or #acafff fill at 8–16px radius as the user scrolls. Nav links are 14px uppercase tracked at 0.029em in #141414 or #8a8a8a. The pill has 16–24px horizontal padding and floats centered with 100px horizontal margin on either side at desktop widths."
+      },
+      {
+        "name": "Lavender Filled Button (Sign In)",
+        "role": "The single filled action component in the system.",
+        "description": "8px border-radius, #acafff background, #141414 text in 14px uppercase at 0.029em tracking. Compact horizontal padding (~12–16px). No hover state change observed in the raw data — the button is a quiet call to action, not a loud one. Only one chromatic button exists in the entire interface."
+      },
+      {
+        "name": "Uppercase Nav Link",
+        "role": "Text-only navigation items inside the nav pill.",
+        "description": "14px weight 400, 0.029em letter-spacing, uppercase, #141414 at rest. No underline, no background — links are pure tracked type. Spacing between links uses 12–24px gaps, creating the airy horizontal rhythm of the nav bar."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary display text on landing pages.",
+        "description": "Set at 50px in the custom geometric sans, weight 400, line-height 1.0, letter-spacing -0.5px. Color #141414. Always centered. No weight emphasis — size and tight tracking do the work. Subhead sits directly below at 20px, line-height 1.2, in #a1a1a1 or #8a8a8a."
+      },
+      {
+        "name": "Gradient Sphere (Hero Visual)",
+        "role": "Signature 3D-rendered brand asset that anchors the page.",
+        "description": "A large radial gradient sphere (no CSS gradient token — it's a rendered image). Transitions from white-lavender at the top through soft blue to deep teal at the bottom. Functions as the only brand illustration; appears in hero and can be reused at any scale. NOT a background gradient — it's a contained visual element."
+      },
+      {
+        "name": "Feature Image Card",
+        "role": "Image container for photography inside content sections.",
+        "description": "40–44px border-radius. No border, no shadow. The image inside is always treated with the same teal-to-violet gradient palette as the hero sphere — photography is silhouetted subjects dropped onto that gradient. Card sits directly on the white canvas with 32px of internal padding from surrounding text."
+      },
+      {
+        "name": "Two-Column Feature Section",
+        "role": "Image-left / text-right content block used to break down product value props.",
+        "description": "50/50 split inside the 1200px max-width container. Image side holds a Feature Image Card (40–44px radius). Text side stacks a 20–30px subheading in #141414 with tight tracking, followed by 16px body in #a1a1a1 at line-height 1.6. Gap between columns: 56–100px. Section itself has 100–160px of vertical breathing room above and below."
+      },
+      {
+        "name": "Floating Video Play Widget",
+        "role": "Persistent bottom-right video trigger.",
+        "description": "Small circular thumbnail (~48px) with a white play triangle, followed by 'Why amra' label and a duration timestamp. 24px pill-radius container. Sits 24px from the viewport edges. Appears across all pages as a persistent engagement entry point."
+      },
+      {
+        "name": "Link Underline",
+        "role": "Inline link border within body copy.",
+        "description": "1px #d0d0d0 bottom border, 24px border-radius on the underline itself. No color change on the link text — only the underline distinguishes it from body copy. 16px horizontal padding from surrounding text."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Implicit vertical rhythm device between content blocks.",
+        "description": "No visible line — sections are separated by 100–160px of empty white space. The rhythm alone defines where one section ends and the next begins. Avoid adding any visible dividers; spacing IS the divider."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary Font — detected in extracted data but not described by AI",
+        "sizes": "20px, 30px, 50px",
+        "family": "Primary Font",
+        "weight": "400",
+        "lineHeight": "1, 1.2",
+        "letterSpacing": "-0.01"
+      },
+      {
+        "role": "All headings and large body copy. Used at 20px (subheadings, feature labels), 30px (section headings), 50px (display). Weight stays at 400 across the scale — no bold weight exists in the system. Tight -0.01em tracking is the signature: letters almost touch, giving headings a dense, architectural quality rather than a light/airy one. The only distinguishing letter shape is in the lowercase wordmark 'amra' — a custom logotype, not a font.",
+        "sizes": "20px, 30px, 50px",
+        "family": "Custom geometric sans (sphere-like, soft terminals)",
+        "weight": "400",
+        "lineHeight": "1.0–1.2",
+        "substitute": "Neue Haas Grotesk, Inter Tight, or Söhne",
+        "letterSpacing": "-0.01em at all sizes (≈ -0.5px at 50px, -0.3px at 30px, -0.2px at 20px)"
+      },
+      {
+        "role": "All uppercase nav items, link labels, tag text, footer micro-copy, small body text in cards. Set at 14–16px with +0.029em tracking, the letters hold generous space — a deliberate counterpoint to the tight headline tracking. The wide tracking makes a 14px label read as a navigational mark, not as text. The very tall line-height (2.29 at 16px) is used only for stacked list items where breathing room matters more than density.",
+        "sizes": "14px, 16px",
+        "family": "Custom uppercase display sans (tracked out)",
+        "weight": "400",
+        "lineHeight": "1.0–2.29",
+        "substitute": "Söhne Mono, JetBrains Mono, or any wide-grotesk alternate",
+        "letterSpacing": "0.029em (≈ 0.41px at 14px, 0.46px at 16px)"
+      },
+      {
+        "role": "Secondary Font — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px",
+        "family": "Secondary Font",
+        "weight": "400",
+        "lineHeight": "1, 2.29",
+        "letterSpacing": "0.029"
+      }
+    ],
+    "description": "Amra is a near-monochrome white canvas with a single soft lavender accent (#acafff) and an iridescent gradient sphere as its signature visual anchor. The interface stays almost completely achromatic — text, dividers, and borders all share a family of near-blacks and grays — so the lavender feels like a small electric pulse rather than a brand color. Photography is never raw: subjects are silhouetted and dropped onto the same teal-to-violet gradient as the hero sphere, making imagery feel like part of the same substance as the product. Typography is custom, geometric, and weight-400 throughout — no bold ever appears, and authority comes from size and tight tracking rather than weight. Components are large-radius and floating: a pill-shaped nav drifts over content, image cards have 44px corners, and the page breathes with 100–160px vertical gaps between sections.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"amra design system\",\"item\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#style-reference\",\"name\":\"amra design system reference\",\"headline\":\"amra design system | Refero Styles\",\"description\":\"Explore amra's light Media design system: Ink Black #141414, Paper White #ffffff colors, Primary Font, Custom geometric sans (sphere-like, soft terminals)...\",\"url\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"amra\",\"url\":\"https://www.amra.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"caption\":\"Screenshot of amra\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"amra design system\",\"amra website design\",\"amra colors\",\"amra typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Smoke Gray\",\"Primary Font\",\"Custom geometric sans (sphere-like, soft terminals)\",\"Custom uppercase display sans (tracked out)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"amra design system\"},{\"@type\":\"Thing\",\"name\":\"amra website design\"},{\"@type\":\"Thing\",\"name\":\"amra colors\"},{\"@type\":\"Thing\",\"name\":\"amra typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-05-07T22:36:50.217Z\",\"dateModified\":\"2026-05-07T22:36:50.217Z\"}]}19:T6fb,**Quick Color Reference**\ntext: #141414\nbackground: #ffffff\nborder: #d0d0d0 (light) / #a1a1a1 (medium)\naccent: #acafff\nmuted text: #8a8a8a\nprimary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a sticky navigation bar: a centered pill container at 16px border-radius, #acafff background, 1200px max-width with 100px horizontal margin. Inside, four uppercase links in 14px custom sans, weight 400, 0.029em letter-spacing, #141414 color, separated by 24px gaps. A #acafff filled button on the far right with #141414 text at 8px radius and 12px 16px padding.\n\n2. Build a hero section: #ffffff background, centered. Headline at 50px custom geometric sans, weight 400, line-height 1.0, letter-spacing -0.5px, color #141414. Subhead at 20px same font at -0.2px tracking, color #a1a1a1. A 600px diameter gradient sphere asset (white-lavender to teal) anchored at the bottom of the viewport.\n\n3. Build a feature block: two-column layout inside 1200px max-width. Left column holds a Feature Image Card at 44px border-radius, no shadow, containing a silhouetted subject on a teal-to-violet gradient. Right column stacks a 30px subheading in #141414 with -0.3px tracking, followed by 16px body copy in #a1a1a1 at line-height 1.6. 80px gap between columns.\n\n4. Build a floating video widget: a pill-shaped container at 24px border-radius, 48px tall, anchored to the bottom-right viewport corner with 24px margin. Contains a 40px circular thumbnail, 'Why amra' label in 14px uppercase tracked at 0.029em, and a timestamp in #8a8a8a.\n\n5. Build a body text block: 16px geometric sans at weight 400, line-height 1.6, letter-spacing 0.46px, color #141414. Inline links have a 1px #d0d0d0 bottom border with 24px radius on the underline itself, no color change to the link text."
+      }
+    ],
+    "elevationPhilosophy": "Amra has no shadow system. Surfaces are defined entirely by border-radius and white space — cards float on the canvas through their 44px corners and the negative space around them, not through any drop shadow. When a component needs to feel elevated (e.g. the floating nav pill), it does so through a soft color fill (#acafff) or a subtle 1px border in a light gray, never through a shadow stack."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "image",
+            "list",
+            "card",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 1493,
+          "confidence": 1,
+          "prominence": 164218038.68741646,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 25,
+            "body/color": 3,
+            "card/color": 1,
+            "icon/color": 1,
+            "link/color": 10,
+            "list/color": 12,
+            "other/fill": 6,
+            "image/color": 19,
+            "other/color": 51,
+            "footer/color": 1,
+            "heading/color": 176,
+            "nav/borderColor": 100,
+            "body/borderColor": 12,
+            "card/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 32,
+            "list/borderColor": 48,
+            "image/borderColor": 76,
+            "other/borderColor": 203,
+            "footer/borderColor": 4,
+            "heading/borderColor": 704,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "footer"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 49365635.118161306,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 1,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a1a1a1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7089995458654064
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 3826852.333928713,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "other/borderColor": 1,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#d0d0d0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8576051709251569
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 35772.603641276495,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 8
+          }
+        },
+        {
+          "hex": "#8a8a8a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6317617413815739
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 30157.651424798973,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "nav/borderColor": 16
+          }
+        },
+        {
+          "hex": "#acafff",
+          "oklch": {
+            "c": 0.11349823074764664,
+            "h": 281.78069729754776,
+            "l": 0.7819110706797924
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2617,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0001971413721038815,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.94,
+          "background": "#d0d0d0",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#acafff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.13,
+          "background": "#141414",
+          "foreground": "#a1a1a1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.34,
+          "background": "#141414",
+          "foreground": "#8a8a8a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.45,
+          "background": "#ffffff",
+          "foreground": "#8a8a8a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#ffffff",
+          "foreground": "#a1a1a1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.7,
+          "background": "#acafff",
+          "foreground": "#8a8a8a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#acafff",
+          "foreground": "#a1a1a1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "card",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingLeft|card",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Primary Font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 197,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Secondary Font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 111,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Secondary Font",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0.029,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Secondary Font",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.29,
+          "letterSpacing": 0.029,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Secondary Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "image",
+            "list",
+            "card",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 87,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Primary Font",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Primary Font",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Primary Font",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Primary Font",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 174,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d809391a-f832-433f-aaf9-347a38a81e80.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"amra design system\",\"item\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#style-reference\",\"name\":\"amra design system reference\",\"headline\":\"amra design system | Refero Styles\",\"description\":\"Explore amra's light Media design system: Ink Black #141414, Paper White #ffffff colors, Primary Font, Custom geometric sans (sphere-like, soft terminals)...\",\"url\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"amra\",\"url\":\"https://www.amra.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5ed8712-0e42-4c6c-83b1-b3d7f27d1d10#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"caption\":\"Screenshot of amra\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac537c6a-2c66-47c5-933d-02c84c7a36a9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"amra design system\",\"amra website design\",\"amra colors\",\"amra typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Smoke Gray\",\"Primary Font\",\"Custom geometric sans (sphere-like, soft terminals)\",\"Custom uppercase display sans (tracked out)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"amra design system\"},{\"@type\":\"Thing\",\"name\":\"amra website design\"},{\"@type\":\"Thing\",\"name\":\"amra colors\"},{\"@type\":\"Thing\",\"name\":\"amra typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-05-07T22:36:50.217Z\",\"dateModified\":\"2026-05-07T22:36:50.217Z\"}]}19:T6fb,**Quick Color Reference**\ntext: #141414\nbackground: #ffffff\nborder: #d0d0d0 (light) / #a1a1a1 (medium)\naccent: #acafff\nmuted text: #8a8a8a\nprimary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a sticky navigation bar: a centered pill container at 16px border-radius, #acafff background, 1200px max-width with 100px horizontal margin. Inside, four uppercase links in 14px custom sans, weight 400, 0.029em letter-spacing, #141414 color, separated by 24px gaps. A #acafff filled button on the far right with #141414 text at 8px radius and 12px 16px padding.\n\n2. Build a hero section: #ffffff background, centered. Headline at 50px custom geometric sans, weight 400, line-height 1.0, letter-spacing -0.5px, color #141414. Subhead at 20px same font at -0.2px tracking, color #a1a1a1. A 600px diameter gradient sphere asset (white-lavender to teal) anchored at the bottom of the viewport.\n\n3. Build a feature block: two-column layout inside 1200px max-width. Left column holds a Feature Image Card at 44px border-radius, no shadow, containing a silhouetted subject on a teal-to-violet gradient. Right column stacks a 30px subheading in #141414 with -0.3px tracking, followed by 16px body copy in #a1a1a1 at line-height 1.6. 80px gap between columns.\n\n4. Build a floating video widget: a pill-shaped container at 24px border-radius, 48px tall, anchored to the bottom-right viewport corner with 24px margin. Contains a 40px circular thumbnail, 'Why amra' label in 14px uppercase tracked at 0.029em, and a timestamp in #8a8a8a.\n\n5. Build a body text block: 16px geometric sans at weight 400, line-height 1.6, letter-spacing 0.46px, color #141414. Inline links have a 1px #d0d0d0 bottom border with 24px radius on the underline itself, no color change to the link text."
+}

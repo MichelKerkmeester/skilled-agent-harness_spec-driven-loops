@@ -1,0 +1,795 @@
+{
+  "source": "https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5",
+  "uuid": "606d4af9-9d8c-41ea-a122-f515f38f20e5",
+  "name": "Home",
+  "northStar": "Stargazer's dark observatory",
+  "capturedAt": "2026-07-18T07:14:40.103Z",
+  "meta": {
+    "url": "https://www.fluidtouch.biz",
+    "siteName": "Home",
+    "extractedAt": "2026-06-03T21:13:12.934Z",
+    "durationMs": 32081,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 120,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ed1672 only for the active nav link, the filled CTA, and the decorative accent dot — limit to 2-3 instances per screen",
+      "Set hero headlines at exactly 110px in Poppins 700 with line-height 1.00 to maintain the billboard impact",
+      "Pair Muli 300 body text with the Poppins 700 display — never substitute another humanist sans for Muli, the weight contrast is the system",
+      "Use 100px border-radius on every button and tag — the full pill shape is non-negotiable for brand recognition",
+      "Maintain 113px horizontal margins on centered text blocks to preserve the floating-in-space feel",
+      "Let the constellation pattern stay at 3% colorfulness — never boost opacity, it must read as background atmosphere",
+      "Use full-bleed photography only between dark sections, never on the same plane as text"
+    ],
+    "donts": [
+      "Don't introduce a second accent color — the entire brand voice is one magenta against monochrome",
+      "Don't apply drop shadows to any element; depth comes from surface lightness steps only",
+      "Don't use Poppins 400 for headlines or Muli 400 for display — weight roles are fixed",
+      "Don't reduce the 110px hero size for 'mobile friendliness' without a deliberate type-scale override",
+      "Don't add border-radius to cards, images, or inputs — only buttons and tags get the 100px pill",
+      "Don't use #ed1672 for body text or small labels — it fails contrast (4.4:1) and the pink must remain large or decorative",
+      "Don't stack multiple saturated elements on one screen — the dark canvas is the brand, keep it 97% achromatic"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ed1672",
+        "name": "Hot Magenta",
+        "role": "Active nav links, primary CTA fills, decorative accent dots — the only chromatic voice in the system, reserved so each occurrence reads as signal",
+        "group": "brand"
+      },
+      {
+        "hex": "#121318",
+        "name": "Midnight Ink",
+        "role": "Page canvas, hero background, footer — the deep-space base layer everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191c26",
+        "name": "Deep Space",
+        "role": "Elevated card surfaces, section backgrounds one step above canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212529",
+        "name": "Slate Edge",
+        "role": "Hairline borders, image frame rules, subtle structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text, headline color, nav links, button text — the only color competing with the magenta accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections stacked vertically, each section occupying the full viewport width with no side gutters. The hero is a dark canvas with the constellation pattern, a centered headline stack (brand mark → massive headline → subtext) floating in generous 113px horizontal margins. Below the hero, a full-bleed warm photograph creates a tonal break — organic and human against the digital dark. Lower sections return to pure #000000 black for video or hard CTA stops. Navigation sits as a transparent bar overlaid on the hero with 56px gaps between items. Vertical rhythm is spacious: 113px between major sections, 60-80px between content blocks within a section. No sidebar, no grid cards, no multi-column content — the page is a sequence of single-focus full-width moments.",
+    "imagery": "Photography is warm and human-scaled: lifestyle shots of people working on laptops in naturally lit, lived-in office spaces with brick walls and soft window light. The image treatment is full-bleed with no rounded corners or borders — photographs bleed edge-to-edge, framed only by the dark sections above and below. Decorative imagery is abstract: a low-opacity constellation of connected dots and lines scattered across the dark canvas, evoking a star map. No illustrations, no 3D renders, no product screenshots — the brand expresses itself through real human moments and the abstract cosmic pattern, never through literal product depictions.",
+    "similar": [
+      {
+        "why": "Same dark-mode observatory aesthetic with near-black canvas, generous whitespace, and minimal color — though Linear uses purple, Fluidtouch uses magenta",
+        "business": "Linear"
+      },
+      {
+        "why": "Full-bleed dark sections, monumental white headlines, and a single high-contrast accent color punctuating an otherwise monochrome system",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark-canvas brand identity with one saturated neon accent and typographic boldness as the primary visual signal",
+        "business": "Nothing.tech"
+      },
+      {
+        "why": "Full-bleed section rhythm, generous spacing, and confidence in letting whitespace do the heavy lifting instead of decorative elements",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "100px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "113px",
+      "cardPadding": "20-32px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "level": 0,
+        "purpose": "Deepest full-bleed sections (video backgrounds, hard CTA stops)"
+      },
+      {
+        "hex": "#121318",
+        "name": "Midnight Ink",
+        "level": 1,
+        "purpose": "Primary page canvas for hero, body, and footer"
+      },
+      {
+        "hex": "#191c26",
+        "name": "Deep Space",
+        "level": 2,
+        "purpose": "Elevated card panels, lighter section bands"
+      },
+      {
+        "hex": "#212529",
+        "name": "Slate Edge",
+        "level": 3,
+        "purpose": "Border-level separation, never used as a filled surface"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Stargazer's dark observatory",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary action trigger — the only filled button in the system",
+        "description": "100px border-radius (full pill), #ed1672 fill, white text, Poppins 400 at 16px with 15px horizontal padding and 10px vertical padding. No shadow, no border. The full pill shape on a dark canvas makes the button look like a physical capsule."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Navigation item in resting state",
+        "description": "Transparent background, no border, Muli 300/400 at 18px, white text. Horizontal gap of 56px between items. On hover, transitions to white; active state shown in Hot Magenta (#ed1672)."
+      },
+      {
+        "name": "Active Nav Link",
+        "role": "Currently selected page indicator",
+        "description": "Same geometry as Ghost Nav Link but text color is #ed1672. The pink is the only visual signal of which page you're on — no underline, no pill background."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Logo lockup in header",
+        "description": "Two-part: a square Hot Magenta (#ed1672) icon block containing a stylized 'F' cutout, followed by the white 'fluidtouch' wordmark in Poppins 700. The colored block against the dark header is the only saturated color in the masthead."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Page-level headline on hero sections",
+        "description": "Poppins 700 at 110px, line-height 1.00, white (#ffffff). Allowed to break across two lines naturally. Often punctuated with a single Hot Magenta (#ed1672) period at the end as a decorative accent dot."
+      },
+      {
+        "name": "Hero Subtext",
+        "role": "Supporting line beneath the display headline",
+        "description": "Muli 300 at 18px, white text, centered below the headline with generous vertical gap (113px+ from heading). The thin weight against the 110px Poppins bold creates the system's signature typographic contrast."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Standard paragraph content",
+        "description": "Muli 300 at 22px, line-height 1.50, white text. 113px horizontal margin on both sides keeps the measure short and breathable. No first-line indent."
+      },
+      {
+        "name": "Constellation Background Pattern",
+        "role": "Decorative atmosphere layer on hero",
+        "description": "Subtle network of small white dots (~2-3px) connected by hairline lines, scattered across the dark canvas at low opacity. Creates a 'digital cosmos' texture without competing with the headline. Density is low — only 3% colorfulness — so the pattern reads as background, not foreground."
+      },
+      {
+        "name": "Full-bleed Image Section",
+        "role": "Lifestyle or product photography inserted between dark sections",
+        "description": "Edge-to-edge image with no padding or margin, framed only by the dark sections above and below. No border-radius. Photography is warm, naturally lit, human-scaled — a deliberate counterpoint to the abstract digital hero."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Subtle structural rule between content blocks",
+        "description": "1px line in #212529 spanning the full content width. No other divider treatment is used — no gradients, no shadows."
+      },
+      {
+        "name": "Magenta Accent Dot",
+        "role": "Decorative punctuation — typically the period after a headline",
+        "description": "Solid #ed1672 circle, roughly 1em diameter, set inline at the end of a headline. Serves as the final chromatic note of the page's opening statement."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines at 700 weight dominate at 110px — the geometric bold reads as monumental and confident, the kind of type that fills a dark page like a billboard. At 400 it's used for nav and small UI labels where it stays unobtrusive.",
+        "sizes": "14px, 16px, 110px",
+        "family": "Poppins",
+        "weight": "400, 700",
+        "lineHeight": "1.20 (14px), 1.25 (16px), 1.00 (110px)",
+        "substitute": "Montserrat, Inter"
+      },
+      {
+        "role": "Body and nav body text. Weight 300 is the signature choice — a humanist sans at near-thin weight against the Poppins 700 display creates a call-and-response rhythm: the headline shouts, the body whispers. Muli's softer curves (vs Poppins' geometric strictness) warm the dark page.",
+        "sizes": "18px, 22px",
+        "family": "Muli",
+        "weight": "300, 400",
+        "lineHeight": "1.00 (18px), 1.50 (22px)",
+        "substitute": "Mulish, Source Sans 3"
+      }
+    ],
+    "description": "Fluidtouch operates as a digital observatory: near-black canvas (#121318) hosts monumental white type and a constellation of pale dots connected by hairline vectors, with a single hot pink (#ed1672) acting as the only chromatic signal in an otherwise monochrome universe. Display voice is Poppins 700 at scale that borders on poster-sized (110px hero), while Muli 300 whispers at body sizes — the contrast between geometric-bold and humanist-soft is the system's emotional center. Surfaces are flat and borderless; depth comes from slightly lighter panels (#191c26) and hairline #212529 rules, never from shadows. Components are generously padded and pill-shaped (100px radius), floating in generous negative space that makes every interactive element feel deliberate rather than dense.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's dark Productivity design system: Hot Magenta #ed1672, Midnight Ink #121318 colors, Poppins, Muli typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.fluidtouch.biz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Hot Magenta\",\"Midnight Ink\",\"Deep Space\",\"Slate Edge\",\"Poppins\",\"Muli\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T03:22:04.669Z\",\"dateModified\":\"2026-04-30T03:22:04.669Z\"}]}19:T5ad,**Quick Color Reference**\n- text: #ffffff\n- background: #121318\n- border: #212529\n- surface: #191c26\n- accent: #ed1672\n- primary action: #ed1672 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero section**: Background #121318 with a low-opacity white dot-and-line constellation pattern. Centered headline at 110px Poppins 700 in #ffffff, line-height 1.00. Append a solid #ed1672 period after the headline as decorative punctuation. Below at 113px gap, subtext at 18px Muli 300 in #ffffff, centered.\n\n2. **Navigation bar**: Transparent background overlaid on dark canvas. Brand mark on left (Hot Magenta #ed1672 square icon + white 'fluidtouch' Poppins 700 wordmark). Nav links on right: 6 items, Muli 400 18px in #ffffff, 56px gap between items. Active item (first one) colored #ed1672 instead of white.\n\n3. **Pill CTA button**: 100px border-radius, #ed1672 fill, white Poppins 400 16px text, 15px horizontal padding × 10px vertical padding. No border, no shadow. On hover, no color change — only subtle brightness lift via opacity.\n\n4. **Full-bleed image section**: Edge-to-edge photograph, no border-radius, no border, no padding. Must sit directly between two dark sections with no gap. Image should be warm-toned, human-scaled, naturally lit.\n\n5. **Body text block**: Muli 300 at 22px, line-height 1.50, color #ffffff. Content container centered with 113px left and right margins. No first-line indent, no drop cap, single column only."
+      },
+      {
+        "title": "Type Pairing Philosophy",
+        "content": "The system's emotional engine is the Poppins 700 / Muli 300 pairing. Poppins is geometric and architectural — its circular 'o' and straight 'l' feel like they were drawn with a compass. Muli is humanist and warm — its softer terminals and slightly varied stroke weights feel hand-lettered. Stacked together, the geometric display reads as the brand's public voice (confident, monumental) while the humanist body reads as its private voice (approachable, considered). Never replace Muli with another geometric sans like Inter or Lato — the contrast in genre is what creates the system's quiet personality."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. Depth is communicated through surface lightness steps (#121318 → #191c26) and 1px Slate Edge hairline borders, never drop shadows. This flatness reinforces the observatory metaphor — objects sit on the dark plane like celestial bodies, not stacked cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "footer"
+          ],
+          "frequency": 550,
+          "confidence": 1,
+          "prominence": 73200613.74233586,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "hero/color": 2,
+            "link/color": 1,
+            "image/color": 21,
+            "other/color": 77,
+            "footer/color": 1,
+            "nav/borderColor": 32,
+            "hero/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 84,
+            "other/borderColor": 308,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#121318",
+          "oklch": {
+            "c": 0.010265523913379912,
+            "h": 276.4419007513774,
+            "l": 0.18794852192783032
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2628747.480383577,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 1665579.0055479037,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 1,
+            "button/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 20,
+            "body/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#191c26",
+          "oklch": {
+            "c": 0.019976982013156442,
+            "h": 271.7306589830045,
+            "l": 0.22802377465760526
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1493400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ed1672",
+          "oklch": {
+            "c": 0.23912167235747894,
+            "h": 4.639331320502944,
+            "l": 0.6140961746945894
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 12663,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4,
+            "button/backgroundColor": 1,
+            "heading/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.031190207489845148,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.55,
+          "background": "#121318",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#191c26",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.43,
+          "background": "#ffffff",
+          "foreground": "#212529"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.38,
+          "background": "#121318",
+          "foreground": "#ed1672"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#ed1672",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.01,
+          "background": "#191c26",
+          "foreground": "#ed1672"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#ed1672",
+          "foreground": "#212529"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#121318",
+          "foreground": "#212529"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#191c26",
+          "foreground": "#212529"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Muli",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "footer"
+          ],
+          "frequency": 110,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Muli",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Muli",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/34dc9f23-a285-4ba4-8544-959b24498c72.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's dark Productivity design system: Hot Magenta #ed1672, Midnight Ink #121318 colors, Poppins, Muli typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.fluidtouch.biz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/606d4af9-9d8c-41ea-a122-f515f38f20e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4fb71369-4a48-4389-8391-bebf6959380a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Hot Magenta\",\"Midnight Ink\",\"Deep Space\",\"Slate Edge\",\"Poppins\",\"Muli\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T03:22:04.669Z\",\"dateModified\":\"2026-04-30T03:22:04.669Z\"}]}19:T5ad,**Quick Color Reference**\n- text: #ffffff\n- background: #121318\n- border: #212529\n- surface: #191c26\n- accent: #ed1672\n- primary action: #ed1672 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero section**: Background #121318 with a low-opacity white dot-and-line constellation pattern. Centered headline at 110px Poppins 700 in #ffffff, line-height 1.00. Append a solid #ed1672 period after the headline as decorative punctuation. Below at 113px gap, subtext at 18px Muli 300 in #ffffff, centered.\n\n2. **Navigation bar**: Transparent background overlaid on dark canvas. Brand mark on left (Hot Magenta #ed1672 square icon + white 'fluidtouch' Poppins 700 wordmark). Nav links on right: 6 items, Muli 400 18px in #ffffff, 56px gap between items. Active item (first one) colored #ed1672 instead of white.\n\n3. **Pill CTA button**: 100px border-radius, #ed1672 fill, white Poppins 400 16px text, 15px horizontal padding × 10px vertical padding. No border, no shadow. On hover, no color change — only subtle brightness lift via opacity.\n\n4. **Full-bleed image section**: Edge-to-edge photograph, no border-radius, no border, no padding. Must sit directly between two dark sections with no gap. Image should be warm-toned, human-scaled, naturally lit.\n\n5. **Body text block**: Muli 300 at 22px, line-height 1.50, color #ffffff. Content container centered with 113px left and right margins. No first-line indent, no drop cap, single column only."
+}

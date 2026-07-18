@@ -1,0 +1,99 @@
+:root {
+  /* Colors */
+  --color-obsidian-ground: #000000;
+  --color-deep-charcoal: #19191c;
+  --color-graphite: #343434;
+  --color-iron: #474749;
+  --color-ash: #757577;
+  --color-slate: #8c8c8;
+  --color-silver: #a3a3a4;
+  --color-fog: #bababb;
+  --color-pure-white: #ffffff;
+  --color-electric-blue: #18a3fa;
+  --color-violet-pulse: #7b61ff;
+  --color-iris: #6b57ff;
+  --color-amethyst: #8473ff;
+  --color-deep-violet: #2e106a;
+  --color-neon-pink: #f31199;
+  --color-magenta-glow: #5a1fd0;
+  --color-nebula-violet: #5a1fd0;
+  --gradient-nebula-violet: linear-gradient(130deg, rgb(90, 31, 208) 10%, rgba(46, 16, 106, 0) 70%);
+  --color-aurora-teal: #08deaa;
+  --gradient-aurora-teal: linear-gradient(90deg, rgb(8, 222, 170) -12.99%, rgb(0, 170, 250) 176.77%);
+  --color-hero-blue-glow: #0047fd;
+  --gradient-hero-blue-glow: radial-gradient(87.36% 97.44% at 54.14% 23.32%, rgba(0, 71, 253, 0.8) 0px, rgba(0, 71, 253, 0.8) 15%, rgba(0, 0, 0, 0) 75%);
+  --color-danger-red: #f45c4a;
+  --color-success-green: #4dbb5f;
+  --color-warning-amber: #f3c033;
+
+  /* Typography — Font Families */
+  --font-jetbrains-sans: 'JetBrains Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.065px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: 0.032px;
+  --text-body: 20px;
+  --leading-body: 1.4;
+  --text-subheading: 29px;
+  --leading-subheading: 1.34;
+  --tracking-subheading: -0.029px;
+  --text-heading-sm: 35px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.035px;
+  --text-heading: 43px;
+  --leading-heading: 1.14;
+  --tracking-heading: -0.043px;
+  --text-heading-lg: 72px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.36px;
+  --text-display: 79px;
+  --leading-display: 0.9;
+  --tracking-display: -0.395px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-144: 144px;
+  --spacing-200: 200px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 80-120px;
+  --card-padding: 24px;
+  --element-gap: 8-16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+
+  /* Named Radii */
+  --radius-cards: 24px;
+  --radius-badges: 4-6px;
+  --radius-images: 16px;
+  --radius-modals: 24px;
+  --radius-buttons: 20-26px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-deep-charcoal: #19191c;
+  --surface-violet-glass: #2e106a;
+  --surface-pink-glass: #45173a;
+}

@@ -1,0 +1,687 @@
+{
+  "source": "https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55",
+  "uuid": "15d57573-513b-49aa-91c7-1b7f87bb1a55",
+  "name": "Wemakethings",
+  "northStar": "Brutalist editorial broadsheet — ink-on-white architecture with type as the only building material.",
+  "capturedAt": "2026-07-18T07:18:10.600Z",
+  "meta": {
+    "url": "https://wemakethings.de",
+    "siteName": "Wemakethings",
+    "extractedAt": "2026-06-03T21:56:26.799Z",
+    "durationMs": 25250,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 187,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff — no chromatic colors anywhere in the UI",
+      "Set all headlines in Maison Neue weight 500, all-caps, 43-65px with tight 1.11 line-height",
+      "Render at least one massive outlined display type element (800px+) as architectural scaffolding behind primary content",
+      "Separate brand listings with 1px black hairline borders, not background fills or shadows",
+      "Use Maison Neue weight 400 at 16px with 1.33 line-height for all body copy",
+      "Append → arrow characters to nav links and CTAs — the arrow IS the affordance",
+      "Maintain 80-120px vertical padding between major sections"
+    ],
+    "donts": [
+      "Never introduce color, gradients, or tinted backgrounds — the system is strictly monochromatic",
+      "Never use border-radius on buttons, cards, inputs, or tags — all corners are sharp at 0px",
+      "Never add drop shadows or box-shadows — depth comes from typographic layering, not elevation",
+      "Never use photographic imagery or illustration — type is the only visual material",
+      "Never use rounded or soft type — all display text is all-caps with tight leading",
+      "Never center body paragraphs — left-align with a constrained reading column",
+      "Never decorate links with fills, pills, or button chrome — links are bare text with optional underline and arrow"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, all borders, outline strokes, link underlines, background type fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surface, filled button background",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — sections span 100% viewport width. The hero pattern is a layered typographic composition: massive outlined background type sits behind a bold all-caps headline, left-aligned, with a supporting body paragraph beneath. The brand listing page uses a full-viewport-height grid of vertical text columns, each separated by 1px hairline vertical borders, creating a wall of brands readable only by scrolling. Navigation is a minimal top bar with right-aligned text links. Section rhythm uses generous vertical padding (80-120px) with hairline horizontal dividers rather than background color changes. The overall cadence is slow and editorial — long scroll, high whitespace, low information density per screen.",
+    "imagery": "No photography, illustration, or iconography is used. The visual language is entirely typographic: massive outlined display characters (BASEBLOOM at 864px) serve as architectural backdrops behind readable content, and vertical rotated brand names form visual walls. The logo is a typographic mark (/////). Imagery density is zero — the design treats empty white space as a primary compositional element.",
+    "similar": [
+      {
+        "why": "Same editorial typographic system — bold all-caps headlines, no color, type as the primary visual material, generous whitespace as composition",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same brutalist editorial broadsheet aesthetic — pure black/white, large display type, hairlines for structure, no decorative imagery",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Same architectural type-as-scaffolding approach with outlined display characters behind direct sans-serif statements",
+        "business": "Anrt Archive / Experimental Jetset"
+      },
+      {
+        "why": "Same confident monochromatic restraint with oversized type and hairline-bordered grids as the primary structural device",
+        "business": "Bureau Borsche"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Single uniform surface — the page canvas and all content sits directly on it with no elevation layers"
+      }
+    ],
+    "northStar": "Brutalist editorial broadsheet — ink-on-white architecture with type as the only building material.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 43,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "heading",
+        "size": 65,
+        "lineHeight": 1.11
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Fixed-top bar on white background. Logo mark (five parallel slashes /////) at far left in black, weight 500. Nav links right-aligned in 16px Maison Neue weight 400, all-caps: ABOUT, BRANDS, CAREER, CONTACT, followed by a right arrow (→). Active page is indicated by a thin black underline. No background fill, no border-bottom — the nav floats on white."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier",
+        "description": "Five parallel diagonal slashes (/////) in black, functioning as a typographic logogram. No container, no fill — raw glyphs on white."
+      },
+      {
+        "name": "Hero Headline Statement",
+        "role": "Opening page message",
+        "description": "Bold all-caps 65px Maison Neue weight 500, line-height 1.11, left-aligned. Black text on white. Tight, commanding, no decoration. Sits in front of massive outlined background type (BASEBLOOM at 864px) that acts as an architectural layer."
+      },
+      {
+        "name": "Architectural Background Type",
+        "role": "Decorative typographic layer",
+        "description": "BASEBLOOM or similar outlined display face at 864px, line-height 0.83, rendered as stroke-only outlines. Sits behind body content as a visual landmark — never readable, only structural. Black outlines on white, full-bleed."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Informational text",
+        "description": "16px Maison Neue weight 400, line-height 1.33, black on white. Left-aligned, max-width constrained for readability (roughly 500-600px column). The supporting sentence beneath the hero is the primary use."
+      },
+      {
+        "name": "Inline Section Label",
+        "role": "Small typographic tag",
+        "description": "10-12px Maison Neue weight 500, all-caps, black on white. Used as inline annotations like 'WE MAKE' preceding larger text. Minimal tracking, sits flush with surrounding type."
+      },
+      {
+        "name": "Brand Column Card",
+        "role": "Brand listing entry",
+        "description": "Full-height vertical column containing a single brand name written vertically (rotated 90° or stacked). Maison Neue weight 500 at 24-43px, all-caps, black. Columns separated by hairline 1px black vertical borders. No padding between text and edges. The column extends full viewport height, creating a wall of brands."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Navigation and CTA link",
+        "description": "16-18px Maison Neue weight 400, black text, with a → arrow character appended. No button chrome, no background, no padding. On hover, optional thin black underline appears beneath the text."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Page-scroll affordance",
+        "description": "Minimal downward-pointing arrow (↓ or ↓) centered at the bottom of the hero section. Black, 16px, no animation specified. Signals vertical scroll continuity."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Inter-section separator",
+        "description": "1px black horizontal hairline spanning the full content width. The only structural division between sections. No padding, no background change."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and headline typeface — used for nav links, body copy, button text, and bold all-caps hero statements. The 65px weight 500 is the signature headline voice: tight leading (1.11), all-caps, commanding without decorative weight. Substitute: Inter, Helvetica Neue, Neue Haas Grotesk",
+        "sizes": "16px, 18px, 24px, 43px, 65px",
+        "family": "Maison Neue",
+        "weight": "400, 500",
+        "lineHeight": "1.11 / 1.20 / 1.33 / 2.50",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Architectural display layer — rendered as massive outlined characters (864px, line-height 0.83) that sit behind body content as visual scaffolding, never carrying readable information. Substitute: a custom ultra-condensed display face or CSS stroke text",
+        "sizes": "864px",
+        "family": "BASEBLOOM",
+        "weight": "400",
+        "lineHeight": "0.83",
+        "substitute": "Custom outlined display type"
+      },
+      {
+        "role": "Rare secondary display use — appears in link context at 58px as a typographic accent. Substitute: a condensed or script contrast face",
+        "sizes": "58px",
+        "family": "Unzyale",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "WeMakeThings operates on a brutally reductive editorial logic: pure black ink on a white paper canvas, with nothing but typography and whitespace to carry the entire visual system. The site reads like a design broadsheet — massive outlined display type acts as architectural scaffolding behind bold all-caps headlines, creating depth and scale without any color, shadow, or imagery. Components are stripped to their skeleton: hairline underlines, thin borders, and direct unadorned type. Density is comfortable with generous margins, and the brand grid uses vertical text columns to turn a simple list into a typographic wall. There is no decoration, no warmth, no gradient — just confident restraint where every pixel earns its place.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wemakethings design system\",\"item\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#style-reference\",\"name\":\"Wemakethings design system reference\",\"headline\":\"Wemakethings design system | Refero Styles\",\"description\":\"Explore Wemakethings's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Maison Neue, BASEBLOOM typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wemakethings\",\"url\":\"https://wemakethings.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"caption\":\"Screenshot of Wemakethings\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wemakethings design system\",\"Wemakethings website design\",\"Wemakethings colors\",\"Wemakethings typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Maison Neue\",\"BASEBLOOM\",\"Unzyale\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wemakethings design system\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings website design\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings colors\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:36:05.380Z\",\"dateModified\":\"2026-04-30T03:36:05.380Z\"}]}19:T5f5,## Quick Color Reference\n- Text / borders: #000000\n- Background / surfaces: #ffffff\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Hero section**: White background (#ffffff). Architectural background layer: outlined display type at 800px+ size, black stroke, 0px fill, positioned full-bleed behind content. Headline: 65px Maison Neue weight 500, all-caps, #000000, line-height 1.11, left-aligned. Supporting paragraph: 16px Maison Neue weight 400, #000000, line-height 1.33. No shadows, no borders, no color.\n\n2. **Brand grid column**: Full-height vertical column, 1px #000000 hairline border-right. Brand name set vertically in 43px Maison Neue weight 500, all-caps, #000000, with a small 'WE MAKE' label at 10px weight 500 above. White background, 0px radius, 20px padding.\n\n3. **Top navigation bar**: 100% width, white background (#ffffff), 20px vertical padding, no border. Left: logo mark (/////) in #000000 at 24px. Right: nav links in 16px Maison Neue weight 400, all-caps, #000000, with 20px gap between items. Active link underlined with 1px #000000. Contact link followed by → character.\n\n4. **Text link / ghost button**: Bare text link, 16px Maison Neue weight 400, #000000, followed by → arrow character at same size. No background, no border, no padding, no radius. Optional 1px #000000 underline on hover.\n\n5. **Section divider**: 1px solid #000000 horizontal line, full content width, 0px margin top/bottom. White space above and below provides rhythm, not the line itself."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 930,
+          "confidence": 1,
+          "prominence": 11944048.345498003,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 30,
+            "hero/color": 2,
+            "link/color": 11,
+            "image/color": 1,
+            "other/color": 102,
+            "button/color": 10,
+            "heading/color": 22,
+            "nav/borderColor": 32,
+            "body/borderColor": 120,
+            "hero/borderColor": 8,
+            "link/borderColor": 44,
+            "image/borderColor": 4,
+            "other/borderColor": 408,
+            "button/borderColor": 40,
+            "heading/borderColor": 88
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 4031298.4049935625,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 35,
+            "button/backgroundColor": 10
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "hero",
+            "link",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 109,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginRight|nav",
+            "paddingLeft|hero",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Maison Neue",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 185,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BASEBLOOM",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Unzyale",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 4.09,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 15,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image"
+          ],
+          "frequency": 106,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 43,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Unzyale",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 864,
+          "family": "BASEBLOOM",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0bbe4099-d8af-4c56-8586-35d4192bce17.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wemakethings design system\",\"item\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#style-reference\",\"name\":\"Wemakethings design system reference\",\"headline\":\"Wemakethings design system | Refero Styles\",\"description\":\"Explore Wemakethings's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Maison Neue, BASEBLOOM typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wemakethings\",\"url\":\"https://wemakethings.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/15d57573-513b-49aa-91c7-1b7f87bb1a55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"caption\":\"Screenshot of Wemakethings\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a236bbe8-a93a-41cf-bf5d-8d37a201b6fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wemakethings design system\",\"Wemakethings website design\",\"Wemakethings colors\",\"Wemakethings typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Maison Neue\",\"BASEBLOOM\",\"Unzyale\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wemakethings design system\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings website design\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings colors\"},{\"@type\":\"Thing\",\"name\":\"Wemakethings typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:36:05.380Z\",\"dateModified\":\"2026-04-30T03:36:05.380Z\"}]}19:T5f5,## Quick Color Reference\n- Text / borders: #000000\n- Background / surfaces: #ffffff\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Hero section**: White background (#ffffff). Architectural background layer: outlined display type at 800px+ size, black stroke, 0px fill, positioned full-bleed behind content. Headline: 65px Maison Neue weight 500, all-caps, #000000, line-height 1.11, left-aligned. Supporting paragraph: 16px Maison Neue weight 400, #000000, line-height 1.33. No shadows, no borders, no color.\n\n2. **Brand grid column**: Full-height vertical column, 1px #000000 hairline border-right. Brand name set vertically in 43px Maison Neue weight 500, all-caps, #000000, with a small 'WE MAKE' label at 10px weight 500 above. White background, 0px radius, 20px padding.\n\n3. **Top navigation bar**: 100% width, white background (#ffffff), 20px vertical padding, no border. Left: logo mark (/////) in #000000 at 24px. Right: nav links in 16px Maison Neue weight 400, all-caps, #000000, with 20px gap between items. Active link underlined with 1px #000000. Contact link followed by → character.\n\n4. **Text link / ghost button**: Bare text link, 16px Maison Neue weight 400, #000000, followed by → arrow character at same size. No background, no border, no padding, no radius. Optional 1px #000000 underline on hover.\n\n5. **Section divider**: 1px solid #000000 horizontal line, full content width, 0px margin top/bottom. White space above and below provides rhythm, not the line itself."
+}

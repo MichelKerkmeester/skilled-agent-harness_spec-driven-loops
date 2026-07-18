@@ -1,0 +1,1268 @@
+{
+  "source": "https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f",
+  "uuid": "8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f",
+  "name": "Pinterest",
+  "northStar": "A pinboard under warm gallery light — white walls, one bold red thumbtack, everything else quietly waiting to be discovered.",
+  "capturedAt": "2026-07-18T09:50:30.746Z",
+  "meta": {
+    "url": "https://pinterest.com",
+    "siteName": "Pinterest",
+    "extractedAt": "2026-06-03T17:55:58.808Z",
+    "durationMs": 29791,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 672,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Pin Red (#e60023) as the only filled button color on the page — never substitute it for orange, coral, or any other warm hue.",
+      "Round all controls (buttons, inputs, search, chips) at exactly 16px and all image cards at 20-40px; the radius gradient is the system's softness signature.",
+      "Set display headlines at 50-70px weight 900 with -0.037em tracking; let size and weight carry hierarchy before reaching for color.",
+      "Keep the canvas white (#ffffff) and use Linen (#e5e5e0) only for full-band alternation, never for individual cards.",
+      "Rotate hero photo cards between ±6° and ±12° to create the scrapbook depth — flat grids break the mood.",
+      "Place decorative accents (Lavender Veil, Ember Coral, Halo Yellow) only inside illustrated mock surfaces — never on nav, buttons, or borders.",
+      "Reserve italic weight 900 in Lavender Veil for the second line of a two-line display headline as the brand's signature emphasis move."
+    ],
+    "donts": [
+      "Don't apply Pin Red to anything that isn't a filled CTA, the logo, or an active state — it loses power when overused.",
+      "Don't use Charcoal (#000000) for body text; use Ink Plum (#211922) for a softer, on-brand near-black.",
+      "Don't add shadows to buttons, cards, or nav — depth comes from radius, rotation, and overlap, not elevation.",
+      "Don't use Link Cobalt (#2b48d4) for buttons or nav; it's strictly for inline content links.",
+      "Don't set body text below 16px; the smallest functional size is 14px for helper copy, 12px for captions only.",
+      "Don't introduce gradients, glows, or glassmorphism — the system is intentionally flat and matte.",
+      "Don't combine more than two decorative accent colors in a single surface; the page reads as a calm gallery, not a mosaic."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e60023",
+        "name": "Pin Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#211922",
+        "name": "Ink Plum",
+        "role": "Primary text, logo wordmark, filled dark buttons — a warm near-black that reads softer than pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, card surfaces, button text on dark fills, search field background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Fog Gray",
+        "role": "Secondary text, nav labels, icon strokes at rest, helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Stone Gray",
+        "role": "Input placeholders, input borders, disabled hairlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e0",
+        "name": "Linen",
+        "role": "Subtle section bands, ghost button borders, soft surface tint for alternating blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffd92",
+        "name": "Halo Yellow",
+        "role": "Highlight wash behind emphasis moments, sticker-style accent in illustrated cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#fa5f2e",
+        "name": "Ember Coral",
+        "role": "Decorative image accent, filter chip color, illustrated card warm fill",
+        "group": "accent"
+      },
+      {
+        "hex": "#9270d7",
+        "name": "Lavender Veil",
+        "role": "Decorative image accent, highlighted word in headlines, illustrated card cool fill — the secondary brand color that softens the red",
+        "group": "accent"
+      },
+      {
+        "hex": "#2b48d4",
+        "name": "Link Cobalt",
+        "role": "Inline link text, focusable content links",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-width sticky white nav at 64px height. Hero uses an asymmetric two-column composition inside a 1200px max-width: left half is centered-left headline + CTA + carousel dots, right half is a tilted overlapping photo stack. Subsequent sections alternate white and Linen (#e5e5e0) full-bleed bands separated by 80-120px vertical rhythm. Feature sections use a mirrored asymmetric pattern (illustration left, text right) with the feature panel at 40px radius. Grids are 2-3 columns at most — Pinterest's landing avoids dense card matrices in favor of breathing room. Navigation is minimal: a horizontal text nav with no mega-menu, no sidebar.",
+    "imagery": "Imagery is the primary content medium — large, rounded, tilted photographs of food, fashion, beauty, and lifestyle subjects on pure backgrounds or in natural settings. Photos are presented as rounded tiles (20-40px corners) with no border or frame, and are frequently layered at small rotations to create collage energy. Illustrative accents (sparkle badges, sticker-style chips) use the secondary accent palette (Lavender Veil, Ember Coral, Halo Yellow) as flat shapes. No gradients, no duotones, no overlaid text on photos. Icon style is filled and monochromatic in Ink Plum or white, with rounded geometry that matches Pin Sans's warmth.",
+    "similar": [
+      {
+        "why": "Same discovery-feed identity, white-canvas layout, oversized rounded image cards, and a single accent color against monochrome chrome",
+        "business": "Behance"
+      },
+      {
+        "why": "Similar approachable marketplace tone, large rounded product imagery, red brand accent, and a serif-free custom sans for warmth",
+        "business": "Etsy"
+      },
+      {
+        "why": "Identical matte white gallery aesthetic, photo-as-hero content, generous border-radius on tiles, and minimal chrome around the imagery",
+        "business": "Unsplash"
+      },
+      {
+        "why": "Shares the scrapbook/curation sensibility — tilted cards, soft canvas, and decorative pastel accents layered over photographic content",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "16px",
+        "cards": "20-40px",
+        "pills": "9999px",
+        "inputs": "16px",
+        "buttons": "16px",
+        "imageCards": "32px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background; the gallery wall"
+      },
+      {
+        "hex": "#e5e5e0",
+        "name": "Linen Band",
+        "level": 1,
+        "purpose": "Soft alternation section, ghost-button background at rest"
+      },
+      {
+        "hex": "#fffd92",
+        "name": "Halo Wash",
+        "level": 2,
+        "purpose": "Emphasis highlight under key copy or callouts"
+      }
+    ],
+    "northStar": "A pinboard under warm gallery light — white walls, one bold red thumbtack, everything else quietly waiting to be discovered.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.52
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.59
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.74
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.18
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.41
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.85
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1,
+        "letterSpacing": -2.59
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header with brand mark, primary search, and account actions",
+        "description": "White background, 64px height, no shadow. Logo (red P glyph + black wordmark) at far left, Explore nav link, full-width pill search field with #e5e5e0 fill, text nav items in Ink Plum 16px/500, terminated by a filled red Log in button (16px radius) and a ghost Sign up button (transparent fill, 1px Ink Plum border, 16px radius)."
+      },
+      {
+        "name": "Primary Search Field",
+        "role": "Hero search affordance, always pill-shaped and dominant in the nav",
+        "description": "Width fills available nav space, height 48px, fill #e5e5e0, radius 16px, no border. Placeholder text 16px Pin Sans 400 in Stone Gray. Search icon at left in Fog Gray. No focus ring; instead the field brightens to #ffffff on focus with a 1px Stone Gray border."
+      },
+      {
+        "name": "Filled Red CTA Button",
+        "role": "Sole high-emphasis action — sign up, join, continue",
+        "description": "Fill #e60023, text #ffffff, Pin Sans 16px/600, horizontal padding 20px, vertical padding 12px, radius 16px. No shadow. Hover deepens to ~#b8001d. Used for Log in and Join Pinterest for free."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action paired beside a filled CTA",
+        "description": "Transparent fill, 1px solid #211922 border, text #211922, same 16px radius and 12px/20px padding as filled CTA. Hover swaps to #211922 fill with #ffffff text."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Tertiary inline action beside a CTA",
+        "description": "No border, no fill. Pin Sans 16px/500 in Ink Plum with a 1px underline on hover. Used for \"I already have an account\"."
+      },
+      {
+        "name": "Hero Carousel Indicator Dots",
+        "role": "Pagination for the hero rotating image composition",
+        "description": "Five dots, 8px diameter, 8px gap. Active dot is Ink Plum; inactive dots are Fog Gray at 40% opacity. No background container — sits directly on canvas."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Two-tone display headline that carries the brand voice into the page",
+        "description": "First line \"Find ideas for\" in Pin Sans 70px/900 Ink Plum, line-height 1.0. Second line repeats the pattern with a thematic phrase set in Lavender Veil (#9270d7) italic weight 900 — the second line color is the only non-red chromatic use at display size, and it must always feel like a highlight, not a link."
+      },
+      {
+        "name": "Tilted Image Card Stack",
+        "role": "Hero visual — layered, slightly rotated photo cards creating depth",
+        "description": "Three cards, each ~280px wide with 32px radius, alternating ±6° and ±12° rotation, overlapping with negative space. Top card carries a 48px lavender circular badge with a white sparkle/trend icon centered. No shadow; the tilt and overlap create depth."
+      },
+      {
+        "name": "Feature Card Panel",
+        "role": "Product showcase container for feature explanations",
+        "description": "Linen (#e5e5e0) fill, 40px radius, generous internal padding (32-48px). Contains a mock UI screenshot at 12px radius (mini-app) layered over it. No border, no shadow."
+      },
+      {
+        "name": "Mock Search Bar",
+        "role": "In-product search illustration inside feature cards",
+        "description": "White surface, 16px radius, 1px Stone Gray border, filter pill chips below in Ember Coral / Linen / Lavender Veil with text on the matching or contrasting shade. Chips themselves use 9999px radius and 8px/14px padding."
+      },
+      {
+        "name": "Skin Tone Range Selector",
+        "role": "Horizontal swatch row for inclusive search refinement",
+        "description": "Row of 6 square swatches, each ~36px, 8px radius, ranging light peach to deep brown. Active swatch gets a 2px Ink Plum outer ring (4px offset) indicating selection."
+      },
+      {
+        "name": "Image Grid Card",
+        "role": "Content preview tiles inside feature panels",
+        "description": "20px radius, no border, no shadow, native image fills the card. A 12px three-dot menu appears top-right on hover only."
+      },
+      {
+        "name": "Section Heading + CTA Pair",
+        "role": "Right-side text block beside feature illustrations",
+        "description": "Heading at 38px/700 Ink Plum, body at 16px/400 Fog Gray with 1.5 line-height, followed by a filled red CTA identical to the hero CTA. Right column max-width ~480px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for the entire system — nav, body, buttons, headlines, display. Geometric humanist sans with a tall x-height and open apertures.",
+        "sizes": "12, 14, 16, 20, 32, 38, 50, 70",
+        "family": "Pin Sans",
+        "weight": "400, 500, 600, 700, 900",
+        "lineHeight": "1.0, 1.2, 1.4, 1.5",
+        "substitute": "Inter, DM Sans, or Noto Sans as free fallbacks",
+        "letterSpacing": "-0.0370em across all sizes (slight tightening applied globally)",
+        "fontFeatureSettings": "\"ss01\" on if available, default numerals"
+      }
+    ],
+    "description": "Pinterest operates as a bright, gallery-lit scrapbook: white canvas, near-black text in a custom geometric sans, and one unmistakable red that acts as the only functional signal in an otherwise quiet interface. The visual rhythm is built on oversized rounded corners (16-40px), generous breathing room between elements (16-32px gaps), and a typography attitude that uses size and italic weight — not color — to create hierarchy. Secondary hues (violet, orange, blue) appear as small decorative punctuation inside illustrated cards and image treatments, never on chrome or controls. Components feel lightweight and playful: tilted photo cards, pill-shaped search and filters, a flat red CTA, and a single high-contrast accent for emphasis. The system reads as approachable discovery, not utility — surfaces stay matte, elevation stays minimal, and personality comes from layout composition rather than decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pinterest design system\",\"item\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#style-reference\",\"name\":\"Pinterest design system reference\",\"headline\":\"Pinterest design system | Refero Styles\",\"description\":\"Explore Pinterest's light Media design system: Pin Red #e60023, Ink Plum #211922 colors, Pin Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pinterest\",\"url\":\"https://pinterest.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"caption\":\"Screenshot of Pinterest\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pinterest design system\",\"Pinterest website design\",\"Pinterest colors\",\"Pinterest typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pin Red\",\"Ink Plum\",\"Gallery White\",\"Fog Gray\",\"Pin Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pinterest design system\"},{\"@type\":\"Thing\",\"name\":\"Pinterest website design\"},{\"@type\":\"Thing\",\"name\":\"Pinterest colors\"},{\"@type\":\"Thing\",\"name\":\"Pinterest typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-25T15:21:21.000Z\",\"dateModified\":\"2026-02-25T15:21:21.000Z\"}]}19:T4f7,## Quick Color Reference\n- text: #211922 (Ink Plum)\n- background: #ffffff (Gallery White)\n- border: #8c8c8c (Stone Gray) or #e5e5e0 (Linen)\n- accent: #9270d7 (Lavender Veil)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Top Nav**: White background, 64px tall, no shadow. Left: Pinterest logo (red P + black wordmark). Center: pill search field, #e5e5e0 fill, 16px radius, 48px height, 16px Pin Sans placeholder \"Search for easy dinners, fashion, etc.\" in #8c8c8c. Right: \"Log in\" filled red button (#e60023 / #ffffff / 16px radius / 12px 20px) and \"Sign up\" ghost button (transparent / 1px #211922 border / 16px radius).\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. **Tilted Image Card Stack**: Three 280px photo cards with 32px radius, rotated -12°, +6°, -3°, overlapping with 24px offset. Top card wears a 48px circular #9270d7 badge with a white sparkle icon centered.\n4. **Feature Panel**: 40px radius, #e5e5e0 fill, 32-48px internal padding. Contains a white mock search field (16px radius, 1px #8c8c8c border) and a row of 6 skin-tone swatches (36px, 8px radius, light peach to deep brown). Active swatch gets a 2px #211922 ring at 4px offset."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids shadows entirely. Depth is communicated through oversized border-radius (16-40px), rotated overlapping cards, and tonal surface bands (white → Linen → Halo Yellow). This flat, paper-like treatment keeps the focus on the photographed content and reinforces the scrapbook metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#211922",
+          "oklch": {
+            "c": 0.020869285417382734,
+            "h": 322.60223965993754,
+            "l": 0.22703697140113624
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 2186,
+          "confidence": 1,
+          "prominence": 70517175.24518523,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 303,
+          "confidence": 1,
+          "prominence": 7992241.760526834,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 6959184.54790544,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon",
+            "heading",
+            "input",
+            "body"
+          ],
+          "frequency": 346,
+          "confidence": 1,
+          "prominence": 6238579.408022941,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6409177981481167
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1370236.5776091553,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fffd92",
+          "oklch": {
+            "c": 0.12952662730603084,
+            "h": 107.64106570405852,
+            "l": 0.9732839340642209
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 969000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5e5e0",
+          "oklch": {
+            "c": 0.006695789239389897,
+            "h": 106.53041195656515,
+            "l": 0.9205057665536309
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 95123.1094432809,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#494943",
+          "oklch": {
+            "c": 0.009818969823710381,
+            "h": 106.83177362758975,
+            "l": 0.40339790235868983
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 49259,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fa5f2e",
+          "oklch": {
+            "c": 0.19921565657440124,
+            "h": 37.19746096080286,
+            "l": 0.6812956817576146
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 41473.05426355699,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9270d7",
+          "oklch": {
+            "c": 0.15272607676381184,
+            "h": 296.97921969347357,
+            "l": 0.6236600026352894
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 41473.05426355699,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e60023",
+          "oklch": {
+            "c": 0.23643125501096407,
+            "h": 25.535852146840764,
+            "l": 0.58243262403468
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 40984.00464970371,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b48d4",
+          "oklch": {
+            "c": 0.2158653346247633,
+            "h": 267.61434491011005,
+            "l": 0.47843710006014617
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 24544.667334231624,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9c0343",
+          "oklch": {
+            "c": 0.1769308095490603,
+            "h": 6.98527598508249,
+            "l": 0.445520295512937
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.050098943160964596,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.72,
+          "background": "#fffd92",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.12,
+          "background": "#ffffff",
+          "foreground": "#211922"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.62,
+          "background": "#e5e5e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.07,
+          "background": "#fffd92",
+          "foreground": "#211922"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.54,
+          "background": "#e5e5e0",
+          "foreground": "#211922"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#494943",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.51,
+          "background": "#fffd92",
+          "foreground": "#494943"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.37,
+          "background": "#9c0343",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#fffd92",
+          "foreground": "#9c0343"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#e5e5e0",
+          "foreground": "#494943"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.05,
+          "background": "#ffffff",
+          "foreground": "#2b48d4"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.74,
+          "background": "#fa5f2e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#e5e5e0",
+          "foreground": "#9c0343"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.62,
+          "background": "#fffd92",
+          "foreground": "#2b48d4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#666666",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#e5e5e0",
+          "foreground": "#2b48d4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.52,
+          "background": "#9270d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#fa5f2e",
+          "foreground": "#211922"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.39,
+          "background": "#fffd92",
+          "foreground": "#666666"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 73
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 39,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 92,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginTop",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 138,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 90,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 97,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 150,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Pin Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700,
+            900
+          ],
+          "frequency": 626,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 552,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Pin Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Pin Sans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Pin Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Pin Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pin Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pin Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "link",
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Pin Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Pin Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Pin Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Pin Sans",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Pin Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Pin Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8546852a-ce79-4dba-a2a4-e58b81aa0d31.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pinterest design system\",\"item\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#style-reference\",\"name\":\"Pinterest design system reference\",\"headline\":\"Pinterest design system | Refero Styles\",\"description\":\"Explore Pinterest's light Media design system: Pin Red #e60023, Ink Plum #211922 colors, Pin Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pinterest\",\"url\":\"https://pinterest.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8ff3bfb4-6f5e-4e07-83be-56e62ce80d2f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"caption\":\"Screenshot of Pinterest\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c7b35dda-f597-47e7-b7b9-c7ba56d50b75.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pinterest design system\",\"Pinterest website design\",\"Pinterest colors\",\"Pinterest typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pin Red\",\"Ink Plum\",\"Gallery White\",\"Fog Gray\",\"Pin Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pinterest design system\"},{\"@type\":\"Thing\",\"name\":\"Pinterest website design\"},{\"@type\":\"Thing\",\"name\":\"Pinterest colors\"},{\"@type\":\"Thing\",\"name\":\"Pinterest typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-25T15:21:21.000Z\",\"dateModified\":\"2026-02-25T15:21:21.000Z\"}]}19:T4f7,## Quick Color Reference\n- text: #211922 (Ink Plum)\n- background: #ffffff (Gallery White)\n- border: #8c8c8c (Stone Gray) or #e5e5e0 (Linen)\n- accent: #9270d7 (Lavender Veil)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Top Nav**: White background, 64px tall, no shadow. Left: Pinterest logo (red P + black wordmark). Center: pill search field, #e5e5e0 fill, 16px radius, 48px height, 16px Pin Sans placeholder \"Search for easy dinners, fashion, etc.\" in #8c8c8c. Right: \"Log in\" filled red button (#e60023 / #ffffff / 16px radius / 12px 20px) and \"Sign up\" ghost button (transparent / 1px #211922 border / 16px radius).\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. **Tilted Image Card Stack**: Three 280px photo cards with 32px radius, rotated -12°, +6°, -3°, overlapping with 24px offset. Top card wears a 48px circular #9270d7 badge with a white sparkle icon centered.\n4. **Feature Panel**: 40px radius, #e5e5e0 fill, 32-48px internal padding. Contains a white mock search field (16px radius, 1px #8c8c8c border) and a row of 6 skin-tone swatches (36px, 8px radius, light peach to deep brown). Active swatch gets a 2px #211922 ring at 4px offset."
+}

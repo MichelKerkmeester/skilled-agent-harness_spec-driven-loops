@@ -1,0 +1,125 @@
+{
+  "color": {
+    "paper-cream": {
+      "$value": "#f6f5f0",
+      "$type": "color",
+      "$description": "Paper Cream — Page background — warm off-white canvas, the surface everything floats on"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Alternate surface for image plates and card containers layered on the cream canvas"
+    },
+    "ink-charcoal": {
+      "$value": "#292a2c",
+      "$type": "color",
+      "$description": "Ink Charcoal — Primary text, heading fills, and structural borders — near-black with a faint warm cast that sits softer on cream than pure black"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Navigation text, link colors, and heading strokes — reserved for the most weighty typographic moments"
+    }
+  },
+  "font": {
+    "editorial-serif-display-likely-bodonididone-family-or-custom": {
+      "$value": "Editorial Serif (display — likely Bodoni/Didone family or custom)",
+      "$type": "fontFamily",
+      "$description": "Hero nameplate only — the massive 'Cori Corinne' cover line. High-contrast strokes (hairline serifs, thick verticals) create a fashion-magazine authority. Not used anywhere else on the site; this is a one-shot signature moment."
+    },
+    "neue-haas-grotesk-text": {
+      "$value": "Neue Haas Grotesk Text",
+      "$type": "fontFamily",
+      "$description": "Navigation and body text — the workhorse sans. Tight line-height (1.0) at large sizes for nav, generous (2.33) for body. Its restraint and neutrality are the point: the serif gets all the drama."
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary body and link text — slightly warmer geometry than Neue Haas, used as a fallback or accent voice for long-form reading sections."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-text",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-text",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    }
+  },
+  "spacing": {
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#f6f5f0",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — warm cream, the dominant surface"
+    },
+    "plate-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Image plate backgrounds and card containers that sit on the cream"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.coricorinne.com",
+      "siteName": "Cori Corinne",
+      "extractedAt": "2026-06-03T17:02:17.746Z",
+      "variant": "extended"
+    }
+  }
+}

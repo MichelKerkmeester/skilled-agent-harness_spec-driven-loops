@@ -1,0 +1,210 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Ink Black — All text, headlines, borders, link colors — the sole foreground color in the entire system. Near-black rather than pure black adds warmth that harmonizes with the cream canvas"
+    },
+    "bone-canvas": {
+      "$value": "#efedea",
+      "$type": "color",
+      "$description": "Bone Canvas — Page background, card surfaces, nav bar — the warm off-white ground that makes the near-black ink read with high contrast (15.1:1 AAA) without feeling harsh or clinical"
+    },
+    "stone-veil": {
+      "$value": "#e3e1de",
+      "$type": "color",
+      "$description": "Stone Veil — Subtle surface variation against Bone Canvas — used sparingly for secondary panels or section backgrounds to create depth without introducing color"
+    }
+  },
+  "font": {
+    "nhm": {
+      "$value": "nhm",
+      "$type": "fontFamily",
+      "$description": "Primary type system spanning body (16-21px) to extreme display (173-185px). Weight 400 carries both the whisper-quiet metadata and the 185px display headlines — the system trusts the scale to create hierarchy rather than reaching for bold weights. Letter-spacing tightens aggressively to -0.05em at display sizes to prevent the large counters from feeling airy."
+    },
+    "psl": {
+      "$value": "psl",
+      "$type": "fontFamily",
+      "$description": "Mid-scale display for subheadings and section titles. Sits between body text and the extreme display tier, carrying -0.015em tracking for controlled density at smaller display sizes."
+    },
+    "psr": {
+      "$value": "psr",
+      "$type": "fontFamily",
+      "$description": "Body text alternative at 21px with normal tracking — used for longer-form passages where the tighter nhm spacing would feel constrained."
+    },
+    "kumbh-sans": {
+      "$value": "Kumbh Sans",
+      "$type": "fontFamily",
+      "$description": "Alternate display family at extreme sizes, sharing the same -0.05em tracking and tight 0.78-0.80 line-height as nhm. Provides a geometric counterpoint to nhm's neo-grotesque character for typographic variation within display lockups."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "nhm",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "nhm",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "psr",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "nhm",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "psl",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "psl",
+        "fontSize": "69px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 69px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Kumbh Sans",
+        "fontSize": "173px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 173px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "nhm",
+        "fontSize": "173px",
+        "fontWeight": 700,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 173px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Kumbh Sans",
+        "fontSize": "185px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 185px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "nhm",
+        "fontSize": "185px",
+        "fontWeight": 700,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 185px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#efedea",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background and dominant surface"
+    },
+    "stone-veil": {
+      "$value": "#e3e1de",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface for subtle layering"
+    },
+    "ink-black": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for dark sections or contrast blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://adcker.com",
+      "siteName": "Adcker",
+      "extractedAt": "2026-06-03T19:41:03.010Z",
+      "variant": "extended"
+    }
+  }
+}

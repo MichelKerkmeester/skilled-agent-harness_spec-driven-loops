@@ -1,0 +1,725 @@
+{
+  "source": "https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70",
+  "uuid": "5acff005-1871-4237-bc25-cdddf50edc70",
+  "name": "Bibliothèque",
+  "northStar": "Black-cube gallery under spotlight — a single illuminated plate in a vast dark room.",
+  "capturedAt": "2026-07-18T09:20:24.910Z",
+  "meta": {
+    "url": "https://bibliothequedesign.com",
+    "siteName": "Bibliothèque",
+    "extractedAt": "2026-06-03T20:02:54.340Z",
+    "durationMs": 24916,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 742,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #ffffff and #000000 — no chromatic accent exists in the system",
+      "Set all text in Unica77 LL weight 400 — never introduce bold, light, or italic",
+      "Use 1px solid #ffffff borders for all structural separation — cards, inputs, list items, footers",
+      "Maintain the binary type scale: 12–18px for functional text, 80px for display, nothing in between",
+      "Center primary content on the canvas with 120px+ vertical breathing room above and below",
+      "Use 0px border-radius everywhere — sharp corners are part of the gallery language",
+      "Let the image be the hero — surround it with negative space rather than UI chrome"
+    ],
+    "donts": [
+      "Do not introduce any color beyond #ffffff and #000000",
+      "Do not use shadows, gradients, or glows — the canvas is flat and must stay flat",
+      "Do not add border-radius to cards, buttons, or images — corners stay sharp",
+      "Do not use font-weight above 400 or any typographic emphasis (bold, italic, uppercase tracking tricks)",
+      "Do not fill buttons or tags with color — the system has no filled components",
+      "Do not use intermediate type sizes (24, 32, 48, 64px) — jump directly from 18 to 80",
+      "Do not add hover color shifts, focus glows, or animated state changes — affordance comes from structure, not color"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Page canvas, card surfaces, footer — the universal background. Cards do not lift from the canvas; they are demarcated only by hairline white borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Body text, headings, nav marks, hairline borders, link underlines, list dividers — the sole foreground. Used as 1px structural lines rather than fills",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~900px centered on a full-bleed #000000 canvas. The hero is a single large image or a display heading at 80px, centered both axes, with 120px+ of vertical padding above and below. Content stacks vertically in a single column — no multi-column grids, no sidebars, no asymmetric compositions. Sections are separated by whitespace alone rather than dividers or alternating bands. Navigation is a minimal top bar with a single brand mark and no menu chrome. The rhythm is: void → content → void.",
+    "imagery": "Imagery is the content itself — large, centered, uncropped photographs function as the primary page unit, treated like plates hung in a gallery wall. Images sit with sharp edges (no border-radius), surrounded by vast black margin. No overlays, no text on top of images, no image grids or thumbnails. The visual ratio is overwhelmingly text-dominant negative space with one or two image moments per page.",
+    "similar": [
+      {
+        "why": "Same black-canvas minimalism with white hairline type and single-weight neo-grotesque — the interface recedes to let content lead",
+        "business": "Are.na"
+      },
+      {
+        "why": "Gallery-vitrine language: full-bleed black, one large centered image, white type, zero UI chrome",
+        "business": "David Zwirner online exhibitions"
+      },
+      {
+        "why": "Editorial restraint with monochrome palette and hairline structural rules framing content",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Black-on-white / white-on-black flip with a single display weight and no chromatic accent",
+        "business": "Document Journal"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "30px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "900px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 1,
+        "purpose": "Universal canvas — pages, cards, inputs, footer, nav all sit on this single level"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Black-cube gallery under spotlight — a single illuminated plate in a vast dark room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Mark",
+        "role": "Site identity anchor",
+        "description": "White 'B.' monogram in the top-left corner, set in Unica77 LL 400 at ~14px, color #ffffff on #000000. The only persistent UI element. No wordmark, no tagline."
+      },
+      {
+        "name": "Image Card",
+        "role": "Primary content unit — a single photograph in a vitrine",
+        "description": "Photographic content centered on the #000000 canvas with generous margin (~120px+ vertical). No card chrome, no border, no shadow. The image's edges are the only boundary."
+      },
+      {
+        "name": "Hairline-Bordered Card",
+        "role": "Secondary content container for text or metadata",
+        "description": "Transparent interior on #000000 canvas, 1px solid #ffffff border, 0px border-radius, 20px padding. Functions as a drawn frame, not a lifted surface."
+      },
+      {
+        "name": "List Item",
+        "role": "Sequenced content rows (catalog, index, archive)",
+        "description": "1px solid #ffffff bottom border, 0px border-radius, 4–5px vertical padding, 18px padding-left. Text in Unica77 LL 400 at 14–18px #ffffff. The border is the structure."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation or reference",
+        "description": "Unica77 LL 400 14–18px #ffffff with 1px solid #ffffff border-bottom acting as an underline. No color change, no bold, no fill — the underline is the affordance."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Minimal site-level navigation",
+        "description": "Top-edge strip on #000000, 15–20px horizontal padding, white text at 14px. No background fill, no border, no sticky treatment visible. The brand mark sits alone to the left."
+      },
+      {
+        "name": "Input Field",
+        "role": "Search or form entry",
+        "description": "Transparent background on #000000, 1px solid #ffffff border, 0px radius, Unica77 LL 400 14px #ffffff text. No focus ring color shift — focus may intensify the border to 2px or remain static."
+      },
+      {
+        "name": "Footer",
+        "role": "Closing structural element",
+        "description": "Full-width #000000 band, white hairline 1px top border, Unica77 LL 400 12–14px #ffffff text. Matches the list-item and link language — border defines the edge."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Section or page title",
+        "description": "Unica77 LL 400 80px #ffffff, line-height 1.0, letter-spacing normal. Sits alone in the void with ~30px+ margin. No decoration, no underline, no accent."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The entire interface speaks in a single weight of one custom neo-grotesque. Weight 400 only — no bold, no light, no italic. The signature is the binary scale: 12–18px functional metadata against an isolated 80px display, with nothing in between. This extreme jump is the hierarchy.",
+        "sizes": "12px, 14px, 18px, 80px",
+        "family": "Unica77 LL",
+        "weight": "400",
+        "lineHeight": "1.00 (display), 1.20 (body), 1.22 (body), 1.33 (body)",
+        "substitute": "Inter (400) or Neue Haas Grotesk Display (40/45)",
+        "letterSpacing": "normal across all sizes"
+      }
+    ],
+    "description": "Bibliothèque operates as a black-cube gallery aesthetic: the entire interface is a dark void (#000000) where only white hairline type and centered photographic plates exist. The only brand mark is a small white serif 'B.' tucked in the top-left corner. Components feel like museum vitrines — thin white rules, generous negative space, no fills, no shadows, no gradients, and no chromatic accent of any kind. Typography is a single weight (400) of a custom neo-grotesque at an extreme binary scale: 12–18px functional text against an isolated 80px display. The visual system is fundamentally about restraint and curation — every UI element should feel like it could be removed and the page would not lose meaning.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bibliothèque design system\",\"item\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#style-reference\",\"name\":\"Bibliothèque design system reference\",\"headline\":\"Bibliothèque design system | Refero Styles\",\"description\":\"Explore Bibliothèque's dark Design design system: Ink Black #000000, Gallery White #ffffff colors, Unica77 LL typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bibliothèque\",\"url\":\"https://bibliothequedesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"caption\":\"Screenshot of Bibliothèque\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bibliothèque design system\",\"Bibliothèque website design\",\"Bibliothèque colors\",\"Bibliothèque typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Gallery White\",\"Unica77 LL\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bibliothèque design system\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque website design\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque colors\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:16:10.336Z\",\"dateModified\":\"2026-04-30T02:16:10.336Z\"}]}19:T481,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: 1px solid #ffffff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a centered image hero: #000000 canvas, a single photograph at max-width 900px, sharp 0px corners, 120px top and bottom padding. Below the image, a white 1px hairline divider, then 30px gap, then Unica77 LL 400 80px #ffffff display heading with line-height 1.0.\n\n2. Create a list/index page: #000000 canvas, max-width 900px centered. Each list item is Unica77 LL 400 18px #ffffff text with 5px padding-bottom and 4px padding-top, separated by 1px solid #ffffff bottom border. 30px gap between items.\n\n3. Create a text link: Unica77 LL 400 14px #ffffff with 1px solid #ffffff border-bottom. No fill, no color change on hover, no bold.\n\n4. Create an input field: transparent background on #000000, 1px solid #ffffff border, 0px radius, 20px horizontal padding, Unica77 LL 400 14px #ffffff placeholder and text. No visible focus ring color shift.\n\n5. Create a footer: full-width #000000, 1px solid #ffffff top border, 20px vertical padding, Unica77 LL 400 12px #ffffff text centered."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately absent. Surfaces do not lift — they are defined by 1px white hairlines or by negative space alone. The design operates on a single plane: #000000. This is the flatest possible interface and the flatness IS the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "nav",
+            "list",
+            "footer"
+          ],
+          "frequency": 2966,
+          "confidence": 1,
+          "prominence": 15687774.719181621,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "body/color": 53,
+            "link/color": 53,
+            "list/color": 147,
+            "other/color": 268,
+            "footer/color": 1,
+            "heading/color": 62,
+            "nav/borderColor": 36,
+            "body/borderColor": 212,
+            "link/borderColor": 212,
+            "list/borderColor": 588,
+            "other/borderColor": 1072,
+            "footer/borderColor": 4,
+            "heading/borderColor": 248,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "input",
+            "list",
+            "card",
+            "body"
+          ],
+          "frequency": 749,
+          "confidence": 1,
+          "prominence": 12989397.657992626,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 2,
+            "card/color": 54,
+            "link/color": 56,
+            "list/color": 1,
+            "input/color": 1,
+            "other/color": 17,
+            "heading/color": 1,
+            "nav/borderColor": 68,
+            "body/borderColor": 8,
+            "card/borderColor": 216,
+            "link/borderColor": 224,
+            "list/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 68,
+            "heading/borderColor": 4,
+            "list/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "list",
+            "heading"
+          ],
+          "frequency": 220,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginRight|list",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "nav",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 105,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 162,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Unica77 LL",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 739,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "nav",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 647,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Unica77 LL",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/812e191d-3bed-46dc-89a2-3577bee37a6b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bibliothèque design system\",\"item\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#style-reference\",\"name\":\"Bibliothèque design system reference\",\"headline\":\"Bibliothèque design system | Refero Styles\",\"description\":\"Explore Bibliothèque's dark Design design system: Ink Black #000000, Gallery White #ffffff colors, Unica77 LL typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bibliothèque\",\"url\":\"https://bibliothequedesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5acff005-1871-4237-bc25-cdddf50edc70#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"caption\":\"Screenshot of Bibliothèque\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6dd318b5-7eb1-427d-bbe4-389d0dddff86.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bibliothèque design system\",\"Bibliothèque website design\",\"Bibliothèque colors\",\"Bibliothèque typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Gallery White\",\"Unica77 LL\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bibliothèque design system\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque website design\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque colors\"},{\"@type\":\"Thing\",\"name\":\"Bibliothèque typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:16:10.336Z\",\"dateModified\":\"2026-04-30T02:16:10.336Z\"}]}19:T481,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: 1px solid #ffffff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a centered image hero: #000000 canvas, a single photograph at max-width 900px, sharp 0px corners, 120px top and bottom padding. Below the image, a white 1px hairline divider, then 30px gap, then Unica77 LL 400 80px #ffffff display heading with line-height 1.0.\n\n2. Create a list/index page: #000000 canvas, max-width 900px centered. Each list item is Unica77 LL 400 18px #ffffff text with 5px padding-bottom and 4px padding-top, separated by 1px solid #ffffff bottom border. 30px gap between items.\n\n3. Create a text link: Unica77 LL 400 14px #ffffff with 1px solid #ffffff border-bottom. No fill, no color change on hover, no bold.\n\n4. Create an input field: transparent background on #000000, 1px solid #ffffff border, 0px radius, 20px horizontal padding, Unica77 LL 400 14px #ffffff placeholder and text. No visible focus ring color shift.\n\n5. Create a footer: full-width #000000, 1px solid #ffffff top border, 20px vertical padding, Unica77 LL 400 12px #ffffff text centered."
+}

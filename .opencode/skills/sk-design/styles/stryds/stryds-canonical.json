@@ -1,0 +1,1035 @@
+{
+  "source": "https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2",
+  "uuid": "6b4e6620-5c06-4dc1-931b-82265116f6f2",
+  "name": "Stryds",
+  "northStar": "Aurora ringed midnight void",
+  "capturedAt": "2026-07-18T07:47:51.184Z",
+  "meta": {
+    "url": "https://stryds.com",
+    "siteName": "Stryds",
+    "extractedAt": "2026-06-03T19:25:55.782Z",
+    "durationMs": 34059,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 405,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the spectrum ring as the primary visual frame for hero sections and large display statements — it is the brand's signature gesture",
+      "Set display type between 78-184px in SF Pro Display weight 500-600; this is a poster-scale brand, not a SaaS dashboard",
+      "Use #a6ff00 Electric Lime exclusively for CTA fills, active states, and accent dots — it is the only chromatic color and must stay rare",
+      "Set all buttons to 100px border-radius (pill shape) and all cards to 40px border-radius — the system has no sharp corners or small radii",
+      "Keep the canvas at #101010 Obsidian and cards at #171717 Carbon; use 1px #333333 borders, not shadows, to separate surfaces",
+      "Pair display headlines with #fdfdfd active words and #6f6f6f Fog muted words to create emphasis without introducing color",
+      "Maintain 80px section gaps and 80px card padding — the design breathes heavily; dense layouts break the editorial feel"
+    ],
+    "donts": [
+      "Do not use box-shadows for elevation — Stryds is flat against the void, separated by borders not depth",
+      "Do not introduce additional accent colors beyond Electric Lime; the monochrome discipline is what makes the lime feel urgent",
+      "Do not set body text below 14px or use font-weight below 400; the brand speaks with confidence, not subtlety",
+      "Do not use sharp corners or radii under 16px; every element is either pill-shaped (100px) or softly rounded (40px)",
+      "Do not center content in narrow columns or constrain to a max-width under 1000px; let display type and the ring fill the viewport",
+      "Do not use color to establish text hierarchy — use size, weight, and the #fdfdfd/#6f6f6f contrast pair instead",
+      "Do not add gradients to UI components, buttons, or cards; gradients are reserved exclusively for the spectrum ring system"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#a6ff00",
+        "name": "Electric Lime",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#040126",
+        "name": "Deep Violet",
+        "role": "Outlined action borders, subtle decorative borders — a near-black indigo that adds tonal depth to dark borders without breaking the monochrome canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#101010",
+        "name": "Obsidian",
+        "role": "Page canvas, outermost background, shadow tokens — the base void that every surface floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Carbon",
+        "role": "Card surfaces, elevated content panels — the only step above Obsidian in the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Slate",
+        "role": "Hairline borders, card borders, subtle dividers — the structural border color, used more than any other in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Steel",
+        "role": "Strokes, secondary card borders — a half-step lighter than Slate for layering borders on borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6f6f6f",
+        "name": "Fog",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfdfd",
+        "name": "Paper",
+        "role": "Primary text, heading borders, illustration highlights — the only text color that reads as active",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "SVG fills, spectrum ring backing — pure black for graphic elements where absolute darkness is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width constraint. The hero pattern is a viewport-filling spectrum ring with centered display wordmark inside, subtitle below, and a floating pill CTA at the bottom. The page reads as a vertical scroll of editorial statements, each section either ring-framed or full-bleed dark. Content is centered, not left-aligned. Vertical rhythm is generous: 80-108px gaps between sections, 80px internal card padding. Navigation is minimal — likely a top-center logo or a floating pill. The layout is not a grid system; it's a sequence of poster-like moments, each breathing heavily before the next.",
+    "imagery": "Stryds has almost no imagery in the traditional sense — no photography, no illustration, no product screenshots. The visual language is built entirely from the spectrum ring gradient (a segmented circular color wheel with gaps in green, teal, blue, purple, pink, and orange), massive typography, and a single small circular user avatar that peeks from the top of the ring. The ring itself functions as imagery: a decorative atmosphere element that frames content like a health aura. The only photographic content is the avatar — a candid portrait crop, not staged or lifestyle. The overall density is text-dominant and graphic-dominant; the spectrum ring and the 184px display type together occupy nearly all visual space.",
+    "similar": [
+      {
+        "why": "Same dark-canvas, single-neon-accent health-tech language — Whoop's red accent against near-black mirrors Stryds' Electric Lime against Obsidian",
+        "business": "Whoop"
+      },
+      {
+        "why": "Identical editorial-poster approach: dark background, minimal UI, single chromatic accent, large confident display type that treats the page as a broadcast rather than a product",
+        "business": "Calm"
+      },
+      {
+        "why": "Both use bold display typography and dark mode to convey athletic intensity; the monospace-meets-poster scale type treatment is comparable",
+        "business": "Strava"
+      },
+      {
+        "why": "Shares the SF Pro Display at massive sizes, the near-black canvas, and the circular gradient/spectrum visual motifs that frame content like a viewport",
+        "business": "Apple Vision Pro"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "40px",
+        "buttons": "100px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "80px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian",
+        "level": 1,
+        "purpose": "Page canvas — the base void that all content floats on"
+      },
+      {
+        "hex": "#171717",
+        "name": "Carbon",
+        "level": 2,
+        "purpose": "Card surfaces — the single elevation step above canvas, separated by hairline borders rather than shadow"
+      },
+      {
+        "hex": "#a6ff00",
+        "name": "Electric Lime",
+        "level": 3,
+        "purpose": "Accent surface — CTA fills, active states, the only chromatic surface in the system"
+      }
+    ],
+    "northStar": "Aurora ringed midnight void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.43
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.53
+      },
+      {
+        "role": "heading-lg",
+        "size": 78,
+        "lineHeight": 1,
+        "letterSpacing": -1.79
+      },
+      {
+        "role": "display",
+        "size": 109,
+        "lineHeight": 1,
+        "letterSpacing": -2.83
+      },
+      {
+        "role": "display-lg",
+        "size": 148,
+        "lineHeight": 1,
+        "letterSpacing": -4
+      },
+      {
+        "role": "display-xl",
+        "size": 184,
+        "lineHeight": 0.95,
+        "letterSpacing": -6.26
+      }
+    ],
+    "components": [
+      {
+        "name": "Spectrum Ring Frame",
+        "role": "Signature visual frame — the defining element of the brand",
+        "description": "A massive circular gradient ring that frames hero content. Built as a conic or radial gradient with color stops transitioning through green, teal, blue, purple, pink, and orange, with intentional gaps/breaks in the gradient creating a segmented, almost dashed appearance. The ring fills the viewport in hero contexts. The gradient is the only multicolor element in the entire system — every other component is monochrome. Stroke width is thick (appears ~20-30px), and the ring is set on a pure black (#000000) fill."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand name display in hero contexts",
+        "description": "\"Stryds\" set at 148-184px in SF Pro Display weight 600, color #fdfdfd, letter-spacing -4 to -6.26px, line-height 0.95-1.0. Centered in the void inside the spectrum ring. The tight tracking and near-1.0 line-height make individual letters feel architectural and monumental rather than decorative."
+      },
+      {
+        "name": "Manifesto Statement",
+        "role": "Large editorial statement block",
+        "description": "Full-sentence copy like \"Social apps are toxic\" set at 109px in SF Pro Display weight 500, centered. The key word is in #fdfdfd (active), surrounding words in #6f6f6f (Fog, muted) — creating emphasis without color. Letter-spacing -2.83px, line-height 1.0. This is the brand's editorial voice made visual."
+      },
+      {
+        "name": "Primary CTA Button (Filled)",
+        "role": "Main action button",
+        "description": "100px border-radius (full pill), background #a6ff00 Electric Lime, text #101010 Obsidian at 14px Arial weight 500, padding 20px horizontal / 13px vertical. Often paired with a small icon (heart, sparkle) to the left of the label. No border, no shadow — the color contrast against the dark canvas provides all the visual weight needed."
+      },
+      {
+        "name": "Secondary Outlined Button",
+        "role": "Secondary action or navigation",
+        "description": "100px border-radius (full pill), transparent background, 1px border in #040126 Deep Violet, text in #040126 at 14px Arial weight 500, padding 20px horizontal / 13px vertical. The near-black border is visible only because it sits on the near-black canvas — it whispers rather than shouts, appropriate for less important actions."
+      },
+      {
+        "name": "Floating Join Bar",
+        "role": "Persistent bottom CTA",
+        "description": "A pill-shaped composite control floating at the bottom of hero sections. Contains a small brand icon + \"Stryds\" label in #fdfdfd, followed by a nested \"Join\" button in #a6ff00. The bar itself has no background — it floats on the canvas as a pure type + button composition. 100px border-radius on the inner CTA, no border on the outer label group."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Content block for features, stats, or sections",
+        "description": "Background #171717 Carbon, 40px border-radius, 80px padding on all sides, 1px border in #333333 Slate. Content inside is left-aligned or centered, with heading at 44px SF Pro Display weight 600 in #fdfdfd and body text at 16px in #6f6f6f. The generous 80px padding is the signature — cards breathe heavily rather than packing information densely."
+      },
+      {
+        "name": "User Avatar Badge",
+        "role": "Profile indicator floating from the spectrum ring",
+        "description": "Small circular photo avatar (~60-80px diameter) positioned at the top of the spectrum ring, partially overlapping or peeking through the ring's edge. Full circle crop, no border, no shadow. The avatar's organic photographic content is the only real-world imagery in the system."
+      },
+      {
+        "name": "Brand Subtitle",
+        "role": "Tagline or descriptor below display wordmark",
+        "description": "\"The Social Health App\" or similar descriptive text set at 21px SF Pro Display weight 500, color #6f6f6f Fog, letter-spacing -0.15px, line-height 1.25. Centered below the display wordmark, providing context at a comfortable reading size while staying quiet enough to let the display type dominate."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px line in #333333 Slate or #3d3d3d Steel, full-width or constrained to content width. No padding, no label — pure visual separation between content blocks."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading typography — the choice of SF Pro Display signals a premium, iOS-adjacent system voice. Weights 500-600 (never 700+) keep headings from feeling heavy; the brand's authority comes from size, not weight. Display sizes escalate to 184px, creating poster-scale type that dominates every section. Line-height tightens to 0.95 at the largest sizes, making individual letters feel monumental and architectural.",
+        "sizes": "16, 21, 36, 44, 78, 109, 148, 184",
+        "family": "SF Pro Display",
+        "weight": "500, 600",
+        "lineHeight": "0.95, 1.00, 1.10, 1.20, 1.25",
+        "substitute": "Inter, system-ui, -apple-system",
+        "letterSpacing": "-0.007em, -0.01em, -0.012em, -0.023em, -0.026em, -0.027em, -0.034em"
+      },
+      {
+        "role": "Body, links, card text, button labels — deliberately a system fallback so it stays invisible. While SF Pro Display headlines shout at 184px, Arial whispers at 14px in the background. This split (premium display + neutral body) is a deliberate hierarchy choice: the display type does all the emotional work, the body text just delivers information.",
+        "sizes": "14",
+        "family": "Arial",
+        "weight": "400, 500",
+        "lineHeight": "1.43",
+        "substitute": "system-ui, -apple-system, Helvetica Neue, sans-serif",
+        "letterSpacing": "-0.034em"
+      }
+    ],
+    "description": "Stryds is a poster-scale health manifesto: a near-black void ringed by a segmented spectrum gradient, with display typography that pushes past 100px to feel like a billboard, not a dashboard. The entire palette is monochrome — one canvas tone, one text tone, one border tone — broken only by Electric Lime, the single chromatic voice that makes CTAs and active states feel switched on. A massive circular gradient frame is the signature visual gesture, reappearing around hero text and content blocks like a health aura. Components are minimal and pill-shaped; the design has almost no elevation, no photography, and no illustration beyond the spectrum ring itself and a floating avatar. The result is an editorial, late-night broadcast feel: bold, confrontational, and deeply opinionated about digital wellness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stryds design system\",\"item\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#style-reference\",\"name\":\"Stryds design system reference\",\"headline\":\"Stryds design system | Refero Styles\",\"description\":\"Explore Stryds's dark Other design system: Electric Lime #a6ff00, Deep Violet #040126 colors, SF Pro Display, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stryds\",\"url\":\"https://stryds.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"caption\":\"Screenshot of Stryds\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stryds design system\",\"Stryds website design\",\"Stryds colors\",\"Stryds typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Lime\",\"Deep Violet\",\"Obsidian\",\"Carbon\",\"SF Pro Display\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stryds design system\"},{\"@type\":\"Thing\",\"name\":\"Stryds website design\"},{\"@type\":\"Thing\",\"name\":\"Stryds colors\"},{\"@type\":\"Thing\",\"name\":\"Stryds typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:21:27.601Z\",\"dateModified\":\"2026-04-30T01:21:27.601Z\"}]}19:T635,## Quick Color Reference\n- background: #101010\n- surface: #171717\n- border: #333333\n- text: #fdfdfd\n- muted text: #6f6f6f\n- primary action: #a6ff00 (filled action)\n\n## Example Component Prompts\n\n**1. Hero with Spectrum Ring**\nCreate a full-bleed hero section: #101010 canvas. A large circular gradient ring (conic-gradient through #a6ff00, teal, blue, purple, pink, orange, with intentional gaps) fills 80% of the viewport. Centered inside the ring: \"Stryds\" at 184px SF Pro Display weight 600, #fdfdfd, letter-spacing -6.26px, line-height 0.95. Below: \"The Social Health App\" at 21px SF Pro Display weight 500, #6f6f6f. At the bottom of the ring, a floating pill: 100px radius, #a6ff00 background, \"Join\" label at 14px Arial weight 500 in #101010, 20px horizontal padding.\n\n**2. Manifesto Statement**\nCreate a statement section: #101010 background, vertically centered. Text \"Social apps are toxic.\" at 109px SF Pro Display weight 500, centered. The word \"toxic\" in #fdfdfd, \"Social apps are\" in #6f6f6f. Letter-spacing -2.83px, line-height 1.0. 80px vertical padding above and below.\n\n**3. Feature Card**\nCreate a feature card: #171717 background, 40px border-radius, 80px padding, 1px #333333 border. Heading at 44px SF Pro Display weight 600, #fdfdfd. Body text at 16px Arial weight 400, #6f6f6f, line-height 1.25. No shadow, no gradient.\n\n**4. Secondary Outlined Button**\nCreate an outlined button: transparent background, 1px #040126 border, 100px border-radius, 20px horizontal padding / 13px vertical padding. Label at 14px Arial weight 500 in #040126. No shadow, no fill on hover."
+      },
+      {
+        "title": "Spectrum Ring System",
+        "content": "The spectrum ring is a conic gradient with color stops transitioning through the visible spectrum: Electric Lime (#a6ff00) → teal → blue → purple → pink → orange → back to lime. The gradient has intentional gaps (the ring appears broken/segmented, not continuous), creating a sense of motion and incompleteness. Stroke width is thick (~20-30px) relative to the ring diameter. The ring sits on a pure black (#000000) fill, so the gaps in the gradient reveal the black canvas behind it. At hero scale, the ring fills 70-90% of the viewport width. At section scale, it shrinks to frame individual content blocks. The ring is the only element allowed to be multicolor; every other component is strictly monochrome."
+      }
+    ],
+    "elevationPhilosophy": "Stryds deliberately avoids elevation. Components sit flat against the dark canvas, separated from it by hairline Slate (#333333) borders rather than box-shadows. The single shadow token detected (#101010) is negligible — a whisper of depth, not a lift. Visual hierarchy is built through size, weight, and the spectrum ring, not through stacking surfaces or casting shadows. This is an editorial design language pretending to be a product interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card"
+          ],
+          "frequency": 310,
+          "confidence": 1,
+          "prominence": 98235818.74240561,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "card/color": 19,
+            "link/color": 1,
+            "image/color": 1,
+            "other/color": 44,
+            "other/stroke": 1,
+            "card/borderColor": 64,
+            "link/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 172
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 227,
+          "confidence": 1,
+          "prominence": 7468738.957406223,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 227
+          }
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 5339187.657081629,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 13,
+            "card/borderColor": 12,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#6f6f6f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5417056664787456
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 2445888.2579748756,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 9,
+            "other/borderColor": 16,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2176200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fdfdfd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9940481626903693
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 148,
+          "confidence": 1,
+          "prominence": 985077.2021226233,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 68,
+            "other/color": 6,
+            "heading/color": 10,
+            "other/borderColor": 24,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 664985,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 1,
+            "other/boxShadow": 1,
+            "other/borderColor": 16,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#040126",
+          "oklch": {
+            "c": 0.07755502796231503,
+            "h": 275.12592408519833,
+            "l": 0.13233819000425837
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 24383.063111094267,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "button/color": 2,
+            "other/borderColor": 16,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 11375,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a6ff00",
+          "oklch": {
+            "c": 0.24644892424531903,
+            "h": 130.54183700204302,
+            "l": 0.9082308011298302
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 10984.325102209623,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.015013716434460889,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.65,
+          "background": "#fdfdfd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.9,
+          "background": "#fdfdfd",
+          "foreground": "#040126"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.71,
+          "background": "#101010",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.62,
+          "background": "#171717",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.93,
+          "background": "#a6ff00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.31,
+          "background": "#a6ff00",
+          "foreground": "#040126"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.2,
+          "background": "#1f1f1f",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.34,
+          "background": "#a6ff00",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#171717",
+          "foreground": "#a6ff00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#1f1f1f",
+          "foreground": "#a6ff00"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#fdfdfd",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#fdfdfd",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.18,
+          "background": "#a6ff00",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.75,
+          "background": "#a6ff00",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.05,
+          "background": "#a6ff00",
+          "foreground": "#6f6f6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.79,
+          "background": "#101010",
+          "foreground": "#6f6f6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#171717",
+          "foreground": "#6f6f6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#1f1f1f",
+          "foreground": "#6f6f6f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.51,
+          "background": "#101010",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#171717",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 71,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sf Pro Display",
+          "source": "system",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 36,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "card"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sf Pro Display",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Sf Pro Display",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Sf Pro Display",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Sf Pro Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "Sf Pro Display",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 109,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 109,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 148,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 148,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 148,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 184,
+          "family": "Sf Pro Display",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/15b4853a-c706-4f02-a4d8-66549ed9019a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stryds design system\",\"item\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#style-reference\",\"name\":\"Stryds design system reference\",\"headline\":\"Stryds design system | Refero Styles\",\"description\":\"Explore Stryds's dark Other design system: Electric Lime #a6ff00, Deep Violet #040126 colors, SF Pro Display, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stryds\",\"url\":\"https://stryds.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b4e6620-5c06-4dc1-931b-82265116f6f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"caption\":\"Screenshot of Stryds\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ae86d428-1b0b-4ad0-980b-84805a727773.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stryds design system\",\"Stryds website design\",\"Stryds colors\",\"Stryds typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Lime\",\"Deep Violet\",\"Obsidian\",\"Carbon\",\"SF Pro Display\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stryds design system\"},{\"@type\":\"Thing\",\"name\":\"Stryds website design\"},{\"@type\":\"Thing\",\"name\":\"Stryds colors\"},{\"@type\":\"Thing\",\"name\":\"Stryds typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:21:27.601Z\",\"dateModified\":\"2026-04-30T01:21:27.601Z\"}]}19:T635,## Quick Color Reference\n- background: #101010\n- surface: #171717\n- border: #333333\n- text: #fdfdfd\n- muted text: #6f6f6f\n- primary action: #a6ff00 (filled action)\n\n## Example Component Prompts\n\n**1. Hero with Spectrum Ring**\nCreate a full-bleed hero section: #101010 canvas. A large circular gradient ring (conic-gradient through #a6ff00, teal, blue, purple, pink, orange, with intentional gaps) fills 80% of the viewport. Centered inside the ring: \"Stryds\" at 184px SF Pro Display weight 600, #fdfdfd, letter-spacing -6.26px, line-height 0.95. Below: \"The Social Health App\" at 21px SF Pro Display weight 500, #6f6f6f. At the bottom of the ring, a floating pill: 100px radius, #a6ff00 background, \"Join\" label at 14px Arial weight 500 in #101010, 20px horizontal padding.\n\n**2. Manifesto Statement**\nCreate a statement section: #101010 background, vertically centered. Text \"Social apps are toxic.\" at 109px SF Pro Display weight 500, centered. The word \"toxic\" in #fdfdfd, \"Social apps are\" in #6f6f6f. Letter-spacing -2.83px, line-height 1.0. 80px vertical padding above and below.\n\n**3. Feature Card**\nCreate a feature card: #171717 background, 40px border-radius, 80px padding, 1px #333333 border. Heading at 44px SF Pro Display weight 600, #fdfdfd. Body text at 16px Arial weight 400, #6f6f6f, line-height 1.25. No shadow, no gradient.\n\n**4. Secondary Outlined Button**\nCreate an outlined button: transparent background, 1px #040126 border, 100px border-radius, 20px horizontal padding / 13px vertical padding. Label at 14px Arial weight 500 in #040126. No shadow, no fill on hover."
+}

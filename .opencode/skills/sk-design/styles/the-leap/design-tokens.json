@@ -1,0 +1,484 @@
+{
+  "color": {
+    "espresso-ink": {
+      "$value": "#482317",
+      "$type": "color",
+      "$description": "Espresso Ink — Primary text, headings, nav links, body copy, and outlined button borders — a warm dark brown that replaces pure black and gives the whole system a softer, editorial voice"
+    },
+    "fog-border": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog Border — Hairline borders, dividers, input outlines, and icon strokes across cards, nav, and body containers"
+    },
+    "cream-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background and card surfaces — the off-white that everything sits on, warmer than pure white"
+    },
+    "lime-spark": {
+      "$value": "#ecf956",
+      "$type": "color",
+      "$description": "Lime Spark — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "lilac-whisper": {
+      "$value": "#efd8f0",
+      "$type": "color",
+      "$description": "Lilac Whisper — Decorative pastel surface used inside product mockups and gradient washes — soft lavender that recedes behind content"
+    },
+    "mint-tint": {
+      "$value": "#c6e57d",
+      "$type": "color",
+      "$description": "Mint Tint — Decorative pastel surface — light green used in card backgrounds and gradient endpoints"
+    },
+    "lemon-cream": {
+      "$value": "#f3fb9a",
+      "$type": "color",
+      "$description": "Lemon Cream — Decorative pastel surface — pale lemon used in testimonial card washes and gradient stops"
+    },
+    "sky-hush": {
+      "$value": "#b1dcfc",
+      "$type": "color",
+      "$description": "Sky Hush — Decorative pastel surface — muted blue used as occasional card background accent"
+    }
+  },
+  "font": {
+    "favorit": {
+      "$value": "Favorit",
+      "$type": "fontFamily",
+      "$description": "Body text, links, nav items, card content — same family as ABC Favorit with slightly looser line-height (1.5) for reading comfort"
+    },
+    "tobias": {
+      "$value": "Tobias",
+      "$type": "fontFamily",
+      "$description": "Display serif for hero and section headlines — large sizes with tight tracking (-0.02em) create editorial gravitas. The light weight (300) is anti-convention for hero text; most sites use 600-700, this whisper-weight signals confidence and restraint"
+    },
+    "abc-favorit": {
+      "$value": "ABC Favorit",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — neo-grotesque with slight warmth, weight 350 for body and 400 for emphasis. Tight tracking (-0.02em) at larger sizes gives headings a compressed, modern feel"
+    },
+    "favorit-bold": {
+      "$value": "Favorit-Bold",
+      "$type": "fontFamily",
+      "$description": "Emphasis headings and subheads — bold weight with aggressive tracking (-0.037em) creates a tight, assertive counterpoint to the light serif displays"
+    },
+    "favorit-regular": {
+      "$value": "Favorit-Regular",
+      "$type": "fontFamily",
+      "$description": "Favorit-Regular — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "15px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Favorit-Bold",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Favorit-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 20px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 20px"
+    },
+    "xl-9": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-9 at 22px"
+    },
+    "xl-10": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-10 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Favorit-Bold",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "30px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "70px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 70px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Off-white page background"
+    },
+    "card-surface": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Testimonial cards, product cards, content blocks"
+    },
+    "decorative-wash": {
+      "$value": "#efd8f0",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel lavender section or card accent"
+    },
+    "accent-wash": {
+      "$value": "#f3fb9a",
+      "$type": "color",
+      "$description": "Surface level 2: Pastel lemon section or card accent"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.theleap.co",
+      "siteName": "The Leap",
+      "extractedAt": "2026-06-03T17:50:07.625Z",
+      "variant": "extended"
+    }
+  }
+}

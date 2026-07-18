@@ -1,0 +1,467 @@
+{
+  "source": "https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59",
+  "uuid": "d83fd0b1-afde-41ff-b970-c622bfed9f59",
+  "name": "MANNA",
+  "northStar": "Architecture monograph at golden hour — warm bone pages, rust accent panels, and oversized grotesk display type floating over full-bleed photography.",
+  "capturedAt": "2026-07-18T09:07:32.701Z",
+  "meta": {
+    "url": "https://www.mannaarchitects.com",
+    "siteName": "MANNA",
+    "extractedAt": "2026-06-03T20:42:05.874Z",
+    "durationMs": 36049,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 288,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 0px border-radius on every image, container, and surface — this is an editorial system, not a product UI",
+      "Frame every photograph with 1px solid #000000 hairline border",
+      "Set display type at 60px Scto Grotesk A weight 500, anchored to the viewport edge (left or right) as wayfinding markers",
+      "Use 14px Merlo for all image captions, separated by 10px from the image bottom",
+      "Apply #af6446 rust only as full-bleed section backgrounds — never as button fills, badges, or icon tints",
+      "Maintain comfortable density: 12-20px gaps between elements, 60px between major sections",
+      "Let photography be the content — avoid decorative overlays, gradients, or cards wrapping images"
+    ],
+    "donts": [
+      "Do not introduce rounded corners on any element — the 0px radius is non-negotiable for the editorial feel",
+      "Do not use #af6446 as a CTA or button background — it is a section panel color, not an action color",
+      "Do not add drop shadows, elevation, or z-depth — surfaces are flat planes",
+      "Do not mix more than two type sizes within a single section — the system runs on whisper (14px) and shout (60px)",
+      "Do not apply letter-spacing, text-transform, or font-feature decorations to display type — it speaks at default grotesk proportions",
+      "Do not fill icons or UI elements with the rust color — it belongs only on full-bleed backgrounds",
+      "Do not add navigation buttons, hamburger menus, or overlay UI — the page is the navigation"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2edde",
+        "name": "Bone",
+        "role": "Primary canvas, page background, footer surface — warm off-white that reads as paper, not screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#af6446",
+        "name": "Rust",
+        "role": "Full-bleed section panels, footer band — terracotta accent that anchors the page in earthy materiality",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "All text, image borders, hairline rules — pure black for maximum contrast against bone",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container. Sections flow vertically as alternating bone and rust bands. The hero pattern is a horizontal row of 2–3 full-height photographs side by side, each with a small caption beneath, followed by a large display word marker (60px grotesk) anchored to a viewport corner that labels the section. Navigation is minimal — likely a small text logo top-left. The layout reads as a vertical scroll through an architecture portfolio: image row → display word → image row → display word. No card grids, no pricing tables, no feature blocks — just photography and oversized type alternating with rust accent panels. Content density is spacious: each section breathes with 60px+ vertical gap.",
+    "imagery": "Photography is the entire content system. Full-bleed architectural photographs dominate every section — tight crops of materials, trees, grasses, interior details, and building exteriors. Treatment is naturalistic and high-fidelity: no filters, no duotone, no color grading that departs from documentary realism. Images are framed by 1px black hairline borders and arranged in horizontal contact-sheet rows (2–3 columns at full viewport height). No illustration, no icons, no abstract graphics — the architecture itself provides all visual interest. Photography occupies 70-80% of viewport space; text floats in the remaining space as caption, heading, or section marker.",
+    "similar": [
+      {
+        "why": "Same architecture-monograph approach — photography-dominant pages, minimal UI, warm earthy palette, and editorial display type",
+        "business": "Studio Mumbai"
+      },
+      {
+        "why": "Full-bleed architectural photography, hairline-framed images, warm neutral canvas, and oversized grotesk section markers",
+        "business": "Edition Office"
+      },
+      {
+        "why": "Editorial architecture portfolio with restrained palette, large-scale type as wayfinding, and photography as the primary interface",
+        "business": "Neri&Hu"
+      },
+      {
+        "why": "Monograph-style web presence with generous whitespace, flat surfaces, and text-as-architecture rather than UI elements",
+        "business": "David Chipperfield Architects"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "images": "0px",
+        "buttons": "0px",
+        "containers": "0px"
+      },
+      "elementGap": "12-20px",
+      "sectionGap": "60px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f2edde",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Default page background — warm paper-white ground for photography and text"
+      },
+      {
+        "hex": "#af6446",
+        "name": "Rust Panel",
+        "level": 1,
+        "purpose": "Full-bleed accent section — provides chromatic punctuation and room-transition rhythm"
+      }
+    ],
+    "northStar": "Architecture monograph at golden hour — warm bone pages, rust accent panels, and oversized grotesk display type floating over full-bleed photography.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.23
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.29
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Photograph",
+        "role": "Primary content unit — every project image fills its column edge-to-edge",
+        "description": "No border-radius. Surrounded by 1px solid #000000 hairline border. Caption sits below in 14px Merlo, separated by 10px margin-bottom. Images are uncropped, uncaptioned within the frame — the photograph IS the component."
+      },
+      {
+        "name": "Image Caption",
+        "role": "Annotation beneath each project photograph",
+        "description": "14px Merlo weight 400, #000000. Left-aligned to image edge. 10px margin-bottom from image. No italic, no bold — treated as quiet editorial footnote."
+      },
+      {
+        "name": "Display Word Marker",
+        "role": "Anchors the bottom of a section like a section title in a book chapter",
+        "description": "60px Scto Grotesk A weight 500, #000000, left-aligned at viewport edge. These are the largest type elements on the page (MANNA, ABOUT) and they function as wayfinding without navigation chrome."
+      },
+      {
+        "name": "Rust Section Panel",
+        "role": "Full-bleed colored band that divides the page like a room transition",
+        "description": "Background #af6446, no padding override, no border. Contains text and images at standard black-on-rust contrast (4.7:1, AA). Functions as accent — appears sparingly, never as CTA fill."
+      },
+      {
+        "name": "Bone Section Panel",
+        "role": "Default page surface",
+        "description": "Background #f2edde, no border, no radius. The neutral ground on which photography and type rest."
+      },
+      {
+        "name": "Horizontal Image Row",
+        "role": "3-column or 2-column image grid at section top",
+        "description": "Images arranged side-by-side at full height of the row, equal columns, 0px gap. Each image has its own 1px black border and its own caption. Reads as a contact sheet."
+      },
+      {
+        "name": "Footer Band",
+        "role": "Page footer with contact and credits",
+        "description": "Background #f2edde or #af6446, 20px padding on all sides. Merlo 16px text. No dividers, no links styled as buttons — plain text links in #000000."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading type. Weight 500 at ~60px for monumental section labels (MANNA, ABOUT) that anchor the bottom of the viewport; weight 300 for softer subheadings. The geometric grotesk proportions with high x-height give the display words architectural weight without becoming decorative.",
+        "sizes": "14px, 60px",
+        "family": "Scto Grotesk A",
+        "weight": "300, 500",
+        "lineHeight": "1.29",
+        "substitute": "Space Grotesk",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body text, image captions, running copy. The humanist warmth of Merlo softens the grotesk display type and reads as editorial annotation — the voice of the architect narrating over the work. 26px for intro paragraphs, 16px for captions and metadata.",
+        "sizes": "16px, 26px",
+        "family": "Merlo",
+        "weight": "400",
+        "lineHeight": "1.23–1.50",
+        "substitute": "Söhne or Inter"
+      }
+    ],
+    "description": "MANNA operates as an architecture monograph laid flat on the screen: expansive photography commands the canvas, typography arrives in two scales (whisper and shout), and the page alternates between warm bone and terracotta rust like rooms in a sunlit house. There is almost no UI chrome — no buttons, no cards, no rounded containers — instead images sit edge-to-edge framed by hairline black rules, and captions float in the gutter beneath. The palette is brutally disciplined: a single chromatic accent (rust orange) used only for full-bleed section panels, everything else is bone white, black ink, and photography. Type is editorial: a geometric grotesk at weight 300 or 500 for monumental display words, a humanist sans for image captions and quiet running text. The result feels less like a website and more like the opening spread of an architecture book.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MANNA design system\",\"item\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#style-reference\",\"name\":\"MANNA design system reference\",\"headline\":\"MANNA design system | Refero Styles\",\"description\":\"Explore MANNA's light Agency design system: Bone #f2edde, Rust #af6446 colors, Scto Grotesk A, Merlo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MANNA\",\"url\":\"https://www.mannaarchitects.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"caption\":\"Screenshot of MANNA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MANNA design system\",\"MANNA website design\",\"MANNA colors\",\"MANNA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Rust\",\"Ink\",\"Scto Grotesk A\",\"Merlo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MANNA design system\"},{\"@type\":\"Thing\",\"name\":\"MANNA website design\"},{\"@type\":\"Thing\",\"name\":\"MANNA colors\"},{\"@type\":\"Thing\",\"name\":\"MANNA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:21.827Z\",\"dateModified\":\"2026-04-30T02:57:21.827Z\"}]}19:T589,Quick Color Reference:\n- text: #000000\n- background: #f2edde (bone canvas)\n- border: #000000 (1px hairlines on images)\n- accent: #af6446 (rust section panels only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a 3-column image row: each image fills its column at full viewport height, 0px gap between columns. Every image has a 1px solid #000000 border. Below each image, a caption in 14px Merlo weight 400, #000000, separated by 10px margin-bottom.\n\n2. Create a full-bleed section marker: 60px Scto Grotesk A weight 500 in #000000, left-aligned to viewport left edge with 20px padding. No background, no border — type sits directly on the #f2edde bone canvas.\n\n3. Create a rust accent band: full-bleed background #af6446, 0px border-radius, 60px vertical padding. Content inside is 16px Merlo weight 400 in #000000. No buttons, no cards — text only.\n\n4. Create a project page layout: hero is a single full-bleed photograph with 1px #000000 border, no caption. Below at 60px gap, the project title in 60px Scto Grotesk A weight 500 #000000. Below at 20px gap, a 26px Merlo intro paragraph in #000000. Below at 60px gap, a 2-column image grid with 1px borders and 14px Merlo captions.\n\n5. Create a footer: background #f2edde, 20px padding all sides, 16px Merlo text in #000000. Contact details and credits as plain text links — no button styling, no rounded containers, no icons."
+      },
+      {
+        "title": "Two-Color Discipline",
+        "content": "The entire visual system operates on exactly two surface colors (bone #f2edde and rust #af6446) plus black ink. This is a constraint, not a limitation. Any new page or component must reuse these two surfaces — never introduce grays, off-whites, or additional chromatic tones. Rust is rationed: it appears only as full-bleed section panels, never as a fill on buttons, icons, borders, or text. If you need a visual division, shift the full section to rust rather than introducing a third color."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "The site has exactly two typographic voices: Scto Grotesk A at weight 500 for monumental display (project names, section markers at 60px) and Merlo at weight 400 for everything else (captions at 14px, body at 16px, intros at 26px). The contrast between a geometric grotesk display and a humanist body sans is the entire typographic system. Do not add a third typeface. Do not introduce italic, bold, or decorative weights beyond 300 and 500 in Scto Grotesk A."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat — no drop shadows, no blur, no z-depth. Spatial separation is achieved through full-bleed color shifts (bone → rust), hairline 1px black borders around images, and generous whitespace. The only 'elevation' is the literal photographic subject rising from the flat plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "body",
+            "footer",
+            "heading",
+            "link"
+          ],
+          "frequency": 1440,
+          "confidence": 1,
+          "prominence": 13598739.587746473,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 64,
+            "hero/color": 1,
+            "link/color": 5,
+            "image/color": 103,
+            "other/color": 112,
+            "footer/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 256,
+            "hero/borderColor": 4,
+            "link/borderColor": 20,
+            "image/borderColor": 412,
+            "other/borderColor": 448,
+            "footer/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#af6446",
+          "oklch": {
+            "c": 0.10634045026929548,
+            "h": 42.202314915531225,
+            "l": 0.5818207267393717
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2edde",
+          "oklch": {
+            "c": 0.020599921664743916,
+            "h": 91.58663254125287,
+            "l": 0.9459413579375135
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 109440,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00043692911202887166,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#f2edde",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#af6446",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 103,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 102,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 116,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "marginRight|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Merlo",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 221,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Scto Grotesk A",
+          "source": "custom",
+          "weights": [
+            300,
+            500
+          ],
+          "frequency": 67,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Scto Grotesk A",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Merlo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "footer"
+          ],
+          "frequency": 213,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Merlo",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Scto Grotesk A",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ff6f7773-c013-4a1d-a4f1-5b75b7dee239.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MANNA design system\",\"item\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#style-reference\",\"name\":\"MANNA design system reference\",\"headline\":\"MANNA design system | Refero Styles\",\"description\":\"Explore MANNA's light Agency design system: Bone #f2edde, Rust #af6446 colors, Scto Grotesk A, Merlo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MANNA\",\"url\":\"https://www.mannaarchitects.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d83fd0b1-afde-41ff-b970-c622bfed9f59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"caption\":\"Screenshot of MANNA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b344fcb1-ef6b-40fc-86b7-5f29e3529f61.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MANNA design system\",\"MANNA website design\",\"MANNA colors\",\"MANNA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Rust\",\"Ink\",\"Scto Grotesk A\",\"Merlo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MANNA design system\"},{\"@type\":\"Thing\",\"name\":\"MANNA website design\"},{\"@type\":\"Thing\",\"name\":\"MANNA colors\"},{\"@type\":\"Thing\",\"name\":\"MANNA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:21.827Z\",\"dateModified\":\"2026-04-30T02:57:21.827Z\"}]}19:T589,Quick Color Reference:\n- text: #000000\n- background: #f2edde (bone canvas)\n- border: #000000 (1px hairlines on images)\n- accent: #af6446 (rust section panels only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a 3-column image row: each image fills its column at full viewport height, 0px gap between columns. Every image has a 1px solid #000000 border. Below each image, a caption in 14px Merlo weight 400, #000000, separated by 10px margin-bottom.\n\n2. Create a full-bleed section marker: 60px Scto Grotesk A weight 500 in #000000, left-aligned to viewport left edge with 20px padding. No background, no border — type sits directly on the #f2edde bone canvas.\n\n3. Create a rust accent band: full-bleed background #af6446, 0px border-radius, 60px vertical padding. Content inside is 16px Merlo weight 400 in #000000. No buttons, no cards — text only.\n\n4. Create a project page layout: hero is a single full-bleed photograph with 1px #000000 border, no caption. Below at 60px gap, the project title in 60px Scto Grotesk A weight 500 #000000. Below at 20px gap, a 26px Merlo intro paragraph in #000000. Below at 60px gap, a 2-column image grid with 1px borders and 14px Merlo captions.\n\n5. Create a footer: background #f2edde, 20px padding all sides, 16px Merlo text in #000000. Contact details and credits as plain text links — no button styling, no rounded containers, no icons."
+}

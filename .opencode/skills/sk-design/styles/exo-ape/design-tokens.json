@@ -1,0 +1,265 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0d0e13",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dark UI frames, icon strokes — the deepest near-black with a barely-perceptible cool cast that keeps it from feeling warm or brown against the beige canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, nav background, image bleeds — the brightest surface level that lifts content off the warm canvas"
+    },
+    "canvas-beige": {
+      "$value": "#e4e0db",
+      "$type": "color",
+      "$description": "Canvas Beige — Page background, section bands — a warm light gray-beige that gives the whole site its sunlit, paper-like quality"
+    },
+    "steel-gray": {
+      "$value": "#6e6e71",
+      "$type": "color",
+      "$description": "Steel Gray — Secondary body text, muted borders — the only truly achromatic neutral in the system, used sparingly to signal de-emphasis"
+    },
+    "footer-ink": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Footer Ink — Footer background — a pure near-black that reads as the deepest possible dark without losing detail"
+    },
+    "sand-border": {
+      "$value": "#e0ccbb",
+      "$type": "color",
+      "$description": "Sand Border — Default hairline borders, icon outlines, structural dividers — the warm tan that replaces cold gray chrome throughout the interface"
+    },
+    "warm-linen": {
+      "$value": "#e6d7ca",
+      "$type": "color",
+      "$description": "Warm Linen — Outlined action borders, link underlines, interactive link states — the lighter, more luminous sand tone that signals interactivity without filling the shape"
+    }
+  },
+  "font": {
+    "lausanne-400": {
+      "$value": "Lausanne-400",
+      "$type": "fontFamily",
+      "$description": "Lausanne-400 — detected in extracted data but not described by AI"
+    },
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for everything from 14px body to 250px display. The 250px hero display with -0.046em tracking is the signature element — letters nearly collide, creating a monolithic word-as-architecture presence. The single weight 400 across the full scale (from 14px to 250px) means hierarchy comes from size and tracking alone, not from bold."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "System serif fallback used in tertiary body contexts. Acts as a quiet typographic counterpoint to the neo-grotesque — never set in display sizes, always at 16px with generous leading."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Lausanne-400",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.64
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "144px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 144px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "144px",
+        "fontWeight": 400,
+        "lineHeight": 0.76
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 144px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "250px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 250px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "250px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 250px"
+    }
+  },
+  "spacing": {
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "206": {
+      "$value": "206px",
+      "$type": "dimension",
+      "$description": "Spacing 206px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#e4e0db",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page warm background establishing the paper-like base"
+    },
+    "surface-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and panel surfaces that lift content off the canvas"
+    },
+    "sand-tint": {
+      "$value": "#e0ccbb",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle warm wash for highlighted sections or accent bands"
+    },
+    "footer-ink": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Surface level 3: Terminal dark surface closing the page with contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.exoape.com",
+      "siteName": "Exo Ape",
+      "extractedAt": "2026-06-03T17:42:33.758Z",
+      "variant": "extended"
+    }
+  }
+}

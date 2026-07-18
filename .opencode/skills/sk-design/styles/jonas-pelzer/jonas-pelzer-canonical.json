@@ -1,0 +1,1049 @@
+{
+  "source": "https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6",
+  "uuid": "dd96b76a-b691-49e7-ba8f-1cdc8f7172e6",
+  "name": "Jonas Pelzer",
+  "northStar": "Literary broadsheet on white paper. A single weight-400 display headline sets the tone — roman and italic interleave in one breath, all type shares one weight, and a rationed violet ink punctuates an otherwise achromatic page.",
+  "capturedAt": "2026-07-18T08:40:27.545Z",
+  "meta": {
+    "url": "https://jonaspelzer.com",
+    "siteName": "Jonas Pelzer",
+    "extractedAt": "2026-06-03T22:05:42.926Z",
+    "durationMs": 24373,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 179,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every text element to weight 400 — no bold, no semi-bold. Hierarchy comes from size and letter-spacing, never weight.",
+      "Use Violet Ink (#3502ff) only for the active nav pill and one primary brand mark per page. Never as a button background fill on other surfaces.",
+      "Pair Scope (sans) for headings/nav with Signifier (serif/italic) for body — and mix roman and italic within a single display sentence to create typographic music.",
+      "Apply 12px radius to every interactive element: nav pills, buttons, cards. The consistency is the design.",
+      "Set all text on Paper White (#ffffff) and use Lavender Wash (#c2b3ff) only for full-bleed accent card fills, never as a text background or row striping.",
+      "Use 1px hairline borders (Mist Gray #d4d6dd or Ink Black #000000) instead of shadows for separation. The one permitted shadow is the violet-tinted rgba(53,2,255,0.1) on active nav.",
+      "Keep section gaps at 64px and let the page breathe with generous left/right margins — the compact padding applies inside components, not between them."
+    ],
+    "donts": [
+      "Don't introduce any weight other than 400. No 500, 600, 700. The system has one voice.",
+      "Don't use Violet Ink (#3502ff) as a filled button background for general CTAs — the active nav pill is the only place that fill appears.",
+      "Don't add drop shadows beyond the single violet-tinted nav shadow. Cards and panels must rely on hairline borders for definition.",
+      "Don't center the hero headline. It is always left-aligned, magazine-style. Centering kills the editorial voice.",
+      "Don't use rounded radii above 12px. The page is crisp and architectural, not soft or playful.",
+      "Don't introduce additional accent colors. The palette is black, white, gray, and three violets — that is the entire chromatic vocabulary.",
+      "Don't use negative letter-spacing. All type uses positive tracking (0.02em–0.036em); tight tracking belongs to a different design system."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, nav backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All text, hairline borders, dividers, list separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d6dd",
+        "name": "Mist Gray",
+        "role": "Secondary borders, card outlines, inactive dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3502ff",
+        "name": "Violet Ink",
+        "role": "Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#c2b3ff",
+        "name": "Lavender Wash",
+        "role": "Accent card surfaces, large decorative blocks, soft section backgrounds",
+        "group": "accent"
+      },
+      {
+        "hex": "#d7ccff",
+        "name": "Lavender Whisper",
+        "role": "Outlined nav pill border, ghost button border — violet at a quarter saturation so inactive actions whisper rather than shout",
+        "group": "accent"
+      },
+      {
+        "hex": "#5d35ff",
+        "name": "Deep Iris",
+        "role": "Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Page model is max-width contained (~1400px), left-aligned editorial rather than centered marketing. The hero is a typographic block on the left, not a full-bleed image or split layout. Below the hero, a 3-column grid mixes white project cards with lavender accent blocks — at least one lavender fill per row creates visual rhythm. Sections are separated by generous 64px gaps on Paper White. The nav strip is a horizontal pill row at the page bottom (not the top), with the active pill filled violet and the rest ghost-outlined. A year index (01–09) and social footer close the page. No sidebar, no sticky header, no mega-menu — the structure is closer to a print layout than a web app.",
+    "imagery": "Imagery is project-driven and editorial: architectural and product photography, mostly daytime and natural-light, presented as tight crops without lifestyle context. The featured project card arranges images in a 2×2 grid like a magazine layout. A yellow accent block appears in one section (likely a project hero), and lavender blocks serve as decorative color washes rather than image containers. The page is text-dominant overall — images support the work, they don't replace it.",
+    "similar": [
+      {
+        "why": "Same editorial restraint, single-weight typography, and rationed color — both feel like quiet broadsheets rather than product pages",
+        "business": "Are.na"
+      },
+      {
+        "why": "Personal portfolio with a single accent color, hairline borders instead of shadows, and display type that mixes weights and styles within a single sentence",
+        "business": "Hicksdesign"
+      },
+      {
+        "why": "Compact dense layout, violet-adjacent accent palette, and a nav system that lives at the bottom rather than the top",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Magazine-spread layout, literary type pairing, and a near-achromatic palette with one chromatic brand mark",
+        "business": "Frank Chimero"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "12px",
+        "cards": "12px",
+        "small": "3.5px",
+        "buttons": "12px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Default page background, primary content canvas"
+      },
+      {
+        "hex": "#c2b3ff",
+        "name": "Lavender Block",
+        "level": 1,
+        "purpose": "Accent card surface, decorative color blocks, featured item wash"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Ground",
+        "level": 2,
+        "purpose": "Footer band, nav strip — dark reverse for terminal UI"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(53, 2, 255, 0.1) 0px 1px 4px 2px",
+        "element": "Active Nav Pill"
+      }
+    ],
+    "northStar": "Literary broadsheet on white paper. A single weight-400 display headline sets the tone — roman and italic interleave in one breath, all type shares one weight, and a rationed violet ink punctuates an otherwise achromatic page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.47
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.34
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "heading",
+        "size": 25,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "display",
+        "size": 42,
+        "lineHeight": 1,
+        "letterSpacing": 0.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero section typographic statement",
+        "description": "42px Scope weight 400 in roman and italic alternation within a single sentence, letter-spacing 0.02em, color Ink Black on Paper White. The signature move: words like 'is a' and 'for' and 'and' drop to italic Signifier while content words stay roman Scope. Left-aligned, never centered. Padding 20px below to first paragraph."
+      },
+      {
+        "name": "Active Nav Pill",
+        "role": "Current page indicator in nav strip",
+        "description": "12px radius, fill #3502ff (Violet Ink), text 13px Scope weight 400, color #ffffff, padding 6px 14px, letter-spacing 0.036em. The single bold chromatic element on the page; it earns its color by marking where the user is."
+      },
+      {
+        "name": "Inactive Nav Pill",
+        "role": "Secondary nav item",
+        "description": "12px radius, transparent fill, 1px border #d7ccff (Lavender Whisper), text 13px Scope weight 400 in Ink Black, padding 6px 14px, letter-spacing 0.036em. Ghost outlined — quiet, recedes behind the active pill."
+      },
+      {
+        "name": "Project Card (White)",
+        "role": "Default project entry card",
+        "description": "12px radius, #ffffff fill, 1px hairline border in Mist Gray (#d4d6dd), 16px padding. Project image fills top, title and meta in Signifier 15–16px Ink Black. No shadow; the border does the elevation."
+      },
+      {
+        "name": "Project Card (Lavender Fill)",
+        "role": "Accent surface card, featured grid slot",
+        "description": "12px radius, solid #c2b3ff (Lavender Wash) fill, no border, 16px padding. Functions as a color block in the grid — same dimensions as white cards but inverted into a decorative accent. Use sparingly: one per row maximum."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Hero description, long-form copy",
+        "description": "Signifier 17–18px weight 400, line-height 1.2, letter-spacing 0.02em, Ink Black on Paper White. Centered or left-aligned in a ~640px column. No bold, no italic emphasis inline — emphasis comes from the surrounding type hierarchy, not weight."
+      },
+      {
+        "name": "Feature Card (Magazine Layout)",
+        "role": "Large project showcase with typography and image grid",
+        "description": "12px radius, white surface with hairline Mist Gray border, internal layout: oversized dotted/display title (Scope 25–42px), body subhead in Signifier, 2×2 image thumbnail grid below. Treats the project as a magazine spread rather than a tile."
+      },
+      {
+        "name": "Year Index List",
+        "role": "Chronological project timeline in footer",
+        "description": "Horizontal row of 2-digit year labels (01, 02, 03 … 09), each 14px Scope weight 400, letter-spacing 0.036em, Ink Black, separated by 16px gaps. The current year highlights in Violet Ink. Functions as both navigation and archive."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Social and contact links",
+        "description": "Inline group of 11–15px Signifier links, 15px padding-right between items, Ink Black, 1px hairline divider above. Links transition to Deep Iris (#5d35ff) on hover — the only place Deep Iris appears."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Inline reference links within body copy",
+        "description": "Signifier at body size, Ink Black with 1px underline, 15px padding-right when grouped. Underline is the only link treatment — no color shift in resting state; color arrives on hover via Deep Iris."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display, headings, nav, buttons — carries the entire structural and interactive voice. Only weight 400 exists; the font does not push louder, it stays calm even at 42px because letter-spacing opens up around it. Nav and buttons stay at 13–14px; the hero display reaches 42px.",
+        "sizes": "13px, 14px, 17px, 22px, 42px",
+        "family": "Scope",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk",
+        "letterSpacing": "0.02em at 17–22px, 0.036em at 13–14px",
+        "fontFeatureSettings": "\"ss01\" on, \"cv01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Body copy, links, list items, footer, long-form paragraphs — the reading voice. Slightly larger minimum (15px) than Scope at 13px, and the only font that appears in the hero italic (the headline mixes roman Scope with italic Signifier). Rationed at 400; weight 400 at 42px is an editorial choice, not a limitation.",
+        "sizes": "15px, 16px, 18px, 22px, 25px, 42px",
+        "family": "Signifier",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Source Serif Pro, Tiempos Text, Söhne Mono",
+        "letterSpacing": "0.02em",
+        "fontFeatureSettings": "\"kern\" on, \"liga\" on, \"onum\" on"
+      }
+    ],
+    "description": "A literary editorial portfolio rendered as a typographic broadsheet on white paper. The page reads like a magazine spread: a single weight-400 display headline mixes roman and italic to create rhythm without resorting to bold, every paragraph earns its place, and the entire chromatic system is reduced to a single violet ink. The brand violet (#3502ff) is rationed — appearing only as the active nav pill, an active border accent, and a single deep text link — while a softer lavender wash (#c2b3ff) provides surface variety on accent cards. Spacing is compact and the grid is opinionated, with hard-edged 12px radii everywhere and almost no shadow depth. The visual system rewards restraint: negative space, type weight, and a single accent color do the work that color, elevation, and decoration do elsewhere.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Jonas Pelzer design system\",\"item\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#style-reference\",\"name\":\"Jonas Pelzer design system reference\",\"headline\":\"Jonas Pelzer design system | Refero Styles\",\"description\":\"Explore Jonas Pelzer's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, Scope, Signifier typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Jonas Pelzer\",\"url\":\"https://jonaspelzer.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"caption\":\"Screenshot of Jonas Pelzer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Jonas Pelzer design system\",\"Jonas Pelzer website design\",\"Jonas Pelzer colors\",\"Jonas Pelzer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Mist Gray\",\"Violet Ink\",\"Scope\",\"Signifier\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer design system\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer website design\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer colors\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:18:30.581Z\",\"dateModified\":\"2026-04-30T03:18:30.581Z\"}]}19:T81f,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #d4d6dd (Mist Gray) for secondary, #000000 for structural\n- accent surface: #c2b3ff (Lavender Wash)\n- accent border (ghost): #d7ccff (Lavender Whisper)\n- primary action: #d7ccff (outlined action border)\n- hover/secondary accent: #5d35ff (Deep Iris)\n\n**Example Component Prompts**\n\n1. Build a hero display headline at 42px on white. Mix Scope weight 400 roman with Signifier italic weight 400 in the same sentence (e.g. 'JONAS PELZER is a DESIGNER for WEBSITES and DIGITAL PRODUCTS'). Letter-spacing 0.02em, Ink Black (#000000), left-aligned, max-width 900px. Body paragraph below in Signifier 18px line-height 1.2, same color, max-width 640px.\n\n2. Build a nav strip with 5 pill buttons in a horizontal row. The first is the active state: 12px radius, fill #3502ff, white Scope 13px weight 400 text, 6px 14px padding, letter-spacing 0.036em, with the single permitted shadow rgba(53,2,255,0.1) 0px 1px 4px 2px. The remaining four are ghost: 12px radius, transparent fill, 1px border #d7ccff, Ink Black Scope 13px text, same padding.\n\n3. Build a 3-column project card grid. Column 1: lavender accent card, 12px radius, #c2b3ff fill, no text, 16px padding — pure color block. Column 2: white feature card with 1px Mist Gray border, 12px radius, 16px padding, Scope 25px display title + Signifier 15px meta + 2×2 image grid below. Column 3: another lavender accent card matching column 1. 16px gap between columns.\n\n4. Build a year index list as a single horizontal row: '01  02  03  04  05  06  07  08  09' in Scope 14px weight 400, letter-spacing 0.036em, Ink Black, 16px gap between items. Highlight the current year (08) in Violet Ink #3502ff. 1px Ink Black hairline above the row as divider.\n\n5. Build a footer link group: horizontal inline list of 4–6 social links (ABOUT, AWARDS, CAREER, CONTACT) in Signifier 15px weight 400, Ink Black, 15px padding-right between items, separated from content above by a 1px Mist Gray border. No background fill, no icons — text only."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is nearly absent by design. The single permitted shadow is the violet-tinted glow on the active nav pill, which subtly tints every elevated element on-brand. All other separation is achieved through 1px hairline borders in Mist Gray or Ink Black. This keeps the page feeling like printed paper rather than a digital product surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "card",
+            "list",
+            "link",
+            "nav",
+            "footer"
+          ],
+          "frequency": 788,
+          "confidence": 1,
+          "prominence": 18886578.707706712,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 18,
+            "nav/color": 51,
+            "body/color": 9,
+            "card/color": 4,
+            "link/color": 12,
+            "list/color": 28,
+            "nav/stroke": 4,
+            "other/color": 32,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 15,
+            "nav/borderColor": 204,
+            "body/borderColor": 36,
+            "card/borderColor": 16,
+            "link/borderColor": 48,
+            "list/borderColor": 112,
+            "other/borderColor": 128,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#d4d6dd",
+          "oklch": {
+            "c": 0.009821311809555302,
+            "h": 273.3418644663599,
+            "l": 0.8765953305213128
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 538520.1391910361,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 24
+          }
+        },
+        {
+          "hex": "#c2b3ff",
+          "oklch": {
+            "c": 0.10677582420698659,
+            "h": 293.1010835245067,
+            "l": 0.8071505197844614
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 125400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 46881,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3502ff",
+          "oklch": {
+            "c": 0.30296999755887577,
+            "h": 271.11293456167186,
+            "l": 0.46807212959966915
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 15667.24507051255,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "nav/borderColor": 12,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d7ccff",
+          "oklch": {
+            "c": 0.07004946198262295,
+            "h": 294.13969109506303,
+            "l": 0.8711937570306015
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10093.421428475363,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#5d35ff",
+          "oklch": {
+            "c": 0.27229820674927163,
+            "h": 280.7219330618797,
+            "l": 0.5250728757913758
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4347,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01845455321289999,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.46,
+          "background": "#d4d6dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#d7ccff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.19,
+          "background": "#c2b3ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#3502ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.14,
+          "background": "#ffffff",
+          "foreground": "#5d35ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.55,
+          "background": "#d4d6dd",
+          "foreground": "#3502ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#d7ccff",
+          "foreground": "#3502ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#c2b3ff",
+          "foreground": "#3502ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#c2b3ff",
+          "foreground": "#5d35ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.6,
+          "background": "#3502ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#c2b3ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#3502ff",
+          "foreground": "#5d35ff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "nav"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 8.26,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 3.5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(53, 2, 255, 0.1) 0px 1px 4px 2px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav",
+            "footer"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 138,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 154,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Scope",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Signifier",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 75,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.036,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "card"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Signifier",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Scope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9ae94cda-e9a2-4b1e-87f5-13165032813a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Jonas Pelzer design system\",\"item\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#style-reference\",\"name\":\"Jonas Pelzer design system reference\",\"headline\":\"Jonas Pelzer design system | Refero Styles\",\"description\":\"Explore Jonas Pelzer's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, Scope, Signifier typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Jonas Pelzer\",\"url\":\"https://jonaspelzer.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dd96b76a-b691-49e7-ba8f-1cdc8f7172e6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"caption\":\"Screenshot of Jonas Pelzer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a007405-ba43-4d92-96e9-d7acbdb69452.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Jonas Pelzer design system\",\"Jonas Pelzer website design\",\"Jonas Pelzer colors\",\"Jonas Pelzer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Mist Gray\",\"Violet Ink\",\"Scope\",\"Signifier\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer design system\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer website design\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer colors\"},{\"@type\":\"Thing\",\"name\":\"Jonas Pelzer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:18:30.581Z\",\"dateModified\":\"2026-04-30T03:18:30.581Z\"}]}19:T81f,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #d4d6dd (Mist Gray) for secondary, #000000 for structural\n- accent surface: #c2b3ff (Lavender Wash)\n- accent border (ghost): #d7ccff (Lavender Whisper)\n- primary action: #d7ccff (outlined action border)\n- hover/secondary accent: #5d35ff (Deep Iris)\n\n**Example Component Prompts**\n\n1. Build a hero display headline at 42px on white. Mix Scope weight 400 roman with Signifier italic weight 400 in the same sentence (e.g. 'JONAS PELZER is a DESIGNER for WEBSITES and DIGITAL PRODUCTS'). Letter-spacing 0.02em, Ink Black (#000000), left-aligned, max-width 900px. Body paragraph below in Signifier 18px line-height 1.2, same color, max-width 640px.\n\n2. Build a nav strip with 5 pill buttons in a horizontal row. The first is the active state: 12px radius, fill #3502ff, white Scope 13px weight 400 text, 6px 14px padding, letter-spacing 0.036em, with the single permitted shadow rgba(53,2,255,0.1) 0px 1px 4px 2px. The remaining four are ghost: 12px radius, transparent fill, 1px border #d7ccff, Ink Black Scope 13px text, same padding.\n\n3. Build a 3-column project card grid. Column 1: lavender accent card, 12px radius, #c2b3ff fill, no text, 16px padding — pure color block. Column 2: white feature card with 1px Mist Gray border, 12px radius, 16px padding, Scope 25px display title + Signifier 15px meta + 2×2 image grid below. Column 3: another lavender accent card matching column 1. 16px gap between columns.\n\n4. Build a year index list as a single horizontal row: '01  02  03  04  05  06  07  08  09' in Scope 14px weight 400, letter-spacing 0.036em, Ink Black, 16px gap between items. Highlight the current year (08) in Violet Ink #3502ff. 1px Ink Black hairline above the row as divider.\n\n5. Build a footer link group: horizontal inline list of 4–6 social links (ABOUT, AWARDS, CAREER, CONTACT) in Signifier 15px weight 400, Ink Black, 15px padding-right between items, separated from content above by a 1px Mist Gray border. No background fill, no icons — text only."
+}

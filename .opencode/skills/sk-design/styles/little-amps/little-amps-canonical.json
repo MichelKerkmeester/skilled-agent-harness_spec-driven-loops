@@ -1,0 +1,1908 @@
+{
+  "source": "https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda",
+  "uuid": "ca522706-03ed-48cb-acb3-1bb2a22f2eda",
+  "name": "Little Amps",
+  "northStar": "vinyl record sleeve in afternoon sun. Cream paper, burnt-orange ink, a single dusty blue stamp, every label set in monospace — the interface behaves like a printed coffee zine: tactile, editorial, never sterile.",
+  "capturedAt": "2026-07-18T09:25:53.899Z",
+  "meta": {
+    "url": "https://littleampscoffee.com",
+    "siteName": "Little Amps",
+    "extractedAt": "2026-06-03T19:45:20.544Z",
+    "durationMs": 44607,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 910,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Little Amps serif for all display headlines at 20–51px with -0.10em tracking — it is the only voice that signals brand identity.",
+      "Set all UI labels, nav, buttons, dates, and prices in Necto Mono uppercase with 0.05em tracking — this monospace voice IS the structural system.",
+      "Default page background to Cream Paper (#fff9f2) and use Linen Beige (#f6ede3) for the next surface up — never use pure white.",
+      "Use Burnt Orange (#c03001) as the single filled action color; keep all primary CTAs on a 3px radius for a printed-label feel.",
+      "Hairline all borders at 1px in Taupe Hairline (#e6dad4) — never use heavy shadows or thick borders.",
+      "Use Coffee Dust (#977e77) for any muted, secondary, or helper text — never use plain gray.",
+      "Pair full-bleed documentary photography with the Hero Brand Block in the top-left corner; let the image do the atmosphere."
+    ],
+    "donts": [
+      "Don't use pure black, pure white, or blue-gray system neutrals — the palette is warm and coffee-toned throughout.",
+      "Don't use large border-radius (pill shapes, 16px+, fully rounded) — the system is sharp-cornered at 3–8px.",
+      "Don't use heavy drop shadows or elevation effects — depth comes from surface color shifts, not shadows.",
+      "Don't set body or paragraph text in display serif or monospace — Inclusive Sans is the only body face.",
+      "Don't introduce additional accent colors — the system is disciplined: one vivid orange, one amber, one marigold, one dusty blue.",
+      "Don't use bright pure red, green, or blue for state semantics — the warm palette rewrites these into Espresso and Burnt Orange.",
+      "Don't use Inter, Helvetica, or system-ui for branding moments — the custom display serif and monospace pairing is non-negotiable."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#522c25",
+        "name": "Espresso",
+        "role": "Primary text, icons, card borders, nav, footer, input fields — the structural dark that holds every screen together, warm rather than black to stay on-brand with roasted coffee",
+        "group": "brand"
+      },
+      {
+        "hex": "#c03001",
+        "name": "Burnt Orange",
+        "role": "Filled action buttons, active links, key highlights, badge fills — the single vivid accent that makes interactive elements feel switched on against the cream canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#c46500",
+        "name": "Amber Ink",
+        "role": "Secondary accent for emphasized text, hover states, and warm callouts — a slightly darker orange that pairs with Burnt Orange for tonal depth",
+        "group": "accent"
+      },
+      {
+        "hex": "#febf6f",
+        "name": "Marigold Wash",
+        "role": "Soft highlight backgrounds, tag fills, and decorative washes — used sparingly to add warm sunlight moments inside otherwise neutral layouts",
+        "group": "accent"
+      },
+      {
+        "hex": "#89b4ca",
+        "name": "Dusty Blue",
+        "role": "Cool counter-accent for secondary buttons, link backgrounds, and color variety — the only blue in the system, it reads as a quiet companion to the warm palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff9f2",
+        "name": "Cream Paper",
+        "role": "Page canvas, card surfaces, button fills, input backgrounds — the base layer of every screen, warm off-white that replaces pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6ede3",
+        "name": "Linen Beige",
+        "role": "Card backgrounds, section surfaces, image borders, body borders — one step deeper than canvas, creates gentle layered surfaces without elevation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6dad4",
+        "name": "Taupe Hairline",
+        "role": "Hairline dividers, card borders, nav separators, subtle structural lines — the only border color most components need",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cbbbb4",
+        "name": "Sandstone",
+        "role": "Muted card backgrounds, soft surface fills, disabled surface states — a warm gray-taupe for low-emphasis panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#977e77",
+        "name": "Coffee Dust",
+        "role": "Muted body text, helper text, low-emphasis copy — warm brown-gray that fades into the cream without disappearing",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is centered max-width (~1200px) on a full-bleed Cream Paper canvas, with content comfortably contained rather than edge-to-edge except for the hero image. The hero pattern is a full-bleed documentary photograph (record player / café interior) with the brand lockup overlaid in the top-left corner, followed by a horizontal nav bar pinned below the image. Section rhythm alternates between editorial text blocks (centered or left-aligned headlines over short paragraph copy) and image-heavy carousels (Community Board, product grids). Card grids use 3–4 columns on desktop with 14–16px gaps. Content density is comfortable — generous breathing room between sections (40–64px), with small tight internal padding. Navigation is a single horizontal bar with no sidebar or mega-menu. Carousels include small icon-only prev/next controls and a numeric position counter.",
+    "imagery": "Photography is documentary, tactile, and lifestyle-led: hands touching record players, café counter scenes with baristas and customers, raw coffee cherries in hands, vinyl records, coffee bag packaging. Treatment is warm and slightly desaturated, matching the cream-and-espresso palette. Images are full-bleed at the hero level but contained in 8px-radius frames within cards. No stock photography, no abstract gradients, no 3D renders. Illustrations are minimal line-art icons (espresso machine, coffee bag, duck mascot) in 1–2px Espresso or Burnt Orange strokes — hand-drawn, never geometric. Imagery occupies roughly 40–50% of page real estate and carries the brand atmosphere more than typography or color alone.",
+    "similar": [
+      {
+        "why": "Same documentary café photography on cream/off-white canvas with a single dark accent for text and one warm accent for CTAs",
+        "business": "Blue Bottle Coffee"
+      },
+      {
+        "why": "Editorial zine-like layout with monospaced labels, tight corners, and warm coffee-toned palette replacing standard neutrals",
+        "business": "Sey Coffee"
+      },
+      {
+        "why": "Heavy use of monospaced typography for technical metadata (roast dates, origins, scores) and flat surfaces without shadows",
+        "business": "Onyx Coffee Lab"
+      },
+      {
+        "why": "Warm cream canvas, burnt-orange accent, and lifestyle photography that leads the page rather than supporting it",
+        "business": "Stumptown Coffee"
+      },
+      {
+        "why": "Editorial grid system with strong typographic hierarchy, small-radius buttons, and a restrained warm palette with one vivid accent",
+        "business": "Counter Culture Coffee"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "3px",
+        "images": "8px",
+        "inputs": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "6-12px",
+      "sectionGap": "40-64px",
+      "cardPadding": "24-36px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fff9f2",
+        "name": "Cream Paper",
+        "level": 1,
+        "purpose": "Page canvas and default background"
+      },
+      {
+        "hex": "#f6ede3",
+        "name": "Linen Beige",
+        "level": 2,
+        "purpose": "Card surfaces, section bands, image frames"
+      },
+      {
+        "hex": "#cbbbb4",
+        "name": "Sandstone",
+        "level": 3,
+        "purpose": "Muted panel fills, secondary card surfaces"
+      }
+    ],
+    "elevation": [],
+    "northStar": "vinyl record sleeve in afternoon sun. Cream paper, burnt-orange ink, a single dusty blue stamp, every label set in monospace — the interface behaves like a printed coffee zine: tactile, editorial, never sterile.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.7
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1,
+        "letterSpacing": -2
+      },
+      {
+        "role": "heading",
+        "size": 22,
+        "lineHeight": 1,
+        "letterSpacing": -2.2
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 0.85,
+        "letterSpacing": -5
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Action Button",
+        "role": "Primary CTA — Shop, Read More, Listen Now, Quick View",
+        "description": "Solid Burnt Orange (#c03001) background, Cream Paper (#fff9f2) text, 3px radius, Necto Mono at 12–14px weight 400, 0.05em tracking, uppercase. Padding 10px 12px. Small, tight, stamp-like. The button reads as a printed label, not a pill."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action — border-only variants",
+        "description": "Transparent background, Espresso (#522c25) 1px border, Espresso text, 3px radius, Necto Mono 12–14px uppercase. Padding 6–10px vertical. Used when a filled orange button would compete with a primary on the same screen."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top nav menu items: SHOP, ABOUT, WHOLESALE, COMMUNITY BOARD, CONTACT",
+        "description": "Necto Mono 12–14px weight 400, 0.05em tracking, uppercase, Espresso (#522c25) text. No background. Small dropdown caret next to SHOP. Aligned in a single horizontal row centered in the header."
+      },
+      {
+        "name": "Hero Brand Block",
+        "role": "Brand lockup overlaid on hero image",
+        "description": "Little Amps display serif at 45–51px weight 500, -0.10em tracking, in Burnt Orange (#c03001). Two lines: brand name stacked over a small decorative line-art icon (espresso machine or coffee bag). Positioned top-left of the hero image with generous padding."
+      },
+      {
+        "name": "Product Card",
+        "role": "E-commerce product tile — Friend Blend shown",
+        "description": "Linen Beige (#f6ede3) background, 8px radius, product image framed with 8px radius and hairline border. Below image: product name in Inclusive Sans 16px Espresso, price in Necto Mono, tasting notes in Coffee Dust (#977e77), roast level bar, and a Dusty Blue (#89b4ca) Quick View button at 3px radius. Padding 24–36px."
+      },
+      {
+        "name": "Editorial Card",
+        "role": "Community Board / blog post tile",
+        "description": "Cream Paper (#fff9f2) background, Taupe Hairline (#e6dad4) 1px border, 8px radius. Image on top (8px radius), then date in Necto Mono 10–12px, title in Little Amps serif 20–22px -0.10em, excerpt in Inclusive Sans 14px Coffee Dust, and a filled Burnt Orange Read More button at 3px radius."
+      },
+      {
+        "name": "Horizontal Scroll Carousel",
+        "role": "Community Board and product sliders",
+        "description": "Row of 4–5 cards with consistent 14–16px gaps. Small circular prev/next arrow buttons (12px) in the top-right corner. No visible scrollbar — navigation is icon-only."
+      },
+      {
+        "name": "Header / Nav Bar",
+        "role": "Site-wide top navigation",
+        "description": "Cream Paper (#fff9f2) background, thin Taupe Hairline (#e6dad4) 1px bottom border. Brand wordmark logo on the left (lowercase custom mark), centered nav links in Necto Mono uppercase, right-aligned Account dropdown and Cart counter. Height approximately 64–80px."
+      },
+      {
+        "name": "Date Stamp",
+        "role": "Article and post publication dates",
+        "description": "Necto Mono 10–12px weight 400, 0.05em tracking, Coffee Dust (#977e77) text. Dot-separated format (e.g. '06.03.2026'). Sits above titles in editorial cards."
+      },
+      {
+        "name": "Tasting Notes Bar",
+        "role": "Flavor profile indicator on product pages",
+        "description": "Three small monospace labels (Roastness, Acidity, Complexity) with circular dot indicators below each, in Necto Mono 10–12px Espresso. A horizontal scale bar below shows roast level (e.g. Medium Roast) in Inclusive Sans 14px."
+      },
+      {
+        "name": "Hero Image Banner",
+        "role": "Full-bleed top-of-page photography",
+        "description": "Edge-to-edge lifestyle or product photography (record player, café interior) on Cream Paper canvas. No overlay, no gradient — the image IS the hero. Often paired with the Hero Brand Block in the top-left corner."
+      },
+      {
+        "name": "Decorative Line-Art Icon",
+        "role": "Small brand mark and section accents (duck, espresso machine, coffee bag)",
+        "description": "Espresso (#522c25) or Burnt Orange (#c03001) 1–2px stroke, no fill, approximately 24–40px. Hand-drawn illustrative style — appears next to headlines and as the brand mascot in the header logo."
+      },
+      {
+        "name": "Slider Counter",
+        "role": "Carousel position indicator (01 — 03)",
+        "description": "Necto Mono 10–12px in the bottom-right of carousels. Format: current slide number, em-dash, total slides, flanked by small prev/next arrow buttons."
+      },
+      {
+        "name": "Shop All Pill Button",
+        "role": "Section transition link at bottom of carousels",
+        "description": "Small Burnt Orange filled button with Cream Paper text at 3px radius. Necto Mono 12px uppercase, tight padding (8–10px vertical). Appears at the bottom-left of each major carousel section."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom display serif for brand wordmark, section headlines, and large editorial titles. Heavy negative tracking (-0.10em) at 41–51px creates a tight, chunky retro-poster feel. The heaviest typographic element on every page and the signature voice of the brand.",
+        "sizes": "20px, 22px, 41px, 45px, 50px, 51px",
+        "family": "Little Amps",
+        "weight": "500",
+        "lineHeight": "0.80–1.00",
+        "substitute": "Recoleta, Canela, or DM Serif Display",
+        "letterSpacing": "-0.10em"
+      },
+      {
+        "role": "Primary body and UI text. Used for descriptions, paragraphs, and most readable content. Consistent 0.05em positive tracking gives a slightly looser, zine-like feel. The workhorse — appears in nearly every context.",
+        "sizes": "12px, 13px, 14px, 15px, 16px",
+        "family": "Inclusive Sans",
+        "weight": "400",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Work Sans, or Public Sans",
+        "letterSpacing": "0.05em"
+      },
+      {
+        "role": "Labels, buttons, navigation, dates, prices, and all structural metadata. Tighter line-heights (0.80–1.20) and monospaced forms make it feel like stamped or typewriter-set type. 0.05em tracking is the system-wide small-caps standard.",
+        "sizes": "10px, 12px, 13px, 14px, 16px",
+        "family": "Necto Mono",
+        "weight": "400, 500",
+        "lineHeight": "0.80–1.20",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "0.05em"
+      },
+      {
+        "role": "Secondary monospaced text for code-like or technical labels, supplementing Necto Mono in body and data contexts.",
+        "sizes": "14px, 16px",
+        "family": "Roboto Mono",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Roboto Mono, Space Mono, or IBM Plex Mono",
+        "letterSpacing": "-0.02em to 0.05em"
+      },
+      {
+        "role": "Rare body fallback — appears in minimal contexts.",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Söhne, Inter, or system-ui",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Little Amps is a warm analog coffee-shop world: cream-paper canvas, rich espresso-brown type, and burnt-orange accents that feel like sun-faded label ink. The interface reads like a printed zine or vinyl insert — a custom chunky display serif handles headlines while monospaced type (Necto Mono, Roboto Mono) labels everything that is structural: nav, buttons, prices, dates, callouts. Photography is documentary and tactile (hands on records, café counters, coffee cherries) and anchors every section. Color is sparse but decisive: a single vivid red-orange does the work of links and highlights, a dusty blue and marigold yellow appear as quiet secondary signals. Surfaces are flat, borders are hairline warm-taupe lines, and radius stays small (3–8px) — the aesthetic is curated and editorial, not soft or rounded.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Little Amps design system\",\"item\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#style-reference\",\"name\":\"Little Amps design system reference\",\"headline\":\"Little Amps design system | Refero Styles\",\"description\":\"Explore Little Amps's light E-commerce design system: Espresso #522c25, Burnt Orange #c03001 colors, Little Amps, Inclusive Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Little Amps\",\"url\":\"https://littleampscoffee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"caption\":\"Screenshot of Little Amps\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Little Amps design system\",\"Little Amps website design\",\"Little Amps colors\",\"Little Amps typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Espresso\",\"Burnt Orange\",\"Amber Ink\",\"Marigold Wash\",\"Little Amps\",\"Inclusive Sans\",\"Necto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Little Amps design system\"},{\"@type\":\"Thing\",\"name\":\"Little Amps website design\"},{\"@type\":\"Thing\",\"name\":\"Little Amps colors\"},{\"@type\":\"Thing\",\"name\":\"Little Amps typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:13:29.997Z\",\"dateModified\":\"2026-04-30T00:13:29.997Z\"}]}19:T7eb,**Quick Color Reference**\n- canvas: #fff9f2\n- card surface: #f6ede3\n- text: #522c25\n- muted text: #977e77\n- border: #e6dad4\n- accent: #c03001\n- primary action: #c03001 (filled action)\n\n**Example Component Prompts**\n\n1. *Editorial Card*: Cream Paper (#fff9f2) background, Taupe Hairline (#e6dad4) 1px border, 8px radius. Image at top with 8px radius. Date in Necto Mono 10px Coffee Dust (#977e77), 0.05em tracking, format '06.03.2026'. Title in Little Amps serif 22px weight 500, Espresso (#522c25), -2.2px tracking. Body excerpt in Inclusive Sans 14px Coffee Dust. Filled Read More button: Burnt Orange (#c03001) background, Cream Paper text, 3px radius, Necto Mono 12px uppercase, 10px 12px padding.\n\n2. *Product Card*: Linen Beige (#f6ede3) background, 8px radius. Product image framed at 8px radius. Name in Inclusive Sans 16px Espresso. Price in Necto Mono 13px Amber Ink (#c46500). Tasting notes in Inclusive Sans 14px Coffee Dust. Roast level bar: 1px Taupe Hairline line with filled segment in Espresso. Quick View button: Dusty Blue (#89b4ca) background, Cream Paper text, 3px radius, Necto Mono 12px uppercase.\n\n3. *Hero Brand Block*: Little Amps display serif at 50px weight 500, Burnt Orange (#c03001), -5px tracking, two lines left-aligned. Small line-art coffee bag icon (24px, Espresso stroke) positioned to the right of the second line. Padding 32px from top-left of hero image.\n\n4. *Nav Bar*: Cream Paper (#fff9f2) background, 1px Taupe Hairline bottom border, height 72px. Brand wordmark logo at left (lowercase custom mark, Little Amps serif 20px Espresso). Center: nav items in Necto Mono 13px uppercase Espresso, 0.05em tracking, 24px gaps: SHOP ▾, ABOUT, WHOLESALE, COMMUNITY BOARD, CONTACT. Right: ACCOUNT ▾ and CART 0 in same style.\n\n5. *Ghost Outline Button*: Transparent background, 1px Espresso (#522c25) border, 3px radius. Text in Necto Mono 13px weight 500 Espresso, 0.05em tracking, uppercase. Padding 8px 14px. Use for secondary actions when a filled Burnt Orange button is already on screen."
+      },
+      {
+        "title": "Typography Pairing Logic",
+        "content": "The system uses a strict three-font hierarchy: Little Amps (custom display serif) speaks only at the brand and headline level — 20px and up, always in Espresso or Burnt Orange. Necto Mono handles everything structural and metadata: nav, buttons, dates, prices, labels — always uppercase, always 0.05em tracking, always between 10–16px. Inclusive Sans is the only body face, set at 13–16px with 0.05em tracking. Roboto Mono appears as a secondary monospace for data contexts. Never let display serif and monospace appear in the same line of body copy — they serve separate emotional registers."
+      },
+      {
+        "title": "Color Behavior Rules",
+        "content": "Color is rationed, not decorated. Cream Paper is the default for 80% of surface area. Linen Beige appears only inside cards or section bands. Burnt Orange (#c03001) is the single filled-button color and should appear at most 1–2 times per viewport. Amber Ink (#c46500) is for text emphasis only, not backgrounds. Marigold Wash (#febf6f) and Dusty Blue (#89b4ca) are seasonal or secondary accents — never use both in the same component. Espresso (#522c25) is the only structural dark and handles all text, borders, and icons."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows. Depth is communicated through three flat cream/beige surface levels (Cream Paper → Linen Beige → Sandstone) and 1px hairline borders in Taupe Hairline. Components float through color layering, not shadow. This keeps the aesthetic flat, editorial, and zine-like — consistent with the printed-label and vinyl-sleeve metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#522c25",
+          "oklch": {
+            "c": 0.05796116644625586,
+            "h": 31.369745981356655,
+            "l": 0.34040641928199744
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "card",
+            "image",
+            "heading",
+            "nav",
+            "input",
+            "button",
+            "body",
+            "icon",
+            "link",
+            "badge",
+            "footer",
+            "list"
+          ],
+          "frequency": 3292,
+          "confidence": 1,
+          "prominence": 86038521.16117701,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 19,
+            "body/color": 66,
+            "card/color": 176,
+            "hero/color": 1,
+            "icon/color": 21,
+            "link/color": 35,
+            "list/color": 13,
+            "nav/stroke": 1,
+            "other/fill": 4,
+            "badge/color": 5,
+            "image/color": 12,
+            "input/color": 1,
+            "other/color": 290,
+            "button/color": 11,
+            "footer/color": 1,
+            "other/stroke": 13,
+            "heading/color": 34,
+            "nav/borderColor": 75,
+            "body/borderColor": 256,
+            "card/borderColor": 700,
+            "hero/borderColor": 4,
+            "icon/borderColor": 76,
+            "link/borderColor": 120,
+            "badge/borderColor": 20,
+            "image/borderColor": 44,
+            "input/borderColor": 4,
+            "other/borderColor": 1107,
+            "button/borderColor": 44,
+            "footer/borderColor": 4,
+            "heading/borderColor": 128,
+            "card/backgroundColor": 2,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff9f2",
+          "oklch": {
+            "c": 0.01127926959374748,
+            "h": 71.9018138071149,
+            "l": 0.9848240906356334
+          },
+          "contexts": [
+            "card",
+            "link",
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 14682898.319258772,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "card/color": 6,
+            "link/color": 5,
+            "button/color": 6,
+            "body/borderColor": 20,
+            "card/borderColor": 24,
+            "link/borderColor": 20,
+            "button/borderColor": 24,
+            "card/backgroundColor": 15,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f6ede3",
+          "oklch": {
+            "c": 0.01651737352434054,
+            "h": 70.53116446221067,
+            "l": 0.9504198253144391
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "heading",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 243,
+          "confidence": 1,
+          "prominence": 10776936.21474213,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 2,
+            "link/color": 2,
+            "image/color": 6,
+            "other/color": 29,
+            "heading/color": 4,
+            "body/borderColor": 12,
+            "card/borderColor": 8,
+            "link/borderColor": 8,
+            "image/borderColor": 24,
+            "other/borderColor": 116,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 2,
+            "image/backgroundColor": 9,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e6dad4",
+          "oklch": {
+            "c": 0.015582447262229054,
+            "h": 48.5432652927599,
+            "l": 0.8962970170327792
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 7537063.944111277,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 9
+          }
+        },
+        {
+          "hex": "#c03001",
+          "oklch": {
+            "c": 0.18633738163357844,
+            "h": 34.932001563910575,
+            "l": 0.5319099036055486
+          },
+          "contexts": [
+            "link",
+            "image",
+            "other",
+            "button",
+            "badge"
+          ],
+          "frequency": 606,
+          "confidence": 1,
+          "prominence": 5699383.9835604895,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 63,
+            "image/color": 53,
+            "other/color": 3,
+            "link/borderColor": 252,
+            "image/borderColor": 212,
+            "other/borderColor": 16,
+            "link/backgroundColor": 1,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#89b4ca",
+          "oklch": {
+            "c": 0.055872149934956566,
+            "h": 230.64117564649942,
+            "l": 0.7465958733817779
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 3831428.6726457356,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#febf6f",
+          "oklch": {
+            "c": 0.12134322766476313,
+            "h": 71.51566196442509,
+            "l": 0.8461937063776845
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2762678.6726457356,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 3,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c46500",
+          "oklch": {
+            "c": 0.14983381756027617,
+            "h": 55.26474362550247,
+            "l": 0.6070450096449997
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 305340.73027931113,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "other/borderColor": 12,
+            "link/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#977e77",
+          "oklch": {
+            "c": 0.03303653077134777,
+            "h": 36.02158550762801,
+            "l": 0.6146147495298799
+          },
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 9057.817656210751,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "link/color": 8
+          }
+        },
+        {
+          "hex": "#cbbbb4",
+          "oklch": {
+            "c": 0.020323741060891888,
+            "h": 45.81563919625186,
+            "l": 0.8046565531001129
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 28,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.19549698783230354,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#fff9f2",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.39,
+          "background": "#f6ede3",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.79,
+          "background": "#e6dad4",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.39,
+          "background": "#febf6f",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.48,
+          "background": "#cbbbb4",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.48,
+          "background": "#c03001",
+          "foreground": "#fff9f2"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#89b4ca",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#c03001",
+          "foreground": "#f6ede3"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.86,
+          "background": "#c46500",
+          "foreground": "#fff9f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.61,
+          "background": "#fff9f2",
+          "foreground": "#977e77"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.52,
+          "background": "#febf6f",
+          "foreground": "#c03001"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.48,
+          "background": "#c46500",
+          "foreground": "#f6ede3"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.26,
+          "background": "#f6ede3",
+          "foreground": "#977e77"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#522c25",
+          "foreground": "#977e77"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#cbbbb4",
+          "foreground": "#c03001"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.98,
+          "background": "#c46500",
+          "foreground": "#522c25"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#89b4ca",
+          "foreground": "#c03001"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#febf6f",
+          "foreground": "#c46500"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.32,
+          "background": "#febf6f",
+          "foreground": "#977e77"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.17,
+          "background": "#cbbbb4",
+          "foreground": "#c46500"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "input",
+            "button",
+            "heading",
+            "image",
+            "badge"
+          ],
+          "frequency": 69
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 49
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "button",
+            "heading"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "card",
+            "badge",
+            "heading",
+            "list"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginLeft|heading",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link",
+            "body",
+            "card"
+          ],
+          "frequency": 96,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "card"
+          ],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|body",
+            "rowGap|card",
+            "columnGap|card",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "heading",
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|card",
+            "marginBottom|heading",
+            "rowGap|list",
+            "columnGap|list",
+            "marginRight|heading",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "body",
+            "card"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|body",
+            "marginBottom|body",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 34,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginTop|card",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "heading"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|card",
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|badge"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "marginTop|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card"
+          ],
+          "frequency": 102,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 251,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inclusive Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 593,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Necto Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 167,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 68,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Little Amps",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "card",
+            "link",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Necto Mono",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "hero",
+            "other",
+            "card",
+            "image",
+            "body",
+            "link",
+            "icon",
+            "badge",
+            "footer",
+            "list"
+          ],
+          "frequency": 524,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inclusive Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Necto Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": -0.1,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 22,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 41,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other",
+            "image"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "Little Amps",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d12abb20-f05a-41be-bbe3-2c0be8195cfe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Little Amps design system\",\"item\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#style-reference\",\"name\":\"Little Amps design system reference\",\"headline\":\"Little Amps design system | Refero Styles\",\"description\":\"Explore Little Amps's light E-commerce design system: Espresso #522c25, Burnt Orange #c03001 colors, Little Amps, Inclusive Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Little Amps\",\"url\":\"https://littleampscoffee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ca522706-03ed-48cb-acb3-1bb2a22f2eda#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"caption\":\"Screenshot of Little Amps\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9e03b17-76c2-4cb4-8d05-f505354e0465.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Little Amps design system\",\"Little Amps website design\",\"Little Amps colors\",\"Little Amps typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Espresso\",\"Burnt Orange\",\"Amber Ink\",\"Marigold Wash\",\"Little Amps\",\"Inclusive Sans\",\"Necto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Little Amps design system\"},{\"@type\":\"Thing\",\"name\":\"Little Amps website design\"},{\"@type\":\"Thing\",\"name\":\"Little Amps colors\"},{\"@type\":\"Thing\",\"name\":\"Little Amps typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:13:29.997Z\",\"dateModified\":\"2026-04-30T00:13:29.997Z\"}]}19:T7eb,**Quick Color Reference**\n- canvas: #fff9f2\n- card surface: #f6ede3\n- text: #522c25\n- muted text: #977e77\n- border: #e6dad4\n- accent: #c03001\n- primary action: #c03001 (filled action)\n\n**Example Component Prompts**\n\n1. *Editorial Card*: Cream Paper (#fff9f2) background, Taupe Hairline (#e6dad4) 1px border, 8px radius. Image at top with 8px radius. Date in Necto Mono 10px Coffee Dust (#977e77), 0.05em tracking, format '06.03.2026'. Title in Little Amps serif 22px weight 500, Espresso (#522c25), -2.2px tracking. Body excerpt in Inclusive Sans 14px Coffee Dust. Filled Read More button: Burnt Orange (#c03001) background, Cream Paper text, 3px radius, Necto Mono 12px uppercase, 10px 12px padding.\n\n2. *Product Card*: Linen Beige (#f6ede3) background, 8px radius. Product image framed at 8px radius. Name in Inclusive Sans 16px Espresso. Price in Necto Mono 13px Amber Ink (#c46500). Tasting notes in Inclusive Sans 14px Coffee Dust. Roast level bar: 1px Taupe Hairline line with filled segment in Espresso. Quick View button: Dusty Blue (#89b4ca) background, Cream Paper text, 3px radius, Necto Mono 12px uppercase.\n\n3. *Hero Brand Block*: Little Amps display serif at 50px weight 500, Burnt Orange (#c03001), -5px tracking, two lines left-aligned. Small line-art coffee bag icon (24px, Espresso stroke) positioned to the right of the second line. Padding 32px from top-left of hero image.\n\n4. *Nav Bar*: Cream Paper (#fff9f2) background, 1px Taupe Hairline bottom border, height 72px. Brand wordmark logo at left (lowercase custom mark, Little Amps serif 20px Espresso). Center: nav items in Necto Mono 13px uppercase Espresso, 0.05em tracking, 24px gaps: SHOP ▾, ABOUT, WHOLESALE, COMMUNITY BOARD, CONTACT. Right: ACCOUNT ▾ and CART 0 in same style.\n\n5. *Ghost Outline Button*: Transparent background, 1px Espresso (#522c25) border, 3px radius. Text in Necto Mono 13px weight 500 Espresso, 0.05em tracking, uppercase. Padding 8px 14px. Use for secondary actions when a filled Burnt Orange button is already on screen."
+}

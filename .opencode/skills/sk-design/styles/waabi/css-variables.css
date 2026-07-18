@@ -1,0 +1,81 @@
+:root {
+  /* Colors */
+  --color-hot-signal: #ff2c6b;
+  --color-carbon: #191818;
+  --color-paper-white: #ffffff;
+  --color-concrete: #e8e6e3;
+  --color-ash: #8c8b8b;
+  --color-smoke: #808080;
+  --color-slate: #d1d5dc;
+  --color-ink: #000000;
+
+  /* Typography — Font Families */
+  --font-zagma: 'Zagma', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neuehaas: 'NeueHaas', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.1px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.48px;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.8px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -1.8px;
+  --text-display: 80px;
+  --leading-display: 0.9;
+  --tracking-display: -3.2px;
+  --text-display-xl: 150px;
+  --leading-display-xl: 0.85;
+  --tracking-display-xl: -7.2px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+  --spacing-240: 240px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 96px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-3xl: 40px;
+  --radius-full: 50px;
+  --radius-full-2: 63.4059px;
+
+  /* Named Radii */
+  --radius-pill: 9999px;
+  --radius-cards: 12px;
+  --radius-panels: 40px;
+  --radius-buttons: 50px;
+  --radius-thumbnails: 12px;
+
+  /* Surfaces */
+  --surface-concrete-canvas: #e8e6e3;
+  --surface-paper-white: #ffffff;
+  --surface-slate-panel: #d1d5dc;
+  --surface-carbon-block: #191818;
+}

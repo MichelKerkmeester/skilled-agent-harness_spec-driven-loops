@@ -1,0 +1,591 @@
+{
+  "source": "https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae",
+  "uuid": "7e03ab3b-1344-43d7-a7c4-2f31395758ae",
+  "name": "Favorit Studio",
+  "northStar": "Gallery wall in black and white — a single oversized serif floating on infinite white, anchored by a quiet photograph.",
+  "capturedAt": "2026-07-18T09:08:00.900Z",
+  "meta": {
+    "url": "https://favorit.studio",
+    "siteName": "Favorit Studio",
+    "extractedAt": "2026-06-03T20:40:42.473Z",
+    "durationMs": 39636,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 392,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines in Favorit Times at 179px with -0.025em tracking — the size and the negative tracking are inseparable from the brand.",
+      "Use TWKLausanne weight 400 exclusively across every size from 14px to 189px; never introduce a bold or medium weight.",
+      "Let photographs bleed to the viewport edge with 0px radius and no border — the image IS the layout.",
+      "Separate content blocks with exactly 46px of white space; let the page breathe like a printed spread.",
+      "Reserve all color for photography; the UI itself must remain pure #000000 on #ffffff.",
+      "Use the serif (Favorit Times) for moments of editorial drama and the sans (TWKLausanne) for everything utilitarian — never mix them in the same line.",
+      "When a control is necessary, use the 1px Ink ghost border at 16px padding with 0px radius — no fills, no shadows."
+    ],
+    "donts": [
+      "Never add color, gradients, or shadows to UI elements — the monochrome ink-on-paper discipline is the brand.",
+      "Never round corners on images, cards, or buttons — 0px radius is the only radius.",
+      "Never use a bold or semibold weight; the entire system speaks in weight 400, differentiating through size and family alone.",
+      "Never set body or navigation text in the serif face — TWKLausanne is the only utilitarian voice.",
+      "Never add visible borders, dividers, or cards around photographic content — the white space between images is the only separator.",
+      "Never use iconography, illustrations, or decorative graphics — the site uses type and photography exclusively.",
+      "Never place text directly on photographs without a solid color treatment; text always lives on the white canvas."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "All text, thin dividers, image overlays, wordmark fill, and the sole stroke color for outlined controls. Maximum contrast against paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, all surface backgrounds, inverted text on dark photographic plates, scroll indicator wells",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-column scroll with no max-width constraint. The page is essentially a vertical exhibition: the wordmark anchors the top-left, navigation lives in the top-right as minimal vertical text, and the body is a sequence of oversized photographs stacked vertically with ~46px of white breathing room between them. No grid system is visible — each photograph claims the full viewport width at varying aspect ratios. Section titles in the serif face appear as full-width text blocks that interrupt the image sequence. The overall rhythm is gallery-walk: walk forward, see one piece, pause, see the next.",
+    "imagery": "Full-bleed studio photography is the only visual content beyond typography. Subjects (people, objects) are always centered against a warm neutral seamless backdrop in desaturated earth tones — taupe, putty, warm gray. The treatment is editorial fashion photography: controlled studio lighting, sharp focus, deliberate negative space around the subject. Images are large, edge-to-edge, and uncropped — no rounded corners, no masks, no overlays. The colorfulness score of 0% applies strictly to the UI; the photography carries all the warmth and tonal variation the interface refuses to show.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine approach: oversized serif type on white, photography as primary content, no decorative chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Radical monochrome with two-typeface system (serif display + sans utility), generous white space, studio photography",
+        "business": "Manual (manual.to)"
+      },
+      {
+        "why": "Gallery-like single-column scroll with monumental serif headlines interrupting full-bleed image sequences",
+        "business": "DIA Studio"
+      },
+      {
+        "why": "Agency portfolio aesthetic: pure white canvas, quiet navigation, oversized custom type, image-dominant layout",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "21px",
+      "sectionGap": "46px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "The entire page canvas. There is no surface above it — no cards, no panels, no elevated layers. All text and all photographs sit directly on Paper."
+      }
+    ],
+    "northStar": "Gallery wall in black and white — a single oversized serif floating on infinite white, anchored by a quiet photograph.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 23,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.39
+      },
+      {
+        "role": "heading-sm",
+        "size": 44,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.1
+      },
+      {
+        "role": "heading",
+        "size": 55,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.375
+      },
+      {
+        "role": "display",
+        "size": 179,
+        "lineHeight": 1,
+        "letterSpacing": -4.475
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Display",
+        "role": "Primary brand identifier",
+        "description": "The word 'Favorit' or 'Studio' rendered at 179px in Favorit Times, weight 400, letter-spacing -0.025em, line-height 1.0. Ink black on Paper white. Anchors the top-left of every page. No logo mark, no icon — the word IS the mark."
+      },
+      {
+        "name": "Minimal Nav Link",
+        "role": "Navigation text anchor",
+        "description": "TWKLausanne 14px, weight 400, letter-spacing -0.14px, Ink color. Vertically oriented (rotated 90°) for the right-edge 'Scroll' indicator and the 'M' section marker. No underlines, no buttons — just letters. 21px padding around the clickable area."
+      },
+      {
+        "name": "Full-Bleed Photograph",
+        "role": "Primary content surface",
+        "description": "Edge-to-edge image occupying the full viewport width. No border, no radius, no shadow. Aspect ratio varies per image (the studio portraits sit roughly 4:3 landscape). Subject always centered, always against a warm neutral seamless backdrop. This IS the layout — the photograph replaces cards, sections, and grids."
+      },
+      {
+        "name": "Editorial Image Stack",
+        "role": "Scrollable content sequence",
+        "description": "A vertical rhythm of full-bleed photographs separated by approximately 46px of white space. No captions, no labels, no overlays. The sequencing of images creates the narrative; typography appears only at section breaks."
+      },
+      {
+        "name": "Sans Display Heading",
+        "role": "Secondary large-type moment",
+        "description": "TWKLausanne at 135–189px, weight 400, letter-spacing -0.025em, line-height 1.0. Used where the editorial serif would compete with a photographic subject. Same scale as the serif display but in the utilitarian voice — a quieter kind of loud."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Affordance for vertical exploration",
+        "description": "The word 'Scroll' set vertically (rotated -90°) in TWKLausanne 14px, weight 400, Ink. Pinned to the right edge with 21px offset from the viewport edge. No arrow, no animation described — the word itself is the cue."
+      },
+      {
+        "name": "Ghost Border Control",
+        "role": "Rarefied interactive element",
+        "description": "Outlined button using a 1px Ink border, transparent fill, Ink text in TWKLausanne 14px. 16px padding on all sides, 0px radius. No fill state, no hover color shift — the border simply exists or doesn't. Used only for essential actions; the site avoids interactive elements almost entirely."
+      },
+      {
+        "name": "List Item",
+        "role": "Sequential content (case studies, links)",
+        "description": "TWKLausanne 14px, weight 400, Ink. 21px horizontal padding, 46px vertical padding, 54px right margin between items. No bullets, no dividers — spacing alone separates entries."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines only. The wordmark 'Favorit' and section titles live here. Set at sizes between 44px and 179px, always weight 400, always with negative tracking that tightens proportionally with size. A single weight at display size is the signature: no bold, no italic — authority comes from scale and the serif's contrast, not from weight.",
+        "sizes": "44px, 55px, 179px",
+        "family": "Favorit Times",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Playfair Display, GT Sectra, or Canela",
+        "letterSpacing": "-0.025em at all display sizes"
+      },
+      {
+        "role": "Utility and body voice — navigation labels, scroll indicators, list items, body copy, and the rare button. Also handles oversized sans display work in the 135–189px range where the serif would feel wrong. Tracking loosens as size shrinks: -0.025em at display, -0.017em at mid, -0.010em at body. A single weight across the entire scale keeps the sans disciplined and the serif dramatic by contrast.",
+        "sizes": "14px, 23px, 135px, 159px, 189px",
+        "family": "TWKLausanne",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "-0.025em at 135–189px, -0.017em at 23px, -0.010em at 14px"
+      }
+    ],
+    "description": "Favorit Studio is an editorial gallery in browser form: pure white canvas, near-absolute monochrome ink, and photography that does the emotional work. Two custom typefaces carry the entire visual language — a sharp serif (Favorit Times) reserved for monumental display, and a quiet grotesk (TWKLausanne) for everything utilitarian. Spacing breathes like a printed magazine spread; no shadows, no borders, no color, no gradients. Every element either sets type or shows an image, nothing else is allowed to exist.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Favorit Studio design system\",\"item\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#style-reference\",\"name\":\"Favorit Studio design system reference\",\"headline\":\"Favorit Studio design system | Refero Styles\",\"description\":\"Explore Favorit Studio's light Agency design system: Ink #000000, Paper #ffffff colors, Favorit Times, TWKLausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Favorit Studio\",\"url\":\"https://favorit.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"caption\":\"Screenshot of Favorit Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Favorit Studio design system\",\"Favorit Studio website design\",\"Favorit Studio colors\",\"Favorit Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Favorit Times\",\"TWKLausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Favorit Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:12:36.053Z\",\"dateModified\":\"2026-04-30T02:12:36.053Z\"}]}19:T4cb,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. **Display Wordmark:** Render the word 'Studio' in Favorit Times, 179px, weight 400, color #000000, letter-spacing -4.475px, line-height 1.0, on a #ffffff canvas. Left-aligned, 21px from the viewport edge.\n\n2. **Full-Bleed Portrait Section:** A single photograph filling 100% viewport width, approximately 4:3 aspect ratio, 0px border-radius, no border, no shadow. Subject centered, neutral warm-gray seamless backdrop. 46px of white space above and below.\n\n3. **Scroll Indicator:** The word 'Scroll' in TWKLausanne 14px, weight 400, color #000000, letter-spacing -0.14px, rotated -90 degrees, positioned 21px from the right viewport edge, vertically centered.\n\n4. **Ghost Border Control:** A rectangular button with 1px solid #000000 border, transparent fill, no shadow, 0px radius. Interior text in TWKLausanne 14px, weight 400, #000000. Padding 16px on all sides.\n\n5. **Editorial Image Stack:** Three full-bleed photographs stacked vertically with 46px white-space gaps between them. No captions, no labels. The rhythm of the stack IS the content."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat — zero shadows, zero borders, zero elevation effects. Depth is created through scale contrast (type and image), generous white space, and the editorial sequencing of full-bleed photographs. Any shadow would break the print-on-paper illusion the entire system depends on."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "button",
+            "body",
+            "image",
+            "list",
+            "link"
+          ],
+          "frequency": 1572,
+          "confidence": 1,
+          "prominence": 344514920.23026806,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "hero/color": 2,
+            "link/color": 2,
+            "list/color": 11,
+            "other/fill": 2,
+            "image/color": 86,
+            "other/color": 162,
+            "button/color": 13,
+            "heading/color": 18,
+            "body/borderColor": 72,
+            "hero/borderColor": 8,
+            "link/borderColor": 8,
+            "list/borderColor": 44,
+            "image/borderColor": 344,
+            "other/borderColor": 648,
+            "button/borderColor": 52,
+            "heading/borderColor": 72,
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 400,
+          "confidence": 1,
+          "prominence": 169668634.11060476,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "body/color": 8,
+            "link/color": 6,
+            "list/color": 4,
+            "other/fill": 1,
+            "image/color": 2,
+            "other/color": 37,
+            "button/color": 3,
+            "heading/color": 7,
+            "nav/borderColor": 44,
+            "body/borderColor": 32,
+            "link/borderColor": 24,
+            "list/borderColor": 16,
+            "image/borderColor": 8,
+            "other/borderColor": 148,
+            "button/borderColor": 12,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 9
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWKLausanne",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 382,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Favorit Times",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 23,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "TWKLausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "TWKLausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "hero",
+            "image",
+            "list",
+            "heading",
+            "link"
+          ],
+          "frequency": 328,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Favorit Times",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Favorit Times",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "TWKLausanne",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other",
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 159,
+          "family": "TWKLausanne",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "list"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 179,
+          "family": "Favorit Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 189,
+          "family": "TWKLausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/31b6db4c-34a4-42e6-a950-802984372df1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Favorit Studio design system\",\"item\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#style-reference\",\"name\":\"Favorit Studio design system reference\",\"headline\":\"Favorit Studio design system | Refero Styles\",\"description\":\"Explore Favorit Studio's light Agency design system: Ink #000000, Paper #ffffff colors, Favorit Times, TWKLausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Favorit Studio\",\"url\":\"https://favorit.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7e03ab3b-1344-43d7-a7c4-2f31395758ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"caption\":\"Screenshot of Favorit Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/40672e44-46e6-4a1a-ada9-d5465f8747f8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Favorit Studio design system\",\"Favorit Studio website design\",\"Favorit Studio colors\",\"Favorit Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Favorit Times\",\"TWKLausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Favorit Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Favorit Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:12:36.053Z\",\"dateModified\":\"2026-04-30T02:12:36.053Z\"}]}19:T4cb,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. **Display Wordmark:** Render the word 'Studio' in Favorit Times, 179px, weight 400, color #000000, letter-spacing -4.475px, line-height 1.0, on a #ffffff canvas. Left-aligned, 21px from the viewport edge.\n\n2. **Full-Bleed Portrait Section:** A single photograph filling 100% viewport width, approximately 4:3 aspect ratio, 0px border-radius, no border, no shadow. Subject centered, neutral warm-gray seamless backdrop. 46px of white space above and below.\n\n3. **Scroll Indicator:** The word 'Scroll' in TWKLausanne 14px, weight 400, color #000000, letter-spacing -0.14px, rotated -90 degrees, positioned 21px from the right viewport edge, vertically centered.\n\n4. **Ghost Border Control:** A rectangular button with 1px solid #000000 border, transparent fill, no shadow, 0px radius. Interior text in TWKLausanne 14px, weight 400, #000000. Padding 16px on all sides.\n\n5. **Editorial Image Stack:** Three full-bleed photographs stacked vertically with 46px white-space gaps between them. No captions, no labels. The rhythm of the stack IS the content."
+}

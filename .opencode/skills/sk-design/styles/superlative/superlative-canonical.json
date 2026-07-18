@@ -1,0 +1,1050 @@
+{
+  "source": "https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046",
+  "uuid": "10ab6120-3d03-48ff-aebe-0b4910edc046",
+  "name": "Superlative",
+  "northStar": "Industrial product monograph behind studio glass. A darkroom vitrine where hardware, label, and oversized headline share one continuous, almost weightless plane.",
+  "capturedAt": "2026-07-18T08:33:21.409Z",
+  "meta": {
+    "url": "https://playsuperlative.com",
+    "siteName": "Superlative",
+    "extractedAt": "2026-06-03T16:28:40.426Z",
+    "durationMs": 24937,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 286,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use SL-Regular-Condensed 15px uppercase at 0.08em tracking for every label, tag, and metadata string — this is the system's signature typographic move.",
+      "Render the 90px display headline at weight 400 in SL-Light, never bold; the whisper-weight at display size is the brand's loudest gesture.",
+      "Use 3px border-radius on all buttons and 15px on badges; keep all other elements (cards, images, containers) at 0px radius — the system is almost completely sharp.",
+      "Reserve #e66f27 for LED-status moments, active states, or single-icon accents — never as a fill, gradient, or large surface.",
+      "Stack footers and link lists in tight vertical columns separated by 15px gaps, in the manner of a hardware rear-panel spec plate.",
+      "Let product photography carry all chromatic information; keep the surrounding UI strictly achromatic.",
+      "Use 1px borders in #000000 (on light) or #ffffff (on dark) as the only structural delineation — no shadows, no fills for separation."
+    ],
+    "donts": [
+      "Don't introduce a saturated brand color other than #e66f27 — the system is monochrome by design.",
+      "Don't use bold or semibold weights for headlines; weight 400 at 90px is the deliberate choice.",
+      "Don't apply rounded corners larger than 15px — anything softer breaks the industrial-product metaphor.",
+      "Don't add shadows, glows, or gradients for elevation — separation comes from background color shifts and 1px borders only.",
+      "Don't use the condensed font for body copy longer than a few words; its 0.08em tracking and uppercase treatment make it illegible at paragraph length.",
+      "Don't place a filled-color CTA button — the action is always an outlined ghost button in white or #141414.",
+      "Don't use illustration or icon sets that introduce new color; icons should be line-art in the current section's text color."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#f6f4f2",
+        "name": "Pulp Cream",
+        "role": "Page canvas, light section backgrounds, the warm off-white that defines the brand's paper-like base layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e3e2",
+        "name": "Graphite Veil",
+        "role": "Subtle card surfaces, hairline divider washes — one shade darker than the canvas for quiet elevation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Mid Ash",
+        "role": "Muted metadata text, disabled labels, secondary borders — the middle voice between ink and whisper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Ink Black",
+        "role": "Primary text, dark section surfaces, the dominant heading color on light backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232323",
+        "name": "Charcoal Press",
+        "role": "Body text on light backgrounds, secondary text on dark backgrounds — slightly softer than pure ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Vapor",
+        "role": "Text on dark sections, inverted surface highlights, the lightest tone in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Null",
+        "role": "Hairline borders, focus outlines, the deepest void — used as a 1px stroke, never as a fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e66f27",
+        "name": "Ember Diode",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout with no max-width container. The hero is a single full-viewport dark product photograph with the 90px white headline overlaid as the dominant element, plus a small 'BUY NOW' outlined button and category navigation. Vertical rhythm is generous — 120–240px padding between major sections, with sections alternating between dark (hero, product reveal) and light (specs, editorial) treatments. Navigation is a minimal top bar with left-aligned labels and right-aligned logo, no background fill. Footer areas use stacked single-column text lists at 15px condensed tracking, reading like a hardware rear-panel spec sheet. The page reads top-to-bottom as a sequence of full-bleed editorial plates rather than a grid of cards.",
+    "imagery": "The site is image-led in a single specific way: large-format dark studio photography of the hardware itself, shot in dramatic 3/4 angles with directional lighting that picks out the warm orange of the LED indicators. No lifestyle photography, no people, no environments — the synthesizer is always isolated against a dark or warm-neutral background. The product photographs function like product monographs: tight crops, no context, the object as the only subject. No illustration system is used; the only graphic elements are the SL wordmark, a small geometric logo mark, and minimal line-art icons that match the section's text color.",
+    "similar": [
+      {
+        "why": "Same industrial-product monograph language: dark hero photography of hardware, oversized display type overlaid on product image, monochrome UI with a single warm accent from the device's own indicators.",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Near-identical treatment: 90px-scale whisper-weight headlines in white on dark product photography, condensed uppercase labels as metadata, outlined ghost button for purchase action.",
+        "business": "Teenage Engineering — OP-1 product page"
+      },
+      {
+        "why": "Same full-bleed dark studio photography, 1px hairline borders, monochrome palette, and typographic hierarchy that puts the product image ahead of the UI.",
+        "business": "Native Instruments — hardware product pages"
+      },
+      {
+        "why": "Same silkscreen-label aesthetic: hardware spec text rendered as if printed on the device, condensed uppercase with wide tracking, warm cream-to-black surface stack.",
+        "business": "Erica Synths"
+      },
+      {
+        "why": "Same discipline of letting one vivid hardware color (their product's status LEDs) carry all the chromatic information, with a strictly monochrome interface around it.",
+        "business": "1010 Music"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "15px",
+        "buttons": "3px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "60-120px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f6f4f2",
+        "name": "Pulp Cream Canvas",
+        "level": 0,
+        "purpose": "Default light section background — the warm off-white 'paper' of the system"
+      },
+      {
+        "hex": "#e4e3e2",
+        "name": "Graphite Veil",
+        "level": 1,
+        "purpose": "Raised card and panel surface on light sections"
+      },
+      {
+        "hex": "#232323",
+        "name": "Charcoal Press",
+        "level": 2,
+        "purpose": "Inverted mid-dark surface for editorial sections"
+      },
+      {
+        "hex": "#141414",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Hero and deepest dark surface for dramatic product photography"
+      }
+    ],
+    "northStar": "Industrial product monograph behind studio glass. A darkroom vitrine where hardware, label, and oversized headline share one continuous, almost weightless plane.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 23,
+        "lineHeight": 1.33,
+        "letterSpacing": 1.84
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 1,
+        "letterSpacing": 7.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site header",
+        "description": "Full-bleed transparent bar over hero. Left-aligned: 'SUPERLATIVE' wordmark in SL-Regular-Condensed 15px at 0.08em tracking, uppercase, white. Below it: category link 'PRODUCT' in same treatment, clickable. Right-aligned: logo mark in white. No background fill, no border, no shadow — the bar sits directly on the hero image."
+      },
+      {
+        "name": "Product Category Label",
+        "role": "Metadata label identifying product family",
+        "description": "Renders as 'SB01 (SPACE BEE) MONOLAB' in SL-Regular-Condensed 15px, uppercase, 0.08em tracking, white. Adjacent 'NEW' badge sits inline. Functions like a hardware spec line — short, monospaced-feel, no decoration."
+      },
+      {
+        "name": "NEW Status Badge",
+        "role": "Pill badge marking recent releases",
+        "description": "Rounded pill, 15px border-radius, 11px vertical / 8px horizontal padding. 1px white border, transparent fill, white text in SL-Regular-Condensed 15px uppercase at 0.08em tracking. The 15px radius is the only soft element in the system — badges are the exception to the otherwise sharp geometry."
+      },
+      {
+        "name": "Display Headline Overlay",
+        "role": "Hero editorial headline",
+        "description": "90px SL-Light weight 400, white, line-height 1.00, letter-spacing 0.08em (7.2px). Overlaid directly on the dark hero photography. No background plate — the type sits raw on the product image, sometimes with the product silhouette breaking through the letterforms. This is the system's most dramatic typographic moment."
+      },
+      {
+        "name": "BUY NOW Button",
+        "role": "Primary action button",
+        "description": "Outlined ghost button: 1px white border, transparent fill, no shadow, 3px border-radius. Inner padding 11px vertical / 19px horizontal. Text: 'BUY NOW' in SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. The 3px radius is deliberately almost-sharp — this is a hardware button, not a friendly chip."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation and footer link",
+        "description": "SL-Regular 15px, white on dark or #141414 on light. No underline at rest. On hover/active: 1px underline appears. No color change. Part of the typographic labeling system, not a separate button — links behave like text until interacted with."
+      },
+      {
+        "name": "Footer Column Heading",
+        "role": "Footer section label",
+        "description": "SL-Regular-Condensed 15px uppercase, 0.08em tracking, muted color (#8c8c8c on dark). Sets up stacked list of links below (NEWS, SUPPORT, CAREERS, COMPANY) rendered in same family at body weight."
+      },
+      {
+        "name": "Footer Legal Strip",
+        "role": "Bottom legal and copyright line",
+        "description": "SL-Regular-Condensed 15px uppercase, 0.08em tracking, low-opacity white at the very bottom edge. Reads as part of the hardware's silkscreen rather than as a website footer."
+      },
+      {
+        "name": "Product Hero Image",
+        "role": "Full-bleed product photograph",
+        "description": "Dark studio photograph filling the entire viewport. Subject (the SB01 synthesizer) shot in a 3/4 angle with strong directional lighting; orange LED status lights visible on the unit. The image carries the brand's only chromatic moment — the warm ember #e66f27 appears naturally from the hardware's own indicators, never from added color in the UI."
+      },
+      {
+        "name": "Hardware Silkscreen Label",
+        "role": "Inline product specification text",
+        "description": "Rendered directly on product photography as if silkscreened onto the unit. SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. Used for labels like 'POWER', 'USB', 'MIDI', 'PEDAL', 'TUNE', 'VCO' — every label echoes the actual silk-screening on the synthesizer faceplate."
+      },
+      {
+        "name": "Inverted Section",
+        "role": "Dark editorial section",
+        "description": "Background #141414 or #232323, all text in white or #8c8c8c. Used for dramatic product reveals. Components inside use the same 1px white borders and 3px radii as the hero — the system stays consistent regardless of section inversion."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The signature labeling voice: product names, category tags, metadata strips. The wide 0.08em tracking at a 15px body size is the system's most identifiable choice — every element announces itself in uppercase condensed caps like a hardware serial plate.",
+        "sizes": "15px, 23px, 90px",
+        "family": "SL-Regular-Condensed (custom: Superlative Condensed)",
+        "weight": "400",
+        "lineHeight": "1.00 / 1.33",
+        "substitute": "Barlow Condensed, Roboto Condensed, Oswald",
+        "letterSpacing": "0.08em"
+      },
+      {
+        "role": "Display and editorial heading voice at 90px / line-height 1.00. Weight 400 (not bold) at 90px is anti-convention — most product pages shout with 700 weight; this whispers at 400, letting the white text and negative space do the heavy lifting. Also used at 25px for secondary editorial subheads.",
+        "sizes": "25px, 90px",
+        "family": "SL-Light (custom: Superlative Light)",
+        "weight": "400",
+        "lineHeight": "1.00 / 1.20",
+        "substitute": "Inter, Söhne, Söhne Buch, Helvetica Neue Light"
+      },
+      {
+        "role": "Default body and link text. A single weight at a single 15px size — the body text is deliberately quiet so the condensed labels and display headings dominate the voice.",
+        "sizes": "15px",
+        "family": "SL-Regular (custom: Superlative Regular)",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Inter, Söhne, Helvetica Neue, system-ui"
+      }
+    ],
+    "description": "Superlative uses an industrial-design monograph language: warm cream canvas, dramatic dark product photography, and large editorial display type that behaves more like a print catalog than a SaaS landing page. Almost all UI is monochrome — the visual interest comes from a single warm ember accent that echoes the LED indicators on the hardware itself, never from decorative gradients or illustration. Components are deliberately sparse and almost sharp — thin 1px borders, tight 3px button radii, 15px gaps — so the product and the typography do the talking. The condensed uppercase labels with wide tracking function as a typographic wiring diagram, identifying every element on screen in the manner of an engineering schematic.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superlative design system\",\"item\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#style-reference\",\"name\":\"Superlative design system reference\",\"headline\":\"Superlative design system | Refero Styles\",\"description\":\"Explore Superlative's mixed Design design system: Pulp Cream #f6f4f2, Graphite Veil #e4e3e2 colors, SL-Regular-Condensed (custom: Superlative Condensed),...\",\"url\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\",\"mainEntityOfPage\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superlative\",\"url\":\"https://playsuperlative.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"caption\":\"Screenshot of Superlative\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superlative design system\",\"Superlative website design\",\"Superlative colors\",\"Superlative typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pulp Cream\",\"Graphite Veil\",\"Mid Ash\",\"Ink Black\",\"SL-Regular-Condensed (custom: Superlative Condensed)\",\"SL-Light (custom: Superlative Light)\",\"SL-Regular (custom: Superlative Regular)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superlative design system\"},{\"@type\":\"Thing\",\"name\":\"Superlative website design\"},{\"@type\":\"Thing\",\"name\":\"Superlative colors\"},{\"@type\":\"Thing\",\"name\":\"Superlative typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:18:37.909Z\",\"dateModified\":\"2026-04-30T03:18:37.909Z\"}]}19:T67b,Quick Color Reference:\n- text (light bg): #141414\n- text (dark bg): #ffffff\n- text (muted/metadata): #8c8c8c\n- background (light section): #f6f4f2\n- background (dark section): #141414\n- border (light section): #000000\n- border (dark section): #ffffff\n- accent / status LED: #e66f27\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Display headline on dark hero: 90px SL-Light weight 400, color #ffffff, line-height 1.00, letter-spacing 7.2px, uppercase. Sits directly on full-bleed product photograph with no background plate.\n\n2. Category label strip: SL-Regular-Condensed 15px uppercase, letter-spacing 1.2px, color #ffffff on dark or #141414 on light. Renders labels like 'SUPERLATIVE', 'PRODUCT', 'POWER', 'VCO' — every metadata string uses this treatment.\n\n3. Outlined ghost BUY NOW button: 1px solid #ffffff border, 3px border-radius, transparent fill, 11px vertical / 19px horizontal padding. Text: 'BUY NOW' in SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. No shadow, no fill change on hover — the border just thickens to 2px or the text underlines.\n\n4. NEW status pill badge: 15px border-radius, 8px horizontal / 11px vertical padding, 1px solid #ffffff border, transparent background. Text: 'NEW' in SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. The only soft-cornered element in the system.\n\n5. Footer spec column: Stacked vertical list of links (NEWS, SUPPORT, CAREERS, COMPANY) in SL-Regular-Condensed 15px uppercase at 0.08em tracking, color #8c8c8c on dark background, 15px row gap. Above the list: section heading in the same treatment at white. No dividers, no icons — text only."
+      },
+      {
+        "title": "Editorial Type Philosophy",
+        "content": "The system's voice is established by the contrast between three weights of the same custom family: SL-Light (weight 400) at 90px for display, SL-Regular (weight 400) at 15px for body, and SL-Regular-Condensed (weight 400) at 15px with 0.08em tracking for labels. No bold weights exist. Authority comes from scale and tracking, not weight — a 90px whisper at letter-spacing 7.2px reads as more confident than a 48px bold would, because the restraint signals control. When generating new pages, never reach for font-weight 600 or 700; the entire hierarchy is built on size + tracking + family swap."
+      },
+      {
+        "title": "Single-Accent Rule",
+        "content": "The warm ember #e66f27 appears on the site only as the color of the hardware's LED status lights in product photography, and as a single status-glow accent on a control or indicator in the UI. It is never used as a button fill, a section background, a link color, or a brand wordmark. This single-accent discipline is what makes the photography feel branded without any UI chrome trying to compete with it. When in doubt: let the photo provide the color, keep the UI grey."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately uses zero shadows. Separation between layers is achieved entirely through background color shifts (Pulp Cream → Graphite Veil → Charcoal Press → Ink Black) and 1px hairline borders. This absence of shadow is a core choice: it keeps the surface flat and editorial, evoking a printed monograph or silkscreened hardware faceplate rather than a skeuomorphic app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "button"
+          ],
+          "frequency": 456,
+          "confidence": 1,
+          "prominence": 144291155.98928615,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "image/color": 6,
+            "other/color": 79,
+            "button/color": 1,
+            "link/borderColor": 24,
+            "image/borderColor": 24,
+            "other/borderColor": 312,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f6f4f2",
+          "oklch": {
+            "c": 0.0034259882189052256,
+            "h": 67.78271722306104,
+            "l": 0.968129296353326
+          },
+          "contexts": [
+            "badge",
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 132,
+          "confidence": 1,
+          "prominence": 115211527.49730822,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "other/color": 19,
+            "button/color": 1,
+            "link/borderColor": 24,
+            "other/borderColor": 76,
+            "button/borderColor": 4,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 182,
+          "confidence": 1,
+          "prominence": 17099043.859078407,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/color": 1,
+            "other/color": 35,
+            "badge/borderColor": 4,
+            "other/borderColor": 140,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "heading"
+          ],
+          "frequency": 185,
+          "confidence": 1,
+          "prominence": 13850550.531509496,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 7,
+            "image/color": 1,
+            "other/color": 27,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "link/borderColor": 28,
+            "image/borderColor": 4,
+            "other/borderColor": 108,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "image"
+          ],
+          "frequency": 190,
+          "confidence": 1,
+          "prominence": 12057204.751170482,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "image/color": 2,
+            "other/color": 34,
+            "button/color": 1,
+            "body/borderColor": 8,
+            "image/borderColor": 8,
+            "other/borderColor": 135
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "input",
+            "image"
+          ],
+          "frequency": 284,
+          "confidence": 1,
+          "prominence": 9344997.50243204,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "image/color": 3,
+            "input/color": 2,
+            "other/color": 46,
+            "button/color": 1,
+            "heading/color": 4,
+            "image/borderColor": 12,
+            "input/borderColor": 8,
+            "other/borderColor": 184,
+            "button/borderColor": 8,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#e4e3e2",
+          "oklch": {
+            "c": 0.0019447391975727492,
+            "h": 67.79808880080496,
+            "l": 0.9172341622373057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3581735.703757974,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e66f27",
+          "oklch": {
+            "c": 0.16790406080127623,
+            "h": 47.22683621762435,
+            "l": 0.6726070870769654
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 781.3781191217038,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 14
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005249763548577385,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.14,
+          "background": "#f6f4f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#141414",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.79,
+          "background": "#141414",
+          "foreground": "#f6f4f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#e4e3e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#e4e3e2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#f6f4f2",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#e4e3e2",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#e66f27",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.85,
+          "background": "#e66f27",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.48,
+          "background": "#141414",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.99,
+          "background": "#e66f27",
+          "foreground": "#232323"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#e66f27",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#f6f4f2",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.87,
+          "background": "#e66f27",
+          "foreground": "#f6f4f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#e4e3e2",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#e4e3e2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#e4e3e2",
+          "foreground": "#f6f4f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#141414",
+          "foreground": "#232323"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge",
+            "marginLeft|badge"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "badge",
+            "link",
+            "image"
+          ],
+          "frequency": 224,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|image",
+            "paddingLeft|image",
+            "paddingTop|image",
+            "paddingBottom|image",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SL-Regular-Condensed",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 183,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SL-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 53,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SL-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "SL-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 53,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SL-Regular-Condensed",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "badge",
+            "image"
+          ],
+          "frequency": 173,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "SL-Regular-Condensed",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SL-Regular-Condensed",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "SL-Regular-Condensed",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 25,
+          "family": "SL-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "SL-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "input"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 90,
+          "family": "SL-Regular-Condensed",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 90,
+          "family": "SL-Light",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b6567cb1-ff33-46e6-a903-1521c16dae31.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superlative design system\",\"item\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#style-reference\",\"name\":\"Superlative design system reference\",\"headline\":\"Superlative design system | Refero Styles\",\"description\":\"Explore Superlative's mixed Design design system: Pulp Cream #f6f4f2, Graphite Veil #e4e3e2 colors, SL-Regular-Condensed (custom: Superlative Condensed),...\",\"url\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\",\"mainEntityOfPage\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superlative\",\"url\":\"https://playsuperlative.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/10ab6120-3d03-48ff-aebe-0b4910edc046#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"caption\":\"Screenshot of Superlative\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8b735dc2-39f0-4f42-8a9b-5c963f045167.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superlative design system\",\"Superlative website design\",\"Superlative colors\",\"Superlative typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pulp Cream\",\"Graphite Veil\",\"Mid Ash\",\"Ink Black\",\"SL-Regular-Condensed (custom: Superlative Condensed)\",\"SL-Light (custom: Superlative Light)\",\"SL-Regular (custom: Superlative Regular)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superlative design system\"},{\"@type\":\"Thing\",\"name\":\"Superlative website design\"},{\"@type\":\"Thing\",\"name\":\"Superlative colors\"},{\"@type\":\"Thing\",\"name\":\"Superlative typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:18:37.909Z\",\"dateModified\":\"2026-04-30T03:18:37.909Z\"}]}19:T67b,Quick Color Reference:\n- text (light bg): #141414\n- text (dark bg): #ffffff\n- text (muted/metadata): #8c8c8c\n- background (light section): #f6f4f2\n- background (dark section): #141414\n- border (light section): #000000\n- border (dark section): #ffffff\n- accent / status LED: #e66f27\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Display headline on dark hero: 90px SL-Light weight 400, color #ffffff, line-height 1.00, letter-spacing 7.2px, uppercase. Sits directly on full-bleed product photograph with no background plate.\n\n2. Category label strip: SL-Regular-Condensed 15px uppercase, letter-spacing 1.2px, color #ffffff on dark or #141414 on light. Renders labels like 'SUPERLATIVE', 'PRODUCT', 'POWER', 'VCO' — every metadata string uses this treatment.\n\n3. Outlined ghost BUY NOW button: 1px solid #ffffff border, 3px border-radius, transparent fill, 11px vertical / 19px horizontal padding. Text: 'BUY NOW' in SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. No shadow, no fill change on hover — the border just thickens to 2px or the text underlines.\n\n4. NEW status pill badge: 15px border-radius, 8px horizontal / 11px vertical padding, 1px solid #ffffff border, transparent background. Text: 'NEW' in SL-Regular-Condensed 15px uppercase at 0.08em tracking, white. The only soft-cornered element in the system.\n\n5. Footer spec column: Stacked vertical list of links (NEWS, SUPPORT, CAREERS, COMPANY) in SL-Regular-Condensed 15px uppercase at 0.08em tracking, color #8c8c8c on dark background, 15px row gap. Above the list: section heading in the same treatment at white. No dividers, no icons — text only."
+}

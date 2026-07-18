@@ -1,0 +1,786 @@
+{
+  "source": "https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b",
+  "uuid": "348c83bc-bed3-4562-841a-26a30ee19a9b",
+  "name": "Fonts In Use",
+  "northStar": "White gallery wall for letterforms",
+  "capturedAt": "2026-07-18T09:53:20.153Z",
+  "meta": {
+    "url": "https://fontsinuse.com",
+    "siteName": "Fonts In Use",
+    "extractedAt": "2026-06-03T17:37:55.644Z",
+    "durationMs": 22090,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1826,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all body and UI text in BentonSansRE — never substitute display serifs or decorative faces in chrome elements",
+      "Use the 5px/10px/20px/30px spacing scale consistently; gap between grid cards is 20px column-gap, 30px row-gap",
+      "Keep all borders 1px solid #000000 or #999999 — never use thicker rules or colored strokes",
+      "Let the typeface name in specimen cards render in the actual font being documented (Baste set in Baste, Proxima Nova set in Proxima Nova) — the system makes this its feature",
+      "Use RelayCond only for the masthead wordmark and Staff Pick ribbons; treat it as a restricted accent face",
+      "Keep radius at 2px for all interactive controls; 0px for cards and images — sharp corners everywhere",
+      "Set page background to #ffffff and never introduce surface tint variation; the flatness is the brand"
+    ],
+    "donts": [
+      "Don't introduce any accent color, gradient, or chromatic background — the system is strictly achromatic",
+      "Don't add drop shadows, glows, or any box-shadow elevation to cards, buttons, or modals",
+      "Don't use rounded corners above 2px — pill shapes, 8px card radii, or large circular avatars break the editorial feel",
+      "Don't apply different font families to headings vs body — the UI uses one sans (BentonSansRE) and one condensed accent (RelayCond); nothing else",
+      "Don't use colors other than #000000, #ffffff, #f0f0f0, #dddddd, and #999999 in any UI context",
+      "Don't center-align body text or nav items — the layout is left-aligned and left-anchored throughout",
+      "Don't add icons inside form fields or buttons except the search magnifier; the interface is largely text-only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, all borders, logo wordmark, nav links, search input border — the sole ink color in the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "role": "Alternate row striping, search input fill, subtle list separators — a barely-there warm gray for differentiation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Mist",
+        "role": "Input borders, subtle dividers — the lightest functional border tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Ash",
+        "role": "Muted helper text, secondary metadata, disabled nav — 7.4:1 contrast against white still passes AAA",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed white canvas with a max-width 1200px centered content column. The top of the page is a masthead bar: logo upper-left, descriptive tagline and sponsor mention upper-center, sign-in link upper-right, with Collection/Blog primary tabs and a search field below. A hairline #000000 rule separates the masthead from a sub-nav row of Topics/Formats/Typefaces filter links. Below that, a thin control row holds result counts (left) and sort dropdowns (right). The body is a 5-column image grid where each card is an image stacked above two lines of type-specimen text. Vertical gap between rows is 30px; horizontal gap between columns is 20px. Cards have no borders or shadows. The page extends in long scrollable runs — 20+ cards visible per page, with the rhythm continuing seamlessly. Navigation is a top bar only; no sidebar, no sticky header beyond the masthead. The overall feel is a horizontally-scrolling printed catalog page rather than a vertical SaaS scroll.",
+    "imagery": "Photography is the content. The grid is composed of full-color real-world photographs showing each typeface printed on packaging, books, signage, screens, and environmental graphics. Images are rectangular and flush to the card edge with no padding, no border, no radius, and no overlay treatments. There is no decorative photography, no stock lifestyle imagery, no abstract graphics. The only non-photographic visual element is the diagonal 'Staff Pick' black ribbon overlaid on the top-right corner of select thumbnails. Iconography is minimal: a single magnifier glyph in the search field and small downward-pointing carets on dropdown triggers, all in #000000. The visual language is 'specimen page from a printed type catalog' — the artifact speaks, the chrome stays silent.",
+    "similar": [
+      {
+        "why": "Same specimen-grid approach where each card shows the font in use, typographic-first chrome, no decorative color",
+        "business": "Fonts.com specimen pages"
+      },
+      {
+        "why": "Editorial archive aesthetic with white canvas, left-aligned text, hairline rules, and zero accent color",
+        "business": "AIGA Eye on Design"
+      },
+      {
+        "why": "Type foundry catalog grid with photographic evidence, minimal UI typography, and specimen-as-product presentation",
+        "business": "Type Together"
+      },
+      {
+        "why": "Newsprint-on-screen density: compact spacing, black-on-white only, masthead wordmark in a condensed display face",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Typographic archive with grid-driven layout, 0% colorfulness, and the interface deliberately invisible behind the content",
+        "business": "Print magazine (theprintmagazine.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "30px",
+      "cardPadding": "5px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Alternate list rows, input fill"
+      }
+    ],
+    "northStar": "White gallery wall for letterforms",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Masthead Wordmark",
+        "role": "Primary brand identity at page top",
+        "description": "'FONTS IN USE' set in RelayCond bold, 36px, line-height 1.0, color #000000. Stacked on two lines (FONTS / IN USE) in the upper-left. The condensed masthead style is the strongest visual signature of the brand — it reads as a newspaper flag, not a SaaS logo."
+      },
+      {
+        "name": "Top Navigation Tab",
+        "role": "Primary section selector (Collection / Blog)",
+        "description": "BentonSansRE 16px 700, color #000000, 20px horizontal padding. Active tab has no underline or background — it is differentiated by weight (700) versus inactive (400) and by the 'Typefaces ▾' etc. sub-nav appearing below. Tab area sits in a white bar separated from the sub-nav by a 1px #000000 hairline."
+      },
+      {
+        "name": "Sub-Navigation Row",
+        "role": "Faceted filter (Topics, Formats, Typefaces)",
+        "description": "BentonSansRE 14px 400, #000000, each label followed by a down-caret. Appears below a 1px #000000 hairline, on #ffffff. No active state styling — simplicity over affordance."
+      },
+      {
+        "name": "Search Input",
+        "role": "Typography/term search",
+        "description": "BentonSansRE 14px 400, #000000 text, #f0f0f0 fill, 1px #999999 border, 2px radius. Placeholder 'Enter a word, typeface, tag…' in Ash (#999999). Small magnifier icon as right-side adornment. No focus ring color — focus is implied by cursor alone."
+      },
+      {
+        "name": "Sort Dropdown",
+        "role": "Result ordering control",
+        "description": "BentonSansRE 12px 400, #000000. Inline text 'Sort: Contribution Date ▾' with the active sort label bolded. No boxed container — the control is just text until hovered."
+      },
+      {
+        "name": "Type Specimen Card",
+        "role": "Grid item showcasing one font in use",
+        "description": "Rectangular photographic image fills the top of the card; no padding, no border, no radius. Below the image, on white, two lines of BentonSansRE: the typeface name (16px 400, #000000, the live specimen) and the designer/secondary font (14px 400, #000000). The card itself has no border or shadow — it is defined entirely by its gap in the grid."
+      },
+      {
+        "name": "Staff Pick Ribbon",
+        "role": "Curatorial highlight on select specimens",
+        "description": "RelayCond 18px 400, white text on a #000000 diagonal band overlaid on the top-right corner of the card image. Rotated approximately -30° on the top edge. The only chromatic contrast device in the entire UI — pure black-on-image, no color."
+      },
+      {
+        "name": "Thumbnail Image",
+        "role": "Evidence photo of the typeface in real-world use",
+        "description": "Always rectangular, always flush to card edges with no padding, no border, no radius. Aspect ratio varies by content. The photograph IS the product — no overlay, caption, or treatment."
+      },
+      {
+        "name": "Result Count Label",
+        "role": "Collection size indicator (e.g. 'Show: All (33217)')",
+        "description": "BentonSansRE 12px 400, #000000. The count itself is set in 700 weight to create an inline emphasis. Sits at the top of the result grid, right-aligned in the sort row."
+      },
+      {
+        "name": "Grid List Row Striping",
+        "role": "Alternate row differentiation in text-list contexts",
+        "description": "#ffffff base rows alternating with #f0f0f0 — barely perceptible. Used in secondary list views, not in the primary image grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole UI typeface — navigation, body, buttons, input fields, table data, footer. At 9–10px it functions as fine print (image counts, sort labels); at 14–16px as body and nav. The condensed proportions and newspaper-grade x-height give the interface its specimen-sheet feel. Substitute: Franklin Gothic URW or a neutral grotesque like Source Sans 3.",
+        "sizes": "9px, 10px, 12px, 14px, 16px",
+        "family": "BentonSansRE",
+        "weight": "400, 700",
+        "lineHeight": "1.10, 1.20, 1.60",
+        "substitute": "Franklin Gothic URW, Source Sans 3, or Lyon Display"
+      },
+      {
+        "role": "Reserved for editorial accents — the 'FONTS IN USE' wordmark at 36px (line-height 1.0, nearly square) and 'Staff Pick' ribbon badges at 18px. The condensed width makes the logo read as a masthead rather than UI. Substitute: Roboto Condensed or Oswald.",
+        "sizes": "18px, 36px",
+        "family": "RelayCond",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.60",
+        "substitute": "Roboto Condensed, Oswald, or Roboto Slab condensed cuts"
+      }
+    ],
+    "description": "Fonts In Use operates as a typographic museum: an editorial archive where the interface is deliberately invisible so the letterforms being catalogued can speak. Every surface is white or near-white, every stroke is black, and the only typographic personality comes from the custom BentonSansRE UI sans and RelayCond display — never from decoration. The 5-column thumbnail grid functions as the page's primary content unit, each card pairing a photographic evidence image with a live sample of the typeface it documents (Baste, Proxima Nova, Zilla Slab…). Density is compact and newspaper-like rather than spacious-SaaS: tight vertical rhythm, 5px gaps, hairline 2px radii on controls, no shadows, no gradients, no accent color. The whole system reads as a printed specimen sheet rendered for the screen — restrained, factual, anti-decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fonts In Use design system\",\"item\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#style-reference\",\"name\":\"Fonts In Use design system reference\",\"headline\":\"Fonts In Use design system | Refero Styles\",\"description\":\"Explore Fonts In Use's light Design design system: Carbon #000000, Paper #ffffff colors, BentonSansRE, RelayCond typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fonts In Use\",\"url\":\"https://fontsinuse.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"caption\":\"Screenshot of Fonts In Use\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fonts In Use design system\",\"Fonts In Use website design\",\"Fonts In Use colors\",\"Fonts In Use typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Carbon\",\"Paper\",\"Bone\",\"Mist\",\"BentonSansRE\",\"RelayCond\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fonts In Use design system\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use website design\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use colors\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-25T12:45:07.000Z\",\"dateModified\":\"2026-01-25T12:45:07.000Z\"}]}19:T81b,QUICK COLOR REFERENCE\n- text: #000000 (Carbon)\n- background: #ffffff (Paper)\n- border: #999999 (Ash) for subtle, #000000 (Carbon) for structural hairlines\n- accent: #f0f0f0 (Bone) for alternate row fill and input backgrounds\n- muted text: #999999 (Ash)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Typography specimen card: 1200px max-width grid, 5 columns, 20px column-gap, 30px row-gap. Each cell contains a rectangular image (no padding, no border, no radius) above two left-aligned text lines. Line 1: the typeface name set in that very typeface, BentonSansRE 16px weight 400, #000000. Line 2: designer or secondary specimen name, BentonSansRE 14px weight 400, #000000. White background everywhere, no card border, no shadow.\n\n2. Masthead header: full-bleed white bar. Upper-left: 'FONTS IN USE' wordmark in RelayCond bold 36px, line-height 1.0, stacked on two lines, #000000. Upper-right: 'Sign in / participate' link in BentonSansRE 12px 400, #000000. Center: sponsor line in BentonSansRE 10px 400, #000000. Below: a row of primary tabs ('Collection' bold 700 active, 'Blog' 400 inactive) in BentonSansRE 16px, #000000, with 20px horizontal padding. Underline divider: 1px solid #000000.\n\n3. Search field: BentonSansRE 14px 400, #000000, on a #f0f0f0 fill, 1px solid #999999 border, 2px border-radius, ~10px vertical padding. Placeholder 'Enter a word, typeface, tag…' in #999999. Small right-aligned magnifier icon in #000000. No focus ring — the field is understated.\n\n4. Filter sub-nav row: 1px solid #000000 hairline above, white background. Three labels — 'Topics ▾', 'Formats ▾', 'Typefaces ▾' — in BentonSansRE 14px 400, #000000, left-aligned with 20–30px horizontal spacing between them. Carets rendered as small downward triangles in #000000.\n\n5. Staff Pick ribbon: RelayCond 18px 400, white text on a #000000 diagonal band approximately 120px × 22px, rotated -30°, positioned at the top-right corner of a specimen card image, overlapping the image edge. This is the only non-text visual accent in the entire system."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system is flat by conviction — elevation is communicated only through the hairline #999999 border, never through cast shadow. Cards in the grid sit directly on the white canvas with whitespace as their only separator."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "nav",
+            "heading",
+            "input",
+            "table",
+            "list",
+            "badge",
+            "footer"
+          ],
+          "frequency": 8990,
+          "confidence": 1,
+          "prominence": 78998787.13207896,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "input",
+            "other",
+            "badge",
+            "button",
+            "body"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 32879833.894938905,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 331926.2801641745,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 50970,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 50970,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "input",
+            "body"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 23386.37378800703,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 15340.444768112302,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#dddddd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#999999",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#999999",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.5,
+          "background": "#f0f0f0",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#999999",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#ffffff",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#f0f0f0",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f0f0f0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 196,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 63,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 123,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 220,
+          "contexts": [],
+          "frequency": 58,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BentonSansRE",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1817,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "RelayCond",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "BentonSansRE",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 873,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "BentonSansRE",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list",
+            "button"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BentonSansRE",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BentonSansRE",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "table",
+            "image",
+            "list",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 642,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BentonSansRE",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "RelayCond",
+          "weight": 700,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "RelayCond",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "RelayCond",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7db7e99d-a400-4089-87c0-51eecc382eb0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fonts In Use design system\",\"item\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#style-reference\",\"name\":\"Fonts In Use design system reference\",\"headline\":\"Fonts In Use design system | Refero Styles\",\"description\":\"Explore Fonts In Use's light Design design system: Carbon #000000, Paper #ffffff colors, BentonSansRE, RelayCond typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fonts In Use\",\"url\":\"https://fontsinuse.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/348c83bc-bed3-4562-841a-26a30ee19a9b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"caption\":\"Screenshot of Fonts In Use\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35ee8e8e-be4f-459e-993d-cdd3681ef7b4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fonts In Use design system\",\"Fonts In Use website design\",\"Fonts In Use colors\",\"Fonts In Use typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Carbon\",\"Paper\",\"Bone\",\"Mist\",\"BentonSansRE\",\"RelayCond\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fonts In Use design system\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use website design\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use colors\"},{\"@type\":\"Thing\",\"name\":\"Fonts In Use typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-25T12:45:07.000Z\",\"dateModified\":\"2026-01-25T12:45:07.000Z\"}]}19:T81b,QUICK COLOR REFERENCE\n- text: #000000 (Carbon)\n- background: #ffffff (Paper)\n- border: #999999 (Ash) for subtle, #000000 (Carbon) for structural hairlines\n- accent: #f0f0f0 (Bone) for alternate row fill and input backgrounds\n- muted text: #999999 (Ash)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Typography specimen card: 1200px max-width grid, 5 columns, 20px column-gap, 30px row-gap. Each cell contains a rectangular image (no padding, no border, no radius) above two left-aligned text lines. Line 1: the typeface name set in that very typeface, BentonSansRE 16px weight 400, #000000. Line 2: designer or secondary specimen name, BentonSansRE 14px weight 400, #000000. White background everywhere, no card border, no shadow.\n\n2. Masthead header: full-bleed white bar. Upper-left: 'FONTS IN USE' wordmark in RelayCond bold 36px, line-height 1.0, stacked on two lines, #000000. Upper-right: 'Sign in / participate' link in BentonSansRE 12px 400, #000000. Center: sponsor line in BentonSansRE 10px 400, #000000. Below: a row of primary tabs ('Collection' bold 700 active, 'Blog' 400 inactive) in BentonSansRE 16px, #000000, with 20px horizontal padding. Underline divider: 1px solid #000000.\n\n3. Search field: BentonSansRE 14px 400, #000000, on a #f0f0f0 fill, 1px solid #999999 border, 2px border-radius, ~10px vertical padding. Placeholder 'Enter a word, typeface, tag…' in #999999. Small right-aligned magnifier icon in #000000. No focus ring — the field is understated.\n\n4. Filter sub-nav row: 1px solid #000000 hairline above, white background. Three labels — 'Topics ▾', 'Formats ▾', 'Typefaces ▾' — in BentonSansRE 14px 400, #000000, left-aligned with 20–30px horizontal spacing between them. Carets rendered as small downward triangles in #000000.\n\n5. Staff Pick ribbon: RelayCond 18px 400, white text on a #000000 diagonal band approximately 120px × 22px, rotated -30°, positioned at the top-right corner of a specimen card image, overlapping the image edge. This is the only non-text visual accent in the entire system."
+}

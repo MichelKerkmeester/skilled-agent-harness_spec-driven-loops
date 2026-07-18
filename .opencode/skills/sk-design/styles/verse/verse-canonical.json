@@ -1,0 +1,510 @@
+{
+  "source": "https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827",
+  "uuid": "486c3132-9ff7-4e27-9eef-ca2e130bd827",
+  "name": "Verse",
+  "northStar": "monochrome terminal grid in a dark void — hairline cells on black, the work inside each cell carrying all the color",
+  "capturedAt": "2026-07-18T08:53:21.952Z",
+  "meta": {
+    "url": "https://www.verse.sh",
+    "siteName": "Verse",
+    "extractedAt": "2026-06-03T21:29:46.159Z",
+    "durationMs": 30516,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 244,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Commit Mono at 11px, 14px, or 16px for every text element — there is no type size above 16px in this system",
+      "Separate all UI elements with 1px solid #e5e7eb borders on the #0a0a0a page background",
+      "Keep the 2-column grid consistent — tiles share borders, never stack double lines between them",
+      "Let project media fill its cell edge-to-edge with 0px radius; the border is the only frame",
+      "Signal interactivity through literal text like [link] in #737373, not through color or weight changes",
+      "Use 16px padding for metadata rows and 80px vertical gaps between major page sections",
+      "Keep all UI chrome in the four-token grayscale palette — color belongs only inside media surfaces"
+    ],
+    "donts": [
+      "Do not introduce rounded corners, drop shadows, or gradients anywhere in the UI",
+      "Do not use a sans-serif or display font alongside Commit Mono — the monospace IS the identity",
+      "Do not add a brand accent color, CTA color, or semantic color (success/error/warning) to the palette",
+      "Do not use type sizes above 16px for any element, including hero headlines",
+      "Do not fill button backgrounds or add hover states that change color — the system has no chromatic interaction states",
+      "Do not use #0000ee or any default browser link color — links are #d4d4d4 or #737373 with optional [link] suffix",
+      "Do not add padding inside media surfaces — the border should touch the media directly"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Grid Line",
+        "role": "Primary border between tiles and around media surfaces — the only structural divider in the system, doing the work of card outlines, section separators, and elevation simultaneously",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4d4",
+        "name": "Body Text",
+        "role": "Primary readable text — project names, bio copy, metadata labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Muted Text",
+        "role": "Secondary metadata, category tags, and the [link] indicator — recedes behind body text to create a two-tier reading hierarchy without changing weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Subtle Divider",
+        "role": "Low-contrast internal dividers and edge treatments — barely visible against the page background, used where a hairline would be too loud",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a single vertical scroll of a two-column grid on a #0a0a0a background, max-width 1080px centered. The first row is a full-width header block (brand + tagline + contact lines) spanning both columns. All subsequent rows are two equal-width cells side by side, with shared 1px #e5e7eb borders forming a continuous lattice. Each cell contains a media surface on top and a 16px-padded metadata row below. Rows are separated by 80px vertical gaps. The grid is uniform — no tile sizes vary, no cells span more than one column. Navigation is absent; the page is a single linear document. There is no sidebar, no sticky header, no footer beyond the continuing grid.",
+    "imagery": "Imagery lives exclusively inside project tile cells — 3D renders (skull with sticker decals, wireframe necklace), product photography (fashion ecommerce screenshots, dragon NFT art), interactive media (piano keyboard, particle animations), and gradient color studies. The UI chrome around these media surfaces is always pure monochrome. Media treatment is edge-to-edge with no rounded corners, no padding, no overlay text — the 1px border is the only frame. The visual language of the chrome is terminal/hacker aesthetic; the visual language of the contents is creative-agency portfolio (diverse 3D, web, code, and design work).",
+    "similar": [
+      {
+        "why": "Both are dark-mode creative portfolios that use a monochrome UI grid to frame colorful, media-heavy project work — the chrome stays quiet so the 3D/web work can be loud",
+        "business": "Bruno Simon (bruno-simon.com)"
+      },
+      {
+        "why": "Both use a near-black canvas with project tiles arranged in a grid, treating each cell as a framed media surface with minimal typographic metadata",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Both rely on a dark void background and let interactive/visual project work fill bordered cells, with extremely restrained UI typography",
+        "business": "Active Theory (activetheory.net)"
+      },
+      {
+        "why": "Both use a centered max-width grid layout with bordered project cells and a monospace-or-near-monospace type system for metadata",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px",
+        "media": "0px",
+        "tiles": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1080px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page background — the uninterrupted dark canvas behind the grid"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Tile Canvas",
+        "level": 1,
+        "purpose": "Inside each grid cell, matching the page so media appears to float within the border"
+      }
+    ],
+    "elevation": [],
+    "northStar": "monochrome terminal grid in a dark void — hairline cells on black, the work inside each cell carrying all the color",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Tile",
+        "role": "The atomic unit of the portfolio — a bordered cell containing a media surface and a metadata row",
+        "description": "Full-bleed 2-column cell with a 1px #e5e7eb border. Top portion is a media surface (image, video, 3D render, or code screenshot) that fills the cell width with 0px radius. Below the media, a 16px-padded row holds tech stack text left-aligned in #d4d4d4 and a [link] indicator right-aligned in #737373. No inner padding around the media — the border touches the media edge."
+      },
+      {
+        "name": "Grid Line",
+        "role": "The primary structural element of the entire page",
+        "description": "1px solid #e5e7eb lines forming a 2-column grid. Lines are shared between adjacent tiles (no double borders), creating a single continuous lattice. The grid is the design — there are no cards, no panels, no raised surfaces, just cells."
+      },
+      {
+        "name": "Metadata Row",
+        "role": "Caption beneath each project tile",
+        "description": "16px vertical padding, 16px horizontal padding. Left side: tech stack in Commit Mono 14px weight 400 #d4d4d4, separated by bullet characters. Right side: [link] in #737373 — brackets included literally as part of the label."
+      },
+      {
+        "name": "Header Block",
+        "role": "Identity section at the top of the page",
+        "description": "Spans the full grid width above the project tiles. Contains the brand name in Commit Mono 16px weight 600 #d4d4d4 on the first line, a tagline in 16px weight 400, then two contact lines with labels (TWITTER:, EMAIL:) in 11px #737373 followed by values in 14px #d4d4d4."
+      },
+      {
+        "name": "Media Surface",
+        "role": "Container for project visuals",
+        "description": "No padding, no background, no radius. The media (image, video, canvas element, code block) fills the cell edge-to-edge, bounded only by the 1px #e5e7eb border. The border is the frame."
+      },
+      {
+        "name": "External Link Tag",
+        "role": "Wayfinding indicator on tiles with outbound links",
+        "description": "Renders literally as [link] in Commit Mono 14px #737373. The brackets are part of the design — they signal interactivity without using color or underlining."
+      },
+      {
+        "name": "Category Label",
+        "role": "Tagging system for project types",
+        "description": "Commit Mono 11px #737373, uppercase, used inline within the metadata row (e.g. REACT, CSS, VANILLA-JS). No background, no border, no padding — pure typographic tagging."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Used for every text element in the system — headings, body, metadata, links, tags. The entire UI is a single monospace family; there is no sans-serif counterpart.",
+        "sizes": "11px, 14px, 16px",
+        "family": "Commit Mono",
+        "weight": "400, 600",
+        "lineHeight": "1.43–1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Geist Mono",
+        "letterSpacing": "normal across all sizes"
+      }
+    ],
+    "description": "Verse operates as a monochrome terminal: a near-black canvas bisected by a two-column grid of light-bordered project tiles, with Commit Mono at 11–16px carrying every piece of information. Color is not part of the UI vocabulary — it lives only inside the media surfaces (3D renders, product photography, gradients) that each tile contains. Elevation, rounded corners, and shadows are absent; the light hairline grid line on black is the sole structural device, doing the work that color, depth, and scale do in conventional systems. The result is a developer-console aesthetic where the work inside each frame is loud and the chrome around it is deliberately silent.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Verse design system\",\"item\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#style-reference\",\"name\":\"Verse design system reference\",\"headline\":\"Verse design system | Refero Styles\",\"description\":\"Explore Verse's dark Agency design system: Grid Line #e5e7eb, Body Text #d4d4d4 colors, Commit Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\",\"mainEntityOfPage\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Verse\",\"url\":\"https://www.verse.sh\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"caption\":\"Screenshot of Verse\"},\"image\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Verse design system\",\"Verse website design\",\"Verse colors\",\"Verse typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Grid Line\",\"Body Text\",\"Muted Text\",\"Subtle Divider\",\"Commit Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Verse design system\"},{\"@type\":\"Thing\",\"name\":\"Verse website design\"},{\"@type\":\"Thing\",\"name\":\"Verse colors\"},{\"@type\":\"Thing\",\"name\":\"Verse typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:15:24.612Z\",\"dateModified\":\"2026-04-30T02:15:24.612Z\"}]}19:T657,Quick Color Reference:\n- background: #0a0a0a (void page canvas)\n- border: #e5e7eb (1px hairline grid line — the primary structural element)\n- text: #d4d4d4 (body copy, project names, metadata)\n- muted text: #737373 (tags, [link] indicators, contact labels)\n- primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Create a project tile cell: full-width within a 2-column grid on #0a0a0a background, bordered by 1px solid #e5e7eb. Top section is a media surface (image/video/3D render) that fills the cell edge-to-edge with 0px border-radius. Below the media, a 16px-padded row with tech stack text in Commit Mono 14px weight 400 #d4d4d4 left-aligned (e.g. \"REACT + REACT-THREE-FIBER\") and a [link] label in Commit Mono 14px #737373 right-aligned.\n\n2. Create a page header block: spans full grid width above the project tiles on #0a0a0a background, bordered bottom by 1px #e5e7eb. Line 1: brand name in Commit Mono 16px weight 600 #d4d4d4. Line 2: tagline in Commit Mono 16px weight 400 #d4d4d4. Lines 3-4: contact rows with label in Commit Mono 11px #737373 (e.g. \"TWITTER:\") followed by value in Commit Mono 14px #d4d4d4 (e.g. \"@verse_\"). 16px padding all sides.\n\n3. Create a 2-column project grid page: max-width 1080px centered on #0a0a0a background. Below the header, continuous 2-column grid of bordered cells. Each cell has 1px solid #e5e7eb borders shared with neighbors. 80px vertical gap between the header and the first row of tiles. Every cell follows the project tile pattern above. No shadows, no rounded corners, no background fills on cells — the grid lines create all visible structure."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately absent. The design uses a single flat surface level (the page background) and relies entirely on 1px #e5e7eb hairline borders to create structure. There are no cards above cards, no floating panels, no z-axis hierarchy. If a region needs separation, it gets a border line, never a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 691,
+          "confidence": 1,
+          "prominence": 38489207.4093635,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 160,
+            "link/borderColor": 92,
+            "image/borderColor": 116,
+            "other/borderColor": 315,
+            "button/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d4d4d4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8699435455856324
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 161,
+          "confidence": 1,
+          "prominence": 29943417.19656802,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 12,
+            "image/color": 29,
+            "other/color": 115,
+            "button/color": 1,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 145,
+          "confidence": 1,
+          "prominence": 29331378.196021035,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 145
+          }
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 83,
+          "confidence": 1,
+          "prominence": 36966.77165592957,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 37,
+            "link/color": 11,
+            "other/color": 35
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0100529473951559,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.48,
+          "background": "#e5e7eb",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#d4d4d4",
+          "foreground": "#171717"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 210,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Commit Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 244,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Commit Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Commit Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Commit Mono",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Commit Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 14,
+          "family": "Commit Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Commit Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 152,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8c2f3a36-8911-4345-b6bd-bcc2cd26acef.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Verse design system\",\"item\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#style-reference\",\"name\":\"Verse design system reference\",\"headline\":\"Verse design system | Refero Styles\",\"description\":\"Explore Verse's dark Agency design system: Grid Line #e5e7eb, Body Text #d4d4d4 colors, Commit Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\",\"mainEntityOfPage\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Verse\",\"url\":\"https://www.verse.sh\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/486c3132-9ff7-4e27-9eef-ca2e130bd827#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"caption\":\"Screenshot of Verse\"},\"image\":\"https://images.refero.design/styles/refero.design/image/03e9d69d-56fe-431c-961c-629f2ea6e57d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Verse design system\",\"Verse website design\",\"Verse colors\",\"Verse typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Grid Line\",\"Body Text\",\"Muted Text\",\"Subtle Divider\",\"Commit Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Verse design system\"},{\"@type\":\"Thing\",\"name\":\"Verse website design\"},{\"@type\":\"Thing\",\"name\":\"Verse colors\"},{\"@type\":\"Thing\",\"name\":\"Verse typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:15:24.612Z\",\"dateModified\":\"2026-04-30T02:15:24.612Z\"}]}19:T657,Quick Color Reference:\n- background: #0a0a0a (void page canvas)\n- border: #e5e7eb (1px hairline grid line — the primary structural element)\n- text: #d4d4d4 (body copy, project names, metadata)\n- muted text: #737373 (tags, [link] indicators, contact labels)\n- primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Create a project tile cell: full-width within a 2-column grid on #0a0a0a background, bordered by 1px solid #e5e7eb. Top section is a media surface (image/video/3D render) that fills the cell edge-to-edge with 0px border-radius. Below the media, a 16px-padded row with tech stack text in Commit Mono 14px weight 400 #d4d4d4 left-aligned (e.g. \"REACT + REACT-THREE-FIBER\") and a [link] label in Commit Mono 14px #737373 right-aligned.\n\n2. Create a page header block: spans full grid width above the project tiles on #0a0a0a background, bordered bottom by 1px #e5e7eb. Line 1: brand name in Commit Mono 16px weight 600 #d4d4d4. Line 2: tagline in Commit Mono 16px weight 400 #d4d4d4. Lines 3-4: contact rows with label in Commit Mono 11px #737373 (e.g. \"TWITTER:\") followed by value in Commit Mono 14px #d4d4d4 (e.g. \"@verse_\"). 16px padding all sides.\n\n3. Create a 2-column project grid page: max-width 1080px centered on #0a0a0a background. Below the header, continuous 2-column grid of bordered cells. Each cell has 1px solid #e5e7eb borders shared with neighbors. 80px vertical gap between the header and the first row of tiles. Every cell follows the project tile pattern above. No shadows, no rounded corners, no background fills on cells — the grid lines create all visible structure."
+}

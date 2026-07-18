@@ -1,0 +1,339 @@
+{
+  "color": {
+    "crimson-marquee": {
+      "$value": "#821e1e",
+      "$type": "color",
+      "$description": "Crimson Marquee — Brand wordmark bar, release-date tags, selected-state borders, and the singular chromatic accent that anchors an otherwise monochrome system — deep, slightly oxidized, never orange, never bright"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, icon strokes, heading color, button text, and dark-surface fills (hero overlay, footer)"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, card surface, button text on dark fills, input fields, badge text"
+    },
+    "bone": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Bone — Alternate card surface and section background, used to separate one row of film tiles from the next without a hard divider"
+    },
+    "silver": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Silver — Hairline borders on cards, buttons, inputs, and dividers — the universal 1px rule that frames almost every element"
+    },
+    "smoke": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Smoke — Secondary surface tint and shadow base; used sparingly where a surface needs to read as slightly recessed from Bone"
+    },
+    "cornflower": {
+      "$value": "#9dc1fb",
+      "$type": "color",
+      "$description": "Cornflower — Focus ring and link/hover halo only — a cool sky-blue that signals interactivity without competing with the crimson brand color"
+    }
+  },
+  "font": {
+    "flatspot": {
+      "$value": "Flatspot",
+      "$type": "fontFamily",
+      "$description": "(Letter-spacing note) Body and body-small run on -0.010em to -0.011em tracking; the 9-10px caption/metadata tier sits at -0.012em — tighter as the size shrinks, which is unusual and gives the tiniest text a compressed, almost stenciled feel."
+    },
+    "girott": {
+      "$value": "Girott",
+      "$type": "fontFamily",
+      "$description": "Display-only face used for page heroes and feature titles. The 160px / 0.80 line-height / -0.031em tracking combination is the signature move: a single film title bleeds across the full viewport edge-to-edge, set tight against itself so descenders nearly touch ascenders. The 36-42px range covers secondary display moments (sub-hero headlines, featured card titles)."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Flatspot",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Girott",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Girott",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.39
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Girott",
+        "fontSize": "41px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 41px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Girott",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Girott",
+        "fontSize": "160px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 160px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — the wall everything hangs on"
+    },
+    "bone": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating section background, introduces a subtle off-white band to break up horizontal tile rows"
+    },
+    "smoke": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Surface level 3: Rarely used recessed tint for tertiary surfaces or shadow fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://neonrated.com",
+      "siteName": "NEON Rated",
+      "extractedAt": "2026-06-03T18:46:08.905Z",
+      "variant": "extended"
+    }
+  }
+}

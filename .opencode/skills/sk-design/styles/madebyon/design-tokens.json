@@ -1,0 +1,297 @@
+{
+  "color": {
+    "canvas-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Canvas Void — Page background, hero canvas, deepest surface layer"
+    },
+    "off-white": {
+      "$value": "#faf9f4",
+      "$type": "color",
+      "$description": "Off-White — Primary text, headlines, icon strokes, card backgrounds inside dark frames, borders on cards — warm cream gives the type a lit-from-within quality against pure black"
+    },
+    "surface-charcoal": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface Charcoal — Elevated surface for inputs, nav elements, card interiors — sits one step above the canvas to create depth without lightness"
+    },
+    "muted-smoke": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Muted Smoke — Secondary text, inactive link borders, subdued metadata"
+    },
+    "faint-fog": {
+      "$value": "#bdbdbd",
+      "$type": "color",
+      "$description": "Faint Fog — Tertiary borders, placeholder text, low-emphasis dividers"
+    },
+    "chartreuse-pulse": {
+      "$value": "#dcff4f",
+      "$type": "color",
+      "$description": "Chartreuse Pulse — Filled CTA buttons, active nav indicators, accent borders, highlight strokes — the single chromatic spark against the monochrome void; near-black text on this fill creates an inverted button effect"
+    }
+  },
+  "font": {
+    "favorit-extended": {
+      "$value": "Favorit extended",
+      "$type": "fontFamily",
+      "$description": "Favorit extended — detected in extracted data but not described by AI"
+    },
+    "favorit": {
+      "$value": "Favorit",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all contexts — body copy, nav, labels, cards, and headings"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Favorit regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Favorit extended",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Favorit extended",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Favorit extended",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page base — the void everything sits on"
+    },
+    "surface-charcoal": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 1: Inputs, nested card surfaces, nav internals"
+    },
+    "off-white-card": {
+      "$value": "#faf9f4",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted cards (testimonial panels, browser mockup) that flip the dark/light relationship"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.madebyon.com",
+      "siteName": "Madebyon",
+      "extractedAt": "2026-06-03T22:05:06.857Z",
+      "variant": "extended"
+    }
+  }
+}

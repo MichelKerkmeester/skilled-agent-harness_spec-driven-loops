@@ -1,0 +1,165 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary canvas, all text on dark surfaces, inverted button text"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "gallery-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Gallery Gray — Secondary surface for section bands, footer background washes"
+    },
+    "plinth-gray": {
+      "$value": "#d4d4d4",
+      "$type": "color",
+      "$description": "Plinth Gray — Tertiary surface, alternating section rhythm dividers"
+    },
+    "carbon-black": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon Black — Dark section background for content blocks (writing index, project list) — near-black avoids the harshness of pure #000"
+    },
+    "slate-black": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Slate Black — Secondary dark surface for stacked dark sections"
+    },
+    "concrete": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Concrete — Muted helper text, metadata dates, tertiary annotations on white"
+    },
+    "stone": {
+      "$value": "#737373",
+      "$type": "color",
+      "$description": "Stone — Secondary muted text, labels, non-active annotations"
+    },
+    "graphite": {
+      "$value": "#525252",
+      "$type": "color",
+      "$description": "Graphite — Strongest muted text before full black, subtle emphasis"
+    }
+  },
+  "font": {
+    "abc-oracle": {
+      "$value": "ABC Oracle",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for all text — headlines, body, labels, metadata, navigation. The signature choice is using a single 14px size across the entire site: hierarchy comes from weight contrast (400 for body, 500 for titles and active items) and whitespace, never from size. This anti-hierarchical approach treats all information as equally important, like gallery wall text."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, primary surface"
+    },
+    "section-band": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating section backgrounds, footer wash"
+    },
+    "plinth": {
+      "$value": "#d4d4d4",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary banded surface"
+    },
+    "dark-block": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted content sections (writing index, archive)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://linusrogge.com",
+      "siteName": "Linus Rogge",
+      "extractedAt": "2026-06-03T16:30:04.560Z",
+      "variant": "extended"
+    }
+  }
+}

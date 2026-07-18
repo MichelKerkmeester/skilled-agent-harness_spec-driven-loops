@@ -1,0 +1,275 @@
+{
+  "color": {
+    "highlighter-mint": {
+      "$value": "#e2ffcc",
+      "$type": "color",
+      "$description": "Highlighter Mint — Primary brand accent — display text, nav links, button labels, icon fills. The signature color; reads as highlighter pen on topo map"
+    },
+    "sage-stone": {
+      "$value": "#84907f",
+      "$type": "color",
+      "$description": "Sage Stone — Muted secondary accent — subtle background washes, subdued UI elements where Highlighter Mint would be too loud"
+    },
+    "carbon-ink": {
+      "$value": "#161b13",
+      "$type": "color",
+      "$description": "Carbon Ink — Dark section backgrounds — near-black with the faintest green undertone, anchors the dark bands of the page"
+    },
+    "forest-charcoal": {
+      "$value": "#2d3329",
+      "$type": "color",
+      "$description": "Forest Charcoal — Mid-dark text and borders on light sections — softer than pure black, keeps the green-warmth consistent"
+    },
+    "topo-gray": {
+      "$value": "#dde2e4",
+      "$type": "color",
+      "$description": "Topo Gray — Light section backgrounds, card surfaces, hairlines — the base canvas for light bands"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon strokes, link underlines, high-contrast accents where maximum punch is needed"
+    }
+  },
+  "font": {
+    "f37stout": {
+      "$value": "F37stout",
+      "$type": "fontFamily",
+      "$description": "Display face for section openers and brand wordmark. The extreme condensed proportions at 0.90 line-height and a single weight (400) create landscape-blocking headlines that read as stamped signage, not web type. At 366px it fills the viewport; at 40–48px it becomes a tight sectional label."
+    },
+    "mono": {
+      "$value": "mono",
+      "$type": "fontFamily",
+      "$description": "All UI chrome, body copy, nav, captions, buttons, footer text. The -0.01em tracking and tight 1.20 line-height give it a screen-printed, field-guide density. Weight 700 is used sparingly for emphasis; weight 400 carries the load. All-caps treatments dominate — this face behaves like a typewriter."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Serif accent for inline links, providing a newspaper/editorial contrast against the mono body. Used sparingly — one or two link moments per page."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "F37stout",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "F37stout",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "F37stout",
+        "fontSize": "366px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 366px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "190": {
+      "$value": "190px",
+      "$type": "dimension",
+      "$description": "Spacing 190px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "topo-gray": {
+      "$value": "#dde2e4",
+      "$type": "color",
+      "$description": "Surface level 0: Light page canvas and card base"
+    },
+    "highlighter-mint": {
+      "$value": "#e2ffcc",
+      "$type": "color",
+      "$description": "Surface level 1: Accent surface for highlighted text blocks and tonal emphasis"
+    },
+    "sage-stone": {
+      "$value": "#84907f",
+      "$type": "color",
+      "$description": "Surface level 2: Mid-tone surface for subdued sections"
+    },
+    "forest-charcoal": {
+      "$value": "#2d3329",
+      "$type": "color",
+      "$description": "Surface level 3: Deep UI surface on light themes"
+    },
+    "carbon-ink": {
+      "$value": "#161b13",
+      "$type": "color",
+      "$description": "Surface level 4: Dark section background — alternate page band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sanrita.ca/about",
+      "siteName": "San Rita",
+      "extractedAt": "2026-06-03T17:19:53.815Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,974 @@
+{
+  "source": "https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe",
+  "uuid": "f40e6a6c-1704-407a-b21b-6141fb90adfe",
+  "name": "Mother Design",
+  "northStar": "broadsheet manifesto in black ink",
+  "capturedAt": "2026-07-18T07:26:41.999Z",
+  "meta": {
+    "url": "https://www.motherdesign.com",
+    "siteName": "Mother Design",
+    "extractedAt": "2026-06-03T21:10:35.261Z",
+    "durationMs": 43522,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 324,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display type at 226px with -0.04em letter-spacing and line-height 1.0 — the extreme scale is the signature, not an exception.",
+      "Use only the five colors: #f4f4f4 canvas, #ffffff surface, #000000 text and rules, #808080 secondary, #306f09 as the only chromatic note.",
+      "Structure all layout with 1px Press Black rules — vertical, horizontal, and as borders on interactive cells. Never use shadows or fills to separate regions.",
+      "Use Basis Mono with +0.06em tracking for metadata, labels, and the news ticker. Reserve Basis for everything else; bring in Times only for the occasional editorial annotation.",
+      "Keep card and thumbnail padding at 0px. Let raw images sit edge-to-edge in their grid cells with no chrome, border, or radius.",
+      "Anchor the nav with a 1px-bordered segmented control: brand mark cell + tab group on the left, theme toggle cluster on the right. Bone White fill, no radius.",
+      "Treat whitespace as a structural element — large vertical gaps (160-200px) between the portfolio grid and the next section are part of the system, not negative space to be filled."
+    ],
+    "donts": [
+      "Do not introduce additional colors. Any new hue, even a desaturated one, will dilute the broadsheet identity. The green is a printer's mark, not a palette swatch.",
+      "Do not add box-shadows, blurs, or any form of elevation. The system has no z-axis — depth is typographic.",
+      "Do not round corners. Every border, button, and cell stays at 0px radius. Curvature would betray the printed-page metaphor.",
+      "Do not cap display type at conventional web sizes (48-72px). The 226px / 110px scale is the point — shrinking it to 'feel more modern' removes the signature.",
+      "Do not use weight 700 or 800. Basis 600 is the heaviest weight in the system; 400 does the work at display sizes because the size itself provides weight.",
+      "Do not add icons inside buttons or cards. Icons live only in the theme toggle cluster and the brand mark cell.",
+      "Do not center body copy or set paragraphs to a narrow max-width. The manifesto reads full-bleed; column width is controlled by the grid, not by a content container."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4f4f4",
+        "name": "Newsprint",
+        "role": "Soft section background, alternate surface, and quiet card fill.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Navigation background, card surfaces, button fills, inverted text — pushes forward off the gray canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Foil Gray",
+        "role": "Secondary text, subdued link borders, metadata — sits behind Press Black as quiet annotation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#306f09",
+        "name": "Ink Green",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout with no max-width container. The page is organized as a strict grid divided by 1px Press Black rules. The top row contains the nav (left: brand mark + segmented tabs, right: news marquee + theme toggles) in a fixed-height bar. Below the nav, the work grid is a 5-column row of thumbnail tiles with zero gap between cells — images touch. A large vertical gap (160-200px) separates the grid from the manifesto section, which is a full-width block of display-size running text. The 'How we do it' and 'What we do' sections use a 2-column grid split by a 1px vertical rule at the midpoint; the left column carries a small section label and body copy, the right column carries the monumental display type (Rigor/Rebellion, Depth/Care) or a vertical service list. Each major section is bracketed by 1px horizontal Press Black rules top and bottom. The page reads top-to-bottom as a printed document: header bar, portfolio spread, manifesto column, sectioned grid pages.",
+    "imagery": "The work grid is the imagery: diverse, unframed, full-bleed thumbnails spanning product photography (soda can held against a rainbow sky), editorial poster design (Brooklyn Orioles type-heavy poster), brand identity systems (Babies type specimen), and 3D product render (Rolfr camera-can). No consistent photographic treatment — each project's thumbnail arrives raw, at full color, with no overlay, duotone, or filter. The page itself is text-dominant; imagery appears only in the portfolio grid and is treated as evidence of capability rather than atmosphere. Iconography is minimal: 1.5px stroke geometric glyphs confined to the theme toggle cluster and the heart brand mark. The visual language of the site is the visual language of a printed portfolio — let the work speak in full color against the otherwise black-on-gray page.",
+    "similar": [
+      {
+        "why": "Same editorial agency tradition: 1px rules structuring the page, monochromatic canvas, display type doing the work of decoration, and a portfolio grid that lets the work arrive unframed.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same broadsheet sensibility — massive type set tight, warm-gray backgrounds, and a refusal to round corners or add elevation. Both treat the browser as a typeset page.",
+        "business": "Bureau Borsche"
+      },
+      {
+        "why": "Shared commitment to restrained color (essentially monochrome with one accent), grotesque sans-serif at extreme display sizes, and structural grids drawn in hairline rules rather than built from cards.",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Editorial agency sites that use the same playbook: canvas-light layout, oversized display headings with negative tracking, bordered segmented navigation, and a portfolio grid with no thumbnail chrome.",
+        "business": "Anagrama"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "160-200px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f4f4f4",
+        "name": "Newsprint",
+        "level": 0,
+        "purpose": "Page canvas — the warm gray 'paper' everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "level": 1,
+        "purpose": "Navigation bar, button surfaces, and the few elevated card containers that need to step forward from the canvas"
+      }
+    ],
+    "elevation": [],
+    "northStar": "broadsheet manifesto in black ink",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 110,
+        "lineHeight": 1,
+        "letterSpacing": -4.4
+      },
+      {
+        "role": "display",
+        "size": 226,
+        "lineHeight": 1,
+        "letterSpacing": -9.04
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Tab",
+        "role": "Top-level page links (Work, Information, News, Contact)",
+        "description": "A Basis 14px / weight 600 / -0.01em text label inside a 1px Press Black border, Bone White fill, no radius, 16px horizontal padding, 2px vertical padding. Multiple tabs sit edge-to-edge forming a segmented control. The brand mark (heart icon) sits in its own bordered cell to the left of the tab group. Tabs are rectangular, unornamented — they read as printed tabs on a file folder."
+      },
+      {
+        "name": "Brand Mark Cell",
+        "role": "Logo container at the far left of the nav row",
+        "description": "A small square (~32px) Bone White cell with a 1px Press Black border containing a Press Black heart glyph. Mirrors the visual weight of the nav tabs and anchors the brand within the same grid as the navigation."
+      },
+      {
+        "name": "News Marquee Bar",
+        "role": "Headline/news ticker running across the top right",
+        "description": "Bone White fill, 1px Press Black border, Basis Mono 14px / weight 400 / +0.06em tracking, Press Black text. Headlines sit in a horizontal row separated by thin vertical Press Black rules. Reads as a printed dateline."
+      },
+      {
+        "name": "Theme Toggle Cluster",
+        "role": "Icon-only controls in the top-right corner",
+        "description": "Four small square cells (~32px each), 1px Press Black border, Bone White fill, each containing a single Press Black icon stroke (sun, moon, gear, etc.). Tiles sit edge-to-edge with no gap, forming a second segmented control. Icons are 1.5px stroke, geometric, no fill."
+      },
+      {
+        "name": "Portfolio Thumbnail",
+        "role": "Project preview tiles in the work grid",
+        "description": "Raw image tiles with zero border, zero radius, zero shadow, zero caption treatment above or below. Each tile fills its grid cell exactly; the image IS the card. Project titles and credits appear outside the grid in a small caption role. The lack of chrome lets the work — not the UI — carry attention."
+      },
+      {
+        "name": "Project Caption Block",
+        "role": "Title + role text below the work grid",
+        "description": "Left-aligned, no border. Project name in Basis 14px / weight 600, role/category text in Basis 14px / weight 400, both Press Black, line-height 1.2. Sits far below the grid with generous whitespace — the relationship is a footnote, not a label."
+      },
+      {
+        "name": "Manifesto Block",
+        "role": "Large editorial paragraph introducing the studio's voice",
+        "description": "Basis at display sizes (60–110px) / weight 400 / line-height 1.0 / letter-spacing -0.02em to -0.04em, Press Black. Flows full-width with no max-width constraint — the line length is controlled by the column count, not by a container. Inline links underlined in 1px Press Black. This is the closest the site comes to a 'hero' and it is pure type."
+      },
+      {
+        "name": "Section Display Header",
+        "role": "Monumental section titles (Rigor, Rebellion, Depth, Care)",
+        "description": "Basis 226px / weight 400 / line-height 1.0 / letter-spacing -0.04em, Press Black. Center-aligned within its grid cell. The cell is defined by 1px Press Black horizontal and vertical rules that frame the entire section like a table. The text floats inside the cell with ~120px of padding on all sides — the type breathes in negative space."
+      },
+      {
+        "name": "Grid Section Frame",
+        "role": "Container for 2-up section displays and content",
+        "description": "Full-bleed, no padding, no background, no radius. Divided by a single 1px Press Black vertical rule at the column midpoint. The vertical line is the only structural element — no cards, no fills, no spacing tricks. Top and bottom 1px Press Black horizontal rules bracket the section."
+      },
+      {
+        "name": "Service List Item",
+        "role": "Vertical list of capabilities (Brand Strategy, Naming, etc.)",
+        "description": "Basis 60px / weight 400 / line-height 1.0 / letter-spacing -0.02em, Press Black. Left-aligned, stacked vertically with ~8px row gap. No bullets, no borders between items — the type rhythm itself creates separation. Sits in the right column of a 2-column grid; left column contains the section display header and descriptive body copy in a small mono label role."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Hyperlinks within manifesto and body copy",
+        "description": "Press Black text with a 1px Press Black underline. No hover color change, no background, no arrow icon. Underline thickness matches the system's hairline border — links read as underlined copy in a print layout, not as interactive web affordances."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small all-caps-style label above content blocks (e.g. 'How we do it', 'What we do')",
+        "description": "Basis Mono 14px / weight 400 / +0.06em tracking, Press Black. Sits at the top-left of a content area, establishing the section's category before the display type takes over."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI. Weight 400 for body, links, and most running text; weight 600 used sparingly for the small uppercase-ish labels and the navigation tabs. The 226px size at 1.0 line-height is the signature — display type behaves like a poster headline, not a web heading. Negative tracking tightens as size grows: -0.04em at display, -0.02em at mid, -0.01em at body.",
+        "sizes": "10, 14, 16, 48, 60, 110, 226",
+        "family": "Basis",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.50 (context-dependent: 1.0 for display, 1.5 for body)",
+        "substitute": "Inter, Suisse Int'l, or Neue Haas Grotesk",
+        "letterSpacing": "-0.04em at 226px, -0.04em at 110px, -0.02em at 60px, -0.02em at 48px, -0.01em at 16px, 0 at 14px and below"
+      },
+      {
+        "role": "Used for technical labels, metadata, timestamps, and small annotations. The +0.06em letter-spacing gives it the feel of a printed caption set in a typewriter face — a deliberate counterpoint to Basis's tight grotesque.",
+        "sizes": "14",
+        "family": "Basis Mono",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Berkeley Mono",
+        "letterSpacing": "0.06em (8.4px at 14px)"
+      },
+      {
+        "role": "System serif used as a rare editorial accent — appears in icon and small body contexts where a note of 'newspaper' or 'footnotes' is wanted. Its presence is felt more than seen; the choice signals print lineage rather than decoration.",
+        "sizes": "14",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, EB Garamond, or Source Serif",
+        "letterSpacing": "0.06em"
+      }
+    ],
+    "description": "Mother Design treats the browser as an editorial broadsheet: near-total monochrome, type doing all the expressive work, structure drawn in 1px ink rules rather than shadows or panels. The single chromatic note — a deep forest green at #306f09 — is so restrained it almost disappears, surfacing only as a near-invisible code-level accent. Display sizes push to 226px, making typography the hero of every screen; supporting text is set in a tight, slightly negative-tracked grotesque that reads as confident, not loud. Components are raw: bordered tabs, unframed thumbnails, vertical hairlines dividing the grid. The Times serif appears as a quiet editorial counterpoint, never as decoration. The result feels like a printed manifesto given a fixed URL — grids of ink on warm gray paper, where restraint IS the visual identity.",
+    "customSections": [
+      {
+        "title": "Editorial System",
+        "content": "Mother Design's UI borrows its logic from print — specifically from broadsheet newspapers and design annuals. The signature moves: display type at poster scale (226px) with aggressive negative tracking, 1px ink rules instead of cards or shadows, a single warm-gray 'newsprint' canvas, and a Times serif used as quiet editorial counterpoint to the Basis grotesque. The only color in the system is Press Black; everything else is paper. An AI building a new page should treat the layout as a typeset page, not a web app: no max-width container, no centered body text, no rounded corners, no elevation. The grid is the chrome."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mother Design design system\",\"item\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#style-reference\",\"name\":\"Mother Design design system reference\",\"headline\":\"Mother Design design system | Refero Styles\",\"description\":\"Explore Mother Design's light Agency design system: Newsprint #f4f4f4, Bone White #ffffff colors, Basis, Basis Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mother Design\",\"url\":\"https://www.motherdesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"caption\":\"Screenshot of Mother Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mother Design design system\",\"Mother Design website design\",\"Mother Design colors\",\"Mother Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Newsprint\",\"Bone White\",\"Press Black\",\"Foil Gray\",\"Basis\",\"Basis Mono\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mother Design design system\"},{\"@type\":\"Thing\",\"name\":\"Mother Design website design\"},{\"@type\":\"Thing\",\"name\":\"Mother Design colors\"},{\"@type\":\"Thing\",\"name\":\"Mother Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:37:49.539Z\",\"dateModified\":\"2026-04-30T00:37:49.539Z\"}]}19:T48c,**Quick Color Reference**\n- text: #000000\n- background: #f4f4f4\n- surface: #ffffff\n- border: #000000 (1px)\n- secondary text: #808080\n- accent: #306f09\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Section display header*: Render 'Rigor' at 226px Basis weight 400, color #000000, letter-spacing -0.04em, line-height 1.0, centered in a grid cell framed by 1px #000000 rules on all sides with ~120px internal padding.\n2. *Navigation tab*: Basis 14px weight 600, text 'Work', color #000000, background #ffffff, 1px #000000 border, 16px horizontal padding, 2px vertical padding, 0px radius. Place in a row of similar tabs edge-to-edge.\n3. *Service list item*: Basis 60px weight 400, text 'Brand Strategy', color #000000, letter-spacing -0.02em, line-height 1.0, left-aligned, stacked vertically with 8px row gap, no bullet, no border.\n4. *Portfolio thumbnail*: Full-bleed image filling a 5-column grid cell, 0px border, 0px radius, 0px padding, no caption inside the cell.\n5. *Section label*: Basis Mono 14px weight 400, text 'What we do', color #000000, letter-spacing 0.06em, line-height 1.2, positioned at the top-left of a content area."
+      }
+    ],
+    "elevationPhilosophy": "The system rejects elevation entirely. There are no drop shadows, no surface lifts, no depth illusions. Structure is communicated through 1px Press Black rules that slice the layout into a grid, and through the tonal step from Newsprint (#f4f4f4) to Bone White (#ffffff) for the navigation bar. Depth is typographic, not architectural — the 226px display type carries the weight that shadows would in a conventional UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "nav",
+            "link",
+            "list",
+            "hero",
+            "heading",
+            "footer",
+            "input"
+          ],
+          "frequency": 1433,
+          "confidence": 1,
+          "prominence": 80696394.30324784,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 10,
+            "nav/color": 18,
+            "body/color": 27,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 14,
+            "list/color": 32,
+            "other/fill": 9,
+            "icon/stroke": 8,
+            "input/color": 1,
+            "other/color": 134,
+            "button/color": 19,
+            "footer/color": 1,
+            "other/stroke": 6,
+            "heading/color": 25,
+            "nav/borderColor": 72,
+            "body/borderColor": 108,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 56,
+            "list/borderColor": 128,
+            "input/borderColor": 4,
+            "other/borderColor": 536,
+            "button/borderColor": 76,
+            "footer/borderColor": 4,
+            "heading/borderColor": 100
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#306f09",
+          "oklch": {
+            "c": 0.1420484412121013,
+            "h": 137.3870308545821,
+            "l": 0.48106319212228627
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 93823.31253245202,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 8,
+            "body/backgroundColor": 5,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 47027.60649386941,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 4,
+            "list/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "body/borderColor": 8,
+            "link/borderColor": 16,
+            "list/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0002564560494179373,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.17,
+          "background": "#ffffff",
+          "foreground": "#306f09"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.61,
+          "background": "#f4f4f4",
+          "foreground": "#306f09"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.59,
+          "background": "#f4f4f4",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.4,
+          "background": "#306f09",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.56,
+          "background": "#306f09",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|link",
+            "paddingRight|link",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basis",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 286,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Basis Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "link",
+            "body",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "nav",
+            "link",
+            "list",
+            "hero",
+            "image"
+          ],
+          "frequency": 148,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "heading"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "Basis",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 226,
+          "family": "Basis",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6d5b2910-2dac-4bd7-b850-0032fd85d298.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mother Design design system\",\"item\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#style-reference\",\"name\":\"Mother Design design system reference\",\"headline\":\"Mother Design design system | Refero Styles\",\"description\":\"Explore Mother Design's light Agency design system: Newsprint #f4f4f4, Bone White #ffffff colors, Basis, Basis Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mother Design\",\"url\":\"https://www.motherdesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f40e6a6c-1704-407a-b21b-6141fb90adfe#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"caption\":\"Screenshot of Mother Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e049d62a-fb47-45d2-ae63-96fe785fb51e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mother Design design system\",\"Mother Design website design\",\"Mother Design colors\",\"Mother Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Newsprint\",\"Bone White\",\"Press Black\",\"Foil Gray\",\"Basis\",\"Basis Mono\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mother Design design system\"},{\"@type\":\"Thing\",\"name\":\"Mother Design website design\"},{\"@type\":\"Thing\",\"name\":\"Mother Design colors\"},{\"@type\":\"Thing\",\"name\":\"Mother Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:37:49.539Z\",\"dateModified\":\"2026-04-30T00:37:49.539Z\"}]}19:T48c,**Quick Color Reference**\n- text: #000000\n- background: #f4f4f4\n- surface: #ffffff\n- border: #000000 (1px)\n- secondary text: #808080\n- accent: #306f09\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Section display header*: Render 'Rigor' at 226px Basis weight 400, color #000000, letter-spacing -0.04em, line-height 1.0, centered in a grid cell framed by 1px #000000 rules on all sides with ~120px internal padding.\n2. *Navigation tab*: Basis 14px weight 600, text 'Work', color #000000, background #ffffff, 1px #000000 border, 16px horizontal padding, 2px vertical padding, 0px radius. Place in a row of similar tabs edge-to-edge.\n3. *Service list item*: Basis 60px weight 400, text 'Brand Strategy', color #000000, letter-spacing -0.02em, line-height 1.0, left-aligned, stacked vertically with 8px row gap, no bullet, no border.\n4. *Portfolio thumbnail*: Full-bleed image filling a 5-column grid cell, 0px border, 0px radius, 0px padding, no caption inside the cell.\n5. *Section label*: Basis Mono 14px weight 400, text 'What we do', color #000000, letter-spacing 0.06em, line-height 1.2, positioned at the top-left of a content area."
+}

@@ -1,0 +1,434 @@
+{
+  "color": {
+    "game-night-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Game Night Black — Page background, card shadows, button borders, heading text on light surfaces"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Card White — Card surfaces, body text on dark, button borders, input fills"
+    },
+    "signal-red": {
+      "$value": "#fe2f2f",
+      "$type": "color",
+      "$description": "Signal Red — Primary accent border on cards and badges — the brand's loudest punctuation, used as outline not fill"
+    },
+    "royal-violet": {
+      "$value": "#7333f1",
+      "$type": "color",
+      "$description": "Royal Violet — Primary accent border on cards and badges — deep saturated purple carrying the brand's irreverent energy"
+    },
+    "antique-gold": {
+      "$value": "#d7b73b",
+      "$type": "color",
+      "$description": "Antique Gold — Primary accent border on cards and badges — warm yellow-gold that rounds out the three-color system"
+    },
+    "lemon-card": {
+      "$value": "#fffe5b",
+      "$type": "color",
+      "$description": "Lemon Card — Card face fill for highlighted playing cards in the scattered background"
+    },
+    "lavender-card": {
+      "$value": "#ede5ff",
+      "$type": "color",
+      "$description": "Lavender Card — Card face fill for pastel playing cards, soft purple surface"
+    },
+    "cobalt-card": {
+      "$value": "#1b5bff",
+      "$type": "color",
+      "$description": "Cobalt Card — Card face fill for blue playing cards, saturated blue accent surface"
+    },
+    "sky-card": {
+      "$value": "#a0e9ff",
+      "$type": "color",
+      "$description": "Sky Card — Card face fill for light blue playing cards"
+    },
+    "bubblegum-card": {
+      "$value": "#ffa0f0",
+      "$type": "color",
+      "$description": "Bubblegum Card — Card face fill for pink playing cards"
+    },
+    "mint-card": {
+      "$value": "#b4ff91",
+      "$type": "color",
+      "$description": "Mint Card — Card face fill for green playing cards"
+    },
+    "tangerine-card": {
+      "$value": "#ff9559",
+      "$type": "color",
+      "$description": "Tangerine Card — Card face fill for orange playing cards"
+    }
+  },
+  "font": {
+    "helvetica-neue-lt": {
+      "$value": "Helvetica Neue LT",
+      "$type": "fontFamily",
+      "$description": "The site's sole typeface. Weight 800 dominates everything from body up through 80px display — this anti-hierarchy choice makes the brand feel like it's shouting a punchline rather than presenting information. Tight leading at display sizes (0.98–1.07) creates an impactful block, generous leading on body (2.0–2.86) lets the heavy weight breathe. No letter-spacing tricks; the geometry of Helvetica at 800 weight does all the work."
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Helvetica Neue — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "12px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 2.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 2.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 2.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "55px",
+        "fontWeight": 800,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "65px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 0, 0) 0px 0px 0px 2px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(255, 255, 255) 0px 0px 0px 2px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "table-felt": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, the dark surface cards are dealt onto"
+    },
+    "card-face": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Playing card surfaces and content blocks that read as physical cards"
+    },
+    "pastel-card": {
+      "$value": "#ede5ff",
+      "$type": "color",
+      "$description": "Surface level 2: Soft accent card surfaces for featured or decorative playing cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.cardsagainsthumanity.com",
+      "siteName": "Cards Against Humanity",
+      "extractedAt": "2026-06-03T20:21:29.002Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+:root {
+  /* Colors */
+  --color-abyss-ink: #020617;
+  --color-deep-slate: #0a0e1a;
+  --color-frost-white: #f1f5f9;
+  --color-cloud-gray: #e5e7eb;
+  --color-slate-mist: #64748b;
+  --color-graphite: #475569;
+  --color-steel-border: #353845;
+  --color-pale-mist: #cbd5e1;
+  --color-ember-glow: #fa3812;
+  --color-ember-border: #651a15;
+  --color-signal-green: #34d399;
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abcsynt: 'ABCSynt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.2px;
+  --text-body: 16px;
+  --leading-body: 1.63;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.56;
+  --text-subheading: 20px;
+  --leading-subheading: 1.43;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.11;
+  --tracking-heading-lg: -0.025px;
+  --text-display: 56px;
+  --leading-display: 1.08;
+  --tracking-display: -0.025px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-144: 144px;
+  --spacing-160: 160px;
+  --spacing-240: 240px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 32px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-cards: 8px;
+  --radius-badges: 9999px;
+  --radius-buttons: 9999px;
+
+  /* Shadows */
+  --shadow-sm: rgba(250, 56, 18, 0.15) 0px 0px 8px 0px;
+
+  /* Surfaces */
+  --surface-abyss-canvas: #020617;
+  --surface-deep-slate: #0a0e1a;
+}

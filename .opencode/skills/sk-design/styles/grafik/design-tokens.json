@@ -1,0 +1,115 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f0eeeb",
+      "$type": "color",
+      "$description": "Bone — Page background and primary canvas — a warm off-white that reads as paper rather than screen, the defining surface of the entire system"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, body copy, navigation, project metadata, 1px grid lines, image borders, and dark image treatments — the only non-canvas color"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, image backgrounds, and reverse-text blocks — white inserts on the warm canvas to isolate portfolio pieces"
+    }
+  },
+  "font": {
+    "grotesk": {
+      "$value": "Grotesk",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all UI — navigation, project metadata, and headlines. Used exclusively at weight 400 (no bold, no light), which is anti-convention for an agency portfolio; the regular weight whispers where competitors shout. Negative tracking tightens headlines at -0.02em while body sits at -0.005em, giving every line a printed-page density. The dlig feature enables discretionary ligatures for editorial flourish."
+    }
+  },
+  "typography": {
+    "xl": {
+      "$value": {
+        "fontFamily": "Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Grotesk",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Grotesk",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "225": {
+      "$value": "225px",
+      "$type": "dimension",
+      "$description": "Spacing 225px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f0eeeb",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the warm off-white that defines the paper-like quality"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Reverse surfaces and image cards sitting on the canvas"
+    },
+    "inverted": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Dark image treatments and high-contrast blocks within the grid"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://grafik.co.nz",
+      "siteName": "Grafik",
+      "extractedAt": "2026-06-03T19:39:48.463Z",
+      "variant": "extended"
+    }
+  }
+}

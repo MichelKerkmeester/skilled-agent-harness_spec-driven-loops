@@ -1,0 +1,1544 @@
+{
+  "source": "https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457",
+  "uuid": "b458ca1a-70f0-4f85-b745-f879a4d08457",
+  "name": "Dia Browser",
+  "northStar": "blackroom gallery meets editorial broadsheet. A pitch-dark stage opens onto a sunlit paper spread where a single serif headline anchors each section.",
+  "capturedAt": "2026-07-18T07:08:43.700Z",
+  "meta": {
+    "url": "https://diabrowser.com",
+    "siteName": "Dia Browser",
+    "extractedAt": "2026-07-03T02:58:05.117Z",
+    "durationMs": 104738,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 432,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px radius for all interactive pills, tags, and the video play button — full rounding is the default for anything that triggers an action",
+      "Set display headlines at 112px in Exposure Variable weight 300 with line-height 0.85 — the vertical compression is the signature, never loosen it",
+      "Use 0.1em letter-spacing on all uppercase eyebrows and step numbers in ABC Favorit Mono at 13px — the tracking creates the editorial chapter-marker rhythm",
+      "Apply 1px solid borders (28 uses) rather than shadows to define card edges — borders are the primary depth cue, shadows are reserved for floating elements only",
+      "Place buttons as floating elements with 20px radius (not full pill) for primary CTAs, reserving 9999px for secondary pill controls",
+      "Use the --student-marquee spectrum gradient sparingly — once per page maximum, as a section divider or hero accent, never as a fill",
+      "Maintain 80px section gaps and 2.19 line-height on body text — generous spacing is non-negotiable for the editorial feel"
+    ],
+    "donts": [
+      "Do not use bright saturated colors as background fills — the system is 96% achromatic; the only permitted color washes are lime (#f2fcb3) and saffron (#ffdc5c) in small editorial zones",
+      "Do not set headlines at weight 600-700 — Dia speaks at weight 300 for display and 650 for subheadings; bold weights break the whisper-tone voice",
+      "Do not use border-radius values outside the defined set (12, 16, 20, 24, 9999px) — improvised radii destroy the visual coherence",
+      "Do not use multi-layer drop-shadow stacks on cards — the 3-layer filter is reserved for product screenshot windows only; regular cards use 1px borders",
+      "Do not place colored buttons on colored backgrounds — the system uses black text on white/linen or white text on black, never chromatic fills",
+      "Do not use line-height below 1.25 for any text — even the compressed 112px display keeps 0.85 only because the font is custom-designed for tight vertical fit; do not replicate this with system fonts",
+      "Do not add hover transforms (scale, translate) to buttons — the system transitions only color, border, and opacity at 0.2s ease"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#020204",
+        "name": "Void Black",
+        "role": "Hero background, dramatic dark sections — the opening stage of the experience",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Primary text, button text, icon fills — the dominant ink across all surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#636363",
+        "name": "Carbon",
+        "role": "Secondary text, muted nav, helper labels — softer than pure black for hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Slate",
+        "role": "Tertiary text, inactive nav items, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c6c6c6",
+        "name": "Silver",
+        "role": "Placeholder text, very subtle UI dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#575757",
+        "name": "Soft Graphite",
+        "role": "Dark button backgrounds on light surfaces — secondary action fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary page canvas and white card surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Bone",
+        "role": "Page canvas, nav backgrounds, base surface beneath cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Linen",
+        "role": "Button fills, pill backgrounds, header wash — slightly warmer than Bone, the dominant secondary surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2fcb3",
+        "name": "Lime Wash",
+        "role": "Accent background wash, highlight zones, editorial color punctuation",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffdc5c",
+        "name": "Saffron",
+        "role": "Secondary accent wash, warm highlight zones",
+        "group": "accent"
+      },
+      {
+        "hex": "#FA3D1D",
+        "name": "Spectrum Marquee",
+        "role": "Sweeping rainbow gradient — the brand's signature motion element, traveling across hero and section dividers",
+        "group": "brand",
+        "gradient": "linear-gradient(270deg, #FD02F5, #FA3D1D 15.94%, #FFB005 42.76%, #E1E1FE 72.48%, #0358F7 100.02%, #340B05 150.75%)"
+      }
+    ],
+    "layout": "Full-bleed dark hero (1282500px area) transitions to centered max-width (~1200px) content sections. The hero is a full-viewport theatrical moment with a centered headline stacked over a human photograph. Content sections use a 2-column asymmetric layout: numbered step explanations (01, 02, 03) on the left at 40% width, large product screenshot cards on the right at 55% width, with a thin vertical accent line separating active steps. Feature grids use 2-column card layouts (not 3 or 4) with generous gutters — each card is massive, nearly half the viewport. Section rhythm alternates between light (#f8f8f8 canvas) and accent (lime #f2fcb3 or saffron #ffdc5c wash) bands, separated by 80px vertical gaps. Navigation is a floating glassmorphic pill bar centered at the top with backdrop blur, not a full-width header. The footer is minimal and dark, sitting on void black. The page reads top-to-bottom as: dark theater → broadsheet editorial → feature galleries → settings toggles → dark footer.",
+    "imagery": "Photography is used for emotional impact only — the hero features a dramatic close-up of a screaming man against pure black, no lifestyle context, no product integration. The image IS the message: browsers are frustrating, Dia is the catharsis. Product screenshots appear as floating browser-window mockups with traffic-light dots, tab bars, and full URL bars, treated as objects displayed on the page rather than embedded UI. The screenshots use real content (mountain landscape for 'Friday Brief', slide decks for 'Decks') to demonstrate Dia's output quality. No illustrations, no abstract graphics, no 3D renders. Icon style: minimal outlined icons, thin stroke weight, monochrome black or white. Imagery density is sparse — the page is text-dominant with one hero photograph and 3-4 product mockup windows, everything else is typography and white space.",
+    "similar": [
+      {
+        "why": "Same parent studio's design DNA: floating glass nav, pill buttons, dramatic full-bleed hero photography, editorial section layouts with generous spacing",
+        "business": "The Browser Company (Arc)"
+      },
+      {
+        "why": "Similar commitment to near-monochrome palette, custom display typography, and whisper-weight headlines that create hierarchy through restraint rather than weight",
+        "business": "Linear"
+      },
+      {
+        "why": "Shared editorial broadsheet aesthetic with serif display fonts, generous line-heights on body copy, and gradient spectrum accents used as brand-defining motion",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same floating glassmorphic nav pill pattern, generous section gaps, and dramatic full-bleed dark-to-light page transitions",
+        "business": "Vercel"
+      },
+      {
+        "why": "Similar dramatic dark-stage hero photography transitioning to clean white product content, with dot-matrix inspired typographic details",
+        "business": "Nothing.tech"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "16px",
+        "cards": "12px",
+        "pills": "20px",
+        "panels": "24px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#020204",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Hero stage, dramatic dark openings"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Default page canvas — the broadsheet paper feel"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Elevated content cards, product screenshot windows, button surfaces"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Linen",
+        "level": 3,
+        "purpose": "Button fills, pill backgrounds, subtle surface differentiation"
+      },
+      {
+        "hex": "#f2fcb3",
+        "name": "Wash",
+        "level": 4,
+        "purpose": "Lime accent surface — editorial highlight zones"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.06) 0px 2px 8px 0px, rgba(0, 0, 0, 0.04) 0px 0px 2px 0px",
+        "element": "Glass Navigation Bar"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.6) 0px 8px 30px -8px",
+        "element": "Hero Download Button"
+      },
+      {
+        "style": "drop-shadow(rgba(0, 0, 0, 0.1) 0px 2px 4px) drop-shadow(rgba(0, 0, 0, 0.12) 0px 18px 24px) drop-shadow(rgba(0, 0, 0, 0.18) 0px 40px 64px)",
+        "element": "Product Screenshot Window"
+      }
+    ],
+    "northStar": "blackroom gallery meets editorial broadsheet. A pitch-dark stage opens onto a sunlit paper spread where a single serif headline anchors each section.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "eyebrow",
+        "size": 13,
+        "lineHeight": 1.23,
+        "letterSpacing": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 2.19
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.17,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 54,
+        "lineHeight": 1.11,
+        "letterSpacing": -2.16
+      },
+      {
+        "role": "display",
+        "size": 112,
+        "lineHeight": 0.85,
+        "letterSpacing": -3.36
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Download Button",
+        "role": "Primary conversion — the most prominent CTA on the hero",
+        "description": "White background (#ffffff), 20px radius, 0px vertical padding with 16px horizontal padding, text in pure black (#000000) at 16px ABC Oracle Triple. Sits centered below the tagline. The 20px radius (not full pill) gives it a soft, rounded-rectangle presence rather than a full pill — distinct from nav pills."
+      },
+      {
+        "name": "Pill Navigation Button",
+        "role": "Top-level nav items in the glassmorphic nav bar",
+        "description": "Transparent background with rgba(0,0,0,0.85) text, 20px radius, 0px vertical padding with 16px horizontal padding. Sits inside a frosted-glass nav container with backdrop blur 12-24px. Text is 14px ABC Oracle weight 400."
+      },
+      {
+        "name": "Glass Navigation Bar",
+        "role": "Fixed top navigation — the floating command center",
+        "description": "Bone background (#f8f8f8) with 16px radius, 1px border, backdrop blur 12-24px. Shadow: rgba(0,0,0,0.06) 0px 2px 8px. Contains logo mark (left) and nav pills (center) and Download CTA (right). Floats with margin from viewport edge."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Inline navigation within content sections",
+        "description": "Transparent background, rgba(0,0,0,0.85) text, 16px radius, 20px vertical and 24px horizontal padding. ABC Oracle Triple at 16px. Used for 'Learn more' style links with trailing arrow."
+      },
+      {
+        "name": "Pill Watch Button (Hero Video)",
+        "role": "Secondary hero CTA — watch the scream",
+        "description": "Semi-transparent black background rgba(0,0,0,0.65), white text, 9999px full pill radius, 10px vertical and 20px right / 12px left padding. Contains a play icon (white triangle) at left, 16px ABC Oracle Triple label at right. Sits overlaid on the dark hero image."
+      },
+      {
+        "name": "Feature Card (Decks / Live Work / Better Meetings)",
+        "role": "Product feature showcase cards in the grid sections",
+        "description": "Bone or white background with subtle 1px border, large border-radius (12-24px), generous internal padding. Contains a tag pill at top (see below), heading, description text, and a product screenshot. Cards are large — nearly half the viewport width each in 2-column layout."
+      },
+      {
+        "name": "Category Tag Pill",
+        "role": "Feature category labels (Decks, Live Work, Better Meetings, Profiles)",
+        "description": "Linen background (#efefef) or similar light fill, 9999px full pill radius, small padding (~8px 16px). Text in dark gray or black at 14px ABC Oracle. Sits top-left of feature cards."
+      },
+      {
+        "name": "Editorial Section Header",
+        "role": "Large section titles and subheadings",
+        "description": "Exposure VAR at 48px weight 650, -0.05em letter-spacing, line-height 1.17, in pure black. Sometimes paired with a step number eyebrow (01, 02, 03) in 13px ABC Favorit Mono uppercase. Creates magazine-chapter feel."
+      },
+      {
+        "name": "Numbered Step List",
+        "role": "Feature explanation sections (01, 02, 03)",
+        "description": "Vertical list with 14px row-gap. Each step: 13px mono uppercase number in Carbon (#636363) above 18-20px heading in pure black above 16px body text in Carbon. Active step has bolder weight or darker text. Left-aligned with a thin vertical accent line."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Browser/window chrome containers around product mockups",
+        "description": "White background card with traffic-light dots (red, yellow, green) at top-left, tab bar with favicons, and 12px corner radius. Large drop-shadow filter (3-layer blur stack) makes the window float above the page surface."
+      },
+      {
+        "name": "Dark Hero Section",
+        "role": "Opening full-viewport dramatic section",
+        "description": "Void Black (#020204) background, full-bleed, with a large human photograph (screaming face) centered. Logo (Dia wordmark in white) at top, tagline in white at 18-22px below, Download button centered, and a pill watch button overlaid on the photo lower-center."
+      },
+      {
+        "name": "Spectrum Gradient Bar",
+        "role": "Brand-defining rainbow motion element",
+        "description": "Animated marquee gradient traveling left-to-right: pink (#FD02F5) → red (#FA3D1D) → yellow (#FFB005) → lavender (#E1E1FE) → blue (#0358F7) → brown (#340B05). Appears as a thin horizontal line/bar between sections or as a animated underline. The --student-marquee token value: linear-gradient(270deg, #FD02F5, #FA3D1D 15.94%, #FFB005 42.76%, #E1E1FE 72.48%, #0358F7 100.02%, #340B05 150.75%)."
+      },
+      {
+        "name": "Settings Toggle Row",
+        "role": "Privacy/personalization toggle items",
+        "description": "Horizontal row with label text left, toggle switch right. 16px ABC Oracle weight 400. Toggle: pill shape with sliding indicator. Minimal chrome, no background fill on the row itself — sits on the page canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines — the 112px whisper-weight serif that anchors hero and section titles. Its 0.85 line-height vertically compresses letters, making headlines feel carved and monumental rather than airy. Signature choice: anti-convention weight (300, not 700) and negative letter-spacing (-0.03em) create authority through restraint. Substitute: Playfair Display or DM Serif Display at weight 400 with tight tracking.",
+        "sizes": "112px",
+        "family": "Exposure Variable",
+        "weight": "300",
+        "lineHeight": "0.85",
+        "substitute": "Playfair Display",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "Section headings and large nav — the bold companion to Exposure Variable. Used for 'Dia reads between the tabs' and feature titles. Tighter tracking at -0.05em at 48px gives headline density. Substitute: Inter Tight or a condensed grotesque.",
+        "sizes": "24px, 48px",
+        "family": "Exposure VAR",
+        "weight": "650",
+        "lineHeight": "1.17-1.25",
+        "substitute": "Inter Tight",
+        "letterSpacing": "-0.05em at 48px, -0.03em at 24px"
+      },
+      {
+        "role": "Body text, UI labels, subheadings, and large feature headlines (54px at weight 300). The workhorse font — its humanist sans quality keeps long-form copy legible at generous line-heights (2.19 for body). Weight 500 used sparingly for emphasis. The 54px weight 300 headline is the secondary display voice, lighter than Exposure VAR but in the same serif-adjacent register. Substitute: Söhne or Inter at matching weights.",
+        "sizes": "10px, 14px, 16px, 18px, 20px, 22px, 24px, 54px",
+        "family": "ABC Oracle",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.11-2.19",
+        "substitute": "Inter",
+        "letterSpacing": "-0.04em at 54px, -0.02em at 18px, normal elsewhere"
+      },
+      {
+        "role": "Button text, inline labels, UI microcopy — a narrower variant of Oracle designed for button and tag contexts. The wide line-height (2.19) suggests single-line button use with internal padding breathing. Substitute: Inter at 16px weight 400.",
+        "sizes": "16px",
+        "family": "ABC Oracle Triple",
+        "weight": "400",
+        "lineHeight": "2.19",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Eyebrow labels, step numbers (01, 02, 03), navigation metadata — all-caps at 13px with 0.1em tracking creates the editorial chapter-marker effect. The mono face contrasts with Oracle's humanist sans, creating typographic tension.",
+        "sizes": "",
+        "family": "ABC Favorit Mono",
+        "weight": "400",
+        "lineHeight": "1.23-1.27",
+        "substitute": "JetBrains Mono",
+        "letterSpacing": "0.1em uppercase at 13px"
+      }
+    ],
+    "description": "Dia's visual language is editorial and cinematic: a pitch-black hero that erupts into a screaming human face gives way to a calm, magazine-like expanse of white space, serif display headlines, and whisper-thin type. The system lives almost entirely in black and white (4% colorfulness) with surgical chromatic accents — lime wash, golden yellow, and a sweeping spectrum gradient that reads like a rainbow scar through the page. Components are floating and weightless: glassmorphic nav pills, 9999px-radius buttons that hover above their content, 20px-radius cards with barely-there shadows. Typography does the heavy emotional work — the ultra-condensed Exposure Variable at 112px with 0.85 line-height creates headline impact through vertical compression rather than weight, while ABC Oracle at 300-400 carries body copy with editorial calm. The page breathes: 80px section gaps, generous line-heights (2.19 for body), and asymmetric layouts that refuse the standard SaaS card grid.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dia Browser design system\",\"item\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#style-reference\",\"name\":\"Dia Browser design system reference\",\"headline\":\"Dia Browser design system | Refero Styles\",\"description\":\"Explore Dia Browser's mixed Productivity design system: Void Black #020204, Pure Black #000000 colors, Exposure Variable, Exposure VAR typography, and...\",\"url\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dia Browser\",\"url\":\"https://diabrowser.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"caption\":\"Screenshot of Dia Browser\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dia Browser design system\",\"Dia Browser website design\",\"Dia Browser colors\",\"Dia Browser typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Void Black\",\"Pure Black\",\"Carbon\",\"Slate\",\"Exposure Variable\",\"Exposure VAR\",\"ABC Oracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dia Browser design system\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser website design\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser colors\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-11T12:14:50.000Z\",\"dateModified\":\"2026-03-11T12:14:50.000Z\"}]}19:T7c4,## Quick Color Reference\n- Text: #000000 (primary), #636363 (secondary), #888888 (tertiary)\n- Background: #f8f8f8 (page canvas), #ffffff (cards), #020204 (dark sections)\n- Border: #000000 at 1px solid\n- Accent: #f2fcb3 (lime wash), #ffdc5c (saffron wash)\n- Brand gradient: linear-gradient(270deg, #FD02F5, #FA3D1D 15.94%, #FFB005 42.76%, #E1E1FE 72.48%, #0358F7 100.02%, #340B05 150.75%)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Editorial Section Header**: 48px Exposure VAR weight 650, color #000000, letter-spacing -2.4px, line-height 1.17. Pair with 13px ABC Favorit Mono step number above in #636363, uppercase, letter-spacing 1.3px. 80px margin-top from previous section.\n\n2. **Glass Navigation Bar**: Floating pill bar, #f8f8f8 background, 16px border-radius, 1px border #000000, backdrop-filter blur(12px), shadow rgba(0,0,0,0.06) 0px 2px 8px. Logo on left, 3 nav items in center as 20px-radius transparent pills with 14px ABC Oracle text in rgba(0,0,0,0.85), Download button on right.\n\n3. **Product Screenshot Window Card**: White #ffffff background, 12px border-radius, 3-layer drop-shadow filter (0px 2px 4px rgba(0,0,0,0.1), 0px 18px 24px rgba(0,0,0,0.12), 0px 40px 64px rgba(0,0,0,0.18)). Traffic-light dots (red, yellow, green) at top-left, tab bar with favicons. Contains product UI mockup.\n\n4. **Feature Card with Category Pill**: Card on #f8f8f8 canvas, white #ffffff background, 12px radius, 20px padding. Category pill at top: #efefef background, 9999px radius, 14px ABC Oracle text in #000000. Heading below in 24px Exposure VAR weight 650. Body text in 16px ABC Oracle weight 400, color #636363, line-height 2.19. Product screenshot at bottom.\n\n5. **Spectrum Gradient Divider**: Thin 2-4px tall horizontal bar spanning full width, filled with the student-marquee gradient (linear-gradient 270deg from #FD02F5 through #FA3D1D, #FFB005, #E1E1FE, #0358F7, to #340B05). Animated marquee motion at 0.3s ease. Place between major sections."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Dia has 8 named gradients (--creamsicle, --grapefruit, --cotton-candy, --sunshine, --twilight, --midnight, --student, --student-marquee) but only the spectrum marquee is brand-defining. The student marquee is a 6-stop rainbow: pink #FD02F5 → red #FA3D1D → yellow #FFB005 → lavender #E1E1FE → blue #0358F7 → brown #340B05. It appears as an animated thin line/bar, not as a surface fill. The remaining 7 gradients are decorative 180deg blends (warm-to-cool, light-to-dark) used internally for illustrations and background washes. The gradient system's logic: all named gradients move from a warm stop at 60% to a cool stop at 100%, creating consistent temperature progression regardless of specific hues."
+      },
+      {
+        "title": "Motion Philosophy",
+        "content": "Motion is minimal and purpose-driven. Standard transition: 0.2s ease on background-color, border-color, color, fill, and stroke simultaneously — meaning every state change is a unified color shift, not a positional animation. The spectrum marquee gradient is the only continuous motion element, moving at moderate speed. Cubic-bezier(0.4, 0, 0.2, 1) (141 uses) serves as the secondary easing for slightly more dramatic transitions. No spring physics, no bounce, no elastic curves. The personality is 'quiet intelligence' — things change color, not position."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#636363",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.500402823401894
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 3019878.1054530265,
+          "properties": [
+            "boxShadow",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 2,
+            "other/color": 6,
+            "other/stroke": 1,
+            "heading/color": 6,
+            "button/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#020204",
+          "oklch": {
+            "c": 0.010085517098615134,
+            "h": 284.1148304895339,
+            "l": 0.08723630142545775
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 152,
+          "confidence": 1,
+          "prominence": 525144.5842972404,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 21,
+            "nav/color": 4,
+            "body/color": 55,
+            "link/color": 1,
+            "nav/stroke": 5,
+            "other/fill": 1,
+            "button/color": 55,
+            "other/stroke": 2,
+            "heading/color": 6,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 143117.24227047022,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 1,
+            "button/color": 2,
+            "heading/color": 4,
+            "body/backgroundColor": 51,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6280900363640214
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 108203.60198888375,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 22
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9518297939949963
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 61108.713778472506,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 51
+          }
+        },
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 43302,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#575757",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4560584138783034
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7c7c7c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5863164681546698
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9148,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1
+          }
+        },
+        {
+          "hex": "#c6c6c6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8278094683560673
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 8845.675716524773,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 2
+          }
+        },
+        {
+          "hex": "#f2fcb3",
+          "oklch": {
+            "c": 0.09339486202400925,
+            "h": 114.51497835198599,
+            "l": 0.9665352248655644
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 713.40426869571,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 30
+          }
+        },
+        {
+          "hex": "#ffdc5c",
+          "oklch": {
+            "c": 0.14904553018434022,
+            "h": 93.84126178146964,
+            "l": 0.9007924595688463
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 632.4937088801415,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 20
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04254437412974219,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.73,
+          "background": "#020204",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#f8f8f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.52,
+          "background": "#f8f8f8",
+          "foreground": "#020204"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.35,
+          "background": "#f2fcb3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.1,
+          "background": "#f2fcb3",
+          "foreground": "#020204"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#efefef",
+          "foreground": "#020204"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.64,
+          "background": "#ffdc5c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.44,
+          "background": "#ffdc5c",
+          "foreground": "#020204"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#000000",
+          "foreground": "#c6c6c6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.14,
+          "background": "#020204",
+          "foreground": "#c6c6c6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.23,
+          "background": "#575757",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#f8f8f8",
+          "foreground": "#575757"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#f2fcb3",
+          "foreground": "#575757"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#efefef",
+          "foreground": "#575757"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.01,
+          "background": "#ffffff",
+          "foreground": "#636363"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.85,
+          "background": "#020204",
+          "foreground": "#888888"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#f8f8f8",
+          "foreground": "#636363"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 57
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 55
+        },
+        {
+          "value": 12,
+          "corners": [
+            12,
+            12,
+            0,
+            0
+          ],
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 11,
+          "asymmetric": true
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 2px 8px 0px, rgba(0, 0, 0, 0.04) 0px 0px 2px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.6) 0px 8px 30px -8px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "icon",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 100,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "hero",
+            "nav"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingLeft|button",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|hero",
+            "marginLeft|hero"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 116,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|button",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 226,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 33.33%, rgb(198, 121, 196) 40%, rgb(250, 61, 29) 45%, rgb(255, 176, 5) 50%, rgb(225, 225, 254) 55%, rgb(3, 88, 247) 60%, rgba(0, 0, 0, 0) 66.67%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(0, 0, 0)",
+          "rgb(198, 121, 196)",
+          "rgb(250, 61, 29)",
+          "rgb(255, 176, 5)",
+          "rgb(225, 225, 254)",
+          "rgb(3, 88, 247)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Oracle",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 161,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Oracle Triple",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 156,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Favorit Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Exposure Variable",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Exposure VAR",
+          "source": "custom",
+          "weights": [
+            650
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "button",
+            "image",
+            "footer",
+            "body"
+          ],
+          "frequency": 131,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "ABC Favorit Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ABC Favorit Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "ABC Favorit Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.31,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle Triple",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 2.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle Triple",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 100,
+          "lineHeight": 2.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle Triple",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Exposure VAR",
+          "weight": 650,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Exposure VAR",
+          "weight": 650,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "ABC Oracle",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 112,
+          "family": "Exposure Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c1a12d7e-2f1f-40f9-ac54-32366b9da679.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dia Browser design system\",\"item\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#style-reference\",\"name\":\"Dia Browser design system reference\",\"headline\":\"Dia Browser design system | Refero Styles\",\"description\":\"Explore Dia Browser's mixed Productivity design system: Void Black #020204, Pure Black #000000 colors, Exposure Variable, Exposure VAR typography, and...\",\"url\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dia Browser\",\"url\":\"https://diabrowser.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b458ca1a-70f0-4f85-b745-f879a4d08457#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"caption\":\"Screenshot of Dia Browser\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80fd9081-c558-4d0c-a090-c9b5381fd24a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dia Browser design system\",\"Dia Browser website design\",\"Dia Browser colors\",\"Dia Browser typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Void Black\",\"Pure Black\",\"Carbon\",\"Slate\",\"Exposure Variable\",\"Exposure VAR\",\"ABC Oracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dia Browser design system\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser website design\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser colors\"},{\"@type\":\"Thing\",\"name\":\"Dia Browser typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-11T12:14:50.000Z\",\"dateModified\":\"2026-03-11T12:14:50.000Z\"}]}19:T7c4,## Quick Color Reference\n- Text: #000000 (primary), #636363 (secondary), #888888 (tertiary)\n- Background: #f8f8f8 (page canvas), #ffffff (cards), #020204 (dark sections)\n- Border: #000000 at 1px solid\n- Accent: #f2fcb3 (lime wash), #ffdc5c (saffron wash)\n- Brand gradient: linear-gradient(270deg, #FD02F5, #FA3D1D 15.94%, #FFB005 42.76%, #E1E1FE 72.48%, #0358F7 100.02%, #340B05 150.75%)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Editorial Section Header**: 48px Exposure VAR weight 650, color #000000, letter-spacing -2.4px, line-height 1.17. Pair with 13px ABC Favorit Mono step number above in #636363, uppercase, letter-spacing 1.3px. 80px margin-top from previous section.\n\n2. **Glass Navigation Bar**: Floating pill bar, #f8f8f8 background, 16px border-radius, 1px border #000000, backdrop-filter blur(12px), shadow rgba(0,0,0,0.06) 0px 2px 8px. Logo on left, 3 nav items in center as 20px-radius transparent pills with 14px ABC Oracle text in rgba(0,0,0,0.85), Download button on right.\n\n3. **Product Screenshot Window Card**: White #ffffff background, 12px border-radius, 3-layer drop-shadow filter (0px 2px 4px rgba(0,0,0,0.1), 0px 18px 24px rgba(0,0,0,0.12), 0px 40px 64px rgba(0,0,0,0.18)). Traffic-light dots (red, yellow, green) at top-left, tab bar with favicons. Contains product UI mockup.\n\n4. **Feature Card with Category Pill**: Card on #f8f8f8 canvas, white #ffffff background, 12px radius, 20px padding. Category pill at top: #efefef background, 9999px radius, 14px ABC Oracle text in #000000. Heading below in 24px Exposure VAR weight 650. Body text in 16px ABC Oracle weight 400, color #636363, line-height 2.19. Product screenshot at bottom.\n\n5. **Spectrum Gradient Divider**: Thin 2-4px tall horizontal bar spanning full width, filled with the student-marquee gradient (linear-gradient 270deg from #FD02F5 through #FA3D1D, #FFB005, #E1E1FE, #0358F7, to #340B05). Animated marquee motion at 0.3s ease. Place between major sections."
+}

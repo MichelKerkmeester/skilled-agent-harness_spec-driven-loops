@@ -1,0 +1,342 @@
+{
+  "color": {
+    "tangerine": {
+      "$value": "#f15a24",
+      "$type": "color",
+      "$description": "Tangerine — Headlines, body text accents, and outlined button borders — the single loud color that carries the whole brand. Used as a 1-2px border on buttons and links, and as fill for all display and heading text. Never appears as a filled button background; the system speaks in outlines"
+    },
+    "sun-yellow": {
+      "$value": "#ffed8c",
+      "$type": "color",
+      "$description": "Sun Yellow — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "blush-pink": {
+      "$value": "#ffcccc",
+      "$type": "color",
+      "$description": "Blush Pink — Secondary full-bleed background block, often paired with product photography to make fabric colors pop. Used as a flat color field, never as a tint or gradient"
+    },
+    "midnight-navy": {
+      "$value": "#050133",
+      "$type": "color",
+      "$description": "Midnight Navy — Secondary text and link borders — a near-black with a violet bias that softens the page's high-contrast black on white. Used for body copy and as an alternate outlined-action border"
+    },
+    "coral-wash": {
+      "$value": "#f4a398",
+      "$type": "color",
+      "$description": "Coral Wash — Soft warm surface for transitional sections — a diluted cousin of Tangerine used when a page needs a quieter colored block"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Default page canvas and content section background. The neutral ground between colored blocks"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — SVG fills, occasional body text, and the darkest neutral when Midnight Navy reads too colored. Pure black only where the page demands the most weight"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, image captions, and subtle borders. Sits between Ink Black and Paper White for muted helper copy"
+    },
+    "mist-blue": {
+      "$value": "#cce1e2",
+      "$type": "color",
+      "$description": "Mist Blue — Decorative SVG fill and soft wash — a near-gray with a cool cast used inside illustrations and as a quiet background tint"
+    }
+  },
+  "font": {
+    "manrope": {
+      "$value": "Manrope",
+      "$type": "fontFamily",
+      "$description": "Primary display and heading family across the entire site. Weight 200 (light) carries the massive display headlines — the thin strokes against tangerine fill create the signature 'stenciled poster' feel where the type reads as colored shape rather than inked letter. Weight 700 is used for emphasis and button labels."
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Captions, dates, product labels, and metadata — all uppercase tracking in Tangerine beneath images. The monospace's mechanical rhythm contrasts with Manrope's humanist curves and signals 'catalog label' rather than 'editorial body'."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "29px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "60px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 68px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "126px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 126px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "51": {
+      "$value": "51px",
+      "$type": "dimension",
+      "$description": "Spacing 51px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default canvas for product grids, blog lists, and the dominant content surface"
+    },
+    "sun-yellow": {
+      "$value": "#ffed8c",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed hero and accent sections — the brand's most recognizable surface"
+    },
+    "blush-pink": {
+      "$value": "#ffcccc",
+      "$type": "color",
+      "$description": "Surface level 3: Product photography backdrop and secondary colored block"
+    },
+    "coral-wash": {
+      "$value": "#f4a398",
+      "$type": "color",
+      "$description": "Surface level 4: Tertiary warm surface for section transitions"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://maquilts.com",
+      "siteName": "MA Quilts",
+      "extractedAt": "2026-06-03T21:19:48.491Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+:root {
+  /* Colors */
+  --color-cyan-signal: #00affa;
+  --color-cream-paper: #f7f7f1;
+  --color-pure-white: #ffffff;
+  --color-stone-gray: #dcdcd4;
+  --color-graphite: #404040;
+  --color-mid-ink: #333333;
+  --color-charcoal: #111111;
+  --color-pewter: #7f7f7f;
+  --color-ink-black: #000000;
+  --color-midnight-violet: #1e2554;
+  --color-deep-iris: #2c2a6c;
+  --color-coral-burst: #ff5d43;
+  --color-aqua-glow: #38dede;
+  --color-vivid-amethyst: #9164fa;
+  --color-blush: #f8b3b8;
+
+  /* Typography — Font Families */
+  --font-dropmarkrealhead: 'DropmarkRealHead', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-dropmarkrealtext: 'DropmarkRealText', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 24px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.2;
+  --text-display: 60px;
+  --leading-display: 1.2;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-58: 58px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+  --spacing-240: 240px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 60px;
+  --card-padding: 30px;
+  --element-gap: 10-20px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-full: 60px;
+
+  /* Named Radii */
+  --radius-nav: 3px;
+  --radius-cards: 0px;
+  --radius-pills: 60px;
+  --radius-buttons: 3px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(220, 220, 210) 0px 0px 0px 2px inset;
+
+  /* Surfaces */
+  --surface-cream-paper: #f7f7f1;
+  --surface-pure-white: #ffffff;
+  --surface-stone-gray: #dcdcd4;
+  --surface-graphite: #404040;
+}

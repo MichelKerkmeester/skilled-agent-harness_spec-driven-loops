@@ -1,0 +1,1084 @@
+{
+  "source": "https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679",
+  "uuid": "4406799b-1586-4d84-aac9-e6acdee0f679",
+  "name": "Redis Agency",
+  "northStar": "After-hours editorial atelier — a pitch-black gallery where serif type and a single red radish do all the brand work.",
+  "capturedAt": "2026-07-18T09:26:51.570Z",
+  "meta": {
+    "url": "https://www.redis.agency",
+    "siteName": "Redis Agency",
+    "extractedAt": "2026-06-03T19:41:59.796Z",
+    "durationMs": 30600,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 731,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero wordmark in Times New Roman 90px, line-height 0.82, letter-spacing -0.9px — the tight crop and overlapping letters are the signature",
+      "Use #eb516d Radish Bloom for exactly one surface per screen — a barcode panel, a single badge, or a pull-quote block",
+      "Outline buttons with 1px #ffffff border on 40px radius — never fill them, the ghost surface preserves the editorial openness",
+      "Separate sections with 1px #808080 hairline dividers, not cards or boxes — the dark canvas does the structural work",
+      "Set body copy at 16–18px Suisse Intl WebM, line-height 1.4, letter-spacing -0.0080em",
+      "Allow imagery to overlap display type at the hero — the broken grid is intentional, not a layout bug",
+      "Reserve Times New Roman for sizes ≥ 32px; below that it stops feeling editorial and starts feeling like a fallback"
+    ],
+    "donts": [
+      "Do not fill buttons with #eb516d or any saturated color — buttons stay outlined in #ffffff, red is reserved for surfaces",
+      "Do not use box-shadows or any drop-shadow elevation — the system relies on color contrast and hairline borders, not depth",
+      "Do not introduce a second chromatic color into the UI palette — greens, blues, or any hue beyond #eb516d breaks the discipline",
+      "Do not set Times New Roman below 32px — it loses its editorial authority and reads as a system default",
+      "Do not use card containers with rounded corners and backgrounds for content blocks — content floats on the black canvas, separated by whitespace and hairlines",
+      "Do not center body paragraphs — left-align editorial copy with a 600px measure for readability",
+      "Do not use light-mode styling (white canvas, dark text) — the darkroom canvas is the system's defining surface"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, pill button outlines, card outlines on dark canvas — high-contrast foreground against the black field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke",
+        "role": "Secondary text, hairline borders, muted UI strokes — the mid-gray that softens without disappearing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas and true-black surface — the dominant ground that makes everything else float",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Deep divider borders, near-invisible structural lines between dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eb516d",
+        "name": "Radish Bloom",
+        "role": "Single chromatic accent — barcode panel surface, red-punctuation moments; warm coral against the black field functions like a magazine pull-quote, used sparingly as the only saturated color in the UI",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no visible page padding at the hero — the radish, green forms, and oversized 'Redis Agency' serif type all share the same black field and overlap. Content begins centered or left-aligned with generous whitespace (70px section gaps). Max-width ~1200px for body content; hero extends full-bleed. The page flows as an editorial scroll: hero typographic moment → surreal visual → centered text block on black → accent barcode panel → secondary hero → more editorial copy. No card grids, no pricing tables, no feature matrices — this is a portfolio/spread layout, not a SaaS page. Navigation is a minimal top bar with ghost text links; no sticky behavior, no mega-menu.",
+    "imagery": "Surreal editorial product photography — a single red radish suspended in the void, surrounded by organic green botanical or liquid forms that feel 3D-rendered and hand-shaped. The aesthetic is fashion-meets-archival: high-contrast, dark-background, tight crop, no lifestyle context. Imagery overlaps display type rather than sitting beside it, breaking the grid. The green plant matter is saturated and hyperreal; the radish is a single saturated red moment. Overall: image-heavy at the hero, then becomes text-dominant as the user scrolls. Imagery is decorative atmosphere, not explanatory content.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + single accent editorial approach with massive serif display type and surreal 3D imagery",
+        "business": "Buck (buck.co)"
+      },
+      {
+        "why": "Editorial layout with overlapping display type, full-bleed photography, and near-monochrome palette punctuated by one brand color",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Surreal digital art direction with dark canvas, oversized type, and imagery that breaks the grid",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Agency portfolio that treats each project as an editorial spread rather than a SaaS landing page",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Minimalist dark agency site with hairline borders, ghost outlined buttons, and let the work speak",
+        "business": "Gunner (gunner.co)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "24px",
+        "pills": "44px",
+        "buttons": "40px"
+      },
+      "elementGap": "22px",
+      "sectionGap": "70px",
+      "cardPadding": "25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — the darkroom field"
+      },
+      {
+        "hex": "#eb516d",
+        "name": "Radish Panel",
+        "level": 1,
+        "purpose": "Accent surface for barcode and signature moments — the only chromatic surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "After-hours editorial atelier — a pitch-black gallery where serif type and a single red radish do all the brand work.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "family": "Editorial New",
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "family": "Suisse Intl WebM",
+        "lineHeight": 1.4,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "family": "Suisse Intl WebM",
+        "lineHeight": 1.2,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "family": "Suisse Intl WebM",
+        "lineHeight": 1.2,
+        "letterSpacing": -0.19
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "family": "Suisse Intl WebM",
+        "lineHeight": 1.16,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "family": "Times New Roman",
+        "lineHeight": 0.82,
+        "letterSpacing": -0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Serif Headline",
+        "role": "Hero typographic anchor — the wordmark and section openers",
+        "description": "Times New Roman at 90px, weight 400, line-height 0.82, letter-spacing -0.0100em (≈ -0.9px). White (#ffffff) on #000000 canvas. Deliberately oversized and tight-tracked so letters touch and overlap, creating a cropped, magazine-spread feeling. Set centered or left-aligned; never constrained by a tight measure."
+      },
+      {
+        "name": "Pill Outline Button",
+        "role": "Primary call-to-action",
+        "description": "1px solid #ffffff border, 40px border-radius (fully pill-shaped), #ffffff text on #000000 background. Padding approximately 10px 25px. Suisse Intl WebM 14–16px, weight 400, letter-spacing -0.0080em. No fill — outline only, keeping the surface feeling open and editorial rather than buttony."
+      },
+      {
+        "name": "Rounded Asymmetric Link",
+        "role": "Inline text link within body copy",
+        "description": "24px border-radius on the link container (asymmetric, gives a soft-blob shape rather than a true pill), #ffffff text with #ffffff underline or hairline. 20px horizontal padding. Used sparingly inside editorial copy blocks."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Long-form paragraph text and descriptions",
+        "description": "Suisse Intl WebM 16–18px, weight 400, line-height 1.4, letter-spacing -0.0080em. White (#ffffff) on black. 22px row-gap between paragraphs, 35–40px margin-bottom between distinct blocks. Tight measure (~60ch) for readability."
+      },
+      {
+        "name": "Radish Accent Panel",
+        "role": "Sole chromatic surface — barcode and signature red moments",
+        "description": "Solid #eb516d fill with #ffffff content. Functions as a magazine pull-quote or chapter marker. Sits on the black canvas as the only saturated color in the system; the eye locks onto it immediately."
+      },
+      {
+        "name": "Barcode Element",
+        "role": "Decorative catalog/archival mark",
+        "description": "Black-and-white #ffffff barcode on #eb516d accent panel or directly on #000000 canvas. Functions as a branding device — references product packaging and editorial mastheads. Centered with ~20–25px vertical padding around it."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid #808080 line at full or content width. No padding, no margin — the line does the work. Used between editorial sections rather than boxes or cards."
+      },
+      {
+        "name": "Section Heading (Serif Secondary)",
+        "role": "Sub-section titles in editorial body",
+        "description": "Times New Roman 32px, weight 400, line-height 1.05, letter-spacing -0.0100em. White. Centred or left-aligned. Sits above body text to introduce a new editorial beat."
+      },
+      {
+        "name": "Sans Subheading",
+        "role": "UI labels and non-display headers",
+        "description": "Suisse Intl WebM 36–38px, weight 400, line-height 1.16. White. Used for card titles, feature names, or any heading that should feel modern rather than editorial."
+      },
+      {
+        "name": "Thin Label Caption",
+        "role": "Tiny annotations, breadcrumb trails, or credits",
+        "description": "Editorial New 14px, weight 100, line-height 1.2, normal letter-spacing. White. The extra-light weight gives small details a quiet, typeset quality."
+      },
+      {
+        "name": "Surreal Product Hero",
+        "role": "Primary visual centerpiece",
+        "description": "Full-bleed editorial photograph: a single red radish surrounded by organic green plant or liquid forms floating in the black canvas. No border, no container, no rounded corners — the imagery occupies the field directly, breaking across the display type. Treated as artwork, not product UI."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top-level nav and footer links",
+        "description": "Suisse Intl WebM 14–16px, weight 400, #ffffff text, no background, no border. 20–25px horizontal spacing between items. No underline by default; subtle hover state only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — set at 90px for the hero wordmark and 32px for secondary headlines; uses the system Times rather than a contemporary serif, which is the anti-trend move that gives the brand its archival-editorial feel. The tight 0.82 line-height at 90px lets letters touch and overlap, creating a cropped magazine-spread effect.",
+        "sizes": "32px, 90px",
+        "family": "Times New Roman",
+        "weight": "400",
+        "lineHeight": "0.82, 1.05",
+        "substitute": "PP Editorial New, EB Garamond, or Playfair Display",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Primary UI and body sans — handles body text (14–18px), card content (18–24px), and larger non-serif headings (36–38px). The slightly negative tracking and humanist proportions keep body text dense and confident without competing with the display serif.",
+        "sizes": "14px, 16px, 18px, 24px, 36px, 38px",
+        "family": "Suisse Intl WebM",
+        "weight": "400",
+        "lineHeight": "1.16, 1.20, 1.40",
+        "substitute": "Inter, Söhne, or Untitled Sans",
+        "letterSpacing": "-0.0080em"
+      },
+      {
+        "role": "Thin label and caption face at 100 weight — used for tiny annotations, breadcrumbs, or credits where extra-light strokes add editorial polish to a small detail",
+        "sizes": "14px",
+        "family": "Editorial New",
+        "weight": "100",
+        "lineHeight": "1.20",
+        "substitute": "PP Editorial New Thin, Inter Thin, or GT America Thin"
+      }
+    ],
+    "description": "Redis Agency is a darkroom editorial system: a pitch-black canvas where massive Times New Roman display type and a single warm coral accent do all the talking. The visual language borrows from fashion magazine spreads and surrealist art direction — surreal food photography, organic green botanical forms, oversized serif headlines that feel cropped and overlapping rather than neatly typeset. Body and UI copy sit in a clean humanist sans (Suisse Intl) at modest sizes, which makes the display serif feel even more theatrical. The page stays nearly monochrome — black canvas, white type, a mid-gray for secondary text and hairline borders, and a coral red (#eb516d) that acts like a single brushstroke across an otherwise austere composition. Components are minimal: pill-shaped buttons, hairline borders, generous whitespace. Everything feels curated rather than generated — this is brand craft, not a SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redis Agency design system\",\"item\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#style-reference\",\"name\":\"Redis Agency design system reference\",\"headline\":\"Redis Agency design system | Refero Styles\",\"description\":\"Explore Redis Agency's dark Agency design system: Bone White #ffffff, Smoke #808080 colors, Times New Roman, Suisse Intl WebM typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Redis Agency\",\"url\":\"https://www.redis.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"caption\":\"Screenshot of Redis Agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Redis Agency design system\",\"Redis Agency website design\",\"Redis Agency colors\",\"Redis Agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Smoke\",\"Obsidian\",\"Graphite\",\"Times New Roman\",\"Suisse Intl WebM\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Redis Agency design system\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency website design\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency colors\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:26:00.255Z\",\"dateModified\":\"2026-04-30T01:26:00.255Z\"}]}19:T58b,## Quick Color Reference\n- background: #000000 (Obsidian)\n- text: #ffffff (Bone White)\n- secondary text: #808080 (Smoke)\n- border: #808080 (Smoke hairline)\n- accent surface: #eb516d (Radish Bloom)\n- primary action: #ffffff (filled action)\n\n## 3-5 Example Component Prompts\n\n1. **Display Hero Headline**: 'Redis Agency' in Times New Roman, 90px, weight 400, line-height 0.82, letter-spacing -0.9px, color #ffffff on #000000 canvas. Centered. Letters should touch and overlap — tight tracking is intentional, do not increase.\n\n2. **Outlined Pill Button**: 1px solid #ffffff border, 40px border-radius, padding 10px 25px, text 'Подробнее' in Suisse Intl WebM 16px weight 400 letter-spacing -0.13px color #ffffff on #000000 background. No fill, no shadow.\n\n3. **Radish Accent Panel**: Solid #eb516d background, 0px radius, full content-width, containing a centered #ffffff barcode element and 24px Suisse Intl WebM white caption beneath. Padding 40px vertical.\n\n4. **Editorial Body Block**: Three paragraphs of body copy in Suisse Intl WebM 18px weight 400 line-height 1.4 letter-spacing -0.14px, color #ffffff on #000000. 22px gap between paragraphs, 70px margin above the block. Measure constrained to ~600px wide and left-aligned.\n\n5. **Thin Label Caption**: Small label 'Agency / 2024' in Editorial New 14px weight 100 line-height 1.2 color #ffffff, sitting above a larger heading with 15px vertical spacing."
+      },
+      {
+        "title": "Editorial Typography Rules",
+        "content": "The display serif and the body sans are not interchangeable — they serve different registers. Times New Roman is reserved for moments that should feel archival, monumental, or cropped-from-a-magazine (hero wordmark, section openers, pull-quotes). Suisse Intl WebM handles everything that should feel like working design (body copy, UI labels, card titles, navigation). Never set Times New Roman below 32px — it loses its editorial authority and just looks like a system font fallback. Never set Suisse Intl WebM above 38px for body content — at that size the humanist sans starts competing with the display serif for attention."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "The system has exactly one chromatic color: #eb516d Radish Bloom. It must remain rare — one panel, one moment, one barcode per page. Using it twice dilutes it; using it three times makes it a theme rather than an accent. Greens from the organic photography are NOT part of the UI palette — they are decorative imagery and should never appear as button fills, link colors, or icon strokes. The neutral stack (#ffffff, #808080, #333333, #000000) carries 95% of the interface."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The dark canvas and high-contrast white type do the work of separation. Hairline #808080 borders are the only structural lines; cards and surfaces are defined by negative space, not elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "icon",
+            "heading",
+            "body",
+            "card"
+          ],
+          "frequency": 2442,
+          "confidence": 1,
+          "prominence": 150103851.67819932,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 10,
+            "icon/color": 2,
+            "link/color": 24,
+            "other/fill": 5,
+            "image/color": 157,
+            "other/color": 258,
+            "heading/color": 28,
+            "body/borderColor": 8,
+            "card/borderColor": 40,
+            "icon/borderColor": 8,
+            "link/borderColor": 96,
+            "image/borderColor": 628,
+            "other/borderColor": 1034,
+            "button/borderColor": 20,
+            "heading/borderColor": 112,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image"
+          ],
+          "frequency": 1130,
+          "confidence": 1,
+          "prominence": 8825392.572696839,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 68,
+            "link/color": 16,
+            "image/color": 2,
+            "other/color": 140,
+            "body/borderColor": 272,
+            "link/borderColor": 64,
+            "image/borderColor": 8,
+            "other/borderColor": 560
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 760127.0718366988,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 10
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 149616,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 14,
+            "button/color": 5,
+            "other/borderColor": 44
+          }
+        },
+        {
+          "hex": "#eb516d",
+          "oklch": {
+            "c": 0.18933526747375462,
+            "h": 13.3984141427356,
+            "l": 0.6509223502492001
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 225,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00014035023014762911,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#eb516d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#eb516d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#eb516d",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 44.0001,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 24,
+          "corners": [
+            24,
+            24,
+            0,
+            24
+          ],
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 78,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 146,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 162,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 268,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|image"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisseintl WebM",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 704,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times New Roman",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorialnew",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "icon",
+            "card"
+          ],
+          "frequency": 588,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Editorialnew",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 100,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.008,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 24,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Times New Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Suisseintl WebM",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Times New Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.82,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0c66f894-717e-4db3-8da7-eab25db8d806.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redis Agency design system\",\"item\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#style-reference\",\"name\":\"Redis Agency design system reference\",\"headline\":\"Redis Agency design system | Refero Styles\",\"description\":\"Explore Redis Agency's dark Agency design system: Bone White #ffffff, Smoke #808080 colors, Times New Roman, Suisse Intl WebM typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Redis Agency\",\"url\":\"https://www.redis.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4406799b-1586-4d84-aac9-e6acdee0f679#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"caption\":\"Screenshot of Redis Agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4755d329-9bee-4d68-bb83-d4e1a0f3cb1c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Redis Agency design system\",\"Redis Agency website design\",\"Redis Agency colors\",\"Redis Agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Smoke\",\"Obsidian\",\"Graphite\",\"Times New Roman\",\"Suisse Intl WebM\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Redis Agency design system\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency website design\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency colors\"},{\"@type\":\"Thing\",\"name\":\"Redis Agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:26:00.255Z\",\"dateModified\":\"2026-04-30T01:26:00.255Z\"}]}19:T58b,## Quick Color Reference\n- background: #000000 (Obsidian)\n- text: #ffffff (Bone White)\n- secondary text: #808080 (Smoke)\n- border: #808080 (Smoke hairline)\n- accent surface: #eb516d (Radish Bloom)\n- primary action: #ffffff (filled action)\n\n## 3-5 Example Component Prompts\n\n1. **Display Hero Headline**: 'Redis Agency' in Times New Roman, 90px, weight 400, line-height 0.82, letter-spacing -0.9px, color #ffffff on #000000 canvas. Centered. Letters should touch and overlap — tight tracking is intentional, do not increase.\n\n2. **Outlined Pill Button**: 1px solid #ffffff border, 40px border-radius, padding 10px 25px, text 'Подробнее' in Suisse Intl WebM 16px weight 400 letter-spacing -0.13px color #ffffff on #000000 background. No fill, no shadow.\n\n3. **Radish Accent Panel**: Solid #eb516d background, 0px radius, full content-width, containing a centered #ffffff barcode element and 24px Suisse Intl WebM white caption beneath. Padding 40px vertical.\n\n4. **Editorial Body Block**: Three paragraphs of body copy in Suisse Intl WebM 18px weight 400 line-height 1.4 letter-spacing -0.14px, color #ffffff on #000000. 22px gap between paragraphs, 70px margin above the block. Measure constrained to ~600px wide and left-aligned.\n\n5. **Thin Label Caption**: Small label 'Agency / 2024' in Editorial New 14px weight 100 line-height 1.2 color #ffffff, sitting above a larger heading with 15px vertical spacing."
+}

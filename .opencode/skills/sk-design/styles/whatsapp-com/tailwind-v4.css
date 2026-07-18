@@ -1,0 +1,45 @@
+@theme {
+  /* Colors */
+  --color-whatsapp-green: #25d366;
+  --color-link-blue: #0373e9;
+  --color-charcoal: #1c1e21;
+  --color-ink-black: #111b21;
+  --color-cream-canvas: #fcf5eb;
+  --color-pure-white: #ffffff;
+  --color-warm-gray: #5e5e5e;
+  --color-pale-blue-wash: #f0f4f9;
+
+  /* Typography */
+  --font-whatsapp-sans-var: 'WhatsApp Sans Var', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.38;
+  --text-body: 16px;
+  --leading-body: 1.34;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.39;
+  --text-heading-sm: 48px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 60px;
+  --leading-heading: 1.1;
+  --text-display: 80px;
+  --leading-display: 1;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-56: 56px;
+  --spacing-88: 88px;
+
+  /* Border Radius */
+  --radius-3xl: 25px;
+  --radius-full: 50px;
+}

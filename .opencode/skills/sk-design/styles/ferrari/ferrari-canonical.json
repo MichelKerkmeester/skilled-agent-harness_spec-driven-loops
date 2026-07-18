@@ -1,0 +1,1262 @@
+{
+  "source": "https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649",
+  "uuid": "80164adf-a898-4f7c-bce7-12f3f62e1649",
+  "name": "Ferrari",
+  "northStar": "cavallino rampante on black marble. Black voids punctuated by singular Ferrari red, white uppercase tracking, and full-bleed cinematic photography.",
+  "capturedAt": "2026-07-18T06:27:50.165Z",
+  "meta": {
+    "url": "https://ferrari.com",
+    "siteName": "Ferrari",
+    "extractedAt": "2026-07-03T03:38:44.685Z",
+    "durationMs": 84308,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 389,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all display copy in uppercase with tracking between 0.083em and 0.091em — the wide letter-spacing is the system's voice",
+      "Use #000000 and #181818 as full-bleed section backgrounds; let photography and white type carry the visual weight without competing surfaces",
+      "Use #da291c exclusively for interactive hover, focus, and active states — never as a background fill, never as decorative color",
+      "Keep all corner radii at 0px except for the single 9999px pill — sharp geometry is the signature",
+      "Set type at 11-13px for all interface copy; reserve 16px only for section titles and hero headlines",
+      "Let images bleed to viewport edges with no padding, frames, or rounding — the photograph is the layout",
+      "Use hairline 1px #303030 or #d2d2d2 dividers for structural separation — never card shadows or elevated panels"
+    ],
+    "donts": [
+      "Do not introduce rounded corners on buttons, cards, or panels — the system is zero-radius by design",
+      "Do not use #da291c as a filled background or decorative wash — it signals action only",
+      "Do not set body copy below 11px without uppercase treatment; the tracking depends on the size relationship",
+      "Do not add card shadows, elevation, or floating panels — surfaces sit flush on the black void",
+      "Do not use colored type for anything other than #ffffff, #8f8f8f, or #da291c hover states",
+      "Do not introduce gradients as backgrounds — the CSS tokens define gradient behavior for specific component states, not page-level decoration",
+      "Do not add padding or margins around full-bleed hero photography — the image must reach every edge"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#da291c",
+        "name": "Rosso Corsa",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#9d2211",
+        "name": "Rosso Scuro",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bianco Ferrari",
+        "role": "Canvas, primary text on dark surfaces, iconography, and link color — the dominant tone across the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbone Nero",
+        "role": "Full-bleed dark backgrounds, hero panels, and overlay surfaces — creates the cinematic void behind photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181818",
+        "name": "Notte Profonda",
+        "role": "Footer and secondary dark surfaces — one step softer than pure black to break the infinite void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#303030",
+        "name": "Grafite",
+        "role": "Borders, dividers, and muted surface treatments — thin structural separation between dark layers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f8f",
+        "name": "Fumo",
+        "role": "Muted body text, caption labels, and secondary metadata on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Piombo",
+        "role": "Supporting body text and quieter label treatments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d2d2d2",
+        "name": "Argento Chiaro",
+        "role": "Light surface dividers and disabled borders on white backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Velo di Luce",
+        "role": "Lightest surface wash — subtle background tonal shifts on white sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Cemento",
+        "role": "Section backgrounds on light areas — the only chromatic step in the white canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed vertical scroll with no max-width constraint — sections extend edge-to-edge at 100vw. Each viewport-height section is either a full-bleed photograph with centered white type overlay or a dark void with minimal copy. Hero pattern: first screen is a cinematic car photograph with a centered headline beneath or overlaid, followed by vertically scrolling full-bleed panels. Navigation sits as a flat transparent bar over the hero — no sticky background, no border. Content rhythm alternates between massive image-driven panels and quiet dark sections with centered uppercase typography. No sidebar, no multi-column grids in the fold — composition is single-column and centered throughout. Card grids appear only in secondary content areas (collections, editorial) and remain flat with 0px radius against dark backgrounds. Section transitions are seamless — no dividers, no alternating color bands — only the photography itself marks the shift.",
+    "imagery": "Imagery is full-bleed cinematic photography: vehicles shot against dark or studio environments, filling the viewport edge-to-edge with no inset, frame, or rounding. Photography occupies 70-90% of each viewport section. No lifestyle context, no people-centric shots — the car is always the subject, isolated and hero-prominent. Color treatment is high-contrast with deep shadows and vivid reds or metallic paint catching light. No illustrations, no abstract graphics, no product screenshots — pure photographic storytelling. Iconography is minimal white outlined SVG at 16px stroke weight, used only for functional navigation (search, social, close).",
+    "similar": [
+      {
+        "why": "Same dark cinematic full-bleed photography approach with centered uppercase tracked typography and a single restrained accent color",
+        "business": "Aston Martin"
+      },
+      {
+        "why": "Black-dominant editorial layout with sharp 0px geometry, hairline dividers, and photography that bleeds to viewport edges",
+        "business": "Porsche"
+      },
+      {
+        "why": "Dark void backgrounds with full-bleed vehicle photography, uppercase tracked display type, and zero-radius sharp UI elements",
+        "business": "Lamborghini"
+      },
+      {
+        "why": "Monochromatic dark UI with cinematic hero panels, minimal navigation chrome, and uppercase widely-tracked micro-copy as the typographic voice",
+        "business": "McLaren"
+      },
+      {
+        "why": "Full-bleed dark editorial sections with centered white display type and a single brand color used only for interactive states",
+        "business": "Bugatti"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "full": "9999px",
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10-16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "level": 0,
+        "purpose": "Full-bleed hero panels and cinematic section backgrounds"
+      },
+      {
+        "hex": "#181818",
+        "name": "Night Surface",
+        "level": 1,
+        "purpose": "Footer and secondary dark surfaces — one tonal step softer than void"
+      },
+      {
+        "hex": "#303030",
+        "name": "Graphite Edge",
+        "level": 2,
+        "purpose": "Hairline borders and subtle dividers on dark surfaces"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 3,
+        "purpose": "Light section backgrounds and primary text color"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Smoke Wash",
+        "level": 4,
+        "purpose": "Tonal shifts on white sections — almost imperceptible warmth"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Concrete",
+        "level": 5,
+        "purpose": "Lightest background step for alternating sections"
+      }
+    ],
+    "northStar": "cavallino rampante on black marble. Black voids punctuated by singular Ferrari red, white uppercase tracking, and full-bleed cinematic photography.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.78
+      },
+      {
+        "role": "body-sm",
+        "size": 12,
+        "lineHeight": 1.78
+      },
+      {
+        "role": "body",
+        "size": 13,
+        "lineHeight": 1.78
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Primary nav element",
+        "description": "Transparent background, white uppercase text at 11-12px with 0.083-0.091em tracking, zero border-radius, 5px vertical padding. No fill, no border — relies on color shift to white on hover. The nav itself is a flat bar without background, floating over hero imagery."
+      },
+      {
+        "name": "Dark Cinematic Hero Panel",
+        "role": "Full-viewport section",
+        "description": "Full-bleed #000000 or #181818 background with centered or overlaid display type at 16px weight 500. Display headlines rendered in uppercase, tightly tracked, centered. Car photography fills the viewport edge-to-edge with no padding or frame — the image IS the layout."
+      },
+      {
+        "name": "Section Label Button",
+        "role": "Categorical navigation chip",
+        "description": "Transparent background, white uppercase 12px Body-Font with 0.083em tracking, 5px vertical padding, 0px radius, 1px bottom border that appears on hover. No fill, no rounded corners — text-only with underline state."
+      },
+      {
+        "name": "Carousel Indicator Dot",
+        "role": "Scroll position indicator",
+        "description": "8-10px circles at 0px radius, inactive state #8f8f8f, active state #ffffff or #da291c. No labels — purely geometric position markers below full-bleed hero panels."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Site footer",
+        "description": "#181818 background extending edge-to-edge, white text at 11-12px uppercase with wide tracking, no borders between columns — only vertical white space separates groups. Social icons are white outlined, 16px square, no fill."
+      },
+      {
+        "name": "Featured Content Card",
+        "role": "Editorial card",
+        "description": "Flat rectangular block on #181818 or #000000 background, 0px corner radius, no shadow, no border. Headline set in 16px weight 500 uppercase FerrariSans with tight tracking. Body copy at 11-13px. Photography bleeds to card edges with no inset."
+      },
+      {
+        "name": "Utility Icon Button",
+        "role": "Functional icon control",
+        "description": "Search and close icons rendered as white SVG strokes at 16px, transparent background, 0px radius. No background fill, no border — icon alone signals function. 10px padding all sides."
+      },
+      {
+        "name": "Category Pill (Full Radius)",
+        "role": "Filter or tag label",
+        "description": "The single rounded element in the system: 9999px radius pill for filter tags or status labels on body copy contexts. Transparent background with 1px hairline white border, uppercase 9-11px text."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator",
+        "description": "1px solid line in #303030 on dark surfaces or #d2d2d2 on light surfaces. No double rules, no decorative spacing — minimal structural geometry between content blocks."
+      },
+      {
+        "name": "Full-Bleed Photography Frame",
+        "role": "Imagery container",
+        "description": "Edge-to-edge image presentation with 0px radius, no padding, no border, no caption overlay chrome. The image speaks for itself against the black void."
+      },
+      {
+        "name": "Body Text Link",
+        "role": "Inline text link",
+        "description": "White #ffffff text with no underline by default, uppercase tracking matching surrounding copy. Color shifts to #da291c on hover — the only chromatic moment in body copy."
+      },
+      {
+        "name": "CTA Arrow Link",
+        "role": "Action prompt with directional indicator",
+        "description": "Uppercase 11-12px text in white with a right-pointing arrow (→) glyph appended. Transparent background, no border, no radius. The arrow IS the affordance — no button chrome surrounds the action."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body-Font — detected in extracted data but not described by AI",
+        "sizes": "9px, 11px, 12px, 13px",
+        "family": "Body-Font",
+        "weight": "400",
+        "lineHeight": "1.27, 1.5, 1.78, 2",
+        "letterSpacing": "0.015, 0.022, 0.028, 0.083, 0.091"
+      },
+      {
+        "role": "Primary display and interface typeface — custom sans used across all copy",
+        "sizes": "",
+        "family": "FerrariSans",
+        "weight": "400-500",
+        "lineHeight": "1.27-2.0",
+        "substitute": "Inter, Helvetica Neue, Arial Narrow",
+        "letterSpacing": "0.005em to 0.091em depending on size — tracking widens as type shrinks",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Ferrari.com speaks in a restrained editorial whisper over cinematic darkness: a predominantly black canvas broken by full-bleed photography and a single signal red that interrupts only when something demands attention. Typography is set in uppercase with wide tracking, small sizes, and tight weights — the type behaves as captions and labels, never as decoration. Layout favors negative space, centered compositions, and vertical scrolling over chrome — the cars and content breathe in full-viewport panels while navigation sits flat and borderless, signaled by color shifts rather than rules. Every element is reduced to its essential geometry: square corners, hairline dividers, flat surfaces, no rounded buttons.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ferrari design system\",\"item\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#style-reference\",\"name\":\"Ferrari design system reference\",\"headline\":\"Ferrari design system | Refero Styles\",\"description\":\"Explore Ferrari's dark E-commerce design system: Rosso Corsa #da291c, Rosso Scuro #9d2211 colors, Body-Font, FerrariSans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ferrari\",\"url\":\"https://ferrari.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"caption\":\"Screenshot of Ferrari\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ferrari design system\",\"Ferrari website design\",\"Ferrari colors\",\"Ferrari typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rosso Corsa\",\"Rosso Scuro\",\"Bianco Ferrari\",\"Carbone Nero\",\"Body-Font\",\"FerrariSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ferrari design system\"},{\"@type\":\"Thing\",\"name\":\"Ferrari website design\"},{\"@type\":\"Thing\",\"name\":\"Ferrari colors\"},{\"@type\":\"Thing\",\"name\":\"Ferrari typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-26T10:28:16.000Z\",\"dateModified\":\"2026-02-26T10:28:16.000Z\"}]}19:T66a,Quick Color Reference:\n- text: #ffffff (primary), #8f8f8f (muted), #da291c (interactive hover)\n- background: #000000 (hero void), #181818 (footer/secondary), #ffffff (light sections)\n- border: #303030 (dark hairlines), #d2d2d2 (light hairlines)\n- accent: #da291c (Rosso Corsa — hover, focus, active states only)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Full-bleed hero section: #000000 background extending 100vw. Centered headline at 16px FerrariSans weight 500, uppercase, #ffffff, letter-spacing 0.005em. Body subtitle at 13px weight 400, #8f8f8f, uppercase, letter-spacing 0.015em. Photography fills the viewport with 0px radius and no inset. Zero padding around the image.\n\n2. Ghost navigation link: transparent background, 12px Body-Font weight 400, uppercase, #ffffff, letter-spacing 0.083em, 5px vertical padding, 0px border-radius. On hover, color shifts to #da291c. No fill, no border, no underline.\n\n3. Editorial content card: #181818 background, 0px border-radius, no shadow, no border. Headline at 16px FerrariSans weight 500, uppercase, #ffffff, letter-spacing 0.005em. Body at 11px weight 400, #ffffff, uppercase, letter-spacing 0.091em. Image bleeds to card edges with no padding or rounding.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. Footer block: #181818 background, full-width. Column headers at 12px uppercase #ffffff letter-spacing 0.083em. Link list at 11px uppercase #ffffff letter-spacing 0.091em. 1px #303030 top border. Social icons at 16px white outlined SVG, transparent background."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The entire type system speaks in a whisper: uppercase, widely tracked, and small. There is no display-weight shouting — the maximum weight is 500 at 16px. Letter-spacing widens inversely with size: 16px headings get 0.005em tracking while 9px micro-copy gets 0.091em. This inverted tracking-size relationship is the signature — type never crowds itself, even at its smallest. All text is uppercase in interface contexts (nav, buttons, links, labels) while body paragraphs may use mixed case at 13px. The custom FerrariSans family handles this gracefully with proportions designed for tight tracking at display sizes and generous breathing at caption sizes. Font-feature-settings 'ss01' should be enabled for alternate glyph forms that define the brand voice."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Ferrari.com uses zero elevation. No box-shadows on cards, buttons, or panels — the CSS shadow token (--f-shadow-small) exists for utility but is not applied to core interface elements. Depth is achieved exclusively through: (1) tonal layering of the four-step dark surface stack (#000000 → #181818 → #303030 → #ffffff), (2) full-bleed photography that creates visual depth without UI chrome, and (3) generous negative space that lets dark sections feel cavernous rather than flat. This flat-on-black approach is deliberate: the products (cars) are the three-dimensional elements; the interface recedes."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 131,
+          "confidence": 1,
+          "prominence": 48521272.45337031,
+          "properties": [
+            "fill",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "body/color": 14,
+            "link/color": 79,
+            "other/fill": 9,
+            "button/color": 11,
+            "heading/color": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2977872.781693042,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2704568.916493076,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#303030",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3091856337459671
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1191726,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8f8f8f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6500412692222284
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 52920,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.76,
+          "background": "#181818",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#303030",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.49,
+          "background": "#000000",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#181818",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.08,
+          "background": "#303030",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.23,
+          "background": "#ffffff",
+          "foreground": "#8f8f8f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "other",
+            "icon"
+          ],
+          "frequency": 168,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list",
+            "marginTop|list",
+            "marginBottom|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|icon",
+            "marginLeft|icon",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "button",
+            "list"
+          ],
+          "frequency": 58,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginRight|button",
+            "marginLeft|button",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 61,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 123,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Body-Font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 278,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FerrariSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 95,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 9,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 2,
+          "letterSpacing": 0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 134,
+          "lineHeight": 1.78,
+          "letterSpacing": 0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.27,
+          "letterSpacing": 0.091,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.27,
+          "letterSpacing": 0.083,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "FerrariSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "body"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Body-Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "footer",
+            "list",
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "FerrariSans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FerrariSans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3db622e1-4f52-4a5f-a883-e64882ce672b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ferrari design system\",\"item\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#style-reference\",\"name\":\"Ferrari design system reference\",\"headline\":\"Ferrari design system | Refero Styles\",\"description\":\"Explore Ferrari's dark E-commerce design system: Rosso Corsa #da291c, Rosso Scuro #9d2211 colors, Body-Font, FerrariSans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ferrari\",\"url\":\"https://ferrari.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80164adf-a898-4f7c-bce7-12f3f62e1649#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"caption\":\"Screenshot of Ferrari\"},\"image\":\"https://images.refero.design/styles/refero.design/image/87c1c721-1158-41bb-adfa-1c81bf5da049.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ferrari design system\",\"Ferrari website design\",\"Ferrari colors\",\"Ferrari typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rosso Corsa\",\"Rosso Scuro\",\"Bianco Ferrari\",\"Carbone Nero\",\"Body-Font\",\"FerrariSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ferrari design system\"},{\"@type\":\"Thing\",\"name\":\"Ferrari website design\"},{\"@type\":\"Thing\",\"name\":\"Ferrari colors\"},{\"@type\":\"Thing\",\"name\":\"Ferrari typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-26T10:28:16.000Z\",\"dateModified\":\"2026-02-26T10:28:16.000Z\"}]}19:T66a,Quick Color Reference:\n- text: #ffffff (primary), #8f8f8f (muted), #da291c (interactive hover)\n- background: #000000 (hero void), #181818 (footer/secondary), #ffffff (light sections)\n- border: #303030 (dark hairlines), #d2d2d2 (light hairlines)\n- accent: #da291c (Rosso Corsa — hover, focus, active states only)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Full-bleed hero section: #000000 background extending 100vw. Centered headline at 16px FerrariSans weight 500, uppercase, #ffffff, letter-spacing 0.005em. Body subtitle at 13px weight 400, #8f8f8f, uppercase, letter-spacing 0.015em. Photography fills the viewport with 0px radius and no inset. Zero padding around the image.\n\n2. Ghost navigation link: transparent background, 12px Body-Font weight 400, uppercase, #ffffff, letter-spacing 0.083em, 5px vertical padding, 0px border-radius. On hover, color shifts to #da291c. No fill, no border, no underline.\n\n3. Editorial content card: #181818 background, 0px border-radius, no shadow, no border. Headline at 16px FerrariSans weight 500, uppercase, #ffffff, letter-spacing 0.005em. Body at 11px weight 400, #ffffff, uppercase, letter-spacing 0.091em. Image bleeds to card edges with no padding or rounding.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. Footer block: #181818 background, full-width. Column headers at 12px uppercase #ffffff letter-spacing 0.083em. Link list at 11px uppercase #ffffff letter-spacing 0.091em. 1px #303030 top border. Social icons at 16px white outlined SVG, transparent background."
+}

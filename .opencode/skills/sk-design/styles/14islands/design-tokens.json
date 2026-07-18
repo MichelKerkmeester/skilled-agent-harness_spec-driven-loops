@@ -1,0 +1,177 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Ink — Primary text, display headlines, full-bleed dark media blocks, nav wordmark — the single near-black that anchors every interface"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Default canvas, card surfaces, text on dark sections"
+    },
+    "fog": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Fog — Subtle surface differentiation for alternating sections or inset panels — barely visible, used to create quiet separation without borders"
+    },
+    "stone": {
+      "$value": "#a2a2a9",
+      "$type": "color",
+      "$description": "Stone — Secondary text, category labels, decorative ampersand, muted button text — the entire chromatic-like hierarchy comes from this one gray"
+    },
+    "graphite": {
+      "$value": "#797979",
+      "$type": "color",
+      "$description": "Graphite — Muted body text, helper copy, tertiary metadata — deeper than Stone for occasional emphasis on small text"
+    }
+  },
+  "font": {
+    "bentonsans": {
+      "$value": "BentonSans",
+      "$type": "fontFamily",
+      "$description": "All UI and body text — navigation links, body copy, footer, buttons, tags, small uppercase eyebrows. A custom grotesque that reads neutral and workmanlike; the substitute should preserve its clean even stroke and wide x-height."
+    },
+    "aftenscreen": {
+      "$value": "AftenScreen",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines only. Line-height collapses to 0.80 at the largest sizes — the letters of \"Design\" and \"Technology\" nearly touch, creating a condensed mass of ink. Weight stays at 400; scale alone provides emphasis. The tight tracking (-0.05em to -0.04em) tightens the optical spacing so oversized type doesn't feel airy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "BentonSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BentonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BentonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "AftenScreen",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AftenScreen",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AftenScreen",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "AftenScreen",
+        "fontSize": "180px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 180px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.16667px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas — the overwhelming majority of the interface"
+    },
+    "fog": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Quiet surface for alternating sections or subtle card differentiation"
+    },
+    "ink": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed media blocks, dark inversions, footer or featured content panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://14islands.com",
+      "siteName": "14islands",
+      "extractedAt": "2026-06-03T16:07:43.014Z",
+      "variant": "extended"
+    }
+  }
+}

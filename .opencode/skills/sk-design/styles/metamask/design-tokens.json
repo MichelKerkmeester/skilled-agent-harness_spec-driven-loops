@@ -1,0 +1,592 @@
+{
+  "color": {
+    "peach-cream": {
+      "$value": "#fff1eb",
+      "$type": "color",
+      "$description": "Peach Cream — Page canvas, hero backgrounds, dominant surface — the warm skin of the entire site"
+    },
+    "ink-black": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, pill CTA fill, nav icons, borders — near-black rather than pure #000 for slightly softer edges"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces on cream sections, button labels, inverted text on black CTAs"
+    },
+    "cool-mist": {
+      "$value": "#e9edf6",
+      "$type": "color",
+      "$description": "Cool Mist — Secondary surface, link/button hover washes, soft card backgrounds when a section needs visual cooling"
+    },
+    "slate": {
+      "$value": "#393d46",
+      "$type": "color",
+      "$description": "Slate — Muted body text, secondary headings, icon strokes — lifts information below the black primary"
+    },
+    "hairline": {
+      "$value": "#c8ceda",
+      "$type": "color",
+      "$description": "Hairline — Borders, dividers, list-item separators on neutral surfaces"
+    },
+    "deep-violet": {
+      "$value": "#3d065f",
+      "$type": "color",
+      "$description": "Deep Violet — Brand primary — display headlines, decorative strokes, key UI accents; saturated enough to dominate 158px type against the cream canvas"
+    },
+    "midnight-plum": {
+      "$value": "#190066",
+      "$type": "color",
+      "$description": "Midnight Plum — Headline emphasis, link text, dark card backgrounds — the second register of the violet system, used when Deep Violet needs a partner with more weight"
+    },
+    "lime-wash": {
+      "$value": "#e5ffc3",
+      "$type": "color",
+      "$description": "Lime Wash — Accent card surface, decorative wash — fresh, spring-green that lights up product/feature blocks"
+    },
+    "acid-lime": {
+      "$value": "#baf24a",
+      "$type": "color",
+      "$description": "Acid Lime — Saturated green highlight inside illustrations and graphic accents — punctuation color, never structural"
+    },
+    "lilac-haze": {
+      "$value": "#eac2ff",
+      "$type": "color",
+      "$description": "Lilac Haze — Soft pink-purple card wash, pastel type accent — gentle partner to Deep Violet"
+    },
+    "orchid-pop": {
+      "$value": "#d075ff",
+      "$type": "color",
+      "$description": "Orchid Pop — Saturated pink-purple for decorative shapes and graphic punctuation sitting over lilac or cream"
+    },
+    "sky-wash": {
+      "$value": "#cce7ff",
+      "$type": "color",
+      "$description": "Sky Wash — Cool blue card surface — the cool counterweight to the warm canvas in feature blocks"
+    },
+    "periwinkle": {
+      "$value": "#89b0ff",
+      "$type": "color",
+      "$description": "Periwinkle — Saturated blue highlight for icons and illustration fills"
+    },
+    "apricot": {
+      "$value": "#ffa680",
+      "$type": "color",
+      "$description": "Apricot — Warm accent card surface — echoes the cream canvas but steps up in saturation for energy"
+    },
+    "burnt-sienna": {
+      "$value": "#661800",
+      "$type": "color",
+      "$description": "Burnt Sienna — Dark warm accent for display text and decorative borders — the orange system's deep register"
+    }
+  },
+  "font": {
+    "mmpolyvariable": {
+      "$value": "MMPolyVariable",
+      "$type": "fontFamily",
+      "$description": "Display headlines only — ultra-condensed geometric face that carries page-level authority at 75–158px. The narrow proportions let "
+    },
+    "mmsansvariable": {
+      "$value": "MMSansVariable",
+      "$type": "fontFamily",
+      "$description": "Secondary sans for sub-headlines and short labels that sit beneath the poly display — keeps the brand on one type system without competing with the hero. Substitute: Inter, Söhne, or General Sans."
+    },
+    "mmeuclidcircularb": {
+      "$value": "MMEuclidCircularB",
+      "$type": "fontFamily",
+      "$description": "Body, UI, nav, buttons, badges, inputs — the workhorse. Circular geometric forms keep a friendly counterpoint to the aggressive poly display. Weight 500 for nav, 700 for button labels, 400 for body. Tight line-height 0.80 used for badge micro-text. Substitute: DM Sans, Nunito, or Nunito Sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "MMSansVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "MMSansVariable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "MMEuclidCircularB",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "MMSansVariable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "MMSansVariable",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "MMPolyVariable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "MMPolyVariable",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "MMPolyVariable",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 75px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "MMPolyVariable",
+        "fontSize": "127px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 127px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "MMPolyVariable",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 158px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "0.989583px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "3.95833px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "7.91667px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.875px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "15.8333px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "19.7917px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "33.151px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "39.5833px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "44.5312px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "49.4792px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "69.2708px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "98.9583px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "9895.83px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "surface": {
+    "peach-canvas": {
+      "$value": "#fff1eb",
+      "$type": "color",
+      "$description": "Surface level 0: Page-wide base — the signature warm cream that defines the entire site"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards and product surfaces that need to step off the warm canvas"
+    },
+    "cool-mist": {
+      "$value": "#e9edf6",
+      "$type": "color",
+      "$description": "Surface level 2: Cooling secondary surface for links, chips, and hover states"
+    },
+    "accent-wash": {
+      "$value": "#e5ffc3",
+      "$type": "color",
+      "$description": "Surface level 3: Vibrant card surface for feature/illustration blocks — one of several color washes rotated through"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://metamask.io",
+      "siteName": "Metamask",
+      "extractedAt": "2026-06-03T20:14:06.637Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f5f4f0",
+      "$type": "color",
+      "$description": "Bone — Page canvas, footer, secondary button fills — warm off-white replaces cold digital white, giving every screen a paper-like base"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, input fields — the bright layer above bone"
+    },
+    "ink": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Ink — Primary text, dark filled buttons, heading color — the default ink, warm near-black rather than #000"
+    },
+    "charcoal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal — Hairline borders, icon strokes, the announcement bar — the thinnest line work"
+    },
+    "fossil": {
+      "$value": "#706f6c",
+      "$type": "color",
+      "$description": "Fossil — Secondary text, muted borders, body annotations"
+    },
+    "pebble": {
+      "$value": "#9e9b94",
+      "$type": "color",
+      "$description": "Pebble — Input field borders, disabled controls"
+    },
+    "smoke": {
+      "$value": "#3c3c3c",
+      "$type": "color",
+      "$description": "Smoke — Body annotations, meta labels"
+    },
+    "sand": {
+      "$value": "#eae6e1",
+      "$type": "color",
+      "$description": "Sand — Active tab background, subtle surface lift, button hover on bone"
+    },
+    "ash": {
+      "$value": "#d2cec6",
+      "$type": "color",
+      "$description": "Ash — Hairline dividers, footer borders, low-contrast separators"
+    },
+    "chartreuse": {
+      "$value": "#dbf570",
+      "$type": "color",
+      "$description": "Chartreuse — Highlight badges, study tags, the globe motif, card accent fills — the only chromatic note in the system, used sparingly to draw the eye to research signals"
+    },
+    "olive": {
+      "$value": "#4b5b0a",
+      "$type": "color",
+      "$description": "Olive — Decorative border accent, chromatic link underline — the only deep color, appears in the olive outline treatments and the heading underline on the hero"
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "phonic": {
+      "$value": "Phonic",
+      "$type": "fontFamily",
+      "$description": "Display, headings, body — the brand's signature humanist serif set aggressively tight at large sizes (–0.09em at 130px down to +0.03em at 12px). Weight 300 dominates for display, 400 for body. The custom typeface carries the editorial voice; weight 300 at 130px is the signature move — most brands use 600–700 here, Maze whispers in a light serif to claim authority through restraint."
+    },
+    "system-ui-sans": {
+      "$value": "System UI Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary UI text, fallback for browser contexts — only used sparingly; Phonic carries the brand"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "58px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "90px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "130px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 130px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Phonic",
+        "fontSize": "130px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 130px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "208": {
+      "$value": "208px",
+      "$type": "dimension",
+      "$description": "Spacing 208px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f5f4f0",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white paper base"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Report cards, study cards, menu panels — the standard elevated surface"
+    },
+    "sand-lift": {
+      "$value": "#eae6e1",
+      "$type": "color",
+      "$description": "Surface level 2: Active tab, subtle highlight wash on bone"
+    },
+    "chartreuse-accent": {
+      "$value": "#dbf570",
+      "$type": "color",
+      "$description": "Surface level 3: Study tags, globe illustration, highlight cards"
+    },
+    "ink-surface": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 4: Dark filled buttons, dark announcement bar"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://maze.co",
+      "siteName": "Maze",
+      "extractedAt": "2026-06-03T21:16:17.741Z",
+      "variant": "extended"
+    }
+  }
+}

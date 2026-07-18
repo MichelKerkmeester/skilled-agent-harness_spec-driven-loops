@@ -1,0 +1,28 @@
+@theme {
+  /* Colors */
+  --color-bone-white: #f6f6f6;
+  --color-divider-grey: #e6e6e6;
+  --color-off-black: #0a0a0a;
+  --color-pure-white: #ffffff;
+  --color-muted-grey: #b2b2b2;
+  --color-signal-red: #ff0000;
+
+  /* Typography */
+  --font-eurostile-becane: 'Eurostile Becane', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-display: 30px;
+  --leading-display: 1;
+  --tracking-display: 1.2px;
+
+  /* Spacing */
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-100: 100px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+}

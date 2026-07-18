@@ -1,0 +1,502 @@
+{
+  "color": {
+    "lime-spark": {
+      "$value": "#d2e823",
+      "$type": "color",
+      "$description": "Lime Spark — Primary action buttons, active nav fills, highlight card surfaces — the single loud CTA accent that punches through every colored band"
+    },
+    "lavender-mist": {
+      "$value": "#e9c0e9",
+      "$type": "color",
+      "$description": "Lavender Mist — Decorative borders, icon outlines, soft card edges, and subtle highlight washes — a pastel companion that desaturates without disappearing"
+    },
+    "cobalt-band": {
+      "$value": "#2665d6",
+      "$type": "color",
+      "$description": "Cobalt Band — Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "maroon-plate": {
+      "$value": "#780016",
+      "$type": "color",
+      "$description": "Maroon Plate — Deep section backgrounds, card fills — anchors the lower page with a wine-colored tray that makes white type glow"
+    },
+    "cobalt-deep": {
+      "$value": "#061492",
+      "$type": "color",
+      "$description": "Cobalt Deep — Card surface fills for product mockups and feature blocks — a denser, more intense blue than Cobalt Band"
+    },
+    "forest-ink": {
+      "$value": "#254f1a",
+      "$type": "color",
+      "$description": "Forest Ink — Card surface fills, body accent text — the dark green that grounds warm-toned card compositions"
+    },
+    "mustard-pop": {
+      "$value": "#d6a337",
+      "$type": "color",
+      "$description": "Mustard Pop — Card surface fills, decorative tile colors — a warm gold that adds variety to bento grid compositions"
+    },
+    "linen-canvas": {
+      "$value": "#f3f3f1",
+      "$type": "color",
+      "$description": "Linen Canvas — Page background, neutral button fills, soft section breaks — the warm off-white base that lets colored bands float"
+    },
+    "white-plate": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White Plate — Card surfaces, form inputs, icon fills, and inverted text on dark/colored backgrounds"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dominant borders (all cards/buttons/icons carry a black stroke), and illustration outlines — the structural ink that defines every shape"
+    },
+    "midnight-ink": {
+      "$value": "#1e2330",
+      "$type": "color",
+      "$description": "Midnight Ink — Secondary dark text and borders, heading strokes on light surfaces, icon outlines — a near-black with a cool cast that softens the harshness of pure black"
+    },
+    "sage-mute": {
+      "$value": "#676b5f",
+      "$type": "color",
+      "$description": "Sage Mute — Muted helper text, secondary link borders, low-emphasis captions — a desaturated olive-gray that recedes without disappearing"
+    },
+    "silver-border": {
+      "$value": "#c7c8cb",
+      "$type": "color",
+      "$description": "Silver Border — Subtle button borders, disabled states, low-emphasis dividers"
+    },
+    "charcoal-pill": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal Pill — Dark mode button borders, hover state outlines on inverted components"
+    },
+    "concrete-tile": {
+      "$value": "#adadad",
+      "$type": "color",
+      "$description": "Concrete Tile — Placeholder card backgrounds, skeleton states, and muted tile fills"
+    },
+    "leaf-wash": {
+      "$value": "#ebffc5",
+      "$type": "color",
+      "$description": "Leaf Wash — Soft section backgrounds and highlight washes — a very pale lime that echoes Lime Spark without competing"
+    },
+    "moss-tint": {
+      "$value": "#e8efd6",
+      "$type": "color",
+      "$description": "Moss Tint — Alternate pale surface for section banding — a desaturated green-gray that adds another neutral layer"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback only — present in small quantities, likely from a legacy or utility context. Do not use as a primary face."
+    },
+    "linksans": {
+      "$value": "Linksans",
+      "$type": "fontFamily",
+      "$description": "Primary type system for all UI, body, headings, and display. Used at 400 for body, 500 for emphasis, 700 for subheadings/buttons, 800 for the densest display headlines. The 800-weight display at 80px with -0.043em tracking is the signature: type that reads as a single shape, not a sentence. Substitute with Inter or General Sans for close geometric proportions."
+    },
+    "linksans-linksansvf": {
+      "$value": "Linksans Linksansvf",
+      "$type": "fontFamily",
+      "$description": "Linksans Linksansvf — detected in extracted data but not described by AI"
+    },
+    "yerk": {
+      "$value": "yerk",
+      "$type": "fontFamily",
+      "$description": "yerk — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "yerk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.32
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "51px",
+        "fontWeight": 700,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "29.09px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "41.6px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "linen-canvas": {
+      "$value": "#f3f3f1",
+      "$type": "color",
+      "$description": "Surface level 0: Page base, default section background between color bands"
+    },
+    "white-plate": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, form inputs, modals, navigation float"
+    },
+    "leaf-wash": {
+      "$value": "#ebffc5",
+      "$type": "color",
+      "$description": "Surface level 2: Soft highlight sections, banner strips, subtle elevated wash"
+    },
+    "moss-tint": {
+      "$value": "#e8efd6",
+      "$type": "color",
+      "$description": "Surface level 3: Alternate neutral surface, section banding variation"
+    },
+    "concrete-tile": {
+      "$value": "#adadad",
+      "$type": "color",
+      "$description": "Surface level 4: Skeleton/placeholder card fills, muted tile backgrounds"
+    },
+    "cobalt-band": {
+      "$value": "#2665d6",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed section background — hero/feature band"
+    },
+    "maroon-plate": {
+      "$value": "#780016",
+      "$type": "color",
+      "$description": "Surface level 6: Full-bleed section background — bottom CTA/social band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.bento.me",
+      "siteName": "Bento",
+      "extractedAt": "2026-06-03T18:13:57.754Z",
+      "variant": "extended"
+    }
+  }
+}

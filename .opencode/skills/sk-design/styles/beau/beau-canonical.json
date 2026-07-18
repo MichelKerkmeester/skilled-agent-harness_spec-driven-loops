@@ -1,0 +1,992 @@
+{
+  "source": "https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582",
+  "uuid": "c73ba3d8-42fe-4d53-bec1-b6643949c582",
+  "name": "Beau",
+  "northStar": "Ink on warm parchment — confident monochromatic editorial with a single theatrical gradient spotlight.",
+  "capturedAt": "2026-07-18T07:15:46.678Z",
+  "meta": {
+    "url": "https://beau.to",
+    "siteName": "Beau",
+    "extractedAt": "2026-06-03T21:59:55.809Z",
+    "durationMs": 29674,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 210,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the broadcast gradient (135deg, #ff8308 → #ff5043 → #392bd5) exclusively for product frames, feature pills, and at most one full-width section band per page",
+      "Set all buttons and feature pills to 200px border-radius — the fully pill-shaped button is a core signature",
+      "Set all cards, images, and badges to 6px border-radius — subtle, never rounded enough to feel friendly",
+      "Apply Geist 500 for headings and labels, Geist 400 for body — never introduce weight 600 or 700; the narrow weight axis is intentional",
+      "Use #f6f4f1 as the warm parchment for alternate section surfaces rather than a hard border or divider",
+      "Enable font features 'ss01', 'ss03', 'ss04' on all Geist text — these stylistic sets are part of the brand voice",
+      "Use 72px as the standard section gap and 24px as the element gap inside cards"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color outside the broadcast gradient — the system is monochrome by design",
+      "Do not use 6px or 8px radius on buttons or pills — only 200px (full pill) is correct",
+      "Do not use heavy shadows or elevation — the only approved shadow is the 2px 6%-black atmospheric haze",
+      "Do not use type weights outside 400 and 500 — bold and semibold would break the restrained editorial voice",
+      "Do not place white cards on the gradient band — use dark (#000000) feature cards or let the gradient breathe",
+      "Do not use #0000ee or browser-default link blue — links are always black with optional underline",
+      "Do not crowd sections — if a section feels tight, increase the 72px gap rather than reducing font sizes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary page canvas, card surfaces, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f4f1",
+        "name": "Warm Parchment",
+        "role": "Alternate section surface — gives the cream/ivory warmth that stops the page from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, dark feature card surfaces, filled pill button background, hairline borders — the structural backbone of every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Soft Graphite",
+        "role": "Secondary text, muted helper copy, quiet borders on neutral sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Mid Ash",
+        "role": "Tertiary metadata, section subtitles, low-emphasis text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Pale Mist",
+        "role": "Disabled badge fill, very low-emphasis surface washes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff8308",
+        "name": "Broadcast Gradient",
+        "role": "Signature accent — used only for product screenshot frames, feature pill backgrounds, and the one full-width section wash; the gradient itself carries the brand voice, so the orange leading stop represents it in solid form",
+        "group": "accent",
+        "gradient": "linear-gradient(135deg, rgb(255, 131, 8), rgb(255, 80, 67) 50%, rgb(57, 43, 213))"
+      }
+    ],
+    "layout": "Page is a max-width 1200px centered canvas with generous 72px section gaps and 96px hero padding. The hero is a centered headline + subhead + two-column product frame (gradient-ringed product card on the left, dark feature card on the right). Below the hero, content alternates between left-aligned text+image two-column rows and a single full-width gradient band that contains a 3-column grid of gradient-filled feature pills. Navigation is a minimal sticky top bar: logo left, two center links, single pill CTA right — no dropdowns, no sidebar, no footer complexity visible above the fold. The density is deliberately spacious: one idea per section, 72px of breathing room between them, no decorative dividers — the surface color shift from white to warm parchment to black to gradient is the only structural device.",
+    "imagery": "Visuals are dominated by in-context product UI screenshots — the actual Beau interface rendered at near-full size, never abstract illustrations. Product shots are framed inside a thin gradient border ring, which is the only decorative treatment. The gradient itself (orange → red → indigo) is used as a full-bleed section wash once, acting as the lone piece of color theatre on an otherwise monochrome page. No photography, no 3D renders, no stock illustration. Icons are simple line glyphs in a single weight, used inside gradient pills. The visual identity rests on restraint: the product UI is the hero, the gradient is the spotlight, and everything else is paper and ink.",
+    "similar": [
+      {
+        "why": "Same monochromatic near-black-and-white palette with a single restrained type voice and pill-shaped controls; shares the editorial-restraint approach to color",
+        "business": "Linear"
+      },
+      {
+        "why": "Both are built on Geist as the primary typeface with ss01/ss03/ss04 stylistic sets enabled, and both lean on near-flat surfaces with minimal shadow",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same generous whitespace, centered narrow text blocks, and warm-paper approach to content — though Beau is more typographically confident",
+        "business": "Notion"
+      },
+      {
+        "why": "Both deploy a single signature gradient as the lone burst of color on an otherwise grayscale interface, treating the gradient as theatrical punctuation",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "200px",
+        "images": "6px",
+        "buttons": "200px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "72px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Default page canvas, product card interiors"
+      },
+      {
+        "hex": "#f6f4f1",
+        "name": "Warm Parchment",
+        "level": 1,
+        "purpose": "Alternate section background — provides the ivory warmth and separates content bands without needing a hard line"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 2,
+        "purpose": "Dark feature cards, inverted content blocks — used as a surface, not just text"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.06) 0px 2px 6px 0px",
+        "element": "Feature Card"
+      }
+    ],
+    "northStar": "Ink on warm parchment — confident monochromatic editorial with a single theatrical gradient spotlight.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading",
+        "size": 33,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.66
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Primary)",
+        "role": "Primary action — the only filled button in the system",
+        "description": "Black background (#000000), white text (#ffffff), 200px border-radius for full pill shape, 18px horizontal padding, 12px vertical padding. Geist 500 weight at 14px with -0.14px tracking. Used for the single highest-priority action per screen (e.g. 'Request Demo')."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary navigation and inline links",
+        "description": "No background, no border. Geist 400 at 14px in #000000. Underline only on hover. Used for nav items and low-emphasis inline actions."
+      },
+      {
+        "name": "Dark Feature Card",
+        "role": "High-emphasis content block — inverted surface for key value propositions",
+        "description": "Black (#000000) background, white text, 6px border-radius, 24px padding. Optional 2px atmospheric shadow. Headlines at 28–33px in Geist 500, body at 17px in Geist 400. Used in a two-column layout beside product imagery."
+      },
+      {
+        "name": "Gradient-Framed Product Card",
+        "role": "Showcases the product interface inside a gradient border frame",
+        "description": "6px border-radius container with a 3–4px padding ring in the orange-red-indigo broadcast gradient, then the white product screenshot inset. This is the only place the gradient appears as a decorative frame, and it acts as the visual signature of any product moment."
+      },
+      {
+        "name": "Feature Pill",
+        "role": "Compact feature highlight — icon + short label in a pill",
+        "description": "200px border-radius, padding 12px 18px, filled with the broadcast gradient, white icon and text at 14px Geist 500. Used in grids to enumerate product capabilities."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Sticky top header with brand mark, center links, and right-aligned CTA",
+        "description": "White background, no border, 96px vertical padding at the hero. Brand mark on the left (logo + 'BEAU' wordmark in Geist 500), centered nav links in Geist 400, single Pill Button on the right. Extremely minimal — no search, no language toggle, no user menu."
+      },
+      {
+        "name": "Upload Interface Card",
+        "role": "In-context product UI showing document upload state",
+        "description": "White surface with 6px radius, 24px padding, hairline border at #e5e5e5 equivalent. Contains a dashed upload zone at the top (black dashed border, 6px radius) and a checklist below with status labels ('Waiting for file', 'Analyzing...') in Geist 400 with circular status indicators."
+      },
+      {
+        "name": "Form Verification Mockup",
+        "role": "Product UI showing the verification result state",
+        "description": "Light surface card showing a form field (e.g. 'David Wastall') with a cloud upload zone below and a green/red pass-fail checklist on the right. Green check items in #00a86b equivalent, red cross items in #d64545 equivalent. Monospaced Geist 400 for field labels."
+      },
+      {
+        "name": "Gradient Section Band",
+        "role": "Full-width section wash — the gradient's headline appearance",
+        "description": "A 100%-width band filled with the broadcast gradient (135deg, orange → red → indigo). Dark feature cards or white content blocks sit on top, creating a theatrical contrast. Used once or twice per page maximum."
+      },
+      {
+        "name": "Section Heading Stack",
+        "role": "The canonical headline + subhead block at the top of every section",
+        "description": "Centered or left-aligned. Display/heading text at 33–56px in Geist 500, tight tracking (-0.66 to -1.12px). Subhead at 17–20px in Geist 400 in #666666. The 'highlight phrase' inside the headline often shifts to #666666 or stays black — no color highlighting, only weight and size."
+      },
+      {
+        "name": "Two-Column Feature Row",
+        "role": "Standard content rhythm: product visual left, text right (or alternating)",
+        "description": "Max-width 1200px container, 48–72px row gap between columns. Left column holds a product screenshot or gradient-framed card; right column holds a heading + paragraph + optional CTA. The alternation between this and a full-width gradient band creates the page rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across nav, body, headings, and buttons. Weight 400 carries body and most copy; weight 500 is reserved for subheadings, labels, and emphasis. The Geist stylistic sets ss01, ss03, ss04 are enabled — these alter the alternate single-storey 'a', the geometric 'g', and the modernist '$' to give the type a custom editorial feel. Substitute with Inter at the same weights if Geist is unavailable.",
+        "sizes": "14, 17, 20, 28, 33, 40, 56",
+        "family": "Geist",
+        "weight": "400, 500",
+        "lineHeight": "1.10–1.40",
+        "substitute": "Inter",
+        "letterSpacing": "-0.02em at 28–56px, -0.01em at 14–20px",
+        "fontFeatureSettings": "\"ss01\" on, \"ss03\" on, \"ss04\" on"
+      }
+    ],
+    "description": "Beau operates as an editorial broadcast booth for client documents: a warm-paper canvas, confident near-black ink, and one theatrical orange-to-indigo gradient that acts as a spotlight. The system is aggressively monochromatic — color is rationed to the point of ceremony, reserved for product frames, feature pills, and one section-width wash. Typography does almost all the expressive work via tight Geist tracking and a narrow 400/500 weight axis, creating a hushed but authoritative voice. Surfaces are flat and matte with whisper-quiet 6px corners; the only soft shadow is a 2px atmospheric haze. Buttons are fully pill-shaped (200px radius), making even the smallest interaction feel like a broadcast button on a studio console.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Beau design system\",\"item\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#style-reference\",\"name\":\"Beau design system reference\",\"headline\":\"Beau design system | Refero Styles\",\"description\":\"Explore Beau's light SaaS design system: Paper White #ffffff, Warm Parchment #f6f4f1 colors, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Beau\",\"url\":\"https://beau.to\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"caption\":\"Screenshot of Beau\"},\"image\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Beau design system\",\"Beau website design\",\"Beau colors\",\"Beau typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Paper White\",\"Warm Parchment\",\"Ink Black\",\"Soft Graphite\",\"Geist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Beau design system\"},{\"@type\":\"Thing\",\"name\":\"Beau website design\"},{\"@type\":\"Thing\",\"name\":\"Beau colors\"},{\"@type\":\"Thing\",\"name\":\"Beau typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:48:13.480Z\",\"dateModified\":\"2026-04-30T03:48:13.480Z\"}]}19:T5c2,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- alternate surface: #f6f4f1\n- border: #000000 (structural) / #e5e5e5 (hairline)\n- accent gradient: linear-gradient(135deg, #ff8308, #ff5043 50%, #392bd5)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Create a section hero:* Centered display headline at 56px Geist 500, #000000, letter-spacing -1.12px, line-height 1.10. Subhead at 17px Geist 400, #666666, line-height 1.40. 96px top/bottom padding, max-width 1200px centered.\n\n2. *Create a dark feature card:* 6px border-radius, #000000 background, 24px padding, optional shadow rgba(0,0,0,0.06) 0px 2px 6px. Heading at 28px Geist 500 white, body at 17px Geist 400 white. Sit beside a gradient-framed product screenshot.\n\n3. *Create a gradient product frame:* Outer container with 6px border-radius and 3px padding filled by the broadcast gradient (135deg, #ff8308 → #ff5043 50% → #392bd5). Inner container is a white #ffffff product screenshot at 6px radius.\n\n4. *Create a feature pill:* 200px border-radius, broadcast gradient background, 12px 18px padding. Icon + label in Geist 500 14px white, letter-spacing -0.14px. Use in a 3-column grid with 24px gaps.\n\n5. *Create the navigation bar:* White background, no border, 96px vertical padding. Left: brand mark in Geist 500. Center: two ghost text links in Geist 400 14px black. Right: a single filled pill button (#000000 bg, white text, 200px radius, 12px 18px padding)."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are atmospheric, never structural. The only shadow value in the system is a 2px haze with 6% black opacity — used sparingly on cards that need to feel lifted off the paper without introducing visual weight. All other components rely on flat fills, hairline borders, and surface color contrast to establish hierarchy."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "card",
+            "heading",
+            "badge",
+            "image",
+            "link"
+          ],
+          "frequency": 407,
+          "confidence": 1,
+          "prominence": 18980643.551945653,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 3,
+            "link/color": 5,
+            "badge/color": 18,
+            "image/color": 3,
+            "other/color": 45,
+            "button/color": 3,
+            "heading/color": 3,
+            "card/borderColor": 8,
+            "link/borderColor": 20,
+            "badge/borderColor": 72,
+            "image/borderColor": 12,
+            "other/borderColor": 180,
+            "button/borderColor": 12,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 3,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "card",
+            "body",
+            "badge"
+          ],
+          "frequency": 613,
+          "confidence": 1,
+          "prominence": 13535393.854652844,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 2,
+            "card/color": 11,
+            "hero/color": 1,
+            "link/color": 1,
+            "image/color": 13,
+            "other/color": 87,
+            "button/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 16,
+            "body/borderColor": 8,
+            "card/borderColor": 44,
+            "hero/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 52,
+            "other/borderColor": 343,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "card/backgroundColor": 3,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f6f4f1",
+          "oklch": {
+            "c": 0.004533571459227713,
+            "h": 78.29794579366089,
+            "l": 0.9678531913597471
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1025280,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 484944,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 184337.1444263392,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 62888.14210361403,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00001146201668451878,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.13,
+          "background": "#f6f4f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#f6f4f1",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#b3b3b3",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.6,
+          "background": "#f6f4f1",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#b3b3b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#b3b3b3",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f6f4f1",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "card",
+            "image",
+            "other",
+            "badge"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 2px 6px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "badge"
+          ],
+          "frequency": 46,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "card",
+            "badge"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "button"
+          ],
+          "frequency": 77,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 242,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(255, 131, 8), rgb(255, 80, 67) 50%, rgb(57, 43, 213))",
+        "colors": [
+          "rgb(255, 131, 8)",
+          "rgb(255, 80, 67)",
+          "rgb(57, 43, 213)"
+        ],
+        "frequency": 8
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Geist",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 210,
+          "fontFeatureSettings": [
+            "\"ss01\", \"ss03\", \"ss04\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "card",
+            "badge"
+          ],
+          "frequency": 125,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "badge",
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ae86317f-dced-4a37-89fd-142025417894.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Beau design system\",\"item\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#style-reference\",\"name\":\"Beau design system reference\",\"headline\":\"Beau design system | Refero Styles\",\"description\":\"Explore Beau's light SaaS design system: Paper White #ffffff, Warm Parchment #f6f4f1 colors, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Beau\",\"url\":\"https://beau.to\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c73ba3d8-42fe-4d53-bec1-b6643949c582#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"caption\":\"Screenshot of Beau\"},\"image\":\"https://images.refero.design/styles/refero.design/image/907c23f5-c1ce-4e19-8f7e-5fd25557c1b7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Beau design system\",\"Beau website design\",\"Beau colors\",\"Beau typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Paper White\",\"Warm Parchment\",\"Ink Black\",\"Soft Graphite\",\"Geist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Beau design system\"},{\"@type\":\"Thing\",\"name\":\"Beau website design\"},{\"@type\":\"Thing\",\"name\":\"Beau colors\"},{\"@type\":\"Thing\",\"name\":\"Beau typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:48:13.480Z\",\"dateModified\":\"2026-04-30T03:48:13.480Z\"}]}19:T5c2,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- alternate surface: #f6f4f1\n- border: #000000 (structural) / #e5e5e5 (hairline)\n- accent gradient: linear-gradient(135deg, #ff8308, #ff5043 50%, #392bd5)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Create a section hero:* Centered display headline at 56px Geist 500, #000000, letter-spacing -1.12px, line-height 1.10. Subhead at 17px Geist 400, #666666, line-height 1.40. 96px top/bottom padding, max-width 1200px centered.\n\n2. *Create a dark feature card:* 6px border-radius, #000000 background, 24px padding, optional shadow rgba(0,0,0,0.06) 0px 2px 6px. Heading at 28px Geist 500 white, body at 17px Geist 400 white. Sit beside a gradient-framed product screenshot.\n\n3. *Create a gradient product frame:* Outer container with 6px border-radius and 3px padding filled by the broadcast gradient (135deg, #ff8308 → #ff5043 50% → #392bd5). Inner container is a white #ffffff product screenshot at 6px radius.\n\n4. *Create a feature pill:* 200px border-radius, broadcast gradient background, 12px 18px padding. Icon + label in Geist 500 14px white, letter-spacing -0.14px. Use in a 3-column grid with 24px gaps.\n\n5. *Create the navigation bar:* White background, no border, 96px vertical padding. Left: brand mark in Geist 500. Center: two ghost text links in Geist 400 14px black. Right: a single filled pill button (#000000 bg, white text, 200px radius, 12px 18px padding)."
+}

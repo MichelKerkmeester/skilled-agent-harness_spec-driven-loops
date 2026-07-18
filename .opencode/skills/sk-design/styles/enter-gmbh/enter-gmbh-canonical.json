@@ -1,0 +1,956 @@
+{
+  "source": "https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45",
+  "uuid": "87da9872-f6cc-4354-bf6a-1c02f0394d45",
+  "name": "Enter GmbH",
+  "northStar": "Bauhaus poster workshop, midday sun",
+  "capturedAt": "2026-07-18T07:49:15.397Z",
+  "meta": {
+    "url": "https://enter-support.de",
+    "siteName": "Enter GmbH",
+    "extractedAt": "2026-06-03T19:39:24.742Z",
+    "durationMs": 22950,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 211,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Maax Mono (or a monospaced substitute) for all body, nav, link, and button text — the monospaced cadence is the site's identity",
+      "Set border-radius to 25px on all buttons, tags, marquee containers, and link pills",
+      "Stack sections as full-bleed color bands (#ffffff → #f9f8ea → #a5d3d4 → #ff5000) with hard seams and no gradients between them",
+      "Use #282828 as the filled button background and #ffffff as the button text — no other filled-button color",
+      "Anchor headings in Sofia-Regular 28px line-height 1.3; everything else stays in the mono family",
+      "Use 24px as the default element gap and 20px as the default link/heading padding token",
+      "Keep links typographic: underlined #000000 Maax Mono with a → arrow prefix, never styled as buttons or chips"
+    ],
+    "donts": [
+      "Do not introduce a sans-serif body font — replacing the mono face destroys the technical-manual personality",
+      "Do not use orange (#ff5000) as a button or link color — it's an architectural surface, not an interactive accent",
+      "Do not add shadows, glows, or elevation effects to cards or buttons — the system is flat and hard-edged",
+      "Do not use teal (#a5d3d4) for text or borders — it only works as a full-bleed surface",
+      "Do not use border-radius values other than 25px on interactive elements — partial rounding breaks the pill vocabulary",
+      "Do not place photography or product screenshots — the site is text-and-illustration only",
+      "Do not add gradient transitions between color bands — every section boundary must be a hard seam"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff5000",
+        "name": "Signal Orange",
+        "role": "Full-bleed section surfaces, geometric illustration caps, partner section canvas — carries warmth and authority across an otherwise achromatic text system",
+        "group": "brand"
+      },
+      {
+        "hex": "#a5d3d4",
+        "name": "Seafoam Panel",
+        "role": "Hero canvas and alternating section ground — a cool counterweight to the warm orange, used as full-bleed background, never as a text highlight",
+        "group": "brand"
+      },
+      {
+        "hex": "#f9f8ea",
+        "name": "Cream Stock",
+        "role": "Soft band surfaces between content sections — a paper-like off-white warmer than pure #ffffff, signals a transition zone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282828",
+        "name": "Charcoal",
+        "role": "Filled button background, dark illustration blocks, heading accents — the loaded weight of the palette, softer than pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary body and heading text, hairline borders, icon strokes, link underlines — the dominant typographic color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a6a6a",
+        "name": "Pebble",
+        "role": "Muted border and separator color for subtle structural lines that shouldn't compete with text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Default page canvas, text on dark filled buttons, surface for content sections between color bands",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed horizontal color bands that stack top to bottom with hard seams — no gradients or soft transitions between sections. Hero is seafoam with a large centered illustration; the body alternates between white text columns and cream transition strips; a full-bleed orange partner band appears below. Content inside each band uses a centered max-width container (~1200px) with generous horizontal padding. The text layout is two-column on desktop (narrative text left, link list right) with wide gutters. Navigation is minimal: logo top-left, a marquee strip center, and two pill buttons top-right. The overall rhythm is poster-like — each screen is a single color field with one or two pieces of content, not a dense information layout.",
+    "imagery": "A single abstract geometric illustration in the hero: three vertical posts in cream and dark charcoal with charcoal cubes and orange caps stacked at varying heights. The aesthetic is Bauhaus / De Stijl / mid-century toy — flat, hard-edged, no gradients, no shadows, no human figures. Elsewhere, the site is text-only: no photography, no product screenshots, no decorative icons beyond minimal arrow markers (→) on links. The visual personality comes entirely from typography, color blocking, and this one sculptural illustration.",
+    "similar": [
+      {
+        "why": "Same flat-color-band section stacking with hard seams and no decorative chrome",
+        "business": "Basecamp"
+      },
+      {
+        "why": "Mono-influenced UI vocabulary with pill buttons and achromatic surfaces accented by a single signal color",
+        "business": "Linear"
+      },
+      {
+        "why": "Full-bleed color blocks alternating with white content panels, minimal text-only composition",
+        "business": "Vercel"
+      },
+      {
+        "why": "Editorial / poster-like layout with bold color fields and quiet, typographic content",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "25px",
+        "cards": "25px",
+        "buttons": "25px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "24px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Default content canvas for text-heavy sections"
+      },
+      {
+        "hex": "#f9f8ea",
+        "name": "Cream Stock",
+        "level": 2,
+        "purpose": "Warm transition band between content blocks"
+      },
+      {
+        "hex": "#a5d3d4",
+        "name": "Seafoam Panel",
+        "level": 3,
+        "purpose": "Hero and alternate section canvas — the cool beat"
+      },
+      {
+        "hex": "#ff5000",
+        "name": "Signal Orange",
+        "level": 4,
+        "purpose": "Full-bleed partner/spectacle section — the loud beat"
+      }
+    ],
+    "northStar": "Bauhaus poster workshop, midday sun",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action control (Support, Submit)",
+        "description": "Background #282828, text #ffffff, border-radius 25px, padding 13px 25px, Maax Mono 16px weight 400. The only filled button variant — black pill on whatever color band it sits on."
+      },
+      {
+        "name": "Icon Pill Button",
+        "role": "Compact utility control (the + button)",
+        "description": "Background #282828, icon stroke #ffffff, border-radius 25px (reads as circular at this size), padding 13px. Same dark fill as the filled button, sized for single glyph."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Inline navigation to subpages",
+        "description": "Maax Mono 16px weight 400, color #000000, underlined, prefixed with → arrow character. Underline is the standard link affordance — no button chrome."
+      },
+      {
+        "name": "Marquee Strip",
+        "role": "Top-of-page announcement ticker",
+        "description": "Pill-shaped container (border-radius 25px), background #ffffff, Maax Mono 10–16px, color #000000, horizontal padding ~20px. Sits between the logo and the action buttons in the header."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top navigation",
+        "description": "Full-width transparent bar over whatever section color it sits on. Logo text left, marquee center, two pill buttons right. No background fill — the section color shows through."
+      },
+      {
+        "name": "Hero Illustration Block",
+        "role": "Abstract visual identity asset",
+        "description": "Three vertical posts (cream and charcoal), three charcoal cubes, three orange caps — flat geometric composition centered on the hero canvas. No shadows, no gradients, hard 90° edges."
+      },
+      {
+        "name": "Two-Column Text Layout",
+        "role": "Narrative + link list pair",
+        "description": "Left column: Maax Mono 16px body text in dark ink, max-width ~50% of container. Right column: vertically stacked text links with → arrows, aligned to a left margin offset from the text column."
+      },
+      {
+        "name": "Section Divider Band",
+        "role": "Color-block transition between content zones",
+        "description": "Full-bleed horizontal strip, typically cream (#f9f8ea) or seafoam (#a5d3d4), 80–120px tall, containing a single small centered label in Maax Mono (e.g. 'Enter: Läuft bei Ihnen', 'Unsere Partner')."
+      },
+      {
+        "name": "Partner Section (Orange Field)",
+        "role": "Full-bleed spectacle band",
+        "description": "Solid #ff5000 background spanning the full viewport width and significant height, minimal content — the loudest color in the system used as an architectural moment, not a CTA trigger."
+      },
+      {
+        "name": "Footer Label",
+        "role": "Bottom-of-section identification",
+        "description": "Centered Maax Mono text in a cream or white band, small size (10–14px), functions as a section title rather than legal footer copy."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary text and body — monospaced at body size gives the whole site a code-readout, technical-manual cadence. This is the signature choice: a service company writing like a terminal",
+        "sizes": "16px",
+        "family": "Maax Mono",
+        "weight": "400",
+        "lineHeight": "1.50–1.60",
+        "substitute": "IBM Plex Mono, JetBrains Mono, Roboto Mono",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Display headings — a softer humanist sans used sparingly for larger section titles, providing the only non-monospaced typographic moment in the system",
+        "sizes": "28px",
+        "family": "Sofia-Regular",
+        "weight": "400",
+        "lineHeight": "1.29–1.36",
+        "substitute": "Sofia Sans, Nunito Sans, Quicksand",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Micro UI text — marquee strips, tiny labels, and small interface markers; falls back to system monospaced where available",
+        "sizes": "10px",
+        "family": "Helvetica",
+        "weight": "400, 700",
+        "lineHeight": "1.15",
+        "substitute": "Inter, system-ui, Arial",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Enter GmbH reads like a Bauhaus-influenced IT services brochure printed on warm stock: bold full-bleed color panels (seafoam, cream, signal orange) stack like poster sheets, and a monospaced face (Maax Mono) carries nearly every word, giving the whole site the cadence of a technical readout rather than a marketing page. The visual rhythm is theatrical — each horizontal band changes color and mood, with no soft transitions, just hard seams between cream, teal, white, and orange. A single abstract geometric illustration of stacked blocks on poles lives in the hero, and every interactive control is a dark pill on a colored ground. Neutrality is the default (black on white for text, #282828 for filled buttons), with orange and teal used as architectural surfaces rather than accents — they ARE the layout, not decoration on it.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Enter GmbH design system\",\"item\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#style-reference\",\"name\":\"Enter GmbH design system reference\",\"headline\":\"Enter GmbH design system | Refero Styles\",\"description\":\"Explore Enter GmbH's mixed Dev Tools design system: Signal Orange #ff5000, Seafoam Panel #a5d3d4 colors, Maax Mono, Sofia-Regular typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\",\"mainEntityOfPage\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Enter GmbH\",\"url\":\"https://enter-support.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"caption\":\"Screenshot of Enter GmbH\"},\"image\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Enter GmbH design system\",\"Enter GmbH website design\",\"Enter GmbH colors\",\"Enter GmbH typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Signal Orange\",\"Seafoam Panel\",\"Cream Stock\",\"Charcoal\",\"Maax Mono\",\"Sofia-Regular\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Enter GmbH design system\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH website design\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH colors\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-30T03:45:50.501Z\",\"dateModified\":\"2026-04-30T03:45:50.501Z\"}]}19:T60c,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: #000000 (hairline) or #6a6a6a (muted)\n- accent: #ff5000 (Signal Orange — surfaces only, not interactive)\n- primary action: #282828 (filled action)\n- section surface: #a5d3d4 (Seafoam), #f9f8ea (Cream Stock), #ff5000 (Signal Orange)\n\n3-5 Example Component Prompts:\n\n1. Build a Support pill button: background #282828, text #ffffff, border-radius 25px, padding 13px 25px, font Maax Mono 16px weight 400. Place on a seafoam (#a5d3d4) hero canvas.\n\n2. Build a hero section with full-bleed background #a5d3d4. Center an abstract geometric illustration of three vertical posts in cream (#f9f8ea) and charcoal (#282828) with three charcoal cubes and three orange (#ff5000) caps at varying heights. No shadows. No gradients.\n\n3. Build a two-column content section: left column contains Maax Mono 16px weight 400 body text in #000000 describing IT services; right column contains three text links stacked vertically, each prefixed with → and underlined. Background #ffffff, max-width 1200px centered, 24px gap between columns.\n\n4. Build a marquee announcement strip: pill-shaped container (border-radius 25px) with background #ffffff, Maax Mono text in #000000 at 10–16px, padding ~6px 20px. Position it in the header between the logo and the action buttons.\n\n5. Build a partner section: full-bleed #ff5000 background spanning the full viewport width, minimal content, no buttons or CTAs. Below it, a cream (#f9f8ea) band with a centered small label 'Unsere Partner' in Maax Mono."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat. No box-shadows, no drop shadows, no glow effects. Depth is created through color contrast between full-bleed bands, not through simulated elevation. Interactive elements (buttons) are identified by their dark fill and pill shape, not by casting shadow on the surface below."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "nav",
+            "button",
+            "link",
+            "list",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 825,
+          "confidence": 1,
+          "prominence": 104921892.98482391,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 3,
+            "body/color": 12,
+            "icon/color": 21,
+            "link/color": 11,
+            "list/color": 12,
+            "other/fill": 2,
+            "image/color": 7,
+            "other/color": 81,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 15,
+            "nav/borderColor": 12,
+            "body/borderColor": 48,
+            "icon/borderColor": 84,
+            "link/borderColor": 44,
+            "list/borderColor": 48,
+            "image/borderColor": 28,
+            "other/borderColor": 320,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "footer"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 3095202.2978637754,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f9f8ea",
+          "oklch": {
+            "c": 0.01844058852925298,
+            "h": 103.41867189647802,
+            "l": 0.9761162586643892
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2641425.400743863,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff5000",
+          "oklch": {
+            "c": 0.22129145998131555,
+            "h": 37.639261288923386,
+            "l": 0.6706600140801423
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2641425.400743863,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a5d3d4",
+          "oklch": {
+            "c": 0.04799242109533879,
+            "h": 197.92684209322854,
+            "l": 0.8347776945998383
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1803053.3408203872,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#6a6a6a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5243041069985445
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 476740.59837036807,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 243779.8404781074,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 1,
+            "body/color": 7,
+            "link/color": 10,
+            "nav/borderColor": 4,
+            "body/borderColor": 28,
+            "link/borderColor": 40,
+            "link/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002994870077881421,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.64,
+          "background": "#f9f8ea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.79,
+          "background": "#f9f8ea",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.87,
+          "background": "#a5d3d4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.03,
+          "background": "#a5d3d4",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.4,
+          "background": "#ff5000",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.49,
+          "background": "#ff5000",
+          "foreground": "#282828"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#ff5000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.63,
+          "background": "#a5d3d4",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#282828",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f9f8ea",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "list",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginBottom|link",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "list",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "paddingLeft|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 133,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maax Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sofia-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 132,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maax Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav",
+            "link",
+            "heading",
+            "list"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maax Mono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Sofia-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Sofia-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b124e489-d99b-4d79-ac1d-12bfde72f044.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Enter GmbH design system\",\"item\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#style-reference\",\"name\":\"Enter GmbH design system reference\",\"headline\":\"Enter GmbH design system | Refero Styles\",\"description\":\"Explore Enter GmbH's mixed Dev Tools design system: Signal Orange #ff5000, Seafoam Panel #a5d3d4 colors, Maax Mono, Sofia-Regular typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\",\"mainEntityOfPage\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Enter GmbH\",\"url\":\"https://enter-support.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/87da9872-f6cc-4354-bf6a-1c02f0394d45#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"caption\":\"Screenshot of Enter GmbH\"},\"image\":\"https://images.refero.design/styles/refero.design/image/330727fc-b020-4ecf-9444-c8d37aee8910.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Enter GmbH design system\",\"Enter GmbH website design\",\"Enter GmbH colors\",\"Enter GmbH typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Signal Orange\",\"Seafoam Panel\",\"Cream Stock\",\"Charcoal\",\"Maax Mono\",\"Sofia-Regular\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Enter GmbH design system\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH website design\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH colors\"},{\"@type\":\"Thing\",\"name\":\"Enter GmbH typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-30T03:45:50.501Z\",\"dateModified\":\"2026-04-30T03:45:50.501Z\"}]}19:T60c,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: #000000 (hairline) or #6a6a6a (muted)\n- accent: #ff5000 (Signal Orange — surfaces only, not interactive)\n- primary action: #282828 (filled action)\n- section surface: #a5d3d4 (Seafoam), #f9f8ea (Cream Stock), #ff5000 (Signal Orange)\n\n3-5 Example Component Prompts:\n\n1. Build a Support pill button: background #282828, text #ffffff, border-radius 25px, padding 13px 25px, font Maax Mono 16px weight 400. Place on a seafoam (#a5d3d4) hero canvas.\n\n2. Build a hero section with full-bleed background #a5d3d4. Center an abstract geometric illustration of three vertical posts in cream (#f9f8ea) and charcoal (#282828) with three charcoal cubes and three orange (#ff5000) caps at varying heights. No shadows. No gradients.\n\n3. Build a two-column content section: left column contains Maax Mono 16px weight 400 body text in #000000 describing IT services; right column contains three text links stacked vertically, each prefixed with → and underlined. Background #ffffff, max-width 1200px centered, 24px gap between columns.\n\n4. Build a marquee announcement strip: pill-shaped container (border-radius 25px) with background #ffffff, Maax Mono text in #000000 at 10–16px, padding ~6px 20px. Position it in the header between the logo and the action buttons.\n\n5. Build a partner section: full-bleed #ff5000 background spanning the full viewport width, minimal content, no buttons or CTAs. Below it, a cream (#f9f8ea) band with a centered small label 'Unsere Partner' in Maax Mono."
+}

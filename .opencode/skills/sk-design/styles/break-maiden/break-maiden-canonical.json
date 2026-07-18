@@ -1,0 +1,576 @@
+{
+  "source": "https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5",
+  "uuid": "02610b06-d16e-47bd-a1ea-18979a9ed4f5",
+  "name": "Break Maiden",
+  "northStar": "Oversized white type carved into a black gallery wall. A single condensed display face at 150px sits in a sea of negative space, surrounded by product photographs arranged like a magazine spread.",
+  "capturedAt": "2026-07-18T07:52:34.291Z",
+  "meta": {
+    "url": "https://www.breakmaiden.co",
+    "siteName": "Break Maiden",
+    "extractedAt": "2026-06-03T19:16:50.716Z",
+    "durationMs": 28727,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 467,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero headline in Martin at 153px, weight 400, line-height normal — never shrink it below 96px, never set it in a different face",
+      "Use only Onyx Black (#000000) as a fill for any region larger than a hairline — no charcoal, no near-black, no tinted grays",
+      "Let project photography provide all color; the interface itself stays monochrome black-on-white",
+      "Space project tiles on a three-column irregular grid where column heights differ — avoid uniform card grids",
+      "Reserve America at 19-22px for everything that isn't the display headline — nav, card titles, taglines, body",
+      "Use Ash Gray (#8e8e8e) only for metadata or hairline rules that must visually recede from the Bone White foreground",
+      "Keep all corners at 0px radius — no rounded buttons, cards, or tags; the system is hard-edged throughout"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no accent blues, reds, or greens; the palette is black, white, gray",
+      "Do not apply box-shadows, gradients, or glows — surfaces are flat, depth comes from type scale only",
+      "Do not add a filled CTA button; all actions are typographic ghost links in Bone White",
+      "Do not use a system sans for the display headline — Martin's condensed geometry is the signature",
+      "Do not wrap the headline in a card, container, or centered max-width — it bleeds to the left edge",
+      "Do not apply border-radius to images, cards, or any element — the aesthetic is razor-sharp",
+      "Do not mix multiple mid-grays; Ash Gray at #8e8e8 is the only non-extreme neutral permitted"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Onyx Black",
+        "role": "Page canvas, hero background, card surface base — the only color that ever fills a region. Every section, card, and divider sits on this absolute black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary display type, nav text, card titles, body copy, hairline borders on the few framed elements — used wherever a shape or letter needs to be seen against black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e8e",
+        "name": "Ash Gray",
+        "role": "Muted metadata and secondary nav strokes — the only mid-tone in the system, reserved for information that must recede behind the headline",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width container — the page extends to viewport edges on all sides. The hero is an asymmetric two-zone composition: a massive left-justified headline occupying roughly two-thirds of the viewport width, balanced by a small right-aligned intro paragraph. Navigation is a single top bar (logo left, four links right) with no sticky behavior implied. Below the hero, the layout shifts to a three-column irregular grid of project tiles where each tile is an edge-to-edge product photograph with a two-line caption (title + tagline) below in white type. The grid is deliberately uneven — tiles have different vertical positions and the column rhythm breaks across rows to create a magazine-cut feel rather than a uniform dashboard. Section transitions are made by black space alone, not by background color shifts.",
+    "imagery": "Product photography is the sole source of color in the system. All imagery is tightly cropped product shots (cans, bottles, jars, sauce labels) presented on light pastel or saturated single-color backdrops set against the black page. Photographs are square or 3:4, edge-to-edge with no border or frame, zero border-radius. The interface is icon-only in terms of graphic marks (a small greyhound illustration appears inline within the headline as a parenthetical character). No illustrations, no abstract graphics, no video. Photography does explanatory work (showcasing the work) rather than decorative work.",
+    "similar": [
+      {
+        "why": "Same agency-as-gallery approach: black canvas, oversized display type, product/portfolio imagery doing the color work, and zero UI chrome",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Monochrome dark-mode portfolio with editorial display typography and irregular grid layouts for case studies",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Hard-edged zero-radius components, flat black surfaces, and let-the-work-speak composition with minimal navigation",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Dark-canvas creative studio site that pairs a single condensed display face with product photography tiles in an uneven grid",
+        "business": "Manual Creative"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "18px",
+      "sectionGap": "43px",
+      "cardPadding": "18px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Every region of the page — hero, nav, grid, footer — sits directly on this surface. There is no higher elevation."
+      }
+    ],
+    "northStar": "Oversized white type carved into a black gallery wall. A single condensed display face at 150px sits in a sea of negative space, surrounded by product photographs arranged like a magazine spread.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 19,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 153,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline Block",
+        "role": "Hero statement",
+        "description": "Single line of Martin at 153px, weight 400, in Bone White (#ffffff) on Onyx Black (#000000). No line-height restriction, no max-width clamp — the headline occupies the full left two-thirds of the viewport. Inline graphic glyphs (parenthetical icon, arrow, sunburst) sit at display scale as type, not images."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary navigation",
+        "description": "Horizontal bar on Onyx Black. Logo (circular stamp) at far left in Bone White. Four text links right-aligned: Work, About, Contact, Shop. America 400 at 19px, Bone White, no underline. ~43px horizontal padding from page edge, ~18px vertical padding."
+      },
+      {
+        "name": "Hero Intro Paragraph",
+        "role": "Supporting hero copy",
+        "description": "Short body sentence (2-3 lines) in America 400, 19px, Bone White, sitting to the right of the oversized headline. Provides context without competing — its smallness is the point."
+      },
+      {
+        "name": "Project Tile",
+        "role": "Portfolio card",
+        "description": "Full-bleed product photograph with no border, no radius, no shadow — image sits directly on the black canvas. Below the image: project name in America 400 at 19px Bone White, then a one-line tagline at 19px in a lighter weight. No card background, no padding around the image — the black of the page is the card."
+      },
+      {
+        "name": "Project Grid",
+        "role": "Work index layout",
+        "description": "Three-column irregular grid. Columns are not equal height — tiles span single, double, and offset positions to create a magazine-cut rhythm. Gutter is the page's own black; tiles touch visually but are separated by ~18px white space (or align to a sparse baseline)."
+      },
+      {
+        "name": "Logo Stamp",
+        "role": "Brand mark",
+        "description": "Circular seal-style mark in the top-left corner — text wrapping a central glyph in Bone White on transparent black. Acts as the home link. No fill, no background plate."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline navigation/action",
+        "description": "Text link in America 400, 19-22px, Bone White, no underline at rest. On hover, a 1px Ash Gray underline appears. No filled buttons exist in the system — all CTAs are typographic."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Vertical rhythm",
+        "description": "Pure negative space — no horizontal rules, no bands, no background changes. Sections are separated by ~43px of black and a shift in type scale or grid behavior."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature display headline. A custom condensed sans rendered at 153px — used only for the hero statement. Its scale is the brand: every other element on the page visually defers to it. Substitute: Anton, Tungsten Bold, Druk Wide Bold.",
+        "sizes": "153px",
+        "family": "Martin",
+        "weight": "400",
+        "lineHeight": "normal",
+        "substitute": "Anton",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Primary UI and body voice — nav links, card titles, and tagline copy. A neo-grotesque with quiet character; the contrast against Martin's display weight is what creates the system's editorial rhythm. Substitute: Söhne, Inter, Neue Haas Grotesk.",
+        "sizes": "19px, 22px",
+        "family": "America",
+        "weight": "400",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Fallback / system layer. Appears where America is absent — likely secondary display moments or browser-default rendering. Keeps a grotesque geometry consistent with America at smaller scale.",
+        "sizes": "25px",
+        "family": "Helvetica Neue",
+        "weight": "400, 500",
+        "lineHeight": "1.00",
+        "substitute": "Helvetica"
+      }
+    ],
+    "description": "Break Maiden operates as a black-canvas portfolio for a creative studio: pure black surfaces, oversized white display type, and product imagery presented like a curated print spread. The visual system is deliberately monochrome and typographically aggressive — a single custom display face (Martin) at near-billboard scale does all the emotional work, while a restrained neo-grotesque (America) carries navigation, body, and captions. The page is a gallery: project tiles sit on an irregular three-column grid with generous gutters, letting the product photography carry the color that the interface refuses to. There are no buttons, gradients, shadows, or decoration in the chrome itself — the system derives its identity from the contrast between negative space and a colossal heading, not from palette depth.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Break Maiden design system\",\"item\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#style-reference\",\"name\":\"Break Maiden design system reference\",\"headline\":\"Break Maiden design system | Refero Styles\",\"description\":\"Explore Break Maiden's dark Agency design system: Onyx Black #000000, Bone White #ffffff colors, Martin, America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Break Maiden\",\"url\":\"https://www.breakmaiden.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"caption\":\"Screenshot of Break Maiden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Break Maiden design system\",\"Break Maiden website design\",\"Break Maiden colors\",\"Break Maiden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Onyx Black\",\"Bone White\",\"Ash Gray\",\"Martin\",\"America\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Break Maiden design system\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden website design\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden colors\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:41:05.263Z\",\"dateModified\":\"2026-04-30T03:41:05.263Z\"}]}19:T63a,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border: #ffffff (hairline) or #8e8e8e (receded)\n- accent: none — the system is monochrome\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Hero headline block: Onyx Black (#000000) background. Display text in Martin (substitute: Anton) at 153px, weight 400, line-height 1.0, color #ffffff, left-aligned, no max-width. Include one inline graphic glyph (small running animal illustration inside parentheses) at display scale. No underline, no border.\n\n2. Top navigation bar: Onyx Black (#000000) background, full-bleed. Circular stamp logo at far-left in #ffffff. Four text links right-aligned (Work, About, Contact, Shop) in America (substitute: Inter) 400, 19px, #ffffff, no fill, no border. Horizontal padding 43px from viewport edge, vertical padding 18px.\n\n3. Project tile: Edge-to-edge product photograph (no border-radius, no border, no shadow) sitting directly on #000000. Below: project title in America 400, 19px, #ffffff. Below that: one-line tagline in America 400, 19px, #ffffff at reduced opacity or same weight. No card background, no padding around the image, no meta labels.\n\n4. Ghost nav link: America 400, 19px, #ffffff, no underline, no background. On hover, 1px solid #8e8e8e underline appears. No filled state, no border-box, no padding beyond the text advance.\n\n5. Supporting hero paragraph: America 400, 19-22px, line-height 1.5, #ffffff, right-aligned to the hero column, max-width ~30% of viewport. Sits at the vertical midpoint of the headline to the right of the display type."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero elevation. No shadows, no overlapping translucent layers, no z-stacked modals in the visual language. Depth is communicated entirely through typographic scale (153px headline vs 19px body) and the photograph-as-card relationship, not through surface stacking. This is a deliberate flat-aesthetic choice — adding shadows would shatter the print-spread / gallery-wall feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "image",
+            "nav",
+            "card",
+            "hero",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 2162,
+          "confidence": 1,
+          "prominence": 110556122.57883988,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 2,
+            "card/color": 1,
+            "hero/color": 2,
+            "link/color": 33,
+            "image/color": 36,
+            "other/color": 350,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 24,
+            "other/boxShadow": 1,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "link/borderColor": 132,
+            "image/borderColor": 144,
+            "other/borderColor": 1400,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 33709155.429291874,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e8e8e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6467273699038915
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 170,
+          "confidence": 1,
+          "prominence": 66664.24055127957,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "other/color": 31,
+            "nav/borderColor": 12,
+            "other/borderColor": 124
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.41,
+          "background": "#000000",
+          "foreground": "#8e8e8e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|nav",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 78,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 421,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "America",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martin",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 25,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 19,
+          "family": "America",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "America",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "America",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "hero",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 416,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 153,
+          "family": "Martin",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a1c3226b-5326-43e5-ad6e-7d14a5b3fde7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Break Maiden design system\",\"item\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#style-reference\",\"name\":\"Break Maiden design system reference\",\"headline\":\"Break Maiden design system | Refero Styles\",\"description\":\"Explore Break Maiden's dark Agency design system: Onyx Black #000000, Bone White #ffffff colors, Martin, America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Break Maiden\",\"url\":\"https://www.breakmaiden.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/02610b06-d16e-47bd-a1ea-18979a9ed4f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"caption\":\"Screenshot of Break Maiden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/388dbf16-8e6d-417c-9eb8-1d3872b321ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Break Maiden design system\",\"Break Maiden website design\",\"Break Maiden colors\",\"Break Maiden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Onyx Black\",\"Bone White\",\"Ash Gray\",\"Martin\",\"America\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Break Maiden design system\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden website design\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden colors\"},{\"@type\":\"Thing\",\"name\":\"Break Maiden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:41:05.263Z\",\"dateModified\":\"2026-04-30T03:41:05.263Z\"}]}19:T63a,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border: #ffffff (hairline) or #8e8e8e (receded)\n- accent: none — the system is monochrome\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n\n1. Hero headline block: Onyx Black (#000000) background. Display text in Martin (substitute: Anton) at 153px, weight 400, line-height 1.0, color #ffffff, left-aligned, no max-width. Include one inline graphic glyph (small running animal illustration inside parentheses) at display scale. No underline, no border.\n\n2. Top navigation bar: Onyx Black (#000000) background, full-bleed. Circular stamp logo at far-left in #ffffff. Four text links right-aligned (Work, About, Contact, Shop) in America (substitute: Inter) 400, 19px, #ffffff, no fill, no border. Horizontal padding 43px from viewport edge, vertical padding 18px.\n\n3. Project tile: Edge-to-edge product photograph (no border-radius, no border, no shadow) sitting directly on #000000. Below: project title in America 400, 19px, #ffffff. Below that: one-line tagline in America 400, 19px, #ffffff at reduced opacity or same weight. No card background, no padding around the image, no meta labels.\n\n4. Ghost nav link: America 400, 19px, #ffffff, no underline, no background. On hover, 1px solid #8e8e8e underline appears. No filled state, no border-box, no padding beyond the text advance.\n\n5. Supporting hero paragraph: America 400, 19-22px, line-height 1.5, #ffffff, right-aligned to the hero column, max-width ~30% of viewport. Sits at the vertical midpoint of the headline to the right of the display type."
+}

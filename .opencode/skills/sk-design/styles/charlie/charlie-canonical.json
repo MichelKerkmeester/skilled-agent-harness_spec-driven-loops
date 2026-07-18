@@ -1,0 +1,655 @@
+{
+  "source": "https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970",
+  "uuid": "34aa811f-6084-484c-b4c0-f587b514e970",
+  "name": "Charlie",
+  "northStar": "Monastery stone-cut typography on obsidian. A portfolio that uses one red wall to make silence deafening.",
+  "capturedAt": "2026-07-18T08:22:29.893Z",
+  "meta": {
+    "url": "https://charlielemaignan.com",
+    "siteName": "Charlie",
+    "extractedAt": "2026-06-03T17:23:27.749Z",
+    "durationMs": 22426,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 71,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Brasparz Variable only at 145px or larger with line-height 0.70 — smaller and it loses its sculptural impact",
+      "Keep letter-spacing on display type at -0.06em to -0.08em; tighter as size increases",
+      "Set ss01 and ss02 to 0 on Brasparz — the raw forms are non-negotiable",
+      "Use 100px border-radius on all interactive elements (buttons, tags, nav)",
+      "Let the red hero block run full-bleed at viewport width — never contain it in a card",
+      "Keep all text either #ffffff (on black/red) or #000000 (on red) — no mid-gray body type",
+      "Use NeueHaas 19-20px for all UI; never set body below 19px"
+    ],
+    "donts": [
+      "Don't introduce gradients, shadows, or any depth-cueing — the system is flat by doctrine",
+      "Don't use Brasparz for body text or UI labels — it is display-only and will collapse at small sizes",
+      "Don't add a second accent color — red is the sole chromatic vocabulary",
+      "Don't use mid-gray (#838383) for anything larger than caption — it fails contrast on the black canvas at 3.8:1",
+      "Don't contain the display type in a max-width box — let it bleed to viewport edges",
+      "Don't apply card-style padding, borders, or radius to content surfaces — only nav pills get the 100px radius",
+      "Don't use uppercase letter-spacing tighter than -0.02em on NeueHaas body — the tracking pattern belongs only to Brasparz"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, deep surface — the void everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary type, nav pill borders, active state fill, hairlines, iconography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#838383",
+        "name": "Ash Gray",
+        "role": "Muted secondary text, inactive nav labels, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ed1c24",
+        "name": "Alarm Red",
+        "role": "Hero detonation block — the only chromatic moment, used as full-bleed surface against black. Makes monochrome feel like a held breath before a shout",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed, no max-width container. The page is a vertical stack of viewport-spanning sections: nav pills centered at top with generous breathing room, then the wordmark in Brasparz at hero scale, then a full-viewport red detonation block with massive display type, followed by content sections that continue the 100% width rhythm. Section gaps of ~59px create pauses between detonations. Navigation is minimal — three pill buttons horizontally centered, no sticky behavior visible, no sidebar. The layout grammar is: silence, white type, detonation, silence, white type, detonation. Content never lives in a contained column — it always addresses the viewport edge.",
+    "imagery": "The visible screenshot shows no photography or illustration — the design IS typography as image. The 'imagery' is the sliced geometric letterforms of Brasparz rendered at architectural scale, functioning as both content and visual. Any future imagery (project thumbnails, case study photos) should be treated with the same brutalist containment: full-bleed, no rounded corners, no decorative framing, image-as-wall not image-as-illustration.",
+    "similar": [
+      {
+        "why": "Same full-bleed editorial blocks, oversized display type addressing viewport edges, minimal nav, black/white/red chromatic restraint",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same sliced/custom display face at architectural scale, crushed line-heights, no card chrome, type-as-image",
+        "business": "Hattie Molloy (or other indie type designer portfolios)"
+      },
+      {
+        "why": "Same dark canvas, custom display typography, single chromatic detonation block, zero shadow/depth",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same brutalist editorial portfolio language — flat surfaces, aggressive scale contrast, no decorative warmth",
+        "business": "Wieden+Kennedy editorial"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "pills": "100px",
+        "buttons": "100px",
+        "surfaces": "0px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "59px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Void",
+        "level": 0,
+        "purpose": "Page canvas — the baseline that all white type and red detonations sit on"
+      },
+      {
+        "hex": "#ed1c24",
+        "name": "Alarm Red",
+        "level": 1,
+        "purpose": "Sole chromatic surface — full-bleed hero blocks, the system's one emotional release valve"
+      }
+    ],
+    "northStar": "Monastery stone-cut typography on obsidian. A portfolio that uses one red wall to make silence deafening.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 19,
+        "lineHeight": 1.32,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 40,
+        "lineHeight": 1.08,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 145,
+        "lineHeight": 0.7,
+        "letterSpacing": -29
+      },
+      {
+        "role": "display-xl",
+        "size": 360,
+        "lineHeight": 0.7,
+        "letterSpacing": -28.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Outlined Pill Nav Button",
+        "role": "Primary navigation items (Work, Type, About)",
+        "description": "100px border-radius, 1px solid #ffffff border, transparent background, #ffffff text. Padding 7px vertical × 20px horizontal. Font: NeueHaas 19px weight 400. 15px right margin between pills. Inactive state — the border does the visual work"
+      },
+      {
+        "name": "Active Filled Pill Nav Button",
+        "role": "Current/selected navigation item",
+        "description": "Same 100px radius, but #ffffff fill with #000000 text. Same 7px/20px padding, same NeueHaas 19px. The inversion is the only differentiator — no color, no border emphasis, just figure-ground flip"
+      },
+      {
+        "name": "Display Wordmark (Brasparz Massive)",
+        "role": "Brand name and hero detonation text",
+        "description": "Brasparz Variable at 145-360px, line-height 0.70, letter-spacing -0.079em at 360px scaling to -0.020em at 145px. White on black, or black on red. No max-width — bleeds beyond container edges intentionally. The crushed line-height causes letterforms to nearly touch vertically"
+      },
+      {
+        "name": "Red Detonation Hero Block",
+        "role": "The singular chromatic moment — full-bleed hero/cover",
+        "description": "#ed1c24 background, no border, 0px radius, full viewport width. Houses a black Brasparz display at maximum scale. Vertical padding generous (50px+). The block is a wall, not a card"
+      },
+      {
+        "name": "Editorial Credit Line",
+        "role": "Small-caps attribution beneath display type",
+        "description": "Classical serif (Trajan-style), ~14px, letter-spacing 0.05em, white on red or black on red. Sets the tone shift from brutalist to editorial-museum"
+      },
+      {
+        "name": "Caption Stack",
+        "role": "Small descriptive text (e.g., 'A COLLECTION OF INDEPENDENT & STUDIO WORK')",
+        "description": "NeueHaas 19px weight 700, uppercase, #ffffff or #000000 depending on surface. Tight line-height 1.25. Functions as a label, not body copy"
+      },
+      {
+        "name": "Floating Social Icon Stack",
+        "role": "Persistent utility icons (heart, info, share) anchored to hero edge",
+        "description": "Right-aligned vertical stack at hero block right edge. 1px #000000 borders on circular or square containers, #000000 icons. No background fill — icons float on the red"
+      },
+      {
+        "name": "Project Tile (implied from spacing tokens)",
+        "role": "Portfolio work entries",
+        "description": "Full-bleed or large image containers, 0px radius, no shadow. Generous internal padding ~30px. Image-first, no card chrome"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature display face for hero detonations and the wordmark. Used at extreme viewport-bleeding sizes with line-height crushed to 0.70 so letterforms overlap vertically. The aggressive negative tracking (down to -0.079em at 360px) tightens characters into a single sculptural mass. Custom stylistic sets ss01 and ss02 are explicitly DISABLED (set to 0) — the raw geometric forms are the brand, no alternates allowed",
+        "sizes": "145px, 360px",
+        "family": "Brasparz Variable",
+        "weight": "400",
+        "lineHeight": "0.70",
+        "substitute": "Druk Wide, Antonio",
+        "letterSpacing": "-0.079em at 360px scaling to -0.020em at 145px",
+        "fontFeatureSettings": "\"ss01\" 0, \"ss02\" 0"
+      },
+      {
+        "role": "Body, navigation, UI labels. The 40px weight 700 serves as mid-scale editorial heading. Weight 400 at 19-20px carries paragraph and caption duties. Features calt, case, liga, ss01, ss02 all active — the only font allowed to flex stylistic alternates",
+        "sizes": "19px, 20px, 40px",
+        "family": "NeueHaas",
+        "weight": "400, 700",
+        "lineHeight": "1.08, 1.25, 1.32",
+        "substitute": "Neue Haas Grotesk, Inter, Helvetica Neue",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"calt\", \"case\", \"liga\", \"ss01\", \"ss02\""
+      },
+      {
+        "role": "Small-caps credit lines under the display block — classical serif at tiny size creates editorial gravitas against the brutalist type",
+        "sizes": "",
+        "family": "Trajan-style serif (editorial credits, not in extracted data but visible)",
+        "weight": "400",
+        "lineHeight": "1.3",
+        "substitute": "Cormorant SC, EB Garamond small caps",
+        "letterSpacing": "0.05em"
+      }
+    ],
+    "description": "Charlie Le Maignan's portfolio is a brutalist editorial canvas: pure black void as the page, oversized white type as the only architecture, and one punishing red slab that detonates against the monochrome. The visual language is a collision of a custom sliced display face (Brasparz) at absurd scale against a restrained neo-grotesque (NeueHaas) doing the quiet labor. Everything is allowed to be massive — line-height compressed to 0.70, letter-spacing driven to -0.079em — so type bleeds across the viewport rather than sitting inside it. The single red hero block functions as the only color punctuation in the entire system; everything else stays achromatic. Surfaces are flat with no elevation, no gradients, no decorative shadow — the design communicates through scale, contrast, and a single chromatic detonation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Charlie design system\",\"item\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#style-reference\",\"name\":\"Charlie design system reference\",\"headline\":\"Charlie design system | Refero Styles\",\"description\":\"Explore Charlie's dark Agency design system: Obsidian #000000, Bone White #ffffff colors, Brasparz Variable, NeueHaas typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\",\"mainEntityOfPage\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Charlie\",\"url\":\"https://charlielemaignan.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"caption\":\"Screenshot of Charlie\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Charlie design system\",\"Charlie website design\",\"Charlie colors\",\"Charlie typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone White\",\"Ash Gray\",\"Alarm Red\",\"Brasparz Variable\",\"NeueHaas\",\"Trajan-style serif (editorial credits, not in extracted data but visible)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Charlie design system\"},{\"@type\":\"Thing\",\"name\":\"Charlie website design\"},{\"@type\":\"Thing\",\"name\":\"Charlie colors\"},{\"@type\":\"Thing\",\"name\":\"Charlie typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:48:32.194Z\",\"dateModified\":\"2026-04-30T03:48:32.194Z\"}]}19:T49b,## Quick Color Reference\n- text: #ffffff\n- background: #000000\n- border: #ffffff (1px)\n- muted text: #838383\n- accent surface: #ed1c24 (full-bleed red hero blocks only)\n- primary action: #ffffff (filled action)\n\n## Example Component Prompts\n\n1. **Outlined Nav Pill**: 100px border-radius, 1px solid #ffffff border, transparent fill, #ffffff text. NeueHaas 19px weight 400, padding 7px 20px. Inactive nav state.\n\n2. **Active Nav Pill**: 100px border-radius, #ffffff fill, #000000 text. Same padding 7px 20px, same NeueHaas 19px. No border needed — fill inverts the contrast.\n\n3. **Display Wordmark**: Brasparz Variable 360px, line-height 0.70, letter-spacing -0.079em, #ffffff on #000000 canvas. fontFeatureSettings: \"ss01\" 0, \"ss02\" 0. Let it bleed beyond any container — no max-width.\n\n4. **Red Detonation Block**: Full-bleed #ed1c24 surface, no border, 0px radius. Inside: Brasparz Variable 145px line-height 0.70 letter-spacing -0.020em, #000000 text. Top padding ~50px, left padding 0 — text starts at viewport edge.\n\n5. **Editorial Caption**: Trajan-style serif ~14px, letter-spacing 0.05em, uppercase, #000000 on the red surface. 30px row gap above the display block."
+      },
+      {
+        "title": "Typographic Brutalism",
+        "content": "The system's core tension is between Brasparz (maximalist, architectural, screaming) and NeueHaas (quiet, neutral, functional). The design's signature is the collision: a 360px crushed line-height display next to a 19px well-spaced body label. Never smooth this contrast — it is the brand. Brasparz is always at maximum volume or not used at all; there is no middle register for it."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadow. Zero elevation. The design communicates through scale contrast and chromatic detonation, not depth. Surfaces meet at hard edges with no softening — the only rounding in the system is the 100px pill radius on nav buttons."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 320,
+          "confidence": 1,
+          "prominence": 16642925.543866469,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 24,
+            "icon/color": 1,
+            "other/color": 24,
+            "button/color": 4,
+            "footer/color": 1,
+            "heading/color": 8,
+            "body/borderColor": 96,
+            "icon/borderColor": 4,
+            "other/borderColor": 96,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#838383",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6099864491391791
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 151220.30629218763,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 6,
+            "link/borderColor": 4,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5926.174790196403,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.79,
+          "background": "#ffffff",
+          "foreground": "#838383"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 127,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueHaas",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 61,
+          "fontFeatureSettings": [
+            "\"calt\", \"case\", \"liga\", \"ss01\", \"ss02\""
+          ]
+        },
+        {
+          "family": "Brasparz Variable",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": [
+            "\"ss01\" 0",
+            "\"ss02\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 19,
+          "family": "NeueHaas",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "NeueHaas",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "NeueHaas",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 145,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.051,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.069,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.079,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.077,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.072,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Brasparz Variable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.061,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/573f819d-2389-49d8-aaee-a8cc5f5d7816.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Charlie design system\",\"item\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#style-reference\",\"name\":\"Charlie design system reference\",\"headline\":\"Charlie design system | Refero Styles\",\"description\":\"Explore Charlie's dark Agency design system: Obsidian #000000, Bone White #ffffff colors, Brasparz Variable, NeueHaas typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\",\"mainEntityOfPage\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Charlie\",\"url\":\"https://charlielemaignan.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/34aa811f-6084-484c-b4c0-f587b514e970#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"caption\":\"Screenshot of Charlie\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b4a0c910-9700-4e54-bbe6-526090aecd46.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Charlie design system\",\"Charlie website design\",\"Charlie colors\",\"Charlie typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Bone White\",\"Ash Gray\",\"Alarm Red\",\"Brasparz Variable\",\"NeueHaas\",\"Trajan-style serif (editorial credits, not in extracted data but visible)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Charlie design system\"},{\"@type\":\"Thing\",\"name\":\"Charlie website design\"},{\"@type\":\"Thing\",\"name\":\"Charlie colors\"},{\"@type\":\"Thing\",\"name\":\"Charlie typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:48:32.194Z\",\"dateModified\":\"2026-04-30T03:48:32.194Z\"}]}19:T49b,## Quick Color Reference\n- text: #ffffff\n- background: #000000\n- border: #ffffff (1px)\n- muted text: #838383\n- accent surface: #ed1c24 (full-bleed red hero blocks only)\n- primary action: #ffffff (filled action)\n\n## Example Component Prompts\n\n1. **Outlined Nav Pill**: 100px border-radius, 1px solid #ffffff border, transparent fill, #ffffff text. NeueHaas 19px weight 400, padding 7px 20px. Inactive nav state.\n\n2. **Active Nav Pill**: 100px border-radius, #ffffff fill, #000000 text. Same padding 7px 20px, same NeueHaas 19px. No border needed — fill inverts the contrast.\n\n3. **Display Wordmark**: Brasparz Variable 360px, line-height 0.70, letter-spacing -0.079em, #ffffff on #000000 canvas. fontFeatureSettings: \"ss01\" 0, \"ss02\" 0. Let it bleed beyond any container — no max-width.\n\n4. **Red Detonation Block**: Full-bleed #ed1c24 surface, no border, 0px radius. Inside: Brasparz Variable 145px line-height 0.70 letter-spacing -0.020em, #000000 text. Top padding ~50px, left padding 0 — text starts at viewport edge.\n\n5. **Editorial Caption**: Trajan-style serif ~14px, letter-spacing 0.05em, uppercase, #000000 on the red surface. 30px row gap above the display block."
+}

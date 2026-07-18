@@ -1,0 +1,1936 @@
+{
+  "source": "https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70",
+  "uuid": "5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70",
+  "name": "Cal.com",
+  "northStar": "Monochrome Utility, Human Touch. A system that prioritizes clarity and function with a stark black-and-white palette, but softens it with friendly typography and rounded forms.",
+  "capturedAt": "2026-07-18T10:19:23.863Z",
+  "meta": {
+    "url": "https://cal.com",
+    "siteName": "Cal.com",
+    "extractedAt": "2026-04-11T17:33:49.454Z",
+    "durationMs": 76602,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2522,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 'Cal Sans' weight 600 exclusively for headings (size 20px and above).",
+      "Employ a strict monochrome palette (Ink, Graphite, Slate, Paper, White) for 99% of the UI.",
+      "Use pill-shaped buttons (9999px radius) for all primary and secondary page CTAs.",
+      "Apply a 12px border radius to all content cards and large containers.",
+      "Use subtle, diffuse shadows (`rgba(36, 36, 36, 0.05) 0px 4px 8px 0px`) for elevation.",
+      "Set body copy in 'Cal Sans UI Variable Light' with tight negative letter-spacing.",
+      "Reserve the single 'Action Blue' (#0099ff) for secondary links or informational highlights."
+    ],
+    "tags": [
+      "monochrome",
+      "minimal",
+      "utility-first",
+      "product-focused",
+      "sans-serif",
+      "geometric-typography",
+      "light-theme",
+      "spacious",
+      "tech",
+      "clean"
+    ],
+    "donts": [
+      "Do not introduce any new colors to the core UI; confine color to logos and the single blue accent.",
+      "Do not use sharp corners on buttons or cards.",
+      "Do not use font weights heavier than 600.",
+      "Do not use traditional outlined buttons; use either solid 'Ink' or 'ghost' pill buttons.",
+      "Do not use gradients on any buttons or card backgrounds.",
+      "Do not use borders on cards; use shadows for separation.",
+      "Do not set body text in 'Cal Sans'; it is for headlines only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#101010",
+        "name": "Ink",
+        "role": "Primary CTAs, primary text, active states. Used as the strongest dark tone, providing maximum contrast and visual weight for key actions.",
+        "group": "brand"
+      },
+      {
+        "hex": "#0099ff",
+        "name": "Action Blue",
+        "role": "Tertiary links, informational banner text. A rare, functional splash of color reserved for secondary calls to action and informational highlights.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Card backgrounds, text on dark buttons.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Paper",
+        "role": "Main page background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242424",
+        "name": "Graphite",
+        "role": "Headlines, primary body text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b7280",
+        "name": "Slate",
+        "role": "Secondary text, descriptive copy, disabled states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Stone",
+        "role": "Placeholder text, decorative UI elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Silver",
+        "role": "Borders, dividers, subtle backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eff6fe",
+        "name": "Info Banner BG",
+        "role": "Background for the top-of-page informational banner.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4285f4",
+        "name": "Google Blue",
+        "role": "Integration logos only.",
+        "group": "accent"
+      },
+      {
+        "hex": "#fbbc04",
+        "name": "Google Yellow",
+        "role": "Integration logos only.",
+        "group": "accent"
+      },
+      {
+        "hex": "#34a853",
+        "name": "Google Green",
+        "role": "Integration logos only.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ea4335",
+        "name": "Google Red",
+        "role": "Integration logos only.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The site uses a centered layout within a max-width of 1200px, creating generous breathing room on either side. Sections are clearly demarcated by 96px of vertical space, establishing a calm, deliberate rhythm. The hero combines a large headline stack with a prominent product UI visual. Content below follows a predictable pattern of centered headlines followed by 3-column feature card grids or alternating text-and-visual blocks. This simple, highly structured approach emphasizes clarity and ease of navigation.",
+    "imagery": "The visual language is entirely product-centric and informational. Imagery consists solely of clean, isolated product UI screenshots and the logos of integration partners. There is no lifestyle photography, illustration, or abstract graphics. This choice reinforces the brand's focus on its functional capabilities, letting the product itself be the hero. All visual elements are presented within contained cards, never full-bleed, maintaining the page's orderly, grid-based structure.",
+    "similar": [
+      {
+        "why": "Direct competitor with a similar clean, utility-focused scheduling UI, but uses more color.",
+        "business": "Calendly"
+      },
+      {
+        "why": "Shares the disciplined monochrome palette, precision typography, and subtle shadows.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar use of a geometric sans-serif for headlines (Geist) against a stark black-and-white UI.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Employs a custom slab-serif for identity and relies on a clean, card-based layout with a primarily B&W palette.",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "inputs": "8px",
+        "buttons": "9999px (pills), 8px (rectangular)"
+      },
+      "elementGap": "",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "elevation": [
+      {
+        "style": "rgba(36, 36, 36, 0.05) 0px 4px 8px 0px",
+        "element": "Feature Card, Scheduling Widget"
+      },
+      {
+        "style": "rgba(36, 36, 36, 0.7) 0px 1px 5px -4px, rgba(36, 36, 36, 0.05) 0px 4px 8px 0px",
+        "element": "Hover/Focus Card"
+      }
+    ],
+    "northStar": "Monochrome Utility, Human Touch. A system that prioritizes clarity and function with a stark black-and-white palette, but softens it with friendly typography and rounded forms.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.19
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.64
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Compliance Info Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "How It Works — Feature Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Testimonial Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main call-to-action on the page.",
+        "description": "A pill-shaped button. Background: Ink (#101010). Text: White (#ffffff). Font: Cal Sans UI at 14-16px. Radius: 9999px. Padding: ~12px 24px."
+      },
+      {
+        "name": "Secondary Ghost Button",
+        "role": "A secondary call-to-action, often next to the primary.",
+        "description": "A pill-shaped outline button. Background: transparent or Paper (#f4f4f4). Text: Graphite (#242424). Border: 1px solid Silver (#e5e7eb). Radius: 9999px. Padding: ~12px 24px."
+      },
+      {
+        "name": "Header CTA Button",
+        "role": "The main call-to-action in the sticky header.",
+        "description": "A rectangular button. Background: Ink (#101010). Text: White (#ffffff). Font: Cal Sans UI at 14px. Radius: 8px. Padding: ~8px 16px."
+      },
+      {
+        "name": "Tag Button",
+        "role": "Small, non-critical buttons for categorizing or filtering content.",
+        "description": "A small pill button. Background: Paper (#f4f4f4) or Silver (#e5e7eb). Text: Graphite (#242424). Radius: 9999px. Padding: ~4px 12px."
+      },
+      {
+        "name": "Scheduling Widget Card",
+        "role": "The hero component showcasing the product's core functionality.",
+        "description": "Background: White (#ffffff). Padding: 16px. Radius: 12px. Shadow: `rgba(36, 36, 36, 0.05) 0px 4px 8px 0px`. Contains an interactive calendar UI."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Links in the main site header.",
+        "description": "Text-only link. Color: Graphite (#242424). Font: Cal Sans UI at 14-16px. No underline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary headline font. Its geometric forms and slightly wide stance give the brand a unique, technical-yet-friendly voice. Used exclusively for headings to establish hierarchy.",
+        "sizes": "20px, 24px, 48px, 64px",
+        "family": "Cal Sans",
+        "weight": "600",
+        "lineHeight": "1.10 - 1.30",
+        "substitute": "Poppins, Gilroy",
+        "letterSpacing": "+0.01em tracking adds airiness at display sizes."
+      },
+      {
+        "role": "Primary body and UI text font. The light weight and tight negative tracking create a clean, modern text block that is readable without being loud.",
+        "sizes": "14px, 16px, 18px",
+        "family": "Cal Sans UI Variable Light",
+        "weight": "300",
+        "lineHeight": "1.40 - 1.50",
+        "substitute": "Inter Light",
+        "letterSpacing": "Tight negative tracking from -0.19px to -0.24px for a compact feel."
+      },
+      {
+        "role": "Secondary UI and body font. Used for smaller text, labels, and inside complex components like the calendar widget where utmost clarity is required.",
+        "sizes": "10px, 12px, 14px, 16px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.14 - 1.43",
+        "substitute": "system-ui, -apple-system, sans-serif"
+      },
+      {
+        "role": "Tertiary UI text for captions and metadata where a highly legible, neutral choice is needed.",
+        "sizes": "10px, 12px, 14px",
+        "family": "Matter",
+        "weight": "400",
+        "lineHeight": "1.14 - 1.50",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "The design feels like a pragmatic, high-precision instrument. It's built on a strict and disciplined monochrome palette of black, white, and echelon grays, where color is intentionally excluded from the core UI to emphasize function. The custom font, 'Cal Sans', defines the visual identity with its geometric yet open letterforms, giving headlines a technical but approachable character. Nearly all interactive elements are either solid black or pill-shaped outlines, creating a binary system of action. Cards are the fundamental building block, using soft 8-12px radii and extremely subtle shadows to create a quiet, layered topology on a light gray background.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "list",
+            "button",
+            "image",
+            "badge"
+          ],
+          "frequency": 8825,
+          "confidence": 1,
+          "prominence": 142929182.2273572,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 55005813.79345576,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 195,
+          "confidence": 1,
+          "prominence": 6268429.143675639,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#626262",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.49757231132746654
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 3557811.207711277,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 719,
+          "confidence": 1,
+          "prominence": 1002320.7032662209,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 865477.8000164103,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#575759",
+          "oklch": {
+            "c": 0.0033662485715170993,
+            "h": 286.2653037285766,
+            "l": 0.4556927634979202
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 522685.77331067255,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#fbbc04",
+          "oklch": {
+            "c": 0.1699294319223394,
+            "h": 84.01425825712796,
+            "l": 0.8304239092121405
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 381150.13576883374,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6300934477406146
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 752,
+          "confidence": 1,
+          "prominence": 344034.2179681894,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#00ac47",
+          "oklch": {
+            "c": 0.1857863547902649,
+            "h": 148.46243098112078,
+            "l": 0.6495578538052309
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 233699.55080633302,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#eff6fe",
+          "oklch": {
+            "c": 0.013063157946732483,
+            "h": 251.5578226219456,
+            "l": 0.970185626357196
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 126746.28125766941,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 126445.13838253239,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#00832d",
+          "oklch": {
+            "c": 0.15820154820578897,
+            "h": 146.9338359322998,
+            "l": 0.531344614544137
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 98079.06450712586,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 92126,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#0066da",
+          "oklch": {
+            "c": 0.19494656333727461,
+            "h": 257.73124739934707,
+            "l": 0.5327621530408754
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 73201.4930958066,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 308,
+          "confidence": 1,
+          "prominence": 69811.14795551292,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#2684fc",
+          "oklch": {
+            "c": 0.19825820567548205,
+            "h": 257.0232161709159,
+            "l": 0.625858614798112
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 53129,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#374151",
+          "oklch": {
+            "c": 0.03062045960968168,
+            "h": 259.7328541134383,
+            "l": 0.37292705693325034
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 14672.619896714472,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#343434",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3250368614874385
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 11464.710077306258,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 11275.477203900013,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e1e2e3",
+          "oklch": {
+            "c": 0.0017389342448027578,
+            "h": 247.84122684060316,
+            "l": 0.9123031228199637
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 9084.431189669367,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e7e8e9",
+          "oklch": {
+            "c": 0.0011540876377100018,
+            "h": 247.8341390828706,
+            "l": 0.9306569183843769
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7095.8771157286155,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0099ff",
+          "oklch": {
+            "c": 0.1836796020020742,
+            "h": 248.80661243577464,
+            "l": 0.6690470948878066
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6330.759862106254,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0261a2",
+          "oklch": {
+            "c": 0.1286614808306294,
+            "h": 248.02001373702646,
+            "l": 0.48095354118159084
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5958.338564162264,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#7826b1",
+          "oklch": {
+            "c": 0.20516156081461373,
+            "h": 306.5800758795942,
+            "l": 0.4668720607781336
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3985.2652246701664,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ff492c",
+          "oklch": {
+            "c": 0.22244731451443875,
+            "h": 31.82880898664511,
+            "l": 0.6656601653910652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3582,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#882c2f",
+          "oklch": {
+            "c": 0.12555432119162774,
+            "h": 22.252220832770885,
+            "l": 0.43202784618665785
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2977.8768008307716,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#6b7280",
+          "oklch": {
+            "c": 0.02336091733217706,
+            "h": 264.36374727266286,
+            "l": 0.5510191075146065
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 2934.5891764285193,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#aa61f1",
+          "oklch": {
+            "c": 0.2106669154418518,
+            "h": 304.46773331093317,
+            "l": 0.6405783496369563
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2442.358722757932,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0c9beb",
+          "oklch": {
+            "c": 0.15803540222583298,
+            "h": 243.07420521417947,
+            "l": 0.6625009427007269
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2140.3489505971174,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d85b5f",
+          "oklch": {
+            "c": 0.15756585023710443,
+            "h": 20.842038147165702,
+            "l": 0.6309394753637304
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2083.479775581252,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d3d3d3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8668630753134526
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 1575.9451870442758,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#9ca3af",
+          "oklch": {
+            "c": 0.01917571604027532,
+            "h": 261.3246571321745,
+            "l": 0.7136601093409058
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 1236,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5368474958084207
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 940,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7657635630974068
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 448,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#4caf50",
+          "oklch": {
+            "c": 0.1624419535217847,
+            "h": 144.20826736609,
+            "l": 0.6730982850961172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0038059383227208453,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.28,
+          "background": "#eff6fe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#101010",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.47,
+          "background": "#eff6fe",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#f4f4f4",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.12,
+          "background": "#e7e8e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.19,
+          "background": "#e1e2e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#242424",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.51,
+          "background": "#e7e8e9",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.37,
+          "background": "#e5e7eb",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#e1e2e3",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#eff6fe",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.11,
+          "background": "#f4f4f4",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d3d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.71,
+          "background": "#d3d3d3",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.65,
+          "background": "#e7e8e9",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#e5e7eb",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#ffffff",
+          "foreground": "#343434"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 49
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 63
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(36, 36, 36, 0.7) 0px 1px 5px -4px, rgba(36, 36, 36, 0.05) 0px 4px 8px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": "rgba(255, 255, 255, 0.15) 0px 2px 0px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(19, 19, 22, 0.7) 0px 1px 5px -4px, rgba(34, 42, 53, 0.1) 0px 0px 0px 1px, rgba(34, 42, 53, 0.05) 0px 4px 8px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(19, 19, 22, 0.7) 0px 1px 5px -4px, rgba(34, 42, 53, 0.08) 0px 0px 0px 1px, rgba(34, 42, 53, 0.05) 0px 4px 8px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": "rgba(34, 42, 53, 0.05) 0px 4px 8px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgb(255, 255, 255) 0px 2px 0px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 0px 2px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 177,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 417,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 192,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 572,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 173,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 98,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 108,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(64, 80, 255) 0%, rgb(46, 63, 255) 100%)",
+        "colors": [
+          "rgb(64, 80, 255)",
+          "rgb(46, 63, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1944,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cal Sans UI Variable Light",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 217,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 67,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Matter Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cal Sans",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Matter SemiBold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Matter Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            600
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "CUSTOMV2;Cal Sans UI Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Matter Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Matter Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "list",
+            "image",
+            "badge"
+          ],
+          "frequency": 1944,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Matter Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter SemiBold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "CUSTOMV2;Cal Sans UI Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 129,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cal Sans UI Variable Light",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Cal Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7071965c-513e-468a-892a-248906eddc15.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c94e67ea-7a22-42cd-89c8-58a3d9ba7f8d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cal.com design system\",\"item\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70#style-reference\",\"name\":\"Cal.com design system reference\",\"headline\":\"Cal.com design system | Refero Styles\",\"description\":\"Explore Cal.com's light Productivity design system: Ink #101010, Action Blue #0099ff colors, Cal Sans, Cal Sans UI Variable Light typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cal.com\",\"url\":\"https://cal.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5d7aa503-8cfa-49a4-bd3b-0c2f0f075c70#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c94e67ea-7a22-42cd-89c8-58a3d9ba7f8d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c94e67ea-7a22-42cd-89c8-58a3d9ba7f8d.jpg\",\"caption\":\"Screenshot of Cal.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c94e67ea-7a22-42cd-89c8-58a3d9ba7f8d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cal.com design system\",\"Cal.com website design\",\"Cal.com colors\",\"Cal.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ink\",\"Action Blue\",\"White\",\"Paper\",\"Cal Sans\",\"Cal Sans UI Variable Light\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cal.com design system\"},{\"@type\":\"Thing\",\"name\":\"Cal.com website design\"},{\"@type\":\"Thing\",\"name\":\"Cal.com colors\"},{\"@type\":\"Thing\",\"name\":\"Cal.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-03T11:40:47.000Z\",\"dateModified\":\"2026-03-03T11:40:47.000Z\"}]}19:T690,<div style=\"--color-ink:#101010;--color-action-blue:#0099ff;--color-white:#ffffff;--color-paper:#f4f4f4;--color-graphite:#242424;--color-slate:#6b7280;--color-stone:#898989;--color-silver:#e5e7eb;--color-info-banner-bg:#eff6fe;--font-cal-sans:'Poppins',sans-serif;--font-inter:system-ui,-apple-system,sans-serif;width:600px;box-sizing:border-box;font-family:var(--font-inter);background:var(--color-info-banner-bg);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;\">\n  <div style=\"display:flex;align-items:center;gap:10px;flex:1;\">\n    <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" style=\"flex-shrink:0;\">\n      <circle cx=\"8\" cy=\"8\" r=\"8\" fill=\"#0099ff\"/>\n      <text x=\"8\" y=\"12\" text-anchor=\"middle\" font-family=\"system-ui\" font-size=\"10\" font-weight=\"700\" fill=\"white\">i</text>\n    </svg>\n    <span style=\"font-family:var(--font-inter);font-size:14px;line-height:1.5;color:var(--color-graphite);letter-spacing:-0.2px;\">Scheduling software that checks every compliance box: SOC 2 Type II, HIPAA, GDPR, CCPA, ISO 27001 &amp; more.</span>\n  </div>\n  <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:var(--color-action-blue);color:var(--color-white);font-family:var(--font-inter);font-size:14px;font-weight:500;padding:8px 16px;border-radius:9999px;text-decoration:none;white-space:nowrap;flex-shrink:0;\">\n    Learn more\n    <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M3 7h8M7 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n    </svg>\n  </a>\n</div>1a:T14e1,<div style=\"--color-ink:#101010;--color-action-blue:#0099ff;--color-white:#ffffff;--color-paper:#f4f4f4;--color-graphite:#242424;--color-slate:#6b7280;--color-silver:#e5e7eb;--font-cal-sans:'Poppins',sans-serif;--font-inter:system-ui,-apple-system,sans-serif;width:600px;box-sizing:border-box;background:var(--color-paper);padding:48px 24px;font-family:var(--font-inter);\">\n\n  <!-- Section header -->\n  <div style=\"text-align:center;margin-bottom:36px;\">\n    <div style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-white);border:1px solid var(--color-silver);border-radius:9999px;padding:6px 14px;margin-bottom:20px;\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\">\n        <rect x=\"1\" y=\"1\" width=\"5\" height=\"5\" rx=\"1\" fill=\"#242424\"/>\n        <rect x=\"8\" y=\"1\" width=\"5\" height=\"5\" rx=\"1\" fill=\"#242424\"/>\n        <rect x=\"1\" y=\"8\" width=\"5\" height=\"5\" rx=\"1\" fill=\"#242424\"/>\n        <rect x=\"8\" y=\"8\" width=\"5\" height=\"5\" rx=\"1\" fill=\"#242424\"/>\n      </svg>\n      <span style=\"font-family:var(--font-inter);font-size:13px;font-weight:500;color:var(--color-graphite);\">How it works</span>\n    </div>\n    <h2 style=\"font-family:var(--font-cal-sans);font-size:32px;font-weight:600;color:var(--color-graphite);margin:0 0 12px;line-height:1.15;letter-spacing:0.3px;\">With us, appointment<br>scheduling is easy</h2>\n    <p style=\"font-family:var(--font-inter);font-size:15px;color:var(--color-slate);margin:0;line-height:1.5;letter-spacing:-0.19px;\">Effortless scheduling for business and individuals,<br>powerful solutions for fast-growing modern companies.</p>\n  </div>\n\n  <!-- CTA buttons -->\n  <div style=\"display:flex;justify-content:center;gap:12px;margin-bottom:36px;\">\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-ink);color:var(--color-white);font-family:var(--font-inter);font-size:14px;font-weight:500;padding:11px 22px;border-radius:9999px;text-decoration:none;\">\n      Get started\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 7h8M7 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:var(--color-white);color:var(--color-graphite);font-family:var(--font-inter);font-size:14px;font-weight:500;padding:11px 22px;border-radius:9999px;text-decoration:none;border:1px solid var(--color-silver);\">\n      Book a demo\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 7h8M7 3l4 4-4 4\" stroke=\"#242424\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </div>\n\n  <!-- Feature cards -->\n  <div style=\"display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;\">\n    <!-- Card 1 -->\n    <div style=\"background:var(--color-white);border-radius:12px;padding:20px;box-shadow:rgba(36,36,36,0.05) 0px 4px 8px 0px;\">\n      <div style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-paper);border-radius:8px;width:36px;height:36px;margin-bottom:14px;\">\n        <span style=\"font-family:var(--font-inter);font-size:12px;font-weight:600;color:var(--color-graphite);\">01</span>\n      </div>\n      <h3 style=\"font-family:var(--font-cal-sans);font-size:15px;font-weight:600;color:var(--color-graphite);margin:0 0 8px;line-height:1.3;\">Connect your calendar</h3>\n      <p style=\"font-family:var(--font-inter);font-size:13px;color:var(--color-slate);margin:0;line-height:1.5;letter-spacing:-0.2px;\">We'll handle all the cross-referencing, so you don't have to worry about double bookings.</p>\n    </div>\n    <!-- Card 2 -->\n    <div style=\"background:var(--color-white);border-radius:12px;padding:20px;box-shadow:rgba(36,36,36,0.05) 0px 4px 8px 0px;\">\n      <div style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-paper);border-radius:8px;width:36px;height:36px;margin-bottom:14px;\">\n        <span style=\"font-family:var(--font-inter);font-size:12px;font-weight:600;color:var(--color-graphite);\">02</span>\n      </div>\n      <h3 style=\"font-family:var(--font-cal-sans);font-size:15px;font-weight:600;color:var(--color-graphite);margin:0 0 8px;line-height:1.3;\">Set your availability</h3>\n      <p style=\"font-family:var(--font-inter);font-size:13px;color:var(--color-slate);margin:0;line-height:1.5;letter-spacing:-0.2px;\">Want to block off weekends? Set up any buffers? We make that easy.</p>\n    </div>\n    <!-- Card 3 -->\n    <div style=\"background:var(--color-white);border-radius:12px;padding:20px;box-shadow:rgba(36,36,36,0.05) 0px 4px 8px 0px;\">\n      <div style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-paper);border-radius:8px;width:36px;height:36px;margin-bottom:14px;\">\n        <span style=\"font-family:var(--font-inter);font-size:12px;font-weight:600;color:var(--color-graphite);\">03</span>\n      </div>\n      <h3 style=\"font-family:var(--font-cal-sans);font-size:15px;font-weight:600;color:var(--color-graphite);margin:0 0 8px;line-height:1.3;\">Choose how to meet</h3>\n      <p style=\"font-family:var(--font-inter);font-size:13px;color:var(--color-slate);margin:0;line-height:1.5;letter-spacing:-0.2px;\">It could be a video chat, phone call, or a walk in the park!</p>\n    </div>\n  </div>\n</div>1b:Ta90,<div style=\"--color-ink:#101010;--color-white:#ffffff;--color-paper:#f4f4f4;--color-graphite:#242424;--color-slate:#6b7280;--color-silver:#e5e7eb;--font-cal-sans:'Poppins',sans-serif;--font-inter:system-ui,-apple-system,sans-serif;width:600px;box-sizing:border-box;background:var(--color-paper);padding:48px 24px;font-family:var(--font-inter);display:flex;justify-content:center;\">\n  <div style=\"background:var(--color-white);border-radius:12px;padding:32px;box-shadow:rgba(36,36,36,0.05) 0px 4px 8px 0px;max-width:520px;width:100%;\">\n    <!-- Stars -->\n    <div style=\"display:flex;gap:4px;margin-bottom:20px;\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"#f59e0b\"><path d=\"M9 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L9 13.27l-4.77 2.44.91-5.32L1.27 6.62l5.34-.78z\"/></svg>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"#f59e0b\"><path d=\"M9 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L9 13.27l-4.77 2.44.91-5.32L1.27 6.62l5.34-.78z\"/></svg>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"#f59e0b\"><path d=\"M9 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L9 13.27l-4.77 2.44.91-5.32L1.27 6.62l5.34-.78z\"/></svg>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"#f59e0b\"><path d=\"M9 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L9 13.27l-4.77 2.44.91-5.32L1.27 6.62l5.34-.78z\"/></svg>\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"#f59e0b\"><path d=\"M9 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L9 13.27l-4.77 2.44.91-5.32L1.27 6.62l5.34-.78z\"/></svg>\n    </div>\n    <!-- Quote -->\n    <blockquote style=\"margin:0 0 24px;padding:0;\">\n      <p style=\"font-family:var(--font-cal-sans);font-size:22px;font-weight:600;color:var(--color-graphite);line-height:1.35;margin:0;letter-spacing:0.2px;\">&ldquo;Just gave it a go and it&rsquo;s definitely the easiest meeting I&rsquo;ve ever scheduled!&rdquo;</p>\n    </blockquote>\n    <!-- Author -->\n    <div style=\"display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--color-silver);\">\n      <div style=\"width:44px;height:44px;border-radius:9999px;background:var(--color-silver);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;\">\n        <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\">\n          <circle cx=\"12\" cy=\"8\" r=\"4\" fill=\"#898989\"/>\n          <path d=\"M4 20c0-4 3.58-7 8-7s8 3 8 7\" fill=\"#898989\"/>\n        </svg>\n      </div>\n      <div>\n        <div style=\"font-family:var(--font-inter);font-size:14px;font-weight:600;color:var(--color-graphite);margin-bottom:2px;\">Aria Minaei</div>\n        <div style=\"font-family:var(--font-inter);font-size:13px;color:var(--color-slate);\">CEO, Theatre.JS</div>\n      </div>\n    </div>\n  </div>\n</div>1c:T571,### Quick Color Reference\n- **Page Background:** `#f4f4f4` (Paper)\n- **Card Background:** `#ffffff` (White)\n- **Headline Text:** `#242424` (Graphite)\n- **Body Text:** `#242424` (Graphite)\n- **Primary CTA:** `#101010` (Ink) background, `#ffffff` (White) text\n- **Borders/Dividers:** `#e5e7eb` (Silver)\n\n### Example Component Prompts\n1.  **Hero Section:** \"Create a hero section with a `#f4f4f4` background. On the left, add a headline 'The better way to schedule' using 'Cal Sans' at 64px, weight 600, color `#242424`, and line-height 1.1. Below it, add body text using 'Cal Sans UI' at 18px, color `#6b7280'. On the right, place a large card with a white background, 12px radius, and a subtle shadow `rgba(36, 36, 36, 0.05) 0px 4px 8px 0px` to represent a scheduling widget.\"\n2.  **Primary CTA Button:** \"Create a button with the text 'Get started'. Make it pill-shaped with a `9999px` radius. Use a `#101010` background color and `#ffffff` text color. The font should be 'Cal Sans UI' at 16px. Use padding of 12px top/bottom and 24px left/right.\"\n3.  **Feature Card:** \"Create a feature card with a `#ffffff` background, `24px` padding, a `12px` border radius, and a `rgba(36, 36, 36, 0.05) 0px 4px 8px 0px` box shadow. Inside, add a small numbered tag, a heading 'Connect your calendar' in 'Cal Sans' at 20px, and body text 'We'll handle all the cross-referencing' in 'Cal Sans UI' at 16px.\""
+}

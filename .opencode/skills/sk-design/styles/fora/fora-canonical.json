@@ -1,0 +1,629 @@
+{
+  "source": "https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5",
+  "uuid": "9929101b-90d4-4306-bc4a-4d8f65b527f5",
+  "name": "FORA",
+  "northStar": "Swiss editorial mosaic on white. A grid of monumental color tiles and airy geometric type, where each panel of terracotta or lilac functions as a full-bleed typographic stage.",
+  "capturedAt": "2026-07-18T07:29:24.470Z",
+  "meta": {
+    "url": "https://fora-concept.com",
+    "siteName": "FORA",
+    "extractedAt": "2026-06-03T20:52:40.941Z",
+    "durationMs": 24752,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 114,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Terracotta (#a9553c) and Lilac Veil (#ddbdea) only as full-bleed panel fills — never as button backgrounds, never as text colors, never as borders.",
+      "Let letter-spacing grow with size: 0.01em at 15px, 0.024em at 35px. Never set negative tracking on headlines.",
+      "Keep all type at weight 400 except the rare 700 micro-label. Weight contrast is a resource — spend it sparingly.",
+      "Build the page as a strict grid of edge-to-edge tiles. White canvas between tiles is the gutter — no margins, no shadows, no hairlines.",
+      "Use 0px border-radius on all panels and cards. Reserve 5px for buttons and 9999px only for pill tags.",
+      "Pad panel interiors with 25px on all sides. Headlines sit 25px from the panel edge — flush, never floating.",
+      "Pair every colored panel with a single short text element (headline + optional inline arrow link). Never stack multiple components inside a panel."
+    ],
+    "donts": [
+      "Don't soften black to near-black or add a tint — #000000 is absolute and the system depends on that contrast.",
+      "Don't introduce a third chromatic color, a gradient, or a neutral mid-gray. The two-color discipline is the brand.",
+      "Don't add shadows, glows, or elevation to cards. The grid is flat — surfaces sit on the page, not above it.",
+      "Don't use negative letter-spacing on any size. The positive tracking is a signature, not a mistake to correct.",
+      "Don't round card or panel corners beyond 0px. The sharp 90° edges are what make it feel like editorial print.",
+      "Don't mix multiple typefaces or weight the headlines at 600-700. Theinhardt 400 everywhere, plus rare 700 for micro-tags.",
+      "Don't create centered, max-width containers. The grid is full-bleed; content fills its tile completely."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "All text, headings, icons, nav links, dividers, and borders. Unsoftened true black anchors every chromatic panel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, default card surface, and the negative space that lets chromatic panels breathe. Never tinted",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9553c",
+        "name": "Terracotta",
+        "role": "Full-bleed section panels and hero zones. Warm oxidized red-brown against pure black and white — evokes raw clay and printed editorial covers",
+        "group": "brand"
+      },
+      {
+        "hex": "#ddbdea",
+        "name": "Lilac Veil",
+        "role": "Full-bleed section panels, content cards, and soft surface tint. Muted chalky pink that cools the terracotta into a balanced two-color rhythm",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a strict edge-to-edge grid of full-bleed tiles — a mosaic, not a stacked layout. No max-width container, no centered alignment, no gutters between panels. The grid divides the viewport into 3-4 columns where each cell is either a white content band, a terracotta statement panel, a lilac content panel, or a photographic cell. There is no traditional hero — the first row of tiles IS the hero, with the brand mark 'FO RA' in oversized display type occupying one cell and a terracotta panel with tagline occupying the next. Below, rows alternate: team portraits beside lilac newsfeeds beside white nav bands. The bottom row is a single white footer band spanning full width. Vertical rhythm is created by the tile heights themselves — each row is 280-360px tall, and the eye scans horizontally row by row like reading a print magazine spread.",
+    "imagery": "Photography is present but treated as raw material, not decoration. Portraits are tightly cropped, edge-to-edge in their grid tiles, with no captions, borders, or rounding — the face IS the panel. Product/glassware photography is staged in warm, natural light against muted backgrounds, with objects arranged as if for an editorial still life. No lifestyle imagery, no stock photography, no illustrations. The visual system treats every photograph as a full-bleed grid cell equal in weight to a colored typographic panel. Iconography is minimal: simple arrow glyphs (→) and a small bullet (•) for label tags. No filled icon set, no multicolor icons.",
+    "similar": [
+      {
+        "why": "Same Swiss editorial grid approach with monumental sans-serif type and absolute restraint in color",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Bold typographic statements, full-bleed color blocks, and grid-based mosaic homepages that read like print spreads",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Editorial typography discipline with strong color blocks and zero decorative chrome",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Agency portfolios that use strict grids of color-tile panels with airy geometric type",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Minimalist studio site with white canvas, warm muted color panels, and confident single-weight typography",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "buttons": "5px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "",
+      "cardPadding": "25px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas and base background between colored grid panels"
+      },
+      {
+        "hex": "#ddbdea",
+        "name": "Lilac Veil",
+        "level": 1,
+        "purpose": "Chalky pink panel surface for content sections and social feeds"
+      },
+      {
+        "hex": "#a9553c",
+        "name": "Terracotta",
+        "level": 2,
+        "purpose": "Bold full-bleed panel for hero statements and brand moments"
+      }
+    ],
+    "northStar": "Swiss editorial mosaic on white. A grid of monumental color tiles and airy geometric type, where each panel of terracotta or lilac functions as a full-bleed typographic stage.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.15
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.29
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "display",
+        "size": 35,
+        "lineHeight": 1.17,
+        "letterSpacing": 0.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Color Panel",
+        "role": "Section container that claims a grid cell",
+        "description": "The signature building block. A grid tile filled edge-to-edge with Terracotta (#a9553c) or Lilac Veil (#ddbdea), containing a headline at 35px/400 and a short descriptor. Padding 25px on all sides, 0px radius, no border, no shadow. The panel IS the layout — no cards inside cards."
+      },
+      {
+        "name": "Panel Link with Arrow",
+        "role": "Inline text link inside a colored panel",
+        "description": "15px weight 400, color #000000, followed by a thin arrow glyph (→). Letter-spacing 0.024em. Sits at the bottom of full-bleed panels. No underline, no background, no button shape — the colored panel itself implies affordance."
+      },
+      {
+        "name": "Pill Tag",
+        "role": "Category label overlay",
+        "description": "White background (#ffffff), 9999px radius, 5px vertical padding, 10px horizontal padding. 15px weight 400, #000000 text. Used to mark content blocks like 'Meet our Team' or 'Our Projects' as floating labels in the top-left of a grid cell."
+      },
+      {
+        "name": "Team Portrait Cell",
+        "role": "Photo showcase in grid",
+        "description": "Full-bleed photographic cell within the grid. No border, no radius, no caption overlay — the portrait fills the tile edge-to-edge. Captions appear in the white footer band below, centered, 15px weight 400."
+      },
+      {
+        "name": "Newsfeed Card",
+        "role": "Social content card",
+        "description": "Lilac Veil (#ddbdea) background, 0px radius, 25px padding. Contains a small square thumbnail (no radius), a 18px body line, and a 'Mehr lesen' text link. The card sits within a grid cell — it does not float or shadow."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action inside colored panels",
+        "description": "No fill, no border. Simply 15px weight 400 black text with an arrow, e.g. 'Erfahren Sie mehr →'. Letter-spacing 0.024em. The colored panel provides the visual weight; the button is pure text."
+      },
+      {
+        "name": "Primary Text Button",
+        "role": "The only true button — minimal",
+        "description": "5px radius, transparent background, no border. 15px weight 400, #000000 text, letter-spacing 0.024em. Color is never applied to button fill. Rounding is subtle — sharp enough to feel editorial, not soft enough to feel app-like."
+      },
+      {
+        "name": "Footer Navigation Bar",
+        "role": "Site-wide bottom nav",
+        "description": "White (#ffffff) background, 0px radius, single horizontal row of 15px weight 400 links separated by generous whitespace. Items: 'About', 'Team', 'Work', 'Contact' (and social handle). No background, no border-top, no visual weight — it dissolves into the page."
+      },
+      {
+        "name": "Grid Tile Divider",
+        "role": "Structural separator between panels",
+        "description": "The white canvas itself acts as a 0px divider between colored panels. No hairline rules, no shadows. Adjacent tiles meet with 0px gap; the white paper between them is the only gutter."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and panel headlines",
+        "description": "35px Theinhardt weight 400, #000000, line-height 1.17, letter-spacing 0.024em (≈0.84px). Often wraps to two lines and fills the panel with confident, even rhythm. No mixing of weights — always 400."
+      },
+      {
+        "name": "Location Marker",
+        "role": "Geographic descriptor in hero panel",
+        "description": "Large display text in a white-on-terracotta or white-on-lilac panel, e.g. 'Wien & Berlin'. Same 35px/400 spec as headlines. Functions as both content and decorative typography."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all UI: nav, body, headings, buttons, labels. Positive letter-spacing (0.01em→0.024em) that grows with size is the anti-trend signature — tracking opens up rather than tightens, producing a Swiss neo-grotesque with editorial breathing room. The 700 weight appears only for micro-emphasis (tag labels), keeping the system light and even.",
+        "sizes": "15px, 18px, 23px, 35px",
+        "family": "Theinhardt",
+        "weight": "400, 700",
+        "lineHeight": "1.17–1.53",
+        "substitute": "Neue Haas Grotesk, Inter, Söhne",
+        "letterSpacing": "0.01em at 15px → 0.024em at 35px (tracking opens with size)"
+      },
+      {
+        "role": "Theinhardt Medium — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "Theinhardt Medium",
+        "weight": "700",
+        "lineHeight": "1.33",
+        "letterSpacing": "0.024"
+      }
+    ],
+    "description": "FORA presents as a Swiss editorial mosaic: a strict white grid broken by full-bleed panels of terracotta and lilac, each tile a self-contained statement. Typography carries the brand's authority — Theinhardt at generous sizes with consistently positive letter-spacing, giving headlines room to breathe and creating an anti-Silicon-Valley attitude where space signals confidence. Black is absolute and unsoftened; chromatic color never decorates, it claims entire zones. The interface feels like a printed design annual translated to web — bold rules, quiet type, and the conviction that two colors plus white can carry an entire brand system.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FORA design system\",\"item\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#style-reference\",\"name\":\"FORA design system reference\",\"headline\":\"FORA design system | Refero Styles\",\"description\":\"Explore FORA's light Agency design system: Obsidian #000000, Paper #ffffff colors, Theinhardt, Theinhardt Medium typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FORA\",\"url\":\"https://fora-concept.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"caption\":\"Screenshot of FORA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FORA design system\",\"FORA website design\",\"FORA colors\",\"FORA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Terracotta\",\"Lilac Veil\",\"Theinhardt\",\"Theinhardt Medium\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FORA design system\"},{\"@type\":\"Thing\",\"name\":\"FORA website design\"},{\"@type\":\"Thing\",\"name\":\"FORA colors\"},{\"@type\":\"Thing\",\"name\":\"FORA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-04T19:23:19.000Z\",\"dateModified\":\"2026-03-04T19:23:19.000Z\"}]}19:T59c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: #ddbdea (Lilac Veil)\n- brand panel: #a9553c (Terracotta)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a full-bleed terracotta panel: background #a9553c, padding 25px, no radius, no border, no shadow. Inside, place a 35px Theinhardt 400 headline in #000000 with letter-spacing 0.024em, followed 20px below by a 15px ghost text link reading 'Erfahren Sie mehr →'.\n2. Build a newsfeed card: background #ddbdea, padding 25px, 0px radius. Left-aligned 80×80px square thumbnail (no radius), 20px gap, then a 18px body line in #000000, letter-spacing 0.016em, followed by a 15px underlined text link 'Mehr lesen'.\n3. Build a pill tag overlay: 9999px radius, white #ffffff background, 5px vertical padding, 10px horizontal padding, 15px Theinhardt 400 in #000000 with letter-spacing 0.024em. Position absolute top-left of a grid cell with 10px margin.\n4. Build a footer nav bar: full-width #ffffff background, 0px radius, single row of inline links in 15px Theinhardt 400 #000000 separated by 40px gap. Items: About, Team, Work, Contact. No dividers, no background bar.\n5. Build a display headline block: 35px Theinhardt 400 in #000000, line-height 1.17, letter-spacing 0.024em. Text wraps naturally to fill 2-3 lines. No background, no border, no decoration — pure typographic statement on the white canvas."
+      },
+      {
+        "title": "The Two-Color Discipline",
+        "content": "Terracotta and Lilac Veil are not accents — they are co-equal surfaces that divide the page into zones. Use them as a pair: when one appears, the other should appear nearby in the same row or adjacent row. Never use terracotta alone on a page; never use lilac alone. The system breathes through alternation: warm → cool → warm → cool → white footer."
+      },
+      {
+        "title": "Tracking Philosophy",
+        "content": "Letter-spacing scales linearly with type size: 0.01em at 15px body, 0.016em at 18px, 0.02em at 23px, 0.024em at 35px. This positive tracking at large sizes is the anti-SaaS signature — most modern sites tighten headlines with negative tracking to feel 'modern', but FORA opens them up to feel like Swiss editorial print. An AI agent must resist the urge to 'fix' this with negative values."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no blur, no z-axis. All elements exist on a single flat plane. Hierarchy is established by color (terracotta > lilac > white), by type scale (35 > 23 > 18 > 15), and by spatial division — never by elevation. The page reads like a printed spread, not an app interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "image"
+          ],
+          "frequency": 472,
+          "confidence": 1,
+          "prominence": 11515862.499847855,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 629820.9433757082,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a9553c",
+          "oklch": {
+            "c": 0.1168962398650563,
+            "h": 37.365201971705154,
+            "l": 0.5465656293861035
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 289629.70753178117,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ddbdea",
+          "oklch": {
+            "c": 0.07054533879201882,
+            "h": 316.1494307638558,
+            "l": 0.8400109574026963
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 289629.70753178117,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a04d35",
+          "oklch": {
+            "c": 0.11652526493160409,
+            "h": 36.95991546245507,
+            "l": 0.5193600390067886
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 871.7293753966359,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0034017888600378176,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#ddbdea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.05,
+          "background": "#a9553c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.61,
+          "background": "#a04d35",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Theinhardt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Theinhardt Medium",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading",
+            "nav",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Theinhardt Medium",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.53,
+          "letterSpacing": 0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "list",
+            "image"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Theinhardt",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/122b40c3-471f-4617-92a3-6dfc0840107a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FORA design system\",\"item\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#style-reference\",\"name\":\"FORA design system reference\",\"headline\":\"FORA design system | Refero Styles\",\"description\":\"Explore FORA's light Agency design system: Obsidian #000000, Paper #ffffff colors, Theinhardt, Theinhardt Medium typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FORA\",\"url\":\"https://fora-concept.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9929101b-90d4-4306-bc4a-4d8f65b527f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"caption\":\"Screenshot of FORA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bb3f6acd-6fd8-460c-b9e0-d52323102151.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FORA design system\",\"FORA website design\",\"FORA colors\",\"FORA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Terracotta\",\"Lilac Veil\",\"Theinhardt\",\"Theinhardt Medium\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FORA design system\"},{\"@type\":\"Thing\",\"name\":\"FORA website design\"},{\"@type\":\"Thing\",\"name\":\"FORA colors\"},{\"@type\":\"Thing\",\"name\":\"FORA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-04T19:23:19.000Z\",\"dateModified\":\"2026-03-04T19:23:19.000Z\"}]}19:T59c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent: #ddbdea (Lilac Veil)\n- brand panel: #a9553c (Terracotta)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a full-bleed terracotta panel: background #a9553c, padding 25px, no radius, no border, no shadow. Inside, place a 35px Theinhardt 400 headline in #000000 with letter-spacing 0.024em, followed 20px below by a 15px ghost text link reading 'Erfahren Sie mehr →'.\n2. Build a newsfeed card: background #ddbdea, padding 25px, 0px radius. Left-aligned 80×80px square thumbnail (no radius), 20px gap, then a 18px body line in #000000, letter-spacing 0.016em, followed by a 15px underlined text link 'Mehr lesen'.\n3. Build a pill tag overlay: 9999px radius, white #ffffff background, 5px vertical padding, 10px horizontal padding, 15px Theinhardt 400 in #000000 with letter-spacing 0.024em. Position absolute top-left of a grid cell with 10px margin.\n4. Build a footer nav bar: full-width #ffffff background, 0px radius, single row of inline links in 15px Theinhardt 400 #000000 separated by 40px gap. Items: About, Team, Work, Contact. No dividers, no background bar.\n5. Build a display headline block: 35px Theinhardt 400 in #000000, line-height 1.17, letter-spacing 0.024em. Text wraps naturally to fill 2-3 lines. No background, no border, no decoration — pure typographic statement on the white canvas."
+}

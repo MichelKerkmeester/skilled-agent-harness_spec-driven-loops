@@ -1,0 +1,327 @@
+{
+  "color": {
+    "coral-rose": {
+      "$value": "#ea587d",
+      "$type": "color",
+      "$description": "Coral Rose — Accent for heading text, hairline borders, and active-state markers — the single chromatic signal in an otherwise achromatic system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, and inverted backgrounds"
+    },
+    "cloud": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Cloud — Pill nav background, subtle surface elevation, and inset border shadows"
+    },
+    "bone": {
+      "$value": "#d9d8d4",
+      "$type": "color",
+      "$description": "Bone — Warm-toned secondary surface tint for alternating bands"
+    },
+    "char": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Char — Primary text, body copy, and most interface strokes"
+    },
+    "ink": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Ink — Heavier headings, body text, and prominent borders"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Maximum-emphasis text, logo wordmark, and strong border lines"
+    },
+    "fog": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Fog — Muted helper text and disabled-state strokes"
+    },
+    "mist": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Mist — Lowest-emphasis borders and decorative dividers"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System-font fallback for body text and rendering across platforms. Used wherever native OS fonts provide a reliable, performance-optimized default at body size."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary display and UI typeface. The 300 weight at micro sizes (8–10px) creates whisper-quiet labels; the negative letter-spacing (-0.056em at 8px, -0.037em at 10px) tightens small type into dense, confident blocks. 400 at 16–18px serves body and subheadings with -0.025em to -0.011em tracking."
+    },
+    "wtqc-custom-display": {
+      "$value": "wtqc (custom display)",
+      "$type": "fontFamily",
+      "$description": "Reserved for prominent display headings (30px, 1.07 line-height, -0.033em tracking) and compact labels (12px, 1.33 line-height). The tight 1.07 line-height on the 30px size gives headings a condensed, editorial feel."
+    },
+    "custom166638": {
+      "$value": "custom_166638",
+      "$type": "fontFamily",
+      "$description": "custom_166638 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "6px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 6px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "6px",
+        "fontWeight": 500,
+        "lineHeight": 2.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 6px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 8px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 8px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "custom_166638",
+        "fontSize": "8px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 8px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 3.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 10px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 3.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 10px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 3.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 10px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 3.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 10px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(242, 242, 242) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the infinite white wall"
+    },
+    "pill-surface": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Navigation pill background and subtle card elevation"
+    },
+    "warm-band": {
+      "$value": "#d9d8d4",
+      "$type": "color",
+      "$description": "Surface level 3: Occasional warm-toned section divider or band"
+    },
+    "inverted": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 4: Dark-mode sections or inverted text blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aaronpoeandco.com",
+      "siteName": "Aaron Poe & Co",
+      "extractedAt": "2026-06-03T20:57:46.568Z",
+      "variant": "extended"
+    }
+  }
+}

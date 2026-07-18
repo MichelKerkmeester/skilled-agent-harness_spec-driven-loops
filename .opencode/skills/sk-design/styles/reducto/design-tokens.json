@@ -1,0 +1,492 @@
+{
+  "color": {
+    "aubergine": {
+      "$value": "#310632",
+      "$type": "color",
+      "$description": "Aubergine — Primary text, headline color, nav active state, link accent, footer text — the deep plum that replaces black across the entire interface, giving body copy a warm violet cast instead of cold gray"
+    },
+    "magenta-pulse": {
+      "$value": "#9d17a0",
+      "$type": "color",
+      "$description": "Magenta Pulse — Filled primary action background, selected nav indicator, brand icon color — the single vivid hue permitted on a CTA, used sparingly so the click target glows against the paper canvas"
+    },
+    "damson": {
+      "$value": "#690f6b",
+      "$type": "color",
+      "$description": "Damson — Outlined action border, secondary button outline — a darker shade of the action magenta, used when a ghost/outlined button needs chromatic weight without the filled fill"
+    },
+    "lilac-wash": {
+      "$value": "#dcbffb",
+      "$type": "color",
+      "$description": "Lilac Wash — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "ochre": {
+      "$value": "#a2541b",
+      "$type": "color",
+      "$description": "Ochre — Decorative icon accent, illustrative highlight — used inside product visualizations and tag chips to add warm contrast against the dominant magenta/plum palette"
+    },
+    "moss": {
+      "$value": "#718613",
+      "$type": "color",
+      "$description": "Moss — Decorative icon and illustration accent — secondary chromatic note for data visualization callouts, kept low-frequency"
+    },
+    "reed": {
+      "$value": "#87a017",
+      "$type": "color",
+      "$description": "Reed — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "paper": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Paper — Page canvas, hero background, nav background — the warm off-white that defines the entire site's surface; never pure #ffffff at the top level"
+    },
+    "vellum": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Vellum — Secondary surface, elevated card background, subtle section differentiation"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Pure card surface, button text on dark/magenta fills, icon fill — only used as a surface lift or as foreground text, never as the page canvas"
+    },
+    "sand": {
+      "$value": "#d7ccc1",
+      "$type": "color",
+      "$description": "Sand — Primary border color, hairline dividers, card outlines — the warm beige border that replaces cold gray; the single most-used border token across the system"
+    },
+    "driftwood": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Driftwood — Subtle border, decorative separator, low-contrast outline — lighter than Sand for secondary dividers"
+    },
+    "stone": {
+      "$value": "#d6d3d1",
+      "$type": "color",
+      "$description": "Stone — Nav border, button border, body border — mid-tone warm gray for structural outlines where more contrast is needed than Sand provides"
+    },
+    "graphite": {
+      "$value": "#292524",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, navigation labels, and subdued headings. Do not promote it to the primary CTA color"
+    },
+    "slate": {
+      "$value": "#57534d",
+      "$type": "color",
+      "$description": "Slate — Secondary heading text, icon stroke, strong body text — mid-dark warm gray for emphasis without going full black"
+    },
+    "pewter": {
+      "$value": "#79716b",
+      "$type": "color",
+      "$description": "Pewter — Body text, nav text, button text on light backgrounds, helper text — the default readable text color, warm and low-contrast"
+    },
+    "bark": {
+      "$value": "#44403b",
+      "$type": "color",
+      "$description": "Bark — Neutral button treatment for secondary actions and selected controls."
+    },
+    "ash": {
+      "$value": "#a6a09b",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, disabled state, low-priority captions — the lightest readable neutral"
+    }
+  },
+  "font": {
+    "reductoserif": {
+      "$value": "reductoSerif",
+      "$type": "fontFamily",
+      "$description": "Display and headline serif — the brand's signature voice. Set at 64–136px for hero/display, drops to 24–32px for section headings. Weight 470 is the workhorse (editorial body weight for a display face), weight 650 is reserved for stat numbers. The tight -0.01em tracking at every size is critical: it tightens the serif's natural rhythm into a modern, condensed look. Substituted with Playfair Display, Lora, or Source Serif Pro when unavailable."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body and UI sans — the workhorse for nav links, buttons, descriptions, paragraphs, and form fields. Weight 400 for body, 500 for button labels and emphasized nav. Activates stylistic alternates 'salt' (single-storey 'a') and 'ss02' (open 'g') — these are essential to matching the brand; without them, Inter reads as generic."
+    },
+    "reductosans": {
+      "$value": "reductosans",
+      "$type": "fontFamily",
+      "$description": "Compact UI sans for small labels, tag chips, micro-copy, and dense interface text where Inter feels too tall. Functionally overlaps with Inter but provides a tighter, more 'captured' rhythm for chrome."
+    },
+    "reddit-mono": {
+      "$value": "Reddit Mono",
+      "$type": "fontFamily",
+      "$description": "Single-purpose display monospace for oversized stat numbers — the '2,000,000,000' counter. The -0.03em tracking pulls the mono's natural width inward so the number doesn't look like code, but a label. Substituted with JetBrains Mono or IBM Plex Mono."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "reductosans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "reductosans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "reductosans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "reductosans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "24px",
+        "fontWeight": 470,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "32px",
+        "fontWeight": 470,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "64px",
+        "fontWeight": 470,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "80px",
+        "fontWeight": 470,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Reddit Mono",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "80px",
+        "fontWeight": 470,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "136px",
+        "fontWeight": 650,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 136px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "reductoSerif",
+        "fontSize": "136px",
+        "fontWeight": 650,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 136px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.25) 0px -2px 0px 0px inset, rgba(255, 255, 255, 0.25) 0px 2px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(255, 255, 255, 0.3) 0px -2px 0px 0px inset, rgba(255, 255, 255, 0.3) 0px 2px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — warm off-white, the dominant surface of every section"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surface, elevated panel — pure white sits on top of Paper to create gentle lift without shadows"
+    },
+    "vellum": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle section differentiation, nav background variant, secondary surface"
+    },
+    "magenta-pulse": {
+      "$value": "#9d17a0",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface — announcement bar, filled CTA, selected state"
+    },
+    "graphite": {
+      "$value": "#292524",
+      "$type": "color",
+      "$description": "Surface level 4: Dark surface — dark button, inverted panel, footer dark zone"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://reducto.ai",
+      "siteName": "Reducto",
+      "extractedAt": "2026-06-03T19:57:55.685Z",
+      "variant": "extended"
+    }
+  }
+}

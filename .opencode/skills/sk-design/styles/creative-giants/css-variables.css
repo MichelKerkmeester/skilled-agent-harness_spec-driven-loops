@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --color-bone-white: #fffef7;
+  --color-ink-black: #000000;
+  --color-graphite: #666666;
+  --color-ash: #aaaaaa;
+  --color-charcoal-scale: #4d4c4a;
+  --color-magenta-bloom: #8a0467;
+  --color-forest-teal: #03624c;
+  --color-powder-blue: #a5c8eb;
+  --color-candy-pink: #ffacea;
+  --color-mint-wash: #a5ebd6;
+  --color-navy-ink: #101731;
+  --color-signal-yellow: #ffd001;
+
+  /* Typography — Font Families */
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.43;
+  --tracking-caption: -0.018px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.018px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.018px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.018px;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.02px;
+  --text-heading: 54px;
+  --leading-heading: 1;
+  --tracking-heading: -0.023px;
+  --text-display: 84px;
+  --leading-display: 1;
+  --tracking-display: -0.04px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+
+  /* Layout */
+  --section-gap: 64px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-full: 1440px;
+  --radius-full-2: 1600px;
+
+  /* Named Radii */
+  --radius-tags: 1440px;
+  --radius-cards: 0px;
+  --radius-pills: 1440px;
+  --radius-images: 0px;
+  --radius-buttons: 1440px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
+
+  /* Surfaces */
+  --surface-canvas: #fffef7;
+  --surface-card-tint: #a5ebd6;
+  --surface-card-tint-pink: #ffacea;
+  --surface-card-tint-blue: #a5c8eb;
+  --surface-signal-pop: #ffd001;
+  --surface-inverted-field: #101731;
+}

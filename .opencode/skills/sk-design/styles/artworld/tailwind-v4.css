@@ -1,0 +1,40 @@
+@theme {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-paper-white: #ffffff;
+
+  /* Typography */
+  --font-graphik-light: 'Graphik Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-cardinal-fruit-and-italic-classic-italic-variants: 'Cardinal Fruit (and Italic / Classic Italic variants)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-cardinal-fruit-italic: 'Cardinal Fruit Italic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-cardinal-classic-italic: 'Cardinal Classic Italic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.78px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -1.04px;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.58;
+  --tracking-body-lg: -1.3px;
+  --text-display: 65px;
+  --leading-display: 1.09;
+  --tracking-display: -2.015px;
+  --text-display-lg: 75px;
+  --leading-display-lg: 1;
+  --tracking-display-lg: -0.75px;
+
+  /* Spacing */
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-29: 29px;
+  --spacing-30: 30px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-49: 49px;
+  --spacing-76: 76px;
+  --spacing-90: 90px;
+  --spacing-95: 95px;
+}

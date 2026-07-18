@@ -1,0 +1,290 @@
+{
+  "color": {
+    "warm-linen": {
+      "$value": "#f2f0ed",
+      "$type": "color",
+      "$description": "Warm Linen — Primary page canvas, card surfaces, heading fills — the warm off-white that gives the site its gallery-walls aesthetic"
+    },
+    "light-mist": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Light Mist — Hairline borders, divider lines, light text on dark sections, icon strokes — the most-used neutral, threading structure through every screen"
+    },
+    "soft-stone": {
+      "$value": "#c1bfbc",
+      "$type": "color",
+      "$description": "Soft Stone — Muted background washes, secondary card surfaces, subdued borders"
+    },
+    "warm-taupe": {
+      "$value": "#978f84",
+      "$type": "color",
+      "$description": "Warm Taupe — Mid-tone neutral for secondary text and muted UI elements"
+    },
+    "dark-olive": {
+      "$value": "#41443e",
+      "$type": "color",
+      "$description": "Dark Olive — Hero section backgrounds, dark band surfaces — the deep warm-charcoal that grounds the editorial typography"
+    },
+    "near-black": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Near Black — Deepest dark for filled button backgrounds, high-contrast overlays"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon strokes, strong borders, body text emphasis — the sharpest neutral in the system"
+    }
+  },
+  "font": {
+    "lausanne-300": {
+      "$value": "Lausanne-300",
+      "$type": "fontFamily",
+      "$description": "Primary serif used at every scale from 12px captions to 185px display headlines. The lineHeight collapses to 0.80 at display sizes — letters physically overlap or nearly touch, creating the dense editorial texture. Used for nav links, body text, labels, and all heading levels. A refined didone-influenced serif; substitute with Playfair Display or DM Serif Display."
+    },
+    "cardinalfruit-regular": {
+      "$value": "cardinalfruit-regular",
+      "$type": "fontFamily",
+      "$description": "Mega-display serif reserved for 260px hero-scale typography. The extreme size and custom letterforms make individual words into compositional objects. No substitute needed — this is a signature moment, not a workhorse."
+    },
+    "metropolis": {
+      "$value": "Metropolis",
+      "$type": "fontFamily",
+      "$description": "Geometric sans for select body text passages where a neutral voice is needed. Medium weight provides just enough presence without competing with the serifs."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Metropolis",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "93px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 93px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lausanne-300",
+        "fontSize": "185px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 185px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "cardinalfruit-regular",
+        "fontSize": "260px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 260px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "39": {
+      "$value": "39px",
+      "$type": "dimension",
+      "$description": "Spacing 39px"
+    },
+    "89": {
+      "$value": "89px",
+      "$type": "dimension",
+      "$description": "Spacing 89px"
+    },
+    "130": {
+      "$value": "130px",
+      "$type": "dimension",
+      "$description": "Spacing 130px"
+    },
+    "173": {
+      "$value": "173px",
+      "$type": "dimension",
+      "$description": "Spacing 173px"
+    }
+  },
+  "surface": {
+    "warm-linen-canvas": {
+      "$value": "#f2f0ed",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the warm off-white base"
+    },
+    "light-mist-layer": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle card or section surfaces with hairline borders"
+    },
+    "soft-stone-panel": {
+      "$value": "#c1bfbc",
+      "$type": "color",
+      "$description": "Surface level 2: Muted content panels and secondary surfaces"
+    },
+    "dark-olive-band": {
+      "$value": "#41443",
+      "$type": "color",
+      "$description": "Surface level 3: Dark hero sections and feature bands"
+    },
+    "near-black-floor": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest dark for overlays and filled elements"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.lironmoran-interiors.com",
+      "siteName": "Liron Moran Interiors",
+      "extractedAt": "2026-06-03T19:58:15.783Z",
+      "variant": "extended"
+    }
+  }
+}

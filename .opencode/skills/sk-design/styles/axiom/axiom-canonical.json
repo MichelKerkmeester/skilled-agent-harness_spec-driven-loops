@@ -1,0 +1,1325 @@
+{
+  "source": "https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e",
+  "uuid": "c809190a-035c-458d-87ed-4758807dd84e",
+  "name": "Axiom",
+  "northStar": "Terminal window at midnight — flat black canvas, monospaced text, and one orange cursor blinking",
+  "capturedAt": "2026-07-18T09:53:39.128Z",
+  "meta": {
+    "url": "https://axiom.co",
+    "siteName": "Axiom",
+    "extractedAt": "2026-06-03T17:36:40.258Z",
+    "durationMs": 28138,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1223,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use BerkeleyMono for all UI text including nav, buttons, and labels — mixing proportional fonts breaks the terminal aesthetic",
+      "Layer surfaces with #000000 → #111111 → #191919 → #202020 steps; never use box-shadow to create elevation",
+      "Use #da5c2c (Ember) exclusively for primary action fills, log-bar visualization, and the 2px left border on case-study cards",
+      "Set all border-radius to 2px for containers, cards, and buttons; reserve 9999px for tiny icon badges and tag pills under 32px",
+      "Place the orange 2px left border on editorial/customer cards as a category mark — it is the only color punctuation in content blocks",
+      "Use arrow glyphs (→) inline after action labels in BerkeleyMono to signal forward motion and reinforce the CLI cadence",
+      "Anchor page background at pure #000000 and let paper-white (#eeeeee) text carry all hierarchy through weight (400 vs 700) and size"
+    ],
+    "donts": [
+      "Don't introduce gradients, drop shadows beyond the single 1px/2px hairline, or colored backgrounds — the system is deliberately flat",
+      "Don't use proportional sans-serif fonts (Inter, system-ui) for headlines, nav, or button labels — BerkeleyMono is non-negotiable for brand identity",
+      "Don't apply #da5c2c to text, icons, or borders other than the CTA fill, log bars, and case-study left border — it loses meaning when scattered",
+      "Don't round corners above 2px on cards, panels, or buttons — sharp geometry distinguishes this from typical SaaS soft-corner conventions",
+      "Don't add light-theme sections or alternate surface colors — the entire product is dark-mode-only and any light surface breaks the system",
+      "Don't use colored badge backgrounds for status (success/error/warning) — communicate state through BerkeleyMono symbols and border treatment only",
+      "Don't place imagery or photography that isn't product UI or grayscale logo marks — the visual language is screenshots, log patterns, and arrow textures, not lifestyle photography"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page background, nav fill, terminal surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Primary surface, card base, hero canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191919",
+        "name": "Graphite",
+        "role": "Elevated card background, case-study card fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202020",
+        "name": "Iron",
+        "role": "Hairline borders, dividers, subtle separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a3a3a",
+        "name": "Slate",
+        "role": "Muted borders, icon strokes, secondary lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#505050",
+        "name": "Pewter",
+        "role": "Subtle dividers, decorative rules",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Steel",
+        "role": "Tertiary text, icon detail, inactive labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7e7e7e",
+        "name": "Ash",
+        "role": "Muted helper text, small annotations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b4",
+        "name": "Fog",
+        "role": "Secondary text, label text, muted body",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Chalk",
+        "role": "Light borders, stroke detail on icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Paper",
+        "role": "Primary text, nav links, heading fill, button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#da5c2c",
+        "name": "Ember",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content constrained to a ~1200px max-width centered column. The hero is a left-aligned text block (terminal prompt `~/` above a two-line monospaced headline) paired with a right-side arrow texture and a full-width product screenshot below. Section rhythm is steady: hero → product screenshot → social proof logo grid (2×6) → horizontal-scrolling case study cards (3–4 visible, overflow with ←→ chevrons) → footer. Spacing between sections is 40–64px. The case-study scroller breaks the static grid with horizontal movement, hinting at scroll-driven interaction. Navigation is a simple top bar with no sticky mega-menu — every nav link is a single line of BerkeleyMono with an optional dropdown chevron.",
+    "imagery": "Visuals are dominated by product UI screenshots — the actual observability dashboard with its blue log-bar histogram and monospaced result tables. Decorative imagery is limited to repeating `>` arrow glyphs in low-contrast #3a3a3a forming a streaming-data pattern behind the hero. Customer logos are rendered in grayscale (#eeeeee or #b4b4b4) on flat #111111 cells — no photography, no lifestyle imagery, no abstract 3D renders. The product screenshot IS the hero.",
+    "similar": [
+      {
+        "why": "Same dark-mode developer aesthetic with monospaced accent typography and a near-black canvas, though Vercel uses Geist Mono rather than BerkeleyMono",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark-first interface with sharp 2px corners, flat surfaces, and a single warm accent color for primary actions against pure black backgrounds",
+        "business": "Linear"
+      },
+      {
+        "why": "Engineering-native product UI using monospaced type throughout, near-black surfaces layered with hairline borders, and a single chromatic accent for CTAs",
+        "business": "Fly.io"
+      },
+      {
+        "why": "Dark-mode database product page with monospaced code-style typography, flat card surfaces, and a single warm orange accent on the primary CTA",
+        "business": "PlanetScale"
+      },
+      {
+        "why": "Developer-platform dark UI with terminal-inspired layouts, monospaced body text, and near-black surface layering instead of shadows",
+        "business": "Railway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "2px",
+        "icons": "9999px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "40px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page base, nav, terminal canvas"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "level": 1,
+        "purpose": "Primary content surface, hero background, announcement strip, logo cells"
+      },
+      {
+        "hex": "#191919",
+        "name": "Graphite",
+        "level": 2,
+        "purpose": "Elevated cards, case-study panels, inset blocks"
+      },
+      {
+        "hex": "#202020",
+        "name": "Iron",
+        "level": 3,
+        "purpose": "Borders, dividers, subtle inner separation"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+        "element": "Buttons, small interactive surfaces"
+      }
+    ],
+    "northStar": "Terminal window at midnight — flat black canvas, monospaced text, and one orange cursor blinking",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.71,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Hero call-to-action, conversion anchor",
+        "description": "Filled button with #da5c2c background, #eeeeee text, BerkeleyMono 16px weight 700, 2px border radius, padding 10px 16px. Arrow glyph (→) follows the label. No shadow, no hover lift — color change only."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action beside primary CTA",
+        "description": "Transparent background, 1px #3a3a3a border, #eeeeee text, BerkeleyMono 16px weight 400, 2px radius, 10px 16px padding. Arrow glyph follows label. Sits in nav as \"Sign up\" and inline as \"Sign up for free\"."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation, sticky on scroll",
+        "description": "#000000 background, full-width, 16px horizontal padding. Logo (triangle mark + wordmark) left, nav links center in BerkeleyMono 14px weight 400 #eeeeee with dropdown chevrons, login/signup/demo cluster right. Height ~56px. Hairline #202020 bottom border optional."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page product update strip",
+        "description": "Full-width #111111 strip, BerkeleyMono 12px weight 400 #eeeeee text, centered or left-aligned. Closing × icon right. Subtle, not colorful — the message is the emphasis."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Customer testimonial unit in horizontal scroller",
+        "description": "#191919 background, 2px radius, 32px padding. 2px solid #da5c2c left border running full height — the only color in the card, functioning as a category tag. Customer logo top, headline BerkeleyMono 18px weight 400 #eeeeee, body text 14px, quote 14px italic-weight in a nested #111111 sub-card, avatar + name + role footer, underlined \"case study →\" link at bottom."
+      },
+      {
+        "name": "Logo Grid Cell",
+        "role": "Customer logo display in social-proof band",
+        "description": "#111111 background, 2px radius, centered grayscale logo, ~80px tall, 24px padding. Two rows of six cells. Logos rendered in #eeeeee or #b4b4b4 monochrome."
+      },
+      {
+        "name": "Product Screenshot Panel",
+        "role": "Hero visual — the observability product UI",
+        "description": "Full-width product mock with #111111 chrome, 2px radius, #202020 inner dividers. Tab bar (Datasets, Stream, Query, Dashboards, Monitor, Flows) in BerkeleyMono 12px with active tab underline. Blue log-bar histogram row (#2a7fff range) is the only interior color; results table below in #111111 with BerkeleyMono 12px monospaced columns and #3a3a3a row dividers."
+      },
+      {
+        "name": "Arrow Decoration Field",
+        "role": "Background texture on hero right side",
+        "description": "Repeating `>` glyphs in BerkeleyMono 12px weight 400 #3a3a3a, arranged in a diagonal right-pointing pattern. Fills negative space behind hero copy without adding visual weight — a terminal-style marquee that signals \"streaming data\"."
+      },
+      {
+        "name": "Tag / Pill",
+        "role": "Category label above card content (e.g., SAVINGS, SIMPLICITY)",
+        "description": "Transparent background, BerkeleyMono 12px weight 400 #606060 uppercase, 0px padding. Pure typographic label, no border, no fill — the term sits above card headlines as editorial metadata."
+      },
+      {
+        "name": "Pill Icon Badge",
+        "role": "Small circular badge or icon wrapper",
+        "description": "9999px radius, ~24px diameter, #111111 or #202020 fill, white icon glyph centered. Used for utility icons and feature markers."
+      },
+      {
+        "name": "Chevron Arrow Link",
+        "role": "Inline link with directional indicator",
+        "description": "BerkeleyMono 14px weight 400 #eeeeee underlined text, followed by `→` glyph in same color. Appears at card footers (\"Hapn case study →\") and CTA-adjacent hints (\"Book a demo →\")."
+      },
+      {
+        "name": "Log Bar Histogram",
+        "role": "Data visualization in product UI and marketing",
+        "description": "Tight rows of rectangular bars in #2a7fff or #da5c2c (the Ember accent), 4-8px tall, 2-4px gaps. Represents event volume over time. No axes labels in marketing context — the bar pattern itself is the visual."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal typeface — headlines, body, nav, buttons, code, table cells, logo. Weight 400 carries prose and UI labels; weight 700 is reserved for emphasis and primary CTAs. The monospaced geometry unifies the brand and signals engineering audience. Every line of text, including navigation and button labels, sits in this monospaced grid — there is no proportional fallback for content.",
+        "sizes": "12px, 13px, 14px, 16px, 18px, 20px, 24px, 32px",
+        "family": "BerkeleyMono",
+        "weight": "400, 700",
+        "lineHeight": "1.0–1.71",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Fira Code",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Secondary text layer — small icon labels, fine print, tertiary annotations where proportional letterforms reduce visual density below the mono baseline",
+        "sizes": "12px, 14px, 16px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.33–1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "Axiom is a terminal-grade dark interface where every glyph is monospaced, every surface is near-black, and one warm orange does all the chromatic work. The design language borrows from code editors and CLI tools — no gradients, almost no shadows, no rounded softness — instead layering information through subtle shifts in dark neutrals (from #000000 canvas to #191919 cards to #202020 borders) so the UI reads like a well-formatted log file. BerkeleyMono carries the entire voice, from hero headlines to nav labels, giving the product an engineering-native feel that signals audience before it signals brand. Orange appears as a precise tool: the primary CTA fill, the log-bar visualization, and a 2px left border that marks editorial case-study cards — never decorative, always functional.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Axiom design system\",\"item\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#style-reference\",\"name\":\"Axiom design system reference\",\"headline\":\"Axiom design system | Refero Styles\",\"description\":\"Explore Axiom's dark Dev Tools design system: Void #000000, Carbon #111111 colors, BerkeleyMono, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Axiom\",\"url\":\"https://axiom.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"caption\":\"Screenshot of Axiom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Axiom design system\",\"Axiom website design\",\"Axiom colors\",\"Axiom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void\",\"Carbon\",\"Graphite\",\"Iron\",\"BerkeleyMono\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Axiom design system\"},{\"@type\":\"Thing\",\"name\":\"Axiom website design\"},{\"@type\":\"Thing\",\"name\":\"Axiom colors\"},{\"@type\":\"Thing\",\"name\":\"Axiom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-25T11:58:03.000Z\",\"dateModified\":\"2026-01-25T11:58:03.000Z\"}]}19:T4b6,**Quick Color Reference**\n- text: #eeeeee\n- background: #000000\n- surface (card): #111111\n- elevated surface: #191919\n- border / divider: #202020\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n2. Build a customer case-study card: #191919 background, 2px radius, 32px padding, 2px solid #da5c2c left border running full height. Customer logo top in #eeeeee. Headline BerkeleyMono 18px weight 400 #eeeeee. Quote block nested in #111111 with 16px padding, BerkeleyMono 14px weight 400 #b4b4b4. Footer row: 24px circular avatar + name BerkeleyMono 14px weight 700 #eeeeee + role 14px weight 400 #606060. Bottom link BerkeleyMono 14px underlined #eeeeee with → arrow.\n3. Build a product screenshot panel: #111111 outer frame, 2px radius. Tab bar in BerkeleyMono 12px weight 400 #b4b4b4 with active tab underlined in #eeeeee. Histogram row of 4px-tall bars in #2a7fff at 2px intervals across full width. Results table in BerkeleyMono 12px weight 400 #eeeeee with #3a3a3a row dividers and #606060 timestamp column. No shadows, no rounded inner elements."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved exclusively through near-black surface steps (#000000 → #111111 → #191919) and 1px hairline borders in #202020, not through shadows. The single permitted shadow (rgba(0,0,0,0.05) 0 1px 2px) is reserved for buttons and is barely perceptible. This keeps the interface feeling like a flat terminal pane where depth is implied by tonal contrast, not by raised geometry."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3a3a3a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3484596543608461
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "icon",
+            "nav",
+            "link",
+            "hero",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 4148,
+          "confidence": 1,
+          "prominence": 171769940.50213352,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "button",
+            "link",
+            "icon",
+            "footer",
+            "list",
+            "image",
+            "body"
+          ],
+          "frequency": 117,
+          "confidence": 1,
+          "prominence": 99485308.49250478,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "footer",
+            "icon"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 95022383.74355885,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "borderColor",
+            "boxShadow",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 62471400.408039376,
+          "properties": [
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "body",
+            "button",
+            "nav",
+            "heading",
+            "hero",
+            "other",
+            "link",
+            "image",
+            "list",
+            "icon"
+          ],
+          "frequency": 696,
+          "confidence": 1,
+          "prominence": 15516289.278822336,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 73,
+          "confidence": 1,
+          "prominence": 9529803.31656489,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4890564485258221
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "list"
+          ],
+          "frequency": 192,
+          "confidence": 1,
+          "prominence": 4357827.380766686,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b4b4b4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7699314175046421
+          },
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "heading",
+            "link",
+            "other",
+            "list"
+          ],
+          "frequency": 290,
+          "confidence": 1,
+          "prominence": 1295960.422294726,
+          "properties": [
+            "color",
+            "stroke",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#191919",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.21342250711191385
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1180377.6431734182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cb643a",
+          "oklch": {
+            "c": 0.14260507014002025,
+            "h": 41.806925504980654,
+            "l": 0.6189900108103454
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 976275.5648482455,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#505050",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.43153808024471807
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 870358.2234656574,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#da5c2c",
+          "oklch": {
+            "c": 0.16962362110298054,
+            "h": 39.841418386270526,
+            "l": 0.6281151084795836
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "list",
+            "button"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 101651.74879175077,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5382366621247504
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 55134.18261310041,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#484848",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4016665194169638
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39584,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7e7e7e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5931033171849609
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3906,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a0a0a0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7057570122420298
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2350,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313131",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.31316712939792546
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1292,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#070707",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.12855780499391534
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 456,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0018039906033246198,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.36,
+          "background": "#eeeeee",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#111111",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#191919",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.27,
+          "background": "#d9d9d9",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.04,
+          "background": "#eeeeee",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.38,
+          "background": "#d9d9d9",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.46,
+          "background": "#d9d9d9",
+          "foreground": "#191919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#d9d9d9",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.21,
+          "background": "#eeeeee",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#000000",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.8,
+          "background": "#eeeeee",
+          "foreground": "#3a3a3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#b4b4b4",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#d9d9d9",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.11,
+          "background": "#111111",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.48,
+          "background": "#191919",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#d9d9d9",
+          "foreground": "#3a3a3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.03,
+          "background": "#a0a0a0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.88,
+          "background": "#eeeeee",
+          "foreground": "#484848"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 100,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 162,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 67,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 170,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 192,
+          "properties": [
+            "paddingTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BerkeleyMono",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 974,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 123,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BerkeleyMono",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link",
+            "other",
+            "list",
+            "icon",
+            "heading"
+          ],
+          "frequency": 286,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "image",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 111,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image",
+            "heading",
+            "list",
+            "icon",
+            "body"
+          ],
+          "frequency": 542,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BerkeleyMono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1b5c27c9-e0be-475f-a9be-70850759dd8a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Axiom design system\",\"item\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#style-reference\",\"name\":\"Axiom design system reference\",\"headline\":\"Axiom design system | Refero Styles\",\"description\":\"Explore Axiom's dark Dev Tools design system: Void #000000, Carbon #111111 colors, BerkeleyMono, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Axiom\",\"url\":\"https://axiom.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c809190a-035c-458d-87ed-4758807dd84e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"caption\":\"Screenshot of Axiom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f307483-b9fc-4765-a81c-ee710ceaa4d6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Axiom design system\",\"Axiom website design\",\"Axiom colors\",\"Axiom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Void\",\"Carbon\",\"Graphite\",\"Iron\",\"BerkeleyMono\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Axiom design system\"},{\"@type\":\"Thing\",\"name\":\"Axiom website design\"},{\"@type\":\"Thing\",\"name\":\"Axiom colors\"},{\"@type\":\"Thing\",\"name\":\"Axiom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-25T11:58:03.000Z\",\"dateModified\":\"2026-01-25T11:58:03.000Z\"}]}19:T4b6,**Quick Color Reference**\n- text: #eeeeee\n- background: #000000\n- surface (card): #111111\n- elevated surface: #191919\n- border / divider: #202020\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n2. Build a customer case-study card: #191919 background, 2px radius, 32px padding, 2px solid #da5c2c left border running full height. Customer logo top in #eeeeee. Headline BerkeleyMono 18px weight 400 #eeeeee. Quote block nested in #111111 with 16px padding, BerkeleyMono 14px weight 400 #b4b4b4. Footer row: 24px circular avatar + name BerkeleyMono 14px weight 700 #eeeeee + role 14px weight 400 #606060. Bottom link BerkeleyMono 14px underlined #eeeeee with → arrow.\n3. Build a product screenshot panel: #111111 outer frame, 2px radius. Tab bar in BerkeleyMono 12px weight 400 #b4b4b4 with active tab underlined in #eeeeee. Histogram row of 4px-tall bars in #2a7fff at 2px intervals across full width. Results table in BerkeleyMono 12px weight 400 #eeeeee with #3a3a3a row dividers and #606060 timestamp column. No shadows, no rounded inner elements."
+}

@@ -1,0 +1,399 @@
+{
+  "color": {
+    "brand-blue": {
+      "$value": "#0066cc",
+      "$type": "color",
+      "$description": "Brand Blue — Primary action background, link underlines, heading accents, card fills on light surfaces — the single chromatic voice that powers CTAs, active states, and iconography"
+    },
+    "deep-indigo": {
+      "$value": "#0e2575",
+      "$type": "color",
+      "$description": "Deep Indigo — Dark section backgrounds (feature/why panels), hero image frames — the only place a full-bleed surface goes deep and saturated"
+    },
+    "midnight-card": {
+      "$value": "#213680",
+      "$type": "color",
+      "$description": "Midnight Card — Elevated card surface when sitting on Deep Indigo backgrounds — one step lighter than the panel to separate without using shadow"
+    },
+    "charcoal-ink": {
+      "$value": "#101820",
+      "$type": "color",
+      "$description": "Charcoal Ink — Body text and dark-surface secondary fills — slightly cooler than pure black, anchors reading text without harshness"
+    },
+    "paper-cream": {
+      "$value": "#f4f1ea",
+      "$type": "color",
+      "$description": "Paper Cream — Primary page canvas — the warm base that gives the whole site its editorial, printed feel"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Card surfaces, nav background, button text on blue, input fills — the clean highlight layer above cream"
+    },
+    "lavender-mist": {
+      "$value": "#e6e0f8",
+      "$type": "color",
+      "$description": "Lavender Mist — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "ice-blue": {
+      "$value": "#e9f4ff",
+      "$type": "color",
+      "$description": "Ice Blue — Alternate light surface wash, subtle card background variant — the cool counterpoint to Paper Cream"
+    },
+    "peach-blush": {
+      "$value": "#f7e1d5",
+      "$type": "color",
+      "$description": "Peach Blush — Icon circle backgrounds in audience/feature cards — the only warm accent that breaks the cream-on-cream"
+    },
+    "ash-border": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Ash Border — Hairline dividers, subtle borders on neutral surfaces — the quietest structural line"
+    }
+  },
+  "font": {
+    "maison-neue": {
+      "$value": "Maison Neue",
+      "$type": "fontFamily",
+      "$description": "The sole workhorse font across body, nav, headings, buttons, inputs, cards, and footers. Weight 400 carries body and UI labels; 500 steps up to subheadings and nav; 600 owns display sizes (56–120px). The type behaves like a neo-grotesque with humanist warmth — readable at 12px, monumental at 120px. Negative tracking tightens aggressively at display sizes (-0.03em at 120px, -0.02em at 56–80px, -0.01em at 32–40px) so headlines sit visually compact despite their scale."
+    },
+    "spoof": {
+      "$value": "Spoof",
+      "$type": "fontFamily",
+      "$description": "Reserved for a single accent heading or card label at 22px / weight 500. Its ultra-tight 0.90 leading and -0.02em tracking create a display-quality mark at a mid size — used as a typographic exclamation point, never as a workhorse. Free substitute: GT America or a tight condensed sans like Druk Wide."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Spoof",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "26px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "80px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 0, 0) 0px 4px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "paper-cream-canvas": {
+      "$value": "#f4f1ea",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the warm editorial base"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Standard card and nav surface on cream canvas"
+    },
+    "ice-blue-wash": {
+      "$value": "#e9f4ff",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate light surface for secondary cards and callout boxes"
+    },
+    "lavender-mist": {
+      "$value": "#e6e0f8",
+      "$type": "color",
+      "$description": "Surface level 3: Input field backgrounds, notification banner tint"
+    },
+    "peach-blush": {
+      "$value": "#f7e1d5",
+      "$type": "color",
+      "$description": "Surface level 4: Icon circle containers in feature/audience cards"
+    },
+    "midnight-card": {
+      "$value": "#213680",
+      "$type": "color",
+      "$description": "Surface level 5: Elevated card on deep indigo panels"
+    },
+    "deep-indigo-panel": {
+      "$value": "#0e2575",
+      "$type": "color",
+      "$description": "Surface level 6: Full-bleed dark feature section background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://metamusic.ca",
+      "siteName": "MetaMusic",
+      "extractedAt": "2026-06-03T20:40:39.860Z",
+      "variant": "extended"
+    }
+  }
+}

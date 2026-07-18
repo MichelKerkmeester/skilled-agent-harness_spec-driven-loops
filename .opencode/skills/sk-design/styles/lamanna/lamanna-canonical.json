@@ -1,0 +1,1143 @@
+{
+  "source": "https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799",
+  "uuid": "057d7c66-76b7-4272-849c-4058543e6799",
+  "name": "Lamanna",
+  "northStar": "Neon circus tent on a Naples sidewalk",
+  "capturedAt": "2026-07-18T08:18:12.820Z",
+  "meta": {
+    "url": "https://lamannabakery.com",
+    "siteName": "Lamanna",
+    "extractedAt": "2026-06-03T17:40:16.304Z",
+    "durationMs": 38256,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 478,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Right Grotesk Spatial (or Bowlby One SC) for all display headlines at 36px+ — this is the brand's voice, not a suggestion",
+      "Set display headlines to line-height 0.89 so type stacks into dense solid blocks rather than airy typography",
+      "Fill sections with solid color (anger orange, blush peach, sun yellow) edge-to-edge — never use max-width containers or card padding",
+      "Use Royal Blue (#1573dd) only as a 1-2px outlined border on links and icons — never as a filled background",
+      "Apply 3D drop-shadow to display headlines using a solid offset (#ff4100 shadow on #ffc700 text), never with blur",
+      "Add zigzag and starburst decorative SVGs as visual punctuation in every section",
+      "Let product photography bleed to the viewport edge with no radius, no border, no shadow"
+    ],
+    "donts": [],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff4100",
+        "name": "Anger Orange",
+        "role": "Primary brand canvas and surface fill — hero backgrounds, section dividers, and headline text. The entire site is painted in this color; restraint is not the goal",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffc700",
+        "name": "Sun Yellow",
+        "role": "Display type, starburst badges, and decorative graphic fills. Sits on top of orange sections for maximum contrast and excitement",
+        "group": "brand"
+      },
+      {
+        "hex": "#1573dd",
+        "name": "Royal Blue",
+        "role": "Outlined link and icon border color — used as a chromatic accent stroke for interactive elements and decorative icon outlines against the orange field",
+        "group": "accent"
+      },
+      {
+        "hex": "#292a2c",
+        "name": "Charcoal",
+        "role": "Primary text and structural border color. Near-black but slightly warm — softer than pure black, used for body copy, dividers, and image borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Button borders, link text, and SVG fills. Reserved for the sharpest contrast moments where pure black is needed over lighter surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdbeba",
+        "name": "Blush Peach",
+        "role": "Soft secondary surface — pastel section background that breaks the orange dominance and introduces a calmer band for content",
+        "group": "accent"
+      },
+      {
+        "hex": "#fee3c1",
+        "name": "Cream",
+        "role": "Softest surface tint and decorative shape fill in pink sections. Functions as a quiet third surface level above blush",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6e653",
+        "name": "Lemon Cream",
+        "role": "Secondary yellow used in decorative shapes and softer accent fills where pure sun-yellow would be too aggressive",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container. The page is a stack of horizontal color bands — each section fills the viewport width and is delineated by hard chromatic transitions rather than margins or borders. Hero sections are center-stacked: large display headline above a full-bleed product photo. Product showcases use a 3-column grid of starburst badges on a pink section. Navigation is a fixed top bar with left/center/right items. No sidebar, no nested containers, no card padding — every element touches the viewport edge. The overall rhythm is: orange band → orange-with-product → pink band → orange band, repeating.",
+    "imagery": "Photography is the product hero — large, raw, uncropped food photography (pizza slices, donuts, gelato) presented edge-to-edge with no rounded corners, no shadow, and no frame. Images bleed into and out of the orange canvas as if torn from a magazine. Decorative graphic elements (zigzag lines, pointing hands, starburst shapes) are flat SVG illustrations in sun-yellow and charcoal, used as energetic punctuation throughout. No lifestyle photography, no dark moody shots — everything is high-saturation, high-energy, and shot or rendered against clean backgrounds. Icons are minimal and outlined, primarily in Royal Blue.",
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "buttons": "0px",
+        "starbursts": "0px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "60-100px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ff4100",
+        "name": "Anger Orange Canvas",
+        "level": 1,
+        "purpose": "Primary full-bleed page background and hero fill"
+      },
+      {
+        "hex": "#fdbeba",
+        "name": "Blush Peach Band",
+        "level": 2,
+        "purpose": "Secondary section surface that breaks orange dominance"
+      },
+      {
+        "hex": "#fee3c1",
+        "name": "Cream Accent",
+        "level": 3,
+        "purpose": "Softest decorative shape fill inside pink sections"
+      }
+    ],
+    "northStar": "Neon circus tent on a Naples sidewalk",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1,
+        "letterSpacing": -0.27
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 0.89,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 0.89,
+        "letterSpacing": -0.49
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Section",
+        "role": "Opening visual statement that defines the brand canvas",
+        "description": "Anger Orange (#ff4100) background filling the entire viewport edge-to-edge with no max-width constraint. Centered logo (#292a2c) at top. Massive rightgrotesk display headline at 54px, line-height 0.89, sun-yellow (#ffc700) with -0.49px letter-spacing, breaking across full width. Decorative zigzag SVGs in #ffc700 flank the layout. A oversized product photo (pizza slice) is layered in front, sharp-edged, no radius, no shadow."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "Transparent or orange-fill bar at top, full-bleed. Left: \\\"SHOP MERCH\\\" in rightgrotesk 18px sun-yellow with a small circular icon, underlined. Center: LAMANNA'S logo mark (charcoal). Right: \\\"ORDER ONLINE\\\" in rightgrotesk 18px sun-yellow with Royal Blue (#1573dd) circular icon outline. Zero radius, zero shadow, no hover state subtlety."
+      },
+      {
+        "name": "Outlined Link Button",
+        "role": "Primary interactive text link with visible action border",
+        "description": "Royal Blue (#1573dd) border, 1-2px stroke, no background fill, no radius. Text in rightgrotesk 18px or obviously-condensed 32px in charcoal or black. The chromatic border is the only differentiator — no filled background variant exists. Padding roughly 6px 15px."
+      },
+      {
+        "name": "Starburst Product Badge",
+        "role": "Featured product spotlight with energetic visual frame",
+        "description": "Sun-yellow (#ffc700) multi-pointed star/sunburst SVG shape, zero radius on its outer points, containing a product photo centered. Sits on a blush peach (#fdbeba) section. Below: product name in rightgrotesk 18-24px charcoal. These badges are the system's primary product-card pattern — no rectangles, no shadows, just geometric sun shapes."
+      },
+      {
+        "name": "3D Drop-Shadow Headline",
+        "role": "Playful typographic statement with built-in depth",
+        "description": "Right-grotesk display text in sun-yellow with a hard-edged, solid anger-orange (#ff4100) drop-shadow offset 4-6px right and down, no blur. The \\\"Toro\\\" and \\\"The Hall of Fame\\\" headlines use this treatment — it creates dimensional type without using actual CSS box-shadow blur."
+      },
+      {
+        "name": "Section Color Band",
+        "role": "Full-width section divider",
+        "description": "Hard color change across the full viewport — from anger-orange to blush-peach, or blush-peach to sun-yellow — with no border, no gradient, no margin transition. Sections are demarcated by chromatic contrast, not whitespace."
+      },
+      {
+        "name": "Zigzag Decorative Element",
+        "role": "Brand-signature graphic accent",
+        "description": "Hand-drawn or geometric zigzag lines in sun-yellow (#ffc700), 2-3px stroke, no fill, placed at section edges as visual punctuation. Reinforces the circus-tent/playful energy. Zero radius."
+      },
+      {
+        "name": "Pointing Hand Graphic",
+        "role": "Directional call-to-action decoration",
+        "description": "Small cartoon-style hand (in #ffc700 or charcoal) pointing toward content, used on the Hall of Fame section to direct the eye. Part of the decorative system, not a real UI element."
+      },
+      {
+        "name": "Product Photo Tile",
+        "role": "Full-bleed product imagery",
+        "description": "Product photography (pizza, donuts, gelato) presented as raw, uncropped, edge-touching images with no border-radius and no shadow. The product IS the card — no chrome, no padding frame, no label box around the image."
+      },
+      {
+        "name": "Product Label Caption",
+        "role": "Short product name under a starburst badge",
+        "description": "Two-line product name in rightgrotesk 18px charcoal, center-aligned, sitting directly below a starburst badge with ~20px vertical gap. No background, no border, no chrome."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identification at page center",
+        "description": "LAMANNA'S wordmark in a condensed/extended bold face (nimbus-sans-extended-bold) with -1.17px letter-spacing, in charcoal (#292a2c). Centered, compact, acts as the visual anchor of the navigation bar."
+      },
+      {
+        "name": "Header Strip",
+        "role": "Promotional or section intro band",
+        "description": "Full-bleed anger-orange band containing large display text and a centered product image. Functions as a transitional hero between major content sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading typeface. Ultra-wide, compressed-black sans with near-zero leading (0.89) that makes headlines read as solid slabs. This is the signature voice — every page must use it for its loudest statements.",
+        "sizes": "18px, 24px, 30px, 36px, 54px",
+        "family": "rightgrotesk-spatialblack-webfont",
+        "weight": "400",
+        "lineHeight": "0.89-1.00",
+        "substitute": "Bowlby One SC or Tungsten Bold",
+        "letterSpacing": "-0.0200em at 18px (-0.36px), -0.0110em at 24px (-0.26px), -0.0090em at 30px+ (-0.27px at 30, -0.32px at 36, -0.49px at 54)"
+      },
+      {
+        "role": "Secondary body emphasis type. Heavy negative tracking at 23px gives a chunky condensed feel for subheadings or emphasized inline copy.",
+        "sizes": "23px",
+        "family": "nimbus-sans-extended-bold",
+        "weight": "400",
+        "lineHeight": "1.13",
+        "substitute": "Helvetica Inserat or Compacta Bold",
+        "letterSpacing": "-0.0510em (-1.17px)"
+      },
+      {
+        "role": "Extended sans for body and subheading roles where rightgrotesk would be too heavy. Tight 0.89 leading on the 36px size is an intentional match to the display voice.",
+        "sizes": "21px, 36px",
+        "family": "nimbus-sans-extended-regular",
+        "weight": "400",
+        "lineHeight": "0.89-1.48",
+        "substitute": "Helvetica Neue Extended or Roboto Condensed"
+      },
+      {
+        "role": "Readable body and hero paragraph text. At 1.67 leading on 22px, it's the quiet voice for longer passages; at 1.00 on 18px, it acts as a dense label.",
+        "sizes": "18px, 22px",
+        "family": "Open Sans",
+        "weight": "400",
+        "lineHeight": "1.00-1.67",
+        "substitute": "Open Sans (direct)"
+      },
+      {
+        "role": "Link and CTA typeface. Condensed semibold for narrow, punchy action labels.",
+        "sizes": "32px",
+        "family": "obviously-condensed-semibold",
+        "weight": "400",
+        "lineHeight": "1.16",
+        "substitute": "Bebas Neue or Oswald Semibold"
+      }
+    ],
+    "description": "Lamanna's is a maximalist Italian-bakery visual system built on screaming color confidence: a saturated orange-red canvas, sunshine-yellow display type, and a blush-pink secondary surface that act as a three-band color rhythm across the page. Type is the loudest voice — an ultra-wide, squished-black display face (Right Grotesk Spatial) set at near-zero line-height, so headlines read as massive solid blocks rather than airy typographic statements. Layout is full-bleed, edge-to-edge, with no max-width containment; sections are separated by hard color changes rather than whitespace. Decorative energy (zigzags, pointing hands, starburst badges) is integral to the brand — the system expects graphical accents everywhere rather than clean minimalism.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "Create an Outlined Primary Action: Transparent background, #1573dd border and text, 9999px radius, compact pill padding. Use it for the main CTA instead of a filled button."
+      }
+    ],
+    "[object Object]": "similar",
+    "elevationPhilosophy": "No elevation is used. The design system relies on hard color changes, full-bleed color bands, and offset solid-color type shadows instead of box-shadow blur. Depth is created by chromatic contrast, not by floating elements above surfaces."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#292a2c",
+          "oklch": {
+            "c": 0.003912727543498919,
+            "h": 264.5039439516218,
+            "l": 0.28477360399949125
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "body",
+            "heading",
+            "badge",
+            "list"
+          ],
+          "frequency": 1710,
+          "confidence": 1,
+          "prominence": 171090654.81375736,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 5,
+            "hero/color": 2,
+            "list/color": 6,
+            "badge/color": 4,
+            "image/color": 26,
+            "other/color": 294,
+            "heading/color": 3,
+            "nav/borderColor": 24,
+            "body/borderColor": 20,
+            "hero/borderColor": 8,
+            "list/borderColor": 24,
+            "badge/borderColor": 12,
+            "image/borderColor": 104,
+            "other/borderColor": 1160,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ff4100",
+          "oklch": {
+            "c": 0.23212743684315532,
+            "h": 34.69335734414892,
+            "l": 0.6567634039808853
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "badge",
+            "heading"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 115754844.64305091,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 17,
+            "link/color": 2,
+            "other/fill": 28,
+            "heading/color": 1,
+            "body/borderColor": 68,
+            "link/borderColor": 8,
+            "badge/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffc700",
+          "oklch": {
+            "c": 0.1748780934673829,
+            "h": 88.00838414468697,
+            "l": 0.8555470228772301
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "body",
+            "badge"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 7835550.399166534,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 1,
+            "link/color": 2,
+            "other/fill": 19,
+            "heading/color": 1,
+            "nav/borderColor": 6,
+            "body/borderColor": 4,
+            "link/borderColor": 8,
+            "heading/borderColor": 4,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#fdbeba",
+          "oklch": {
+            "c": 0.07326388629960627,
+            "h": 22.84911822746066,
+            "l": 0.8576755316429321
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4848185.862124812,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#1573dd",
+          "oklch": {
+            "c": 0.18136008170595674,
+            "h": 255.91129365388588,
+            "l": 0.5649296200045382
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 1155660.918876563,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "icon/color": 6,
+            "link/color": 9,
+            "other/color": 2,
+            "nav/borderColor": 8,
+            "icon/borderColor": 24,
+            "link/borderColor": 36,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 66648.67942073353,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 15,
+            "other/color": 1,
+            "button/color": 2,
+            "nav/borderColor": 2,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#fee3c1",
+          "oklch": {
+            "c": 0.05356018603020817,
+            "h": 73.45187340354852,
+            "l": 0.9293887370075935
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 22101.293816945927,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11
+          }
+        },
+        {
+          "hex": "#f6e653",
+          "oklch": {
+            "c": 0.16275688819820247,
+            "h": 103.06194695951896,
+            "l": 0.9120520089370361
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6150,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09170186457560868,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.97,
+          "background": "#fee3c1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#f6e653",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#ffc700",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.25,
+          "background": "#fdbeba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.61,
+          "background": "#fee3c1",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.19,
+          "background": "#f6e653",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.18,
+          "background": "#ffc700",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#fdbeba",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.01,
+          "background": "#ff4100",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.11,
+          "background": "#ff4100",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.96,
+          "background": "#ffc700",
+          "foreground": "#1573dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.93,
+          "background": "#fdbeba",
+          "foreground": "#1573dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.23,
+          "background": "#ffc700",
+          "foreground": "#ff4100"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.21,
+          "background": "#fdbeba",
+          "foreground": "#ff4100"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.33,
+          "background": "#ff4100",
+          "foreground": "#1573dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.01,
+          "background": "#fdbeba",
+          "foreground": "#ffc700"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "nav",
+            "hero"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingRight|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 105,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 186,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 332,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "nimbus-sans-extended-regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "rightgrotesk-spatialblack-webfont",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "nimbus-sans-extended-bold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "obviously-condensed-semibold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "badge",
+            "link",
+            "list"
+          ],
+          "frequency": 290,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "nimbus-sans-extended-regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.48,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "nimbus-sans-extended-bold",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.051,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "obviously-condensed-semibold",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "nimbus-sans-extended-regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.89,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.93,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "rightgrotesk-spatialblack-webfont",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1799fa91-36ca-4296-afac-e50b69dfcb83.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7a735d73-6b18-445a-9fe9-538e7644602f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lamanna design system\",\"item\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799#style-reference\",\"name\":\"Lamanna design system reference\",\"headline\":\"Lamanna design system | Refero Styles\",\"description\":\"Explore Lamanna's light E-commerce design system: Anger Orange #ff4100, Sun Yellow #ffc700 colors, rightgrotesk-spatialblack-webfont,...\",\"url\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799\",\"mainEntityOfPage\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lamanna\",\"url\":\"https://lamannabakery.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/057d7c66-76b7-4272-849c-4058543e6799#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7a735d73-6b18-445a-9fe9-538e7644602f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7a735d73-6b18-445a-9fe9-538e7644602f.jpg\",\"caption\":\"Screenshot of Lamanna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7a735d73-6b18-445a-9fe9-538e7644602f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lamanna design system\",\"Lamanna website design\",\"Lamanna colors\",\"Lamanna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Anger Orange\",\"Sun Yellow\",\"Royal Blue\",\"Charcoal\",\"rightgrotesk-spatialblack-webfont\",\"nimbus-sans-extended-bold\",\"nimbus-sans-extended-regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lamanna design system\"},{\"@type\":\"Thing\",\"name\":\"Lamanna website design\"},{\"@type\":\"Thing\",\"name\":\"Lamanna colors\"},{\"@type\":\"Thing\",\"name\":\"Lamanna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T04:00:48.309Z\",\"dateModified\":\"2026-04-30T04:00:48.309Z\"}]}"
+}

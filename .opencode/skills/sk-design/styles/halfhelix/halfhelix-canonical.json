@@ -1,0 +1,1522 @@
+{
+  "source": "https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a",
+  "uuid": "36fb90f7-3547-4dfd-a34e-592aa140078a",
+  "name": "Halfhelix",
+  "northStar": "Gallery wall on white marble — restrained, text-led, photographic",
+  "capturedAt": "2026-07-18T09:05:12.937Z",
+  "meta": {
+    "url": "https://www.halfhelix.com",
+    "siteName": "Halfhelix",
+    "extractedAt": "2026-06-03T20:49:44.145Z",
+    "durationMs": 58151,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1045,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Suisse Int'l at weight 400 exclusively — never introduce bold, semibold, or italic variants to create hierarchy; use size and tracking instead",
+      "Set display headlines at 40–48px with line-height 1.0 and letter-spacing -0.04em",
+      "Anchor every interactive element with a 1px Ink Black underline; do not add colored fills to indicate clickability",
+      "Keep corner radii at 3px for all rectangles; use 1440px only for full-pill elements like round tags",
+      "Let photography fill the viewport edge-to-edge with no border, shadow, or radius",
+      "Maintain an achromatic palette: black, white, and the five-step gray scale (#262626 → #dbdbdb) for all UI surfaces",
+      "Use the Mist (#ededed) fill for ghost elements that need subtle separation from white without introducing contrast"
+    ],
+    "donts": [
+      "Do not add box-shadows to cards, buttons, or images — the system is deliberately shadowless",
+      "Do not introduce additional accent colors beyond Signal Blue (#2749ff), and use it sparingly",
+      "Do not use bold or semibold font weights — weight 400 across the entire typographic system is the signature",
+      "Do not add colored fill backgrounds to buttons; the system uses ghost (Mist fill) and text-link patterns only",
+      "Do not round corners beyond 3px on rectangles — sharp or near-sharp geometry defines the brand",
+      "Do not apply gradients, glows, or decorative color washes to surfaces or text",
+      "Do not increase line-height above 1.2 for body text or above 1.1 for headings — tight leading is a core visual identifier"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, inverse text on dark blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, primary borders, hairline rules, icon strokes, logo",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Carbon",
+        "role": "Dark surface blocks, inverse badges, input fields on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#484a4c",
+        "name": "Graphite",
+        "role": "Footer borders, subtle dark dividers, secondary dark UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#686c6d",
+        "name": "Steel",
+        "role": "Secondary body text, muted captions, low-emphasis borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a5a7a8",
+        "name": "Fog",
+        "role": "Disabled borders, lowest-emphasis outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdbdb",
+        "name": "Ash",
+        "role": "Light dividers, icon borders, subtle field separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Mist",
+        "role": "Soft surface wash behind cards and tags, ghost link fill, badge background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke",
+        "role": "Mid-tone surface for secondary panels, muted button fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2749ff",
+        "name": "Signal Blue",
+        "role": "Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Editorial, magazine-inspired layout with three core patterns. The hero is a full-viewport image with headline overlaid in the bottom-left corner, no gradient or scrim. Below, a three-column grid presents portfolio work as equally-weighted image tiles with overlaid brand names — the grid is uniform with no varying tile sizes. The services section uses a two-column asymmetric split: left column holds the vertically stacked display words and section label, right column holds a single paragraph of body copy and a small image collage. Vertical rhythm is consistent at roughly 60px between sections. Navigation is a single minimal row at the top — no sticky behavior visible, no sidebar, no mega-menu. Content is centered within a max-width of 1440px but frequently breaks to full-bleed for hero and image sections.",
+    "imagery": "Full-bleed editorial photography dominates the visual language. Imagery is high-quality lifestyle and product photography: extreme close-ups of watches on skin, hands holding objects, furniture details, fashion in nature. All images are sharp, high-resolution, and unframed — they bleed to the viewport edges with no border, radius, or padding. The photographic style is warm-toned, naturally lit, and intimate. There is no illustration, no abstract graphics, and no iconography beyond simple line-based UI icons. The images function as the primary content and emotional carrier; UI is purely structural.",
+    "similar": [
+      {
+        "why": "Same editorial gallery approach — massive type, achromatic palette, full-bleed photography, and zero reliance on colored UI to carry the brand",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared Swiss-typographic discipline with tight tracking, single-weight headlines, and minimal interface chrome that lets imagery lead",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Agency sites that treat the portfolio as a printed magazine — high-contrast photography, stacked display words, and ghost-text link patterns",
+        "business": "Hugo & Marie"
+      },
+      {
+        "why": "Achromatic luxury aesthetic with one neutral grotesque, 3px radii, and an editorial rhythm of image-then-statement",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "3px",
+        "pills": "1440px",
+        "badges": "3px",
+        "inputs": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "60px",
+      "cardPadding": "15px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, default card surface"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Mist Wash",
+        "level": 2,
+        "purpose": "Subtle elevated card, badge pill, ghost link fill"
+      },
+      {
+        "hex": "#dbdbdb",
+        "name": "Ash Line",
+        "level": 3,
+        "purpose": "Hairline dividers, low-contrast separators"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke Panel",
+        "level": 4,
+        "purpose": "Mid-tone overlay, muted secondary surface"
+      },
+      {
+        "hex": "#262626",
+        "name": "Carbon Block",
+        "level": 5,
+        "purpose": "Dark inverse surface for featured blocks and badges"
+      }
+    ],
+    "northStar": "Gallery wall on white marble — restrained, text-led, photographic",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body-md",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Minimal Top Navigation",
+        "role": "Primary site navigation",
+        "description": "White background, 0 border. Logo flush-left in Ink Black at 14px. Centered nav links (Work, Services, Insights, Partners, Contact) at 14px weight 400 Ink Black with tight 5–10px row gaps. Right-aligned utility icons (bell, chat) at 16px. No background fill, no border, no shadow. Padding 12px vertical."
+      },
+      {
+        "name": "Underline Text Link",
+        "role": "Inline navigation and content links",
+        "description": "Ink Black 14–18px, 1px solid Ink Black bottom border applied directly to the text baseline. No background. 3px corner radius does not apply. The underline is the entire visual treatment — no color shift on hover, no fill change."
+      },
+      {
+        "name": "Ghost Link Pill",
+        "role": "Secondary call-to-action",
+        "description": "Mist (#ededed) background fill, 3px radius, 10px vertical / 15px horizontal padding, 14px Suisse Int'l weight 400 Ink Black. No border. Appears as a subdued alternative to text links — used for actions like 'About Our Services' and search affordances."
+      },
+      {
+        "name": "Full-Bleed Hero Frame",
+        "role": "Opening viewport",
+        "description": "Edge-to-edge photographic background covering the entire viewport. Headline overlays bottom-left in white at 40–48px display weight, tracking -0.04em, line-height 1.0. Small brand tag in 12px white above the headline. No gradient overlay — the image provides its own contrast."
+      },
+      {
+        "name": "Project Card (Editorial Grid)",
+        "role": "Portfolio tile",
+        "description": "No visible card chrome. Tall image at native aspect (roughly 3:4) with no border and no radius. Brand name overlaid top-left in white at 18–24px, weight 400, tracking -0.02em. Caption sits in a 3-column grid below the image at 12–13px secondary text color."
+      },
+      {
+        "name": "Stat Block Row",
+        "role": "Quantitative proof points",
+        "description": "Inline horizontal arrangement. Large number at 24–32px Ink Black weight 400, descriptor at 12–14px Steel (#686c6d). 3px or 5px gap between number and label. No dividers between stat groups, no background."
+      },
+      {
+        "name": "Service Word Stack",
+        "role": "Service taxonomy display",
+        "description": "Vertically stacked words (Strategy / Creative / Technology / Marketing) at 40–48px display, weight 400, line-height 1.0, Ink Black, letter-spacing -0.04em. Each word on its own line. Section label 'SERVICES' above in 12px tracking-out or small-caps style. No decoration, no icons — typography alone carries the hierarchy."
+      },
+      {
+        "name": "Stats Inline Annotation",
+        "role": "Supporting data labels",
+        "description": "12–13px text in Steel (#686c6d), 3–5px from the metric value it describes. Used to qualify portfolio numbers and service descriptions."
+      },
+      {
+        "name": "Cookie Consent Panel",
+        "role": "Privacy dialog",
+        "description": "Fixed bottom-right, semi-transparent dark overlay (~rgba(0,0,0,0.55)) with white text and 3px radius. Three buttons: 'Accept All' (Ink Black fill, white text), 'Accept Selection' (outlined white border, white text), 'Reject All' (outlined white border, white text). 10px 15px button padding, 3px radius."
+      },
+      {
+        "name": "Dark Featured Block",
+        "role": "Highlighted partner callout",
+        "description": "Carbon (#262626) background, white text. Small green certification badge or status icon top-left at 12px. Body copy in 14px white. This is the only block where the palette inverts — used sparingly for high-priority partner or partner-program content."
+      },
+      {
+        "name": "Search Field (Header)",
+        "role": "Quick content search",
+        "description": "No visible border. White background, 14px placeholder text in Steel. Magnifying-glass icon at 14px Ink Black. Inline with the navigation row, roughly 280px wide. 3px corner radius only if a background fill is applied."
+      },
+      {
+        "name": "Notification Badge",
+        "role": "Status indicator",
+        "description": "Mist (#ededed) or Carbon (#262626) background, 12px Ink Black or white text, 3px radius, 3–5px vertical padding. Appears as a small pill adjacent to utility icons."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input",
+        "description": "No border. 1px bottom border in Ash (#dbdbdb) or no rule at all. 14px Ink Black text, 1.2 line-height. Placeholder in Steel. 3px radius if the field uses a fill. Generous internal padding (10–15px vertical)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Suisse Intl — detected in extracted data but not described by AI",
+        "sizes": "12px, 13px, 14px, 16px, 18px, 24px, 32px, 40px, 48px",
+        "family": "Suisse Intl",
+        "weight": "400",
+        "lineHeight": "1, 1.1, 1.2",
+        "letterSpacing": "-0.04, -0.02, -0.01"
+      },
+      {
+        "role": "Sole typeface across every context — navigation, body, display headlines, buttons, badges, inputs. The brand carries a single weight (400) and a single letterform language, creating typographic unity without hierarchy through weight. The tight line-heights (1.00–1.20) and negative tracking across all sizes make text feel architectural rather than comfortable.",
+        "sizes": "",
+        "family": "Suisse Int'l",
+        "weight": "400",
+        "lineHeight": "1.00 (display), 1.10 (headings), 1.20 (body)",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk",
+        "letterSpacing": "-0.04em at 48px display, -0.02em at 24–40px headings, -0.01em at 14–18px body"
+      }
+    ],
+    "description": "Domaine operates as a luxury editorial canvas: near-total achromatic palette, one neutral grotesque typeface at weight 400 only, and display-sized headlines that dominate the viewport. The interface recedes so that full-bleed lifestyle and product photography can carry the brand — every UI element is a quiet frame for the image, never a competing surface. Typography is the primary interface: massive stacked words ('Strategy / Creative / Technology / Marketing'), tight tracking, and line-heights approaching 1.0 create a magazine-spread density. Components are minimal and text-driven — ghost links, thin underline rules, 3px corners, no shadows, no filled color buttons. The single chromatic accent (#2749ff) appears so rarely it functions more as a hyperlink convention than a brand color.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Halfhelix design system\",\"item\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#style-reference\",\"name\":\"Halfhelix design system reference\",\"headline\":\"Halfhelix design system | Refero Styles\",\"description\":\"Explore Halfhelix's light Agency design system: Pure White #ffffff, Ink Black #000000 colors, Suisse Intl, Suisse Int'l typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Halfhelix\",\"url\":\"https://www.halfhelix.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"caption\":\"Screenshot of Halfhelix\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Halfhelix design system\",\"Halfhelix website design\",\"Halfhelix colors\",\"Halfhelix typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Ink Black\",\"Carbon\",\"Graphite\",\"Suisse Intl\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Halfhelix design system\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix website design\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix colors\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:56:31.229Z\",\"dateModified\":\"2026-04-30T02:56:31.229Z\"}]}19:T613,## Quick Color Reference\n- text: #000000 (primary), #686c6d (secondary)\n- background: #ffffff (canvas), #ededed (soft surface), #262626 (dark block)\n- border: #000000 (strong), #dbdbdb (light), #ededed (subtle)\n- accent: #2749ff (rare link/hover accent only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Full-bleed hero section**: Viewport-height photographic background with no overlay. Headline at 48px Suisse Int'l weight 400, white, letter-spacing -1.92px, line-height 1.0, positioned bottom-left with 40px padding. Small 12px white tag above headline.\n\n2. **Service word stack**: Left column. Small 12px 'SERVICES' label in #686c6d above. Then four words stacked vertically: 'Strategy', 'Creative', 'Technology', 'Marketing' — each at 48px Suisse Int'l weight 400, #000000, line-height 1.0, letter-spacing -1.92px. No decoration between words.\n\n3. **Project portfolio card**: Tall image (3:4 aspect) filling its grid cell, no border, no radius. Brand name overlaid top-left in white at 18px Suisse Int'l weight 400, letter-spacing -0.36px. Caption row below image: 13px #686c6d text.\n\n4. **Ghost link button**: 14px Suisse Int'l weight 400, #000000 text, #ededed background fill, 3px corner radius, 10px vertical and 15px horizontal padding. No border. Used for secondary navigation like 'About Our Services'.\n\n5. **Stat annotation row**: Inline group — large number at 24px #000000, then 3px gap, then descriptor at 13px #686c6d. Example: '750+ Shopify sites launched'. No dividers, no background, no card wrapping."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally shadowless. All separation between elements is achieved through typographic hierarchy, 1px borders in Ash or Ink Black, and subtle Mist (#ededed) surface fills — never through drop shadows, blur, or stacking effects. This creates the flat editorial-gallery feel where photographs appear printed onto the page rather than floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other",
+            "input",
+            "body",
+            "link",
+            "heading",
+            "card",
+            "hero",
+            "badge",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 3250,
+          "confidence": 1,
+          "prominence": 155813284.0129163,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 54,
+            "nav/color": 6,
+            "body/color": 150,
+            "card/color": 41,
+            "icon/color": 8,
+            "link/color": 134,
+            "list/color": 10,
+            "other/fill": 68,
+            "badge/color": 44,
+            "image/color": 67,
+            "input/color": 1,
+            "other/color": 147,
+            "button/color": 6,
+            "other/stroke": 1,
+            "heading/color": 14,
+            "nav/borderColor": 24,
+            "body/borderColor": 600,
+            "card/borderColor": 164,
+            "icon/borderColor": 32,
+            "link/borderColor": 528,
+            "list/borderColor": 31,
+            "badge/borderColor": 176,
+            "image/borderColor": 268,
+            "input/borderColor": 4,
+            "other/borderColor": 587,
+            "button/borderColor": 24,
+            "heading/borderColor": 56,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "input",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "card",
+            "image",
+            "hero",
+            "badge",
+            "heading",
+            "footer"
+          ],
+          "frequency": 1147,
+          "confidence": 1,
+          "prominence": 22844987.928567227,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 45,
+            "card/color": 8,
+            "hero/color": 1,
+            "icon/color": 13,
+            "link/color": 27,
+            "list/color": 4,
+            "other/fill": 11,
+            "badge/color": 1,
+            "image/color": 12,
+            "input/color": 5,
+            "other/color": 98,
+            "button/color": 13,
+            "footer/color": 1,
+            "other/stroke": 6,
+            "heading/color": 3,
+            "body/borderColor": 180,
+            "card/borderColor": 32,
+            "hero/borderColor": 4,
+            "icon/borderColor": 52,
+            "link/borderColor": 104,
+            "list/borderColor": 16,
+            "badge/borderColor": 4,
+            "image/borderColor": 48,
+            "input/borderColor": 4,
+            "other/borderColor": 387,
+            "button/borderColor": 48,
+            "footer/borderColor": 3,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#484a4c",
+          "oklch": {
+            "c": 0.004253454874699157,
+            "h": 247.93042284498136,
+            "l": 0.4079588304269485
+          },
+          "contexts": [
+            "input",
+            "other",
+            "link",
+            "footer"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 5265420.842859199,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 4,
+            "other/borderColor": 5,
+            "footer/borderColor": 1,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ededed",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9461052851327489
+          },
+          "contexts": [
+            "input",
+            "nav",
+            "link",
+            "badge",
+            "card",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 145,
+          "confidence": 1,
+          "prominence": 1905224.420033057,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 3,
+            "link/backgroundColor": 97,
+            "badge/backgroundColor": 36,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 681253.8235586892,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#dbdbdb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8914313457035393
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link",
+            "list"
+          ],
+          "frequency": 119,
+          "confidence": 1,
+          "prominence": 314284.2427719744,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "icon/color": 3,
+            "other/color": 4,
+            "body/borderColor": 48,
+            "icon/borderColor": 12,
+            "link/borderColor": 8,
+            "list/borderColor": 9,
+            "other/borderColor": 17,
+            "body/backgroundColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26965043246002673
+          },
+          "contexts": [
+            "input",
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 93669.02530739865,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 8,
+            "badge/backgroundColor": 1,
+            "input/backgroundColor": 4,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#686c6d",
+          "oklch": {
+            "c": 0.005186750642392195,
+            "h": 214.34431513022594,
+            "l": 0.5281222915016784
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 340,
+          "confidence": 1,
+          "prominence": 78297.22150749895,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 50,
+            "icon/color": 9,
+            "other/color": 9,
+            "body/borderColor": 200,
+            "icon/borderColor": 36,
+            "other/borderColor": 36
+          }
+        },
+        {
+          "hex": "#a5a7a8",
+          "oklch": {
+            "c": 0.002712403154090372,
+            "h": 228.79912664569994,
+            "l": 0.7270509206979928
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3715.0849518197797,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2749ff",
+          "oklch": {
+            "c": 0.266989700947586,
+            "h": 266.65094135492893,
+            "l": 0.5208587669077708
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 126,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0014035971466087249,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#ededed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#dbdbdb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#262626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.93,
+          "background": "#262626",
+          "foreground": "#ededed"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.93,
+          "background": "#262626",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.9,
+          "background": "#484a4c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#a5a7a8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#484a4c",
+          "foreground": "#ededed"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.43,
+          "background": "#484a4c",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.26,
+          "background": "#a5a7a8",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.03,
+          "background": "#2749ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#ffffff",
+          "foreground": "#686c6d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.15,
+          "background": "#2749ff",
+          "foreground": "#ededed"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#ededed",
+          "foreground": "#686c6d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#2749ff",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#000000",
+          "foreground": "#686c6d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#dbdbdb",
+          "foreground": "#686c6d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "nav",
+            "body",
+            "link",
+            "image",
+            "card",
+            "badge"
+          ],
+          "frequency": 225
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "card",
+            "body",
+            "link",
+            "badge",
+            "heading"
+          ],
+          "frequency": 294,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body",
+            "link",
+            "badge"
+          ],
+          "frequency": 256,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "link",
+            "heading",
+            "input"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body",
+            "marginBottom|body",
+            "marginBottom|link",
+            "marginBottom|heading",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "body",
+            "badge",
+            "card"
+          ],
+          "frequency": 419,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "input",
+            "button",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "button",
+            "other",
+            "input",
+            "link",
+            "card",
+            "body",
+            "heading"
+          ],
+          "frequency": 203,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingLeft|input",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "marginBottom|heading",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "marginBottom|link",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 98,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "hero",
+            "footer",
+            "input"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|footer",
+            "paddingTop|input",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 105,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse Intl",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 947,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "card",
+            "input"
+          ],
+          "frequency": 203,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body",
+            "card",
+            "heading",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 93,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "input",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "button",
+            "card",
+            "image",
+            "hero",
+            "badge",
+            "footer"
+          ],
+          "frequency": 584,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d1fb67ce-4dd5-4e57-ab5a-6413e9f696e1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Halfhelix design system\",\"item\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#style-reference\",\"name\":\"Halfhelix design system reference\",\"headline\":\"Halfhelix design system | Refero Styles\",\"description\":\"Explore Halfhelix's light Agency design system: Pure White #ffffff, Ink Black #000000 colors, Suisse Intl, Suisse Int'l typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Halfhelix\",\"url\":\"https://www.halfhelix.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/36fb90f7-3547-4dfd-a34e-592aa140078a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"caption\":\"Screenshot of Halfhelix\"},\"image\":\"https://images.refero.design/styles/refero.design/image/28be6ddb-1afc-4cd2-a130-3c2cdeac1471.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Halfhelix design system\",\"Halfhelix website design\",\"Halfhelix colors\",\"Halfhelix typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Ink Black\",\"Carbon\",\"Graphite\",\"Suisse Intl\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Halfhelix design system\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix website design\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix colors\"},{\"@type\":\"Thing\",\"name\":\"Halfhelix typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:56:31.229Z\",\"dateModified\":\"2026-04-30T02:56:31.229Z\"}]}19:T613,## Quick Color Reference\n- text: #000000 (primary), #686c6d (secondary)\n- background: #ffffff (canvas), #ededed (soft surface), #262626 (dark block)\n- border: #000000 (strong), #dbdbdb (light), #ededed (subtle)\n- accent: #2749ff (rare link/hover accent only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Full-bleed hero section**: Viewport-height photographic background with no overlay. Headline at 48px Suisse Int'l weight 400, white, letter-spacing -1.92px, line-height 1.0, positioned bottom-left with 40px padding. Small 12px white tag above headline.\n\n2. **Service word stack**: Left column. Small 12px 'SERVICES' label in #686c6d above. Then four words stacked vertically: 'Strategy', 'Creative', 'Technology', 'Marketing' — each at 48px Suisse Int'l weight 400, #000000, line-height 1.0, letter-spacing -1.92px. No decoration between words.\n\n3. **Project portfolio card**: Tall image (3:4 aspect) filling its grid cell, no border, no radius. Brand name overlaid top-left in white at 18px Suisse Int'l weight 400, letter-spacing -0.36px. Caption row below image: 13px #686c6d text.\n\n4. **Ghost link button**: 14px Suisse Int'l weight 400, #000000 text, #ededed background fill, 3px corner radius, 10px vertical and 15px horizontal padding. No border. Used for secondary navigation like 'About Our Services'.\n\n5. **Stat annotation row**: Inline group — large number at 24px #000000, then 3px gap, then descriptor at 13px #686c6d. Example: '750+ Shopify sites launched'. No dividers, no background, no card wrapping."
+}

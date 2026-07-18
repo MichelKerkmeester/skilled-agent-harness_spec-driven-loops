@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-collective-navy: #0c2764;
+  --color-inkwell: #0f172b;
+  --color-slate-ink: #1d293d;
+  --color-pencil-graphite: #314158;
+  --color-muted-slate: #45556c;
+  --color-distant-mist: #62748e;
+  --color-frost-border: #e2e8f0;
+  --color-silver-whisper: #c3c6cb;
+  --color-paper-white: #ffffff;
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.63;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.25;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -1.5px;
+  --text-display: 72px;
+  --leading-display: 1;
+  --tracking-display: -1.8px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 48-80px;
+  --card-padding: 32px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  /* Named Radii */
+  --radius-tags: 12px;
+  --radius-cards: 12px;
+  --radius-badges: 12px;
+  --radius-inputs: 12px;
+  --radius-buttons: 12px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-cloud-mist: #f1f5f9;
+  --surface-card-white: #ffffff;
+  --surface-navy-surface: #0c2764;
+}

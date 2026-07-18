@@ -1,0 +1,1228 @@
+{
+  "source": "https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356",
+  "uuid": "aaca1e02-7b5a-4c03-ac40-454f0d477356",
+  "name": "Ready",
+  "northStar": "violet daylight workspace — a warm off-white page where a single periwinkle accent marks what matters and everything else recedes",
+  "capturedAt": "2026-07-18T09:27:29.605Z",
+  "meta": {
+    "url": "https://ready.so",
+    "siteName": "Ready",
+    "extractedAt": "2026-06-03T19:36:46.768Z",
+    "durationMs": 36330,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 203,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every headline in GT Walsheim 700 at 56-64px with 1.0 line-height",
+      "Apply 0.167em letter-spacing to all GT America text at every size — this tracking is the system's most recognizable choice",
+      "Use 32px border-radius on all cards, image containers, and product mocks",
+      "Apply the single shadow recipe rgba(0,0,0,0.1) 11px 11px 40px to floating product mock cards only",
+      "Keep all body text in #333333 on #ffffff or #f5f3f2",
+      "Use #7366fe exclusively as the chromatic accent — eyebrow labels, active states, icon strokes, link hover",
+      "Space major sections 80-96px apart to maintain the breathing, spacious rhythm"
+    ],
+    "donts": [
+      "Do not introduce additional accent colors — the system is monochromatic plus one violet",
+      "Do not use weight 600 or 800 — the type system uses 300/400/500/700 only",
+      "Do not set body text in GT Walsheim — it is headlines only",
+      "Do not use pure #000000 for text or borders — use #333333 for warmth",
+      "Do not use radii smaller than 8px on cards or images",
+      "Do not apply the radial violet gradient to the marketing page — it belongs only inside product UI mocks",
+      "Do not center-align body paragraphs wider than 640px — the open tracking needs a measure constraint"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary page background, card surfaces inside product mocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f3f2",
+        "name": "Warm Linen",
+        "role": "Subtle warm surface tint, nav borders, gradient fade-out color — gives the page its paper-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c4c3c1",
+        "name": "Linen Stone",
+        "role": "Mid neutral for muted dividers and secondary structural elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ink",
+        "role": "Primary text, dominant border color — near-black, not pure, softer on the eye",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8b8c96",
+        "name": "Fog",
+        "role": "Muted text, placeholder copy, link underlines when unhovered",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d1f4",
+        "name": "Lavender Mist",
+        "role": "Soft highlight wash behind inline highlighted phrases in headlines, pale violet surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7366fe",
+        "name": "Periwinkle",
+        "role": "Sole chromatic accent — eyebrow labels, active states, icon strokes, link hover, accent borders. The one color that earns attention",
+        "group": "brand"
+      },
+      {
+        "hex": "#6c77b0",
+        "name": "Steel Violet",
+        "role": "Secondary violet surface for muted card backgrounds and tonal variety within the violet family",
+        "group": "accent"
+      },
+      {
+        "hex": "#55269c",
+        "name": "Dusk Gradient",
+        "role": "Deepest stop in the product mock gradient (radial fade from #55269c to transparent warm linen) — used only inside product UI mocks, never on the marketing surface",
+        "group": "accent",
+        "gradient": "radial-gradient(circle farthest-side at 50% 100%, rgb(53, 28, 175), rgba(245, 244, 241, 0) 80%)"
+      }
+    ],
+    "layout": "Centered hero with max-width 1200px canvas, eyebrow label + massive GT Walsheim headline + short body paragraph stacked vertically and centered. Product mock cards break out below at full section width, floating with 32px radius and the soft shadow. Sections alternate between centered text blocks and left-aligned section headings with supporting product screenshots, always separated by 80-96px vertical gaps. Nav is a thin 64px top bar with brand wordmark left, user avatars right. The rhythm is: centered quiet text → large floating product visual → repeat. No sidebars, no multi-column layouts on the marketing surface — everything centers or flows left-to-right with generous breathing room.",
+    "imagery": "The site is UI-screenshot driven, not photography-driven. Product mocks show a dark-mode calendar app with gradient event cards, overlapping circular avatar photos, and a small embedded metrics table. Avatars are the only human imagery: tight 24px circular crops, overlapping in stacks, always 4px white-bordered. No lifestyle photography, no illustrations, no decorative graphics — the product UI IS the visual content. Mockups float on the warm linen canvas with the single soft shadow, edge-to-edge within 32px-radius frames, no inner border or chrome.",
+    "similar": [
+      {
+        "why": "Same light spacious marketing canvas with near-black text, one soft accent color, and the habit of letting product UI screenshots carry the visual weight",
+        "business": "Notion"
+      },
+      {
+        "why": "Same generous 24-32px radii, warm off-white backgrounds, and restrained single-accent approach to collaborative tool marketing",
+        "business": "Pitch"
+      },
+      {
+        "why": "Direct calendar-tool neighbor with similar clean light marketing surface and product-mock-driven hero sections",
+        "business": "Cron (Notion Calendar)"
+      },
+      {
+        "why": "Same typographic discipline and tight headline-to-body relationship, though Linear skews dark — the light-mode counterpart aesthetic",
+        "business": "Linear"
+      },
+      {
+        "why": "Same soft, spacious, almost-paper-like background quality with muted accent restraint",
+        "business": "Mem"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "32px",
+        "images": "32px",
+        "avatars": "9999px",
+        "buttons": "8-12px",
+        "productMocks": "32px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "80-96px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Main page background, base canvas"
+      },
+      {
+        "hex": "#f5f3f2",
+        "name": "Warm Linen",
+        "level": 1,
+        "purpose": "Subtle warm wash for nav borders and section transitions"
+      },
+      {
+        "hex": "#d5d1f4",
+        "name": "Lavender Mist",
+        "level": 2,
+        "purpose": "Inline highlight background within headlines, soft accent surface"
+      },
+      {
+        "hex": "#6c77b0",
+        "name": "Steel Violet",
+        "level": 3,
+        "purpose": "Mid-tone violet card surface, tonal step between mist and periwinkle"
+      },
+      {
+        "hex": "#7366fe",
+        "name": "Periwinkle",
+        "level": 4,
+        "purpose": "Saturated accent surface for tags, icon fills, active states"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 11px 11px 40px 0px",
+        "element": "Product mock card / floating UI screenshot"
+      }
+    ],
+    "northStar": "violet daylight workspace — a warm off-white page where a single periwinkle accent marks what matters and everything else recedes",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": 2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 2.3
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 2.7
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 3
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 4
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-lg",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Headline with Highlighted Span",
+        "role": "Primary page and section headline",
+        "description": "GT Walsheim 700 at 64px (page) or 56px (section), 1.0 line-height, #333333 text. One inline span wrapped in #d5d1f4 background with slight padding and 8px radius for the highlighted phrase — the visual signature of the brand."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small caps category label above headlines",
+        "description": "GT America 500 at 12px, uppercase, #7366fe, 0.167em letter-spacing, centered above hero. Sets up the headline with quiet chromatic punctuation."
+      },
+      {
+        "name": "Hero Body Paragraph",
+        "role": "Subheadline / supporting copy",
+        "description": "GT America 300 at 18px, 1.5 line-height, #333333, centered, max-width ~600px. The 0.167em tracking and light weight make it feel open, not dense."
+      },
+      {
+        "name": "Floating Product Mock Card",
+        "role": "Product UI screenshot embedded in marketing sections",
+        "description": "Product screenshot wrapped in white card, 32px border-radius, rgba(0,0,0,0.1) 11px 11px 40px shadow, no border. The card itself is invisible — the screenshot fills it edge to edge. Floating on the warm linen canvas with generous 80px+ margin above."
+      },
+      {
+        "name": "Calendar Event Card (Product UI)",
+        "role": "In-app event detail card",
+        "description": "Dark surface (near-black #1a1721) with radial violet gradient from #55269c, 24px radius, generous padding, white text, avatar stack in upper right with overlapping circular 24px photos. This is where the gradient drama lives — opposite of the quiet marketing surface."
+      },
+      {
+        "name": "Metrics Table",
+        "role": "Data display inside product UI",
+        "description": "GT America 400-500 at 14px, #333333 text on white, 1px #c4c3c1 horizontal row dividers, 16px row padding. Bold first column for metric names, right-aligned numeric values. Minimal, spreadsheet-like."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Sub-page heading below hero",
+        "description": "GT Walsheim 700 at 56px, 1.0 line-height, #333333, left-aligned. The same headline family as the hero but at 56px, signaling section depth."
+      },
+      {
+        "name": "Avatar Stack",
+        "role": "Participant indicator in product UI",
+        "description": "Three to five 24px circular photos with 4px white border, overlapping 8px horizontally. The only photography in the system — small, contained, always circular."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Top-level navigation",
+        "description": "White background, 1px bottom border in #f5f3f2, 64px height, GT America 400 at 14px for links, 0.167em tracking, #333333 default with #7366fe on hover/active. Brand wordmark on left, account avatars on right."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All section and page headlines. Weight 700 at 56-64px with tight 1.0 leading gives a wide, architectural, confident voice. The custom geometric forms (rounded but precise) define the brand's headline personality",
+        "sizes": "56px, 64px",
+        "family": "GT Walsheim",
+        "weight": "700",
+        "lineHeight": "1.0",
+        "substitute": "Inter 700 or Space Grotesk 700",
+        "letterSpacing": "normal (0)"
+      },
+      {
+        "role": "Body, nav, labels, UI controls, everything below the headline. The signature 0.167em tracking applies across all sizes — this is the system's most distinctive typographic choice. Use 300 for body, 400 for UI/default, 500 for emphasized subheadings and nav",
+        "sizes": "12px, 14px, 16px, 18px, 24px",
+        "family": "GT America Standard",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.25 - 1.50",
+        "substitute": "Inter or Söhne",
+        "letterSpacing": "0.167em across all sizes (≈2px at 12px, ≈2.3px at 14px, ≈2.7px at 16px, ≈3px at 18px, ≈4px at 24px)"
+      }
+    ],
+    "description": "Ready is a light, near-monochrome marketing surface where a single periwinkle violet (#7366fe) does all the chromatic work against warm off-white (#f5f3f2) and near-black text (#333333). The hierarchy is built by two contrasting type families: GT Walsheim 700 at 56-64px with 1.0 leading for headlines, and GT America at 300-500 for everything else, marked by a distinctive 0.167em tracking that gives body copy an open, slightly technical feel. Cards and product mocks sit on generous 32px radii with one soft shadow recipe, creating a gentle floating-above-paper effect rather than hard elevation. The product itself (shown in mocks) shifts into a darker, gradient-rich mode, but the marketing canvas stays quiet and confident — let the product screenshots carry the color drama.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ready design system\",\"item\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#style-reference\",\"name\":\"Ready design system reference\",\"headline\":\"Ready design system | Refero Styles\",\"description\":\"Explore Ready's light SaaS design system: Paper White #ffffff, Warm Linen #f5f3f2 colors, GT Walsheim, GT America Standard typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\",\"mainEntityOfPage\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ready\",\"url\":\"https://ready.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"caption\":\"Screenshot of Ready\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ready design system\",\"Ready website design\",\"Ready colors\",\"Ready typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Paper White\",\"Warm Linen\",\"Linen Stone\",\"Ink\",\"GT Walsheim\",\"GT America Standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ready design system\"},{\"@type\":\"Thing\",\"name\":\"Ready website design\"},{\"@type\":\"Thing\",\"name\":\"Ready colors\"},{\"@type\":\"Thing\",\"name\":\"Ready typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:40:14.121Z\",\"dateModified\":\"2026-05-07T17:40:14.121Z\"}]}19:T569,**Quick Color Reference**\n- background: #ffffff\n- warm surface: #f5f3f2\n- text: #333333\n- muted text / borders: #8b8c96\n- accent: #7366fe\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: #ffffff background. Eyebrow label in GT America 500 at 12px, uppercase, #7366fe, 0.167em tracking, centered. Headline in GT Walsheim 700 at 64px, 1.0 line-height, #333333, centered. One inline phrase wrapped in #d5d1f4 background with 4px vertical and 8px horizontal padding, 8px radius. Body paragraph in GT America 300 at 18px, 1.5 line-height, #333333, centered, max-width 600px.\n2. Product mock card: Product screenshot filling edge to edge, 32px border-radius, rgba(0,0,0,0.1) 11px 11px 40px shadow, no border, no padding, floating on #f5f3f2 canvas with 80px margin above and below.\n3. Section heading block: GT Walsheim 700 at 56px, 1.0 line-height, #333333, left-aligned, max-width 800px. Body in GT America 300 at 18px, 1.5 line-height, #333333, 24px top margin.\n4. Nav bar: #ffffff background, 1px bottom border in #f5f3f2, 64px height, 0 16px padding. Brand wordmark in GT America 500 at 14px, #333333. Nav links in GT America 400 at 14px, 0.167em tracking, #333333 default, #7366fe on hover.\n5. Avatar stack: Five 24px circular photos with 4px white border, overlapping 8px horizontally, aligned right. The only photographic element in the system."
+      }
+    ],
+    "elevationPhilosophy": "The system uses a single shadow recipe applied sparingly to product mockups and floating cards. Most interface elements rely on surface color and 32px radius to suggest depth rather than shadow — the page feels layered through tone and radius, not drop shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "body",
+            "image",
+            "card"
+          ],
+          "frequency": 579,
+          "confidence": 1,
+          "prominence": 16992700.218799394,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 24,
+            "body/color": 5,
+            "card/color": 1,
+            "image/color": 9,
+            "other/color": 73,
+            "heading/color": 8,
+            "nav/borderColor": 75,
+            "body/borderColor": 20,
+            "card/borderColor": 4,
+            "image/borderColor": 36,
+            "other/borderColor": 292,
+            "heading/borderColor": 32
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 241,
+          "confidence": 1,
+          "prominence": 4873806.91891892,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "card/color": 6,
+            "icon/color": 1,
+            "image/color": 9,
+            "other/color": 20,
+            "heading/color": 6,
+            "body/borderColor": 24,
+            "card/borderColor": 24,
+            "icon/borderColor": 4,
+            "image/borderColor": 36,
+            "other/borderColor": 80,
+            "heading/borderColor": 24,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 1460354.3546387115,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 15,
+            "other/fill": 27
+          }
+        },
+        {
+          "hex": "#6c77b0",
+          "oklch": {
+            "c": 0.08855150219858075,
+            "h": 274.9745631247468,
+            "l": 0.5838307590784335
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 694289.653515901,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c4c3c1",
+          "oklch": {
+            "c": 0.003441594941557128,
+            "h": 91.44602352672413,
+            "l": 0.8177605761365065
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 615468,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#817da6",
+          "oklch": {
+            "c": 0.06175011576707519,
+            "h": 288.89068946440443,
+            "l": 0.6084582904834154
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 288000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8f4d75",
+          "oklch": {
+            "c": 0.10241026806938543,
+            "h": 344.1177360048495,
+            "l": 0.5123494599751622
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 149248,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7b4096",
+          "oklch": {
+            "c": 0.1439377256371076,
+            "h": 313.9686910495472,
+            "l": 0.4825313375960139
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 109760,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#55269c",
+          "oklch": {
+            "c": 0.1774342461029523,
+            "h": 295.4708371009904,
+            "l": 0.40628671669608907
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 78208,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7366fe",
+          "oklch": {
+            "c": 0.21769491452462722,
+            "h": 281.5783786614053,
+            "l": 0.6065274810879457
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 30720,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d5d1f4",
+          "oklch": {
+            "c": 0.04914626774797295,
+            "h": 290.4755953623955,
+            "l": 0.8736118853968056
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26752,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8b8c96",
+          "oklch": {
+            "c": 0.014837385301023319,
+            "h": 281.40865520110077,
+            "l": 0.6424865055831733
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 7233.671514570588,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "link/borderColor": 8
+          }
+        },
+        {
+          "hex": "#f5f3f2",
+          "oklch": {
+            "c": 0.002533992677646975,
+            "h": 48.71846480141003,
+            "l": 0.9654079720035582
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 3443.5768594585484,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 20
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00726523832920759,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.98,
+          "background": "#f5f3f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#d5d1f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#c4c3c1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#f5f3f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.8,
+          "background": "#55269c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#f5f3f2",
+          "foreground": "#55269c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.58,
+          "background": "#d5d1f4",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#c4c3c1",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.96,
+          "background": "#7b4096",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.65,
+          "background": "#d5d1f4",
+          "foreground": "#55269c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#f5f3f2",
+          "foreground": "#7b4096"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#8f4d75",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.56,
+          "background": "#c4c3c1",
+          "foreground": "#55269c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#d5d1f4",
+          "foreground": "#7b4096"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.28,
+          "background": "#6c77b0",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#7366fe",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#c4c3c1",
+          "foreground": "#7b4096"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#817da6",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "image",
+            "other",
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 8,
+          "corners": [
+            8,
+            8,
+            8,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        },
+        {
+          "value": 12,
+          "corners": [
+            12,
+            0,
+            0,
+            12
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 11px 11px 40px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 256,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle farthest-side at 50% 100%, rgb(53, 28, 175), rgba(245, 244, 241, 0) 80%)",
+        "colors": [
+          "rgb(53, 28, 175)",
+          "rgba(245, 244, 241, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT America Standard",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 169,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT Walsheim",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.167,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "card",
+            "icon",
+            "link"
+          ],
+          "frequency": 146,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Standard",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Standard",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT America Standard",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "GT Walsheim",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "GT Walsheim",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d281fa5b-30f9-49db-8f31-5ad180cda7b9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ready design system\",\"item\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#style-reference\",\"name\":\"Ready design system reference\",\"headline\":\"Ready design system | Refero Styles\",\"description\":\"Explore Ready's light SaaS design system: Paper White #ffffff, Warm Linen #f5f3f2 colors, GT Walsheim, GT America Standard typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\",\"mainEntityOfPage\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ready\",\"url\":\"https://ready.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/aaca1e02-7b5a-4c03-ac40-454f0d477356#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"caption\":\"Screenshot of Ready\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c3de6213-c073-4a0f-9f28-5029cc52f265.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ready design system\",\"Ready website design\",\"Ready colors\",\"Ready typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Paper White\",\"Warm Linen\",\"Linen Stone\",\"Ink\",\"GT Walsheim\",\"GT America Standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ready design system\"},{\"@type\":\"Thing\",\"name\":\"Ready website design\"},{\"@type\":\"Thing\",\"name\":\"Ready colors\"},{\"@type\":\"Thing\",\"name\":\"Ready typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:40:14.121Z\",\"dateModified\":\"2026-05-07T17:40:14.121Z\"}]}19:T569,**Quick Color Reference**\n- background: #ffffff\n- warm surface: #f5f3f2\n- text: #333333\n- muted text / borders: #8b8c96\n- accent: #7366fe\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: #ffffff background. Eyebrow label in GT America 500 at 12px, uppercase, #7366fe, 0.167em tracking, centered. Headline in GT Walsheim 700 at 64px, 1.0 line-height, #333333, centered. One inline phrase wrapped in #d5d1f4 background with 4px vertical and 8px horizontal padding, 8px radius. Body paragraph in GT America 300 at 18px, 1.5 line-height, #333333, centered, max-width 600px.\n2. Product mock card: Product screenshot filling edge to edge, 32px border-radius, rgba(0,0,0,0.1) 11px 11px 40px shadow, no border, no padding, floating on #f5f3f2 canvas with 80px margin above and below.\n3. Section heading block: GT Walsheim 700 at 56px, 1.0 line-height, #333333, left-aligned, max-width 800px. Body in GT America 300 at 18px, 1.5 line-height, #333333, 24px top margin.\n4. Nav bar: #ffffff background, 1px bottom border in #f5f3f2, 64px height, 0 16px padding. Brand wordmark in GT America 500 at 14px, #333333. Nav links in GT America 400 at 14px, 0.167em tracking, #333333 default, #7366fe on hover.\n5. Avatar stack: Five 24px circular photos with 4px white border, overlapping 8px horizontally, aligned right. The only photographic element in the system."
+}

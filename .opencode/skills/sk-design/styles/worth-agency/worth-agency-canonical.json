@@ -1,0 +1,947 @@
+{
+  "source": "https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518",
+  "uuid": "906ef782-4be7-45ee-9800-0514d46e7518",
+  "name": "Worth Agency",
+  "northStar": "studio gallery at golden hour",
+  "capturedAt": "2026-07-18T08:23:54.079Z",
+  "meta": {
+    "url": "https://worth.agency",
+    "siteName": "Worth Agency",
+    "extractedAt": "2026-06-03T17:23:21.286Z",
+    "durationMs": 44163,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 223,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #eb4726 (Vermilion Mark) as the sole chromatic accent — for the wordmark, links, arrows, and scroll indicator only",
+      "Full-bleed sections that alternate between #f8d4d4 (Blush Field) and #ffffff (Pure White) to create the site's color rhythm",
+      "Center all text in hero and body sections — no left-aligned editorial blocks",
+      "Use 1px bottom-border underlines (paddingBottom: 1px) for all interactive text links, always in #eb4726",
+      "Reserve the 400px custom display face exclusively for the brand wordmark — never for body or UI text",
+      "Apply 20-30px border-radius to pills and floating elements, 16px to cards, 12px to tags",
+      "Maintain 120-160px vertical gaps between full-bleed sections"
+    ],
+    "donts": [
+      "Never use filled CTA buttons — the system replaces buttons with underlined text links in #eb4726",
+      "Never introduce a second accent color — vermilion is the only chromatic voice",
+      "Never left-align body text in hero or content sections",
+      "Never use shadows or elevation effects — the design is flat color blocking only",
+      "Never use the 400px display face for anything other than the brand wordmark",
+      "Never use #000000 for large blocks of body text — use #282828 for warmth",
+      "Never add background images or photography to the hero — the wordmark and blush field are the entire hero"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f8d4d4",
+        "name": "Blush Field",
+        "role": "Hero section background, full-bleed section dividers, decorative border washes — the warm pastel that sets the emotional temperature for the whole site",
+        "group": "accent"
+      },
+      {
+        "hex": "#eb4726",
+        "name": "Vermilion Mark",
+        "role": "Sole chromatic accent — brand wordmark, link underlines, arrow icons, scroll indicator. One warm note against all the near-monochrome",
+        "group": "brand"
+      },
+      {
+        "hex": "#d2fdd1",
+        "name": "Mint Accent",
+        "role": "Rare card or section background — the only cool note permitted, used sparingly for tonal variety",
+        "group": "accent"
+      },
+      {
+        "hex": "#282828",
+        "name": "Charcoal Ink",
+        "role": "Primary body text, heading text, default borders, icon strokes — the workhorse warm-black neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, content section backgrounds, floating pill nav fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Jet Black",
+        "role": "Strong borders, high-emphasis text, icon fills — the maximum-contrast neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f9f9",
+        "name": "Bone Gray",
+        "role": "Subtle off-white surface for nested content blocks beneath white sections",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections stack vertically, alternating between #f8d4d4 and #ffffff like gallery walls. The hero is a single massive wordmark centered on blush, with a floating pill nav at the top center. Content sections use a single centered column (~680px max-width) for body text. There is no left-right split, no asymmetric composition, no card grids in the hero. The rhythm is: color field → type → color field → type, with 120-160px of breathing room between each band. Navigation is a single floating pill — no sidebar, no sticky header, no mega-menu, no footer nav visible in the hero flow.",
+    "imagery": "The site is essentially imageless. The visual language is built from typography and color fields — the 400px 'Worth' wordmark functions as the hero image, and the #f8d4d4 blush field functions as the atmosphere. There is no photography, no illustration, no 3D renders, no decorative graphics. When work samples or case studies appear in content sections, they are likely clean product crops or portfolio thumbnails contained within 16px-radius cards. The restraint is the statement: the agency's confidence comes from letting type and color do all the work. Icons are minimal thin-line strokes in #eb4726 or #282828.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio restraint: massive custom typography, single warm accent, flat color fields, no decorative imagery or stock photography",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same warm-pastel-plus-vivid-accent palette and confidence in letting one typographic gesture fill the entire viewport",
+        "business": "&Walsh"
+      },
+      {
+        "why": "Same exhibition-scale display type as brand identity and minimal navigation via a single floating element rather than a full nav bar",
+        "business": "Porto Rocha"
+      },
+      {
+        "why": "Same warm cinematic palette (blush pink + vermilion) and typographic-first hero with zero photography",
+        "business": "A24"
+      },
+      {
+        "why": "Same custom-display-wordmark hero pattern and flat-color alternating section rhythm",
+        "business": "Anagrama"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "12px",
+        "cards": "16px",
+        "pills": "20-30px",
+        "buttons": "20px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "120-160px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f8d4d4",
+        "name": "Blush Canvas",
+        "level": 0,
+        "purpose": "Hero and transition section backgrounds — the warm atmospheric base"
+      },
+      {
+        "hex": "#f9f9f9",
+        "name": "Bone Field",
+        "level": 1,
+        "purpose": "Subtle off-white for nested content blocks beneath white sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Surface",
+        "level": 2,
+        "purpose": "Content sections, cards, floating pill nav — the default content surface"
+      },
+      {
+        "hex": "#d2fdd1",
+        "name": "Mint Accent",
+        "level": 3,
+        "purpose": "Rare accent card background for tonal variety"
+      }
+    ],
+    "northStar": "studio gallery at golden hour",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 24,
+        "letterSpacing": -0.096
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 32,
+        "letterSpacing": -0.132
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 37,
+        "letterSpacing": -0.168
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 54,
+        "letterSpacing": -0.252
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 66,
+        "letterSpacing": -0.312
+      },
+      {
+        "role": "display",
+        "size": 400,
+        "lineHeight": 300,
+        "letterSpacing": -4.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Pill Nav",
+        "role": "Top-center navigation element — the site's entire header system",
+        "description": "White (#ffffff) pill with 20-30px border-radius, floating at top center of the viewport. Contains the label 'Agency' in -apple-system 16px #282828, paired with a thin plus or cross icon. No traditional nav bar, no hamburger, no sidebar — this single pill is the entire navigation."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identity hero — the 'Worth' text in the hero section",
+        "description": "Custom display face (custom_47178) at 400px, weight 400, line-height 0.75, letter-spacing -4.4px, color #eb4726 (Vermilion Mark). Fills the viewport width edge-to-edge. This is the signature element — no other text on the site approaches this scale, and the extreme tight tracking makes the letterforms interlock."
+      },
+      {
+        "name": "Underline Link",
+        "role": "All interactive text — replaces buttons entirely across the site",
+        "description": "Text in custom_47163 at body or subheading size, color #eb4726, with a 1px bottom border (paddingBottom: 1px). On hover the underline may thicken or the color may shift to #282828. No background fill, no border-radius, no padding — pure typographic interaction."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Below-the-fold prompt to continue exploring the page",
+        "description": "Centered 'Scroll to Explore' text in custom_47163 at body size, color #eb4726, with 1px underline. Below it, a thin down-arrow icon (#eb4726 stroke, ~1.5px weight). Sits in the lower third of the hero section with generous breathing room above."
+      },
+      {
+        "name": "Blush Section Background",
+        "role": "Hero and transition section atmosphere",
+        "description": "Full-bleed #f8d4d4 fill, no border, no texture, no gradient. Acts as the warm atmospheric layer — alternates with white content sections to create the site's color rhythm."
+      },
+      {
+        "name": "Content Section Background",
+        "role": "Body content sections (about, services, work, contact)",
+        "description": "Full-bleed #ffffff or #f9f9f9 fill. Centered single-column text layout with 120-160px vertical padding. The transition from blush to white is the primary spatial device."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Centered editorial copy in content sections",
+        "description": "Single column, centered, max-width ~680px. custom_47163 weight 400 at 16-22px, line-height 1.45-1.50, color #282828. The distinctive ampersand ligature is visible in copy. No left-aligned editorial blocks — everything centers on the vertical axis."
+      },
+      {
+        "name": "Mint Accent Card",
+        "role": "Sparingly used card with cool-tone background for tonal variety",
+        "description": "Background #d2fdd1, 16px border-radius, padding 32-48px. Contains custom_47163 text in #282828. Used as a rare counterpoint to the warm vermilion — not a primary card pattern."
+      },
+      {
+        "name": "Default Card",
+        "role": "Standard content card on white sections",
+        "description": "Background #ffffff, 1px border in #282828 or #e8e8e8, 16px border-radius, padding 32-48px. Flat — no shadows, no gradients. Contains text and possibly small contained images."
+      },
+      {
+        "name": "Arrow Icon",
+        "role": "Directional cue and decorative element throughout the site",
+        "description": "Thin stroke (~1.5px) in #eb4726 or #282828. Used for scroll prompts, link affordances, and section transitions. Always minimal — a single line, never filled, never rounded at the ends."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary body and heading face — used for all UI text, section headlines, links, and the scroll indicator. The custom face brings a distinctive ampersand ligature and a slightly humanist warmth that keeps the editorial tone approachable rather than austere. Substitutes: Söhne, GT America, Maison Neue.",
+        "sizes": "16, 22, 28, 42, 52px",
+        "family": "custom_47163",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.27–1.50",
+        "substitute": "Söhne",
+        "letterSpacing": "-0.006em universally, ranging from -0.096px at 16px body to -0.312px at 52px heading-lg",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "Exclusive display wordmark face — the 'Worth' hero text only. A custom commissioned face at exhibition scale with extreme tight tracking. This is the signature element: no other text on the site approaches this scale. Substitutes: Söhne Breit, GT America Compressed, Druk Wide.",
+        "sizes": "400px",
+        "family": "custom_47178",
+        "weight": "400",
+        "lineHeight": "0.75",
+        "substitute": "Söhne Breit",
+        "letterSpacing": "-0.011em (-4.4px at 400px)",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      },
+      {
+        "role": "System font fallback for icons, the small 'Agency' label in the floating pill, and micro-UI elements where the custom face isn't loaded. Kept neutral so the custom face can carry all the brand expression.",
+        "sizes": "16px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "system-ui",
+        "fontFeatureSettings": "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+      }
+    ],
+    "description": "Worth Agency uses an editorial-gallery language: a single warm blush field introduces the brand, then the page surrenders to white space and type. The only chromatic accent is a vivid vermilion (#eb4726) — it marks the colossal custom wordmark, every link underline, and every arrow, making the entire site feel like one typographic gesture. Components are minimal and pill-shaped; a floating top-center tag is the entire navigation system, and there are no buttons anywhere — only underlined text. The aesthetic is confident restraint at exhibition scale: 400px display next to 16px body, flat color blocking instead of shadows, blush and white alternating like gallery walls.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Worth Agency design system\",\"item\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#style-reference\",\"name\":\"Worth Agency design system reference\",\"headline\":\"Worth Agency design system | Refero Styles\",\"description\":\"Explore Worth Agency's light Agency design system: Blush Field #f8d4d4, Vermilion Mark #eb4726 colors, custom_47163, custom_47178 typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\",\"mainEntityOfPage\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Worth Agency\",\"url\":\"https://worth.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"caption\":\"Screenshot of Worth Agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Worth Agency design system\",\"Worth Agency website design\",\"Worth Agency colors\",\"Worth Agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Blush Field\",\"Vermilion Mark\",\"Mint Accent\",\"Charcoal Ink\",\"custom_47163\",\"custom_47178\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Worth Agency design system\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency website design\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency colors\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:05:16.126Z\",\"dateModified\":\"2026-04-30T02:05:16.126Z\"}]}19:T5a1,**Quick Color Reference**\n- Text: #282828 (Charcoal Ink)\n- Background: #ffffff (Pure White) or #f8d4d4 (Blush Field)\n- Border: #282828 or #000000 at 1px\n- Accent: #eb4726 (Vermilion Mark) — links, arrows, wordmark\n- Surface variation: #f9f9f9 (Bone Gray) for nested blocks\n- primary action: #f8d4d4 (outlined action border)\n\n**5 Example Component Prompts**\n1. *Hero Wordmark*: Full-bleed #f8d4d4 background. Center the wordmark 'Worth' in custom display face (Söhne Breit substitute) at 400px, weight 400, line-height 0.75, letter-spacing -4.4px, color #eb4726. Let it fill the viewport width.\n2. *Floating Pill Nav*: White #ffffff pill, 20-30px border-radius, positioned top center with 16px padding. Inside: 'Agency' text in -apple-system 16px #282828, with a thin plus icon to the right in #282828 at 1.5px stroke.\n3. *Underline Link*: Text in custom_47163 (Söhne substitute) at 22px, weight 400, color #eb4726, with 1px bottom border (paddingBottom: 1px), letter-spacing -0.132px. No background, no border-radius.\n4. *Content Section*: Full-bleed #ffffff background, 120-160px vertical padding. Centered single column, max-width 680px. Body text at 16px weight 400, line-height 1.50, color #282828, letter-spacing -0.096px.\n5. *Scroll Indicator*: Below the hero, centered with 40px gap above. 'Scroll to Explore' in custom_47163 16px #eb4726 with 1px underline. Below it (16px gap), a thin down-arrow icon in #eb4726 at 1.5px stroke."
+      }
+    ],
+    "elevationPhilosophy": "The design system deliberately avoids shadows and elevation effects. Depth is created through flat color blocking — alternating #f8d4d4 and #ffffff full-bleed sections create spatial rhythm without any z-axis. Components sit on their surfaces with 1px borders or color contrast alone. This is an exhibition-wall aesthetic: everything is flush, nothing floats. The only element that breaks the plane is the floating pill nav, which sits on the blush field without shadow, distinguished only by its white fill."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "icon",
+            "body"
+          ],
+          "frequency": 793,
+          "confidence": 1,
+          "prominence": 108800345.90389098,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "card/color": 3,
+            "icon/color": 2,
+            "other/color": 127,
+            "heading/color": 17,
+            "body/borderColor": 48,
+            "card/borderColor": 8,
+            "icon/borderColor": 8,
+            "other/borderColor": 500,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 51785088.21252013,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "card/borderColor": 4,
+            "other/borderColor": 8,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#f8d4d4",
+          "oklch": {
+            "c": 0.04038980225108202,
+            "h": 17.92711764200917,
+            "l": 0.9002066459623982
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 7512860.626251111,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/fill": 5,
+            "heading/color": 5,
+            "link/borderColor": 16,
+            "other/borderColor": 4,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 128,
+          "confidence": 1,
+          "prominence": 4360134.994375357,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "link/color": 7,
+            "other/fill": 9,
+            "other/color": 17,
+            "link/borderColor": 28,
+            "other/borderColor": 64,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eb4726",
+          "oklch": {
+            "c": 0.20580841119439924,
+            "h": 33.14384350122458,
+            "l": 0.629984374171777
+          },
+          "contexts": [
+            "heading",
+            "icon",
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 2708296,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "link/color": 1,
+            "other/fill": 3,
+            "heading/color": 1,
+            "link/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f9f9f9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9821176395629414
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2565000,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d2fdd1",
+          "oklch": {
+            "c": 0.07334472120551609,
+            "h": 144.38503056438884,
+            "l": 0.9524105848654072
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 362325,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8e8e8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9309991411193288
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 21975,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.014460358465291529,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#f9f9f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.71,
+          "background": "#d2fdd1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.14,
+          "background": "#e8e8e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.36,
+          "background": "#000000",
+          "foreground": "#f8d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14,
+          "background": "#f9f9f9",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#d2fdd1",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#e8e8e8",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.78,
+          "background": "#f8d4d4",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#000000",
+          "foreground": "#eb4726"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#ffffff",
+          "foreground": "#eb4726"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.65,
+          "background": "#f9f9f9",
+          "foreground": "#eb4726"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.43,
+          "background": "#d2fdd1",
+          "foreground": "#eb4726"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.81,
+          "background": "#f8d4d4",
+          "foreground": "#eb4726"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#000000",
+          "foreground": "#282828"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#ffffff",
+          "foreground": "#f8d4d4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#f9f9f9",
+          "foreground": "#f8d4d4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#d2fdd1",
+          "foreground": "#f8d4d4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 139,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "custom_47163",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        },
+        {
+          "family": "custom_47178",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"hlig\" 0, \"liga\" 0, \"rlig\" 0, \"smcp\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "icon"
+          ],
+          "frequency": 130,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.31,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_47163",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "custom_47163",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "custom_47163",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "custom_47163",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "custom_47163",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "custom_47163",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "custom_47163",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 400,
+          "family": "custom_47178",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 400,
+          "family": "custom_47178",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f9f66eb8-8e15-4819-aca2-a1b05c950070.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Worth Agency design system\",\"item\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#style-reference\",\"name\":\"Worth Agency design system reference\",\"headline\":\"Worth Agency design system | Refero Styles\",\"description\":\"Explore Worth Agency's light Agency design system: Blush Field #f8d4d4, Vermilion Mark #eb4726 colors, custom_47163, custom_47178 typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\",\"mainEntityOfPage\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Worth Agency\",\"url\":\"https://worth.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/906ef782-4be7-45ee-9800-0514d46e7518#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"caption\":\"Screenshot of Worth Agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/48b1826e-426b-44ac-a185-b0c3576bbc70.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Worth Agency design system\",\"Worth Agency website design\",\"Worth Agency colors\",\"Worth Agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Blush Field\",\"Vermilion Mark\",\"Mint Accent\",\"Charcoal Ink\",\"custom_47163\",\"custom_47178\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Worth Agency design system\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency website design\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency colors\"},{\"@type\":\"Thing\",\"name\":\"Worth Agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:05:16.126Z\",\"dateModified\":\"2026-04-30T02:05:16.126Z\"}]}19:T5a1,**Quick Color Reference**\n- Text: #282828 (Charcoal Ink)\n- Background: #ffffff (Pure White) or #f8d4d4 (Blush Field)\n- Border: #282828 or #000000 at 1px\n- Accent: #eb4726 (Vermilion Mark) — links, arrows, wordmark\n- Surface variation: #f9f9f9 (Bone Gray) for nested blocks\n- primary action: #f8d4d4 (outlined action border)\n\n**5 Example Component Prompts**\n1. *Hero Wordmark*: Full-bleed #f8d4d4 background. Center the wordmark 'Worth' in custom display face (Söhne Breit substitute) at 400px, weight 400, line-height 0.75, letter-spacing -4.4px, color #eb4726. Let it fill the viewport width.\n2. *Floating Pill Nav*: White #ffffff pill, 20-30px border-radius, positioned top center with 16px padding. Inside: 'Agency' text in -apple-system 16px #282828, with a thin plus icon to the right in #282828 at 1.5px stroke.\n3. *Underline Link*: Text in custom_47163 (Söhne substitute) at 22px, weight 400, color #eb4726, with 1px bottom border (paddingBottom: 1px), letter-spacing -0.132px. No background, no border-radius.\n4. *Content Section*: Full-bleed #ffffff background, 120-160px vertical padding. Centered single column, max-width 680px. Body text at 16px weight 400, line-height 1.50, color #282828, letter-spacing -0.096px.\n5. *Scroll Indicator*: Below the hero, centered with 40px gap above. 'Scroll to Explore' in custom_47163 16px #eb4726 with 1px underline. Below it (16px gap), a thin down-arrow icon in #eb4726 at 1.5px stroke."
+}

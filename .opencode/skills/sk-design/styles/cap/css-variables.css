@@ -1,0 +1,121 @@
+:root {
+  /* Colors */
+  --color-signal-blue: #3b82f6;
+  --color-action-blue: #2563eb;
+  --color-ink-black: #202020;
+  --color-carbon: #000000;
+  --color-paper: #fcfcfc;
+  --color-mist: #f0f0f0;
+  --color-fog: #e0e0e0;
+  --color-ash: #e5e7eb;
+  --color-steel: #c2c2c2;
+  --color-graphite: #838383;
+  --color-slate: #646464;
+  --color-outlined-indigo: #1e40af;
+  --color-spark-violet: #7c3aed;
+  --color-spark-violet-soft: #8b5cf6;
+  --color-ember: #d97706;
+  --color-sky: #0d74ce;
+  --color-ice: #e0ecfc;
+  --color-cyan-glow: #0090ff;
+  --color-alert-red: #ef4444;
+  --color-macos-red: #ff5f57;
+  --color-macos-yellow: #ffbd2e;
+  --color-macos-green: #28c840;
+
+  /* Typography — Font Families */
+  --font-defaultfont: 'defaultFont', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-cap-sans-custom-geometric-sans-similar-to-general-sans-or-inter-display: 'Cap Sans (custom geometric sans, similar to General Sans or Inter Display)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace-sfmono-regular-menlo-consolas: 'ui-monospace, SFMono-Regular, Menlo, Consolas', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.2px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.63;
+  --text-subheading: 18px;
+  --leading-subheading: 1.56;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.4;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.25;
+  --text-display: 52px;
+  --leading-display: 1.07;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-140: 140px;
+  --spacing-168: 168px;
+  --spacing-180: 180px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-pills: 9999px;
+  --radius-inputs: 6px;
+  --radius-buttons: 9999px;
+  --radius-nav-bar: 9999px;
+  --radius-small-tags: 2px;
+  --radius-large-cards: 16px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 1.5px 0px 0px inset;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px;
+  --shadow-md: rgba(0, 0, 0, 0.05) 0px 4px 10px 0px;
+  --shadow-subtle-3: rgba(191, 219, 254, 0.5) 0px 1px 2px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.05) 0px 20px 25px -5px, rgba(0, 0, 0, 0.05) 0px 8px 10px -6px;
+  --shadow-md-2: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+  --shadow-subtle-4: rgba(221, 214, 254, 0.5) 0px 1px 2px 0px;
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+  --shadow-subtle-5: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-6: rgba(255, 255, 255, 0.4) 0px 1.5px 0px 0px inset;
+  --shadow-xl-2: rgba(0, 0, 0, 0.4) 0px 60px 40px 3px;
+  --shadow-xl-3: rgba(0, 0, 0, 0.18) 0px 8px 32px 0px;
+  --shadow-md-3: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+  --shadow-sm-2: rgba(18, 22, 31, 0.02) 0px 2px 8px 0px;
+  --shadow-md-4: rgba(0, 0, 0, 0.25) 0px 4px 14px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+
+  /* Surfaces */
+  --surface-page-canvas: #fcfcfc;
+  --surface-card-surface: #fcfcfc;
+  --surface-subtle-wash: #e5e7eb;
+  --surface-inset-track: #f0f0f0;
+  --surface-blue-tint: #e0ecfc;
+}

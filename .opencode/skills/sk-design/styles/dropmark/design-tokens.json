@@ -1,0 +1,339 @@
+{
+  "color": {
+    "cyan-signal": {
+      "$value": "#00affa",
+      "$type": "color",
+      "$description": "Cyan Signal — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "cream-paper": {
+      "$value": "#f7f7f1",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, section backgrounds, soft card surfaces — the warm off-white ground everything sits on"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Inset cards, modal surfaces, inverse button text, nav background"
+    },
+    "stone-gray": {
+      "$value": "#dcdcd4",
+      "$type": "color",
+      "$description": "Stone Gray — Subtle accent surfaces, inset focus rings, warm shadow tints"
+    },
+    "graphite": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Graphite — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "mid-ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Mid Ink — Button text and border on dark surfaces, icon stroke"
+    },
+    "charcoal": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Charcoal — Headline text alternative, deep emphasis borders"
+    },
+    "pewter": {
+      "$value": "#7f7f7f",
+      "$type": "color",
+      "$description": "Pewter — Secondary body text, muted helper text, inactive state text"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — SVG illustration linework, deepest icon fills"
+    },
+    "midnight-violet": {
+      "$value": "#1e2554",
+      "$type": "color",
+      "$description": "Midnight Violet — Illustration primary — the dominant dark shape color in cubist murals"
+    },
+    "deep-iris": {
+      "$value": "#2c2a6c",
+      "$type": "color",
+      "$description": "Deep Iris — Illustration mid-tone — secondary dark purple in mural compositions"
+    },
+    "coral-burst": {
+      "$value": "#ff5d43",
+      "$type": "color",
+      "$description": "Coral Burst — Illustration warm accent — orange-red shape fills in murals"
+    },
+    "aqua-glow": {
+      "$value": "#38dede",
+      "$type": "color",
+      "$description": "Aqua Glow — Illustration cool accent and icon highlight — teal punctuation in murals"
+    },
+    "vivid-amethyst": {
+      "$value": "#9164fa",
+      "$type": "color",
+      "$description": "Vivid Amethyst — Illustration bright accent — saturated purple shape fills"
+    },
+    "blush": {
+      "$value": "#f8b3b8",
+      "$type": "color",
+      "$description": "Blush — Illustration soft accent — pink shape fills for warmth in murals"
+    }
+  },
+  "font": {
+    "dropmarkrealhead": {
+      "$value": "DropmarkRealHead",
+      "$type": "fontFamily",
+      "$description": "Display and section headings only — used at 60px for hero, 40px for section titles, 24px for sub-section headings. Medium weight is deliberate; avoids the heavy 700 convention to keep headlines calm and editorial rather than assertive."
+    },
+    "dropmarkrealtext": {
+      "$value": "DropmarkRealText",
+      "$type": "fontFamily",
+      "$description": "Body, buttons, nav, list, footer, supporting UI. 400 for body and links, 600 for emphasized sub-labels and button text, 700 reserved for occasional inline emphasis. Functions as the working sans — every non-heading element uses it."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DropmarkRealHead",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "DropmarkRealText",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "DropmarkRealHead",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "DropmarkRealHead",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(220, 220, 210) 0px 0px 0px 2px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f7f7f1",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and full-bleed section backgrounds"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Inset cards, feature cards, nav bar, stat panel background"
+    },
+    "stone-gray": {
+      "$value": "#dcdcd4",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle accent panels, illustration ground planes"
+    },
+    "graphite": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Surface level 3: Inverse dark surface for emphasis panels and stat blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dropmark.com",
+      "siteName": "Dropmark",
+      "extractedAt": "2026-06-03T20:03:45.682Z",
+      "variant": "extended"
+    }
+  }
+}

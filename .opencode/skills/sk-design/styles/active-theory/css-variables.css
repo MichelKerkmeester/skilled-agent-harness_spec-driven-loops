@@ -1,0 +1,60 @@
+:root {
+  /* Colors */
+  --color-void-black: #000000;
+  --color-ghost-white: #ffffff;
+  --color-ash-border: #4d4d4d;
+  --color-smoke: #808080;
+  --color-fog: #999999;
+  --color-pale-mist: #c6c6c6;
+  --color-dusk-violet: #343755;
+
+  /* Typography — Font Families */
+  --font-nbarchitekt: 'nbarchitekt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.5;
+  --text-body-sm: 12px;
+  --leading-body-sm: 1.5;
+  --text-body: 14px;
+  --leading-body: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-28: 28px;
+
+  /* Layout */
+  --section-gap: 48px;
+  --card-padding: 28px;
+  --element-gap: 6px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-xl: 12px;
+  --radius-full: 500px;
+
+  /* Named Radii */
+  --radius-tags: 500px;
+  --radius-cards: 12px;
+  --radius-inputs: 5px;
+  --radius-buttons-pill: 500px;
+  --radius-buttons-ghost: 5px;
+
+  /* Surfaces */
+  --surface-void-canvas: #000000;
+  --surface-translucent-overlay: #00000080;
+  --surface-dusk-violet-surface: #343755;
+  --surface-frosted-glass: #ffffff1a;
+}

@@ -1,0 +1,379 @@
+{
+  "color": {
+    "bone-canvas": {
+      "$value": "#fefcf8",
+      "$type": "color",
+      "$description": "Bone Canvas — Primary page background — warm off-white, the entire site sits on this paper-like canvas rather than pure white"
+    },
+    "press-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Press White — Alternate surface for product cards, input fields, and crisp overlays that need to separate from Bone Canvas"
+    },
+    "onyx-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx Black — Primary text, hairline rules, filled action buttons, icon strokes, and nav borders. The structural ink of the system"
+    },
+    "graphite": {
+      "$value": "#403f3e",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and icon color — a softened black for less critical copy and outline button borders"
+    },
+    "carbon": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Carbon — Deep alt-black for button borders, dark badges, and high-contrast text on white surfaces where pure black feels too harsh"
+    },
+    "iron": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Iron — Button border accent — a near-black used for refined button outlines"
+    },
+    "slate": {
+      "$value": "#2f2f2f",
+      "$type": "color",
+      "$description": "Slate — Badge and secondary text — sits between Graphite and Carbon for mid-emphasis labels"
+    },
+    "stone": {
+      "$value": "#4c4c4a",
+      "$type": "color",
+      "$description": "Stone — Body text secondary and subtle borders — warm-leaning gray that pairs with the cream canvas without going cold"
+    },
+    "ash": {
+      "$value": "#b2b0ae",
+      "$type": "color",
+      "$description": "Ash — Light neutral action fill for buttons on dark surfaces."
+    }
+  },
+  "font": {
+    "optima": {
+      "$value": "Optima",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI — nav, buttons, body, headings. Optima's humanist flares and geometric curves carry the brand's editorial luxury; its narrow proportions let dense 5-column product grids breathe without feeling cramped. Nav and button text is uppercase at 11–12px with wide tracking (0.0640em); body sits at 14px, larger body/links at 16px, subheadings at 24px."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback used sparingly for button and icon labels when Optima is unavailable — do not introduce as a primary face."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Optima",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 4px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px -8px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#fefcf8",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the entire site rests on this warm off-white."
+    },
+    "press-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product card backgrounds, input fields, and overlays that need a slightly brighter separation from the canvas."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://adamlippes.com",
+      "siteName": "Adam Lippes",
+      "extractedAt": "2026-06-03T20:35:20.727Z",
+      "variant": "extended"
+    }
+  }
+}

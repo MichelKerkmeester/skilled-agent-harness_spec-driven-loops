@@ -1,0 +1,614 @@
+{
+  "color": {
+    "wine-ink": {
+      "$value": "#4d1520",
+      "$type": "color",
+      "$description": "Wine Ink — Primary text, primary filled button background, active states, heading color, card borders, and dominant brand stroke — the single chromatic anchor of the entire system"
+    },
+    "midnight-wine": {
+      "$value": "#360912",
+      "$type": "color",
+      "$description": "Midnight Wine — Darkest surface for footer bands and inverted panels"
+    },
+    "lemon-whisper": {
+      "$value": "#faffa7",
+      "$type": "color",
+      "$description": "Lemon Whisper — Decorative accent fill and border — used in illustration blocks, testimonial card outlines, icon highlights, and soft highlight washes"
+    },
+    "blush-rust": {
+      "$value": "#662f3d",
+      "$type": "color",
+      "$description": "Blush Rust — Softened brand fill for secondary surfaces and SVG illustration shading"
+    },
+    "citrine-pop": {
+      "$value": "#e6b800",
+      "$type": "color",
+      "$description": "Citrine Pop — Rare saturated accent for micro-detail and decorative strokes"
+    },
+    "mauve-ash": {
+      "$value": "#825b63",
+      "$type": "color",
+      "$description": "Mauve Ash — Muted body text and subtle borders when full brand ink would be too loud"
+    },
+    "parchment": {
+      "$value": "#fbf9f6",
+      "$type": "color",
+      "$description": "Parchment — Primary page canvas — the warm ivory that replaces cold white throughout"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, input fields, elevated panels — the brightest neutral layer above the parchment canvas"
+    },
+    "linen-beige": {
+      "$value": "#f2eee7",
+      "$type": "color",
+      "$description": "Linen Beige — Hairline borders, dividers, ghost button outlines, and subtle UI separators"
+    },
+    "sandstone": {
+      "$value": "#d3cac3",
+      "$type": "color",
+      "$description": "Sandstone — Muted borders and secondary divider lines on cards and links"
+    },
+    "driftwood": {
+      "$value": "#aaa49f",
+      "$type": "color",
+      "$description": "Driftwood — Lowest-contrast neutral for decorative borders and inactive link text"
+    },
+    "slate-smoke": {
+      "$value": "#717182",
+      "$type": "color",
+      "$description": "Slate Smoke — Body secondary text, icon strokes, and helper copy — the only cool-leaning neutral"
+    },
+    "charcoal-ink": {
+      "$value": "#101828",
+      "$type": "color",
+      "$description": "Charcoal Ink — Occasional dark text and info-toned badge borders when Wine Ink would be too warm"
+    },
+    "butter-cream": {
+      "$value": "#feffe1",
+      "$type": "color",
+      "$description": "Butter Cream — Ultra-soft warm fill for highlight zones and subtle surface washes"
+    },
+    "dawn-glow": {
+      "$value": "#e9e3d8",
+      "$type": "color",
+      "$description": "Dawn Glow — Warm card background tint used sparingly for warm-on-warm contrast"
+    },
+    "rose-whisper": {
+      "$value": "#d7a0a0",
+      "$type": "color",
+      "$description": "Rose Whisper — Soft card border accent for warm-toned testimonial and content cards"
+    },
+    "plum-echo": {
+      "$value": "#906c7b",
+      "$type": "color",
+      "$description": "Plum Echo — Badge and pill background for muted tag variants"
+    }
+  },
+  "font": {
+    "tt-commons-pro-variable": {
+      "$value": "Tt Commons Pro Variable",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all contexts — headings, body, nav, buttons, cards. The variable weight axis (400–600) and extreme size range (9px micro-labels to 85px display) make it the sole workhorse. Display sizes use aggressive negative tracking (-0.04em at 76–85px) for a sculptural editorial feel; body sizes stay near normal tracking. The 600 weight carries emphasis without ever feeling bold-shouty."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace accent for badge labels, inline code, and small caps-style tags like '+ AI AGENTS FOR ACCOUNTS RECEIVABLE'. Normal letter-spacing — not tracked like the primary face."
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Open Sans — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 2.66
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 2.39
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "76px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 76px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "76px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 76px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Tt Commons Pro Variable",
+        "fontSize": "85px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 85px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "92": {
+      "$value": "92px",
+      "$type": "dimension",
+      "$description": "Spacing 92px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.85px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.276px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(77, 21, 32, 0.16) 19px 32px 73px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fbf9f6",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm ivory that sets the entire system's temperature"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and content surfaces above the canvas"
+    },
+    "butter-cream": {
+      "$value": "#feffe1",
+      "$type": "color",
+      "$description": "Surface level 2: Soft warm fill for highlight zones and muted content cards"
+    },
+    "lemon-whisper": {
+      "$value": "#faffa7",
+      "$type": "color",
+      "$description": "Surface level 3: Decorative accent fill for illustration blocks and accent cards"
+    },
+    "midnight-wine": {
+      "$value": "#360912",
+      "$type": "color",
+      "$description": "Surface level 4: Inverted dark surface for footer and occasional dark-band sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.daylit.com",
+      "siteName": "Daylit",
+      "extractedAt": "2026-06-03T21:20:52.340Z",
+      "variant": "extended"
+    }
+  }
+}

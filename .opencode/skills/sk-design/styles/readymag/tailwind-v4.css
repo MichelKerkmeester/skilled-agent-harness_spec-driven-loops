@@ -1,0 +1,70 @@
+@theme {
+  /* Colors */
+  --color-electric-violet: #8800ff;
+  --color-deep-violet: #2c0fb1;
+  --color-ember-orange: #ff5000;
+  --color-burnt-orange: #ec520b;
+  --color-signal-yellow: #ffcc00;
+  --color-cobalt-blue: #1551ff;
+  --color-ink-black: #000000;
+  --color-graphite: #282828;
+  --color-carbon: #141414;
+  --color-near-black: #0f0e0e;
+  --color-paper-white: #ffffff;
+  --color-fog-gray: #f4f4f4;
+  --color-mist-gray: #e7e7e7;
+  --color-steel-gray: #808080;
+
+  /* Typography */
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-readymag-display-custom: 'Readymag Display (custom)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-graphik: 'Graphik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-ui: 'System UI', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-custom37866: 'custom_37866', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-xgnl: 'xgnl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1;
+  --tracking-caption: -0.168px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.35px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.048px;
+  --text-subheading: 18px;
+  --leading-subheading: 2.67;
+  --tracking-subheading: -0.486px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 2.7;
+  --tracking-heading-sm: -1.32px;
+  --text-heading: 32px;
+  --leading-heading: 1.83;
+  --tracking-heading: -1.6px;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.43;
+  --tracking-heading-lg: -2.12px;
+  --text-display: 80px;
+  --leading-display: 0.88;
+  --tracking-display: -5.36px;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-86: 86px;
+  --spacing-201: 201px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 30px;
+  --radius-full: 102px;
+  --radius-full-2: 200px;
+}

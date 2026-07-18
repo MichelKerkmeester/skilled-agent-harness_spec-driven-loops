@@ -1,0 +1,497 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#00052e",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary canvas, hero backgrounds, deep surface — the foundational dark that absorbs the electric blue glow and makes it feel like signal emerging from noise"
+    },
+    "signal-blue": {
+      "$value": "#0428cb",
+      "$type": "color",
+      "$description": "Signal Blue — Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "arc-cyan": {
+      "$value": "#34fcff",
+      "$type": "color",
+      "$description": "Arc Cyan — Atmospheric accent and glow halos around the particle sphere, rare decorative energy that reads as electricity rather than UI"
+    },
+    "halo-violet": {
+      "$value": "#afb4db",
+      "$type": "color",
+      "$description": "Halo Violet — Soft gradient midtone that bridges Signal Blue into Midnight Ink, used in the radial background wash and ambient surface tinting"
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Dark mode text on light surfaces, button text fallback — an almost-black that stays warmer than pure #000"
+    },
+    "slate-body": {
+      "$value": "#4f5166",
+      "$type": "color",
+      "$description": "Slate Body — Body text on light product sections, secondary metadata, paragraph copy"
+    },
+    "fog": {
+      "$value": "#6b6b83",
+      "$type": "color",
+      "$description": "Fog — Muted text, helper copy, de-emphasized labels, ghost-bordered links on light backgrounds"
+    },
+    "mist": {
+      "$value": "#8185a0",
+      "$type": "color",
+      "$description": "Mist — Tertiary text and disabled labels — one step quieter than Fog"
+    },
+    "silver-border": {
+      "$value": "#dbdcdf",
+      "$type": "color",
+      "$description": "Silver Border — Hairline dividers on light product surfaces, card outlines, table separators"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Product surface fills, dashboard canvas, light section backgrounds, button text on dark"
+    }
+  },
+  "font": {
+    "open-suace-sans-regular": {
+      "$value": "Open Suace Sans Regular",
+      "$type": "fontFamily",
+      "$description": "Open Suace Sans Regular — detected in extracted data but not described by AI"
+    },
+    "f37-bolton": {
+      "$value": "F37 Bolton",
+      "$type": "fontFamily",
+      "$description": "Small-caps labels and eyebrow text, slightly tracked for a technical/industrial feel that contrasts with the body sans"
+    },
+    "open-sauce-sans": {
+      "$value": "Open Sauce Sans",
+      "$type": "fontFamily",
+      "$description": "Body copy, subheadings, nav links, card content — the workhorse sans, comfortable line-height (1.5+) at 16-18px keeps long product copy readable without losing the editorial pacing set by Bolton"
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, data tags, order IDs, status badges — the monospaced faces with wide tracking are reserved for data/system chrome, creating a visual distinction between human-readable copy and machine-generated metadata"
+    },
+    "open-suace-sans-light": {
+      "$value": "Open Suace Sans Light",
+      "$type": "fontFamily",
+      "$description": "Open Suace Sans Light — detected in extracted data but not described by AI"
+    },
+    "f37-bolton-book": {
+      "$value": "F37 Bolton Book",
+      "$type": "fontFamily",
+      "$description": "F37 Bolton Book — detected in extracted data but not described by AI"
+    },
+    "f37-bolton-medium": {
+      "$value": "F37 Bolton Medium",
+      "$type": "fontFamily",
+      "$description": "F37 Bolton Medium — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono Medium",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono Medium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono Medium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono Medium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "F37 Bolton Medium",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Light",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Light",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Light",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "F37 Bolton Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "F37 Bolton Medium",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Light",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Open Sauce Sans Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Open Suace Sans Light",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "F37 Bolton",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "27px",
+        "fontWeight": 300,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "F37 Bolton",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "F37 Bolton",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "F37 Bolton Book",
+        "fontSize": "59px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 59px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "midnight-canvas": {
+      "$value": "#00052",
+      "$type": "color",
+      "$description": "Surface level 0: Hero and feature section backgrounds — the dominant dark stage"
+    },
+    "violet-wash": {
+      "$value": "#06105a",
+      "$type": "color",
+      "$description": "Surface level 1: Radial gradient center, creates a soft glow hotspot around focal elements"
+    },
+    "frosted-panel": {
+      "$value": "#00052",
+      "$type": "color",
+      "$description": "Surface level 2: Floating product cards sitting on the dark canvas with hairline borders, not fills"
+    },
+    "product-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Dashboard previews and light product section surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.ameba.ai",
+      "siteName": "Ameba",
+      "extractedAt": "2026-06-03T17:28:13.420Z",
+      "variant": "extended"
+    }
+  }
+}

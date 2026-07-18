@@ -1,0 +1,1526 @@
+{
+  "source": "https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168",
+  "uuid": "47f15da7-8905-45b3-bcab-06a4277c6168",
+  "name": "Hungry Tiger",
+  "northStar": "Turmeric-bright graffiti on a tandoor wall. A single gold-on-rust palette with display type so large it reads as a spice market sign, not a webpage.",
+  "capturedAt": "2026-07-18T07:55:33.579Z",
+  "meta": {
+    "url": "https://www.eathungrytiger.com",
+    "siteName": "Hungry Tiger",
+    "extractedAt": "2026-06-03T19:04:45.766Z",
+    "durationMs": 50101,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 567,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Salmond at 130–213px weight 700 with line-height 0.80–0.90 for all hero and section display headlines — this is the brand's voice and must never be downsized into body territory",
+      "Set all buttons, badges, inputs, and icon containers to 9999px (1296px in tokens) radius — sharp corners break the spice-label personality",
+      "Use only #faae33 as the chromatic accent against the brown monochrome; never introduce additional bright colors except the reserved #d1255c for heat-level badges",
+      "Step surface depth through three browns: #823513 (page) → #402011 (card) → #281006 (deepest) — never use box-shadow to imply elevation",
+      "Apply dotted #faae33 horizontal rules as section dividers between major viewports instead of relying on whitespace alone",
+      "Tighten letter-spacing inversely to size: -0.02em at display sizes, 0.01–0.02em at 11–18px — Salmond's tracking is a load-bearing part of its character",
+      "Crown every viewport with massive type first, then position product photography as a small anchored element below — the page is a poster, not a storefront"
+    ],
+    "donts": [
+      "Do not introduce a secondary display typeface — Salmond owns the entire type system, and adding a different heading face dilutes the brand voice",
+      "Do not use box-shadow, drop-shadow, or glow effects on any component — the flat tandoor-wall aesthetic is non-negotiable",
+      "Do not place product photography in large rectangular frames, cards, or with rounded edges — the bottle should sit raw on the canvas",
+      "Do not use the 6px radius for anything other than cards — buttons, badges, inputs, and icon containers must all be full pills",
+      "Do not dilute the gold-on-brown palette with white, blue, green, or cool neutrals — the system is intentionally monochromatic-warm",
+      "Do not let body copy exceed 18px or sit at more than 1.4 line-height — the design is poster-first and any comfortable reading block will feel out of place",
+      "Do not use solid color blocks for section backgrounds — every section is Ember Rust; depth comes from type scale and surface color shifts, not from alternating bands"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#faae33",
+        "name": "Tiger Gold",
+        "role": "Primary action, filled buttons, active nav, heading strokes, key icon accents — the only chromatic color permitted to leave the warm-brown monochrome and interrupt the page",
+        "group": "brand"
+      },
+      {
+        "hex": "#823513",
+        "name": "Ember Rust",
+        "role": "Dominant page canvas and hero backdrop — the color that defines every viewport",
+        "group": "brand"
+      },
+      {
+        "hex": "#9f531b",
+        "name": "Saffron Glow",
+        "role": "Secondary heading accent, decorative borders, mid-tone text — a warm orange that softens Tiger Gold without competing",
+        "group": "brand"
+      },
+      {
+        "hex": "#402011",
+        "name": "Dark Spice",
+        "role": "Card surfaces, input fields, badge fills, button ghost backgrounds, body text color — the workhorse dark-brown that lifts content off Ember Rust",
+        "group": "neutral"
+      },
+      {
+        "hex": "#281006",
+        "name": "Charred Clove",
+        "role": "Deepest surface — used for innermost cards, modal scrim, and the background behind the deepest contrast pairs",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b2e12",
+        "name": "Cardamom Brown",
+        "role": "Input borders, subtle dividers, muted inline elements — a step between Dark Spice and Ember Rust",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1255c",
+        "name": "Chili Red",
+        "role": "Saturated accent reserved for badge fills and alert-level highlights — appears sparingly to signal heat",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark page with no max-width container; content is laid out in asymmetric two-column compositions where a massive display headline occupies one side and a small product image anchors the other. The hero is a full-viewport poster: eyebrow text top-left, then 200px+ display type, then a centered product bottle below. Subsequent sections alternate between left-anchored headline + right-side product bottle and centered product + surrounding type. Dotted gold dividers separate every major band. Navigation is a minimal top bar with ghost pill buttons and a centered brand mark. Floating circular icon buttons (bag, basket) dock in the bottom-right corner. Vertical rhythm is spacious — 80–120px between sections, allowing the poster-scale type to breathe without competing.",
+    "imagery": "Product photography is tightly cropped, studio-lit jars of sauce centered against the Ember Rust canvas — no lifestyle context, no hands, no kitchen. The jar IS the hero. Background atmosphere is delivered through low-opacity botanical watermarks (ferns, leaves, florals) that read as spice-garden texture rather than illustration. No 3D renders, no abstract graphics, no people. Imagery density is intentionally low — the page is 90% type, 10% product.",
+    "similar": [
+      {
+        "why": "Same single warm-color-dominant dark canvas with a vivid accent and oversized display type; both treat the product label as the design language",
+        "business": "Graza"
+      },
+      {
+        "why": "Similar maximalist Asian-food brand typography with tightly-tracked display faces and warm rust palettes",
+        "business": "Omsom"
+      },
+      {
+        "why": "Bold dark-mode product brand with one saturated accent color and poster-scale headlines dominating every viewport",
+        "business": "Fly by Jing"
+      },
+      {
+        "why": "Same single-accent-on-dark-rust visual system with spice-market typographic confidence and flat surfaces",
+        "business": "Diaspora Co."
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "9999px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80-120px",
+      "cardPadding": "12-16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#823513",
+        "name": "Tandoor Canvas",
+        "level": 0,
+        "purpose": "Full-viewport page background, hero section, all primary surfaces"
+      },
+      {
+        "hex": "#402011",
+        "name": "Spice Card",
+        "level": 1,
+        "purpose": "Card surfaces, button ghost fills, input fields, badge backgrounds"
+      },
+      {
+        "hex": "#281006",
+        "name": "Charred Core",
+        "level": 2,
+        "purpose": "Deepest recessed surface, inner modals, maximum-contrast text backing"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — the system intentionally avoids box-shadows",
+        "element": "No elevated components"
+      }
+    ],
+    "northStar": "Turmeric-bright graffiti on a tandoor wall. A single gold-on-rust palette with display type so large it reads as a spice market sign, not a webpage.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.02
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 29,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "heading",
+        "size": 65,
+        "lineHeight": 0.95,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 101,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.016
+      },
+      {
+        "role": "display",
+        "size": 195,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Outline Button",
+        "role": "Default interactive control (SAUCE, ABOUT, RECIPES, GAME, CONTACT, BUY NOW)",
+        "description": "Salmond weight 500, 13px, 0.01em tracking, text color #faae33, 1px border in #faae33, fully rounded radius (1296px — effectively pill), padding 8px 17px, transparent fill so the Ember Rust canvas reads through. Used for every nav link and secondary action."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Hero call to action (BUY NOW in hero, primary CTAs)",
+        "description": "Salmond weight 500, 13px, #281006 text on #faae33 fill, 1px #faae33 border, 1296px radius, padding 10px 20px. The only filled button in the system — its darkness against the gold makes it the loudest interactive element on any page."
+      },
+      {
+        "name": "Ghost Borderless Button",
+        "role": "Low-emphasis text link sitting inline with body copy",
+        "description": "Salmond 13px weight 500, #faae33 text, no border, no background. Appears in paragraph-adjacent micro-CTA positions."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Tag, label, category marker (product type, flavor note)",
+        "description": "Salmond 11–12px weight 500 uppercase, 0.02em tracking, pill radius 1080px, padding 4–8px vertical, 12–16px horizontal. Fill is #faae33 with #281006 text for primary tags, or #402011 with #faae33 text for secondary tags."
+      },
+      {
+        "name": "Alert Badge",
+        "role": "Heat-level or flavor-intensity indicator",
+        "description": "Pill-shaped, 1080px radius, fill #d1255c, 11px Salmond weight 500, padding 4px 12px. Reserved for the rare spicy/heat callouts."
+      },
+      {
+        "name": "Pill Input Field",
+        "role": "Email capture, search, form fields",
+        "description": "Fully rounded (1224px radius) input, 1px #6b2e12 border on transparent fill, Salmond 13px weight 500 placeholder, 12–16px vertical padding, 16–20px horizontal padding. No visible focus ring — interaction states use border-color shift to #faae33."
+      },
+      {
+        "name": "Surface Card",
+        "role": "Product card, recipe card, content tile",
+        "description": "6px radius, fill #402011, padding 12–16px, no shadow — depth comes from the 2-step color shift against the Ember Rust canvas, not from elevation."
+      },
+      {
+        "name": "Product Bottle Showcase",
+        "role": "Hero product image container",
+        "description": "Raw product photography on a transparent canvas, no card frame, no background plate. The jar sits directly on the Ember Rust hero with a subtle warm highlight rim suggesting backlight."
+      },
+      {
+        "name": "Botanical Watermark Layer",
+        "role": "Atmospheric background motif",
+        "description": "Faded fern/leaf/flower illustrations rendered as background watermarks behind content sections. Low-contrast, near-invisible at resting state — they only become readable when the eye settles, reinforcing the 'tandoor wall' texture without competing with type."
+      },
+      {
+        "name": "Dotted Divider",
+        "role": "Horizontal section separator",
+        "description": "1px dotted line in #faae33 spanning full width, used between major viewport sections. Replaces whitespace-only separation and gives the page a label-printed rhythm."
+      },
+      {
+        "name": "Iconography Set",
+        "role": "Small utility icons (bag, search, basket, social)",
+        "description": "Thin-stroke 1.5px line icons rendered in #faae33, 16–20px, circular button containers with 1296px radius. Icons are always gold, never filled, never multi-color."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal typeface: display headlines at 130–213px weight 700 with line-height clamped to 0.80–0.90 create the poster-scale hero, while the same family drops to 11–18px for nav, badges, and body. Negative tracking (-0.02em to -0.005em) tightens headlines; positive tracking (0.01–0.02em) opens small caps-style labels. This single-font-everywhere choice is the brand's strongest signature — there is no secondary display face to dilute it.",
+        "sizes": "11, 12, 13, 14, 18, 29, 42, 43, 65, 68, 72, 101, 130, 144, 195, 213",
+        "family": "Salmond",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.70–1.43 (tight 0.70–0.95 for display sizes 65px+, generous 1.20–1.43 for 11–18px UI sizes)",
+        "substitute": "Druk Wide, Antonio, Bebas Neue (for display); Inter or Untitled Sans (for small sizes)",
+        "letterSpacing": "-0.02em at 213px down to 0.02em at 11px — scale inversely with size: the bigger the type, the tighter the tracking"
+      },
+      {
+        "role": "Restricted to 13px weight 500 for body micro-copy, button labels, and inline meta where Salmond would feel too loud. Acts as a quiet functional voice against Salmond's shout.",
+        "sizes": "13",
+        "family": "Graphikx",
+        "weight": "500",
+        "lineHeight": "1.00–1.30",
+        "substitute": "Inter, Geist, Untitled Sans",
+        "letterSpacing": "-0.02em to 0.01em"
+      }
+    ],
+    "description": "Hungry Tiger is a fire-roasted condiment brand rendered as a maximalist typographic poster: a deep rust-brown canvas, a single searing Tiger Gold accent, and an absurdly oversized custom display face that swallows the viewport. The system behaves like a spice label — confident, warm, slightly aggressive — with pill-shaped controls, dotted horizontal rules, and dense botanical watermarks that suggest Indian heat without literal illustration. Text is the hero; product photography is small and isolated against the dark. Every surface shares the same warm brown family, and contrast is driven by the gold against charred browns, not by adding new hues.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hungry Tiger design system\",\"item\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#style-reference\",\"name\":\"Hungry Tiger design system reference\",\"headline\":\"Hungry Tiger design system | Refero Styles\",\"description\":\"Explore Hungry Tiger's dark E-commerce design system: Tiger Gold #faae33, Ember Rust #823513 colors, Salmond, Graphikx typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\",\"mainEntityOfPage\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hungry Tiger\",\"url\":\"https://www.eathungrytiger.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"caption\":\"Screenshot of Hungry Tiger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hungry Tiger design system\",\"Hungry Tiger website design\",\"Hungry Tiger colors\",\"Hungry Tiger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tiger Gold\",\"Ember Rust\",\"Saffron Glow\",\"Dark Spice\",\"Salmond\",\"Graphikx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hungry Tiger design system\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger website design\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger colors\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:11:35.392Z\",\"dateModified\":\"2026-04-30T00:11:35.392Z\"}]}19:T6bc,## Quick Color Reference\n- Page canvas: #823513 (Ember Rust)\n- Card surface: #402011 (Dark Spice)\n- Deepest surface: #281006 (Charred Clove)\n- Primary text / heading strokes: #faae33 (Tiger Gold)\n- Body text: #402011 (Dark Spice) — or #faae33 on dark fields\n- Hairline borders / input borders: #6b2e12 (Cardamom Brown)\n- Heat-level accent: #d1255c (Chili Red) — badges only\n- primary action: #faae33 (filled action)\n\n## 3–5 Example Component Prompts\n1. **Hero Display Headline**: Render 'BOLD FLAVOR' at 195px Salmond weight 700, line-height 0.80, letter-spacing -0.02em, color #faae33, on a full-bleed #823513 canvas. Place a 13px Salmond weight 500 eyebrow 'FIRE ROASTED INDIAN SAUCE' above it in #faae33 with 0.01em tracking.\n\n2. **Ghost Nav Button**: Pill-shaped button, 1296px radius, transparent fill, 1px #faae33 border, padding 8px 17px, text 'SAUCE' in 13px Salmond weight 500, color #faae33, letter-spacing 0.01em.\n\n3. **Filled Primary CTA**: Pill button, 1296px radius, fill #faae33, 1px #faae33 border, padding 10px 20px, text 'BUY NOW' in 13px Salmond weight 500, color #281006.\n\n4. **Pill Input Field**: Fully rounded input (1224px radius), transparent fill, 1px #6b2e12 border, padding 12px 20px, placeholder 'email address' in 13px Salmond weight 500 #faae33 at 60% opacity. On focus, border shifts to #faae33.\n\n5. **Product Card Section**: Full-bleed #823513 band, left column 'A NEW ANGLE OF FLAVOR' at 101px Salmond weight 700, line-height 0.90, color #faae33. Right column: raw product bottle PNG, no card frame, no background plate, anchored bottom-right. Caption 'DISCOVER HOW OUR CREAMY TOMATO BLEND AND AUTHENTIC SPICES ELEVATE EVERY MEAL' in 13px Salmond weight 500 #faae33 below the headline."
+      }
+    ],
+    "elevationPhilosophy": "The design rejects shadow-based elevation entirely. Instead, depth is communicated by stepping through three browns: Ember Rust (#823513) for the page, Dark Spice (#402011) for cards, and Charred Clove (#281006) for the deepest containers. This creates a 'carved into tandoor clay' feel — the surface looks pressed, not lifted. Any visible shadow would break the flat poster aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#faae33",
+          "oklch": {
+            "c": 0.15554448735603355,
+            "h": 73.99939342986298,
+            "l": 0.8047183387894868
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "hero",
+            "heading",
+            "image",
+            "badge",
+            "card",
+            "body"
+          ],
+          "frequency": 2258,
+          "confidence": 1,
+          "prominence": 115514745.9823155,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 6,
+            "hero/color": 2,
+            "icon/color": 4,
+            "link/color": 13,
+            "badge/color": 13,
+            "image/color": 14,
+            "other/color": 223,
+            "button/color": 1,
+            "heading/color": 174,
+            "body/borderColor": 4,
+            "card/borderColor": 24,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 52,
+            "badge/borderColor": 52,
+            "image/borderColor": 56,
+            "other/borderColor": 877,
+            "button/borderColor": 4,
+            "heading/borderColor": 696,
+            "card/backgroundColor": 3,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 11
+          }
+        },
+        {
+          "hex": "#823513",
+          "oklch": {
+            "c": 0.11550784516044299,
+            "h": 41.733801469987526,
+            "l": 0.43047958739182
+          },
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 6854715.5755977,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 6,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#9f531b",
+          "oklch": {
+            "c": 0.1208939074655307,
+            "h": 51.97595255665122,
+            "l": 0.5249004881700189
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 2712969.488938399,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 22,
+            "heading/borderColor": 88
+          }
+        },
+        {
+          "hex": "#402011",
+          "oklch": {
+            "c": 0.05542407000949009,
+            "h": 44.95131740050292,
+            "l": 0.28383263515193724
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "image",
+            "icon",
+            "heading",
+            "card",
+            "input"
+          ],
+          "frequency": 479,
+          "confidence": 1,
+          "prominence": 2435188.4232923468,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "link/color": 3,
+            "image/color": 1,
+            "input/color": 2,
+            "other/color": 28,
+            "button/color": 11,
+            "heading/color": 46,
+            "icon/borderColor": 8,
+            "link/borderColor": 12,
+            "image/borderColor": 4,
+            "other/borderColor": 124,
+            "button/borderColor": 44,
+            "heading/borderColor": 184,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#281006",
+          "oklch": {
+            "c": 0.044354950164741315,
+            "h": 43.476984788577276,
+            "l": 0.2071551919575031
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1923592,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#6b2e12",
+          "oklch": {
+            "c": 0.09582865933930525,
+            "h": 42.55314912301514,
+            "l": 0.3802294756961347
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 1140681.293291961,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 8,
+            "other/borderColor": 3
+          }
+        },
+        {
+          "hex": "#d1255c",
+          "oklch": {
+            "c": 0.20535834439108142,
+            "h": 9.138404898871782,
+            "l": 0.565458087624112
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 17524,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.37055976665179224,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#281006",
+          "foreground": "#faae33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.79,
+          "background": "#402011",
+          "foreground": "#faae33"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.52,
+          "background": "#faae33",
+          "foreground": "#6b2e12"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.53,
+          "background": "#823513",
+          "foreground": "#faae33"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#281006",
+          "foreground": "#9f531b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3,
+          "background": "#faae33",
+          "foreground": "#9f531b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.88,
+          "background": "#d1255c",
+          "foreground": "#402011"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.7,
+          "background": "#d1255c",
+          "foreground": "#faae33"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.6,
+          "background": "#402011",
+          "foreground": "#9f531b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#823513",
+          "foreground": "#402011"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.51,
+          "background": "#823513",
+          "foreground": "#9f531b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#281006",
+          "foreground": "#402011"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#d1255c",
+          "foreground": "#9f531b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 1296,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 1080,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 1224,
+          "contexts": [
+            "badge",
+            "input"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 1152,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 36,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|badge",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "heading",
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingBottom|badge",
+            "paddingTop|heading",
+            "marginTop|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "heading",
+            "badge",
+            "input",
+            "button"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "marginTop|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingBottom|input",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|button",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingTop|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "input"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|button",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "marginTop|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|heading",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "paddingBottom|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 218,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle, rgb(247, 172, 50) 0px, rgb(247, 172, 50) 2px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0) 10px)",
+        "colors": [
+          "rgb(247, 172, 50)",
+          "rgb(247, 172, 50)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 4
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Salmond",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 525,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Graphikx",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.81
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Graphikx",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Graphikx",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Graphikx",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Graphikx",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "image",
+            "badge",
+            "card"
+          ],
+          "frequency": 215,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "image",
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 43,
+          "family": "Salmond",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 28,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 65,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 68,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 101,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 43,
+          "lineHeight": 0.88,
+          "letterSpacing": -0.016,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 130,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 103,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.016,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 144,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 195,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 213,
+          "family": "Salmond",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/42ddcb40-b143-41fa-b4ce-3e865c08a0b6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hungry Tiger design system\",\"item\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#style-reference\",\"name\":\"Hungry Tiger design system reference\",\"headline\":\"Hungry Tiger design system | Refero Styles\",\"description\":\"Explore Hungry Tiger's dark E-commerce design system: Tiger Gold #faae33, Ember Rust #823513 colors, Salmond, Graphikx typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\",\"mainEntityOfPage\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hungry Tiger\",\"url\":\"https://www.eathungrytiger.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/47f15da7-8905-45b3-bcab-06a4277c6168#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"caption\":\"Screenshot of Hungry Tiger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4bb82077-2c47-41d2-ba95-3b719bf8bf7e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hungry Tiger design system\",\"Hungry Tiger website design\",\"Hungry Tiger colors\",\"Hungry Tiger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tiger Gold\",\"Ember Rust\",\"Saffron Glow\",\"Dark Spice\",\"Salmond\",\"Graphikx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hungry Tiger design system\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger website design\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger colors\"},{\"@type\":\"Thing\",\"name\":\"Hungry Tiger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:11:35.392Z\",\"dateModified\":\"2026-04-30T00:11:35.392Z\"}]}19:T6bc,## Quick Color Reference\n- Page canvas: #823513 (Ember Rust)\n- Card surface: #402011 (Dark Spice)\n- Deepest surface: #281006 (Charred Clove)\n- Primary text / heading strokes: #faae33 (Tiger Gold)\n- Body text: #402011 (Dark Spice) — or #faae33 on dark fields\n- Hairline borders / input borders: #6b2e12 (Cardamom Brown)\n- Heat-level accent: #d1255c (Chili Red) — badges only\n- primary action: #faae33 (filled action)\n\n## 3–5 Example Component Prompts\n1. **Hero Display Headline**: Render 'BOLD FLAVOR' at 195px Salmond weight 700, line-height 0.80, letter-spacing -0.02em, color #faae33, on a full-bleed #823513 canvas. Place a 13px Salmond weight 500 eyebrow 'FIRE ROASTED INDIAN SAUCE' above it in #faae33 with 0.01em tracking.\n\n2. **Ghost Nav Button**: Pill-shaped button, 1296px radius, transparent fill, 1px #faae33 border, padding 8px 17px, text 'SAUCE' in 13px Salmond weight 500, color #faae33, letter-spacing 0.01em.\n\n3. **Filled Primary CTA**: Pill button, 1296px radius, fill #faae33, 1px #faae33 border, padding 10px 20px, text 'BUY NOW' in 13px Salmond weight 500, color #281006.\n\n4. **Pill Input Field**: Fully rounded input (1224px radius), transparent fill, 1px #6b2e12 border, padding 12px 20px, placeholder 'email address' in 13px Salmond weight 500 #faae33 at 60% opacity. On focus, border shifts to #faae33.\n\n5. **Product Card Section**: Full-bleed #823513 band, left column 'A NEW ANGLE OF FLAVOR' at 101px Salmond weight 700, line-height 0.90, color #faae33. Right column: raw product bottle PNG, no card frame, no background plate, anchored bottom-right. Caption 'DISCOVER HOW OUR CREAMY TOMATO BLEND AND AUTHENTIC SPICES ELEVATE EVERY MEAL' in 13px Salmond weight 500 #faae33 below the headline."
+}

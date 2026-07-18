@@ -1,0 +1,687 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff3c00",
+      "$type": "color",
+      "$description": "Ember Orange — Primary CTAs, active nav indicators, brand accents, interactive icon strokes — vivid saturated orange that makes every action feel switched on"
+    },
+    "sunset-coral": {
+      "$value": "#ff764c",
+      "$type": "color",
+      "$description": "Sunset Coral — Feature card backgrounds, decorative gradient fills, secondary accent surfaces"
+    },
+    "peach-blush": {
+      "$value": "#ffb199",
+      "$type": "color",
+      "$description": "Peach Blush — Soft feature card backgrounds, heading accents, warm wash fills for highlighted sections"
+    },
+    "burnt-rust": {
+      "$value": "#ec4e02",
+      "$type": "color",
+      "$description": "Burnt Rust — Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "electric-blue": {
+      "$value": "#2492ff",
+      "$type": "color",
+      "$description": "Electric Blue — Secondary nav highlight, link emphasis — used sparingly for differentiation from orange"
+    },
+    "warm-canvas": {
+      "$value": "#faf6f1",
+      "$type": "color",
+      "$description": "Warm Canvas — Primary page background, nav surface, card resting surface — the dominant warm cream that defines the system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surface, input fields, button text, elevated content blocks — the brightest surface layer"
+    },
+    "ink-black": {
+      "$value": "#0e0e0f",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dominant borders, strong structural strokes — the workhorse near-black"
+    },
+    "charcoal": {
+      "$value": "#312e2e",
+      "$type": "color",
+      "$description": "Charcoal — Card borders, secondary text, button borders — warm dark gray for structure"
+    },
+    "slate": {
+      "$value": "#36373b",
+      "$type": "color",
+      "$description": "Slate — Nav borders, heading borders, body text emphasis"
+    },
+    "deep-charcoal": {
+      "$value": "#1a1919",
+      "$type": "color",
+      "$description": "Deep Charcoal — Dark surface text, card dark-mode text, button borders"
+    },
+    "gunmetal": {
+      "$value": "#2f3034",
+      "$type": "color",
+      "$description": "Gunmetal — Icon borders, input borders, secondary button strokes"
+    },
+    "stone": {
+      "$value": "#898c94",
+      "$type": "color",
+      "$description": "Stone — Muted borders, tertiary text, icon fills, decorative structure lines"
+    },
+    "pewter": {
+      "$value": "#52545a",
+      "$type": "color",
+      "$description": "Pewter — Body text, secondary paragraph copy"
+    },
+    "warm-gray": {
+      "$value": "#76716f",
+      "$type": "color",
+      "$description": "Warm Gray — Link borders, helper text, tertiary descriptive copy"
+    },
+    "mist": {
+      "$value": "#61646b",
+      "$type": "color",
+      "$description": "Mist — Subtle body borders, very low-emphasis text"
+    },
+    "sand": {
+      "$value": "#dfddd8",
+      "$type": "color",
+      "$description": "Sand — Light card backgrounds, soft dividers, warm-tinted borders"
+    },
+    "driftwood": {
+      "$value": "#cbc7c3",
+      "$type": "color",
+      "$description": "Driftwood — Card borders, subtle background fills — warm light neutral"
+    },
+    "fog": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Fog — Alternate surface background, subtle wash fills"
+    }
+  },
+  "font": {
+    "abc-diatype": {
+      "$value": "ABC Diatype",
+      "$type": "fontFamily",
+      "$description": "Secondary usage for body copy, nav items, and interface micro-text where the variable version isn't needed. Normal letter-spacing, comfortable line-heights (1.38-1.60) for readable body paragraphs."
+    },
+    "abc-diatype-plus-variable": {
+      "$value": "ABC Diatype Plus Variable",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all headings, display text, and body. The variable version provides the full range from whisper-light to bold. Display sizes (48-69px) use heavy negative tracking (-0.04 to -0.06em) creating tight, confident headlines. Body and UI text settles at 14-18px with weight 400-500. The signature use of weights 400-500 for large display text (rather than 700-800) gives Replit's type a modern, editorial confidence — authority through precision, not volume."
+    },
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "IBM Plex Sans — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ABC Diatype Plus Variable",
+        "fontSize": "69px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 69px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    },
+    "full-7": {
+      "$value": "1028px",
+      "$type": "dimension",
+      "$description": "Border radius full-7"
+    }
+  },
+  "surface": {
+    "warm-canvas": {
+      "$value": "#faf6f1",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the permanent warm cream stage"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Standard card surface, input fields, elevated content blocks"
+    },
+    "sand-wash": {
+      "$value": "#dfddd8",
+      "$type": "color",
+      "$description": "Surface level 3: Alternate light surface for subtle section differentiation"
+    },
+    "peach-feature": {
+      "$value": "#ffb199",
+      "$type": "color",
+      "$description": "Surface level 4: Feature card backgrounds — visual exclamation points"
+    },
+    "coral-feature": {
+      "$value": "#ff764c",
+      "$type": "color",
+      "$description": "Surface level 5: High-energy feature card backgrounds for key bento sections"
+    },
+    "dark-preview": {
+      "$value": "#1a1919",
+      "$type": "color",
+      "$description": "Surface level 6: Dark code/product preview cards that contrast against the warm canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://replit.com",
+      "siteName": "replit",
+      "extractedAt": "2026-06-03T19:20:26.750Z",
+      "variant": "extended"
+    }
+  }
+}

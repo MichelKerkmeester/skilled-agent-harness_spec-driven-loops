@@ -1,0 +1,479 @@
+{
+  "color": {
+    "teams-violet": {
+      "$value": "#5d5bd4",
+      "$type": "color",
+      "$description": "Teams Violet — Primary CTA buttons, active nav underlines, badge backgrounds — the single saturated signal on an otherwise achromatic page. Vivid violet-purple stands apart from Microsoft blue (#0067b8) to brand Teams distinctly within the Microsoft ecosystem."
+    },
+    "teams-midnight": {
+      "$value": "#333275",
+      "$type": "color",
+      "$description": "Teams Midnight — Hover and pressed states for Teams Violet buttons, nav link active text — darker violet that deepens without shifting hue."
+    },
+    "teams-deep": {
+      "$value": "#424197",
+      "$type": "color",
+      "$description": "Teams Deep — Button pressed/focus states — intermediate violet between Teams Violet and Teams Midnight."
+    },
+    "microsoft-blue": {
+      "$value": "#0067b8",
+      "$type": "color",
+      "$description": "Microsoft Blue — Link text, icon fills, navigation affordances — the legacy Microsoft hyperlink blue used on informational elements, never on CTA buttons."
+    },
+    "ink-navy": {
+      "$value": "#17253d",
+      "$type": "color",
+      "$description": "Ink Navy — Primary text, headings, body copy, icons — near-black with a distinct blue cast that avoids pure black harshness."
+    },
+    "abyss-navy": {
+      "$value": "#0e1726",
+      "$type": "color",
+      "$description": "Abyss Navy — Darkest heading weight, button text on transparent dark-background variants."
+    },
+    "steel": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Steel — Secondary body text, captions, placeholder text, icon color for inactive states."
+    },
+    "graphite": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Graphite — Nav link text, body text at medium emphasis."
+    },
+    "cloud": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud — Page backgrounds, card surfaces, button text on dark."
+    },
+    "frost": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Frost — Footer background, alternate section background."
+    },
+    "lace": {
+      "$value": "#fbf5fb",
+      "$type": "color",
+      "$description": "Lace — Subtle lilac-tinted surface for decorative hero background areas."
+    },
+    "ice-border": {
+      "$value": "#e6f2fb",
+      "$type": "color",
+      "$description": "Ice Border — Badge borders, light blue-tinted separator lines."
+    },
+    "mist": {
+      "$value": "#bdc5d2",
+      "$type": "color",
+      "$description": "Mist — Subtle borders, dividers, input outlines in resting state."
+    },
+    "near-white": {
+      "$value": "#fefefe",
+      "$type": "color",
+      "$description": "Near White — Card surface background — one step off pure white to reduce glare on elevated surfaces."
+    }
+  },
+  "font": {
+    "segoe-ui-variable-text": {
+      "$value": "Segoe UI Variable Text",
+      "$type": "fontFamily",
+      "$description": "The primary workhorse: all headings, body text, nav labels, buttons, badges. Microsoft's own variable font whose optical sizing axis auto-adjusts letterform construction at different sizes — tighter tracking at display scale (48px at −0.01em to −0.025em) is baked into the font's design intent, not added post hoc."
+    },
+    "segoe-ui-variable-display": {
+      "$value": "Segoe UI Variable Display",
+      "$type": "fontFamily",
+      "$description": "Hero and section headings at large scale — the Display optical axis activates wider, more open letterforms than the Text axis at the same point size, making headlines feel more authoritative at 48px and above."
+    },
+    "segoe-ui-variable-small": {
+      "$value": "Segoe UI Variable Small",
+      "$type": "fontFamily",
+      "$description": "Tight-tracked small labels and fine-print contexts."
+    },
+    "segoe-ui": {
+      "$value": "Segoe UI",
+      "$type": "fontFamily",
+      "$description": "System fallback used in footer, some nav utility links, and browser-rendered UI chrome. No tracking adjustments — falls back to OS default rendering."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Small",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Segoe Sans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Display",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Display",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Display",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Display",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Display",
+        "fontSize": "62px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Segoe UI Variable Text",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-background": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas"
+    },
+    "alt-background": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Footer and alternate section bands"
+    },
+    "card-surface": {
+      "$value": "#fefefe",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated content cards floating above page background"
+    },
+    "lilac-tint": {
+      "$value": "#fbf5fb",
+      "$type": "color",
+      "$description": "Surface level 3: Hero decorative background wash behind product imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://microsoft.com/teams",
+      "siteName": "Videoconferencia",
+      "extractedAt": "2026-04-11T19:21:51.014Z",
+      "variant": "extended"
+    }
+  }
+}

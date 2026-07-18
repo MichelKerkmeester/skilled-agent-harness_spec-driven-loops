@@ -1,0 +1,1608 @@
+{
+  "source": "https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589",
+  "uuid": "6ffe7b61-a418-4cbd-9e7a-a5129db6c589",
+  "name": "MetaMusic",
+  "northStar": "editorial cream broadsheet with sticker-flat accents — a warm-paper canvas where oversized type and hard-offset shadows replace all decoration.",
+  "capturedAt": "2026-07-18T07:32:12.902Z",
+  "meta": {
+    "url": "https://metamusic.ca",
+    "siteName": "MetaMusic",
+    "extractedAt": "2026-06-03T20:40:39.860Z",
+    "durationMs": 33447,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 473,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Maison Neue for all UI text; reserve Spoof for one accent heading at 22px per page maximum",
+      "Apply the hard 4px black offset shadow only to interactive controls (buttons, nav items) — never to cards or images",
+      "Stack the surface system in order: Paper Cream canvas → White card → Ice Blue wash → Midnight Card on Deep Indigo; never mix more than two surface levels in one viewport",
+      "Set display headlines at 80–120px with letter-spacing -0.02em to -0.03em; the tight tracking is what makes the oversized type feel intentional rather than bloated",
+      "Use the 24px radius for all cards and the 9999px pill for all buttons and tags; 8px is reserved for inputs only",
+      "Place Peach Blush icon circles only inside audience/feature cards — never on dark indigo surfaces where they would clash",
+      "Use Card Padding 40px and Section Gap 80px as the rhythm; the 8px base unit governs all internal gaps"
+    ],
+    "donts": [
+      "Do not use soft, blurred drop shadows — the hard 4px solid offset is the only elevation language in this system",
+      "Do not introduce new chromatic colors; Brand Blue and Deep Indigo are the only saturated voices, and they must not share a surface",
+      "Do not set display type without negative letter-spacing; positive tracking at 56px+ destroys the editorial feel",
+      "Do not use 8px radius on cards or 24px radius on inputs — the three-tier radius system (24px / 9999px / 8px) is strict",
+      "Do not place text directly on Peach Blush or Lavender Mist without checking contrast — both are surface washes, not text backgrounds",
+      "Do not add a second outlined pill button to the same view; the Log-in outline is a one-per-header accent",
+      "Do not center body text longer than a single line; the editorial system relies on left-aligned, ragged-right reading"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#0066cc",
+        "name": "Brand Blue",
+        "role": "Primary action background, link underlines, heading accents, card fills on light surfaces — the single chromatic voice that powers CTAs, active states, and iconography",
+        "group": "brand"
+      },
+      {
+        "hex": "#0e2575",
+        "name": "Deep Indigo",
+        "role": "Dark section backgrounds (feature/why panels), hero image frames — the only place a full-bleed surface goes deep and saturated",
+        "group": "brand"
+      },
+      {
+        "hex": "#213680",
+        "name": "Midnight Card",
+        "role": "Elevated card surface when sitting on Deep Indigo backgrounds — one step lighter than the panel to separate without using shadow",
+        "group": "brand"
+      },
+      {
+        "hex": "#101820",
+        "name": "Charcoal Ink",
+        "role": "Body text and dark-surface secondary fills — slightly cooler than pure black, anchors reading text without harshness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f1ea",
+        "name": "Paper Cream",
+        "role": "Primary page canvas — the warm base that gives the whole site its editorial, printed feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Card surfaces, nav background, button text on blue, input fills — the clean highlight layer above cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e0f8",
+        "name": "Lavender Mist",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#e9f4ff",
+        "name": "Ice Blue",
+        "role": "Alternate light surface wash, subtle card background variant — the cool counterpoint to Paper Cream",
+        "group": "accent"
+      },
+      {
+        "hex": "#f7e1d5",
+        "name": "Peach Blush",
+        "role": "Icon circle backgrounds in audience/feature cards — the only warm accent that breaks the cream-on-cream",
+        "group": "accent"
+      },
+      {
+        "hex": "#d6d6d6",
+        "name": "Ash Border",
+        "role": "Hairline dividers, subtle borders on neutral surfaces — the quietest structural line",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is max-width contained at ~1280px, centered, with generous outer gutters. The hero is a left-aligned oversized headline stack on Paper Cream with floating illustration accents to the right — no full-bleed image, no video. The site alternates between warm cream bands (audience, features) and a single full-width Deep Indigo section ('Why use MetaMusic?'), creating a clear warm→cool progression as the user scrolls. Section rhythm uses 80px vertical gaps with no visible dividers — separation comes from surface color shifts alone. The audience section uses a 2-column split: oversized left-aligned heading on the left, stacked white cards on the right. Feature sections use a 3–4 column card grid on the dark indigo panel. Navigation is a single 64px white top bar — no sticky variant, no sidebar, no mega-menu. The overall density is spacious and editorial: one or two primary elements per viewport, never more.",
+    "imagery": "Visuals are illustrations, not photography — flat, line-art icons drawn in Brand Blue (#0066cc) depicting documents, magnifying glasses, music notes, cassette tapes, and microphones. Icons always sit inside Peach Blush (#f7e1d5) circles on cream surfaces, or float freely near headlines in the hero. The illustration style is geometric and monoweight, never filled, never gradient-shaded. No product screenshots, no lifestyle photography, no 3D renders. Image density is low — illustrations appear as single accents (one per hero, one per card) rather than as galleries. The visual language reads like editorial spot illustrations in a music-industry magazine.",
+    "similar": [
+      {
+        "why": "Editorial cream/white canvas with oversized sans-serif headlines and a single blue brand accent; the same museum-label approach to hero typography",
+        "business": "Splice"
+      },
+      {
+        "why": "Warm paper-like base color with generous spacing, large confident type, and minimal decoration — music-industry tools that prioritize readability over flash",
+        "business": "Bandcamp"
+      },
+      {
+        "why": "Clean light surfaces, generous card padding (40px), 24px card radius, and a single functional accent color for actions and links",
+        "business": "Notion"
+      },
+      {
+        "why": "Pill-shaped buttons with hard-offset shadows and a single chromatic accent on a near-white canvas — the same sticker-flat button treatment",
+        "business": "Linear"
+      },
+      {
+        "why": "Oversized display type with tight negative tracking, generous section gaps, and a warm neutral canvas that signals editorial credibility",
+        "business": "Squarespace"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "24px",
+        "badges": "9999px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f4f1ea",
+        "name": "Paper Cream Canvas",
+        "level": 0,
+        "purpose": "Primary page background — the warm editorial base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 1,
+        "purpose": "Standard card and nav surface on cream canvas"
+      },
+      {
+        "hex": "#e9f4ff",
+        "name": "Ice Blue Wash",
+        "level": 2,
+        "purpose": "Alternate light surface for secondary cards and callout boxes"
+      },
+      {
+        "hex": "#e6e0f8",
+        "name": "Lavender Mist",
+        "level": 3,
+        "purpose": "Input field backgrounds, notification banner tint"
+      },
+      {
+        "hex": "#f7e1d5",
+        "name": "Peach Blush",
+        "level": 4,
+        "purpose": "Icon circle containers in feature/audience cards"
+      },
+      {
+        "hex": "#213680",
+        "name": "Midnight Card",
+        "level": 5,
+        "purpose": "Elevated card on deep indigo panels"
+      },
+      {
+        "hex": "#0e2575",
+        "name": "Deep Indigo Panel",
+        "level": 6,
+        "purpose": "Full-bleed dark feature section background"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 4px 0px 0px #000000",
+        "element": "Buttons, nav buttons, pill controls"
+      }
+    ],
+    "northStar": "editorial cream broadsheet with sticker-flat accents — a warm-paper canvas where oversized type and hard-offset shadows replace all decoration.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display-sm",
+        "size": 56,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.12
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "display-lg",
+        "size": 120,
+        "lineHeight": 0.95,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening text",
+        "description": "Maison Neue weight 600, sizes 80–120px, lineHeight 0.95–1.05, letter-spacing -0.02em to -0.03em. Color: Charcoal Ink (#101820) on cream, White on indigo. Sets the editorial voice — monumental, tight, and unadorned."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section titles",
+        "description": "Maison Neue weight 600 at 56px, lineHeight 1.05, letter-spacing -0.02em. Color: Charcoal Ink on cream surfaces, White on indigo. The 56px step is the most repeated display size across interior sections."
+      },
+      {
+        "name": "Accent Eyebrow Label",
+        "role": "Small blue label above section headings",
+        "description": "Maison Neue weight 500 at 16–19px, color Brand Blue (#0066cc), no uppercase. Acts as the 'Discover MetaMusic' / 'Who's it for?' pre-title — a short functional punctuation that introduces each section."
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled blue action button",
+        "description": "Background Brand Blue (#0066cc), text White, Maison Neue weight 500 at 16px, padding 16px 24px, border-radius 9999px (pill), hard 4px black offset shadow. One per view maximum."
+      },
+      {
+        "name": "Outline Nav Button",
+        "role": "Log-in / portal entry in header",
+        "description": "White background, Black 1px border, Charcoal Ink text, Maison Neue weight 500 at 16px, padding 12px 24px, border-radius 9999px, hard 4px black offset shadow. The only outlined pill in the system — sits in the header as a secondary entry point."
+      },
+      {
+        "name": "Ghost Arrow Button",
+        "role": "Card continuation control",
+        "description": "Circular 40px Black (#000000) background, White right-arrow icon, no border, no shadow. Sits in the bottom-right corner of feature cards to signal 'continue' without a full CTA treatment."
+      },
+      {
+        "name": "Feature Card on Indigo",
+        "role": "Numbered step card in dark sections",
+        "description": "Background Midnight Card (#213680), padding 40px, border-radius 24px, no shadow. Top-left has a 32px Brand Blue circle with white numeral. Title: White Maison Neue weight 500 at 22px. Body: White at 16px."
+      },
+      {
+        "name": "Audience Card",
+        "role": "Audience / \"who's it for\" card",
+        "description": "Background White, padding 40px, border-radius 24px, no shadow. Left side: 48px Peach Blush (#f7e1d5) circle with Brand Blue line-icon. Right: Charcoal Ink title (Maison Neue 500, 19px) and body (16px, 400)."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form fields",
+        "description": "Background White, border 1px Lavender Mist (#e6e0f8), border-radius 8px, padding 16px, Maison Neue 400 at 16px. Focus: border becomes Brand Blue. No floating labels."
+      },
+      {
+        "name": "Notification Banner",
+        "role": "Top-of-page announcement bar",
+        "description": "Background Lavender Mist (#e6e0f8), full-width, padding 8px, Charcoal Ink text at 12–14px, small close × on the right. The only persistent banner in the system."
+      },
+      {
+        "name": "Illustration Icon Circle",
+        "role": "Decorative music/document icon",
+        "description": "48–64px Peach Blush (#f7e1d5) circle with a Brand Blue line-art icon inside (document, magnifying glass, music note). Always paired with or floats near headlines; never used as a functional control."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "White background, 64px height, Maison Neue weight 500 at 16px for links. Logo (Maison Neue wordmark + mark) on the left, links centered/left-aligned, Outline Nav Button on the right. Bottom hairline border in Ash Border (#d6d6d6)."
+      },
+      {
+        "name": "Language/Region Toggle",
+        "role": "Globe icon with language code in header",
+        "description": "No background, Charcoal Ink globe icon + 2-letter language code at 14px, right-aligned in nav. Minimal — never wrapped in a button chrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole workhorse font across body, nav, headings, buttons, inputs, cards, and footers. Weight 400 carries body and UI labels; 500 steps up to subheadings and nav; 600 owns display sizes (56–120px). The type behaves like a neo-grotesque with humanist warmth — readable at 12px, monumental at 120px. Negative tracking tightens aggressively at display sizes (-0.03em at 120px, -0.02em at 56–80px, -0.01em at 32–40px) so headlines sit visually compact despite their scale.",
+        "sizes": "12, 14, 16, 19, 22, 26, 32, 40, 56, 80, 120",
+        "family": "Maison Neue",
+        "weight": "400, 500, 600",
+        "lineHeight": "0.95, 1.05, 1.10, 1.20, 1.35, 1.40, 1.50",
+        "substitute": "Inter, Söhne, or IBM Plex Sans",
+        "letterSpacing": "-0.0300em, -0.0200em, -0.0100em"
+      },
+      {
+        "role": "Reserved for a single accent heading or card label at 22px / weight 500. Its ultra-tight 0.90 leading and -0.02em tracking create a display-quality mark at a mid size — used as a typographic exclamation point, never as a workhorse. Free substitute: GT America or a tight condensed sans like Druk Wide.",
+        "sizes": "22",
+        "family": "Spoof",
+        "weight": "500",
+        "lineHeight": "0.90",
+        "substitute": "GT America, Druk Wide, or Söhne Breit",
+        "letterSpacing": "-0.0200em"
+      }
+    ],
+    "description": "MetaMusic speaks in a paper-warm, editorial tone: a cream canvas (#f4f1ea) hosts oversized display headlines (up to 120px) that read like a museum wall label, while one vivid blue (#0066cc) and one deep indigo (#0e2575) carry all functional weight. Surfaces stack from cream → white → light-blue wash → indigo panel, creating a gentle warm-to-cool gradient as the eye scrolls. The defining texture is a hard 4px solid black offset shadow (zero blur) — a flat, almost sticker-like treatment that gives buttons and cards a tactile, printed feel rather than a soft Material elevation. Typography is monolinear and quiet: Maison Neue at every UI role, Spoof reserved for a single 22px accent heading, all set tight with negative tracking at display sizes. Components stay spacious (24px card radius, 40px internal padding) and never compete with the massive hero type; illustrated document and music icons float on warm peach circles as the only decorative voice.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MetaMusic design system\",\"item\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#style-reference\",\"name\":\"MetaMusic design system reference\",\"headline\":\"MetaMusic design system | Refero Styles\",\"description\":\"Explore MetaMusic's mixed SaaS design system: Brand Blue #0066cc, Deep Indigo #0e2575 colors, Maison Neue, Spoof typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MetaMusic\",\"url\":\"https://metamusic.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"caption\":\"Screenshot of MetaMusic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MetaMusic design system\",\"MetaMusic website design\",\"MetaMusic colors\",\"MetaMusic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Brand Blue\",\"Deep Indigo\",\"Midnight Card\",\"Charcoal Ink\",\"Maison Neue\",\"Spoof\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MetaMusic design system\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic website design\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic colors\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:55:28.647Z\",\"dateModified\":\"2026-04-30T03:55:28.647Z\"}]}19:Ta9b,Quick Color Reference:\n- Text: #101820 (Charcoal Ink) on cream, #ffffff on indigo\n- Background: #f4f1ea (Paper Cream) for pages, #0e2575 (Deep Indigo) for dark sections\n- Border: #d6d6d6 (Ash) for hairlines, #0066cc (Brand Blue) for interactive borders\n- Accent: #0066cc (Brand Blue) — the only chromatic voice\n- Icon wash: #f7e1d5 (Peach Blush) circles for decorative icons\n- primary action: #0066cc (outlined action border)\n\nExample Component Prompts:\n\n1. Create a hero section: Paper Cream (#f4f1ea) background, max-width 1280px centered. Accent eyebrow 'Discover MetaMusic' in Brand Blue (#0066cc) Maison Neue 500 at 16px. Headline 'Take control of your music metadata' in Charcoal Ink (#101820) Maison Neue 600 at 80px, lineHeight 1.05, letter-spacing -1.6px. Two cards below at 40px padding, 24px radius: left card is Brand Blue (#0066cc) background with white text 'Create a MetaMusic Beta account' plus a 40px Black circular arrow button; right card is White background with 1px Ash Border, Charcoal Ink text, same arrow button.\n\n2. Create an audience section: Paper Cream background, 2-column layout. Left column: Accent eyebrow 'Who's it for?' in Brand Blue 16px, then 'MetaMusic is for everyone involved in local music!' in Charcoal Ink Maison Neue 600 at 56px, lineHeight 1.05, letter-spacing -1.12px. Right column: 4 stacked White cards, each 40px padding, 24px radius, containing a 48px Peach Blush (#f7e1d5) circle with a Brand Blue line-icon, a 19px Maison Neue 500 title, and 16px body text.\n\n3. Create a dark feature section: Deep Indigo (#0e2575) full-width background, white text. Centered heading 'Why use MetaMusic?' in White Maison Neue 600 at 56px, with a Brand Blue link 'Discover MetaMusic's metadata management tool →' below. 4-column grid of Midnight Card (#213680) cards, 40px padding, 24px radius. Each card has a 32px Brand Blue circle with a white numeral (1–4) top-left, a White Maison Neue 500 title at 22px, and White body at 16px.\n\n4. Create a text input: White background, 1px Lavender Mist (#e6e0f8) border, 8px radius, 16px padding, Maison Neue 400 at 16px, Charcoal Ink text. Focus state: border becomes Brand Blue (#0066cc), no shadow change.\n\n5. Create the top navigation: White background, 64px height, Ash Border (#d6d6d6) 1px bottom hairline. Left: Brand Blue mark + Maison Neue 600 wordmark. Center-left: nav links (Discover the Tool, Help and training sessions, Resources, News, Contact us) in Maison Neue 500 at 16px Charcoal Ink. Right: Outline Nav Button — White background, 1px Black border, Charcoal Ink 'Log-in to the portal' text, 9999px radius, 12px 24px padding, 0px 4px 0px 0px #000000 shadow. Far right: globe icon + 'Fr' in Maison Neue 400 at 14px."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "Maison Neue is the entire voice of the interface — it carries from 12px helper text to 120px hero without ever changing its humanist character. The signature move is the negative letter-spacing ramp: -0.01em at 32–40px, -0.02em at 56–80px, -0.03em at 120px. This tracking compression is what makes the display type feel designed rather than defaulted. Spoof appears once per page maximum at 22px weight 500 — think of it as a typographic period at the end of a headline, not a body face. Never set body text at 0.90 line-height or display text at 1.5; the line-height scale is tightly coupled to size (0.95 at 120px → 1.5 at 12px)."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately flat. The only shadow in the system is a hard 4px solid black offset (zero blur) reserved for interactive controls — buttons and nav items get a sticker-like drop that implies a printed paper cutout rather than Material depth. Cards rely on background color contrast (white on cream, midnight on indigo) and 24px radius to separate themselves; they never use shadow. This keeps the editorial feel intact and avoids any glassmorphism or soft-elevation vocabulary."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "image",
+            "icon",
+            "card",
+            "badge",
+            "footer",
+            "button",
+            "input"
+          ],
+          "frequency": 1667,
+          "confidence": 1,
+          "prominence": 199346053.49488276,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 31,
+            "body/color": 30,
+            "card/color": 3,
+            "hero/color": 2,
+            "icon/color": 11,
+            "link/color": 42,
+            "other/fill": 10,
+            "badge/color": 15,
+            "image/color": 46,
+            "input/color": 4,
+            "other/color": 130,
+            "button/color": 2,
+            "heading/color": 22,
+            "nav/boxShadow": 1,
+            "nav/borderColor": 124,
+            "body/borderColor": 120,
+            "button/boxShadow": 2,
+            "card/borderColor": 12,
+            "hero/borderColor": 8,
+            "icon/borderColor": 44,
+            "link/borderColor": 168,
+            "badge/borderColor": 60,
+            "image/borderColor": 184,
+            "input/borderColor": 4,
+            "other/borderColor": 485,
+            "button/borderColor": 8,
+            "heading/borderColor": 88,
+            "nav/backgroundColor": 3,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "card",
+            "heading",
+            "image",
+            "body",
+            "footer",
+            "button"
+          ],
+          "frequency": 542,
+          "confidence": 1,
+          "prominence": 30320375.38293769,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 2,
+            "card/color": 24,
+            "link/color": 1,
+            "image/color": 3,
+            "other/color": 60,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 7,
+            "nav/borderColor": 32,
+            "body/borderColor": 8,
+            "card/borderColor": 96,
+            "link/borderColor": 4,
+            "image/borderColor": 12,
+            "other/borderColor": 240,
+            "footer/borderColor": 4,
+            "heading/borderColor": 28,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 3,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0e2575",
+          "oklch": {
+            "c": 0.13940407814098466,
+            "h": 265.6667816515566,
+            "l": 0.30955673139752155
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 9369493.712623734,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#e6e0f8",
+          "oklch": {
+            "c": 0.032919940317716986,
+            "h": 297.1863831798188,
+            "l": 0.9186134754256708
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 5260940.738234519,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 12,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f4f1ea",
+          "oklch": {
+            "c": 0.009844536171332088,
+            "h": 87.4714748277771,
+            "l": 0.9585308013817997
+          },
+          "contexts": [
+            "hero",
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 4962437.772104656,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#101820",
+          "oklch": {
+            "c": 0.020009545520691133,
+            "h": 248.83022910200134,
+            "l": 0.20502249641848241
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3966952,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0066cc",
+          "oklch": {
+            "c": 0.17708961470536017,
+            "h": 255.82972827643937,
+            "l": 0.5219661945458461
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "card",
+            "other"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 1290385.9200039974,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "other/fill": 2,
+            "other/color": 2,
+            "other/stroke": 3,
+            "heading/color": 3,
+            "link/borderColor": 12,
+            "other/borderColor": 8,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 6,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d6d6d6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8760963267776515
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 889317.8712849271,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 28,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#828aa8",
+          "oklch": {
+            "c": 0.045987756902127405,
+            "h": 273.33216530614504,
+            "l": 0.6375244773090311
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 462032.2620195206,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#213680",
+          "oklch": {
+            "c": 0.12769648040099743,
+            "h": 267.5763853232427,
+            "l": 0.36337309497285813
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 413594.000115385,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#0b5aaa",
+          "oklch": {
+            "c": 0.145853565789556,
+            "h": 254.47164521743105,
+            "l": 0.4710417520022078
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 327107,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#f7e1d5",
+          "oklch": {
+            "c": 0.029191738573795797,
+            "h": 50.60360343757775,
+            "l": 0.9243379951685525
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 12288,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#e9f4ff",
+          "oklch": {
+            "c": 0.018875576454076507,
+            "h": 248.0241750097382,
+            "l": 0.9621463030224308
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3f474f",
+          "oklch": {
+            "c": 0.017140456643788785,
+            "h": 248.2621685418158,
+            "l": 0.39372107324975114
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01442532709073767,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.85,
+          "background": "#e9f4ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.62,
+          "background": "#f4f1ea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.89,
+          "background": "#101820",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.69,
+          "background": "#f7e1d5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#e6e0f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.06,
+          "background": "#e9f4ff",
+          "foreground": "#101820"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.86,
+          "background": "#f4f1ea",
+          "foreground": "#101820"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#d6d6d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#f7e1d5",
+          "foreground": "#101820"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.96,
+          "background": "#e6e0f8",
+          "foreground": "#101820"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.63,
+          "background": "#0e2575",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.31,
+          "background": "#d6d6d6",
+          "foreground": "#101820"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.24,
+          "background": "#e9f4ff",
+          "foreground": "#0e2575"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#f4f1ea",
+          "foreground": "#0e2575"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#213680",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#f7e1d5",
+          "foreground": "#0e2575"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#e6e0f8",
+          "foreground": "#0e2575"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#e9f4ff",
+          "foreground": "#213680"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#f4f1ea",
+          "foreground": "#213680"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "badge",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "input"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(0, 0, 0) 0px 4px 0px 0px",
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|link",
+            "paddingTop|nav",
+            "marginTop|nav",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "badge"
+          ],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|body",
+            "rowGap|link",
+            "columnGap|link",
+            "marginTop|link",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingLeft|body",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingRight|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "badge",
+            "input"
+          ],
+          "frequency": 36,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "card",
+            "heading",
+            "badge",
+            "button"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|heading",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 137,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "columnGap|card",
+            "marginTop|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "hero",
+            "card"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginLeft|card",
+            "marginRight|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 136,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Maison Neue",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 449,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Spoof",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "badge",
+            "body",
+            "button"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "input"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "icon",
+            "body",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 338,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Maison Neue",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Spoof",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Maison Neue",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Maison Neue",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Maison Neue",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e4efb661-e4af-4062-b635-a26838e6839b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MetaMusic design system\",\"item\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#style-reference\",\"name\":\"MetaMusic design system reference\",\"headline\":\"MetaMusic design system | Refero Styles\",\"description\":\"Explore MetaMusic's mixed SaaS design system: Brand Blue #0066cc, Deep Indigo #0e2575 colors, Maison Neue, Spoof typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MetaMusic\",\"url\":\"https://metamusic.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6ffe7b61-a418-4cbd-9e7a-a5129db6c589#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"caption\":\"Screenshot of MetaMusic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fdbae621-3685-4efb-aed1-cc30d17d54a2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MetaMusic design system\",\"MetaMusic website design\",\"MetaMusic colors\",\"MetaMusic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Brand Blue\",\"Deep Indigo\",\"Midnight Card\",\"Charcoal Ink\",\"Maison Neue\",\"Spoof\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MetaMusic design system\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic website design\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic colors\"},{\"@type\":\"Thing\",\"name\":\"MetaMusic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:55:28.647Z\",\"dateModified\":\"2026-04-30T03:55:28.647Z\"}]}19:Ta9b,Quick Color Reference:\n- Text: #101820 (Charcoal Ink) on cream, #ffffff on indigo\n- Background: #f4f1ea (Paper Cream) for pages, #0e2575 (Deep Indigo) for dark sections\n- Border: #d6d6d6 (Ash) for hairlines, #0066cc (Brand Blue) for interactive borders\n- Accent: #0066cc (Brand Blue) — the only chromatic voice\n- Icon wash: #f7e1d5 (Peach Blush) circles for decorative icons\n- primary action: #0066cc (outlined action border)\n\nExample Component Prompts:\n\n1. Create a hero section: Paper Cream (#f4f1ea) background, max-width 1280px centered. Accent eyebrow 'Discover MetaMusic' in Brand Blue (#0066cc) Maison Neue 500 at 16px. Headline 'Take control of your music metadata' in Charcoal Ink (#101820) Maison Neue 600 at 80px, lineHeight 1.05, letter-spacing -1.6px. Two cards below at 40px padding, 24px radius: left card is Brand Blue (#0066cc) background with white text 'Create a MetaMusic Beta account' plus a 40px Black circular arrow button; right card is White background with 1px Ash Border, Charcoal Ink text, same arrow button.\n\n2. Create an audience section: Paper Cream background, 2-column layout. Left column: Accent eyebrow 'Who's it for?' in Brand Blue 16px, then 'MetaMusic is for everyone involved in local music!' in Charcoal Ink Maison Neue 600 at 56px, lineHeight 1.05, letter-spacing -1.12px. Right column: 4 stacked White cards, each 40px padding, 24px radius, containing a 48px Peach Blush (#f7e1d5) circle with a Brand Blue line-icon, a 19px Maison Neue 500 title, and 16px body text.\n\n3. Create a dark feature section: Deep Indigo (#0e2575) full-width background, white text. Centered heading 'Why use MetaMusic?' in White Maison Neue 600 at 56px, with a Brand Blue link 'Discover MetaMusic's metadata management tool →' below. 4-column grid of Midnight Card (#213680) cards, 40px padding, 24px radius. Each card has a 32px Brand Blue circle with a white numeral (1–4) top-left, a White Maison Neue 500 title at 22px, and White body at 16px.\n\n4. Create a text input: White background, 1px Lavender Mist (#e6e0f8) border, 8px radius, 16px padding, Maison Neue 400 at 16px, Charcoal Ink text. Focus state: border becomes Brand Blue (#0066cc), no shadow change.\n\n5. Create the top navigation: White background, 64px height, Ash Border (#d6d6d6) 1px bottom hairline. Left: Brand Blue mark + Maison Neue 600 wordmark. Center-left: nav links (Discover the Tool, Help and training sessions, Resources, News, Contact us) in Maison Neue 500 at 16px Charcoal Ink. Right: Outline Nav Button — White background, 1px Black border, Charcoal Ink 'Log-in to the portal' text, 9999px radius, 12px 24px padding, 0px 4px 0px 0px #000000 shadow. Far right: globe icon + 'Fr' in Maison Neue 400 at 14px."
+}

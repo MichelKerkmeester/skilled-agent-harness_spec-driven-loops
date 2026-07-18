@@ -1,0 +1,121 @@
+:root {
+  /* Colors */
+  --color-electric-violet: #432dd7;
+  --color-bright-indigo: #4f39f6;
+  --color-deep-indigo: #312c85;
+  --color-soft-violet: #a6a5fe;
+  --color-lavender-mist: #d7defd;
+  --color-periwinkle-wash: #c6d2ff;
+  --color-signal-green: #00c950;
+  --color-paper: #fafafa;
+  --color-fog: #f5f5f5;
+  --color-cloud: #efefef;
+  --color-mist: #e5e5e5;
+  --color-pale-steel: #d4d4d4;
+  --color-silver: #b7b7b7;
+  --color-mid-gray: #a1a1a1;
+  --color-steel: #828282;
+  --color-slate: #737373;
+  --color-graphite: #666666;
+  --color-iron: #525252;
+  --color-charcoal: #404040;
+  --color-dark-steel: #262626;
+  --color-onyx: #171717;
+  --color-near-black: #0a0a0a;
+
+  /* Typography — Font Families */
+  --font-marund: 'Marund', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-variable: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 10px;
+  --leading-micro: 1.2;
+  --tracking-micro: 1.4px;
+  --text-eyebrow: 12px;
+  --leading-eyebrow: 1.4;
+  --tracking-eyebrow: 1.68px;
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1.33;
+  --tracking-subheading: -0.6px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.75px;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.9px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -1.2px;
+  --text-display: 96px;
+  --leading-display: 1;
+  --tracking-display: -4.8px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-w450: 450;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-136: 136px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 96px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  /* Named Radii */
+  --radius-tags: 6px;
+  --radius-cards: 16px;
+  --radius-images: 6px;
+  --radius-inputs: 6px;
+  --radius-buttons: 6px;
+  --radius-navpill: 12px;
+  --radius-largecards: 24px;
+  --radius-smallcards: 12px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+  --shadow-subtle: oklch(0 0 0 / 0.3) 0px 0px 2px 0px inset, oklch(0 0 0 / 0.1) 0px 1px 0px 0px inset;
+  --shadow-subtle-2: oklch(0.439 0 0) 0px 0px 0px 0px;
+  --shadow-subtle-3: oklch(0.439 0 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+  --shadow-subtle-4: oklch(0.556 0 0) 0px 0px 0px 0px;
+  --shadow-subtle-5: oklch(0.145 0 0) 0px 0px 0px 0px, oklab(0.999994 0.0000455678 0.0000200868 / 0.4) 0px 1px 3px 0px, oklab(0.999994 0.0000455678 0.0000200868 / 0.5) 0px 0px 4px 0px, oklab(0 0 0 / 0.3) 0px 0px 2px 0px inset, oklab(0 0 0 / 0.1) 0px 1px 0px 0px inset;
+  --shadow-subtle-6: oklch(0.145 0 0) 0px 0px 0px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #fafafa;
+  --surface-surface: #f5f5f5;
+  --surface-card: #ffffff;
+  --surface-tinted: #d7defd;
+}

@@ -1,0 +1,1449 @@
+{
+  "source": "https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812",
+  "uuid": "a9dd8050-c03a-4901-b7fa-a9cc0ca54812",
+  "name": "Monarch",
+  "northStar": "warm linen notebook under morning light",
+  "capturedAt": "2026-07-18T07:51:47.591Z",
+  "meta": {
+    "url": "https://www.monarchmoney.com",
+    "siteName": "Monarch",
+    "extractedAt": "2026-06-03T19:18:40.533Z",
+    "durationMs": 52946,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 781,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Ember Orange (#ff692d) exclusively for filled buttons, active states, and eyebrow labels — never as a text color for body copy or as a background wash",
+      "Set all buttons to 9999px border-radius — the pill shape is the system's most recognizable element",
+      "Apply Copernicus at weight 350 for all headings with the matching negative tracking per size (-3.22px at 48px, -2.40px at 40px, -1.60px at 32px)",
+      "Use Linen (#efecea) as the page background and white (#ffffff) as card surfaces — never invert this stack",
+      "Use Stone (#dcd9d6) for all hairline borders and dividers at 1px — the warm gray harmonizes with the cream canvas",
+      "Set body text to ABC Oracle weight 350-400 with -0.010em tracking — lighter weight lets the orange accent dominate",
+      "Embed product UI as 12px-radius cards with 1px Stone border and the two-layer shadow — these screenshots are the primary visual proof"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — the monochrome warm-neutral + single orange is the entire system",
+      "Don't use square or 4px-radius buttons — the pill (9999px) is non-negotiable",
+      "Don't set headings in ABC Oracle or body text in Copernicus — the font split is strict by role",
+      "Don't use pure black (#000000) or pure white (#ffffff) as backgrounds — the warm shift in Ink and Linen is what makes the system feel editorial rather than corporate",
+      "Don't apply heavy shadows to cards or buttons — the system relies on hairline shadows at 5% opacity, not dramatic elevation",
+      "Don't use uppercase or letter-spaced text for body content — tracked caps are reserved for eyebrow labels only",
+      "Don't use the orange gradient (red→orange) on UI elements — it's a promotional accent only, not a surface treatment"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff692d",
+        "name": "Ember Orange",
+        "role": "Primary action buttons, active nav indicators, key UI accents — the only chromatic color in the system, reserved so it reads as decisive when it appears",
+        "group": "brand"
+      },
+      {
+        "hex": "#efecea",
+        "name": "Linen",
+        "role": "Page canvas and section backgrounds — the warm cream that separates the site from sterile white SaaS",
+        "group": "neutral"
+      },
+      {
+        "hex": "#22201d",
+        "name": "Ink",
+        "role": "Primary text, icon strokes, heading color, footer text — near-black with a warm brown undertone that harmonizes with the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#777573",
+        "name": "Graphite",
+        "role": "Muted body text, secondary helper text, captions — warm mid-gray that sits between Ink and Paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dcd9d6",
+        "name": "Stone",
+        "role": "Hairline borders, dividers, table separators, icon outlines — the warm neutral that stitches cards and sections together",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, elevated product panels, input fields — pure white that floats above the Linen canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Smoke",
+        "role": "Light text on dark surfaces, inverse labels, and high-contrast captions. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with 24px side padding. Hero is full-bleed: lifestyle photo fills the viewport, headline card overlays bottom-left, floating data cards overlay right side. Below hero, content flows in 64px vertical sections on Linen canvas, alternating between white product screenshot cards and text-forward feature blocks. Feature sections use a 3-column or 2-column grid: text-left, screenshot-right, with generous 64px gaps between sections. Press badges sit in a single full-width horizontal strip. Navigation is a sticky white top bar with centered logo-left, links-center, actions-right.",
+    "imagery": "Lifestyle photography dominates: warm, golden-hour couple-on-couch scenes with natural light, slightly desaturated to let the orange UI accents pop. Product UI is shown as embedded screenshots (dashboard, reports, transaction lists) at full fidelity — these carry the most visual weight after the hero photo. Icons are minimal: small orange butterfly brand mark, thin-line icons in Ink for UI controls, and award logos in grayscale. No illustration style is used — the system is photographic and product-screenshot driven. Imagery is always contained with 12px corners, never full-bleed except in the hero.",
+    "similar": [
+      {
+        "why": "Editorial display typography with single-weight headings and tight tracking — same sculptural heading approach",
+        "business": "Copernicus (font foundries showcasing Copernicus)"
+      },
+      {
+        "why": "Warm lifestyle photography hero with floating data cards and a single accent color against cream/warm-neutral canvas",
+        "business": "Pinterest"
+      },
+      {
+        "why": "Personal finance with warm color temperature and lifestyle-forward photography rather than cold blue data dashboards",
+        "business": "Acorns"
+      },
+      {
+        "why": "Light, spacious layout with generous vertical breathing room, hairline borders, and pill-shaped controls",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "pills": "9999px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#efecea",
+        "name": "Linen Canvas",
+        "level": 0,
+        "purpose": "Full page background, section bands, hero backdrop behind photography"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "Product UI screenshots, feature cards, elevated content blocks sitting on the canvas"
+      },
+      {
+        "hex": "#ff692d",
+        "name": "Ember Accent",
+        "level": 2,
+        "purpose": "Pill button fills, notification badges, active state highlights"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(34, 32, 29, 0.05) 0px 1px 2px 0px",
+        "element": "Primary Pill Button"
+      },
+      {
+        "style": "rgba(34, 32, 29, 0.1) 0px 10px 15px -3px, rgba(34, 32, 29, 0.1) 0px 4px 6px -4px",
+        "element": "Product Screenshot Card"
+      }
+    ],
+    "northStar": "warm linen notebook under morning light",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -3.22
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Main call-to-action — 'Sign up', 'Unlock better money habits'",
+        "description": "9999px border-radius, Ember Orange (#ff692d) fill, white text at 16px weight 500, 12px 24px padding, subtle 1px shadow at rgba(34,32,29,0.05)."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary action — 'Sign in' in header",
+        "description": "9999px border-radius, transparent fill, Ink (#22201d) text at 16px weight 500, 12px 24px padding, no border."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Tertiary action — 'Learn more' links in feature blocks",
+        "description": "9999px border-radius, transparent fill, Ember Orange (#ff692d) text, 1.5px Ember Orange border, 8px 20px padding."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Feature block with label, headline, body text, and CTA",
+        "description": "12px border-radius, white or transparent fill on Linen canvas, no visible border, 24px internal padding, generous vertical breathing room between label (uppercase tracked ABC Oracle 14px Ember Orange) and heading (Copernicus 32px Ink)."
+      },
+      {
+        "name": "Product Screenshot Card",
+        "role": "Embedded app UI mockups in 'What is Monarch?' and feature sections",
+        "description": "12px border-radius, white (#ffffff) fill, 1px Stone (#dcd9d6) border, soft two-layer shadow at rgba(34,32,29,0.1) 0px 10px 15px -3px / 0px 4px 6px -4px."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header with logo, nav links, and auth actions",
+        "description": "White background, 64px height, Monarch wordmark with orange butterfly icon left-aligned, nav links (Features, For Couples, For Professionals, Pricing, Download) center/left at 16px weight 400 Ink, ghost 'Sign in' and filled orange 'Sign up' buttons right-aligned."
+      },
+      {
+        "name": "Hero Overlay Card",
+        "role": "Headline + subtext + CTA floating over lifestyle photography",
+        "description": "Semi-transparent white (#ffffff at ~85%) background, 12px radius, 24-32px padding, 16px backdrop blur, Copernicus 48px heading, ABC Oracle 18px body in Graphite, Ember Orange pill CTA below."
+      },
+      {
+        "name": "Stat Badge Overlay",
+        "role": "Floating data cards over hero image (net worth, account list)",
+        "description": "Frosted glass effect — white at 75% opacity, 12px radius, 16px padding, Stone border, small monospace-style numerics in Ink."
+      },
+      {
+        "name": "Press / Award Badge Row",
+        "role": "Social proof strip below hero",
+        "description": "Single horizontal row on Linen canvas, 4-5 award logos (WSJ, Forbes, CNBC) separated by 5-star rating and descriptive caption, centered, 48px vertical padding."
+      },
+      {
+        "name": "Promo Banner",
+        "role": "Top-of-page announcement bar",
+        "description": "Ember Orange (#ff692d) background, white centered text at 14px weight 400, 8px vertical padding, spans full viewport width."
+      },
+      {
+        "name": "Section Header",
+        "role": "Centered eyebrow + heading + subtext block",
+        "description": "Uppercase tracked eyebrow in Ember Orange at 14px weight 500, Copernicus heading below at 40-48px Ink, ABC Oracle 18px Graphite subtext, all centered, 64px vertical gap to content below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text — body, buttons, nav, links, cards, labels. The weight 350 default is unusually light; most fintech systems default to 400-500, but Monarch's lighter body weight lets the orange accent carry more visual weight. Letter-spacing sits at -0.010 to -0.012em across all sizes.",
+        "sizes": "14px, 15px, 16px, 18px, 20px",
+        "family": "ABC Oracle",
+        "weight": "100, 350, 400, 500",
+        "lineHeight": "1.30–1.56",
+        "substitute": "Inter or Söhne (use weight 350 if available, otherwise 400)",
+        "letterSpacing": "-0.012em at 14px, -0.010em at 16px, normal at 20px+"
+      },
+      {
+        "role": "All display and section headings. The signature choice: a single weight 350 used at every heading size, paired with aggressive negative tracking (-0.050em to -0.067em). The tight tracking compresses wide headings into compact, editorial blocks rather than airy marketing copy. At 48px the -0.067em tracking is extreme — it pulls letters almost touching, creating a dense, premium feel.",
+        "sizes": "32px, 40px, 48px",
+        "family": "Copernicus",
+        "weight": "350",
+        "lineHeight": "1.20",
+        "substitute": "Fraunces or Source Serif 4 (set weight 350, apply matching negative tracking)",
+        "letterSpacing": "-0.050em at 32px, -0.060em at 40px, -0.067em at 48px"
+      }
+    ],
+    "description": "Monarch Money uses a warm editorial-fintech language: soft cream canvas, white product surfaces, and a single vivid orange that acts as functional punctuation against an otherwise monochrome warm-gray system. Typography is the signature — a high-contrast pairing of a light-weight modern sans for UI with a distinctive editorial display face at large sizes, both carrying aggressive negative tracking that tightens the layout into a confident, magazine-like rhythm. The interface feels handcrafted rather than corporate: pill-shaped controls, hairline warm borders, whisper-light shadows, and generous breathing room that lets product screenshots carry the visual weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monarch design system\",\"item\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#style-reference\",\"name\":\"Monarch design system reference\",\"headline\":\"Monarch design system | Refero Styles\",\"description\":\"Explore Monarch's light Fintech design system: Ember Orange #ff692d, Linen #efecea colors, ABC Oracle, Copernicus typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monarch\",\"url\":\"https://www.monarchmoney.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"caption\":\"Screenshot of Monarch\"},\"image\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monarch design system\",\"Monarch website design\",\"Monarch colors\",\"Monarch typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ember Orange\",\"Linen\",\"Ink\",\"Graphite\",\"ABC Oracle\",\"Copernicus\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monarch design system\"},{\"@type\":\"Thing\",\"name\":\"Monarch website design\"},{\"@type\":\"Thing\",\"name\":\"Monarch colors\"},{\"@type\":\"Thing\",\"name\":\"Monarch typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T00:44:27.149Z\",\"dateModified\":\"2026-04-30T00:44:27.149Z\"}]}19:T70d,**Quick Color Reference**\n- background: #efecea (Linen canvas)\n- surface: #ffffff (Paper cards)\n- text: #22201d (Ink)\n- muted text: #777573 (Graphite)\n- border: #dcd9d6 (Stone)\n- primary action: #ff692d (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed warm lifestyle photo background. Bottom-left overlay card: white at 85% opacity, 12px radius, 24px padding. Headline at 48px Copernicus weight 350, #22201d, letter-spacing -3.22px. Body at 18px ABC Oracle weight 350, #777573. Ember Orange pill CTA: #ff692d fill, white text, 9999px radius, 12px 24px padding, subtle shadow.\n\n2. **Feature Block**: Linen (#efecea) background. 2-column grid, 64px row gap. Left column: uppercase eyebrow at 14px ABC Oracle weight 500, #ff692d, letter-spacing 0.05em. Heading at 32px Copernicus weight 350, #22201d, letter-spacing -1.60px. Body at 16px ABC Oracle weight 350, #777573. Outlined pill button: 9999px radius, #ff692d border 1.5px, #ff692d text, 8px 20px padding. Right column: white product screenshot card, 12px radius, 1px #dcd9d6 border, soft shadow.\n\n3. **Navigation Bar**: Sticky white bar, 64px height. Left: Monarch wordmark with small orange butterfly icon. Center: nav links at 16px ABC Oracle weight 400, #22201d. Right: ghost 'Sign in' (transparent, #22201d text) and filled 'Sign up' (Ember Orange #ff692d, white text), both 9999px radius, 12px 24px padding.\n\n4. **Promo Banner**: Full-width #ff692d background, 8px vertical padding. Centered white text at 14px ABC Oracle weight 400. Spans viewport edge to edge.\n\n5. **Stat Badge Overlay**: Floating card over hero image. White at 75% opacity, 12px radius, 16px padding, 1px #dcd9d6 border, subtle backdrop blur. Small uppercase label at 12px ABC Oracle, #777573. Large number at 24px ABC Oracle weight 350, #22201d."
+      },
+      {
+        "title": "Signature Typography Pairing",
+        "content": "The Copernicus + ABC Oracle pairing is the system's most distinctive choice. Copernicus is an editorial display face used at a single weight (350) across all heading sizes — no bold, no light variation. This is unconventional: most sites use weight contrast within a single family to create hierarchy. Monarch instead creates hierarchy through size + tracking alone, with the tracking tightening aggressively as size grows (-1.60px at 32px → -3.22px at 48px). The result is headings that feel sculpted rather than typed. ABC Oracle handles all UI at weight 350-500 with very light tracking (-0.010em), giving body text a refined, almost printed quality that matches the editorial heading face."
+      },
+      {
+        "title": "Gradient System",
+        "content": "A single gradient is used in the system: linear-gradient(to right, #e5484d, #ff692d). It appears only in promotional or celebratory contexts (referral banners, special offers). Never apply it to buttons, cards, or backgrounds — it is an accent treatment, not a surface treatment."
+      }
+    ],
+    "northStarGrounding": "Soft cream pages with hand-inked charcoal type, a single felt-tip orange highlighter, and everything resting on a wooden desk."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#dcd9d6",
+          "oklch": {
+            "c": 0.00525237798308003,
+            "h": 67.75666565663748,
+            "l": 0.8868123767393942
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "card",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 2288,
+          "confidence": 1,
+          "prominence": 145715026.37413752,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 52,
+            "body/borderColor": 504,
+            "card/borderColor": 68,
+            "hero/borderColor": 4,
+            "icon/borderColor": 392,
+            "link/borderColor": 172,
+            "image/borderColor": 40,
+            "other/borderColor": 900,
+            "button/borderColor": 48,
+            "footer/borderColor": 4,
+            "heading/borderColor": 104
+          }
+        },
+        {
+          "hex": "#22201d",
+          "oklch": {
+            "c": 0.006355657364584238,
+            "h": 78.2063865278035,
+            "l": 0.2446146311000242
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "card",
+            "heading",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 429,
+          "confidence": 1,
+          "prominence": 114219161.52498761,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 13,
+            "body/color": 83,
+            "card/color": 16,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 43,
+            "nav/stroke": 3,
+            "other/fill": 6,
+            "image/color": 10,
+            "other/color": 215,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 25
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "card",
+            "heading"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 2927769.675694632,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 1,
+            "other/fill": 4,
+            "other/color": 1,
+            "heading/color": 1,
+            "card/backgroundColor": 13,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ff692d",
+          "oklch": {
+            "c": 0.19604208264987652,
+            "h": 40.07190582468696,
+            "l": 0.7013241251882959
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1988005.6520130122,
+          "properties": [
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "other/fill": 2,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#efecea",
+          "oklch": {
+            "c": 0.004216192722674913,
+            "h": 56.372727612467216,
+            "l": 0.9448477031658646
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1713682.0602922232,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#777573",
+          "oklch": {
+            "c": 0.003921661403990315,
+            "h": 67.74525226512614,
+            "l": 0.5635338056568976
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 223296.63313922664,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "other/color": 9
+          }
+        },
+        {
+          "hex": "#f35b16",
+          "oklch": {
+            "c": 0.19955893631994592,
+            "h": 40.13682662978688,
+            "l": 0.6641990857926325
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 62672.86937199022,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 13
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 324,
+          "confidence": 1,
+          "prominence": 20026.31017899796,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 90,
+            "body/color": 9,
+            "icon/color": 45,
+            "other/fill": 45,
+            "icon/stroke": 90,
+            "other/stroke": 45
+          }
+        },
+        {
+          "hex": "#ffbc0b",
+          "oklch": {
+            "c": 0.170486730372831,
+            "h": 82.31986279767612,
+            "l": 0.8347817599776176
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 324,
+          "confidence": 1,
+          "prominence": 20026.31017899796,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 90,
+            "body/color": 9,
+            "icon/color": 45,
+            "other/fill": 45,
+            "icon/stroke": 90,
+            "other/stroke": 45
+          }
+        },
+        {
+          "hex": "#2a2926",
+          "oklch": {
+            "c": 0.0055856686571688656,
+            "h": 91.57275987465754,
+            "l": 0.28089045610764735
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 18813.883203784626,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11
+          }
+        },
+        {
+          "hex": "#1dbfc4",
+          "oklch": {
+            "c": 0.1203785251173275,
+            "h": 198.29595282702022,
+            "l": 0.7323407541132748
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 260,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#be36a3",
+          "oklch": {
+            "c": 0.20617171875395807,
+            "h": 337.10935717709174,
+            "l": 0.5727328282779272
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 172,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#61af09",
+          "oklch": {
+            "c": 0.19215381468999476,
+            "h": 134.06508918011477,
+            "l": 0.6768662611857266
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 172,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffc700",
+          "oklch": {
+            "c": 0.1748780934673829,
+            "h": 88.00838414468697,
+            "l": 0.8555470228772301
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 70,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05957872564284526,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.25,
+          "background": "#ffffff",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#ffffff",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.82,
+          "background": "#efecea",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.37,
+          "background": "#efecea",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#dcd9d6",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.39,
+          "background": "#ffc700",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.35,
+          "background": "#dcd9d6",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.12,
+          "background": "#cccccc",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#ffbc0b",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#ffc700",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#cccccc",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.62,
+          "background": "#ffbc0b",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.2,
+          "background": "#1dbfc4",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.44,
+          "background": "#1dbfc4",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#ff692d",
+          "foreground": "#22201d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#ff692d",
+          "foreground": "#2a2926"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#ffffff",
+          "foreground": "#777573"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.9,
+          "background": "#efecea",
+          "foreground": "#777573"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.32,
+          "background": "#ffffff",
+          "foreground": "#f35b16"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.87,
+          "background": "#ff692d",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(34, 32, 29, 0.05) 0px 1px 2px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": "rgba(34, 32, 29, 0.1) 0px 10px 15px -3px, rgba(34, 32, 29, 0.1) 0px 4px 6px -4px",
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 80,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|body",
+            "marginTop|button",
+            "marginBottom|body",
+            "marginTop|heading",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 113,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|card",
+            "marginBottom|card",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "marginTop",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|card",
+            "marginBottom|card",
+            "columnGap|other",
+            "marginTop|link",
+            "marginTop|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(229, 72, 77), rgb(255, 105, 45))",
+        "colors": [
+          "rgb(229, 72, 77)",
+          "rgb(255, 105, 45)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Oracle",
+          "source": "custom",
+          "weights": [
+            100,
+            350,
+            400,
+            500
+          ],
+          "frequency": 551,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Copernicus",
+          "source": "custom",
+          "weights": [
+            350
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 421,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Oracle",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Oracle",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Copernicus",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Copernicus",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Copernicus",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.067,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/16ac751e-871f-40c0-8738-5b8956d38285.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monarch design system\",\"item\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#style-reference\",\"name\":\"Monarch design system reference\",\"headline\":\"Monarch design system | Refero Styles\",\"description\":\"Explore Monarch's light Fintech design system: Ember Orange #ff692d, Linen #efecea colors, ABC Oracle, Copernicus typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monarch\",\"url\":\"https://www.monarchmoney.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a9dd8050-c03a-4901-b7fa-a9cc0ca54812#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"caption\":\"Screenshot of Monarch\"},\"image\":\"https://images.refero.design/styles/refero.design/image/498fa72f-5da5-4e45-bc5d-b5d26e495ed6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monarch design system\",\"Monarch website design\",\"Monarch colors\",\"Monarch typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ember Orange\",\"Linen\",\"Ink\",\"Graphite\",\"ABC Oracle\",\"Copernicus\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monarch design system\"},{\"@type\":\"Thing\",\"name\":\"Monarch website design\"},{\"@type\":\"Thing\",\"name\":\"Monarch colors\"},{\"@type\":\"Thing\",\"name\":\"Monarch typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T00:44:27.149Z\",\"dateModified\":\"2026-04-30T00:44:27.149Z\"}]}19:T70d,**Quick Color Reference**\n- background: #efecea (Linen canvas)\n- surface: #ffffff (Paper cards)\n- text: #22201d (Ink)\n- muted text: #777573 (Graphite)\n- border: #dcd9d6 (Stone)\n- primary action: #ff692d (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed warm lifestyle photo background. Bottom-left overlay card: white at 85% opacity, 12px radius, 24px padding. Headline at 48px Copernicus weight 350, #22201d, letter-spacing -3.22px. Body at 18px ABC Oracle weight 350, #777573. Ember Orange pill CTA: #ff692d fill, white text, 9999px radius, 12px 24px padding, subtle shadow.\n\n2. **Feature Block**: Linen (#efecea) background. 2-column grid, 64px row gap. Left column: uppercase eyebrow at 14px ABC Oracle weight 500, #ff692d, letter-spacing 0.05em. Heading at 32px Copernicus weight 350, #22201d, letter-spacing -1.60px. Body at 16px ABC Oracle weight 350, #777573. Outlined pill button: 9999px radius, #ff692d border 1.5px, #ff692d text, 8px 20px padding. Right column: white product screenshot card, 12px radius, 1px #dcd9d6 border, soft shadow.\n\n3. **Navigation Bar**: Sticky white bar, 64px height. Left: Monarch wordmark with small orange butterfly icon. Center: nav links at 16px ABC Oracle weight 400, #22201d. Right: ghost 'Sign in' (transparent, #22201d text) and filled 'Sign up' (Ember Orange #ff692d, white text), both 9999px radius, 12px 24px padding.\n\n4. **Promo Banner**: Full-width #ff692d background, 8px vertical padding. Centered white text at 14px ABC Oracle weight 400. Spans viewport edge to edge.\n\n5. **Stat Badge Overlay**: Floating card over hero image. White at 75% opacity, 12px radius, 16px padding, 1px #dcd9d6 border, subtle backdrop blur. Small uppercase label at 12px ABC Oracle, #777573. Large number at 24px ABC Oracle weight 350, #22201d."
+}

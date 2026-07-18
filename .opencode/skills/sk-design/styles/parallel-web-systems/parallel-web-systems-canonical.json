@@ -1,0 +1,1465 @@
+{
+  "source": "https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30",
+  "uuid": "32845f27-6b24-48be-af25-8e664f826b30",
+  "name": "Parallel Web Systems",
+  "northStar": "Engineering journal at dawn — a technical reading room where data streams replace photography and the type does the talking.",
+  "capturedAt": "2026-07-18T09:57:36.273Z",
+  "meta": {
+    "url": "https://parallel.ai",
+    "siteName": "Parallel Web Systems",
+    "extractedAt": "2026-06-03T17:16:35.585Z",
+    "durationMs": 35463,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1304,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use gerstnerProgramm for every reading-text element: body, subheadings, section headlines, footer link text. Weight 400 for body, 500 for headlines and the first 2–3 words of any emphasized phrase.",
+      "Use ftSystemMono for every UI chrome element: nav links, button labels, pill toggles, tags, status indicators. Always uppercase, always 0.012–0.015em tracking.",
+      "Apply 2px radius to every rectangular element — cards, buttons, inputs, tags, images. The only larger radius in the system is 8px, reserved for inline callout pills floating on the blue hero.",
+      "Build the page on Cream Paper (#f5f4f1) as the default canvas; use Pure White (#ffffff) only to lift an elevated card or button text above it. Never use #ffffff as the page background.",
+      "Reserve Signal Orange (#fb631b) for exactly one thing per cluster: one filled button OR one inline emphasis phrase. Never both in the same view; never on a border or a text link.",
+      "Separate sections with generous 80px vertical gaps and 48px content padding inside cards. Use 1px Hairline (#e5e5e5) borders or 48–80px whitespace as the only dividers — never background-color bands stacked on the canvas.",
+      "Mirror the hero's data-stream visual language in the dark footer by using the same dithered/textured treatment in Ink Black, closing the page in the same rhythm it opened."
+    ],
+    "donts": [
+      "Don't introduce a third accent color, a gradient, or any saturated mid-tone. The system runs on grayscale plus exactly two chromatic punctuations: Schematic Blue and Signal Orange.",
+      "Don't add box-shadows beyond the two recorded patterns (the 0.5px Hairline inset and the 0.02–0.04 layered card lift). The design language is hairline-defined, not shadow-defined.",
+      "Don't round corners beyond 2px on structural elements. Capsule/pill shapes (9999px) are foreign to this system; the 2px is the signature.",
+      "Don't set body text in ftSystemMono or UI labels in gerstnerProgramm. The serif/mono split is deliberate: serif reads, mono acts.",
+      "Don't use #ffffff as the page canvas or as a card surface that sits on Cream Paper — the warm tint is the point; switching to white kills the printed-paper atmosphere.",
+      "Don't place the orange accent on disabled states, helper text, or metadata. Orange means 'active, clickable, or emphatically highlighted' — applying it to a non-interactive element breaks its meaning.",
+      "Don't use Photographic or illustrated imagery. The visual language is data-as-graphic: streams of monospaced text, dithered textures, and flat blue panels. The type and the data ARE the imagery."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0d6ea5",
+        "name": "Schematic Blue",
+        "role": "Hero data-visualization panels, inline emphasis phrases, link/heading accents — the cool, restrained blue of a blueprint or oscilloscope trace, used at scale to make a single colored block dominate a page",
+        "group": "brand"
+      },
+      {
+        "hex": "#fb631b",
+        "name": "Signal Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#181818",
+        "name": "Ink Black",
+        "role": "Primary text, dark filled buttons (CONTACT), the HUMAN/MACHINE pill toggle — a near-black that is softer than pure #000, the default reading color across all body and headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#434343",
+        "name": "Graphite",
+        "role": "Secondary nav and button text, footer secondary links — the mid-tier of the neutral scale, sits between Ink Black and Slate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858483",
+        "name": "Slate",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Ash Gray",
+        "role": "Body muted text, captions — sits just above Slate in the gray scale for slightly more emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Hairline",
+        "role": "All borders, dividers, and 0.5px inset shadows — the single most-used color on the site, defines every edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f4f1",
+        "name": "Cream Paper",
+        "role": "Page canvas and card surfaces — a warm off-white, never pure white; this tint is the signature that makes the site feel like printed paper rather than a screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Elevated card surface, button text on dark fills, occasional contrast backgrounds — used sparingly to lift elements above the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Fog",
+        "role": "Secondary surface, subtle background bands, disabled-state wash",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedede",
+        "name": "Mortar",
+        "role": "Inactive chips, tag backgrounds, low-emphasis surface fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cbcbcb",
+        "name": "Concrete",
+        "role": "Inert dividers in nested layouts, scroll-track backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered for all text content; full-bleed only for the Schematic Blue hero panel and the dithered dark footer band. The page rhythm is: cream nav → cream hero text stack → full-bleed blue data panel → cream section with 4-column feature row → cream customer logo row → cream next section opener → full-bleed dark dithered footer → cream footer links. Sections are separated by 80px vertical gaps; cards within sections use 48px column gaps and no background fill, relying on hairline top borders to define their top edge. Content is always left-aligned and reads top-to-bottom in a single column until the 4-column feature row, which is the only multi-column grid in the system.",
+    "imagery": "Imagery is replaced by typographic and data-as-graphic visuals. The hero is a full-bleed Schematic Blue panel filled with columns of monospaced pseudo-data, functioning as a literal visualization of parallel web queries. The footer mirrors this in dark mode with a dithered/noise texture. The only photographic or illustrated content is the customer logo row, where partner brands retain their own color identity. There is no lifestyle photography, no product mockups, no people — the system treats the page itself as a schematic of the product.",
+    "similar": [
+      {
+        "why": "Same editorial, almost-publication typographic posture; serif-ish voice for reading content with monospaced accents in UI chrome; cream-leaning backgrounds rather than pure white",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same hairline 1px borders and brutal 2px radius discipline; near-flat surfaces with shadows reserved for only the most floating elements; two-color accent system over grayscale",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same gradient-free, shadow-light, type-driven hierarchy; product visual language carried by data/diagram graphics rather than photography",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same compact density, sharp 2px radii, and dark-pill toggle pattern; restraint with accent color — one chromatic moment per cluster",
+        "business": "Linear"
+      },
+      {
+        "why": "Same technical/blueprint visual metaphor with full-bleed colored data panels as page heroes; monospaced type for UI labels and data; hairline dividers throughout",
+        "business": "Cloudflare"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "cards": "2px",
+        "pills": "2px",
+        "images": "2px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f5f4f1",
+        "name": "Cream Paper",
+        "level": 0,
+        "purpose": "Base page canvas, footer background, button text on dark fills"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 1,
+        "purpose": "Elevated card surfaces, button labels, small lift above the canvas"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Fog",
+        "level": 2,
+        "purpose": "Secondary surface band, subtle inline background for tags and chips"
+      },
+      {
+        "hex": "#0d6ea5",
+        "name": "Schematic Blue",
+        "level": 3,
+        "purpose": "Full-bleed hero data panel, the only chromatic surface in the system"
+      },
+      {
+        "hex": "#181818",
+        "name": "Ink Black",
+        "level": 4,
+        "purpose": "Dark filled buttons, dithered footer band, HUMAN/MACHINE toggle"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.02) 0px 13px 8px 0px, rgba(0, 0, 0, 0.03) 0px 6px 6px 0px, rgba(0, 0, 0, 0.04) 0px 1px 3px 0px",
+        "element": "Cards and elevated surfaces"
+      },
+      {
+        "style": "rgb(229, 229, 229) 0px 0px 0px 0.5px",
+        "element": "All bordered elements (inputs, cards, tag outlines)"
+      }
+    ],
+    "northStar": "Engineering journal at dawn — a technical reading room where data streams replace photography and the type does the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.015
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.23,
+        "letterSpacing": 0.012
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.11,
+        "letterSpacing": 0.012
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header carrying the wordmark, product links, and the two primary actions",
+        "description": "Cream paper background (#f5f4f1), wordmark 'parallel' in 14px gerstnerProgramm 500 Ink Black at the far left. Centered nav links in 11px ftSystemMono 500 Slate (#858483) with 0.015em tracking, 24–32px horizontal spacing. Two trailing buttons: a dark filled CONTACT (Ink Black bg, Cream Paper text, 2px radius, 8px 16px padding) and an orange filled LOG IN (Signal Orange bg, white text, 2px radius, 8px 16px padding). No border on the bar itself; content sits directly on the canvas."
+      },
+      {
+        "name": "Ghost / Outlined CTA",
+        "role": "Secondary action that should feel available but not assertive",
+        "description": "Transparent fill, 1px Hairline (#e5e5e5) border, 2px radius. Label in 11px ftSystemMono 500 Ink Black, 0.015em tracking, uppercase, 8px 16px padding. Example: the 'START BUILDING' button. 2px radius keeps it visually aligned with the dark and orange primary buttons — radius never varies by button variant, only fill and border do."
+      },
+      {
+        "name": "Dark Filled Button",
+        "role": "Primary contact / non-purchase action",
+        "description": "Ink Black (#181818) fill, Cream Paper (#f5f4f1) text, 2px radius, 8px 16px padding. Label in 11px ftSystemMono 500 with 0.015em tracking and uppercase. Sits at the same height as the orange button beside it; the two are deliberately paired to create a warm/cool tension at the top right of every page."
+      },
+      {
+        "name": "Orange Filled Button",
+        "role": "The single emphatic conversion action (log in, sign up)",
+        "description": "Signal Orange (#fb631b) fill, white text, 2px radius, 8px 16px padding. Label in 11px ftSystemMono 500 uppercase. There is only ever one orange button per page cluster; if a second action needs to coexist, it goes to the dark or ghost variant."
+      },
+      {
+        "name": "Hero Data Panel",
+        "role": "Full-bleed visual block that communicates 'this product processes streams of web data'",
+        "description": "Schematic Blue (#0d6ea5) solid fill, full viewport width, 400–500px tall. Interior is populated with columns of monospaced data text (ftSystemMono at 10–11px, white at reduced opacity) arranged as vertical streams — a visual representation of parallel query processing. A single white pill (Cream Paper bg, 2px radius, Ink Black text) sits centered as a product descriptor, and a dark HUMAN/MACHINE toggle sits below it. No border, no shadow, no rounding on the panel itself."
+      },
+      {
+        "name": "Human/Machine Pill Toggle",
+        "role": "Recurring meta-control that appears in both the hero and footer dark zones",
+        "description": "Ink Black (#181818) fill, 2px radius (not a capsule — the 2px radius is the brand's signature, even for toggle-like controls). Two segments: 'HUMAN' and 'MACHINE' in 11px ftSystemMono 500 uppercase Cream Paper text, separated by 12–16px internal padding, with the active segment optionally given a subtle border. 28–32px tall."
+      },
+      {
+        "name": "Feature Card (Flat)",
+        "role": "Compact information block in a 4-column feature row",
+        "description": "No background fill (sits directly on cream canvas), no shadow, 1px Hairline (#e5e5e5) top border only — the bottom and sides are open. Title in 14px ftSystemMono 500 Ink Black uppercase with 0.012em tracking; body in 13–14px gerstnerProgramm 400 Slate (#858483) at 1.5 line-height. Cards align to a 4-column grid with 48px column gap and no padding between content stacks."
+      },
+      {
+        "name": "Section Headline + Subhead Stack",
+        "role": "Standard opener for every content section",
+        "description": "Primary headline in 36px gerstnerProgramm 500 Ink Black at 1.11 line-height and 0.012em tracking. Subhead in 26px gerstnerProgramm 400 Ink Black at 1.23 line-height, sometimes containing one orange-emphasis phrase. No eyebrow tag, no decorative element above the stack — the type size contrast (36 → 26) is the only hierarchy signal."
+      },
+      {
+        "name": "Customer Logo Row",
+        "role": "Social proof band",
+        "description": "Single horizontal row on the cream canvas, no background fill, no border. Each logo is presented at roughly equal optical weight with 80–120px horizontal spacing. Above the row, a tiny label in 13px gerstnerProgramm 500 Slate: 'Powering best-in-class AI businesses' + a 'Case Study →' link in the same color. Logos retain their own brand color (a purple starbridge, a red zoominfo, a green Modal) — this is the one place the design system surrenders color control to partner identities."
+      },
+      {
+        "name": "Pricing Tier Card",
+        "role": "Repeatable unit in a pricing grid",
+        "description": "Cream Paper background, 1px Hairline (#e5e5e5) border, 2px radius, 24px padding on all sides. Tier name in 11px ftSystemMono 500 uppercase Slate; price in 36px gerstnerProgramm 500 Ink Black; feature list in 14px gerstnerProgramm 400 Ink Black with 8px row gap. CTA inside the card is a dark filled or orange filled button depending on the recommended tier — the radius matches the card."
+      },
+      {
+        "name": "Inset Annotation Tag",
+        "role": "Small inline label that qualifies a phrase (e.g. 'Read more' link, or a 'Beta' marker)",
+        "description": "Transparent or Fog (#eeeeee) background, 1px Hairline border, 2px radius, 2px 8px padding. Text in 10–11px ftSystemMono 500 uppercase Ink Black. Sits inline with body text or floats to the right of a heading."
+      },
+      {
+        "name": "Footer Link Column",
+        "role": "Standard footer navigation block",
+        "description": "Column header in 11px ftSystemMono 500 uppercase Ink Black with 0.012em tracking. Links in 13px gerstnerProgramm 400 Ink Black at 1.5 line-height, 4–8px row gap. 48px gap between columns. No dividers between columns; the whole footer sits on Cream Paper with no border above it."
+      },
+      {
+        "name": "Dithered Dark Footer Band",
+        "role": "Closing visual that mirrors the hero's data-stream language in dark mode",
+        "description": "Full-bleed Ink Black (#181818) band, ~200–300px tall, filled with a dense dithered/noise texture in Slate and Graphite pixels — a static interpretation of the same 'parallel data streams' visual from the hero. A centered HUMAN/MACHINE pill toggle sits on top in Cream Paper text. The band has no radius, no shadow, no border — it bleeds to both page edges."
+      },
+      {
+        "name": "System Status Pill",
+        "role": "Footer status indicator (e.g. 'All Systems Operational')",
+        "description": "No background, inline with surrounding footer text. Small green dot (3–4px circle) in a muted semantic green followed by 11px ftSystemMono 500 uppercase Ink Black. Sits to the left of social icons at the bottom-left of the footer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All reading content — body, subheadings, section headings, and display headlines. A transitional/old-style serif custom to the brand; carries the editorial, almost publication-grade voice of the site. The 36px/26px sizes are used for section titles; 14–16px for body; 11–13px for labels and micro-copy.",
+        "sizes": "11px, 13px, 14px, 16px, 26px, 36px",
+        "family": "gerstnerProgramm",
+        "weight": "400, 500",
+        "lineHeight": "0.73, 1.11, 1.23, 1.50",
+        "substitute": "Source Serif 4, Tiempos Text, or IBM Plex Serif",
+        "letterSpacing": "0.01em at 11–14px, 0.012em at 26–36px — barely open tracking that tightens at display sizes",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "All UI chrome — nav links, button labels, pill toggles (HUMAN / MACHINE), tags, and any technical/keyword text. A custom monospace that gives every interactive element the visual weight of a terminal command, deliberately contrasting with the serif body to signal 'this is an interface, not a paragraph'.",
+        "sizes": "10px, 11px, 12px, 13px, 14px, 16px",
+        "family": "ftSystemMono",
+        "weight": "400, 500",
+        "lineHeight": "0.73, 1.00, 1.23, 1.33, 1.50",
+        "substitute": "IBM Plex Mono, JetBrains Mono, or Berkeley Mono",
+        "letterSpacing": "0.012em at small sizes, 0.015em at 10–11px — opens up at the smallest sizes for legibility",
+        "fontFeatureSettings": ""
+      }
+    ],
+    "description": "Parallel reads like an engineering journal printed on cream paper: a light, editorial canvas in warm off-white, a single serif (gerstnerProgramm) carrying all reading content, and a monospaced secondary voice (ftSystemMono) governing every piece of UI chrome — nav items, buttons, toggles, tags. The palette is almost entirely grayscale with two saturated accent punctuation marks: a steel blue that fills a large data-visualization hero panel, and a vivid orange that lands on exactly one CTA and one inline emphasis phrase. Surfaces are flat and hairline-divided rather than shadowed; radii are brutally small (2px), giving the whole system the feel of a technical schematic. The single dark moment is a dithered, data-textured footer band that mirrors the hero, closing the page in the same visual language it opened with.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Parallel Web Systems design system\",\"item\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#style-reference\",\"name\":\"Parallel Web Systems design system reference\",\"headline\":\"Parallel Web Systems design system | Refero Styles\",\"description\":\"Explore Parallel Web Systems's light AI design system: Schematic Blue #0d6ea5, Signal Orange #fb631b colors, gerstnerProgramm, ftSystemMono typography, and...\",\"url\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Parallel Web Systems\",\"url\":\"https://parallel.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"caption\":\"Screenshot of Parallel Web Systems\"},\"image\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Parallel Web Systems design system\",\"Parallel Web Systems website design\",\"Parallel Web Systems colors\",\"Parallel Web Systems typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Schematic Blue\",\"Signal Orange\",\"Ink Black\",\"Graphite\",\"gerstnerProgramm\",\"ftSystemMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems design system\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems website design\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems colors\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-13T09:30:25.000Z\",\"dateModified\":\"2026-03-13T09:30:25.000Z\"}]}19:T7b9,QUICK COLOR REFERENCE\n- text: #181818 (Ink Black)\n- background: #f5f4f1 (Cream Paper)\n- border: #e5e5e5 (Hairline)\n- muted text: #858483 (Slate)\n- brand surface: #0d6ea5 (Schematic Blue)\n- accent: #fb631b (Signal Orange)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n1. Create a section header block on Cream Paper (#f5f4f1). 36px gerstnerProgramm weight 500 #181818 line-height 1.11 tracking 0.012em for the title. 26px gerstnerProgramm weight 400 #181818 line-height 1.23 below it, with the last three words set in #fb631b to create a single inline emphasis phrase. 80px margin-top, left-aligned, max-width 720px.\n\n2. Create a feature card row of 4 columns on Cream Paper. Each card has no background, a 1px top border in #e5e5e5, and 24px top padding only. Card title in 14px ftSystemMono weight 500 uppercase #181818 tracking 0.012em. Card body in 14px gerstnerProgramm weight 400 #858483 line-height 1.5. 48px column gap, no row gap.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a full-bleed Schematic Blue (#0d6ea5) hero data panel, 480px tall, no border, no radius. Fill the interior with 8–12 vertical columns of monospaced pseudo-text using ftSystemMono 10px at 30% white opacity, each column offset by a different y-position to create a staggered stream effect. Center a single white pill: #f5f4f1 fill, 8px radius, 2px 12px padding, 13px gerstnerProgramm 500 #181818 text. Below the pill, render a dark Ink Black (#181818) HUMAN/MACHINE pill toggle: 2px radius, 8px 16px padding per segment, 11px ftSystemMono 500 uppercase #f5f4f1 text.\n\n5. Create a footer link column on Cream Paper. Column header: 11px ftSystemMono weight 500 uppercase #181818 tracking 0.012em, 0px top padding. Four links beneath in 13px gerstnerProgramm weight 400 #181818 line-height 1.5, 4px row gap. No dividers between columns; 48px horizontal gap to the next column."
+      },
+      {
+        "title": "Visual Signature",
+        "content": "Three things make a Parallel page recognizable at a glance: (1) the cream-not-white canvas in #f5f4f1, which gives the entire site the warm tint of printed paper; (2) the typographic split where a serif carries all reading and a monospace carries all UI, deliberately reversing the SaaS convention of sans-serif-everything; (3) the data-stream panels in Schematic Blue and dithered Ink Black, which function as the site's only imagery and make the visual identity inseparable from the product's core metaphor — many parallel web queries running simultaneously."
+      }
+    ],
+    "elevationPhilosophy": "This system deliberately avoids elevation as a primary hierarchy device. Cards are defined by 0.5px Hairline borders, not shadows. The single recorded multi-layer shadow is barely perceptible at 0.02–0.04 opacity and is reserved for one or two floating elements per page. Depth comes from the warm-to-cool cream-to-blue surface transition and the cream-to-ink footer break, not from lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "heading",
+            "image",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 4735,
+          "confidence": 1,
+          "prominence": 126734541.05664292,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading",
+            "button",
+            "icon",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 909,
+          "confidence": 1,
+          "prominence": 102032856.20076628,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "card"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 54973438.16876393,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 2940385.751491128,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#434343",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3828786233095743
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1768114.3504932707,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f4f1",
+          "oklch": {
+            "c": 0.004125261640025204,
+            "h": 91.4465212295963,
+            "l": 0.9670843942731929
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 1236929.2652313428,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6fa2e8",
+          "oklch": {
+            "c": 0.11689337690690887,
+            "h": 256.53351028252905,
+            "l": 0.7053653650655635
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 716069,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#858483",
+          "oklch": {
+            "c": 0.0019196539318464376,
+            "h": 67.78718889843321,
+            "l": 0.613895191855084
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "list",
+            "icon",
+            "card"
+          ],
+          "frequency": 316,
+          "confidence": 1,
+          "prominence": 677902.3064861647,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d6ea5",
+          "oklch": {
+            "c": 0.11805377879541892,
+            "h": 241.93851009559597,
+            "l": 0.5157286848243435
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 192164.67530164143,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fb631b",
+          "oklch": {
+            "c": 0.20020456027430608,
+            "h": 41.162007834451586,
+            "l": 0.6866381686723316
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "button",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 30672.05125209606,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 22800,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 19571.514504721217,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4e4e4e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42466338682373245
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7214.749303282702,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "confidence": 1,
+          "prominence": 6564.80020153462,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 6351.080986304047,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8fb6cc",
+          "oklch": {
+            "c": 0.052572885008630915,
+            "h": 233.0806264526418,
+            "l": 0.7554216805876582
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 1196.7414606996047,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fcddcf",
+          "oklch": {
+            "c": 0.03937622911870177,
+            "h": 45.8117108614961,
+            "l": 0.9194653142511612
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 978,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedede",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.900600726550666
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 917.750400184616,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 906.5985504125013,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cbcbcb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8405669802965519
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 661.750400184616,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#adadac",
+          "oklch": {
+            "c": 0.001413005672746962,
+            "h": 106.43374609257609,
+            "l": 0.7473301210014881
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 594.4135922911647,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#69be78",
+          "oklch": {
+            "c": 0.1305439350145641,
+            "h": 148.21067249927518,
+            "l": 0.7298585793928524
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3d3d3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8668630753134526
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004798552563038997,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.43,
+          "background": "#f6f6f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f5f4f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.76,
+          "background": "#ffffff",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#f6f6f6",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#fcddcf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.14,
+          "background": "#f5f4f1",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#dedede",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#eeeeee",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#f6f6f6",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.81,
+          "background": "#f5f4f1",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#e5e5e5",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.04,
+          "background": "#eeeeee",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d3d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.85,
+          "background": "#fcddcf",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#dedede",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.94,
+          "background": "#cbcbcb",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "card",
+            "image"
+          ],
+          "frequency": 171
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 106
+        },
+        {
+          "value": 14385.6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(229, 229, 229) 0px 0px 0px 0.5px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": "rgb(229, 229, 229) 0px 0.5px 0px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.02) 0px 13px 8px 0px, rgba(0, 0, 0, 0.03) 0px 6px 6px 0px, rgba(0, 0, 0, 0.04) 0px 1px 3px 0px",
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 242,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 486,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 130,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 103,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 132,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "gerstnerProgramm",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1005,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ftSystemMono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 174,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ftSystemMono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.73,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "gerstnerProgramm",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 0.73,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "gerstnerProgramm",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.73,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 12,
+          "family": "ftSystemMono",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "gerstnerProgramm",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.012,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "gerstnerProgramm",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "gerstnerProgramm",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "card"
+          ],
+          "frequency": 87,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "gerstnerProgramm",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "body",
+            "nav",
+            "image",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 823,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "gerstnerProgramm",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ftSystemMono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "gerstnerProgramm",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "gerstnerProgramm",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bd47ce1e-1ba8-4d22-a0b7-78062f85e1fc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Parallel Web Systems design system\",\"item\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#style-reference\",\"name\":\"Parallel Web Systems design system reference\",\"headline\":\"Parallel Web Systems design system | Refero Styles\",\"description\":\"Explore Parallel Web Systems's light AI design system: Schematic Blue #0d6ea5, Signal Orange #fb631b colors, gerstnerProgramm, ftSystemMono typography, and...\",\"url\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Parallel Web Systems\",\"url\":\"https://parallel.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/32845f27-6b24-48be-af25-8e664f826b30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"caption\":\"Screenshot of Parallel Web Systems\"},\"image\":\"https://images.refero.design/styles/refero.design/image/73ee21c1-f99d-4099-8f09-893a312f1663.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Parallel Web Systems design system\",\"Parallel Web Systems website design\",\"Parallel Web Systems colors\",\"Parallel Web Systems typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Schematic Blue\",\"Signal Orange\",\"Ink Black\",\"Graphite\",\"gerstnerProgramm\",\"ftSystemMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems design system\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems website design\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems colors\"},{\"@type\":\"Thing\",\"name\":\"Parallel Web Systems typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-13T09:30:25.000Z\",\"dateModified\":\"2026-03-13T09:30:25.000Z\"}]}19:T7b9,QUICK COLOR REFERENCE\n- text: #181818 (Ink Black)\n- background: #f5f4f1 (Cream Paper)\n- border: #e5e5e5 (Hairline)\n- muted text: #858483 (Slate)\n- brand surface: #0d6ea5 (Schematic Blue)\n- accent: #fb631b (Signal Orange)\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n1. Create a section header block on Cream Paper (#f5f4f1). 36px gerstnerProgramm weight 500 #181818 line-height 1.11 tracking 0.012em for the title. 26px gerstnerProgramm weight 400 #181818 line-height 1.23 below it, with the last three words set in #fb631b to create a single inline emphasis phrase. 80px margin-top, left-aligned, max-width 720px.\n\n2. Create a feature card row of 4 columns on Cream Paper. Each card has no background, a 1px top border in #e5e5e5, and 24px top padding only. Card title in 14px ftSystemMono weight 500 uppercase #181818 tracking 0.012em. Card body in 14px gerstnerProgramm weight 400 #858483 line-height 1.5. 48px column gap, no row gap.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. Create a full-bleed Schematic Blue (#0d6ea5) hero data panel, 480px tall, no border, no radius. Fill the interior with 8–12 vertical columns of monospaced pseudo-text using ftSystemMono 10px at 30% white opacity, each column offset by a different y-position to create a staggered stream effect. Center a single white pill: #f5f4f1 fill, 8px radius, 2px 12px padding, 13px gerstnerProgramm 500 #181818 text. Below the pill, render a dark Ink Black (#181818) HUMAN/MACHINE pill toggle: 2px radius, 8px 16px padding per segment, 11px ftSystemMono 500 uppercase #f5f4f1 text.\n\n5. Create a footer link column on Cream Paper. Column header: 11px ftSystemMono weight 500 uppercase #181818 tracking 0.012em, 0px top padding. Four links beneath in 13px gerstnerProgramm weight 400 #181818 line-height 1.5, 4px row gap. No dividers between columns; 48px horizontal gap to the next column."
+}

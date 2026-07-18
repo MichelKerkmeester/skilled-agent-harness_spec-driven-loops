@@ -1,0 +1,1486 @@
+{
+  "source": "https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0",
+  "uuid": "b6f2b036-e48e-452f-b003-941c491015c0",
+  "name": "Liquid Death",
+  "northStar": "Heavy Metal Vending Machine",
+  "capturedAt": "2026-07-18T10:17:36.247Z",
+  "meta": {
+    "url": "https://liquiddeath.com",
+    "siteName": "Liquid Death",
+    "extractedAt": "2026-04-11T17:51:51.532Z",
+    "durationMs": 63961,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 673,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 0px border-radius for all buttons, inputs, cards, and containers.",
+      "Set all major headlines in uppercase `Acumin Pro`.",
+      "Rely on stark `Death Black` and `Bone White` for primary backgrounds and text.",
+      "Use full-bleed, high-contrast black and white sections to structure the page.",
+      "Reserve `Polished Gold` and `Antique Gold` for logotypes and hyper-specific accents.",
+      "Maintain high-contrast text accessibility (AAA) for all body copy.",
+      "Use sharp, rectangular product imagery on solid `Ash Gray` backgrounds."
+    ],
+    "tags": [
+      "brutalist",
+      "monochrome",
+      "high-contrast",
+      "bold",
+      "aggressive",
+      "typographic",
+      "minimalist",
+      "heavy-metal",
+      "direct-to-consumer"
+    ],
+    "donts": [
+      "Never use rounded corners on any element.",
+      "Do not use drop shadows or gradients for elevation.",
+      "Avoid using sentence case for primary headlines.",
+      "Don't use the gold colors for standard UI components like buttons or inputs.",
+      "Do not introduce any soft or playful colors into the palette.",
+      "Avoid subtle gray-on-gray text combinations.",
+      "Don't use lifestyle photography; focus on the product or provocative concepts."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Death Black",
+        "role": "Primary text, core UI backgrounds, filled buttons. Establishes the dominant, aggressive tone.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Text on dark backgrounds, primary page backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Off-Black",
+        "role": "Body copy on light backgrounds, secondary UI elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e3e3",
+        "name": "Ash Gray",
+        "role": "Product grid background, subtle dividers.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#727272",
+        "name": "Gravel Gray",
+        "role": "Secondary text, disabled states, placeholder text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Light Ash",
+        "role": "Alternative light background color for section differentiation.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232323",
+        "name": "Charcoal",
+        "role": "Hover states on dark elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Input Border",
+        "role": "Default border color for text input fields.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d2ac5a",
+        "name": "Polished Gold",
+        "role": "Accents, special links, logotype details — a premium, metallic highlight against the stark monochrome.",
+        "group": "accent"
+      },
+      {
+        "hex": "#8a6d35",
+        "name": "Antique Gold",
+        "role": "Hover state for gold accents, secondary logotype details.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The layout is built on a foundation of alternating, full-bleed content bands. The page structure often starts with a complex hero and transitions into a series of stark black, white, or light gray sections with a strong vertical rhythm. Content within sections is typically centered and max-width, creating a pillar of text and visuals down the screen. Grids are used for product listings, following a simple, rigid 3 or 4-column structure with no frills. The overall impression is one of powerful, rhythmic, and confrontational organization.",
+    "imagery": "The visual language is provocative and product-focused, mirroring a heavy-metal aesthetic. Photography is high-contrast, often featuring stark product shots on plain backgrounds, or humorous, slightly absurd concepts (like drinking from a faucet). Imagery is used in full-bleed sections or as contained, sharp-edged blocks. There are no lifestyle photos; the can is the hero. Graphic elements include detailed, skull-based logotypes reminiscent of band art, rendered in black, white, and gold.",
+    "similar": [
+      {
+        "why": "Similar counter-culture, internet-native brand voice with a stark, often brutalist digital presence.",
+        "business": "MSCHF"
+      },
+      {
+        "why": "Shares a gritty, unapologetic aesthetic rooted in a subculture, with bold, often gothic typography.",
+        "business": "Thrasher Magazine"
+      },
+      {
+        "why": "Employs a similar brutalist web design with stark typography, minimal color, and a focus on product in a harsh context.",
+        "business": "Balenciaga (under Demna)"
+      },
+      {
+        "why": "High-end streetwear e-commerce with a similar product-first, grid-based layout and monochrome palette, though Kith is less aggressive.",
+        "business": "Kith"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "",
+      "sectionGap": "",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "category": "e-commerce",
+    "northStar": "Heavy Metal Vending Machine",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.13
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Product Cards — Beverage Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Merch Product Card Row",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Full-Width Banner CTAs + Email Capture",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Action Button",
+        "role": "Key CTAs like 'Shop Now' or 'Add to Cart'.",
+        "description": "A solid rectangle with background: `Death Black` (#000000), text: `Bone White` (#ffffff), padding: 8px 16px, and border-radius: 0px. Text is uppercase `Acumin Pro`."
+      },
+      {
+        "name": "Secondary Action Button",
+        "role": "Less prominent actions like 'Join the Contest'.",
+        "description": "An outlined rectangle with background: transparent, text & 1px border: `Death Black` (#000000), padding: 13px, and border-radius: 0px. Text is uppercase `Acumin Pro`."
+      },
+      {
+        "name": "Full-Width Banner CTA",
+        "role": "Major section-level calls to action, e.g., 'Join the Club'.",
+        "description": "A full-width block link with background: `Death Black` (#000000), text: `Bone White` (#ffffff), and a right-aligned chevron. It is always rectangular with a 0px radius."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "For email capture and forms.",
+        "description": "A sharp-cornered field with background: `Bone White` (#ffffff), text: `Death Black` (#000000), and a 1px border in `Input Border` (#999999). Padding is typically 8px 12px with 0px radius."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Main site navigation items.",
+        "description": "Uppercase text in `Acumin Pro` 500, color `Off-Black` (#151515). No underline or background decoration on hover."
+      },
+      {
+        "name": "Modal Overlay",
+        "role": "Popup for email signup or promotions.",
+        "description": "A semi-transparent `Gravel Gray` (#727272) layer covers the page, with a centered rectangular container in `Ash Gray` (#e3e3e3) holding the content. All corners are sharp (0px radius)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single, dominant typeface used for everything from massive uppercase headlines to body copy. Its clean, geometric form provides a brutalist, no-nonsense foundation. Extensive use of uppercase at 700 weight for headings is the brand's signature voice.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px, 32px, 36px, 40px, 56px, 60px",
+        "family": "Acumin Pro",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.05, 1.13, 1.20, 1.29, 1.50, 1.67, 2.00",
+        "substitute": "'Inter', 'Roboto', sans-serif",
+        "letterSpacing": "0.0200em, 0.0310em, 0.0560em, 0.0630em"
+      },
+      {
+        "role": "Used sparingly for subtitles and calorie counts where horizontal space is limited. Maintains the core Acumin feel in a more compact format.",
+        "sizes": "10px, 16px, 18px, 20px, 45px",
+        "family": "acumin-pro-condensed",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.05, 1.20, 1.30",
+        "substitute": "'Roboto Condensed', sans-serif",
+        "letterSpacing": "0.0560em"
+      }
+    ],
+    "description": "This design system feels like a heavy metal concert flyer brought to life as a direct-to-consumer brand. The aesthetic is built on brutalist principles: a stark palette of pure black and white, zero rounded corners, and aggressive, uppercase typography. This creates a hard, confrontational edge, deliberately rejecting the soft, approachable look of typical beverage companies. Splashes of antique gold in logos and links are the only moments of warmth, acting like a glint of metal on a matte black surface. The layout uses full-bleed, high-contrast sections, creating a jarring, powerful rhythm that mirrors the brand's 'Murder Your Thirst' tagline.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "This design actively avoids drop shadows. Depth and hierarchy are achieved exclusively through high-contrast color blocking—placing `Bone White` elements on `Death Black` backgrounds or vice versa. This creates a flat, graphic, and intentionally harsh layering style."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "image",
+            "link",
+            "body",
+            "icon",
+            "badge",
+            "footer",
+            "heading",
+            "list",
+            "input"
+          ],
+          "frequency": 2159,
+          "confidence": 1,
+          "prominence": 49074934.28067035,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#727272",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5520796201025747
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 8553487.043474518,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "link",
+            "image",
+            "icon",
+            "input",
+            "body"
+          ],
+          "frequency": 293,
+          "confidence": 1,
+          "prominence": 8423654.594607914,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3412669.8827273054,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#e3e3e3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9158314666321387
+          },
+          "contexts": [
+            "body",
+            "badge",
+            "other"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 1178515.5711077598,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 525,
+          "confidence": 1,
+          "prominence": 440376.13315832097,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#e9e6e3",
+          "oklch": {
+            "c": 0.005195381766271367,
+            "h": 67.76012182741046,
+            "l": 0.9264288406611059
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 202935,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 53376.63603806598,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 49955.936194904745,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#040404",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1066806776552743
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 13500,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#8a6d35",
+          "oklch": {
+            "c": 0.08254312641646402,
+            "h": 82.02640428120712,
+            "l": 0.5513132084926773
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 6364.467945606424,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d2ac5a",
+          "oklch": {
+            "c": 0.11015930174775085,
+            "h": 84.7697352726383,
+            "l": 0.7618915636506064
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2352.4135006733623,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 374.05115017019284,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002699586974144854,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.5,
+          "background": "#040404",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.81,
+          "background": "#f5f5f5",
+          "foreground": "#040404"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#ffffff",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.89,
+          "background": "#e9e6e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.75,
+          "background": "#f5f5f5",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.49,
+          "background": "#e9e6e3",
+          "foreground": "#040404"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#e3e3e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.98,
+          "background": "#e3e3e3",
+          "foreground": "#040404"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.69,
+          "background": "#e9e6e3",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.42,
+          "background": "#f5f5f5",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.23,
+          "background": "#e3e3e3",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.64,
+          "background": "#e9e6e3",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.25,
+          "background": "#e3e3e3",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.79,
+          "background": "#000000",
+          "foreground": "#d2ac5a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.56,
+          "background": "#040404",
+          "foreground": "#d2ac5a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.51,
+          "background": "#d2ac5a",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#d2ac5a",
+          "foreground": "#232323"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 23,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 66,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 20,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 52,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 90,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 13,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 26,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 20,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 49,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 45,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 99,
+          "frequency": 40,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 150,
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 195,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 221,
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 238,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Acumin Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 618,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "acumin-pro-condensed",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 5 Pro",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "acumin-pro-condensed",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Acumin Pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Acumin Pro",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "image",
+            "icon",
+            "body",
+            "badge",
+            "footer",
+            "list",
+            "input"
+          ],
+          "frequency": 371,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 37,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "image"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "acumin-pro-condensed",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Font Awesome 5 Pro",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "acumin-pro-condensed",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "acumin-pro-condensed",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Acumin Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "acumin-pro-condensed",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Acumin Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1ef29d2b-4f55-4298-a173-747f8ed77661.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f197f5aa-32e3-4587-a8c0-20b59b201475.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Liquid Death design system\",\"item\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0#style-reference\",\"name\":\"Liquid Death design system reference\",\"headline\":\"Liquid Death design system | Refero Styles\",\"description\":\"Explore Liquid Death's mixed E-commerce design system: Death Black #000000, Bone White #ffffff colors, Acumin Pro, acumin-pro-condensed typography, and...\",\"url\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Liquid Death\",\"url\":\"https://liquiddeath.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b6f2b036-e48e-452f-b003-941c491015c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f197f5aa-32e3-4587-a8c0-20b59b201475.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f197f5aa-32e3-4587-a8c0-20b59b201475.jpg\",\"caption\":\"Screenshot of Liquid Death\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f197f5aa-32e3-4587-a8c0-20b59b201475.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Liquid Death design system\",\"Liquid Death website design\",\"Liquid Death colors\",\"Liquid Death typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Death Black\",\"Bone White\",\"Off-Black\",\"Ash Gray\",\"Acumin Pro\",\"acumin-pro-condensed\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Liquid Death design system\"},{\"@type\":\"Thing\",\"name\":\"Liquid Death website design\"},{\"@type\":\"Thing\",\"name\":\"Liquid Death colors\"},{\"@type\":\"Thing\",\"name\":\"Liquid Death typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-15T13:49:39.000Z\",\"dateModified\":\"2026-03-15T13:49:39.000Z\"}]}19:T1a33,<style>\n  :root {\n    --color-death-black: #000000;\n    --color-bone-white: #ffffff;\n    --color-off-black: #151515;\n    --color-ash-gray: #e3e3e3;\n    --color-gravel-gray: #727272;\n    --color-light-ash: #f5f5f5;\n    --color-charcoal: #232323;\n    --color-input-border: #999999;\n    --color-polished-gold: #d2ac5a;\n    --color-antique-gold: #8a6d35;\n    --font-acumin-pro: 'Inter', 'Roboto', sans-serif;\n    --font-acumin-pro-condensed: 'Roboto Condensed', sans-serif;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n</style>\n<div style=\"width:600px;background:var(--color-ash-gray);padding:40px 24px;font-family:var(--font-acumin-pro);\">\n  <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:24px;\">\n\n    <!-- Card 1 -->\n    <div style=\"background:var(--color-ash-gray);display:flex;flex-direction:column;align-items:center;\">\n      <div style=\"width:100%;height:220px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:16px;\">\n        <div style=\"width:70px;height:180px;background:linear-gradient(180deg,#e8a020 0%,#3a2d8c 60%,#1a1a5e 100%);border-radius:6px;position:relative;\">\n          <div style=\"position:absolute;top:10px;left:50%;transform:translateX(-50%);width:50px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:7px;font-weight:700;color:var(--color-bone-white);letter-spacing:0.05em;line-height:1.1;\">Liquid<br>Death</div>\n          </div>\n          <div style=\"position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:56px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:5px;font-weight:700;color:var(--color-bone-white);letter-spacing:0.04em;line-height:1.2;text-transform:uppercase;\">Sparkling<br>Energy</div>\n          </div>\n        </div>\n      </div>\n      <div style=\"text-align:center;padding:0 4px;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:16px;font-weight:700;color:var(--color-off-black);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:4px;\">Orange Horror</div>\n        <div style=\"font-family:var(--font-acumin-pro-condensed);font-size:13px;font-weight:400;color:var(--color-gravel-gray);letter-spacing:0.05em;margin-bottom:10px;\">Sparkling Energy</div>\n        <div style=\"display:inline-block;background:var(--color-death-black);color:var(--color-bone-white);font-family:var(--font-acumin-pro-condensed);font-size:11px;font-weight:700;letter-spacing:0.05em;padding:4px 10px;border-radius:0;\">5 Calories</div>\n      </div>\n    </div>\n\n    <!-- Card 2 -->\n    <div style=\"background:var(--color-ash-gray);display:flex;flex-direction:column;align-items:center;\">\n      <div style=\"width:100%;height:220px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:16px;\">\n        <div style=\"width:70px;height:180px;background:linear-gradient(180deg,#b01010 0%,#8b0000 50%,#5a0000 100%);border-radius:6px;position:relative;\">\n          <div style=\"position:absolute;top:10px;left:50%;transform:translateX(-50%);width:50px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:7px;font-weight:700;color:var(--color-bone-white);letter-spacing:0.05em;line-height:1.1;\">Liquid<br>Death</div>\n          </div>\n          <div style=\"position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:56px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:5px;font-weight:700;color:var(--color-bone-white);letter-spacing:0.04em;line-height:1.2;text-transform:uppercase;\">Sparkling<br>Energy</div>\n          </div>\n        </div>\n      </div>\n      <div style=\"text-align:center;padding:0 4px;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:16px;font-weight:700;color:var(--color-off-black);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:4px;\">Murder Mystery</div>\n        <div style=\"font-family:var(--font-acumin-pro-condensed);font-size:13px;font-weight:400;color:var(--color-gravel-gray);letter-spacing:0.05em;margin-bottom:10px;\">Sparkling Energy</div>\n        <div style=\"display:inline-block;background:var(--color-death-black);color:var(--color-bone-white);font-family:var(--font-acumin-pro-condensed);font-size:11px;font-weight:700;letter-spacing:0.05em;padding:4px 10px;border-radius:0;\">5 Calories</div>\n      </div>\n    </div>\n\n    <!-- Card 3 -->\n    <div style=\"background:var(--color-ash-gray);display:flex;flex-direction:column;align-items:center;\">\n      <div style=\"width:100%;height:220px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:16px;\">\n        <div style=\"width:70px;height:180px;background:linear-gradient(180deg,#f0ede0 0%,#ddd8c0 50%,#c8c0a0 100%);border-radius:6px;position:relative;\">\n          <div style=\"position:absolute;top:10px;left:50%;transform:translateX(-50%);width:50px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:7px;font-weight:700;color:var(--color-death-black);letter-spacing:0.05em;line-height:1.1;\">Liquid<br>Death</div>\n          </div>\n          <div style=\"position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:56px;text-align:center;\">\n            <div style=\"font-family:var(--font-acumin-pro);font-size:5px;font-weight:700;color:var(--color-death-black);letter-spacing:0.04em;line-height:1.2;text-transform:uppercase;\">Sparkling<br>Water</div>\n          </div>\n        </div>\n      </div>\n      <div style=\"text-align:center;padding:0 4px;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:16px;font-weight:700;color:var(--color-off-black);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:4px;\">Cherry Obituary</div>\n        <div style=\"font-family:var(--font-acumin-pro-condensed);font-size:13px;font-weight:400;color:var(--color-gravel-gray);letter-spacing:0.05em;margin-bottom:10px;\">Soda-Flavored Sparkling Water</div>\n        <div style=\"display:inline-block;background:var(--color-death-black);color:var(--color-bone-white);font-family:var(--font-acumin-pro-condensed);font-size:11px;font-weight:700;letter-spacing:0.05em;padding:4px 10px;border-radius:0;\">10 Calories</div>\n      </div>\n    </div>\n\n  </div>\n  <div style=\"margin-top:28px;text-align:center;\">\n    <button style=\"background:var(--color-death-black);color:var(--color-bone-white);font-family:var(--font-acumin-pro);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.063em;padding:14px 40px;border:none;border-radius:0;cursor:pointer;\">Shop Now</button>\n  </div>\n</div>1a:T1313,<style>\n  :root {\n    --color-death-black: #000000;\n    --color-bone-white: #ffffff;\n    --color-off-black: #151515;\n    --color-ash-gray: #e3e3e3;\n    --color-gravel-gray: #727272;\n    --color-light-ash: #f5f5f5;\n    --color-charcoal: #232323;\n    --color-input-border: #999999;\n    --color-polished-gold: #d2ac5a;\n    --font-acumin-pro: 'Inter', 'Roboto', sans-serif;\n    --font-acumin-pro-condensed: 'Roboto Condensed', sans-serif;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n</style>\n<div style=\"width:600px;background:var(--color-bone-white);padding:40px 24px;font-family:var(--font-acumin-pro);\">\n  <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:20px;\">\n\n    <!-- Merch Card 1 -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"width:100%;height:190px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:14px;\">\n        <div style=\"width:70px;height:140px;background:linear-gradient(135deg,#d0d0d0 0%,#b0b0b0 100%);border-radius:4px;position:relative;display:flex;align-items:center;justify-content:center;\">\n          <div style=\"width:40px;height:70px;background:var(--color-gravel-gray);border-radius:3px;opacity:0.5;\"></div>\n          <div style=\"position:absolute;top:8px;left:50%;transform:translateX(-50%);font-family:var(--font-acumin-pro);font-size:6px;font-weight:700;color:var(--color-bone-white);text-transform:uppercase;letter-spacing:0.05em;text-align:center;\">The<br>Flasket</div>\n        </div>\n      </div>\n      <div style=\"flex:1;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:400;color:var(--color-off-black);margin-bottom:4px;\">The Flasket</div>\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:700;color:var(--color-off-black);margin-bottom:12px;\">€42,00</div>\n        <button style=\"width:100%;background:transparent;color:var(--color-death-black);border:1px solid var(--color-death-black);font-family:var(--font-acumin-pro);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.056em;padding:10px 8px;border-radius:0;cursor:pointer;\">Add to Cart</button>\n      </div>\n    </div>\n\n    <!-- Merch Card 2 -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"width:100%;height:190px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:14px;\">\n        <div style=\"width:110px;height:130px;background:#c8a86a;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:6px;\">\n          <div style=\"width:36px;height:100px;background:#b8985a;border-radius:3px;\"></div>\n          <div style=\"width:36px;height:100px;background:#b8985a;border-radius:3px;\"></div>\n        </div>\n      </div>\n      <div style=\"flex:1;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:400;color:var(--color-off-black);margin-bottom:4px;\">Masked Death Can Cooler (2-Pack)</div>\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:700;color:var(--color-off-black);margin-bottom:12px;\">€11,00</div>\n        <button style=\"width:100%;background:transparent;color:var(--color-death-black);border:1px solid var(--color-death-black);font-family:var(--font-acumin-pro);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.056em;padding:10px 8px;border-radius:0;cursor:pointer;\">Add to Cart</button>\n      </div>\n    </div>\n\n    <!-- Merch Card 3 -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"width:100%;height:190px;background:var(--color-light-ash);border-radius:0;display:flex;align-items:center;justify-content:center;margin-bottom:14px;\">\n        <div style=\"width:110px;height:130px;background:#2a2a2a;border-radius:4px;display:flex;align-items:center;justify-content:center;\">\n          <div style=\"width:70px;height:80px;background:#3d3d3d;border-radius:2px;display:flex;align-items:center;justify-content:center;\">\n            <div style=\"width:50px;height:60px;background:#555;border-radius:1px;\"></div>\n          </div>\n        </div>\n      </div>\n      <div style=\"flex:1;\">\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:400;color:var(--color-off-black);margin-bottom:4px;\">Death Wave Tee</div>\n        <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:700;color:var(--color-off-black);margin-bottom:12px;\">€42,00</div>\n        <button style=\"width:100%;background:transparent;color:var(--color-death-black);border:1px solid var(--color-death-black);font-family:var(--font-acumin-pro);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.056em;padding:10px 8px;border-radius:0;cursor:pointer;\">Add to Cart</button>\n      </div>\n    </div>\n\n  </div>\n</div>1b:Tee7,<style>\n  :root {\n    --color-death-black: #000000;\n    --color-bone-white: #ffffff;\n    --color-off-black: #151515;\n    --color-ash-gray: #e3e3e3;\n    --color-gravel-gray: #727272;\n    --color-light-ash: #f5f5f5;\n    --color-charcoal: #232323;\n    --color-input-border: #999999;\n    --color-polished-gold: #d2ac5a;\n    --color-antique-gold: #8a6d35;\n    --font-acumin-pro: 'Inter', 'Roboto', sans-serif;\n    --font-acumin-pro-condensed: 'Roboto Condensed', sans-serif;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n</style>\n<div style=\"width:600px;font-family:var(--font-acumin-pro);\">\n\n  <!-- Email Capture Banner -->\n  <div style=\"background:var(--color-ash-gray);padding:36px 40px;text-align:center;\">\n    <div style=\"font-family:var(--font-acumin-pro);font-size:22px;font-weight:700;color:var(--color-off-black);text-transform:uppercase;letter-spacing:0.031em;line-height:1.13;margin-bottom:8px;\">Wanna Cheat On Your Other<br>Beverage Company?</div>\n    <div style=\"font-family:var(--font-acumin-pro);font-size:14px;font-weight:400;color:var(--color-off-black);line-height:1.67;max-width:400px;margin:0 auto 24px auto;\">\n      Let us hit you up sometime to make you laugh and shower you with special deals. We'll even gift you <strong>2 FREE Liquid Death Can Coolers</strong> to keep your beverages ice-cold.\n    </div>\n    <div style=\"display:flex;gap:0;max-width:440px;margin:0 auto;\">\n      <input\n        type=\"email\"\n        placeholder=\"EMAIL\"\n        style=\"flex:1;background:var(--color-bone-white);color:var(--color-death-black);border:1px solid var(--color-input-border);border-right:none;font-family:var(--font-acumin-pro);font-size:14px;font-weight:400;letter-spacing:0.056em;padding:14px 16px;border-radius:0;outline:none;\"\n      />\n      <button style=\"background:var(--color-death-black);color:var(--color-bone-white);border:none;font-family:var(--font-acumin-pro);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.063em;padding:14px 22px;border-radius:0;cursor:pointer;white-space:nowrap;\">Hell Yes</button>\n    </div>\n  </div>\n\n  <!-- Join the Club Banner -->\n  <a href=\"#\" style=\"display:flex;align-items:center;justify-content:space-between;background:var(--color-death-black);color:var(--color-bone-white);padding:24px 36px;text-decoration:none;border-bottom:1px solid var(--color-charcoal);\">\n    <span style=\"font-family:var(--font-acumin-pro);font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:0.031em;color:var(--color-bone-white);\">Join the Club</span>\n    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M9 18L15 12L9 6\" stroke=\"#ffffff\" stroke-width=\"2.5\" stroke-linecap=\"square\" stroke-linejoin=\"miter\"/>\n    </svg>\n  </a>\n\n  <!-- Sell Liquid Death Banner -->\n  <a href=\"#\" style=\"display:flex;align-items:center;justify-content:space-between;background:var(--color-death-black);color:var(--color-bone-white);padding:24px 36px;text-decoration:none;\">\n    <span style=\"font-family:var(--font-acumin-pro);font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:0.031em;color:var(--color-bone-white);\">Sell Liquid Death</span>\n    <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M9 18L15 12L9 6\" stroke=\"#ffffff\" stroke-width=\"2.5\" stroke-linecap=\"square\" stroke-linejoin=\"miter\"/>\n    </svg>\n  </a>\n\n  <!-- Free Shipping Announcement Bar -->\n  <div style=\"background:var(--color-bone-white);border-top:1px solid var(--color-ash-gray);padding:12px 24px;text-align:center;\">\n    <span style=\"font-family:var(--font-acumin-pro);font-size:13px;font-weight:400;color:var(--color-off-black);letter-spacing:0.02em;\">Free shipping to España on all orders above €120.00</span>\n  </div>\n\n</div>1c:T425,### Quick Color Reference\n- **Page Background**: `#ffffff` (Bone White) / `#e3e3e3` (Ash Gray)\n- **Dark Section Background**: `#000000` (Death Black)\n- **Text**: `#151515` (Off-Black) on light, `#ffffff` (Bone White) on dark\n- **CTA Button**: `#000000` background, `#ffffff` text\n- **Accent**: `#d2ac5a` (Polished Gold)\n\n### Example Component Prompts\n1.  **\"Create a primary CTA button with the text 'MURDER NOW'. It must have a `Death Black` (#000000) background, `Bone White` (#ffffff) uppercase text, 0px border-radius, and padding of 8px 16px. Use the `Acumin Pro` font at 700 weight.\"**\n2.  **\"Generate a product grid section on an `Ash Gray` (#e3e3e3) background. Each card should have 0px radius, no border, and no shadow. The product title should be uppercase `Acumin Pro` weight 700 in `Death Black` (#000000).\"**\n3.  **\"Design a full-width promotional banner. The background is `Death Black` (#000000). The headline 'JOIN THE CLUB' should be in `Bone White` (#ffffff), uppercase `Acumin Pro` font, centered, with a small white chevron to the right.\"**"
+}

@@ -1,0 +1,1445 @@
+{
+  "source": "https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780",
+  "uuid": "30c3aa18-4323-4448-8ddd-3ca933fe5780",
+  "name": "Frame.io",
+  "northStar": "Midnight cinema projection room.\n\nA dark suite where a single blue spotlight does all the work and the UI recedes so creative content can project forward.",
+  "capturedAt": "2026-07-18T09:56:09.613Z",
+  "meta": {
+    "url": "https://frame.io",
+    "siteName": "Frame.io",
+    "extractedAt": "2026-06-03T17:25:20.903Z",
+    "durationMs": 37319,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1145,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 100px border-radius for all buttons, nav items, and pills — the pill geometry is the brand's most repeated shape",
+      "Set display headlines at weight 400 with tight negative letter-spacing (-1.92px at 48px, -3.6px at 80px) — never go bold for impact",
+      "Reserve Iris Glow (#6199f6) for icons, eyebrow labels, links, and active states — one accent color, used surgically",
+      "Place the NeueMachinaInktrap eyebrow label (12px, uppercase, 0.06em tracking) above every section headline as a section marker",
+      "Layer at least one gradient on every page background — never use flat #0a0a13 alone, the cosmic atmosphere requires depth",
+      "Set the max content width to 1280px and center all content within it, while backgrounds run full-bleed",
+      "Use FrameGothic at 14–18px for all body and feature text in #a3a3b3 or #757580 — these two grays carry all secondary information",
+      "Frame product imagery in 10px-radius containers with a 1px #4f4f80 violet border — the halo is the only frame allowed"
+    ],
+    "donts": [
+      "Do not use weight 600 or 700 for display headlines — the 400 weight is a signature restraint choice",
+      "Do not introduce additional accent colors — Iris Glow is the only chromatic accent in the system",
+      "Do not use flat black (#000000) as a full-page background — always layer gradients to create the cosmic atmosphere",
+      "Do not add card backgrounds or heavy borders to feature columns — they are typographic blocks, not cards",
+      "Do not use serif fonts, decorative typefaces, or any font other than FrameGothic, NeueMachinaInktrap, or system fallbacks",
+      "Do not add drop shadows to buttons or nav items — the fill contrast alone carries the hierarchy",
+      "Do not center-align body paragraphs — left-align with a max-width of ~560px for readable line lengths",
+      "Do not use the eyebrow label style (NeueMachinaInktrap caps) for any text other than section identifiers — it's a stamp, not a label"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#fcfcfc",
+        "name": "Carbon Vellum",
+        "role": "Primary text, inverse button text, icon strokes — near-white reads as paper against the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a13",
+        "name": "Obsidian",
+        "role": "Primary page canvas and dominant background; the slight blue undertone keeps it from feeling flat black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pitch",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#040407",
+        "name": "Void",
+        "role": "Secondary canvas layer and topmost nav background, one shade lighter than Pitch",
+        "group": "neutral"
+      },
+      {
+        "hex": "#08080c",
+        "name": "Graphite",
+        "role": "Card surface for elevated product mockups, sits one step above Obsidian",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757580",
+        "name": "Smoke",
+        "role": "Secondary body text and metadata — cool gray, never warm, stays quiet under headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3b3",
+        "name": "Ash",
+        "role": "Tertiary text, card descriptions, inactive nav, most frequently used muted foreground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a32",
+        "name": "Charcoal",
+        "role": "Subtle card border on light-mode-adjacent surfaces; hairline divider",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6199f6",
+        "name": "Iris Glow",
+        "role": "Sole chromatic accent — icons, eyebrow labels, links, active states, feature marks. One blue, used surgically, carries the entire brand identity",
+        "group": "brand"
+      },
+      {
+        "hex": "#4f4f80",
+        "name": "Twilight",
+        "role": "Muted violet used for card borders, glow halos, and atmospheric tints — the only color allowed to live near content surfaces",
+        "group": "accent"
+      },
+      {
+        "hex": "#dedfee",
+        "name": "Specter Lilac",
+        "role": "Soft highlight on violet accents and light-mode card edges; cool, desaturated lavender",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with all content constrained to a max-width of ~1280px centered. The hero is a split composition: left half carries the display headline and stacked CTAs (left-aligned), right half shows the product UI mockup floating against the cosmic gradient. Section rhythm alternates between text-dominant bands and product-visual bands, with 80px vertical gaps. Mid-page uses a 4-column feature grid (icon + heading + body) that reads more like editorial columns than cards. No sidebar, no mega-menu — navigation is a single slim top bar with pill buttons. Lower sections are full-width video showcases with centered text above. The overall density is spacious and cinematic — sections breathe, with generous padding and a single horizontal scroll metaphor implied by the flowing gradient background.",
+    "imagery": "Imagery is the product itself: high-fidelity screenshots of the Frame.io app interface dominate the hero, showing real video thumbnails, review threads, and version stacks. Below the fold, cinematic stills from actual films/projects (a silhouetted figure against warm light, a close-up portrait of a performer) are presented as full-bleed video showcases with minimal player chrome. No stock photography, no abstract illustrations, no 3D renders — the visual language is 'show, don't decorate.' The cosmic gradient backgrounds (deep purples, midnight blues, near-black) create an atmosphere of a dark editing suite or projection room. Icons throughout the UI are thin-stroke, single-color Iris Glow, 24px, outlined style. No filled iconography anywhere.",
+    "similar": [
+      {
+        "why": "Same dark editing-suite atmosphere with deep purple gradient backgrounds and one blue accent for active tools",
+        "business": "Adobe Premiere Pro"
+      },
+      {
+        "why": "Dark-mode creative platform with pill-shaped CTAs and video-first product mockups dominating the hero",
+        "business": "Vimeo"
+      },
+      {
+        "why": "Similar commitment to a single accent color against near-black, with display type at weight 400 and tight letter-spacing doing all the visual work",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark product pages with cosmic gradient backgrounds, oversized thin-weight headlines, and one vivid accent for interactive elements",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "100px",
+        "cards": "10px",
+        "pills": "100px",
+        "buttons": "100px",
+        "dividers": "1px",
+        "featureCards": "24px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#0a0a13",
+        "name": "Cosmic Canvas",
+        "level": 0,
+        "purpose": "Primary page background with deep purple/blue radial gradient overlay"
+      },
+      {
+        "hex": "#040407",
+        "name": "Nav Veil",
+        "level": 1,
+        "purpose": "Slightly darker topmost layer behind navigation bar"
+      },
+      {
+        "hex": "#08080c",
+        "name": "Product Surface",
+        "level": 2,
+        "purpose": "Embedded app UI mockups and product chrome"
+      },
+      {
+        "hex": "#181826",
+        "name": "Card Halo",
+        "level": 3,
+        "purpose": "Inset shadow tint for cards with violet borders, creates depth without lifting the surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "inset 0 0 0 1px #4f4f80, 0 0 60px rgba(79, 79, 128, 0.15)",
+        "element": "Product UI Mockup Container"
+      },
+      {
+        "style": "none — relies on fill contrast, no shadow",
+        "element": "Hero CTA Pill"
+      },
+      {
+        "style": "0 24px 48px rgba(0, 0, 0, 0.5)",
+        "element": "Video Showcase Player"
+      }
+    ],
+    "northStar": "Midnight cinema projection room.\n\nA dark suite where a single blue spotlight does all the work and the UI recedes so creative content can project forward.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.04,
+        "letterSpacing": -1.33
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.02,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.96,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Primary action in the top nav bar (e.g. 'Start Free Trial', 'Contact Us')",
+        "description": "100px border-radius pill, 12px 20px padding, Carbon Vellum fill, Obsidian text at 14px FrameGothic 500. Zero border, no shadow. The pill geometry is the brand's most repeated shape."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Secondary navigation items (Features, Enterprise, Resources, Pricing)",
+        "description": "Transparent fill, no border, Carbon Vellum text at 14px FrameGothic 400. Underline appears on hover; no background shift. Stays nearly invisible until interacted with."
+      },
+      {
+        "name": "Sign In Text Link",
+        "role": "Authenticated user entry point in nav",
+        "description": "Plain text button, Carbon Vellum at 14px FrameGothic 400, no background, no border. The lightest possible interactive element."
+      },
+      {
+        "name": "Hero CTA Pill",
+        "role": "Primary conversion button in hero sections ('Start Free Trial')",
+        "description": "100px radius, Carbon Vellum fill, Obsidian text, 14px FrameGothic 500, 14px 28px padding. Casts no shadow. The white pill against the cosmic gradient is the page's most contrasting element."
+      },
+      {
+        "name": "Ghost CTA Button",
+        "role": "Secondary conversion button in hero sections ('Take a Product Tour')",
+        "description": "100px radius, transparent fill, 1px Carbon Vellum border, Carbon Vellum text, 14px FrameGothic 400, 14px 28px padding. Inverts to filled Carbon Vellum on hover."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page product update notification",
+        "description": "Full-width strip with deep blue-to-violet gradient, Carbon Vellum text at 13px centered, dismiss 'x' on the right. Height ~40px, sits above the main nav."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Tiny all-caps section identifiers ('THE FRAME.IO PLATFORM', 'SHARING & PRESENTING')",
+        "description": "NeueMachinaInktrap 12px, weight 400, letter-spacing 0.06em, color Iris Glow (#6199f6) or Smoke. Line-height 0.90. Always sits above the section headline, left-aligned."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and major section headlines (e.g. 'One platform for all your creative work.')",
+        "description": "FrameGothic 400 at 48–80px, line-height 0.96–1.02, letter-spacing -1.92 to -3.6px, Carbon Vellum. Weight 400 (not bold) is a deliberate restraint choice — the size does the work, the weight whispers."
+      },
+      {
+        "name": "Subheadline Paragraph",
+        "role": "Supporting body copy under hero and section headlines",
+        "description": "FrameGothic 400 at 18px, line-height 1.30, Smoke (#757580). Max-width ~560px. Stays quiet — its job is to inform, not to compete with the headline."
+      },
+      {
+        "name": "Feature Column Card",
+        "role": "Four-column feature grid items in mid-page sections",
+        "description": "Transparent background, no card surface. Layout: Iris Glow icon (24px) at top, FrameGothic 500 18px Carbon Vellum heading, 14px Smoke body copy below. 24px column gap. The feature 'card' is really just a typographic block — no border, no background."
+      },
+      {
+        "name": "Product UI Mockup Container",
+        "role": "Hero and feature visual: the actual Frame.io app interface shown as marketing imagery",
+        "description": "10px border-radius, 1px Twilight (#4f4f80) border, inner surface is the native dark UI of the product (Graphite, ~#181826 with violet shadow #181826). The container is intentionally minimal — a thin violet halo, nothing else."
+      },
+      {
+        "name": "Video Showcase Player",
+        "role": "Cinematic full-width video preview in lower sections",
+        "description": "10px border-radius, embedded video player with Iris Glow play button overlay (48px circle, 60% opacity). Caption strip below at 12px Smoke. The video itself is the hero — the player chrome is nearly invisible."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual separation between full-width content bands",
+        "description": "No physical divider — sections flow seamlessly using the cosmic gradient background. When separation is needed, a 1px Charcoal (#2a2a32) hairline."
+      },
+      {
+        "name": "Adobe Logo Mark (nav)",
+        "role": "Adobe acquisition indicator in top nav",
+        "description": "Tiny stacked-triangle Adobe 'A' mark at far right of nav, Carbon Vellum, 16px height. Pure brand signal, no interaction."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "10px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "Primary brand typeface for everything from 80px display headlines down to 10px metadata. The custom geometric sans carries the entire voice — tight letter-spacing (-0.045em at display sizes) makes large type feel compressed and modern, while the wide weight range (400/500/600) lets hierarchy do the talking without changing family.",
+        "sizes": "10px, 11px, 12px, 13px, 14px, 15px, 16px, 18px, 24px, 30px, 38px, 48px, 80px",
+        "family": "FrameGothic",
+        "weight": "400, 500, 600",
+        "lineHeight": "0.96 to 1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-3.6px at 80px, -1.92px at 48px, -1.33px at 38px, -0.9px at 30px, -0.72px at 24px, +0.16px at 16px",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      },
+      {
+        "role": "Reserved exclusively for all-caps eyebrow labels (e.g. 'THE FRAME.IO PLATFORM', 'SHARING & PRESENTING', 'WORKFLOW MANAGEMENT'). Wide tracking (0.06em) and inktrap cuts give a mechanical, stamped feel — these labels are always Iris Glow or a light tone, never the body color.",
+        "sizes": "12px",
+        "family": "NeueMachinaInktrap",
+        "weight": "400",
+        "lineHeight": "0.90",
+        "substitute": "Space Mono",
+        "letterSpacing": "+0.72px at 12px"
+      },
+      {
+        "role": "System fallback and small UI text inside embedded product mockups; carries no brand weight",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "Frame.io is a midnight projection room for creative teams: a near-black canvas layered with deep cosmic gradients, where large confident display type floats above product surfaces like film titles above a reel. The palette is almost entirely achromatic — only one vivid blue (#6199f6) and a muted violet border tone (#4f4f80) break the monochrome, used sparingly for icons, eyebrow labels, and card edges. Typography is the loudest voice: a single geometric sans (FrameGothic) carries everything from 80px display headlines to 14px body copy, with custom inktrap letterforms reserved for tiny all-caps section labels. Components stay thin and editorial: pill-shaped nav buttons, ghost CTAs, 10px-radius cards with violet-tinted borders, and zero decorative ornament — every element exists to frame the work, not compete with it.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Frame.io design system\",\"item\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#style-reference\",\"name\":\"Frame.io design system reference\",\"headline\":\"Frame.io design system | Refero Styles\",\"description\":\"Explore Frame.io's dark Design design system: Carbon Vellum #fcfcfc, Obsidian #0a0a13 colors, Times, FrameGothic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\",\"mainEntityOfPage\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Frame.io\",\"url\":\"https://frame.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"caption\":\"Screenshot of Frame.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Frame.io design system\",\"Frame.io website design\",\"Frame.io colors\",\"Frame.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Carbon Vellum\",\"Obsidian\",\"Pitch\",\"Void\",\"Times\",\"FrameGothic\",\"NeueMachinaInktrap\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Frame.io design system\"},{\"@type\":\"Thing\",\"name\":\"Frame.io website design\"},{\"@type\":\"Thing\",\"name\":\"Frame.io colors\"},{\"@type\":\"Thing\",\"name\":\"Frame.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-25T10:47:07.000Z\",\"dateModified\":\"2026-01-25T10:47:07.000Z\"}]}19:T791,## Quick Color Reference\n- background: #0a0a13 (cosmic canvas) or full cosmic gradient\n- text: #fcfcfc (primary), #757580 (secondary), #a3a3b3 (tertiary)\n- border: #4f4f80 (violet halo) or #2a2a32 (charcoal hairline)\n- accent: #6199f6 (Iris Glow — icons, eyebrow labels, links)\n- primary action: no distinct CTA color\n- secondary action: ghost border in #fcfcfc\n\n## Example Component Prompts\n\n**1. Hero Section with Display Headline**\nFull-bleed cosmic gradient background (linear: #0a0010 → #02000a → #0c1d32). Left half: eyebrow label 'THE FRAME.IO PLATFORM' in NeueMachinaInktrap 12px, #6199f6, letter-spacing 0.06em. Display headline below in FrameGothic 400, 80px, line-height 0.96, letter-spacing -3.6px, color #fcfcfc. Subheadline at FrameGothic 400, 18px, #757580, max-width 560px. Two CTAs stacked: filled pill (#fcfcfc bg, #0a0a13 text, 100px radius, 14px 28px padding) and ghost pill (transparent, 1px #fcfcfc border, #fcfcfc text). Right half: product UI mockup in 10px-radius container with 1px #4f4f80 border.\n\n**2. Feature Column**\nFour-column grid, 24px gap. No card background. Iris Glow (#6199f6) outlined icon at 24px at top. FrameGothic 500, 18px, #fcfcfc heading. FrameGothic 400, 14px, line-height 1.50, #a3a3b3 body copy below heading.\n\n**3. Eyebrow Label + Section Headline**\nStack with 6px gap. Eyebrow: NeueMachinaInktrap 12px, #6199f6, uppercase, letter-spacing 0.06em, line-height 0.90. Headline: FrameGothic 400, 48px, line-height 1.02, letter-spacing -1.92px, #fcfcfc.\n\n**4. Video Showcase Block**\nFull-width container with 80px top padding. Centered eyebrow label and headline above. Below: video player in 10px-radius frame, Carbon Vellum play button overlay, 1px #4f4f80 border, subtle shadow (0 24px 48px rgba(0,0,0,0.5)). Optional caption strip at 12px #757580.\n\n**5. Ghost Nav Item**\nTransparent, no border, FrameGothic 400, 14px, #fcfcfc. On hover: underline appears. No background change ever."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Frame.io's background is not a flat color — it's a layered cosmic atmosphere built from 3-4 radial and linear gradients stacked on the Obsidian canvas. The hero combines a diagonal linear gradient (195deg, #0a0010 → #02000a → #0c1d32) with a radial glow (centered bottom, #000b35 → transparent). Mid-page sections use a different radial (top-left origin, #0e0f20 → #0c0c19 → #000000) to shift the light. The result: a page that feels like the same dark room but with light pooling in different corners. Never use a flat #000000 for a full background — always layer at least one gradient to create depth. Gradient colors should stay within the palette: deep indigos (#0c1d32), midnight purples (#0a001e), and near-blacks with blue undertones (#0e0f20)."
+      },
+      {
+        "title": "Type as Identity",
+        "content": "Frame.io's typographic system is its strongest brand signal after the accent color. Three rules carry the entire identity: (1) Display type is always weight 400, not 700 — the size and tight letter-spacing do the heavy lifting, the weight whispers. This is a deliberate anti-SaaS-hero choice. (2) The NeueMachinaInktrap eyebrow label is the only place where the inktrap geometry appears; it stamps each section like a mechanical serial number. (3) Letter-spacing scales inversely with size: -0.045em at 80px, -0.01em at 16px, +0.06em at 12px caps. Large type compresses, body type relaxes, labels expand. Do not flatten this — each size has its own tracking value."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fcfcfc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9910689031024799
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "nav",
+            "hero",
+            "card",
+            "heading",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 4329,
+          "confidence": 1,
+          "prominence": 203573840.0987223,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 29599887.14300415,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0a0a13",
+          "oklch": {
+            "c": 0.018786558186043075,
+            "h": 283.93341897609,
+            "l": 0.1515422157464877
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3897724.5354303783,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#757580",
+          "oklch": {
+            "c": 0.016016266903255652,
+            "h": 285.8768844579071,
+            "l": 0.5659462750966585
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 205,
+          "confidence": 1,
+          "prominence": 674290.5722466207,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#08080c",
+          "oklch": {
+            "c": 0.00794086503514814,
+            "h": 285.29814184850704,
+            "l": 0.13625022213312246
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 431767.1731004948,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4f4f80",
+          "oklch": {
+            "c": 0.07948170844088925,
+            "h": 282.7170104100202,
+            "l": 0.44813694094630835
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 431767.1731004948,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#181826",
+          "oklch": {
+            "c": 0.027347945971191973,
+            "h": 283.87703852248643,
+            "l": 0.21611298054905406
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 371904,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3b3",
+          "oklch": {
+            "c": 0.02212259508772522,
+            "h": 285.83160028520416,
+            "l": 0.7207066534960535
+          },
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 202,
+          "confidence": 1,
+          "prominence": 178456.68548798808,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#040407",
+          "oklch": {
+            "c": 0.010964325062319091,
+            "h": 284.4253939299475,
+            "l": 0.10850635933505479
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 114000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedfee",
+          "oklch": {
+            "c": 0.020364834614371104,
+            "h": 282.93493511986077,
+            "l": 0.9073321720788412
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 101987.1105034525,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2a32",
+          "oklch": {
+            "c": 0.01523105216944761,
+            "h": 285.4031915462567,
+            "l": 0.2877044437010732
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 73799.02395857847,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6199f6",
+          "oklch": {
+            "c": 0.15005484318581613,
+            "h": 260.0250090292265,
+            "l": 0.6865520710421408
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "card",
+            "other"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 59294.6839059256,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5b53ff",
+          "oklch": {
+            "c": 0.24494985321278165,
+            "h": 277.0567499761958,
+            "l": 0.5609725020443619
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 51300,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eaeaff",
+          "oklch": {
+            "c": 0.028200021128657063,
+            "h": 285.8467518718742,
+            "l": 0.9432996254249025
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 30052.927951828937,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f4ff",
+          "oklch": {
+            "c": 0.015038487397056459,
+            "h": 273.8525132733444,
+            "l": 0.9680566982713174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 931.9579504240397,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.011176802444997275,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.47,
+          "background": "#000000",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.96,
+          "background": "#040407",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.49,
+          "background": "#08080c",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.21,
+          "background": "#0a0a13",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.12,
+          "background": "#f1f4ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.65,
+          "background": "#f1f4ff",
+          "foreground": "#040407"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.21,
+          "background": "#f1f4ff",
+          "foreground": "#08080c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#f1f4ff",
+          "foreground": "#0a0a13"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.71,
+          "background": "#eaeaff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.27,
+          "background": "#eaeaff",
+          "foreground": "#040407"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.09,
+          "background": "#fcfcfc",
+          "foreground": "#181826"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#eaeaff",
+          "foreground": "#08080c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.62,
+          "background": "#eaeaff",
+          "foreground": "#0a0a13"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.97,
+          "background": "#f1f4ff",
+          "foreground": "#181826"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#000000",
+          "foreground": "#dedfee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.5,
+          "background": "#040407",
+          "foreground": "#dedfee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#08080c",
+          "foreground": "#dedfee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.92,
+          "background": "#0a0a13",
+          "foreground": "#dedfee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.79,
+          "background": "#eaeaff",
+          "foreground": "#181826"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.87,
+          "background": "#fcfcfc",
+          "foreground": "#2a2a32"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 77,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 181,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 62,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 106,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 124,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 144,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 176,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(195deg, rgb(10, 0, 30) 0%, rgb(2, 0, 10) 80%, rgb(12, 29, 50) 100%)",
+        "colors": [
+          "rgb(10, 0, 30)",
+          "rgb(2, 0, 10)",
+          "rgb(12, 29, 50)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(88.74% 117.03% at 0% 1.38%, rgb(14, 15, 32) 0%, rgb(14, 16, 35) 26.36%, rgb(14, 15, 32) 33.88%, rgb(14, 15, 33) 40.23%, rgb(0, 0, 0) 63.04%)",
+        "colors": [
+          "rgb(14, 15, 32)",
+          "rgb(14, 16, 35)",
+          "rgb(14, 15, 32)",
+          "rgb(14, 15, 33)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(50.08% 75.75% at 50% 80%, rgb(0, 11, 53) 0%, rgba(8, 24, 97, 0.737) 33.36%, rgba(5, 64, 127, 0.41) 66%, rgba(72, 42, 105, 0) 100%)",
+        "colors": [
+          "rgb(0, 11, 53)",
+          "rgba(8, 24, 97, 0.737)",
+          "rgba(5, 64, 127, 0.41)",
+          "rgba(72, 42, 105, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(88.74% 117.03% at 0% 1.38%, rgb(14, 15, 32) 0%, rgb(14, 16, 35) 18.95%, rgb(13, 14, 32) 31.35%, rgb(10, 12, 25) 51.86%, rgb(0, 0, 0) 68.84%)",
+        "colors": [
+          "rgb(14, 15, 32)",
+          "rgb(14, 16, 35)",
+          "rgb(13, 14, 32)",
+          "rgb(10, 12, 25)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(47.08% 45.75%, rgb(78, 85, 168) 0%, rgba(69, 82, 158, 0.91) 33.36%, rgba(72, 42, 105, 0) 100%)",
+        "colors": [
+          "rgb(78, 85, 168)",
+          "rgba(69, 82, 158, 0.91)",
+          "rgba(72, 42, 105, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 711,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FrameGothic",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 259,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 44,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NeueMachinaInktrap",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "icon",
+            "list",
+            "footer",
+            "link"
+          ],
+          "frequency": 711,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "FrameGothic",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "NeueMachinaInktrap",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 20,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "FrameGothic",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 81,
+          "lineHeight": 0.96,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.96,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FrameGothic",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "FrameGothic",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.02,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "FrameGothic",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/37ae1c59-e489-48eb-9691-77dfa4137f82.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Frame.io design system\",\"item\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#style-reference\",\"name\":\"Frame.io design system reference\",\"headline\":\"Frame.io design system | Refero Styles\",\"description\":\"Explore Frame.io's dark Design design system: Carbon Vellum #fcfcfc, Obsidian #0a0a13 colors, Times, FrameGothic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\",\"mainEntityOfPage\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Frame.io\",\"url\":\"https://frame.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/30c3aa18-4323-4448-8ddd-3ca933fe5780#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"caption\":\"Screenshot of Frame.io\"},\"image\":\"https://images.refero.design/styles/refero.design/image/33505a21-f09f-4e82-ae88-43e6dec9dd9e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Frame.io design system\",\"Frame.io website design\",\"Frame.io colors\",\"Frame.io typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Carbon Vellum\",\"Obsidian\",\"Pitch\",\"Void\",\"Times\",\"FrameGothic\",\"NeueMachinaInktrap\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Frame.io design system\"},{\"@type\":\"Thing\",\"name\":\"Frame.io website design\"},{\"@type\":\"Thing\",\"name\":\"Frame.io colors\"},{\"@type\":\"Thing\",\"name\":\"Frame.io typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-25T10:47:07.000Z\",\"dateModified\":\"2026-01-25T10:47:07.000Z\"}]}19:T791,## Quick Color Reference\n- background: #0a0a13 (cosmic canvas) or full cosmic gradient\n- text: #fcfcfc (primary), #757580 (secondary), #a3a3b3 (tertiary)\n- border: #4f4f80 (violet halo) or #2a2a32 (charcoal hairline)\n- accent: #6199f6 (Iris Glow — icons, eyebrow labels, links)\n- primary action: no distinct CTA color\n- secondary action: ghost border in #fcfcfc\n\n## Example Component Prompts\n\n**1. Hero Section with Display Headline**\nFull-bleed cosmic gradient background (linear: #0a0010 → #02000a → #0c1d32). Left half: eyebrow label 'THE FRAME.IO PLATFORM' in NeueMachinaInktrap 12px, #6199f6, letter-spacing 0.06em. Display headline below in FrameGothic 400, 80px, line-height 0.96, letter-spacing -3.6px, color #fcfcfc. Subheadline at FrameGothic 400, 18px, #757580, max-width 560px. Two CTAs stacked: filled pill (#fcfcfc bg, #0a0a13 text, 100px radius, 14px 28px padding) and ghost pill (transparent, 1px #fcfcfc border, #fcfcfc text). Right half: product UI mockup in 10px-radius container with 1px #4f4f80 border.\n\n**2. Feature Column**\nFour-column grid, 24px gap. No card background. Iris Glow (#6199f6) outlined icon at 24px at top. FrameGothic 500, 18px, #fcfcfc heading. FrameGothic 400, 14px, line-height 1.50, #a3a3b3 body copy below heading.\n\n**3. Eyebrow Label + Section Headline**\nStack with 6px gap. Eyebrow: NeueMachinaInktrap 12px, #6199f6, uppercase, letter-spacing 0.06em, line-height 0.90. Headline: FrameGothic 400, 48px, line-height 1.02, letter-spacing -1.92px, #fcfcfc.\n\n**4. Video Showcase Block**\nFull-width container with 80px top padding. Centered eyebrow label and headline above. Below: video player in 10px-radius frame, Carbon Vellum play button overlay, 1px #4f4f80 border, subtle shadow (0 24px 48px rgba(0,0,0,0.5)). Optional caption strip at 12px #757580.\n\n**5. Ghost Nav Item**\nTransparent, no border, FrameGothic 400, 14px, #fcfcfc. On hover: underline appears. No background change ever."
+}

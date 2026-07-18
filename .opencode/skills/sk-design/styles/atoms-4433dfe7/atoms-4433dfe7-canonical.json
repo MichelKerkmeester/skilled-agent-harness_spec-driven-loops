@@ -1,0 +1,841 @@
+{
+  "source": "https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad",
+  "uuid": "4433dfe7-315a-4459-bfd7-f59ccdc09bad",
+  "name": "Atoms",
+  "northStar": "obsidian monolith in candlelight — a near-black canvas where a single warm champagne accent cuts like a blade through the darkness",
+  "capturedAt": "2026-07-18T09:37:18.373Z",
+  "meta": {
+    "url": "https://atoms.co",
+    "siteName": "Atoms",
+    "extractedAt": "2026-06-03T18:52:37.323Z",
+    "durationMs": 25692,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 503,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fff7dd for all primary text and hairline borders on black surfaces",
+      "Reserve #c8ad86 exclusively for category tags, accent headings, and decorative borders — never as a full-surface fill",
+      "Apply Switzer with tight negative letter-spacing on all display sizes: -1.85px at 44px, -0.13px at 16px",
+      "Set border-radius to 4px on cards and buttons, 100px on tags and pills only",
+      "Separate cards and sections with 1px hairline borders, never with shadows or background fills",
+      "Keep vertical rhythm tight: 8-16px between related elements, 80px between major sections",
+      "Render all icons and arrows in #fff7dd or #c8ad86 — never introduce additional colors"
+    ],
+    "donts": [
+      "Do not use shadows, glows, or blur effects for elevation — define surfaces with borders only",
+      "Do not introduce saturated colors beyond the champagne accent — no blues, greens, or reds",
+      "Do not use pure white (#ffffff) for text — #fff7dd is warmer and on-brand",
+      "Do not add background fills to cards or sections — they sit directly on the black canvas",
+      "Do not use large border-radius values on cards (no 12px, 16px, 24px) — stay at 4px max for rectangles",
+      "Do not apply letter-spacing to body text — keep tracking tight only on 16px+ sizes",
+      "Do not animate color, position, or scale on load — the system is static and placed, not kinetic"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#c8ad86",
+        "name": "Champagne Gold",
+        "role": "Accent headings, category tags, decorative borders — the only chromatic color in the system, used sparingly to mark emphasis and brand-bearing elements",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff7dd",
+        "name": "Candlelight Cream",
+        "role": "Primary text, hairline borders, icon strokes — warm off-white reads softer than pure white against the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Black",
+        "role": "Page canvas, card surfaces, image backgrounds — absolute black dominates the visual field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#66635f",
+        "name": "Ember Ash",
+        "role": "Muted surface variation, secondary backgrounds, low-emphasis fills",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with centered, max-width 1200px content zones. The hero is a vertical stack: large geometric logo mark, followed by a centered 3-line headline at 44px, followed by a single ghost text link. Navigation is a fixed top bar with the wordmark left and 3 links right. The companies section is a 3-column card grid with consistent card dimensions, each card containing a logo area, name, category tag, description, and external links. Vertical spacing between sections is generous (80px) while spacing within cards is compact (8-16px). Content is always centered or left-aligned — no asymmetric or overlapping layouts.",
+    "imagery": "Imagery is minimal and structural rather than photographic. The hero features a large geometric/pixelated logo mark composed of square tiles in a metallic champagne tone with subtle texture, functioning as a brand artifact rather than illustration. Company cards contain flat logo marks (wordmarks, monograms, symbol logos) rendered in #fff7dd or #c8ad86 on the card surface. No photography, no lifestyle imagery, no product renders. The visual language is closer to a brand identity guideline than a marketing page — every visual element is logo, type, or geometric form.",
+    "similar": [
+      {
+        "why": "Same near-monochrome dark aesthetic with single warm accent and tight geometric typography for a physical AI/robotics brand",
+        "business": "Figure AI"
+      },
+      {
+        "why": "Identical restraint — black canvas, cream type, no decorative imagery, structural logo-forward hero",
+        "business": "Physical Intelligence"
+      },
+      {
+        "why": "Premium industrial brand language: absolute black backgrounds, warm off-white text, hairline borders, no shadows",
+        "business": "Rivian (early site)"
+      },
+      {
+        "why": "Compact typographic system on dark canvas with single accent and centered headline stacks",
+        "business": "VanMoof"
+      },
+      {
+        "why": "Geometric logo-as-hero treatment and dot-matrix / tile-based visual identity on pure black",
+        "business": "Nothing (nothing.tech)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background"
+      },
+      {
+        "hex": "#000000",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Company card surface — same as canvas, defined by 1px hairline border"
+      },
+      {
+        "hex": "#66635f",
+        "name": "Muted Surface",
+        "level": 2,
+        "purpose": "Subtle background variation for nav or secondary zones"
+      }
+    ],
+    "northStar": "obsidian monolith in candlelight — a near-black canvas where a single warm champagne accent cuts like a blade through the darkness",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.85
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Logo Mosaic",
+        "role": "Full-bleed brand mark",
+        "description": "Large geometric/pixelated logo mark centered in the viewport, composed of square tile elements in #c8ad86 with a slightly desaturated, metallic texture. Occupies roughly 40% of the hero viewport height. No background — sits directly on black canvas."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary statement type",
+        "description": "44px Switzer weight 400, color #fff7dd, letter-spacing -1.85px, line-height 1.13. Center-aligned, max-width ~600px. Sentence flows across 3 lines with natural breaks. No color emphasis on individual words."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Navigation cue to secondary content",
+        "description": "Small body-sm text in #fff7dd with an inline arrow glyph (→). No underline, no button chrome. Hover state shifts to #c8ad86. 12px Switzer 400."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "Careers": "Contact",
+        ") in 12px": "separated by 2px gaps",
+        "description": "Full-width black bar with 36px vertical padding, 40px horizontal padding. Left: ",
+        "color #fff7dd. Right": "nav links (\"Vision\"",
+        "ATOMS\" wordmark in 14px Switzer 500": "letter-spacing wide"
+      },
+      {
+        "name": "Company Card",
+        "role": "Portfolio/company grid item",
+        "description": "3-column grid card on #000000 background with 1px border in #fff7dd at ~20% opacity (or #c8ad86). 4px border-radius. Padding 32px. Contains: logo area (centered, ~120px tall), company name (14px Switzer 500 #fff7dd), category tag (pill), description (12px #fff7dd 70% opacity), footer links row separated by 2px gaps."
+      },
+      {
+        "name": "Category Tag Pill",
+        "role": "Industry/sector label",
+        "description": "100px border-radius (fully rounded). 1px border in #c8ad86, transparent fill. Text: 10px Switzer 500, color #c8ad86, letter-spacing 0.18px. Padding 4px 10px. Renders as outlined pill."
+      },
+      {
+        "name": "Company Logo Tile",
+        "role": "Brand mark display within card",
+        "description": "Large area (full card width, ~200px tall) with centered logo. Logo rendered in #fff7dd or #c8ad86. No background fill — logo floats on card surface."
+      },
+      {
+        "name": "Card Footer Link Row",
+        "role": "External resource links",
+        "Careers ↗": ") in 12px Switzer 400",
+        "description": "Horizontal row of links (",
+        "Website ↗\"": "LinkedIn ↗",
+        "#fff7dd at 60% opacity": "separated by 10px gaps. Each link has a trailing arrow.\""
+      },
+      {
+        "name": "Section Header",
+        "role": "Content section title",
+        "description": "Large Switzer heading, left-aligned, color #fff7dd. Often overlaps with sticky nav on scroll — uses blend or z-index layering."
+      },
+      {
+        "name": "Arrow Glyph",
+        "role": "Directional/link indicator",
+        "description": "Simple rightward arrow (→) rendered inline with text. 12-14px, inherits text color. Used on ghost links and card footer links."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all headings, body, and navigation — a geometric sans with unusually tight tracking on display sizes (-0.042em at 44px) that creates a precision-engineered feel. Weight 400 for body, 500 for labels and tags. The negative letter-spacing on the 44px headline tightens the word shapes into compact, machined forms.",
+        "sizes": "10px, 12px, 14px, 16px, 44px",
+        "family": "Switzer",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.13",
+        "substitute": "Inter, General Sans, Satoshi",
+        "letterSpacing": "-1.85px at 44px, -0.5px at 16px, 0.18px at 10px"
+      },
+      {
+        "role": "Fallback / system rendering for micro-UI and link text",
+        "sizes": "12px",
+        "family": "system-ui sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "Atoms operates in a near-total monochrome discipline: pure black canvases carry warm cream type and a single champagne accent. The system avoids color as decoration and instead uses a tight chromatic scale — cream for text, gold for emphasis, black for depth — to create an atmosphere of industrial precision, like machined titanium under tungsten light. Layout is compact, typographic, and grid-driven: large geometric logo marks, centered headline stacks, and dark bordered cards that hold company information with minimal chrome. Components are flat, low-contrast, and rely on hairline borders rather than shadows for definition. Motion is implied through structure rather than animation; every element reads as placed, not animated.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "## Quick Color Reference\\n- Background: #000000\\n- Primary text: #fff7dd\\n- Accent / emphasis: #c8ad86\\n- Muted surface: #66635f\\n- Border: #fff7dd at 20-30% opacity, or #c8ad86 for accent borders\\n- primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved through hairline borders and value contrast, never through shadows. Cards sit on the same black canvas, separated only by 1px borders in #fff7dd or #c8ad86. This flat, shadowless approach reinforces the precision-machined, industrial aesthetic — surfaces feel cut from the same material, not stacked."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "icon",
+            "hero",
+            "link",
+            "footer"
+          ],
+          "frequency": 1023,
+          "confidence": 1,
+          "prominence": 35012140,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 36,
+            "nav/color": 10,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 3,
+            "other/fill": 36,
+            "image/color": 1,
+            "other/color": 169,
+            "footer/color": 1,
+            "other/stroke": 10,
+            "nav/borderColor": 40,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "image/borderColor": 4,
+            "other/borderColor": 676,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#fff7dd",
+          "oklch": {
+            "c": 0.03501543114735008,
+            "h": 92.81818724715924,
+            "l": 0.9755849676022135
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 521,
+          "confidence": 1,
+          "prominence": 655425.9753509737,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 44,
+            "other/fill": 24,
+            "heading/color": 49,
+            "nav/borderColor": 12,
+            "body/borderColor": 176,
+            "heading/borderColor": 196,
+            "other/backgroundColor": 17
+          }
+        },
+        {
+          "hex": "#c8ad86",
+          "oklch": {
+            "c": 0.06128659525528583,
+            "h": 76.71979943003771,
+            "l": 0.7615091294934128
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 111687.54897473153,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 5,
+            "heading/color": 17,
+            "body/borderColor": 4,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#66635f",
+          "oklch": {
+            "c": 0.007733731015609655,
+            "h": 79.35755694020996,
+            "l": 0.5015471033841157
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3.321928094887362,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 3,
+            "other/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.03958093308213401,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#fff7dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#000000",
+          "foreground": "#c8ad86"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#66635f",
+          "foreground": "#fff7dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#66635f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#66635f",
+          "foreground": "#c8ad86"
+        },
+        {
+          "level": "fail",
+          "ratio": 2,
+          "background": "#fff7dd",
+          "foreground": "#c8ad86"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 299,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Switzer",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 114,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "icon",
+            "hero",
+            "footer"
+          ],
+          "frequency": 299,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 66,
+          "lineHeight": 1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b4278236-adb5-4564-8fb8-2d186495f086.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/458e3709-f928-45fc-bc6c-10801aef2617.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atoms design system\",\"item\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad#style-reference\",\"name\":\"Atoms design system reference\",\"headline\":\"Atoms design system | Refero Styles\",\"description\":\"Explore Atoms's dark AI design system: Champagne Gold #c8ad86, Candlelight Cream #fff7dd colors, Switzer, system-ui sans-serif typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atoms\",\"url\":\"https://atoms.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4433dfe7-315a-4459-bfd7-f59ccdc09bad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/458e3709-f928-45fc-bc6c-10801aef2617.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/458e3709-f928-45fc-bc6c-10801aef2617.jpg\",\"caption\":\"Screenshot of Atoms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/458e3709-f928-45fc-bc6c-10801aef2617.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atoms design system\",\"Atoms website design\",\"Atoms colors\",\"Atoms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Champagne Gold\",\"Candlelight Cream\",\"Obsidian Black\",\"Ember Ash\",\"Switzer\",\"system-ui sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atoms design system\"},{\"@type\":\"Thing\",\"name\":\"Atoms website design\"},{\"@type\":\"Thing\",\"name\":\"Atoms colors\"},{\"@type\":\"Thing\",\"name\":\"Atoms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-11T00:38:25.374Z\",\"dateModified\":\"2026-05-11T00:38:25.374Z\"}]}"
+}

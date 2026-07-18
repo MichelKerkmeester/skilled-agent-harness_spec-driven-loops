@@ -1,0 +1,88 @@
+:root {
+  /* Colors */
+  --color-mint-signal: #00caa0;
+  --color-graphite: #2c2d30;
+  --color-carbon-black: #211d1d;
+  --color-slate-mid: #808183;
+  --color-silver: #afafaf;
+  --color-paper-white: #ffffff;
+  --color-peach-wash: #ffe4d6;
+  --color-lavender-wash: #e8e0ff;
+  --color-mint-wash: #d4f5e8;
+  --color-periwinkle-wash: #dde7f7;
+
+  /* Typography — Font Families */
+  --font-saans: 'Saans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --tracking-caption: -0.006px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.015px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.29;
+  --tracking-subheading: -0.017px;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.4;
+  --tracking-heading-sm: -0.022px;
+  --text-heading: 26px;
+  --leading-heading: 1.35;
+  --tracking-heading: 0.015px;
+  --text-heading-lg: 28px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: 0.015px;
+  --text-display: 46px;
+  --leading-display: 1.2;
+  --tracking-display: 0.015px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-104: 104px;
+  --spacing-152: 152px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 48-80px;
+  --card-padding: 16px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 28px;
+  --radius-full: 50px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-cards: 16px;
+  --radius-links: 28px;
+  --radius-small: 4px;
+  --radius-buttons: 50px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  --shadow-subtle-2: color(display-p3 0.172549 0.176471 0.188235 / 0.02) 0px 0px 0px 0px;
+
+  /* Surfaces */
+  --surface-paper-canvas: #ffffff;
+  --surface-card-surface: #ffffff;
+  --surface-pastel-tile: #ffe4d6 / #d4f5e8 / #e8e0ff / #dde7f7;
+}

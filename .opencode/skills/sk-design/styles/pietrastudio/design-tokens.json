@@ -1,0 +1,709 @@
+{
+  "color": {
+    "ember-coral": {
+      "$value": "#ff5c3c",
+      "$type": "color",
+      "$description": "Ember Coral — Primary CTA fill, active nav, brand accent — a warm vermillion that sits forward against cream backgrounds without feeling aggressive"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark fills — the base everything else rests on"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary heading text, body text, dominant borders — the workhorse contrast color used at 1750+ instances"
+    },
+    "cream-paper": {
+      "$value": "#f8f6f2",
+      "$type": "color",
+      "$description": "Cream Paper — Warm off-white surface layer for elevated cards and section bands — gives the page its sunlit warmth without leaving pure white"
+    },
+    "soft-cream": {
+      "$value": "#fffbe7",
+      "$type": "color",
+      "$description": "Soft Cream — Accent card surface, tinted feature panels — a warmer cream for highlight cards that need to stand apart from the base canvas"
+    },
+    "charcoal": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text, link text, heavy borders — softer than pure black for UI chrome and metadata"
+    },
+    "iron-gray": {
+      "$value": "#1f2026",
+      "$type": "color",
+      "$description": "Iron Gray — Body text, input borders, body chrome — near-black with a cool cast for dense informational UI"
+    },
+    "mid-gray": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Mid Gray — Muted body text, helper text, icon borders — the primary de-emphasized text tone"
+    },
+    "silver": {
+      "$value": "#c4c4c4",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, dividers, placeholder text — light structural lines that recede"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Deep body text, secondary headings — sits between charcoal and black for weighted text that isn't headline-level"
+    },
+    "ash": {
+      "$value": "#e8e8ea",
+      "$type": "color",
+      "$description": "Ash — Shadow tint, ultra-light dividers, ghost surfaces — the near-invisible layer"
+    },
+    "goldenrod": {
+      "$value": "#f9e070",
+      "$type": "color",
+      "$description": "Goldenrod — Category tag accent, feature card variant — warm yellow that pairs with coral gradients"
+    },
+    "sage": {
+      "$value": "#57ad6a",
+      "$type": "color",
+      "$description": "Sage — Category tag accent, feature card variant — natural green for growth/scale categories"
+    },
+    "sunset-wash": {
+      "$value": "#fbeaf6",
+      "$type": "color",
+      "$description": "Sunset Wash — Hero ambient background wash — a barely-there pink-to-peach atmospheric tint behind the headline"
+    },
+    "category-royal": {
+      "$value": "#5b3af7",
+      "$type": "color",
+      "$description": "Category — Royal — Feature card gradient pair — deep purple-to-violet category swatch for strategy/planning tags"
+    },
+    "category-sky": {
+      "$value": "#4160ff",
+      "$type": "color",
+      "$description": "Category — Sky — Feature card gradient pair — cyan-to-blue category swatch for content/creation tags"
+    },
+    "category-verdant": {
+      "$value": "#38c585",
+      "$type": "color",
+      "$description": "Category — Verdant — Feature card gradient pair — lime-to-emerald category swatch for sales/growth tags"
+    },
+    "category-magenta": {
+      "$value": "#c83ad6",
+      "$type": "color",
+      "$description": "Category — Magenta — Feature card gradient pair — violet-to-magenta category swatch for analysis/insights tags"
+    },
+    "category-sunrise": {
+      "$value": "#ff4a4a",
+      "$type": "color",
+      "$description": "Category — Sunrise — Feature card gradient pair — red-to-gold category swatch for benchmarking/launch tags"
+    }
+  },
+  "font": {
+    "attila-bold": {
+      "$value": "Attila-Bold",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the tall, tightly-tracked serif/grotesque hybrid used for hero and section headings at 32-48px. The negative tracking (-0.02em) is signature: letters pull close at large sizes creating a dense, editorial block of text"
+    },
+    "attila-sans-uniform": {
+      "$value": "Attila Sans Uniform",
+      "$type": "fontFamily",
+      "$description": "Largest display moments — uniform-width variant for the biggest headlines where letterform consistency matters more than contrast"
+    },
+    "labil-bold": {
+      "$value": "Labil-Bold",
+      "$type": "fontFamily",
+      "$description": "Bold body emphasis and mid-weight headings — the weight-400 bold variant that gives inline emphasis and sub-headings without switching families"
+    },
+    "labil-grotesk": {
+      "$value": "Labil Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI font — the workhorse grotesque used for body copy, buttons, inputs, cards, and navigation at 12-24px. Tracking sits at -0.01em throughout, a subtle but consistent tighten"
+    },
+    "labil-regular": {
+      "$value": "Labil-Regular",
+      "$type": "fontFamily",
+      "$description": "Lighter body weight for body copy and descriptions — weight 300 for long-form paragraphs creates breathing space; weight 400 for compact UI. The 0.143em tracking on some instances suggests uppercase labels or tag text"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Labil-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Attila-Bold",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Attila-Bold",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Attila Sans Uniform",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Attila-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Labil-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Attila-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 48px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Attila-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 48px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Attila Sans Uniform",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 50px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "124": {
+      "$value": "124px",
+      "$type": "dimension",
+      "$description": "Spacing 124px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(193, 194, 222, 0.2) 1px 1px 1px 0px inset, rgba(255, 255, 255, 0.8) -1px -1px 1px 0px inset, rgb(255, 255, 255) 1px 1px 1px 0px inset, rgba(221, 223, 228, 0.5) 5px 5px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "xl": {
+      "$value": "rgba(134, 137, 141, 0.2) 0px 0px 40px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "lg": {
+      "$value": "rgba(239, 227, 225, 0.3) 5px 5px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "xl-2": {
+      "$value": "rgba(133, 136, 140, 0.2) 0px 0px 40px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 2px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the white paper everything sits on"
+    },
+    "warm-wash": {
+      "$value": "#f8f6f2",
+      "$type": "color",
+      "$description": "Surface level 1: Section bands and elevated card backgrounds — a barely-warm off-white that adds atmosphere without leaving the light palette"
+    },
+    "accent-cream": {
+      "$value": "#fffbe7",
+      "$type": "color",
+      "$description": "Surface level 2: Highlighted cards and feature panels — a warmer cream tint for elements that need to stand apart from the base canvas"
+    },
+    "hero-atmosphere": {
+      "$value": "#fbeaf6",
+      "$type": "color",
+      "$description": "Surface level 3: Hero background ambient wash — soft pink-to-peach gradient for the top of the page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.pietrastudio.com",
+      "siteName": "Pietrastudio",
+      "extractedAt": "2026-06-03T20:11:01.774Z",
+      "variant": "extended"
+    }
+  }
+}

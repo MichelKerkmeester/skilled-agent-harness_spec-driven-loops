@@ -1,0 +1,953 @@
+{
+  "source": "https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068",
+  "uuid": "303ca7ea-e6fa-4e95-8acb-8008c4d3c068",
+  "name": "Svelte",
+  "northStar": "Editorial broadsheet on white marble — serif voice, single ember accent",
+  "capturedAt": "2026-07-18T10:01:32.674Z",
+  "meta": {
+    "url": "https://svelte.dev",
+    "siteName": "Svelte",
+    "extractedAt": "2026-06-03T16:43:18.388Z",
+    "durationMs": 22430,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 226,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use EB Garamond 22px / line-height 1.5 for all paragraph copy — the serif body is the site's voice",
+      "Use Svelte Ember #d43008 exclusively for the brand wordmark, in-text links, and arrow CTAs — never as a fill color for buttons or cards",
+      "Set hero and section headlines in DM Serif Display weight 500 at 54px, centered, in Carbon #141414",
+      "Use Fira Sans 14px for all UI chrome: nav, buttons, tags, inputs, helper text",
+      "Build CTAs as uppercase text links with a trailing arrow, not boxed buttons — 'GET STARTED →' not 'Get Started' on a colored fill",
+      "Keep the canvas pure white #ffffff and let Fog #f2f2f2 handle the only surface variation (inputs, hover washes)",
+      "Maintain 40px between sections and 48px horizontal padding inside content columns"
+    ],
+    "donts": [
+      "Don't use DM Serif Display for body text — reserve it for display headlines at 54px only",
+      "Don't add drop shadows, card elevations, or gradient backgrounds — the design is flat and relies on whitespace for separation",
+      "Don't use boxed primary buttons with fills — actions are text links with arrows",
+      "Don't introduce additional accent colors — Svelte Ember is the only chromatic token; everything else is grayscale",
+      "Don't use border-radius above 4px on content elements; 56px is reserved for the search pill only",
+      "Don't left-align section display headlines like 'used by companies you've heard of' — center them",
+      "Don't use sans-serif fonts for headlines — the serif/serif contrast between Garamond body and DM Serif Display is signature"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#d43008",
+        "name": "Svelte Ember",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#262626",
+        "name": "Ink",
+        "role": "Primary text, nav items, body copy, button labels — soft black that avoids the harshness of #000 while preserving 15:1 contrast on white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Carbon",
+        "role": "Headlines and display copy — slightly heavier than Ink to give the serif wordmarks visual weight against the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, nav background — the dominant background everywhere",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog",
+        "role": "Subtle surface elevation, button hover wash, search/input field background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Slate",
+        "role": "Muted secondary text, helper labels, breadcrumb text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Deemphasized text, disabled labels, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Input field borders, form focus states, text input text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered single-column with a max-width around 1200px. The hero is a two-column split: left half holds the headline and GET STARTED arrow, right half holds the 3D illustration. Below, sections alternate between centered display-headline + content and two-column text+product-screenshot layouts. The sponsor logos section is a single horizontal row of grayscale marks with the display headline centered above. Navigation is a single fixed-height top bar with logo + 5 nav items left-aligned and search + social icons right-aligned. Vertical rhythm is generous: ~100px top/bottom padding on major sections, 40px between stacked elements. The page reads top-to-bottom in one uninterrupted scroll with no sidebar, no modals visible.",
+    "imagery": "Imagery is sparse and deliberate. The hero uses a single large 3D isometric illustration of a production-line factory in Svelte Ember orange and dark gray, filling the right half of the viewport on a near-white blue-gray canvas. Product screenshots (REPL, framework comparison charts) appear as framed code-terminal cards with dark backgrounds. The sponsor section uses desaturated grayscale logos in a single row. No lifestyle photography, no stock imagery — the visual language is illustration + product UI, nothing else. Icon style throughout is minimal: outlined 16-20px line icons in nav (search, Discord, GitHub, etc.), no filled icon variants.",
+    "similar": [
+      {
+        "why": "Same editorial serif-headline + monochrome-canvas approach with a single accent color, very restrained UI",
+        "business": "Evan You's personal site / Vite"
+      },
+      {
+        "why": "Both are devtool sites that reject the typical dark dashboard aesthetic, using generous whitespace and serif/sans typographic contrast",
+        "business": "Astro"
+      },
+      {
+        "why": "Same literary-broadsheet language — serif display headlines, restrained color, white canvas, type-driven hierarchy",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Both use centered serif display headlines over content, with product screenshots as the primary visual element",
+        "business": "Observable"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "56px",
+        "tags": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Primary page canvas and default surface"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog",
+        "level": 2,
+        "purpose": "Input fields, button hover states, subtle dividers"
+      },
+      {
+        "hex": "#666666",
+        "name": "Slate",
+        "level": 3,
+        "purpose": "Inverted surface for dark code blocks or footer panels"
+      },
+      {
+        "hex": "#262626",
+        "name": "Ink",
+        "level": 4,
+        "purpose": "Dark code terminal and product screenshot frames"
+      }
+    ],
+    "northStar": "Editorial broadsheet on white marble — serif voice, single ember accent",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Text Link CTA",
+        "role": "Primary action",
+        "description": "UPPERCASE Svelte Ember (#d43008) text, 14px Fira Sans weight 400, letter-spacing slightly wide, followed by a right arrow (→). No background, no border, no padding. The arrow animates on hover by nudging right. Examples: 'GET STARTED', 'Watch the full Svelte Origins documentary'."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top nav item",
+        "description": "Fira Sans 14px, Ink (#262626) color, no underline by default, underline appears on hover. Items: Docs (with dropdown caret), Tutorial, Packages, Playground, Blog. Right-aligned: search field, Discord, GitHub, Open collective, Apple icon."
+      },
+      {
+        "name": "Search Field",
+        "role": "Site search",
+        "description": "Pill-shaped (56px radius), Fog (#f2f2f2) background, Ink (#141414) placeholder text reading 'search', 8px horizontal padding, ~32px height. Cmd+K shortcut hint shown inside."
+      },
+      {
+        "name": "Adjective Tag",
+        "role": "Highlight label",
+        "description": "Small pill adjacent to the /svelte/ wordmark: dark Ink (#262626) background, white text, Fira Sans 10-12px uppercase, 4px radius, 5px vertical / 8px horizontal padding. Reads 'ADJECTIVE' as a templated fill-in."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Display headline",
+        "description": "DM Serif Display weight 500 at 54px, Carbon (#141414) color, centered alignment. Line-height 1.2. Used for hero ('web development for the rest of us') and sponsor section ('used by companies you've heard of')."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Editorial copy",
+        "description": "EB Garamond 22px weight 400, Ink (#262626), line-height 1.5. Justified or left-aligned depending on column. Generous measure (~600-680px wide). The Svelte Ember color highlights inline terms like '/svelte/'."
+      },
+      {
+        "name": "Code Terminal Card",
+        "role": "Product screenshot frame",
+        "description": "Dark Ink (#262626) or near-black background, monospace syntax highlighting inside, subtle 4px radius, no shadow. Contains REPL or framework comparison output. Sits beside editorial text in a two-column layout."
+      },
+      {
+        "name": "Logo Grid",
+        "role": "Social proof",
+        "description": "Single horizontal row of grayscale sponsor logos (overflow, yelp, Square, Apple, Spotify, NYT, IKEA) at uniform size, spaced ~115px apart. All logos desaturated to ~50% gray. Centered in section with headline above."
+      },
+      {
+        "name": "Hero Illustration",
+        "role": "Brand visual",
+        "description": "3D isometric render of a factory production line in Svelte Ember (#d43008) and Ink, with the Svelte 'S' logo as a building. Sits in the right half of the hero on a very light blue-gray gradient canvas. Full-color, dimensional, photoreal rendering style."
+      },
+      {
+        "name": "Two-Column Content Section",
+        "role": "Feature explanation",
+        "description": "Left column: /svelte/ wordmark (DM Serif Display, Ember orange) + Adjective Tag + 2-3 paragraphs of EB Garamond body. Right column: stacked code terminal cards and chart screenshots. 48px horizontal padding within columns."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Secondary navigation",
+        "description": "Fira Sans 14px, Ink (#262626), no decoration, hover underline. Left-aligned in footer band."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text and section copy — Garamond gives the framework a literary, editorial voice that no sans-serif system font can replicate; 22px at line-height 1.5 is the site's reading rhythm, uncharacteristically large and serif for a devtool site",
+        "sizes": "10px, 22px",
+        "family": "EB Garamond",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Source Serif Pro, Crimson Pro, Lora"
+      },
+      {
+        "role": "All UI chrome — nav links, search input, button labels, the ADJECTIVE tag, section eyebrows. Fira Sans is the workspace font; it keeps interactive elements quiet so the serif voice can lead",
+        "sizes": "10px, 12px, 13px, 14px, 16px, 20px",
+        "family": "Fira Sans",
+        "weight": "400",
+        "lineHeight": "1.00–1.70",
+        "substitute": "Inter, system-ui, -apple-system"
+      },
+      {
+        "role": "Hero and section display headlines — used sparingly (only 4 occurrences on the page) as a typographic exclamation point; the heavy serif slab at 54px contrasts with the lighter Garamond body to create editorial tension",
+        "sizes": "54px",
+        "family": "DM Serif Display",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Playfair Display, Cormorant Garamond Bold"
+      }
+    ],
+    "description": "Svelte's site reads like a literary broadsheet translated into a framework landing page. Serif typography — EB Garamond for running text, DM Serif Display for hero headlines — carries the voice while a tight sans-serif (Fira Sans) handles the chrome: nav, buttons, tags, search. The canvas is pure white, surfaces are rare, and elevation is almost nonexistent; hierarchy comes from type size and weight rather than cards or shadows. A single vivid orange (#d43008) punctuates the monochrome page: it owns the logo, the GET STARTED arrow, the /svelte/ wordmark, and the documentary link. CTAs are arrow-suffixed text links, never boxed buttons. The site breathes — generous vertical rhythm, centered serif headlines, grayscale sponsor logos, and very little ornamentation between sections.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Svelte design system\",\"item\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#style-reference\",\"name\":\"Svelte design system reference\",\"headline\":\"Svelte design system | Refero Styles\",\"description\":\"Explore Svelte's light Dev Tools design system: Svelte Ember #d43008, Ink #262626 colors, EB Garamond, Fira Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\",\"mainEntityOfPage\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Svelte\",\"url\":\"https://svelte.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"caption\":\"Screenshot of Svelte\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Svelte design system\",\"Svelte website design\",\"Svelte colors\",\"Svelte typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Svelte Ember\",\"Ink\",\"Carbon\",\"Paper\",\"EB Garamond\",\"Fira Sans\",\"DM Serif Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Svelte design system\"},{\"@type\":\"Thing\",\"name\":\"Svelte website design\"},{\"@type\":\"Thing\",\"name\":\"Svelte colors\"},{\"@type\":\"Thing\",\"name\":\"Svelte typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-26T12:44:50.000Z\",\"dateModified\":\"2026-01-26T12:44:50.000Z\"}]}19:T793,## Quick Color Reference\n- text: #262626 (Ink) / #141414 (Carbon for headlines)\n- background: #ffffff (Paper)\n- border: #000000 (Obsidian, for inputs)\n- accent / link: #d43008 (Svelte Ember)\n- muted text: #666666 (Slate)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Section**: White (#ffffff) background. Left column: headline 'web development for the rest of us' in DM Serif Display weight 500, 54px, #141414, line-height 1.2. Below it, a text link 'GET STARTED →' in Fira Sans 14px uppercase, #d43008. Right column: 3D isometric Svelte factory illustration filling the column. 48px horizontal padding, 100px vertical padding.\n2. **Sponsor Logos Row**: Centered DM Serif Display 54px headline 'used by companies you've heard of' in #141414. Below, a single horizontal row of 7 sponsor logos (overflow, yelp, Square, Apple, Spotify, NYT, IKEA), all desaturated to grayscale, uniformly sized at ~60px height, spaced 115px apart, centered.\n3. **Two-Column Feature Section**: Left column (60% width): /svelte/ wordmark in DM Serif Display 54px #d43008, followed by a small dark tag 'ADJECTIVE' (4px radius, #262626 background, white text, Fira Sans 10px), then 2-3 paragraphs of EB Garamond 22px #262626, line-height 1.5. Right column (40% width): a dark code terminal card (#262626 background, 4px radius) containing a screenshot of the Svelte REPL or framework comparison.\n4. **Top Navigation**: Single row, white background, 56px height. Left: Svelte Ember logo + 'SVELTE' wordmark, then Fira Sans 14px links (Docs▾, Tutorial, Packages, Playground, Blog) in #262626. Right: pill-shaped search field (56px radius, #f2f2f2 background, 8px padding) followed by icon links (Discord, GitHub, Open collective, Apple).\n5. **Footer Link Group**: Fira Sans 14px #262626 links, left-aligned, 10px gap between items, separated from content above by a 1px #f2f2f2 hairline divider. No background fill, no border."
+      }
+    ],
+    "elevationPhilosophy": "The site avoids shadows entirely. Visual hierarchy is achieved through typographic weight (Garamond 22px body vs. DM Serif 54px display) and whitespace (40px section gaps), not elevation. The only depth comes from product screenshots and the 3D hero illustration, which are pre-rendered assets — not UI elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "image",
+            "body",
+            "icon",
+            "hero"
+          ],
+          "frequency": 406,
+          "confidence": 1,
+          "prominence": 37996884.51662686,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d43008",
+          "oklch": {
+            "c": 0.20440222525524945,
+            "h": 33.18922940943504,
+            "l": 0.5679631524464076
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "icon",
+            "image",
+            "other"
+          ],
+          "frequency": 628,
+          "confidence": 1,
+          "prominence": 1498095.7806603217,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 379382.0250750927,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 319717.99164739036,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 127968,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 28374.370551150794,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 23158.857754658668,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 581.1845119310659,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.30920797191380417,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#f2f2f2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#ffffff",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#f2f2f2",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#666666",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#f2f2f2",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.97,
+          "background": "#ffffff",
+          "foreground": "#d43008"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.44,
+          "background": "#f2f2f2",
+          "foreground": "#d43008"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.83,
+          "background": "#262626",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#666666",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#f2f2f2",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.21,
+          "background": "#666666",
+          "foreground": "#141414"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.05,
+          "background": "#262626",
+          "foreground": "#d43008"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.64,
+          "background": "#666666",
+          "foreground": "#262626"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#666666",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#262626",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#262626",
+          "foreground": "#141414"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "image",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 115,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "EB Garamond",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 172,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fira Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DM Serif Display",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "EB Garamond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "icon",
+            "hero"
+          ],
+          "frequency": 160,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Fira Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "EB Garamond",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "image",
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "DM Serif Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c0e1567f-a1e3-4d8c-93c1-7b1637787b19.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Svelte design system\",\"item\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#style-reference\",\"name\":\"Svelte design system reference\",\"headline\":\"Svelte design system | Refero Styles\",\"description\":\"Explore Svelte's light Dev Tools design system: Svelte Ember #d43008, Ink #262626 colors, EB Garamond, Fira Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\",\"mainEntityOfPage\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Svelte\",\"url\":\"https://svelte.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/303ca7ea-e6fa-4e95-8acb-8008c4d3c068#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"caption\":\"Screenshot of Svelte\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6bc4d182-ed5a-4ba7-8c0f-2b954f1bd275.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Svelte design system\",\"Svelte website design\",\"Svelte colors\",\"Svelte typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Svelte Ember\",\"Ink\",\"Carbon\",\"Paper\",\"EB Garamond\",\"Fira Sans\",\"DM Serif Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Svelte design system\"},{\"@type\":\"Thing\",\"name\":\"Svelte website design\"},{\"@type\":\"Thing\",\"name\":\"Svelte colors\"},{\"@type\":\"Thing\",\"name\":\"Svelte typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-01-26T12:44:50.000Z\",\"dateModified\":\"2026-01-26T12:44:50.000Z\"}]}19:T793,## Quick Color Reference\n- text: #262626 (Ink) / #141414 (Carbon for headlines)\n- background: #ffffff (Paper)\n- border: #000000 (Obsidian, for inputs)\n- accent / link: #d43008 (Svelte Ember)\n- muted text: #666666 (Slate)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Section**: White (#ffffff) background. Left column: headline 'web development for the rest of us' in DM Serif Display weight 500, 54px, #141414, line-height 1.2. Below it, a text link 'GET STARTED →' in Fira Sans 14px uppercase, #d43008. Right column: 3D isometric Svelte factory illustration filling the column. 48px horizontal padding, 100px vertical padding.\n2. **Sponsor Logos Row**: Centered DM Serif Display 54px headline 'used by companies you've heard of' in #141414. Below, a single horizontal row of 7 sponsor logos (overflow, yelp, Square, Apple, Spotify, NYT, IKEA), all desaturated to grayscale, uniformly sized at ~60px height, spaced 115px apart, centered.\n3. **Two-Column Feature Section**: Left column (60% width): /svelte/ wordmark in DM Serif Display 54px #d43008, followed by a small dark tag 'ADJECTIVE' (4px radius, #262626 background, white text, Fira Sans 10px), then 2-3 paragraphs of EB Garamond 22px #262626, line-height 1.5. Right column (40% width): a dark code terminal card (#262626 background, 4px radius) containing a screenshot of the Svelte REPL or framework comparison.\n4. **Top Navigation**: Single row, white background, 56px height. Left: Svelte Ember logo + 'SVELTE' wordmark, then Fira Sans 14px links (Docs▾, Tutorial, Packages, Playground, Blog) in #262626. Right: pill-shaped search field (56px radius, #f2f2f2 background, 8px padding) followed by icon links (Discord, GitHub, Open collective, Apple).\n5. **Footer Link Group**: Fira Sans 14px #262626 links, left-aligned, 10px gap between items, separated from content above by a 1px #f2f2f2 hairline divider. No background fill, no border."
+}

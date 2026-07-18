@@ -1,0 +1,69 @@
+:root {
+  /* Colors */
+  --color-sst-ink: #303055;
+  --color-code-plum: #8844ae;
+  --color-code-cobalt: #3b61b0;
+  --color-code-teal: #096e72;
+  --color-code-rust: #984e4d;
+  --color-slate: #403f53;
+  --color-fog: #767682;
+  --color-mist: #a8a8b0;
+  --color-obsidian: #111111;
+  --color-lavender-mist: #e8e8f2;
+  --color-paper: #ffffff;
+
+  /* Typography — Font Families */
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-rubik-variable: 'Rubik Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body: 14px;
+  --leading-body: 1.8;
+  --text-heading-sm: 18px;
+  --leading-heading-sm: 1.5;
+  --text-heading: 20px;
+  --leading-heading: 1.5;
+  --text-display: 48px;
+  --leading-display: 1.1;
+  --tracking-display: -1.01px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 16px;
+  --element-gap: 10-16px;
+
+  /* Border Radius */
+  --radius-sm: 1px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* Named Radii */
+  --radius-tags: 4px;
+  --radius-cards: 8px;
+  --radius-inputs: 4px;
+  --radius-buttons: 4px;
+  --radius-code-blocks: 8px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-lavender-mist: #e8e8f2;
+}

@@ -1,0 +1,1049 @@
+{
+  "source": "https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c",
+  "uuid": "8875b14e-c59a-492f-8780-8027a480f21c",
+  "name": "Vivid+Co",
+  "northStar": "prismatic light through obsidian",
+  "capturedAt": "2026-07-18T07:06:41.175Z",
+  "meta": {
+    "url": "https://vividand.co",
+    "siteName": "Vivid+Co",
+    "extractedAt": "2026-07-03T03:09:37.717Z",
+    "durationMs": 70948,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1374,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fffdf9 for all text and interactive elements on the dark canvas — never introduce a second text color unless it is #6f879c for de-emphasized metadata.",
+      "Let scale carry hierarchy: pair 136px display with 18px body at a 7.5× ratio rather than bolding the body to compensate.",
+      "Hold Neue Montreal weight 400 as the default; reserve weight 700 exclusively for 36px subheadings.",
+      "Set display headlines at line-height 1.00–1.01 and -0.02em letter-spacing so multi-line stacks feel sculptural.",
+      "Use 0px border-radius for buttons and most cards — the prism artwork supplies all the visual softness the system needs.",
+      "Center hero compositions vertically and horizontally, leaving ~50% viewport height for the headline block.",
+      "Apply the prism artifact at full scale as the only chromatic element; never dilute it with accent buttons or colored badges."
+    ],
+    "donts": [
+      "Don't introduce filled buttons, gradients, or saturated action colors — the system has no distinct primary action color and the nav's outlined Contact button is the only bordered UI element.",
+      "Don't use weight 600–800 for headlines; authority comes from size (105–136px), not stroke weight.",
+      "Don't apply box-shadows to cards or nav — depth comes from the Prism artifact and the slate-to-black canvas gradient.",
+      "Don't add line-heights above 1.5 to display sizes; the tight 1.00–1.01 leading at 136px is a signature.",
+      "Don't use letter-spacing looser than -0.01em on any size above 22px — the tracking is intentionally tight.",
+      "Don't split the prism colors into separate UI tokens — RGB red/cyan/green only exist inside the artifact.",
+      "Don't lighten the canvas past #495764 or the slate-to-black contrast that makes #fffdf9 type read will collapse."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#fffdf9",
+        "name": "Bone White",
+        "role": "Primary text, nav labels, link color, heading fill — the near-white that occupies every typographic surface across the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Obsidian",
+        "role": "Page canvas, background fill for hero and section bands — the deep black the prism artifact sits inside",
+        "group": "neutral"
+      },
+      {
+        "hex": "#495764",
+        "name": "Graphite Veil",
+        "role": "Dominant surface behind headings and content blocks — a cool dark slate that gives the canvas depth without flat black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#403f3f",
+        "name": "Ash Border",
+        "role": "Hairline divider and card outline — barely visible, used at 1px to separate rows without competing with type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6f879c",
+        "name": "Fog Blue",
+        "role": "Muted secondary text and ghost-button labels (3.7:1 contrast) — service-category labels like Strategy, Creative, Communications + marketing read as de-emphasized metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Decorative SVG icon and illustration fill — used in the prism artwork and icon glyphs; not a background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff2a2a",
+        "name": "Prism Red",
+        "role": "Chromatic dispersion accent — one channel of the RGB-split prism hero artifact; appears only inside the brand illustration, not as a UI token",
+        "group": "accent"
+      },
+      {
+        "hex": "#2a7fff",
+        "name": "Prism Cyan",
+        "role": "Chromatic dispersion accent — blue channel of the RGB-split prism, paired with red and green to create the signature caustics effect",
+        "group": "accent"
+      },
+      {
+        "hex": "#2aff2a",
+        "name": "Prism Lime",
+        "role": "Chromatic dispersion accent — green channel of the RGB-split prism artifact",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with a single max-width ~1440px content column. Hero pattern: centered prism artifact with overlapping headline (text crosses the cubes) and left-aligned subtitle beneath. Navigation sits in a thin top bar with the wordmark left, four ghost links right, and an outlined Contact button terminating the row. Section rhythm alternates between full-viewport-height hero panels and narrower content bands at ~108px gaps. Content arrangement is asymmetric: the prism artifact anchors the visual center while headlines wrap around it. Single-column text blocks max out around 440px width; no multi-column grids, no card matrices, no pricing tables. Footer is a thin hairline-divided band with two columns of metadata.",
+    "imagery": "Single hero artifact dominates: an abstract 3D rendering of glass cubes with RGB-split chromatic aberration edges. No photography, no human imagery, no product shots. The prism IS the brand image — everything else is monochrome typography on dark canvas. Iconography is minimal: thin-line navigation labels and a small cursor/glyph accent (area 142765) at the end of one headline suggest a single 16px monoline icon. No illustrations, no decorative patterns, no textures.",
+    "similar": [
+      {
+        "why": "Same monochrome-dark-canvas agency treatment with oversized weight-400 display type and zero filled buttons",
+        "business": "Giant Ant"
+      },
+      {
+        "why": "Both rely on a single signature 3D artifact as the brand image and pair it with near-white type on near-black canvas",
+        "business": "Resn"
+      },
+      {
+        "why": "Dark-mode creative-agency homepage with chromatic-aberration glass rendering and minimal nav",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Single-typeface agency site at 400 weight, cinematic dark canvas, and restraint as a design philosophy",
+        "business": "Ueno"
+      },
+      {
+        "why": "Dark creative agency with oversized display headlines, no filled CTAs, and an outlined contact button as the only bordered element",
+        "business": "Locomotive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "5px",
+        "tags": "9999px",
+        "cards": "15px",
+        "buttons": "0px"
+      },
+      "elementGap": "7px",
+      "sectionGap": "108px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Deepest page background — hero void, full-bleed sections"
+      },
+      {
+        "hex": "#495764",
+        "name": "Graphite Veil",
+        "level": 1,
+        "purpose": "Primary content surface — content bands sit on this slightly lighter slate"
+      },
+      {
+        "hex": "#fffdf9",
+        "name": "Bone Card",
+        "level": 2,
+        "purpose": "Rare inverted cards (when used) — near-white surface that flips the type to dark"
+      }
+    ],
+    "northStar": "prismatic light through obsidian",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.15
+      },
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body-lg",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading-sm",
+        "size": 33,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "display-sm",
+        "size": 105,
+        "lineHeight": 1.01,
+        "letterSpacing": -2.1
+      },
+      {
+        "role": "display",
+        "size": 136,
+        "lineHeight": 1,
+        "letterSpacing": -2.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Nav Button",
+        "role": "Primary navigation item (EXPERTISE, WORK, TEAM, CAREERS)",
+        "description": "Transparent fill, #fffdf9 text, 0px radius, no padding, uppercase Neue Montreal 14–15px. No underline, no border — letterforms alone carry identification."
+      },
+      {
+        "name": "Outlined Contact Button",
+        "role": "Sole outlined call-to-action in the nav",
+        "description": "Transparent fill, 1px solid #fffdf9 border, 5px radius, padding 9px 15px, uppercase 14px #fffdf9 text. The only bordered element in the header."
+      },
+      {
+        "name": "Ghost Service Label",
+        "role": "Service-category metadata (Strategy, Creative, Communications + marketing)",
+        "description": "Transparent fill, #6f879c text, 0px radius, 20px padding-top, 30px padding-bottom, 20px Neue Montreal. Reads as de-emphasized taxonomy — sits below case-study titles."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero statement (We are Storytellers..., Putting the pieces together...)",
+        "description": "Neue Montreal weight 400 at 105–136px, line-height 1.00, letter-spacing -0.02em, color #fffdf9. Stacks across multiple lines; occupies 50–60% of viewport height. No font-weight override — scale alone creates hierarchy."
+      },
+      {
+        "name": "Hero Lead Paragraph",
+        "role": "Subtitle below display headline",
+        "description": "Neue Montreal 400 at 18–22px, line-height 1.5, #fffdf9, max-width ~440px. Aligns left beneath the prism artifact, never full-width."
+      },
+      {
+        "name": "Prism Artifact",
+        "role": "Signature brand illustration — glass-cube array with RGB-split caustics",
+        "description": "Four to six glass cubes arranged in a staggered cluster, rendered with #000000 cores, #fffdf9 specular highlights, and red/cyan/green channel-offset edges that bleed saturated color. No shadow — the chromatic dispersion is the visual depth."
+      },
+      {
+        "name": "Section Heading",
+        "role": "In-section statement (Building brand value is our singular mission.)",
+        "description": "Neue Montreal 400 at 18–22px, #fffdf9, max-width ~440px, left-aligned above the larger display headline that follows."
+      },
+      {
+        "name": "Footer Hairline Divider",
+        "role": "1px separator above footer copy",
+        "description": "1px solid #403f3f line, full-width, 15px margin-top. The only border-color token used in the system."
+      },
+      {
+        "name": "Case Study Title Link",
+        "role": "Project/work listing headline",
+        "description": "Neue Montreal 400 at 33px, #fffdf9, letter-spacing -0.01em, line-height 1.2. Hover state likely color-shifts to #6f879c — no underline, no background change."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section opener or category tag (uppercase)",
+        "description": "Neue Montreal 400 at 32px or 17px, uppercase, line-height 1.01–1.5, letter-spacing +0.02em at 17px. All-caps treatment without weight 700 — restraint over shouting."
+      },
+      {
+        "name": "Rounded Pill Tag",
+        "role": "Sole radius-9999px element — possibly a status indicator or metadata chip",
+        "description": "9999px border-radius, 15px radius also appears for card corners. Used sparingly; most of the UI is square-edged."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive typeface across all UI — heading, body, nav, button, link, footer. Weight 400 is the default; weight 700 is reserved for 36px subheadings only. Display headlines at 105px and 136px carry line-height 1.00–1.01 with -0.02em tracking, producing cinematic stacked headlines that read as sculptural rather than typographic.",
+        "sizes": "14, 15, 17, 18, 20, 21, 22, 32, 33, 36, 56, 105, 136",
+        "family": "Neue Montreal",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Söhne, Inter, General Sans",
+        "letterSpacing": "-0.02em at 136px display, -0.01em at 33–56px headings, +0.01em at 15–21px body, +0.02em at 17px uppercase labels",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Vivid+Co operates in a cinematic dark void: near-black canvas at #101010–#495764, punctuated by a single near-white off-white (#fffdf9) used for nearly all type and UI chrome. Typography is overwhelmingly Neue Montreal weight 400 — a deliberate refusal of bold, where authority comes from sheer scale (136px and 105px display) rather than weight. The signature device is the chromatic-prism hero rendering: RGB-split blocks of saturated red/green/blue light bleeding through glass cubes, breaking an otherwise monochrome surface. Layout is centered and roomy; nav, body, and links all wear the same #fffdf9 color with no separate accent button, no fills, and zero shadows — differentiation happens through spacing, scale, and the rainbow artifact that acts as the brand's only chromatic voice.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vivid+Co design system\",\"item\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#style-reference\",\"name\":\"Vivid+Co design system reference\",\"headline\":\"Vivid+Co design system | Refero Styles\",\"description\":\"Explore Vivid+Co's dark Agency design system: Bone White #fffdf9, Obsidian #101010 colors, Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vivid+Co\",\"url\":\"https://vividand.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"caption\":\"Screenshot of Vivid+Co\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vivid+Co design system\",\"Vivid+Co website design\",\"Vivid+Co colors\",\"Vivid+Co typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian\",\"Graphite Veil\",\"Ash Border\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vivid+Co design system\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co website design\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co colors\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:36:27.001Z\",\"dateModified\":\"2026-04-30T02:36:27.001Z\"}]}19:T59b,Quick Color Reference:\n- text: #fffdf9\n- background: #101010 (canvas) / #495764 (surface)\n- border: #403f3f (hairline) / #fffdf9 (button only)\n- muted text: #6f879c\n- accent: #ff2a2a / #2a7fff / #2aff2a (prism only — never on UI)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Hero section: #101010 canvas filling viewport. Prism artifact (4–6 glass cubes with #000000 cores and RGB-split #ff2a2a/#2a7fff/#2aff2a edges) centered at ~40% width. Headline 'We are Storytellers Strat egists Crea tives Market ers Tech nologists' at 136px Neue Montreal weight 400, #fffdf9, line-height 1.00, letter-spacing -2.72px, wrapping across the cubes. Subtitle at 22px weight 400 #fffdf9, max-width 440px, left-aligned below.\n2. Ghost navigation button: transparent fill, #fffdf9 text, uppercase Neue Montreal 14px, 0px radius, 0px padding. Hover transitions color only via 0.5s cubic-bezier(0.52,0.01,0,1).\n3. Outlined Contact button: transparent fill, 1px solid #fffdf9 border, 5px radius, 9px 15px padding, uppercase 14px #fffdf9 text. Only bordered element in the header.\n4. Case-study title link: Neue Montreal 400 at 33px, #fffdf9, letter-spacing -0.33px, line-height 1.2, no underline. Below it a Fog Blue (#6f879c) service label at 20px with 20px padding-top and 30px padding-bottom.\n5. Footer divider: 1px solid #403f3f line, full-width, 15px margin-top. Footer metadata at 14–18px #fffdf9 in a two-column row."
+      },
+      {
+        "title": "Motion Philosophy",
+        "content": "Expressive but restrained. Default duration 0.5s with ease for most transitions, but the signature curve cubic-bezier(0.52, 0.01, 0, 1) (150 occurrences) drives all meaningful state changes — a slow start and decisive stop, like optical focus pulling. Transform and opacity carry 90% of transitions; border-color and color handle the remaining 10%. One named animation kVfqLU runs at 6.65s — likely the prism artifact's slow chromatic shimmer. Avoid springs, bounces, or scale-pop effects; the system's confidence reads through stillness, not motion."
+      }
+    ],
+    "elevationPhilosophy": "Flat by design. The system uses zero box-shadows — depth is implied solely through the contrast between #101010, #495764, and the Prism artifact's chromatic edges. Borders are 1px solid at #403f3f and only used for the Contact button and footer divider. Elevation is non-existent because the prism artwork is the only element that needs to feel three-dimensional."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fffdf9",
+          "oklch": {
+            "c": 0.005692840771849539,
+            "h": 84.56576622216481,
+            "l": 0.9944697482798662
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "heading",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 570,
+          "confidence": 1,
+          "prominence": 4113022.376018221,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 62,
+            "body/color": 15,
+            "link/color": 1,
+            "other/fill": 320,
+            "other/color": 131,
+            "button/color": 12,
+            "heading/color": 17,
+            "nav/borderColor": 4,
+            "link/borderColor": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 769834.1968630098,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 16,
+            "other/fill": 25
+          }
+        },
+        {
+          "hex": "#403f3f",
+          "oklch": {
+            "c": 0.0014593247482810592,
+            "h": 84.56146162251238,
+            "l": 0.3693142847504376
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 168394,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 3
+          }
+        },
+        {
+          "hex": "#6f879c",
+          "oklch": {
+            "c": 0.04226660947621484,
+            "h": 244.97213543922766,
+            "l": 0.6121623444527349
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 111571.81614059577,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/fill": 12,
+            "button/color": 3
+          }
+        },
+        {
+          "hex": "#495764",
+          "oklch": {
+            "c": 0.027429828327587776,
+            "h": 244.85989813314762,
+            "l": 0.450734214301295
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 886.6421377473565,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 701,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.017568606822032054,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.67,
+          "background": "#fffdf9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#fffdf9",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.33,
+          "background": "#fffdf9",
+          "foreground": "#403f3f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.3,
+          "background": "#495764",
+          "foreground": "#fffdf9"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.68,
+          "background": "#fffdf9",
+          "foreground": "#6f879c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.56,
+          "background": "#495764",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#495764",
+          "foreground": "#6f879c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1009,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 455,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 82,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 130,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.24,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.01,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 33,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.01,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 136,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1365ef61-c295-488f-8538-04d8bb2de362.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vivid+Co design system\",\"item\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#style-reference\",\"name\":\"Vivid+Co design system reference\",\"headline\":\"Vivid+Co design system | Refero Styles\",\"description\":\"Explore Vivid+Co's dark Agency design system: Bone White #fffdf9, Obsidian #101010 colors, Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vivid+Co\",\"url\":\"https://vividand.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8875b14e-c59a-492f-8780-8027a480f21c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"caption\":\"Screenshot of Vivid+Co\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a419d3d2-557b-4646-b97e-be0a609afd36.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vivid+Co design system\",\"Vivid+Co website design\",\"Vivid+Co colors\",\"Vivid+Co typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Obsidian\",\"Graphite Veil\",\"Ash Border\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vivid+Co design system\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co website design\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co colors\"},{\"@type\":\"Thing\",\"name\":\"Vivid+Co typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:36:27.001Z\",\"dateModified\":\"2026-04-30T02:36:27.001Z\"}]}19:T59b,Quick Color Reference:\n- text: #fffdf9\n- background: #101010 (canvas) / #495764 (surface)\n- border: #403f3f (hairline) / #fffdf9 (button only)\n- muted text: #6f879c\n- accent: #ff2a2a / #2a7fff / #2aff2a (prism only — never on UI)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Hero section: #101010 canvas filling viewport. Prism artifact (4–6 glass cubes with #000000 cores and RGB-split #ff2a2a/#2a7fff/#2aff2a edges) centered at ~40% width. Headline 'We are Storytellers Strat egists Crea tives Market ers Tech nologists' at 136px Neue Montreal weight 400, #fffdf9, line-height 1.00, letter-spacing -2.72px, wrapping across the cubes. Subtitle at 22px weight 400 #fffdf9, max-width 440px, left-aligned below.\n2. Ghost navigation button: transparent fill, #fffdf9 text, uppercase Neue Montreal 14px, 0px radius, 0px padding. Hover transitions color only via 0.5s cubic-bezier(0.52,0.01,0,1).\n3. Outlined Contact button: transparent fill, 1px solid #fffdf9 border, 5px radius, 9px 15px padding, uppercase 14px #fffdf9 text. Only bordered element in the header.\n4. Case-study title link: Neue Montreal 400 at 33px, #fffdf9, letter-spacing -0.33px, line-height 1.2, no underline. Below it a Fog Blue (#6f879c) service label at 20px with 20px padding-top and 30px padding-bottom.\n5. Footer divider: 1px solid #403f3f line, full-width, 15px margin-top. Footer metadata at 14–18px #fffdf9 in a two-column row."
+}

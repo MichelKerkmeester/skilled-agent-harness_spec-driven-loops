@@ -1,0 +1,247 @@
+{
+  "color": {
+    "soft-pebble": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Soft Pebble — Page canvas, card surfaces, and the dominant background tone — a warm-leaning gray that reads as handmade paper rather than digital white"
+    },
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, nav labels, icons, and the default state of unselected interactive controls. Carries all typographic and chrome weight in the system"
+    },
+    "ash": {
+      "$value": "#bbbab7",
+      "$type": "color",
+      "$description": "Ash — Hairline borders and dividers on buttons and structural elements — just visible enough to define edges without ever competing with text"
+    },
+    "stone": {
+      "$value": "#8d8c8a",
+      "$type": "color",
+      "$description": "Stone — Muted helper text — product prices, secondary metadata, and any label that should recede behind the primary content"
+    },
+    "sunlit-marigold": {
+      "$value": "#ecca53",
+      "$type": "color",
+      "$description": "Sunlit Marigold — The sole chromatic accent — active filter pills, selected nav states, and the only place a UI element may be filled with color. The warmth against Soft Pebble creates an almost-handmade yellow, not a digital primary"
+    }
+  },
+  "font": {
+    "ts-unused": {
+      "$value": "ts-unused",
+      "$type": "fontFamily",
+      "$description": "ts-unused — detected in extracted data but not described by AI"
+    },
+    "macan": {
+      "$value": "Macan",
+      "$type": "fontFamily",
+      "$description": "Single-family type system used for display, heading, body, nav, and UI. The signature choice is weight 500 at 95px with -0.04em tracking for the hero headline — a tight, modern geometric sans that feels like a custom craft brand, not a tech platform. Substitute with Inter (free) or Söhne (commercial) for the closest matching grotesque feel."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    },
+    "a1-gothic-m": {
+      "$value": "A1 Gothic M",
+      "$type": "fontFamily",
+      "$description": "A1 Gothic M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Macan Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ts-unused",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "A1 Gothic M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Macan Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Macan Medium",
+        "fontSize": "95px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 95px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 1: The single background for the entire site — full-bleed Soft Pebble with no variation between hero, grid, or footer."
+    },
+    "active-filter-surface": {
+      "$value": "#ecca53",
+      "$type": "color",
+      "$description": "Surface level 2: Sunlit Marigold fill used exclusively for the selected filter pill — the only elevated color surface in the system."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.woset.world",
+      "siteName": "Woset",
+      "extractedAt": "2026-06-03T17:43:16.733Z",
+      "variant": "extended"
+    }
+  }
+}

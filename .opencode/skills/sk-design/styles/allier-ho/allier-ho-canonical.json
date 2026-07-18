@@ -1,0 +1,992 @@
+{
+  "source": "https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a",
+  "uuid": "a85c74b9-2166-4fa3-be49-a2cc48990c6a",
+  "name": "Allier Ho",
+  "northStar": "serif whisper on warm paper",
+  "capturedAt": "2026-07-18T08:50:58.881Z",
+  "meta": {
+    "url": "https://allierho.com",
+    "siteName": "Allier Ho",
+    "extractedAt": "2026-06-03T21:35:16.285Z",
+    "durationMs": 26486,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 188,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Crimson Pro at weight 300 for all display headlines between 44–50px with letter-spacing around -1.5px — the whisper-weight is the signature",
+      "Set border-radius to 200px on all buttons and tags for the fully pill-shaped interactive language",
+      "Use #fcfcfc as the sole page canvas — never introduce pure white (#ffffff) or cooler grays",
+      "Apply #6c5f7d dusty mauve as the only chromatic surface fill, reserved for hero overlay panels and occasional heading tints",
+      "Pair serif headlines with Azeret Mono body text — the mono/serif dialogue defines the editorial tone",
+      "Keep section gaps at 100px and element gaps at 10px to maintain the gallery-walk rhythm",
+      "Let imagery run edge-to-edge with no borders, radius, or shadow — the photograph or 3D render is the visual"
+    ],
+    "donts": [
+      "Don't use Crimson Pro at weight 400 or heavier — the light weight is non-negotiable",
+      "Don't add drop shadows, inner shadows, or glow effects to cards, buttons, or images — the system is flat",
+      "Don't introduce additional accent colors beyond dusty mauve and pale sage — the palette is deliberately two-note",
+      "Don't round corners on cards, panels, or images — only buttons and tags use radius",
+      "Don't use a sans-serif for body copy — Azeret Mono is the body voice; sans-serif is reserved for nav and labels only",
+      "Don't fill buttons with solid color — the pill outline on transparent background is the only button style",
+      "Don't use system serif or serif substitutes for body — Crimson Pro is display-only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcfcfc",
+        "name": "Warm Paper",
+        "role": "Page canvas, card surfaces, and nav background — the base layer everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Deep Ink",
+        "role": "Primary text, body copy, nav links, and dominant border color — the structural voice",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Press Black",
+        "role": "Heading text and heavy borders — slightly softer than pure black for large display sizes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Charcoal Trace",
+        "role": "Secondary borders, dividers, and muted text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a8a8a8",
+        "name": "Ash",
+        "role": "Helper text, disabled states, and hairline borders on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6c5f7d",
+        "name": "Dusty Mauve",
+        "role": "Accent panel backgrounds, heading color, and chromatic border — a near-gray purple that signals brand moments without shouting",
+        "group": "brand"
+      },
+      {
+        "hex": "#cee6cc",
+        "name": "Pale Sage",
+        "role": "Secondary heading tint and accent border — a near-gray green that appears as quiet punctuation alongside the mauve",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero with the 3D sculpture centered and slightly right, the dusty mauve text panel overlapping the right third, and a vertical service list in the left margin. Navigation is a single thin row at the very top with brand left and three links right. The work section shifts to a centered two-column grid: large headline above, two equal-width project showcases below with 10px column gap. All sections use 100px vertical padding for gallery-walk breathing room. Page max-width is approximately 1280px, centered. No sidebar, no sticky header, no mega-menu — the layout is deliberately flat and scroll-driven.",
+    "imagery": "Imagery is the visual anchor: full-bleed 3D sculptural renders (organic, web-like, matte black forms) dominate the hero, while the work section uses editorial photography crops — billboard mockups, device screens, lifestyle environments. All imagery is borderless, radius-free, and runs edge-to-edge within its container. The 3D work reads as fine art sculpture, not product visualization. Photography is high-contrast, naturalistic, and often dark against light backgrounds. No illustrations, no icons in the traditional sense, no decorative graphics — the 3D renders serve the same role illustrations would in other portfolios.",
+    "similar": [
+      {
+        "why": "Same editorial white-canvas portfolio with minimal nav and large-scale imagery as the primary content",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared restrained typographic palette with serif display + mono accents and dusty chromatic tints",
+        "business": "DIA Studio"
+      },
+      {
+        "why": "Both use pill-shaped outline buttons, warm off-white canvas, and generous section gaps for gallery rhythm",
+        "business": "Studio Function"
+      },
+      {
+        "why": "Similar flat elevation philosophy, monochrome base with single near-gray accent, and full-bleed project photography",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Same agency-portfolio restraint: hairline borders, compact micro-typography, and serif/mono type pairing",
+        "business": "&Walsh"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "200px",
+        "panels": "0px",
+        "buttons": "200px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "100px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fcfcfc",
+        "name": "Warm Paper",
+        "level": 1,
+        "purpose": "Base page canvas and default card surface"
+      },
+      {
+        "hex": "#a8a8a8",
+        "name": "Ash Mist",
+        "level": 2,
+        "purpose": "Subtle raised surface tint for inset panels or muted containers"
+      },
+      {
+        "hex": "#6c5f7d",
+        "name": "Dusty Mauve Panel",
+        "level": 3,
+        "purpose": "Brand overlay panels (hero text block) — the only chromatic surface"
+      },
+      {
+        "hex": "#262626",
+        "name": "Charcoal Plane",
+        "level": 4,
+        "purpose": "Dark surface for inverted sections or image overlays"
+      }
+    ],
+    "northStar": "serif whisper on warm paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.15,
+        "letterSpacing": -1.5
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 0.95,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Minimal Top Nav",
+        "role": "Site navigation bar",
+        "description": "Full-width row, 20px vertical padding, warm paper background. Brand wordmark \"ALLIER HO\" left-aligned in 12px system sans uppercase; three nav links (WORK, ABOUT, PLAYGROUND) right-aligned, same type. No borders, no background fill, no shadow — pure typographic navigation."
+      },
+      {
+        "name": "Pill Text Button",
+        "role": "Interactive button",
+        "description": "200px border-radius (fully pill-shaped), 10px vertical / 18px horizontal padding. Transparent background, 1px black border (#000000), 12px system sans text in black. No fill state, no shadow — the pill outline is the entire visual identity. Examples: \"LEARN MORE\", \"VIEW ALL WORK\"."
+      },
+      {
+        "name": "Hero Overlay Panel",
+        "role": "Hero text block",
+        "description": "Rectangular panel with dusty mauve (#6c5f7d) background, no radius, positioned over hero imagery. Contains Crimson Pro 44px weight 300 white headline. The only chromatic surface in the system — its presence is a signal that this is a brand-defining moment."
+      },
+      {
+        "name": "Service List",
+        "role": "Metadata sidebar in hero",
+        "description": "Left-aligned column of 12px Azeret Mono uppercase labels (SERVICE, ART DIRECTION, BRANDING, CONCEPT IDEATION/DEVELOPMENT, INTERACTION DESIGN) in dusty mauve (#6c5f7d). No bullet points, no dividers — vertical stack with 10px row gap."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Section title",
+        "description": "Crimson Pro 44px weight 300, centered or left-aligned, deep black (#000000). Example: \"See the latest & greatest\" with the second clause in italic. Followed by a pill button centered below."
+      },
+      {
+        "name": "Project Showcase Card",
+        "role": "Work portfolio entry",
+        "description": "Full-bleed image (no border, no radius, no shadow) with 20px top padding for caption block below. Caption: 12px Azeret Mono uppercase project title in black, followed by category tag (BRAND, etc.) in 12px system sans. The image IS the component — text is secondary."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Project metadata label",
+        "description": "Plain text, 12px system sans, uppercase, in muted gray (#a8a8a8). No background, no border, no radius — a typographic tag, not a visual chip."
+      },
+      {
+        "name": "Footer Page Indicator",
+        "role": "Page position marker",
+        "description": "Small number (e.g., \"1\") in bottom-left corner, 12px system sans, black. Minimal context indicator — a single character anchoring the page."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Body link",
+        "description": "Body text with thin underline (1px black, 3px offset), no color change. The underline is the only affordance — no hover state decoration documented."
+      },
+      {
+        "name": "Work Grid Row",
+        "role": "Two-column project layout",
+        "description": "Two project showcase cards side by side, equal width, 10px column gap. Images are editorial crops — no rounded corners, no borders, no shadows. The grid edge-to-edge within the page max-width."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines at 44–50px, weight 300 with negative tracking. The anti-conventionally light serif whispers authority instead of projecting it; most agencies use 600–700 here, this restraint is the signature move.",
+        "sizes": "44px, 50px",
+        "family": "Crimson Pro",
+        "weight": "300",
+        "lineHeight": "0.95–1.15",
+        "substitute": "Playfair Display, Lora, or system serif",
+        "letterSpacing": "-0.0340em, -0.0300em"
+      },
+      {
+        "role": "Body copy, labels, and metadata at 12–18px. Monospace for a portfolio is a deliberate editorial choice — it reads as technical, precise, and un-decorative, contrasting the flowing serif headlines.",
+        "sizes": "12px, 18px",
+        "family": "Azeret Mono",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or system monospace",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Navigation links and micro-labels at 12px. Neutral utility voice that stays out of the way of the serif/mono dialogue.",
+        "sizes": "12px",
+        "family": "System Sans-Serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter, system-ui, or Helvetica Neue"
+      }
+    ],
+    "description": "Allier Ho is an editorial creative-portfolio system built like a quiet art monograph: a warm off-white canvas (#fcfcfc) holds deep black ink and two whisper-quiet chromatic accents — a dusty mauve (#6c5f7d) and a pale sage (#cee6cc) — used as hairline borders and occasional heading tints rather than as fills. The signature typographic move pairs Crimson Pro at weight 300 for display headlines (an anti-conventionally light serif that whispers instead of projects) with Azeret Mono for body and label text, producing a technical-editorial tone uncommon for agency portfolios. All interactive elements share a single 200px pill radius, reinforcing a tactile, button-as-pebble language, and imagery is dominated by full-bleed sculptural 3D renders and project photography that anchor the generous negative space. Density is compact in micro-typography (10px gaps, 12px labels) but breathes widely between sections, creating a gallery-walk rhythm rather than a scrolling-page rhythm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allier Ho design system\",\"item\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#style-reference\",\"name\":\"Allier Ho design system reference\",\"headline\":\"Allier Ho design system | Refero Styles\",\"description\":\"Explore Allier Ho's light Agency design system: Warm Paper #fcfcfc, Deep Ink #000000 colors, Crimson Pro, Azeret Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allier Ho\",\"url\":\"https://allierho.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"caption\":\"Screenshot of Allier Ho\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allier Ho design system\",\"Allier Ho website design\",\"Allier Ho colors\",\"Allier Ho typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Paper\",\"Deep Ink\",\"Press Black\",\"Charcoal Trace\",\"Crimson Pro\",\"Azeret Mono\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allier Ho design system\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho website design\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho colors\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:34:21.358Z\",\"dateModified\":\"2026-05-10T22:34:21.358Z\"}]}19:T652,**Quick Color Reference**\n- text: #000000\n- background: #fcfcfc\n- border: #1c1c1c or #a8a8a8\n- accent: #6c5f7d (dusty mauve)\n- secondary accent: #cee6cc (pale sage)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a hero overlay panel*: 320px wide rectangular block, background #6c5f7d, no border-radius, 40px padding. White Crimson Pro weight 300 at 44px, line-height 1.15, letter-spacing -1.5px. Below the headline, a pill outline button: 200px radius, 10px/18px padding, 1px #000000 border, transparent fill, 12px system sans black text reading \"LEARN MORE\".\n\n2. *Create a section heading*: Centered Crimson Pro weight 300 at 44px, line-height 1.15, letter-spacing -1.5px, color #000000. Second clause in italic. Below at 40px gap, a centered pill outline button (same spec as above) with text \"VIEW ALL WORK\".\n\n3. *Create a project showcase card*: Full-width image (no border, no radius, no shadow), 20px top padding, then a caption block: 12px Azeret Mono uppercase title in #000000, followed by 10px gap, 12px system sans category tag in #a8a8a8.\n\n4. *Create the top navigation*: Full-width row, 20px vertical padding, background #fcfcfc. Left: \"ALLIER HO\" in 12px system sans uppercase, letter-spacing normal. Right: three links \"WORK\", \"ABOUT\", \"PLAYGROUND\" in same style, 40px gap between them. No borders, no background change on hover.\n\n5. *Create a service list sidebar*: Vertical stack of 12px Azeret Mono uppercase labels, 10px row gap, color #6c5f7d. No bullets, no dividers, no borders. First item \"SERVICE\" slightly larger or in a different color as a section header."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero shadows and zero elevation. All depth is created through color contrast (warm paper vs deep ink), surface color shifts (#fcfcfc → #a8a8a8 → #6c5f7d → #262626), and typographic weight. Components are flat — they sit on the page like printed matter, not floating UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "body",
+            "link"
+          ],
+          "frequency": 510,
+          "confidence": 1,
+          "prominence": 48661128.259317875,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 4,
+            "hero/color": 1,
+            "link/color": 1,
+            "image/color": 2,
+            "other/color": 87,
+            "nav/borderColor": 28,
+            "body/borderColor": 16,
+            "hero/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 348
+          }
+        },
+        {
+          "hex": "#fcfcfc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9910689031024799
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 67,
+          "confidence": 1,
+          "prominence": 10752139.517392283,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 8,
+            "nav/borderColor": 16,
+            "body/borderColor": 32,
+            "nav/backgroundColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#6c5f7d",
+          "oklch": {
+            "c": 0.04916779076314642,
+            "h": 304.446822619889,
+            "l": 0.509122415341884
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 1172836.150354166,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cee6cc",
+          "oklch": {
+            "c": 0.043278887017983346,
+            "h": 143.08963649032995,
+            "l": 0.9001717508412509
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 295136,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "heading/color": 1,
+            "other/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 239148.50671803518,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "heading/color": 2,
+            "other/borderColor": 8,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 203279.00287920577,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "heading/color": 2,
+            "body/borderColor": 12,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a8a8a8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7315949849144663
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 49692.97565473455,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "body/borderColor": 28,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005616098711151457,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.47,
+          "background": "#fcfcfc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#fcfcfc",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.82,
+          "background": "#cee6cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#262626",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.83,
+          "background": "#cee6cc",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#262626",
+          "foreground": "#cee6cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.83,
+          "background": "#a8a8a8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#a8a8a8",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.36,
+          "background": "#a8a8a8",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.73,
+          "background": "#6c5f7d",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#6c5f7d",
+          "foreground": "#cee6cc"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#6c5f7d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.9,
+          "background": "#6c5f7d",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#262626",
+          "foreground": "#6c5f7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.47,
+          "background": "#a8a8a8",
+          "foreground": "#6c5f7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.32,
+          "background": "#a8a8a8",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.79,
+          "background": "#a8a8a8",
+          "foreground": "#cee6cc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#262626",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#fcfcfc",
+          "foreground": "#cee6cc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#262626",
+          "foreground": "#1c1c1c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "button"
+          ],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|hero",
+            "columnGap|hero",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "hero",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 150,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Manrope",
+          "source": "google",
+          "weights": [
+            600
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Crimson Pro",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Azeret Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "button",
+            "link"
+          ],
+          "frequency": 150,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Azeret Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.086,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Azeret Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "Crimson Pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Crimson Pro",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ebb09cb3-6576-4237-bb0d-24df3ca81479.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allier Ho design system\",\"item\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#style-reference\",\"name\":\"Allier Ho design system reference\",\"headline\":\"Allier Ho design system | Refero Styles\",\"description\":\"Explore Allier Ho's light Agency design system: Warm Paper #fcfcfc, Deep Ink #000000 colors, Crimson Pro, Azeret Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allier Ho\",\"url\":\"https://allierho.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a85c74b9-2166-4fa3-be49-a2cc48990c6a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"caption\":\"Screenshot of Allier Ho\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09d94b7b-c282-475d-8a8f-1afa23a69b0c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allier Ho design system\",\"Allier Ho website design\",\"Allier Ho colors\",\"Allier Ho typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Paper\",\"Deep Ink\",\"Press Black\",\"Charcoal Trace\",\"Crimson Pro\",\"Azeret Mono\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allier Ho design system\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho website design\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho colors\"},{\"@type\":\"Thing\",\"name\":\"Allier Ho typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:34:21.358Z\",\"dateModified\":\"2026-05-10T22:34:21.358Z\"}]}19:T652,**Quick Color Reference**\n- text: #000000\n- background: #fcfcfc\n- border: #1c1c1c or #a8a8a8\n- accent: #6c5f7d (dusty mauve)\n- secondary accent: #cee6cc (pale sage)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a hero overlay panel*: 320px wide rectangular block, background #6c5f7d, no border-radius, 40px padding. White Crimson Pro weight 300 at 44px, line-height 1.15, letter-spacing -1.5px. Below the headline, a pill outline button: 200px radius, 10px/18px padding, 1px #000000 border, transparent fill, 12px system sans black text reading \"LEARN MORE\".\n\n2. *Create a section heading*: Centered Crimson Pro weight 300 at 44px, line-height 1.15, letter-spacing -1.5px, color #000000. Second clause in italic. Below at 40px gap, a centered pill outline button (same spec as above) with text \"VIEW ALL WORK\".\n\n3. *Create a project showcase card*: Full-width image (no border, no radius, no shadow), 20px top padding, then a caption block: 12px Azeret Mono uppercase title in #000000, followed by 10px gap, 12px system sans category tag in #a8a8a8.\n\n4. *Create the top navigation*: Full-width row, 20px vertical padding, background #fcfcfc. Left: \"ALLIER HO\" in 12px system sans uppercase, letter-spacing normal. Right: three links \"WORK\", \"ABOUT\", \"PLAYGROUND\" in same style, 40px gap between them. No borders, no background change on hover.\n\n5. *Create a service list sidebar*: Vertical stack of 12px Azeret Mono uppercase labels, 10px row gap, color #6c5f7d. No bullets, no dividers, no borders. First item \"SERVICE\" slightly larger or in a different color as a section header."
+}

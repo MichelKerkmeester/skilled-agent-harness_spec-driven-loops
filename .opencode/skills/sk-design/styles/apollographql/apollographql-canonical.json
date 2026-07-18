@@ -1,0 +1,1290 @@
+{
+  "source": "https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539",
+  "uuid": "65b30976-3663-40b2-8751-7a360ba74539",
+  "name": "Apollographql",
+  "northStar": "Mission control at midnight — a starfield console where orange is the only dial that glows.",
+  "capturedAt": "2026-07-18T08:59:58.919Z",
+  "meta": {
+    "url": "https://apollographql.com",
+    "siteName": "Apollographql",
+    "extractedAt": "2026-06-03T21:06:43.089Z",
+    "durationMs": 30647,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 863,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Reserve weight 900 for the hero headline only; section headings stay at 700, body at 400.",
+      "Use 999px radius on every pill-shaped control (buttons, tags, nav search); never square off a button.",
+      "Pair every primary orange button with a ghost orange-border button as its sibling — CTAs arrive in pairs.",
+      "Place 32px-radius dark video panels on the Ash #efefef field with 48px internal padding; keep starfield pattern inside the panel, not on the page.",
+      "Use Signal Orange #e75e15 only on the brand word, one button, and one accent per section — rationing creates impact.",
+      "Set testimonial cards on Cinder #254250 inside a page that also uses Cosmic Ink #15252d elsewhere; the step is small but necessary.",
+      "Space sections at 48–80px vertical gap; inside cards, use 48px padding as the default — the system breathes."
+    ],
+    "donts": [
+      "Don't fill large surfaces with Signal Orange — it loses its glow the moment it covers more than a button.",
+      "Don't use the star-field line pattern outside Cosmic Ink panels; on light backgrounds it reads as noise.",
+      "Don't use Mist #e2e8f0 borders on dark panels; switch to Fog #9fb2bc for dividers on Cosmic Ink and Cinder.",
+      "Don't set testimonial card text below 60% white opacity — the Cinder background already absorbs contrast.",
+      "Don't apply 900 weight below 38px — at body sizes it becomes posterized and unreadable.",
+      "Don't introduce a new accent color (blue, green, red) for states; Apollo's system communicates state through orange and neutrals only.",
+      "Don't use Fira Code for body copy — it appears once, at heading size, as a code-signal device."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#15252d",
+        "name": "Cosmic Ink",
+        "role": "Hero background, testimonial card surface, headline text on light surfaces, footer, and the entire dark-mode layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#254250",
+        "name": "Cinder",
+        "role": "Secondary dark surface for testimonial and profile cards — a slightly lifted step above Cosmic Ink so cards read as separate panels without leaving the dark family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9fb2bc",
+        "name": "Fog",
+        "role": "Muted dividers, dashed card separators, secondary icon strokes on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Mist",
+        "role": "Hairline borders, section dividers, subtle outline controls on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Cloud",
+        "role": "Page canvas, card surface, input fill — the default light ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Ash",
+        "role": "Alternate section background that breaks Cloud bands without introducing a different color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e75e15",
+        "name": "Signal Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Pages are max-width 1200px centered with generous outer padding. The hero is full-bleed Cosmic Ink with centered headline stack. Below the hero, content alternates in bands: Cloud logo wall → Ash split feature rows → Cloud feature showcase → Ash testimonial section. Dark Feature Showcase Panels (Cosmic Ink, 32px radius) always sit inside light Ash bands, not directly on Cloud. The testimonial grid is a 3-column layout on desktop, collapsing to 1 column on mobile. Navigation is a single sticky top bar — no sidebar, no mega-menu. Vertical rhythm between sections is 80px on desktop, 48px on mobile. Cards in any grid use 24px gutter, never 16px, preserving the system's roomy feel.",
+    "imagery": "Visuals lean almost entirely on starfield-patterned dark panels and video thumbnails — no lifestyle photography, no product mockups in context. The starfield (thin #9fb2bc lines forming a perspective grid with small dot accents) is a brand-owned graphic that recurs on every Cosmic Ink surface, making it the system's decorative signature. Icons in nav and body are mono-stroke at 16–20px in white or Cosmic Ink. Photography appears only in testimonial avatar circles (40px, flush crop, no frame). The product itself is shown exclusively through 16:9 video containers with a centered play indicator, never as static screenshots — implying motion and live behavior.",
+    "similar": [
+      {
+        "why": "Same max-width-1200px centered layout, identical Inter typography stack, and the same pattern of dark hero bands with a single vivid accent (orange for Apollo, near-black/white for Vercel)",
+        "business": "Vercel"
+      },
+      {
+        "why": "Both systems use oversized cards with 24–32px radii, flat surfaces with no shadows, and ration a single brand color so it stays high-impact",
+        "business": "Linear"
+      },
+      {
+        "why": "Same developer-tool aesthetic with generous 48px card padding, paired CTA buttons (filled + ghost), and the brand word colored inline within editorial copy",
+        "business": "Stripe"
+      },
+      {
+        "why": "Dark hero with cosmic/grid texture, testimonial cards lifted one shade above the page dark, and Inter-only typography with weight 900 reserved for the hero",
+        "business": "PlanetScale"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "24-32px",
+        "buttons": "999px",
+        "videoPanels": "32px"
+      },
+      "elementGap": "8-24px",
+      "sectionGap": "48-80px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Default body background between sections"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Alt Band",
+        "level": 1,
+        "purpose": "Subtle section variation, breaks monochrome rhythm without adding a new hue"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Light cards sit on Ash bands with 24–32px radii"
+      },
+      {
+        "hex": "#15252d",
+        "name": "Cosmic Panel",
+        "level": 3,
+        "purpose": "Hero, feature showcase panels, video containers — the dark stage"
+      },
+      {
+        "hex": "#254250",
+        "name": "Cinder Card",
+        "level": 4,
+        "purpose": "Lifted dark card surface for testimonials and profile blocks — distinguishable from the Cosmic panel behind them"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat Cosmic Ink fill, depth comes from the starfield line pattern, not shadows",
+        "element": "Hero panel and feature video panels"
+      },
+      {
+        "style": "none — separation from the page is achieved through the Cinder step, not shadow",
+        "element": "Testimonial cards on Cinder"
+      }
+    ],
+    "northStar": "Mission control at midnight — a starfield console where orange is the only dial that glows.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-lg",
+        "size": 38,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "Top-right 'Start for free' action and hero CTA",
+        "description": "Signal Orange #e75e15 fill, white text, Inter 500 at 14–16px, horizontal padding 24px, vertical padding 8–12px, border-radius 999px. No border, no shadow. Stretches slightly to fit label length — never has a fixed width."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary actions like 'See how it works', 'See it in action', 'Contact us'",
+        "description": "Transparent fill, 1px Signal Orange border (or Cosmic Ink border on light backgrounds), Inter 500, border-radius 999px, same vertical rhythm as the primary pill. The ghost variant lives next to the primary in every CTA pair."
+      },
+      {
+        "name": "Header Navigation",
+        "role": "Top bar across every page",
+        "description": "Cosmic Ink #15252d background, Inter 400 nav links at 14–16px in white, 8px corner radius on any pill-shaped control (search icon container). Apollo logo lockup left, nav items center-left, 'Contact us' ghost pill + 'Start for free' orange pill right."
+      },
+      {
+        "name": "Hero Section",
+        "role": "First-screen brand statement",
+        "description": "Full-bleed Cosmic Ink #15252d background with a subtle star-field line pattern (thin #9fb2bc lines and dots at low opacity). Centered stack: 'The API Orchestration Platform' in Inter 900 at 50px in Signal Orange (this is the only place orange occupies a full headline), then 'for AI Agents, Web, and Mobile Apps' in white, then a single muted subtext line in white at 70% opacity. CTA pair sits 32–48px below."
+      },
+      {
+        "name": "Logo Wall",
+        "role": "Social proof band under the hero",
+        "description": "Cloud #f8f8f8 background, 'Trusted by enterprise leaders' heading centered in Inter 600 at 20–24px in Cosmic Ink. 3-row × 6-column grid of monochrome dark logos spaced with 48px column gap. Logos sit in a flat single-row of grayscale, no cards or frames."
+      },
+      {
+        "name": "Feature Showcase Panel",
+        "role": "Alternating product demo blocks (Apollo Connectors, GraphOS)",
+        "description": "Cosmic Ink #15252d card surface, 32px corner radius, 48px internal padding, houses a 16:9 video thumbnail. Heading text inside the dark panel is Signal Orange, body is white at 80% opacity. A small triangular play indicator sits centered on the thumbnail."
+      },
+      {
+        "name": "Split Feature Row",
+        "role": "Two-column text + video sections",
+        "description": "Light Ash #efefef background. Left or right column: Inter 600 heading at 30px, Inter 400 body at 16–18px, button pair below. Opposite column holds a 32px-radius Feature Showcase Panel. Columns sit on a 12-column grid with a 48px gutter."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Quote blocks in 'Enterprise teams trust Apollo' section",
+        "description": "Cinder #254250 background, 24px corner radius, 48px padding. Header row: 40px circular avatar + Inter 600 name (white) + Inter 400 role (white at 60%). Dashed Fog #9fb2bc divider separates header from quote. Quote text in Inter 400 white at full opacity, 4–6 lines."
+      },
+      {
+        "name": "Inline Brand Word",
+        "role": "Whenever the literal word 'Apollo' appears in body or heading copy",
+        "description": "Rendered in Signal Orange #e75e15 at the same weight and size as surrounding text. The pattern appears in hero, section headings, and any mention of the brand name within editorial copy — it functions as a signature accent without requiring a graphic."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface and editorial type. Weight 400 for body and nav, 500 for UI labels, 600 for subheadings and small headlines, 700 for section headings, 900 reserved for the hero headline — the only place Apollo uses the heaviest weight, creating a clear 'stage voice'",
+        "sizes": "12, 14, 16, 20, 24, 30, 38, 50",
+        "family": "Inter",
+        "weight": "400, 500, 600, 700, 900",
+        "lineHeight": "0.94 (display) — 1.10 (hero) — 1.30–1.40 (body) — 1.50 (lists/long form)",
+        "substitute": "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+      },
+      {
+        "role": "Reserved for code-as-heading treatments and developer-facing copy blocks — the monospace signal tells the reader 'this is code or technical content' even when displayed at heading size. Tracking is widened to 0.08em to keep monospace headings legible",
+        "sizes": "18",
+        "family": "Fira Code",
+        "weight": "500",
+        "lineHeight": "1.25",
+        "substitute": "'JetBrains Mono', 'Source Code Pro', Menlo, monospace",
+        "letterSpacing": "0.08em"
+      }
+    ],
+    "description": "Apollo uses a deep-space command-center language: a near-black navy canvas anchors every major surface, a star-field line pattern reinforces the cosmic/orchestration metaphor, and one vivid orange does all the shouting. Inter at confident weights (400 for body, 600–700 for headings, 900 for hero) keeps the system feeling developer-native rather than marketing-polished. Components are oversized and generous — testimonial cards, video panels, and feature blocks all carry 24–32px radii and 48px internal padding, making the interface feel more like a product tour than a landing page. The orange #e75e15 is rationed: it colors brand name mentions, one per-screen hero accent, and the pill action button, but never decorates backgrounds or fills cards. Every transition from dark to light surfaces uses the same gray-50 (#efefef) as a neutral floor, creating a predictable rhythm of starfield-dark panels floating on a quiet gray field.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Apollographql design system\",\"item\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#style-reference\",\"name\":\"Apollographql design system reference\",\"headline\":\"Apollographql design system | Refero Styles\",\"description\":\"Explore Apollographql's mixed Dev Tools design system: Cosmic Ink #15252d, Cinder #254250 colors, Inter, Fira Code typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Apollographql\",\"url\":\"https://apollographql.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"caption\":\"Screenshot of Apollographql\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Apollographql design system\",\"Apollographql website design\",\"Apollographql colors\",\"Apollographql typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cosmic Ink\",\"Cinder\",\"Fog\",\"Mist\",\"Inter\",\"Fira Code\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Apollographql design system\"},{\"@type\":\"Thing\",\"name\":\"Apollographql website design\"},{\"@type\":\"Thing\",\"name\":\"Apollographql colors\"},{\"@type\":\"Thing\",\"name\":\"Apollographql typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-23T18:29:38.000Z\",\"dateModified\":\"2026-02-23T18:29:38.000Z\"}]}19:T627,Quick Color Reference:\n- text (primary): #15252d\n- text (on dark): #f8f8f8\n- background (page): #f8f8f8\n- background (alt band): #efefef\n- background (dark panel): #15252d\n- border / divider: #e2e8f0 (light surfaces), #9fb2bc (dark surfaces)\n- accent / brand word: #e75e15\n- primary action: no distinct CTA color\n\n3–5 Example Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Logo wall: Cloud #f8f8f8 background. Centered heading 'Trusted by enterprise leaders' in Inter 600, 24px, #15252d. 3×6 grid of monochrome dark logos, 48px column gap, 24px row gap, no card frames.\n\n3. Split feature row on Ash #efefef background. Left column: Inter 700 heading 30px in #15252d, Inter 400 body 18px in #15252d at 80% opacity, then a filled orange pill button. Right column: Cosmic Ink #15252d panel with 32px radius, 48px padding, holding a 16:9 video thumbnail with a centered white play triangle. Inside the panel, small Signal Orange Inter 600 subhead and white body at 80%.\n\n4. Testimonial card: Cinder #254250 background, 24px radius, 48px padding. Top row: 40px circular avatar, Inter 600 name in #f8f8f8 at 16px, Inter 400 role in #f8f8f8 at 60% opacity. Dashed #9fb2bc 1px divider. Quote in Inter 400 16px #f8f8f8 at full opacity.\n\n5. Inline brand word: any heading or body sentence containing 'Apollo' should render the literal word in #e75e15 at the inherited size and weight. Example: 'Enterprise teams trust Apollo' — 'Apollo' is orange, the rest is Cosmic Ink."
+      },
+      {
+        "title": "Starfield Pattern",
+        "content": "The thin-line starfield is the system's decorative signature and only appears on Cosmic Ink surfaces. Construction: a series of fine #9fb2bc lines at 1px stroke forming a perspective grid (vertical lines converging to a vanishing point above the content, horizontal arcs sweeping across), plus scattered 1–2px dots at 30–50% opacity. The pattern is rendered as a low-opacity background, never as foreground content. It should be subtle enough that a casual viewer registers 'dark with texture' before noticing the lines."
+      }
+    ],
+    "elevationPhilosophy": "Apollo's system intentionally avoids box-shadows. All depth is expressed through surface tone steps (Cloud → Ash → Cosmic Ink → Cinder) and corner radius alone. The result is a flat, console-grade aesthetic where panels feel printed onto the page rather than floating above it. Adding shadows would break the developer-tool feel and introduce blur that competes with the starfield pattern."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.01261877443265105,
+            "h": 255.5078854448309,
+            "l": 0.928761267190067
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "icon",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 2155,
+          "confidence": 1,
+          "prominence": 91387968.1536822,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#15252d",
+          "oklch": {
+            "c": 0.026317254706115574,
+            "h": 230.84226899455368,
+            "l": 0.2540728311610795
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "hero",
+            "heading",
+            "icon"
+          ],
+          "frequency": 464,
+          "confidence": 1,
+          "prominence": 73125012.05586374,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "heading",
+            "body",
+            "footer",
+            "link",
+            "list"
+          ],
+          "frequency": 460,
+          "confidence": 1,
+          "prominence": 7912128.9315289995,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5172683.156430582,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9fb2bc",
+          "oklch": {
+            "c": 0.02555751487755623,
+            "h": 230.5668362445557,
+            "l": 0.752116907688341
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 112,
+          "confidence": 1,
+          "prominence": 1576170.6389299997,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e75e15",
+          "oklch": {
+            "c": 0.185589179859309,
+            "h": 42.7226683812614,
+            "l": 0.6492956006221677
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 202123.7381147355,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#254250",
+          "oklch": {
+            "c": 0.04244820025197172,
+            "h": 230.42473622729491,
+            "l": 0.36252433742212264
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2535.9400011538496,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0052ff",
+          "oklch": {
+            "c": 0.26280401924856284,
+            "h": 262.86991651301605,
+            "l": 0.5281994598530773
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1786,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d62026",
+          "oklch": {
+            "c": 0.21313369544602956,
+            "h": 26.464820455571964,
+            "l": 0.5626881799814529
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1375.2254896541986,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a6a9ab",
+          "oklch": {
+            "c": 0.004480490890707792,
+            "h": 236.5228408948763,
+            "l": 0.7329834104698505
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1302.8211003634626,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#393d48",
+          "oklch": {
+            "c": 0.019772292013890497,
+            "h": 269.58706148420345,
+            "l": 0.3606123281970251
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1281,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#003a9b",
+          "oklch": {
+            "c": 0.16712228148924196,
+            "h": 261.00005343170216,
+            "l": 0.38670794561677535
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1182.3820255379824,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00aeef",
+          "oklch": {
+            "c": 0.14887986469088718,
+            "h": 234.36279033559492,
+            "l": 0.7079522142235779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 930.5865002596162,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4dbd94",
+          "oklch": {
+            "c": 0.11930806233557524,
+            "h": 165.90696946588278,
+            "l": 0.7226974244905402
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 756.0271128439914,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0169cc",
+          "oklch": {
+            "c": 0.17344680022028358,
+            "h": 254.97500179847623,
+            "l": 0.5286494089772085
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 748,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00528a",
+          "oklch": {
+            "c": 0.11452116344187911,
+            "h": 247.75960345662773,
+            "l": 0.4278727115389571
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 510,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#223f9a",
+          "oklch": {
+            "c": 0.15270606278809065,
+            "h": 266.13194762252084,
+            "l": 0.40506480804702766
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 420,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b3188",
+          "oklch": {
+            "c": 0.1428348846012905,
+            "h": 273.91032955498156,
+            "l": 0.36629398129341845
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 363.34082539159226,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04753729305374872,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#f8f8f8",
+          "foreground": "#15252d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#efefef",
+          "foreground": "#15252d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.77,
+          "background": "#e2e8f0",
+          "foreground": "#15252d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#f8f8f8",
+          "foreground": "#2b3188"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.22,
+          "background": "#f8f8f8",
+          "foreground": "#393d48"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#254250",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.62,
+          "background": "#efefef",
+          "foreground": "#2b3188"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#f8f8f8",
+          "foreground": "#003a9b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#efefef",
+          "foreground": "#393d48"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.25,
+          "background": "#efefef",
+          "foreground": "#254250"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.98,
+          "background": "#e2e8f0",
+          "foreground": "#2b3188"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.81,
+          "background": "#f8f8f8",
+          "foreground": "#223f9a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.8,
+          "background": "#e2e8f0",
+          "foreground": "#393d48"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.79,
+          "background": "#efefef",
+          "foreground": "#003a9b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.63,
+          "background": "#e2e8f0",
+          "foreground": "#254250"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.2,
+          "background": "#e2e8f0",
+          "foreground": "#003a9b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#efefef",
+          "foreground": "#223f9a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.68,
+          "background": "#f8f8f8",
+          "foreground": "#00528a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#e2e8f0",
+          "foreground": "#223f9a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#9fb2bc",
+          "foreground": "#15252d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 35
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 156,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 118,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 116,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 107,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 46,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 144,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700,
+            900
+          ],
+          "frequency": 603,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fira Code Font",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "icon"
+          ],
+          "frequency": 74,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "body",
+            "button",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 410,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Fira Code Font",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4a1d2d52-b922-4b5d-9117-a60bb38a13a9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Apollographql design system\",\"item\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#style-reference\",\"name\":\"Apollographql design system reference\",\"headline\":\"Apollographql design system | Refero Styles\",\"description\":\"Explore Apollographql's mixed Dev Tools design system: Cosmic Ink #15252d, Cinder #254250 colors, Inter, Fira Code typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Apollographql\",\"url\":\"https://apollographql.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65b30976-3663-40b2-8751-7a360ba74539#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"caption\":\"Screenshot of Apollographql\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db983ff6-5ea2-4daf-a833-967329b23e3f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Apollographql design system\",\"Apollographql website design\",\"Apollographql colors\",\"Apollographql typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cosmic Ink\",\"Cinder\",\"Fog\",\"Mist\",\"Inter\",\"Fira Code\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Apollographql design system\"},{\"@type\":\"Thing\",\"name\":\"Apollographql website design\"},{\"@type\":\"Thing\",\"name\":\"Apollographql colors\"},{\"@type\":\"Thing\",\"name\":\"Apollographql typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-23T18:29:38.000Z\",\"dateModified\":\"2026-02-23T18:29:38.000Z\"}]}19:T627,Quick Color Reference:\n- text (primary): #15252d\n- text (on dark): #f8f8f8\n- background (page): #f8f8f8\n- background (alt band): #efefef\n- background (dark panel): #15252d\n- border / divider: #e2e8f0 (light surfaces), #9fb2bc (dark surfaces)\n- accent / brand word: #e75e15\n- primary action: no distinct CTA color\n\n3–5 Example Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Logo wall: Cloud #f8f8f8 background. Centered heading 'Trusted by enterprise leaders' in Inter 600, 24px, #15252d. 3×6 grid of monochrome dark logos, 48px column gap, 24px row gap, no card frames.\n\n3. Split feature row on Ash #efefef background. Left column: Inter 700 heading 30px in #15252d, Inter 400 body 18px in #15252d at 80% opacity, then a filled orange pill button. Right column: Cosmic Ink #15252d panel with 32px radius, 48px padding, holding a 16:9 video thumbnail with a centered white play triangle. Inside the panel, small Signal Orange Inter 600 subhead and white body at 80%.\n\n4. Testimonial card: Cinder #254250 background, 24px radius, 48px padding. Top row: 40px circular avatar, Inter 600 name in #f8f8f8 at 16px, Inter 400 role in #f8f8f8 at 60% opacity. Dashed #9fb2bc 1px divider. Quote in Inter 400 16px #f8f8f8 at full opacity.\n\n5. Inline brand word: any heading or body sentence containing 'Apollo' should render the literal word in #e75e15 at the inherited size and weight. Example: 'Enterprise teams trust Apollo' — 'Apollo' is orange, the rest is Cosmic Ink."
+}

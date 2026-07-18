@@ -1,0 +1,230 @@
+{
+  "color": {
+    "ink-teal": {
+      "$value": "#062d32",
+      "$type": "color",
+      "$description": "Ink Teal — Primary type, illustration linework, nav wordmark, heading hairlines — the near-black that reads as warm ink rather than flat black, giving the serif type a hand-printed quality"
+    },
+    "dusty-rose": {
+      "$value": "#c9a9b5",
+      "$type": "color",
+      "$description": "Dusty Rose — Hero section field — the signature chapter color. Used as a full-bleed canvas behind the line-art illustration to create the soft, sun-bleached, evening-light atmosphere"
+    },
+    "mustard-olive": {
+      "$value": "#aa9e54",
+      "$type": "color",
+      "$description": "Mustard Olive — Booking and function-section field — the warm, earthy second chapter. Appears as a full-bleed background that pushes serif headings and form labels into high-contrast territory"
+    },
+    "slate-teal": {
+      "$value": "#344b52",
+      "$type": "color",
+      "$description": "Slate Teal — Secondary text, link borders, tertiary headings — a lighter wash of Ink Teal for passages that shouldn't compete with the primary wordmark"
+    },
+    "warm-bone": {
+      "$value": "#e9e9e2",
+      "$type": "color",
+      "$description": "Warm Bone — Soft canvas variant, off-white surface, hairline divider tone — the off-white that warms the page between full-color sections"
+    },
+    "mid-gray": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Mid Gray — Input rule color — the single mid-gray used for form-field bottom borders, giving inputs a printed-on-paper feel rather than a digital-frame feel"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Maximum-contrast text, form labels, submit-button type — pure black is reserved for the moments that need to feel stamped or pressed"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Default page canvas and the lightest of the three section fields. Provides the resting breath between the rose hero and the mustard form"
+    }
+  },
+  "font": {
+    "basiccommercial-lt-com-roman": {
+      "$value": "BasicCommercial LT Com Roman",
+      "$type": "fontFamily",
+      "$description": "Primary serif for body copy and mid-size headings. The transitional serif does the heavy editorial lifting — long-form descriptions, section headers, booking copy. Light weight (300) on display sizes gives the type a drawn-on-paper confidence rather than a marketing-bold shout."
+    },
+    "adobe-caslon": {
+      "$value": "Adobe Caslon",
+      "$type": "fontFamily",
+      "$description": "Display serif reserved for the largest editorial headings. Caslon's old-style figures and bracketed serifs are used sparingly as a typographic event — when it appears, it signals 'this is the title, read me first.'"
+    },
+    "elementa": {
+      "$value": "Elementa",
+      "$type": "fontFamily",
+      "$description": "Geometric sans for nav, buttons, form labels, and the wordmark. Always set in small caps with positive tracking — it functions as the 'metadata' voice. Its 0.042em letter-spacing on 16px is the single most distinctive micro-typographic decision on the site: it makes every label read as a printed stamp rather than a UI element."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Elementa",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BasicCommercial LT Com Roman",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Elementa",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "BasicCommercial LT Com Roman",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Elementa",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Elementa",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "BasicCommercial LT Com Roman",
+        "fontSize": "38px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "BasicCommercial LT Com Roman",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BasicCommercial LT Com Roman",
+        "fontSize": "49px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AdobeCaslon",
+        "fontSize": "49px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 49px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default canvas for body-text and 'About'-style editorial sections."
+    },
+    "warm-bone": {
+      "$value": "#e9e9e2",
+      "$type": "color",
+      "$description": "Surface level 2: Soft warm off-white for secondary surfaces, table-like panels, and hairline-rule tone."
+    },
+    "dusty-rose": {
+      "$value": "#c9a9b5",
+      "$type": "color",
+      "$description": "Surface level 3: Hero and atmospheric chapter field — the full-bleed brand color."
+    },
+    "mustard-olive": {
+      "$value": "#aa9e54",
+      "$type": "color",
+      "$description": "Surface level 4: Booking, functions, and form chapter field — the warm accent surface."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.essiewine.com",
+      "siteName": "Essie Wine",
+      "extractedAt": "2026-06-03T20:42:23.893Z",
+      "variant": "extended"
+    }
+  }
+}

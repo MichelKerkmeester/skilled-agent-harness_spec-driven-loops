@@ -1,0 +1,157 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page background, card surface, filled button fill — the flat black ground that all white typography and outlines sit on"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, pill button borders, link text, section dividers, card hover overlays — every outlined and typographic element"
+    },
+    "ash": {
+      "$value": "#a9a9a9",
+      "$type": "color",
+      "$description": "Ash — Muted borders and secondary structural strokes where pure white would compete with primary controls"
+    }
+  },
+  "font": {
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "The single voice — used for display headings (72px/1.00), section labels, body text, pill labels, and navigation. Weight 400 at 72px is a deliberate anti-convention: headlines whisper into the dark rather than shout, gaining authority through geometric restraint instead of boldness. The tight 1.0 line-height at display size creates blocky architectural headlines."
+    },
+    "victor-serif": {
+      "$value": "Victor Serif",
+      "$type": "fontFamily",
+      "$description": "Rare editorial accent — appears as italic or contrast voice at body size. A serif breaking the sans-only system signals 'this text is different' (timestamps, quotes, personal notes). Used sparingly enough that each appearance is noticed."
+    },
+    "black-tie": {
+      "$value": "Black Tie",
+      "$type": "fontFamily",
+      "$description": "Decorative display face for one-off moments — a monospaced or display serif/script that breaks rhythm. The system is nearly all Lausanne, so a single Black Tie appearance acts as typographic spice."
+    }
+  },
+  "typography": {
+    "2xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Black Tie",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Victor Serif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lausanne",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian-field": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the single flat stage"
+    },
+    "bone-plate": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Inverse surface for image fills and right-column content; also the text/border color on the dark side"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.bareis-nicolaus.com",
+      "siteName": "Bareis + Nicolaus",
+      "extractedAt": "2026-06-03T18:58:13.400Z",
+      "variant": "extended"
+    }
+  }
+}

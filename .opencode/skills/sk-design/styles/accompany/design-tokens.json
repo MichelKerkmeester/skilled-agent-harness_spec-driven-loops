@@ -1,0 +1,175 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, all surface backgrounds, image negative space"
+    },
+    "obsidian-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Ink — All text, headings, nav links, button labels, hairline borders, icon strokes, body borders"
+    },
+    "carbon-edge": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon Edge — Near-black border variant for subtle structural dividers, indistinguishable from ink at reading distance"
+    }
+  },
+  "font": {
+    "items-light": {
+      "$value": "Items-Light",
+      "$type": "fontFamily",
+      "$description": "Signature display headline. The custom light serif with extremely tight 0.90 line-height and slight negative tracking — its high stroke contrast and light weight create editorial gravitas without shouting. No other element competes at this scale."
+    },
+    "syndicatgroteskmedium": {
+      "$value": "SyndicatGroteskMedium",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse for nav, body, subheadings, and link text. The medium-weight grotesque with consistent -0.03em tracking acts as the typographic foil to the light serif — denser, more utilitarian, more present. At 44px it serves as secondary headlines; at 16-18px it carries running text and UI labels."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "System serif fallback appearing in link contexts. Subordinate to Items-Light — used when the custom font fails to load, maintaining a serif continuity."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Micro-label workhorse. Used for uppercase project category tags, footer micro-labels, and small UI annotations. The system-sans fallback ensures universal availability for these tiny utility labels."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SyndicatGroteskMedium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SyndicatGroteskMedium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "SyndicatGroteskMedium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "SyndicatGroteskMedium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SyndicatGroteskMedium",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Items-Light",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "71": {
+      "$value": "71px",
+      "$type": "dimension",
+      "$description": "Spacing 71px"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the only surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://accompany.group",
+      "siteName": "ACCOMPANY",
+      "extractedAt": "2026-06-03T21:19:44.705Z",
+      "variant": "extended"
+    }
+  }
+}

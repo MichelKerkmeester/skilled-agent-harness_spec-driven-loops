@@ -1,0 +1,285 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "bone-white": {
+      "$value": "#f2e9de",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, announcement bar, card surfaces, product label backgrounds, button fills — warm cream that makes the entire site feel like aged paper"
+    },
+    "dusty-rose": {
+      "$value": "#ddc9c0",
+      "$type": "color",
+      "$description": "Dusty Rose — Secondary surface band, subtle tonal shift between cream sections — barely-distinguishable warm blush that creates the only depth in an otherwise flat system"
+    }
+  },
+  "font": {
+    "sofia-pro": {
+      "$value": "Sofia Pro",
+      "$type": "fontFamily",
+      "$description": "Only typeface in the system. Weight 800 at 120px with 0.83 line-height and -0.05em tracking for editorial display headlines — the face is pushed to extreme sizes to feel like magazine cover type. Weight 400 at 12-16px for body and utility labels, all-caps with 0.05em tracking for nav items. Weight 600 used sparingly for emphasis in product copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "12px",
+        "fontWeight": 800,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 4.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 3.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sofia Pro",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "surface": {
+    "bone-white-canvas": {
+      "$value": "#f2e9de",
+      "$type": "color",
+      "$description": "Surface level 1: Page background and dominant surface — every section sits on this warm cream"
+    },
+    "dusty-rose-band": {
+      "$value": "#ddc9c0",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary tonal surface that breaks up cream sections — barely a shade shift, creates subtle depth"
+    },
+    "ink-black-overlay": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark photography backdrops and product label surfaces — used for dramatic full-bleed product imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.dsanddurga.com",
+      "siteName": "D.S. & DURGA",
+      "extractedAt": "2026-06-03T18:30:59.294Z",
+      "variant": "extended"
+    }
+  }
+}

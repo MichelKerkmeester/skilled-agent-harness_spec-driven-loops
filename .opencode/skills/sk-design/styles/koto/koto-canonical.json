@@ -1,0 +1,966 @@
+{
+  "source": "https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563",
+  "uuid": "a88fa835-1d5e-4b8e-b3d5-602597870563",
+  "name": "Koto",
+  "northStar": "Obsidian gallery at midnight. A near-black stage where a single yellow mark is the only warm light, and condensed type floats in vast negative space like exhibition placards.",
+  "capturedAt": "2026-07-18T07:19:06.814Z",
+  "meta": {
+    "url": "https://koto.com",
+    "siteName": "Koto",
+    "extractedAt": "2026-06-03T21:44:05.858Z",
+    "durationMs": 52749,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 555,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set page background to #060606 (Void Black); never use pure #000000",
+      "Use gtKotoheimCondensed weight 300 at 38–48px only for display headlines; pair with -0.48px letter-spacing at 48px",
+      "Use gtKotoheim at 12–16px for all UI, body, and navigation text with the 'salt' font-feature enabled",
+      "Reserve #ffe800 (Signal Yellow) exclusively for the logo mark; it must not appear in any UI component, button, or text",
+      "Communicate elevation through lightness shifts (canvas → #141414 cards), not through shadows or borders",
+      "Keep element gaps at 8px and section gaps at 48px; the rhythm comes from these fixed multiples of the 4px base unit",
+      "Left-align all text and let negative space carry the layout — never center body copy or add decorative dividers"
+    ],
+    "donts": [
+      "Don't introduce any color outside the neutral scale and Signal Yellow; the system is 0% colorful by design",
+      "Don't use filled buttons or colored CTAs; interactive elements are ghost/outlined with #ffffff borders on transparent fills",
+      "Don't apply shadows, gradients, or blur effects to any element — the flat void treatment is non-negotiable",
+      "Don't use radius values other than 2px, 6px, or 10px; mixing radii breaks the geometric discipline",
+      "Don't set body copy in gtKotoheimCondensed or display in gtKotoheim regular; the two families are strictly separated by size and role",
+      "Don't use pure #ffffff for body text — reserve it for headings, borders, and the UTC indicator; body copy uses #b4b4b4",
+      "Don't add icons, illustrations, or imagery to the base layout; the page is typographic-first and visual assets should only appear inside Dark Surface Cards"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#060606",
+        "name": "Void Black",
+        "role": "Primary page canvas — the dominant background where all content floats; not pure black, but a warmthless near-black that keeps contrast at AAA",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Graphite Surface",
+        "role": "Elevated card and icon backgrounds — one step lighter than canvas, used to subtly separate surfaces without breaking the dark mood",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202020",
+        "name": "Smoke Border",
+        "role": "Hairline borders and dividers — barely visible structural lines that define regions without adding visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595959",
+        "name": "Iron Mute",
+        "role": "Muted text and secondary borders — body text at reduced emphasis, footer meta, tertiary labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#989898",
+        "name": "Ash Gray",
+        "role": "Secondary body text and medium-emphasis borders — the most-used neutral after white, for body copy and structural outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b4b4b4",
+        "name": "Silver Whisper",
+        "role": "Light body text — softer than white for inline body content where pure white would feel too sharp",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text, heading strokes, and all key borders — the brightest mark in the system, reserved for content that must read first",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffe800",
+        "name": "Signal Yellow",
+        "role": "Yellow decorative accent for icons, marks, and small graphic details.",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page uses a full-bleed dark canvas with no max-width on the background, but content is contained to ~1200px max-width. The hero pattern is a full-viewport near-empty screen with a large two-line display headline anchored to the bottom-left corner — the vast negative space above is the hero, not the text. Sections flow as discrete typographic blocks with 48px gaps, alternating between raw body text on the void and content contained within #141414 cards. Navigation is a single top bar (60px) with logo left, links center, time right. No sidebar, no mega-menu, no sticky behavior visible. Content is consistently left-aligned with no centered text blocks. The rhythm is: minimal nav → vast void → small headline → void → body paragraph → card → void, creating a pacing of visual rest and visual content.",
+    "imagery": "The site has no visible imagery in the primary navigation states — it's pure typography on darkness. The visual language is deliberately empty: no decorative graphics, no illustrations, no background patterns. When project work is displayed, it appears as content within Dark Surface Cards (#141414) that sit as rectangles on the void canvas. The single graphic element is the yellow logo mark's smile arc, which functions as a brand signature rather than decoration. The overall impression is of a gallery wall before the artworks are hung — the type and the void are the design.",
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "buttons": "2px",
+        "general": "10px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "36px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#060606",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Primary page background"
+      },
+      {
+        "hex": "#141414",
+        "name": "Raised Surface",
+        "level": 2,
+        "purpose": "Cards, icon containers, elevated content blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Obsidian gallery at midnight. A near-black stage where a single yellow mark is the only warm light, and condensed type floats in vast negative space like exhibition placards.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display-sm",
+        "size": 38,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -0.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width horizontal bar on #060606 canvas. Logo at far left, nav links center-left, UTC time at far right. No background fill, no border — sits directly on the void. Height ~60px with 36px horizontal padding."
+      },
+      {
+        "name": "Koto Logo Mark",
+        "role": "Brand identity in nav",
+        "description": "'KOTO' wordmark in #ffe800 (Signal Yellow) using gtKotoheim at ~14px weight 400 with the 'salt' feature on, plus a thin yellow smile arc beneath. The only chromatic element in the system — treated as a fixed asset, not a text component."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Section navigation items",
+        "description": "Uppercase gtKotoheim at 12px weight 400, letter-spacing normal, color #ffffff. Separated by ~36px column gap. Active state shown by a small dot indicator (•) in white. No underline, no background — pure typographic nav."
+      },
+      {
+        "name": "UTC Time Indicator",
+        "role": "Live timezone display in nav",
+        "description": "Top-right meta element: '20:23 UTC↗' in gtKotoheim 12px weight 400, #ffffff. Includes a small arrow glyph. Signals the studio's global presence across five cities."
+      },
+      {
+        "name": "Hero Headline Statement",
+        "role": "Opening typographic declaration",
+        "description": "gtKotoheimCondensed weight 300 at 48px, line-height 1.0, letter-spacing -0.48px, color #ffffff. Two-line left-aligned stack at the bottom-left of the first viewport. Massive negative space above and to the right — the text anchors the page through position alone."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph content",
+        "description": "gtKotoheim weight 350 at 16px, line-height 1.5, color #b4b4b4 (Silver Whisper). Max-width ~600px, left-aligned. Tight character through the 'salt' feature gives prose a distinctive technical tone. No paragraph spacing beyond natural line breaks."
+      },
+      {
+        "name": "Dark Surface Card",
+        "role": "Content container for images or grouped content",
+        "description": "Background #141414 (Graphite Surface) on #060606 canvas, 6px border-radius, 36px padding. No border, no shadow — the slight lightness shift is the only elevation signal. 48px row-gap between stacked cards."
+      },
+      {
+        "name": "Outlined Action Border",
+        "role": "Interactive border treatment",
+        "description": "1px solid #ffffff border, 2px radius, transparent background. Used for ghost-style interactive elements. The white border on void black is the system's equivalent of a CTA — there are no filled buttons in this palette."
+      },
+      {
+        "name": "Footer City List",
+        "role": "Office locations meta",
+        "description": "Inline text in gtKotoheim 14px weight 400, #989898, listing city names separated by commas. Embedded within body copy rather than isolated in a footer block — location is part of the narrative."
+      },
+      {
+        "name": "Active Nav Dot",
+        "role": "Current page indicator",
+        "description": "Small white dot (•) positioned next to the active nav item. 2px diameter, color #ffffff. The only interactive state indicator visible in the system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI, body, navigation, button, and small-display text. Custom monospace-feeling sans with 'salt' alternate glyphs — weight 350 is the default body, 400 for slightly stronger emphasis. The only typeface for everything below display size.",
+        "sizes": "12px, 14px, 16px",
+        "family": "gtKotoheim",
+        "weight": "350, 400",
+        "lineHeight": "1.25, 1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or a monospaced geometric sans like Space Mono",
+        "fontFeatureSettings": "\"salt\""
+      },
+      {
+        "role": "Display headings only. Condensed cut at weight 300 with tight 1.0–1.1 leading and -0.01em tracking — these headlines whisper rather than shout, letting the vast negative space amplify their presence. Reserved for hero statements and section titles.",
+        "sizes": "38px, 48px",
+        "family": "gtKotoheimCondensed",
+        "weight": "300",
+        "lineHeight": "1.00, 1.10",
+        "substitute": "Inter Tight, Barlow Condensed, or any narrow geometric sans at light weight",
+        "letterSpacing": "-0.01em",
+        "fontFeatureSettings": "\"salt\""
+      }
+    ],
+    "description": "Koto is a creative agency site that feels like an empty gallery at midnight: a near-totally achromatic canvas where custom condensed type carries all the personality. The sole chromatic moment is the yellow logo mark — everything else is a disciplined gradient of grays against near-black, structured as sparse typographic waypoints rather than information-dense blocks. Navigation is whisper-quiet, whitespace is architectural, and components sit flat on the canvas with no shadows or gradients. The density is compact at the micro-level (tight padding, small type) but breathes generously between sections, creating a rhythm of typographic statements separated by void.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "The design has no shadows. Surface hierarchy is communicated purely through lightness shifts in the grayscale (#060606 → #141414) and the density of white text and borders against the dark canvas. This flat treatment is deliberate — any drop shadow would break the gallery-on-blackwall illusion."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "heading",
+            "card"
+          ],
+          "frequency": 2046,
+          "confidence": 1,
+          "prominence": 87999202.78615758,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 70,
+            "card/color": 1,
+            "icon/color": 13,
+            "link/color": 26,
+            "other/fill": 16,
+            "icon/stroke": 10,
+            "other/color": 274,
+            "button/color": 7,
+            "other/stroke": 5,
+            "heading/color": 16,
+            "body/borderColor": 280,
+            "card/borderColor": 4,
+            "icon/borderColor": 52,
+            "link/borderColor": 104,
+            "other/borderColor": 1076,
+            "button/borderColor": 28,
+            "heading/borderColor": 64
+          }
+        },
+        {
+          "hex": "#060606",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.12211889111723348
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2565000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 729945.0383607937,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/backgroundColor": 8,
+            "image/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#989898",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6796802947643183
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 368,
+          "confidence": 1,
+          "prominence": 627068.0216406512,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 43,
+            "link/color": 7,
+            "other/color": 12,
+            "heading/color": 10,
+            "body/borderColor": 172,
+            "link/borderColor": 28,
+            "other/borderColor": 48,
+            "heading/borderColor": 40,
+            "body/backgroundColor": 7,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#595959",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.464002143159062
+          },
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 119,
+          "confidence": 1,
+          "prominence": 355594.355424309,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "icon/color": 1,
+            "link/color": 3,
+            "other/fill": 1,
+            "other/color": 7,
+            "footer/color": 1,
+            "body/borderColor": 44,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "other/borderColor": 28,
+            "footer/borderColor": 4,
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 40410.83656341965,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b4b4b4",
+          "oklch": {
+            "c": 0.00003720205153533689,
+            "h": 23.78845824087958,
+            "l": 0.77087915770362
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 4494.9861318745725,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "body/borderColor": 32
+          }
+        },
+        {
+          "hex": "#ffe800",
+          "oklch": {
+            "c": 0.19293213932333958,
+            "h": 102.15619171341025,
+            "l": 0.9208134220931493
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3621.4878494543095,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0012057933524763861,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.26,
+          "background": "#060606",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#141414",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.2,
+          "background": "#ffe800",
+          "foreground": "#060606"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#ffe800",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.03,
+          "background": "#ffe800",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.77,
+          "background": "#060606",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.89,
+          "background": "#141414",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#b4b4b4",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.02,
+          "background": "#060606",
+          "foreground": "#989898"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7,
+          "background": "#595959",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.39,
+          "background": "#141414",
+          "foreground": "#989898"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#ffe800",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.38,
+          "background": "#595959",
+          "foreground": "#b4b4b4"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.89,
+          "background": "#060606",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.88,
+          "background": "#989898",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.63,
+          "background": "#141414",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.43,
+          "background": "#595959",
+          "foreground": "#989898"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#989898",
+          "foreground": "#b4b4b4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|body",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 70,
+          "properties": [
+            "paddingRight",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "columnGap|body",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 36,
+          "properties": [
+            "columnGap",
+            "paddingLeft",
+            "rowGap",
+            "paddingRight",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "rowGap|link",
+            "paddingRight|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingBottom|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "gtKotoheim",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 461,
+          "fontFeatureSettings": [
+            "\"salt\""
+          ]
+        },
+        {
+          "family": "gtKotoheimMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": [
+            "\"salt\""
+          ]
+        },
+        {
+          "family": "gtKotoheimCondensed",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": [
+            "\"salt\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "gtKotoheimMono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "gtKotoheimMono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "gtKotoheim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 401,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "gtKotoheimMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "gtKotoheim",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "gtKotoheim",
+          "weight": 350,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "gtKotoheimCondensed",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "gtKotoheimCondensed",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8d785e2a-cb43-456b-a2bc-ad99984c9e01.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c0c43d27-539c-4403-a210-5471e062f64f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Koto design system\",\"item\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563#style-reference\",\"name\":\"Koto design system reference\",\"headline\":\"Koto design system | Refero Styles\",\"description\":\"Explore Koto's dark Agency design system: Void Black #060606, Graphite Surface #141414 colors, gtKotoheim, gtKotoheimCondensed typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Koto\",\"url\":\"https://koto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a88fa835-1d5e-4b8e-b3d5-602597870563#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c0c43d27-539c-4403-a210-5471e062f64f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c0c43d27-539c-4403-a210-5471e062f64f.jpg\",\"caption\":\"Screenshot of Koto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c0c43d27-539c-4403-a210-5471e062f64f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Koto design system\",\"Koto website design\",\"Koto colors\",\"Koto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Graphite Surface\",\"Smoke Border\",\"Iron Mute\",\"gtKotoheim\",\"gtKotoheimCondensed\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Koto design system\"},{\"@type\":\"Thing\",\"name\":\"Koto website design\"},{\"@type\":\"Thing\",\"name\":\"Koto colors\"},{\"@type\":\"Thing\",\"name\":\"Koto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:24:25.496Z\",\"dateModified\":\"2026-04-30T00:24:25.496Z\"}]}"
+}

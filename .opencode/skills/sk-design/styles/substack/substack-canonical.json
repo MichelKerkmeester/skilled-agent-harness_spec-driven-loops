@@ -1,0 +1,1165 @@
+{
+  "source": "https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7",
+  "uuid": "14e563d8-a35a-4867-b4bf-15d1620ddae7",
+  "name": "Substack",
+  "northStar": "orange ink on a newsroom desk",
+  "capturedAt": "2026-07-18T08:23:34.976Z",
+  "meta": {
+    "url": "https://substack.com",
+    "siteName": "Substack",
+    "extractedAt": "2026-06-03T17:19:55.187Z",
+    "durationMs": 31531,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 781,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ff6719 exclusively for primary action buttons, the logo, and Subscribe links — it is the only chromatic color in the system and loses all signal power if applied to decorative elements",
+      "Pair system-ui (weight 400 body, 500 UI labels, 600 titles) with Cahuenga (24-32px, weight 500) for any page-level headings",
+      "Use 9999px border-radius for all buttons, tags, and pill inputs; use 12px for cards and nav items; never use values outside {4, 8, 12, 9999}px",
+      "Separate feed items with 1px #eeeeee hairlines and 32px gaps — never use card shadows or colored backgrounds to create separation",
+      "Use #363737 for all body and heading text; reserve #000000 for icon strokes and image overlays only",
+      "Set page max-width to 1200px with a three-column layout: ~200px left nav, ~600px center feed, ~300px right sidebar",
+      "Size metadata at 12-13px in #777777 and body text at 15-19px — the newsroom density is a defining feature, not a bug"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color beyond #ff6719 — no blues, greens, purples, or secondary brand colors; the system is monochrome + orange",
+      "Do not add card shadows, elevation, or panel chrome to feed items — the flat hairline-divided feed is the layout",
+      "Do not use #000000 as a background or primary text color — use #363737 (Ink) for text warmth and #232525 (Charcoal) for emphasis",
+      "Do not use sharp corners (0-4px) on buttons or inputs — pills (9999px) and soft rounds (8-12px) are the only radius values",
+      "Do not use Cahuenga for body text — it is a display serif for headings only; use Spectral for long-form post bodies and system-ui for UI chrome",
+      "Do not set body line-height below 1.4 in the UI chrome — the compact density comes from small font sizes and tight spacing, not cramped leading",
+      "Do not use gradients on buttons, cards, or surfaces — the only gradient in the system is the teal hero banner illustration"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff6719",
+        "name": "Signal Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#363737",
+        "name": "Ink",
+        "role": "Primary text — body copy, headings, post titles, timestamps, author names; warm-shifted near-black instead of pure #000 for less aggressive reading",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, input fields, nav background — the dominant surface, occupying the vast majority of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232525",
+        "name": "Charcoal",
+        "role": "Secondary text and high-emphasis link hover state; deeper than Ink for code blocks and emphasis blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#777777",
+        "name": "Stone",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b6b6b6",
+        "name": "Ash",
+        "role": "Hairline borders, button outlines, icon strokes, disabled control borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Mist",
+        "role": "Divider lines, subtle icon backgrounds, skeleton placeholder fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Cloud",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5e5e5e",
+        "name": "Slate",
+        "role": "Dark mode surface accent or pressed button state — infrequently used but present in the token set",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "role": "Icon strokes, image overlays, dark accent blocks in promo cards",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Three-column desktop layout: fixed left sidebar (~200px, icon + label nav, sticky), center feed (max-width ~600px, vertically scrolling post list), fixed right sidebar (~300px, search + recommendations + sign-up). The center feed is the editorial core — no card chrome, just posts stacked with hairline dividers and 32px section gaps. Hero banner sits at the top of the feed as a single full-width card. The left sidebar contains the brand logo (orange stacked-lines mark), six nav items, and a full-width orange 'Create' button at the bottom. The right sidebar has a search input, a sign-up card, and an 'Up next' reading list. Navigation is minimal — no top bar, no breadcrumbs; the sidebar IS the nav. Content density is high: posts use 12-13px metadata and 15-19px body text, creating a newspaper-feed rhythm rather than a card-grid marketplace feel.",
+    "imagery": "Photography is user-generated content (author avatars, publication thumbnails, post images) — Substack provides no decorative photography of its own. The hero card uses a teal-to-green gradient with abstract illustration elements (geometric shapes, stylized pen/note objects) as background. Post thumbnails in the right sidebar are small (64px), contained with 8px radius, and function as reading-list previews. The overall visual language is text-dominant — the interface is a canvas for reading, with imagery serving as small visual anchors rather than atmosphere.",
+    "similar": [
+      {
+        "why": "Same editorial reading-app layout with three-column desktop structure, serif body text for long-form posts, and minimal chrome that lets content dominate",
+        "business": "Medium"
+      },
+      {
+        "why": "Same three-column feed layout with fixed sidebars, compact metadata-dense post rows, and a single accent color for primary actions (though Twitter uses blue instead of orange)",
+        "business": "Twitter/X"
+      },
+      {
+        "why": "Same reading-list metaphor with right-sidebar recommendations, thumbnail + headline list items, and a flat white interface that treats typography as the primary visual asset",
+        "business": "Pocket"
+      },
+      {
+        "why": "Same newsletter-publisher visual language with serif headlines, pill-shaped CTAs, and a monochromatic interface where one accent color carries all interactive weight",
+        "business": "Ghost"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "inputs": "12px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "32px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background — the dominant surface"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Recessed",
+        "level": 2,
+        "purpose": "Secondary surface — pill button backgrounds (Sign in), input resting states, subtle hover washes"
+      },
+      {
+        "hex": "#c8c8c8",
+        "name": "Divider",
+        "level": 3,
+        "purpose": "Hairline separators and icon placeholder backgrounds"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset",
+        "element": "Buttons (inset highlight)"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+        "element": "Floating App Button"
+      }
+    ],
+    "northStar": "orange ink on a newsroom desk",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.54
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button (Orange Pill)",
+        "role": "Filled CTA — Create, Get started, Get the app, Subscribe confirmation",
+        "description": "Background #ff6719, white text, system-ui weight 500 at 15px, padding 8px 20px, border-radius 9999px (fully pill-shaped). Inset highlight shadow rgba(255,255,255,0.2) on top edge gives a subtle pressed-paper feel. The dominant button — every page has exactly one or two."
+      },
+      {
+        "name": "Secondary Action Button (Gray Pill)",
+        "role": "Ghost/secondary action — Sign in, Less prominent CTAs",
+        "description": "Background #eeeeee, text #363737, system-ui weight 500 at 15px, padding 8px 20px, border-radius 9999px. No border, no shadow — the fill alone creates the hierarchy difference from the orange primary."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Tertiary action — Learn more, alternative flows",
+        "description": "Transparent background, border 1px solid #b6b6b6, text #363737, system-ui weight 500 at 15px, padding 8px 20px, border-radius 9999px. Sits alongside the primary button in the hero card as the non-default option."
+      },
+      {
+        "name": "Left Sidebar Nav Item",
+        "role": "Primary navigation entries — Home, Subscriptions, Chat, Activity, Explore, Profile",
+        "description": "Icon (20px, stroke #363737) left of label, system-ui weight 500 at 15px, text #363737, vertical padding 6px, horizontal padding 12px, border-radius 8px. Hover state adds #f5f5f5 background. Active state (Home) may add left orange bar or orange text."
+      },
+      {
+        "name": "Hero Banner Card",
+        "role": "Featured callout — onboarding, promotions, featured publications",
+        "description": "Teal/dark gradient background, border-radius 12px, padding 24px 32px, Cahuenga 32px heading in white, subtitle in #c8c8c8, orange primary + outlined secondary button row. This is the only gradient surface in the system."
+      },
+      {
+        "name": "Feed Post Card",
+        "role": "Post entry in the main feed",
+        "description": "No background or border — just vertical rhythm. Avatar 32px circle, author name (system-ui 15px weight 600 #363737) + timestamp (system-ui 13px #777777), post body text (Spectral 19px #363737), engagement row (heart/comment/share icons, count in #777777 at 13px). Cards separated by 1px #eeeeee hairline."
+      },
+      {
+        "name": "Subscribe Link",
+        "role": "Inline call-to-action next to each post",
+        "description": "Text only — 'Subscribe' in #ff6719, system-ui weight 500 at 15px, no underline, no button chrome. Appears at the top-right of each post card, opposite the author/timestamp row."
+      },
+      {
+        "name": "Right Sidebar Recommendation Card",
+        "role": "Up next feed, \"Log in or sign up\" promo",
+        "description": "White background, border-radius 12px, padding 20px, no shadow. Title in Cahuenga 24px #363737, body in system-ui 15px #777777, orange primary button at bottom, optional thumbnail (40px) on feed items."
+      },
+      {
+        "name": "Search Input",
+        "role": "Top of right sidebar — search publications and posts",
+        "description": "Full-width pill input, background #ffffff, border 1px solid #b6b6b6, border-radius 9999px, padding 8px 12px 8px 36px (left padding for search icon). Placeholder 'Search Substack' in #777777 at 13px."
+      },
+      {
+        "name": "Up Next Feed Item",
+        "role": "Recommended reading in right sidebar",
+        "description": "Horizontal layout: thumbnail (64px, border-radius 8px) left, text block right. Publication name in system-ui 13px weight 500 #363737, headline in system-ui 15px weight 400 #363737, metadata (read time, likes, comments) in #777777 at 12px. No card chrome — separated by 12px vertical gap."
+      },
+      {
+        "name": "App Download Floating Button",
+        "role": "Bottom-right sticky CTA for mobile app",
+        "description": "White background, system-ui 15px weight 500, border-radius 9999px, padding 8px 16px, subtle drop shadow rgba(0,0,0,0.1) 0px 4px 6px. The only element with a real drop shadow — signals it's floating above the page."
+      },
+      {
+        "name": "Engagement Action Row",
+        "role": "Like, comment, share, download on each post",
+        "description": "Inline icon + count pair, system-ui 13px #777777, 20px icons (stroke #777777), 8px gap between icon and count, 16px gap between actions. No buttons — the entire row is a tappable area."
+      },
+      {
+        "name": "AI Annotation Badge",
+        "role": "App/integration tag on posts (e.g., 'Cursor APP 41 mins')",
+        "description": "Small inline badge — icon (16px) + label (system-ui 13px weight 500 #363737) + timestamp (system-ui 13px #777777), separated by 8px gaps, sitting above highlighted/annotated text in the post body."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body font — used for navigation labels, buttons, post body text, metadata, input fields, and all interface chrome. The compact 12-13px metadata and 15-19px body sizes create the dense newsroom feel. Weight 400 for body, 500 for nav items and button labels, 600 for emphasized post titles and section headers.",
+        "sizes": "12, 13, 15, 19, 20px",
+        "family": "system-ui",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.0–1.54",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+      },
+      {
+        "role": "Branded display serif for product-level headings (sidebar headings, sign-up card titles, hero text). The medium weight and tight line-height give it editorial presence without feeling heavy; this is the only font that signals 'this is Substack' beyond the orange color.",
+        "sizes": "24, 32px",
+        "family": "Cahuenga",
+        "weight": "500",
+        "lineHeight": "1.24, 1.25",
+        "substitute": "Charter, 'Iowan Old Style', 'Source Serif Pro', Georgia, serif"
+      },
+      {
+        "role": "Long-form post body serif — used inside reader views and feed post content for editorial readability. The slightly looser line-height (1.20) keeps reading paragraphs comfortable while maintaining the compact newsroom density.",
+        "sizes": "19px",
+        "family": "Spectral",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Charter, 'Iowan Old Style', 'Source Serif Pro', Georgia, serif"
+      },
+      {
+        "role": "Code blocks and inline code within posts — the slight negative tracking (-0.014em) tightens the monospace for better visual alignment with surrounding serif text.",
+        "sizes": "14px",
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "lineHeight": "1.43",
+        "substitute": "'Fira Code', 'Source Code Pro', Menlo, Consolas, monospace",
+        "letterSpacing": "-0.014em"
+      },
+      {
+        "role": "-apple-system-ui-serif — detected in extracted data but not described by AI",
+        "sizes": "20px",
+        "family": "-apple-system-ui-serif",
+        "weight": "400",
+        "lineHeight": "1.6"
+      }
+    ],
+    "description": "Substack reads like a well-worn newsroom dashboard — white canvas, warm near-black text, and one loud signal-orange that marks every act of creation. The visual hierarchy is built from density rather than decoration: thin gray rules separate feed items, avatars are small, metadata is muted, and the reader's eye is trained to find the orange CTA, the orange logo, the orange 'Subscribe' link, the orange 'Create' button. Surfaces stay flat and unbounded — no card shadows, no panel chrome — letting the typography (a compact system-ui chrome paired with a custom serif headline face) carry the editorial weight. The signature gesture is restraint in chrome and loudness in one color: a reading app that looks like a publishing tool.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Substack design system\",\"item\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#style-reference\",\"name\":\"Substack design system reference\",\"headline\":\"Substack design system | Refero Styles\",\"description\":\"Explore Substack's light Media design system: Signal Orange #ff6719, Ink #363737 colors, system-ui, Cahuenga typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Substack\",\"url\":\"https://substack.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"caption\":\"Screenshot of Substack\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Substack design system\",\"Substack website design\",\"Substack colors\",\"Substack typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Orange\",\"Ink\",\"Paper\",\"Charcoal\",\"system-ui\",\"Cahuenga\",\"Spectral\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Substack design system\"},{\"@type\":\"Thing\",\"name\":\"Substack website design\"},{\"@type\":\"Thing\",\"name\":\"Substack colors\"},{\"@type\":\"Thing\",\"name\":\"Substack typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-01-21T18:01:12.000Z\",\"dateModified\":\"2026-01-21T18:01:12.000Z\"}]}19:T508,## Quick Color Reference\n- Text: #363737 (Ink)\n- Background: #ffffff (Paper)\n- Muted text: #777777 (Stone)\n- Border: #b6b6b6 (Ash)\n- Accent/Brand: #ff6719 (Signal Orange)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feed Post Card**: No card background. 32px circular avatar, author name in system-ui 15px weight 600 #363737, timestamp in system-ui 13px #777777, post body in Spectral 19px #363737 line-height 1.2. Engagement row below: heart/comment/share icons (20px, stroke #777777) with counts in system-ui 13px #777777, 16px gap between actions. 'Subscribe' link in #ff6719 at top-right.\n\n3. **Hero Banner Card**: Teal gradient background, border-radius 12px, padding 24px 32px. Cahuenga 32px weight 500 heading in white, subtitle in system-ui 15px #c8c8c8. Two buttons: orange filled 'Get started' pill + outlined 'Learn more' pill (border 1px #b6b6b6, text #363737).\n\n4. **Left Sidebar Nav Item**: 20px icon (stroke #363737) + label in system-ui 15px weight 500 #363737, padding 6px 12px, border-radius 8px. Full-width orange 'Create' button at bottom: #ff6719 background, white text, 9999px radius, 8px 20px padding."
+      }
+    ],
+    "elevationPhilosophy": "Substack avoids elevation almost entirely — there are no card shadows, no modal scrims, no elevated panels. The only shadows are the subtle inset highlights on filled buttons (to add tactile dimension) and the single drop shadow on the floating 'Get app' button (to signal it's a fixed overlay). All depth is achieved through background color differentiation (#ffffff → #eeeeee) and 1px hairline rules, keeping the interface feeling like a newsroom layout — flat, scannable, paper-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#363737",
+          "oklch": {
+            "c": 0.0013874152136088883,
+            "h": 197.09110044020537,
+            "l": 0.3358123572231208
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "body",
+            "image",
+            "icon",
+            "heading",
+            "input",
+            "list"
+          ],
+          "frequency": 1908,
+          "confidence": 1,
+          "prominence": 57106491.549719155,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "icon",
+            "input",
+            "link"
+          ],
+          "frequency": 269,
+          "confidence": 1,
+          "prominence": 42320898.36542695,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 697372.7963596878,
+          "properties": [
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 642627.1419722748,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#232525",
+          "oklch": {
+            "c": 0.002933141354764068,
+            "h": 196.97760778071307,
+            "l": 0.26240825964209913
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 378040,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#777777",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5692624033839502
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 878,
+          "confidence": 1,
+          "prominence": 216796.818664819,
+          "properties": [
+            "stroke",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff6719",
+          "oklch": {
+            "c": 0.2011622372389575,
+            "h": 42.157486983364805,
+            "l": 0.6976951316118685
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 74813.53752812509,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8c8c8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.832793817744683
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 35005.73973665233,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b6b6b6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.776274031332301
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 23158.712821506524,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8b8b8c",
+          "oklch": {
+            "c": 0.000951338129285589,
+            "h": 247.836850472876,
+            "l": 0.6364931141334238
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9984,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5e5e5e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.48103902786157865
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4970.442402261546,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 898.3535750584333,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01122071305134468,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.41,
+          "background": "#232525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#eeeeee",
+          "foreground": "#232525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#c8c8c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.94,
+          "background": "#ffffff",
+          "foreground": "#363737"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.36,
+          "background": "#b6b6b6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.29,
+          "background": "#eeeeee",
+          "foreground": "#363737"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.21,
+          "background": "#c8c8c8",
+          "foreground": "#232525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#b6b6b6",
+          "foreground": "#232525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.21,
+          "background": "#000000",
+          "foreground": "#ff6719"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.14,
+          "background": "#c8c8c8",
+          "foreground": "#363737"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.48,
+          "background": "#5e5e5e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.89,
+          "background": "#b6b6b6",
+          "foreground": "#363737"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.59,
+          "background": "#eeeeee",
+          "foreground": "#5e5e5e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#232525",
+          "foreground": "#ff6719"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.69,
+          "background": "#000000",
+          "foreground": "#777777"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.48,
+          "background": "#ffffff",
+          "foreground": "#777777"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.1,
+          "background": "#ff6719",
+          "foreground": "#363737"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#c8c8c8",
+          "foreground": "#5e5e5e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 45
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 69,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 281,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 568,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Spectral",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cahuenga",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Jetbrains Mono",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system-ui-serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Jetbrains Mono",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.014,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "icon",
+            "button",
+            "input"
+          ],
+          "frequency": 330,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Spectral",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 92,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system-ui-serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cahuenga",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Cahuenga",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e0c4729f-e2fb-4f03-b2b3-88aa9780833e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Substack design system\",\"item\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#style-reference\",\"name\":\"Substack design system reference\",\"headline\":\"Substack design system | Refero Styles\",\"description\":\"Explore Substack's light Media design system: Signal Orange #ff6719, Ink #363737 colors, system-ui, Cahuenga typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Substack\",\"url\":\"https://substack.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14e563d8-a35a-4867-b4bf-15d1620ddae7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"caption\":\"Screenshot of Substack\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f6557c11-e057-4f38-af65-20007cd91ce0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Substack design system\",\"Substack website design\",\"Substack colors\",\"Substack typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Signal Orange\",\"Ink\",\"Paper\",\"Charcoal\",\"system-ui\",\"Cahuenga\",\"Spectral\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Substack design system\"},{\"@type\":\"Thing\",\"name\":\"Substack website design\"},{\"@type\":\"Thing\",\"name\":\"Substack colors\"},{\"@type\":\"Thing\",\"name\":\"Substack typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-01-21T18:01:12.000Z\",\"dateModified\":\"2026-01-21T18:01:12.000Z\"}]}19:T508,## Quick Color Reference\n- Text: #363737 (Ink)\n- Background: #ffffff (Paper)\n- Muted text: #777777 (Stone)\n- Border: #b6b6b6 (Ash)\n- Accent/Brand: #ff6719 (Signal Orange)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feed Post Card**: No card background. 32px circular avatar, author name in system-ui 15px weight 600 #363737, timestamp in system-ui 13px #777777, post body in Spectral 19px #363737 line-height 1.2. Engagement row below: heart/comment/share icons (20px, stroke #777777) with counts in system-ui 13px #777777, 16px gap between actions. 'Subscribe' link in #ff6719 at top-right.\n\n3. **Hero Banner Card**: Teal gradient background, border-radius 12px, padding 24px 32px. Cahuenga 32px weight 500 heading in white, subtitle in system-ui 15px #c8c8c8. Two buttons: orange filled 'Get started' pill + outlined 'Learn more' pill (border 1px #b6b6b6, text #363737).\n\n4. **Left Sidebar Nav Item**: 20px icon (stroke #363737) + label in system-ui 15px weight 500 #363737, padding 6px 12px, border-radius 8px. Full-width orange 'Create' button at bottom: #ff6719 background, white text, 9999px radius, 8px 20px padding."
+}

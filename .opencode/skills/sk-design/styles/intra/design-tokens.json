@@ -1,0 +1,170 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, type knocked out of black panels"
+    },
+    "ink-black": {
+      "$value": "#212529",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, bold panels, the dominant non-white surface — carries a barely-perceptible cool tint that softens it from pure #000"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Button strokes, logo fill, and the heaviest typographic moments where absolute zero contrast is required"
+    },
+    "hairline-gray": {
+      "$value": "#e4e4e4",
+      "$type": "color",
+      "$description": "Hairline Gray — Dividers, card borders, image outlines, table rules — the only mid-tone in the system"
+    }
+  },
+  "font": {
+    "whyte": {
+      "$value": "Whyte",
+      "$type": "fontFamily",
+      "$description": "Single-weight type system. 95px display headlines for the wordmark and section titles carry the brand's editorial weight; 18–20px reads as body and meta; 16px as captions and link lists. The single weight (400) at all sizes is a signature choice — no bold, no light, the hierarchy is built through SIZE, not stroke. Substitute with Inter, Söhne, or Neue Haas Grotesk."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System fallback for environments where Whyte is unavailable; inherits macOS/iOS native rhythm. Use only as the last-resort stack, not the primary voice."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Whyte",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Whyte",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Whyte",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Whyte",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Whyte",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 95px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "78": {
+      "$value": "78px",
+      "$type": "dimension",
+      "$description": "Spacing 78px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the dominant background, covering most of the viewport"
+    },
+    "ink-panel": {
+      "$value": "#212529",
+      "$type": "color",
+      "$description": "Surface level 1: Inverse sections, logo plate, and the rare dark band that punctuates the white page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://intracbr.com.au",
+      "siteName": "Intra",
+      "extractedAt": "2026-06-03T19:21:52.602Z",
+      "variant": "extended"
+    }
+  }
+}

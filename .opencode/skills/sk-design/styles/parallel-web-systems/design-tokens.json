@@ -1,0 +1,374 @@
+{
+  "color": {
+    "schematic-blue": {
+      "$value": "#0d6ea5",
+      "$type": "color",
+      "$description": "Schematic Blue — Hero data-visualization panels, inline emphasis phrases, link/heading accents — the cool, restrained blue of a blueprint or oscilloscope trace, used at scale to make a single colored block dominate a page"
+    },
+    "signal-orange": {
+      "$value": "#fb631b",
+      "$type": "color",
+      "$description": "Signal Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dark filled buttons (CONTACT), the HUMAN/MACHINE pill toggle — a near-black that is softer than pure #000, the default reading color across all body and headings"
+    },
+    "graphite": {
+      "$value": "#434343",
+      "$type": "color",
+      "$description": "Graphite — Secondary nav and button text, footer secondary links — the mid-tier of the neutral scale, sits between Ink Black and Slate"
+    },
+    "slate": {
+      "$value": "#858483",
+      "$type": "color",
+      "$description": "Slate — Supporting neutral for secondary UI, dividers, and muted labels."
+    },
+    "ash-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Ash Gray — Body muted text, captions — sits just above Slate in the gray scale for slightly more emphasis"
+    },
+    "hairline": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Hairline — All borders, dividers, and 0.5px inset shadows — the single most-used color on the site, defines every edge"
+    },
+    "cream-paper": {
+      "$value": "#f5f4f1",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas and card surfaces — a warm off-white, never pure white; this tint is the signature that makes the site feel like printed paper rather than a screen"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surface, button text on dark fills, occasional contrast backgrounds — used sparingly to lift elements above the cream canvas"
+    },
+    "fog": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Fog — Secondary surface, subtle background bands, disabled-state wash"
+    },
+    "mortar": {
+      "$value": "#dedede",
+      "$type": "color",
+      "$description": "Mortar — Inactive chips, tag backgrounds, low-emphasis surface fills"
+    },
+    "concrete": {
+      "$value": "#cbcbcb",
+      "$type": "color",
+      "$description": "Concrete — Inert dividers in nested layouts, scroll-track backgrounds"
+    }
+  },
+  "font": {
+    "gerstnerprogramm": {
+      "$value": "gerstnerProgramm",
+      "$type": "fontFamily",
+      "$description": "All reading content — body, subheadings, section headings, and display headlines. A transitional/old-style serif custom to the brand; carries the editorial, almost publication-grade voice of the site. The 36px/26px sizes are used for section titles; 14–16px for body; 11–13px for labels and micro-copy."
+    },
+    "ftsystemmono": {
+      "$value": "ftSystemMono",
+      "$type": "fontFamily",
+      "$description": "All UI chrome — nav links, button labels, pill toggles (HUMAN / MACHINE), tags, and any technical/keyword text. A custom monospace that gives every interactive element the visual weight of a terminal command, deliberately contrasting with the serif body to signal 'this is an interface, not a paragraph'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ftSystemMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "gerstnerProgramm",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "14385.6px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(229, 229, 229) 0px 0px 0px 0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(229, 229, 229) 0px 0.5px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 13px 8px 0px, rgba(0, 0, 0, 0.03) 0px 6px 6px 0px, rgba(0, 0, 0, 0.04) 0px 1px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f5f4f1",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas, footer background, button text on dark fills"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces, button labels, small lift above the canvas"
+    },
+    "fog": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface band, subtle inline background for tags and chips"
+    },
+    "schematic-blue": {
+      "$value": "#0d6ea5",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed hero data panel, the only chromatic surface in the system"
+    },
+    "ink-black": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 4: Dark filled buttons, dithered footer band, HUMAN/MACHINE toggle"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://parallel.ai",
+      "siteName": "Parallel Web Systems",
+      "extractedAt": "2026-06-03T17:16:35.585Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,670 @@
+{
+  "source": "https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00",
+  "uuid": "6be758be-344f-4301-8ff9-60706356ea00",
+  "name": "Base Design",
+  "northStar": "Monochrome art book unbound — two-tone editorial monolith with documentary bleed photography and zero chromatic accent",
+  "capturedAt": "2026-07-18T08:28:12.030Z",
+  "meta": {
+    "url": "https://www.basedesign.com",
+    "siteName": "Base Design",
+    "extractedAt": "2026-06-03T22:36:15.188Z",
+    "durationMs": 44976,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 225,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use BaseGrotesk weight 300 at 60–65px for the page or brand wordmark — the oversized light-weight grotesque is the signature",
+      "Maintain a strict two-tone palette: #000000 and #ffffff only, with #ababab reserved for de-emphasized secondary text",
+      "Alternate full-bleed white and full-bleed black sections without gradients, borders, or transitions between them",
+      "Set every button to 54px border-radius — the pill shape is a defining element, not a style choice",
+      "Let photography bleed to the viewport edges with 0px radius and overlay white text directly on the image with no background plate",
+      "Use 0.01em positive letter-spacing consistently across all type sizes and weights",
+      "Keep navigation text at 12–16px and separate links with 25–30px horizontal margins — the nav should feel like quiet marginalia"
+    ],
+    "donts": [
+      "Never introduce chromatic color — no blues, reds, greens, or any accent hue anywhere in the system",
+      "Never use box-shadows, gradients, or glow effects to create depth — use black/white contrast instead",
+      "Never round card or image corners — the system uses 54px pills and 0px everything else",
+      "Never use more than two type sizes in a single composition — the rhythm relies on confident scale jumps",
+      "Never add borders thicker than 1px — hairlines are the only structural lines",
+      "Never fill the inverted button on a black background with #000000 — it will disappear",
+      "Never decorate the global nav with a logo mark, background fill, or border — it should read as floating text on white"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, heading text on dark sections, overlaid text on photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Lamp Black",
+        "role": "Primary text, display wordmarks, full-bleed dark section backgrounds, hairlines, border rules, button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ababab",
+        "name": "Fog",
+        "role": "Muted secondary text, inactive link borders, de-emphasized helper text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — content scales edge-to-edge at every breakpoint. The hero is a massive typographic wordmark (60–65px Base) that bleeds across the viewport, overlapped by a contained full-bleed photograph with centered text. Sections alternate as full-viewport bands: white band, then a full-bleed photo, then a black editorial band with centered white text. Navigation is a minimal top bar (no sticky behavior evidenced, no logo) with text-only links clustered left and right. Content rhythm is spacious and editorial — each section is a full-screen moment rather than a compact information block. No multi-column card grids; each section asserts itself as a single full-bleed composition.",
+    "imagery": "Photography is the only non-textual visual element. All imagery is documentary in tone: behind-the-scenes agency work, panel discussions, people in their studios. Treatment is full-bleed (0px corner radius) with white sans-serif text overlaid directly on the image. No duotones, no filters, no color grading beyond natural tones. Icons are absent or extremely minimal. The photographic density is high — each section is dominated by either a single full-bleed photo or a solid black/white field, never small thumbnails in grids.",
+    "similar": [
+      {
+        "why": "Identical zero-chromatic agency aesthetic — pure black and white, oversized display type as the hero, full-bleed documentary photography, and flat editorial section composition",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same monochrome typographic system with custom grotesque at extreme display sizes and minimal nav as floating text on white",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Full-bleed black/white editorial bands alternating with documentary photography and centered overlay text in a custom sans-serif",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Brutalist typographic agency identity — oversized wordmarks, no color, hairline rules, and pill-shaped buttons",
+        "business": "Bureau Borsche"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "54px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "54px"
+      },
+      "elementGap": "7px",
+      "sectionGap": "40px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Default page canvas and most content sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Alternating full-bleed dark bands for editorial contrast and thought-leadership callouts"
+      }
+    ],
+    "northStar": "Monochrome art book unbound — two-tone editorial monolith with documentary bleed photography and zero chromatic accent",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "display",
+        "size": 65,
+        "lineHeight": 1.15
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Filled action for primary navigation moments (e.g., project launches, contact, index entry)",
+        "description": "Pill shape with 54px border-radius, solid black (#000000) background, white (#ffffff) text at 16–18px weight 700, padding 8px vertical / 20–22px horizontal. No shadow, no border. Sits as the singular chromatic-free accent — a black mark on white paper."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary or alternative action with restrained presence",
+        "description": "Pill shape (54px radius), transparent background, 1px solid black (#000000) border, black text. Same 8px / 20–22px padding as the primary variant. Used when the filled version would compete with primary content."
+      },
+      {
+        "name": "Minimal Top Nav",
+        "role": "Global navigation — anchor for the entire site",
+        "description": "Full-bleed horizontal row on white. Left cluster: site title plus 5–6 small text links (Work, About, Approach, News, Contact) at 12–16px weight 400, separated by 25–30px horizontal margins. Right cluster: utility links (Search, Index) at the same size, right-aligned. No background fill, no border, no logo mark — typography alone defines the bar."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Hero or page-title identity — the dominant visual element on landing",
+        "description": "BaseGrotesk weight 300 at 60–65px, line-height 1.15, color #000000. Renders the brand name ('Base') as an oversized typographic object that bleeds across the viewport. No decoration — the letterforms ARE the design."
+      },
+      {
+        "name": "Full-Bleed Documentary Photo",
+        "role": "Atmospheric image that fills the viewport edge-to-edge",
+        "description": "Photograph cropped to viewport width with 0px radius and no border. White (#ffffff) text overlay sits directly on the image, centered both axes, weight 300–400 at 50px. Text uses no background plate — it relies on the photographic value contrast to remain legible."
+      },
+      {
+        "name": "Black Editorial Section",
+        "role": "Full-bleed dark band for thought-leadership, statements, or transitions",
+        "description": "Solid #000000 background spanning the full viewport. Centered white (#ffffff) body text at 30–50px weight 300, line-height 1.20–1.30. Acts as a visual breath and tonal pivot between white content sections. No imagery, no decorative elements."
+      },
+      {
+        "name": "Inverted Pill Button",
+        "role": "Primary action on dark or photographic sections",
+        "description": "Same 54px pill radius and padding as the primary button but inverted: white (#ffffff) background, black (#000000) text at 16–18px weight 700. Used when a black-filled button would disappear into a black background."
+      },
+      {
+        "name": "Hairline Rule",
+        "role": "Section divider, underline, or subtle separation",
+        "description": "1px solid #000000 line used to separate sections, underline active nav items, or frame content. No fill, no padding — just a pure horizontal mark."
+      },
+      {
+        "name": "Page-Title Block",
+        "role": "Identifies the current page (e.g., 'Base', 'Work') below the global nav",
+        "description": "Small 12–16px weight 500 label aligned left, 7px below the nav bar. Functions as a breadcrumb-style page indicator without visual noise."
+      },
+      {
+        "name": "Overlay Caption",
+        "role": "Short statement set in white over photography or dark sections",
+        "description": "Centered white text, 50px weight 300, line-height 1.15, letter-spacing 0.01em. Multi-line stacks are vertically and horizontally centered in the container. Examples in the system: 'A Family of Makers' and 'Read our latest thought-leadership articles, trend features, interviews, and other musings.'"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for everything — navigation, body copy, buttons, and the 60–65px display wordmark. Weight 300 carries body and large display copy, 500 is reserved for active states and emphasis, 700 appears in button labels and the page title. Custom grotesque with squared geometry; substitute with Inter or Neue Haas Grotesk.",
+        "sizes": "12, 16, 18, 25, 30, 32, 50, 60, 65",
+        "family": "BaseGrotesk",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.15 (display), 1.20 (headings), 1.30–1.40 (body)",
+        "substitute": "Inter, Neue Haas Grotesk, or Söhne",
+        "letterSpacing": "0.0100em across all sizes — consistent positive tracking tightens the grotesque's natural width"
+      }
+    ],
+    "description": "Base Design operates as a stark, print-inspired editorial system: a pure two-tone canvas where black and white alternate as full-bleed sections without mediation. Typography carries every visual decision — a single custom grotesque (BaseGrotesk) speaks in one voice across 12px nav labels and 65px display wordmarks, with consistent 0.01em tracking tightening the rhythm. Photography is the only color, presented as oversized documentary frames that bleed to the edges and let white text sit directly on the image. Components are almost invisible: pill-shaped buttons, hairline rules, and zero decorative chrome. The system feels like flipping through a brutalist monograph — nothing is colored, everything is composed.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Base Design design system\",\"item\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#style-reference\",\"name\":\"Base Design design system reference\",\"headline\":\"Base Design design system | Refero Styles\",\"description\":\"Explore Base Design's mixed Agency design system: Bone White #ffffff, Lamp Black #000000 colors, BaseGrotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Base Design\",\"url\":\"https://www.basedesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"caption\":\"Screenshot of Base Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Base Design design system\",\"Base Design website design\",\"Base Design colors\",\"Base Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Lamp Black\",\"Fog\",\"BaseGrotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Base Design design system\"},{\"@type\":\"Thing\",\"name\":\"Base Design website design\"},{\"@type\":\"Thing\",\"name\":\"Base Design colors\"},{\"@type\":\"Thing\",\"name\":\"Base Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:42:17.432Z\",\"dateModified\":\"2026-04-30T01:42:17.432Z\"}]}19:T554,## Quick Color Reference\n- text: #000000 (primary), #ababab (muted)\n- background: #ffffff (paper), #000000 (ink band)\n- border: #000000 hairline\n- accent: none\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Display Wordmark Hero** — Render the brand name at 65px BaseGrotesk weight 300, color #000000, letter-spacing 0.01em, line-height 1.15. Let it overflow the viewport naturally. Below it, layer a full-bleed photograph (0px radius) with 50px white text centered, weight 300, line-height 1.15.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Inverted Pill Button (dark section)** — 54px border-radius, #ffffff background, #000000 text at 18px weight 700, same 8px / 22px padding.\n\n4. **Black Editorial Band** — Full-bleed #000000 section, centered white (#ffffff) text at 32px weight 300, line-height 1.30, letter-spacing 0.01em. No images, no decoration. Acts as a visual breath between content sections.\n\n5. **Minimal Top Nav** — Full-bleed white row, no border or background. Left cluster: site title in 16px weight 500 followed by nav links (Work, About, Approach, News, Contact) in 12–16px weight 400, separated by 25–30px margin-right. Right cluster: Search and Index in the same size, right-aligned. No logo, no icons."
+      }
+    ],
+    "elevationPhilosophy": "Elevation does not exist in this system. Depth and hierarchy are achieved exclusively through black/white contrast, scale, and full-bleed alternation. No box-shadows, no elevation tokens, no surface tints — components sit flat on the paper or flat on the ink."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "nav"
+          ],
+          "frequency": 963,
+          "confidence": 1,
+          "prominence": 172208448.3046207,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 3,
+            "hero/color": 2,
+            "link/color": 9,
+            "other/fill": 3,
+            "image/color": 5,
+            "other/color": 95,
+            "button/color": 3,
+            "heading/color": 65,
+            "nav/borderColor": 40,
+            "body/borderColor": 12,
+            "hero/borderColor": 8,
+            "link/borderColor": 36,
+            "image/borderColor": 20,
+            "other/borderColor": 380,
+            "button/borderColor": 12,
+            "heading/borderColor": 260
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 136,
+          "confidence": 1,
+          "prominence": 123308255.50080478,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 19,
+            "other/color": 2,
+            "button/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 76,
+            "other/borderColor": 8,
+            "button/borderColor": 4,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ababab",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7412252722145155
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 17278.816403886653,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 2,
+            "body/borderColor": 12,
+            "link/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#ababab",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.3,
+          "background": "#ffffff",
+          "foreground": "#ababab"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 54,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BaseGrotesk",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 222,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "BaseGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "BaseGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "button",
+            "nav",
+            "body"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BaseGrotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "BaseGrotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "BaseGrotesk",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BaseGrotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "BaseGrotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 60,
+          "family": "BaseGrotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "BaseGrotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cf34d177-41aa-41b8-ab22-3b3c20a34e7b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Base Design design system\",\"item\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#style-reference\",\"name\":\"Base Design design system reference\",\"headline\":\"Base Design design system | Refero Styles\",\"description\":\"Explore Base Design's mixed Agency design system: Bone White #ffffff, Lamp Black #000000 colors, BaseGrotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Base Design\",\"url\":\"https://www.basedesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6be758be-344f-4301-8ff9-60706356ea00#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"caption\":\"Screenshot of Base Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/acb54d71-f7a5-4d2d-b3b6-830f352499a8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Base Design design system\",\"Base Design website design\",\"Base Design colors\",\"Base Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Lamp Black\",\"Fog\",\"BaseGrotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Base Design design system\"},{\"@type\":\"Thing\",\"name\":\"Base Design website design\"},{\"@type\":\"Thing\",\"name\":\"Base Design colors\"},{\"@type\":\"Thing\",\"name\":\"Base Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:42:17.432Z\",\"dateModified\":\"2026-04-30T01:42:17.432Z\"}]}19:T554,## Quick Color Reference\n- text: #000000 (primary), #ababab (muted)\n- background: #ffffff (paper), #000000 (ink band)\n- border: #000000 hairline\n- accent: none\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Display Wordmark Hero** — Render the brand name at 65px BaseGrotesk weight 300, color #000000, letter-spacing 0.01em, line-height 1.15. Let it overflow the viewport naturally. Below it, layer a full-bleed photograph (0px radius) with 50px white text centered, weight 300, line-height 1.15.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Inverted Pill Button (dark section)** — 54px border-radius, #ffffff background, #000000 text at 18px weight 700, same 8px / 22px padding.\n\n4. **Black Editorial Band** — Full-bleed #000000 section, centered white (#ffffff) text at 32px weight 300, line-height 1.30, letter-spacing 0.01em. No images, no decoration. Acts as a visual breath between content sections.\n\n5. **Minimal Top Nav** — Full-bleed white row, no border or background. Left cluster: site title in 16px weight 500 followed by nav links (Work, About, Approach, News, Contact) in 12–16px weight 400, separated by 25–30px margin-right. Right cluster: Search and Index in the same size, right-aligned. No logo, no icons."
+}
